@@ -1,51 +1,57 @@
 import 'react-native';
+
 import * as React from 'react';
+
+import {
+  RenderResult,
+  act,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
+import { ThemeType, createTheme } from '../../../theme';
+
 import Button from '../Button';
-import {ThemeProvider} from 'styled-components/native';
-import createTheme, {ThemeType} from '../../../utils/theme';
+import { ThemeProvider } from 'styled-components/native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import {fireEvent, render} from 'react-native-testing-library';
 
-let cnt = 0;
-const onPress = () => {
-  cnt++;
-};
+let props: any;
+let component: React.ReactElement;
+let testingLib: RenderResult;
 
-const component: React.ReactElement = (
-  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    <Button onPress={onPress} />
-  </ThemeProvider>
-);
+describe('[Button]', () => {
+  let cnt = 1;
 
-describe('[Button] rendering test', () => {
-  it('renders [enabled] as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
-  });
-  it('renders [disabled] as expected', () => {
-    const disabledComponent: React.ReactElement = (
+  beforeEach(() => {
+    props = {
+      onClick: () => cnt++,
+      testID: 'btn',
+    };
+    component = (
       <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <Button isDisabled={true}/>
+        <Button {...props} />
       </ThemeProvider>
     );
-    const json = renderer.create(disabledComponent).toJSON();
-    expect(json).toMatchSnapshot();
-  });
-});
-
-describe('[Button] interaction', () => {
-  let rendered: renderer.ReactTestRenderer;
-  let testingLib: any;
-
-  beforeAll(() => {
-    rendered = renderer.create(component);
-    testingLib = render(component);
   });
 
-  it('should fireEvent when peer image is pressed', () => {
-    const touchBtn = testingLib.getByTestId('press_id');
-    fireEvent(touchBtn, 'press');
-    expect(cnt).toEqual(1);
+  it('renders without crashing', () => {
+    const rendered = renderer.create(component).toJSON();
+    expect(rendered).toMatchSnapshot();
+    expect(rendered).toBeTruthy();
+  });
+
+  describe('interactions', () => {
+    beforeEach(() => {
+      testingLib = render(component);
+    });
+
+    it('should simulate onClick', () => {
+      const btn = testingLib.queryByTestId('btn');
+      act(() => {
+        fireEvent.press(btn);
+        fireEvent.press(btn);
+      });
+      expect(cnt).toBe(3);
+    });
   });
 });

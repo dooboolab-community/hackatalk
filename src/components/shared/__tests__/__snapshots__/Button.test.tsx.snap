@@ -1,16 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Button] rendering test renders [disabled] as expected 1`] = `
+exports[`[Button] renders without crashing 1`] = `
 <View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-      },
-    ]
+    Object {
+      "opacity": 1,
+    }
   }
+  testID="btn"
 >
   <View
     style={
@@ -18,11 +23,13 @@ exports[`[Button] rendering test renders [disabled] as expected 1`] = `
         Object {
           "alignItems": "center",
           "alignSelf": "center",
-          "backgroundColor": "rgb(243,243,243)",
-          "borderColor": "#333",
+          "backgroundColor": "#069ccd",
+          "borderColor": "#069ccd",
           "borderRadius": 4,
           "borderWidth": 2,
+          "height": 52,
           "justifyContent": "center",
+          "width": 320,
         },
       ]
     }
@@ -31,91 +38,12 @@ exports[`[Button] rendering test renders [disabled] as expected 1`] = `
       style={
         Array [
           Object {
-            "color": "#FFF",
+            "color": "white",
             "fontSize": 14,
-            "fontWeight": "bold",
           },
         ]
       }
     />
-  </View>
-</View>
-`;
-
-exports[`[Button] rendering test renders [enabled] as expected 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-      },
-    ]
-  }
->
-  <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
-    testID="press_id"
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "rgb(58,139,255)",
-            "borderColor": "rgb(58,139,255)",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "justifyContent": "center",
-            "shadowColor": "rgb(58,139,255)",
-            "shadowOpacity": 0.3,
-            "shadowRadius": 4,
-          },
-        ]
-      }
-      white={false}
-    >
-      <View
-        height={60}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "height": 60,
-              "justifyContent": "center",
-              "width": 136,
-            },
-          ]
-        }
-        width={136}
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#FFF",
-                "fontSize": 14,
-                "fontWeight": "bold",
-              },
-            ]
-          }
-          white={false}
-        />
-      </View>
-    </View>
   </View>
 </View>
 `;
