@@ -197,7 +197,7 @@ exports[`[Intro] screen rendering test should render outer component and snapsho
             ]
           }
         >
-          Navigate
+          [missing "mock.NAVIGATE" translation]
         </Text>
       </View>
     </View>
@@ -251,7 +251,7 @@ exports[`[Intro] screen rendering test should render outer component and snapsho
             ]
           }
         >
-          Change theme
+          [missing "mock.CHANGE_THEME" translation]
         </Text>
       </View>
     </View>
