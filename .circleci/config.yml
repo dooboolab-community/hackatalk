@@ -1,0 +1,247 @@
+version: 2
+jobs:
+  node:
+    working_directory: ~/dooboo
+    docker:
+      - image: circleci/node:10
+    environment:
+      TZ: 'Asia/Seoul'
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: yarn install
+
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - persist_to_workspace:
+          root: ~/dooboo
+          paths:
+            - node_modules
+
+      - run:
+          name: Lint Test
+          working_directory: .
+          command: |
+            npm run lint
+
+      - run:
+          name: COPY config
+          working_directory: .
+          command: |
+            npm run cp:config
+
+      - run:
+          name: TS Test
+          working_directory: .
+          command: |
+            npm run tsc
+
+      - run:
+          name: Jest Test
+          command: |
+            mkdir -p coverage
+            yarn run test --coverage --max-workers=2 --silent
+          environment:
+            JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
+
+      - run:
+          name: Coverage
+          working_directory: .
+          command: |
+            npm run codecov -- -t 0fc24d24-3658-478c-8976-9e832903e609
+
+      - store_test_results:
+          path: coverage
+
+      - store_artifacts:
+          path: coverage
+
+  android:
+    working_directory: ~/dooboo
+    docker:
+      - image: circleci/android:api-28-node8-alpha
+    steps:
+      - checkout:
+          path: ~/dooboo
+
+      - attach_workspace:
+          at: ~/dooboo
+
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: yarn install
+
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      # - restore_cache:
+      #     key: bundle-v1-{{ checksum "android/Gemfile.lock" }}-{{ arch }}
+
+      # - run:
+      #     command: bundle install --path vendor/bundle
+      #     working_directory: android
+
+      # - save_cache:
+      #     key: bundle-v1-{{ checksum "android/Gemfile.lock" }}-{{ arch }}
+      #     paths:
+      #       - android/vendor/bundle
+
+      - run:
+          name: Check MD5 on files
+          command: |
+            md5sum android/build.gradle
+            md5sum android/app/build.gradle            
+            cat android/app/build.gradle | sed -n -e '/dependencies/,$p' > android.app.build.gradle.deps
+
+      - restore_cache:
+          key: android-jars-v1-{{ checksum "android/build.gradle" }}-{{ checksum  "android.app.build.gradle.deps" }}
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+          working_directory: android
+
+      - save_cache:
+          key: android-jars-v1-{{ checksum "android/build.gradle" }}-{{ checksum  "android.app.build.gradle.deps" }}
+          paths:
+            - ~/.gradle
+
+      - run:
+          name: COPY config
+          working_directory: .
+          command: |
+            npm run cp:config
+
+      - run:
+          name: Build Android JS Bundle
+          working_directory: android
+          command: |
+            npm run build:android
+
+      - run:
+          name: Build Android APK
+          working_directory: android
+          command: |
+            ./gradlew assembleRelease -x bundleReleaseJsAndAssets
+
+  ios:
+    macos:
+      xcode: '9.0'
+    working_directory: ~/dooboo
+
+    # use a --login shell so our "set Ruby version" command gets picked up for later steps
+    shell: /bin/bash --login -o pipefail
+
+    steps:
+      - checkout
+
+      - run:
+          name: set Ruby version
+          command: echo "ruby-2.4" > ~/.ruby-version
+
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+
+      # not using a workspace here as Node and Yarn versions
+      # differ between our macOS executor image and the Docker containers above
+      - run: yarn install
+
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - restore_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
+
+      - run:
+          command: bundle install
+          working_directory: ios
+
+      - save_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          command: bundle exec fastlane test
+          working_directory: ios
+
+      - run:
+          name: set up test results
+          working_directory: ios
+          when: always
+          command: |
+            mkdir -p test-results/fastlane test-results/xcode
+            mv fastlane/report.xml test-results/fastlane
+            mv fastlane/test_output/report.junit test-results/xcode/junit.xml
+      - store_test_results:
+          path: ios/test-results
+
+      - store_artifacts:
+          path: ios/test-results
+  test:
+    docker:
+      - image: circleci/node:4.8.2-jessie
+      - image: mongo:3.4.4-jessie
+        environment:
+        TZ: 'Asia/Seoul'
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: npm test
+      - run:
+          name: Generate code coverage
+          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+
+workflows:
+  version: 2
+  node-android-ios:
+    jobs:
+      - node
+      # - android:
+      #     requires:
+      #       - node
+      # - ios:
+      #     requires:
+      #       - node

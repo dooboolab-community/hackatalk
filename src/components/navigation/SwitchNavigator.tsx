@@ -1,35 +1,33 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../contexts/AppContext';
+import { Theme, createTheme } from '../../theme';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import NotFound from '../screen/NotFound';
-import Loading from '../screen/Loading';
-import AuthStackNavigator from './AuthStackNavigator';
-import MainStackNavigator from './MainStackNavigator';
-import { ThemeProvider } from '../../utils/styled-components';
 
-import createTheme from '../../utils/theme';
+import { AppContext } from '../../contexts';
+import RootNavigator from './RootStackNavigator';
+import { ThemeProvider } from 'styled-components';
 
 const SwitchNavigator = createSwitchNavigator(
   {
-    NotFound,
-    Loading,
-    AuthStackNavigator,
-    MainStackNavigator,
+    RootNavigator,
   },
   {
-    initialRouteName: 'MainStackNavigator',
+    initialRouteName: 'RootNavigator',
   },
 );
 
 const AppContainer = createAppContainer(SwitchNavigator);
-export default () => {
+
+export interface ScreenProps {
+  theme: Theme;
+}
+
+export default function Navigator() {
   const { state } = useContext(AppContext);
   const { theme } = state;
+
   return (
     <ThemeProvider theme={createTheme(theme)}>
-      <AppContainer
-        screenProps={{ theme: createTheme(theme) }}
-      />
+      <AppContainer screenProps={{ theme: createTheme(theme) }} />
     </ThemeProvider>
   );
-};
+}

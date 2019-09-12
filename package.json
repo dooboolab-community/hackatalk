@@ -6,12 +6,14 @@
     "codecov": "codecov",
     "tsc": "tsc",
     "start": "tsc -w && expo start",
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001' && expo start",
     "production": "expo start --no-dev",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "node node_modules/jest/bin/jest.js",
-    "lint": "eslint src --ext .ts,.tsx,.js,.jsx"
+    "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
+    "cp:config": "cp config.sample.ts config.ts"
   },
   "private": true,
   "version": "0.0.0",
@@ -58,6 +60,7 @@
     "@typescript-eslint/parser": "^2.2.0",
     "apsl-react-native-button": "^3.1.1",
     "babel-jest": "^24.9.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "babel-preset-expo": "^5.2.0",
     "babel-preset-react-native": "4.0.1",
     "codecov": "^3.5.0",
