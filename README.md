@@ -1,11 +1,16 @@
-### ANNOUNCEMENT
+# HackaTalk
 
-DO NOT MODIFY OR CHANGE THE CODE BEFORE CONFIRMED BY `DOOBOOLAB`. THIS REPOSITORY IS USED IN `DOOBOO-CLI`.
+[![CircleCI](https://circleci.com/gh/hackatalk/hackatalk-mobile.svg?style=shield)](https://circleci.com/gh/hackatalk/hackatalk-mobile)
+[![codecov](https://codecov.io/gh/hackatalk/hackatalk-mobile/branch/master/graph/badge.svg)](https://codecov.io/gh/hackatalk/hackatalk-mobile)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-# Expo TS Boilerplate
+## Contributing to `HackaTalk`
 
-[![CircleCI](https://circleci.com/gh/dooboolab/dooboo-expo.svg?style=shield)](https://circleci.com/gh/dooboolab/dooboo-expo)
-[![codecov](https://codecov.io/gh/dooboolab/dooboo-expo/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/dooboo-expo)
+- See also
+  - dooboolab's [vision-and-mission](https://github.com/dooboolab/dooboolab.com/blob/master/vision-and-mission.md)
+  - dooboolab's [code of conduct](https://github.com/dooboolab/dooboolab.com/blob/master/code-of-conduct.md)
+- [Contributing](CONTRIBUTING.md)
 
 > Specification
 
@@ -15,9 +20,11 @@ DO NOT MODIFY OR CHANGE THE CODE BEFORE CONFIRMED BY `DOOBOOLAB`. THIS REPOSITOR
 - [localization](https://github.com/stefalda/ReactNativeLocalization)
 - [styled-components](https://github.com/styled-components/styled-components)
 - [ts-jest](https://github.com/kulshekhar/ts-jest)
-- [react-native-testing-library](https://github.com/callstack/react-native-testing-library)
+- [@testing-library/react-native](https://www.native-testing-library.com/docs/install)
 - [react-hook](https://reactjs.org/docs/hooks-intro.html)
-- [prettier](https://prettier.io)
+- [graphql](https://graphql.org)
+- [apollo-client](https://www.apollographql.com/docs/react)
+- [react-native-animatable](https://github.com/oblador/react-native-animatable)
 
 ### Gain points
 
@@ -25,8 +32,8 @@ DO NOT MODIFY OR CHANGE THE CODE BEFORE CONFIRMED BY `DOOBOOLAB`. THIS REPOSITOR
 1. Sample of context-api with `react-hook` (`useContext`).
 2. Know how to structure react native app with typescript.
 3. Know how to navigate between screens with `react-navigation`.
-4. Know how to write test code with `react-native-testing-library`.
-5. Know how to `lint` your project with `tslint`.
+4. Know how to write test code with `@testing-library/react-native`.
+5. Know how to `lint` your project with `eslint`.
 6. Know how to localize your project.
 ```
 
@@ -42,8 +49,7 @@ yarn && yarn start
 
 ```text
 app/
-├─ .doobooo // necessary if using dooboo-cli
-├─ .expo
+├─ .dooboo // necessary if using dooboo-cli
 ├─ assets
 │  └─ icons // app icons
 │  └─ images // app images like background images
@@ -55,24 +61,89 @@ app/
 │     └─ screen
 │     └─ shared
 │  └─ contexts
+│  └─ hooks
 │  └─ utils
 │  └─ App.tsx
 ├─ test/
 ├─ .buckconfig
-├─ .flowconfig
 ├─ .gitattributes
 ├─ .gitignore
 ├─ .watchmanconfig
-├─ app.json
+├─ app.sample.json
 ├─ babel.config.js
 ├─ index.js
 ├─ jest.config.js
+├─ GoogleService-Info.plist
+├─ google-services.json
 ├─ package.json
 ├─ README.md
 ├─ STRINGS.js
 ├─ tsconfig.json
 └─ tslint.json
 ```
+
+### `app.json`
+
+Run below to make your own `app` variables.
+
+> `cp app.sample.json app.json`
+
+- `app` variables
+
+  | Name                                        | Description                                                                  | required? | default        |
+  | ------------------------------------------- | ---------------------------------------------------------------------------- | --------- | -------------- |
+  | facebookAppId                               | facebook app id                                                              | true      | null           |
+  | facebookDisplayName                         | facebook display name                                                        | true      | hackatalk      |
+  | ios.config.googleSignIn.reservedClientId    | REVERSED_CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. | true      | {our test ios} |
+  | android.config.googleSignIn.certificateHash | SHA1 or SHA256 hash keys from `expo fetch:android:hashes`                    | true      | {our test ios} |
+
+  ```json
+  ...
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.dooboolab.hackatalk",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "<reservedClientId>"
+        }
+      }
+    },
+    "android": {
+      "package": "com.dooboolab.hackatalk",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleSignIn": {
+          "certificateHash": "<certificateHash>"
+        }
+      }
+    }
+  ...
+  ```
+
+  - Add `expo` key hash if you want to sign in with `facebook` in expo client.
+    `rRW++LUjmZZ+58EbN5DVhGAnkX4=`
+
+### `config.ts`
+
+Run below to make your own `config` variables.
+
+> `cp config.sample.ts config.ts`
+
+- `config` variables
+
+  | Name                | Description                                                                      | required? | default                 |
+  | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
+  | iOSClientId         | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project.              | true      | {our test ios clientId} |
+  | iOSExpoClientId     | CLIENT_ID in `GoogleService-Info.plist` ios app project with `host.exp.exponent` | true      | {our test ios clientId} |
+  | androidExpoClientId | CLIENT_ID in `google-service.json` android app project with `host.exp.exponent`  | true      | {our test and clientId} |
+
+  ```typescript
+  export const iOSClientId = '';
+  export const iOSExpoClientId = '';
+  export const androidExpoClientId = '';
+  ```
+
+  > For android, you should run `openssl rand -base64 32 | openssl sha1 -c` and paste the result in your `host.exp.exponent` firebase project. Also note that you can't use `googleSignIn` in `emulator`.
 
 ### Running the project
 
@@ -85,7 +156,7 @@ npm run start
 This runs the `start` script specified in our `package.json`, and will spawn off a server which reloads the page as we save our files.
 Typically the server runs at `http://localhost:8080`, but should be automatically opened for you.
 
-## Testing the project
+### Testing the project
 
 Testing is also just a command away:
 
@@ -159,56 +230,51 @@ export const getString = (param: string, mapObj?: object) => {
 };
 ```
 
-Fixed jest setup by adding following in jestSetup.
+#### Android
 
-```
-import { NativeModules } from 'react-native';
+1. Create new Android project
+1. Set package name com.dooboolab.hackatalk
+1. Set SHA1 or SHA256 hash keys from `expo fetch:android:hashes`
+1. Download `google-services.json` to hackatalk root folder
 
-/**
- * monkey patching the locale to avoid the error:
- * Something went wrong initializing the native ReactLocalization module
- * https://gist.github.com/MoOx/08b465c3eac9e36e683929532472d1e0
- */
+#### iOS
 
-NativeModules.ReactLocalization = {
-  language: 'en_US',
-};
-```
+1. Create new iOS project
+1. Set bundleIdentifier com.dooboolab.hackatalk
+1. Download `GoogleService-Info.plist` to hackatalk root folder
 
-# Vscode prettier and eslint setup
+### Expo version
 
-```
-"eslint.enable": true,
-"eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-],
-// prettier extension setting
-"editor.formatOnSave": true,
-"[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"prettier.singleQuote": true,
-"prettier.trailingComma": "all",
-"prettier.arrowParens": "always",
-"prettier.jsxSingleQuote": true
-```
+33
 
-### React version
+### React navigation
 
-16.8.3
+3
 
-### Expo
+## Contributors ✨
 
-34
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="http://dooboolab.com"><img src="https://avatars0.githubusercontent.com/u/27461460?v=4" width="60px;" alt="Hyo Chan Jang"/><br /><sub><b>Hyo Chan Jang</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Tests">⚠️</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/youngsu-han/"><img src="https://avatars1.githubusercontent.com/u/22214150?v=4" width="60px;" alt="Youngsu Han"/><br /><sub><b>Youngsu Han</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=heyman333" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=heyman333" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/godon019"><img src="https://avatars1.githubusercontent.com/u/10363850?v=4" width="60px;" alt="Dong-Kyun Ko"/><br /><sub><b>Dong-Kyun Ko</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=godon019" title="Documentation">📖</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=godon019" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=godon019" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/marsinearth"><img src="https://avatars0.githubusercontent.com/u/6101260?v=4" width="60px;" alt="Hwasung Kim"/><br /><sub><b>Hwasung Kim</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=marsinearth" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=marsinearth" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/JongtaekChoi"><img src="https://avatars1.githubusercontent.com/u/17980230?v=4" width="60px;" alt="Choi, Jongtaek"/><br /><sub><b>Choi, Jongtaek</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JongtaekChoi" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JongtaekChoi" title="Tests">⚠️</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JongtaekChoi" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.facebook.com/huy1965"><img src="https://avatars3.githubusercontent.com/u/1715578?v=4" width="60px;" alt="Huy, Tae Young"/><br /><sub><b>Huy, Tae Young</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=kty1965" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=kty1965" title="Tests">⚠️</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=kty1965" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/YongPilMoon"><img src="https://avatars1.githubusercontent.com/u/22088158?v=4" width="60px;" alt="YongPilMoon"/><br /><sub><b>YongPilMoon</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=YongPilMoon" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=YongPilMoon" title="Tests">⚠️</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=YongPilMoon" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/bumjoo"><img src="https://avatars1.githubusercontent.com/u/43266906?v=4" width="60px;" alt="bumjoo.lee"/><br /><sub><b>bumjoo.lee</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=bumjoo" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=bumjoo" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/hankkuu"><img src="https://avatars2.githubusercontent.com/u/7829802?v=4" width="60px;" alt="hankkuu"/><br /><sub><b>hankkuu</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hankkuu" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Sandwichj"><img src="https://avatars1.githubusercontent.com/u/11019960?v=4" width="60px;" alt="Minseok"/><br /><sub><b>Minseok</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=Sandwichj" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=Sandwichj" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/jb9229"><img src="https://avatars3.githubusercontent.com/u/3200647?v=4" width="60px;" alt="cwalker"/><br /><sub><b>cwalker</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
