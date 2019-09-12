@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Friend] rendering test renders as expected 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "flexBasis": 0,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    ListEmptyComponent={
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        No content
+      </Shared>
+    }
+    contentContainerStyle={null}
+    data={
+      Array [
+        User {
+          "chatrooms": Array [],
+          "created": undefined,
+          "displayName": "hello",
+          "friends": Array [],
+          "isOnline": false,
+          "photoURL": "",
+          "statusMsg": "I am fine today",
+          "uid": "my_uid",
+          "updated": undefined,
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="press_id"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(245,245,245)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 0,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 0,
+                  },
+                ]
+              }
+            >
+              <Unknown
+                color="rgb(65,77,107)"
+                light={true}
+                name="meh"
+                size={40}
+              />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "rgb(65,77,107)",
+                      "fontSize": 14,
+                      "marginLeft": 12,
+                      "width": 100,
+                    },
+                  ]
+                }
+              >
+                hello
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "borderColor": "rgb(233,237,244)",
+                      "borderWidth": 0.3,
+                      "color": "rgb(65,77,107)",
+                      "fontSize": 12,
+                      "maxWidth": 134.2,
+                      "paddingBottom": 4,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 4,
+                      "position": "absolute",
+                      "right": 20,
+                    },
+                  ]
+                }
+              >
+                I am fine today
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

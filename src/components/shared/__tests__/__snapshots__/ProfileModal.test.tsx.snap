@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[ProfileModal] rendering test renders as expected 1`] = `<View />`;

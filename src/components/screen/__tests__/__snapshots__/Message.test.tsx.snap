@@ -1,0 +1,446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering test should render as expected 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "flexBasis": 0,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    ListEmptyComponent={
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        No content
+      </Shared>
+    }
+    contentContainerStyle={null}
+    data={
+      Array [
+        Chatroom {
+          "chats": Array [],
+          "created": undefined,
+          "id": "",
+          "lastChat": Chat {
+            "created": undefined,
+            "id": "",
+            "message": "How are you?",
+            "sender": User {
+              "chatrooms": Array [],
+              "created": undefined,
+              "displayName": "dooboolab",
+              "friends": Array [],
+              "isOnline": true,
+              "photoURL": "",
+              "statusMsg": "I am fine",
+              "uid": "sender_uid1",
+              "updated": undefined,
+            },
+            "updated": undefined,
+          },
+          "lastChatCnt": 6,
+          "updated": undefined,
+          "users": Array [],
+        },
+        Chatroom {
+          "chats": Array [],
+          "created": undefined,
+          "id": "",
+          "lastChat": Chat {
+            "created": undefined,
+            "id": "",
+            "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
+            "sender": User {
+              "chatrooms": Array [],
+              "created": undefined,
+              "displayName": "Byun8585",
+              "friends": Array [],
+              "isOnline": false,
+              "photoURL": "",
+              "statusMsg": "hello folks",
+              "uid": "sender_uid2",
+              "updated": undefined,
+            },
+            "updated": undefined,
+          },
+          "lastChatCnt": 0,
+          "updated": undefined,
+          "users": Array [],
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(245,245,245)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 20,
+                  }
+                }
+              >
+                <Unknown
+                  color="rgb(65,77,107)"
+                  light={true}
+                  name="meh"
+                  size={40}
+                />
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "rgb(80,227,194)",
+                        "borderColor": "rgb(245,245,245)",
+                        "borderRadius": 6,
+                        "borderWidth": 2,
+                        "bottom": 0,
+                        "height": 12,
+                        "position": "absolute",
+                        "right": 0,
+                        "width": 12,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexDirection": "column",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "paddingRight": 20,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    dooboolab
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexDirection": "column",
+                          "flexGrow": 1,
+                          "flexShrink": 1,
+                          "paddingRight": 20,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "rgb(65,77,107)",
+                            "fontSize": 10,
+                          },
+                        ]
+                      }
+                    >
+                      6
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    lastChatCnt={6}
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 12,
+                          "fontWeight": "bold",
+                          "maxWidth": 150,
+                        },
+                      ]
+                    }
+                  >
+                    How are you?
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(134,154,183)",
+                          "fontSize": 12,
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                  >
+                    nan
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(245,245,245)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 20,
+                  }
+                }
+              >
+                <Unknown
+                  color="rgb(65,77,107)"
+                  light={true}
+                  name="meh"
+                  size={40}
+                />
+                <View />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexDirection": "column",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "paddingRight": 20,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    Byun8585
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    lastChatCnt={0}
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 12,
+                          "maxWidth": 150,
+                        },
+                      ]
+                    }
+                  >
+                    Hi. This is student from react-native-seoul. Nice to meet you.
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(134,154,183)",
+                          "fontSize": 12,
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                  >
+                    nan
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

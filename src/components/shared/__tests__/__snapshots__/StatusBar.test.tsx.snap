@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[UserListItem] rendering test renders [isDarkContent] as expected 1`] = `null`;
+
+exports[`[UserListItem] rendering test renders as expected 1`] = `null`;

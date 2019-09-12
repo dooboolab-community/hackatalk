@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
+<View
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFF",
+            "borderBottomWidth": 1,
+            "borderColor": "rgb(245,245,245)",
+            "flexDirection": "row",
+            "height": 80,
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "marginHorizontal": 20,
+          }
+        }
+      >
+        <Unknown
+          color="rgb(65,77,107)"
+          light={true}
+          name="meh"
+          size={40}
+        />
+        <View />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexBasis": 0,
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "paddingRight": 20,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "rgb(65,77,107)",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+          <View />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              },
+            ]
+          }
+        >
+          <Text
+            lastChatCnt={0}
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "color": "rgb(65,77,107)",
+                  "fontSize": 12,
+                  "maxWidth": 150,
+                },
+              ]
+            }
+          >
+            
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "rgb(134,154,183)",
+                  "fontSize": 12,
+                  "textAlign": "right",
+                },
+              ]
+            }
+          >
+            nan
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

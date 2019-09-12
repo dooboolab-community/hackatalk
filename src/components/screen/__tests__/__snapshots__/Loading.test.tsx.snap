@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Loading] rendering test renders as expected 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+    ]
+  }
+  testID="loading"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../assets/icons/icon.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 60,
+            "width": 60,
+          },
+          Object {
+            "transform": Array [
+              Object {
+                "rotate": undefined,
+              },
+            ],
+          },
+        ]
+      }
+    />
+    <Text
+      animation="fadeIn"
+      direction="alternate"
+      iterationCount="infinite"
+      style={
+        Array [
+          Object {
+            "color": "rgb(58,139,255)",
+            "fontSize": 16,
+            "marginTop": 16,
+          },
+        ]
+      }
+    >
+      LOADING...
+    </Text>
+  </View>
+</View>
+`;
