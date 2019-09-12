@@ -1,7 +1,7 @@
 # HackaTalk
 
-[![CircleCI](https://circleci.com/gh/hackatalk/hackatalk-mobile.svg?style=shield)](https://circleci.com/gh/hackatalk/hackatalk-mobile)
-[![codecov](https://codecov.io/gh/hackatalk/hackatalk-mobile/branch/master/graph/badge.svg)](https://codecov.io/gh/hackatalk/hackatalk-mobile)
+[![CircleCI](https://circleci.com/gh/dooboolab/hackatalk-mobile.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk-mobile)
+[![codecov](https://codecov.io/gh/dooboolab/hackatalk-mobile/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk-mobile)
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
