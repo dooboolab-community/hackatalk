@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "HackaTalk",
+    "slug": "HackaTalk",
+    "privacy": "public",
+    "sdkVersion": "34.0.0",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff",
+      "image": "./assets/splash.png"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "facebookDisplayName": "hackatalk",
+    "facebookAppId": "<facebookAppId>",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.dooboolab.hackatalk",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "<reservedClientId>"
+        }
+      }
+    },
+    "android": {
+      "package": "com.dooboolab.hackatalk",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleSignIn": {
+          "certificateHash": "<certificateHash>"
+        }
+      }
+    }
+  }
+}
