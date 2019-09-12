@@ -1,17 +1,31 @@
+# OSX
+#
 .DS_Store
-dist/
-node_modules/**/*
-.expo/*
-npm-debug.*
-*.jks
-*.p12
-*.key
-*.mobileprovision
-.jest
-coverage/
-*.orig.*
-web-build/
-web-report/
 
+# node.js
+#
+dist/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BUCK
+buck-out/
+\.buckd/
+# *.keystore
+
+coverage/
 package-lock.json
-yarn-error*
+
+# env
+config.ts
+
+.expo
+.expo-shared
+google-services.json
+GoogleService-Info.plist
+app.json
+
+# IDE
+.idea/
+.vscode
