@@ -1,11 +1,12 @@
 import { NavigationComponent, NavigationRouteConfig } from 'react-navigation';
-
 import Intro from '../screen/Intro';
 import React from 'react';
+
 import { ScreenProps } from './SwitchNavigator';
 import Temp from '../screen/Temp';
 import { Text } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
+import { getString } from '../../../STRINGS';
 
 const routeConfig: NavigationRouteConfig = {
   Intro: {
@@ -19,7 +20,7 @@ const routeConfig: NavigationRouteConfig = {
     }) => {
       const { theme } = screenProps;
       return {
-        title: navigation.state.routeName,
+        title: getString(navigation.state.routeName.toUpperCase()),
         headerStyle: {
           backgroundColor: theme.background,
         },
@@ -44,9 +45,10 @@ const routeConfig: NavigationRouteConfig = {
           <Text
             style={{
               fontSize: 18,
+              color: theme.fontColor,
             }}
           >
-            {navigation.state.routeName}
+            {getString(navigation.state.routeName.toUpperCase())}
           </Text>
         ),
         headerStyle: {

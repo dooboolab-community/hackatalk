@@ -1,6 +1,6 @@
 # OSX
 #
-.DS_Store
+/**/.DS_Store
 
 # node.js
 #
@@ -29,3 +29,4 @@ app.json
 # IDE
 .idea/
 .vscode
+.history

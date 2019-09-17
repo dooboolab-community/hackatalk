@@ -62,7 +62,7 @@ exports[`[Temp] render renders without crashing 1`] = `
           ]
         }
       >
-        Go Back
+        Go back
       </Text>
     </View>
   </View>

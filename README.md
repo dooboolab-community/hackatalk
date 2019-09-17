@@ -230,14 +230,16 @@ export const getString = (param: string, mapObj?: object) => {
 };
 ```
 
-#### Android
+#### [Firebase](https://firebase.google.com/) Settings (required)
+
+##### Android
 
 1. Create new Android project
 1. Set package name com.dooboolab.hackatalk
 1. Set SHA1 or SHA256 hash keys from `expo fetch:android:hashes`
 1. Download `google-services.json` to hackatalk root folder
 
-#### iOS
+##### iOS
 
 1. Create new iOS project
 1. Set bundleIdentifier com.dooboolab.hackatalk

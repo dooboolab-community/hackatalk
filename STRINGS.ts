@@ -31,6 +31,11 @@ const en = {
   FRIEND_ADDED: 'Added to your friend.',
   FRIEND_ALREADY_ADDED: 'Already your friend.',
   SETTING: 'Setting',
+  NAVIGATE: 'Navigate',
+  CHANGE_THEME: 'Change theme',
+  GO_BACK: 'Go back',
+  INTRO: 'Intro',
+  TEMP: 'Sample Screen',
 };
 
 const ko = {
@@ -62,6 +67,11 @@ const ko = {
   FRIEND_ADDED: '친구로 등록되었습니다.',
   FRIEND_ALREADY_ADDED: '이미 친구입니다.',
   SETTING: '설정',
+  NAVIGATE: '다음 스크린',
+  CHANGE_THEME: '테마 변경',
+  GO_BACK: '뒤로 가기',
+  INTRO: '대시보드',
+  TEMP: '예시 스크린',
 };
 
 i18n.fallbacks = true;

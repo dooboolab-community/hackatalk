@@ -1,9 +1,9 @@
 import { NavigationScreenProp, NavigationStateRoute } from 'react-navigation';
+import React, { useContext, useState } from 'react';
 
 import { AppContext } from '../../providers';
 import Button from '../shared/Button';
 import { IC_MASK } from '../../utils/Icons';
-import React from 'react';
 import { ThemeType } from '../../theme';
 import { User } from '../../types';
 import { View } from 'react-native';
@@ -49,21 +49,21 @@ interface Props {
   navigation: NavigationScreenProp<NavigationStateRoute<any>>;
 }
 
-function Intro(props: Props) {
+export default function Intro({ navigation }: Props) {
   let timer: any;
-  const { state, dispatch } = React.useContext(AppContext);
-  const [isLoggingIn, setIsLoggingIn] = React.useState(false);
+  const { state: { theme, user }, dispatch } = useContext(AppContext);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const onLogin = () => {
     dispatch({ type: 'reset-user' });
     setIsLoggingIn(true);
     timer = setTimeout(() => {
-      const user: User = {
+      const loggedUser: User = {
         displayName: 'dooboolab',
         age: 30,
         job: 'developer',
       };
-      dispatch({ type: 'set-user', payload: user });
+      dispatch({ type: 'set-user', payload: loggedUser });
       setIsLoggingIn(false);
       clearTimeout(timer);
     }, 1000);
@@ -71,7 +71,7 @@ function Intro(props: Props) {
 
   const changeTheme = () => {
     let payload: object;
-    if (state.theme === ThemeType.LIGHT) {
+    if (theme === ThemeType.LIGHT) {
       payload = {
         theme: ThemeType.DARK,
       };
@@ -94,10 +94,10 @@ function Intro(props: Props) {
             marginTop: 100,
           }}
         >
-          {state.user.displayName}
+          {user.displayName}
         </StyledText>
-        <StyledText>{state.user.age ? state.user.age : ''}</StyledText>
-        <StyledText>{state.user.job}</StyledText>
+        <StyledText>{user.age ? user.age : ''}</StyledText>
+        <StyledText>{user.job}</StyledText>
       </ContentWrapper>
       <ButtonWrapper>
         <Button
@@ -110,7 +110,7 @@ function Intro(props: Props) {
         <View style={{ marginTop: 8 }} />
         <Button
           testID='btn2'
-          onClick={() => props.navigation.navigate('Temp')}
+          onClick={() => navigation.navigate('Temp')}
           text={getString('NAVIGATE')}
         />
         <View style={{ marginTop: 8 }} />
@@ -123,5 +123,3 @@ function Intro(props: Props) {
     </Container>
   );
 }
-
-export default Intro;

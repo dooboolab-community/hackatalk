@@ -1,10 +1,12 @@
 import Button from '../shared/Button';
 import React from 'react';
+
+import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${({ theme }) => theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -14,13 +16,13 @@ interface Props {
   navigation: any;
 }
 
-function Page(props: Props) {
+export default function Page({ navigation }: Props) {
   return (
     <Container>
       <Button
         testID='btn'
-        onClick={() => props.navigation.goBack()}
-        text='Go Back'
+        onClick={() => navigation.goBack()}
+        text={getString('GO_BACK')}
         style={{
           backgroundColor: '#333333',
         }}
@@ -28,5 +30,3 @@ function Page(props: Props) {
     </Container>
   );
 }
-
-export default Page;
