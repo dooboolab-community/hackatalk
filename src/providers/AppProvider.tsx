@@ -11,7 +11,7 @@ interface Action {
 }
 
 interface Props {
-  navigation: any;
+  navigation?: any;
   children?: any;
 }
 

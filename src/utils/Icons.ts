@@ -2,7 +2,7 @@ import icAdd from '../../assets/icons/btnAdd.png';
 import icBack from '../../assets/icons/btnBack.png';
 import icIcon from '../../assets/icons/icon.png';
 import icMask from '../../assets/icons/mask.png';
-import icNoPic from '../../assets/icons/icNoPic.png';
+import icNoPic from '../../assets/icons/noPic.png';
 import icPic from '../../assets/icons/pictoGallery.png';
 import icSearch from '../../assets/icons/picSearch.png';
 import icSmile from '../../assets/icons/icSmile.png';
