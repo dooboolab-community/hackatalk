@@ -52,9 +52,7 @@ const routeConfig = {
               activeOpacity={0.5}
               onPress={() => navigation.navigate('Setting')}
             >
-              <View>
-                <SvgNoProfile width={20} />
-              </View>
+              <SvgPlus width={20} />
             </TouchableOpacity>
           </View>
         ),

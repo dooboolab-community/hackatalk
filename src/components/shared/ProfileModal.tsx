@@ -179,9 +179,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             {photoURL ? (
               <Image style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
-              <View>
-                <SvgNoProfile width={20} />
-              </View>
+              <SvgNoProfile width={20} />
             )}
           </TouchableOpacity>
           <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
