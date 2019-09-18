@@ -36,6 +36,10 @@
           "certificateHash": "<certificateHash>"
         }
       }
+    },
+    "packagerOpts": {
+      "config": "./rn-cli.config.js",
+      "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
     }
   }
 }
