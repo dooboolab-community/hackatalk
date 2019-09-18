@@ -48,10 +48,7 @@ const routeConfig = {
               marginRight: 16,
             }}
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => navigation.navigate('Setting')}
-            >
+            <TouchableOpacity activeOpacity={0.5} onPress={() => {}}>
               <SvgPlus width={20} />
             </TouchableOpacity>
           </View>
