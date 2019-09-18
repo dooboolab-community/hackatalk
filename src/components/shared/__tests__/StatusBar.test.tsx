@@ -2,7 +2,11 @@ import 'react-native';
 
 import * as React from 'react';
 
+import { AppProvider } from '../../../providers';
 import StatusBar from '../StatusBar';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -20,7 +24,13 @@ const createTestProps = (obj: object) => ({
 describe('[StatusBar] render', () => {
   beforeEach(() => {
     props = createTestProps({});
-    component = <StatusBar {...props} />;
+    component = (
+      <AppProvider>
+        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+          <StatusBar {...props} />
+        </ThemeProvider>
+      </AppProvider>
+    );
   });
 
   it('renders without crashing', () => {
@@ -28,7 +38,6 @@ describe('[StatusBar] render', () => {
       .create(component)
       .toJSON();
     expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
   });
 
   // describe('interactions', () => {

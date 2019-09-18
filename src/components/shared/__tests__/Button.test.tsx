@@ -8,10 +8,11 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { ThemeType, createTheme } from '../../../theme';
 
 import Button from '../Button';
 import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 

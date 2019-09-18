@@ -1,7 +1,7 @@
 import { AppContext } from '../../providers/AppProvider';
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { ThemeType } from '../../theme';
+import { ThemeType } from '../../types';
 
 // prettier-ignore
 function Shared() {

@@ -2,8 +2,12 @@ import 'react-native';
 
 import * as React from 'react';
 
+import { AppProvider } from '../../../providers';
 import ProfileModal from '../ProfileModal';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
 // Note: test renderer must be required after react-native.
+import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 let props: any;
@@ -20,7 +24,13 @@ const createTestProps = (obj: object) => ({
 describe('[ProfileModal] render', () => {
   beforeEach(() => {
     props = createTestProps({});
-    component = <ProfileModal {...props} />;
+    component = (
+      <AppProvider>
+        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+          <ProfileModal {...props} />
+        </ThemeProvider>
+      </AppProvider>
+    );
   });
 
   it('renders without crashing', () => {
@@ -28,7 +38,6 @@ describe('[ProfileModal] render', () => {
       .create(component)
       .toJSON();
     expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
   });
 
   // describe('interactions', () => {

@@ -18,3 +18,8 @@ interface IconProps {
 }
 
 export type IconType = SFC<IconProps>;
+
+export enum ThemeType {
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
+}
