@@ -8,10 +8,11 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { ThemeType, createTheme } from '../../../theme';
 
 import Temp from '../Temp';
 import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 const props = {

@@ -7,7 +7,8 @@ module.exports = {
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
-  moduleFileExtensions: ['js', 'ts', 'tsx'],
+  moduleFileExtensions: ['js', 'ts', 'tsx', 'svg', 'png'],
+
   globals: {
     'ts-jest': {
       tsConfig: {
@@ -21,6 +22,9 @@ module.exports = {
     '<rootDir>/node_modules/',
     '<rootDir>/.history/',
   ],
+  moduleNameMapper: {
+    '\\.svg': '<rootDir>/__mocks__/svgMock.js',
+  },
   setupFiles: ['<rootDir>/test/jestSetup.ts'],
   transformIgnorePatterns: [
     'node_modules/(?!react-native|react-navigation|dooboo-native-widgets)/',

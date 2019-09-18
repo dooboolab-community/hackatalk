@@ -1,12 +1,10 @@
-export enum ThemeType {
-  LIGHT = 'LIGHT',
-  DARK = 'DARK',
-}
+import { ThemeType } from './types';
 
 const colors = {
   skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
+  dodgerBlue: 'rgb(58,139,255)',
   green: 'rgb(29,211,168)',
   greenBlue: 'rgb(36,205,151)',
   mediumGray: 'rgb(134,154,183)',
@@ -19,6 +17,7 @@ const colors = {
 
 export interface Theme {
   background: string;
+  backgroundDark: string;
   btnPrimary: string;
   btnPrimaryFont: string;
   btnPrimaryLight: string;
@@ -32,6 +31,7 @@ export interface Theme {
 const theme = {
   light: {
     background: colors.lightBackground,
+    backgroundDark: colors.dodgerBlue,
     btnPrimary: colors.skyBlue,
     btnPrimaryFont: 'white',
     btnPrimaryLight: colors.whiteGray,
@@ -40,9 +40,11 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'black',
     tintColor: '#333333',
+    lineColor: colors.paleGray,
   },
   dark: {
     background: colors.darkBackground,
+    backgroundDark: colors.dodgerBlue,
     btnPrimary: colors.skyBlue,
     btnPrimaryFont: 'white',
     btnPrimaryLight: colors.whiteGray,
@@ -51,9 +53,11 @@ const theme = {
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'white',
     tintColor: '#a3a3a3',
+    lineColor: colors.paleGray,
   },
 };
 
+// prettier-ignore
 export const createTheme = (type = ThemeType.LIGHT) => {
   switch (type) {
   case ThemeType.LIGHT:

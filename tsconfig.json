@@ -11,26 +11,17 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
     "baseUrl": "src"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.test.tsx",
-    "**/*.spec.ts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "**/*.test.tsx", "**/*.spec.ts"],
   "files": ["environment.d.ts"],
-  "types": [
-    "typePatches"
-  ],
+  "types": ["typePatches"],
   "jest": {
     "globals": {
       "ts-jest": {
