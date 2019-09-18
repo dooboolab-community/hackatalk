@@ -1,4 +1,3 @@
-import { IC_NO_PIC, IC_SEARCH } from '../../utils/Icons';
 import {
   Image,
   ImageStyle,
@@ -8,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SvgNoProfile, SvgPlus } from '../../utils/Icons';
 
 import Friend from '../screen/Friend';
 import Message from '../screen/Message';
@@ -105,7 +105,7 @@ export const MainTabNavigationOptions = ({
 }) => {
   const { theme } = screenProps;
   return {
-    title: 'Talk Talk',
+    title: 'HackaTalk',
     headerStyle: {
       backgroundColor: theme.background,
     },
@@ -122,7 +122,7 @@ export const MainTabNavigationOptions = ({
           activeOpacity={0.5}
           onPress={() => navigation.navigate('ProfileUpdate')}
         >
-          <Image source={IC_NO_PIC} width={20} height={20} />
+          <SvgNoProfile width={20} />
         </TouchableOpacity>
       </View>
     ),
@@ -136,7 +136,7 @@ export const MainTabNavigationOptions = ({
           activeOpacity={0.5}
           onPress={() => navigation.navigate('SearchUser')}
         >
-          <Image source={IC_SEARCH} width={20} height={20} />
+          <SvgPlus width={20} />
         </TouchableOpacity>
       </View>
     ),
