@@ -6,9 +6,9 @@ import styled, {
   withTheme,
 } from 'styled-components/native';
 
-import { IC_NO_PIC } from '../../utils/Icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modalbox';
+import { SvgNoProfile } from '../../utils/Icons';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 
@@ -179,7 +179,9 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             {photoURL ? (
               <Image style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
-              <Image source={IC_NO_PIC} width={20} height={20} />
+              <View>
+                <SvgNoProfile width={20} />
+              </View>
             )}
           </TouchableOpacity>
           <StyledTextDisplayName>{displayName}</StyledTextDisplayName>

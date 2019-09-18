@@ -16,3 +16,5 @@ interface IconProps {
   height?: number | string;
   children?: never;
 }
+
+export type IconType = SFC<IconProps>;

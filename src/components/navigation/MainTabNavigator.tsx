@@ -122,7 +122,9 @@ export const MainTabNavigationOptions = ({
           activeOpacity={0.5}
           onPress={() => navigation.navigate('ProfileUpdate')}
         >
-          <SvgNoProfile width={20} />
+          <View>
+            <SvgNoProfile width={20} />
+          </View>
         </TouchableOpacity>
       </View>
     ),
@@ -136,7 +138,9 @@ export const MainTabNavigationOptions = ({
           activeOpacity={0.5}
           onPress={() => navigation.navigate('SearchUser')}
         >
-          <SvgPlus width={20} />
+          <View>
+            <SvgPlus width={20} />
+          </View>
         </TouchableOpacity>
       </View>
     ),

@@ -5,9 +5,9 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import { SvgNoProfile, SvgPlus } from '../../utils/Icons';
 
 import Chat from '../screen/Chat';
-import { IC_NO_PIC } from '../../utils/Icons';
 import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import React from 'react';
@@ -52,13 +52,9 @@ const routeConfig = {
               activeOpacity={0.5}
               onPress={() => navigation.navigate('Setting')}
             >
-              <Image
-                source={IC_NO_PIC}
-                style={{
-                  width: 20,
-                  height: 20,
-                }}
-              />
+              <View>
+                <SvgNoProfile width={20} />
+              </View>
             </TouchableOpacity>
           </View>
         ),
