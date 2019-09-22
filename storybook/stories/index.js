@@ -1,3 +1,5 @@
+import './tsExample';
+
 // eslint-disable-next-line import/extensions
 import Button from './Button';
 import CenterView from './CenterView';
