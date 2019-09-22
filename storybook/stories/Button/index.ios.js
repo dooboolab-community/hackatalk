@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { TouchableHighlight } from 'react-native';
 
 export default function Button({ onPress, children }) {

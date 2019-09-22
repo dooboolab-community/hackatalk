@@ -1,9 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { TouchableNativeFeedback } from 'react-native';
 
 export default function Button({ onPress, children }) {
-  return <TouchableNativeFeedback onPress={onPress}>{children}</TouchableNativeFeedback>;
+  return (
+    <TouchableNativeFeedback onPress={onPress}>
+      {children}
+    </TouchableNativeFeedback>
+  );
 }
 
 Button.defaultProps = {
