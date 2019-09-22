@@ -37,7 +37,7 @@
     "react-native-modalbox": "^1.7.1",
     "react-native-reanimated": "~1.2.0",
     "react-native-web": "^0.11.7",
-    "react-navigation": "4.0.7",
+    "react-navigation": "4.0.2",
     "react-navigation-stack": "^1.8.1",
     "react-navigation-tabs": "^2.5.5",
     "sentry-expo": "^2.0.0",
