@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  ImageSourcePropType,
   ImageStyle,
   TextStyle,
   TouchableOpacity,
@@ -10,30 +11,30 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const StyledButton = styled.View`
-  background-color: ${({ theme }) => theme.btnPrimary};
+  background-color: ${({ theme }): string => theme.btnPrimary};
   align-self: center;
   border-radius: 4;
   border-width: 2;
   width: 320;
   height: 52;
-  border-color: ${({ theme }) => theme.btnPrimary};
+  border-color: ${({ theme }): string => theme.btnPrimary};
 
   align-items: center;
   justify-content: center;
 `;
 
 const StyledButtonDisabled = styled(StyledButton)`
-  background-color: ${({ theme }) => theme.btnDisabled};
+  background-color: ${({ theme }): string => theme.btnDisabled};
   border-color: rgb(200, 200, 200);
 `;
 
 const StyledText = styled.Text`
   font-size: 14;
-  color: ${({ theme }) => theme.btnPrimaryFont};
+  color: ${({ theme }): string => theme.btnPrimaryFont};
 `;
 
 const StyledTextDisabled = styled(StyledText)`
-  color: ${({ theme }) => theme.textDisabled};
+  color: ${({ theme }): string => theme.textDisabled};
 `;
 
 const StyledImage = styled.Image`
@@ -51,14 +52,14 @@ interface Props {
   style?: ViewStyle;
   disabledStyle?: ViewStyle;
   textStyle?: TextStyle;
-  imgLeftSrc?: any;
+  imgLeftSrc?: ImageSourcePropType;
   imgLeftStyle?: ImageStyle;
   indicatorColor?: string;
   activeOpacity?: number;
   text?: string;
 }
 
-function Button(props: Props) {
+function Button(props: Props): React.ReactElement {
   if (props.isDisabled) {
     return (
       <StyledButtonDisabled style={props.disabledStyle}>

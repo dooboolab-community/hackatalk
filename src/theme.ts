@@ -1,3 +1,4 @@
+import { DefaultTheme } from 'styled-components';
 import { ThemeType } from './types';
 
 const colors = {
@@ -70,7 +71,7 @@ const theme = {
 };
 
 // prettier-ignore
-export const createTheme = (type = ThemeType.LIGHT) => {
+export const createTheme = (type = ThemeType.LIGHT): DefaultTheme => {
   switch (type) {
   case ThemeType.LIGHT:
     return theme.light;
