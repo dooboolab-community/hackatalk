@@ -38,7 +38,7 @@ exports[`[Message] screen renders without crashing 1`] = `
         Object {
           "id": "room1",
           "lastChat": Object {
-            "created": 2019-09-23T14:58:54.713Z,
+            "created": 1970-01-01T00:00:00.000Z,
             "id": "id_3",
             "message": "How are you doing?",
             "sender": Object {
@@ -49,14 +49,14 @@ exports[`[Message] screen renders without crashing 1`] = `
               "thumbURL": "",
               "uid": "uid_3",
             },
-            "updated": 2019-09-23T14:58:54.713Z,
+            "updated": 1970-01-01T00:00:00.000Z,
           },
           "lastChatCnt": 3,
         },
         Object {
           "id": "room2",
           "lastChat": Object {
-            "created": 2019-09-23T14:58:54.713Z,
+            "created": 1970-01-01T00:00:00.000Z,
             "id": "id_3",
             "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
             "sender": Object {
@@ -67,7 +67,7 @@ exports[`[Message] screen renders without crashing 1`] = `
               "thumbURL": "",
               "uid": "uid_3",
             },
-            "updated": 2019-09-23T14:58:54.713Z,
+            "updated": 1970-01-01T00:00:00.000Z,
           },
           "lastChatCnt": 0,
         },
@@ -268,7 +268,7 @@ exports[`[Message] screen renders without crashing 1`] = `
                       ]
                     }
                   >
-                    a few seconds ago
+                    50 years ago
                   </Text>
                 </View>
               </View>
@@ -415,7 +415,7 @@ exports[`[Message] screen renders without crashing 1`] = `
                       ]
                     }
                   >
-                    a few seconds ago
+                    50 years ago
                   </Text>
                 </View>
               </View>
