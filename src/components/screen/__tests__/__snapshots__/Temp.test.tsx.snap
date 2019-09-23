@@ -6,7 +6,7 @@ exports[`[Temp] render renders without crashing 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#ffffff",
         "flexBasis": 0,
         "flexDirection": "row",
         "flexGrow": 1,

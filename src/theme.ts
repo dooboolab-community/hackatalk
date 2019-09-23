@@ -10,7 +10,7 @@ const colors = {
   greenBlue: 'rgb(36,205,151)',
   mediumGray: 'rgb(134,154,183)',
   paleGray: 'rgb(221,226,236)',
-  lightBackground: 'white',
+  lightBackground: '#ffffff',
   lightBackgroundLight: '#f7f6f3',
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
@@ -81,4 +81,5 @@ export const createTheme = (type = ThemeType.LIGHT): DefaultTheme => {
   case ThemeType.DARK:
     return theme.dark;
   }
+  return theme.light;
 };

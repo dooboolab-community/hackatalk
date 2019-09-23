@@ -3,17 +3,23 @@
 exports[`[EmptyListItem] render renders without crashing 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "justifyContent": "center",
-      },
-    ]
+    Object {
+      "alignItems": "center",
+      "alignSelf": "stretch",
+      "flex": 1,
+      "justifyContent": "center",
+      "width": "100%",
+    }
   }
-/>
+>
+  <Text
+    style={
+      Object {
+        "alignSelf": "center",
+        "color": "rgb(155,155,155)",
+        "fontSize": 14,
+      }
+    }
+  />
+</View>
 `;

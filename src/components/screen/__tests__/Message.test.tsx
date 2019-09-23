@@ -5,13 +5,16 @@ import * as React from 'react';
 import { RenderResult, render } from '@testing-library/react-native';
 
 import Message from '../Message';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
 
-const createTestProps = (obj: object) => ({
+const createTestProps = (obj: object): object => ({
   navigation: {
     navigate: jest.fn(),
   },
@@ -21,7 +24,11 @@ const createTestProps = (obj: object) => ({
 describe('[Message] screen', () => {
   beforeEach(() => {
     props = createTestProps({});
-    component = <Message {...props} />;
+    component = (
+      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+        <Message {...props} />
+      </ThemeProvider>
+    );
     testingLib = render(component);
   });
 
@@ -29,11 +36,6 @@ describe('[Message] screen', () => {
     const rendered = renderer.create(component).toJSON();
     expect(rendered).toMatchSnapshot();
     expect(rendered).toBeTruthy();
-  });
-
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
   });
 
   describe('interactions', () => {

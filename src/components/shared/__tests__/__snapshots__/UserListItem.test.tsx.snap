@@ -31,7 +31,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "rgb(221,226,236)",
             "flexDirection": "row",

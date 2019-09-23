@@ -6,11 +6,11 @@ import EmptyListItem from '../EmptyListItem';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any;
+let props: object;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const createTestProps = (obj: object) => ({
+const createTestProps = (obj: object): object => ({
   navigation: {
     navigate: jest.fn(),
   },

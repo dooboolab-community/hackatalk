@@ -29,4 +29,5 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!react-native|react-navigation|dooboo-native-widgets)/',
   ],
+  setupFilesAfterEnv: ['./test/setupTest.js'],
 };

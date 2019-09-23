@@ -1,8 +1,3 @@
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import React, { useContext } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
@@ -21,13 +16,9 @@ const StyledContainer = styled.View`
   justify-content: center;
 `;
 
-interface Props {
-  navigation: Partial<NavigationScreenProp<NavigationState, NavigationParams>>;
-}
-
-function Screen(props: Props): React.ReactElement {
+function Screen(): React.ReactElement {
   const profileModal = useContext(ProfileModalContext);
-  const [friends, setFriends] = React.useState<User[]>([
+  const [friends] = React.useState<User[]>([
     {
       uid: 'my_uid',
       displayName: 'hello',

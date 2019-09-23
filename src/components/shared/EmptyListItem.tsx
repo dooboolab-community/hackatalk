@@ -1,24 +1,50 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React, { Component } from 'react';
 
-const Container = styled.View`
-  flex: 1;
-  background-color: transparent;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
+interface Styles {
+  wrapper: ViewStyle;
+}
+
+const styles: Styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+  },
+});
 
 interface Props {
-  children?: any;
+  style: ViewStyle;
+  children?: string;
 }
 
-function Shared(props: Props) {
+function Shared(props: Props): React.ReactElement {
   return (
-    <Container>
-      {props.children}
-    </Container>
+    <View style={props.style}>
+      <Text
+        style={{
+          fontSize: 14,
+          color: 'rgb(155,155,155)',
+          alignSelf: 'center',
+        }}
+      >
+        {props.children}
+      </Text>
+    </View>
   );
 }
+
+Shared.defaultProps = {
+  style: styles.wrapper,
+};
 
 export default Shared;

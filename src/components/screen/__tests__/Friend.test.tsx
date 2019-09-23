@@ -30,7 +30,7 @@ describe('[Friend] rendering test', () => {
     component = (
       <AppProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <Friend {...props} />
+          <Friend />
         </ThemeProvider>
       </AppProvider>
     );
@@ -50,7 +50,7 @@ describe('[Friend] interaction', () => {
     component = (
       <AppProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <Friend {...props} />
+          <Friend />
         </ThemeProvider>
       </AppProvider>
     );

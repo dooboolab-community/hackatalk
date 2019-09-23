@@ -6,7 +6,7 @@ exports[`[Friend] rendering test renders as expected 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "white",
+        "backgroundColor": "#ffffff",
         "flexBasis": 0,
         "flexDirection": "column",
         "flexGrow": 1,
@@ -18,7 +18,17 @@ exports[`[Friend] rendering test renders as expected 1`] = `
 >
   <RCTScrollView
     ListEmptyComponent={
-      <Shared>
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
         No content
       </Shared>
     }
@@ -98,7 +108,7 @@ exports[`[Friend] rendering test renders as expected 1`] = `
                 Array [
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "white",
+                    "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
                     "borderColor": "rgb(221,226,236)",
                     "flexDirection": "row",
