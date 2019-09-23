@@ -588,6 +588,8 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             "justifyContent": "space-between",
             "maxHeight": 52,
             "minHeight": 52,
+            "paddingLeft": 8,
+            "paddingRight": 8,
             "width": "100%",
           },
         ]
@@ -680,8 +682,10 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 "width": 320,
               },
               Object {
+                "backgroundColor": "rgb(58,139,255)",
+                "borderColor": "rgb(221,226,236)",
+                "borderWidth": 0.3,
                 "height": 36,
-                "marginRight": 8,
                 "width": 60,
               },
             ]

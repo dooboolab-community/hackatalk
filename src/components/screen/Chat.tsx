@@ -3,9 +3,9 @@ import {
   Image,
   Keyboard,
   Platform,
-  TextInput,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
 import {
   NavigationParams,
@@ -51,6 +51,8 @@ const StyledViewChat = styled.View`
   background-color: ${({ theme }): string => theme.background};
   min-height: 52px;
   max-height: 52;
+  padding-right: 8;
+  padding-left: 8;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -201,6 +203,13 @@ function Screen(props: Props): React.ReactElement {
   const { theme } = props;
 
   const keyboardOffset = Constants.statusBarHeight + Header.HEIGHT;
+  const btnSendStyle: ViewStyle = {
+    width: 60,
+    height: 36,
+    backgroundColor: theme.primary,
+    borderColor: theme.lineColor,
+    borderWidth: 0.3,
+  };
 
   return (
     <StyledContainer>
@@ -256,11 +265,7 @@ function Screen(props: Props): React.ReactElement {
               />
             </StyledTouchMenu>
             <Button
-              style={{
-                width: 60,
-                height: 36,
-                marginRight: 8,
-              }}
+              style={btnSendStyle}
               testID='btn_chat'
               isLoading={isLoading}
               onClick={sendChat}
@@ -297,6 +302,7 @@ function Screen(props: Props): React.ReactElement {
               testID='btn_chat'
               isLoading={isLoading}
               onClick={sendChat}
+              style={btnSendStyle}
               text={getString('SEND')}
             />
           </StyledViewChat>
