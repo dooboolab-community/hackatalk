@@ -1,20 +1,26 @@
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import React, { useEffect, useReducer } from 'react';
 
 import { AppContext } from '../contexts';
-import { AsyncStorage } from 'react-native';
 import { ThemeType } from '../types';
 
 const AppConsumer = AppContext.Consumer;
 
 interface Action {
-  type: 'reset-user' | 'set-user' | 'change-theme-mode';
-  payload: any;
+  type: 'change-theme-mode';
+  payload: {
+    theme: ThemeType;
+  };
 }
 
 interface Props {
   theme?: ThemeType;
-  navigation?: any;
-  children?: any;
+  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+  children?: React.ReactElement;
 }
 
 export interface State {
@@ -26,7 +32,7 @@ export const initialState: State = {
 };
 
 // prettier-ignore
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
   case 'change-theme-mode':
     return { ...state, theme: action.payload.theme };
@@ -35,7 +41,7 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-function AppProvider(props: Props) {
+function AppProvider(props: Props): React.ReactElement {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // by encapsulating dispatch, it is easier to use (such as passing through screenProps)
@@ -55,12 +61,6 @@ function AppProvider(props: Props) {
   useEffect(() => {
     changeTheme(props.theme ? props.theme : initialState.theme);
   }, [props.theme]);
-
-  // Load font and then use saved theme from local storage
-  const getCurrentThemeType = async () => {
-    const value = (await AsyncStorage.getItem('theme')) as ThemeType;
-    value && changeTheme(value);
-  };
 
   const value = { state, dispatch, changeTheme };
 

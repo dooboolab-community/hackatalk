@@ -5,15 +5,42 @@ exports[`[TextInput] render renders without crashing 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "justifyContent": "center",
+        "alignItems": "flex-start",
+        "alignSelf": "stretch",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
       },
     ]
   }
-/>
+>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="none"
+    autoCorrect={false}
+    focused={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+    rejectResponderTermination={true}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "borderColor": "rgb(221,226,236)",
+          "borderWidth": 1,
+          "color": "black",
+          "flexDirection": "row",
+          "fontSize": 16,
+          "justifyContent": "flex-start",
+          "marginBottom": 8,
+          "paddingBottom": 22,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 22,
+        },
+      ]
+    }
+    underlineColorAndroid="transparent"
+  />
+</View>
 `;

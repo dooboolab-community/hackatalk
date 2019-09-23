@@ -1,12 +1,4 @@
 import {
-  ImageStyle,
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
@@ -15,7 +7,7 @@ import {
   MaterialTopTabBar as RNMaterialTopTabBar,
   createMaterialTopTabNavigator,
 } from 'react-navigation-tabs';
-import { SvgNoProfile, SvgPlus } from '../../utils/Icons';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
@@ -26,19 +18,18 @@ import React from 'react';
 import { ScreenProps } from './SwitchNavigator';
 import { getString } from '../../../STRINGS';
 
-interface Styles {
-  imgHeaderLeft: ImageStyle;
-  txt: TextStyle;
-  txtSub: TextStyle;
+interface Props {
+  screenProps: ScreenProps;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-const MaterialTopTabBar = (props: any) => {
+const MaterialTopTabBar = (props: any): React.ReactElement => {
   const { theme } = props.screenProps;
   return (
     <RNMaterialTopTabBar
       {...props}
       activeTintColor={theme.indicatorColor}
-      inactiveTintColor={theme.tintColor}
+      inactiveTintColor={theme.inactiveColor}
       indicatorStyle={{
         backgroundColor: theme.indicatorColor,
       }}
@@ -78,12 +69,7 @@ const MainTabNavigator = createMaterialTopTabNavigator(
 
 export default MainTabNavigator;
 
-interface Props {
-  screenProps: ScreenProps;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-}
-
-const CustomHeader = (props: Props) => {
+const CustomHeader = (props: Props): React.ReactElement => {
   const { theme, changeTheme } = props.screenProps;
   return (
     <LinearGradient
@@ -104,12 +90,12 @@ const CustomHeader = (props: Props) => {
         <TouchableOpacity
           style={{ padding: 8 }}
           activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('ProfileUpdate')}
+          onPress={(): boolean => props.navigation.navigate('ProfileUpdate')}
         >
           <Ionicons name='ios-person' size={24} color='white' />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => changeTheme()}>
+      <TouchableOpacity onPress={(): void => changeTheme()}>
         <Text
           style={{
             fontSize: 18,
@@ -124,7 +110,7 @@ const CustomHeader = (props: Props) => {
         <TouchableOpacity
           style={{ padding: 8 }}
           activeOpacity={0.5}
-          onPress={() => props.navigation.navigate('SearchUser')}
+          onPress={(): boolean => props.navigation.navigate('SearchUser')}
         >
           <Ionicons name='ios-search' size={24} color='white' />
         </TouchableOpacity>
@@ -133,13 +119,7 @@ const CustomHeader = (props: Props) => {
   );
 };
 
-export const MainTabNavigationOptions = ({
-  navigation,
-  screenProps,
-}: {
-  navigation: any;
-  screenProps: ScreenProps;
-}) => {
+export const MainTabNavigationOptions = (): object => {
   return {
     header: CustomHeader,
   };

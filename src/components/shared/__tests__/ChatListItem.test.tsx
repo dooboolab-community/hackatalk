@@ -2,46 +2,75 @@ import 'react-native';
 
 import * as React from 'react';
 
+import {
+  RenderResult,
+  act,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
+
 import ChatListItem from '../ChatListItem';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any;
-let component: React.ReactElement;
-// let testingLib: RenderResult;
+let cnt = 0;
+const onPressPeerImage = (): void => {
+  cnt++;
+};
 
-const createTestProps = (obj: object) => ({
-  navigation: {
-    navigate: jest.fn(),
+const props = {
+  item: {
+    id: '',
+    sender: {
+      uid: '0',
+      displayName: 'sender111',
+      thumbURL: '',
+      photoURL: '',
+      statusMsg: '',
+    },
+    message: 'hello1',
   },
-  ...obj,
+  prevItem: {
+    id: '',
+    sender: {
+      uid: '0',
+      displayName: 'sender111',
+      thumbURL: '',
+      photoURL: '',
+      statusMsg: '',
+    },
+    message: 'hello1',
+  },
+  onPressPeerImage,
+  createTheme,
+};
+const component: React.ReactElement = (
+  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+    <ChatListItem {...props} />
+  </ThemeProvider>
+);
+
+describe('[ChatListItem] rendering test', () => {
+  it('renders [peerMessage] as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
 });
 
-describe('[ChatListItem] render', () => {
-  beforeEach(() => {
-    props = createTestProps({});
-    component = <ChatListItem {...props} />;
+describe('[ChatListItem] interaction', () => {
+  let testingLib: RenderResult;
+
+  beforeAll(() => {
+    testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const rendered: renderer.ReactTestRendererJSON | null = renderer
-      .create(component)
-      .toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  it('should fireEvent when peer image is pressed', () => {
+    const touchPeerImage = testingLib.getByTestId('peer_image');
+    fireEvent.press(touchPeerImage);
+    expect(cnt).toEqual(1);
   });
-
-  // describe('interactions', () => {
-  //   beforeEach(() => {
-  //     testingLib = render(component);
-  //   });
-
-  //   it('should simulate onClick', () => {
-  //     const btn = testingLib.queryByTestId('btn');
-  //     act(() => {
-  //       fireEvent.press(btn);
-  //     });
-  //     expect(cnt).toBe(3);
-  //   });
-  // });
 });

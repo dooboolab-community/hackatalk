@@ -6,9 +6,9 @@ exports[`[Message] screen renders without crashing 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "transparent",
+        "backgroundColor": "#ffffff",
         "flexBasis": 0,
-        "flexDirection": "row",
+        "flexDirection": "column",
         "flexGrow": 1,
         "flexShrink": 1,
         "justifyContent": "center",
@@ -16,18 +16,414 @@ exports[`[Message] screen renders without crashing 1`] = `
     ]
   }
 >
-  <Text
-    style={
+  <RCTScrollView
+    ListEmptyComponent={
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        No content
+      </Shared>
+    }
+    contentContainerStyle={null}
+    data={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "id": "room1",
+          "lastChat": Object {
+            "created": 1970-01-01T00:00:00.000Z,
+            "id": "id_3",
+            "message": "How are you doing?",
+            "sender": Object {
+              "displayName": "displayName3",
+              "online": false,
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "uid_3",
+            },
+            "updated": 1970-01-01T00:00:00.000Z,
+          },
+          "lastChatCnt": 3,
+        },
+        Object {
+          "id": "room2",
+          "lastChat": Object {
+            "created": 1970-01-01T00:00:00.000Z,
+            "id": "id_3",
+            "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
+            "sender": Object {
+              "displayName": "Byun8585",
+              "online": false,
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "uid_3",
+            },
+            "updated": 1970-01-01T00:00:00.000Z,
+          },
+          "lastChatCnt": 0,
         },
       ]
     }
-    testID="myText"
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
   >
-    dooboolab
-  </Text>
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(221,226,236)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "space-between",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 20,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "width": 40,
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+                <View />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexDirection": "column",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "paddingRight": 20,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "black",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    displayName3
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "rgb(58,139,255)",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "width": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "black",
+                            "fontSize": 10,
+                          },
+                        ]
+                      }
+                    >
+                      3
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    lastChatCnt={3}
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "bold",
+                          "maxWidth": 150,
+                        },
+                      ]
+                    }
+                  >
+                    How are you doing?
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 12,
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                  >
+                    50 years ago
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(221,226,236)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "space-between",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 20,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "width": 40,
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+                <View />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexDirection": "column",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "paddingRight": 20,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "black",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    Byun8585
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    lastChatCnt={0}
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "maxWidth": 150,
+                        },
+                      ]
+                    }
+                  >
+                    Hi. This is student from react-native-seoul. Nice to meet you.
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(65,77,107)",
+                          "fontSize": 12,
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                  >
+                    50 years ago
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

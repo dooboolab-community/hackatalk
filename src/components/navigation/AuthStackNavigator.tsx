@@ -10,7 +10,11 @@ const StackNavigator = createStackNavigator(
   {
     Login: {
       screen: Login,
-      navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+      navigationOptions: ({
+        screenProps,
+      }: {
+        screenProps: ScreenProps;
+      }): object => {
         const { theme } = screenProps;
         return {
           headerStyle: {
@@ -22,10 +26,14 @@ const StackNavigator = createStackNavigator(
     },
     SignUp: {
       screen: SignUp,
-      navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+      navigationOptions: ({
+        screenProps,
+      }: {
+        screenProps: ScreenProps;
+      }): object => {
         const { theme } = screenProps;
         return {
-          title: getString('SIGNUP'),
+          title: getString('SIGN_UP'),
           headerStyle: {
             backgroundColor: theme.background,
             borderBottomWidth: 0,
@@ -38,7 +46,11 @@ const StackNavigator = createStackNavigator(
     },
     FindPw: {
       screen: FindPw,
-      navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+      navigationOptions: ({
+        screenProps,
+      }: {
+        screenProps: ScreenProps;
+      }): object => {
         const { theme } = screenProps;
         return {
           title: getString('FIND_PW'),
@@ -54,7 +66,11 @@ const StackNavigator = createStackNavigator(
     },
     Setting: {
       screen: Setting,
-      navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+      navigationOptions: ({
+        screenProps,
+      }: {
+        screenProps: ScreenProps;
+      }): object => {
         const { theme } = screenProps;
         return {
           title: getString('SETTING'),

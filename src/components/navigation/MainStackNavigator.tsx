@@ -5,9 +5,9 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import { SvgNoProfile, SvgPlus } from '../../utils/Icons';
 
 import Chat from '../screen/Chat';
+import { Ionicons } from '@expo/vector-icons';
 import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import React from 'react';
@@ -27,44 +27,36 @@ const routeConfig = {
     screen: ProfileUpdate,
     navigationOptions: ({
       screenProps,
-      navigation,
     }: {
       screenProps: ScreenProps;
       navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-    }) => {
+    }): object => {
       const { theme } = screenProps;
       return {
         title: getString('MY_PROFILE'),
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,
         },
-        headerRight: (
-          <View
-            style={{
-              marginRight: 16,
-            }}
-          >
-            <TouchableOpacity activeOpacity={0.5} onPress={() => {}}>
-              <SvgPlus width={20} />
-            </TouchableOpacity>
-          </View>
-        ),
       };
     },
   },
   SearchUser: {
     screen: SearchUser,
-    navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+    navigationOptions: ({
+      screenProps,
+    }: {
+      screenProps: ScreenProps;
+    }): object => {
       const { theme } = screenProps;
       return {
         title: 'Search User',
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,
@@ -74,13 +66,17 @@ const routeConfig = {
   },
   Chat: {
     screen: Chat,
-    navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+    navigationOptions: ({
+      screenProps,
+    }: {
+      screenProps: ScreenProps;
+    }): object => {
       const { theme } = screenProps;
       return {
         title: getString('CHAT'),
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,
@@ -98,10 +94,15 @@ const navigatorConfig = {
 
 const MainStackNavigator = createStackNavigator(routeConfig, navigatorConfig);
 
-class RootNavigator extends React.Component<any, any> {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  screenProps: ScreenProps;
+}
+
+class RootNavigator extends React.Component<Props> {
   private static router = MainStackNavigator.router;
 
-  public render() {
+  public render(): React.ReactElement {
     return (
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <StatusBar />
@@ -119,4 +120,4 @@ class RootNavigator extends React.Component<any, any> {
   }
 }
 
-export default withTheme(RootNavigator);
+export default RootNavigator;

@@ -3,7 +3,7 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
 const en = {
-  LOADING: 'LOADING...',
+  LOADING: 'Loading...',
   HELLO: 'Hello',
   LOGIN: 'Login',
   EMAIL: 'Email',
@@ -21,10 +21,10 @@ const en = {
   MY_PROFILE: 'My profile',
   UPDATE: 'Update',
   NO_CONTENT: 'No content',
-  ADD_FRIEND: 'ADD',
-  DELETE_FRIEND: 'DELETE',
+  ADD_FRIEND: 'Add',
+  DELETE_FRIEND: 'Delete',
   SEARCH_USER: 'Search User',
-  CHAT: 'CHAT',
+  CHAT: 'Chat',
   SEND: 'Send',
   WRITE_MESSAGE: 'Write message...',
   ERROR: 'Error',
@@ -58,7 +58,7 @@ const ko = {
   CHAT: '채팅',
   SEND: '보내기',
   WRITE_MESSAGE: '메세지를 입력해주세요…',
-  Error: '에러',
+  ERROR: '에러',
   FRIEND_ADDED: '친구로 등록되었습니다.',
   FRIEND_ALREADY_ADDED: '이미 친구입니다.',
   SETTING: '설정',

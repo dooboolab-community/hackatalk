@@ -1,3 +1,8 @@
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import React, { useReducer, useRef } from 'react';
 
 import ProfileModal from '../components/shared/ProfileModal';
@@ -7,8 +12,8 @@ import { User } from '../types/index';
 const ProfileModalConsumer = ProfileModalContext.Consumer;
 
 interface Props {
-  navigation: any;
-  children?: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  children?: React.ReactElement;
 }
 
 interface State {
@@ -34,7 +39,7 @@ export const initialState: State = {
 let modal: any;
 
 // prettier-ignore
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
   case 'show-modal':
     if (modal && modal.current) {
@@ -52,7 +57,7 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-function ProfileModalProvider(props: Props) {
+function ProfileModalProvider(props: Props): React.ReactElement {
   modal = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
@@ -62,7 +67,7 @@ function ProfileModalProvider(props: Props) {
       <ProfileModal
         testID='modal'
         ref={modal}
-        onChatPressed={() => {
+        onChatPressed={(): void => {
           if (modal && modal.current) {
             modal.current.close();
           }

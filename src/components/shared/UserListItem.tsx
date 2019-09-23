@@ -1,24 +1,114 @@
+import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import styled, {
+  DefaultTheme,
+  ThemeProps,
+  withTheme,
+} from 'styled-components/native';
+
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import styled from 'styled-components/native';
+import { User } from '../../types';
 
-const Container = styled.View`
-  flex: 1;
-  background-color: transparent;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-interface Props {
-  children?: any;
+interface Props extends ThemeProps<DefaultTheme> {
+  testID?: string;
+  style?: ViewStyle;
+  user: User;
+  onPress?: () => void;
+  onLongPress?: () => void;
 }
 
-function Shared(props: Props) {
+const StyledWrapperView = styled.View`
+  background-color: ${({ theme }): string => theme.background};
+  height: 80px;
+  border-bottom-width: 1px;
+  border-color: ${({ theme }): string => theme.lineColor};
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+`;
+
+const StyledContainerView = styled.View`
+  width: 100%;
+`;
+
+const StyledImage = styled.Image`
+  width: 40px;
+  height: 40px;
+`;
+
+const StyledText = styled.Text`
+  margin-left: 12px;
+  width: 100px;
+  font-size: 14px;
+  color: ${({ theme }): string => theme.fontColor};
+`;
+
+const StyledRightText = styled.Text`
+  position: absolute;
+  right: 20px;
+  font-size: 12px;
+  color: ${({ theme }): string => theme.fontSubColor};
+  max-width: 134.2px;
+  border-width: 0.3px;
+  border-color: ${({ theme }): string => theme.lineColor};
+  padding: 4px 8px;
+`;
+
+function Shared({
+  onPress,
+  onLongPress,
+  user: { photoURL, displayName, statusMsg },
+  theme,
+}: Props): React.ReactElement {
+  const photoURLObj =
+    typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
-    <Container>
-      {props.children}
-    </Container>
+    <StyledContainerView>
+      <TouchableOpacity
+        testID='PRESS_ID'
+        activeOpacity={0.5}
+        onPress={onPress}
+        onLongPress={onLongPress}
+      >
+        <StyledWrapperView>
+          {photoURL ? (
+            <StyledImage source={photoURLObj} />
+          ) : (
+            <View
+              style={{
+                width: 40,
+                height: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Ionicons name='ios-person' size={24} color={theme.fontColor} />
+            </View>
+          )}
+          <StyledText>{displayName}</StyledText>
+          {statusMsg ? (
+            <StyledRightText>{statusMsg}</StyledRightText>
+          ) : (
+            <View />
+          )}
+        </StyledWrapperView>
+      </TouchableOpacity>
+    </StyledContainerView>
   );
 }
 
-export default Shared;
+Shared.defaultProps = {
+  user: {
+    uid: '',
+    displayName: '',
+    photoURL: null,
+    statusMsg: '',
+    online: false,
+    friends: [],
+    chatrooms: [],
+    created: undefined,
+    updated: undefined,
+  },
+};
+export default withTheme(Shared);

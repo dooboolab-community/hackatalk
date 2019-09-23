@@ -42,7 +42,7 @@ describe('[Temp] Interaction', () => {
     renderResult = render(component);
   });
 
-  it('should simulate [onClick] when [btn] has been clicked', () => {
+  it('should simulate [onPress] when [btn] has been clicked', () => {
     const btnInstance = renderResult.getByTestId('btn');
     act(() => {
       fireEvent.press(btnInstance);

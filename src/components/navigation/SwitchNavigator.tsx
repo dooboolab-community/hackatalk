@@ -21,7 +21,7 @@ const SwitchNavigator = createSwitchNavigator(
     MainStackNavigator,
   },
   {
-    initialRouteName: 'MainStackNavigator',
+    initialRouteName: 'AuthStackNavigator',
   },
 );
 
@@ -33,8 +33,8 @@ export interface ScreenProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-export default function Navigator() {
-  const { state, dispatch, changeTheme } = useContext(AppContext);
+export default function Navigator(): React.ReactElement {
+  const { state, changeTheme } = useContext(AppContext);
   const { theme } = state;
 
   return (

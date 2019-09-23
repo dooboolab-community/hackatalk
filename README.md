@@ -5,6 +5,8 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
+![aTmc5jrhbo](https://user-images.githubusercontent.com/27461460/65466719-a79e2580-de9a-11e9-965e-c4c28a98346e.gif)
+
 ## Contributing to `HackaTalk`
 
 - See also
@@ -201,7 +203,7 @@ const en = {
   LOGIN: 'Login',
   EMAIL: 'Email',
   PASSWORD: 'Password',
-  SIGNUP: 'SIGN UP',
+  SIGN_UP: 'SIGN UP',
   FORGOT_PW: 'Forgot password?',
   NAVIGATE: 'Navigate',
   CHANGE_THEME: 'Change theme',
@@ -212,7 +214,7 @@ const ko = {
   LOGIN: '로그인',
   EMAIL: '이메일',
   PASSWORD: '패스워드',
-  SIGNUP: '회원가입',
+  SIGN_UP: '회원가입',
   FORGOT_PW: '비밀번호를 잊어버리셨나요?',
   NAVIGATE: '이동하기',
   CHANGE_THEME: '테마변경',

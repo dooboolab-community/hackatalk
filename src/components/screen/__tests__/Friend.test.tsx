@@ -2,52 +2,71 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '@testing-library/react-native';
+import {
+  RenderResult,
+  act,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
 
+import { AppProvider } from '../../../providers/AppProvider';
 import Friend from '../Friend';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
-
-const createTestProps = (obj: object) => ({
+const props = {
   navigation: {
     navigate: jest.fn(),
   },
-  ...obj,
+  createTheme,
+};
+
+describe('[Friend] rendering test', () => {
+  let component: React.ReactElement;
+  beforeEach(() => {
+    component = (
+      <AppProvider>
+        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+          <Friend />
+        </ThemeProvider>
+      </AppProvider>
+    );
+  });
+
+  it('renders as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
 });
 
-describe('[Friend] screen', () => {
+describe('[Friend] interaction', () => {
+  let testingLib: RenderResult;
+  let component: React.ReactElement;
+
   beforeEach(() => {
-    props = createTestProps({});
-    component = <Friend {...props} />;
+    component = (
+      <AppProvider>
+        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+          <Friend />
+        </ThemeProvider>
+      </AppProvider>
+    );
     testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  beforeEach(() => {
+    cleanup();
   });
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
-  });
-
-  describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
-    });
-
-    it('should simulate onClick', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
-    });
-  });
+  // TODO
+  // it('should dispatch [show-modal] when user is pressed', () => {
+  //   const userListItem = testingLib.queryByTestId('USER_ID');
+  //   testingLib.debug();
+  //   act(() => {
+  //     fireEvent.press(userListItem);
+  //   });
+  // });
 });
