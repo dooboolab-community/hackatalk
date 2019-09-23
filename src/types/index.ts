@@ -1,14 +1,24 @@
 import { StyleProp, TextStyle } from 'react-native';
 
-import { DefaultTheme } from 'styled-components';
 import { SFC } from 'react';
 
 export interface User {
   uid: string;
   displayName: string;
+  thumbURL: string;
   photoURL: string;
   statusMsg: string;
+  online: boolean;
+  created?: Date;
+  updated?: Date;
 }
+
+export interface AuthUser extends User {
+  friends?: [];
+  chatrooms?: [];
+}
+
+// export type Friend = Omit<User, 'uid'>;
 
 interface IconProps {
   style?: StyleProp<TextStyle>;

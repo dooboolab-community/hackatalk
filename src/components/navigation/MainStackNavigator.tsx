@@ -27,11 +27,10 @@ const routeConfig = {
     screen: ProfileUpdate,
     navigationOptions: ({
       screenProps,
-      navigation,
     }: {
       screenProps: ScreenProps;
       navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-    }) => {
+    }): object => {
       const { theme } = screenProps;
       return {
         title: getString('MY_PROFILE'),
@@ -48,7 +47,7 @@ const routeConfig = {
               marginRight: 16,
             }}
           >
-            <TouchableOpacity activeOpacity={0.5} onPress={() => {}}>
+            <TouchableOpacity activeOpacity={0.5} onPress={(): void => {}}>
               <SvgPlus width={20} />
             </TouchableOpacity>
           </View>
@@ -58,7 +57,11 @@ const routeConfig = {
   },
   SearchUser: {
     screen: SearchUser,
-    navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+    navigationOptions: ({
+      screenProps,
+    }: {
+      screenProps: ScreenProps;
+    }): object => {
       const { theme } = screenProps;
       return {
         title: 'Search User',
@@ -74,7 +77,11 @@ const routeConfig = {
   },
   Chat: {
     screen: Chat,
-    navigationOptions: ({ screenProps }: { screenProps: ScreenProps }) => {
+    navigationOptions: ({
+      screenProps,
+    }: {
+      screenProps: ScreenProps;
+    }): object => {
       const { theme } = screenProps;
       return {
         title: getString('CHAT'),

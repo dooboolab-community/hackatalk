@@ -26,6 +26,7 @@ export interface Theme {
   textDisabled: string;
   btnDisabled: string;
   fontColor: string;
+  fontSubColor: string;
   tintColor: string;
   indicatorColor: string;
   inactiveColor: string;
@@ -44,6 +45,7 @@ const theme = {
     textDisabled: '#969696',
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'black',
+    fontSubColor: colors.dusk,
     tintColor: '#333333',
     lineColor: colors.paleGray,
     indicatorColor: colors.dodgerBlue,
@@ -53,7 +55,7 @@ const theme = {
   },
   dark: {
     background: colors.darkBackground,
-    backgroundDark: colors.dodgerBlue,
+    backgroundDark: '#262A2C',
     btnPrimary: colors.skyBlue,
     btnPrimaryFont: 'white',
     btnPrimaryLight: colors.whiteGray,
@@ -61,12 +63,13 @@ const theme = {
     textDisabled: '#969696',
     btnDisabled: 'rgb(224,224,224)',
     fontColor: 'white',
+    fontSubColor: colors.paleGray,
     tintColor: '#a3a3a3',
-    lineColor: colors.paleGray,
+    lineColor: '#515557',
     indicatorColor: 'white',
     inactiveColor: colors.paleGray,
-    primary: colors.darkBackground,
-    primaryLight: colors.darkBackground,
+    primary: '#1F2324',
+    primaryLight: '#262A2C',
   },
 };
 

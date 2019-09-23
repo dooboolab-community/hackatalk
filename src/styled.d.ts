@@ -11,6 +11,7 @@ declare module 'styled-components' {
     textDisabled: string;
     btnDisabled: string;
     fontColor: string;
+    fontSubColor: string;
     tintColor: string;
     lineColor: string;
     indicatorColor: string;

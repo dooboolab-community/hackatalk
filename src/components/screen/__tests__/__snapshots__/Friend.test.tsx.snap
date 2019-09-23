@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Friend] screen renders without crashing 1`] = `
+exports[`[Friend] rendering test renders as expected 1`] = `
 <View
   style={
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "transparent",
+        "backgroundColor": "white",
         "flexBasis": 0,
-        "flexDirection": "row",
+        "flexDirection": "column",
         "flexGrow": 1,
         "flexShrink": 1,
         "justifyContent": "center",
@@ -16,18 +16,154 @@ exports[`[Friend] screen renders without crashing 1`] = `
     ]
   }
 >
-  <Text
-    style={
+  <RCTScrollView
+    ListEmptyComponent={
+      <Shared>
+        No content
+      </Shared>
+    }
+    contentContainerStyle={null}
+    data={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "displayName": "hello",
+          "online": true,
+          "photoURL": "",
+          "statusMsg": "I am fine today",
+          "thumbURL": "",
+          "uid": "my_uid",
         },
       ]
     }
-    testID="myText"
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
   >
-    dooboolab
-  </Text>
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="PRESS_ID"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(221,226,236)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 0,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "width": 40,
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                      "marginLeft": 12,
+                      "width": 100,
+                    },
+                  ]
+                }
+              >
+                hello
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "borderColor": "rgb(221,226,236)",
+                      "borderWidth": 0.3,
+                      "color": "rgb(65,77,107)",
+                      "fontSize": 12,
+                      "maxWidth": 134.2,
+                      "paddingBottom": 4,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 4,
+                      "position": "absolute",
+                      "right": 20,
+                    },
+                  ]
+                }
+              >
+                I am fine today
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

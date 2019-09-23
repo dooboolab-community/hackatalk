@@ -1,19 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[UserListItem] render renders without crashing 1`] = `
+exports[`[UserListItem] rendering test renders as expected 1`] = `
 <View
   style={
     Array [
       Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "justifyContent": "center",
+        "width": "100%",
       },
     ]
   }
-/>
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="PRESS_ID"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderBottomWidth": 1,
+            "borderColor": "rgb(221,226,236)",
+            "flexDirection": "row",
+            "height": 80,
+            "justifyContent": "flex-start",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 40,
+            "justifyContent": "center",
+            "width": 40,
+          }
+        }
+      >
+        <Text />
+      </View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "black",
+              "fontSize": 14,
+              "marginLeft": 12,
+              "width": 100,
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <View />
+    </View>
+  </View>
+</View>
 `;
