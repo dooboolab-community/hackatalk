@@ -1,53 +1,83 @@
 import 'react-native';
 
-import * as React from 'react';
+import React, { ReactElement } from 'react';
+import {
+  RenderResult,
+  act,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
 
-import { RenderResult, render } from '@testing-library/react-native';
-
+import { AppProvider } from '../../../providers/AppProvider';
 import Chat from '../Chat';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
+// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
-
-const createTestProps = (obj: object) => ({
+const props = {
   navigation: {
     navigate: jest.fn(),
   },
-  ...obj,
+  createTheme,
+};
+
+const component: ReactElement = (
+  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+    <Chat {...props} />
+  </ThemeProvider>
+);
+
+describe('[Chat] rendering test', () => {
+  it('renders as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
 });
 
-describe('[Chat] screen', () => {
-  beforeEach(() => {
-    props = createTestProps({});
-    component = <Chat {...props} />;
+describe('[Login] interaction', () => {
+  let testingLib: RenderResult;
+
+  beforeAll(() => {
     testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  it('should invoke changeText event handler when message changed', () => {
+    const textInput = testingLib.getByTestId('input_chat');
+    jest.useFakeTimers();
+    jest.runAllTimers();
+    fireEvent.changeText(textInput, 'chat test');
+    expect(textInput.props.value).toEqual('chat test');
   });
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
+  it('should call [setShowMenu] when focused', () => {
+    const textInput = testingLib.getByTestId('input_chat');
+    textInput.props.onFocus();
   });
 
-  describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
-    });
+  it('should [showMenu] when touch pressed', () => {
+    let touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
 
-    it('should simulate onClick', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
-    });
+    touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+  });
+
+  it('should call [setShowMenu] when focused', () => {
+    const touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+  });
+
+  it('should [sendChat] when pressing button', () => {
+    let chatBtn = testingLib.getByTestId('btn_chat');
+    fireEvent.press(chatBtn);
+
+    const touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+
+    chatBtn = testingLib.getByTestId('btn_chat');
+    fireEvent.press(chatBtn);
   });
 });

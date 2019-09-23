@@ -18,5 +18,6 @@ declare module 'styled-components' {
     inactiveColor: string;
     primary: string;
     primaryLight: string;
+    status: string;
   }
 }

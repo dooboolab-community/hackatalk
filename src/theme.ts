@@ -8,6 +8,7 @@ const colors = {
   skyBlue: 'rgb(100,199,255)',
   green: 'rgb(29,211,168)',
   greenBlue: 'rgb(36,205,151)',
+  greenishCyan: '#50e3c2',
   mediumGray: 'rgb(134,154,183)',
   paleGray: 'rgb(221,226,236)',
   lightBackground: '#ffffff',
@@ -32,6 +33,7 @@ export interface Theme {
   inactiveColor: string;
   primary: string;
   primaryLight: string;
+  status: string;
 }
 
 const theme = {
@@ -52,6 +54,7 @@ const theme = {
     inactiveColor: colors.paleGray,
     primary: colors.dodgerBlue,
     primaryLight: colors.skyBlue,
+    status: colors.greenishCyan,
   },
   dark: {
     background: colors.darkBackground,
@@ -70,6 +73,7 @@ const theme = {
     inactiveColor: colors.paleGray,
     primary: '#1F2324',
     primaryLight: '#262A2C',
+    status: colors.greenishCyan,
   },
 };
 

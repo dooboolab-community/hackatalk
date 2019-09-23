@@ -8,7 +8,7 @@ export interface User {
   thumbURL: string;
   photoURL: string;
   statusMsg: string;
-  online: boolean;
+  online?: boolean;
   created?: Date;
   updated?: Date;
 }
@@ -22,8 +22,8 @@ export interface Chat {
   id: string;
   sender: User;
   message: string;
-  created: Date;
-  updated: Date;
+  created?: Date;
+  updated?: Date;
 }
 
 export interface Chatroom {
