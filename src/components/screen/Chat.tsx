@@ -65,6 +65,7 @@ const StyledInputChat = styled.TextInput`
   margin-right: 20px;
   padding-left: 48px;
   color: black;
+  color: ${({ theme }): string => theme.fontColor};
   background-color: ${({ theme }): string => theme.background};
 `;
 
@@ -83,7 +84,7 @@ const StyledViewBottom = styled.View`
 `;
 
 const StyledViewMenu = styled.View<{ height: number }>`
-  background-color: ${({ theme }): string => theme.inactiveColor};
+  background-color: ${({ theme }): string => theme.background};
   flex-direction: row;
   flex-wrap: wrap;
   height: ${({ height }): number => height};
@@ -305,9 +306,20 @@ function Screen(props: Props): React.ReactElement {
                 source={IC_SMILE}
               />
             </StyledTouchMenu>
-            <Button testID='btn_chat' isLoading={isLoading} onPress={sendChat}>
-              {getString('SEND')}
-            </Button>
+            <View
+              style={{
+                flex: 1,
+                marginVertical: 8,
+              }}
+            >
+              <Button
+                testID='btn_chat'
+                isLoading={isLoading}
+                onPress={sendChat}
+              >
+                {getString('SEND')}
+              </Button>
+            </View>
           </StyledViewChat>
           <StyledViewMenu testID='viewMenu' height={keyboardHeight}>
             <View
