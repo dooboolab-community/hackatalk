@@ -206,7 +206,7 @@ exports[`[Message] screen renders without crashing 1`] = `
                       Array [
                         Object {
                           "alignItems": "center",
-                          "backgroundColor": "rgb(80, 227, 194)",
+                          "backgroundColor": "rgb(58,139,255)",
                           "borderRadius": 8,
                           "height": 16,
                           "justifyContent": "center",
@@ -219,7 +219,7 @@ exports[`[Message] screen renders without crashing 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "white",
+                            "color": "black",
                             "fontSize": 10,
                           },
                         ]

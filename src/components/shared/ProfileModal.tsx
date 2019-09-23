@@ -47,12 +47,12 @@ const StyledTextStatusMsg = styled.Text`
 `;
 
 const StyledTextBtn = styled.Text`
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({ theme }): string => theme.tintColor};
   font-size: 16px;
 `;
 
 const StyledTextFriendAdded = styled.Text`
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({ theme }): string => theme.tintColor};
   font-size: 12px;
   background-color: ${({ theme }): string => theme.background};
   padding: 4px;

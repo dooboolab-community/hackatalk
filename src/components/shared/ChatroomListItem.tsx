@@ -52,7 +52,7 @@ const StyledTextDisplayName = styled.Text`
 `;
 
 const StyledTextWrapper = styled.View`
-  background-color: rgb(80, 227, 194);
+  background-color: ${({ theme }): string => theme.tintColor};
   width: 16;
   height: 16;
   border-radius: 8;
@@ -62,7 +62,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: white;
+  color: ${({ theme }): string => theme.fontColor};
 `;
 
 const StyledViewBottom = styled.View`

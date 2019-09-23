@@ -1,3 +1,8 @@
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import React, { useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import styled, {
@@ -8,9 +13,15 @@ import styled, {
 
 import Button from '../shared/Button';
 import { IC_ICON } from '../../utils/Icons';
+import { ScreenProps } from '../navigation/SwitchNavigator';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
+
+interface Props extends ThemeProps<DefaultTheme> {
+  screenProps: ScreenProps;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
 
 const StyledScollView = styled.ScrollView``;
 
@@ -64,7 +75,7 @@ const StyledButtonWrapper = styled.View`
 
 const StyledTextForgotPw = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.primary};
+  color: ${({ theme }): string => theme.tintColor};
   text-decoration-line: underline;
 `;
 
@@ -74,17 +85,11 @@ const StyledTextCopyright = styled.Text`
   color: ${({ theme }): string => theme.fontSubColor};
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
-  navigation: any;
-}
-
 function Screen(props: Props): React.ReactElement {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   let timer: any;
-
-  const { theme } = props;
 
   const onTextChanged = (type: string, text: string): void => {
     // prettier-ignore
@@ -116,13 +121,18 @@ function Screen(props: Props): React.ReactElement {
     }, 1000);
   };
 
+  const { theme } = props;
+  const { changeTheme } = props.screenProps;
+
   return (
     <StyledSafeAreaView>
       <StyledScollView>
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
-            <StyledIcon source={IC_ICON} />
+            <TouchableOpacity onPress={(): void => changeTheme()}>
+              <StyledIcon source={IC_ICON} />
+            </TouchableOpacity>
             <StyledIconText>{getString('HELLO')}.</StyledIconText>
           </StyledIconWrapper>
           <StyledInputWrapper>

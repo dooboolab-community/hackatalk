@@ -22,6 +22,9 @@ const props = {
   navigation: {
     navigate: jest.fn(),
   },
+  screenProps: {
+    changeTheme: jest.fn(),
+  },
   createTheme,
 };
 const component: React.ReactElement = (

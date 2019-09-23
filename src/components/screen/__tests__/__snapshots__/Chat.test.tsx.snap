@@ -653,74 +653,83 @@ exports[`[Chat] rendering test renders as expected 1`] = `
       </View>
       <View
         style={
-          Array [
-            Object {
-              "flexBasis": 0,
-              "flexGrow": 1,
-              "flexShrink": 1,
-            },
-          ]
+          Object {
+            "flex": 1,
+            "marginVertical": 8,
+          }
         }
       >
         <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
-            Object {
-              "opacity": 1,
-            }
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+              },
+            ]
           }
-          testID="btn_chat"
         >
           <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "rgb(58,139,255)",
-                  "borderColor": "#ffffff",
-                  "borderRadius": 4,
-                  "borderWidth": 1,
-                  "justifyContent": "center",
-                },
-              ]
+              Object {
+                "opacity": 1,
+              }
             }
-            white={false}
+            testID="btn_chat"
           >
             <View
-              height={60}
               style={
                 Array [
                   Object {
                     "alignItems": "center",
-                    "height": 60,
+                    "backgroundColor": "rgb(58,139,255)",
+                    "borderColor": "white",
+                    "borderRadius": 4,
+                    "borderWidth": 1,
                     "justifyContent": "center",
-                    "width": 136,
                   },
                 ]
               }
-              width={136}
+              white={false}
             >
-              <Text
+              <View
+                height={60}
                 style={
                   Array [
                     Object {
-                      "color": "#ffffff",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
+                      "alignItems": "center",
+                      "height": 60,
+                      "justifyContent": "center",
+                      "width": 136,
                     },
                   ]
                 }
-                white={false}
+                width={136}
               >
-                Send
-              </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "fontWeight": "bold",
+                      },
+                    ]
+                  }
+                  white={false}
+                >
+                  Send
+                </Text>
+              </View>
             </View>
           </View>
         </View>

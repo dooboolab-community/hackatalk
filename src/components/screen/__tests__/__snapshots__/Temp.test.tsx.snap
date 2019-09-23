@@ -49,7 +49,7 @@ exports[`[Temp] render renders without crashing 1`] = `
             Object {
               "alignItems": "center",
               "backgroundColor": "rgb(58,139,255)",
-              "borderColor": "#ffffff",
+              "borderColor": "white",
               "borderRadius": 4,
               "borderWidth": 1,
               "justifyContent": "center",
@@ -76,7 +76,7 @@ exports[`[Temp] render renders without crashing 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#ffffff",
+                  "color": "white",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },

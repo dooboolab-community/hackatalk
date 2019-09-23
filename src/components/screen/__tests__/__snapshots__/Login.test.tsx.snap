@@ -48,17 +48,33 @@ exports[`[Login] rendering test renders as expected 1`] = `
             ]
           }
         >
-          <Image
-            source={1}
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
             style={
-              Array [
-                Object {
-                  "height": 60,
-                  "width": 60,
-                },
-              ]
+              Object {
+                "opacity": 1,
+              }
             }
-          />
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "height": 60,
+                    "width": 60,
+                  },
+                ]
+              }
+            />
+          </View>
           <Text
             style={
               Array [
@@ -229,7 +245,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                     Array [
                       Object {
                         "alignItems": "center",
-                        "backgroundColor": "#ffffff",
+                        "backgroundColor": "white",
                         "borderColor": "rgb(58,139,255)",
                         "borderRadius": 4,
                         "borderWidth": 1,
@@ -311,7 +327,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "rgb(58,139,255)",
-                        "borderColor": "#ffffff",
+                        "borderColor": "white",
                         "borderRadius": 4,
                         "borderWidth": 1,
                         "justifyContent": "center",
@@ -338,7 +354,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#ffffff",
+                            "color": "white",
                             "fontSize": 14,
                             "fontWeight": "bold",
                           },

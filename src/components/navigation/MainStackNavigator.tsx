@@ -36,7 +36,7 @@ const routeConfig = {
         title: getString('MY_PROFILE'),
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,
@@ -56,7 +56,7 @@ const routeConfig = {
         title: 'Search User',
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,
@@ -76,7 +76,7 @@ const routeConfig = {
         title: getString('CHAT'),
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomColor: theme.btnPrimary,
+          borderBottomColor: theme.primaryLight,
         },
         headerTitleStyle: {
           color: theme.fontColor,

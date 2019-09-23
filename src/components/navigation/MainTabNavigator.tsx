@@ -29,7 +29,7 @@ const MaterialTopTabBar = (props: any): React.ReactElement => {
     <RNMaterialTopTabBar
       {...props}
       activeTintColor={theme.indicatorColor}
-      inactiveTintColor={theme.tintColor}
+      inactiveTintColor={theme.inactiveColor}
       indicatorStyle={{
         backgroundColor: theme.indicatorColor,
       }}

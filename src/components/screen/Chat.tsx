@@ -264,9 +264,20 @@ function Screen(props: Props): React.ReactElement {
                 source={IC_SMILE}
               />
             </StyledTouchMenu>
-            <Button testID='btn_chat' isLoading={isLoading} onPress={sendChat}>
-              {getString('SEND')}
-            </Button>
+            <View
+              style={{
+                flex: 1,
+                marginVertical: 8,
+              }}
+            >
+              <Button
+                testID='btn_chat'
+                isLoading={isLoading}
+                onPress={sendChat}
+              >
+                {getString('SEND')}
+              </Button>
+            </View>
           </StyledViewChat>
         ) : null}
       </StyledKeyboardAvoidingView>

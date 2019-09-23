@@ -47,10 +47,10 @@ const StyledButtonContainer = styled.View<ButtonContainer>`
 `;
 
 const StyledButton = styled.View<StyledElement>`
-  background-color: ${({ white, theme: { primary, background } }): string =>
-    white ? background : primary};
-  border-color: ${({ white, theme: { primary, background } }): string =>
-    white ? primary : background};
+  background-color: ${({ white, theme }): string =>
+    white ? theme.btnPrimaryLight : theme.btnPrimary};
+  border-color: ${({ white, theme }): string =>
+    white ? theme.btnPrimary : theme.btnPrimaryLight};
   border-radius: 4px;
   border-width: 1px;
   align-items: center;
@@ -70,8 +70,8 @@ const StyledButtonDisabled = styled.View`
 const StyledText = styled.Text<StyledElement>`
   font-size: 14px;
   font-weight: bold;
-  color: ${({ white, theme: { primary, background } }): string =>
-    white ? primary : background};
+  color: ${({ white, theme }): string =>
+    white ? theme.btnPrimaryLightFont : theme.btnPrimaryFont};
 `;
 
 const StyledImageLeft = styled.Image`
