@@ -41,21 +41,6 @@ const routeConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
         },
-        headerRight: (
-          <View
-            style={{
-              marginRight: 16,
-            }}
-          >
-            <TouchableOpacity activeOpacity={0.5} onPress={(): void => {}}>
-              <Ionicons
-                name='ios-cloud-upload'
-                size={20}
-                color={theme ? theme.fontColor : '#3d3d3d'}
-              />
-            </TouchableOpacity>
-          </View>
-        ),
       };
     },
   },

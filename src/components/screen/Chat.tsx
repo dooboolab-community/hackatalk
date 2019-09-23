@@ -268,7 +268,7 @@ function Screen(props: Props): React.ReactElement {
               style={btnSendStyle}
               testID='btn_chat'
               isLoading={isLoading}
-              onClick={sendChat}
+              onPress={sendChat}
               text={getString('SEND')}
             />
           </StyledViewChat>
@@ -301,7 +301,7 @@ function Screen(props: Props): React.ReactElement {
             <Button
               testID='btn_chat'
               isLoading={isLoading}
-              onClick={sendChat}
+              onPress={sendChat}
               style={btnSendStyle}
               text={getString('SEND')}
             />

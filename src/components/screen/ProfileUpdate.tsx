@@ -131,18 +131,17 @@ function Screen(props: Props): React.ReactElement {
             placeholderTextColor={theme.placeholder}
           />
           <StyledBtnWrapper>
+            <Button testID='logout_btn' onPress={onLogout} isWhite>
+              {getString('LOGOUT')}
+            </Button>
+            <View style={{ width: 8 }} />
             <Button
-              containerStyle={{
-                flex: 1,
-              }}
-              style={{
-                backgroundColor: '#e6677e',
-                borderColor: theme.lineColor,
-              }}
-              testID='logout_btn'
-              onClick={onLogout}
-              text={getString('LOGOUT')}
-            />
+              testID='update_btn'
+              isLoading={isUpdating}
+              onPress={onUpdate}
+            >
+              {getString('UPDATE')}
+            </Button>
           </StyledBtnWrapper>
         </StyledWrapper>
       </StyledScrollView>

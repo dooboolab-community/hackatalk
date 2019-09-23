@@ -2,52 +2,96 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '@testing-library/react-native';
+import {
+  RenderResult,
+  act,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
 
+import { AppProvider } from '../../../providers/AppProvider';
+import Button from '../../shared/Button';
 import Login from '../Login';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
+// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
-
-const createTestProps = (obj: object) => ({
+const props = {
   navigation: {
     navigate: jest.fn(),
   },
-  ...obj,
+  createTheme,
+};
+const component: React.ReactElement = (
+  <AppProvider>
+    <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+      <Login {...props} />
+    </ThemeProvider>
+  </AppProvider>
+);
+
+describe('[Login] rendering test', () => {
+  it('renders as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
 });
 
-describe('[Login] screen', () => {
-  beforeEach(() => {
-    props = createTestProps({});
-    component = <Login {...props} />;
+describe('[Login] interaction', () => {
+  let rendered: renderer.ReactTestRenderer;
+  let root: renderer.ReactTestInstance;
+  let testingLib: any;
+
+  beforeAll(() => {
+    rendered = renderer.create(component);
+    root = rendered.root;
     testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  it('should invoke changeText event handler when email changed ', () => {
+    const textInput = testingLib.getByTestId('email_input');
+    jest.useFakeTimers();
+    jest.runAllTimers();
+    fireEvent.changeText(textInput, 'email test');
+    expect(textInput.props.value).toEqual('email test');
   });
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
+  it('should invoke changeText event handler when password changed ', () => {
+    const textInput = testingLib.getByTestId('pw_input');
+    jest.useFakeTimers();
+    jest.runAllTimers();
+    fireEvent.changeText(textInput, 'pw test');
+    expect(textInput.props.value).toEqual('pw test');
   });
 
-  describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
+  it('should simulate when [goToSignUp] is clicked', () => {
+    const btnSignUp = testingLib.getByTestId('btnSignUp');
+    act(() => {
+      fireEvent.press(btnSignUp);
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('SignUp');
+  });
+
+  it('should simulate when [onLogin] is clicked', () => {
+    jest.useFakeTimers();
+    const buttons = root.findAllByType(Button);
+    act(() => {
+      fireEvent.press(testingLib.getByTestId('btnLogin'));
     });
 
-    it('should simulate onClick', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    jest.runAllTimers();
+    expect(clearTimeout).toHaveBeenCalledTimes(1);
+    expect(buttons[0].props.isLoading).toEqual(false);
+  });
+
+  it('should simulate when [goToForgotPw] is clicked', () => {
+    const findPwBtn = testingLib.getByTestId('findPw');
+    act(() => {
+      fireEvent.press(findPwBtn);
     });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
   });
 });

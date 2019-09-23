@@ -25,7 +25,7 @@ describe('[Button]', () => {
 
   beforeEach(() => {
     props = {
-      onClick: (): number => cnt++,
+      onPress: (): number => cnt++,
       testID: 'btn',
     };
     component = (
@@ -46,7 +46,7 @@ describe('[Button]', () => {
       testingLib = render(component);
     });
 
-    it('should simulate onClick', () => {
+    it('should simulate onPress', () => {
       const btn = testingLib.queryByTestId('btn');
       act(() => {
         fireEvent.press(btn);

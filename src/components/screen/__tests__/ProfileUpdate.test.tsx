@@ -76,6 +76,12 @@ describe('interaction', () => {
     );
   });
 
+  it('should fireEvent when logout button pressed', () => {
+    act(() => {
+      fireEvent.press(testingLib.getByTestId('update_btn'));
+    });
+  });
+
   it('should changeText when display name changed', () => {
     const inputName = testingLib.getByTestId('input_name');
     act(() => {

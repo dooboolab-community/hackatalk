@@ -4,7 +4,7 @@ import { StatusBar } from 'react-native';
 import { ThemeType } from '../../types';
 
 // prettier-ignore
-function Shared() {
+function Shared(): React.ReactElement {
   const { state } = React.useContext(AppContext);
   const statusColor = state.theme === ThemeType.LIGHT ? 'dark-content' : 'light-content';
 

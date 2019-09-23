@@ -17,53 +17,75 @@ exports[`[Temp] render renders without crashing 1`] = `
   }
 >
   <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
-      Object {
-        "opacity": 1,
-      }
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+      ]
     }
-    testID="btn"
   >
     <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "backgroundColor": "rgb(100,199,255)",
-            "borderColor": "rgb(100,199,255)",
-            "borderRadius": 4,
-            "borderWidth": 2,
-            "height": 52,
-            "justifyContent": "center",
-            "width": 320,
-          },
-          Object {
-            "backgroundColor": "#333333",
-          },
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="btn"
     >
-      <Text
+      <View
         style={
           Array [
             Object {
-              "color": "white",
-              "fontSize": 14,
+              "alignItems": "center",
+              "backgroundColor": "rgb(58,139,255)",
+              "borderColor": "#ffffff",
+              "borderRadius": 4,
+              "borderWidth": 1,
+              "justifyContent": "center",
             },
           ]
         }
+        white={false}
       >
-        Go Back
-      </Text>
+        <View
+          height={60}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "height": 60,
+                "justifyContent": "center",
+                "width": 136,
+              },
+            ]
+          }
+          width={136}
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+            white={false}
+          />
+        </View>
+      </View>
     </View>
   </View>
 </View>

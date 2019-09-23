@@ -197,55 +197,158 @@ exports[`rendering test renders as expected 1`] = `
           }
         >
           <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
-              Object {
-                "flex": 1,
-                "opacity": 1,
-              }
+              Array [
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+              ]
             }
-            testID="logout_btn"
           >
             <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "center",
-                    "backgroundColor": "rgb(100,199,255)",
-                    "borderColor": "rgb(100,199,255)",
-                    "borderRadius": 4,
-                    "borderWidth": 2,
-                    "height": 52,
-                    "justifyContent": "center",
-                    "width": 320,
-                  },
-                  Object {
-                    "backgroundColor": "#e6677e",
-                    "borderColor": "rgb(221,226,236)",
-                  },
-                ]
+                Object {
+                  "opacity": 1,
+                }
               }
+              testID="logout_btn"
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "white",
-                      "fontSize": 14,
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "rgb(58,139,255)",
+                      "borderRadius": 4,
+                      "borderWidth": 1,
+                      "justifyContent": "center",
                     },
                   ]
                 }
+                white={true}
               >
-                Logout
-              </Text>
+                <View
+                  height={60}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "height": 60,
+                        "justifyContent": "center",
+                        "width": 136,
+                      },
+                    ]
+                  }
+                  width={136}
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "rgb(58,139,255)",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                    white={true}
+                  >
+                    Logout
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "width": 8,
+              }
+            }
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="update_btn"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "rgb(58,139,255)",
+                      "borderColor": "#ffffff",
+                      "borderRadius": 4,
+                      "borderWidth": 1,
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+                white={false}
+              >
+                <View
+                  height={60}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "height": 60,
+                        "justifyContent": "center",
+                        "width": 136,
+                      },
+                    ]
+                  }
+                  width={136}
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#ffffff",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                    white={false}
+                  >
+                    Update
+                  </Text>
+                </View>
+              </View>
             </View>
           </View>
         </View>

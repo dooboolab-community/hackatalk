@@ -45,7 +45,7 @@ describe('[StatusBar] render', () => {
   //     testingLib = render(component);
   //   });
 
-  //   it('should simulate onClick', () => {
+  //   it('should simulate onPress', () => {
   //     const btn = testingLib.queryByTestId('btn');
   //     act(() => {
   //       fireEvent.press(btn);
