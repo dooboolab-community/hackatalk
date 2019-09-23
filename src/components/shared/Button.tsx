@@ -49,6 +49,7 @@ interface Props {
   isLoading?: boolean;
   isDisabled?: boolean;
   onClick?: () => void;
+  containerStyle?: ViewStyle;
   style?: ViewStyle;
   disabledStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -62,7 +63,10 @@ interface Props {
 function Button(props: Props): React.ReactElement {
   if (props.isDisabled) {
     return (
-      <StyledButtonDisabled style={props.disabledStyle}>
+      <StyledButtonDisabled
+        testID={props.testID}
+        style={[props.containerStyle, props.disabledStyle]}
+      >
         <StyledTextDisabled style={props.textStyle}>
           {props.text}
         </StyledTextDisabled>
@@ -71,7 +75,10 @@ function Button(props: Props): React.ReactElement {
   }
   if (props.isLoading) {
     return (
-      <StyledButton style={props.style}>
+      <StyledButton
+        testID={props.testID}
+        style={[props.containerStyle, props.style]}
+      >
         <ActivityIndicator size='small' color={props.indicatorColor} />
       </StyledButton>
     );
@@ -81,6 +88,7 @@ function Button(props: Props): React.ReactElement {
       testID={props.testID}
       activeOpacity={props.activeOpacity}
       onPress={props.onClick}
+      style={props.containerStyle}
     >
       <StyledButton style={props.style}>
         {props.imgLeftSrc ? (

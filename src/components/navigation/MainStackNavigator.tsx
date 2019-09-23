@@ -5,9 +5,9 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import { SvgNoProfile, SvgPlus } from '../../utils/Icons';
 
 import Chat from '../screen/Chat';
+import { Ionicons } from '@expo/vector-icons';
 import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import React from 'react';
@@ -48,7 +48,11 @@ const routeConfig = {
             }}
           >
             <TouchableOpacity activeOpacity={0.5} onPress={(): void => {}}>
-              <SvgPlus width={20} />
+              <Ionicons
+                name='ios-cloud-upload'
+                size={20}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
             </TouchableOpacity>
           </View>
         ),
@@ -105,7 +109,12 @@ const navigatorConfig = {
 
 const MainStackNavigator = createStackNavigator(routeConfig, navigatorConfig);
 
-class RootNavigator extends React.Component<any, any> {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  screenProps: ScreenProps;
+}
+
+class RootNavigator extends React.Component<Props> {
   private static router = MainStackNavigator.router;
 
   public render(): React.ReactElement {
@@ -126,4 +135,4 @@ class RootNavigator extends React.Component<any, any> {
   }
 }
 
-export default withTheme(RootNavigator);
+export default RootNavigator;

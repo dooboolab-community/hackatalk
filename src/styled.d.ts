@@ -19,5 +19,6 @@ declare module 'styled-components' {
     primary: string;
     primaryLight: string;
     status: string;
+    placeholder: string;
   }
 }

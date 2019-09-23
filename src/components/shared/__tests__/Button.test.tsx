@@ -25,7 +25,7 @@ describe('[Button]', () => {
 
   beforeEach(() => {
     props = {
-      onClick: () => cnt++,
+      onClick: (): number => cnt++,
       testID: 'btn',
     };
     component = (

@@ -1,33 +1,256 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[ProfileUpdate] screen renders without crashing 1`] = `
+exports[`rendering test renders as expected 1`] = `
 <View
   style={
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "transparent",
+        "backgroundColor": "#ffffff",
         "flexBasis": 0,
-        "flexDirection": "row",
+        "flexDirection": "column",
         "flexGrow": 1,
         "flexShrink": 1,
-        "justifyContent": "center",
       },
     ]
   }
 >
-  <Text
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
     style={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "alignSelf": "stretch",
         },
       ]
     }
-    testID="myText"
   >
-    dooboolab
-  </Text>
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "column",
+              "marginTop": 48,
+              "width": "78%",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Text />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "alignSelf": "stretch",
+                "flexDirection": "column",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            focused={false}
+            style={
+              Array [
+                Object {
+                  "color": "rgb(221,226,236)",
+                  "fontSize": 12,
+                  "marginBottom": 8,
+                },
+              ]
+            }
+          >
+            name
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            focused={false}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            placeholder="name"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "borderColor": "rgb(221,226,236)",
+                  "borderWidth": 1,
+                  "color": "black",
+                  "flexDirection": "row",
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "marginBottom": 8,
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            testID="input_name"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "alignSelf": "stretch",
+                "flexDirection": "column",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            focused={false}
+            style={
+              Array [
+                Object {
+                  "color": "rgb(221,226,236)",
+                  "fontSize": 12,
+                  "marginBottom": 8,
+                },
+              ]
+            }
+          >
+            Status message
+          </Text>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            focused={false}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            placeholder="Status message"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "borderColor": "rgb(221,226,236)",
+                  "borderWidth": 1,
+                  "color": "black",
+                  "flexDirection": "row",
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "marginBottom": 8,
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            testID="input_status"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 48,
+                "marginTop": 24,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "flex": 1,
+                "opacity": 1,
+              }
+            }
+            testID="logout_btn"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "backgroundColor": "rgb(100,199,255)",
+                    "borderColor": "rgb(100,199,255)",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "height": 52,
+                    "justifyContent": "center",
+                    "width": 320,
+                  },
+                  Object {
+                    "backgroundColor": "#e6677e",
+                    "borderColor": "rgb(221,226,236)",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              >
+                Logout
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

@@ -1,53 +1,95 @@
 import 'react-native';
 
-import * as React from 'react';
+import React, { ReactElement } from 'react';
+import {
+  RenderResult,
+  act,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
 
-import { RenderResult, render } from '@testing-library/react-native';
-
+import { AppProvider } from '../../../providers/AppProvider';
 import ProfileUpdate from '../ProfileUpdate';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
+// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
-
-const createTestProps = (obj: object) => ({
+const createTestProps = (props: object): any => ({
   navigation: {
     navigate: jest.fn(),
   },
-  ...obj,
+  ...props,
 });
 
-describe('[ProfileUpdate] screen', () => {
+describe('rendering test', () => {
+  const props = createTestProps({
+    theme: createTheme(),
+  });
+  const component: React.ReactElement = (
+    <AppProvider>
+      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+        <ProfileUpdate {...props} />
+      </ThemeProvider>
+    </AppProvider>
+  );
+
+  it('renders as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
+});
+
+describe('interaction', () => {
+  let rendered: renderer.ReactTestRenderer;
+  let testingLib: RenderResult;
+  let props;
+  let component: React.ReactElement;
+
+  beforeAll(() => {
+    rendered = renderer.create(component);
+  });
+
   beforeEach(() => {
-    props = createTestProps({});
-    component = <ProfileUpdate {...props} />;
+    props = {
+      navigation: {
+        navigate: jest.fn(),
+        goBack: jest.fn(),
+      },
+    };
+    component = (
+      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+        <ProfileUpdate {...props} />
+      </ThemeProvider>
+    );
     testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  it('should fireEvent when logout button pressed', () => {
+    act(() => {
+      fireEvent.press(testingLib.getByTestId('logout_btn'));
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith(
+      'AuthStackNavigator',
+    );
   });
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
+  it('should changeText when display name changed', () => {
+    const inputName = testingLib.getByTestId('input_name');
+    act(() => {
+      fireEvent.change(inputName, 'name');
+    });
+    // TODO: what to expect?
+    // expect(inputName.props.txt).toEqual('name');
   });
 
-  describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
+  it('should changeText when status message changed', () => {
+    const inputStatus = testingLib.getByTestId('input_status');
+    act(() => {
+      fireEvent.change(inputStatus, 'name');
     });
-
-    it('should simulate onClick', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
-    });
+    // expect(inputStatus.props.txt).toEqual('name');
   });
 });

@@ -15,6 +15,7 @@ const colors = {
   lightBackgroundLight: '#f7f6f3',
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
+  cloudyBlue: 'rgb(175,194,219)',
 };
 
 export interface Theme {
@@ -34,6 +35,7 @@ export interface Theme {
   primary: string;
   primaryLight: string;
   status: string;
+  placeholder: string;
 }
 
 const theme = {
@@ -55,6 +57,7 @@ const theme = {
     primary: colors.dodgerBlue,
     primaryLight: colors.skyBlue,
     status: colors.greenishCyan,
+    placeholder: colors.cloudyBlue,
   },
   dark: {
     background: colors.darkBackground,
@@ -74,6 +77,7 @@ const theme = {
     primary: '#1F2324',
     primaryLight: '#262A2C',
     status: colors.greenishCyan,
+    placeholder: colors.cloudyBlue,
   },
 };
 
