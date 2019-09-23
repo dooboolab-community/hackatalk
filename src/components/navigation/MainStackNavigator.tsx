@@ -108,7 +108,10 @@ class RootNavigator extends React.Component<any, any> {
         <ProfileModalProvider navigation={this.props.navigation}>
           <MainStackNavigator
             navigation={this.props.navigation}
-            screenProps={{ theme: this.props.theme }}
+            screenProps={{
+              theme: this.props.screenProps.theme,
+              changeTheme: this.props.screenProps.changeTheme,
+            }}
           />
         </ProfileModalProvider>
       </View>

@@ -34,12 +34,17 @@ export interface ScreenProps {
 }
 
 export default function Navigator() {
-  const { state } = useContext(AppContext);
+  const { state, dispatch, changeTheme } = useContext(AppContext);
   const { theme } = state;
 
   return (
     <ThemeProvider theme={createTheme(theme)}>
-      <AppContainer screenProps={{ theme: createTheme(theme) }} />
+      <AppContainer
+        screenProps={{
+          theme: createTheme(theme),
+          changeTheme,
+        }}
+      />
     </ThemeProvider>
   );
 }

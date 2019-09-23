@@ -13,5 +13,9 @@ declare module 'styled-components' {
     fontColor: string;
     tintColor: string;
     lineColor: string;
+    indicatorColor: string;
+    inactiveColor: string;
+    primary: string;
+    primaryLight: string;
   }
 }

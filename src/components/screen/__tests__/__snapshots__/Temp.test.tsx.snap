@@ -38,8 +38,8 @@ exports[`[Temp] render renders without crashing 1`] = `
           Object {
             "alignItems": "center",
             "alignSelf": "center",
-            "backgroundColor": "#069ccd",
-            "borderColor": "#069ccd",
+            "backgroundColor": "rgb(100,199,255)",
+            "borderColor": "rgb(100,199,255)",
             "borderRadius": 4,
             "borderWidth": 2,
             "height": 52,
