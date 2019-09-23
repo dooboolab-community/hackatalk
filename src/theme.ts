@@ -1,10 +1,10 @@
 import { ThemeType } from './types';
 
 const colors = {
-  skyBlue: '#069ccd',
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
   dodgerBlue: 'rgb(58,139,255)',
+  skyBlue: 'rgb(100,199,255)',
   green: 'rgb(29,211,168)',
   greenBlue: 'rgb(36,205,151)',
   mediumGray: 'rgb(134,154,183)',
@@ -26,6 +26,8 @@ export interface Theme {
   btnDisabled: string;
   fontColor: string;
   tintColor: string;
+  indicatorColor: string;
+  inactiveColor: string;
 }
 
 const theme = {
@@ -41,6 +43,10 @@ const theme = {
     fontColor: 'black',
     tintColor: '#333333',
     lineColor: colors.paleGray,
+    indicatorColor: colors.dodgerBlue,
+    inactiveColor: colors.paleGray,
+    primary: colors.dodgerBlue,
+    primaryLight: colors.skyBlue,
   },
   dark: {
     background: colors.darkBackground,
@@ -54,6 +60,10 @@ const theme = {
     fontColor: 'white',
     tintColor: '#a3a3a3',
     lineColor: colors.paleGray,
+    indicatorColor: colors.dodgerBlue,
+    inactiveColor: colors.paleGray,
+    primary: colors.dodgerBlue,
+    primaryLight: colors.skyBlue,
   },
 };
 
