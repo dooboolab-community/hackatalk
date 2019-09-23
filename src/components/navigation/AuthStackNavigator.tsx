@@ -33,7 +33,7 @@ const StackNavigator = createStackNavigator(
       }): object => {
         const { theme } = screenProps;
         return {
-          title: getString('SIGNUP'),
+          title: getString('SIGN_UP'),
           headerStyle: {
             backgroundColor: theme.background,
             borderBottomWidth: 0,
