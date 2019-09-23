@@ -7,6 +7,11 @@ import {
   View,
 } from 'react-native';
 import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
+import {
   MaterialTopTabBar as RNMaterialTopTabBar,
   createMaterialTopTabNavigator,
 } from 'react-navigation-tabs';
@@ -73,8 +78,13 @@ const MainTabNavigator = createMaterialTopTabNavigator(
 
 export default MainTabNavigator;
 
-const CustomHeader = (props: any) => {
-  const { theme } = props.screenProps;
+interface Props {
+  screenProps: ScreenProps;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+
+const CustomHeader = (props: Props) => {
+  const { theme, changeTheme } = props.screenProps;
   return (
     <LinearGradient
       style={{
@@ -96,27 +106,27 @@ const CustomHeader = (props: any) => {
           activeOpacity={0.5}
           onPress={() => props.navigation.navigate('ProfileUpdate')}
         >
-          <Ionicons name='ios-person' size={24} color={theme.background} />
+          <Ionicons name='ios-person' size={24} color='white' />
         </TouchableOpacity>
       </View>
-      <View>
+      <TouchableOpacity onPress={() => changeTheme()}>
         <Text
           style={{
             fontSize: 18,
             fontWeight: '500',
-            color: theme.background,
+            color: 'white',
           }}
         >
           HackaTalk
         </Text>
-      </View>
+      </TouchableOpacity>
       <View style={{ marginRight: 8 }}>
         <TouchableOpacity
           style={{ padding: 8 }}
           activeOpacity={0.5}
           onPress={() => props.navigation.navigate('SearchUser')}
         >
-          <Ionicons name='ios-search' size={24} color={theme.background} />
+          <Ionicons name='ios-search' size={24} color='white' />
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -130,7 +140,6 @@ export const MainTabNavigationOptions = ({
   navigation: any;
   screenProps: ScreenProps;
 }) => {
-  const { theme } = screenProps;
   return {
     header: CustomHeader,
   };

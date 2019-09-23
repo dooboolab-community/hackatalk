@@ -28,6 +28,8 @@ export interface Theme {
   tintColor: string;
   indicatorColor: string;
   inactiveColor: string;
+  primary: string;
+  primaryLight: string;
 }
 
 const theme = {
@@ -60,10 +62,10 @@ const theme = {
     fontColor: 'white',
     tintColor: '#a3a3a3',
     lineColor: colors.paleGray,
-    indicatorColor: colors.dodgerBlue,
+    indicatorColor: 'white',
     inactiveColor: colors.paleGray,
-    primary: colors.dodgerBlue,
-    primaryLight: colors.skyBlue,
+    primary: colors.darkBackground,
+    primaryLight: colors.darkBackground,
   },
 };
 
