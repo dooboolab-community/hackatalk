@@ -101,7 +101,7 @@ const MainStackNavigator = createStackNavigator(routeConfig, navigatorConfig);
 class RootNavigator extends React.Component<any, any> {
   private static router = MainStackNavigator.router;
 
-  public render() {
+  public render(): React.ReactElement {
     return (
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <StatusBar />

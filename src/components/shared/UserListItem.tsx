@@ -10,15 +10,11 @@ const Container = styled.View`
 `;
 
 interface Props {
-  children?: any;
+  children?: React.ReactElement;
 }
 
-function Shared(props: Props) {
-  return (
-    <Container>
-      {props.children}
-    </Container>
-  );
+function Shared(props: Props): React.ReactElement {
+  return <Container>{props.children}</Container>;
 }
 
 export default Shared;
