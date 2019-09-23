@@ -264,13 +264,9 @@ function Screen(props: Props): React.ReactElement {
                 source={IC_SMILE}
               />
             </StyledTouchMenu>
-            <Button
-              style={btnSendStyle}
-              testID='btn_chat'
-              isLoading={isLoading}
-              onPress={sendChat}
-              text={getString('SEND')}
-            />
+            <Button testID='btn_chat' isLoading={isLoading} onPress={sendChat}>
+              {getString('SEND')}
+            </Button>
           </StyledViewChat>
         ) : null}
       </StyledKeyboardAvoidingView>
@@ -298,13 +294,9 @@ function Screen(props: Props): React.ReactElement {
                 source={IC_SMILE}
               />
             </StyledTouchMenu>
-            <Button
-              testID='btn_chat'
-              isLoading={isLoading}
-              onPress={sendChat}
-              style={btnSendStyle}
-              text={getString('SEND')}
-            />
+            <Button testID='btn_chat' isLoading={isLoading} onPress={sendChat}>
+              {getString('SEND')}
+            </Button>
           </StyledViewChat>
           <StyledViewMenu testID='viewMenu' height={keyboardHeight}>
             <View

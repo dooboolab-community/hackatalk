@@ -718,7 +718,9 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                   ]
                 }
                 white={false}
-              />
+              >
+                Send
+              </Text>
             </View>
           </View>
         </View>

@@ -23,14 +23,9 @@ interface Props {
 function Page(props: Props): React.ReactElement {
   return (
     <Container>
-      <Button
-        testID='btn'
-        onPress={(): boolean => props.navigation.goBack()}
-        text='Go Back'
-        style={{
-          backgroundColor: '#333333',
-        }}
-      />
+      <Button testID='btn' onPress={(): boolean => props.navigation.goBack()}>
+        Go Back
+      </Button>
     </Container>
   );
 }

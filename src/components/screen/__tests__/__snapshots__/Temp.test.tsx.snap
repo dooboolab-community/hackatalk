@@ -83,7 +83,9 @@ exports[`[Temp] render renders without crashing 1`] = `
               ]
             }
             white={false}
-          />
+          >
+            Go Back
+          </Text>
         </View>
       </View>
     </View>
