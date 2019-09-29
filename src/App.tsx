@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
-import { AppProvider as Provider } from './providers';
+import { StateProvider } from './contexts';
 import SwitchNavigator from './components/navigation/SwitchNavigator';
 
 function cacheImages(images: Image[]) {
@@ -34,9 +34,9 @@ const App = () => {
     );
   }
   return (
-    <Provider>
+    <StateProvider>
       <SwitchNavigator />
-    </Provider>
+    </StateProvider>
   );
 };
 

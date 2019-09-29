@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
-import { ProfileModalContext } from '../../providers/ProfileModalProvider';
+import { useStateValue } from '../../contexts';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -16,9 +16,9 @@ const StyledContainer = styled.View`
   justify-content: center;
 `;
 
-function Screen(): React.ReactElement {
-  const profileModal = useContext(ProfileModalContext);
-  const [friends] = React.useState<User[]>([
+export default function Screen(): ReactElement {
+  const [{ profileModal }, dispatch] = useStateValue();
+  const [friends] = useState<User[]>([
     {
       uid: 'my_uid',
       displayName: 'hello',
@@ -29,14 +29,14 @@ function Screen(): React.ReactElement {
     },
   ]);
 
-  const renderItem = (item: User): React.ReactElement => {
+  const renderItem = (item: User): ReactElement => {
     return (
       <UserListItem
         testID='USER_ID'
         user={item}
         onPress={(): void => {
           if (profileModal) {
-            profileModal.dispatch({
+            dispatch({
               type: 'show-modal',
               payload: { user: item, deleteMode: true },
             });
@@ -64,7 +64,7 @@ function Screen(): React.ReactElement {
         }
         keyExtractor={(item, index): string => index.toString()}
         data={friends}
-        renderItem={({ item }): React.ReactElement => renderItem(item)}
+        renderItem={({ item }): ReactElement => renderItem(item)}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }
@@ -72,5 +72,3 @@ function Screen(): React.ReactElement {
     </StyledContainer>
   );
 }
-
-export default Screen;

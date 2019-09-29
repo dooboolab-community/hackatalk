@@ -5,7 +5,6 @@ import styled, {
   ThemeProps,
   withTheme,
 } from 'styled-components/native';
-
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modalbox';

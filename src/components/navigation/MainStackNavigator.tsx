@@ -8,15 +8,16 @@ import {
 
 import Chat from '../screen/Chat';
 import { Ionicons } from '@expo/vector-icons';
-import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
+import { StateContext } from '../../contexts';
+import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
-import React from 'react';
+import React, { PureComponent, ReactElement } from 'react';
 import { ScreenProps } from './SwitchNavigator';
 import SearchUser from '../screen/SearchUser';
 import StatusBar from '../shared/StatusBar';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getString } from '../../../STRINGS';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components/native';
 
 const routeConfig = {
   Main: {
@@ -99,25 +100,46 @@ interface Props {
   screenProps: ScreenProps;
 }
 
-class RootNavigator extends React.Component<Props> {
-  private static router = MainStackNavigator.router;
+const MainWrapper = styled.View`
+  flex: 1;
+  flex-direction: column;
+`;
 
-  public render(): React.ReactElement {
+export default class RootNavigator extends PureComponent<Props> {
+  private static router = MainStackNavigator.router;
+  public static contextType = StateContext;
+
+  public render(): ReactElement {
+    const {
+      navigation,
+      screenProps: { theme, changeTheme },
+    } = this.props;
+    const [
+      {
+        profileModal: { modal },
+      },
+    ] = this.context;
     return (
-      <View style={{ flex: 1, flexDirection: 'column' }}>
+      <MainWrapper>
         <StatusBar />
-        <ProfileModalProvider navigation={this.props.navigation}>
-          <MainStackNavigator
-            navigation={this.props.navigation}
-            screenProps={{
-              theme: this.props.screenProps.theme,
-              changeTheme: this.props.screenProps.changeTheme,
-            }}
-          />
-        </ProfileModalProvider>
-      </View>
+        <MainStackNavigator
+          navigation={navigation}
+          screenProps={{
+            theme,
+            changeTheme,
+          }}
+        />
+        <ProfileModal
+          testID='modal'
+          ref={modal}
+          onChatPressed={(): void => {
+            if (modal && modal.current) {
+              modal.current.close();
+            }
+            navigation.navigate('Chat');
+          }}
+        />
+      </MainWrapper>
     );
   }
 }
-
-export default RootNavigator;
