@@ -1,6 +1,6 @@
 import { StyleProp, TextStyle } from 'react-native';
 
-import { SFC } from 'react';
+import { FC } from 'react';
 
 export interface User {
   uid: string;
@@ -45,7 +45,7 @@ interface IconProps {
   children?: never;
 }
 
-export type IconType = SFC<IconProps>;
+export type IconType = FC<IconProps>;
 
 export enum ThemeType {
   LIGHT = 'LIGHT',

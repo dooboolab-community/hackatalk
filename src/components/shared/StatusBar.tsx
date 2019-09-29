@@ -1,14 +1,13 @@
-import { AppContext } from '../../providers/AppProvider';
-import React from 'react';
+import React, { ReactElement } from 'react';
+
 import { StatusBar } from 'react-native';
 import { ThemeType } from '../../types';
+import { useStateValue } from '../../contexts';
 
 // prettier-ignore
-function Shared(): React.ReactElement {
-  const { state } = React.useContext(AppContext);
-  const statusColor = state.theme === ThemeType.LIGHT ? 'dark-content' : 'light-content';
+export default function Shared(): ReactElement {
+  const [{ theme }] = useStateValue();
+  const statusColor = theme === ThemeType.LIGHT ? 'dark-content' : 'light-content';
 
   return <StatusBar barStyle={statusColor} />;
 }
-
-export default Shared;

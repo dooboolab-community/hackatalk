@@ -10,7 +10,7 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import UserListItem from '../UserListItem';
@@ -52,11 +52,11 @@ describe('[UserListItem] rendering test', () => {
   beforeEach(() => {
     props = createTestProps(propsObj);
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <UserListItem {...props} />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
   });
 
@@ -74,11 +74,11 @@ describe('[UserListItem] interaction', () => {
   beforeEach(() => {
     props = createTestProps(propsObj);
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <UserListItem {...props} />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
     testingLib = render(component);
   });

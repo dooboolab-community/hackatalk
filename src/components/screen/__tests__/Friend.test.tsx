@@ -10,8 +10,8 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
 import Friend from '../Friend';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
@@ -28,11 +28,11 @@ describe('[Friend] rendering test', () => {
   let component: React.ReactElement;
   beforeEach(() => {
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <Friend />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
   });
 
@@ -48,11 +48,11 @@ describe('[Friend] interaction', () => {
 
   beforeEach(() => {
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <Friend />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
     testingLib = render(component);
   });

@@ -1,12 +1,12 @@
 import { AppLoading, Asset } from 'expo';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
-import { AppProvider as Provider } from './providers';
+import { StateProvider } from './contexts';
 import SwitchNavigator from './components/navigation/SwitchNavigator';
 
-function cacheImages(images: Image[]) {
+function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {
     if (typeof image === 'string') {
       return Image.prefetch(image);
@@ -16,27 +16,27 @@ function cacheImages(images: Image[]) {
   });
 }
 
-const loadAssetsAsync = async () => {
+const loadAssetsAsync = async (): Promise<void> => {
   const imageAssets = cacheImages(Icons);
   await Promise.all([...imageAssets]);
 };
 
-const App = () => {
+const App = (): ReactElement => {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={() => setLoading(true)}
+        onFinish={(): void => setLoading(true)}
         // onError={console.warn}
       />
     );
   }
   return (
-    <Provider>
+    <StateProvider>
       <SwitchNavigator />
-    </Provider>
+    </StateProvider>
   );
 };
 

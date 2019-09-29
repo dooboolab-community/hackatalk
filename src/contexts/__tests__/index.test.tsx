@@ -1,8 +1,8 @@
-import 'react-native';
-
 import * as React from 'react';
 
-import { AppProvider } from '../AppProvider';
+import { Text, View } from 'react-native';
+
+import { StateProvider } from '..';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -14,7 +14,13 @@ let props = {
 
 describe('[AppProvider] rendering test', () => {
   let json: renderer.ReactTestRendererJSON;
-  const component = <AppProvider />;
+  const component = (
+    <StateProvider>
+      <View>
+        <Text>Placeholding Children</Text>
+      </View>
+    </StateProvider>
+  );
 
   it('component and snapshot matches', () => {
     json = renderer.create(component).toJSON();
@@ -22,10 +28,16 @@ describe('[AppProvider] rendering test', () => {
   });
 });
 
-describe('[AppProvider] interactions', () => {
+describe('[StateProvider] interactions', () => {
   let rendered: renderer.ReactTestRenderer;
   let root: renderer.ReactTestInstance;
-  const component = <AppProvider />;
+  const component = (
+    <StateProvider>
+      <View>
+        <Text>Placeholding Children</Text>
+      </View>
+    </StateProvider>
+  );
 
   const user = {
     displayName: 'dooboolab',

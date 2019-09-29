@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[AppProvider] rendering test component and snapshot matches 1`] = `
+<View>
+  <Text>
+    Placeholding Children
+  </Text>
+</View>
+`;
