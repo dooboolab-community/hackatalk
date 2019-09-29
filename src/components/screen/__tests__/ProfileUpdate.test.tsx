@@ -9,8 +9,8 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
 import ProfileUpdate from '../ProfileUpdate';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
@@ -29,11 +29,11 @@ describe('rendering test', () => {
     theme: createTheme(),
   });
   const component: React.ReactElement = (
-    <AppProvider>
+    <StateProvider>
       <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
         <ProfileUpdate {...props} />
       </ThemeProvider>
-    </AppProvider>
+    </StateProvider>
   );
 
   it('renders as expected', () => {

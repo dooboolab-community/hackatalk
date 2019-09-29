@@ -9,9 +9,9 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
 import Button from '../../shared/Button';
 import Login from '../Login';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
@@ -28,11 +28,11 @@ const props = {
   createTheme,
 };
 const component: React.ReactElement = (
-  <AppProvider>
+  <StateProvider>
     <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
       <Login {...props} />
     </ThemeProvider>
-  </AppProvider>
+  </StateProvider>
 );
 
 describe('[Login] rendering test', () => {

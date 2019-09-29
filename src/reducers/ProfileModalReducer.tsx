@@ -1,18 +1,17 @@
 import { User } from '../types/index';
-import Modal from 'react-native-modalbox';
 
-export interface IProfileModalState {
+export interface ProfileModalState {
   user: Partial<User>;
   deleteMode: boolean;
   modal?: any;
 }
 
-export interface IProfileModalAction {
+export interface ProfileModalAction {
   readonly type: 'show-modal';
-  readonly payload: IProfileModalState;
+  readonly payload: ProfileModalState;
 }
 
-export const initialProfileModal: IProfileModalState = {
+export const initialProfileModal: ProfileModalState = {
   user: {
     uid: '',
     displayName: '',
@@ -24,22 +23,22 @@ export const initialProfileModal: IProfileModalState = {
 };
 
 // prettier-ignore
-export const profileModalReducer = (state: IProfileModalState, action: any): IProfileModalState => {
+export const profileModalReducer = (state: ProfileModalState, action: any): ProfileModalState => {
   const { type, payload } = action;
   const { modal } = state;
   switch (type) {
-    case 'show-modal':
-      if (modal && modal.current) {
-        modal.current.setUser(payload.user);
-        modal.current.showAddBtn(!payload.deleteMode);
-        modal.current.open();
-      }
-      return {
-        ...state,
-        user: payload.user,
-        deleteMode: !payload.deleteMode,
-      };
-    default:
-      return state;
+  case 'show-modal':
+    if (modal && modal.current) {
+      modal.current.setUser(payload.user);
+      modal.current.showAddBtn(!payload.deleteMode);
+      modal.current.open();
+    }
+    return {
+      ...state,
+      user: payload.user,
+      deleteMode: !payload.deleteMode,
+    };
+  default:
+    return state;
   }
 };

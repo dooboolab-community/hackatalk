@@ -2,11 +2,11 @@ import React, { ReactElement, useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
-import { useStateValue } from '../../contexts';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useStateValue } from '../../contexts';
 
 const StyledContainer = styled.View`
   flex: 1;

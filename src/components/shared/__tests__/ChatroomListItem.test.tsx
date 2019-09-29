@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { RenderResult, render } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
 import ChatroomListItem from '../ChatroomListItem';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';

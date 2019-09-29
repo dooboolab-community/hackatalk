@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AppProvider } from '../../../providers';
+import { StateProvider } from '../../../contexts';
 import StatusBar from '../StatusBar';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
@@ -25,11 +25,11 @@ describe('[StatusBar] render', () => {
   beforeEach(() => {
     props = createTestProps({});
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <StatusBar {...props} />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
   });
 

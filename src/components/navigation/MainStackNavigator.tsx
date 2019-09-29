@@ -5,19 +5,19 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+import React, { PureComponent, ReactElement } from 'react';
+import styled, { withTheme } from 'styled-components/native';
 
 import Chat from '../screen/Chat';
 import { Ionicons } from '@expo/vector-icons';
-import { StateContext } from '../../contexts';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
-import React, { PureComponent, ReactElement } from 'react';
 import { ScreenProps } from './SwitchNavigator';
 import SearchUser from '../screen/SearchUser';
+import { StateContext } from '../../contexts';
 import StatusBar from '../shared/StatusBar';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getString } from '../../../STRINGS';
-import styled, { withTheme } from 'styled-components/native';
 
 const routeConfig = {
   Main: {
@@ -110,10 +110,7 @@ export default class RootNavigator extends PureComponent<Props> {
   public static contextType = StateContext;
 
   public render(): ReactElement {
-    const {
-      navigation,
-      screenProps: { theme, changeTheme },
-    } = this.props;
+    const { navigation, screenProps } = this.props;
     const [
       {
         profileModal: { modal },
@@ -122,13 +119,7 @@ export default class RootNavigator extends PureComponent<Props> {
     return (
       <MainWrapper>
         <StatusBar />
-        <MainStackNavigator
-          navigation={navigation}
-          screenProps={{
-            theme,
-            changeTheme,
-          }}
-        />
+        <MainStackNavigator navigation={navigation} screenProps={screenProps} />
         <ProfileModal
           testID='modal'
           ref={modal}

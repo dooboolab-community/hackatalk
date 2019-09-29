@@ -9,8 +9,8 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { AppProvider } from '../../../providers/AppProvider';
 import Chat from '../Chat';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';

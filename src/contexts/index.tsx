@@ -1,53 +1,43 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  FC,
-  Dispatch,
-  ReactNode,
-  useRef,
-} from 'react';
-import { ThemeType } from '../types';
 import {
-  IThemeAction,
-  initialTheme,
-  themeReducer,
-} from '../reducers/themeReducer';
-import {
-  IProfileModalState,
-  IProfileModalAction,
+  ProfileModalAction,
+  ProfileModalState,
   initialProfileModal,
   profileModalReducer,
 } from '../reducers/ProfileModalReducer';
+import React, {
+  Dispatch,
+  FC,
+  ReactNode,
+  createContext,
+  useContext,
+  useReducer,
+  useRef,
+} from 'react';
+import {
+  ThemeAction,
+  initialTheme,
+  themeReducer,
+} from '../reducers/themeReducer';
+
+import { ThemeType } from '../types';
 
 // TODO: preferred to invent a way to automatically overload or joined typescript perk
-interface IMainState {
+interface MainState {
   theme: ThemeType;
-  profileModal: IProfileModalState;
+  profileModal: ProfileModalState;
 }
 
-type TMainAction = IThemeAction | IProfileModalAction;
+type TMainAction = ThemeAction | ProfileModalAction;
 
 const mainInitialState = {
   theme: initialTheme,
   profileModal: initialProfileModal,
 };
 
-const modalInit = () => {
-  const modal = useRef<any>(null);
-  return {
-    ...mainInitialState,
-    profileModal: {
-      ...mainInitialState.profileModal,
-      modal,
-    },
-  };
-};
-
 const mainReducer = (
-  { theme, profileModal }: IMainState,
+  { theme, profileModal }: MainState,
   action: TMainAction,
-) => {
+): MainState => {
   // middleware goes here, i.e. calling analytics service, etc.
   return {
     theme: themeReducer(theme, action),
@@ -55,17 +45,31 @@ const mainReducer = (
   };
 };
 
-export const StateContext = createContext<[IMainState, Dispatch<TMainAction>]>([
+export const StateContext = createContext<[MainState, Dispatch<TMainAction>]>([
   mainInitialState,
-  () => null,
+  (): null => null,
 ]);
 
-export const StateProvider: FC<ReactNode> = ({ children }) => (
-  <StateContext.Provider
-    value={useReducer(mainReducer, mainInitialState, modalInit)}
-  >
-    {children}
-  </StateContext.Provider>
-);
+export const StateProvider: FC<ReactNode> = ({ children }) => {
+  const modal = useRef<any>(null);
 
-export const useStateValue = () => useContext(StateContext);
+  const modalInit = (): MainState => {
+    return {
+      ...mainInitialState,
+      profileModal: {
+        ...mainInitialState.profileModal,
+        modal,
+      },
+    };
+  };
+  return (
+    <StateContext.Provider
+      value={useReducer(mainReducer, mainInitialState, modalInit)}
+    >
+      {children}
+    </StateContext.Provider>
+  );
+};
+
+export const useStateValue = (): [MainState, Dispatch<TMainAction>] =>
+  useContext(StateContext);

@@ -2,8 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AppProvider } from '../../../providers';
 import ProfileModal from '../ProfileModal';
+import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 // Note: test renderer must be required after react-native.
@@ -25,11 +25,11 @@ describe('[ProfileModal] render', () => {
   beforeEach(() => {
     props = createTestProps({});
     component = (
-      <AppProvider>
+      <StateProvider>
         <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
           <ProfileModal {...props} />
         </ThemeProvider>
-      </AppProvider>
+      </StateProvider>
     );
   });
 

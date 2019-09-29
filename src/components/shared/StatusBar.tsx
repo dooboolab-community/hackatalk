@@ -1,7 +1,8 @@
-import { useStateValue } from '../../contexts';
 import React, { ReactElement } from 'react';
+
 import { StatusBar } from 'react-native';
 import { ThemeType } from '../../types';
+import { useStateValue } from '../../contexts';
 
 // prettier-ignore
 export default function Shared(): ReactElement {
