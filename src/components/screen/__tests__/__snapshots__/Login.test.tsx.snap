@@ -43,7 +43,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                 "flexDirection": "column",
                 "left": 40,
                 "position": "absolute",
-                "top": 76,
+                "top": 48,
               },
             ]
           }
@@ -96,10 +96,13 @@ exports[`[Login] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
+                "alignSelf": "stretch",
                 "flexDirection": "column",
-                "height": 300,
-                "marginTop": 260,
-                "width": "78%",
+                "marginTop": 220,
+                "paddingBottom": 0,
+                "paddingLeft": 44,
+                "paddingRight": 44,
+                "paddingTop": 0,
               },
             ]
           }
@@ -406,19 +409,162 @@ exports[`[Login] rendering test renders as expected 1`] = `
               Forgot password?
             </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "rgb(65,77,107)",
-                  "fontSize": 12,
-                  "marginTop": 80,
-                },
-              ]
+        </View>
+        <View
+          style={
+            Object {
+              "alignSelf": "stretch",
+              "flexDirection": "column",
+              "marginBottom": 20,
+              "paddingHorizontal": 44,
+              "paddingVertical": 16,
             }
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="btnGoogle"
           >
-            copyright by dooboolab.com
-          </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "borderColor": "blue",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "flexDirection": "row",
+                    "height": 52,
+                    "justifyContent": "center",
+                    "width": 320,
+                  },
+                  Array [
+                    Object {
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "#ffffff",
+                      "borderRadius": 0,
+                      "borderWidth": 1,
+                    },
+                    Object {
+                      "backgroundColor": "rgb(224,66,56)",
+                      "marginTop": 20,
+                      "width": "100%",
+                    },
+                  ],
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "left": 16,
+                    "position": "absolute",
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                    Sign in with Google
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "height": 4,
+              }
+            }
+          />
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="btnFacebook"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "borderColor": "blue",
+                    "borderRadius": 4,
+                    "borderWidth": 2,
+                    "flexDirection": "row",
+                    "height": 52,
+                    "justifyContent": "center",
+                    "width": 320,
+                  },
+                  Array [
+                    Object {
+                      "backgroundColor": "#ffffff",
+                      "borderColor": "#ffffff",
+                      "borderRadius": 0,
+                      "borderWidth": 1,
+                    },
+                    Object {
+                      "backgroundColor": "rgb(52,89,151)",
+                      "width": "100%",
+                    },
+                  ],
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "left": 16,
+                    "position": "absolute",
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                  }
+                }
+              >
+                    Sign in with Facebook
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
     </View>

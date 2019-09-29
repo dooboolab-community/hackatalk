@@ -31,6 +31,8 @@ const en = {
   FRIEND_ADDED: 'Added to your friend.',
   FRIEND_ALREADY_ADDED: 'Already your friend.',
   SETTING: 'Setting',
+  SIGN_IN_WITH_GOOGLE: 'Sign in with Google',
+  SIGN_IN_WITH_FACEBOOK: 'Sign in with Facebook',
 };
 
 const ko = {
@@ -62,13 +64,15 @@ const ko = {
   FRIEND_ADDED: '친구로 등록되었습니다.',
   FRIEND_ALREADY_ADDED: '이미 친구입니다.',
   SETTING: '설정',
+  SIGN_IN_WITH_GOOGLE: '구글 계정으로 시작하기',
+  SIGN_IN_WITH_FACEBOOK: '페이스북 계정으로 시작하기',
 };
 
 i18n.fallbacks = true;
 i18n.translations = { en, ko };
 i18n.locale = Localization.locale;
 
-export const getString = (param: string, mapObj?: object) => {
+export const getString = (param: string, mapObj?: object): string => {
   if (mapObj) {
     i18n.t(param, mapObj);
   }

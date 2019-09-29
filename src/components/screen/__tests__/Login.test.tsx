@@ -45,7 +45,7 @@ describe('[Login] rendering test', () => {
 describe('[Login] interaction', () => {
   let rendered: renderer.ReactTestRenderer;
   let root: renderer.ReactTestInstance;
-  let testingLib: any;
+  let testingLib: RenderResult;
 
   beforeAll(() => {
     rendered = renderer.create(component);

@@ -17,7 +17,8 @@ const StyledTextInput = styled.TextInput<{ focused: boolean }>`
   font-size: 16px;
   padding: 22px 20px;
   border-width: 1px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({ focused, theme }): string =>
+    focused ? theme.primary : theme.lineColor};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;

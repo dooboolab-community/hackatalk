@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 import { ThemeType } from './types';
 
-const colors = {
+export const colors = {
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
   dodgerBlue: 'rgb(58,139,255)',
@@ -16,6 +16,8 @@ const colors = {
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
   cloudyBlue: 'rgb(175,194,219)',
+  google: 'rgb(224,66,56)',
+  facebook: 'rgb(52,89,151)',
 };
 
 export interface Theme {
