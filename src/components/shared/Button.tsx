@@ -1,10 +1,7 @@
 import {
   ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
+  ImageSourcePropType,
   TouchableOpacity,
-  View,
   ViewStyle,
 } from 'react-native';
 
@@ -27,10 +24,10 @@ interface Props {
   isLoading: boolean;
   isDisabled: boolean;
   onPress: () => void;
-  imgLeftSrc?: any;
+  imgLeftSrc?: ImageSourcePropType;
   indicatorColor: string;
   activeOpacity: number;
-  children: any;
+  children: string;
   width: number;
   height: number;
 }

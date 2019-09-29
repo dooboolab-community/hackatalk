@@ -1,10 +1,19 @@
+import * as AppAuth from 'expo-app-auth';
+import * as Facebook from 'expo-facebook';
+import * as GoogleSignIn from 'expo-google-sign-in';
+
+import { Alert, Platform, TouchableOpacity, View } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import React, { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  androidExpoClientId,
+  iOSClientId,
+  iOSExpoClientId,
+} from '../../../config';
 import styled, {
   DefaultTheme,
   ThemeProps,
@@ -12,10 +21,15 @@ import styled, {
 } from 'styled-components/native';
 
 import Button from '../shared/Button';
+import Constants from 'expo-constants';
+import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
+import { Ionicons } from '@expo/vector-icons';
 import { ScreenProps } from '../navigation/SwitchNavigator';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
+import { User } from '../../types';
+import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 
 interface Props extends ThemeProps<DefaultTheme> {
@@ -38,7 +52,7 @@ const StyledContainer = styled.View`
 
 const StyledIconWrapper = styled.View`
   position: absolute;
-  top: 76px;
+  top: 48px;
   left: 40px;
   flex-direction: column;
   align-items: flex-start;
@@ -57,11 +71,11 @@ const StyledIconText = styled.Text`
 `;
 
 const StyledInputWrapper = styled.View`
-  margin-top: 260px;
-  width: 78%;
-  height: 300px;
+  margin-top: 220px;
+  align-self: stretch;
   flex-direction: column;
   align-items: center;
+  padding: 0 44px;
 `;
 
 const StyledButtonWrapper = styled.View`
@@ -79,17 +93,14 @@ const StyledTextForgotPw = styled.Text`
   text-decoration-line: underline;
 `;
 
-const StyledTextCopyright = styled.Text`
-  margin-top: 80px;
-  font-size: 12px;
-  color: ${({ theme }): string => theme.fontSubColor};
-`;
-
 function Screen(props: Props): React.ReactElement {
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
-  let timer: any;
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
+  const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
+  const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
+  const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [pw, setPw] = useState<string>('');
+  let timer: number;
 
   const onTextChanged = (type: string, text: string): void => {
     // prettier-ignore
@@ -121,8 +132,91 @@ function Screen(props: Props): React.ReactElement {
     }, 1000);
   };
 
+  const initAsync = async (): Promise<void> => {
+    await GoogleSignIn.initAsync({
+      clientId: iOSClientId,
+    });
+  };
+
+  const googleSignOutAsync = async (): Promise<void> => {
+    await GoogleSignIn.signOutAsync();
+    setGoogleUser(null);
+  };
+
+  const googleSignInAsync = async (): Promise<void> => {
+    setSigningInGoogle(true);
+    if (Constants.appOwnership === 'expo') {
+      try {
+        const response = await AppAuth.authAsync({
+          issuer: 'https://accounts.google.com',
+          scopes: ['profile'],
+          clientId: Platform.select({
+            ios: iOSExpoClientId,
+            android: androidExpoClientId,
+          }),
+        });
+        // console.log(response);
+      } catch ({ message }) {
+        // console.log('err', message);
+      } finally {
+        setSigningInGoogle(false);
+      }
+      return;
+    }
+    try {
+      await GoogleSignIn.askForPlayServicesAsync();
+      const { type, user } = await GoogleSignIn.signInAsync();
+      if (type === 'success') {
+        setGoogleUser(user);
+      }
+    } catch ({ message }) {
+      Alert.alert('login: Error:' + message);
+    } finally {
+      setSigningInGoogle(false);
+    }
+  };
+
+  const facebookLogin = async (): Promise<void> => {
+    setSigningInFacebook(true);
+    try {
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+        Constants.manifest.facebookAppId,
+        {
+          permissions: ['email', 'public_profile'],
+        },
+      );
+      if (type === 'success') {
+        const response = await fetch(
+          `https://graph.facebook.com/me?fields=
+            id,name,email,birthday,gender,first_name,last_name,picture
+            &access_token=${token}`,
+        );
+        const responseObject = JSON.parse(await response.text());
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      /* istanbul ignore next */
+      Alert.alert(`Facebook Login Error: ${message}`);
+    } finally {
+      setSigningInFacebook(false);
+    }
+  };
+
+  useEffect(() => {
+    initAsync();
+    // console.log('appOwnership', Constants.appOwnership);
+  }, []);
+
   const { theme } = props;
   const { changeTheme } = props.screenProps;
+
+  const btnStyle = {
+    backgroundColor: theme.background,
+    borderWidth: 1,
+    borderRadius: 0,
+    borderColor: theme.background,
+  };
 
   return (
     <StyledSafeAreaView>
@@ -183,10 +277,77 @@ function Screen(props: Props): React.ReactElement {
             >
               <StyledTextForgotPw>{getString('FORGOT_PW')}</StyledTextForgotPw>
             </TouchableOpacity>
-            <StyledTextCopyright>
-              copyright by dooboolab.com
-            </StyledTextCopyright>
           </StyledInputWrapper>
+          <View
+            style={{
+              flexDirection: 'column',
+              alignSelf: 'stretch',
+              paddingHorizontal: 44,
+              paddingVertical: 16,
+              marginBottom: 20,
+            }}
+          >
+            <DoobooButton
+              testID='btnGoogle'
+              style={[
+                btnStyle,
+                {
+                  backgroundColor: colors.google,
+                  width: '100%',
+                  marginTop: 20,
+                },
+              ]}
+              leftComponent={
+                <View
+                  style={{
+                    position: 'absolute',
+                    left: 16,
+                  }}
+                >
+                  <Ionicons name='logo-google' size={20} color='white' />
+                </View>
+              }
+              isLoading={signingInGoogle}
+              indicatorColor={theme.primary}
+              onClick={googleSignInAsync}
+              textStyle={{
+                color: 'white',
+                fontSize: 14,
+                fontWeight: '500',
+              }}
+              text={'    ' + getString('SIGN_IN_WITH_GOOGLE')}
+            />
+            <View style={{ height: 4 }} />
+            <DoobooButton
+              testID='btnFacebook'
+              style={[
+                btnStyle,
+                {
+                  backgroundColor: colors.facebook,
+                  width: '100%',
+                },
+              ]}
+              leftComponent={
+                <View
+                  style={{
+                    position: 'absolute',
+                    left: 16,
+                  }}
+                >
+                  <Ionicons name='logo-facebook' size={20} color='white' />
+                </View>
+              }
+              isLoading={signingInFacebook}
+              indicatorColor={theme.primary}
+              onClick={facebookLogin}
+              textStyle={{
+                color: 'white',
+                fontSize: 14,
+                fontWeight: '500',
+              }}
+              text={'    ' + getString('SIGN_IN_WITH_FACEBOOK')}
+            />
+          </View>
         </StyledContainer>
       </StyledScollView>
     </StyledSafeAreaView>
