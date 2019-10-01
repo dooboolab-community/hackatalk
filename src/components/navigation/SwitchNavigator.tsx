@@ -39,7 +39,6 @@ export interface ScreenProps {
 export default function Navigator(): ReactElement {
   const [{ theme: themeState }, dispatch] = useStateValue();
   const changeTheme: TChangeTheme = (theme) => {
-    // console.log('hi, this is the theme: ', theme);
     if (!theme) {
       theme = themeState === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK;
     }

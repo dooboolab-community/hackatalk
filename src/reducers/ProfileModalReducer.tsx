@@ -22,8 +22,10 @@ export const initialProfileModal: ProfileModalState = {
   modal: null,
 };
 
-// prettier-ignore
-export const profileModalReducer = (state: ProfileModalState, action: any): ProfileModalState => {
+export const profileModalReducer = (
+  state: ProfileModalState,
+  action: any,
+): ProfileModalState => {
   const { type, payload } = action;
   const { modal } = state;
   switch (type) {
