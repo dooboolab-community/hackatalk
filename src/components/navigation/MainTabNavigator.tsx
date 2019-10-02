@@ -7,6 +7,7 @@ import {
   MaterialTopTabBar as RNMaterialTopTabBar,
   createMaterialTopTabNavigator,
 } from 'react-navigation-tabs';
+import React, { ReactElement } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -14,7 +15,6 @@ import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Message from '../screen/Message';
-import React from 'react';
 import { ScreenProps } from './SwitchNavigator';
 import { getString } from '../../../STRINGS';
 
@@ -23,7 +23,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-const MaterialTopTabBar = (props: any): React.ReactElement => {
+const MaterialTopTabBar = (props: any): ReactElement => {
   const { theme } = props.screenProps;
   return (
     <RNMaterialTopTabBar
@@ -69,7 +69,7 @@ const MainTabNavigator = createMaterialTopTabNavigator(
 
 export default MainTabNavigator;
 
-const CustomHeader = (props: Props): React.ReactElement => {
+const CustomHeader = (props: Props): ReactElement => {
   const { theme, changeTheme } = props.screenProps;
   return (
     <LinearGradient

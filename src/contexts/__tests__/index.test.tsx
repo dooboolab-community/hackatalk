@@ -1,12 +1,21 @@
-import * as React from 'react';
-
+import React, { useCallback, useReducer } from 'react';
+import { StateProvider, useStateValue } from '..';
 import { Text, View } from 'react-native';
+import { act, renderHook } from '@testing-library/react-hooks';
+import {
+  getByTestId,
+  render,
+  waitForElement,
+} from '@testing-library/react-native';
 
-import { StateProvider } from '..';
+import ProfileModal from '../../components/shared/ProfileModal';
+import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../types';
+import { createTheme } from '../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props = {
+let props: any = {
   navigation: {
     navigate: jest.fn(),
   },
@@ -40,9 +49,10 @@ describe('[StateProvider] interactions', () => {
   );
 
   const user = {
+    uid: 'testID',
     displayName: 'dooboolab',
-    age: 30,
-    job: '',
+    photoURL: 'testPhotoURL',
+    statusMsg: 'testing',
   };
 
   beforeEach(() => {
@@ -53,6 +63,89 @@ describe('[StateProvider] interactions', () => {
     };
     rendered = renderer.create(component);
     root = rendered.root;
+  });
+
+  const Wrapper = ({ children }) => <StateProvider>{children}</StateProvider>;
+
+  const { result } = renderHook(() => useStateValue(), { wrapper: Wrapper });
+
+  it('should change the theme to dark from light, which is default.: ', () => {
+    act(() => {
+      const [, dispatch] = result.current;
+      dispatch({
+        type: 'change-theme-mode',
+        payload: {
+          theme: ThemeType.DARK,
+        },
+      });
+    });
+
+    const [{ theme }] = result.current;
+    expect(theme).toBe(ThemeType.DARK);
+  });
+
+  it('should test show-modal dispatch action: ', async () => {
+    const ModalTestComp = ({ children }) => {
+      const [
+        {
+          profileModal: { modal },
+        },
+      ] = useStateValue();
+      return (
+        <Wrapper>
+          <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+            <>
+              {children}
+              <ProfileModal
+                testID='modal'
+                ref={modal}
+                onChatPressed={(): void => {
+                  if (modal && modal.current) {
+                    modal.current.close();
+                  }
+                }}
+              />
+            </>
+          </ThemeProvider>
+        </Wrapper>
+      );
+    };
+
+    const { result } = renderHook(() => useStateValue(), {
+      wrapper: ModalTestComp,
+    });
+
+    /* const { getByTestId } = render(
+      <ModalTestComp>
+        <View>
+          <Text>Placeholding Children</Text>
+        </View>
+      </ModalTestComp>,
+    ); */
+
+    act(() => {
+      const [, dispatch] = result.current;
+      dispatch({
+        type: 'show-modal',
+        payload: {
+          user,
+          deleteMode: true,
+        },
+      });
+    });
+
+    const [
+      {
+        profileModal: { user: modalUser, deleteMode, modal },
+      },
+    ] = result.current;
+
+    expect(deleteMode).toBe(false);
+    expect(modalUser).toBe(user);
+
+    // TODO: please help with test code for modal opening and closing! I give up.
+    // const modalComp = await waitForElement(() => getByTestId('modal'))
+    // expect(modalComp).toBeTruthy()
   });
 
   // it('should trigger [resetUser] action', () => {
