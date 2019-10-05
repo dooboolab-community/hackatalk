@@ -247,11 +247,15 @@ export const getString = (param: string, mapObj?: object) => {
 
 ### Expo version
 
-33
+35
 
 ### React navigation
 
 3
+
+### Troubleshoot
+
+- Experiencing Localization.locale `undefined`? Setup your emulator once again as [decribed here](https://github.com/expo/expo/issues/5735#issuecomment-534063072).
 
 ## Contributors ✨
 
