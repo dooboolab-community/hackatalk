@@ -23,7 +23,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-const MaterialTopTabBar = (props: any): ReactElement => {
+const MaterialTopTabBar = (props: Props & any): ReactElement => {
   const { theme } = props.screenProps;
   return (
     <RNMaterialTopTabBar
@@ -61,7 +61,6 @@ const MainTabNavigator = createMaterialTopTabNavigator(
     },
   },
   {
-    animationEnabled: true,
     swipeEnabled: true,
     tabBarComponent: MaterialTopTabBar,
   },

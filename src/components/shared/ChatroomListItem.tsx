@@ -1,4 +1,3 @@
-import { Chatroom, ThemeType } from '../../types';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import styled, {
   DefaultTheme,
@@ -6,9 +5,9 @@ import styled, {
   withTheme,
 } from 'styled-components/native';
 
+import { Chatroom } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { createTheme } from '../../theme';
 import moment from 'moment';
 
 const StyledViewChatRoomListItem = styled.View`

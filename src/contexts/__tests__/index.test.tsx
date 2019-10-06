@@ -65,7 +65,9 @@ describe('[StateProvider] interactions', () => {
     root = rendered.root;
   });
 
-  const Wrapper = ({ children }) => <StateProvider>{children}</StateProvider>;
+  const Wrapper = ({ children }): React.ReactElement => (
+    <StateProvider>{children}</StateProvider>
+  );
 
   const { result } = renderHook(() => useStateValue(), { wrapper: Wrapper });
 

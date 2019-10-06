@@ -29,18 +29,18 @@ export const profileModalReducer = (
   const { type, payload } = action;
   const { modal } = state;
   switch (type) {
-  case 'show-modal':
-    if (modal && modal.current) {
-      modal.current.setUser(payload.user);
-      modal.current.showAddBtn(!payload.deleteMode);
-      modal.current.open();
-    }
-    return {
-      ...state,
-      user: payload.user,
-      deleteMode: !payload.deleteMode,
-    };
-  default:
-    return state;
+    case 'show-modal':
+      if (modal && modal.current) {
+        modal.current.setUser(payload.user);
+        modal.current.showAddBtn(!payload.deleteMode);
+        modal.current.open();
+      }
+      return {
+        ...state,
+        user: payload.user,
+        deleteMode: !payload.deleteMode,
+      };
+    default:
+      return state;
   }
 };

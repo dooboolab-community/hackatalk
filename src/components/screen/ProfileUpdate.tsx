@@ -79,12 +79,12 @@ function Screen(props: Props): React.ReactElement {
   const onTextChanged = (type: string, text: string): void => {
     // prettier-ignore
     switch (type) {
-    case 'DISPLAY_NAME':
-      setDisplayName(text);
-      break;
-    case 'STATUS_MSG':
-      setStatusMsg(text);
-      break;
+      case 'DISPLAY_NAME':
+        setDisplayName(text);
+        break;
+      case 'STATUS_MSG':
+        setStatusMsg(text);
+        break;
     }
   };
 

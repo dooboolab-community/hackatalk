@@ -105,12 +105,12 @@ function Screen(props: Props): React.ReactElement {
   const onTextChanged = (type: string, text: string): void => {
     // prettier-ignore
     switch (type) {
-    case 'EMAIL':
-      setEmail(text);
-      break;
-    case 'PW':
-      setPw(text);
-      break;
+      case 'EMAIL':
+        setEmail(text);
+        break;
+      case 'PW':
+        setPw(text);
+        break;
     }
   };
 

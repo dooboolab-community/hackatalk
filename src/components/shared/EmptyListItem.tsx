@@ -1,12 +1,6 @@
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  ViewStyle,
-} from 'react-native';
-import React, { Component } from 'react';
+import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+
+import React from 'react';
 
 interface Styles {
   wrapper: ViewStyle;

@@ -4,7 +4,6 @@ import React, { ReactElement } from 'react';
 import {
   RenderResult,
   act,
-  cleanup,
   fireEvent,
   render,
 } from '@testing-library/react-native';
@@ -17,7 +16,9 @@ import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-const createTestProps = (props: object): any => ({
+let props: any;
+
+const createTestProps = (props: object): object => ({
   navigation: {
     navigate: jest.fn(),
   },
@@ -25,7 +26,7 @@ const createTestProps = (props: object): any => ({
 });
 
 describe('rendering test', () => {
-  const props = createTestProps({
+  props = createTestProps({
     theme: createTheme(),
   });
   const component: React.ReactElement = (

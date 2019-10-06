@@ -86,10 +86,10 @@ const theme = {
 // prettier-ignore
 export const createTheme = (type = ThemeType.LIGHT): DefaultTheme => {
   switch (type) {
-  case ThemeType.LIGHT:
-    return theme.light;
-  case ThemeType.DARK:
-    return theme.dark;
+    case ThemeType.LIGHT:
+      return theme.light;
+    case ThemeType.DARK:
+      return theme.dark;
   }
   return theme.light;
 };
