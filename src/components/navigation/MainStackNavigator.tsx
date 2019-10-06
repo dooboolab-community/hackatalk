@@ -93,7 +93,10 @@ const navigatorConfig = {
   // transitionConfig: () => ({ screenInterpolator: StackViewStyleInterpolator.forHorizontal }),
 };
 
-const MainStackNavigator = createStackNavigator(routeConfig, navigatorConfig);
+const MainStackNavigator = createStackNavigator(
+  routeConfig as any,
+  navigatorConfig,
+);
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
