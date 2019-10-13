@@ -2,32 +2,42 @@
 
 exports[`[SignUp] screen renders without crashing 1`] = `
 <View
+  collapsable={true}
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "justifyContent": "center",
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <Text
+  <View
     style={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexBasis": 0,
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
         },
       ]
     }
-    testID="myText"
   >
-    dooboolab
-  </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "blue",
+            "fontSize": 16,
+          },
+        ]
+      }
+      testID="myText"
+    >
+      dooboolab
+    </Text>
+  </View>
 </View>
 `;

@@ -10,20 +10,9 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
     ]
   }
 >
-  <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.5}
+    onPress={[Function]}
     testID="PRESS_ID"
   >
     <View
@@ -73,6 +62,6 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
       </Text>
       <View />
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

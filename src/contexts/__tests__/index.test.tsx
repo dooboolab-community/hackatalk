@@ -1,6 +1,7 @@
 import { StateProvider, useStateValue } from '..';
 import { Text, View } from 'react-native';
 import { act, renderHook } from '@testing-library/react-hooks';
+import { getByTestId, render, waitForElement } from '../../../test/test-utils';
 
 import ProfileModal from '../../components/shared/ProfileModal';
 import React from 'react';

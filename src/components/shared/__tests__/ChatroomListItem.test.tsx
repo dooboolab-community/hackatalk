@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '@testing-library/react-native';
+import { RenderResult, render } from '../../../../test/test-utils';
 
 import ChatroomListItem from '../ChatroomListItem';
 import { StateProvider } from '../../../contexts';
@@ -35,9 +35,7 @@ const props = {
 };
 
 const component: React.ReactElement = (
-  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    <ChatroomListItem {...props} />
-  </ThemeProvider>
+  <ChatroomListItem {...props} />
 );
 
 describe('[ChatroomListItem] rendering test', () => {

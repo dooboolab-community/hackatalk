@@ -8,7 +8,7 @@ import {
   cleanup,
   fireEvent,
   render,
-} from '@testing-library/react-native';
+} from '../../../../test/test-utils';
 
 import Friend from '../Friend';
 import { StateProvider } from '../../../contexts';

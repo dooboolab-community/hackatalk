@@ -84,11 +84,10 @@ function SignUpPage({
           onSubmit={(values, actions): void => onSignUpSubmit(values, actions)}
         >
           {({ values, handleSubmit }: FormikProps<SignUpFormValues>): ReactElement => (
-            <StyledForm>
+            <StyledForm testID='formTest'>
               {Object.keys(values).map((key: string) => (
                 <FormikInput
                   key={key}
-                  testID={`${key}_input`}
                   label={key}
                   name={key}
                   type={key.startsWith('password') ? 'password' : 'email'}

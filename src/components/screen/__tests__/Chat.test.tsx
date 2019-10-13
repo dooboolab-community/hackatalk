@@ -1,7 +1,7 @@
 import 'react-native';
 
 import React, { ReactElement } from 'react';
-import { RenderResult, fireEvent, render } from '@testing-library/react-native';
+import { RenderResult, fireEvent, render } from '../../../../test/test-utils';
 
 import Chat from '../Chat';
 import { ThemeProvider } from 'styled-components/native';
@@ -10,18 +10,14 @@ import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-const props = {
+const props: any = {
   navigation: {
     navigate: jest.fn(),
   },
   createTheme,
 };
 
-const component: ReactElement = (
-  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    <Chat {...props} />
-  </ThemeProvider>
-);
+const component: ReactElement = <Chat {...props} />;
 
 describe('[Chat] rendering test', () => {
   it('renders as expected', () => {

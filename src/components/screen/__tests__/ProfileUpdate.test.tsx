@@ -6,7 +6,7 @@ import {
   act,
   fireEvent,
   render,
-} from '@testing-library/react-native';
+} from '../../../../test/test-utils';
 
 import ProfileUpdate from '../ProfileUpdate';
 import { StateProvider } from '../../../contexts';

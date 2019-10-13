@@ -1,15 +1,6 @@
 import * as React from 'react';
 
-import {
-  RenderResult,
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
-import SearchUser, { fakeUsers } from '../SearchUser';
-import { ThemeProvider, withTheme } from 'styled-components/native';
-import { ThemeType, User } from '../../../types';
+import { RenderResult, render } from '../../../../test/test-utils';
 
 import { Animated } from 'react-native';
 import { StateProvider } from '../../../contexts';
@@ -94,9 +85,7 @@ describe('[serachUser] interaction', () => {
 
       fireEvent.changeText(txtInputInst, '');
       // setTimeout called - 4
-      expect(animatedFlatlistInst.props.data.length).toEqual(
-        fakeUsers.length,
-      );
+      expect(animatedFlatlistInst.props.data.length).toEqual(fakeUsers.length);
     },
   );
   it('see Animation is working well', () => {

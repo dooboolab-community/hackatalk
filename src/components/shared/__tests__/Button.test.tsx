@@ -7,7 +7,7 @@ import {
   act,
   fireEvent,
   render,
-} from '@testing-library/react-native';
+} from '../../../../test/test-utils';
 
 import Button from '../Button';
 import { ThemeProvider } from 'styled-components/native';
