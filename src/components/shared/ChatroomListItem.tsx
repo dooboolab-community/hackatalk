@@ -61,7 +61,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: white;
 `;
 
 const StyledViewBottom = styled.View`
@@ -126,7 +126,7 @@ function Shared(props: Props): React.ReactElement {
                 }}
               >
                 <Ionicons
-                  name='ios-person'
+                  name="ios-person"
                   size={24}
                   color={props.theme ? props.theme.fontColor : '#3d3d3d'}
                 />

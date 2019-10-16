@@ -66,7 +66,7 @@ function Shared({
   return (
     <StyledContainerView>
       <TouchableOpacity
-        testID='PRESS_ID'
+        testID="PRESS_ID"
         activeOpacity={0.5}
         onPress={onPress}
         onLongPress={onLongPress}
@@ -83,7 +83,7 @@ function Shared({
                 justifyContent: 'center',
               }}
             >
-              <Ionicons name='ios-person' size={24} color={theme.fontColor} />
+              <Ionicons name="ios-person" size={24} color={theme.fontColor} />
             </View>
           )}
           <StyledText>{displayName}</StyledText>

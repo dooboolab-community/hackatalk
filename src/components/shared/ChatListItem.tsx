@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import styled, {
   DefaultTheme,
@@ -96,7 +96,7 @@ interface ImageSenderProps {
 
 const myFakeUid = '2'; // TODO: temporary
 
-const ImageSenderComp: FC<ImageSenderProps> = ({
+const ImageSenderComp: SFC<ImageSenderProps> = ({
   photoURL,
   isSamePeerMsg,
   fontColor,
@@ -108,7 +108,7 @@ const ImageSenderComp: FC<ImageSenderProps> = ({
   }
   return (
     <View style={{ width: 40 }}>
-      <Ionicons name='ios-person' size={40} color={fontColor} />
+      <Ionicons name="ios-person" size={40} color={fontColor} />
     </View>
   );
 };
@@ -130,7 +130,7 @@ function Shared(props: Props): React.ReactElement {
     return (
       <StyledWrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
-          <TouchableOpacity testID='peer_image' onPress={onPressPeerImage}>
+          <TouchableOpacity testID="peer_image" onPress={onPressPeerImage}>
             <ImageSenderComp
               photoURL={photoURL}
               isSamePeerMsg={!!isSamePeerMsg}

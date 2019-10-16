@@ -22,7 +22,7 @@ interface Props {
 function Page(): React.ReactElement {
   return (
     <Container>
-      <StyledText testID='myText'>dooboolab</StyledText>
+      <StyledText testID="myText">dooboolab</StyledText>
     </Container>
   );
 }

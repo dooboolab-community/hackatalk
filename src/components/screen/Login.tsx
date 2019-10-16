@@ -231,7 +231,7 @@ function Screen(props: Props): React.ReactElement {
           </StyledIconWrapper>
           <StyledInputWrapper>
             <TextInput
-              testID='email_input'
+              testID="email_input"
               // txtLabel={ getString('EMAIL') }
               txtHint={getString('EMAIL')}
               txt={email}
@@ -241,7 +241,7 @@ function Screen(props: Props): React.ReactElement {
               placeholderTextColor={theme.placeholder}
             />
             <TextInput
-              testID='pw_input'
+              testID="pw_input"
               style={{ marginTop: 8 }}
               // txtLabel={ getString('EMAIL') }
               txtHint={getString('PASSWORD')}
@@ -252,7 +252,7 @@ function Screen(props: Props): React.ReactElement {
             />
             <StyledButtonWrapper>
               <Button
-                testID='btnSignUp'
+                testID="btnSignUp"
                 containerStyle={{ flex: 1 }}
                 onPress={goToSignUp}
                 isWhite
@@ -261,7 +261,7 @@ function Screen(props: Props): React.ReactElement {
               </Button>
               <View style={{ width: 8 }} />
               <Button
-                testID='btnLogin'
+                testID="btnLogin"
                 containerStyle={{ flex: 1 }}
                 isLoading={isLoggingIn}
                 onPress={onLogin}
@@ -271,7 +271,7 @@ function Screen(props: Props): React.ReactElement {
             </StyledButtonWrapper>
             <View style={{ height: 16 }} />
             <TouchableOpacity
-              testID='findPw'
+              testID="findPw"
               activeOpacity={0.5}
               onPress={goToFindPw}
             >
@@ -288,7 +288,7 @@ function Screen(props: Props): React.ReactElement {
             }}
           >
             <DoobooButton
-              testID='btnGoogle'
+              testID="btnGoogle"
               style={[
                 btnStyle,
                 {
@@ -304,7 +304,7 @@ function Screen(props: Props): React.ReactElement {
                     left: 16,
                   }}
                 >
-                  <Ionicons name='logo-google' size={20} color='white' />
+                  <Ionicons name="logo-google" size={20} color="white" />
                 </View>
               }
               isLoading={signingInGoogle}
@@ -319,7 +319,7 @@ function Screen(props: Props): React.ReactElement {
             />
             <View style={{ height: 4 }} />
             <DoobooButton
-              testID='btnFacebook'
+              testID="btnFacebook"
               style={[
                 btnStyle,
                 {
@@ -334,7 +334,7 @@ function Screen(props: Props): React.ReactElement {
                     left: 16,
                   }}
                 >
-                  <Ionicons name='logo-facebook' size={20} color='white' />
+                  <Ionicons name="logo-facebook" size={20} color="white" />
                 </View>
               }
               isLoading={signingInFacebook}

@@ -87,7 +87,7 @@ describe('[StateProvider] interactions', () => {
   });
 
   it('should test show-modal dispatch action: ', async () => {
-    const ModalTestComp = ({ children }) => {
+    const ModalTestComp = ({ children }): React.ReactElement => {
       const [
         {
           profileModal: { modal },
@@ -99,7 +99,7 @@ describe('[StateProvider] interactions', () => {
             <>
               {children}
               <ProfileModal
-                testID='modal'
+                testID="modal"
                 ref={modal}
                 onChatPressed={(): void => {
                   if (modal && modal.current) {

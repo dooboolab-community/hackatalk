@@ -219,7 +219,7 @@ exports[`[Message] screen renders without crashing 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "black",
+                            "color": "white",
                             "fontSize": 10,
                           },
                         ]

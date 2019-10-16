@@ -216,10 +216,7 @@ function Screen(props: Props): React.ReactElement {
     <StyledContainer>
       <StyledKeyboardAvoidingView
         keyboardVerticalOffset={keyboardOffset}
-        behavior={Platform.select({
-          android: undefined,
-          ios: 'padding',
-        })}
+        behavior={'padding'}
       >
         <FlatList
           style={{ alignSelf: 'stretch' }}
@@ -243,7 +240,7 @@ function Screen(props: Props): React.ReactElement {
         {!showMenu ? (
           <StyledViewChat>
             <StyledInputChat
-              testID='input_chat'
+              testID="input_chat"
               ref={input1}
               onFocus={(): void => setShowMenu(false)}
               multiline={true}
@@ -254,7 +251,7 @@ function Screen(props: Props): React.ReactElement {
               onChangeText={(text): void => setMessage(text)}
             />
             <StyledTouchMenu
-              testID='touch_menu'
+              testID="touch_menu"
               onPress={(): void => setShowMenu(true)}
             >
               <Image
@@ -272,7 +269,8 @@ function Screen(props: Props): React.ReactElement {
               }}
             >
               <Button
-                testID='btn_chat'
+                testID="btn_chat"
+                height={Platform.OS === 'android' ? 40 : undefined}
                 isLoading={isLoading}
                 onPress={sendChat}
               >
@@ -295,7 +293,7 @@ function Screen(props: Props): React.ReactElement {
               defaultValue={message}
             />
             <StyledTouchMenu
-              testID='touch_menu'
+              testID="touch_menu"
               onPress={(): void => setShowMenu(false)}
             >
               <Image
@@ -313,7 +311,7 @@ function Screen(props: Props): React.ReactElement {
               }}
             >
               <Button
-                testID='btn_chat'
+                testID="btn_chat"
                 isLoading={isLoading}
                 onPress={sendChat}
               >
@@ -321,7 +319,7 @@ function Screen(props: Props): React.ReactElement {
               </Button>
             </View>
           </StyledViewChat>
-          <StyledViewMenu testID='viewMenu' height={keyboardHeight}>
+          <StyledViewMenu testID="viewMenu" height={keyboardHeight}>
             <View
               style={{
                 flexDirection: 'row',
@@ -339,7 +337,7 @@ function Screen(props: Props): React.ReactElement {
                 }}
               >
                 <Ionicons
-                  name='ios-camera'
+                  name="ios-camera"
                   size={36}
                   color={theme ? theme.fontColor : '#3d3d3d'}
                 />
@@ -355,7 +353,7 @@ function Screen(props: Props): React.ReactElement {
                 }}
               >
                 <Ionicons
-                  name='md-images'
+                  name="md-images"
                   size={36}
                   color={theme ? theme.fontColor : '#3d3d3d'}
                 />

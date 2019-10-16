@@ -108,7 +108,7 @@ function Button(props: Props): React.ReactElement {
           <StyledButton white={isWhite}>
             <StyledButtonContainer width={width} height={height}>
               {isLoading ? (
-                <ActivityIndicator size='small' color={indicatorColor} />
+                <ActivityIndicator size="small" color={indicatorColor} />
               ) : imgLeftSrc ? (
                 <StyledImageLeft source={imgLeftSrc} />
               ) : (
