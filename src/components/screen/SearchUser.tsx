@@ -7,7 +7,6 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-// import { ProfileModalContext } from '../../providers/ProfileModalProvider';
 import { useStateValue } from '../../contexts';
 
 export const userSampleData: User[] = [
