@@ -16,6 +16,7 @@ const StackNavigator = createStackNavigator(
           headerStyle: {
             backgroundColor: theme.background,
             borderBottomWidth: 0,
+            elevation: 0,
           },
         };
       },
@@ -29,9 +30,6 @@ const StackNavigator = createStackNavigator(
           headerStyle: {
             backgroundColor: theme.background,
             borderBottomWidth: 0,
-          },
-          headerTitleStyle: {
-            color: theme.fontColor,
           },
         };
       },

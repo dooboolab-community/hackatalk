@@ -216,10 +216,7 @@ function Screen(props: Props): React.ReactElement {
     <StyledContainer>
       <StyledKeyboardAvoidingView
         keyboardVerticalOffset={keyboardOffset}
-        behavior={Platform.select({
-          android: undefined,
-          ios: 'padding',
-        })}
+        behavior={'padding'}
       >
         <FlatList
           style={{ alignSelf: 'stretch' }}
@@ -273,6 +270,7 @@ function Screen(props: Props): React.ReactElement {
             >
               <Button
                 testID='btn_chat'
+                height={Platform.OS === 'android' ? 40 : undefined}
                 isLoading={isLoading}
                 onPress={sendChat}
               >
