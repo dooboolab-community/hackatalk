@@ -128,7 +128,7 @@ const StyledTextInput = styled.TextInput`
   height: 30;
   top: 10;
   color: ${({ theme }): string => theme.fontColor};
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.searchBackground};
   border-radius: 4;
   padding-left: 34;
   padding-right: 10;
@@ -151,7 +151,7 @@ const Screen = (): React.ReactElement => {
     if (profileModal) {
       dispatch({
         type: 'show-modal',
-        payload: { user: item, deleteMode: true },
+        payload: { user: item, deleteMode: false },
       });
     }
   };
