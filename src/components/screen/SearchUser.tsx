@@ -202,10 +202,10 @@ const Screen = (): React.ReactElement => {
         <StyledSearchView>
           <StyledTextInputWrapper>
             <StyledTextInput
-              testID='txtInput'
+              testID="txtInput"
               onChangeText={onTxtChanged}
-              underlineColorAndroid='transparent' // android fix
-              autoCapitalize='none'
+              underlineColorAndroid="transparent" // android fix
+              autoCapitalize="none"
               autoCorrect={false}
               multiline={false}
               defaultValue={''}
@@ -214,7 +214,7 @@ const Screen = (): React.ReactElement => {
           </StyledTextInputWrapper>
         </StyledSearchView>
         <StyledAnimatedFlatList
-          testID='animatedFlatlist'
+          testID="animatedFlatlist"
           testObj={{ scrollY }}
           style={{
             transform: [
