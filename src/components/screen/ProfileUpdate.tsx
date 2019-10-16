@@ -103,13 +103,13 @@ function Screen(props: Props): React.ReactElement {
         <StyledWrapper>
           <TouchableOpacity activeOpacity={0.5} onPress={onPressImg}>
             <Ionicons
-              name='ios-person'
+              name="ios-person"
               size={80}
               color={theme ? theme.fontColor : '#3d3d3d'}
             />
           </TouchableOpacity>
           <TextInput
-            testID='input_name'
+            testID="input_name"
             style={{ marginTop: 80 }}
             txtLabel={getString('NAME')}
             txtHint={getString('NAME')}
@@ -120,7 +120,7 @@ function Screen(props: Props): React.ReactElement {
             placeholderTextColor={theme.placeholder}
           />
           <TextInput
-            testID='input_status'
+            testID="input_status"
             style={{ marginTop: 24 }}
             txtLabel={getString('STATUS_MSG')}
             txtHint={getString('STATUS_MSG')}
@@ -131,12 +131,12 @@ function Screen(props: Props): React.ReactElement {
             placeholderTextColor={theme.placeholder}
           />
           <StyledBtnWrapper>
-            <Button testID='logout_btn' onPress={onLogout} isWhite>
+            <Button testID="logout_btn" onPress={onLogout} isWhite>
               {getString('LOGOUT')}
             </Button>
             <View style={{ width: 8 }} />
             <Button
-              testID='update_btn'
+              testID="update_btn"
               isLoading={isUpdating}
               onPress={onUpdate}
             >

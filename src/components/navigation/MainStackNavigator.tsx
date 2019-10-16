@@ -124,7 +124,7 @@ export default class RootNavigator extends PureComponent<Props> {
         <StatusBar />
         <MainStackNavigator navigation={navigation} screenProps={screenProps} />
         <ProfileModal
-          testID='modal'
+          testID="modal"
           ref={modal}
           onChatPressed={(): void => {
             if (modal && modal.current) {

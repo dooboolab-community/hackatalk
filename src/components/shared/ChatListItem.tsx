@@ -108,7 +108,7 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
   }
   return (
     <View style={{ width: 40 }}>
-      <Ionicons name='ios-person' size={40} color={fontColor} />
+      <Ionicons name="ios-person" size={40} color={fontColor} />
     </View>
   );
 };
@@ -130,7 +130,7 @@ function Shared(props: Props): React.ReactElement {
     return (
       <StyledWrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
-          <TouchableOpacity testID='peer_image' onPress={onPressPeerImage}>
+          <TouchableOpacity testID="peer_image" onPress={onPressPeerImage}>
             <ImageSenderComp
               photoURL={photoURL}
               isSamePeerMsg={!!isSamePeerMsg}
