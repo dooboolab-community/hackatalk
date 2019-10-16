@@ -61,7 +61,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: white;
 `;
 
 const StyledViewBottom = styled.View`
