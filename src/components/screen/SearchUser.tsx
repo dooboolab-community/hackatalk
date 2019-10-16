@@ -18,8 +18,8 @@ export const userSampleData: User[] = [
     photoURL: IC_BACK,
     statusMsg: 'online',
     online: true,
-    created: new Date(),
-    updated: new Date(),
+    // created: new Date(),
+    // updated: new Date(),
   },
   {
     uid: '2',
@@ -60,8 +60,8 @@ export const userSampleData: User[] = [
     photoURL: IC_BACK,
     statusMsg: 'online',
     online: true,
-    created: new Date(),
-    updated: new Date(),
+    // created: new Date(),
+    // updated: new Date(),
   },
   {
     uid: '7',
@@ -156,11 +156,19 @@ const Screen = (): React.ReactElement => {
       });
     }
   };
-  const renderItem = ({ item, index }: { item: User; index: number }): React.ReactElement => {
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: User;
+    index: number;
+  }): React.ReactElement => {
+    // const itemTestID = `USER_ID`;
+    const itemTestID = `userListItem${index}`;
     const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
       <UserListItem
-        testID={`userListItem${index}`}
+        testID={itemTestID}
         user={item}
         onPress={userListOnPressInlineFn}
       />
@@ -178,7 +186,7 @@ const Screen = (): React.ReactElement => {
     const searchedUser =
       txt === ''
         ? searchedUsers
-        : searchedUsers.filter((item) => item.displayName.includes(txt));
+        : searchedUsers.filter(item => item.displayName.includes(txt));
     setUsers(searchedUser);
   };
   const onTxtChanged = (txt: string): void => {
@@ -192,10 +200,10 @@ const Screen = (): React.ReactElement => {
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }
       : null;
   };
   return (
@@ -229,7 +237,9 @@ const Screen = (): React.ReactElement => {
             ],
           }}
           contentContainerStyle={getContentContainerStyle}
-          keyExtractor={(item: object, index: number): string => index.toString()}
+          keyExtractor={(item: object, index: number): string =>
+            index.toString()
+          }
           data={users}
           renderItem={renderItem}
           ListEmptyComponent={

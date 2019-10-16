@@ -101,7 +101,7 @@ exports[`[Friend] rendering test renders as expected 1`] = `
                 "opacity": 1,
               }
             }
-            testID="PRESS_ID"
+            testID="USER_ID"
           >
             <View
               style={

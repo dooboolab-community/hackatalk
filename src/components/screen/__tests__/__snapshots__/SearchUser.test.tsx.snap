@@ -1,33 +1,1223 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[SearchUser] screen renders without crashing 1`] = `
-<View
+exports[`[SearchUser] rendering test renders as expected 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
     Array [
       Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
+        "backgroundColor": "#ffffff",
         "flexBasis": 0,
-        "flexDirection": "row",
         "flexGrow": 1,
         "flexShrink": 1,
-        "justifyContent": "center",
       },
     ]
   }
 >
-  <Text
+  <View
     style={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
         },
       ]
     }
-    testID="myText"
   >
-    dooboolab
-  </Text>
-</View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 50,
+            "justifyContent": "center",
+            "overflow": "hidden",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "height": 50,
+              "paddingHorizontal": 20,
+              "position": "absolute",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          defaultValue=""
+          multiline={false}
+          onChangeText={[Function]}
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderRadius": 4,
+                "color": "black",
+                "height": 30,
+                "paddingLeft": 34,
+                "paddingRight": 10,
+                "top": 10,
+                "width": "100%",
+              },
+            ]
+          }
+          testID="txtInput"
+          underlineColorAndroid="transparent"
+        />
+        <Image
+          source={1}
+          style={
+            Array [
+              Object {
+                "height": 16,
+                "left": 30,
+                "position": "absolute",
+                "top": 18,
+                "width": 16,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+    <RCTScrollView
+      ListEmptyComponent={
+        <Shared
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          No content
+        </Shared>
+      }
+      contentContainerStyle={[Function]}
+      data={
+        Array [
+          Object {
+            "displayName": "admin",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "online",
+            "thumbURL": 1,
+            "uid": "1",
+          },
+          Object {
+            "displayName": "geoseong",
+            "online": false,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "2",
+          },
+          Object {
+            "displayName": "hyochan",
+            "online": false,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "3",
+          },
+          Object {
+            "displayName": "mars",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "4",
+          },
+          Object {
+            "displayName": "gordon",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "5",
+          },
+          Object {
+            "displayName": "admin2",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "online",
+            "thumbURL": 1,
+            "uid": "6",
+          },
+          Object {
+            "displayName": "geoseong2",
+            "online": false,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "7",
+          },
+          Object {
+            "displayName": "hyochan2",
+            "online": false,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "8",
+          },
+          Object {
+            "displayName": "mars2",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "9",
+          },
+          Object {
+            "displayName": "gordon2",
+            "online": true,
+            "photoURL": 1,
+            "statusMsg": "offline",
+            "thumbURL": 1,
+            "uid": "10",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": "100%",
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+          "width": "100%",
+        }
+      }
+      testID="animatedFlatlist"
+      testObj={
+        Object {
+          "scrollY": 0,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem0"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  admin
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  online
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem1"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  geoseong
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem2"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  hyochan
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem3"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  mars
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem4"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  gordon
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem5"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  admin2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  online
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem6"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  geoseong2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem7"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  hyochan2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem8"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  mars2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+              testID="userListItem9"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "rgb(221,226,236)",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "black",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 100,
+                      },
+                    ]
+                  }
+                >
+                  gordon2
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "borderColor": "rgb(221,226,236)",
+                        "borderWidth": 0.3,
+                        "color": "rgb(65,77,107)",
+                        "fontSize": 12,
+                        "maxWidth": 134.2,
+                        "paddingBottom": 4,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 4,
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  offline
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTSafeAreaView>
 `;
