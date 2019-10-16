@@ -162,7 +162,6 @@ const Screen = (): React.ReactElement => {
     item: User;
     index: number;
   }): React.ReactElement => {
-    // const itemTestID = `USER_ID`;
     const itemTestID = `userListItem${index}`;
     const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
@@ -172,14 +171,6 @@ const Screen = (): React.ReactElement => {
         onPress={userListOnPressInlineFn}
       />
     );
-    // return (
-    //   <UserListItem
-    //     testID={`userListItem${index}`}
-    //     testObj={{ profileModal }}
-    //     user={item}
-    //     onPress={userListOnPressInlineFn}
-    //   />
-    // );
   };
   const onSearch = (txt: string): void => {
     const searchedUser =
