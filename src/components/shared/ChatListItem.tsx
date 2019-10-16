@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import styled, {
   DefaultTheme,
@@ -96,7 +96,7 @@ interface ImageSenderProps {
 
 const myFakeUid = '2'; // TODO: temporary
 
-const ImageSenderComp: FC<ImageSenderProps> = ({
+const ImageSenderComp: SFC<ImageSenderProps> = ({
   photoURL,
   isSamePeerMsg,
   fontColor,
