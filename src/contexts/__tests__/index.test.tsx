@@ -94,7 +94,7 @@ describe('[StateProvider] interactions', () => {
             <>
               {children}
               <ProfileModal
-                testID="modal"
+                testID='modal'
                 ref={modal}
                 onChatPressed={(): void => {
                   if (modal && modal.current) {

@@ -65,8 +65,8 @@ function Shared(props: Props): React.ReactElement {
       <StyledTextInput
         testID={props.testID}
         focused={focused}
-        underlineColorAndroid="transparent" // android fix
-        autoCapitalize="none"
+        underlineColorAndroid='transparent' // android fix
+        autoCapitalize='none'
         autoCorrect={false}
         multiline={props.multiline}
         onChangeText={props.onTextChanged}

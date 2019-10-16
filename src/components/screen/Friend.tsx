@@ -32,7 +32,7 @@ export default function Screen(): ReactElement {
   const renderItem = (item: User): ReactElement => {
     return (
       <UserListItem
-        testID="USER_ID"
+        testID='USER_ID'
         user={item}
         onPress={(): void => {
           if (profileModal) {

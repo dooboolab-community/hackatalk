@@ -189,7 +189,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="ios-person" size={80} color="white" />
+                <Ionicons name='ios-person' size={80} color='white' />
               </View>
             )}
           </TouchableOpacity>
@@ -207,7 +207,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
         ) : null}
         <StyledViewBtns>
           <TouchableOpacity
-            testID="btn-add-or-delete"
+            testID='btn-add-or-delete'
             activeOpacity={0.5}
             onPress={showAddBtn ? addFriend : deleteFriend}
             style={styles.viewBtn}
@@ -222,7 +222,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           </TouchableOpacity>
           <StyledViewBtnDivider />
           <TouchableOpacity
-            testID="btn-chat"
+            testID='btn-chat'
             activeOpacity={0.5}
             onPress={props.onChatPressed}
             style={styles.viewBtn}

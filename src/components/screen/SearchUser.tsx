@@ -185,7 +185,7 @@ const Screen = (): React.ReactElement => {
     const searchedUser =
       txt === ''
         ? searchedUsers
-        : searchedUsers.filter(item => item.displayName.includes(txt));
+        : searchedUsers.filter((item) => item.displayName.includes(txt));
     setUsers(searchedUser);
   };
   const onTxtChanged = (txt: string): void => {
@@ -199,10 +199,10 @@ const Screen = (): React.ReactElement => {
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }
       : null;
   };
   return (

@@ -126,7 +126,7 @@ function Shared(props: Props): React.ReactElement {
                 }}
               >
                 <Ionicons
-                  name="ios-person"
+                  name='ios-person'
                   size={24}
                   color={props.theme ? props.theme.fontColor : '#3d3d3d'}
                 />

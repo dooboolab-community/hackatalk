@@ -23,7 +23,7 @@ interface Props {
 function Page(props: Props): React.ReactElement {
   return (
     <Container>
-      <Button testID="btn" onPress={(): boolean => props.navigation.goBack()}>
+      <Button testID='btn' onPress={(): boolean => props.navigation.goBack()}>
         Go Back
       </Button>
     </Container>

@@ -91,7 +91,7 @@ const CustomHeader = (props: Props): ReactElement => {
           activeOpacity={0.5}
           onPress={(): boolean => props.navigation.navigate('ProfileUpdate')}
         >
-          <Ionicons name="ios-person" size={24} color="white" />
+          <Ionicons name='ios-person' size={24} color='white' />
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={(): void => changeTheme()}>
@@ -111,7 +111,7 @@ const CustomHeader = (props: Props): ReactElement => {
           activeOpacity={0.5}
           onPress={(): boolean => props.navigation.navigate('SearchUser')}
         >
-          <Ionicons name="ios-search" size={24} color="white" />
+          <Ionicons name='ios-search' size={24} color='white' />
         </TouchableOpacity>
       </View>
     </LinearGradient>
