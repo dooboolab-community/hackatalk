@@ -25,15 +25,15 @@ const createTestProps = (obj: object): object => ({
   ...obj,
 });
 
-describe('[SignUp] screen', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      screenProps: { changeTheme: jest.fn() },
-    });
-    component = <SignUp {...props} />;
-    testingLib = render(component);
+beforeEach(() => {
+  props = createTestProps({
+    screenProps: { changeTheme: jest.fn() },
   });
+  component = <SignUp {...props} />;
+  testingLib = render(component);
+});
 
+describe('[SignUp] screen', () => {
   it('renders without crashing', () => {
     const { container } = testingLib;
     expect(toJSON(container)).toMatchSnapshot();
@@ -60,10 +60,6 @@ describe('[SignUp] screen', () => {
   });
 
   describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
-    });
-
     it('should simulate onPress', () => {
       const { getByTestId } = testingLib;
       const btnInstance = getByTestId('btnSignUpConfirm');

@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+=======
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+
+>>>>>>> update test snapshots and edit lint settings
 import React from 'react';
 import styled from 'styled-components/native';
 

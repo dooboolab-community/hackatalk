@@ -84,7 +84,7 @@ function SignUpPage({
           onSubmit={(values, actions): void => onSignUpSubmit(values, actions)}
         >
           {({ values, handleSubmit }: FormikProps<SignUpFormValues>): ReactElement => (
-            <StyledForm testID='formTest'>
+            <StyledForm testID="formTest">
               {Object.keys(values).map((key: string) => (
                 <FormikInput
                   key={key}
@@ -97,7 +97,7 @@ function SignUpPage({
               ))}
               <StyledButtonWrapper>
                 <Button
-                  testID='btnSignUpConfirm'
+                  testID="btnSignUpConfirm"
                   containerStyle={{ flex: 1 }}
                   onPress={handleSubmit}
                   isWhite
