@@ -7,7 +7,7 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import SearchUser, { userSampleData } from '../SearchUser';
+import SearchUser, { fakeUsers } from '../SearchUser';
 import { ThemeProvider, withTheme } from 'styled-components/native';
 import { ThemeType, User } from '../../../types';
 
@@ -52,7 +52,7 @@ describe('[serachUser] interaction', () => {
   let testingLib: RenderResult;
   let txtInputInst: renderer.ReactTestInstance;
   let animatedFlatlistInst: renderer.ReactTestInstance;
-  const inputData: User = userSampleData[0];
+  const inputData: User = fakeUsers[0];
 
   beforeAll(() => {
     // const providerProps = {
@@ -95,7 +95,7 @@ describe('[serachUser] interaction', () => {
       fireEvent.changeText(txtInputInst, '');
       // setTimeout called - 4
       expect(animatedFlatlistInst.props.data.length).toEqual(
-        userSampleData.length,
+        fakeUsers.length,
       );
     },
   );

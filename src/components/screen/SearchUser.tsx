@@ -9,7 +9,7 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useStateValue } from '../../contexts';
 
-export const userSampleData: User[] = [
+export const fakeUsers: User[] = [
   {
     uid: '1',
     displayName: 'admin',
@@ -143,8 +143,8 @@ const StyledSearchImage = styled.Image`
 
 const Screen = (): React.ReactElement => {
   const [{ profileModal }, dispatch] = useStateValue();
-  const [searchedUsers, setSearchedUsers] = useState<User[]>(userSampleData);
-  const [users, setUsers] = useState<User[]>(userSampleData);
+  const [searchedUsers, setSearchedUsers] = useState<User[]>(fakeUsers);
+  const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
   const userListOnPress = (item: User): void => {
@@ -190,10 +190,10 @@ const Screen = (): React.ReactElement => {
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }
       : null;
   };
   return (
