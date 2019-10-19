@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 import { ThemeType } from './types';
 
-export const colors = {
+const colors = {
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
   dodgerBlue: 'rgb(58,139,255)',
@@ -20,70 +20,55 @@ export const colors = {
   facebook: 'rgb(52,89,151)',
 };
 
-export interface Theme {
-  background: string;
-  backgroundDark: string;
-  btnPrimary: string;
-  btnPrimaryFont: string;
-  btnPrimaryLight: string;
-  btnPrimaryLightFont: string;
-  textDisabled: string;
-  btnDisabled: string;
-  fontColor: string;
-  fontSubColor: string;
-  tintColor: string;
-  indicatorColor: string;
-  inactiveColor: string;
-  primary: string;
-  primaryLight: string;
-  status: string;
-  placeholder: string;
-}
-
-const theme = {
-  light: {
-    background: colors.lightBackground,
-    backgroundDark: colors.dodgerBlue,
-    btnPrimary: colors.dodgerBlue,
-    btnPrimaryFont: 'white',
-    btnPrimaryLight: 'white',
-    btnPrimaryLightFont: colors.dodgerBlue,
-    textDisabled: '#969696',
-    btnDisabled: 'rgb(224,224,224)',
-    fontColor: 'black',
-    fontSubColor: colors.dusk,
-    tintColor: colors.dodgerBlue,
-    lineColor: colors.paleGray,
-    indicatorColor: colors.dodgerBlue,
-    inactiveColor: '#a3a3a3',
-    primary: colors.dodgerBlue,
-    primaryLight: colors.skyBlue,
-    status: colors.greenishCyan,
-    placeholder: colors.cloudyBlue,
-  },
-  dark: {
-    background: colors.darkBackground,
-    backgroundDark: '#262A2C',
-    btnPrimary: '#262A2C',
-    btnPrimaryFont: 'white',
-    btnPrimaryLight: '#696969',
-    btnPrimaryLightFont: '#262A2C',
-    textDisabled: '#969696',
-    btnDisabled: 'rgb(224,224,224)',
-    fontColor: 'white',
-    fontSubColor: colors.paleGray,
-    tintColor: '#a3a3a3',
-    lineColor: '#515557',
-    indicatorColor: 'white',
-    inactiveColor: colors.paleGray,
-    primary: '#1F2324',
-    primaryLight: '#262A2C',
-    status: colors.greenishCyan,
-    placeholder: colors.cloudyBlue,
-  },
+const light = {
+  background: colors.lightBackground,
+  backgroundDark: colors.dodgerBlue,
+  btnPrimary: colors.dodgerBlue,
+  btnPrimaryFont: 'white',
+  btnPrimaryLight: 'white',
+  btnPrimaryLightFont: colors.dodgerBlue,
+  textDisabled: '#969696',
+  btnDisabled: 'rgb(224,224,224)',
+  fontColor: 'black',
+  fontSubColor: colors.dusk,
+  tintColor: colors.dodgerBlue,
+  lineColor: colors.paleGray,
+  indicatorColor: colors.dodgerBlue,
+  inactiveColor: '#a3a3a3',
+  primary: colors.dodgerBlue,
+  primaryLight: colors.skyBlue,
+  status: colors.greenishCyan,
+  placeholder: colors.cloudyBlue,
 };
 
-// prettier-ignore
+export type Theme = typeof light;
+
+const dark = {
+  background: colors.darkBackground,
+  backgroundDark: '#262A2C',
+  btnPrimary: '#262A2C',
+  btnPrimaryFont: 'white',
+  btnPrimaryLight: '#696969',
+  btnPrimaryLightFont: '#262A2C',
+  textDisabled: '#969696',
+  btnDisabled: 'rgb(224,224,224)',
+  fontColor: 'white',
+  fontSubColor: colors.paleGray,
+  tintColor: '#a3a3a3',
+  lineColor: '#515557',
+  indicatorColor: 'white',
+  inactiveColor: colors.paleGray,
+  primary: '#1F2324',
+  primaryLight: '#262A2C',
+  status: colors.greenishCyan,
+  placeholder: colors.cloudyBlue,
+};
+
+const theme = {
+  light,
+  dark,
+};
+
 export const createTheme = (type = ThemeType.LIGHT): DefaultTheme => {
   switch (type) {
     case ThemeType.LIGHT:
