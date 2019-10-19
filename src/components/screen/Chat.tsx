@@ -314,6 +314,7 @@ function Screen(props: Props): React.ReactElement {
                 testID="btn_chat"
                 isLoading={isLoading}
                 onPress={sendChat}
+                height={Platform.OS === 'android' ? 40 : undefined}
               >
                 {getString('SEND')}
               </Button>
