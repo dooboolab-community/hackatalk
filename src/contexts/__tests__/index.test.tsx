@@ -10,7 +10,7 @@ import { createTheme } from '../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props = {
+let props: any = {
   navigation: {
     navigate: jest.fn(),
   },
@@ -34,6 +34,7 @@ describe('[AppProvider] rendering test', () => {
 
 describe('[StateProvider] interactions', () => {
   let rendered: renderer.ReactTestRenderer;
+  let root: renderer.ReactTestInstance;
   const component = (
     <StateProvider>
       <View>
@@ -132,7 +133,7 @@ describe('[StateProvider] interactions', () => {
 
     const [
       {
-        profileModal: { user: modalUser, deleteMode },
+        profileModal: { user: modalUser, deleteMode, modal },
       },
     ] = result.current;
 
