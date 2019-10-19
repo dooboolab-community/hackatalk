@@ -1,7 +1,6 @@
 import FindPw from '../screen/FindPw';
 import Login from '../screen/Login';
 import { ScreenProps } from './SwitchNavigator';
-import Setting from '../screen/Setting';
 import SignUp from '../screen/SignUp';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getString } from '../../../STRINGS';
@@ -18,6 +17,7 @@ const StackNavigator = createStackNavigator(
             borderBottomWidth: 0,
             elevation: 0,
           },
+          headerTintColor: theme.fontColor,
         };
       },
     },
@@ -31,6 +31,7 @@ const StackNavigator = createStackNavigator(
             backgroundColor: theme.background,
             borderBottomWidth: 0,
           },
+          headerTintColor: theme.fontColor,
         };
       },
     },
@@ -47,22 +48,7 @@ const StackNavigator = createStackNavigator(
           headerTitleStyle: {
             color: theme.fontColor,
           },
-        };
-      },
-    },
-    Setting: {
-      screen: Setting,
-      navigationOptions: ({ screenProps }): object => {
-        const { theme } = screenProps as ScreenProps;
-        return {
-          title: getString('SETTING'),
-          headerStyle: {
-            backgroundColor: theme.background,
-            borderBottomWidth: 0,
-          },
-          headerTitleStyle: {
-            color: theme.fontColor,
-          },
+          headerTintColor: theme.fontColor,
         };
       },
     },

@@ -1,4 +1,3 @@
-import { Image, TouchableOpacity, View } from 'react-native';
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import {
   NavigationParams,
@@ -6,10 +5,8 @@ import {
   NavigationState,
 } from 'react-navigation';
 import React, { PureComponent, ReactElement } from 'react';
-import styled, { withTheme } from 'styled-components/native';
 
 import Chat from '../screen/Chat';
-import { Ionicons } from '@expo/vector-icons';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { ScreenProps } from './SwitchNavigator';
@@ -18,6 +15,7 @@ import { StateContext } from '../../contexts';
 import StatusBar from '../shared/StatusBar';
 import { createStackNavigator } from 'react-navigation-stack';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
 
 const routeConfig = {
   Main: {
@@ -42,6 +40,7 @@ const routeConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
         },
+        headerTintColor: theme.fontColor,
       };
     },
   },
@@ -54,7 +53,7 @@ const routeConfig = {
     }): object => {
       const { theme } = screenProps;
       return {
-        title: 'Search User',
+        title: getString('SEARCH_USER'),
         headerStyle: {
           backgroundColor: theme.background,
           borderBottomColor: theme.primaryLight,
@@ -62,6 +61,7 @@ const routeConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
         },
+        headerTintColor: theme.fontColor,
       };
     },
   },
@@ -82,6 +82,7 @@ const routeConfig = {
         headerTitleStyle: {
           color: theme.fontColor,
         },
+        headerTintColor: theme.fontColor,
       };
     },
   },

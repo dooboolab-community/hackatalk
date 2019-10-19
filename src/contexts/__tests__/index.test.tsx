@@ -1,14 +1,9 @@
-import React, { useCallback, useReducer } from 'react';
 import { StateProvider, useStateValue } from '..';
 import { Text, View } from 'react-native';
 import { act, renderHook } from '@testing-library/react-hooks';
-import {
-  getByTestId,
-  render,
-  waitForElement,
-} from '@testing-library/react-native';
 
 import ProfileModal from '../../components/shared/ProfileModal';
+import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../types';
 import { createTheme } from '../../theme';
