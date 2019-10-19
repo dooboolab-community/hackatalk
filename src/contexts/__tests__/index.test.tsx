@@ -1,21 +1,16 @@
-import React, { useCallback, useReducer } from 'react';
 import { StateProvider, useStateValue } from '..';
 import { Text, View } from 'react-native';
 import { act, renderHook } from '@testing-library/react-hooks';
-import {
-  getByTestId,
-  render,
-  waitForElement,
-} from '@testing-library/react-native';
 
 import ProfileModal from '../../components/shared/ProfileModal';
+import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../types';
 import { createTheme } from '../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-let props: any = {
+let props = {
   navigation: {
     navigate: jest.fn(),
   },
@@ -39,7 +34,6 @@ describe('[AppProvider] rendering test', () => {
 
 describe('[StateProvider] interactions', () => {
   let rendered: renderer.ReactTestRenderer;
-  let root: renderer.ReactTestInstance;
   const component = (
     <StateProvider>
       <View>
@@ -138,7 +132,7 @@ describe('[StateProvider] interactions', () => {
 
     const [
       {
-        profileModal: { user: modalUser, deleteMode, modal },
+        profileModal: { user: modalUser, deleteMode },
       },
     ] = result.current;
 
