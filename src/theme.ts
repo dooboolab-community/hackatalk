@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 import { ThemeType } from './types';
 
-const colors = {
+export const colors = {
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
   dodgerBlue: 'rgb(58,139,255)',
