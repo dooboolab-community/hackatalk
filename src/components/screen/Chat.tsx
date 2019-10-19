@@ -288,7 +288,7 @@ function Screen(props: Props): React.ReactElement {
               onFocus={(): void => setShowMenu(false)}
               multiline={true}
               placeholder={getString('WRITE_MESSAGE')}
-              placeholderTextColor={theme.btnPrimary}
+              placeholderTextColor={theme.status}
               value={message}
               defaultValue={message}
             />
