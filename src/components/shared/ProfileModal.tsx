@@ -15,6 +15,10 @@ import { getString } from '../../../STRINGS';
 const StyledView = styled.View`
   margin-top: 40px;
 `;
+const StyledImage = styled.Image`
+  width: 80px;
+  height: 80px;
+`;
 
 const StyledViewBtns = styled.View`
   height: 80px;
@@ -179,7 +183,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             // onPress={goToProfile}
           >
             {photoURL ? (
-              <Image style={{ alignSelf: 'center' }} source={imageURL} />
+              <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
               <View
                 style={{
