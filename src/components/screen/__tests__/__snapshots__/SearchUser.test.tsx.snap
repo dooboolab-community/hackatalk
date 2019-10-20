@@ -116,81 +116,79 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           Object {
             "displayName": "admin",
             "online": true,
-            "photoURL": 1,
+            "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             "statusMsg": "online",
-            "thumbURL": 1,
+            "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             "uid": "1",
           },
           Object {
             "displayName": "geoseong",
             "online": false,
-            "photoURL": 1,
+            "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             "uid": "2",
           },
           Object {
             "displayName": "hyochan",
             "online": false,
-            "photoURL": 1,
+            "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             "uid": "3",
           },
           Object {
             "displayName": "mars",
             "online": true,
-            "photoURL": 1,
+            "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
             "uid": "4",
           },
           Object {
             "displayName": "gordon",
             "online": true,
-            "photoURL": 1,
+            "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
             "uid": "5",
           },
           Object {
             "displayName": "admin2",
             "online": true,
-            "photoURL": 1,
             "statusMsg": "online",
-            "thumbURL": 1,
             "uid": "6",
           },
           Object {
             "displayName": "geoseong2",
             "online": false,
-            "photoURL": 1,
+            "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
             "uid": "7",
           },
           Object {
             "displayName": "hyochan2",
             "online": false,
-            "photoURL": 1,
+            "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
             "uid": "8",
           },
           Object {
             "displayName": "mars2",
             "online": true,
-            "photoURL": 1,
+            "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
             "uid": "9",
           },
           Object {
             "displayName": "gordon2",
             "online": true,
-            "photoURL": 1,
+            "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
             "statusMsg": "offline",
-            "thumbURL": 1,
+            "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
             "uid": "10",
           },
         ]
@@ -285,7 +283,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -383,7 +385,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -481,7 +487,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -579,7 +589,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -677,7 +691,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -774,17 +792,18 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   ]
                 }
               >
-                <Image
-                  source={1}
+                <View
                   style={
-                    Array [
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "height": 40,
+                      "justifyContent": "center",
+                      "width": 40,
+                    }
                   }
-                />
+                >
+                  <Text />
+                </View>
                 <Text
                   style={
                     Array [
@@ -873,7 +892,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -971,7 +994,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -1069,7 +1096,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+                    }
+                  }
                   style={
                     Array [
                       Object {
@@ -1167,7 +1198,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+                    }
+                  }
                   style={
                     Array [
                       Object {
