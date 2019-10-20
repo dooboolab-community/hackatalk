@@ -1,4 +1,8 @@
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import React from 'react';
 import styled from 'styled-components/native';
 

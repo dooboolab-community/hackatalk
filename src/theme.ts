@@ -37,6 +37,7 @@ const light = {
   inactiveColor: '#a3a3a3',
   primary: colors.dodgerBlue,
   primaryLight: colors.skyBlue,
+  searchBackground: 'rgb(247,248,251)',
   status: colors.greenishCyan,
   placeholder: colors.cloudyBlue,
 };
@@ -60,6 +61,7 @@ const dark = {
   inactiveColor: colors.paleGray,
   primary: '#1F2324',
   primaryLight: '#262A2C',
+  searchBackground: '#243447',
   status: colors.greenishCyan,
   placeholder: colors.cloudyBlue,
 };
