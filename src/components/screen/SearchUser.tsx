@@ -1,8 +1,8 @@
 import { Animated, FlatList } from 'react-native';
-import { IC_BACK, IC_ICON, IC_SEARCH, IC_SMILE } from '../../utils/Icons';
 import React, { useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
+import { IC_SEARCH } from '../../utils/Icons';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -55,8 +55,8 @@ export const fakeUsers: User[] = [
   {
     uid: '6',
     displayName: 'admin2',
-    // thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    // photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
+    thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
+    photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
     statusMsg: 'online',
     online: true,
   },
