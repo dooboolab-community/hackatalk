@@ -3,7 +3,6 @@ import 'react-native';
 import * as React from 'react';
 
 import {
-  QueryByText,
   RenderResult,
   fireEvent,
   render,

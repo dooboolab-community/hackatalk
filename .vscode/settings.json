@@ -23,5 +23,5 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "always",
-  "prettier.jsxSingleQuote": true
+  "prettier.jsxSingleQuote": false
 }

@@ -1,68 +1,46 @@
 import * as React from 'react';
 
-import { RenderResult, render } from '../../../../test/test-utils';
+import { RenderResult, fireEvent, render, toJSON } from '../../../../test/test-utils';
+import SearchUser, { fakeUsers } from '../SearchUser';
 
 import { Animated } from 'react-native';
-import { StateProvider } from '../../../contexts';
-import UserListItem from '../../shared/UserListItem';
-import { createTheme } from '../../../theme';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import { User } from '../../../types';
 
-// import {
-//   RenderAPI,
-//   fireEvent,
-//   render,
-//   shallow,
-//   waitForElement,
-// } from 'react-native-testing-library';
+// import UserListItem from '../../shared/UserListItem';
 
-const props = {
+const createTestProps = (obj: object): object => ({
   navigation: {
     navigate: jest.fn(),
   },
-  createTheme,
-};
+  ...obj,
+});
+
+const props = createTestProps({
+  screenProps: { changeTheme: jest.fn() },
+});
+
 const component: React.ReactElement = (
-  <StateProvider>
-    <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-      <SearchUser {...props} />
-    </ThemeProvider>
-  </StateProvider>
+  <SearchUser {...props} />
 );
 
 describe('[SearchUser] rendering test', () => {
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { container } = render(component);
+    expect(toJSON(container)).toMatchSnapshot();
   });
 });
 
 describe('[serachUser] interaction', () => {
   // let searchUserLib: RenderAPI;
   let testingLib: RenderResult;
-  let txtInputInst: renderer.ReactTestInstance;
-  let animatedFlatlistInst: renderer.ReactTestInstance;
+  let txtInputInst: any;
+  let animatedFlatListInst: any;
   const inputData: User = fakeUsers[0];
 
   beforeAll(() => {
-    // const providerProps = {
-    //   navigation: {
-    //     navigate: jest.fn(),
-    //   },
-    //   createTheme,
-    // };
-    const providerComponent: React.ReactElement = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <SearchUser />
-        </ThemeProvider>
-      </StateProvider>
-    );
-    // searchUserLib = render(component);
-    testingLib = render(providerComponent);
+    testingLib = render(component);
     txtInputInst = testingLib.getByTestId('txtInput');
-    animatedFlatlistInst = testingLib.getByTestId('animatedFlatlist');
+    animatedFlatListInst = testingLib.getByTestId('animatedFlatlist');
   });
   it(
     'when friend name typed in TextInput: (onTxtChanged -> onSearch)' +
@@ -71,13 +49,13 @@ describe('[serachUser] interaction', () => {
       // setTimeout called - 0
       fireEvent.changeText(txtInputInst, inputData.displayName);
       // setTimeout called - 2
-      expect(animatedFlatlistInst.props.data[0]).toEqual(inputData);
+      expect(animatedFlatListInst.props.data[0]).toEqual(inputData);
 
-      expect(animatedFlatlistInst.props.contentContainerStyle()).toEqual(null);
+      expect(animatedFlatListInst.props.contentContainerStyle()).toEqual(null);
       fireEvent.changeText(txtInputInst, 'noresult!');
       // setTimeout called - 3
-      expect(animatedFlatlistInst.props.data.length).toEqual(0);
-      expect(animatedFlatlistInst.props.contentContainerStyle()).toEqual({
+      expect(animatedFlatListInst.props.data.length).toEqual(0);
+      expect(animatedFlatListInst.props.contentContainerStyle()).toEqual({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -85,12 +63,12 @@ describe('[serachUser] interaction', () => {
 
       fireEvent.changeText(txtInputInst, '');
       // setTimeout called - 4
-      expect(animatedFlatlistInst.props.data.length).toEqual(fakeUsers.length);
+      expect(animatedFlatListInst.props.data.length).toEqual(fakeUsers.length);
     },
   );
   it('see Animation is working well', () => {
     jest.useFakeTimers(); // related to timer
-    const scrollY = animatedFlatlistInst.props.testObj.scrollY;
+    const scrollY = animatedFlatListInst.props.testObj.scrollY;
     const afterScrollY = new Animated.Value(0);
     Animated.timing(afterScrollY, {
       toValue: 100,
