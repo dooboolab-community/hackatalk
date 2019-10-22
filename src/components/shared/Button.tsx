@@ -32,10 +32,6 @@ interface Props {
   height: number;
 }
 
-const StyledContainer = styled.View`
-  flex: 1;
-`;
-
 const StyledButtonContainer = styled.View<ButtonContainer>`
   width: ${({ width }): string => `${width}px`};
   height: ${({ height }): string => `${height}px`};
@@ -94,7 +90,7 @@ function Button(props: Props): React.ReactElement {
   } = props;
 
   return (
-    <StyledContainer>
+    <>
       {isDisabled ? (
         <StyledButtonDisabled testID={testID}>
           <StyledText>{children}</StyledText>
@@ -123,7 +119,7 @@ function Button(props: Props): React.ReactElement {
           </StyledButton>
         </TouchableOpacity>
       )}
-    </StyledContainer>
+    </>
   );
 }
 
