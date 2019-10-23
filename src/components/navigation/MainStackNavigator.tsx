@@ -22,29 +22,6 @@ const routeConfig = {
     screen: MainTabNavigator,
     navigationOptions: MainTabNavigationOptions,
   },
-  ProfileUpdate: {
-    screen: ProfileUpdate,
-    navigationOptions: ({
-      screenProps,
-    }: {
-      screenProps: ScreenProps;
-      navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-    }): object => {
-      const { theme } = screenProps;
-      return {
-        title: getString('MY_PROFILE'),
-        headerStyle: {
-          backgroundColor: theme.background,
-          borderBottomColor: theme.primaryLight,
-          borderWidth: 1,
-        },
-        headerTitleStyle: {
-          color: theme.fontColor,
-        },
-        headerTintColor: theme.fontColor,
-      };
-    },
-  },
   SearchUser: {
     screen: SearchUser,
     navigationOptions: ({
