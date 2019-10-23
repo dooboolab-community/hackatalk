@@ -36,6 +36,7 @@ const routeConfig = {
         headerStyle: {
           backgroundColor: theme.background,
           borderBottomColor: theme.primaryLight,
+          borderWidth: 1,
         },
         headerTitleStyle: {
           color: theme.fontColor,
