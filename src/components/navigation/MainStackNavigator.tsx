@@ -66,27 +66,6 @@ const routeConfig = {
       };
     },
   },
-  Chat: {
-    screen: Chat,
-    navigationOptions: ({
-      screenProps,
-    }: {
-      screenProps: ScreenProps;
-    }): object => {
-      const { theme } = screenProps;
-      return {
-        title: getString('CHAT'),
-        headerStyle: {
-          backgroundColor: theme.background,
-          borderBottomColor: theme.primaryLight,
-        },
-        headerTitleStyle: {
-          color: theme.fontColor,
-        },
-        headerTintColor: theme.fontColor,
-      };
-    },
-  },
 };
 
 const navigatorConfig = {
