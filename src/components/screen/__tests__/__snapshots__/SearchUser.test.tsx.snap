@@ -46,7 +46,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           Array [
             Object {
               "height": 50,
-              "paddingHorizontal": 20,
+              "paddingBottom": 0,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 0,
               "position": "absolute",
               "width": "100%",
             },

@@ -127,7 +127,7 @@ const StyledTextInputWrapper = styled.View`
   width: 100%;
   height: 50;
   position: absolute;
-  padding-horizontal: 20;
+  padding: 0 20px;
 `;
 const StyledTextInput = styled.TextInput`
   width: 100%;

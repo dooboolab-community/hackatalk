@@ -27,7 +27,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
     }
     testID="myText"
   >
-    dooboolab
+    Settings
   </Text>
 </View>
 `;
