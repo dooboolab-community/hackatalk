@@ -18,9 +18,15 @@ export interface AuthUser extends User {
   chatrooms?: [];
 }
 
+enum MessageType {
+  Message,
+  Photo,
+}
+
 export interface Chat {
   id: string;
   sender: User;
+  messageType?: MessageType;
   message: string;
   created?: Date;
   updated?: Date;
@@ -28,6 +34,7 @@ export interface Chat {
 
 export interface Chatroom {
   id: string;
+  secret: string;
   lastChat: Chat;
   lastChatCnt: number;
   chats?: Chat[];

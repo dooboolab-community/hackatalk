@@ -52,6 +52,7 @@ exports[`[Message] screen renders without crashing 1`] = `
             "updated": 1970-01-01T00:00:00.000Z,
           },
           "lastChatCnt": 3,
+          "secret": "",
         },
         Object {
           "id": "room2",
@@ -70,6 +71,7 @@ exports[`[Message] screen renders without crashing 1`] = `
             "updated": 1970-01-01T00:00:00.000Z,
           },
           "lastChatCnt": 0,
+          "secret": "",
         },
       ]
     }
