@@ -16,7 +16,7 @@ import { Chat } from '../../types';
 import ChatListItem from '../shared/ChatListItem';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
-import GiftedChatInput from '../shared/GiftedChatInput';
+import GiftedChat from '../shared/GiftedChat';
 import { Header } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
@@ -101,7 +101,7 @@ function Screen(props: Props): React.ReactElement {
 
   return (
     <StyledContainer>
-      <GiftedChatInput
+      <GiftedChat
         chats={chats}
         borderColor={theme.lineColor}
         backgroundColor={theme.background}
