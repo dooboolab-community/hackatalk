@@ -10,6 +10,7 @@ import styled from 'styled-components/native';
 
 interface StyledElement {
   white?: boolean;
+  disabled?: boolean;
 }
 
 interface ButtonContainer {
@@ -19,10 +20,11 @@ interface ButtonContainer {
 
 interface Props {
   testID: string;
-  containerStyle?: ViewStyle;
   isWhite: boolean;
   isLoading: boolean;
   isDisabled: boolean;
+  containerStyle?: ViewStyle;
+  style?: ViewStyle;
   onPress: () => void;
   imgLeftSrc?: ImageSourcePropType;
   indicatorColor: string;
@@ -51,11 +53,11 @@ const StyledButton = styled.View<StyledElement>`
 `;
 
 const StyledButtonDisabled = styled.View`
-  background-color: rgb(243, 243, 243);
+  background-color: ${({ theme }): string => theme.btnDisabled};
+  border-color: ${({ theme }): string => theme.lineColor};
   align-self: center;
   border-radius: 4px;
-  border-width: 2px;
-  border-color: #333;
+  border-width: 1px;
   align-items: center;
   justify-content: center;
 `;
@@ -63,8 +65,15 @@ const StyledButtonDisabled = styled.View`
 const StyledText = styled.Text<StyledElement>`
   font-size: 14px;
   font-weight: bold;
-  color: ${({ white, theme }): string =>
-    white ? theme.btnPrimaryLightFont : theme.btnPrimaryFont};
+  color: ${({ white, theme, disabled }): string =>
+    white
+      ? theme.btnPrimaryLightFont
+      : (
+        disabled
+          ? theme.btnPrimaryFont
+          : theme.btnDisabled
+      )
+  };
 `;
 
 const StyledImageLeft = styled.Image`
@@ -93,7 +102,9 @@ function Button(props: Props): React.ReactElement {
     <>
       {isDisabled ? (
         <StyledButtonDisabled testID={testID}>
-          <StyledText>{children}</StyledText>
+          <StyledButtonContainer width={width} height={height}>
+            <StyledText disabled>{children}</StyledText>
+          </StyledButtonContainer>
         </StyledButtonDisabled>
       ) : (
         <TouchableOpacity

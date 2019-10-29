@@ -72,7 +72,7 @@ exports[`rendering test renders as expected 1`] = `
             ]
           }
         >
-          name
+          Name
         </Text>
         <TextInput
           allowFontScaling={true}
@@ -82,7 +82,7 @@ exports[`rendering test renders as expected 1`] = `
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
-          placeholder="name"
+          placeholder="Name"
           placeholderTextColor="rgb(175,194,219)"
           rejectResponderTermination={true}
           style={
@@ -280,7 +280,7 @@ exports[`rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "white",
+                      "color": "rgb(224,224,224)",
                       "fontSize": 14,
                       "fontWeight": "bold",
                     },

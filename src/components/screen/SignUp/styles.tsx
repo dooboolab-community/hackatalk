@@ -1,10 +1,15 @@
 import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputFocusEventData,
+  View,
+} from 'react-native';
+import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import React, { ReactElement } from 'react';
-import { TextInput, View } from 'react-native';
+import React, { ReactElement, useCallback, useState } from 'react';
 import {
   handleTextInput,
   withNextInputAutoFocusForm,
@@ -15,6 +20,8 @@ import styled, {
   ThemeProps,
 } from 'styled-components/native';
 
+import { Ionicons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { ScreenProps } from '../../navigation/SwitchNavigator';
 import { compose } from 'recompose';
 
@@ -28,12 +35,15 @@ export interface SignUpFormValues {
   email: string;
   password1: string;
   password2: string;
+  name: string;
+  status: string;
 }
 
 export interface ITextInput {
   error?: string;
-  focused?: boolean;
-  [s: string]: string | boolean | undefined;
+  placeholder?: string;
+  onBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  value?: string;
 }
 
 export const StyledSafeAreaView = styled.SafeAreaView`
@@ -42,11 +52,18 @@ export const StyledSafeAreaView = styled.SafeAreaView`
   flex-direction: column;
 `;
 
-export const StyledScrollView = styled.ScrollView.attrs(() => ({
-  contentContainerStyle: { flex: 1 },
+export const StyledScrollView = styled(KeyboardAwareScrollView).attrs(() => ({
   keyboardShouldPersistTaps: 'handled',
 }))`
   flex: 1;
+`;
+
+const LabelText = styled.Text<{ isFocused: boolean }>`
+  align-self: flex-start;
+  color: ${({ isFocused, theme }): string => isFocused ? theme.primary : theme.labelColor};
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 6px;
 `;
 
 export const StyledText = styled.Text`
@@ -65,12 +82,32 @@ const ErrorText = styled.Text`
 
 const FormikForm = withNextInputAutoFocusForm(View);
 
-const CustomizedInput = ({ error, ...rest }: ITextInput): ReactElement => (
-  <>
-    <StyledTextInput {...rest} />
-    <ErrorText>{error}</ErrorText>
-  </>
-);
+const CustomizedInput = ({ error, value, placeholder, onBlur: propBlur, ...rest }: ITextInput): ReactElement => {
+  const [isFocused, setFocus] = useState(false);
+  return (
+    <>
+      <LabelText isFocused={isFocused}>{placeholder}</LabelText>
+      <StyledTextInputContainer isFocused={isFocused}>
+        <StyledTextInput
+          {...rest}
+          placeholder={placeholder}
+          onFocus={useCallback(() => {
+            setFocus(true);
+          }, [])}
+          value={value}
+          onBlur={useCallback((e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+            setFocus(false);
+            if (propBlur && typeof propBlur === 'function') {
+              propBlur(e);
+            }
+          }, [propBlur])}
+        />
+        {(!!value && !!value.length && !error) && <StyledStatusMark />}
+      </StyledTextInputContainer>
+      <ErrorText>{error}</ErrorText>
+    </>
+  );
+};
 
 export const FormikInput = compose<any, any>(
   handleTextInput,
@@ -78,32 +115,49 @@ export const FormikInput = compose<any, any>(
 )(CustomizedInput);
 
 export const StyledForm = styled(FormikForm)`
-  margin-top: 100px;
+  margin-top: 30px;
   align-self: stretch;
   flex-direction: column;
   align-items: center;
-  padding: 0 44px;
+  padding: 0 44px 30px 44px;
 `;
 
-const StyledTextInput = styled(TextInput)<{ focused?: boolean }>`
+const StyledTextInputContainer = styled.View<{ isFocused?: boolean }>`
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-width: 1px;
+  border-color: ${({ isFocused, theme }): string =>
+    isFocused ? theme.primary : theme.lineColor};
+  border-radius: 3px;
   margin-bottom: 8px;
-  align-self: stretch;
+`;
+
+const StyledTextInput = styled(TextInput)`
+  flex: 1;
   color: ${({ theme }): string => theme.fontColor};
   font-size: 16px;
   padding: 22px 20px;
-  border-width: 1px;
-  border-color: ${({ focused, theme }): string =>
-    focused ? theme.primary : theme.lineColor};
+  border: none;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-start;  
+`;
+
+const StyledStatusMark = styled(Ionicons).attrs(({ theme }) => ({
+  name: 'md-checkmark',
+  size: 24,
+  color: theme.status,
+}))`
+  padding-right: 5%;
 `;
 
 export const StyledButtonWrapper = styled.View`
-  align-self: stretch;
+  width: 100%;
   margin-top: 20px;
   height: 60px;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 `;

@@ -10,34 +10,1971 @@ exports[`[SignUp] screen renders without crashing 1`] = `
     }
   }
 >
-  <View
+  <SafeAreaView
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "backgroundColor": "transparent",
+          "backgroundColor": "#ffffff",
           "flexBasis": 0,
-          "flexDirection": "row",
+          "flexDirection": "column",
           "flexGrow": 1,
           "flexShrink": 1,
-          "justifyContent": "center",
         },
       ]
     }
   >
-    <Text
+    <ScrollView
+      automaticallyAdjustContentInsets={false}
+      contentInset={
+        Object {
+          "bottom": 0,
+        }
+      }
+      enableAutomaticScroll={true}
+      enableOnAndroid={false}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardDismissMode="interactive"
+      keyboardOpeningTime={250}
+      keyboardShouldPersistTaps="handled"
+      keyboardSpace={0}
+      scrollEventThrottle={1}
+      showsVerticalScrollIndicator={true}
       style={
         Array [
           Object {
-            "color": "blue",
-            "fontSize": 16,
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
           },
         ]
       }
-      testID="myText"
+      viewIsInsideTabBar={false}
     >
-      dooboolab
-    </Text>
-  </View>
+      <View
+        formik={
+          Object {
+            "dirty": false,
+            "errors": Object {},
+            "handleBlur": [Function],
+            "handleChange": [Function],
+            "handleReset": [Function],
+            "handleSubmit": [Function],
+            "initialValues": Object {
+              "email": "",
+              "name": "",
+              "password1": "",
+              "password2": "",
+              "status": "",
+            },
+            "isSubmitting": false,
+            "isValid": false,
+            "isValidating": false,
+            "registerField": [Function],
+            "resetForm": [Function],
+            "setError": [Function],
+            "setErrors": [Function],
+            "setFieldError": [Function],
+            "setFieldTouched": [Function],
+            "setFieldValue": [Function],
+            "setFormikState": [Function],
+            "setStatus": [Function],
+            "setSubmitting": [Function],
+            "setTouched": [Function],
+            "setValues": [Function],
+            "status": undefined,
+            "submitCount": 0,
+            "submitForm": [Function],
+            "touched": Object {},
+            "unregisterField": [Function],
+            "validate": undefined,
+            "validateField": [Function],
+            "validateForm": [Function],
+            "validateOnBlur": true,
+            "validateOnChange": true,
+            "validationSchema": ObjectSchema {
+              "_blacklist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "_conditions": Array [],
+              "_defaultDefault": [Function],
+              "_deps": Array [],
+              "_excludedEdges": Array [],
+              "_exclusive": Object {},
+              "_mutate": undefined,
+              "_nodes": Array [
+                "status",
+                "name",
+                "password2",
+                "password1",
+                "email",
+              ],
+              "_options": Object {
+                "abortEarly": true,
+                "recursive": true,
+              },
+              "_type": "object",
+              "_typeError": [Function],
+              "_whitelist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "fields": Object {
+                "email": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {
+                    "required": true,
+                    "undefined": false,
+                  },
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "tests": Array [
+                    [Function],
+                    [Function],
+                  ],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "name": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {
+                    "min": true,
+                    "required": true,
+                  },
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "tests": Array [
+                    [Function],
+                    [Function],
+                  ],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "password1": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {
+                    "min": true,
+                    "required": true,
+                  },
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "tests": Array [
+                    [Function],
+                    [Function],
+                  ],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "password2": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {
+                    "min": true,
+                  },
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {
+                      null,
+                    },
+                    "refs": Map {
+                      "password1" => Reference {
+                        "getter": [Function],
+                        "isContext": false,
+                        "isSibling": true,
+                        "isValue": false,
+                        "key": "password1",
+                        "map": undefined,
+                        "path": "password1",
+                      },
+                    },
+                  },
+                  "_whitelistError": [Function],
+                  "tests": Array [
+                    [Function],
+                  ],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "status": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+              },
+              "tests": Array [],
+              "transforms": Array [
+                [Function],
+              ],
+            },
+            "values": Object {
+              "email": "",
+              "name": "",
+              "password1": "",
+              "password2": "",
+              "status": "",
+            },
+          }
+        }
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flexDirection": "column",
+              "marginTop": 30,
+              "paddingBottom": 30,
+              "paddingLeft": 44,
+              "paddingRight": 44,
+              "paddingTop": 0,
+            },
+          ]
+        }
+        testID="formTest"
+      >
+        <Text
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+                "color": "rgb(134,154,183)",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 6,
+              },
+            ]
+          }
+        >
+          Email
+        </Text>
+        <View
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 3,
+                "borderWidth": 1,
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": ObjectSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_defaultDefault": [Function],
+                  "_deps": Array [],
+                  "_excludedEdges": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_nodes": Array [
+                    "status",
+                    "name",
+                    "password2",
+                    "password1",
+                    "email",
+                  ],
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "object",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "fields": Object {
+                    "email": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "required": true,
+                        "undefined": false,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "name": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password1": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password2": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password1" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password1",
+                            "map": undefined,
+                            "path": "password1",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "status": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {},
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "values": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+              }
+            }
+            keyboardType="email-address"
+            label="email"
+            name="email"
+            placeholder="Email"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            returnKeyType="next"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "color": "black",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "lightcoral",
+                "fontSize": 12,
+                "fontWeight": "normal",
+                "marginVertical": 2,
+              },
+            ]
+          }
+        />
+        <Text
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+                "color": "rgb(134,154,183)",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 6,
+              },
+            ]
+          }
+        >
+          Password1
+        </Text>
+        <View
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 3,
+                "borderWidth": 1,
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": ObjectSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_defaultDefault": [Function],
+                  "_deps": Array [],
+                  "_excludedEdges": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_nodes": Array [
+                    "status",
+                    "name",
+                    "password2",
+                    "password1",
+                    "email",
+                  ],
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "object",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "fields": Object {
+                    "email": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "required": true,
+                        "undefined": false,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "name": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password1": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password2": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password1" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password1",
+                            "map": undefined,
+                            "path": "password1",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "status": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {},
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "values": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+              }
+            }
+            label="password1"
+            name="password1"
+            placeholder="Password1"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            returnKeyType="next"
+            secureTextEntry={true}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "color": "black",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "lightcoral",
+                "fontSize": 12,
+                "fontWeight": "normal",
+                "marginVertical": 2,
+              },
+            ]
+          }
+        />
+        <Text
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+                "color": "rgb(134,154,183)",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 6,
+              },
+            ]
+          }
+        >
+          Password2
+        </Text>
+        <View
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 3,
+                "borderWidth": 1,
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": ObjectSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_defaultDefault": [Function],
+                  "_deps": Array [],
+                  "_excludedEdges": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_nodes": Array [
+                    "status",
+                    "name",
+                    "password2",
+                    "password1",
+                    "email",
+                  ],
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "object",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "fields": Object {
+                    "email": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "required": true,
+                        "undefined": false,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "name": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password1": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password2": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password1" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password1",
+                            "map": undefined,
+                            "path": "password1",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "status": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {},
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "values": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+              }
+            }
+            label="password2"
+            name="password2"
+            placeholder="Password2"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            returnKeyType="next"
+            secureTextEntry={true}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "color": "black",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "lightcoral",
+                "fontSize": 12,
+                "fontWeight": "normal",
+                "marginVertical": 2,
+              },
+            ]
+          }
+        />
+        <Text
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+                "color": "rgb(134,154,183)",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 6,
+              },
+            ]
+          }
+        >
+          Name
+        </Text>
+        <View
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 3,
+                "borderWidth": 1,
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": ObjectSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_defaultDefault": [Function],
+                  "_deps": Array [],
+                  "_excludedEdges": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_nodes": Array [
+                    "status",
+                    "name",
+                    "password2",
+                    "password1",
+                    "email",
+                  ],
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "object",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "fields": Object {
+                    "email": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "required": true,
+                        "undefined": false,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "name": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password1": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password2": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password1" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password1",
+                            "map": undefined,
+                            "path": "password1",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "status": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {},
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "values": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+              }
+            }
+            label="name"
+            name="name"
+            placeholder="Name"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            returnKeyType="next"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "color": "black",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "lightcoral",
+                "fontSize": 12,
+                "fontWeight": "normal",
+                "marginVertical": 2,
+              },
+            ]
+          }
+        />
+        <Text
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+                "color": "rgb(134,154,183)",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "marginBottom": 6,
+              },
+            ]
+          }
+        >
+          Status
+        </Text>
+        <View
+          isFocused={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 3,
+                "borderWidth": 1,
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            formik={
+              Object {
+                "dirty": false,
+                "errors": Object {},
+                "handleBlur": [Function],
+                "handleChange": [Function],
+                "handleReset": [Function],
+                "handleSubmit": [Function],
+                "initialValues": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+                "isSubmitting": false,
+                "isValid": false,
+                "isValidating": false,
+                "registerField": [Function],
+                "resetForm": [Function],
+                "setError": [Function],
+                "setErrors": [Function],
+                "setFieldError": [Function],
+                "setFieldTouched": [Function],
+                "setFieldValue": [Function],
+                "setFormikState": [Function],
+                "setStatus": [Function],
+                "setSubmitting": [Function],
+                "setTouched": [Function],
+                "setValues": [Function],
+                "status": undefined,
+                "submitCount": 0,
+                "submitForm": [Function],
+                "touched": Object {},
+                "unregisterField": [Function],
+                "validate": undefined,
+                "validateField": [Function],
+                "validateForm": [Function],
+                "validateOnBlur": true,
+                "validateOnChange": true,
+                "validationSchema": ObjectSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_defaultDefault": [Function],
+                  "_deps": Array [],
+                  "_excludedEdges": Array [],
+                  "_exclusive": Object {},
+                  "_mutate": undefined,
+                  "_nodes": Array [
+                    "status",
+                    "name",
+                    "password2",
+                    "password1",
+                    "email",
+                  ],
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "object",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "fields": Object {
+                    "email": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "required": true,
+                        "undefined": false,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "name": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password1": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "password2": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password1" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password1",
+                            "map": undefined,
+                            "path": "password1",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                    "status": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {},
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "tests": Array [],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
+                  },
+                  "tests": Array [],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
+                "values": Object {
+                  "email": "",
+                  "name": "",
+                  "password1": "",
+                  "password2": "",
+                  "status": "",
+                },
+              }
+            }
+            label="status"
+            name="status"
+            placeholder="Status"
+            placeholderTextColor="rgb(175,194,219)"
+            rejectResponderTermination={true}
+            returnKeyType="done"
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "black",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "color": "black",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 22,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 22,
+                },
+              ]
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "lightcoral",
+                "fontSize": 12,
+                "fontWeight": "normal",
+                "marginVertical": 2,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 60,
+                "justifyContent": "flex-end",
+                "marginTop": 20,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "backgroundColor": "rgb(224,224,224)",
+                  "borderColor": "rgb(221,226,236)",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "justifyContent": "center",
+                },
+              ]
+            }
+            testID="btnSignUpConfirm"
+          >
+            <View
+              height={60}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "height": 60,
+                    "justifyContent": "center",
+                    "width": 136,
+                  },
+                ]
+              }
+              width={136}
+            >
+              <Text
+                disabled={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 14,
+                      "fontWeight": "bold",
+                    },
+                  ]
+                }
+              >
+                Register
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  </SafeAreaView>
 </View>
 `;

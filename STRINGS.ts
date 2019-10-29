@@ -12,7 +12,7 @@ const en = {
   LOGOUT: 'Logout',
   FORGOT_PW: 'Forgot password?',
   FIND_PW: 'Find Password',
-  NAME: 'name',
+  NAME: 'Name',
   STATUS_MSG: 'Status message',
   REGISTER: 'Register',
   SEND_LINK: 'Send Link',
@@ -33,6 +33,7 @@ const en = {
   SETTING: 'Setting',
   SIGN_IN_WITH_GOOGLE: 'Sign in with Google',
   SIGN_IN_WITH_FACEBOOK: 'Sign in with Facebook',
+  STATUS: 'Status',
 };
 
 const ko = {
@@ -41,7 +42,7 @@ const ko = {
   LOGIN: '로그인',
   LOGOUT: '로그아웃',
   EMAIL: '이메일',
-  PASSWORD: '패스워드',
+  PASSWORD: '비밀번호',
   SIGN_UP: '회원가입',
   FORGOT_PW: '비밀번호를 잊어버리셨나요?',
   FIND_PW: '비밀번호 찾기',
@@ -66,6 +67,7 @@ const ko = {
   SETTING: '설정',
   SIGN_IN_WITH_GOOGLE: '구글 계정으로 시작하기',
   SIGN_IN_WITH_FACEBOOK: '페이스북 계정으로 시작하기',
+  STATUS: '상태 메세지',
 };
 
 i18n.fallbacks = true;
