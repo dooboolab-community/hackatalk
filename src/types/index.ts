@@ -13,21 +13,34 @@ export interface User {
   updated?: Date;
 }
 
+export interface Friend extends User {
+  isFriend?: boolean;
+  friendSince: Date;
+}
+
 export interface AuthUser extends User {
   friends?: [];
   chatrooms?: [];
 }
 
+enum MessageType {
+  Message,
+  Photo,
+}
+
 export interface Chat {
   id: string;
   sender: User;
-  message: string;
+  messageType?: MessageType;
+  message?: string;
+  photo?: string;
   created?: Date;
   updated?: Date;
 }
 
 export interface Chatroom {
   id: string;
+  secret: string;
   lastChat: Chat;
   lastChatCnt: number;
   chats?: Chat[];

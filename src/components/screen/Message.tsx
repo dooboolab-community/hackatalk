@@ -33,6 +33,7 @@ interface State {
 const initRooms: Chatroom[] = [
   {
     id: 'room1',
+    secret: '',
     lastChat: {
       id: 'id_3',
       sender: {
@@ -51,6 +52,7 @@ const initRooms: Chatroom[] = [
   },
   {
     id: 'room2',
+    secret: '',
     lastChat: {
       id: 'id_3',
       sender: {

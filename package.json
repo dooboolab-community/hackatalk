@@ -5,7 +5,7 @@
     "build": "rm -rf ./dist && tsc",
     "codecov": "codecov",
     "tsc": "tsc",
-    "start": "tsc -w && expo start",
+    "start": "expo start",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001' && expo start",
     "production": "expo start --no-dev",
     "android": "expo start --android",
@@ -22,7 +22,7 @@
   "author": "hyochan <dooboolab@gmail.com>",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@dooboo-ui/native": "0.1.0-rc.8",
+    "@dooboo-ui/native": "^0.2.0",
     "@expo/vector-icons": "^10.0.6",
     "@types/react-navigation": "^3.0.8",
     "expo": "^35.0.0",

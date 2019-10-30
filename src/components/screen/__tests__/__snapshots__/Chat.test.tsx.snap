@@ -53,6 +53,15 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           No content
         </Shared>
       }
+      ListFooterComponent={
+        <View
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      }
       contentContainerStyle={null}
       data={
         Array [
@@ -571,6 +580,17 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             </View>
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "height": 60,
+              }
+            }
+          />
+        </View>
       </View>
     </RCTScrollView>
     <View
@@ -578,8 +598,6 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
             "borderTopWidth": 0.5,
             "flexBasis": 0,
             "flexDirection": "row",
@@ -591,6 +609,10 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             "paddingLeft": 8,
             "paddingRight": 8,
             "width": "100%",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "rgb(221,226,236)",
           },
         ]
       }
@@ -607,12 +629,15 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "#ffffff",
               "color": "black",
               "fontSize": 14,
               "marginRight": 20,
               "paddingLeft": 48,
               "width": "80%",
+            },
+            Object {
+              "backgroundColor": "#ffffff",
+              "color": "black",
             },
           ]
         }
