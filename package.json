@@ -5,7 +5,7 @@
     "build": "rm -rf ./dist && tsc",
     "codecov": "codecov",
     "tsc": "tsc",
-    "start": "tsc -w && expo start",
+    "start": "expo start",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001' && expo start",
     "production": "expo start --no-dev",
     "android": "expo start --android",

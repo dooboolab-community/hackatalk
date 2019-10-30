@@ -1,9 +1,9 @@
+import { Image, Platform, TouchableOpacity, View } from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import { Platform, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import styled, {
   DefaultTheme,
@@ -18,6 +18,7 @@ import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { Header } from 'react-navigation-stack';
+import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 
@@ -125,6 +126,15 @@ function Screen(props: Props): React.ReactElement {
             />
           );
         }}
+        optionView={
+          <Image
+            style={{
+              width: 20,
+              height: 20,
+            }}
+            source={IC_SMILE}
+          />
+        }
         emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
         renderViewMenu={(): React.ReactElement => (
           <View

@@ -23,6 +23,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
   }
 >
   <RCTScrollView
+    ListEmptyComponent={<View />}
     contentContainerStyle={null}
     data={
       Array [
@@ -136,8 +137,11 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
   >
     <TextInput
       allowFontScaling={true}
+      defaultValue=""
       multiline={true}
+      onChangeText={[Function]}
       onFocus={[Function]}
+      placeholder=""
       rejectResponderTermination={true}
       style={
         Array [
@@ -156,6 +160,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       }
       testID="input_chat"
       underlineColorAndroid="transparent"
+      value=""
     />
     <View
       accessible={true}
@@ -178,15 +183,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       }
       testID="touch_menu"
     >
-      <Image
-        source={1}
-        style={
-          Object {
-            "height": 20,
-            "width": 20,
-          }
-        }
-      />
+      <View />
     </View>
     <View
       style={

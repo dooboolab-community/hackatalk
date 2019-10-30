@@ -1,7 +1,6 @@
-import { FlatList, Image, Keyboard, ListRenderItem, View } from 'react-native';
+import { FlatList, Keyboard, ListRenderItem, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { IC_SMILE } from '../../utils/Icons';
 import styled from 'styled-components/native';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
@@ -48,26 +47,26 @@ const StyledViewBottom = styled.View`
 `;
 
 const StyledViewMenu = styled.View<{ height: number }>`
-  /* background-color: ${({ theme }): string => theme.background}; */
   flex-direction: row;
   flex-wrap: wrap;
   height: ${({ height }): number => height};
 `;
 
 interface Props {
-  chats: any;
+  chats?: any;
   borderColor?: string;
   backgroundColor?: string;
   fontColor?: string;
-  keyboardOffset: number;
+  keyboardOffset?: number;
   renderItem: ListRenderItem<any>;
-  emptyItem: React.ReactElement;
-  renderViewMenu: () => React.ReactElement;
-  message: string;
+  optionView?: React.ReactElement;
+  emptyItem?: React.ReactElement;
+  renderViewMenu?: () => React.ReactElement;
+  message?: string;
   onChangeMessage?: (text: string) => void;
-  placeholder: string;
-  placeholderTextColor: string;
-  renderSendButton: () => React.ReactElement;
+  placeholder?: string;
+  placeholderTextColor?: string;
+  renderSendButton?: () => React.ReactElement;
 }
 
 function Shared(props: Props): React.ReactElement {
@@ -85,6 +84,7 @@ function Shared(props: Props): React.ReactElement {
     renderItem,
     emptyItem,
     renderViewMenu,
+    optionView,
     message,
     onChangeMessage,
     placeholder,
@@ -165,13 +165,7 @@ function Shared(props: Props): React.ReactElement {
               testID="touch_menu"
               onPress={(): void => setShowMenu(true)}
             >
-              <Image
-                style={{
-                  width: 20,
-                  height: 20,
-                }}
-                source={IC_SMILE}
-              />
+              {optionView}
             </StyledTouchMenu>
             <View
               style={{
@@ -209,13 +203,7 @@ function Shared(props: Props): React.ReactElement {
               testID="touch_menu"
               onPress={(): void => setShowMenu(false)}
             >
-              <Image
-                style={{
-                  width: 20,
-                  height: 20,
-                }}
-                source={IC_SMILE}
-              />
+              {optionView}
             </StyledTouchMenu>
             <View
               style={{
@@ -233,7 +221,7 @@ function Shared(props: Props): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
-            {renderViewMenu()}
+            {renderViewMenu ? renderViewMenu() : null}
           </StyledViewMenu>
         </StyledViewBottom>
       ) : null}
@@ -241,10 +229,19 @@ function Shared(props: Props): React.ReactElement {
   );
 }
 
+/* eslint-disable */
 Shared.defaultProps = {
+  chats: [],
+  keyboardOffset: 0,
+  optionView: <View />,
+  emptyItem: <View />,
   renderItem: (): React.ReactElement => <View />,
   renderViewMenu: (): React.ReactElement => <View />,
+  message: '',
+  onChangeMessage: (): void => {},
+  placeholder: '',
   renderSendButton: (): React.ReactElement => <View />,
 };
+/* eslint-enable */
 
 export default Shared;
