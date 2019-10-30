@@ -138,6 +138,9 @@ function Shared(props: Props): React.ReactElement {
           data={chats}
           renderItem={renderItem}
           ListEmptyComponent={emptyItem}
+          ListFooterComponent={
+            <View style={{ height: showMenu ? keyboardHeight + 60 : 60 }} />
+          }
         />
         {!showMenu ? (
           <StyledViewChat
