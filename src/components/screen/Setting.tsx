@@ -1,6 +1,9 @@
+
+import styled, {
+  withTheme,
+} from 'styled-components/native';
 import { DefaultNavigationProps } from '../../types';
 import React from 'react';
-import styled from 'styled-components/native';
 
 const Container = styled.View`
   flex: 1;
@@ -19,7 +22,7 @@ interface Props {
   navigation?: DefaultNavigationProps<'Setting'>;
 }
 
-function Page(props: Props): React.ReactElement {
+function SettingScreen(props: Props): React.ReactElement {
   return (
     <Container>
       <StyledText testID="myText">dooboolab</StyledText>
@@ -27,4 +30,4 @@ function Page(props: Props): React.ReactElement {
   );
 }
 
-export default Page;
+export default withTheme(SettingScreen);

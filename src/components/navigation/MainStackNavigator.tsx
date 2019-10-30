@@ -4,20 +4,26 @@ import {
   useProfileContext,
 } from '../../providers/ProfileModalProvider';
 import React, { useRef } from 'react';
+import { TouchableOpacity, View } from 'react-native';
 
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
 import { FriendProvider } from '../../providers/FriendProvider';
+import { Ionicons } from '@expo/vector-icons';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import SearchUser from '../screen/SearchUser';
 import StatusBar from '../shared/StatusBar';
-import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { getString } from '../../../STRINGS';
 import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();
+
+interface SettingButtonProps {
+  navigation: DefaultNavigationProps;
+}
 
 function MainStackNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
@@ -40,7 +46,34 @@ function MainStackNavigator(): React.ReactElement {
         component={MainTabNavigator}
         options={MainTabNavigationOptions}
       />
-      <Stack.Screen name="ProfileUpdate" component={ProfileUpdate} />
+      <Stack.Screen name="ProfileUpdate" component={ProfileUpdate}
+        options={(): object => {
+          const settingButton = (props: SettingButtonProps): React.ReactElement => (
+            <TouchableOpacity
+              style={{
+                height: '100%',
+                minWidth: 20,
+                justifyContent: 'center',
+                marginRight: 15,
+              }}
+              onPress={(): void => props.navigation.navigate('Setting')}
+            >
+              <Ionicons name="md-settings" size={32} color={theme.fontColor} />
+            </TouchableOpacity>
+          );
+          return {
+            title: getString('MY_PROFILE'),
+            headerStyle: {
+              backgroundColor: theme.background,
+              borderBottomColor: theme.primaryLight,
+            },
+            headerTitleStyle: {
+              color: theme.fontColor,
+            },
+            headerTintColor: theme.fontColor,
+            headerRight: settingButton,
+          };
+        }} />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
