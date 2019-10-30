@@ -32,8 +32,8 @@ export interface Chat {
   id: string;
   sender: User;
   messageType?: MessageType;
-  message: string;
-  photo: string;
+  message?: string;
+  photo?: string;
   created?: Date;
   updated?: Date;
 }
