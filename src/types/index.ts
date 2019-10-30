@@ -13,6 +13,11 @@ export interface User {
   updated?: Date;
 }
 
+export interface Friend extends User {
+  isFriend?: boolean;
+  friendSince: Date;
+}
+
 export interface AuthUser extends User {
   friends?: [];
   chatrooms?: [];
@@ -28,6 +33,7 @@ export interface Chat {
   sender: User;
   messageType?: MessageType;
   message: string;
+  photo: string;
   created?: Date;
   updated?: Date;
 }
