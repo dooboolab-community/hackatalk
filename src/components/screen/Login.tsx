@@ -156,6 +156,8 @@ function Screen(props: Props): React.ReactElement {
           }),
         });
         // console.log(response);
+        Alert.alert('login:' + JSON.stringify(response.accessToken));
+        onLogin();
       } catch ({ message }) {
         // console.log('err', message);
       } finally {
@@ -168,9 +170,12 @@ function Screen(props: Props): React.ReactElement {
       const { type, user } = await GoogleSignIn.signInAsync();
       if (type === 'success') {
         setGoogleUser(user);
+        Alert.alert('login:' + JSON.stringify(user));
+        onLogin();
       }
-    } catch ({ message }) {
-      Alert.alert('login: Error:' + message);
+    } catch (error) {
+      // Alert.alert('login: Error:' + message);
+      Alert.alert(error);
     } finally {
       setSigningInGoogle(false);
     }
