@@ -22,7 +22,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
     ]
   }
 >
-  <RCTScrollView
+  <ScrollView
     ListEmptyComponent={<View />}
     ListFooterComponent={
       <View
@@ -99,38 +99,36 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
     viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View />
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View />
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View />
-      </View>
-      <View
-        onLayout={[Function]}
-      >
-        <View
-          style={
-            Object {
-              "height": 60,
-            }
-          }
-        />
-      </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View />
     </View>
-  </RCTScrollView>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View />
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View />
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "height": 60,
+          }
+        }
+      />
+    </View>
+  </ScrollView>
   <View
     style={
       Array [
@@ -182,29 +180,24 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       underlineColorAndroid="transparent"
       value=""
     />
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
       style={
-        Object {
-          "height": "100%",
-          "justifyContent": "center",
-          "left": 10,
-          "minWidth": 20,
-          "opacity": 1,
-          "position": "absolute",
-        }
+        Array [
+          Object {
+            "height": "100%",
+            "justifyContent": "center",
+            "left": 10,
+            "minWidth": 20,
+            "position": "absolute",
+          },
+        ]
       }
       testID="touch_menu"
     >
       <View />
-    </View>
+    </TouchableOpacity>
     <View
       style={
         Object {

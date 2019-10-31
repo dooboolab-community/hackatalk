@@ -541,17 +541,17 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             </Text>
           </View>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
         <View
-          onLayout={[Function]}
-        >
-          <View
-            style={
-              Object {
-                "height": 60,
-              }
+          style={
+            Object {
+              "height": 60,
             }
-          />
-        </View>
+          }
+        />
       </View>
     </ScrollView>
     <View

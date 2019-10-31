@@ -1,7 +1,11 @@
 import 'react-native';
 
 import React, { ReactElement } from 'react';
-import { RenderResult, fireEvent, render } from '../../../../test/test-utils';
+import {
+  RenderResult,
+  fireEvent,
+  render,
+} from '../../../../test/test-utils';
 
 import Chat from '../Chat';
 import { ThemeProvider } from 'styled-components/native';
@@ -17,7 +21,11 @@ const props: any = {
   createTheme,
 };
 
-const component: ReactElement = <Chat {...props} />;
+const component: ReactElement = (
+  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+    <Chat {...props} />
+  </ThemeProvider>
+);
 
 describe('[Chat] rendering test', () => {
   it('renders as expected', () => {

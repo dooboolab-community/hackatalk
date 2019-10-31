@@ -42,6 +42,7 @@ interface State {
 
 function Screen(props: Props): React.ReactElement {
   const { theme } = props;
+  console.log(props);
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
