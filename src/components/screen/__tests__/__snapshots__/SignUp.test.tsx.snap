@@ -221,6 +221,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_deps": Array [],
                   "_exclusive": Object {
                     "min": true,
+                    "required": true,
                   },
                   "_mutate": undefined,
                   "_options": Object {
@@ -247,6 +248,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   },
                   "_whitelistError": [Function],
                   "tests": Array [
+                    [Function],
                     [Function],
                   ],
                   "transforms": Array [
@@ -515,6 +517,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       "_deps": Array [],
                       "_exclusive": Object {
                         "min": true,
+                        "required": true,
                       },
                       "_mutate": undefined,
                       "_options": Object {
@@ -541,6 +544,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       },
                       "_whitelistError": [Function],
                       "tests": Array [
+                        [Function],
                         [Function],
                       ],
                       "transforms": Array [
@@ -619,13 +623,14 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           />
         </View>
         <Text
+          isError={false}
           style={
             Array [
               Object {
                 "color": "lightcoral",
                 "fontSize": 12,
                 "fontWeight": "normal",
-                "marginVertical": 2,
+                "marginBottom": 0,
               },
             ]
           }
@@ -837,6 +842,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       "_deps": Array [],
                       "_exclusive": Object {
                         "min": true,
+                        "required": true,
                       },
                       "_mutate": undefined,
                       "_options": Object {
@@ -863,6 +869,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       },
                       "_whitelistError": [Function],
                       "tests": Array [
+                        [Function],
                         [Function],
                       ],
                       "transforms": Array [
@@ -941,13 +948,14 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           />
         </View>
         <Text
+          isError={false}
           style={
             Array [
               Object {
                 "color": "lightcoral",
                 "fontSize": 12,
                 "fontWeight": "normal",
-                "marginVertical": 2,
+                "marginBottom": 0,
               },
             ]
           }
@@ -1159,6 +1167,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       "_deps": Array [],
                       "_exclusive": Object {
                         "min": true,
+                        "required": true,
                       },
                       "_mutate": undefined,
                       "_options": Object {
@@ -1185,6 +1194,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       },
                       "_whitelistError": [Function],
                       "tests": Array [
+                        [Function],
                         [Function],
                       ],
                       "transforms": Array [
@@ -1263,13 +1273,14 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           />
         </View>
         <Text
+          isError={false}
           style={
             Array [
               Object {
                 "color": "lightcoral",
                 "fontSize": 12,
                 "fontWeight": "normal",
-                "marginVertical": 2,
+                "marginBottom": 0,
               },
             ]
           }
@@ -1479,6 +1490,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       "_deps": Array [],
                       "_exclusive": Object {
                         "min": true,
+                        "required": true,
                       },
                       "_mutate": undefined,
                       "_options": Object {
@@ -1505,6 +1517,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       },
                       "_whitelistError": [Function],
                       "tests": Array [
+                        [Function],
                         [Function],
                       ],
                       "transforms": Array [
@@ -1582,13 +1595,14 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           />
         </View>
         <Text
+          isError={false}
           style={
             Array [
               Object {
                 "color": "lightcoral",
                 "fontSize": 12,
                 "fontWeight": "normal",
-                "marginVertical": 2,
+                "marginBottom": 0,
               },
             ]
           }
@@ -1798,6 +1812,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       "_deps": Array [],
                       "_exclusive": Object {
                         "min": true,
+                        "required": true,
                       },
                       "_mutate": undefined,
                       "_options": Object {
@@ -1824,6 +1839,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                       },
                       "_whitelistError": [Function],
                       "tests": Array [
+                        [Function],
                         [Function],
                       ],
                       "transforms": Array [
@@ -1901,13 +1917,14 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           />
         </View>
         <Text
+          isError={false}
           style={
             Array [
               Object {
                 "color": "lightcoral",
                 "fontSize": 12,
                 "fontWeight": "normal",
-                "marginVertical": 2,
+                "marginBottom": 0,
               },
             ]
           }

@@ -18,16 +18,19 @@ import { getString } from '../../../../STRINGS';
 import { withTheme } from 'styled-components/native';
 
 const signUpValidationSchema = Yup.object({
-  email: Yup.string().email().required('email is required'),
+  email: Yup.string()
+    .email(getString('EMAIL_FORMAT_NOT_VALID'))
+    .required(getString('EMAIL_REQUIRED')),
   password1: Yup.string()
-    .min(6, 'password must be at least 6 characters.')
-    .required('password is required'),
+    .min(6, getString('PASSWORD_MIN'))
+    .required(getString('PASSWORD_REQUIRED')),
   password2: Yup.string()
-    .min(6, 'password must be at least 6 characters.')
-    .oneOf([Yup.ref('password1'), null], 'passwords must match'),
+    .min(6, getString('PASSWORD_MIN'))
+    .oneOf([Yup.ref('password1'), null], getString('PASSWORD_MUST_MATCH'))
+    .required(getString('PASSWORD_REQUIRED')),
   name: Yup.string()
-    .min(3, 'name should be at least 3 characters.')
-    .required('name is required'),
+    .min(3, getString('NAME_MIN'))
+    .required(getString('NAME_REQUIRED')),
   status: Yup.string(),
 });
 

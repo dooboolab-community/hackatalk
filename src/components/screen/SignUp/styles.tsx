@@ -73,11 +73,11 @@ export const StyledText = styled.Text`
   margin-top: 8px;
 `;
 
-const ErrorText = styled.Text`
+const ErrorText = styled.Text<{ isError: boolean }>`
   color: lightcoral;
   font-size: 12px;
   font-weight: normal;
-  margin-vertical: 2px;
+  margin-bottom: ${({ isError }): number => isError ? 8 : 0}px;
 `;
 
 const FormikForm = withNextInputAutoFocusForm(View);
@@ -102,9 +102,9 @@ const CustomizedInput = ({ error, value, placeholder, onBlur: propBlur, ...rest 
             }
           }, [propBlur])}
         />
-        {(!!value && !!value.length && !error) && <StyledStatusMark />}
+        {(!!value && !error && !isFocused) && <StyledStatusMark />}
       </StyledTextInputContainer>
-      <ErrorText>{error}</ErrorText>
+      <ErrorText isError={!!error}>{error}</ErrorText>
     </>
   );
 };

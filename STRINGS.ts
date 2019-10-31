@@ -34,6 +34,13 @@ const en = {
   SIGN_IN_WITH_GOOGLE: 'Sign in with Google',
   SIGN_IN_WITH_FACEBOOK: 'Sign in with Facebook',
   STATUS: 'Status',
+  EMAIL_FORMAT_NOT_VALID: 'Email format is not valid.',
+  EMAIL_REQUIRED: 'Email is required.',
+  PASSWORD_REQUIRED: 'Password is required.',
+  PASSWORD_MIN: 'Password must be at least 6 characters.',
+  NAME_REQUIRED: 'Name is required.',
+  NAME_MIN: 'Name must be at least 3 characters.',
+  PASSWORD_MUST_MATCH: 'Passwords must match.',
 };
 
 const ko = {
@@ -68,6 +75,13 @@ const ko = {
   SIGN_IN_WITH_GOOGLE: '구글 계정으로 시작하기',
   SIGN_IN_WITH_FACEBOOK: '페이스북 계정으로 시작하기',
   STATUS: '상태 메세지',
+  EMAIL_FORMAT_NOT_VALID: '이메일 형식이 올바르지 않습니다.',
+  EMAIL_REQUIRED: '이메일 주소는 필수 항목입니다.',
+  PASSWORD_REQUIRED: '비밀번호는 필수 항목입니다.',
+  PASSWORD_MIN: '비밀번호는 6자리 이상이어야 합니다.',
+  NAME_REQUIRED: '이름은 필수 항목입니다.',
+  NAME_MIN: '이름은 3글자 이상이어야 합니다.',
+  PASSWORD_MUST_MATCH: '비밀번호가 일치하지 않습니다.',
 };
 
 i18n.fallbacks = true;
