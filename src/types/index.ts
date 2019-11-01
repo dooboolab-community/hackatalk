@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle } from 'react-native';
+import { ImageSourcePropType, StyleProp, TextStyle } from 'react-native';
 
 import { SFC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -84,6 +84,12 @@ interface IconProps {
 }
 
 export type IconType = SFC<IconProps>;
+
+export interface SettingsOption {
+  label: string;
+  icon?: ImageSourcePropType;
+  onPress(): void;
+}
 
 export enum ThemeType {
   LIGHT = 'LIGHT',
