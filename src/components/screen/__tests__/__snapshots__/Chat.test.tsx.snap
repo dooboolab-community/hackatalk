@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[Chat] rendering test renders as expected 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<SafeAreaView
   style={
     Array [
       Object {
@@ -37,7 +36,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
       ]
     }
   >
-    <RCTScrollView
+    <ScrollView
       ListEmptyComponent={
         <Shared
           style={
@@ -139,180 +138,84 @@ exports[`[Chat] rendering test renders as expected 1`] = `
       viewabilityConfigCallbackPairs={Array []}
       windowSize={21}
     >
-      <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
         <View
-          onLayout={[Function]}
-          style={null}
+          isSame={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 20,
+                "minHeight": 48,
+              },
+            ]
+          }
         >
           <View
-            isSame={false}
             style={
-              Array [
-                Object {
-                  "alignItems": "flex-start",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "marginLeft": 20,
-                  "marginRight": 8,
-                  "marginTop": 20,
-                  "minHeight": 48,
-                },
-              ]
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
             }
           >
-            <View
-              style={
-                Object {
-                  "marginRight": 8,
-                  "width": 40,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.2}
+              testID="peer_image"
             >
               <View
-                accessible={true}
-                isTVSelectable={true}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "opacity": 1,
+                    "width": 40,
                   }
                 }
-                testID="peer_image"
               >
-                <View
-                  style={
-                    Object {
-                      "width": 40,
-                    }
-                  }
-                >
-                  <Text />
-                </View>
+                <Text />
               </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "column",
-                  "maxWidth": "90%",
-                }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 12,
-                      "marginBottom": 2,
-                    },
-                  ]
-                }
-              >
-                sender111
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderColor": "rgb(221,226,236)",
-                      "borderRadius": 3,
-                      "borderWidth": 1,
-                      "marginRight": 8,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                      "paddingTop": 12,
-                      "width": "100%",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 14,
-                      },
-                    ]
-                  }
-                >
-                  hello1
-                </Text>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 12,
-                      "marginRight": 20,
-                      "marginTop": 4,
-                    },
-                  ]
-                }
-              >
-                0 : 0
-              </Text>
-            </View>
+            </TouchableOpacity>
           </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
           <View
             style={
-              Array [
-                Object {
-                  "alignItems": "flex-end",
-                  "flexDirection": "column",
-                  "justifyContent": "flex-end",
-                  "marginTop": 20,
-                  "minHeight": 48,
-                  "width": "100%",
-                },
-              ]
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              proxiedProperties={
-                Object {
-                  "colors": Array [
-                    4282027007,
-                    4284794879,
-                  ],
-                  "endPoint": Array [
-                    1,
-                    0.6,
-                  ],
-                  "locations": Array [
-                    0,
-                    1,
-                  ],
-                  "startPoint": Array [
-                    0.7,
-                    0.4,
-                  ],
-                }
-              }
+            <Text
               style={
                 Array [
                   Object {
+                    "color": "black",
+                    "fontSize": 12,
+                    "marginBottom": 2,
+                  },
+                ]
+              }
+            >
+              sender111
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "rgb(221,226,236)",
                     "borderRadius": 3,
-                    "marginLeft": 28,
-                    "marginRight": 20,
+                    "borderWidth": 1,
+                    "marginRight": 8,
                     "paddingBottom": 12,
                     "paddingLeft": 12,
                     "paddingRight": 12,
                     "paddingTop": 12,
+                    "width": "100%",
                   },
                 ]
               }
@@ -321,20 +224,20 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "white",
+                      "color": "black",
                       "fontSize": 14,
                     },
                   ]
                 }
               >
-                Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
+                hello1
               </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
             <Text
               style={
                 Array [
                   Object {
-                    "color": "#50e3c2",
+                    "color": "black",
                     "fontSize": 12,
                     "marginRight": 20,
                     "marginTop": 4,
@@ -346,253 +249,311 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             </Text>
           </View>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
         <View
-          onLayout={[Function]}
-          style={null}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+                "marginTop": 20,
+                "minHeight": 48,
+                "width": "100%",
+              },
+            ]
+          }
         >
-          <View
-            isSame={false}
+          <ViewManagerAdapter_ExpoLinearGradient
+            proxiedProperties={
+              Object {
+                "colors": Array [
+                  4282027007,
+                  4284794879,
+                ],
+                "endPoint": Array [
+                  1,
+                  0.6,
+                ],
+                "locations": Array [
+                  0,
+                  1,
+                ],
+                "startPoint": Array [
+                  0.7,
+                  0.4,
+                ],
+              }
+            }
             style={
               Array [
                 Object {
-                  "alignItems": "flex-start",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "marginLeft": 20,
-                  "marginRight": 8,
-                  "marginTop": 20,
-                  "minHeight": 48,
+                  "borderRadius": 3,
+                  "marginLeft": 28,
+                  "marginRight": 20,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "marginRight": 8,
-                  "width": 40,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                isTVSelectable={true}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
+                Array [
                   Object {
-                    "opacity": 1,
-                  }
-                }
-                testID="peer_image"
-              >
-                <View
-                  style={
-                    Object {
-                      "width": 40,
-                    }
-                  }
-                >
-                  <Text />
-                </View>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "column",
-                  "maxWidth": "90%",
-                }
+                    "color": "white",
+                    "fontSize": 14,
+                  },
+                ]
               }
             >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 12,
-                      "marginBottom": 2,
-                    },
-                  ]
-                }
-              >
-                sender111
-              </Text>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderColor": "rgb(221,226,236)",
-                      "borderRadius": 3,
-                      "borderWidth": 1,
-                      "marginRight": 8,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                      "paddingTop": 12,
-                      "width": "100%",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 14,
-                      },
-                    ]
-                  }
-                >
-                  hello
-                </Text>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 12,
-                      "marginRight": 20,
-                      "marginTop": 4,
-                    },
-                  ]
-                }
-              >
-                0 : 0
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-          style={null}
-        >
-          <View
-            isSame={true}
+              Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <Text
             style={
               Array [
                 Object {
-                  "alignItems": "flex-start",
-                  "flexDirection": "row",
-                  "justifyContent": "flex-start",
-                  "marginLeft": 20,
-                  "marginRight": 8,
-                  "marginTop": 8,
-                  "minHeight": 48,
+                  "color": "#50e3c2",
+                  "fontSize": 12,
+                  "marginRight": 20,
+                  "marginTop": 4,
                 },
               ]
             }
           >
-            <View
-              style={
-                Object {
-                  "marginRight": 8,
-                  "width": 40,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                isTVSelectable={true}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
-                testID="peer_image"
-              >
-                <View
-                  style={
-                    Object {
-                      "width": 40,
-                    }
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "column",
-                  "maxWidth": "90%",
-                }
-              }
-            >
-              <View />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderColor": "rgb(221,226,236)",
-                      "borderRadius": 3,
-                      "borderWidth": 1,
-                      "marginRight": 8,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                      "paddingTop": 12,
-                      "width": "100%",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "black",
-                        "fontSize": 14,
-                      },
-                    ]
-                  }
-                >
-                  hello2
-                </Text>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 12,
-                      "marginRight": 20,
-                      "marginTop": 4,
-                    },
-                  ]
-                }
-              >
-                0 : 0
-              </Text>
-            </View>
-          </View>
+            0 : 0
+          </Text>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
         <View
-          onLayout={[Function]}
+          isSame={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 20,
+                "minHeight": 48,
+              },
+            ]
+          }
         >
           <View
             style={
               Object {
-                "height": 60,
+                "marginRight": 8,
+                "width": 40,
               }
             }
-          />
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              testID="peer_image"
+            >
+              <View
+                style={
+                  Object {
+                    "width": 40,
+                  }
+                }
+              >
+                <Text />
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 12,
+                    "marginBottom": 2,
+                  },
+                ]
+              }
+            >
+              sender111
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "rgb(221,226,236)",
+                    "borderRadius": 3,
+                    "borderWidth": 1,
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              >
+                hello
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
         </View>
       </View>
-    </RCTScrollView>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          isSame={true}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 8,
+                "minHeight": 48,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              testID="peer_image"
+            >
+              <View
+                style={
+                  Object {
+                    "width": 40,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <View />
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "rgb(221,226,236)",
+                    "borderRadius": 3,
+                    "borderWidth": 1,
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              >
+                hello2
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      </View>
+    </ScrollView>
     <View
       style={
         Array [
@@ -645,29 +606,31 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         underlineColorAndroid="transparent"
         value=""
       />
-      <View
-        accessible={true}
-        isTVSelectable={true}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
         style={
-          Object {
-            "height": "100%",
-            "justifyContent": "center",
-            "left": 10,
-            "minWidth": 20,
-            "opacity": 1,
-            "position": "absolute",
-          }
+          Array [
+            Object {
+              "height": "100%",
+              "justifyContent": "center",
+              "left": 10,
+              "minWidth": 20,
+              "position": "absolute",
+            },
+          ]
         }
         testID="touch_menu"
       >
         <Image
-          source={1}
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
           style={
             Object {
               "height": 20,
@@ -675,7 +638,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             }
           }
         />
-      </View>
+      </TouchableOpacity>
       <View
         style={
           Object {
@@ -684,20 +647,9 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           }
         }
       >
-        <View
-          accessible={true}
-          isTVSelectable={true}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={[Function]}
           testID="btn_chat"
         >
           <View
@@ -733,7 +685,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "white",
+                      "color": "rgb(224,224,224)",
                       "fontSize": 14,
                       "fontWeight": "bold",
                     },
@@ -745,9 +697,9 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               </Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   </View>
-</RCTSafeAreaView>
+</SafeAreaView>
 `;

@@ -37,7 +37,7 @@ interface Props extends ThemeProps<DefaultTheme> {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
 
-const StyledScollView = styled.ScrollView``;
+const StyledScrollView = styled.ScrollView``;
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -220,7 +220,7 @@ function Screen(props: Props): React.ReactElement {
 
   return (
     <StyledSafeAreaView>
-      <StyledScollView>
+      <StyledScrollView>
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
@@ -349,7 +349,7 @@ function Screen(props: Props): React.ReactElement {
             />
           </View>
         </StyledContainer>
-      </StyledScollView>
+      </StyledScrollView>
     </StyledSafeAreaView>
   );
 }

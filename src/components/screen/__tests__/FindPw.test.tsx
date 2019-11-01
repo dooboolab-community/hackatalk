@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '@testing-library/react-native';
+import { RenderResult, render } from '../../../../test/test-utils';
 
 import FindPw from '../FindPw';
 import renderer from 'react-test-renderer';

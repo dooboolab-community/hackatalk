@@ -16,20 +16,9 @@ exports[`[Temp] render renders without crashing 1`] = `
     ]
   }
 >
-  <View
-    accessible={true}
-    isTVSelectable={true}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.5}
+    onPress={[Function]}
     testID="btn"
   >
     <View
@@ -65,7 +54,7 @@ exports[`[Temp] render renders without crashing 1`] = `
           style={
             Array [
               Object {
-                "color": "white",
+                "color": "rgb(224,224,224)",
                 "fontSize": 14,
                 "fontWeight": "bold",
               },
@@ -77,6 +66,6 @@ exports[`[Temp] render renders without crashing 1`] = `
         </Text>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

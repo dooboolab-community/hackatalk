@@ -1,5 +1,4 @@
 {
-  "javascript.validate.enable": false,
   "eslint.enable": true,
   "eslint.validate": [
     "javascript",
@@ -8,7 +7,7 @@
     "typescriptreact"
   ],
   // prettier extension setting
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

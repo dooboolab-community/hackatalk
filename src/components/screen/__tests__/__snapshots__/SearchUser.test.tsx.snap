@@ -1,30 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[SearchUser] rendering test renders as expected 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<View
+  collapsable={true}
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <View
+  <SafeAreaView
     style={
       Array [
         Object {
-          "alignItems": "center",
-          "backgroundColor": "transparent",
+          "backgroundColor": "#ffffff",
           "flexBasis": 0,
-          "flexDirection": "column",
           "flexGrow": 1,
           "flexShrink": 1,
-          "justifyContent": "center",
         },
       ]
     }
@@ -33,10 +26,13 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
       style={
         Array [
           Object {
-            "height": 50,
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
-            "overflow": "hidden",
-            "width": "100%",
           },
         ]
       }
@@ -46,198 +42,203 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           Array [
             Object {
               "height": 50,
-              "paddingHorizontal": 20,
-              "position": "absolute",
+              "justifyContent": "center",
+              "overflow": "hidden",
               "width": "100%",
             },
           ]
         }
       >
-        <TextInput
-          allowFontScaling={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-          defaultValue=""
-          multiline={false}
-          onChangeText={[Function]}
-          rejectResponderTermination={true}
+        <View
           style={
             Array [
               Object {
-                "backgroundColor": "rgb(247,248,251)",
-                "borderRadius": 4,
-                "color": "black",
-                "height": 30,
-                "paddingLeft": 34,
-                "paddingRight": 10,
-                "top": 10,
+                "height": 50,
+                "paddingHorizontal": 20,
+                "position": "absolute",
                 "width": "100%",
               },
             ]
           }
-          testID="txtInput"
-          underlineColorAndroid="transparent"
-        />
-        <Image
-          source={1}
-          style={
-            Array [
-              Object {
-                "height": 16,
-                "left": 30,
-                "position": "absolute",
-                "top": 18,
-                "width": 16,
-              },
-            ]
-          }
-        />
-      </View>
-    </View>
-    <RCTScrollView
-      ListEmptyComponent={
-        <Shared
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "flex": 1,
-              "justifyContent": "center",
-              "width": "100%",
-            }
-          }
         >
-          No content
-        </Shared>
-      }
-      contentContainerStyle={[Function]}
-      data={
-        Array [
-          Object {
-            "displayName": "admin",
-            "online": true,
-            "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "statusMsg": "online",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "uid": "1",
-          },
-          Object {
-            "displayName": "geoseong",
-            "online": false,
-            "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            "statusMsg": "offline",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            "uid": "2",
-          },
-          Object {
-            "displayName": "hyochan",
-            "online": false,
-            "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-            "statusMsg": "offline",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-            "uid": "3",
-          },
-          Object {
-            "displayName": "mars",
-            "online": true,
-            "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-            "statusMsg": "offline",
-            "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-            "uid": "4",
-          },
-          Object {
-            "displayName": "gordon",
-            "online": true,
-            "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-            "statusMsg": "offline",
-            "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-            "uid": "5",
-          },
-          Object {
-            "displayName": "admin2",
-            "online": true,
-            "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-            "statusMsg": "online",
-            "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-            "uid": "6",
-          },
-          Object {
-            "displayName": "geoseong2",
-            "online": false,
-            "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-            "statusMsg": "offline",
-            "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-            "uid": "7",
-          },
-          Object {
-            "displayName": "hyochan2",
-            "online": false,
-            "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-            "statusMsg": "offline",
-            "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-            "uid": "8",
-          },
-          Object {
-            "displayName": "mars2",
-            "online": true,
-            "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-            "statusMsg": "offline",
-            "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-            "uid": "9",
-          },
-          Object {
-            "displayName": "gordon2",
-            "online": true,
-            "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-            "statusMsg": "offline",
-            "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-            "uid": "10",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      removeClippedSubviews={false}
-      renderItem={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "height": "100%",
-          "transform": Array [
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            defaultValue=""
+            multiline={false}
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgb(247,248,251)",
+                  "borderRadius": 4,
+                  "color": "black",
+                  "height": 30,
+                  "paddingLeft": 34,
+                  "paddingRight": 10,
+                  "top": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="txtInput"
+            underlineColorAndroid="transparent"
+          />
+          <Image
+            source={
+              Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 16,
+                  "left": 30,
+                  "position": "absolute",
+                  "top": 18,
+                  "width": 16,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <ScrollView
+        ListEmptyComponent={
+          <Shared
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            No content
+          </Shared>
+        }
+        data={
+          Array [
             Object {
-              "translateY": 0,
+              "displayName": "admin",
+              "online": true,
+              "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+              "statusMsg": "online",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+              "uid": "1",
             },
-          ],
-          "width": "100%",
+            Object {
+              "displayName": "geoseong",
+              "online": false,
+              "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+              "statusMsg": "offline",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+              "uid": "2",
+            },
+            Object {
+              "displayName": "hyochan",
+              "online": false,
+              "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+              "statusMsg": "offline",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+              "uid": "3",
+            },
+            Object {
+              "displayName": "mars",
+              "online": true,
+              "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+              "statusMsg": "offline",
+              "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+              "uid": "4",
+            },
+            Object {
+              "displayName": "gordon",
+              "online": true,
+              "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+              "statusMsg": "offline",
+              "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+              "uid": "5",
+            },
+            Object {
+              "displayName": "admin2",
+              "online": true,
+              "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
+              "statusMsg": "online",
+              "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
+              "uid": "6",
+            },
+            Object {
+              "displayName": "geoseong2",
+              "online": false,
+              "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+              "statusMsg": "offline",
+              "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+              "uid": "7",
+            },
+            Object {
+              "displayName": "hyochan2",
+              "online": false,
+              "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+              "statusMsg": "offline",
+              "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+              "uid": "8",
+            },
+            Object {
+              "displayName": "mars2",
+              "online": true,
+              "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+              "statusMsg": "offline",
+              "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+              "uid": "9",
+            },
+            Object {
+              "displayName": "gordon2",
+              "online": true,
+              "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+              "statusMsg": "offline",
+              "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+              "uid": "10",
+            },
+          ]
         }
-      }
-      testID="animatedFlatlist"
-      testObj={
-        Object {
-          "scrollY": 0,
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        numColumns={1}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": "100%",
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+            "width": "100%",
+          }
         }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View>
+        testID="animatedFlatlist"
+        testObj={
+          Object {
+            "scrollY": 0,
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -249,20 +250,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -335,11 +324,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   online
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -351,20 +339,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -437,11 +413,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -453,20 +428,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -539,11 +502,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -555,20 +517,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -641,11 +591,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -657,20 +606,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -743,11 +680,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -759,20 +695,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -845,11 +769,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   online
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -861,20 +784,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -947,11 +858,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -963,20 +873,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -1049,11 +947,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -1065,20 +962,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -1151,11 +1036,10 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View
-          onLayout={[Function]}
           style={null}
         >
           <View
@@ -1167,20 +1051,8 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <View
-              accessible={true}
-              isTVSelectable={true}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.5}
               testID="PRESS_ID"
             >
               <View
@@ -1253,11 +1125,11 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                   offline
                 </Text>
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
-      </View>
-    </RCTScrollView>
-  </View>
-</RCTSafeAreaView>
+      </ScrollView>
+    </View>
+  </SafeAreaView>
+</View>
 `;

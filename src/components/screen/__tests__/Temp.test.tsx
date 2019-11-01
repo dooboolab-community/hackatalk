@@ -7,7 +7,7 @@ import {
   act,
   fireEvent,
   render,
-} from '@testing-library/react-native';
+} from '../../../../test/test-utils';
 
 import Temp from '../Temp';
 import { ThemeProvider } from 'styled-components/native';
@@ -15,7 +15,7 @@ import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
-const props = {
+const props: any = {
   navigation: {
     goBack: jest.fn(),
   },

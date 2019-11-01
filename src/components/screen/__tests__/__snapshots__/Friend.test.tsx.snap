@@ -16,7 +16,7 @@ exports[`[Friend] rendering test renders as expected 1`] = `
     ]
   }
 >
-  <RCTScrollView
+  <ScrollView
     ListEmptyComponent={
       <Shared
         style={
@@ -73,107 +73,94 @@ exports[`[Friend] rendering test renders as expected 1`] = `
     viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
-    <View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
       <View
-        onLayout={[Function]}
-        style={null}
+        style={
+          Array [
+            Object {
+              "width": "100%",
+            },
+          ]
+        }
       >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={[Function]}
+          testID="PRESS_ID"
         >
           <View
-            accessible={true}
-            isTVSelectable={true}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
-              Object {
-                "opacity": 1,
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(221,226,236)",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 0,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 0,
+                },
+              ]
             }
-            testID="PRESS_ID"
           >
             <View
               style={
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 40,
+                }
+              }
+            >
+              <Text />
+            </View>
+            <Text
+              style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
+                    "color": "black",
+                    "fontSize": 14,
+                    "marginLeft": 12,
+                    "width": 100,
                   },
                 ]
               }
             >
-              <View
-                style={
+              hello
+            </Text>
+            <Text
+              style={
+                Array [
                   Object {
-                    "alignItems": "center",
-                    "height": 40,
-                    "justifyContent": "center",
-                    "width": 40,
-                  }
-                }
-              >
-                <Text />
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "black",
-                      "fontSize": 14,
-                      "marginLeft": 12,
-                      "width": 100,
-                    },
-                  ]
-                }
-              >
-                hello
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "rgb(221,226,236)",
-                      "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
-                      "fontSize": 12,
-                      "maxWidth": 134.2,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                I am fine today
-              </Text>
-            </View>
+                    "borderColor": "rgb(221,226,236)",
+                    "borderWidth": 0.3,
+                    "color": "rgb(65,77,107)",
+                    "fontSize": 12,
+                    "maxWidth": 134.2,
+                    "paddingBottom": 4,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 4,
+                    "position": "absolute",
+                    "right": 20,
+                  },
+                ]
+              }
+            >
+              I am fine today
+            </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
-  </RCTScrollView>
+  </ScrollView>
 </View>
 `;

@@ -1,20 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[Button] renders without crashing 1`] = `
-<View
-  accessible={true}
-  isTVSelectable={true}
-  onResponderGrant={[Function]}
-  onResponderMove={[Function]}
-  onResponderRelease={[Function]}
-  onResponderTerminate={[Function]}
-  onResponderTerminationRequest={[Function]}
-  onStartShouldSetResponder={[Function]}
-  style={
-    Object {
-      "opacity": 1,
-    }
-  }
+<TouchableOpacity
+  activeOpacity={0.5}
+  onPress={[Function]}
   testID="btn"
 >
   <View
@@ -50,7 +39,7 @@ exports[`[Button] renders without crashing 1`] = `
         style={
           Array [
             Object {
-              "color": "white",
+              "color": "rgb(224,224,224)",
               "fontSize": 14,
               "fontWeight": "bold",
             },
@@ -60,5 +49,5 @@ exports[`[Button] renders without crashing 1`] = `
       />
     </View>
   </View>
-</View>
+</TouchableOpacity>
 `;
