@@ -1,17 +1,13 @@
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { Chatroom, DefaultNavigationProps } from '../../types';
 import React, { useState } from 'react';
 
-import { Chatroom } from '../../types';
 import ChatroomListItem from '../shared/ChatroomListItem';
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
 import { ScreenProps } from '../../components/navigation/SwitchNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/core';
 
 const StyledContainer = styled.View`
   flex: 1;
@@ -22,7 +18,7 @@ const StyledContainer = styled.View`
 `;
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps<'Chat'>;
   screenProps: ScreenProps;
 }
 
@@ -71,11 +67,14 @@ const initRooms: Chatroom[] = [
   },
 ];
 
-function Screen(props: Props): React.ReactElement {
+function Screen(): React.ReactElement {
   const [rooms, setRooms] = useState(initRooms);
+  const navigation = useNavigation();
+
   const onItemClick = (itemId: string): void => {
-    props.navigation.navigate('Chat', { chatId: itemId });
+    navigation.navigate('Chat', { chatId: itemId });
   };
+
   const renderItem = (item: Chatroom, index: number): React.ReactElement => {
     return (
       <ChatroomListItem

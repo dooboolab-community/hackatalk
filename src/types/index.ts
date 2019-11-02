@@ -79,6 +79,9 @@ type StackParamList = {
   Login: undefined;
   SignUp: undefined;
   FindPw: undefined;
+  Chat: {
+    chatId: string,
+  };
 };
 
 export type DefaultNavigationProps<

@@ -1,3 +1,5 @@
+import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
+
 import Chat from '../screen/Chat';
 import FindPw from '../screen/FindPw';
 import Login from '../screen/Login';
@@ -20,7 +22,7 @@ function MainStackNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
   return (
     <Stack.Navigator
-      initialRouteName="ProfileUpdate"
+      initialRouteName="MainTab"
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.background,
@@ -32,6 +34,7 @@ function MainStackNavigator(): React.ReactElement {
         headerTintColor: theme.fontColor,
       }}
     >
+      <Stack.Screen name="MainTab" component={MainTabNavigator} options={MainTabNavigationOptions}/>
       <Stack.Screen name="ProfileUpdate" component={ProfileUpdate} />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />

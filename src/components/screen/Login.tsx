@@ -22,7 +22,6 @@ import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { ScreenProps } from '../navigation/SwitchNavigator';
-import { StackActions } from '@react-navigation/routers';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
@@ -127,7 +126,7 @@ function Screen(props: Props): React.ReactElement {
       setIsLoggingIn(false);
       clearTimeout(timer);
       if (props.navigation) {
-        props.navigation.reset({
+        props.navigation.resetRoot({
           index: 0,
           routes: [{ name: 'MainStack' }],
         });
