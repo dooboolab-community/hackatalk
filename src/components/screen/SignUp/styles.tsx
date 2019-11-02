@@ -4,11 +4,6 @@ import {
   TextInputFocusEventData,
   View,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import React, { ReactElement, useCallback, useState } from 'react';
 import {
   handleTextInput,
