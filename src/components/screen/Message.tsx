@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ChatroomListItem from '../shared/ChatroomListItem';
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
-import { ScreenProps } from '../../components/navigation/SwitchNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/core';
@@ -19,7 +18,6 @@ const StyledContainer = styled.View`
 
 interface Props {
   navigation: DefaultNavigationProps<'Chat'>;
-  screenProps: ScreenProps;
 }
 
 interface State {

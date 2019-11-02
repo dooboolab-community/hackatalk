@@ -1,4 +1,5 @@
 import Button from '../shared/Button';
+import { DefaultNavigationProps } from '../../types';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -11,13 +12,13 @@ const Container = styled.View`
 `;
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps<'Temp'>;
 }
 
 function Page(props: Props): React.ReactElement {
   return (
     <Container>
-      <Button testID="btn" onPress={(): boolean => props.navigation.goBack()}>
+      <Button testID="btn" onPress={(): void => props.navigation.goBack()}>
         Go Back
       </Button>
     </Container>

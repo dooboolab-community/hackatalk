@@ -1,3 +1,4 @@
+import { DefaultNavigationProps } from '../../types';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -15,7 +16,7 @@ const StyledText = styled.Text`
 `;
 
 interface Props {
-  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation?: DefaultNavigationProps<'FindPw'>;
 }
 
 function Page(): React.ReactElement {

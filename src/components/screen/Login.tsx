@@ -21,7 +21,6 @@ import Constants from 'expo-constants';
 import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
-import { ScreenProps } from '../navigation/SwitchNavigator';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
@@ -29,7 +28,6 @@ import { getString } from '../../../STRINGS';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 interface Props extends ThemeProps<DefaultTheme> {
-  screenProps: ScreenProps;
   navigation: DefaultNavigationProps;
 }
 

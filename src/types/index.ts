@@ -88,6 +88,8 @@ type StackParamList = {
   Chat: {
     chatId: string;
   };
+  Temp: undefined;
+  NotFound: undefined;
 };
 
 export type DefaultNavigationProps<
