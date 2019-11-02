@@ -73,14 +73,14 @@ export interface ScreenProps {
 }
 
 type StackParamList = {
-  HomeStack: {
-    screenProps: ScreenProps;
-  };
-  AuthStack: {
-    screenProps: ScreenProps;
-  };
+  Default: undefined;
+  AuthStack: undefined;
+  MainStack: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  FindPw: undefined;
 };
 
 export type DefaultNavigationProps<
-  T extends keyof StackParamList
+  T extends keyof StackParamList = 'Default'
 > = StackNavigationProp<StackParamList, T>;

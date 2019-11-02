@@ -1,8 +1,3 @@
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import styled, {
@@ -12,9 +7,12 @@ import styled, {
 } from 'styled-components/native';
 
 import Button from '../shared/Button';
+import { CommonActions } from '@react-navigation/core';
+import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.View`
   flex: 1;
@@ -44,7 +42,7 @@ const StyledBtnWrapper = styled.View`
 `;
 
 interface Props extends ThemeProps<DefaultTheme> {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps;
 }
 
 function Screen(props: Props): React.ReactElement {
@@ -68,7 +66,11 @@ function Screen(props: Props): React.ReactElement {
 
   const onLogout = (): void => {
     if (props.navigation) {
-      props.navigation.navigate('AuthStackNavigator');
+      const resetAction = CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'AuthStack' }],
+      });
+      props.navigation.dispatch(resetAction);
     }
   };
 
@@ -90,7 +92,7 @@ function Screen(props: Props): React.ReactElement {
 
   const onPressImg = (): void => {};
 
-  const { theme } = props;
+  const { theme } = useThemeContext();
 
   return (
     <StyledContainer>

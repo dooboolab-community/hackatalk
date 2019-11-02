@@ -12,30 +12,29 @@ import StatusBar from '../shared/StatusBar';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Stack = createStackNavigator();
 
-function MainStackNavigator({
-  screenProps,
-}: {
-  screenProps: ScreenProps;
-}): React.ReactElement {
-  const { theme } = screenProps;
+function MainStackNavigator(): React.ReactElement {
+  const { theme } = useThemeContext();
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="ProfileUpdate"
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.background,
-          borderBottomWidth: 0,
-          elevation: 0,
+          borderBottomColor: theme.primaryLight,
+        },
+        headerTitleStyle: {
+          color: theme.fontColor,
         },
         headerTintColor: theme.fontColor,
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="FindPw" component={FindPw} />
+      <Stack.Screen name="ProfileUpdate" component={ProfileUpdate} />
+      <Stack.Screen name="SearchUser" component={SearchUser} />
+      <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
   );
 }

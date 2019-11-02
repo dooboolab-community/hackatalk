@@ -3,11 +3,7 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, TouchableOpacity, View } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { DefaultNavigationProps, User } from '../../types';
 import React, { useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -26,16 +22,16 @@ import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { ScreenProps } from '../navigation/SwitchNavigator';
+import { StackActions } from '@react-navigation/routers';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
-import { User } from '../../types';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 interface Props extends ThemeProps<DefaultTheme> {
   screenProps: ScreenProps;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps;
 }
 
 const StyledScrollView = styled.ScrollView``;
@@ -130,7 +126,12 @@ function Screen(props: Props): React.ReactElement {
     timer = setTimeout(() => {
       setIsLoggingIn(false);
       clearTimeout(timer);
-      props.navigation.navigate('Main');
+      if (props.navigation) {
+        props.navigation.reset({
+          index: 0,
+          routes: [{ name: 'MainStack' }],
+        });
+      }
     }, 1000);
   };
 
