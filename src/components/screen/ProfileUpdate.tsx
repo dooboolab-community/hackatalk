@@ -66,11 +66,10 @@ function Screen(props: Props): React.ReactElement {
 
   const onLogout = (): void => {
     if (props.navigation) {
-      const resetAction = CommonActions.reset({
+      props.navigation.resetRoot({
         index: 0,
         routes: [{ name: 'AuthStack' }],
       });
-      props.navigation.dispatch(resetAction);
     }
   };
 

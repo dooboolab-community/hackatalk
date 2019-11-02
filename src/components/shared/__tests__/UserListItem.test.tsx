@@ -8,7 +8,8 @@ import {
   cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import { StateProvider } from '../../../contexts';
 import { ThemeProvider } from 'styled-components/native';
@@ -38,26 +39,13 @@ const propsObj = {
   createTheme,
 };
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[UserListItem] rendering test', () => {
   let props;
   let component;
 
   beforeEach(() => {
     props = createTestProps(propsObj);
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <UserListItem {...props} />
-        </ThemeProvider>
-      </StateProvider>
-    );
+    component = createTestElement(<UserListItem {...props} />);
   });
 
   it('renders as expected', () => {
@@ -73,13 +61,7 @@ describe('[UserListItem] interaction', () => {
 
   beforeEach(() => {
     props = createTestProps(propsObj);
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <UserListItem {...props} />
-        </ThemeProvider>
-      </StateProvider>
-    );
+    component = createTestElement(<UserListItem {...props} />);
     testingLib = render(component);
   });
 

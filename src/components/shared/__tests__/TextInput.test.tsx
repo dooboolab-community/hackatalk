@@ -2,32 +2,23 @@ import 'react-native';
 
 import * as React from 'react';
 
+// Note: test renderer must be required after react-native.
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
+
 import TextInput from '../TextInput';
 import { ThemeProvider } from 'styled-components/native';
 import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
-// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[TextInput] render', () => {
   beforeEach(() => {
-    props = createTestProps({});
-    component = (
-      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <TextInput {...props} />
-      </ThemeProvider>
-    );
+    props = createTestProps();
+    component = createTestElement(<TextInput {...props} />);
   });
 
   it('renders without crashing', () => {

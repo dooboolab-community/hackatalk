@@ -4,35 +4,29 @@ import * as React from 'react';
 
 import {
   RenderResult,
+  cleanup,
   fireEvent,
   render,
   toJSON,
   within,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import SignUp from '../SignUp';
 import { getString } from '../../../../STRINGS';
 
 let props: any;
 let component: React.ReactElement;
-let testingLib: RenderResult;
-
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
-beforeEach(() => {
-  props = createTestProps({
-    screenProps: { changeTheme: jest.fn() },
-  });
-  component = <SignUp {...props} />;
-  testingLib = render(component);
-});
 
 describe('[SignUp] screen', () => {
+  let testingLib: RenderResult;
+
+  beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<SignUp {...props} />);
+    testingLib = render(component);
+  });
+
   it('renders without crashing', () => {
     const { container } = testingLib;
     expect(toJSON(container)).toMatchSnapshot();
@@ -90,5 +84,9 @@ describe('[SignUp] screen', () => {
       fireEvent.press(btnInstance);
       expect(formInstance.props.formik.submitCount).toBe(1);
     });
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });

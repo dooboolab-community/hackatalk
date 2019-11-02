@@ -79,8 +79,14 @@ type StackParamList = {
   Login: undefined;
   SignUp: undefined;
   FindPw: undefined;
+  ProfileUpdate: undefined;
+  Setting: undefined;
+  Friend: undefined;
+  Message: undefined;
+  Chatroom: undefined;
+  SearchUser: undefined;
   Chat: {
-    chatId: string,
+    chatId: string;
   };
 };
 

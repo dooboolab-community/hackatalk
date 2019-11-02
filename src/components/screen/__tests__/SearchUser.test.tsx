@@ -1,27 +1,25 @@
 import * as React from 'react';
 
-import { RenderResult, fireEvent, render, toJSON } from '../../../../test/test-utils';
+import {
+  RenderResult,
+  cleanup,
+  fireEvent,
+  render,
+  toJSON,
+} from '@testing-library/react-native';
 import SearchUser, { fakeUsers } from '../SearchUser';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import { Animated } from 'react-native';
 import { User } from '../../../types';
 
 // import UserListItem from '../../shared/UserListItem';
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 const props = createTestProps({
   screenProps: { changeTheme: jest.fn() },
 });
 
-const component: React.ReactElement = (
-  <SearchUser {...props} />
-);
+const component: React.ReactElement = createTestElement(<SearchUser {...props} />);
 
 describe('[SearchUser] rendering test', () => {
   it('renders as expected', () => {

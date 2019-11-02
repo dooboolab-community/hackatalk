@@ -3,31 +3,25 @@ import 'react-native';
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Chat from '../Chat';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-const props: any = {
-  navigation: {
-    navigate: jest.fn(),
-  },
-  createTheme,
-};
-
-const component: ReactElement = (
-  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    <Chat {...props} />
-  </ThemeProvider>
-);
+let props: any;
+let component: ReactElement;
 
 describe('[Chat] rendering test', () => {
+  beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<Chat {...props} />);
+  });
+
   it('renders as expected', () => {
     const json = renderer.create(component).toJSON();
     expect(json).toMatchSnapshot();
@@ -45,5 +39,9 @@ describe('[Chat] interaction', () => {
     let chatBtn = testingLib.getByTestId('btn_chat');
     chatBtn = testingLib.getByTestId('btn_chat');
     fireEvent.press(chatBtn);
+  });
+
+  afterAll(() => {
+    cleanup();
   });
 });

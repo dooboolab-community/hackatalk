@@ -4,38 +4,24 @@ import React, { ReactElement } from 'react';
 import {
   RenderResult,
   act,
+  cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import ProfileUpdate from '../ProfileUpdate';
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 let props: any;
-
-const createTestProps = (props: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...props,
-});
+let component: ReactElement;
 
 describe('rendering test', () => {
-  props = createTestProps({
-    theme: createTheme(),
+  beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<ProfileUpdate {...props} />);
   });
-  const component: React.ReactElement = (
-    <StateProvider>
-      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <ProfileUpdate {...props} />
-      </ThemeProvider>
-    </StateProvider>
-  );
 
   it('renders as expected', () => {
     const json = renderer.create(component).toJSON();
@@ -44,27 +30,19 @@ describe('rendering test', () => {
 });
 
 describe('interaction', () => {
-  let rendered: renderer.ReactTestRenderer;
   let testingLib: RenderResult;
+  let rendered: renderer.ReactTestRenderer;
   let props;
   let component: React.ReactElement;
 
   beforeAll(() => {
     rendered = renderer.create(component);
+    testingLib = render(component);
   });
 
   beforeEach(() => {
-    props = {
-      navigation: {
-        navigate: jest.fn(),
-        goBack: jest.fn(),
-      },
-    };
-    component = (
-      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <ProfileUpdate {...props} />
-      </ThemeProvider>
-    );
+    props = createTestProps();
+    component = createTestElement(<ProfileUpdate {...props} />);
     testingLib = render(component);
   });
 
@@ -72,9 +50,7 @@ describe('interaction', () => {
     act(() => {
       fireEvent.press(testingLib.getByTestId('logout_btn'));
     });
-    expect(props.navigation.navigate).toHaveBeenCalledWith(
-      'AuthStackNavigator',
-    );
+    expect(props.navigation.resetRoot).toHaveBeenCalled();
   });
 
   it('should fireEvent when logout button pressed', () => {
@@ -98,5 +74,9 @@ describe('interaction', () => {
       fireEvent.change(inputStatus, 'name');
     });
     // expect(inputStatus.props.txt).toEqual('name');
+  });
+
+  afterAll(() => {
+    cleanup();
   });
 });

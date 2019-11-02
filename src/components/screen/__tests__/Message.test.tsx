@@ -2,33 +2,32 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '../../../../test/test-utils';
+import { RenderResult, cleanup, render } from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Message from '../Message';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
+jest.mock('@react-navigation/core', () => {
+  return {
+    useNavigation: (): object => {
+      return {
+        navigation: {
+          navigate: jest.fn(),
+        },
+      };
+    },
+  };
 });
 
 describe('[Message] screen', () => {
   beforeEach(() => {
-    props = createTestProps({});
-    component = (
-      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <Message {...props} />
-      </ThemeProvider>
-    );
+    props = createTestProps();
+    component = createTestElement(<Message {...props} />);
     testingLib = render(component);
   });
 
@@ -51,5 +50,9 @@ describe('[Message] screen', () => {
       // });
       // expect(cnt).toBe(3);
     });
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 });

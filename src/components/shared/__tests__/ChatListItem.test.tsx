@@ -4,11 +4,10 @@ import * as React from 'react';
 
 import {
   RenderResult,
-  act,
   cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
 
 import ChatListItem from '../ChatListItem';
 import { ThemeProvider } from 'styled-components/native';

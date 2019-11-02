@@ -2,34 +2,21 @@ import 'react-native';
 
 import * as React from 'react';
 
-import ProfileModal from '../ProfileModal';
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
+
 // Note: test renderer must be required after react-native.
-import { createTheme } from '../../../theme';
+import ProfileModal from '../ProfileModal';
 import renderer from 'react-test-renderer';
 
 let props: object;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[ProfileModal] render', () => {
   beforeEach(() => {
-    props = createTestProps({});
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <ProfileModal {...props} />
-        </ThemeProvider>
-      </StateProvider>
+    props = createTestProps();
+    component = createTestElement(
+      <ProfileModal {...props} />
     );
   });
 

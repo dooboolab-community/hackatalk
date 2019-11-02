@@ -1,41 +1,29 @@
 import 'react-native';
 
-import * as React from 'react';
-
+import React, { ReactElement } from 'react';
 import {
   RenderResult,
   act,
+  cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Button from '../../shared/Button';
 import Login from '../Login';
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-const props = {
-  navigation: {
-    navigate: jest.fn(),
-  },
-  screenProps: {
-    changeTheme: jest.fn(),
-  },
-  createTheme,
-};
-const component: React.ReactElement = (
-  <StateProvider>
-    <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-      <Login {...props} />
-    </ThemeProvider>
-  </StateProvider>
-);
+let props: any;
+let component: ReactElement;
 
 describe('[Login] rendering test', () => {
+  beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<Login {...props} />);
+  });
+
   it('renders as expected', () => {
     const json = renderer.create(component).toJSON();
     expect(json).toMatchSnapshot();
@@ -96,5 +84,9 @@ describe('[Login] interaction', () => {
       fireEvent.press(findPwBtn);
     });
     expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
+  });
+
+  afterAll(() => {
+    cleanup();
   });
 });
