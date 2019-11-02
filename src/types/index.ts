@@ -1,6 +1,8 @@
 import { StyleProp, TextStyle } from 'react-native';
 
-import { FC } from 'react';
+import { DefaultTheme } from 'styled-components';
+import { SFC } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 export interface User {
   uid: string;
@@ -58,9 +60,38 @@ interface IconProps {
   children?: never;
 }
 
-export type IconType = FC<IconProps>;
+export type IconType = SFC<IconProps>;
 
 export enum ThemeType {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
 }
+
+export interface ScreenProps {
+  theme: DefaultTheme;
+  changeThemeType: Function;
+}
+
+type StackParamList = {
+  Default: undefined;
+  AuthStack: undefined;
+  MainStack: undefined;
+  Login: undefined;
+  SignUp: undefined;
+  FindPw: undefined;
+  ProfileUpdate: undefined;
+  Setting: undefined;
+  Friend: undefined;
+  Message: undefined;
+  Chatroom: undefined;
+  SearchUser: undefined;
+  Chat: {
+    chatId: string;
+  };
+  Temp: undefined;
+  NotFound: undefined;
+};
+
+export type DefaultNavigationProps<
+  T extends keyof StackParamList = 'Default'
+> = StackNavigationProp<StackParamList, T>;

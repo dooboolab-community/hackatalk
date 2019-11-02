@@ -2,7 +2,15 @@ import 'react-native';
 
 import * as React from 'react';
 
+import {
+  RenderResult,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
+
 import EmptyListItem from '../EmptyListItem';
+import { createTestProps } from '../../../utils/testUtils';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -10,16 +18,9 @@ let props: object;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[EmptyListItem] render', () => {
   beforeEach(() => {
-    props = createTestProps({});
+    props = createTestProps();
     component = <EmptyListItem {...props} />;
   });
 

@@ -1,9 +1,5 @@
+import { Chat, DefaultNavigationProps } from '../../types';
 import { Image, Platform, TouchableOpacity, View } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import React, { useState } from 'react';
 import styled, {
   DefaultTheme,
@@ -12,7 +8,6 @@ import styled, {
 } from 'styled-components/native';
 
 import Button from '../shared/Button';
-import { Chat } from '../../types';
 import ChatListItem from '../shared/ChatListItem';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
@@ -30,7 +25,7 @@ const StyledContainer = styled.SafeAreaView`
 `;
 
 interface Props extends ThemeProps<DefaultTheme> {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps;
 }
 
 interface State {
@@ -42,7 +37,6 @@ interface State {
 
 function Screen(props: Props): React.ReactElement {
   const { theme } = props;
-  console.log(props);
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');

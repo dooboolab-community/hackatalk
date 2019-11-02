@@ -1,39 +1,25 @@
 import 'react-native';
 
-import * as React from 'react';
-
+import React, { ReactElement } from 'react';
 import {
   RenderResult,
-  act,
   cleanup,
-  fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Friend from '../Friend';
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
-const props = {
-  navigation: {
-    navigate: jest.fn(),
-  },
-  createTheme,
-};
+let props: any;
+let component: ReactElement;
 
 describe('[Friend] rendering test', () => {
-  let component: React.ReactElement;
   beforeEach(() => {
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <Friend />
-        </ThemeProvider>
-      </StateProvider>
-    );
+    beforeEach(() => {
+      props = createTestProps();
+      component = createTestElement(<Friend {...props} />);
+    });
   });
 
   it('renders as expected', () => {
@@ -47,17 +33,12 @@ describe('[Friend] interaction', () => {
   let component: React.ReactElement;
 
   beforeEach(() => {
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <Friend />
-        </ThemeProvider>
-      </StateProvider>
-    );
+    props = createTestProps();
+    component = createTestElement(<Friend {...props} />);
     testingLib = render(component);
   });
 
-  beforeEach(() => {
+  afterEach(() => {
     cleanup();
   });
 

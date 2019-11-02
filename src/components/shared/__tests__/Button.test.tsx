@@ -5,9 +5,11 @@ import * as React from 'react';
 import {
   RenderResult,
   act,
+  cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Button from '../Button';
 import { ThemeProvider } from 'styled-components/native';
@@ -18,9 +20,9 @@ import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
-let testingLib: RenderResult;
 
 describe('[Button]', () => {
+  let testingLib: RenderResult;
   let cnt = 1;
 
   beforeEach(() => {
@@ -28,11 +30,7 @@ describe('[Button]', () => {
       onPress: (): number => cnt++,
       testID: 'btn',
     };
-    component = (
-      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-        <Button {...props} />
-      </ThemeProvider>
-    );
+    component = createTestElement(<Button {...props} />);
   });
 
   it('renders without crashing', () => {

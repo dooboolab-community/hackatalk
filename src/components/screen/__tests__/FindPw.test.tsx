@@ -2,7 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '../../../../test/test-utils';
+import { RenderResult, cleanup, render } from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import FindPw from '../FindPw';
 import renderer from 'react-test-renderer';
@@ -11,17 +12,10 @@ let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[FindPw] screen', () => {
   beforeEach(() => {
-    props = createTestProps({});
-    component = <FindPw {...props} />;
+    props = createTestProps();
+    component = createTestElement(<FindPw {...props} />);
     testingLib = render(component);
   });
 
@@ -48,6 +42,10 @@ describe('[FindPw] screen', () => {
       //   fireEvent.press(btn);
       // });
       // expect(cnt).toBe(3);
+    });
+
+    afterEach(() => {
+      cleanup();
     });
   });
 });

@@ -1,4 +1,4 @@
-import { NavigationScreenProp } from 'react-navigation';
+import { DefaultNavigationProps } from '../../types';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -16,7 +16,7 @@ const StyledText = styled.Text`
 `;
 
 interface Props {
-  navigation?: NavigationScreenProp<any, any>;
+  navigation?: DefaultNavigationProps<'NotFound'>;
 }
 
 function Page(props: Props): React.ReactElement {

@@ -1,13 +1,14 @@
 import 'react-native';
 
-import * as React from 'react';
-
+import React, { ReactElement } from 'react';
 import {
   RenderResult,
   act,
+  cleanup,
   fireEvent,
   render,
-} from '../../../../test/test-utils';
+} from '@testing-library/react-native';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Temp from '../Temp';
 import { ThemeProvider } from 'styled-components/native';
@@ -15,23 +16,26 @@ import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
-const props: any = {
-  navigation: {
-    goBack: jest.fn(),
-  },
-};
-
-const component = (
-  <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    <Temp {...props} />
-  </ThemeProvider>
-);
+let props: any;
+let component: ReactElement;
 
 describe('[Temp] render', () => {
+  let testingLib: RenderResult;
+
+  beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<Temp {...props} />);
+    testingLib = render(component);
+  });
+
   it('renders without crashing', () => {
     const rendered = renderer.create(component).toJSON();
     expect(rendered).toMatchSnapshot();
     expect(rendered).toBeTruthy();
+  });
+
+  afterAll(() => {
+    cleanup();
   });
 });
 
@@ -48,5 +52,9 @@ describe('[Temp] Interaction', () => {
       fireEvent.press(btnInstance);
     });
     expect(props.navigation.goBack).toHaveBeenCalled();
+  });
+
+  afterAll(() => {
+    cleanup();
   });
 });

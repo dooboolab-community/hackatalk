@@ -2,6 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
+
 import { StateProvider } from '../../../contexts';
 import StatusBar from '../StatusBar';
 import { ThemeProvider } from 'styled-components/native';
@@ -14,23 +16,10 @@ let props: any;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const createTestProps = (obj: object): object => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...obj,
-});
-
 describe('[StatusBar] render', () => {
   beforeEach(() => {
-    props = createTestProps({});
-    component = (
-      <StateProvider>
-        <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-          <StatusBar {...props} />
-        </ThemeProvider>
-      </StateProvider>
-    );
+    props = createTestProps();
+    component = createTestElement(<StatusBar {...props} />);
   });
 
   it('renders without crashing', () => {

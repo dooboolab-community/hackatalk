@@ -2,20 +2,21 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '../../../../test/test-utils';
+import {
+  RenderResult,
+  cleanup,
+  fireEvent,
+  render,
+} from '@testing-library/react-native';
 
 import ChatroomListItem from '../ChatroomListItem';
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
-import renderer from 'react-test-renderer';
 
 // Note: test renderer must be required after react-native.
 
 const props = {
   item: {
     id: 'room1',
+    secret: 'secret1',
     lastChat: {
       id: 'id_3',
       sender: {

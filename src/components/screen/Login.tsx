@@ -3,11 +3,7 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, TouchableOpacity, View } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { DefaultNavigationProps, User } from '../../types';
 import React, { useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -25,16 +21,14 @@ import Constants from 'expo-constants';
 import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
-import { ScreenProps } from '../navigation/SwitchNavigator';
 import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
-import { User } from '../../types';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 interface Props extends ThemeProps<DefaultTheme> {
-  screenProps: ScreenProps;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: DefaultNavigationProps;
 }
 
 const StyledScrollView = styled.ScrollView``;
@@ -46,6 +40,7 @@ const StyledSafeAreaView = styled.SafeAreaView`
 
 const StyledContainer = styled.View`
   flex: 1;
+  margin-top: 40;
   flex-direction: column;
   align-items: center;
 `;
@@ -128,7 +123,12 @@ function Screen(props: Props): React.ReactElement {
     timer = setTimeout(() => {
       setIsLoggingIn(false);
       clearTimeout(timer);
-      props.navigation.navigate('Main');
+      if (props.navigation) {
+        props.navigation.resetRoot({
+          index: 0,
+          routes: [{ name: 'MainStack' }],
+        });
+      }
     }, 1000);
   };
 
@@ -208,8 +208,7 @@ function Screen(props: Props): React.ReactElement {
     // console.log('appOwnership', Constants.appOwnership);
   }, []);
 
-  const { theme } = props;
-  const { changeTheme } = props.screenProps;
+  const { theme, changeThemeType } = useThemeContext();
 
   const btnStyle = {
     backgroundColor: theme.background,
@@ -224,7 +223,7 @@ function Screen(props: Props): React.ReactElement {
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
-            <TouchableOpacity onPress={(): void => changeTheme()}>
+            <TouchableOpacity onPress={(): void => changeThemeType()}>
               <StyledIcon source={IC_ICON} />
             </TouchableOpacity>
             <StyledIconText>{getString('HELLO')}.</StyledIconText>

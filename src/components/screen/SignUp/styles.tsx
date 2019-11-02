@@ -4,11 +4,6 @@ import {
   TextInputFocusEventData,
   View,
 } from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 import React, { ReactElement, useCallback, useState } from 'react';
 import {
   handleTextInput,
@@ -20,15 +15,14 @@ import styled, {
   ThemeProps,
 } from 'styled-components/native';
 
+import { DefaultNavigationProps } from '../../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ScreenProps } from '../../navigation/SwitchNavigator';
 import { compose } from 'recompose';
 
 export interface Props extends ThemeProps<DefaultTheme> {
   displayName: string;
-  screenProps: ScreenProps;
-  navigation?: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation?: DefaultNavigationProps<'SignUp'>;
 }
 
 export interface SignUpFormValues {
