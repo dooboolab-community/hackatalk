@@ -15,6 +15,7 @@ import React, { ReactElement, memo } from 'react';
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
 import { getString } from '../../../../STRINGS';
+import { useThemeContext } from '../../../providers/ThemeProvider';
 import { withTheme } from 'styled-components/native';
 
 const signUpValidationSchema = Yup.object({
@@ -85,12 +86,8 @@ const getInputType = (key: string): string => {
   return 'text';
 };
 
-function SignUpPage({
-  theme,
-  screenProps: {
-    changeTheme,
-  },
-}: Props): ReactElement {
+function SignUpPage(props: Props): ReactElement {
+  const { theme } = useThemeContext();
   return (
     <StyledSafeAreaView>
       <StyledScrollView>

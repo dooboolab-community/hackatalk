@@ -31,6 +31,7 @@ import TextInput from '../shared/TextInput';
 import { User } from '../../types';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 interface Props extends ThemeProps<DefaultTheme> {
   screenProps: ScreenProps;
@@ -46,6 +47,7 @@ const StyledSafeAreaView = styled.SafeAreaView`
 
 const StyledContainer = styled.View`
   flex: 1;
+  margin-top: 40;
   flex-direction: column;
   align-items: center;
 `;
@@ -208,8 +210,7 @@ function Screen(props: Props): React.ReactElement {
     // console.log('appOwnership', Constants.appOwnership);
   }, []);
 
-  const { theme } = props;
-  const { changeTheme } = props.screenProps;
+  const { theme, changeThemeType } = useThemeContext();
 
   const btnStyle = {
     backgroundColor: theme.background,
@@ -224,7 +225,7 @@ function Screen(props: Props): React.ReactElement {
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
-            <TouchableOpacity onPress={(): void => changeTheme()}>
+            <TouchableOpacity onPress={(): void => changeThemeType()}>
               <StyledIcon source={IC_ICON} />
             </TouchableOpacity>
             <StyledIconText>{getString('HELLO')}.</StyledIconText>
