@@ -1,8 +1,10 @@
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 import { Chat, DefaultNavigationProps, MessageType } from '../../types';
 import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
 
 import Button from '../shared/Button';
 import ChatListItem from '../shared/ChatListItem';
@@ -105,31 +107,17 @@ function Screen(props: Props): React.ReactElement {
     setIsSending(true);
   };
 
-  const getPermissions = async (
-    type: string,
-  ): Promise<Permissions.PermissionStatus> => {
-    if (type === 'photo') {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      return status;
-    }
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    return status;
-  };
-
   const onSelectImage = async (type: string): Promise<void> => {
-    const photoOptions = {
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      exif: true,
-    };
-    const permissionStatus = await getPermissions(type);
-    if (permissionStatus === Permissions.PermissionStatus.GRANTED) {
-      if (type === 'photo') {
-        const result = await ImagePicker.launchImageLibraryAsync(photoOptions);
+    if (type === 'photo') {
+      const result = await launchImageLibraryAsync();
+      if (result) {
         console.log('result', result);
-        return;
       }
-      const result = await ImagePicker.launchCameraAsync(photoOptions);
+      return;
+    }
+
+    const result = await launchCameraAsync();
+    if (result) {
       console.log('result', result);
     }
   };
