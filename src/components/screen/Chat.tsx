@@ -107,7 +107,7 @@ function Screen(props: Props): React.ReactElement {
     setIsSending(true);
   };
 
-  const onSelectImage = async (type: string): Promise<void> => {
+  const onRequestImagePicker = async (type: string): Promise<void> => {
     if (type === 'photo') {
       const result = await launchImageLibraryAsync();
       if (result) {
@@ -172,7 +172,7 @@ function Screen(props: Props): React.ReactElement {
             }}
           >
             <TouchableOpacity
-              onPress={(): Promise<void> => onSelectImage('camera')}
+              onPress={(): Promise<void> => onRequestImagePicker('camera')}
               style={{
                 marginLeft: 16,
                 marginTop: 2,
@@ -189,7 +189,7 @@ function Screen(props: Props): React.ReactElement {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={(): Promise<void> => onSelectImage('photo')}
+              onPress={(): Promise<void> => onRequestImagePicker('photo')}
               style={{
                 marginLeft: 16,
                 marginTop: 4,
