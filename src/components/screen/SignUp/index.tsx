@@ -118,7 +118,7 @@ function SignUpPage(props: Props): ReactElement {
                 <Button
                   testID="btnSignUpConfirm"
                   isDisabled={!isValid}
-                  style={{ alignSelf: 'flex-end' }}
+                  justifyContent="flex-end"
                   onPress={handleSubmit}
                 >
                   {getString('REGISTER')}

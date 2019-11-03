@@ -41,6 +41,7 @@ const en = {
   NAME_REQUIRED: 'Name is required.',
   NAME_MIN: 'Name must be at least 3 characters.',
   PASSWORD_MUST_MATCH: 'Passwords must match.',
+  SEND_PASSWORD_RESET_LINK: 'Send password reset link',
 };
 
 const ko = {
@@ -82,6 +83,7 @@ const ko = {
   NAME_REQUIRED: '이름은 필수 항목입니다.',
   NAME_MIN: '이름은 3글자 이상이어야 합니다.',
   PASSWORD_MUST_MATCH: '비밀번호가 일치하지 않습니다.',
+  SEND_PASSWORD_RESET_LINK: '비밀번호 재설정 링크 보내기',
 };
 
 i18n.fallbacks = true;

@@ -4,8 +4,8 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
+import React, { ReactText } from 'react';
 
-import React from 'react';
 import styled from 'styled-components/native';
 
 interface StyledElement {
@@ -14,8 +14,11 @@ interface StyledElement {
 }
 
 interface ButtonContainer {
-  width: number;
-  height: number;
+  width?: ReactText;
+  height?: ReactText;
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
 }
 
 interface Props {
@@ -25,19 +28,30 @@ interface Props {
   isDisabled: boolean;
   containerStyle?: ViewStyle;
   style?: ViewStyle;
-  onPress: () => void;
+  onPress: (params?: any) => void | Promise<void>;
   imgLeftSrc?: ImageSourcePropType;
   indicatorColor: string;
   activeOpacity: number;
   children: string;
-  width: number;
-  height: number;
+  width?: ReactText;
+  height?: ReactText;
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
 }
 
+const ButtonContainer = styled.View<ButtonContainer>`
+  flex: 1;
+  flex-direction: ${({ flexDirection }): string => flexDirection || 'row'};
+  ${({ justifyContent }): string | undefined => justifyContent && `justify-content: ${justifyContent}`};
+  ${({ alignItems }): string | undefined => alignItems && `align-items: ${alignItems}`};
+`;
+
 const StyledButtonContainer = styled.View<ButtonContainer>`
-  width: ${({ width }): string => `${width}px`};
-  height: ${({ height }): string => `${height}px`};
+  width: ${({ width }): ReactText | undefined => typeof width === 'number' ? `${width}px` : width};
+  height: ${({ height }): ReactText | undefined => typeof height === 'number' ? `${height}px` : height};
   justify-content: center;
+  align-self: stretch;
   align-items: center;
 `;
 
@@ -59,6 +73,7 @@ const StyledButtonDisabled = styled.View`
   border-radius: 4px;
   border-width: 1px;
   align-items: center;
+  align-self: stretch;
   justify-content: center;
 `;
 
@@ -96,10 +111,17 @@ function Button(props: Props): React.ReactElement {
     indicatorColor,
     imgLeftSrc,
     children,
+    flexDirection,
+    justifyContent,
+    alignItems,
   } = props;
 
   return (
-    <>
+    <ButtonContainer
+      flexDirection={flexDirection}
+      justifyContent={justifyContent}
+      alignItems={alignItems}
+    >
       {isDisabled ? (
         <StyledButtonDisabled testID={testID}>
           <StyledButtonContainer width={width} height={height}>
@@ -130,7 +152,7 @@ function Button(props: Props): React.ReactElement {
           </StyledButton>
         </TouchableOpacity>
       )}
-    </>
+    </ButtonContainer>
   );
 }
 

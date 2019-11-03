@@ -252,8 +252,9 @@ function Screen(props: Props): React.ReactElement {
             <StyledButtonWrapper>
               <Button
                 testID="btnSignUp"
-                containerStyle={{ flex: 1 }}
                 onPress={goToSignUp}
+                alignItems="stretch"
+                justifyContent="flex-start"
                 isWhite
               >
                 {getString('SIGN_UP')}
@@ -261,8 +262,9 @@ function Screen(props: Props): React.ReactElement {
               <View style={{ width: 8 }} />
               <Button
                 testID="btnLogin"
-                containerStyle={{ flex: 1 }}
                 isLoading={isLoggingIn}
+                alignItems="stretch"
+                justifyContent="flex-end"
                 onPress={onLogin}
               >
                 {getString('LOGIN')}

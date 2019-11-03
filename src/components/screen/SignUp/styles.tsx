@@ -152,6 +152,5 @@ export const StyledButtonWrapper = styled.View`
   margin-top: 20px;
   height: 60px;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
 `;

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { RenderResult, cleanup, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
-import FindPw from '../FindPw';
+import FindPw from '../FindPW';
 import renderer from 'react-test-renderer';
 
 let props: any;
