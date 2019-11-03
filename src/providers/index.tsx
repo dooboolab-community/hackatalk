@@ -1,3 +1,4 @@
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
 import { ThemeProvider } from './ThemeProvider';
@@ -14,23 +15,16 @@ export const AllProviders = ({
   children,
 }: Props): React.ReactElement => {
   return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >
-      <ProfileModalProvider>
-        {children}
-      </ProfileModalProvider>
+    <ThemeProvider initialThemeType={initialThemeType}>
+      <ProfileModalProvider>{children}</ProfileModalProvider>
     </ThemeProvider>
   );
 };
 
-export default ({
-  initialThemeType,
-  children,
-}: Props): React.ReactElement => {
+export default ({ initialThemeType, children }: Props): React.ReactElement => {
   return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >{children}</ThemeProvider>
+    <ThemeProvider initialThemeType={initialThemeType}>
+      <ActionSheetProvider>{children}</ActionSheetProvider>
+    </ThemeProvider>
   );
 };
