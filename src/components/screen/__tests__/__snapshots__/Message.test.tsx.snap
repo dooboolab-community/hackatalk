@@ -41,6 +41,7 @@ exports[`[Message] screen renders without crashing 1`] = `
             "created": 1970-01-01T00:00:00.000Z,
             "id": "id_3",
             "message": "How are you doing?",
+            "messageType": 0,
             "sender": Object {
               "displayName": "displayName3",
               "online": false,
@@ -60,6 +61,7 @@ exports[`[Message] screen renders without crashing 1`] = `
             "created": 1970-01-01T00:00:00.000Z,
             "id": "id_3",
             "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
+            "messageType": 0,
             "sender": Object {
               "displayName": "Byun8585",
               "online": false,

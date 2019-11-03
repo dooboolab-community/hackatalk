@@ -1,4 +1,4 @@
-import { Chatroom, DefaultNavigationProps } from '../../types';
+import { Chatroom, DefaultNavigationProps, MessageType } from '../../types';
 import React, { useState } from 'react';
 
 import ChatroomListItem from '../shared/ChatroomListItem';
@@ -38,6 +38,7 @@ const initRooms: Chatroom[] = [
         statusMsg: '',
         online: false,
       },
+      messageType: MessageType.Message,
       message: 'How are you doing?',
       created: new Date(0),
       updated: new Date(0),
@@ -57,6 +58,7 @@ const initRooms: Chatroom[] = [
         statusMsg: '',
         online: false,
       },
+      messageType: MessageType.Message,
       message: 'Hi. This is student from react-native-seoul. Nice to meet you.',
       created: new Date(0),
       updated: new Date(0),

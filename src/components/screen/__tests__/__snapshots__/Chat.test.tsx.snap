@@ -67,6 +67,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           Object {
             "id": "",
             "message": "hello1",
+            "messageType": 0,
             "sender": Object {
               "displayName": "sender111",
               "photoURL": "",
@@ -78,6 +79,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           Object {
             "id": "",
             "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
+            "messageType": 0,
             "sender": Object {
               "displayName": "sender111",
               "photoURL": "",
@@ -89,6 +91,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           Object {
             "id": "",
             "message": "hello",
+            "messageType": 0,
             "sender": Object {
               "displayName": "sender111",
               "photoURL": "",
@@ -100,6 +103,19 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           Object {
             "id": "",
             "message": "hello2",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "0",
+            },
+          },
+          Object {
+            "id": "",
+            "messageType": 1,
+            "photo": "http://photo.png",
             "sender": Object {
               "displayName": "sender111",
               "photoURL": "",
@@ -524,6 +540,102 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               >
                 hello2
               </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          isSame={true}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 8,
+                "minHeight": 48,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              testID="peer_image"
+            >
+              <View
+                style={
+                  Object {
+                    "width": 40,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <View />
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "rgb(221,226,236)",
+                    "borderRadius": 3,
+                    "borderWidth": 1,
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              />
             </View>
             <Text
               style={
