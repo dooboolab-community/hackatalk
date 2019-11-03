@@ -1,3 +1,5 @@
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
@@ -8,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.View`
@@ -47,6 +50,7 @@ function Screen(props: Props): React.ReactElement {
   const [isUpdating, setIsUpdating] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
+  const { showActionSheetWithOptions } = useActionSheet();
 
   useEffect(() => {
     if (isUpdating) {
@@ -87,7 +91,53 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
-  const onPressImg = (): void => {};
+  const getPermissions = async (
+    type: string,
+  ): Promise<Permissions.PermissionStatus> => {
+    if (type === 'photo') {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      return status;
+    }
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    return status;
+  };
+
+  const onPressImg = (): void => {
+    const options = ['촬영하기', '앨범에서 선택하기', '취소'];
+    const cancelButtonIndex = 2;
+    const photoOptions = {
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      exif: true,
+    };
+
+    showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+      },
+      async (buttonIndex: number) => {
+        if (buttonIndex === 0) {
+          const permissionStatus = await getPermissions('camera');
+          if (permissionStatus === Permissions.PermissionStatus.GRANTED) {
+            const result = await ImagePicker.launchCameraAsync(photoOptions);
+            console.log('result', result);
+          }
+          return;
+        }
+
+        if (buttonIndex === 1) {
+          const permissionStatus = await getPermissions('photo');
+          if (permissionStatus === Permissions.PermissionStatus.GRANTED) {
+            const result = await ImagePicker.launchImageLibraryAsync(
+              photoOptions,
+            );
+            console.log('result', result);
+          }
+        }
+      },
+    );
+  };
 
   const { theme } = useThemeContext();
 
