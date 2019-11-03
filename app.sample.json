@@ -30,7 +30,7 @@
     },
     "android": {
       "package": "com.dooboolab.hackatalk",
-      "googleServicesFile": "./google-services.json",
+      "googleServicesFile": "<./google-services.json>",
       "config": {
         "googleSignIn": {
           "certificateHash": "<certificateHash>"

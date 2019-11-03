@@ -15,7 +15,7 @@ will likely get reverted accidentally sooner or later. PRs must include tests fo
 
 ## Checklist
 
-Before you create this PR confirm that it meets all requirements listed below by checking the relevant checkboxes (`[x]`). This will ensure a smooth and quick review process.
+Before you create this PR confirms that it meets all requirements listed below by checking the relevant checkboxes (`[x]`). This will ensure a smooth and quick review process.
 
 - [ ] I read the [Contributor Guide](https://github.com/dooboolab/hackatalk-mobile/blob/master/CONTRIBUTING.md) and followed the process outlined there for submitting PRs.
 - [ ] I signed the [CLA].
