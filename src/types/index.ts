@@ -4,6 +4,12 @@ import { DefaultTheme } from 'styled-components';
 import { SFC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+export enum MessageType {
+  Message,
+  Photo,
+  File,
+}
+
 export interface User {
   uid: string;
   displayName: string;
@@ -25,20 +31,37 @@ export interface AuthUser extends User {
   chatrooms?: [];
 }
 
-enum MessageType {
-  Message,
-  Photo,
-}
-
-export interface Chat {
+export interface ChatCommon<T extends MessageType = MessageType.Message> {
   id: string;
   sender: User;
-  messageType?: MessageType;
-  message?: string;
-  photo?: string;
+  messageType: T;
   created?: Date;
   updated?: Date;
 }
+
+interface Message<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
+  message: string;
+}
+
+interface Photo<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
+  photo: string;
+}
+
+interface File<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
+  photo: string;
+}
+
+export type ChatProps<T extends MessageType = MessageType.Message>
+  = T extends MessageType.Message
+    ? Message<T>
+    : T extends MessageType.Photo
+    ? Photo<T>
+    : T extends MessageType.File
+    ? File<T>
+    : ChatCommon<T>;
+
+type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
+export type Chat = ChatProps<ChatType>;
 
 export interface Chatroom {
   id: string;
