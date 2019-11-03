@@ -102,7 +102,9 @@ function Shared(props: Props): React.ReactElement {
     item: {
       lastChat: {
         sender: { photoURL, online, displayName },
+        // @ts-ignore
         message,
+        messageType,
         created,
       },
       lastChatCnt,

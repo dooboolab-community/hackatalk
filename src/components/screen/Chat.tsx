@@ -1,4 +1,4 @@
-import { Chat, DefaultNavigationProps } from '../../types';
+import { Chat, DefaultNavigationProps, MessageType } from '../../types';
 import { Image, Platform, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import styled, {
@@ -43,6 +43,8 @@ function Screen(props: Props): React.ReactElement {
   const [chats, setChats] = useState<Chat[]>([
     {
       id: '',
+      message: 'hello1',
+      messageType: MessageType.Message,
       sender: {
         uid: '0',
         displayName: 'sender111',
@@ -50,10 +52,15 @@ function Screen(props: Props): React.ReactElement {
         photoURL: '',
         statusMsg: '',
       },
-      message: 'hello1',
     },
     {
       id: '',
+      messageType: MessageType.Message,
+      message:
+      'Hello2. This is long message. This is long message.This is long message.' +
+      'This is long message. This is long message. This is long message.' +
+      'This is long message. This is long message.' +
+      'This is long message. This is long message. This is long message.',
       sender: {
         uid: '2',
         displayName: 'sender111',
@@ -61,25 +68,11 @@ function Screen(props: Props): React.ReactElement {
         photoURL: '',
         statusMsg: '',
       },
-      message:
-        'Hello2. This is long message. This is long message.This is long message.' +
-        'This is long message. This is long message. This is long message.' +
-        'This is long message. This is long message.' +
-        'This is long message. This is long message. This is long message.',
     },
     {
       id: '',
-      sender: {
-        uid: '0',
-        displayName: 'sender111',
-        thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
-      },
+      messageType: MessageType.Message,
       message: 'hello',
-    },
-    {
-      id: '',
       sender: {
         uid: '0',
         displayName: 'sender111',
@@ -87,7 +80,30 @@ function Screen(props: Props): React.ReactElement {
         photoURL: '',
         statusMsg: '',
       },
+    },
+    {
+      id: '',
+      messageType: MessageType.Message,
       message: 'hello2',
+      sender: {
+        uid: '0',
+        displayName: 'sender111',
+        thumbURL: '',
+        photoURL: '',
+        statusMsg: '',
+      },
+    },
+    {
+      id: '',
+      messageType: MessageType.Photo,
+      photo: 'http://photo.png',
+      sender: {
+        uid: '0',
+        displayName: 'sender111',
+        thumbURL: '',
+        photoURL: '',
+        statusMsg: '',
+      },
     },
   ]);
 

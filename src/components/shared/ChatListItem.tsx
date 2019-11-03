@@ -117,6 +117,8 @@ function Shared(props: Props): React.ReactElement {
   const {
     item: {
       sender: { uid, displayName, photoURL },
+      messageType,
+      // @ts-ignore
       message,
       created,
     },
