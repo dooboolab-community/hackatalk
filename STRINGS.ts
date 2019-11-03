@@ -43,6 +43,9 @@ const en = {
   NAME_MIN: 'Name must be at least 3 characters.',
   PASSWORD_MUST_MATCH: 'Passwords must match.',
   PASSWORD_RESET: 'Reset Password',
+  TAKE_A_PICTURE: 'Take a picture',
+  SELSCT_FROM_ALBUM: 'Select from album',
+  CANCEL: 'Cancel',
 };
 
 const ko = {
@@ -86,6 +89,9 @@ const ko = {
   NAME_MIN: '이름은 3글자 이상이어야 합니다.',
   PASSWORD_MUST_MATCH: '비밀번호가 일치하지 않습니다.',
   PASSWORD_RESET: '비밀번호 재설정',
+  TAKE_A_PICTURE: '촬영하기',
+  SELSCT_FROM_ALBUM: '앨범에서 선택하기',
+  CANCEL: '취소',
 };
 
 i18n.fallbacks = true;
