@@ -23,6 +23,7 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "@dooboo-ui/native": "^0.2.0",
+    "@expo/react-native-action-sheet": "^3.3.1",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "^0.1.1",
     "@react-navigation/core": "^5.0.0-alpha.20",
@@ -34,6 +35,7 @@
     "expo-constants": "^7.0.0",
     "expo-facebook": "^7.0.0",
     "expo-google-sign-in": "^7.0.0",
+    "expo-image-picker": "~7.0.0",
     "expo-linear-gradient": "~7.0.0",
     "expo-localization": "~7.0.0",
     "formik": "^1.5.8",
