@@ -39,25 +39,25 @@ export interface ChatCommon<T extends MessageType = MessageType.Message> {
   updated?: Date;
 }
 
-interface Message<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
+interface Message extends ChatCommon<MessageType.Message> {
   message: string;
 }
 
-interface Photo<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
+interface Photo extends ChatCommon<MessageType.Photo> {
   photo: string;
 }
 
-interface File<T extends MessageType = MessageType.Message> extends ChatCommon<T> {
-  photo: string;
+interface File extends ChatCommon<MessageType.File> {
+  file: string;
 }
 
 export type ChatProps<T extends MessageType = MessageType.Message>
   = T extends MessageType.Message
-    ? Message<T>
+    ? Message
     : T extends MessageType.Photo
-    ? Photo<T>
+    ? Photo
     : T extends MessageType.File
-    ? File<T>
+    ? File
     : ChatCommon<T>;
 
 type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
