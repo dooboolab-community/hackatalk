@@ -83,6 +83,7 @@ interface Props {
   item: Chat;
   prevItem?: Chat;
   onPressPeerImage?: () => void;
+  testID?: string;
 }
 
 interface ImageSenderProps {
@@ -122,6 +123,7 @@ function Shared(props: Props): React.ReactElement {
     },
     prevItem,
     onPressPeerImage,
+    testID,
   } = props;
   const isSamePeerMsg = prevItem && prevItem.sender.uid === uid;
   if (uid !== myFakeUid) {
@@ -129,7 +131,7 @@ function Shared(props: Props): React.ReactElement {
     return (
       <StyledWrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
-          <TouchableOpacity testID="peer_image" onPress={onPressPeerImage}>
+          <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
             <ImageSenderComp
               photoURL={photoURL}
               isSamePeerMsg={!!isSamePeerMsg}
@@ -141,8 +143,8 @@ function Shared(props: Props): React.ReactElement {
           {isSamePeerMsg ? (
             <View />
           ) : (
-            <StyledTextPeerName>{displayName}</StyledTextPeerName>
-          )}
+              <StyledTextPeerName>{displayName}</StyledTextPeerName>
+            )}
           <StyledTextPeerMessageContainer>
             <StyledTextPeerMessage>{message}</StyledTextPeerMessage>
           </StyledTextPeerMessageContainer>

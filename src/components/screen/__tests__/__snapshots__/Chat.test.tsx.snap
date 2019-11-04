@@ -192,6 +192,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                     "width": 40,
                   }
                 }
+                testID="chatListItem0"
               >
                 <Text />
               </View>
