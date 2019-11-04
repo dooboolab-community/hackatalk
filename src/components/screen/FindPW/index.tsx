@@ -67,7 +67,7 @@ function FindPW(): ReactElement {
           {!!errors.email && <ErrorText isError={!!errors.email}>{errors.email.message}</ErrorText>}
           <StyledButtonWrapper>
             <Button
-              testID="btnSignUpConfirm"
+              testID="btnFindPwConfirm"
               isDisabled={(!(touched && touched.length) || !!errorMessage)}
               width="100%"
               flexDirection="column"

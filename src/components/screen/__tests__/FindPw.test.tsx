@@ -1,12 +1,21 @@
-import 'react-native';
-
 import * as React from 'react';
 
-import { RenderResult, cleanup, render } from '@testing-library/react-native';
+import {
+  RenderResult,
+  cleanup,
+  fireEvent,
+  render,
+  toJSON,
+  wait,
+  waitForElement,
+  within,
+} from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import FindPw from '../FindPW';
-import renderer from 'react-test-renderer';
+import { ThemeType } from '../../../types';
+import { createTheme } from '../../../theme';
+import { getString } from '../../../../STRINGS';
 
 let props: any;
 let component: React.ReactElement;
@@ -20,14 +29,8 @@ describe('[FindPw] screen', () => {
   });
 
   it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
-  });
-
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
+    const { container } = testingLib;
+    expect(toJSON(container)).toMatchSnapshot();
   });
 
   describe('interactions', () => {
@@ -35,13 +38,33 @@ describe('[FindPw] screen', () => {
       testingLib = render(component);
     });
 
-    it('should simulate onPress', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
+    it('should be highlighted when the input is focused', async () => {
+      const theme = createTheme(ThemeType.LIGHT);
+      const { getByTestId, getByText } = testingLib;
+      const emailInput = getByTestId('findPw_email_input');
+      const emailInputLabel = await waitForElement(() => getByText(getString('EMAIL')));
+      expect(emailInputLabel.props.style).toHaveProperty([0, 'color'], theme.inactiveColor);
+
+      fireEvent.focus(emailInput);
+      const emailInputLabel2 = await waitForElement(() => getByText(getString('EMAIL')));
+      expect(emailInputLabel2.props.style).toHaveProperty([0, 'color'], theme.primary);
+    });
+
+    it('should validate email format', async () => {
+      const { getByTestId, getByText } = testingLib;
+      const emailInput = getByTestId('findPw_email_input');
+
+      fireEvent.changeText(emailInput, 'wrongEmailFormat.bah');
+      const emailInputError = await waitForElement(() => getByText(getString('EMAIL_FORMAT_NOT_VALID')));
+      expect(emailInputError).toBeTruthy();
+      const btnFindPwConfirmText = getByText(getString('SEND_PASSWORD_RESET_LINK'));
+      expect(btnFindPwConfirmText.props).toHaveProperty('disabled');
+
+      fireEvent.changeText(emailInput, 'correctEmailFormat@bah.meh');
+      const btnFindPwConfirm = await waitForElement(() => getByTestId('btnFindPwConfirm'));
+      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(getString('SEND_PASSWORD_RESET_LINK'));
+
+      expect(btnFindPwConfirmText2.props).not.toHaveProperty('disabled');
     });
 
     afterEach(() => {
