@@ -27,8 +27,8 @@ export interface Props extends ThemeProps<DefaultTheme> {
 
 export interface SignUpFormValues {
   email: string;
-  password1: string;
-  password2: string;
+  password: string;
+  confirmPassword: string;
   name: string;
   status: string;
 }
@@ -152,5 +152,10 @@ export const StyledButtonWrapper = styled.View`
   margin-top: 20px;
   height: 60px;
   flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
+`;
+
+export const ButtonToRight = styled.View`
+  width: 50%;
 `;

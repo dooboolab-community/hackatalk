@@ -62,10 +62,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
             "handleReset": [Function],
             "handleSubmit": [Function],
             "initialValues": Object {
+              "confirmPassword": "",
               "email": "",
               "name": "",
-              "password1": "",
-              "password2": "",
+              "password": "",
               "status": "",
             },
             "isSubmitting": false,
@@ -107,8 +107,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
               "_nodes": Array [
                 "status",
                 "name",
-                "password2",
-                "password1",
+                "confirmPassword",
+                "password",
                 "email",
               ],
               "_options": Object {
@@ -122,6 +122,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "refs": Map {},
               },
               "fields": Object {
+                "confirmPassword": StringSchema {
+                  "_blacklist": RefSet {
+                    "list": Set {},
+                    "refs": Map {},
+                  },
+                  "_conditions": Array [],
+                  "_deps": Array [],
+                  "_exclusive": Object {
+                    "min": true,
+                    "required": true,
+                  },
+                  "_mutate": undefined,
+                  "_options": Object {
+                    "abortEarly": true,
+                    "recursive": true,
+                  },
+                  "_type": "string",
+                  "_typeError": [Function],
+                  "_whitelist": RefSet {
+                    "list": Set {
+                      null,
+                    },
+                    "refs": Map {
+                      "password" => Reference {
+                        "getter": [Function],
+                        "isContext": false,
+                        "isSibling": true,
+                        "isValue": false,
+                        "key": "password",
+                        "map": undefined,
+                        "path": "password",
+                      },
+                    },
+                  },
+                  "_whitelistError": [Function],
+                  "tests": Array [
+                    [Function],
+                    [Function],
+                  ],
+                  "transforms": Array [
+                    [Function],
+                  ],
+                },
                 "email": StringSchema {
                   "_blacklist": RefSet {
                     "list": Set {},
@@ -182,7 +225,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     [Function],
                   ],
                 },
-                "password1": StringSchema {
+                "password": StringSchema {
                   "_blacklist": RefSet {
                     "list": Set {},
                     "refs": Map {},
@@ -204,49 +247,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "list": Set {},
                     "refs": Map {},
                   },
-                  "tests": Array [
-                    [Function],
-                    [Function],
-                  ],
-                  "transforms": Array [
-                    [Function],
-                  ],
-                },
-                "password2": StringSchema {
-                  "_blacklist": RefSet {
-                    "list": Set {},
-                    "refs": Map {},
-                  },
-                  "_conditions": Array [],
-                  "_deps": Array [],
-                  "_exclusive": Object {
-                    "min": true,
-                    "required": true,
-                  },
-                  "_mutate": undefined,
-                  "_options": Object {
-                    "abortEarly": true,
-                    "recursive": true,
-                  },
-                  "_type": "string",
-                  "_typeError": [Function],
-                  "_whitelist": RefSet {
-                    "list": Set {
-                      null,
-                    },
-                    "refs": Map {
-                      "password1" => Reference {
-                        "getter": [Function],
-                        "isContext": false,
-                        "isSibling": true,
-                        "isValue": false,
-                        "key": "password1",
-                        "map": undefined,
-                        "path": "password1",
-                      },
-                    },
-                  },
-                  "_whitelistError": [Function],
                   "tests": Array [
                     [Function],
                     [Function],
@@ -286,10 +286,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
               ],
             },
             "values": Object {
+              "confirmPassword": "",
               "email": "",
               "name": "",
-              "password1": "",
-              "password2": "",
+              "password": "",
               "status": "",
             },
           }
@@ -358,10 +358,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "handleReset": [Function],
                 "handleSubmit": [Function],
                 "initialValues": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
                 "isSubmitting": false,
@@ -403,8 +403,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_nodes": Array [
                     "status",
                     "name",
-                    "password2",
-                    "password1",
+                    "confirmPassword",
+                    "password",
                     "email",
                   ],
                   "_options": Object {
@@ -418,6 +418,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "refs": Map {},
                   },
                   "fields": Object {
+                    "confirmPassword": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password",
+                            "map": undefined,
+                            "path": "password",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
                     "email": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
@@ -478,7 +521,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         [Function],
                       ],
                     },
-                    "password1": StringSchema {
+                    "password": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
                         "refs": Map {},
@@ -500,49 +543,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         "list": Set {},
                         "refs": Map {},
                       },
-                      "tests": Array [
-                        [Function],
-                        [Function],
-                      ],
-                      "transforms": Array [
-                        [Function],
-                      ],
-                    },
-                    "password2": StringSchema {
-                      "_blacklist": RefSet {
-                        "list": Set {},
-                        "refs": Map {},
-                      },
-                      "_conditions": Array [],
-                      "_deps": Array [],
-                      "_exclusive": Object {
-                        "min": true,
-                        "required": true,
-                      },
-                      "_mutate": undefined,
-                      "_options": Object {
-                        "abortEarly": true,
-                        "recursive": true,
-                      },
-                      "_type": "string",
-                      "_typeError": [Function],
-                      "_whitelist": RefSet {
-                        "list": Set {
-                          null,
-                        },
-                        "refs": Map {
-                          "password1" => Reference {
-                            "getter": [Function],
-                            "isContext": false,
-                            "isSibling": true,
-                            "isValue": false,
-                            "key": "password1",
-                            "map": undefined,
-                            "path": "password1",
-                          },
-                        },
-                      },
-                      "_whitelistError": [Function],
                       "tests": Array [
                         [Function],
                         [Function],
@@ -582,10 +582,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   ],
                 },
                 "values": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
               }
@@ -649,7 +649,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
             ]
           }
         >
-          Password1
+          Password
         </Text>
         <View
           isFocused={false}
@@ -683,10 +683,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "handleReset": [Function],
                 "handleSubmit": [Function],
                 "initialValues": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
                 "isSubmitting": false,
@@ -728,8 +728,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_nodes": Array [
                     "status",
                     "name",
-                    "password2",
-                    "password1",
+                    "confirmPassword",
+                    "password",
                     "email",
                   ],
                   "_options": Object {
@@ -743,6 +743,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "refs": Map {},
                   },
                   "fields": Object {
+                    "confirmPassword": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password",
+                            "map": undefined,
+                            "path": "password",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
                     "email": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
@@ -803,7 +846,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         [Function],
                       ],
                     },
-                    "password1": StringSchema {
+                    "password": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
                         "refs": Map {},
@@ -825,49 +868,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         "list": Set {},
                         "refs": Map {},
                       },
-                      "tests": Array [
-                        [Function],
-                        [Function],
-                      ],
-                      "transforms": Array [
-                        [Function],
-                      ],
-                    },
-                    "password2": StringSchema {
-                      "_blacklist": RefSet {
-                        "list": Set {},
-                        "refs": Map {},
-                      },
-                      "_conditions": Array [],
-                      "_deps": Array [],
-                      "_exclusive": Object {
-                        "min": true,
-                        "required": true,
-                      },
-                      "_mutate": undefined,
-                      "_options": Object {
-                        "abortEarly": true,
-                        "recursive": true,
-                      },
-                      "_type": "string",
-                      "_typeError": [Function],
-                      "_whitelist": RefSet {
-                        "list": Set {
-                          null,
-                        },
-                        "refs": Map {
-                          "password1" => Reference {
-                            "getter": [Function],
-                            "isContext": false,
-                            "isSibling": true,
-                            "isValue": false,
-                            "key": "password1",
-                            "map": undefined,
-                            "path": "password1",
-                          },
-                        },
-                      },
-                      "_whitelistError": [Function],
                       "tests": Array [
                         [Function],
                         [Function],
@@ -907,17 +907,17 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   ],
                 },
                 "values": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
               }
             }
-            label="password1"
-            name="password1"
-            placeholder="Password1"
+            label="password"
+            name="password"
+            placeholder="Password"
             placeholderTextColor="rgb(175,194,219)"
             rejectResponderTermination={true}
             returnKeyType="next"
@@ -974,7 +974,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
             ]
           }
         >
-          Password2
+          Confirm password
         </Text>
         <View
           isFocused={false}
@@ -997,8 +997,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
         >
           <TextInput
             allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
             formik={
               Object {
                 "dirty": false,
@@ -1008,10 +1006,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "handleReset": [Function],
                 "handleSubmit": [Function],
                 "initialValues": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
                 "isSubmitting": false,
@@ -1053,8 +1051,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_nodes": Array [
                     "status",
                     "name",
-                    "password2",
-                    "password1",
+                    "confirmPassword",
+                    "password",
                     "email",
                   ],
                   "_options": Object {
@@ -1068,6 +1066,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "refs": Map {},
                   },
                   "fields": Object {
+                    "confirmPassword": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password",
+                            "map": undefined,
+                            "path": "password",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
                     "email": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
@@ -1128,7 +1169,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         [Function],
                       ],
                     },
-                    "password1": StringSchema {
+                    "password": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
                         "refs": Map {},
@@ -1150,49 +1191,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         "list": Set {},
                         "refs": Map {},
                       },
-                      "tests": Array [
-                        [Function],
-                        [Function],
-                      ],
-                      "transforms": Array [
-                        [Function],
-                      ],
-                    },
-                    "password2": StringSchema {
-                      "_blacklist": RefSet {
-                        "list": Set {},
-                        "refs": Map {},
-                      },
-                      "_conditions": Array [],
-                      "_deps": Array [],
-                      "_exclusive": Object {
-                        "min": true,
-                        "required": true,
-                      },
-                      "_mutate": undefined,
-                      "_options": Object {
-                        "abortEarly": true,
-                        "recursive": true,
-                      },
-                      "_type": "string",
-                      "_typeError": [Function],
-                      "_whitelist": RefSet {
-                        "list": Set {
-                          null,
-                        },
-                        "refs": Map {
-                          "password1" => Reference {
-                            "getter": [Function],
-                            "isContext": false,
-                            "isSibling": true,
-                            "isValue": false,
-                            "key": "password1",
-                            "map": undefined,
-                            "path": "password1",
-                          },
-                        },
-                      },
-                      "_whitelistError": [Function],
                       "tests": Array [
                         [Function],
                         [Function],
@@ -1232,21 +1230,20 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   ],
                 },
                 "values": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
               }
             }
-            label="password2"
-            name="password2"
-            placeholder="Password2"
+            label="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm password"
             placeholderTextColor="rgb(175,194,219)"
             rejectResponderTermination={true}
             returnKeyType="next"
-            secureTextEntry={true}
             style={
               Array [
                 Object {
@@ -1331,10 +1328,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "handleReset": [Function],
                 "handleSubmit": [Function],
                 "initialValues": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
                 "isSubmitting": false,
@@ -1376,8 +1373,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_nodes": Array [
                     "status",
                     "name",
-                    "password2",
-                    "password1",
+                    "confirmPassword",
+                    "password",
                     "email",
                   ],
                   "_options": Object {
@@ -1391,6 +1388,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "refs": Map {},
                   },
                   "fields": Object {
+                    "confirmPassword": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password",
+                            "map": undefined,
+                            "path": "password",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
                     "email": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
@@ -1451,7 +1491,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         [Function],
                       ],
                     },
-                    "password1": StringSchema {
+                    "password": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
                         "refs": Map {},
@@ -1473,49 +1513,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         "list": Set {},
                         "refs": Map {},
                       },
-                      "tests": Array [
-                        [Function],
-                        [Function],
-                      ],
-                      "transforms": Array [
-                        [Function],
-                      ],
-                    },
-                    "password2": StringSchema {
-                      "_blacklist": RefSet {
-                        "list": Set {},
-                        "refs": Map {},
-                      },
-                      "_conditions": Array [],
-                      "_deps": Array [],
-                      "_exclusive": Object {
-                        "min": true,
-                        "required": true,
-                      },
-                      "_mutate": undefined,
-                      "_options": Object {
-                        "abortEarly": true,
-                        "recursive": true,
-                      },
-                      "_type": "string",
-                      "_typeError": [Function],
-                      "_whitelist": RefSet {
-                        "list": Set {
-                          null,
-                        },
-                        "refs": Map {
-                          "password1" => Reference {
-                            "getter": [Function],
-                            "isContext": false,
-                            "isSibling": true,
-                            "isValue": false,
-                            "key": "password1",
-                            "map": undefined,
-                            "path": "password1",
-                          },
-                        },
-                      },
-                      "_whitelistError": [Function],
                       "tests": Array [
                         [Function],
                         [Function],
@@ -1555,10 +1552,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   ],
                 },
                 "values": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
               }
@@ -1653,10 +1650,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "handleReset": [Function],
                 "handleSubmit": [Function],
                 "initialValues": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
                 "isSubmitting": false,
@@ -1698,8 +1695,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   "_nodes": Array [
                     "status",
                     "name",
-                    "password2",
-                    "password1",
+                    "confirmPassword",
+                    "password",
                     "email",
                   ],
                   "_options": Object {
@@ -1713,6 +1710,49 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                     "refs": Map {},
                   },
                   "fields": Object {
+                    "confirmPassword": StringSchema {
+                      "_blacklist": RefSet {
+                        "list": Set {},
+                        "refs": Map {},
+                      },
+                      "_conditions": Array [],
+                      "_deps": Array [],
+                      "_exclusive": Object {
+                        "min": true,
+                        "required": true,
+                      },
+                      "_mutate": undefined,
+                      "_options": Object {
+                        "abortEarly": true,
+                        "recursive": true,
+                      },
+                      "_type": "string",
+                      "_typeError": [Function],
+                      "_whitelist": RefSet {
+                        "list": Set {
+                          null,
+                        },
+                        "refs": Map {
+                          "password" => Reference {
+                            "getter": [Function],
+                            "isContext": false,
+                            "isSibling": true,
+                            "isValue": false,
+                            "key": "password",
+                            "map": undefined,
+                            "path": "password",
+                          },
+                        },
+                      },
+                      "_whitelistError": [Function],
+                      "tests": Array [
+                        [Function],
+                        [Function],
+                      ],
+                      "transforms": Array [
+                        [Function],
+                      ],
+                    },
                     "email": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
@@ -1773,7 +1813,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         [Function],
                       ],
                     },
-                    "password1": StringSchema {
+                    "password": StringSchema {
                       "_blacklist": RefSet {
                         "list": Set {},
                         "refs": Map {},
@@ -1795,49 +1835,6 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                         "list": Set {},
                         "refs": Map {},
                       },
-                      "tests": Array [
-                        [Function],
-                        [Function],
-                      ],
-                      "transforms": Array [
-                        [Function],
-                      ],
-                    },
-                    "password2": StringSchema {
-                      "_blacklist": RefSet {
-                        "list": Set {},
-                        "refs": Map {},
-                      },
-                      "_conditions": Array [],
-                      "_deps": Array [],
-                      "_exclusive": Object {
-                        "min": true,
-                        "required": true,
-                      },
-                      "_mutate": undefined,
-                      "_options": Object {
-                        "abortEarly": true,
-                        "recursive": true,
-                      },
-                      "_type": "string",
-                      "_typeError": [Function],
-                      "_whitelist": RefSet {
-                        "list": Set {
-                          null,
-                        },
-                        "refs": Map {
-                          "password1" => Reference {
-                            "getter": [Function],
-                            "isContext": false,
-                            "isSibling": true,
-                            "isValue": false,
-                            "key": "password1",
-                            "map": undefined,
-                            "path": "password1",
-                          },
-                        },
-                      },
-                      "_whitelistError": [Function],
                       "tests": Array [
                         [Function],
                         [Function],
@@ -1877,10 +1874,10 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                   ],
                 },
                 "values": Object {
+                  "confirmPassword": "",
                   "email": "",
                   "name": "",
-                  "password1": "",
-                  "password2": "",
+                  "password": "",
                   "status": "",
                 },
               }
@@ -1936,6 +1933,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": 60,
+                "justifyContent": "flex-end",
                 "marginTop": 20,
                 "width": "100%",
               },
@@ -1943,76 +1941,83 @@ exports[`[SignUp] screen renders without crashing 1`] = `
           }
         >
           <View
-            disabled={true}
             style={
               Array [
                 Object {
-                  "backgroundColor": "rgb(224,224,224)",
-                  "borderColor": "rgb(221,226,236)",
-                  "borderRadius": 4,
-                  "borderWidth": 1,
-                  "flexBasis": 0,
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "justifyContent": "center",
-                },
-                Object {
-                  "justifyContent": "flex-end",
+                  "width": "50%",
                 },
               ]
             }
-            white={false}
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
+            <View
               disabled={true}
-              testID="btnSignUpConfirm"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(224,224,224)",
+                    "borderColor": "rgb(221,226,236)",
+                    "borderRadius": 4,
+                    "borderWidth": 1,
+                    "flexBasis": 0,
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+              white={false}
             >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
+              <TouchableOpacity
+                activeOpacity={0.5}
+                disabled={true}
+                testID="btnSignUpConfirm"
               >
                 <View
-                  height={60}
                   style={
                     Array [
                       Object {
                         "alignItems": "center",
                         "alignSelf": "stretch",
-                        "height": 60,
                         "justifyContent": "center",
-                        "width": 136,
                       },
                     ]
                   }
-                  width={136}
                 >
-                  <Text
-                    disabled={true}
+                  <View
+                    height={60}
                     style={
                       Array [
                         Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
+                          "alignItems": "center",
+                          "alignSelf": "stretch",
+                          "height": 60,
+                          "justifyContent": "center",
+                          "width": 136,
                         },
                       ]
                     }
-                    white={false}
+                    width={136}
                   >
-                    Register
-                  </Text>
+                    <Text
+                      disabled={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontSize": 14,
+                            "fontWeight": "bold",
+                          },
+                        ]
+                      }
+                      white={false}
+                    >
+                      Register
+                    </Text>
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

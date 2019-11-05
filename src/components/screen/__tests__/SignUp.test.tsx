@@ -40,7 +40,13 @@ describe('[SignUp] screen', () => {
     const registerString = getString('REGISTER');
     const btnTextInstance: any = getByText(registerString);
     expect(formInstance).toBeTruthy();
-    expect(formInstance.props.formik.values).toEqual({ email: '', password1: '', password2: '', name: '', status: '' });
+    expect(formInstance.props.formik.values).toEqual({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      name: '',
+      status: '',
+    });
     expect(btnInstance).toBeTruthy();
     expect(btnTextInstance).toBeTruthy();
     expect(
@@ -58,10 +64,10 @@ describe('[SignUp] screen', () => {
         label: 'Email',
         value: 'test@test.com',
       }, {
-        label: 'Password1',
+        label: 'Password',
         value: 'testPassword',
       }, {
-        label: 'Password2',
+        label: 'Confirm password',
         value: 'testPassword',
       }, {
         label: 'Name',

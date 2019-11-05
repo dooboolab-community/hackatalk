@@ -6,7 +6,6 @@ import {
   fireEvent,
   render,
   toJSON,
-  wait,
   waitForElement,
   within,
 } from '@testing-library/react-native';
