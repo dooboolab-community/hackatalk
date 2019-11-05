@@ -35,6 +35,34 @@ describe('[Chat] interaction', () => {
     testingLib = render(component);
   });
 
+  it('should invoke changeText event handler when message changed', () => {
+    const textInput = testingLib.getByTestId('input_chat');
+    jest.useFakeTimers();
+    jest.runAllTimers();
+    fireEvent.changeText(textInput, 'chat test');
+    expect(textInput.props.value).toEqual('chat test');
+  });
+
+  it('should call [setShowMenu] when focused', () => {
+    const textInput = testingLib.getByTestId('input_chat');
+    textInput.props.onFocus();
+  });
+
+  it('should [showMenu] when touch pressed', () => {
+    let touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+
+    touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+  });
+
+  it('should call [setShowMenu] when focused', () => {
+    const touchMenu = testingLib.getByTestId('touch_menu');
+    fireEvent.press(touchMenu);
+
+    expect(setShowMenu).toHaveBeenCalledTimes(1);
+  });
+
   it('should [sendChat] when pressing button', () => {
     let chatBtn = testingLib.getByTestId('btn_chat');
     chatBtn = testingLib.getByTestId('btn_chat');
