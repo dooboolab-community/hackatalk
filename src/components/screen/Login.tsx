@@ -74,6 +74,7 @@ const StyledInputWrapper = styled.View`
 `;
 
 const StyledButtonWrapper = styled.View`
+  flex: 1;
   align-self: stretch;
   margin-top: 20px;
   height: 60px;
@@ -111,7 +112,6 @@ function Screen(props: Props): React.ReactElement {
 
   const goToSignUp = (): void => {
     props.navigation.navigate('SignUp');
-    // props.navigation.navigate('SignUp');
   };
 
   const goToFindPw = (): void => {
@@ -253,8 +253,6 @@ function Screen(props: Props): React.ReactElement {
               <Button
                 testID="btnSignUp"
                 onPress={goToSignUp}
-                alignItems="stretch"
-                justifyContent="flex-start"
                 isWhite
               >
                 {getString('SIGN_UP')}
@@ -263,8 +261,6 @@ function Screen(props: Props): React.ReactElement {
               <Button
                 testID="btnLogin"
                 isLoading={isLoggingIn}
-                alignItems="stretch"
-                justifyContent="flex-end"
                 onPress={onLogin}
               >
                 {getString('LOGIN')}

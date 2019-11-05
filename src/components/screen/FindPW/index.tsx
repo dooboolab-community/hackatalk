@@ -70,10 +70,10 @@ function FindPW(): ReactElement {
               testID="btnFindPwConfirm"
               isDisabled={(!(touched && touched.length) || !!errorMessage)}
               width="100%"
-              flexDirection="column"
+              containerStyle={{ flexDirection: 'column' }}
               onPress={handleSubmit(onSubmit)}
             >
-              {getString('SEND_PASSWORD_RESET_LINK')}
+              {getString('PASSWORD_RESET')}
             </Button>
           </StyledButtonWrapper>
         </InnerContainer>

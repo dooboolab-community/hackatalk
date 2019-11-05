@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   ImageSourcePropType,
+  StyleProp,
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
@@ -13,12 +14,9 @@ interface StyledElement {
   disabled?: boolean;
 }
 
-interface ButtonContainer {
+interface ButtonProps {
   width?: ReactText;
   height?: ReactText;
-  flexDirection?: string;
-  justifyContent?: string;
-  alignItems?: string;
 }
 
 interface Props {
@@ -26,7 +24,7 @@ interface Props {
   isWhite: boolean;
   isLoading: boolean;
   isDisabled: boolean;
-  containerStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
   style?: ViewStyle;
   onPress: (params?: any) => void | Promise<void>;
   imgLeftSrc?: ImageSourcePropType;
@@ -35,19 +33,27 @@ interface Props {
   children: string;
   width?: ReactText;
   height?: ReactText;
-  flexDirection?: string;
-  justifyContent?: string;
-  alignItems?: string;
 }
 
-const ButtonContainer = styled.View<ButtonContainer>`
+const ButtonContainer = styled.View<StyledElement>`
   flex: 1;
-  flex-direction: ${({ flexDirection }): string => flexDirection || 'row'};
-  ${({ justifyContent }): string | undefined => justifyContent && `justify-content: ${justifyContent}`};
-  ${({ alignItems }): string | undefined => alignItems && `align-items: ${alignItems}`};
+  flex-direction: row;
+  justify-content: center;
+  background-color: ${({ white, disabled, theme }): string =>
+    (disabled && theme.btnDisabled) ||
+    (white && theme.btnPrimaryLight) ||
+    theme.btnPrimary
+  };
+  border-color: ${({ white, disabled, theme }): string =>
+    (disabled && theme.lineColor) ||
+    (white && theme.btnPrimary) ||
+    theme.btnPrimaryLight
+  };
+  border-radius: 4px;
+  border-width: 1px;
 `;
 
-const StyledButtonContainer = styled.View<ButtonContainer>`
+const StyledButtonContainer = styled.View<ButtonProps>`
   width: ${({ width }): ReactText | undefined => typeof width === 'number' ? `${width}px` : width};
   height: ${({ height }): ReactText | undefined => typeof height === 'number' ? `${height}px` : height};
   justify-content: center;
@@ -55,39 +61,19 @@ const StyledButtonContainer = styled.View<ButtonContainer>`
   align-items: center;
 `;
 
-const StyledButton = styled.View<StyledElement>`
-  background-color: ${({ white, theme }): string =>
-    white ? theme.btnPrimaryLight : theme.btnPrimary};
-  border-color: ${({ white, theme }): string =>
-    white ? theme.btnPrimary : theme.btnPrimaryLight};
-  border-radius: 4px;
-  border-width: 1px;
+const StyledButton = styled.View`
   align-items: center;
   justify-content: center;
-`;
-
-const StyledButtonDisabled = styled.View`
-  background-color: ${({ theme }): string => theme.btnDisabled};
-  border-color: ${({ theme }): string => theme.lineColor};
-  align-self: center;
-  border-radius: 4px;
-  border-width: 1px;
-  align-items: center;
   align-self: stretch;
-  justify-content: center;
 `;
 
 const StyledText = styled.Text<StyledElement>`
   font-size: 14px;
   font-weight: bold;
   color: ${({ white, theme, disabled }): string =>
-    white
-      ? theme.btnPrimaryLightFont
-      : (
-        disabled
-          ? theme.btnPrimaryFont
-          : theme.btnDisabled
-      )
+    (disabled && theme.btnPrimaryFont) ||
+    (white && theme.btnPrimaryLightFont) ||
+    theme.btnDisabled
   };
 `;
 
@@ -111,47 +97,38 @@ function Button(props: Props): React.ReactElement {
     indicatorColor,
     imgLeftSrc,
     children,
-    flexDirection,
-    justifyContent,
-    alignItems,
+    containerStyle,
   } = props;
 
   return (
     <ButtonContainer
-      flexDirection={flexDirection}
-      justifyContent={justifyContent}
-      alignItems={alignItems}
+      white={isWhite}
+      style={containerStyle}
+      disabled={isDisabled}
     >
-      {isDisabled ? (
-        <StyledButtonDisabled testID={testID}>
+      <TouchableOpacity
+        testID={testID}
+        activeOpacity={activeOpacity}
+        onPress={onPress}
+        disabled={isDisabled}
+      >
+        <StyledButton>
           <StyledButtonContainer width={width} height={height}>
-            <StyledText disabled>{children}</StyledText>
+            {(isLoading && !isDisabled) ? (
+              <ActivityIndicator size="small" color={indicatorColor} />
+            ) : (imgLeftSrc && !isDisabled) ? (
+              <StyledImageLeft source={imgLeftSrc} />
+            ) : (
+              undefined
+            )}
+            {!isLoading ? (
+              <StyledText disabled={isDisabled} white={isWhite}>{children}</StyledText>
+            ) : (
+              undefined
+            )}
           </StyledButtonContainer>
-        </StyledButtonDisabled>
-      ) : (
-        <TouchableOpacity
-          testID={testID}
-          activeOpacity={activeOpacity}
-          onPress={onPress}
-        >
-          <StyledButton white={isWhite}>
-            <StyledButtonContainer width={width} height={height}>
-              {isLoading ? (
-                <ActivityIndicator size="small" color={indicatorColor} />
-              ) : imgLeftSrc ? (
-                <StyledImageLeft source={imgLeftSrc} />
-              ) : (
-                undefined
-              )}
-              {!isLoading ? (
-                <StyledText white={isWhite}>{children}</StyledText>
-              ) : (
-                undefined
-              )}
-            </StyledButtonContainer>
-          </StyledButton>
-        </TouchableOpacity>
-      )}
+        </StyledButton>
+      </TouchableOpacity>
     </ButtonContainer>
   );
 }

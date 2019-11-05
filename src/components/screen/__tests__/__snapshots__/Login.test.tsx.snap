@@ -243,7 +243,10 @@ exports[`[Login] rendering test renders as expected 1`] = `
               Object {
                 "alignItems": "center",
                 "alignSelf": "stretch",
+                "flexBasis": 0,
                 "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
                 "height": 60,
                 "justifyContent": "space-between",
                 "marginTop": 20,
@@ -252,23 +255,27 @@ exports[`[Login] rendering test renders as expected 1`] = `
           }
         >
           <View
-            alignItems="stretch"
-            justifyContent="flex-start"
+            disabled={false}
             style={
               Array [
                 Object {
-                  "alignItems": "stretch",
+                  "backgroundColor": "white",
+                  "borderColor": "rgb(58,139,255)",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
                   "flexBasis": 0,
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "flexShrink": 1,
-                  "justifyContent": "flex-start",
+                  "justifyContent": "center",
                 },
               ]
             }
+            white={true}
           >
             <TouchableOpacity
               activeOpacity={0.5}
+              disabled={false}
               onPress={[Function]}
               testID="btnSignUp"
             >
@@ -277,15 +284,11 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "white",
-                      "borderColor": "rgb(58,139,255)",
-                      "borderRadius": 4,
-                      "borderWidth": 1,
+                      "alignSelf": "stretch",
                       "justifyContent": "center",
                     },
                   ]
                 }
-                white={true}
               >
                 <View
                   height={60}
@@ -303,6 +306,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   width={136}
                 >
                   <Text
+                    disabled={false}
                     style={
                       Array [
                         Object {
@@ -328,23 +332,27 @@ exports[`[Login] rendering test renders as expected 1`] = `
             }
           />
           <View
-            alignItems="stretch"
-            justifyContent="flex-end"
+            disabled={false}
             style={
               Array [
                 Object {
-                  "alignItems": "stretch",
+                  "backgroundColor": "rgb(58,139,255)",
+                  "borderColor": "white",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
                   "flexBasis": 0,
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "flexShrink": 1,
-                  "justifyContent": "flex-end",
+                  "justifyContent": "center",
                 },
               ]
             }
+            white={false}
           >
             <TouchableOpacity
               activeOpacity={0.5}
+              disabled={false}
               onPress={[Function]}
               testID="btnLogin"
             >
@@ -353,15 +361,11 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(58,139,255)",
-                      "borderColor": "white",
-                      "borderRadius": 4,
-                      "borderWidth": 1,
+                      "alignSelf": "stretch",
                       "justifyContent": "center",
                     },
                   ]
                 }
-                white={false}
               >
                 <View
                   height={60}
@@ -379,6 +383,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   width={136}
                 >
                   <Text
+                    disabled={false}
                     style={
                       Array [
                         Object {

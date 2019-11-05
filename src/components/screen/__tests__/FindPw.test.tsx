@@ -57,14 +57,14 @@ describe('[FindPw] screen', () => {
       fireEvent.changeText(emailInput, 'wrongEmailFormat.bah');
       const emailInputError = await waitForElement(() => getByText(getString('EMAIL_FORMAT_NOT_VALID')));
       expect(emailInputError).toBeTruthy();
-      const btnFindPwConfirmText = getByText(getString('SEND_PASSWORD_RESET_LINK'));
+      const btnFindPwConfirmText = getByText(getString('PASSWORD_RESET'));
       expect(btnFindPwConfirmText.props).toHaveProperty('disabled');
 
       fireEvent.changeText(emailInput, 'correctEmailFormat@bah.meh');
       const btnFindPwConfirm = await waitForElement(() => getByTestId('btnFindPwConfirm'));
-      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(getString('SEND_PASSWORD_RESET_LINK'));
+      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(getString('PASSWORD_RESET'));
 
-      expect(btnFindPwConfirmText2.props).not.toHaveProperty('disabled');
+      expect(btnFindPwConfirmText2.props).toHaveProperty('disabled', false);
     });
 
     afterEach(() => {

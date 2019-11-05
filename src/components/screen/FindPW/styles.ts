@@ -12,8 +12,8 @@ export const StyledScrollView = styled(KeyboardAwareScrollView).attrs(() => ({
   keyboardShouldPersistTaps: 'handled',
   contentContainerStyle: {
     flex: 1,
+    marginTop: 30,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
 }))``;

@@ -17,19 +17,27 @@ exports[`[Temp] render renders without crashing 1`] = `
   }
 >
   <View
+    disabled={false}
     style={
       Array [
         Object {
+          "backgroundColor": "rgb(58,139,255)",
+          "borderColor": "white",
+          "borderRadius": 4,
+          "borderWidth": 1,
           "flexBasis": 0,
           "flexDirection": "row",
           "flexGrow": 1,
           "flexShrink": 1,
+          "justifyContent": "center",
         },
       ]
     }
+    white={false}
   >
     <TouchableOpacity
       activeOpacity={0.5}
+      disabled={false}
       onPress={[Function]}
       testID="btn"
     >
@@ -38,15 +46,11 @@ exports[`[Temp] render renders without crashing 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(58,139,255)",
-              "borderColor": "white",
-              "borderRadius": 4,
-              "borderWidth": 1,
+              "alignSelf": "stretch",
               "justifyContent": "center",
             },
           ]
         }
-        white={false}
       >
         <View
           height={60}
@@ -64,6 +68,7 @@ exports[`[Temp] render renders without crashing 1`] = `
           width={136}
         >
           <Text
+            disabled={false}
             style={
               Array [
                 Object {
