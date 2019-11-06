@@ -148,16 +148,17 @@ const StyledSearchImage = styled.Image`
 `;
 
 const Screen = (): React.ReactElement => {
-  const [{ profileModal }, dispatch] = useStateValue();
+  const [{ profileModal, friend }, dispatch] = useStateValue();
   const [searchedUsers, setSearchedUsers] = useState<User[]>(fakeUsers);
   const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
   const userListOnPress = (item: User): void => {
     if (profileModal) {
+      const deleteMode = friend.friendList.findIndex((myFriend) => myFriend.uid === item.uid) !== -1;
       dispatch({
         type: 'show-modal',
-        payload: { user: item, deleteMode: false },
+        payload: { user: item, deleteMode },
       });
     }
   };

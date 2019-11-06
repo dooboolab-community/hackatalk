@@ -17,17 +17,7 @@ const StyledContainer = styled.View`
 `;
 
 export default function Screen(): ReactElement {
-  const [{ profileModal }, dispatch] = useStateValue();
-  const [friends] = useState<User[]>([
-    {
-      uid: 'my_uid',
-      displayName: 'hello',
-      thumbURL: '',
-      photoURL: '',
-      statusMsg: 'I am fine today',
-      online: true,
-    },
-  ]);
+  const [{ profileModal, friend }, dispatch] = useStateValue();
 
   const renderItem = (item: User): ReactElement => {
     return (
@@ -54,7 +44,7 @@ export default function Screen(): ReactElement {
         }}
         contentContainerStyle={
           // prettier-ignore
-          friends.length === 0
+          friend.friendList.length === 0
             ? {
               flex: 1,
               alignItems: 'center',
@@ -63,7 +53,7 @@ export default function Screen(): ReactElement {
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={friends}
+        data={friend.friendList}
         renderItem={({ item }): ReactElement => renderItem(item)}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>

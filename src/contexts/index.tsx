@@ -1,4 +1,10 @@
 import {
+  FriendAction,
+  FriendState,
+  friendReducer,
+  initialFriend,
+} from '../reducers/FriendReducer';
+import {
   ProfileModalAction,
   ProfileModalState,
   initialProfileModal,
@@ -25,23 +31,26 @@ import { ThemeType } from '../types';
 interface MainState {
   theme: ThemeType;
   profileModal: ProfileModalState;
+  friend: FriendState;
 }
 
-type TMainAction = ThemeAction | ProfileModalAction;
+type TMainAction = ThemeAction | ProfileModalAction | FriendAction;
 
 const mainInitialState = {
   theme: initialTheme,
   profileModal: initialProfileModal,
+  friend: initialFriend,
 };
 
 const mainReducer = (
-  { theme, profileModal }: MainState,
+  { theme, profileModal, friend }: MainState,
   action: TMainAction,
 ): MainState => {
   // middleware goes here, i.e. calling analytics service, etc.
   return {
     theme: themeReducer(theme, action),
     profileModal: profileModalReducer(profileModal, action),
+    friend: friendReducer(friend, action),
   };
 };
 

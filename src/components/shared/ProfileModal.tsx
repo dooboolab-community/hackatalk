@@ -11,6 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
+import { useStateValue } from '../../contexts';
 
 const StyledView = styled.View`
   margin-top: 40px;
@@ -105,8 +106,9 @@ const styles: Styles = {
   },
 };
 
-const Shared = forwardRef<Ref, Props>((props, ref) => {
+export const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: any;
+  const [, dispatch] = useStateValue();
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
@@ -133,9 +135,25 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     }
   };
 
-  const addFriend = (): void => {};
+  const addFriend = (): void => {
+    dispatch({
+      type: 'add-friend',
+      payload: {
+        friend: user,
+      },
+    });
+    if (modal) {
+      modal.close();
+    }
+  };
 
   const deleteFriend = (): void => {
+    dispatch({
+      type: 'delete-friend',
+      payload: {
+        friend: user,
+      },
+    });
     if (modal) {
       modal.close();
     }
