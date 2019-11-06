@@ -70,7 +70,7 @@ const getLabelName = (key: string): string => {
 };
 
 const getInputType = (key: string): string => {
-  if (key.endsWith('password')) {
+  if (key.toLowerCase().endsWith('password')) {
     return 'password';
   } else if (key === 'email') {
     return 'email';

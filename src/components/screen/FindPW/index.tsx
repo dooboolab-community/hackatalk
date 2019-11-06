@@ -36,6 +36,7 @@ function FindPW(): ReactElement {
       touched,
     },
     getValues,
+    reset,
   } = useForm({
     validationSchema: schema,
   });
@@ -44,6 +45,7 @@ function FindPW(): ReactElement {
       'Find Password',
       `password reset link has been sent to your email: ${email}.`
     );
+    reset({ email: '' });
   }, []);
   const onTextChanged = useCallback((text: string): void | Promise<boolean> => {
     setValue('email', text, true);

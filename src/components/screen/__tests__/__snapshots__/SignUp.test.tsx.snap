@@ -997,6 +997,8 @@ exports[`[SignUp] screen renders without crashing 1`] = `
         >
           <TextInput
             allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
             formik={
               Object {
                 "dirty": false,
@@ -1244,6 +1246,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
             placeholderTextColor="rgb(175,194,219)"
             rejectResponderTermination={true}
             returnKeyType="next"
+            secureTextEntry={true}
             style={
               Array [
                 Object {
