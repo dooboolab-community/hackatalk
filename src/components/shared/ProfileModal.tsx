@@ -110,8 +110,9 @@ const styles: Styles = {
   },
 };
 
-const Shared = forwardRef<Ref, Props>((props, ref) => {
+export const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: any;
+  const [, dispatch] = useStateValue();
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);

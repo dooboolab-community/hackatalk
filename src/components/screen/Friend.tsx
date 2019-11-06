@@ -54,7 +54,7 @@ export default function Screen(): ReactElement {
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={friends}
+        data={friend.friendList}
         renderItem={({ item }): ReactElement => renderItem(item)}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
