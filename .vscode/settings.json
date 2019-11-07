@@ -23,5 +23,7 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.arrowParens": "always",
-  "prettier.jsxSingleQuote": false
+  "prettier.jsxSingleQuote": false,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
 }
