@@ -74,6 +74,7 @@ const StyledInputWrapper = styled.View`
 `;
 
 const StyledButtonWrapper = styled.View`
+  flex: 1;
   align-self: stretch;
   margin-top: 20px;
   height: 60px;
@@ -111,7 +112,6 @@ function Screen(props: Props): React.ReactElement {
 
   const goToSignUp = (): void => {
     props.navigation.navigate('SignUp');
-    // props.navigation.navigate('SignUp');
   };
 
   const goToFindPw = (): void => {
@@ -252,7 +252,6 @@ function Screen(props: Props): React.ReactElement {
             <StyledButtonWrapper>
               <Button
                 testID="btnSignUp"
-                containerStyle={{ flex: 1 }}
                 onPress={goToSignUp}
                 isWhite
               >
@@ -261,7 +260,6 @@ function Screen(props: Props): React.ReactElement {
               <View style={{ width: 8 }} />
               <Button
                 testID="btnLogin"
-                containerStyle={{ flex: 1 }}
                 isLoading={isLoggingIn}
                 onPress={onLogin}
               >

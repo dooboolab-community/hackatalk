@@ -13,34 +13,54 @@ exports[`[TextInput] render renders without crashing 1`] = `
     ]
   }
 >
-  <TextInput
-    allowFontScaling={true}
-    autoCapitalize="none"
-    autoCorrect={false}
-    focused={false}
-    onBlur={[Function]}
-    onFocus={[Function]}
-    rejectResponderTermination={true}
+  <View
+    isFocused={false}
     style={
       Array [
         Object {
           "alignItems": "center",
-          "alignSelf": "stretch",
           "borderColor": "rgb(221,226,236)",
+          "borderRadius": 3,
           "borderWidth": 1,
-          "color": "black",
           "flexDirection": "row",
-          "fontSize": 16,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
           "marginBottom": 8,
-          "paddingBottom": 22,
-          "paddingLeft": 20,
-          "paddingRight": 20,
-          "paddingTop": 22,
         },
       ]
     }
-    underlineColorAndroid="transparent"
-  />
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      autoCorrect={false}
+      focused={false}
+      onBlur={[Function]}
+      onFocus={[Function]}
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "borderColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "color": "black",
+            "flexBasis": 0,
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "fontSize": 16,
+            "justifyContent": "flex-start",
+            "paddingBottom": 22,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 22,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+  </View>
 </View>
 `;

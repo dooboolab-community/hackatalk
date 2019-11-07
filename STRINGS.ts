@@ -8,6 +8,7 @@ const en = {
   LOGIN: 'Login',
   EMAIL: 'Email',
   PASSWORD: 'Password',
+  CONFIRM_PASSWORD: 'Confirm password',
   SIGN_UP: 'Sign Up',
   LOGOUT: 'Logout',
   FORGOT_PW: 'Forgot password?',
@@ -41,6 +42,7 @@ const en = {
   NAME_REQUIRED: 'Name is required.',
   NAME_MIN: 'Name must be at least 3 characters.',
   PASSWORD_MUST_MATCH: 'Passwords must match.',
+  PASSWORD_RESET: 'Reset Password',
 };
 
 const ko = {
@@ -50,6 +52,7 @@ const ko = {
   LOGOUT: '로그아웃',
   EMAIL: '이메일',
   PASSWORD: '비밀번호',
+  CONFIRM_PASSWORD: '비밀번호 재입력',
   SIGN_UP: '회원가입',
   FORGOT_PW: '비밀번호를 잊어버리셨나요?',
   FIND_PW: '비밀번호 찾기',
@@ -82,6 +85,7 @@ const ko = {
   NAME_REQUIRED: '이름은 필수 항목입니다.',
   NAME_MIN: '이름은 3글자 이상이어야 합니다.',
   PASSWORD_MUST_MATCH: '비밀번호가 일치하지 않습니다.',
+  PASSWORD_RESET: '비밀번호 재설정',
 };
 
 i18n.fallbacks = true;

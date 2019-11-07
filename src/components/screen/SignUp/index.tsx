@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
-import { Formik, FormikActions, FormikProps } from 'formik';
 import {
+  ButtonToRight,
   FormikInput,
   Props,
   SignUpFormValues,
@@ -10,6 +10,7 @@ import {
   StyledSafeAreaView,
   StyledScrollView,
 } from './styles';
+import { Formik, FormikActions, FormikProps } from 'formik';
 import React, { ReactElement, memo } from 'react';
 
 import { Alert } from 'react-native';
@@ -22,12 +23,12 @@ const signUpValidationSchema = Yup.object({
   email: Yup.string()
     .email(getString('EMAIL_FORMAT_NOT_VALID'))
     .required(getString('EMAIL_REQUIRED')),
-  password1: Yup.string()
+  password: Yup.string()
     .min(6, getString('PASSWORD_MIN'))
     .required(getString('PASSWORD_REQUIRED')),
-  password2: Yup.string()
+  confirmPassword: Yup.string()
     .min(6, getString('PASSWORD_MIN'))
-    .oneOf([Yup.ref('password1'), null], getString('PASSWORD_MUST_MATCH'))
+    .oneOf([Yup.ref('password'), null], getString('PASSWORD_MUST_MATCH'))
     .required(getString('PASSWORD_REQUIRED')),
   name: Yup.string()
     .min(3, getString('NAME_MIN'))
@@ -38,7 +39,7 @@ const signUpValidationSchema = Yup.object({
 const onSignUpSubmit = (
   {
     email,
-    password1,
+    password,
     name,
     status,
   }: SignUpFormValues,
@@ -51,7 +52,7 @@ const onSignUpSubmit = (
     'Signed Up',
     `You've signed up with 
       email: ${email},
-      password: ${password1},
+      password: ${password},
       name: ${name},
       status: ${status}
       successfully!
@@ -62,23 +63,14 @@ const onSignUpSubmit = (
 };
 
 const getLabelName = (key: string): string => {
-  const newKey = key.toUpperCase();
-  if (key.startsWith('password')) {
-    return `${getString(
-      newKey.substring(
-        0,
-        newKey.length - 1
-      )
-    )}${newKey.substring(
-      newKey.length - 1,
-      newKey.length
-    )}`;
+  if (key === 'confirmPassword') {
+    return getString('CONFIRM_PASSWORD');
   }
-  return getString(newKey);
+  return getString(key.toUpperCase());
 };
 
 const getInputType = (key: string): string => {
-  if (key.startsWith('password')) {
+  if (key.toLowerCase().endsWith('password')) {
     return 'password';
   } else if (key === 'email') {
     return 'email';
@@ -94,8 +86,8 @@ function SignUpPage(props: Props): ReactElement {
         <Formik
           initialValues={{
             email: '',
-            password1: '',
-            password2: '',
+            password: '',
+            confirmPassword: '',
             name: '',
             status: '',
           }}
@@ -115,14 +107,15 @@ function SignUpPage(props: Props): ReactElement {
                 />
               ))}
               <StyledButtonWrapper>
-                <Button
-                  testID="btnSignUpConfirm"
-                  isDisabled={!isValid}
-                  style={{ alignSelf: 'flex-end' }}
-                  onPress={handleSubmit}
-                >
-                  {getString('REGISTER')}
-                </Button>
+                <ButtonToRight>
+                  <Button
+                    testID="btnSignUpConfirm"
+                    isDisabled={!isValid}
+                    onPress={handleSubmit}
+                  >
+                    {getString('REGISTER')}
+                  </Button>
+                </ButtonToRight>
               </StyledButtonWrapper>
             </StyledForm>
           )}

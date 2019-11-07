@@ -2,32 +2,244 @@
 
 exports[`[FindPw] screen renders without crashing 1`] = `
 <View
+  collapsable={true}
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "transparent",
-        "flexBasis": 0,
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "justifyContent": "center",
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <Text
+  <SafeAreaView
     style={
       Array [
         Object {
-          "color": "blue",
-          "fontSize": 16,
+          "backgroundColor": "#ffffff",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
         },
       ]
     }
-    testID="myText"
   >
-    dooboolab
-  </Text>
+    <ScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+          "marginTop": 30,
+        }
+      }
+      contentInset={
+        Object {
+          "bottom": 0,
+        }
+      }
+      enableAutomaticScroll={true}
+      enableOnAndroid={false}
+      enableResetScrollToCoords={true}
+      extraHeight={75}
+      extraScrollHeight={0}
+      keyboardDismissMode="interactive"
+      keyboardOpeningTime={250}
+      keyboardShouldPersistTaps="handled"
+      keyboardSpace={0}
+      scrollEventThrottle={1}
+      showsVerticalScrollIndicator={true}
+      style={
+        Array [
+          Object {},
+        ]
+      }
+      viewIsInsideTabBar={false}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flexDirection": "column",
+              "paddingBottom": 30,
+              "paddingLeft": 44,
+              "paddingRight": 44,
+              "paddingTop": 0,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "alignSelf": "stretch",
+                "flexDirection": "column",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          <Text
+            focused={false}
+            style={
+              Array [
+                Object {
+                  "color": "#a3a3a3",
+                  "fontSize": 12,
+                  "marginBottom": 8,
+                },
+              ]
+            }
+          >
+            Email
+          </Text>
+          <View
+            isFocused={false}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderColor": "rgb(221,226,236)",
+                  "borderRadius": 3,
+                  "borderWidth": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "marginBottom": 8,
+                },
+              ]
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              focused={false}
+              placeholder="Email"
+              placeholderTextColor="rgb(175,194,219)"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "stretch",
+                    "borderColor": "black",
+                    "borderStyle": "solid",
+                    "borderWidth": 0,
+                    "color": "black",
+                    "flexBasis": 0,
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 16,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 22,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 22,
+                  },
+                ]
+              }
+              testID="findPw_email_input"
+              underlineColorAndroid="transparent"
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 60,
+                "marginTop": 20,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            disabled={true}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgb(224,224,224)",
+                  "borderColor": "rgb(221,226,236)",
+                  "borderRadius": 4,
+                  "borderWidth": 1,
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "flexDirection": "column",
+                },
+              ]
+            }
+            white={false}
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              disabled={true}
+              testID="btnFindPwConfirm"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "stretch",
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                <View
+                  height={60}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "stretch",
+                        "height": 60,
+                        "justifyContent": "center",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                  width="100%"
+                >
+                  <Text
+                    disabled={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                    white={false}
+                  >
+                    Reset Password
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </ScrollView>
+  </SafeAreaView>
 </View>
 `;
