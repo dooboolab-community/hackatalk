@@ -75,12 +75,12 @@ const StyledInputWrapper = styled.View`
 
 const StyledButtonWrapper = styled.View`
   flex: 1;
-  align-self: stretch;
   margin-top: 20px;
   height: 60px;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+  align-self: stretch;
 `;
 
 const StyledTextForgotPw = styled.Text`
@@ -253,6 +253,7 @@ function Screen(props: Props): React.ReactElement {
               <Button
                 testID="btnSignUp"
                 onPress={goToSignUp}
+                containerStyle={{ flex: 1, flexDirection: 'row' }}
                 isWhite
               >
                 {getString('SIGN_UP')}
@@ -262,6 +263,7 @@ function Screen(props: Props): React.ReactElement {
                 testID="btnLogin"
                 isLoading={isLoggingIn}
                 onPress={onLogin}
+                containerStyle={{ flex: 1, flexDirection: 'row' }}
               >
                 {getString('LOGIN')}
               </Button>

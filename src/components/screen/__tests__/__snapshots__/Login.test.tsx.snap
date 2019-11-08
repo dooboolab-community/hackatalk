@@ -164,6 +164,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                 ]
               }
               testID="email_input"
+              textContentType="none"
               underlineColorAndroid="transparent"
               value=""
             />
@@ -232,6 +233,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                 ]
               }
               testID="pw_input"
+              textContentType="none"
               underlineColorAndroid="transparent"
               value=""
             />
@@ -241,7 +243,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
+                "alignItems": "stretch",
                 "alignSelf": "stretch",
                 "flexBasis": 0,
                 "flexDirection": "row",
@@ -254,76 +256,49 @@ exports[`[Login] rendering test renders as expected 1`] = `
             ]
           }
         >
-          <View
+          <TouchableOpacity
+            activeOpacity={0.5}
             disabled={false}
+            height={60}
+            onPress={[Function]}
             style={
               Array [
                 Object {
+                  "alignItems": "center",
                   "backgroundColor": "white",
                   "borderColor": "rgb(58,139,255)",
                   "borderRadius": 4,
                   "borderWidth": 1,
-                  "flexBasis": 0,
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
+                  "height": 60,
                   "justifyContent": "center",
+                  "width": "auto",
+                },
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
                 },
               ]
             }
+            testID="btnSignUp"
             white={true}
+            width="auto"
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
+            <Text
               disabled={false}
-              onPress={[Function]}
-              testID="btnSignUp"
+              style={
+                Array [
+                  Object {
+                    "color": "rgb(58,139,255)",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              white={true}
             >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <View
-                  height={60}
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "alignSelf": "stretch",
-                        "height": 60,
-                        "justifyContent": "center",
-                        "width": 136,
-                      },
-                    ]
-                  }
-                  width={136}
-                >
-                  <Text
-                    disabled={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "rgb(58,139,255)",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                        },
-                      ]
-                    }
-                    white={true}
-                  >
-                    Sign Up
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
           <View
             style={
               Object {
@@ -331,76 +306,49 @@ exports[`[Login] rendering test renders as expected 1`] = `
               }
             }
           />
-          <View
+          <TouchableOpacity
+            activeOpacity={0.5}
             disabled={false}
+            height={60}
+            onPress={[Function]}
             style={
               Array [
                 Object {
+                  "alignItems": "center",
                   "backgroundColor": "rgb(58,139,255)",
                   "borderColor": "white",
                   "borderRadius": 4,
                   "borderWidth": 1,
-                  "flexBasis": 0,
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
+                  "height": 60,
                   "justifyContent": "center",
+                  "width": "auto",
+                },
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
                 },
               ]
             }
+            testID="btnLogin"
             white={false}
+            width="auto"
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
+            <Text
               disabled={false}
-              onPress={[Function]}
-              testID="btnLogin"
+              style={
+                Array [
+                  Object {
+                    "color": "rgb(224,224,224)",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              white={false}
             >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <View
-                  height={60}
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "alignSelf": "stretch",
-                        "height": 60,
-                        "justifyContent": "center",
-                        "width": 136,
-                      },
-                    ]
-                  }
-                  width={136}
-                >
-                  <Text
-                    disabled={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "rgb(224,224,224)",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                        },
-                      ]
-                    }
-                    white={false}
-                  >
-                    Login
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+              Login
+            </Text>
+          </TouchableOpacity>
         </View>
         <View
           style={

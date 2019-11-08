@@ -59,6 +59,7 @@ exports[`[TextInput] render renders without crashing 1`] = `
           },
         ]
       }
+      textContentType="none"
       underlineColorAndroid="transparent"
     />
   </View>

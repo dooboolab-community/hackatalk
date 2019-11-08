@@ -46,7 +46,5 @@ export const StyledButtonWrapper = styled.View`
   width: 100%;
   margin-top: 20px;
   height: 60px;
-  flex-direction: row;
-  align-items: center;
   padding: 0px;
 `;

@@ -2,22 +2,21 @@ import * as Yup from 'yup';
 
 import {
   ButtonToRight,
-  FormikInput,
+  ErrorText,
+  InnerContainer,
   Props,
   SignUpFormValues,
   StyledButtonWrapper,
-  StyledForm,
   StyledSafeAreaView,
   StyledScrollView,
+  StyledTextInput,
 } from './styles';
-import { Formik, FormikActions, FormikProps } from 'formik';
-import React, { ReactElement, memo } from 'react';
+import React, { ReactElement, memo, useCallback, useMemo } from 'react';
 
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
 import { getString } from '../../../../STRINGS';
-import { useThemeContext } from '../../../providers/ThemeProvider';
-import { withTheme } from 'styled-components/native';
+import useForm from 'react-hook-form';
 
 const signUpValidationSchema = Yup.object({
   email: Yup.string()
@@ -36,32 +35,6 @@ const signUpValidationSchema = Yup.object({
   status: Yup.string(),
 });
 
-const onSignUpSubmit = (
-  {
-    email,
-    password,
-    name,
-    status,
-  }: SignUpFormValues,
-  {
-    resetForm,
-    setSubmitting,
-  }: FormikActions<SignUpFormValues>,
-): void => {
-  Alert.alert(
-    'Signed Up',
-    `You've signed up with 
-      email: ${email},
-      password: ${password},
-      name: ${name},
-      status: ${status}
-      successfully!
-    `
-  );
-  setSubmitting(false);
-  resetForm();
-};
-
 const getLabelName = (key: string): string => {
   if (key === 'confirmPassword') {
     return getString('CONFIRM_PASSWORD');
@@ -69,61 +42,87 @@ const getLabelName = (key: string): string => {
   return getString(key.toUpperCase());
 };
 
-const getInputType = (key: string): string => {
-  if (key.toLowerCase().endsWith('password')) {
-    return 'password';
-  } else if (key === 'email') {
-    return 'email';
-  }
-  return 'text';
+export const initialValues: SignUpFormValues = {
+  email: '',
+  password: '',
+  confirmPassword: '',
+  name: '',
+  status: '',
 };
 
 function SignUpPage(props: Props): ReactElement {
-  const { theme } = useThemeContext();
+  const {
+    register,
+    errors,
+    setValue,
+    handleSubmit,
+    formState: {
+      touched,
+    },
+    watch,
+    reset,
+  } = useForm<SignUpFormValues>({
+    validationSchema: signUpValidationSchema,
+  });
+  const onTextChanged = useCallback(
+    (label: string, text: string): void | Promise<boolean> => {
+      setValue(label, text, true);
+    },
+    [setValue]
+  );
+  const onSignUpSubmit = useCallback((
+    {
+      email,
+      password,
+      name,
+      status,
+    }): void => {
+    Alert.alert(
+      'Signed Up',
+      `You've signed up with 
+        email: ${email},
+        password: ${password},
+        name: ${name},
+        status: ${status}
+        successfully!
+      `
+    );
+    reset(initialValues);
+  }, []);
+  const values: SignUpFormValues = useMemo(() => watch(), [watch]);
+
   return (
     <StyledSafeAreaView>
       <StyledScrollView>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-            confirmPassword: '',
-            name: '',
-            status: '',
-          }}
-          validationSchema={signUpValidationSchema}
-          onSubmit={(values, actions): void => onSignUpSubmit(values, actions)}
-        >
-          {({ isValid, values, handleSubmit }: FormikProps<SignUpFormValues>): ReactElement => (
-            <StyledForm testID="formTest">
-              {Object.keys(values).map((key: string) => (
-                <FormikInput
-                  key={key}
-                  label={key}
-                  name={key}
-                  type={getInputType(key)}
-                  placeholder={getLabelName(key)}
-                  placeholderTextColor={theme.placeholder}
-                />
-              ))}
-              <StyledButtonWrapper>
-                <ButtonToRight>
-                  <Button
-                    testID="btnSignUpConfirm"
-                    isDisabled={!isValid}
-                    onPress={handleSubmit}
-                  >
-                    {getString('REGISTER')}
-                  </Button>
-                </ButtonToRight>
-              </StyledButtonWrapper>
-            </StyledForm>
-          )}
-        </Formik>
+        {Object.keys(initialValues).map((key: string) => (
+          <InnerContainer key={key}>
+            <StyledTextInput
+              ref={register({ name: key })}
+              testID={`${key}_input`}
+              txt={values[key]}
+              txtLabel={getLabelName(key)}
+              txtHint={getLabelName(key)}
+              isPassword={key.toLowerCase().endsWith('password')}
+              onTextChanged={(text: string): void | Promise<boolean> => onTextChanged(key, text)}
+              error={errors[key] ? errors[key].message : undefined}
+            />
+            {!!errors[key] && <ErrorText isError={!!errors[key]}>{errors[key].message}</ErrorText>}
+          </InnerContainer>
+        ))}
+        <StyledButtonWrapper>
+          <ButtonToRight>
+            <Button
+              testID="btnSignUpConfirm"
+              isDisabled={!(touched && touched.length) || !!Object.keys(errors).length}
+              onPress={handleSubmit(onSignUpSubmit)}
+            >
+              {getString('REGISTER')}
+            </Button>
+          </ButtonToRight>
+        </StyledButtonWrapper>
       </StyledScrollView>
     </StyledSafeAreaView>
   );
 };
-SignUpPage.displayName = 'SignUp';
 
-export default memo(withTheme(SignUpPage));
+export default memo(SignUpPage);

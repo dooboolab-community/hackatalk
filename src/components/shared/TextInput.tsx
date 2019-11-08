@@ -99,6 +99,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
           // onSubmitEditing={this.props.onSubmitEditing}
           returnKeyType={props.returnKeyType}
           secureTextEntry={props.isPassword}
+          textContentType="none" // to disable autoifill on iOS
         />
         {(!!props.txt && !props.error) && <StyledStatusMark />}
       </StyledTextInputContainer>

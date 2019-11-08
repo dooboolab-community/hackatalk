@@ -759,76 +759,45 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           }
         }
       >
-        <View
+        <TouchableOpacity
+          activeOpacity={0.5}
           disabled={false}
+          height={40}
+          onPress={[Function]}
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "backgroundColor": "rgb(58,139,255)",
                 "borderColor": "white",
                 "borderRadius": 4,
                 "borderWidth": 1,
-                "flexBasis": 0,
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "flexShrink": 1,
+                "height": 40,
                 "justifyContent": "center",
+                "width": "auto",
               },
             ]
           }
+          testID="btn_chat"
           white={false}
+          width="auto"
         >
-          <TouchableOpacity
-            activeOpacity={0.5}
+          <Text
             disabled={false}
-            onPress={[Function]}
-            testID="btn_chat"
+            style={
+              Array [
+                Object {
+                  "color": "rgb(224,224,224)",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+            white={false}
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "justifyContent": "center",
-                  },
-                ]
-              }
-            >
-              <View
-                height={60}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "width": 136,
-                    },
-                  ]
-                }
-                width={136}
-              >
-                <Text
-                  disabled={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "rgb(224,224,224)",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                  white={false}
-                >
-                  Send
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
+            Send
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

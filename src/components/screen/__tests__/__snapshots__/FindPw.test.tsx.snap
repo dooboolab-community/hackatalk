@@ -144,7 +144,9 @@ exports[`[FindPw] screen renders without crashing 1`] = `
                 ]
               }
               testID="findPw_email_input"
+              textContentType="none"
               underlineColorAndroid="transparent"
+              value=""
             />
           </View>
         </View>
@@ -152,8 +154,6 @@ exports[`[FindPw] screen renders without crashing 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
                 "height": 60,
                 "marginTop": 20,
                 "paddingBottom": 0,
@@ -165,78 +165,47 @@ exports[`[FindPw] screen renders without crashing 1`] = `
             ]
           }
         >
-          <View
+          <TouchableOpacity
+            activeOpacity={0.5}
             disabled={true}
+            height={60}
             style={
               Array [
                 Object {
+                  "alignItems": "center",
                   "backgroundColor": "rgb(224,224,224)",
                   "borderColor": "rgb(221,226,236)",
                   "borderRadius": 4,
                   "borderWidth": 1,
-                  "flexBasis": 0,
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
+                  "height": 60,
                   "justifyContent": "center",
+                  "width": "100%",
                 },
                 Object {
-                  "flexDirection": "column",
+                  "flexDirection": "row",
                 },
               ]
             }
+            testID="btnFindPwConfirm"
             white={false}
+            width="100%"
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
+            <Text
               disabled={true}
-              testID="btnFindPwConfirm"
+              style={
+                Array [
+                  Object {
+                    "color": "white",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              white={false}
             >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <View
-                  height={60}
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "alignSelf": "stretch",
-                        "height": 60,
-                        "justifyContent": "center",
-                        "width": "100%",
-                      },
-                    ]
-                  }
-                  width="100%"
-                >
-                  <Text
-                    disabled={true}
-                    style={
-                      Array [
-                        Object {
-                          "color": "white",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                        },
-                      ]
-                    }
-                    white={false}
-                  >
-                    Reset Password
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+              Reset Password
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

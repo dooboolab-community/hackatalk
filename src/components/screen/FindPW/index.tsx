@@ -35,7 +35,7 @@ function FindPW(): ReactElement {
     formState: {
       touched,
     },
-    getValues,
+    watch,
     reset,
   } = useForm({
     validationSchema: schema,
@@ -61,7 +61,7 @@ function FindPW(): ReactElement {
             style={{ marginTop: 8 }}
             txtLabel={getString('EMAIL')}
             txtHint={getString('EMAIL')}
-            txt={getValues().email}
+            txt={watch('email', '')}
             ref={register({ name: 'email' })}
             onTextChanged={onTextChanged}
             error={errorMessage}
@@ -71,9 +71,9 @@ function FindPW(): ReactElement {
             <Button
               testID="btnFindPwConfirm"
               isDisabled={(!(touched && touched.length) || !!errorMessage)}
-              width="100%"
-              containerStyle={{ flexDirection: 'column' }}
               onPress={handleSubmit(onSubmit)}
+              width="100%"
+              containerStyle={{ flexDirection: 'row' }}
             >
               {getString('PASSWORD_RESET')}
             </Button>
