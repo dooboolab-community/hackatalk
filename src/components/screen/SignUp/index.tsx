@@ -94,21 +94,26 @@ function SignUpPage(props: Props): ReactElement {
   return (
     <StyledSafeAreaView>
       <StyledScrollView>
-        {Object.keys(initialValues).map((key: string) => (
-          <InnerContainer key={key}>
-            <StyledTextInput
-              ref={register({ name: key })}
-              testID={`${key}_input`}
-              txt={values[key]}
-              txtLabel={getLabelName(key)}
-              txtHint={getLabelName(key)}
-              isPassword={key.toLowerCase().endsWith('password')}
-              onTextChanged={(text: string): void | Promise<boolean> => onTextChanged(key, text)}
-              error={errors[key] ? errors[key].message : undefined}
-            />
-            {!!errors[key] && <ErrorText isError={!!errors[key]}>{errors[key].message}</ErrorText>}
-          </InnerContainer>
-        ))}
+        {Object.keys(initialValues).map((key: string) => {
+          const label = key as keyof SignUpFormValues;
+          const error = errors[label];
+          const errorMessage = error && error.message;
+          return (
+            <InnerContainer key={label}>
+              <StyledTextInput
+                ref={register({ name: label })}
+                testID={`${label}_input`}
+                txt={values[label]}
+                txtLabel={getLabelName(label)}
+                txtHint={getLabelName(label)}
+                isPassword={label.toLowerCase().endsWith('password')}
+                onTextChanged={(text: string): void | Promise<boolean> => onTextChanged(label, text)}
+                error={errorMessage}
+              />
+              {!!error && <ErrorText isError={!!error}>{errorMessage}</ErrorText>}
+            </InnerContainer>
+          );
+        })}
         <StyledButtonWrapper>
           <ButtonToRight>
             <Button
