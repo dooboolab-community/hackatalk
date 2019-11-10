@@ -1,5 +1,4 @@
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import TextInput from '../../shared/TextInput';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView`
@@ -36,11 +35,6 @@ export const ErrorText = styled.Text<{ isError: boolean }>`
   font-weight: normal;
   margin-bottom: ${({ isError }): number => isError ? 8 : 0}px;
 `;
-
-export const StyledTextInput = styled(TextInput)
-  .attrs(({ theme }) => ({
-    placeholderTextColor: theme.placeholder,
-  }))``;
 
 export const StyledButtonWrapper = styled.View`
   width: 100%;

@@ -6,13 +6,13 @@ import {
   InnerContainer,
   StyledButtonWrapper,
   StyledScrollView,
-  StyledTextInput,
 } from './styles';
 import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
 import React, { ReactElement, memo, useCallback } from 'react';
 
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
+import TextInput from '../../shared/TextInput';
 import { getString } from '../../../../STRINGS';
 import useForm from 'react-hook-form';
 
@@ -56,7 +56,7 @@ function FindPW(): ReactElement {
     <Container>
       <StyledScrollView>
         <InnerContainer>
-          <StyledTextInput
+          <TextInput
             testID="findPw_email_input"
             style={{ marginTop: 8 }}
             txtLabel={getString('EMAIL')}

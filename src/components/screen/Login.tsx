@@ -237,7 +237,6 @@ function Screen(props: Props): React.ReactElement {
               onTextChanged={(text: string): void =>
                 onTextChanged('EMAIL', text)
               }
-              placeholderTextColor={theme.placeholder}
             />
             <TextInput
               testID="pw_input"
@@ -247,7 +246,6 @@ function Screen(props: Props): React.ReactElement {
               txt={pw}
               onTextChanged={(text: string): void => onTextChanged('PW', text)}
               isPassword={true}
-              placeholderTextColor={theme.placeholder}
             />
             <StyledButtonWrapper>
               <Button
