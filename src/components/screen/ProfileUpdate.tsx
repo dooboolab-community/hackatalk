@@ -7,7 +7,7 @@ import styled, {
 } from 'styled-components/native';
 
 import Button from '../shared/Button';
-import { CommonActions } from '@react-navigation/core';
+// import { CommonActions } from '@react-navigation/core';
 import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
@@ -33,11 +33,13 @@ const StyledWrapper = styled.View`
 `;
 
 const StyledBtnWrapper = styled.View`
-  width: 100%;
+  flex: 1;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  margin-top: 24px;
+  align-self: stretch;
+  height: 60px;
+  margin-top: 20px;
   margin-bottom: 48px;
 `;
 
@@ -118,7 +120,6 @@ function Screen(props: Props): React.ReactElement {
             onTextChanged={(text: string): void =>
               onTextChanged('DISPLAY_NAME', text)
             }
-            placeholderTextColor={theme.placeholder}
           />
           <TextInput
             testID="input_status"
@@ -129,10 +130,14 @@ function Screen(props: Props): React.ReactElement {
             onTextChanged={(text: string): void =>
               onTextChanged('STATUS_MSG', text)
             }
-            placeholderTextColor={theme.placeholder}
           />
           <StyledBtnWrapper>
-            <Button testID="logout_btn" onPress={onLogout} isWhite>
+            <Button
+              testID="logout_btn"
+              onPress={onLogout}
+              isWhite
+              containerStyle={{ flex: 1, flexDirection: 'row' }}
+            >
               {getString('LOGOUT')}
             </Button>
             <View style={{ width: 8 }} />
@@ -140,6 +145,7 @@ function Screen(props: Props): React.ReactElement {
               testID="update_btn"
               isLoading={isUpdating}
               onPress={onUpdate}
+              containerStyle={{ flex: 1, flexDirection: 'row' }}
             >
               {getString('UPDATE')}
             </Button>

@@ -581,7 +581,7 @@ exports[`[SignUp] screen renders without crashing 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "white",
+                    "color": "#969696",
                     "fontSize": 14,
                     "fontWeight": "bold",
                   },

@@ -217,11 +217,15 @@ exports[`rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignItems": "center",
+              "alignSelf": "stretch",
+              "flexBasis": 0,
               "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "height": 60,
               "justifyContent": "space-between",
               "marginBottom": 48,
-              "marginTop": 24,
-              "width": "100%",
+              "marginTop": 20,
             },
           ]
         }
@@ -242,6 +246,10 @@ exports[`rendering test renders as expected 1`] = `
                 "height": 60,
                 "justifyContent": "center",
                 "width": "auto",
+              },
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
               },
             ]
           }
@@ -289,6 +297,10 @@ exports[`rendering test renders as expected 1`] = `
                 "justifyContent": "center",
                 "width": "auto",
               },
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+              },
             ]
           }
           testID="update_btn"
@@ -300,7 +312,7 @@ exports[`rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "rgb(224,224,224)",
+                  "color": "white",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },

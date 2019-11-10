@@ -29,7 +29,7 @@ exports[`[Button] renders without crashing 1`] = `
     style={
       Array [
         Object {
-          "color": "rgb(224,224,224)",
+          "color": "white",
           "fontSize": 14,
           "fontWeight": "bold",
         },

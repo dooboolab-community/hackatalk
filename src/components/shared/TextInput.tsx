@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 
 const StyledLabelText = styled.Text<{ focused: boolean }>`
   color: ${({ focused, theme }): string =>
-    focused ? theme.primary : theme.inactiveColor};
+    focused ? theme.focused : theme.inactiveColor};
   margin-bottom: 8px;
   font-size: 12px;
 `;
@@ -24,12 +24,14 @@ const StyledTextInputContainer = styled.View<{ isFocused?: boolean }>`
   align-items: center;
   border-width: 1px;
   border-color: ${({ isFocused, theme }): string =>
-    isFocused ? theme.primary : theme.lineColor};
+    isFocused ? theme.focused : theme.lineColor};
   border-radius: 3px;
   margin-bottom: 8px;
 `;
 
-const StyledTextInput = styled.TextInput<{ focused: boolean }>`
+const StyledTextInput = styled.TextInput.attrs<{ focused: boolean }>(({ theme, focused }) => ({
+  placeholderTextColor: focused ? theme.placeholderFocused : theme.placeholder,
+}))<{ focused: boolean }>`
   flex: 1;
   align-self: stretch;
   color: ${({ theme }): string => theme.fontColor};
@@ -52,7 +54,6 @@ const StyledStatusMark = styled(Ionicons).attrs(({ theme }) => ({
 interface Props {
   testID?: string;
   style?: ViewStyle;
-  placeholderTextColor?: string;
   inputStyle?: TextStyle;
   isPassword?: boolean;
   multiline?: boolean;
@@ -95,7 +96,6 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
           onFocus={(): void => setFocused(true)}
           onBlur={(): void => setFocused(false)}
           placeholder={props.txtHint}
-          placeholderTextColor={props.placeholderTextColor}
           // onSubmitEditing={this.props.onSubmitEditing}
           returnKeyType={props.returnKeyType}
           secureTextEntry={props.isPassword}

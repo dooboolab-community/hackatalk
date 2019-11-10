@@ -2,7 +2,6 @@ import {
   ActivityIndicator,
   ImageSourcePropType,
   StyleProp,
-  TouchableOpacity,
   ViewStyle,
 } from 'react-native';
 import React, { ReactText } from 'react';
@@ -55,9 +54,9 @@ const StyledText = styled.Text<StyledElement>`
   font-size: 14px;
   font-weight: bold;
   color: ${({ white, theme, disabled }): string =>
-    (disabled && theme.btnPrimaryFont) ||
+    (disabled && theme.textDisabled) ||
     (white && theme.btnPrimaryLightFont) ||
-    theme.btnDisabled
+    theme.btnPrimaryFont
   };
 `;
 
