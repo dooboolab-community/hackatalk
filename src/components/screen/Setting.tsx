@@ -1,12 +1,14 @@
+import { Alert, SafeAreaView, SectionList, SectionListData } from 'react-native';
 import { DefaultNavigationProps, SettingsOption } from '../../types';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { SafeAreaView, SectionList, SectionListData } from 'react-native';
 import styled, {
   DefaultTheme, withTheme,
 } from 'styled-components/native';
+import Button from '../shared/Button';
 import { IC_FACEBOOK } from '../../utils/Icons';
 import Modal from 'react-native-modalbox';
+import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
 
 const Container = styled.View`
@@ -61,12 +63,22 @@ const ModalHeader = styled.View`
 
 const ModalTitle = styled.Text`
   color: ${({ theme }): string => theme.fontColor};
-  font-size: 16px;
+  font-size: 20px;
 `;
 
 const ModalCloseButton = styled.TouchableOpacity`
   position: absolute;
   right: 10px;
+`;
+
+const InnerContainer = styled.View`
+  padding: 15px;
+`;
+
+const TextInputTitle = styled.Text`
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 16px;
+  margin-bottom: 15px
 `;
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
@@ -82,10 +94,25 @@ function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactEl
 interface Props {
   navigation: DefaultNavigationProps<'Setting'>;
   theme: DefaultTheme;
+  checkPassword(password: string): Promise<boolean>;
 }
 
 function SettingScreen(props: Props): React.ReactElement {
+  const { theme, checkPassword } = props;
   const [isChangePwModalVisible, setChangePwModalVisible] = useState(false);
+  const [currentPw, setCurrentPw] = useState('');
+  const [newPw, setNewPw] = useState('');
+  const [newPwCheck, setNewPwCheck] = useState('');
+  const checkCurrentPw = (): void => {
+    checkPassword(currentPw)
+      .then((result) => {
+        if (result) {
+          // TODO: enter new password page
+        } else {
+          Alert.alert(getString('PASSWORD_MUST_MATCH'));
+        }
+      });
+  };
   const settings: SectionListData<SettingsOption>[] = [
     {
       title: '계정정보',
@@ -114,7 +141,8 @@ function SettingScreen(props: Props): React.ReactElement {
       <Modal
         isOpen={isChangePwModalVisible}
         coverScreen
-        backButtonClose>
+        backButtonClose
+        style={{ backgroundColor: theme.background }}>
         <SafeAreaView>
           <ModalHeader>
             <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
@@ -123,6 +151,13 @@ function SettingScreen(props: Props): React.ReactElement {
               <Ionicons name="md-close" size={32} />
             </ModalCloseButton>
           </ModalHeader>
+          <InnerContainer>
+            <TextInputTitle>{getString('PASSWORD_CURRENT')}</TextInputTitle>
+            <TextInput/>
+          </InnerContainer>
+          <Button
+            testID="checkCurrentPwBtn"
+            onPress={checkCurrentPw}/>
         </SafeAreaView>
       </Modal>
     </Container>
