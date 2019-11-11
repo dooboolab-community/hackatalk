@@ -124,6 +124,7 @@ exports[`rendering test renders as expected 1`] = `
               ]
             }
             testID="input_name"
+            textContentType="none"
             underlineColorAndroid="transparent"
             value=""
           />
@@ -205,6 +206,7 @@ exports[`rendering test renders as expected 1`] = `
               ]
             }
             testID="input_status"
+            textContentType="none"
             underlineColorAndroid="transparent"
             value=""
           />
@@ -215,85 +217,62 @@ exports[`rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignItems": "center",
+              "alignSelf": "stretch",
+              "flexBasis": 0,
               "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "height": 60,
               "justifyContent": "space-between",
               "marginBottom": 48,
-              "marginTop": 24,
-              "width": "100%",
+              "marginTop": 20,
             },
           ]
         }
       >
-        <View
+        <TouchableOpacity
+          activeOpacity={0.5}
           disabled={false}
+          height={60}
+          onPress={[Function]}
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "backgroundColor": "white",
                 "borderColor": "rgb(58,139,255)",
                 "borderRadius": 4,
                 "borderWidth": 1,
-                "flexBasis": 0,
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "flexShrink": 1,
+                "height": 60,
                 "justifyContent": "center",
+                "width": "auto",
+              },
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
               },
             ]
           }
+          testID="logout_btn"
           white={true}
+          width="auto"
         >
-          <TouchableOpacity
-            activeOpacity={0.5}
+          <Text
             disabled={false}
-            onPress={[Function]}
-            testID="logout_btn"
+            style={
+              Array [
+                Object {
+                  "color": "rgb(58,139,255)",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+            white={true}
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "justifyContent": "center",
-                  },
-                ]
-              }
-            >
-              <View
-                height={60}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "width": 136,
-                    },
-                  ]
-                }
-                width={136}
-              >
-                <Text
-                  disabled={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "rgb(58,139,255)",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                  white={true}
-                >
-                  Logout
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
+            Logout
+          </Text>
+        </TouchableOpacity>
         <View
           style={
             Object {
@@ -301,76 +280,49 @@ exports[`rendering test renders as expected 1`] = `
             }
           }
         />
-        <View
+        <TouchableOpacity
+          activeOpacity={0.5}
           disabled={false}
+          height={60}
+          onPress={[Function]}
           style={
             Array [
               Object {
+                "alignItems": "center",
                 "backgroundColor": "rgb(58,139,255)",
                 "borderColor": "white",
                 "borderRadius": 4,
                 "borderWidth": 1,
-                "flexBasis": 0,
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "flexShrink": 1,
+                "height": 60,
                 "justifyContent": "center",
+                "width": "auto",
+              },
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
               },
             ]
           }
+          testID="update_btn"
           white={false}
+          width="auto"
         >
-          <TouchableOpacity
-            activeOpacity={0.5}
+          <Text
             disabled={false}
-            onPress={[Function]}
-            testID="update_btn"
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+            white={false}
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "stretch",
-                    "justifyContent": "center",
-                  },
-                ]
-              }
-            >
-              <View
-                height={60}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "alignSelf": "stretch",
-                      "height": 60,
-                      "justifyContent": "center",
-                      "width": 136,
-                    },
-                  ]
-                }
-                width={136}
-              >
-                <Text
-                  disabled={false}
-                  style={
-                    Array [
-                      Object {
-                        "color": "rgb(224,224,224)",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                  white={false}
-                >
-                  Update
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
+            Update
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   </ScrollView>

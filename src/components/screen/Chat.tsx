@@ -191,7 +191,7 @@ function Screen(props: Props): React.ReactElement {
         renderSendButton={(): React.ReactElement => (
           <Button
             testID="btn_chat"
-            height={Platform.OS === 'android' ? 40 : undefined}
+            height={40}
             isLoading={isSending}
             onPress={onSubmit}
           >

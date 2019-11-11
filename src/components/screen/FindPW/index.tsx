@@ -6,13 +6,13 @@ import {
   InnerContainer,
   StyledButtonWrapper,
   StyledScrollView,
-  StyledTextInput,
 } from './styles';
 import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
 import React, { ReactElement, memo, useCallback } from 'react';
 
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
+import TextInput from '../../shared/TextInput';
 import { getString } from '../../../../STRINGS';
 import useForm from 'react-hook-form';
 
@@ -35,7 +35,7 @@ function FindPW(): ReactElement {
     formState: {
       touched,
     },
-    getValues,
+    watch,
     reset,
   } = useForm({
     validationSchema: schema,
@@ -56,12 +56,12 @@ function FindPW(): ReactElement {
     <Container>
       <StyledScrollView>
         <InnerContainer>
-          <StyledTextInput
+          <TextInput
             testID="findPw_email_input"
             style={{ marginTop: 8 }}
             txtLabel={getString('EMAIL')}
             txtHint={getString('EMAIL')}
-            txt={getValues().email}
+            txt={watch('email', '')}
             ref={register({ name: 'email' })}
             onTextChanged={onTextChanged}
             error={errorMessage}
@@ -71,9 +71,9 @@ function FindPW(): ReactElement {
             <Button
               testID="btnFindPwConfirm"
               isDisabled={(!(touched && touched.length) || !!errorMessage)}
-              width="100%"
-              containerStyle={{ flexDirection: 'column' }}
               onPress={handleSubmit(onSubmit)}
+              width="100%"
+              containerStyle={{ flexDirection: 'row' }}
             >
               {getString('PASSWORD_RESET')}
             </Button>

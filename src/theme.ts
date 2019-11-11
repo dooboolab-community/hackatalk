@@ -6,6 +6,7 @@ export const colors = {
   dusk: 'rgb(65,77,107)',
   dodgerBlue: 'rgb(58,139,255)',
   skyBlue: 'rgb(100,199,255)',
+  mellowBlue: '#80b8f0',
   green: 'rgb(29,211,168)',
   greenBlue: 'rgb(36,205,151)',
   greenishCyan: '#50e3c2',
@@ -16,6 +17,7 @@ export const colors = {
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
   cloudyBlue: 'rgb(175,194,219)',
+  lightSalmon: '#f5aeae',
   google: 'rgb(224,66,56)',
   facebook: 'rgb(52,89,151)',
 };
@@ -41,6 +43,8 @@ const light = {
   searchBackground: 'rgb(247,248,251)',
   status: colors.greenishCyan,
   placeholder: colors.cloudyBlue,
+  focused: colors.dodgerBlue,
+  placeholderFocused: colors.mellowBlue,
 };
 
 export type Theme = typeof light;
@@ -66,6 +70,8 @@ const dark = {
   searchBackground: '#243447',
   status: colors.greenishCyan,
   placeholder: colors.cloudyBlue,
+  focused: 'lightcoral',
+  placeholderFocused: colors.lightSalmon,
 };
 
 const theme = {
