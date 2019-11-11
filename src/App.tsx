@@ -1,12 +1,11 @@
 import { AppLoading, Asset } from 'expo';
 import React, { useState } from 'react';
-import { ThemeProvider, useThemeContext } from './providers/ThemeProvider';
+import RootProviders, { AllProviders } from './providers';
 
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import { StateProvider } from './contexts';
-import { ThemeType } from './types';
+import { useThemeContext } from './providers/ThemeProvider';
 
 function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {
@@ -41,12 +40,9 @@ function ProviderWrapper(): React.ReactElement {
     );
   }
   return (
-    <ThemeProvider
-      initialThemeType={ThemeType.LIGHT}
-    ><StateProvider>
-        <App />
-      </StateProvider>
-    </ThemeProvider>
+    <AllProviders>
+      <App />
+    </AllProviders>
   );
 }
 

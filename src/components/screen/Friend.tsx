@@ -6,7 +6,7 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useStateValue } from '../../contexts';
+import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 const StyledContainer = styled.View`
   flex: 1;
@@ -17,7 +17,7 @@ const StyledContainer = styled.View`
 `;
 
 export default function Screen(): ReactElement {
-  const [{ profileModal }, dispatch] = useStateValue();
+  const { state, showModal } = useProfileContext();
   const [friends] = useState<User[]>([
     {
       uid: 'my_uid',
@@ -35,11 +35,8 @@ export default function Screen(): ReactElement {
         testID="USER_ID"
         user={item}
         onPress={(): void => {
-          if (profileModal) {
-            dispatch({
-              type: 'show-modal',
-              payload: { user: item, deleteMode: true },
-            });
+          if (state.modal) {
+            showModal(item, true);
           }
         }}
       />

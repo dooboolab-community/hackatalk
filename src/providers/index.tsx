@@ -1,5 +1,5 @@
+import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
-import { StateProvider } from '../contexts';
 import { ThemeProvider } from './ThemeProvider';
 import { ThemeType } from '../types';
 
@@ -8,8 +8,8 @@ interface Props {
   children?: React.ReactElement;
 }
 
-// Add providers here
-const RootProviders = ({
+// hyochan => for testing
+export const AllProviders = ({
   initialThemeType,
   children,
 }: Props): React.ReactElement => {
@@ -17,9 +17,9 @@ const RootProviders = ({
     <ThemeProvider
       initialThemeType={initialThemeType}
     >
-      <StateProvider>{children}</StateProvider>
+      <ProfileModalProvider>
+        {children}
+      </ProfileModalProvider>
     </ThemeProvider>
   );
 };
-
-export default RootProviders;

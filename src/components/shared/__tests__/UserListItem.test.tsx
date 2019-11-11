@@ -11,9 +11,6 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
-import { StateProvider } from '../../../contexts';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
 import UserListItem from '../UserListItem';
 import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.

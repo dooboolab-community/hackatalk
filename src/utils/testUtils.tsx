@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 
-import RootProvider from '../providers';
+import { AllProviders } from '../providers';
 import { ThemeType } from '../types';
 
 export const createTestElement = (
   child: ReactElement,
   themeType?: ThemeType,
 ): ReactElement => (
-  <RootProvider initialThemeType={themeType}>{child}</RootProvider>
+  <AllProviders initialThemeType={themeType}>{child}</AllProviders>
 );
 
 export const createTestProps = (

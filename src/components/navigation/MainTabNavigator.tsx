@@ -11,7 +11,6 @@ import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Message from '../screen/Message';
-import { getString } from '../../../STRINGS';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Tab = createMaterialTopTabNavigator();

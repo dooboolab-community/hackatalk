@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[ThemeProvider] rendering test component and snapshot matches 1`] = `
+<View>
+  <Text
+    testID="TEXT"
+  >
+    "LIGHT"
+  </Text>
+  <Button
+    onPress={[Function]}
+    testID="BUTTON"
+    title="Button"
+  />
+</View>
+`;
