@@ -1,4 +1,5 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
+import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { useRef } from 'react';
 
 import Chat from '../screen/Chat';
@@ -10,7 +11,6 @@ import StatusBar from '../shared/StatusBar';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/core';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Stack = createStackNavigator();
@@ -43,7 +43,7 @@ interface Props {
   navigation: DefaultNavigationProps;
 }
 
-export default function RootNavigator(): React.ReactElement {
+function RootNavigator(): React.ReactElement {
   const navigation = useNavigation();
   const { state } = useProfileContext();
   const modalEl = useRef(null);
@@ -66,5 +66,13 @@ export default function RootNavigator(): React.ReactElement {
         }}
       />
     </View>
+  );
+}
+
+export default function RootNavigatorWrapper(): React.ReactElement {
+  return (
+    <ProfileModalProvider>
+      <RootNavigator/>
+    </ProfileModalProvider>
   );
 }

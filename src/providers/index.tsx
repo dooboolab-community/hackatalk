@@ -23,3 +23,14 @@ export const AllProviders = ({
     </ThemeProvider>
   );
 };
+
+export default ({
+  initialThemeType,
+  children,
+}: Props): React.ReactElement => {
+  return (
+    <ThemeProvider
+      initialThemeType={initialThemeType}
+    >{children}</ThemeProvider>
+  );
+};

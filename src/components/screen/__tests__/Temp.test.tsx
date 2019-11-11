@@ -11,9 +11,6 @@ import {
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Temp from '../Temp';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 let props: any;

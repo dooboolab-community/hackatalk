@@ -1,5 +1,5 @@
-import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import styled, {
   DefaultTheme,
   ThemeProps,
