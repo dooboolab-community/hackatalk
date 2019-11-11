@@ -46,6 +46,7 @@ const en = {
   TAKE_A_PICTURE: 'Take a picture',
   SELSCT_FROM_ALBUM: 'Select from album',
   CANCEL: 'Cancel',
+  PASSWORD_CHANGE: 'Change Password',
 };
 
 const ko = {
@@ -92,6 +93,7 @@ const ko = {
   TAKE_A_PICTURE: '촬영하기',
   SELSCT_FROM_ALBUM: '앨범에서 선택하기',
   CANCEL: '취소',
+  PASSWORD_CHANGE: '비밀번호 변경하기',
 };
 
 i18n.fallbacks = true;

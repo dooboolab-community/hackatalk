@@ -1,11 +1,13 @@
-import { Alert, SectionListData, SectionList } from 'react-native';
 import { DefaultNavigationProps, SettingsOption } from '../../types';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { SafeAreaView, SectionList, SectionListData } from 'react-native';
 import styled, {
   DefaultTheme, withTheme,
 } from 'styled-components/native';
-import { FontAwesome } from '@expo/vector-icons';
 import { IC_FACEBOOK } from '../../utils/Icons';
-import React from 'react';
+import Modal from 'react-native-modalbox';
+import { getString } from '../../../STRINGS';
 
 const Container = styled.View`
   flex: 1;
@@ -51,12 +53,21 @@ const ItemLabel = styled.Text`
   flex: 1;
 `;
 
-const settings: SectionListData<SettingsOption>[] = [
-  {
-    title: '계정정보',
-    data: [{ icon: IC_FACEBOOK, label: 'facebook으로 로그인 됨', onPress: (): void => Alert.alert('test') }],
-  },
-];
+const ModalHeader = styled.View`
+  height: 52px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalTitle = styled.Text`
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 16px;
+`;
+
+const ModalCloseButton = styled.TouchableOpacity`
+  position: absolute;
+  right: 10px;
+`;
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
   return (
@@ -69,23 +80,51 @@ function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactEl
 }
 
 interface Props {
-  navigation?: DefaultNavigationProps<'Setting'>;
+  navigation: DefaultNavigationProps<'Setting'>;
   theme: DefaultTheme;
 }
 
 function SettingScreen(props: Props): React.ReactElement {
+  const [isChangePwModalVisible, setChangePwModalVisible] = useState(false);
+  const settings: SectionListData<SettingsOption>[] = [
+    {
+      title: '계정정보',
+      data: [{
+        icon: IC_FACEBOOK,
+        label: 'facebook으로 로그인 됨',
+        onPress: (): void => {
+          setChangePwModalVisible(true);
+        },
+      }],
+    },
+  ];
   return (
     <Container>
       <SectionList
         testID="mySectionList"
         sections={settings}
         renderItem={({ item }): React.ReactElement => SectionItem(item, props.theme)}
+        keyExtractor={(item: SettingsOption): string => item.label}
         renderSectionHeader={({ section: { title } }): React.ReactElement => (
           <HeaderContainer>
             <SectionHeader>{title}</SectionHeader>
           </HeaderContainer>
         )}
       />
+      <Modal
+        isOpen={isChangePwModalVisible}
+        coverScreen
+        backButtonClose>
+        <SafeAreaView>
+          <ModalHeader>
+            <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
+            <ModalCloseButton
+              onPress={(): void => setChangePwModalVisible(false)}>
+              <Ionicons name="md-close" size={32} />
+            </ModalCloseButton>
+          </ModalHeader>
+        </SafeAreaView>
+      </Modal>
     </Container>
   );
 }
