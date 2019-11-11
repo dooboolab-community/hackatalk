@@ -1,4 +1,4 @@
-import { Alert, SectionListData } from 'react-native';
+import { Alert, SectionListData, SectionList } from 'react-native';
 import { DefaultNavigationProps, SettingsOption } from '../../types';
 import styled, {
   DefaultTheme, withTheme,
@@ -6,7 +6,6 @@ import styled, {
 import { FontAwesome } from '@expo/vector-icons';
 import { IC_FACEBOOK } from '../../utils/Icons';
 import React from 'react';
-import { SectionList } from 'react-navigation';
 
 const Container = styled.View`
   flex: 1;

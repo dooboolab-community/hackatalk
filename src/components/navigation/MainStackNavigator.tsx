@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import SearchUser from '../screen/SearchUser';
+import Setting from '../screen/Setting';
 import StatusBar from '../shared/StatusBar';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
@@ -76,6 +77,7 @@ function MainStackNavigator(): React.ReactElement {
         }} />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
+      <Stack.Screen name="Setting" component={Setting} />
     </Stack.Navigator>
   );
 }
