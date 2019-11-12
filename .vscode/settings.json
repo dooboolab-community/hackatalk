@@ -20,8 +20,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
-  "prettier.arrowParens": "always",
-  "prettier.jsxSingleQuote": false
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "prettier.configPath": ".prettierrc.js",
 }
