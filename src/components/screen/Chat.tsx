@@ -1,5 +1,6 @@
+import { Alert, Image, Platform, TouchableOpacity, View } from 'react-native';
 import { Chat, DefaultNavigationProps, MessageType } from '../../types';
-import { Image, Platform, TouchableOpacity, View } from 'react-native';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import styled, {
   DefaultTheme,
@@ -14,7 +15,6 @@ import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { Header } from 'react-navigation-stack';
 import { IC_SMILE } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 
 const StyledContainer = styled.SafeAreaView`
@@ -151,6 +151,7 @@ function Screen(props: Props): React.ReactElement {
           <View
             style={{
               flexDirection: 'row',
+              flexWrap: 'wrap',
               marginTop: 10,
             }}
           >
@@ -163,6 +164,7 @@ function Screen(props: Props): React.ReactElement {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
+              onPress={(): void => Alert.alert('Camera')}
             >
               <Ionicons
                 name="ios-camera"
@@ -179,9 +181,95 @@ function Screen(props: Props): React.ReactElement {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
+              onPress={(): void => Alert.alert('Image')}
             >
               <Ionicons
                 name="md-images"
+                size={36}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginLeft: 16,
+                marginTop: 4,
+                width: 60,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={(): void => Alert.alert('Map')}
+            >
+              <Ionicons
+                name="md-map"
+                size={36}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginLeft: 16,
+                marginTop: 4,
+                width: 60,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={(): void => Alert.alert('Calendar')}
+            >
+              <Ionicons
+                name="ios-calendar"
+                size={36}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginLeft: 16,
+                marginTop: 4,
+                width: 60,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={(): void => Alert.alert('File')}
+            >
+              <Feather
+                name="file"
+                size={36}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginLeft: 16,
+                marginTop: 4,
+                width: 60,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={(): void => Alert.alert('Music')}
+            >
+              <Ionicons
+                name="ios-musical-notes"
+                size={36}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginLeft: 16,
+                marginTop: 4,
+                width: 60,
+                height: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onPress={(): void => Alert.alert('Contact')}
+            >
+              <Ionicons
+                name="ios-contact"
                 size={36}
                 color={theme ? theme.fontColor : '#3d3d3d'}
               />
