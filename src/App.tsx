@@ -2,6 +2,7 @@ import { AppLoading, Asset } from 'expo';
 import React, { useState } from 'react';
 import { dark, light } from './theme';
 
+import { AppearanceProvider } from 'react-native-appearance';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
@@ -35,9 +36,11 @@ function ProviderWrapper(): React.ReactElement {
     );
   }
   return (
-    <ThemeProvider customTheme={{ light, dark }}>
-      <RootNavigator />
-    </ThemeProvider>
+    <AppearanceProvider>
+      <ThemeProvider customTheme={{ light, dark }}>
+        <RootNavigator />
+      </ThemeProvider>
+    </AppearanceProvider>
   );
 }
 
