@@ -110,7 +110,7 @@ function SettingScreen(props: Props): React.ReactElement {
         }}
         style={{ backgroundColor: theme.background }}>
         <SafeAreaView style={{ flex: 1 }}>
-          <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" keyboardVerticalOffset={insets.top}>
+          <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
             <ModalHeader>
               <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
               <ModalCloseButton
