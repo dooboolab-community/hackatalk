@@ -68,11 +68,11 @@ function ChangePwView(props: Props): React.ReactElement {
                 onTextChanged={(pw): void => setNewPw(pw)}
                 txtLabel={getString('PASSWORD_NEW')}/>
               <StyledTextInput
-                key="newPwCheckTextInput"
-                testID="newPwCheckTextInput"
+                key="validationWordTextInput"
+                testID="validationWordTextInput"
                 isPassword
                 onTextChanged={(pw): void => setValidationWord(pw)}
-                txtLabel={getString('PASSWORD_NEW_CHECK')}/>
+                txtLabel={getString('PASSWORD_NEW_REPEAT')}/>
             </InnerContainer>
             : <InnerContainer>
               <StyledTextInput
