@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import TextInput from '../../shared/TextInput';
 
 export const Container = styled.View`
 flex: 1;
@@ -65,8 +66,7 @@ flex: 1;
 padding: 15px;
 `;
 
-export const TextInputTitle = styled.Text`
-color: ${({ theme }): string => theme.fontColor};
-font-size: 16px;
-margin-bottom: 15px
-`;
+export const StyledTextInput = styled(TextInput)
+.attrs(({ theme }) => ({
+  placeholderTextColor: theme.placeholder,
+}))``;

@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalTitle,
   SectionHeader,
+  StyledTextInput,
 } from './styles';
 import { DefaultNavigationProps, SettingsOption } from '../../../types';
 import {
@@ -20,13 +21,12 @@ import React, { useRef, useState } from 'react';
 import Button from '../../shared/Button';
 import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
-import TextInput from '../../shared/TextInput';
 import { getString } from '../../../../STRINGS';
 import { useSafeArea } from 'react-native-safe-area-context';
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
   return (
-    <ItemContainer onPress={option.onPress}>
+    <ItemContainer onPress={option.onPress} testID={option.testID}>
       {option.icon ? <ItemIcon source={option.icon} /> : null}
       <ItemLabel>{option.label}</ItemLabel>
       <FontAwesome name="angle-right" size={32} color={theme.fontColor} />
@@ -80,6 +80,7 @@ function SettingScreen(props: Props): React.ReactElement {
         onPress: (): void => {
           modal.current && modal.current.open();
         },
+        testID: 'changePwItem',
       }],
     },
   ];
@@ -113,30 +114,31 @@ function SettingScreen(props: Props): React.ReactElement {
             <ModalHeader>
               <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
               <ModalCloseButton
+                testID="closeBtn"
                 onPress={(): void | null => modal.current && modal.current.close()}>
-                <Ionicons name="md-close" size={32} />
+                <Ionicons name="md-close" size={32} color={theme.fontColor}/>
               </ModalCloseButton>
             </ModalHeader>
             {
               currentPwVerified
                 ? <InnerContainer>
-                  <TextInput
+                  <StyledTextInput
                     key="newPwTextInput"
-                    testId="newPwTextInput"
+                    testID="newPwTextInput"
                     isPassword
                     onTextChanged={(pw): void => setNewPw(pw)}
                     txtLabel={getString('PASSWORD_NEW')}/>
-                  <TextInput
+                  <StyledTextInput
                     key="newPwCheckTextInput"
-                    testId="newPwCheckTextInput"
+                    testID="newPwCheckTextInput"
                     isPassword
                     onTextChanged={(pw): void => setNewPwCheck(pw)}
                     txtLabel={getString('PASSWORD_NEW_CHECK')}/>
                 </InnerContainer>
                 : <InnerContainer>
-                  <TextInput
+                  <StyledTextInput
                     key="currentPwTextInput"
-                    testId="currentPwTextInput"
+                    testID="currentPwTextInput"
                     isPassword
                     onTextChanged={(pw): void => setCurrentPw(pw)}
                     txtLabel={getString('PASSWORD_CURRENT')}/>

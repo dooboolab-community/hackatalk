@@ -89,6 +89,7 @@ export interface SettingsOption {
   label: string;
   icon?: ImageSourcePropType;
   onPress(): void;
+  testID: string;
 }
 
 export enum ThemeType {

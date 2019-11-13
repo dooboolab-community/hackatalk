@@ -7,15 +7,24 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Setting from '../Setting';
 import renderer from 'react-test-renderer';
+import { useSafeArea } from 'react-native-safe-area-context';
 
 let props: any;
 let component: React.ReactElement;
+
+jest.mock('react-native-safe-area-context', () => {
+  return {
+      useSafeArea: () => {
+      return { top: 10 };
+    },
+  };
+});
 
 describe('[Setting] screen', () => {
   let testingLib: RenderResult;
@@ -23,9 +32,7 @@ describe('[Setting] screen', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(
-      <SafeAreaProvider>
-        <Setting {...props} />
-      </SafeAreaProvider>
+      <Setting {...props} />
     );
     testingLib = render(component);
   });
@@ -41,13 +48,9 @@ describe('[Setting] screen', () => {
       testingLib = render(component);
     });
 
-    it('should simulate onPress', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
+    it('should simulate onPress login state item', async () => {
+      const btn = testingLib.getByTestId('changePwItem');
+      fireEvent.press(btn);
     });
   });
 
