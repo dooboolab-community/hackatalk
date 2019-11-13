@@ -9,23 +9,28 @@ import Button from '../../shared/Button';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../../STRINGS';
 
-interface Props {
+export interface Props {
     theme: DefaultTheme;
     close(): void;
+    checkCurrentPw(): Promise<boolean>;
 }
 
 function ChangePwView(props: Props): React.ReactElement {
-  const { theme, close } = props;
+  const { theme, close, checkCurrentPw } = props;
   const [currentPwVerified, setCurrentPwVerified] = useState(false);
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [newPwCheck, setNewPwCheck] = useState('');
-  const checkCurrentPw = (): void => {
-    if (currentPw === 'right') {
-      setCurrentPwVerified(true);
-    } else {
-      Alert.alert(getString('PASSWORD_MUST_MATCH'));
-    }
+  const checkCurrent = (): void => {
+    checkCurrentPw().then((verified) => {
+      if (verified) {
+        setCurrentPwVerified(true);
+      } else {
+        throw Error(getString('PASSWORD_MUST_MATCH'));
+      }
+    }).catch((err: Error) => {
+      Alert.alert('', err.message);
+    });
   };
   const changePassword = async (): Promise<void> => {
     if (newPw === newPwCheck) {
@@ -80,7 +85,7 @@ function ChangePwView(props: Props): React.ReactElement {
         }
         <Button
           testID="checkCurrentPwBtn"
-          onPress={currentPwVerified ? changePassword : checkCurrentPw}>
+          onPress={currentPwVerified ? changePassword : checkCurrent}>
           {currentPwVerified ? getString('CONFIRM') : getString('NEXT')}
         </Button>
       </KeyboardAvoidingView>
