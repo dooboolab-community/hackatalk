@@ -50,6 +50,7 @@ const en = {
   PASSWORD_CURRENT: 'Enter Current Password',
   PASSWORD_NEW: 'Enter New Password',
   PASSWORD_NEW_CHECK: 'Repeat New Password',
+  NEXT: 'Next',
 };
 
 const ko = {
@@ -100,6 +101,7 @@ const ko = {
   PASSWORD_CURRENT: '기존 비밀번호',
   PASSWORD_NEW: '새로운 비밀번호',
   PASSWORD_NEW_CHECK: '새로운 비밀번호 확인',
+  NEXT: '다음',
 };
 
 i18n.fallbacks = true;

@@ -54,6 +54,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-modalbox": "^2.0.0",
     "react-native-reanimated": "1.2.0",
+    "react-native-safe-area-context": "~0.3.6",
     "react-native-screens": "~1.0.0-alpha.23",
     "react-native-svg": "9.9.5",
     "react-native-tab-view": "^2.11.0",
