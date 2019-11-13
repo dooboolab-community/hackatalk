@@ -10,14 +10,13 @@ import {
   ModalHeader,
   ModalTitle,
   SectionHeader,
-  TextInputTitle,
 } from './styles';
 import { DefaultNavigationProps, SettingsOption } from '../../../types';
 import {
   DefaultTheme, withTheme,
 } from 'styled-components/native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '../../shared/Button';
 import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
@@ -58,12 +57,16 @@ function SettingScreen(props: Props): React.ReactElement {
   const changePassword = async (): Promise<void> => {
     if (newPw === newPwCheck) {
       // TODO change password api call
-      modal.current && modal.current.close();
-      setCurrentPwVerified(false);
-      setCurrentPw('');
-      setNewPw('');
-      setNewPwCheck('');
-      Alert.alert(getString('PASSWORD_CHANGE_SUCCESS'));
+      Alert.alert('', 'Password changed.', [
+        {
+          text: getString('OK'),
+          onPress: (): void => {
+            if (modal.current) {
+              modal.current.close();
+            }
+          },
+        },
+      ]);
     } else {
       Alert.alert(getString('PASSWORD_MUST_MATCH'));
     }
@@ -98,6 +101,12 @@ function SettingScreen(props: Props): React.ReactElement {
         keyboardTopOffset={0}
         coverScreen
         backButtonClose
+        onClosed={(): void => {
+          setCurrentPwVerified(false);
+          setCurrentPw('');
+          setNewPw('');
+          setNewPwCheck('');
+        }}
         style={{ backgroundColor: theme.background }}>
         <SafeAreaView style={{ flex: 1 }}>
           <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" keyboardVerticalOffset={insets.top}>
@@ -135,8 +144,9 @@ function SettingScreen(props: Props): React.ReactElement {
             }
             <Button
               testID="checkCurrentPwBtn"
-              children={getString('NEXT')}
-              onPress={currentPwVerified ? changePassword : checkCurrentPw}/>
+              onPress={currentPwVerified ? changePassword : checkCurrentPw}>
+              {getString('NEXT')}
+            </Button>
           </KeyboardAvoidingView>
         </SafeAreaView>
       </Modal>

@@ -10,6 +10,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Setting from '../Setting';
 import renderer from 'react-test-renderer';
 
@@ -21,7 +22,11 @@ describe('[Setting] screen', () => {
 
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<Setting {...props} />);
+    component = createTestElement(
+      <SafeAreaProvider>
+        <Setting {...props} />
+      </SafeAreaProvider>
+    );
     testingLib = render(component);
   });
 
