@@ -12,19 +12,19 @@ import { getString } from '../../../../STRINGS';
 export interface Props {
     theme: DefaultTheme;
     close(): void;
-    checkCurrentPw(): Promise<boolean>;
+    validateCurrentPw(text: string): Promise<boolean>;
 }
 
 function ChangePwView(props: Props): React.ReactElement {
-  const { theme, close, checkCurrentPw } = props;
-  const [currentPwVerified, setCurrentPwVerified] = useState(false);
+  const { theme, close, validateCurrentPw } = props;
+  const [isValidCurrentPw, updateCurrentPwValid] = useState(false);
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
-  const [newPwCheck, setNewPwCheck] = useState('');
+  const [validationWord, setValidationWord] = useState('');
   const checkCurrent = (): void => {
-    checkCurrentPw().then((verified) => {
-      if (verified) {
-        setCurrentPwVerified(true);
+    validateCurrentPw(currentPw).then((validated) => {
+      if (validated) {
+        updateCurrentPwValid(true);
       } else {
         throw Error(getString('PASSWORD_MUST_MATCH'));
       }
@@ -33,7 +33,7 @@ function ChangePwView(props: Props): React.ReactElement {
     });
   };
   const changePassword = async (): Promise<void> => {
-    if (newPw === newPwCheck) {
+    if (newPw === validationWord) {
       // TODO change password api call
       Alert.alert('', 'Password changed.', [
         {
@@ -59,7 +59,7 @@ function ChangePwView(props: Props): React.ReactElement {
           </ModalCloseButton>
         </ModalHeader>
         {
-          currentPwVerified
+          isValidCurrentPw
             ? <InnerContainer>
               <StyledTextInput
                 key="newPwTextInput"
@@ -71,7 +71,7 @@ function ChangePwView(props: Props): React.ReactElement {
                 key="newPwCheckTextInput"
                 testID="newPwCheckTextInput"
                 isPassword
-                onTextChanged={(pw): void => setNewPwCheck(pw)}
+                onTextChanged={(pw): void => setValidationWord(pw)}
                 txtLabel={getString('PASSWORD_NEW_CHECK')}/>
             </InnerContainer>
             : <InnerContainer>
@@ -85,8 +85,8 @@ function ChangePwView(props: Props): React.ReactElement {
         }
         <Button
           testID="checkCurrentPwBtn"
-          onPress={currentPwVerified ? changePassword : checkCurrent}>
-          {currentPwVerified ? getString('CONFIRM') : getString('NEXT')}
+          onPress={isValidCurrentPw ? changePassword : checkCurrent}>
+          {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
         </Button>
       </KeyboardAvoidingView>
     </SafeAreaView>

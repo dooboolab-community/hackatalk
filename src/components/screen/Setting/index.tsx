@@ -75,9 +75,9 @@ function SettingScreen(props: Props): React.ReactElement {
               modal.current.close();
             }
           }}
-          checkCurrentPw={async (): Promise<boolean> => {
+          validateCurrentPw={async (text: string): Promise<boolean> => {
             // TODO: check current password.
-            return true;
+            return (text === 'right');
           }} />
       </Modal>
     </Container>
