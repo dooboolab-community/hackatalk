@@ -15,6 +15,10 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '../../providers/ThemeProvider';
 // import { CommonActions } from '@react-navigation/core';
 
+const BUTTON_INDEX_LAUNCH_CAMERA = 0;
+const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+const BUTTON_INDEX_CANCEL = 2;
+
 const StyledContainer = styled.View`
   flex: 1;
   background-color: ${({ theme }): string => theme.background};
@@ -99,15 +103,14 @@ function Screen(props: Props): React.ReactElement {
       getString('SELSCT_FROM_ALBUM'),
       getString('CANCEL'),
     ];
-    const cancelButtonIndex = 2;
 
     showActionSheetWithOptions(
       {
         options,
-        cancelButtonIndex,
+        cancelButtonIndex: BUTTON_INDEX_CANCEL,
       },
       async (buttonIndex: number) => {
-        if (buttonIndex === 0) {
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const result = await launchCameraAsync();
           if (result) {
             console.log('result', result);
@@ -115,7 +118,7 @@ function Screen(props: Props): React.ReactElement {
           return;
         }
 
-        if (buttonIndex === 1) {
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY) {
           const result = await launchImageLibraryAsync();
           if (result) {
             console.log('result', result);
