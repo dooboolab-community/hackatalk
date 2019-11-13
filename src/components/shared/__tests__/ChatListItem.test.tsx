@@ -12,6 +12,7 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChatListItem from '../ChatListItem';
 import { ThemeProvider } from 'styled-components/native';
+import { ThemeType } from '../../../types';
 import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -44,7 +45,7 @@ let props = {
     },
     message: 'hello1',
   },
-  onPressPeerImage,
+  onPressPeerImage: jest.fn(),
   createTheme,
   testID: 'chatListItem0',
 };
@@ -71,11 +72,11 @@ describe('[ChatListItem] rendering test', () => {
   // jere
   it('renders [peerMessage] with URL as expected', () => {
     props.item.sender.photoURL = 'https://';
-    // component = (
-    //   <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
-    //     <ChatListItem {...props} />
-    //   </ThemeProvider>
-    // );
+    component = (
+      <ThemeProvider theme={createTheme(ThemeType.LIGHT)}>
+        <ChatListItem {...props} />
+      </ThemeProvider>
+    );
     const json = renderer.create(component).toJSON();
     expect(json).toMatchSnapshot();
   });
@@ -94,9 +95,10 @@ describe('[ChatListItem] interaction', () => {
   });
 
   it('should fireEvent when peer image is pressed', () => {
-    const touchPeerImage = testingLib.getByTestId('chatListItem0');
+    testingLib.debug();
+    const touchPeerImage = testingLib.getByTestId(props.testID);
     fireEvent.press(touchPeerImage);
-    expect(cnt).toEqual(1);
+    expect(props.onPressPeerImage).toHaveBeenCalledTimes(1);
   });
 
   afterAll(() => cleanup());

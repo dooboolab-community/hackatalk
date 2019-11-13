@@ -23,6 +23,7 @@ const StyledContainer = styled.SafeAreaView`
 
 interface Props {
   navigation: DefaultNavigationProps;
+  pressTest: () => void;
 }
 
 function Screen(props: Props): React.ReactElement {
