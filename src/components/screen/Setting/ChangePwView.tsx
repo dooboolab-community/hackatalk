@@ -21,7 +21,7 @@ function ChangePwView(props: Props): React.ReactElement {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [validationWord, setValidationWord] = useState('');
-  const checkCurrent = (): void => {
+  const validateCurrent = (): void => {
     validateCurrentPw(currentPw).then((validated) => {
       if (validated) {
         updateCurrentPwValid(true);
@@ -85,7 +85,7 @@ function ChangePwView(props: Props): React.ReactElement {
         }
         <Button
           testID="checkCurrentPwBtn"
-          onPress={isValidCurrentPw ? changePassword : checkCurrent}>
+          onPress={isValidCurrentPw ? changePassword : validateCurrent}>
           {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
         </Button>
       </KeyboardAvoidingView>
