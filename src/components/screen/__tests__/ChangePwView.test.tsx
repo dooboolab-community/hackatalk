@@ -8,21 +8,23 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
-import Setting from '../Setting';
+import ChangePwView from '../Setting/ChangePwView';
 import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
 
-describe('[Setting] screen', () => {
+describe('[ChangePwView] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
-    props = createTestProps();
+    props = createTestProps({
+      close: jest.fn(),
+    });
     component = createTestElement(
-      <Setting {...props} />
+      <ChangePwView {...props} />
     );
     testingLib = render(component);
   });
@@ -38,8 +40,8 @@ describe('[Setting] screen', () => {
       testingLib = render(component);
     });
 
-    it('should simulate onPress login state item', async () => {
-      const btn = testingLib.getByTestId('changePwItem');
+    it('should simulate close item', async () => {
+      const btn = testingLib.getByTestId('closeBtn');
       fireEvent.press(btn);
     });
   });

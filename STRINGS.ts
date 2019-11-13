@@ -52,6 +52,7 @@ const en = {
   PASSWORD_NEW_CHECK: 'Repeat New Password',
   NEXT: 'Next',
   OK: 'OK',
+  CONFIRM: 'Confirm',
 };
 
 const ko = {
@@ -104,6 +105,7 @@ const ko = {
   PASSWORD_NEW_CHECK: '새로운 비밀번호 확인',
   NEXT: '다음',
   OK: '확인',
+  CONFIRM: '확인',
 };
 
 i18n.fallbacks = true;
