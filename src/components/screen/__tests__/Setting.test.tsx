@@ -20,7 +20,7 @@ let component: React.ReactElement;
 
 jest.mock('react-native-safe-area-context', () => {
   return {
-      useSafeArea: () => {
+    useSafeArea: (): any => {
       return { top: 10 };
     },
   };
