@@ -22,6 +22,7 @@ const onPress = (): void => {
 };
 
 const propsObj = {
+  testID: 'test_yo',
   user: {
     uid: '',
     displayName: '',
@@ -68,7 +69,7 @@ describe('[UserListItem] interaction', () => {
 
   it('should fireEvent when peer image is pressed', () => {
     act(() => {
-      fireEvent.press(testingLib.getByTestId('PRESS_ID'));
+      fireEvent.press(testingLib.getByTestId('test_yo'));
     });
     expect(cnt).toEqual(1);
   });

@@ -252,7 +252,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem0"
             >
               <View
                 style={
@@ -341,7 +341,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem1"
             >
               <View
                 style={
@@ -430,7 +430,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem2"
             >
               <View
                 style={
@@ -519,7 +519,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem3"
             >
               <View
                 style={
@@ -608,7 +608,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem4"
             >
               <View
                 style={
@@ -697,7 +697,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem5"
             >
               <View
                 style={
@@ -786,7 +786,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem6"
             >
               <View
                 style={
@@ -875,7 +875,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem7"
             >
               <View
                 style={
@@ -964,7 +964,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem8"
             >
               <View
                 style={
@@ -1053,7 +1053,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="PRESS_ID"
+              testID="userListItem9"
             >
               <View
                 style={
