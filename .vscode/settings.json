@@ -7,7 +7,7 @@
     "typescriptreact"
   ],
   // prettier extension setting
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -22,5 +22,5 @@
   },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "prettier.configPath": ".prettierrc.js",
+  "prettier.configPath": ".prettierrc.js"
 }
