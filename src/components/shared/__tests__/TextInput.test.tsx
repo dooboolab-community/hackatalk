@@ -6,9 +6,6 @@ import * as React from 'react';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import TextInput from '../TextInput';
-import { ThemeProvider } from 'styled-components/native';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 import renderer from 'react-test-renderer';
 
 let props: any;

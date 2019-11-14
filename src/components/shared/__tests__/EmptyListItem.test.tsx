@@ -2,13 +2,6 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {
-  RenderResult,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
-
 import EmptyListItem from '../EmptyListItem';
 import { createTestProps } from '../../../utils/testUtils';
 // Note: test renderer must be required after react-native.

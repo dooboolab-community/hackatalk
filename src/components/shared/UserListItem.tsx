@@ -58,6 +58,7 @@ const StyledRightText = styled.Text`
 function Shared({
   onPress,
   onLongPress,
+  testID,
   user: { photoURL, displayName, statusMsg },
   theme,
 }: Props): React.ReactElement {
@@ -66,7 +67,7 @@ function Shared({
   return (
     <StyledContainerView>
       <TouchableOpacity
-        testID="PRESS_ID"
+        testID={testID}
         activeOpacity={0.5}
         onPress={onPress}
         onLongPress={onLongPress}

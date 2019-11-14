@@ -1,9 +1,13 @@
 import 'react-native';
 
+import * as ProfileContext from '../../../providers/ProfileModalProvider';
+
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  act,
   cleanup,
+  fireEvent,
   render,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
@@ -42,12 +46,36 @@ describe('[Friend] interaction', () => {
     cleanup();
   });
 
-  // TODO
-  // it('should dispatch [show-modal] when user is pressed', () => {
-  //   const userListItem = testingLib.queryByTestId('USER_ID');
-  //   testingLib.debug();
-  //   act(() => {
-  //     fireEvent.press(userListItem);
-  //   });
-  // });
+  describe('dispatch showModal', () => {
+    it('should dispatch [show-modal] when user is pressed', () => {
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => ({
+          showModal: jest.fn(),
+          state: null,
+        }));
+      const userListItem = testingLib.queryByTestId('USER_ID');
+      act(() => {
+        fireEvent.press(userListItem);
+      });
+    });
+
+    it('should call [show-modal] when modal is available', () => {
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => ({
+          showModal: jest.fn(),
+          state: {
+            user: null,
+            deleteMode: true,
+            modal: jest.mock,
+          },
+        }));
+      const userListItem = testingLib.queryByTestId('USER_ID');
+      testingLib.rerender(component);
+      act(() => {
+        fireEvent.press(userListItem);
+      });
+    });
+  });
 });

@@ -13,7 +13,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
   <TouchableOpacity
     activeOpacity={0.5}
     onPress={[Function]}
-    testID="PRESS_ID"
+    testID="test_yo"
   >
     <View
       style={

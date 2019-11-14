@@ -7,7 +7,7 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useStateValue } from '../../contexts';
+import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 export const fakeUsers: User[] = [
   {
@@ -148,17 +148,14 @@ const StyledSearchImage = styled.Image`
 `;
 
 const Screen = (): React.ReactElement => {
-  const [{ profileModal }, dispatch] = useStateValue();
+  const { state, showModal } = useProfileContext();
   const [searchedUsers, setSearchedUsers] = useState<User[]>(fakeUsers);
   const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
   const userListOnPress = (item: User): void => {
-    if (profileModal) {
-      dispatch({
-        type: 'show-modal',
-        payload: { user: item, deleteMode: false },
-      });
+    if (state.modal) {
+      showModal(item, false);
     }
   };
   const renderItem = ({

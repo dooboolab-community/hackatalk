@@ -1,15 +1,16 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import React, { PureComponent, ReactElement } from 'react';
+import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
+import React, { useRef } from 'react';
 
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import SearchUser from '../screen/SearchUser';
-import { StateContext } from '../../contexts';
 import StatusBar from '../shared/StatusBar';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const Stack = createStackNavigator();
@@ -42,34 +43,36 @@ interface Props {
   navigation: DefaultNavigationProps;
 }
 
-export default class RootNavigator extends PureComponent<Props> {
-  public static contextType = StateContext;
+function RootNavigator(): React.ReactElement {
+  const navigation = useNavigation();
+  const { state } = useProfileContext();
+  const modalEl = useRef(null);
+  state.modal = modalEl;
+  return (
+    <View style={{
+      flex: 1,
+      flexDirection: 'column',
+    }}>
+      <StatusBar />
+      <MainStackNavigator />
+      <ProfileModal
+        testID="modal"
+        ref={state.modal}
+        onChatPressed={(): void => {
+          if (state.modal && state.modal.current) {
+            state.modal.current.close();
+          }
+          navigation.navigate('Chat');
+        }}
+      />
+    </View>
+  );
+}
 
-  public render(): ReactElement {
-    const { navigation } = this.props;
-    const [
-      {
-        profileModal: { modal },
-      },
-    ] = this.context;
-    return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-      }}>
-        <StatusBar />
-        <MainStackNavigator />
-        <ProfileModal
-          testID="modal"
-          ref={modal}
-          onChatPressed={(): void => {
-            if (modal && modal.current) {
-              modal.current.close();
-            }
-            navigation.navigate('Chat');
-          }}
-        />
-      </View>
-    );
-  }
+export default function RootNavigatorWrapper(): React.ReactElement {
+  return (
+    <ProfileModalProvider>
+      <RootNavigator/>
+    </ProfileModalProvider>
+  );
 }
