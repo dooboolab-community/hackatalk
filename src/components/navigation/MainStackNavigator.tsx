@@ -5,7 +5,6 @@ import {
 } from '../../providers/ProfileModalProvider';
 import React, { useRef } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
 import { FriendProvider } from '../../providers/FriendProvider';
