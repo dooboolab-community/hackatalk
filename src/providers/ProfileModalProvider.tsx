@@ -33,10 +33,8 @@ const initialState: State = {
   modal: null,
 };
 
-interface Action {
-  type: ActionType;
-  payload: State;
-}
+type Action =
+  | { type: ActionType.ShowModal; payload: State };
 
 interface Props {
   children?: React.ReactElement;
