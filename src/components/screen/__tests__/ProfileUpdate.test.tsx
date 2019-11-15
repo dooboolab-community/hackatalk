@@ -11,8 +11,11 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ProfileUpdate from '../ProfileUpdate';
+import { getString } from '../../../../STRINGS';
+import { renderHook } from '@testing-library/react-hooks';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 
 let props: any;
 let component: ReactElement;
@@ -74,6 +77,29 @@ describe('interaction', () => {
       fireEvent.change(inputStatus, 'name');
     });
     // expect(inputStatus.props.txt).toEqual('name');
+  });
+
+  it('should open actionSheet with options when pressing profile icon button', () => {
+    const { result } = renderHook(() => useActionSheet());
+    const callback = jest.fn();
+    const profileBtn = testingLib.getByTestId('user_icon_button');
+    const options = [
+      getString('TAKE_A_PICTURE'),
+      getString('SELSCT_FROM_ALBUM'),
+      getString('CANCEL'),
+    ];
+    act(() => {
+      fireEvent.press(profileBtn);
+      result.current.showActionSheetWithOptions(
+        {
+          options,
+          cancelButtonIndex: 2,
+        },
+        callback,
+      );
+      callback();
+    });
+    expect(callback).toHaveBeenCalled();
   });
 
   afterAll(() => {

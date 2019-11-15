@@ -73,7 +73,7 @@ describe('[Chat] interaction', () => {
       };
       jest
         .spyOn(ProfileContext, 'useProfileContext')
-        .mockImplementation(() => (mockedData));
+        .mockImplementation(() => mockedData);
       const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
       testingLib.rerender(component);
       act(() => {
