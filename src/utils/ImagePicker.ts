@@ -7,8 +7,8 @@ const photoOptions = {
   exif: true,
 };
 
-export const requestPermissions = async (
-  type: 'camera' | 'photo',
+const requestPermissions = async (
+  type: string,
 ): Promise<Permissions.PermissionStatus> => {
   if (type === 'photo') {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
