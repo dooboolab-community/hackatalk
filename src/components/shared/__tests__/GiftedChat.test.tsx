@@ -116,7 +116,6 @@ describe('[GiftedChatInput] render', () => {
     });
 
     it('should open image library when pressing photo icon button', async () => {
-      testingLib = render(component);
       const touchMenu = testingLib.getByTestId('touch_menu');
       const openImageLibFunction = jest.fn();
       act(() => {
@@ -133,7 +132,6 @@ describe('[GiftedChatInput] render', () => {
     });
 
     it('should open camera when pressing camera icon button', async () => {
-      testingLib = render(component);
       const touchMenu = testingLib.getByTestId('touch_menu');
       const openCameraFunction = jest.fn();
       act(() => {
