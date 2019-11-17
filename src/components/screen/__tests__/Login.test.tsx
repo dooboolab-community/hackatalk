@@ -2,6 +2,12 @@ import 'react-native';
 
 import React, { ReactElement } from 'react';
 import {
+  AppAuth,
+  GoogleSignIn,
+  expoAppAuth,
+  expoConstants,
+} from '../../../../__mocks__/expoGoogleSigninMock';
+import {
   RenderResult,
   act,
   cleanup,
@@ -11,7 +17,6 @@ import {
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Button from '../../shared/Button';
-import { GoogleSignIn, expoAppAuth, expoConstants, AppAuth } from '../../../../__mocks__/expoGoogleSigninMock';
 import Login from '../Login';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -133,6 +138,5 @@ describe('[Login] Google Signin', () => {
       fireEvent.press(btnGoogle);
     });
     expect(AppAuth.authAsync()).resolves.toBeCalled();
-  });
   });
 });
