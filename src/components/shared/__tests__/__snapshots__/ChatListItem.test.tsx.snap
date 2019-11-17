@@ -27,8 +27,8 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
   >
     <TouchableOpacity
       activeOpacity={0.2}
-      onPress={[Function]}
-      testID="peer_image"
+      onPress={[MockFunction]}
+      testID="chatListItem0"
     >
       <View
         style={
@@ -122,20 +122,9 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
       }
     }
   >
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "opacity": 1,
-        }
-      }
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[MockFunction]}
       testID="chatListItem0"
     >
       <Image
@@ -153,7 +142,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
           ]
         }
       />
-    </View>
+    </TouchableOpacity>
   </View>
   <View
     style={

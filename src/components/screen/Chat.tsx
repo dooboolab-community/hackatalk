@@ -23,7 +23,6 @@ const StyledContainer = styled.SafeAreaView`
 
 interface Props {
   navigation: DefaultNavigationProps;
-  pressTest: () => void;
 }
 
 function Screen(props: Props): React.ReactElement {
@@ -31,6 +30,7 @@ function Screen(props: Props): React.ReactElement {
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const { state, showModal } = useProfileContext();
   const [chats, setChats] = useState<Chat[]>([
     {
       id: '',
@@ -125,6 +125,11 @@ function Screen(props: Props): React.ReactElement {
             <ChatListItem
               prevItem={index > 0 ? chats[index - 1] : undefined}
               item={item}
+              onPressPeerImage={(): void => {
+                if (state.modal) {
+                  showModal(item, true);
+                }
+              }}
             />
           );
         }}

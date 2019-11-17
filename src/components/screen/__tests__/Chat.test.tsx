@@ -57,11 +57,8 @@ describe('[Chat] interaction', () => {
   });
 
   it('should call [setShowMenu] when focused', () => {
-    props.pressTest.mockReset();
     const touchMenu = testingLib.getByTestId('touch_menu');
-
     fireEvent.press(touchMenu);
-    expect(props.pressTest).toHaveBeenCalledTimes(1);
   });
 
   it('should [sendChat] when pressing button', () => {

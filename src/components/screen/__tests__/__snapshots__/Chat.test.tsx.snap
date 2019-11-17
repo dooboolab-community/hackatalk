@@ -184,7 +184,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
-              testID="peer_image"
+              onPress={[Function]}
             >
               <View
                 style={
@@ -192,7 +192,6 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                     "width": 40,
                   }
                 }
-                testID="chatListItem0"
               >
                 <Text />
               </View>
@@ -379,7 +378,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
-              testID="peer_image"
+              onPress={[Function]}
             >
               <View
                 style={
@@ -491,7 +490,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
-              testID="peer_image"
+              onPress={[Function]}
             >
               <View
                 style={
@@ -589,7 +588,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
-              testID="peer_image"
+              onPress={[Function]}
             >
               <View
                 style={
