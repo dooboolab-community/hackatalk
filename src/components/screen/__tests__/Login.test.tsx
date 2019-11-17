@@ -11,6 +11,7 @@ import {
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import Button from '../../shared/Button';
+import { GoogleSignIn, expoAppAuth, expoConstants, AppAuth } from '../../../../__mocks__/expoGoogleSigninMock';
 import Login from '../Login';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -88,5 +89,50 @@ describe('[Login] interaction', () => {
 
   afterAll(() => {
     cleanup();
+  });
+});
+
+describe('[Login] Google Signin', () => {
+  let testingLib: RenderResult;
+
+  beforeAll(() => {
+    testingLib = render(component);
+  });
+
+  // 1. Unit test with firebase mock
+  it('should pass [GoogleSignIn] unit test', async () => {
+    await GoogleSignIn.initAsync();
+    const ask = await GoogleSignIn.askForPlayServicesAsync();
+    const { type, user } = await GoogleSignIn.signInAsync();
+    expect(ask).toEqual(true);
+    expect(type).toEqual('success');
+    expect(user).toEqual({
+      auth: {
+        clientId: 'testClient',
+        accessToken: 'aabb',
+        accessTokenExpirationDate: 1562518153000,
+      },
+    });
+  });
+
+  // 2. Test call action and resolve methods [Native]
+  it('should call [googleSignIn] and resolves methods', () => {
+    act(() => {
+      fireEvent.press(testingLib.queryByTestId('btnGoogle'));
+    });
+    expect(GoogleSignIn.askForPlayServicesAsync()).resolves.toBeCalled();
+    expect(GoogleSignIn.signInAsync()).resolves.toBeCalled();
+  });
+
+  // 2. Test call action and resolve methods when ownership is expo [Expo]
+  it('should signin with [AppAuth] when ownership is expo', () => {
+    jest.mock('../../../../__mocks__/expoGoogleSigninMock');
+
+    const btnGoogle = testingLib.queryByTestId('btnGoogle');
+    act(() => {
+      fireEvent.press(btnGoogle);
+    });
+    expect(AppAuth.authAsync()).resolves.toBeCalled();
+  });
   });
 });
