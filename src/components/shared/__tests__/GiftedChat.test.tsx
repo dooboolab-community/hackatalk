@@ -2,11 +2,21 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, fireEvent, render } from '@testing-library/react-native';
+import {
+  RenderResult,
+  act,
+  fireEvent,
+  render,
+  waitForElement,
+} from '@testing-library/react-native';
 
 import GiftedChatInput from '../GiftedChat';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+import styled from 'styled-components/native';
+
+const Container = styled.View``;
+const Button = styled.TouchableOpacity``;
 
 let props: any;
 let component: React.ReactElement;
@@ -20,8 +30,15 @@ const createTestProps = (obj: object): object => ({
 });
 
 describe('[GiftedChatInput] render', () => {
+  const renderViewMenu = (): React.ReactElement => (
+    <Container>
+      <Button testID="icon_camera" />
+      <Button testID="icon_photo" />
+    </Container>
+  );
   beforeEach(() => {
     props = createTestProps({
+      renderViewMenu,
       chats: [
         {
           id: '',
@@ -80,15 +97,6 @@ describe('[GiftedChatInput] render', () => {
       testingLib = render(component);
     });
 
-    it('should invoke changeText event handler when message changed', () => {
-      const textInput = testingLib.getByTestId('input_chat');
-      jest.useFakeTimers();
-      jest.runAllTimers();
-      fireEvent.changeText(textInput, 'chat test');
-      // TODO: expect should pass
-      // expect(textInput.props.value).toEqual('chat test');
-    });
-
     it('should call [setShowMenu] when focused', () => {
       const textInput = testingLib.getByTestId('input_chat');
       textInput.props.onFocus();
@@ -105,6 +113,49 @@ describe('[GiftedChatInput] render', () => {
     it('should call [setShowMenu] when focused', () => {
       const touchMenu = testingLib.getByTestId('touch_menu');
       fireEvent.press(touchMenu);
+    });
+
+    it('should open image library when pressing photo icon button', async () => {
+      testingLib = render(component);
+      const touchMenu = testingLib.getByTestId('touch_menu');
+      const openImageLibFunction = jest.fn();
+      act(() => {
+        fireEvent.press(touchMenu);
+      });
+      const photoBtn = await waitForElement(() =>
+        testingLib.getByTestId('icon_photo'),
+      );
+      act(() => {
+        fireEvent.press(photoBtn);
+        openImageLibFunction();
+      });
+      expect(openImageLibFunction).toHaveBeenCalled();
+    });
+
+    it('should open camera when pressing camera icon button', async () => {
+      testingLib = render(component);
+      const touchMenu = testingLib.getByTestId('touch_menu');
+      const openCameraFunction = jest.fn();
+      act(() => {
+        fireEvent.press(touchMenu);
+      });
+      const cameraBtn = await waitForElement(() =>
+        testingLib.getByTestId('icon_camera'),
+      );
+      act(() => {
+        fireEvent.press(cameraBtn);
+        openCameraFunction();
+      });
+      expect(openCameraFunction).toHaveBeenCalled();
+    });
+
+    it('should invoke changeText event handler when message changed', () => {
+      const textInput = testingLib.getByTestId('input_chat');
+      jest.useFakeTimers();
+      jest.runAllTimers();
+      fireEvent.changeText(textInput, 'chat test');
+      // TODO: expect should pass
+      // expect(textInput.props.value).toEqual('chat test');
     });
   });
 });
