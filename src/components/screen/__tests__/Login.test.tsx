@@ -1,12 +1,9 @@
-import 'react-native';
+import * as AppAuth from 'expo-app-auth';
+import * as Facebook from 'expo-facebook';
+import * as GoogleSignIn from 'expo-google-sign-in';
 
+import Constants, { AppOwnership } from 'expo-constants';
 import React, { ReactElement } from 'react';
-import {
-  AppAuth,
-  GoogleSignIn,
-  expoAppAuth,
-  expoConstants,
-} from '../../../../__mocks__/expoGoogleSigninMock';
 import {
   RenderResult,
   act,
@@ -16,6 +13,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
+import { Alert } from 'react-native';
 import Button from '../../shared/Button';
 import Login from '../Login';
 // Note: test renderer must be required after react-native.
@@ -24,7 +22,13 @@ import renderer from 'react-test-renderer';
 let props: any;
 let component: ReactElement;
 
+jest.mock('expo-constants', () => ({
+  ...jest.requireActual('expo-constants'),
+  appOwnership: 'expo',
+}));
+
 describe('[Login] rendering test', () => {
+  jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<Login {...props} />);
@@ -45,6 +49,11 @@ describe('[Login] interaction', () => {
     rendered = renderer.create(component);
     root = rendered.root;
     testingLib = render(component);
+  });
+
+  it('should change theme when icon is pressed', () => {
+    const themeTouch = testingLib.getByTestId('themeTest');
+    fireEvent.press(themeTouch);
   });
 
   it('should invoke changeText event handler when email changed ', () => {
@@ -92,20 +101,88 @@ describe('[Login] interaction', () => {
     expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
   });
 
-  afterAll(() => {
+  afterAll((done) => {
     cleanup();
+    done();
+  });
+});
+
+describe('[Login] Facebook Signin', () => {
+  let testingLib: RenderResult;
+
+  beforeAll((done) => {
+    cleanup();
+    done();
+  });
+
+  it('should signin with facebook when [btnFacebook] has pressed', async () => {
+    Constants.manifest = {
+      facebookAppId: 'faebookAppId',
+      bundleUrl: 'bundleUrl',
+    };
+
+    // @ts-ignore
+    global.fetch = jest.fn().mockImplementation(() => {
+      return new Promise((resolve): void => {
+        resolve({
+          json: function() {
+            return { id: 1 };
+          },
+        });
+      });
+    });
+
+    testingLib = render(component);
+
+    const btnFacebook = testingLib.queryByTestId('btnFacebook');
+    act(() => {
+      fireEvent.press(btnFacebook);
+    });
+
+    expect(Facebook.logInWithReadPermissionsAsync('')).resolves.toEqual({
+      type: 'success',
+      token: 'testToken',
+    });
+  });
+
+  it('should cancel signin with facebook', async () => {
+    Constants.manifest = {
+      facebookAppId: 'faebookAppId',
+      bundleUrl: 'bundleUrl',
+    };
+
+    jest.spyOn(Facebook, 'logInWithReadPermissionsAsync').mockImplementation(
+      () =>
+        new Promise((resolve): void => {
+          const result = {
+            type: 'cancel',
+            token: 'testToken',
+          };
+          resolve(result);
+        }),
+    );
+
+    testingLib = render(component);
+
+    const btnFacebook = testingLib.queryByTestId('btnFacebook');
+    act(() => {
+      fireEvent.press(btnFacebook);
+    });
+
+    expect(Facebook.logInWithReadPermissionsAsync('')).resolves.toEqual({
+      type: 'cancel',
+      token: 'testToken',
+    });
   });
 });
 
 describe('[Login] Google Signin', () => {
   let testingLib: RenderResult;
 
-  beforeAll(() => {
-    testingLib = render(component);
-  });
-
-  // 1. Unit test with firebase mock
+  // hyochan => below unit test is actually useless
   it('should pass [GoogleSignIn] unit test', async () => {
+    testingLib = render(component);
+
     await GoogleSignIn.initAsync();
     const ask = await GoogleSignIn.askForPlayServicesAsync();
     const { type, user } = await GoogleSignIn.signInAsync();
@@ -113,30 +190,119 @@ describe('[Login] Google Signin', () => {
     expect(type).toEqual('success');
     expect(user).toEqual({
       auth: {
-        clientId: 'testClient',
+        clientId: 'test',
         accessToken: 'aabb',
         accessTokenExpirationDate: 1562518153000,
       },
     });
   });
 
-  // 2. Test call action and resolve methods [Native]
-  it('should call [googleSignIn] and resolves methods', () => {
-    act(() => {
-      fireEvent.press(testingLib.queryByTestId('btnGoogle'));
+  describe('expo env', () => {
+    it('should signin with [AppAuth] when ownership is expo', async () => {
+      Constants.appOwnership = AppOwnership.Expo;
+      testingLib = render(component);
+
+      const btnGoogle = testingLib.queryByTestId('btnGoogle');
+      act(() => {
+        fireEvent.press(btnGoogle);
+      });
+
+      expect(AppAuth.authAsync(null)).resolves.toBe({
+        accessToken: 'accessToken',
+      });
+
+      const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+      await flushPromises();
+
+      expect(Alert.alert).toHaveBeenCalled();
     });
-    expect(GoogleSignIn.askForPlayServicesAsync()).resolves.toBeCalled();
-    expect(GoogleSignIn.signInAsync()).resolves.toBeCalled();
+
+    it('should catch error while signing in with [AppAuth]', async () => {
+      jest
+        .spyOn(AppAuth, 'authAsync')
+        .mockImplementationOnce(
+          (): Promise<AppAuth.TokenResponse> =>
+            Promise.reject(new Error('error')),
+        );
+
+      const btnGoogle = testingLib.queryByTestId('btnGoogle');
+      act(() => {
+        fireEvent.press(btnGoogle);
+      });
+
+      const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+      await flushPromises();
+
+      expect(Alert.alert).toHaveBeenCalled();
+    });
   });
 
-  // 2. Test call action and resolve methods when ownership is expo [Expo]
-  it('should signin with [AppAuth] when ownership is expo', () => {
-    jest.mock('../../../../__mocks__/expoGoogleSigninMock');
-
-    const btnGoogle = testingLib.queryByTestId('btnGoogle');
-    act(() => {
-      fireEvent.press(btnGoogle);
+  describe('standalone env', () => {
+    beforeAll((done) => {
+      cleanup();
+      done();
     });
-    expect(AppAuth.authAsync()).resolves.toBeCalled();
+
+    it('should signin with Google when ownership is standalone', async () => {
+      Constants.appOwnership = AppOwnership.Standalone;
+      testingLib = render(component);
+
+      const btnGoogle = testingLib.queryByTestId('btnGoogle');
+      act(() => {
+        fireEvent.press(btnGoogle);
+      });
+
+      expect(GoogleSignIn.signInAsync()).resolves.toEqual({
+        type: 'success',
+        user: {
+          auth: {
+            clientId: 'test',
+            accessToken: 'aabb',
+            accessTokenExpirationDate: 1562518153000,
+          },
+        },
+      });
+
+      const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+      await flushPromises();
+    });
+
+    it('should cancel while signing in with expo Google', async () => {
+      jest.spyOn(GoogleSignIn, 'signInAsync').mockImplementationOnce(
+        (): Promise<GoogleSignIn.GoogleSignInAuthResult> =>
+          Promise.resolve({
+            type: 'cancel',
+          }),
+      );
+
+      const btnGoogle = testingLib.queryByTestId('btnGoogle');
+      act(() => {
+        fireEvent.press(btnGoogle);
+      });
+
+      const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+      await flushPromises();
+
+      expect(Alert.alert).toHaveBeenCalled();
+    });
+
+    it('should catch error while signing in with expo Google', async () => {
+      jest
+        .spyOn(GoogleSignIn, 'signInAsync')
+        .mockImplementationOnce(
+          (): Promise<GoogleSignIn.GoogleSignInAuthResult> =>
+            Promise.reject(new Error('error')),
+        );
+
+      const btnGoogle = testingLib.queryByTestId('btnGoogle');
+      act(() => {
+        fireEvent.press(btnGoogle);
+      });
+
+      const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+      await flushPromises();
+
+      expect(Alert.alert).toHaveBeenCalled();
+    });
   });
 });

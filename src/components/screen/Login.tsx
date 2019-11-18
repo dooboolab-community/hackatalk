@@ -138,10 +138,10 @@ function Screen(props: Props): React.ReactElement {
     });
   };
 
-  const googleSignOutAsync = async (): Promise<void> => {
-    await GoogleSignIn.signOutAsync();
-    setGoogleUser(null);
-  };
+  // const googleSignOutAsync = async (): Promise<void> => {
+  //   await GoogleSignIn.signOutAsync();
+  //   setGoogleUser(null);
+  // };
 
   const googleSignInAsync = async (): Promise<void> => {
     setSigningInGoogle(true);
@@ -157,7 +157,6 @@ function Screen(props: Props): React.ReactElement {
         });
         // console.log(response);
         Alert.alert('login:' + JSON.stringify(response.accessToken));
-        onLogin();
       } catch ({ message }) {
         // console.log('err', message);
       } finally {
@@ -201,7 +200,6 @@ function Screen(props: Props): React.ReactElement {
         // type === 'cancel'
       }
     } catch ({ message }) {
-      /* istanbul ignore next */
       Alert.alert(`Facebook Login Error: ${message}`);
     } finally {
       setSigningInFacebook(false);
@@ -228,7 +226,10 @@ function Screen(props: Props): React.ReactElement {
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
-            <TouchableOpacity onPress={(): void => changeThemeType()}>
+            <TouchableOpacity
+              testID="themeTest"
+              onPress={(): void => changeThemeType()}
+            >
               <StyledIcon source={IC_ICON} />
             </TouchableOpacity>
             <StyledIconText>{getString('HELLO')}.</StyledIconText>
