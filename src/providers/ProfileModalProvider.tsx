@@ -5,7 +5,11 @@ import createCtx from '../utils/createCtx';
 
 interface Context {
   state: State;
-  showModal: (user: Partial<User>, deleteMode: boolean) => void;
+  showModal: (
+    user: Partial<User>,
+    deleteMode: boolean,
+    screen?: string,
+  ) => void;
   // setUser: (user: User) => void;
   // showAddBtn: (deleteMode: boolean) => void;
   // open: () => void;
@@ -20,6 +24,7 @@ export interface State {
   user: Partial<User>;
   deleteMode: boolean;
   modal?: any;
+  screen?: string;
 }
 
 const initialState: State = {
@@ -31,10 +36,10 @@ const initialState: State = {
   },
   deleteMode: false,
   modal: null,
+  screen: '',
 };
 
-type Action =
-  | { type: ActionType.ShowModal; payload: State };
+type Action = { type: ActionType.ShowModal; payload: State };
 
 interface Props {
   children?: React.ReactElement;
@@ -42,10 +47,14 @@ interface Props {
 
 type Reducer = (state: State, action: Action) => State;
 
-const showModal = (dispatch: React.Dispatch<Action>) => (user: Partial<User>, deleteMode: boolean): void => {
+const showModal = (dispatch: React.Dispatch<Action>) => (
+  user: Partial<User>,
+  deleteMode: boolean,
+  screen: string,
+): void => {
   dispatch({
     type: ActionType.ShowModal,
-    payload: { user, deleteMode },
+    payload: { user, deleteMode, screen: screen || '' },
   });
 };
 
@@ -55,14 +64,16 @@ const reducer: Reducer = (state = initialState, action) => {
   switch (type) {
     case ActionType.ShowModal:
       if (modal && modal.current) {
-        modal.current.setUser(payload.user);
-        modal.current.showAddBtn(!payload.deleteMode);
+        // modal.current.setUser(payload.user);
+        // modal.current.showAddBtn(!payload.deleteMode);
+        // modal.current.setScreen(payload.screen);
         modal.current.open();
       }
       return {
         ...state,
         user: payload.user,
         deleteMode: !payload.deleteMode,
+        screen: payload.screen,
       };
     default:
       return state;
