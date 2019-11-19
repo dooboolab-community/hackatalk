@@ -6,8 +6,8 @@ import produce from 'immer';
 
 interface Context {
   friendState: State;
-  addFriend: (user: User) => void;
-  deleteFriend: (user: User) => void;
+  addFriend: (user: Partial<User>) => void;
+  deleteFriend: (user: Partial<User>) => void;
 }
 
 const [useCtx, Provider] = createCtx<Context>();
