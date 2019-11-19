@@ -12,7 +12,7 @@ import {
   DefaultTheme, withTheme,
 } from 'styled-components/native';
 import React, { useRef, useState } from 'react';
-import ChangePwView from './ChangePwView';
+import ChangePwView from './ChangePw';
 import { FontAwesome } from '@expo/vector-icons';
 import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';

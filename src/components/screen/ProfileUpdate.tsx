@@ -92,12 +92,6 @@ function Screen(props: Props): React.ReactElement {
     setIsUpdating(true);
   };
 
-  const onSetting = (): void => {
-    if (props.navigation) {
-      props.navigation.navigate('Setting');
-    }
-  };
-
   const onTextChanged = (type: string, text: string): void => {
     // prettier-ignore
     switch (type) {
