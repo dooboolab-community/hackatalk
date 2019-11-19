@@ -155,7 +155,7 @@ const Screen = (): React.ReactElement => {
 
   const userListOnPress = (item: User): void => {
     if (state.modal) {
-      showModal(item, false);
+      showModal(item, false, 'SearchUser');
     }
   };
   const renderItem = ({
@@ -193,10 +193,10 @@ const Screen = (): React.ReactElement => {
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }
       : null;
   };
   return (
