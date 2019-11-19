@@ -41,6 +41,7 @@
     "expo-localization": "~7.0.0",
     "formik": "^2.0.6",
     "i18n-js": "^3.5.0",
+    "immer": "^5.0.0",
     "moment": "^2.24.0",
     "react": "16.8.6",
     "react-dom": "^16.8.6",
