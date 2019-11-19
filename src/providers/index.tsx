@@ -1,3 +1,4 @@
+import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
 import { ThemeProvider } from './ThemeProvider';
@@ -14,23 +15,18 @@ export const AllProviders = ({
   children,
 }: Props): React.ReactElement => {
   return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >
-      <ProfileModalProvider>
-        {children}
-      </ProfileModalProvider>
+    <ThemeProvider initialThemeType={initialThemeType}>
+      <FriendProvider>
+        <ProfileModalProvider>{children}</ProfileModalProvider>
+      </FriendProvider>
     </ThemeProvider>
   );
 };
 
-export default ({
-  initialThemeType,
-  children,
-}: Props): React.ReactElement => {
+export default ({ initialThemeType, children }: Props): React.ReactElement => {
   return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >{children}</ThemeProvider>
+    <ThemeProvider initialThemeType={initialThemeType}>
+      <FriendProvider>{children}</FriendProvider>
+    </ThemeProvider>
   );
 };
