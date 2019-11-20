@@ -1,22 +1,21 @@
 import { Alert, KeyboardAvoidingView, SafeAreaView } from 'react-native';
-import {
-  DefaultTheme, withTheme,
-} from 'styled-components/native';
 import { InnerContainer, ModalCloseButton, ModalHeader, ModalTitle, StyledTextInput } from './styles';
 import React, { useState } from 'react';
 
 import Button from '../../shared/Button';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../../STRINGS';
+import { useThemeContext } from '../../../providers/ThemeProvider';
+import { withTheme } from 'styled-components/native';
 
 export interface Props {
-    theme: DefaultTheme;
-    close(): void;
-    validateCurrentPw(text: string): Promise<boolean>;
+  close(): void;
+  validateCurrentPw(text: string): Promise<boolean>;
 }
 
-function ChangePwView(props: Props): React.ReactElement {
-  const { theme, close, validateCurrentPw } = props;
+function ChangePw(props: Props): React.ReactElement {
+  const { close, validateCurrentPw } = props;
+  const { theme } = useThemeContext();
   const [isValidCurrentPw, updateCurrentPwValid] = useState(false);
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
@@ -55,7 +54,7 @@ function ChangePwView(props: Props): React.ReactElement {
           <ModalCloseButton
             testID="closeBtn"
             onPress={(): void | null => close()}>
-            <Ionicons name="md-close" size={32} color={theme.fontColor}/>
+            <Ionicons name="md-close" size={32} color={theme.fontColor} />
           </ModalCloseButton>
         </ModalHeader>
         {
@@ -66,13 +65,13 @@ function ChangePwView(props: Props): React.ReactElement {
                 testID="newPwTextInput"
                 isPassword
                 onTextChanged={(pw): void => setNewPw(pw)}
-                txtLabel={getString('PASSWORD_NEW')}/>
+                txtLabel={getString('PASSWORD_NEW')} />
               <StyledTextInput
                 key="validationWordTextInput"
                 testID="validationWordTextInput"
                 isPassword
                 onTextChanged={(pw): void => setValidationWord(pw)}
-                txtLabel={getString('PASSWORD_NEW_REPEAT')}/>
+                txtLabel={getString('PASSWORD_NEW_REPEAT')} />
             </InnerContainer>
             : <InnerContainer>
               <StyledTextInput
@@ -80,7 +79,7 @@ function ChangePwView(props: Props): React.ReactElement {
                 testID="currentPwTextInput"
                 isPassword
                 onTextChanged={(pw): void => setCurrentPw(pw)}
-                txtLabel={getString('PASSWORD_CURRENT')}/>
+                txtLabel={getString('PASSWORD_CURRENT')} />
             </InnerContainer>
         }
         <Button
@@ -93,4 +92,4 @@ function ChangePwView(props: Props): React.ReactElement {
   );
 }
 
-export default withTheme(ChangePwView);
+export default withTheme(ChangePw);

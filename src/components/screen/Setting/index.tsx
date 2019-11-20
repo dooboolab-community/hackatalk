@@ -16,7 +16,7 @@ import ChangePwView from './ChangePw';
 import { FontAwesome } from '@expo/vector-icons';
 import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
-import { getString } from '../../../../STRINGS';
+import { useThemeContext } from '../../../providers/ThemeProvider';
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
   return (
@@ -30,12 +30,11 @@ function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactEl
 
 interface Props {
   navigation: DefaultNavigationProps<'Setting'>;
-  theme: DefaultTheme;
 }
 
 function SettingScreen(props: Props): React.ReactElement {
-  const { theme } = props;
-  const modal: React.MutableRefObject<Modal|null> = useRef(null);
+  const { theme } = useThemeContext();
+  const modal: React.MutableRefObject<Modal | null> = useRef(null);
 
   const settings: SectionListData<SettingsOption>[] = [
     {
@@ -55,7 +54,7 @@ function SettingScreen(props: Props): React.ReactElement {
       <SectionList
         testID="mySectionList"
         sections={settings}
-        renderItem={({ item }): React.ReactElement => SectionItem(item, props.theme)}
+        renderItem={({ item }): React.ReactElement => SectionItem(item, theme)}
         keyExtractor={(item: SettingsOption): string => item.label}
         renderSectionHeader={({ section: { title } }): React.ReactElement => (
           <HeaderContainer>

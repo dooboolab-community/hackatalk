@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ChangePwView, { Props } from '../Setting/ChangePwView';
+import ChangePw, { Props } from '../Setting/ChangePw';
 
 import {
   RenderResult,
@@ -19,7 +19,7 @@ let component: React.ReactElement;
 
 const alert = jest.spyOn(Alert, 'alert');
 
-describe('[ChangePwView] screen', () => {
+describe('[ChangePw] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
@@ -28,7 +28,7 @@ describe('[ChangePwView] screen', () => {
       validateCurrentPw: () => new Promise((resolve): void => resolve((text) => text === 'right')),
     });
     component = createTestElement(
-      <ChangePwView {...props} />
+      <ChangePw {...props} />
     );
     testingLib = render(component);
   });
