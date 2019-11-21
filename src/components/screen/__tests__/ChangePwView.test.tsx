@@ -17,8 +17,6 @@ import renderer from 'react-test-renderer';
 let props: Props;
 let component: React.ReactElement;
 
-const alert = jest.spyOn(Alert, 'alert');
-
 describe('[ChangePw] screen', () => {
   let testingLib: RenderResult;
 
@@ -56,7 +54,6 @@ describe('[ChangePw] screen', () => {
       fireEvent.changeText(pwInput, 'left');
 
       fireEvent.press(verifyBtn);
-      // expect(alert).toHaveBeenCalled();
 
       fireEvent.changeText(pwInput, 'right');
       fireEvent.press(verifyBtn);

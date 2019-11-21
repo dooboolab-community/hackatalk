@@ -8,12 +8,12 @@ export const createTestElement = (
   themeType?: ThemeType,
   authUser?: AuthUser,
 ): ReactElement => (
-    <AllProviders
-      initialThemeType={themeType}
-      initialAuthUser={authUser}>
-      {child}
-    </AllProviders>
-  );
+  <AllProviders
+    initialThemeType={themeType}
+    initialAuthUser={authUser}>
+    {child}
+  </AllProviders>
+);
 
 export const createTestProps = (obj: object = {}): object | unknown | any => ({
   navigation: {

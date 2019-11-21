@@ -116,6 +116,15 @@ function Screen(props: Props): React.ReactElement {
     props.navigation.navigate('FindPw');
   };
 
+  const resetToMainStack = (): void => {
+    if (props.navigation) {
+      props.navigation.resetRoot({
+        index: 0,
+        routes: [{ name: 'MainStack' }],
+      });
+    }
+  };
+
   const onLogin = (): void => {
     setIsLoggingIn(true);
     timer = setTimeout(() => {
@@ -131,12 +140,7 @@ function Screen(props: Props): React.ReactElement {
       });
       setIsLoggingIn(false);
       clearTimeout(timer);
-      if (props.navigation) {
-        props.navigation.resetRoot({
-          index: 0,
-          routes: [{ name: 'MainStack' }],
-        });
-      }
+      resetToMainStack();
     }, 1000);
   };
 
@@ -171,6 +175,7 @@ function Screen(props: Props): React.ReactElement {
       }
       return;
     }
+
     try {
       await GoogleSignIn.askForPlayServicesAsync();
       const { type, user } = await GoogleSignIn.signInAsync();
@@ -188,6 +193,7 @@ function Screen(props: Props): React.ReactElement {
           chatrooms: [],
           signedInWith: SignInType.Google,
         });
+        resetToMainStack();
       }
     } catch ({ message }) {
       Alert.alert(`Google Login Error: ${message}`);
@@ -224,6 +230,7 @@ function Screen(props: Props): React.ReactElement {
           chatrooms: [],
           signedInWith: SignInType.Facebook,
         });
+        resetToMainStack();
       } else {
         // type === 'cancel'
         // console.log('cancel', token);
