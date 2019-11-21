@@ -9,7 +9,7 @@ import {
 } from './styles';
 import { DefaultNavigationProps, SettingsOption } from '../../../types';
 import {
-  DefaultTheme, withTheme,
+  DefaultTheme, ThemeProps, withTheme,
 } from 'styled-components/native';
 import React, { useRef } from 'react';
 import ChangePwView from './ChangePw';
@@ -29,7 +29,7 @@ function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactEl
   );
 }
 
-interface Props {
+interface Props extends ThemeProps<DefaultTheme> {
   navigation: DefaultNavigationProps<'Setting'>;
 }
 

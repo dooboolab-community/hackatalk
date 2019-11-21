@@ -1,4 +1,5 @@
 import { Alert, KeyboardAvoidingView, SafeAreaView } from 'react-native';
+import { DefaultTheme, ThemeProps, withTheme } from 'styled-components/native';
 import { InnerContainer, ModalCloseButton, ModalHeader, ModalTitle, StyledTextInput } from './styles';
 import React, { useState } from 'react';
 
@@ -6,9 +7,8 @@ import Button from '../../shared/Button';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../../STRINGS';
 import { useThemeContext } from '../../../providers/ThemeProvider';
-import { withTheme } from 'styled-components/native';
 
-export interface Props {
+interface Props extends ThemeProps<DefaultTheme> {
   close(): void;
   validateCurrentPw(text: string): Promise<boolean>;
 }
