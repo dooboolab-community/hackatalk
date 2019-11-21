@@ -20,13 +20,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
-              "label": "Signed in with Facebook",
+              "label": "Signed in with Email",
               "onPress": [Function],
               "testID": "changePwItem",
             },
@@ -57,13 +51,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
-              "label": "Signed in with Facebook",
+              "label": "Signed in with Email",
               "onPress": [Function],
               "testID": "changePwItem",
             },
@@ -133,29 +121,6 @@ exports[`[Setting] screen renders without crashing 1`] = `
         }
         testID="changePwItem"
       >
-        <Image
-          source={
-            Object {
-              "canInstrument": true,
-              "createTransformer": [Function],
-              "getCacheKey": [Function],
-              "process": [Function],
-            }
-          }
-          style={
-            Array [
-              Object {
-                "borderColor": "rgb(221,226,236)",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 32,
-                "marginRight": 10,
-                "resizeMode": "contain",
-                "width": 32,
-              },
-            ]
-          }
-        />
         <Text
           style={
             Array [
@@ -169,7 +134,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             ]
           }
         >
-          Signed in with Facebook
+          Signed in with Email
         </Text>
         <Text />
       </TouchableOpacity>

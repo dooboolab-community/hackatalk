@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../../STRINGS';
 import { useThemeContext } from '../../../providers/ThemeProvider';
 
-interface Props extends ThemeProps<DefaultTheme> {
+export interface Props extends ThemeProps<DefaultTheme> {
   close(): void;
   validateCurrentPw(text: string): Promise<boolean>;
 }

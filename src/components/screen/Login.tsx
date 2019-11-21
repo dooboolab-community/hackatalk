@@ -3,7 +3,7 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, TouchableOpacity, View } from 'react-native';
-import { DefaultNavigationProps, User } from '../../types';
+import { DefaultNavigationProps, SignInType, User } from '../../types';
 import React, { useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -21,6 +21,7 @@ import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useAuthUserContext } from '../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 interface Props {
@@ -92,6 +93,7 @@ function Screen(props: Props): React.ReactElement {
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [pw, setPw] = useState<string>('');
+  const { setAuthUser } = useAuthUserContext();
   let timer: number;
 
   const onTextChanged = (type: string, text: string): void => {
@@ -117,6 +119,16 @@ function Screen(props: Props): React.ReactElement {
   const onLogin = (): void => {
     setIsLoggingIn(true);
     timer = setTimeout(() => {
+      setAuthUser({
+        uid: '',
+        displayName: '',
+        thumbURL: '',
+        photoURL: '',
+        statusMsg: '',
+        friends: [],
+        chatrooms: [],
+        signedInWith: SignInType.Email,
+      });
       setIsLoggingIn(false);
       clearTimeout(timer);
       if (props.navigation) {
@@ -166,6 +178,16 @@ function Screen(props: Props): React.ReactElement {
         setGoogleUser(user);
         Alert.alert('login:' + JSON.stringify(user));
         onLogin();
+        setAuthUser({
+          uid: '',
+          displayName: '',
+          thumbURL: '',
+          photoURL: '',
+          statusMsg: '',
+          friends: [],
+          chatrooms: [],
+          signedInWith: SignInType.Google,
+        });
       }
     } catch ({ message }) {
       Alert.alert(`Google Login Error: ${message}`);
@@ -191,6 +213,17 @@ function Screen(props: Props): React.ReactElement {
         );
         // console.log('success', response);
         const responseObject = JSON.parse(await response.text());
+
+        setAuthUser({
+          uid: '',
+          displayName: '',
+          thumbURL: '',
+          photoURL: '',
+          statusMsg: '',
+          friends: [],
+          chatrooms: [],
+          signedInWith: SignInType.Facebook,
+        });
       } else {
         // type === 'cancel'
         // console.log('cancel', token);

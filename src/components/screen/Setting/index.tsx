@@ -7,16 +7,17 @@ import {
   ItemLabel,
   SectionHeader,
 } from './styles';
-import { DefaultNavigationProps, SettingsOption } from '../../../types';
+import { DefaultNavigationProps, SettingsOption, SignInType } from '../../../types';
 import {
   DefaultTheme, ThemeProps, withTheme,
 } from 'styled-components/native';
+import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
 import React, { useRef } from 'react';
 import ChangePwView from './ChangePw';
 import { FontAwesome } from '@expo/vector-icons';
-import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import { getString } from '../../../../STRINGS';
+import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '../../../providers/ThemeProvider';
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
@@ -29,25 +30,52 @@ function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactEl
   );
 }
 
-interface Props extends ThemeProps<DefaultTheme> {
+export interface Props extends ThemeProps<DefaultTheme> {
   navigation: DefaultNavigationProps<'Setting'>;
 }
 
 function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const modal: React.MutableRefObject<Modal | null> = useRef(null);
-
-  const settings: SectionListData<SettingsOption>[] = [
-    {
-      title: getString('LOGIN_INFORMATION'),
-      data: [{
+  const { state: { user } } = useAuthUserContext();
+  let signInInfoOption: SettingsOption;
+  switch (user && user.signedInWith) {
+    case SignInType.Google:
+      signInInfoOption = {
+        icon: IC_GOOGLE,
+        label: getString('SIGNED_IN_WITH_GOOGLE'),
+        onPress: (): void => {
+          modal.current && modal.current.open();
+        },
+        testID: 'changePwItem',
+      };
+      break;
+    case SignInType.Facebook:
+      signInInfoOption = {
         icon: IC_FACEBOOK,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           modal.current && modal.current.open();
         },
         testID: 'changePwItem',
-      }],
+      };
+      break;
+    case SignInType.Email:
+    default:
+      signInInfoOption = {
+        label: getString('SIGNED_IN_WITH_EMAIL'),
+        onPress: (): void => {
+          modal.current && modal.current.open();
+        },
+        testID: 'changePwItem',
+      };
+      break;
+  }
+
+  const settings: SectionListData<SettingsOption>[] = [
+    {
+      title: getString('LOGIN_INFORMATION'),
+      data: [signInInfoOption],
     },
   ];
   return (

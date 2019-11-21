@@ -9,6 +9,12 @@ export enum MessageType {
   File,
 }
 
+export enum SignInType {
+  Email,
+  Google,
+  Facebook,
+}
+
 export interface User {
   uid: string;
   displayName: string;
@@ -28,6 +34,7 @@ export interface Friend extends User {
 export interface AuthUser extends User {
   friends?: [];
   chatrooms?: [];
+  signedInWith?: SignInType;
 }
 
 export interface ChatCommon<T extends MessageType = MessageType.Message> {
@@ -52,7 +59,7 @@ interface File extends ChatCommon<MessageType.File> {
 
 export type ChatProps<
   T extends MessageType = MessageType.Message
-> = T extends MessageType.Message
+  > = T extends MessageType.Message
   ? Message
   : T extends MessageType.Photo
   ? Photo
@@ -119,4 +126,4 @@ type StackParamList = {
 
 export type DefaultNavigationProps<
   T extends keyof StackParamList = 'Default'
-> = StackNavigationProp<StackParamList, T>;
+  > = StackNavigationProp<StackParamList, T>;
