@@ -26,12 +26,12 @@ exports[`[Setting] screen renders without crashing 1`] = `
                 "getCacheKey": [Function],
                 "process": [Function],
               },
-              "label": "facebook으로 로그인 됨",
+              "label": "Signed in with Facebook",
               "onPress": [Function],
               "testID": "changePwItem",
             },
           ],
-          "title": "계정정보",
+          "title": "Login information",
         },
       ]
     }
@@ -63,12 +63,12 @@ exports[`[Setting] screen renders without crashing 1`] = `
                 "getCacheKey": [Function],
                 "process": [Function],
               },
-              "label": "facebook으로 로그인 됨",
+              "label": "Signed in with Facebook",
               "onPress": [Function],
               "testID": "changePwItem",
             },
           ],
-          "title": "계정정보",
+          "title": "Login information",
         },
       ]
     }
@@ -108,7 +108,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             ]
           }
         >
-          계정정보
+          Login information
         </Text>
       </View>
     </View>
@@ -169,7 +169,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             ]
           }
         >
-          facebook으로 로그인 됨
+          Signed in with Facebook
         </Text>
         <Text />
       </TouchableOpacity>
