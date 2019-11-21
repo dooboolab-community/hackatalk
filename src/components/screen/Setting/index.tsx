@@ -11,11 +11,12 @@ import { DefaultNavigationProps, SettingsOption } from '../../../types';
 import {
   DefaultTheme, withTheme,
 } from 'styled-components/native';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import ChangePwView from './ChangePw';
 import { FontAwesome } from '@expo/vector-icons';
 import { IC_FACEBOOK } from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
+import { getString } from '../../../../STRINGS';
 import { useThemeContext } from '../../../providers/ThemeProvider';
 
 function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
@@ -38,10 +39,10 @@ function SettingScreen(props: Props): React.ReactElement {
 
   const settings: SectionListData<SettingsOption>[] = [
     {
-      title: '계정정보',
+      title: getString('LOGIN_INFORMATION'),
       data: [{
         icon: IC_FACEBOOK,
-        label: 'facebook으로 로그인 됨',
+        label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           modal.current && modal.current.open();
         },
