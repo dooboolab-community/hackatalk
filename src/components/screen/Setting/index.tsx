@@ -1,4 +1,4 @@
-import { Alert, SectionList, SectionListData } from 'react-native';
+import ChangePwModal, { ChangPwModalRef } from '../../shared/ChangePwModal';
 import {
   Container,
   HeaderContainer,
@@ -13,9 +13,9 @@ import {
 } from 'styled-components/native';
 import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
 import React, { useRef } from 'react';
-import ChangePwView from './ChangePw';
+import { SectionList, SectionListData } from 'react-native';
+
 import { FontAwesome } from '@expo/vector-icons';
-import Modal from 'react-native-modalbox';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '../../../providers/ThemeProvider';
@@ -36,7 +36,7 @@ export interface Props extends ThemeProps<DefaultTheme> {
 
 function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
-  const modal: React.MutableRefObject<Modal | null> = useRef(null);
+  const modal: React.MutableRefObject<ChangPwModalRef | null> = useRef(null);
   const { state: { user } } = useAuthUserContext();
   let signInInfoOption: SettingsOption;
   switch (user && user.signedInWith) {
@@ -91,23 +91,8 @@ function SettingScreen(props: Props): React.ReactElement {
           </HeaderContainer>
         )}
       />
-      <Modal
-        ref={modal}
-        keyboardTopOffset={0}
-        coverScreen
-        backButtonClose
-        style={{ backgroundColor: theme.background }}>
-        <ChangePwView
-          close={(): void => {
-            if (modal.current) {
-              modal.current.close();
-            }
-          }}
-          validateCurrentPw={async (text: string): Promise<boolean> => {
-            // TODO: check current password.
-            return (text === 'right');
-          }} />
-      </Modal>
+      <ChangePwModal
+        ref={modal} />
     </Container>
   );
 }
