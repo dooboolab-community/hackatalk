@@ -62,8 +62,8 @@ right: 10px;
 `;
 
 export const InnerContainer = styled.View`
-flex: 1;
 padding: 15px;
+flex: 1;
 `;
 
 export const StyledTextInput = styled(TextInput)

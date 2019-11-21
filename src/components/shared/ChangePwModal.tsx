@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Modal from 'react-native-modalbox';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '../../providers/ThemeProvider';
+import { SafeAreaView } from 'react-navigation';
 
 export interface ChangPwModalRef {
   open: () => void;
@@ -27,6 +28,7 @@ const ChangePw = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((props, r
   };
 
   const close = (): void => {
+    updateCurrentPwValid(false);
     modal.current && modal.current.close();
   };
 
@@ -37,7 +39,7 @@ const ChangePw = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((props, r
 
   const validateCurrent = (): void => {
     try {
-      if (currentPw === 'rigth') {
+      if (currentPw === 'right') {
         updateCurrentPwValid(true);
       } else {
         throw Error(getString('PASSWORD_MUST_MATCH'));
@@ -68,46 +70,48 @@ const ChangePw = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((props, r
       coverScreen
       backButtonClose
       style={{ backgroundColor: theme.background }}>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
-        <ModalHeader>
-          <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
-          <ModalCloseButton
-            testID="closeBtn"
-            onPress={(): void | null => close()}>
-            <Ionicons name="md-close" size={32} color={theme.fontColor} />
-          </ModalCloseButton>
-        </ModalHeader>
-        {
-          isValidCurrentPw
-            ? <InnerContainer>
-              <StyledTextInput
-                key="newPwTextInput"
-                testID="newPwTextInput"
-                isPassword
-                onTextChanged={(pw): void => setNewPw(pw)}
-                txtLabel={getString('PASSWORD_NEW')} />
-              <StyledTextInput
-                key="validationWordTextInput"
-                testID="validationWordTextInput"
-                isPassword
-                onTextChanged={(pw): void => setValidationWord(pw)}
-                txtLabel={getString('PASSWORD_NEW_REPEAT')} />
-            </InnerContainer>
-            : <InnerContainer>
-              <StyledTextInput
-                key="currentPwTextInput"
-                testID="currentPwTextInput"
-                isPassword
-                onTextChanged={(pw): void => setCurrentPw(pw)}
-                txtLabel={getString('PASSWORD_CURRENT')} />
-            </InnerContainer>
-        }
-        <Button
-          testID="checkCurrentPwBtn"
-          onPress={isValidCurrentPw ? changePassword : validateCurrent}>
-          {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
-        </Button>
-      </KeyboardAvoidingView>
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
+          <ModalHeader>
+            <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
+            <ModalCloseButton
+              testID="closeBtn"
+              onPress={(): void | null => close()}>
+              <Ionicons name="md-close" size={32} color={theme.fontColor} />
+            </ModalCloseButton>
+          </ModalHeader>
+          {
+            isValidCurrentPw
+              ? <InnerContainer>
+                <StyledTextInput
+                  key="newPwTextInput"
+                  testID="newPwTextInput"
+                  isPassword
+                  onTextChanged={(pw): void => setNewPw(pw)}
+                  txtLabel={getString('PASSWORD_NEW')} />
+                <StyledTextInput
+                  key="validationWordTextInput"
+                  testID="validationWordTextInput"
+                  isPassword
+                  onTextChanged={(pw): void => setValidationWord(pw)}
+                  txtLabel={getString('PASSWORD_NEW_REPEAT')} />
+              </InnerContainer>
+              : <InnerContainer>
+                <StyledTextInput
+                  key="currentPwTextInput"
+                  testID="currentPwTextInput"
+                  isPassword
+                  onTextChanged={(pw): void => setCurrentPw(pw)}
+                  txtLabel={getString('PASSWORD_CURRENT')} />
+              </InnerContainer>
+          }
+          <Button
+            testID="checkCurrentPwBtn"
+            onPress={isValidCurrentPw ? changePassword : validateCurrent}>
+            {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
+          </Button>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     </Modal>
   );
 });
