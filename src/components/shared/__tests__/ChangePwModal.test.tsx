@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ChangePw, { Props } from '../Setting/ChangePw';
+import ChangePwModal, { ChangePw } from '../ChangePwModal';
 
 import {
   RenderResult,
@@ -9,45 +9,40 @@ import {
   wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
-
-import { Alert } from 'react-native';
 import { getString } from '../../../../STRINGS';
 import renderer from 'react-test-renderer';
 
-let props: Props;
 let component: React.ReactElement;
+let innerComponent: React.ReactElement;
 
 describe('[ChangePw] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
-    props = createTestProps({
-      close: jest.fn(),
-      validateCurrentPw: () => new Promise((resolve): void => resolve((text) => text === 'right')),
-    });
     component = createTestElement(
-      <ChangePw {...props} />
+      <ChangePwModal />
     );
-    testingLib = render(component);
+    innerComponent = createTestElement(
+      <ChangePw close={jest.fn()} />
+    );
+    testingLib = render(innerComponent);
   });
 
   it('renders without crashing', () => {
     const rendered = renderer.create(component).toJSON();
     expect(rendered).toMatchSnapshot();
     expect(rendered).toBeTruthy();
+
+    const renderedContent = renderer.create(innerComponent).toJSON();
+    expect(renderedContent).toMatchSnapshot();
+    expect(renderedContent).toBeTruthy();
+  });
+
+  it('snapshot check if modal open', () => {
+    expect(testingLib.asJSON()).toMatchSnapshot();
   });
 
   describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
-    });
-
-    it('should simulate close called', async () => {
-      const btn = testingLib.getByTestId('closeBtn');
-      fireEvent.press(btn);
-      expect(props.close).toHaveBeenCalled();
-    });
-
     it('should simulate textChanged', async () => {
       const pwInput = testingLib.getByTestId('currentPwTextInput');
       const verifyBtn = testingLib.getByTestId('checkCurrentPwBtn');
