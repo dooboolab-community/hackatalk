@@ -125,7 +125,7 @@ const ModalWrapper = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((prop
       coverScreen
       backButtonClose
       style={{ backgroundColor: theme.background }}>
-
+      <ChangePw close={close} />
     </Modal>
   );
 });
