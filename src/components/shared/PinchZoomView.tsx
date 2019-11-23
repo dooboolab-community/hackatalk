@@ -1,6 +1,7 @@
-import { ImageProps, Modal, SafeAreaView } from 'react-native';
+import { ImageProps, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import ImageViewer, { ImageViewerPropsDefine } from 'react-native-image-zoom-viewer';
-import React, { forwardRef } from 'react';
+import React, { ReactElement } from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
 export interface ImageI extends HeaderProps {
@@ -12,14 +13,16 @@ export interface ImageI extends HeaderProps {
 
 interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
   images: ImageI[];
-  visible?: boolean;
+  onPressClose?: () => void;
 }
 
 const HeaderContainer = styled.SafeAreaView`
   position: absolute;
-  z-index: 1;
-  margin-left: 30;
-  top: 30;
+  width: 100%;
+  z-index: 1;  
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Title = styled.Text`
@@ -29,21 +32,33 @@ const Title = styled.Text`
 
 const SubTitle = styled.Text`
   color: white;
-  font-size: 18;
+  font-size: 16;
 `;
 
 interface HeaderProps {
   title?: string;
   subtitle?: string;
+  onPressClose?: () => void;
 }
 
-const Header = ({ title, subtitle }: HeaderProps): React.ReactElement<HeaderProps, typeof SafeAreaView> => {
+const Header = ({
+  title, subtitle, onPressClose,
+}: HeaderProps): React.ReactElement<HeaderProps, typeof SafeAreaView> => {
   return (
     <HeaderContainer>
-      <Title>{title}</Title>
-      <SubTitle>{subtitle}</SubTitle>
+      <View style={{ marginLeft: 30 }}>
+        <Title>{title}</Title>
+        <SubTitle>{subtitle}</SubTitle>
+      </View>
+      <TouchableOpacity style={{ marginRight: 30 }} onPress={onPressClose}>
+        <Ionicons size={32} style={{ color: 'white' }} name="md-close" />
+      </TouchableOpacity>
     </HeaderContainer>
   );
+};
+
+const Nothing = (): ReactElement => {
+  return <></>;
 };
 
 /**
@@ -57,28 +72,29 @@ const Header = ({ title, subtitle }: HeaderProps): React.ReactElement<HeaderProp
  *   }
  * ]
  * ...
- *   <PinchZoomView visible images={images}/>
+ *   <PinchZoomView images={images}/>
  * ```
  */
-const PinchZoomView = forwardRef<Modal, Props>(({ images, ...props }, ref) => {
+const PinchZoomView = ({ images, onPressClose, ...props }: Props): ReactElement<ImageViewer> => {
   const renderHeader = (index?: number): React.ReactElement => {
     return (
       <Header
+        onPressClose={onPressClose}
         title={index !== undefined ? images[index].title : undefined}
-        subtitle={index !== undefined ? images[index].subtitle : undefined} />
+        subtitle={index !== undefined ? images[index].subtitle : undefined}
+      />
+
     );
   };
 
   return (
-    <Modal ref={ref} visible={props.visible}>
-      <ImageViewer
-        {...props}
-
-        imageUrls={images}
-        renderHeader={renderHeader}
-      />
-    </Modal>
+    <ImageViewer
+      renderHeader={renderHeader}
+      imageUrls={images}
+      renderIndicator={props.renderIndicator || Nothing}
+      {...props}
+    />
   );
-});
+};
 
 export default PinchZoomView;
