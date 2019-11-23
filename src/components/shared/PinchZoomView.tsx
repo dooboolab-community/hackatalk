@@ -1,7 +1,7 @@
-import styled, { DefaultTheme, ThemeProps, withTheme } from 'styled-components/native';
-import { ImageProps, Modal, View, Text, SafeAreaView } from 'react-native';
+import { ImageProps, Modal, SafeAreaView } from 'react-native';
 import ImageViewer, { ImageViewerPropsDefine } from 'react-native-image-zoom-viewer';
 import React, { forwardRef } from 'react';
+import styled from 'styled-components/native';
 
 const HeaderContainer = styled.SafeAreaView`
   position: absolute;
@@ -21,11 +21,11 @@ const SubTitle = styled.Text`
 `;
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   subtitle?: string;
 }
 
-const Header = ({ title, subtitle }: HeaderProps): React.ReactElement => {
+const Header = ({ title, subtitle }: HeaderProps): React.ReactElement<HeaderProps, typeof SafeAreaView> => {
   return (
     <HeaderContainer>
       <Title>{title}</Title>
@@ -41,26 +41,35 @@ interface ImageI extends HeaderProps {
   props?: ImageProps;
 }
 
-interface Props extends ThemeProps<DefaultTheme>, Omit<ImageViewerPropsDefine, 'imageUrls'> {
+interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
   images: ImageI[];
 }
 
-const Shared = forwardRef<Modal, Props>(({ images, ...props }, ref) => {
-  const renderHeader = (index?: number | undefined): React.ReactElement | undefined => {
-    if (index === undefined) {
-      return undefined;
-    } else {
-      return (
-        <Header title={images[index].title} subtitle={images[index].subtitle} />
-      );
-    }
+/**
+ * Example
+ * ```
+ *   <PinchZoomView />
+ * ```
+ */
+const PinchZoomView = forwardRef<Modal, Props>(({ images, ...props }, ref) => {
+  const renderHeader = (index?: number): React.ReactElement => {
+    return (
+      <Header
+        title={index ? images[index].title : undefined}
+        subtitle={index ? images[index].subtitle : undefined} />
+    );
   };
 
   return (
     <Modal ref={ref}>
-      <ImageViewer renderHeader={renderHeader} {...props} imageUrls={images || [{url: 'https://randomuser.me/api/portraits/women/33.jpg'}]}/>
+      <ImageViewer
+        {...props}
+        imageUrls={images}
+        // imageUrls={images || [{ url: 'https://randomuser.me/api/portraits/women/33.jpg' }]}
+        renderHeader={renderHeader}
+      />
     </Modal>
   );
 });
 
-export default Shared;
+export default PinchZoomView;
