@@ -3,6 +3,18 @@ import ImageViewer, { ImageViewerPropsDefine } from 'react-native-image-zoom-vie
 import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 
+export interface ImageI extends HeaderProps {
+  url: string;
+  width?: number;
+  height?: number;
+  props?: ImageProps;
+}
+
+interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
+  images: ImageI[];
+  visible?: boolean;
+}
+
 const HeaderContainer = styled.SafeAreaView`
   position: absolute;
   z-index: 1;
@@ -34,38 +46,35 @@ const Header = ({ title, subtitle }: HeaderProps): React.ReactElement<HeaderProp
   );
 };
 
-interface ImageI extends HeaderProps {
-  url: string;
-  width?: number;
-  height?: number;
-  props?: ImageProps;
-}
-
-interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
-  images: ImageI[];
-}
-
 /**
  * Example
  * ```
- *   <PinchZoomView />
+ * const images = [
+ *   {
+ *     url: 'IMAGE_URL',
+ *     title: 'MyPuppy',
+ *     subtitle: 'HelloMyPuppy',
+ *   }
+ * ]
+ * ...
+ *   <PinchZoomView visible images={images}/>
  * ```
  */
 const PinchZoomView = forwardRef<Modal, Props>(({ images, ...props }, ref) => {
   const renderHeader = (index?: number): React.ReactElement => {
     return (
       <Header
-        title={index ? images[index].title : undefined}
-        subtitle={index ? images[index].subtitle : undefined} />
+        title={index !== undefined ? images[index].title : undefined}
+        subtitle={index !== undefined ? images[index].subtitle : undefined} />
     );
   };
 
   return (
-    <Modal ref={ref}>
+    <Modal ref={ref} visible={props.visible}>
       <ImageViewer
         {...props}
+
         imageUrls={images}
-        // imageUrls={images || [{ url: 'https://randomuser.me/api/portraits/women/33.jpg' }]}
         renderHeader={renderHeader}
       />
     </Modal>
