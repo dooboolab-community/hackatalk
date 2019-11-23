@@ -1,45 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[PinchZoomView] render renders without crashing 1`] = `
-<Modal
-  hardwareAccelerated={false}
-  visible={true}
->
-  <View
-    onLayout={[Function]}
-    style={
-      Object {
-        "flex": 1,
-        "overflow": "hidden",
-      }
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "overflow": "hidden",
     }
-  >
-    <View>
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "zIndex": 9,
+        }
+      }
+    >
       <View
         style={
           Object {
-            "zIndex": 9,
+            "backgroundColor": "transparent",
+            "opacity": 0,
           }
         }
       >
-        <View
+        <SafeAreaView
           style={
-            Object {
-              "backgroundColor": "transparent",
-              "opacity": 0,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "position": "absolute",
+                "width": "100%",
+                "zIndex": 1,
+              },
+            ]
           }
         >
-          <SafeAreaView
+          <View
             style={
-              Array [
-                Object {
-                  "marginLeft": 30,
-                  "position": "absolute",
-                  "top": 30,
-                  "zIndex": 1,
-                },
-              ]
+              Object {
+                "marginLeft": 30,
+              }
             }
           >
             <Text
@@ -51,244 +56,226 @@ exports[`[PinchZoomView] render renders without crashing 1`] = `
                   },
                 ]
               }
-            />
+            >
+              title
+            </Text>
             <Text
               style={
                 Array [
                   Object {
                     "color": "white",
-                    "fontSize": 18,
+                    "fontSize": 16,
                   },
                 ]
               }
-            />
-          </SafeAreaView>
-          <View
+            >
+              subtitle
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.2}
             style={
               Object {
-                "bottom": 0,
-                "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "zIndex": 13,
+                "marginRight": 30,
               }
             }
           >
-            <TouchableWithoutFeedback
-              onPress={[Function]}
-            >
-              <View />
-            </TouchableWithoutFeedback>
-          </View>
-          <View
-            style={
-              Object {
-                "bottom": 0,
-                "justifyContent": "center",
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "zIndex": 13,
-              }
+            <Text />
+          </TouchableOpacity>
+        </SafeAreaView>
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "justifyContent": "center",
+              "left": 0,
+              "position": "absolute",
+              "top": 0,
+              "zIndex": 13,
             }
+          }
+        >
+          <TouchableWithoutFeedback
+            onPress={[Function]}
           >
-            <TouchableWithoutFeedback
-              onPress={[Function]}
-            >
-              <View />
-            </TouchableWithoutFeedback>
-          </View>
+            <View />
+          </TouchableWithoutFeedback>
+        </View>
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "justifyContent": "center",
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "zIndex": 13,
+            }
+          }
+        >
+          <TouchableWithoutFeedback
+            onPress={[Function]}
+          >
+            <View />
+          </TouchableWithoutFeedback>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+              "width": 0,
+            }
+          }
+        >
           <View
+            onMoveShouldSetResponder={[Function]}
+            onMoveShouldSetResponderCapture={[Function]}
+            onResponderEnd={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderReject={[Function]}
+            onResponderRelease={[Function]}
+            onResponderStart={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            onStartShouldSetResponderCapture={[Function]}
             style={
               Object {
                 "alignItems": "center",
-                "flexDirection": "row",
-                "transform": Array [
-                  Object {
-                    "translateX": 0,
-                  },
-                ],
+                "backgroundColor": "transparent",
+                "flex": 1,
+                "height": 0,
+                "justifyContent": "center",
+                "overflow": "hidden",
                 "width": 0,
               }
             }
           >
             <View
-              onMoveShouldSetResponder={[Function]}
-              onMoveShouldSetResponderCapture={[Function]}
-              onResponderEnd={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderReject={[Function]}
-              onResponderRelease={[Function]}
-              onResponderStart={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onStartShouldSetResponderCapture={[Function]}
+              renderToHardwareTextureAndroid={true}
               style={
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "flex": 1,
-                  "height": 0,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "width": 0,
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateY": 0,
+                    },
+                  ],
                 }
               }
             >
               <View
-                renderToHardwareTextureAndroid={true}
+                onLayout={[Function]}
                 style={
                   Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                      Object {
-                        "translateX": 0,
-                      },
-                      Object {
-                        "translateY": 0,
-                      },
-                    ],
+                    "height": 0,
+                    "width": 0,
                   }
                 }
               >
                 <View
-                  onLayout={[Function]}
                   style={
                     Object {
-                      "height": 0,
-                      "width": 0,
+                      "alignItems": "center",
+                      "flex": 1,
+                      "justifyContent": "center",
                     }
                   }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "justifyContent": "center",
-                      }
-                    }
-                  />
-                </View>
-              </View>
-            </View>
-            <View
-              onMoveShouldSetResponder={[Function]}
-              onMoveShouldSetResponderCapture={[Function]}
-              onResponderEnd={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderReject={[Function]}
-              onResponderRelease={[Function]}
-              onResponderStart={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onStartShouldSetResponderCapture={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "flex": 1,
-                  "height": 0,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                  "width": 0,
-                }
-              }
-            >
-              <View
-                renderToHardwareTextureAndroid={true}
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                      Object {
-                        "translateX": 0,
-                      },
-                      Object {
-                        "translateY": 0,
-                      },
-                    ],
-                  }
-                }
-              >
-                <View
-                  onLayout={[Function]}
-                  style={
-                    Object {
-                      "height": 0,
-                      "width": 0,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "flex": 1,
-                        "justifyContent": "center",
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </View>
           </View>
           <View
+            onMoveShouldSetResponder={[Function]}
+            onMoveShouldSetResponderCapture={[Function]}
+            onResponderEnd={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderReject={[Function]}
+            onResponderRelease={[Function]}
+            onResponderStart={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            onStartShouldSetResponderCapture={[Function]}
             style={
               Object {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
+                "flex": 1,
+                "height": 0,
                 "justifyContent": "center",
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 38,
-                "zIndex": 13,
+                "overflow": "hidden",
+                "width": 0,
               }
             }
           >
-            <Text
+            <View
+              renderToHardwareTextureAndroid={true}
               style={
                 Object {
-                  "backgroundColor": "transparent",
-                  "color": "white",
-                  "fontSize": 16,
-                  "textShadowColor": "rgba(0, 0, 0, 0.3)",
-                  "textShadowOffset": Object {
-                    "height": 0.5,
-                    "width": 0,
-                  },
-                  "textShadowRadius": 0,
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateY": 0,
+                    },
+                  ],
                 }
               }
             >
-              1/2
-            </Text>
+              <View
+                onLayout={[Function]}
+                style={
+                  Object {
+                    "height": 0,
+                    "width": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "justifyContent": "center",
+                    }
+                  }
+                />
+              </View>
+            </View>
           </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "zIndex": 9,
-                },
-                Object {},
-              ]
-            }
-          />
         </View>
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "position": "absolute",
+                "zIndex": 9,
+              },
+              Object {},
+            ]
+          }
+        />
       </View>
     </View>
   </View>
-</Modal>
+</View>
 `;
