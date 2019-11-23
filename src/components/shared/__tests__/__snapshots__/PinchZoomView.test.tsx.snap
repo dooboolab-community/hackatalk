@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[PinchZoomView] render renders without crashing 1`] = `
+<Modal
+  hardwareAccelerated={false}
+  visible={true}
+>
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "zIndex": 9,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "opacity": 0,
+            }
+          }
+        >
+          <SafeAreaView
+            style={
+              Array [
+                Object {
+                  "marginLeft": 30,
+                  "position": "absolute",
+                  "top": 30,
+                  "zIndex": 1,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "white",
+                    "fontSize": 20,
+                  },
+                ]
+              }
+            />
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "white",
+                    "fontSize": 18,
+                  },
+                ]
+              }
+            />
+          </SafeAreaView>
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "zIndex": 13,
+              }
+            }
+          >
+            <TouchableWithoutFeedback
+              onPress={[Function]}
+            >
+              <View />
+            </TouchableWithoutFeedback>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "zIndex": 13,
+              }
+            }
+          >
+            <TouchableWithoutFeedback
+              onPress={[Function]}
+            >
+              <View />
+            </TouchableWithoutFeedback>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "transform": Array [
+                  Object {
+                    "translateX": 0,
+                  },
+                ],
+                "width": 0,
+              }
+            }
+          >
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "flex": 1,
+                  "height": 0,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": 0,
+                }
+              }
+            >
+              <View
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                      Object {
+                        "translateX": 0,
+                      },
+                      Object {
+                        "translateY": 0,
+                      },
+                    ],
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
+                  style={
+                    Object {
+                      "height": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+            <View
+              onMoveShouldSetResponder={[Function]}
+              onMoveShouldSetResponderCapture={[Function]}
+              onResponderEnd={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderReject={[Function]}
+              onResponderRelease={[Function]}
+              onResponderStart={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              onStartShouldSetResponderCapture={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "flex": 1,
+                  "height": 0,
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": 0,
+                }
+              }
+            >
+              <View
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                      Object {
+                        "translateX": 0,
+                      },
+                      Object {
+                        "translateY": 0,
+                      },
+                    ],
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
+                  style={
+                    Object {
+                      "height": 0,
+                      "width": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 38,
+                "zIndex": 13,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "white",
+                  "fontSize": 16,
+                  "textShadowColor": "rgba(0, 0, 0, 0.3)",
+                  "textShadowOffset": Object {
+                    "height": 0.5,
+                    "width": 0,
+                  },
+                  "textShadowRadius": 0,
+                }
+              }
+            >
+              1/2
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "position": "absolute",
+                  "zIndex": 9,
+                },
+                Object {},
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+</Modal>
+`;
