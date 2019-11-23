@@ -7,6 +7,7 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 export const fakeUsers: User[] = [
@@ -153,9 +154,15 @@ const Screen = (): React.ReactElement => {
   const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
+  const {
+    friendState: { friends },
+  } = useFriendContext();
+
   const userListOnPress = (item: User): void => {
     if (state.modal) {
-      showModal(item, false, 'SearchUser');
+      const deleteMode =
+        friends.findIndex((friend) => friend.uid === item.uid) !== -1;
+      showModal(item, deleteMode, 'SearchUser');
     }
   };
   const renderItem = ({
