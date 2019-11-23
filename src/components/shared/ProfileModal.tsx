@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -14,7 +9,6 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 import { useFriendContext } from '../../providers/FriendProvider';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 const StyledView = styled.View`
   margin-top: 40px;
