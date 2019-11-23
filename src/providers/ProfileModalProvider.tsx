@@ -11,7 +11,8 @@ interface Context {
     screen?: string,
   ) => void;
   // setUser: (user: User) => void;
-  // showAddBtn: (deleteMode: boolean) => void;
+  // setShowAddBtn: (deleteMode: boolean) => void;
+  // setScreen: (screen: string) => void;
   // open: () => void;
 }
 const [useCtx, Provider] = createCtx<Context>();
@@ -23,8 +24,8 @@ export enum ActionType {
 export interface State {
   user: Partial<User>;
   deleteMode: boolean;
+  screen: string;
   modal?: any;
-  screen?: string;
 }
 
 const initialState: State = {
@@ -35,8 +36,8 @@ const initialState: State = {
     statusMsg: '',
   },
   deleteMode: false,
-  modal: null,
   screen: '',
+  modal: null,
 };
 
 type Action = { type: ActionType.ShowModal; payload: State };
@@ -50,7 +51,7 @@ type Reducer = (state: State, action: Action) => State;
 const showModal = (dispatch: React.Dispatch<Action>) => (
   user: Partial<User>,
   deleteMode: boolean,
-  screen: string,
+  screen?: string,
 ): void => {
   dispatch({
     type: ActionType.ShowModal,
@@ -64,9 +65,9 @@ const reducer: Reducer = (state = initialState, action) => {
   switch (type) {
     case ActionType.ShowModal:
       if (modal && modal.current) {
-        // modal.current.setUser(payload.user);
-        // modal.current.showAddBtn(!payload.deleteMode);
-        // modal.current.setScreen(payload.screen);
+        modal.current.setUser(payload.user);
+        modal.current.showAddBtn(!payload.deleteMode);
+        modal.current.setScreen(payload.screen);
         modal.current.open();
       }
       return {
