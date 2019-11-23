@@ -1,9 +1,18 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
+import {
   ProfileModalProvider,
   useProfileContext,
 } from '../../providers/ProfileModalProvider';
-import React, { useRef } from 'react';
+import React, { ReactElement, useRef } from 'react';
+import {
+  StackNavigationOptions,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import { TouchableOpacity, View } from 'react-native';
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
@@ -14,7 +23,6 @@ import ProfileUpdate from '../screen/ProfileUpdate';
 import SearchUser from '../screen/SearchUser';
 import Setting from '../screen/Setting';
 import StatusBar from '../shared/StatusBar';
-import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
 import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -25,7 +33,7 @@ interface SettingButtonProps {
   navigation: DefaultNavigationProps;
 }
 
-function MainStackNavigator(): React.ReactElement {
+function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   return (
     <Stack.Navigator
@@ -46,9 +54,15 @@ function MainStackNavigator(): React.ReactElement {
         component={MainTabNavigator}
         options={MainTabNavigationOptions}
       />
-      <Stack.Screen name="ProfileUpdate" component={ProfileUpdate}
-        options={(): object => {
-          const settingButton = (props: SettingButtonProps): React.ReactElement => (
+      <Stack.Screen
+        name="ProfileUpdate"
+        component={ProfileUpdate}
+        options={({
+          navigation,
+        }: {
+          navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+        }): StackNavigationOptions => {
+          const settingButton = (): ReactElement => (
             <TouchableOpacity
               style={{
                 height: '100%',
@@ -56,9 +70,9 @@ function MainStackNavigator(): React.ReactElement {
                 justifyContent: 'center',
                 marginRight: 15,
               }}
-              onPress={(): void => props.navigation.navigate('Setting')}
+              onPress={(): void => navigation.navigate('Setting')}
             >
-              <Ionicons name="md-settings" size={32} color={theme.fontColor} />
+              <Ionicons name="md-settings" size={24} color={theme.fontColor} />
             </TouchableOpacity>
           );
           return {
@@ -73,7 +87,8 @@ function MainStackNavigator(): React.ReactElement {
             headerTintColor: theme.fontColor,
             headerRight: settingButton,
           };
-        }} />
+        }}
+      />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Setting" component={Setting} />
@@ -85,7 +100,7 @@ interface Props {
   navigation: DefaultNavigationProps;
 }
 
-function RootNavigator(): React.ReactElement {
+function RootNavigator(): ReactElement {
   const navigation = useNavigation();
   const { state } = useProfileContext();
   const modalEl = useRef(null);
@@ -113,7 +128,7 @@ function RootNavigator(): React.ReactElement {
   );
 }
 
-export default function RootNavigatorWrapper(): React.ReactElement {
+export default function RootNavigatorWrapper(): ReactElement {
   return (
     <ProfileModalProvider>
       <FriendProvider>

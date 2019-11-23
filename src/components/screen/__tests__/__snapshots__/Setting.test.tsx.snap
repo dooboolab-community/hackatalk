@@ -78,6 +78,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
         style={
           Array [
             Object {
+              "backgroundColor": "#ffffff",
               "borderBottomColor": "rgb(221,226,236)",
               "borderBottomWidth": 1,
               "height": 52,

@@ -1,7 +1,18 @@
-import { Alert, KeyboardAvoidingView } from 'react-native';
-import { DefaultTheme, ThemeProps, withTheme } from 'styled-components/native';
-import { InnerContainer, ModalCloseButton, ModalHeader, ModalTitle, StyledTextInput } from '../screen/Setting/styles';
-import React, { ReactElement, forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { Alert, KeyboardAvoidingView, View } from 'react-native';
+import {
+  InnerContainer,
+  ModalCloseButton,
+  ModalHeader,
+  ModalTitle,
+  StyledTextInput,
+} from '../screen/Setting/styles';
+import React, {
+  ReactElement,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 
 import Button from './Button';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,24 +32,24 @@ interface Props {
 
 export function ChangePw(props: Props): ReactElement {
   const { theme } = useThemeContext();
-  const [isValidCurrentPw, updateCurrentPwValid] = useState(false);
+  const [isValidCurrentPw, setCurrentPwValid] = useState(false);
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [validationWord, setValidationWord] = useState('');
   const close = (): void => {
-    updateCurrentPwValid(false);
+    setCurrentPwValid(false);
     props.close && props.close();
   };
   const validateCurrent = (): void => {
     try {
       if (currentPw === 'right') {
-        updateCurrentPwValid(true);
+        setCurrentPwValid(true);
       } else {
         throw Error(getString('PASSWORD_MUST_MATCH'));
       }
     } catch (err) {
       Alert.alert('', err.message);
-    };
+    }
   };
   const changePassword = async (): Promise<void> => {
     if (newPw === validationWord) {
@@ -60,40 +71,48 @@ export function ChangePw(props: Props): ReactElement {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="height" enabled>
         <ModalHeader>
           <ModalTitle>{getString('PASSWORD_CHANGE')}</ModalTitle>
-          <ModalCloseButton
-            testID="closeBtn"
-            onPress={close}>
-            <Ionicons name="md-close" size={32} color={theme.fontColor} />
+          <ModalCloseButton testID="closeBtn" onPress={close}>
+            <View
+              style={{
+                padding: 8,
+              }}
+            >
+              <Ionicons name="md-close" size={24} color={theme.fontColor} />
+            </View>
           </ModalCloseButton>
         </ModalHeader>
-        {
-          isValidCurrentPw
-            ? <InnerContainer>
-              <StyledTextInput
-                key="newPwTextInput"
-                testID="newPwTextInput"
-                isPassword
-                onTextChanged={(pw): void => setNewPw(pw)}
-                txtLabel={getString('PASSWORD_NEW')} />
-              <StyledTextInput
-                key="validationWordTextInput"
-                testID="validationWordTextInput"
-                isPassword
-                onTextChanged={(pw): void => setValidationWord(pw)}
-                txtLabel={getString('PASSWORD_NEW_REPEAT')} />
-            </InnerContainer>
-            : <InnerContainer>
-              <StyledTextInput
-                key="currentPwTextInput"
-                testID="currentPwTextInput"
-                isPassword
-                onTextChanged={(pw): void => setCurrentPw(pw)}
-                txtLabel={getString('PASSWORD_CURRENT')} />
-            </InnerContainer>
-        }
+        {isValidCurrentPw ? (
+          <InnerContainer>
+            <StyledTextInput
+              key="newPwTextInput"
+              testID="newPwTextInput"
+              isPassword
+              onTextChanged={(pw): void => setNewPw(pw)}
+              txtLabel={getString('PASSWORD_NEW')}
+            />
+            <StyledTextInput
+              key="validationWordTextInput"
+              testID="validationWordTextInput"
+              isPassword
+              onTextChanged={(pw): void => setValidationWord(pw)}
+              txtLabel={getString('PASSWORD_NEW_REPEAT')}
+            />
+          </InnerContainer>
+        ) : (
+          <InnerContainer>
+            <StyledTextInput
+              key="currentPwTextInput"
+              testID="currentPwTextInput"
+              isPassword
+              onTextChanged={(pw): void => setCurrentPw(pw)}
+              txtLabel={getString('PASSWORD_CURRENT')}
+            />
+          </InnerContainer>
+        )}
         <Button
           testID="checkCurrentPwBtn"
-          onPress={isValidCurrentPw ? changePassword : validateCurrent}>
+          onPress={isValidCurrentPw ? changePassword : validateCurrent}
+        >
           {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
         </Button>
       </KeyboardAvoidingView>
@@ -101,7 +120,7 @@ export function ChangePw(props: Props): ReactElement {
   );
 }
 
-const ModalWrapper = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((props, ref) => {
+const ModalWrapper = forwardRef<ChangPwModalRef>((props, ref) => {
   const modal: React.MutableRefObject<Modal | null> = useRef(null);
   const { theme } = useThemeContext();
 
@@ -123,11 +142,11 @@ const ModalWrapper = forwardRef<ChangPwModalRef, ThemeProps<DefaultTheme>>((prop
       ref={modal}
       keyboardTopOffset={0}
       coverScreen
-      backButtonClose
-      style={{ backgroundColor: theme.background }}>
+      style={{ backgroundColor: theme.background }}
+    >
       <ChangePw close={close} />
     </Modal>
   );
 });
 
-export default withTheme(ModalWrapper);
+export default ModalWrapper;

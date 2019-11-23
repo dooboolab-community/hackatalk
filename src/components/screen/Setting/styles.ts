@@ -2,71 +2,70 @@ import TextInput from '../../shared/TextInput';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-flex: 1;
-padding-top: 10px;
-background-color: ${({ theme }): string => theme.background};
+  flex: 1;
+  padding-top: 10px;
+  background-color: ${({ theme }): string => theme.background};
 `;
 
 export const HeaderContainer = styled.View`
-height: 52px;
-justify-content: center;
-margin-left: 10px;
-border-bottom-width: 1;
-border-bottom-color: ${({ theme }): string => theme.lineColor};
+  background-color: ${({ theme }): string => theme.background};
+  height: 52px;
+  justify-content: center;
+  margin-left: 10px;
+  border-bottom-width: 1;
+  border-bottom-color: ${({ theme }): string => theme.lineColor};
 `;
 
 export const SectionHeader = styled.Text`
-color: ${({ theme }): string => theme.fontSubColor};
+  color: ${({ theme }): string => theme.fontSubColor};
 `;
 
 export const ItemContainer = styled.TouchableOpacity`
-flex-direction: row;
-padding-left: 15px;
-padding-right: 15px;
-width: 100%;
-height: 52px;
-align-items: center;
-/* border-width: 1px; */
+  flex-direction: row;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+  /* border-width: 1px; */
 `;
 
 export const ItemIcon = styled.Image`
-width: 32px;
-height: 32px;
-resize-mode: contain;
-border-width: 1;
-border-color: ${({ theme }): string => theme.lineColor};
-border-radius: 4;
-margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  border-width: 1;
+  border-color: ${({ theme }): string => theme.lineColor};
+  border-radius: 4;
+  margin-right: 10px;
 `;
 
 export const ItemLabel = styled.Text`
-color: ${({ theme }): string => theme.fontColor};
-font-size: 16px;
-flex: 1;
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 16px;
+  flex: 1;
 `;
 
 export const ModalHeader = styled.View`
-height: 52px;
-justify-content: center;
-align-items: center;
+  height: 52px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ModalTitle = styled.Text`
-color: ${({ theme }): string => theme.fontColor};
-font-size: 20px;
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 20px;
 `;
 
 export const ModalCloseButton = styled.TouchableOpacity`
-position: absolute;
-right: 10px;
+  position: absolute;
+  right: 10px;
 `;
 
 export const InnerContainer = styled.View`
-padding: 15px;
-flex: 1;
+  padding: 15px;
+  flex: 1;
 `;
 
-export const StyledTextInput = styled(TextInput)
-  .attrs(({ theme }) => ({
-    placeholderTextColor: theme.placeholder,
-  }))``;
+export const StyledTextInput = styled(TextInput).attrs(({ theme }) => ({
+  placeholderTextColor: theme.placeholder,
+}))``;

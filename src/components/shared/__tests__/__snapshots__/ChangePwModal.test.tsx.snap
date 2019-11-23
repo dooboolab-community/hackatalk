@@ -60,7 +60,15 @@ exports[`[ChangePw] screen renders without crashing 2`] = `
         }
         testID="closeBtn"
       >
-        <Text />
+        <View
+          style={
+            Object {
+              "padding": 8,
+            }
+          }
+        >
+          <Text />
+        </View>
       </TouchableOpacity>
     </View>
     <View
@@ -267,7 +275,15 @@ exports[`[ChangePw] screen snapshot check if modal open 1`] = `
           }
           testID="closeBtn"
         >
-          <Text />
+          <View
+            style={
+              Object {
+                "padding": 8,
+              }
+            }
+          >
+            <Text />
+          </View>
         </TouchableOpacity>
       </View>
       <View

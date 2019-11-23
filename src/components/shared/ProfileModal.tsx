@@ -69,7 +69,7 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 
 interface Props {
   testID?: string;
-  ref?: any;
+  ref?: React.MutableRefObject<Modal | null>;
   onChatPressed?: () => void;
 }
 
@@ -107,8 +107,8 @@ const styles: Styles = {
   },
 };
 
-export const Shared = forwardRef<Ref, Props>((props, ref) => {
-  let modal: any;
+const Shared = forwardRef<Ref, Props>((props, ref) => {
+  let modal: Modal | null;
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
@@ -197,22 +197,22 @@ export const Shared = forwardRef<Ref, Props>((props, ref) => {
         <StyledView>
           <TouchableOpacity
             activeOpacity={0.5}
-            // onPress={goToProfile}
+          // onPress={goToProfile}
           >
             {photoURL ? (
               <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
-              <View
-                style={{
-                  width: 80,
-                  height: 80,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Ionicons name="ios-person" size={80} color="white" />
-              </View>
-            )}
+                <View
+                  style={{
+                    width: 80,
+                    height: 80,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Ionicons name="ios-person" size={80} color="white" />
+                </View>
+              )}
           </TouchableOpacity>
           <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
           <StyledTextStatusMsg>{statusMsg}</StyledTextStatusMsg>

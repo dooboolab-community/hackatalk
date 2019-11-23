@@ -7,10 +7,12 @@ import {
   ItemLabel,
   SectionHeader,
 } from './styles';
-import { DefaultNavigationProps, SettingsOption, SignInType } from '../../../types';
 import {
-  DefaultTheme, ThemeProps, withTheme,
-} from 'styled-components/native';
+  DefaultNavigationProps,
+  SettingsOption,
+  SignInType,
+} from '../../../types';
+import { DefaultTheme, ThemeProps } from 'styled-components/native';
 import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
 import React, { useRef } from 'react';
 import { SectionList, SectionListData } from 'react-native';
@@ -20,12 +22,17 @@ import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '../../../providers/ThemeProvider';
 
-function SectionItem(option: SettingsOption, theme: DefaultTheme): React.ReactElement {
+function SectionItem(
+  option: SettingsOption,
+  theme: DefaultTheme,
+): React.ReactElement {
   return (
     <ItemContainer onPress={option.onPress} testID={option.testID}>
-      {option.icon ? <ItemIcon source={option.icon} /> : null}
+      {option.icon ? (
+        <ItemIcon resizeMode="contain" source={option.icon} />
+      ) : null}
       <ItemLabel>{option.label}</ItemLabel>
-      <FontAwesome name="angle-right" size={32} color={theme.fontColor} />
+      <FontAwesome name="angle-right" size={24} color={theme.fontColor} />
     </ItemContainer>
   );
 }
@@ -34,11 +41,15 @@ export interface Props extends ThemeProps<DefaultTheme> {
   navigation: DefaultNavigationProps<'Setting'>;
 }
 
-function SettingScreen(props: Props): React.ReactElement {
+function SettingScreen(): React.ReactElement {
   const { theme } = useThemeContext();
   const modal: React.MutableRefObject<ChangPwModalRef | null> = useRef(null);
-  const { state: { user } } = useAuthUserContext();
+  const {
+    state: { user },
+  } = useAuthUserContext();
+
   let signInInfoOption: SettingsOption;
+
   switch (user && user.signedInWith) {
     case SignInType.Google:
       signInInfoOption = {
@@ -78,6 +89,7 @@ function SettingScreen(props: Props): React.ReactElement {
       data: [signInInfoOption],
     },
   ];
+
   return (
     <Container>
       <SectionList
@@ -91,10 +103,9 @@ function SettingScreen(props: Props): React.ReactElement {
           </HeaderContainer>
         )}
       />
-      <ChangePwModal
-        ref={modal} />
+      <ChangePwModal ref={modal} />
     </Container>
   );
 }
 
-export default withTheme(SettingScreen);
+export default SettingScreen;
