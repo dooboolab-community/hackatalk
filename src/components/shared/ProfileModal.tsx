@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -82,9 +77,9 @@ interface Props {
 interface Ref {
   open: () => void;
   close: () => void;
-  // setUser: (user: User) => void;
-  // setScreen: (screen: string) => void;
-  // showAddBtn: (show: boolean) => void;
+  setUser: (user: User) => void;
+  setScreen: (screen: string) => void;
+  showAddBtn: (show: boolean) => void;
 }
 
 interface Styles {
@@ -115,18 +110,15 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
-  // const [user, setUser] = useState<User>({
-  //   displayName: '',
-  //   uid: '',
-  //   thumbURL: '',
-  //   photoURL: '',
-  //   statusMsg: '',
-  //   online: false,
-  // });
-
-  const {
-    state: { user, deleteMode, screen },
-  } = useProfileContext();
+  const [user, setUser] = useState<User>({
+    displayName: '',
+    uid: '',
+    thumbURL: '',
+    photoURL: '',
+    statusMsg: '',
+    online: false,
+  });
+  const [screen, setScreen] = useState('');
 
   const {
     friendState: { friends },
@@ -150,12 +142,18 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
 
   const addFriend = (): void => {
     ctxAddFriend(user);
-    if (screen === 'SearchUser') setIsFriendAdded(true);
+    if (screen === 'SearchUser') {
+      setShowAddBtn(false);
+      setIsFriendAdded(true);
+    }
   };
 
   const deleteFriend = (): void => {
     ctxDeleteFriend(user);
-    if (screen === 'SearchUser') setIsFriendAdded(false);
+    if (screen === 'SearchUser') {
+      setShowAddBtn(true);
+      setIsFriendAdded(false);
+    }
     if (modal && screen !== 'SearchUser') {
       modal.close();
     }
@@ -164,15 +162,15 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   useImperativeHandle(ref, () => ({
     open,
     close,
-    // setUser: (newUser: User): void => {
-    //   setUser(newUser);
-    // },
-    // showAddBtn: (flag: boolean): void => {
-    //   setShowAddBtn(flag);
-    // },
-    // setScreen: (screen: string): void => {
-    //   setScreen(screen);
-    // },
+    setUser: (newUser: User): void => {
+      setUser(newUser);
+    },
+    showAddBtn: (flag: boolean): void => {
+      setShowAddBtn(flag);
+    },
+    setScreen: (screen: string): void => {
+      setScreen(screen);
+    },
   }));
   const { photoURL, displayName, statusMsg } = user;
   const {
@@ -236,16 +234,12 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <TouchableOpacity
             testID="btn-add-or-delete"
             activeOpacity={0.5}
-            onPress={
-              friends.findIndex((friend) => friend.uid === user.uid) === -1
-                ? addFriend
-                : deleteFriend
-            }
+            onPress={showAddBtn ? addFriend : deleteFriend}
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
               <StyledTextBtn>
-                {friends.findIndex((friend) => friend.uid === user.uid) === -1
+                {showAddBtn
                   ? getString('ADD_FRIEND')
                   : getString('DELETE_FRIEND')}
               </StyledTextBtn>
