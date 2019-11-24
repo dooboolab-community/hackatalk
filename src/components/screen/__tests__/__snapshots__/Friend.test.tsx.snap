@@ -1,3 +1,383 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`[Friend] interaction add friends should be added to the flatlist when called addFriend 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-add"
+    title="ADD"
+  />
+  <Button
+    testID="btn-delete"
+    title="DEL"
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <ScrollView
+      ListEmptyComponent={
+        <Shared
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          No content
+        </Shared>
+      }
+      contentContainerStyle={null}
+      data={
+        Array [
+          Object {
+            "displayName": "admin",
+            "online": true,
+            "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+            "statusMsg": "online",
+            "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+            "uid": "1",
+          },
+          Object {
+            "displayName": "hello",
+            "online": true,
+            "photoURL": "",
+            "statusMsg": "I am fine today",
+            "thumbURL": "",
+            "uid": "0",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
+      }
+      testID="friend-list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.5}
+            testID="USER_ID"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(221,226,236)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 0,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 0,
+                  },
+                ]
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                  ]
+                }
+              />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                      "marginLeft": 12,
+                      "width": 100,
+                    },
+                  ]
+                }
+              >
+                admin
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "borderColor": "rgb(221,226,236)",
+                      "borderWidth": 0.3,
+                      "color": "rgb(65,77,107)",
+                      "fontSize": 12,
+                      "maxWidth": 134.2,
+                      "paddingBottom": 4,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 4,
+                      "position": "absolute",
+                      "right": 20,
+                    },
+                  ]
+                }
+              >
+                online
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.5}
+            testID="USER_ID"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(221,226,236)",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 0,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "width": 40,
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "black",
+                      "fontSize": 14,
+                      "marginLeft": 12,
+                      "width": 100,
+                    },
+                  ]
+                }
+              >
+                hello
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "borderColor": "rgb(221,226,236)",
+                      "borderWidth": 0.3,
+                      "color": "rgb(65,77,107)",
+                      "fontSize": 12,
+                      "maxWidth": 134.2,
+                      "paddingBottom": 4,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 4,
+                      "position": "absolute",
+                      "right": 20,
+                    },
+                  ]
+                }
+              >
+                I am fine today
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+      />
+    </ScrollView>
+  </View>
+</View>
+`;
+
+exports[`[Friend] interaction add friends should be deleted to the friendlist when called deleteFriend 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-add"
+    title="ADD"
+  />
+  <Button
+    testID="btn-delete"
+    title="DEL"
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <ScrollView
+      ListEmptyComponent={
+        <Shared
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          No content
+        </Shared>
+      }
+      contentContainerStyle={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+      data={Array []}
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
+      }
+      testID="friend-list"
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "rgb(155,155,155)",
+              "fontSize": 14,
+            }
+          }
+        >
+          No content
+        </Text>
+      </View>
+    </ScrollView>
+  </View>
+</View>
+`;
+
 exports[`[Friend] rendering test renders as expected 1`] = `null`;
