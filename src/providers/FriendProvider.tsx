@@ -6,8 +6,8 @@ import produce from 'immer';
 
 interface Context {
   friendState: State;
-  addFriend: (user: Partial<User>) => void;
-  deleteFriend: (user: Partial<User>) => void;
+  addFriend: (user: User) => void;
+  deleteFriend: (user: User) => void;
 }
 
 const [useCtx, Provider] = createCtx<Context>();
@@ -25,17 +25,19 @@ interface Payload {
   user: User;
 }
 
+const MockInitialFriends = [
+  {
+    uid: '0',
+    displayName: 'hello',
+    thumbURL: '',
+    photoURL: '',
+    statusMsg: 'I am fine today',
+    online: true,
+  },
+];
+
 const initialState: State = {
-  friends: [
-    {
-      uid: 'my_uid',
-      displayName: 'hello',
-      thumbURL: '',
-      photoURL: '',
-      statusMsg: 'I am fine today',
-      online: true,
-    },
-  ],
+  friends: [...MockInitialFriends],
 };
 
 type Action = { type: ActionType; payload: Payload };
@@ -67,16 +69,18 @@ const reducer: Reducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
       case ActionType.AddFriend: {
-        const index = draft.friends.findIndex(
-          (friend) =>
-            payload.user.displayName.toLowerCase() <
-            friend.displayName.toLowerCase(),
-        );
-        draft.friends.splice(
-          index === -1 ? draft.friends.length : index,
-          0,
-          payload.user,
-        );
+        if (!draft.friends.find((friend) => friend.uid === payload.user.uid)) {
+          const index = draft.friends.findIndex(
+            (friend) =>
+              payload.user.displayName.toLowerCase() <
+              friend.displayName.toLowerCase(),
+          );
+          draft.friends.splice(
+            index === -1 ? draft.friends.length : index,
+            0,
+            payload.user,
+          );
+        }
         break;
       }
       case ActionType.DeleteFriend: {

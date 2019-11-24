@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
+<View
+  testID="fake-child"
+>
+  <Button
+    onPress={[Function]}
+    testID="btn-add-1"
+    title="add"
+  />
+  <Button
+    onPress={[Function]}
+    testID="btn-add-2"
+    title="add"
+  />
+  <Button
+    onPress={[Function]}
+    testID="btn-delete-1"
+    title="delete"
+  />
+  <Button
+    onPress={[Function]}
+    testID="btn-delete-2"
+    title="delete"
+  />
+  <ScrollView
+    data={
+      Array [
+        Object {
+          "displayName": "hello",
+          "online": true,
+          "photoURL": "",
+          "statusMsg": "I am fine today",
+          "thumbURL": "",
+          "uid": "0",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    testID="friend-list"
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.5}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(221,226,236)",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "flex-start",
+                  "paddingBottom": 0,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 0,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 40,
+                }
+              }
+            >
+              <Text />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 14,
+                    "marginLeft": 12,
+                    "width": 100,
+                  },
+                ]
+              }
+            >
+              hello
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "borderColor": "rgb(221,226,236)",
+                    "borderWidth": 0.3,
+                    "color": "rgb(65,77,107)",
+                    "fontSize": 12,
+                    "maxWidth": 134.2,
+                    "paddingBottom": 4,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 4,
+                    "position": "absolute",
+                    "right": 20,
+                  },
+                ]
+              }
+            >
+              I am fine today
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </ScrollView>
+</View>
+`;

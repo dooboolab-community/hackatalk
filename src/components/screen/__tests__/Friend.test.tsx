@@ -1,5 +1,3 @@
-import 'react-native';
-
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import React, { ReactElement } from 'react';
@@ -12,8 +10,33 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
+import { Button } from 'react-native';
 import Friend from '../Friend';
+import ProfileModal from '../../shared/ProfileModal';
+import { User } from '../../../types';
 import renderer from 'react-test-renderer';
+import { useFriendContext } from '../../../providers/FriendProvider';
+
+const fakeUsers: User[] = [
+  {
+    uid: '1',
+    displayName: 'admin',
+    thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+    photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+    statusMsg: 'online',
+    online: true,
+    // created: new Date(),
+    // updated: new Date(),
+  },
+  {
+    uid: '2',
+    displayName: 'geoseong',
+    thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+    photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+    statusMsg: 'offline',
+    online: false,
+  },
+];
 
 let props: any;
 let component: ReactElement;
@@ -68,6 +91,7 @@ describe('[Friend] interaction', () => {
           state: {
             user: null,
             deleteMode: true,
+            screen: '',
             modal: jest.mock,
           },
         }));
@@ -76,6 +100,57 @@ describe('[Friend] interaction', () => {
       act(() => {
         fireEvent.press(userListItem);
       });
+    });
+  });
+
+  describe('add friends', () => {
+    const Buttons = (): React.ReactElement => {
+      const {
+        friendState: { friends },
+        addFriend,
+        deleteFriend,
+      } = useFriendContext();
+
+      const addNewFriend = (): void => {
+        addFriend(fakeUsers[0]);
+      };
+
+      const deleteFirstFriend = (): void => {
+        if (friends.length > 0) {
+          deleteFriend(friends[0]);
+        }
+      };
+      return (
+        <>
+          <Button testID="btn-add" title="ADD" onPress={addNewFriend} />
+          <Button testID="btn-delete" title="DEL" onPress={deleteFirstFriend} />
+        </>
+      );
+    };
+    beforeEach(() => {
+      component = createTestElement(
+        <>
+          <Buttons />
+          <Friend {...props} />
+        </>,
+      );
+      testingLib = render(component);
+    });
+
+    it('should be added to the flatlist when called addFriend', () => {
+      const btnAdd = testingLib.queryByTestId('btn-add');
+      act(() => {
+        fireEvent.press(btnAdd);
+      });
+      expect(testingLib.asJSON()).toMatchSnapshot();
+    });
+
+    it('should be deleted to the friendlist when called deleteFriend', () => {
+      const btnDel = testingLib.queryByTestId('btn-delete');
+      act(() => {
+        fireEvent.press(btnDel);
+      });
+      expect(testingLib.asJSON()).toMatchSnapshot();
     });
   });
 });

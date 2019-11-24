@@ -30,7 +30,7 @@ export default function Screen(): ReactElement {
         user={item}
         onPress={(): void => {
           if (state.modal) {
-            showModal(item, true);
+            showModal(item, true, 'Friend');
           }
         }}
       />
@@ -40,6 +40,7 @@ export default function Screen(): ReactElement {
   return (
     <StyledContainer>
       <FlatList
+        testID="friend-list"
         style={{
           alignSelf: 'stretch',
         }}

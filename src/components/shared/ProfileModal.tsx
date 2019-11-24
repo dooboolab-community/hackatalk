@@ -1,4 +1,9 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import styled, {
   DefaultTheme,
@@ -128,9 +133,18 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     deleteFriend: ctxDeleteFriend,
   } = useFriendContext();
 
+  useEffect(() => {
+    if (screen === 'SearchUser') {
+      setIsFriendAlreadyAdded(
+        friends.findIndex((friend) => friend.uid === user.uid) !== -1,
+      );
+    } else {
+      setIsFriendAlreadyAdded(false);
+    }
+  }, [user, friends]);
+
   const open = (): void => {
     setIsFriendAdded(false);
-    setIsFriendAlreadyAdded(false);
     if (modal) {
       modal.open();
     }
@@ -224,23 +238,23 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <StyledTextStatusMsg>{statusMsg}</StyledTextStatusMsg>
         </StyledView>
         {isFriendAdded ? (
-          <StyledTextFriendAdded>
+          <StyledTextFriendAdded testID="added-message">
             {getString('FRIEND_ADDED')}
           </StyledTextFriendAdded>
         ) : isFriendAlreadyAdded ? (
-          <StyledTextFriendAlreadyAdded>
+          <StyledTextFriendAlreadyAdded testID="already-added-message">
             {getString('FRIEND_ALREADY_ADDED')}
           </StyledTextFriendAlreadyAdded>
         ) : null}
         <StyledViewBtns>
           <TouchableOpacity
-            testID="btn-add-or-delete"
+            testID="btn-ad-friend"
             activeOpacity={0.5}
             onPress={showAddBtn ? addFriend : deleteFriend}
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn>
+              <StyledTextBtn testID="btn-ad-title">
                 {showAddBtn
                   ? getString('ADD_FRIEND')
                   : getString('DELETE_FRIEND')}

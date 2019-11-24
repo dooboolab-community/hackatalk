@@ -1,3 +1,1505 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`[ProfileModal] interactions should be shown and closed when press buttons 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-close"
+    title="close"
+  />
+  <Button
+    testID="btn-showmodal"
+    title="show"
+  />
+  <View
+    accessibilityViewIsModal={true}
+    importantForAccessibility="yes"
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "zIndex": 2,
+        },
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <TouchableWithoutFeedback>
+        <View
+          importantForAccessibility="no"
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "opacity": 0.075,
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "transparent",
+            "height": 320,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateY": -1334,
+              },
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4282027007,
+                4284794879,
+              ],
+              "endPoint": Array [
+                1,
+                0.8,
+              ],
+              "locations": Array [
+                0,
+                0.85,
+              ],
+              "startPoint": Array [
+                0.4,
+                0.6,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "height": 320,
+              "justifyContent": "space-between",
+              "marginHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginTop": 40,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "alignSelf": "center",
+                    },
+                  ]
+                }
+              />
+            </TouchableOpacity>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                    "marginTop": 32,
+                  },
+                ]
+              }
+            >
+              admin
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 12,
+                    "marginTop": 8,
+                  },
+                ]
+              }
+            >
+              online
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#ffffff",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-ad-friend"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                  testID="btn-ad-title"
+                >
+                  Add
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(221,226,236)",
+                    "height": 80,
+                    "width": 1,
+                  },
+                ]
+              }
+            />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-chat"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                >
+                  Chat
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`[ProfileModal] interactions should be shown and closed when press buttons 2`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-close"
+    title="close"
+  />
+  <Button
+    testID="btn-showmodal"
+    title="show"
+  />
+  <View
+    accessibilityViewIsModal={true}
+    importantForAccessibility="yes"
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "zIndex": 2,
+        },
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <TouchableWithoutFeedback>
+        <View
+          importantForAccessibility="no"
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "opacity": 0.075,
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "transparent",
+            "height": 320,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateY": -1334,
+              },
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4282027007,
+                4284794879,
+              ],
+              "endPoint": Array [
+                1,
+                0.8,
+              ],
+              "locations": Array [
+                0,
+                0.85,
+              ],
+              "startPoint": Array [
+                0.4,
+                0.6,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "height": 320,
+              "justifyContent": "space-between",
+              "marginHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginTop": 40,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "alignSelf": "center",
+                    },
+                  ]
+                }
+              />
+            </TouchableOpacity>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                    "marginTop": 32,
+                  },
+                ]
+              }
+            >
+              admin
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 12,
+                    "marginTop": 8,
+                  },
+                ]
+              }
+            >
+              online
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#ffffff",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-ad-friend"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                  testID="btn-ad-title"
+                >
+                  Add
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(221,226,236)",
+                    "height": 80,
+                    "width": 1,
+                  },
+                ]
+              }
+            />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-chat"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                >
+                  Chat
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`[ProfileModal] interactions should close when press delete button in Friend Screen 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-close"
+    title="close"
+  />
+  <Button
+    testID="btn-showmodal"
+    title="show"
+  />
+  <View
+    accessibilityViewIsModal={true}
+    importantForAccessibility="yes"
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "zIndex": 2,
+        },
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <TouchableWithoutFeedback>
+        <View
+          importantForAccessibility="no"
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "opacity": 0.075,
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "transparent",
+            "height": 320,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateY": -1334,
+              },
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4282027007,
+                4284794879,
+              ],
+              "endPoint": Array [
+                1,
+                0.8,
+              ],
+              "locations": Array [
+                0,
+                0.85,
+              ],
+              "startPoint": Array [
+                0.4,
+                0.6,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "height": 320,
+              "justifyContent": "space-between",
+              "marginHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginTop": 40,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": 80,
+                  }
+                }
+              >
+                <Text />
+              </View>
+            </TouchableOpacity>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                    "marginTop": 32,
+                  },
+                ]
+              }
+            >
+              hello
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 12,
+                    "marginTop": 8,
+                  },
+                ]
+              }
+            >
+              I am fine today
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#ffffff",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-ad-friend"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                  testID="btn-ad-title"
+                >
+                  Delete
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(221,226,236)",
+                    "height": 80,
+                    "width": 1,
+                  },
+                ]
+              }
+            />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-chat"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                >
+                  Chat
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-close"
+    title="close"
+  />
+  <Button
+    testID="btn-showmodal"
+    title="show"
+  />
+  <View
+    accessibilityViewIsModal={true}
+    importantForAccessibility="yes"
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "zIndex": 2,
+        },
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <TouchableWithoutFeedback>
+        <View
+          importantForAccessibility="no"
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "opacity": 0.075,
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "transparent",
+            "height": 320,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateY": -1334,
+              },
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4282027007,
+                4284794879,
+              ],
+              "endPoint": Array [
+                1,
+                0.8,
+              ],
+              "locations": Array [
+                0,
+                0.85,
+              ],
+              "startPoint": Array [
+                0.4,
+                0.6,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "height": 320,
+              "justifyContent": "space-between",
+              "marginHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginTop": 40,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "alignSelf": "center",
+                    },
+                  ]
+                }
+              />
+            </TouchableOpacity>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                    "marginTop": 32,
+                  },
+                ]
+              }
+            >
+              admin
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 12,
+                    "marginTop": 8,
+                  },
+                ]
+              }
+            >
+              online
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#ffffff",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-ad-friend"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                  testID="btn-ad-title"
+                >
+                  Add
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(221,226,236)",
+                    "height": 80,
+                    "width": 1,
+                  },
+                ]
+              }
+            />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-chat"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                >
+                  Chat
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 2`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Button
+    testID="btn-close"
+    title="close"
+  />
+  <Button
+    testID="btn-showmodal"
+    title="show"
+  />
+  <View
+    accessibilityViewIsModal={true}
+    importantForAccessibility="yes"
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0,0,0,0)",
+          "zIndex": 2,
+        },
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+      ]
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <TouchableWithoutFeedback>
+        <View
+          importantForAccessibility="no"
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "backgroundColor": "black",
+                  "opacity": 0.075,
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <View
+        style={
+          Object {
+            "alignContent": "center",
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "transparent",
+            "height": 320,
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateY": -1334,
+              },
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          proxiedProperties={
+            Object {
+              "colors": Array [
+                4282027007,
+                4284794879,
+              ],
+              "endPoint": Array [
+                1,
+                0.8,
+              ],
+              "locations": Array [
+                0,
+                0.85,
+              ],
+              "startPoint": Array [
+                0.4,
+                0.6,
+              ],
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "height": 320,
+              "justifyContent": "space-between",
+              "marginHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginTop": 40,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+            >
+              <Image
+                source={
+                  Object {
+                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                  }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "alignSelf": "center",
+                    },
+                  ]
+                }
+              />
+            </TouchableOpacity>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 24,
+                    "fontWeight": "bold",
+                    "marginTop": 32,
+                  },
+                ]
+              }
+            >
+              admin
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "center",
+                    "color": "white",
+                    "fontSize": 12,
+                    "marginTop": 8,
+                  },
+                ]
+              }
+            >
+              online
+            </Text>
+          </View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "color": "red",
+                  "fontSize": 12,
+                  "paddingBottom": 4,
+                  "paddingLeft": 4,
+                  "paddingRight": 4,
+                  "paddingTop": 4,
+                },
+              ]
+            }
+            testID="already-added-message"
+          >
+            Already your friend.
+          </Text>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "backgroundColor": "#ffffff",
+                  "flexDirection": "row",
+                  "height": 80,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-ad-friend"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                  testID="btn-ad-title"
+                >
+                  Delete
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "rgb(221,226,236)",
+                    "height": 80,
+                    "width": 1,
+                  },
+                ]
+              }
+            />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "height": 80,
+                  "justifyContent": "center",
+                  "width": "50%",
+                }
+              }
+              testID="btn-chat"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 80,
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "rgb(58,139,255)",
+                        "fontSize": 16,
+                      },
+                    ]
+                  }
+                >
+                  Chat
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`[ProfileModal] render renders without crashing 1`] = `<View />`;

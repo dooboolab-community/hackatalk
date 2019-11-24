@@ -1,23 +1,46 @@
-import 'react-native';
-
 import * as React from 'react';
 
+import { RenderResult, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import renderer, { act } from 'react-test-renderer';
 
+import { Button } from 'react-native';
 // Note: test renderer must be required after react-native.
 import ProfileModal from '../ProfileModal';
-import renderer from 'react-test-renderer';
+import { User } from '../../../types';
+import { getString } from '../../../../STRINGS';
+import { useFriendContext } from '../../../providers/FriendProvider';
+import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
 let props: object;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
+const fakeUsers: User[] = [
+  {
+    uid: '1',
+    displayName: 'admin',
+    thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+    photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+    statusMsg: 'online',
+    online: true,
+    // created: new Date(),
+    // updated: new Date(),
+  },
+  {
+    uid: '2',
+    displayName: 'zeoseong',
+    thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+    photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+    statusMsg: 'offline',
+    online: false,
+  },
+];
+
 describe('[ProfileModal] render', () => {
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(
-      <ProfileModal {...props} />
-    );
+    component = createTestElement(<ProfileModal {...props} />);
   });
 
   it('renders without crashing', () => {
@@ -40,4 +63,163 @@ describe('[ProfileModal] render', () => {
   //     expect(cnt).toBe(3);
   //   });
   // });
+});
+
+const TestComponent = ({ showModalParams }): React.ReactElement => {
+  const { state, showModal } = useProfileContext();
+  const {
+    friendState: { friends },
+  } = useFriendContext();
+  const modalEl = React.useRef(null);
+  state.modal = modalEl;
+  const { screen } = showModalParams;
+  const user = showModalParams.user || friends[0];
+  const deleteMode =
+    friends.findIndex((friend) => friend.uid === user.uid) !== -1;
+  return (
+    <>
+      <Button
+        testID="btn-close"
+        title="close"
+        onPress={(): void => {
+          if (state.modal.current) {
+            state.modal.current.close();
+          }
+        }}
+      />
+      <Button
+        testID="btn-showmodal"
+        title="show"
+        onPress={(): void => {
+          if (state.modal.current && user) {
+            showModal(user, deleteMode, screen);
+          }
+        }}
+      />
+      <ProfileModal ref={state.modal} {...props} />
+    </>
+  );
+};
+
+describe('[ProfileModal] interactions', () => {
+  let component: React.ReactElement;
+  let testingLib: RenderResult;
+
+  it('should be shown and closed when press buttons', () => {
+    component = createTestElement(
+      <TestComponent
+        showModalParams={{ user: fakeUsers[0], deleteMode: false, screen: '' }}
+      />,
+    );
+    testingLib = render(component);
+    const btnShowmodal = testingLib.queryByTestId('btn-showmodal');
+    act(() => {
+      fireEvent.press(btnShowmodal);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+
+    //
+    const btnClose = testingLib.queryByTestId('btn-close');
+    act(() => {
+      fireEvent.press(btnClose);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
+
+  it('should display added friend message when press add button in SearchUser Screen', () => {
+    component = createTestElement(
+      <TestComponent
+        showModalParams={{
+          user: fakeUsers[0],
+          deleteMode: false,
+          screen: 'SearchUser',
+        }}
+      />,
+    );
+    testingLib = render(component);
+    const btnShowmodal = testingLib.queryByTestId('btn-showmodal');
+    act(() => {
+      fireEvent.press(btnShowmodal);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+
+    let btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    let addedMessage = testingLib.queryByTestId('added-message');
+    let alreadyAddedMessage = testingLib.queryByTestId('already-added-message');
+    expect(btnAdTitle.children[0]).toEqual(getString('ADD_FRIEND'));
+    expect(addedMessage).toBeNull();
+    expect(alreadyAddedMessage).toBeNull();
+
+    // press add button
+    const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    addedMessage = testingLib.queryByTestId('added-message');
+    alreadyAddedMessage = testingLib.queryByTestId('already-added-message');
+    expect(btnAdTitle.children[0]).toEqual(getString('DELETE_FRIEND'));
+    expect(addedMessage.children[0]).toEqual(getString('FRIEND_ADDED'));
+    expect(alreadyAddedMessage).toBeNull();
+
+    // press delete button
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    addedMessage = testingLib.queryByTestId('added-message');
+    alreadyAddedMessage = testingLib.queryByTestId('already-added-message');
+    expect(btnAdTitle.children[0]).toEqual(getString('ADD_FRIEND'));
+    expect(addedMessage).toBeNull();
+    expect(alreadyAddedMessage).toBeNull();
+
+    // press add button
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    addedMessage = testingLib.queryByTestId('added-message');
+    alreadyAddedMessage = testingLib.queryByTestId('already-added-message');
+    expect(btnAdTitle.children[0]).toEqual(getString('DELETE_FRIEND'));
+    expect(addedMessage.children[0]).toEqual(getString('FRIEND_ADDED'));
+    expect(alreadyAddedMessage).toBeNull();
+
+    // press close button and open button
+    const btnClose = testingLib.queryByTestId('btn-close');
+    act(() => {
+      fireEvent.press(btnClose);
+      fireEvent.press(btnShowmodal);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+    btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    addedMessage = testingLib.queryByTestId('added-message');
+    alreadyAddedMessage = testingLib.queryByTestId('already-added-message');
+    expect(btnAdTitle.children[0]).toEqual(getString('DELETE_FRIEND'));
+    expect(addedMessage).toBeNull();
+    expect(alreadyAddedMessage.children[0]).toEqual(
+      getString('FRIEND_ALREADY_ADDED'),
+    );
+  });
+
+  it('should close when press delete button in Friend Screen', () => {
+    component = createTestElement(
+      <TestComponent
+        showModalParams={{
+          screen: 'Friend',
+        }}
+      />,
+    );
+    testingLib = render(component);
+    const btnShowmodal = testingLib.queryByTestId('btn-showmodal');
+    act(() => {
+      fireEvent.press(btnShowmodal);
+    });
+    const btnAdTitle = testingLib.queryByTestId('btn-ad-title');
+    expect(btnAdTitle.children[0]).toEqual(getString('DELETE_FRIEND'));
+    const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
 });
