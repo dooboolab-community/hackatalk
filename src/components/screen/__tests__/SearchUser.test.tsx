@@ -11,7 +11,10 @@ import SearchUser, { fakeUsers } from '../SearchUser';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
 
 import { Animated } from 'react-native';
+import ProfileModal from '../../shared/ProfileModal';
 import { User } from '../../../types';
+import { act } from 'react-test-renderer';
+import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
 // import UserListItem from '../../shared/UserListItem';
 
@@ -19,7 +22,9 @@ const props = createTestProps({
   screenProps: { changeTheme: jest.fn() },
 });
 
-const component: React.ReactElement = createTestElement(<SearchUser {...props} />);
+const component: React.ReactElement = createTestElement(
+  <SearchUser {...props} />,
+);
 
 describe('[SearchUser] rendering test', () => {
   it('renders as expected', () => {
@@ -78,6 +83,7 @@ describe('[serachUser] interaction', () => {
     }, 600);
     // setTimeout called - 6
   });
+
   // it('when profile modal clicked -> should call showProfileModal', () => {
   //   const itemTestID = 'userListItem0';
   //   const userListItemInst: renderer.ReactTestInstance = testingLib.getByTestId(
@@ -94,4 +100,33 @@ describe('[serachUser] interaction', () => {
   //   // console.log('~>~>~>~>~>~>userListItemInst/2', UserItem);
   //   // expect(userListItemInst).toEqual(UserItem); // effects nothing
   // });
+});
+
+const TestComponent = (): React.ReactElement => {
+  const { state } = useProfileContext();
+  const modalEl = React.useRef(null);
+  state.modal = modalEl;
+
+  return (
+    <>
+      <ProfileModal ref={state.modal} />
+      <SearchUser {...props} />
+    </>
+  );
+};
+
+describe('[SearchUser] interaction with Profile Modal', () => {
+  let component: React.ReactElement;
+  let testingLib: RenderResult;
+
+  it('show profile modal when press user in search user list', () => {
+    component = createTestElement(<TestComponent />);
+    testingLib = render(component);
+    const itemTestID = 'userListItem0';
+    const userListItem = testingLib.queryByTestId(itemTestID);
+    act(() => {
+      fireEvent.press(userListItem);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
 });
