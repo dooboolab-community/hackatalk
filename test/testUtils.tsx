@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 
-import { AllProviders } from '../providers';
-import { ThemeType } from '../types';
+import { AllProviders } from '../src/providers';
+import { ThemeType } from '../src/types';
 
 export const createTestElement = (
   child: ReactElement,

@@ -8,7 +8,7 @@ import {
   toJSON,
 } from '@testing-library/react-native';
 import SearchUser, { fakeUsers } from '../SearchUser';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Animated } from 'react-native';
 import { User } from '../../../types';
@@ -19,7 +19,9 @@ const props = createTestProps({
   screenProps: { changeTheme: jest.fn() },
 });
 
-const component: React.ReactElement = createTestElement(<SearchUser {...props} />);
+const component: React.ReactElement = createTestElement(
+  <SearchUser {...props} />,
+);
 
 describe('[SearchUser] rendering test', () => {
   it('renders as expected', () => {

@@ -12,7 +12,7 @@ import {
 } from '@testing-library/react-native';
 import SignUp, { initialValues } from '../SignUp';
 // import { act, renderHook } from '@testing-library/react-hooks';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { getString } from '../../../../STRINGS';
 
@@ -49,34 +49,36 @@ describe('[SignUp] screen', () => {
     });
     expect(btnInstance).toBeTruthy();
     expect(btnTextInstance).toBeTruthy();
-    expect(
-      JSON.stringify(toJSON(btnInstance)))
-      .toEqual(
-        expect.stringContaining(
-          JSON.stringify(toJSON(btnTextInstance))
-        )
-      );
+    expect(JSON.stringify(toJSON(btnInstance))).toEqual(
+      expect.stringContaining(JSON.stringify(toJSON(btnTextInstance))),
+    );
   });
 
   describe('interactions', () => {
     it('should simulate onPress', () => {
       const { getByTestId, getByPlaceholderText, debug } = testingLib;
-      const signUpFormInputObj = [{
-        label: 'Email',
-        value: 'test@test.com',
-      }, {
-        label: 'Password',
-        value: 'testPassword',
-      }, {
-        label: 'Confirm password',
-        value: 'testPassword',
-      }, {
-        label: 'Name',
-        value: 'testName',
-      }, {
-        label: 'Status',
-        value: 'testStatus',
-      }];
+      const signUpFormInputObj = [
+        {
+          label: 'Email',
+          value: 'test@test.com',
+        },
+        {
+          label: 'Password',
+          value: 'testPassword',
+        },
+        {
+          label: 'Confirm password',
+          value: 'testPassword',
+        },
+        {
+          label: 'Name',
+          value: 'testName',
+        },
+        {
+          label: 'Status',
+          value: 'testStatus',
+        },
+      ];
 
       signUpFormInputObj.forEach(({ label, value }) => {
         const input = getByPlaceholderText(label);

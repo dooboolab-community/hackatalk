@@ -7,7 +7,7 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Chat from '../Chat';
 // Note: test renderer must be required after react-native.

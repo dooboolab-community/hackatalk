@@ -34,7 +34,7 @@ export interface AuthUser extends User {
 export interface ChatCommon<T extends MessageType = MessageType.Message> {
   id: string;
   sender: User;
-  messageType: T;
+  messageType?: T;
   created?: Date;
   updated?: Date;
 }
@@ -51,14 +51,15 @@ interface File extends ChatCommon<MessageType.File> {
   file: string;
 }
 
-export type ChatProps<T extends MessageType = MessageType.Message>
-  = T extends MessageType.Message
-    ? Message
-    : T extends MessageType.Photo
-    ? Photo
-    : T extends MessageType.File
-    ? File
-    : ChatCommon<T>;
+export type ChatProps<
+  T extends MessageType = MessageType.Message
+> = T extends MessageType.Message
+  ? Message
+  : T extends MessageType.Photo
+  ? Photo
+  : T extends MessageType.File
+  ? File
+  : ChatCommon<T>;
 
 type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
 export type Chat = ChatProps<ChatType>;
