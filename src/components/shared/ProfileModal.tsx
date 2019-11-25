@@ -1,16 +1,13 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledView = styled.View`
   margin-top: 40px;
@@ -69,7 +66,7 @@ const StyledTextFriendAlreadyAdded = styled.Text`
   padding: 4px;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   testID?: string;
   ref?: any;
   onChatPressed?: () => void;
@@ -154,7 +151,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   const { photoURL, displayName, statusMsg } = user;
   const {
     theme: { primary, primaryLight },
-  } = props;
+  } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
     <Modal
@@ -241,4 +238,4 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   );
 });
 
-export default withTheme(Shared);
+export default Shared;

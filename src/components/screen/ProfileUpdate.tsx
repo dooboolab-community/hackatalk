@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import Button from '../shared/Button';
 // import { CommonActions } from '@react-navigation/core';
@@ -12,6 +7,7 @@ import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.View`
@@ -43,7 +39,7 @@ const StyledBtnWrapper = styled.View`
   margin-bottom: 48px;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   navigation: DefaultNavigationProps;
 }
 
@@ -156,4 +152,4 @@ function Screen(props: Props): React.ReactElement {
   );
 }
 
-export default withTheme(Screen);
+export default Screen;

@@ -1,15 +1,12 @@
 import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import { Chat } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import moment from 'moment';
+import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledWrapperPeer = styled.View<{ isSame: boolean }>`
   min-height: 48px;
@@ -82,7 +79,7 @@ const StyledLinearGradient = styled(LinearGradient)`
   border-radius: 3px;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   item: Chat;
   prevItem?: Chat;
   onPressPeerImage?: () => void;
@@ -114,6 +111,7 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
 };
 
 function Shared(props: Props): React.ReactElement {
+  const { theme } = useThemeContext();
   const {
     item: {
       sender: { uid, displayName, photoURL },
@@ -124,7 +122,6 @@ function Shared(props: Props): React.ReactElement {
     },
     prevItem,
     onPressPeerImage,
-    theme,
   } = props;
   const isSamePeerMsg = prevItem && prevItem.sender.uid === uid;
   if (uid !== myFakeUid) {
@@ -191,4 +188,4 @@ Shared.defaultProps = {
   },
 };
 
-export default withTheme(Shared);
+export default Shared;

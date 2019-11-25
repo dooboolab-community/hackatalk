@@ -1,14 +1,11 @@
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import { Chatroom } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({ theme }): string => theme.background};
@@ -89,15 +86,19 @@ const StyledImage = styled.Image`
   height: 40px;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   testID?: string;
   style?: ViewStyle;
   item: Chatroom;
   onPress?: () => void;
-  theme: DefaultTheme;
+  fontColor?: string;
 }
 
 function Shared(props: Props): React.ReactElement {
+  const {
+    theme: { fontColor },
+  } = useThemeContext();
+
   const {
     item: {
       lastChat: {
@@ -130,7 +131,7 @@ function Shared(props: Props): React.ReactElement {
                 <Ionicons
                   name="ios-person"
                   size={24}
-                  color={props.theme ? props.theme.fontColor : '#3d3d3d'}
+                  color={fontColor || '#3d3d3d'}
                 />
               </View>
             )}
@@ -183,4 +184,4 @@ Shared.defaultProps = {
   },
 };
 
-export default withTheme(Shared);
+export default Shared;
