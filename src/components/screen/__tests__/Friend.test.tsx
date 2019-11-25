@@ -137,7 +137,7 @@ describe('[Friend] interaction', () => {
       testingLib = render(component);
     });
 
-    it('should be added to the flatlist when called addFriend', () => {
+    it('should be added to the friend list when called addFriend function', () => {
       const btnAdd = testingLib.queryByTestId('btn-add');
       act(() => {
         fireEvent.press(btnAdd);
@@ -145,7 +145,7 @@ describe('[Friend] interaction', () => {
       expect(testingLib.asJSON()).toMatchSnapshot();
     });
 
-    it('should be deleted to the friendlist when called deleteFriend', () => {
+    it('should be deleted to the friend list when called deleteFriend function', () => {
       const btnDel = testingLib.queryByTestId('btn-delete');
       act(() => {
         fireEvent.press(btnDel);
