@@ -123,6 +123,7 @@ function Screen(props: Props): React.ReactElement {
         }): React.ReactElement => {
           return (
             <ChatListItem
+              testID={`CHAT_LIST_ITEM${index}`}
               prevItem={index > 0 ? chats[index - 1] : undefined}
               item={item}
               onPressPeerImage={(): void => {

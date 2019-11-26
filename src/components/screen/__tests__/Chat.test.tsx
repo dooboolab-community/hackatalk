@@ -1,8 +1,11 @@
 import 'react-native';
 
+import * as ProfileContext from '../../../providers/ProfileModalProvider';
+
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
@@ -35,30 +38,8 @@ describe('[Chat] interaction', () => {
     testingLib = render(component);
   });
 
-  it('should invoke changeText event handler when message changed', () => {
-    const textInput = testingLib.getByTestId('input_chat');
-    jest.useFakeTimers();
-    jest.runAllTimers();
-    fireEvent.changeText(textInput, 'chat test');
-    expect(textInput.props.value).toEqual('chat test');
-  });
-
-  it('should call [setShowMenu] when focused', () => {
-    const textInput = testingLib.getByTestId('input_chat');
-    textInput.props.onFocus();
-  });
-
-  it('should [showMenu] when touch pressed', () => {
-    let touchMenu = testingLib.getByTestId('touch_menu');
-    fireEvent.press(touchMenu);
-
-    touchMenu = testingLib.getByTestId('touch_menu');
-    fireEvent.press(touchMenu);
-  });
-
-  it('should call [setShowMenu] when focused', () => {
-    const touchMenu = testingLib.getByTestId('touch_menu');
-    fireEvent.press(touchMenu);
+  afterAll(() => {
+    cleanup();
   });
 
   it('should [sendChat] when pressing button', () => {
@@ -67,7 +48,36 @@ describe('[Chat] interaction', () => {
     fireEvent.press(chatBtn);
   });
 
-  afterAll(() => {
-    cleanup();
+  describe('dispatch showModal', () => {
+    it('should dispatch [show-modal] when peerImage is pressed', () => {
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => ({
+          showModal: jest.fn(),
+          state: null,
+        }));
+      const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
+      act(() => {
+        fireEvent.press(chatListItem);
+      });
+    });
+
+    it('should call [show-modal] when modal is available', () => {
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => ({
+          showModal: jest.fn(),
+          state: {
+            user: null,
+            deleteMode: true,
+            modal: jest.mock,
+          },
+        }));
+      const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
+      testingLib.rerender(component);
+      act(() => {
+        fireEvent.press(chatListItem);
+      });
+    });
   });
 });
