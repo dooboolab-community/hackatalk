@@ -10,11 +10,6 @@ import {
   iOSClientId,
   iOSExpoClientId,
 } from '../../../config';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import Button from '../shared/Button';
 import Constants from 'expo-constants';
@@ -25,9 +20,10 @@ import StatusBar from '../shared/StatusBar';
 import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   navigation: DefaultNavigationProps;
 }
 
@@ -351,4 +347,4 @@ function Screen(props: Props): React.ReactElement {
   );
 }
 
-export default withTheme(Screen);
+export default Screen;

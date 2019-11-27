@@ -10,7 +10,7 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Friend from '../Friend';
 import renderer from 'react-test-renderer';

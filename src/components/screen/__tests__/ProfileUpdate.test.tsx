@@ -8,7 +8,7 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ProfileUpdate from '../ProfileUpdate';
 // Note: test renderer must be required after react-native.

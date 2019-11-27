@@ -1,11 +1,6 @@
 import { Chat, DefaultNavigationProps, MessageType } from '../../types';
-import { Image, Platform, TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import Button from '../shared/Button';
 import ChatListItem from '../shared/ChatListItem';
@@ -16,6 +11,8 @@ import { Header } from 'react-navigation-stack';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.SafeAreaView`
   flex: 1;
@@ -24,19 +21,12 @@ const StyledContainer = styled.SafeAreaView`
   align-items: center;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   navigation: DefaultNavigationProps;
 }
 
-interface State {
-  isLoading: boolean;
-  showMenu: boolean;
-  message: string;
-  chats: Chat[];
-}
-
 function Screen(props: Props): React.ReactElement {
-  const { theme } = props;
+  const { theme } = useThemeContext();
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
@@ -57,10 +47,10 @@ function Screen(props: Props): React.ReactElement {
       id: '',
       messageType: MessageType.Message,
       message:
-      'Hello2. This is long message. This is long message.This is long message.' +
-      'This is long message. This is long message. This is long message.' +
-      'This is long message. This is long message.' +
-      'This is long message. This is long message. This is long message.',
+        'Hello2. This is long message. This is long message.This is long message.' +
+        'This is long message. This is long message. This is long message.' +
+        'This is long message. This is long message.' +
+        'This is long message. This is long message. This is long message.',
       sender: {
         uid: '2',
         displayName: 'sender111',
@@ -203,4 +193,4 @@ function Screen(props: Props): React.ReactElement {
   );
 }
 
-export default withTheme(Screen);
+export default Screen;

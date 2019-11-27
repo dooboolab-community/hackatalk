@@ -28,9 +28,7 @@ const props = {
   },
 };
 
-const component: React.ReactElement = (
-  <ChatroomListItem {...props} />
-);
+const component: React.ReactElement = <ChatroomListItem {...props} />;
 
 describe('[ChatroomListItem] rendering test', () => {
   // TODO

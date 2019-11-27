@@ -1,15 +1,12 @@
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-  withTheme,
-} from 'styled-components/native';
 
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { User } from '../../types';
+import styled from 'styled-components/native';
+import { useThemeContext } from '../../providers/ThemeProvider';
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   testID?: string;
   style?: ViewStyle;
   user: User;
@@ -60,8 +57,8 @@ function Shared({
   onLongPress,
   testID,
   user: { photoURL, displayName, statusMsg },
-  theme,
 }: Props): React.ReactElement {
+  const { theme } = useThemeContext();
   const photoURLObj =
     typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
@@ -112,4 +109,4 @@ Shared.defaultProps = {
     updated: undefined,
   },
 };
-export default withTheme(Shared);
+export default Shared;

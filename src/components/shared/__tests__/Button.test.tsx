@@ -10,7 +10,7 @@ import {
 } from '@testing-library/react-native';
 
 import Button from '../Button';
-import { createTestElement } from '../../../utils/testUtils';
+import { createTestElement } from '../../../../test/testUtils';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 

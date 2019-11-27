@@ -1,13 +1,9 @@
-import styled, {
-  DefaultTheme,
-  ThemeProps,
-} from 'styled-components/native';
-
 import { DefaultNavigationProps } from '../../../types';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import TextInput from '../../shared/TextInput';
+import styled from 'styled-components/native';
 
-export interface Props extends ThemeProps<DefaultTheme> {
+export interface Props {
   displayName: string;
   navigation?: DefaultNavigationProps<'SignUp'>;
 }
@@ -33,15 +29,13 @@ export const StyledScrollView = styled(KeyboardAwareScrollView).attrs(() => ({
     alignItems: 'center',
     paddingVertical: 30,
   },
-}))`
-  
-`;
+}))``;
 
 export const ErrorText = styled.Text<{ isError: boolean }>`
   color: lightcoral;
   font-size: 12px;
   font-weight: normal;
-  margin-bottom: ${({ isError }): number => isError ? 8 : 0}px;
+  margin-bottom: ${({ isError }): number => (isError ? 8 : 0)}px;
 `;
 
 export const InnerContainer = styled.View`
@@ -51,10 +45,9 @@ export const InnerContainer = styled.View`
   padding: 0 44px 8px 44px;
 `;
 
-export const StyledTextInput = styled(TextInput)
-  .attrs(({ theme }) => ({
-    placeholderTextColor: theme.placeholder,
-  }))``;
+export const StyledTextInput = styled(TextInput).attrs(({ theme }) => ({
+  placeholderTextColor: theme.placeholder,
+}))``;
 
 export const StyledButtonWrapper = styled.View`
   width: 100%;

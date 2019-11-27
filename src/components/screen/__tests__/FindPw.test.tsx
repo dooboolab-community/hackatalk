@@ -9,7 +9,7 @@ import {
   waitForElement,
   within,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import FindPw from '../FindPW';
 import { ThemeType } from '../../../types';
@@ -41,12 +41,22 @@ describe('[FindPw] screen', () => {
       const theme = createTheme(ThemeType.LIGHT);
       const { getByTestId, getByText } = testingLib;
       const emailInput = getByTestId('findPw_email_input');
-      const emailInputLabel = await waitForElement(() => getByText(getString('EMAIL')));
-      expect(emailInputLabel.props.style).toHaveProperty([0, 'color'], theme.inactiveColor);
+      const emailInputLabel = await waitForElement(() =>
+        getByText(getString('EMAIL')),
+      );
+      expect(emailInputLabel.props.style).toHaveProperty(
+        [0, 'color'],
+        theme.inactiveColor,
+      );
 
       fireEvent.focus(emailInput);
-      const emailInputLabel2 = await waitForElement(() => getByText(getString('EMAIL')));
-      expect(emailInputLabel2.props.style).toHaveProperty([0, 'color'], theme.primary);
+      const emailInputLabel2 = await waitForElement(() =>
+        getByText(getString('EMAIL')),
+      );
+      expect(emailInputLabel2.props.style).toHaveProperty(
+        [0, 'color'],
+        theme.primary,
+      );
     });
 
     it('should validate email format', async () => {
@@ -54,14 +64,20 @@ describe('[FindPw] screen', () => {
       const emailInput = getByTestId('findPw_email_input');
 
       fireEvent.changeText(emailInput, 'wrongEmailFormat.bah');
-      const emailInputError = await waitForElement(() => getByText(getString('EMAIL_FORMAT_NOT_VALID')));
+      const emailInputError = await waitForElement(() =>
+        getByText(getString('EMAIL_FORMAT_NOT_VALID')),
+      );
       expect(emailInputError).toBeTruthy();
       const btnFindPwConfirmText = getByText(getString('PASSWORD_RESET'));
       expect(btnFindPwConfirmText.props).toHaveProperty('disabled');
 
       fireEvent.changeText(emailInput, 'correctEmailFormat@bah.meh');
-      const btnFindPwConfirm = await waitForElement(() => getByTestId('btnFindPwConfirm'));
-      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(getString('PASSWORD_RESET'));
+      const btnFindPwConfirm = await waitForElement(() =>
+        getByTestId('btnFindPwConfirm'),
+      );
+      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(
+        getString('PASSWORD_RESET'),
+      );
 
       expect(btnFindPwConfirmText2.props).toHaveProperty('disabled', false);
     });

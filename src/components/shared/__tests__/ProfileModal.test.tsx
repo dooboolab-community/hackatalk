@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 // Note: test renderer must be required after react-native.
 import ProfileModal from '../ProfileModal';
@@ -15,9 +15,7 @@ let component: React.ReactElement;
 describe('[ProfileModal] render', () => {
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(
-      <ProfileModal {...props} />
-    );
+    component = createTestElement(<ProfileModal {...props} />);
   });
 
   it('renders without crashing', () => {
