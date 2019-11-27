@@ -12,6 +12,7 @@ import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.SafeAreaView`
@@ -30,6 +31,7 @@ function Screen(props: Props): React.ReactElement {
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const { state, showModal } = useProfileContext();
   const [chats, setChats] = useState<Chat[]>([
     {
       id: '',
@@ -122,8 +124,14 @@ function Screen(props: Props): React.ReactElement {
         }): React.ReactElement => {
           return (
             <ChatListItem
+              testID={`CHAT_LIST_ITEM${index}`}
               prevItem={index > 0 ? chats[index - 1] : undefined}
               item={item}
+              onPressPeerImage={(): void => {
+                if (state.modal) {
+                  showModal(item, true);
+                }
+              }}
             />
           );
         }}

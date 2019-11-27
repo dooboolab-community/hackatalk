@@ -27,14 +27,119 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
   >
     <TouchableOpacity
       activeOpacity={0.2}
-      onPress={[Function]}
-      testID="peer_image"
+      onPress={[MockFunction]}
+      testID="chatListItem0"
     >
       <View
         style={
           Object {
             "width": 40,
           }
+        }
+      />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "maxWidth": "90%",
+      }
+    }
+  >
+    <View />
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "rgb(221,226,236)",
+            "borderRadius": 3,
+            "borderWidth": 1,
+            "marginRight": 8,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "black",
+              "fontSize": 14,
+            },
+          ]
+        }
+      >
+        hello1
+      </Text>
+    </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 12,
+            "marginRight": 20,
+            "marginTop": 4,
+          },
+        ]
+      }
+    >
+      0 : 0
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expected 1`] = `
+<View
+  isSame={true}
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "flex-start",
+        "marginLeft": 20,
+        "marginRight": 8,
+        "marginTop": 8,
+        "minHeight": 48,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "marginRight": 8,
+        "width": 40,
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[MockFunction]}
+      testID="chatListItem0"
+    >
+      <Image
+        source={
+          Object {
+            "uri": "https://",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 32,
+              "width": 32,
+            },
+          ]
         }
       />
     </TouchableOpacity>

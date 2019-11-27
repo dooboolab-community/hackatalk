@@ -1,8 +1,11 @@
 import 'react-native';
 
+import * as ProfileContext from '../../../providers/ProfileModalProvider';
+
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
@@ -35,13 +38,48 @@ describe('[Chat] interaction', () => {
     testingLib = render(component);
   });
 
+  afterAll(() => {
+    cleanup();
+  });
+
   it('should [sendChat] when pressing button', () => {
     let chatBtn = testingLib.getByTestId('btn_chat');
     chatBtn = testingLib.getByTestId('btn_chat');
     fireEvent.press(chatBtn);
   });
 
-  afterAll(() => {
-    cleanup();
+  describe('dispatch showModal', () => {
+    it('should dispatch [show-modal] when peerImage is pressed', () => {
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => ({
+          showModal: jest.fn(),
+          state: null,
+        }));
+      const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
+      act(() => {
+        fireEvent.press(chatListItem);
+      });
+    });
+
+    it('should call [show-modal] when modal is available', () => {
+      const mockedData = {
+        showModal: jest.fn(),
+        state: {
+          user: null,
+          deleteMode: true,
+          modal: jest.mock,
+        },
+      };
+      jest
+        .spyOn(ProfileContext, 'useProfileContext')
+        .mockImplementation(() => (mockedData));
+      const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
+      testingLib.rerender(component);
+      act(() => {
+        fireEvent.press(chatListItem);
+      });
+      expect(mockedData.showModal).toHaveBeenCalledTimes(1);
+    });
   });
 });
