@@ -1,25 +1,33 @@
-import { ImageProps, SafeAreaView, TouchableOpacity, View } from 'react-native';
-import ImageViewer, { ImageViewerPropsDefine } from 'react-native-image-zoom-viewer';
-import React, { ReactElement } from 'react';
+import ImageViewer, {
+  ImageViewerPropsDefine,
+} from 'react-native-image-zoom-viewer';
+import React, { ReactElement, useMemo } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import { IImageInfo } from 'react-native-image-zoom-viewer/built/image-viewer.type';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
-export interface ImageI extends HeaderProps {
-  url: string;
-  width?: number;
-  height?: number;
-  props?: ImageProps;
+export interface ImageInfo extends IImageInfo {
+  title: string;
+  subtitle: string;
+}
+
+interface HeaderProps {
+  title?: string;
+  subtitle?: string;
+  onPressClose?: () => void;
 }
 
 interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
-  images: ImageI[];
+  imageInfos: ImageInfo[];
   onPressClose?: () => void;
 }
 
 const HeaderContainer = styled.SafeAreaView`
   position: absolute;
   width: 100%;
-  z-index: 1;  
+  height: 80;
+  z-index: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -35,15 +43,11 @@ const SubTitle = styled.Text`
   font-size: 16;
 `;
 
-interface HeaderProps {
-  title?: string;
-  subtitle?: string;
-  onPressClose?: () => void;
-}
-
 const Header = ({
-  title, subtitle, onPressClose,
-}: HeaderProps): React.ReactElement<HeaderProps, typeof SafeAreaView> => {
+  title,
+  subtitle,
+  onPressClose,
+}: HeaderProps): React.ReactElement => {
   return (
     <HeaderContainer>
       <View style={{ marginLeft: 30 }}>
@@ -75,23 +79,36 @@ const Nothing = (): ReactElement => {
  *   <PinchZoomView images={images}/>
  * ```
  */
-const PinchZoomView = ({ images, onPressClose, ...props }: Props): ReactElement<ImageViewer> => {
+const PinchZoomView = ({
+  imageInfos,
+  onPressClose,
+  ...props
+}: Props): ReactElement<ImageViewer> => {
+  const hasMultipleImages = useMemo(() => {
+    return imageInfos.length > 1;
+  }, imageInfos);
+
   const renderHeader = (index?: number): React.ReactElement => {
     return (
       <Header
         onPressClose={onPressClose}
-        title={index !== undefined ? images[index].title : undefined}
-        subtitle={index !== undefined ? images[index].subtitle : undefined}
+        title={index ? imageInfos[index].title : undefined}
+        subtitle={index !== undefined ? imageInfos[index].subtitle : undefined}
       />
-
     );
   };
+
+  /**
+   * Show props.renderIndicator or only show default indicator it has multiple images
+   */
+  const renderIndicator =
+    props.renderIndicator || (hasMultipleImages ? undefined : Nothing);
 
   return (
     <ImageViewer
       renderHeader={renderHeader}
-      imageUrls={images}
-      renderIndicator={props.renderIndicator || Nothing}
+      imageUrls={imageInfos}
+      renderIndicator={renderIndicator}
       {...props}
     />
   );
