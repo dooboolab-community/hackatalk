@@ -32,6 +32,7 @@ exports[`[PinchZoomView] render renders without crashing 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "height": 80,
                 "justifyContent": "space-between",
                 "position": "absolute",
                 "width": "100%",
@@ -56,9 +57,7 @@ exports[`[PinchZoomView] render renders without crashing 1`] = `
                   },
                 ]
               }
-            >
-              title
-            </Text>
+            />
             <Text
               style={
                 Array [
@@ -261,6 +260,38 @@ exports[`[PinchZoomView] render renders without crashing 1`] = `
               </View>
             </View>
           </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "justifyContent": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 38,
+              "zIndex": 13,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 16,
+                "textShadowColor": "rgba(0, 0, 0, 0.3)",
+                "textShadowOffset": Object {
+                  "height": 0.5,
+                  "width": 0,
+                },
+                "textShadowRadius": 0,
+              }
+            }
+          >
+            1/2
+          </Text>
         </View>
         <View
           style={

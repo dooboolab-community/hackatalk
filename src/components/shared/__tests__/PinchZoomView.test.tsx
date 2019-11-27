@@ -2,14 +2,14 @@ import 'react-native';
 
 import * as React from 'react';
 
-import PinchZoomView, { ImageI } from '../PinchZoomView';
+import PinchZoomView, { ImageInfo } from '../PinchZoomView';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 
-const images: ImageI[] = [
+const imageInfos: ImageInfo[] = [
   {
     url: 'url',
     title: 'title',
@@ -25,7 +25,7 @@ const images: ImageI[] = [
 describe('[PinchZoomView] render', () => {
   beforeEach(() => {
     const props = {
-      images,
+      imageInfos,
     };
     component = <PinchZoomView {...props} />;
     jest.useFakeTimers();
