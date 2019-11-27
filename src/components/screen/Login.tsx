@@ -155,10 +155,9 @@ function Screen(props: Props): React.ReactElement {
             android: androidExpoClientId,
           }),
         });
-        // console.log(response);
         Alert.alert('login:' + JSON.stringify(response.accessToken));
       } catch ({ message }) {
-        // console.log('err', message);
+        Alert.alert(`Google Login Error: ${message}`);
       } finally {
         setSigningInGoogle(false);
       }
@@ -172,9 +171,8 @@ function Screen(props: Props): React.ReactElement {
         Alert.alert('login:' + JSON.stringify(user));
         onLogin();
       }
-    } catch (error) {
-      // Alert.alert('login: Error:' + message);
-      Alert.alert(error);
+    } catch ({ message }) {
+      Alert.alert(`Google Login Error: ${message}`);
     } finally {
       setSigningInGoogle(false);
     }
