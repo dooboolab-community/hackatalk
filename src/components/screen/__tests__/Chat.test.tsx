@@ -63,21 +63,23 @@ describe('[Chat] interaction', () => {
     });
 
     it('should call [show-modal] when modal is available', () => {
+      const mockedData = {
+        showModal: jest.fn(),
+        state: {
+          user: null,
+          deleteMode: true,
+          modal: jest.mock,
+        },
+      };
       jest
         .spyOn(ProfileContext, 'useProfileContext')
-        .mockImplementation(() => ({
-          showModal: jest.fn(),
-          state: {
-            user: null,
-            deleteMode: true,
-            modal: jest.mock,
-          },
-        }));
+        .mockImplementation(() => (mockedData));
       const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
       testingLib.rerender(component);
       act(() => {
         fireEvent.press(chatListItem);
       });
+      expect(mockedData.showModal).toHaveBeenCalledTimes(1);
     });
   });
 });

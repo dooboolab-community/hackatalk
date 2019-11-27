@@ -12,6 +12,7 @@ import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledContainer = styled.SafeAreaView`
