@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk-mobile.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk-mobile)
 [![codecov](https://codecov.io/gh/dooboolab/hackatalk-mobile/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk-mobile)
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 ![aTmc5jrhbo](https://user-images.githubusercontent.com/27461460/65466719-a79e2580-de9a-11e9-965e-c4c28a98346e.gif)
@@ -279,6 +279,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Sandwichj"><img src="https://avatars1.githubusercontent.com/u/11019960?v=4" width="60px;" alt="Minseok"/><br /><sub><b>Minseok</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=Sandwichj" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=Sandwichj" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/jb9229"><img src="https://avatars3.githubusercontent.com/u/3200647?v=4" width="60px;" alt="cwalker"/><br /><sub><b>cwalker</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://geoseong.github.io/"><img src="https://avatars0.githubusercontent.com/u/19166187?v=4" width="60px;" alt="TaeSeong Park"/><br /><sub><b>TaeSeong Park</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=geoseong" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=geoseong" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/daheeahn"><img src="https://avatars3.githubusercontent.com/u/38369729?v=4" width="60px;" alt="daheeahn"/><br /><sub><b>daheeahn</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
