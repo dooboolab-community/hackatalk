@@ -123,6 +123,16 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "geoseong",
+      "name": "TaeSeong Park",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19166187?v=4",
+      "profile": "https://geoseong.github.io/",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7
