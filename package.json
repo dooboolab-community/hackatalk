@@ -29,7 +29,7 @@
     "@react-navigation/core": "^5.0.0-alpha.20",
     "@react-navigation/material-top-tabs": "^5.0.0-alpha.14",
     "@react-navigation/native": "^5.0.0-alpha.14",
-    "@react-navigation/stack": "^5.0.0-alpha.20",    
+    "@react-navigation/stack": "^5.0.0-alpha.20",
     "expo": "^35.0.0",
     "expo-app-auth": "^7.0.0",
     "expo-constants": "^7.0.0",
