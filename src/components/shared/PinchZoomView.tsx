@@ -99,7 +99,7 @@ const PinchZoomView = ({
   };
 
   /**
-   * Show props.renderIndicator or only show default indicator it has multiple images
+   * Show props.renderIndicator or only show default indicator if it has multiple images
    */
   const renderIndicator =
     props.renderIndicator || (hasMultipleImages ? undefined : Nothing);
