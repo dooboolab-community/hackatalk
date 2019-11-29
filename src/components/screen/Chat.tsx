@@ -16,8 +16,7 @@ import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledContainer = styled.SafeAreaView`
   flex: 1;

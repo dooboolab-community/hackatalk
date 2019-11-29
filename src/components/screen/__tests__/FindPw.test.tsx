@@ -10,10 +10,9 @@ import {
   within,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { dark, light } from '../../../theme';
 
 import FindPw from '../FindPW';
-import { ThemeType } from '../../../types';
-import { createTheme } from '../../../theme';
 import { getString } from '../../../../STRINGS';
 
 let props: any;
@@ -38,7 +37,7 @@ describe('[FindPw] screen', () => {
     });
 
     it('should be highlighted when the input is focused', async () => {
-      const theme = createTheme(ThemeType.LIGHT);
+      const theme = light;
       const { getByTestId, getByText } = testingLib;
       const emailInput = getByTestId('findPw_email_input');
       const emailInputLabel = await waitForElement(() =>

@@ -1134,6 +1134,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dooboo-ui/native-theme@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native-theme/-/native-theme-0.0.6.tgz#30d3fa5ceef47b9d9ef00f26d1330c7dceb0ba53"
+  integrity sha512-w9m8FKhLjMLY+hFe0RaiTXZCJwqFzH6MM6IGsKlmAqNlxRaLh/okHNSMVkpv1CNrytaJli2VqBdW0AajQxiZ1g==
+  dependencies:
+    dooboolab-welcome "^1.1.1"
+
 "@dooboo-ui/native@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.2.0.tgz#4ff655a58dacf9f7efe68ed69bbb74ad2a230ae4"

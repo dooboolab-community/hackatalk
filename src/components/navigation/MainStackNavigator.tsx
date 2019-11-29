@@ -11,7 +11,7 @@ import StatusBar from '../shared/StatusBar';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/core';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();
 

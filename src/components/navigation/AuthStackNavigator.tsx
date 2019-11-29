@@ -4,7 +4,7 @@ import React from 'react';
 import SignUp from '../screen/SignUp';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();
 

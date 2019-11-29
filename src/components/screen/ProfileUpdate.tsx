@@ -12,12 +12,12 @@ import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useThemeContext } from '../../providers/ThemeProvider';
 // import { CommonActions } from '@react-navigation/core';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledContainer = styled.View`
   flex: 1;

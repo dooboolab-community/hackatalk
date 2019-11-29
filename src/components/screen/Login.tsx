@@ -21,7 +21,7 @@ import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 interface Props {
   navigation: DefaultNavigationProps;

@@ -10,18 +10,11 @@ export const createTestElement = (
   <AllProviders initialThemeType={themeType}>{child}</AllProviders>
 );
 
-export const createTestProps = (
-  obj: object = {},
-  moreScreenProps?: object,
-): object | unknown | any => ({
+export const createTestProps = (obj: object = {}): object | unknown | any => ({
   navigation: {
     navigate: jest.fn(),
     goBack: jest.fn(),
     resetRoot: jest.fn(),
-  },
-  screenProps: {
-    changeThemeType: jest.fn(),
-    ...moreScreenProps,
   },
   ...obj,
 });

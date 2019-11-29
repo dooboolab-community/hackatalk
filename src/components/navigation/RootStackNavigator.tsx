@@ -3,17 +3,13 @@ import MainStack from './MainStackNavigator';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
 import React from 'react';
-import { ScreenProps } from '../../types';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();
 
-function RootNavigator({
-  screenProps,
-}: {
-  screenProps: ScreenProps;
-}): React.ReactElement {
-  const { theme } = screenProps;
+function RootNavigator(): React.ReactElement {
+  const { theme } = useThemeContext();
   return (
     <NavigationNativeContainer>
       <Stack.Navigator

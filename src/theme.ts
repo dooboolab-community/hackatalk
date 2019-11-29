@@ -1,6 +1,3 @@
-import { DefaultTheme } from 'styled-components';
-import { ThemeType } from './types';
-
 export const colors = {
   whiteGray: '#f7f6f3',
   dusk: 'rgb(65,77,107)',
@@ -22,7 +19,7 @@ export const colors = {
   facebook: 'rgb(52,89,151)',
 };
 
-const light = {
+export const light = {
   background: colors.lightBackground,
   backgroundDark: colors.dodgerBlue,
   btnPrimary: colors.dodgerBlue,
@@ -49,7 +46,7 @@ const light = {
 
 export type Theme = typeof light;
 
-const dark = {
+export const dark = {
   background: colors.darkBackground,
   backgroundDark: '#262A2C',
   btnPrimary: '#262A2C',
@@ -72,19 +69,4 @@ const dark = {
   placeholder: colors.cloudyBlue,
   focused: 'lightcoral',
   placeholderFocused: colors.lightSalmon,
-};
-
-const theme = {
-  light,
-  dark,
-};
-
-export const createTheme = (type = ThemeType.LIGHT): DefaultTheme => {
-  switch (type) {
-    case ThemeType.LIGHT:
-      return theme.light;
-    case ThemeType.DARK:
-      return theme.dark;
-  }
-  return theme.light;
 };

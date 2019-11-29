@@ -12,7 +12,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import UserListItem from '../UserListItem';
-import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -34,7 +33,6 @@ const propsObj = {
     updated: undefined,
   },
   onPress,
-  createTheme,
 };
 
 describe('[UserListItem] rendering test', () => {

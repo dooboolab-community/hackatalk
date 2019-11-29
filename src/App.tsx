@@ -1,11 +1,11 @@
 import { AppLoading, Asset } from 'expo';
 import React, { useState } from 'react';
+import { dark, light } from './theme';
 
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import RootProvider from './providers';
-import { useThemeContext } from './providers/ThemeProvider';
+import { ThemeProvider } from '@dooboo-ui/native-theme';
 
 function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {
@@ -22,11 +22,6 @@ const loadAssetsAsync = async (): Promise<void> => {
   await Promise.all([...imageAssets]);
 };
 
-function App(): React.ReactElement {
-  const { theme, changeThemeType } = useThemeContext();
-  return <RootNavigator screenProps={{ theme, changeThemeType }} />;
-}
-
 function ProviderWrapper(): React.ReactElement {
   const [loading, setLoading] = useState(false);
 
@@ -40,9 +35,9 @@ function ProviderWrapper(): React.ReactElement {
     );
   }
   return (
-    <RootProvider>
-      <App />
-    </RootProvider>
+    <ThemeProvider customTheme={{ light, dark }}>
+      <RootNavigator />
+    </ThemeProvider>
   );
 }
 
