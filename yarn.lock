@@ -1141,13 +1141,12 @@
   dependencies:
     dooboolab-welcome "^1.1.1"
 
-"@dooboo-ui/native@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.2.0.tgz#4ff655a58dacf9f7efe68ed69bbb74ad2a230ae4"
-  integrity sha512-nJ2ruJfcGaaborkpvziYfxZtQf70GNXIh6nJmT2qn6NfkOM6lH+w0nuCBTZjzWuTuOTzIz49PO89a5oTwYqGSA==
+"@dooboo-ui/native@^0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.4.4.tgz#b4b400bfef9a74596f8646cd8152bede05f9f61e"
+  integrity sha512-v8ZVr0xUscewf28EPF/6+72fj4pyhTWE/UOPxAYS81otbteOVdAilvQETj+vAR3jW40WgUyCN1mhd6MqPq+5iw==
   dependencies:
     dooboolab-welcome "^1.1.1"
-    styled-components "^4.4.0"
 
 "@dooboo/eslint-config@^0.2.0":
   version "0.2.0"
