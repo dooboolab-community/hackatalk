@@ -8,11 +8,6 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import {
-  createTestElement,
-  createTestProps as testCreateTestProps,
-} from '../../../../test/testUtils';
-import Chat from '../../screen/Chat';
 import GiftedChatInput from '../GiftedChat';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -23,7 +18,6 @@ const Button = styled.TouchableOpacity``;
 
 let props: any;
 let component: React.ReactElement;
-let chatScreenComponent: React.ReactElement;
 
 const createTestProps = (obj: object): object => ({
   navigation: {
@@ -83,9 +77,6 @@ describe('[GiftedChatInput] render', () => {
       ],
     });
     component = <GiftedChatInput {...props} />;
-    chatScreenComponent = createTestElement(
-      <Chat {...testCreateTestProps()} />,
-    );
   });
 
   it('renders without crashing', () => {
@@ -102,7 +93,6 @@ describe('[GiftedChatInput] render', () => {
 
     beforeEach(() => {
       testingLib = render(component);
-      chatTestingLib = render(chatScreenComponent);
     });
 
     it('should call [setShowMenu] when focused', () => {
@@ -125,33 +115,24 @@ describe('[GiftedChatInput] render', () => {
 
     it('should open image library when pressing photo icon button', () => {
       const touchMenu = testingLib.getByTestId('touch_menu');
-      const touchMenuInChat = chatTestingLib.getByTestId('touch_menu');
-
       act(() => {
         fireEvent.press(touchMenu);
-        fireEvent.press(touchMenuInChat);
       });
       const photoBtn = testingLib.getByTestId('icon_photo');
-      const photoBtnInChat = chatTestingLib.getByTestId('icon_photo');
 
       act(() => {
         fireEvent.press(photoBtn);
-        fireEvent.press(photoBtnInChat);
       });
     });
 
     it('should open camera when pressing camera icon button', () => {
       const touchMenu = testingLib.getByTestId('touch_menu');
-      const touchMenuInChat = chatTestingLib.getByTestId('touch_menu');
       act(() => {
         fireEvent.press(touchMenu);
-        fireEvent.press(touchMenuInChat);
       });
       const cameraBtn = testingLib.getByTestId('icon_camera');
-      const camreBtnInChat = chatTestingLib.getByTestId('icon_camera');
       act(() => {
         fireEvent.press(cameraBtn);
-        fireEvent.press(camreBtnInChat);
       });
     });
 

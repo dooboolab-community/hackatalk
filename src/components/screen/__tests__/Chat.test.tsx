@@ -82,4 +82,23 @@ describe('[Chat] interaction', () => {
       expect(mockedData.showModal).toHaveBeenCalledTimes(1);
     });
   });
+
+  it('should open image library when pressing photo icon button', () => {
+    const touchMenu = testingLib.getByTestId('touch_menu');
+    act(() => {
+      fireEvent.press(touchMenu);
+    });
+    const photoBtn = testingLib.getByTestId('icon_photo');
+
+    act(() => {
+      fireEvent.press(photoBtn);
+    });
+  });
+
+  it('should open camera when pressing camera icon button', () => {
+    const cameraBtn = testingLib.getByTestId('icon_camera');
+    act(() => {
+      fireEvent.press(cameraBtn);
+    });
+  });
 });
