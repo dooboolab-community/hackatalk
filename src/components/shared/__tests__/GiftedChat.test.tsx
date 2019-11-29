@@ -1,20 +1,11 @@
 import 'react-native';
 import * as React from 'react';
 
-import {
-  RenderResult,
-  act,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+import { RenderResult, fireEvent, render } from '@testing-library/react-native';
 
 import GiftedChatInput from '../GiftedChat';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import styled from 'styled-components/native';
-
-const Container = styled.View``;
-const Button = styled.TouchableOpacity``;
 
 let props: any;
 let component: React.ReactElement;
@@ -27,15 +18,8 @@ const createTestProps = (obj: object): object => ({
 });
 
 describe('[GiftedChatInput] render', () => {
-  const renderViewMenu = (): React.ReactElement => (
-    <Container>
-      <Button testID="icon_camera" />
-      <Button testID="icon_photo" />
-    </Container>
-  );
   beforeEach(() => {
     props = createTestProps({
-      renderViewMenu,
       chats: [
         {
           id: '',
@@ -89,7 +73,6 @@ describe('[GiftedChatInput] render', () => {
 
   describe('interactions', () => {
     let testingLib: RenderResult;
-    let chatTestingLib: RenderResult;
 
     beforeEach(() => {
       testingLib = render(component);
@@ -111,29 +94,6 @@ describe('[GiftedChatInput] render', () => {
     it('should call [setShowMenu] when focused', () => {
       const touchMenu = testingLib.getByTestId('touch_menu');
       fireEvent.press(touchMenu);
-    });
-
-    it('should open image library when pressing photo icon button', () => {
-      const touchMenu = testingLib.getByTestId('touch_menu');
-      act(() => {
-        fireEvent.press(touchMenu);
-      });
-      const photoBtn = testingLib.getByTestId('icon_photo');
-
-      act(() => {
-        fireEvent.press(photoBtn);
-      });
-    });
-
-    it('should open camera when pressing camera icon button', () => {
-      const touchMenu = testingLib.getByTestId('touch_menu');
-      act(() => {
-        fireEvent.press(touchMenu);
-      });
-      const cameraBtn = testingLib.getByTestId('icon_camera');
-      act(() => {
-        fireEvent.press(cameraBtn);
-      });
     });
 
     it('should invoke changeText event handler when message changed', () => {
