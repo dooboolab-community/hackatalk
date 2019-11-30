@@ -110,16 +110,11 @@ function Screen(props: Props): React.ReactElement {
   const onRequestImagePicker = async (type: string): Promise<void> => {
     if (type === 'photo') {
       const result = await launchImageLibraryAsync();
-      if (result) {
-        console.log('result', result);
-      }
+      console.log('result!');
       return;
     }
-
     const result = await launchCameraAsync();
-    if (result) {
-      console.log('result', result);
-    }
+    console.log('result!', result);
   };
 
   return (

@@ -19,6 +19,15 @@ import renderer from 'react-test-renderer';
 let props: any;
 let component: ReactElement;
 
+jest.mock('expo-permissions', () => ({
+  askAsync: (): string => 'granted',
+}));
+
+jest.mock('expo-image-picker', () => ({
+  launchCameraAsync: (): string => 'photo info',
+  launchImageLibraryAsync: (): string => 'photo info',
+}));
+
 describe('[Chat] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
