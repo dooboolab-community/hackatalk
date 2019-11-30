@@ -11,14 +11,43 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ProfileUpdate from '../ProfileUpdate';
-import { getString } from '../../../../STRINGS';
-import { renderHook } from '@testing-library/react-hooks';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { useActionSheet } from '@expo/react-native-action-sheet';
 
 let props: any;
 let component: ReactElement;
+
+const BUTTON_INDEX_LAUNCH_CAMERA = 0;
+const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+
+jest.mock('@expo/react-native-action-sheet', () => ({
+  useActionSheet: (): any => {
+    let first = true;
+    return {
+      showActionSheetWithOptions: (
+        options: any,
+        callback: (index: number) => void,
+      ): void => {
+        if (first) {
+          callback(BUTTON_INDEX_LAUNCH_CAMERA);
+          first = false;
+        }
+        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY);
+      },
+    };
+  },
+}));
+
+jest.mock('expo-permissions', () => ({
+  askAsync: (): { status: string } => ({
+    status: 'granted',
+  }),
+}));
+
+jest.mock('expo-image-picker', () => ({
+  launchCameraAsync: (): string => 'photo info',
+  launchImageLibraryAsync: (): string => 'photo info',
+}));
 
 describe('rendering test', () => {
   beforeEach(() => {
@@ -79,27 +108,18 @@ describe('interaction', () => {
     // expect(inputStatus.props.txt).toEqual('name');
   });
 
-  it('should open actionSheet with options when pressing profile icon button', () => {
-    const { result } = renderHook(() => useActionSheet());
-    const callback = jest.fn();
+  it('should launch camera when user select "Take a picture"', () => {
     const profileBtn = testingLib.getByTestId('user_icon_button');
-    const options = [
-      getString('TAKE_A_PICTURE'),
-      getString('SELSCT_FROM_ALBUM'),
-      getString('CANCEL'),
-    ];
     act(() => {
       fireEvent.press(profileBtn);
-      result.current.showActionSheetWithOptions(
-        {
-          options,
-          cancelButtonIndex: 2,
-        },
-        callback,
-      );
-      callback();
     });
-    expect(callback).toHaveBeenCalled();
+  });
+
+  it('should open album when user select "Select from Album"', () => {
+    const profileBtn = testingLib.getByTestId('user_icon_button');
+    act(() => {
+      fireEvent.press(profileBtn);
+    });
   });
 
   afterAll(() => {
