@@ -296,11 +296,10 @@ function Screen(props: Props): React.ReactElement {
                   marginTop: 20,
                 },
               ]}
-              leftComponent={
+              iconLeft={
                 <View
                   style={{
-                    position: 'absolute',
-                    left: 16,
+                    marginLeft: 16,
                   }}
                 >
                   <Ionicons name="logo-google" size={20} color="white" />
@@ -326,11 +325,10 @@ function Screen(props: Props): React.ReactElement {
                   width: '100%',
                 },
               ]}
-              leftComponent={
+              iconLeft={
                 <View
                   style={{
-                    position: 'absolute',
-                    left: 16,
+                    marginLeft: 16,
                   }}
                 >
                   <Ionicons name="logo-facebook" size={20} color="white" />

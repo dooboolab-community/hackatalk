@@ -434,7 +434,17 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
-            />
+            >
+              <View
+                style={
+                  Object {
+                    "marginLeft": 16,
+                  }
+                }
+              >
+                <Text />
+              </View>
+            </View>
             <Text
               style={
                 Array [
@@ -520,7 +530,17 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
-            />
+            >
+              <View
+                style={
+                  Object {
+                    "marginLeft": 16,
+                  }
+                }
+              >
+                <Text />
+              </View>
+            </View>
             <Text
               style={
                 Array [
