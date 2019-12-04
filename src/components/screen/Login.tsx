@@ -193,9 +193,11 @@ function Screen(props: Props): React.ReactElement {
             id,name,email,birthday,gender,first_name,last_name,picture
             &access_token=${token}`,
         );
+        // console.log('success', response);
         const responseObject = JSON.parse(await response.text());
       } else {
         // type === 'cancel'
+        // console.log('cancel', token);
       }
     } catch ({ message }) {
       Alert.alert(`Facebook Login Error: ${message}`);

@@ -121,17 +121,7 @@ describe('[Login] Facebook Signin', () => {
       bundleUrl: 'bundleUrl',
     };
 
-    // @ts-ignore
-    global.fetch = jest.fn().mockImplementation(() => {
-      return new Promise((resolve): void => {
-        resolve({
-          json: function() {
-            return { id: 1 };
-          },
-        });
-      });
-    });
-
+    // expect.assertions(1);
     testingLib = render(component);
 
     const btnFacebook = testingLib.queryByTestId('btnFacebook');
@@ -143,6 +133,11 @@ describe('[Login] Facebook Signin', () => {
       type: 'success',
       token: 'testToken',
     });
+
+    const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+    await flushPromises();
+
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 
   it('should cancel signin with facebook', async () => {
@@ -168,6 +163,9 @@ describe('[Login] Facebook Signin', () => {
     act(() => {
       fireEvent.press(btnFacebook);
     });
+
+    // const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
+    // await flushPromises();
 
     expect(Facebook.logInWithReadPermissionsAsync('')).resolves.toEqual({
       type: 'cancel',
