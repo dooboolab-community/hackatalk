@@ -3,18 +3,22 @@ import React, { useReducer } from 'react';
 import { User } from '../types';
 import createCtx from '../utils/createCtx';
 
+interface ShowModalParams {
+  user: Partial<User>;
+  deleteMode: boolean;
+  isFriendAlreadyAdded?: boolean;
+  onDeleteFriend?: () => void;
+  onAddFriend?: () => void;
+}
+
 interface Context {
   state: State;
-  showModal: (
-    user: Partial<User>,
-    deleteMode: boolean,
-    screen?: string,
-  ) => void;
+  showModal: (showModalParams: ShowModalParams) => void;
   // setUser: (user: User) => void;
   // setShowAddBtn: (deleteMode: boolean) => void;
-  // setScreen: (screen: string) => void;
   // open: () => void;
 }
+
 const [useCtx, Provider] = createCtx<Context>();
 
 export enum ActionType {
@@ -24,8 +28,13 @@ export enum ActionType {
 export interface State {
   user: Partial<User>;
   deleteMode: boolean;
-  screen: string;
   modal?: any;
+}
+
+export interface Payload extends State {
+  isFriendAlreadyAdded?: boolean;
+  onDeleteFriend?: () => void;
+  onAddFriend?: () => void;
 }
 
 const initialState: State = {
@@ -36,11 +45,10 @@ const initialState: State = {
     statusMsg: '',
   },
   deleteMode: false,
-  screen: '',
   modal: null,
 };
 
-type Action = { type: ActionType.ShowModal; payload: State };
+type Action = { type: ActionType.ShowModal; payload: Payload };
 
 interface Props {
   children?: React.ReactElement;
@@ -48,14 +56,22 @@ interface Props {
 
 type Reducer = (state: State, action: Action) => State;
 
-const showModal = (dispatch: React.Dispatch<Action>) => (
-  user: Partial<User>,
-  deleteMode: boolean,
-  screen?: string,
-): void => {
+const showModal = (dispatch: React.Dispatch<Action>) => ({
+  user,
+  deleteMode,
+  isFriendAlreadyAdded,
+  onDeleteFriend,
+  onAddFriend,
+}: ShowModalParams): void => {
   dispatch({
     type: ActionType.ShowModal,
-    payload: { user, deleteMode, screen: screen || '' },
+    payload: {
+      user,
+      deleteMode,
+      isFriendAlreadyAdded,
+      onDeleteFriend,
+      onAddFriend,
+    },
   });
 };
 
@@ -67,14 +83,17 @@ const reducer: Reducer = (state = initialState, action) => {
       if (modal && modal.current) {
         modal.current.setUser(payload.user);
         modal.current.showAddBtn(!payload.deleteMode);
-        modal.current.setScreen(payload.screen);
+        modal.current.setIsFriendAlreadyAdded(
+          payload.isFriendAlreadyAdded || false,
+        );
+        modal.current.setOnDeleteFriend(payload.onDeleteFriend);
+        modal.current.setOnAddFriend(payload.onAddFriend);
         modal.current.open();
       }
       return {
         ...state,
         user: payload.user,
         deleteMode: !payload.deleteMode,
-        screen: payload.screen,
       };
     default:
       return state;
@@ -92,3 +111,10 @@ function ProfileModalProvider(props: Props): React.ReactElement {
 }
 
 export { useCtx as useProfileContext, ProfileModalProvider };
+
+const ProfileContext = {
+  useProfileContext: useCtx,
+  ProfileModalProvider,
+};
+
+export default ProfileContext;
