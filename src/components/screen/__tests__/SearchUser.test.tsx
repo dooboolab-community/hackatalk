@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {
   RenderResult,
-  cleanup,
   fireEvent,
   render,
   toJSON,
@@ -102,6 +101,7 @@ describe('[serachUser] interaction', () => {
 
 const TestComponent = (): React.ReactElement => {
   const { state } = useProfileContext();
+  console.log(state);
   const modalEl = React.useRef(null);
   state.modal = modalEl;
 
@@ -116,14 +116,34 @@ const TestComponent = (): React.ReactElement => {
 describe('[SearchUser] interaction with Profile Modal', () => {
   let component: React.ReactElement;
   let testingLib: RenderResult;
+  let itemTestID: string;
 
-  it('show profile modal when press user in search user list', () => {
+  beforeEach(() => {
     component = createTestElement(<TestComponent />);
     testingLib = render(component);
-    const itemTestID = 'userListItem0';
+    itemTestID = 'userListItem0';
+  });
+
+  it('show profile modal when press user in search user list', () => {
     const userListItem = testingLib.queryByTestId(itemTestID);
     act(() => {
       fireEvent.press(userListItem);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
+
+  it('show changged state when press add and delete button on profile modal', () => {
+    const userListItem = testingLib.queryByTestId(itemTestID);
+    act(() => {
+      fireEvent.press(userListItem);
+    });
+    const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+    act(() => {
+      fireEvent.press(btnAdFriend);
     });
     expect(testingLib.asJSON()).toMatchSnapshot();
   });

@@ -72,7 +72,6 @@ const TestComponent = ({ showModalParams }): React.ReactElement => {
   } = useFriendContext();
   const modalEl = React.useRef(null);
   state.modal = modalEl;
-  const { screen } = showModalParams;
   const user = showModalParams.user || friends[0];
   const deleteMode =
     friends.findIndex((friend) => friend.uid === user.uid) !== -1;
@@ -92,7 +91,26 @@ const TestComponent = ({ showModalParams }): React.ReactElement => {
         title="show"
         onPress={(): void => {
           if (state.modal.current && user) {
-            showModal(user, deleteMode, screen);
+            showModal({
+              user,
+              deleteMode,
+              isFriendAlreadyAdded: deleteMode,
+              onDeleteFriend: () => (): void => {
+                if (state.modal && state.modal.current) {
+                  const profileModal = state.modal.current;
+                  profileModal.showAddBtn(true);
+                  profileModal.setIsFriendAdded(false);
+                  profileModal.setIsFriendAlreadyAdded(false);
+                }
+              },
+              onAddFriend: () => (): void => {
+                if (state.modal && state.modal.current) {
+                  const profileModal = state.modal.current;
+                  profileModal.showAddBtn(false);
+                  profileModal.setIsFriendAdded(true);
+                }
+              },
+            });
           }
         }}
       />
@@ -107,9 +125,7 @@ describe('[ProfileModal] interactions', () => {
 
   it('should be shown and closed when press buttons', () => {
     component = createTestElement(
-      <TestComponent
-        showModalParams={{ user: fakeUsers[0], deleteMode: false, screen: '' }}
-      />,
+      <TestComponent showModalParams={{ user: fakeUsers[0] }} />,
     );
     testingLib = render(component);
     const btnShowmodal = testingLib.queryByTestId('btn-showmodal');

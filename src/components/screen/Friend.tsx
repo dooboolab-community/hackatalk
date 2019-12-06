@@ -23,16 +23,34 @@ export default function Screen(): ReactElement {
     friendState: { friends },
   } = useFriendContext();
 
-  const renderItem = (item: User): ReactElement => {
+  const userListOnPress = (user: User): void => {
+    if (state.modal) {
+      showModal({
+        user,
+        deleteMode: true,
+        onDeleteFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.close();
+          }
+        },
+      });
+    }
+  };
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: User;
+    index: number;
+  }): ReactElement => {
+    const testID = `USER_ID_${index}`;
+    const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
       <UserListItem
-        testID="USER_ID"
+        testID={testID}
         user={item}
-        onPress={(): void => {
-          if (state.modal) {
-            showModal(item, true, 'Friend');
-          }
-        }}
+        onPress={userListOnPressInlineFn}
       />
     );
   };
@@ -54,8 +72,8 @@ export default function Screen(): ReactElement {
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={friend.friendList}
-        renderItem={({ item }): ReactElement => renderItem(item)}
+        data={friends}
+        renderItem={renderItem}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }

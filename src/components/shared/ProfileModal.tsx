@@ -82,8 +82,11 @@ interface Ref {
   open: () => void;
   close: () => void;
   setUser: (user: User) => void;
-  setScreen: (screen: string) => void;
   showAddBtn: (show: boolean) => void;
+  setIsFriendAdded: (isFriendAdded: boolean) => void;
+  setIsFriendAlreadyAdded: (isFriendAlreadyAdded: boolean) => void;
+  setOnDeleteFriend: (callback?: () => void) => void;
+  setOnAddFriend: (callback?: () => void) => void;
 }
 
 interface Styles {
@@ -123,7 +126,8 @@ export const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMsg: '',
     online: false,
   });
-  const [screen, setScreen] = useState('');
+  const [onDeleteFriend, setOnDeleteFriend] = useState();
+  const [onAddFriend, setOnAddFriend] = useState();
 
   const {
     friendState: { friends },
@@ -131,15 +135,15 @@ export const Shared = forwardRef<Ref, Props>((props, ref) => {
     deleteFriend: ctxDeleteFriend,
   } = useFriendContext();
 
-  useEffect(() => {
-    if (screen === 'SearchUser') {
-      setIsFriendAlreadyAdded(
-        friends.findIndex((friend) => friend.uid === user.uid) !== -1,
-      );
-    } else {
-      setIsFriendAlreadyAdded(false);
-    }
-  }, [user, friends]);
+  // useEffect(() => {
+  //   if (screen === 'SearchUser') {
+  //     setIsFriendAlreadyAdded(
+  //       friends.findIndex((friend) => friend.uid === user.uid) !== -1,
+  //     );
+  //   } else {
+  //     setIsFriendAlreadyAdded(false);
+  //   }
+  // }, [user, friends]);
 
   const open = (): void => {
     setIsFriendAdded(false);
@@ -156,35 +160,29 @@ export const Shared = forwardRef<Ref, Props>((props, ref) => {
 
   const addFriend = (): void => {
     ctxAddFriend(user);
-    if (screen === 'SearchUser') {
-      setShowAddBtn(false);
-      setIsFriendAdded(true);
+    if (onAddFriend) {
+      onAddFriend();
     }
   };
 
   const deleteFriend = (): void => {
     ctxDeleteFriend(user);
-    if (screen === 'SearchUser') {
-      setShowAddBtn(true);
-      setIsFriendAdded(false);
-    }
-    if (modal && screen !== 'SearchUser') {
-      modal.close();
+    if (onDeleteFriend) {
+      onDeleteFriend();
     }
   };
 
   useImperativeHandle(ref, () => ({
     open,
     close,
-    setUser: (newUser: User): void => {
-      setUser(newUser);
-    },
+    setUser,
     showAddBtn: (flag: boolean): void => {
       setShowAddBtn(flag);
     },
-    setScreen: (screen: string): void => {
-      setScreen(screen);
-    },
+    setIsFriendAdded,
+    setIsFriendAlreadyAdded,
+    setOnDeleteFriend,
+    setOnAddFriend,
   }));
   const { photoURL, displayName, statusMsg } = user;
   const {
