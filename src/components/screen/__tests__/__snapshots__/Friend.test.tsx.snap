@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Friend] interaction add friends should be added to the friend list when called addFriend function 1`] = `
+exports[`[Friend] interaction add friends should be added to the flatlist when called addFriend 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -276,7 +276,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
 </View>
 `;
 
-exports[`[Friend] interaction add friends should be deleted to the friend list when called deleteFriend function 1`] = `
+exports[`[Friend] interaction add friends should be deleted to the friendlist when called deleteFriend 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
