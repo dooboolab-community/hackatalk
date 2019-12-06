@@ -110,7 +110,7 @@ describe('[FriendProvider] interactions', () => {
   });
 
   describe('[FriendProvider] add friends', () => {
-    it('should be added only once, when add the same user twice', () => {
+    it('[FriendProvider] add unregistered friend and registered friend', () => {
       const btnAdd1 = testingLib.queryByTestId('btn-add-1');
 
       //
@@ -134,7 +134,7 @@ describe('[FriendProvider] interactions', () => {
       expect(friendList.props.data).toMatchObject(registeredFriendList);
     });
 
-    it('should be added 2 users, when added 2 unregistered users', () => {
+    it('[FriendProvider] add registered friends', () => {
       const btnAdd1 = testingLib.queryByTestId('btn-add-1');
       const btnAdd2 = testingLib.queryByTestId('btn-add-2');
       act(() => {
@@ -166,7 +166,7 @@ describe('[FriendProvider] interactions', () => {
       initFriendCount = initFriendList.length;
     });
 
-    it('should be deleted, when delete registered friend', () => {
+    it('[FriendProvider] delete registered friend and unregistered friend', () => {
       const btnDelete1 = testingLib.queryByTestId('btn-delete-1');
 
       //
@@ -184,7 +184,7 @@ describe('[FriendProvider] interactions', () => {
       expect(friendList.props.data.length).toBe(initFriendCount - 1);
     });
 
-    it('should be deleted 2 user, when delete 2 registered friends', () => {
+    it('[FriendProvider] delete registered friends', () => {
       const btnDelete1 = testingLib.queryByTestId('btn-delete-1');
       const btnDelete2 = testingLib.queryByTestId('btn-delete-2');
 

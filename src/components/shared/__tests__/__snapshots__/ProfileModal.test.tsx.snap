@@ -596,7 +596,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
 </View>
 `;
 
-exports[`[ProfileModal] interactions should close when press delete button in [Friend] Screen 1`] = `
+exports[`[ProfileModal] interactions should close when press delete button in Friend Screen 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -888,7 +888,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
 </View>
 `;
 
-exports[`[ProfileModal] interactions should display added friend message when press add button in [SearchUser] Screen 1`] = `
+exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -1186,7 +1186,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
 </View>
 `;
 
-exports[`[ProfileModal] interactions should display added friend message when press add button in [SearchUser] Screen 2`] = `
+exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 2`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
