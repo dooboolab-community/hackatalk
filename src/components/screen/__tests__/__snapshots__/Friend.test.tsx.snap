@@ -1,8 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-exports[`[Friend] interaction add friends should be added to the flatlist when called addFriend 1`] = `
-=======
 exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Friend] screen. Show the friend is removed from list and the modal turns off when the delete button is pressed 1`] = `
 <View
   collapsable={true}
@@ -806,7 +803,6 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
 `;
 
 exports[`[Friend] interaction add friends should be added to the friend list when called addFriend function 1`] = `
->>>>>>> origin/feat/add_and_delete_friend
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -909,11 +905,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
         >
           <TouchableOpacity
             activeOpacity={0.5}
-<<<<<<< HEAD
-            testID="USER_ID"
-=======
             testID="USER_ID_0"
->>>>>>> origin/feat/add_and_delete_friend
           >
             <View
               style={
@@ -1002,11 +994,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
         >
           <TouchableOpacity
             activeOpacity={0.5}
-<<<<<<< HEAD
-            testID="USER_ID"
-=======
             testID="USER_ID_1"
->>>>>>> origin/feat/add_and_delete_friend
           >
             <View
               style={
@@ -1090,11 +1078,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
 </View>
 `;
 
-<<<<<<< HEAD
-exports[`[Friend] interaction add friends should be deleted to the friendlist when called deleteFriend 1`] = `
-=======
 exports[`[Friend] interaction add friends should be deleted to the friend list when called deleteFriend function 1`] = `
->>>>>>> origin/feat/add_and_delete_friend
 <View
   collapsable={true}
   pointerEvents="box-none"

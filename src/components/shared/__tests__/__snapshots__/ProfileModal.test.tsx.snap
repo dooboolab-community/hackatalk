@@ -596,11 +596,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
 </View>
 `;
 
-<<<<<<< HEAD
-exports[`[ProfileModal] interactions should close when press delete button in Friend Screen 1`] = `
-=======
 exports[`[ProfileModal] interactions should close when press delete button in [Friend] Screen 1`] = `
->>>>>>> origin/feat/add_and_delete_friend
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -833,11 +829,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                   }
                   testID="btn-ad-title"
                 >
-<<<<<<< HEAD
-                  Delete
-=======
                   Add
->>>>>>> origin/feat/add_and_delete_friend
                 </Text>
               </View>
             </TouchableOpacity>
@@ -896,11 +888,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
 </View>
 `;
 
-<<<<<<< HEAD
-exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 1`] = `
-=======
 exports[`[ProfileModal] interactions should display added friend message when press add button in [SearchUser] Screen 1`] = `
->>>>>>> origin/feat/add_and_delete_friend
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -1198,11 +1186,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
 </View>
 `;
 
-<<<<<<< HEAD
-exports[`[ProfileModal] interactions should display added friend message when press add button in SearchUser Screen 2`] = `
-=======
 exports[`[ProfileModal] interactions should display added friend message when press add button in [SearchUser] Screen 2`] = `
->>>>>>> origin/feat/add_and_delete_friend
 <View
   collapsable={true}
   pointerEvents="box-none"

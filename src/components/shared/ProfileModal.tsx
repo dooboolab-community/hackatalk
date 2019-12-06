@@ -8,7 +8,6 @@ import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useFriendContext } from '../../providers/FriendProvider';
-import { useStateValue } from '../../contexts';
 import { useThemeContext } from '../../providers/ThemeProvider';
 
 const StyledView = styled.View`
@@ -110,7 +109,6 @@ const styles: Styles = {
 
 export const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: any;
-  const [, dispatch] = useStateValue();
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
