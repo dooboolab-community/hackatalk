@@ -110,11 +110,7 @@ describe('[FriendProvider] interactions', () => {
   });
 
   describe('[FriendProvider] add friends', () => {
-<<<<<<< HEAD
-    it('[FriendProvider] add unregistered friend and registered friend', () => {
-=======
     it('should be added only once, when add the same user twice', () => {
->>>>>>> origin/feat/add_and_delete_friend
       const btnAdd1 = testingLib.queryByTestId('btn-add-1');
 
       //
@@ -138,11 +134,7 @@ describe('[FriendProvider] interactions', () => {
       expect(friendList.props.data).toMatchObject(registeredFriendList);
     });
 
-<<<<<<< HEAD
-    it('[FriendProvider] add registered friends', () => {
-=======
     it('should be added 2 users, when added 2 unregistered users', () => {
->>>>>>> origin/feat/add_and_delete_friend
       const btnAdd1 = testingLib.queryByTestId('btn-add-1');
       const btnAdd2 = testingLib.queryByTestId('btn-add-2');
       act(() => {
