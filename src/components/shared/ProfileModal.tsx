@@ -13,11 +13,8 @@ import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useFriendContext } from '../../providers/FriendProvider';
-<<<<<<< HEAD
-import { useProfileContext } from '../../providers/ProfileModalProvider';
+import { useStateValue } from '../../contexts';
 import { useThemeContext } from '../../providers/ThemeProvider';
-=======
->>>>>>> modify the state to change using the ref function
 
 const StyledView = styled.View`
   margin-top: 40px;
@@ -113,8 +110,9 @@ const styles: Styles = {
   },
 };
 
-const Shared = forwardRef<Ref, Props>((props, ref) => {
+export const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: any;
+  const [, dispatch] = useStateValue();
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
@@ -158,20 +156,25 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   };
 
   const addFriend = (): void => {
-    ctxAddFriend(user);
-    if (screen === 'SearchUser') {
-      setShowAddBtn(false);
-      setIsFriendAdded(true);
+    dispatch({
+      type: 'add-friend',
+      payload: {
+        friend: user,
+      },
+    });
+    if (modal) {
+      modal.close();
     }
   };
 
   const deleteFriend = (): void => {
-    ctxDeleteFriend(user);
-    if (screen === 'SearchUser') {
-      setShowAddBtn(true);
-      setIsFriendAdded(false);
-    }
-    if (modal && screen !== 'SearchUser') {
+    dispatch({
+      type: 'delete-friend',
+      payload: {
+        friend: user,
+      },
+    });
+    if (modal) {
       modal.close();
     }
   };
