@@ -158,11 +158,30 @@ const Screen = (): React.ReactElement => {
     friendState: { friends },
   } = useFriendContext();
 
-  const userListOnPress = (item: User): void => {
+  const userListOnPress = (user: User): void => {
     if (state.modal) {
       const deleteMode =
-        friends.findIndex((friend) => friend.uid === item.uid) !== -1;
-      showModal(item, deleteMode, 'SearchUser');
+        friends.findIndex((friend) => friend.uid === user.uid) !== -1;
+      showModal({
+        user,
+        deleteMode,
+        isFriendAlreadyAdded: deleteMode,
+        onDeleteFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.showAddBtn(true);
+            profileModal.setIsFriendAdded(false);
+            profileModal.setIsFriendAlreadyAdded(false);
+          }
+        },
+        onAddFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.showAddBtn(false);
+            profileModal.setIsFriendAdded(true);
+          }
+        },
+      });
     }
   };
   const renderItem = ({

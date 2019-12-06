@@ -829,7 +829,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                   }
                   testID="btn-ad-title"
                 >
-                  Delete
+                  Add
                 </Text>
               </View>
             </TouchableOpacity>
