@@ -141,7 +141,7 @@ function Screen(): React.ReactElement {
               item={item}
               onPressPeerImage={(): void => {
                 if (state.modal) {
-                  showModal(item, true);
+                  showModal({ user: item, deleteMode: true });
                 }
               }}
             />
