@@ -143,8 +143,8 @@ function Shared(props: Props): React.ReactElement {
           {isSamePeerMsg ? (
             <View />
           ) : (
-              <StyledTextPeerName>{displayName}</StyledTextPeerName>
-            )}
+            <StyledTextPeerName>{displayName}</StyledTextPeerName>
+          )}
           <StyledTextPeerMessageContainer>
             <StyledTextPeerMessage>{message}</StyledTextPeerMessage>
           </StyledTextPeerMessageContainer>
