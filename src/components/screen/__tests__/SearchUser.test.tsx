@@ -103,7 +103,6 @@ describe('[serachUser] interaction', () => {
 
 const TestComponent = (): React.ReactElement => {
   const { state } = useProfileContext();
-  console.log(state);
   const modalEl = React.useRef(null);
   state.modal = modalEl;
 
