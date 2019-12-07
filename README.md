@@ -283,6 +283,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/daheeahn"><img src="https://avatars3.githubusercontent.com/u/38369729?v=4" width="60px;" alt="daheeahn"/><br /><sub><b>daheeahn</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/devohno"><img src="https://avatars1.githubusercontent.com/u/55861805?v=4" width="60px;" alt="Eunho Lee"/><br /><sub><b>Eunho Lee</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=devohno" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=devohno" title="Tests">⚠️</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="http://stackoverflow.com/users/515932/jeff-gu-kang?tab=profile"><img src="https://avatars2.githubusercontent.com/u/216363?v=4" width="60px;" alt="Jeff Gu Kang"/><br /><sub><b>Jeff Gu Kang</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JeffGuKang" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JeffGuKang" title="Tests">⚠️</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
