@@ -143,7 +143,18 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "devohno",
+      "name": "Eunho Lee",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/55861805?v=4",
+      "profile": "https://github.com/devohno",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
