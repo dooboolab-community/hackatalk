@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   defaultThemeType,
   useThemeContext,
-} from '../ThemeProvider';
+} from '@dooboo-ui/native-theme';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
 import { ThemeType } from '../../types';

@@ -1,7 +1,9 @@
+import { dark, light } from '../theme';
+
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
-import { ThemeProvider } from './ThemeProvider';
+import { ThemeProvider } from '@dooboo-ui/native-theme';
 import { ThemeType } from '../types';
 
 interface Props {
@@ -15,7 +17,10 @@ export const AllProviders = ({
   children,
 }: Props): React.ReactElement => {
   return (
-    <ThemeProvider initialThemeType={initialThemeType}>
+    <ThemeProvider
+      initialThemeType={initialThemeType}
+      customTheme={{ light, dark }}
+    >
       <ProfileModalProvider>{children}</ProfileModalProvider>
     </ThemeProvider>
   );

@@ -15,9 +15,7 @@ import { User } from '../../../types';
 
 // import UserListItem from '../../shared/UserListItem';
 
-const props = createTestProps({
-  screenProps: { changeTheme: jest.fn() },
-});
+const props = createTestProps();
 
 const component: React.ReactElement = createTestElement(
   <SearchUser {...props} />,

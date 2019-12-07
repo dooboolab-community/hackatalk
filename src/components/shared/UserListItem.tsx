@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { User } from '../../types';
 import styled from 'styled-components/native';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 interface Props {
   testID?: string;

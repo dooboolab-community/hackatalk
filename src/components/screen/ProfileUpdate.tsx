@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 // import { CommonActions } from '@react-navigation/core';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;

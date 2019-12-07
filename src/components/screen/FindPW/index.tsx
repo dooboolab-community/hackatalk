@@ -7,7 +7,11 @@ import {
   StyledButtonWrapper,
   StyledScrollView,
 } from './styles';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 import React, { ReactElement, memo, useCallback } from 'react';
 
 import { Alert } from 'react-native';
@@ -21,7 +25,8 @@ interface Props {
 }
 
 const schema = yup.object().shape({
-  email: yup.string()
+  email: yup
+    .string()
     .email(getString('EMAIL_FORMAT_NOT_VALID'))
     .required(getString('EMAIL_REQUIRED')),
 });
@@ -32,9 +37,7 @@ function FindPW(): ReactElement {
     errors,
     setValue,
     handleSubmit,
-    formState: {
-      touched,
-    },
+    formState: { touched },
     watch,
     reset,
   } = useForm({
@@ -43,7 +46,7 @@ function FindPW(): ReactElement {
   const onSubmit = useCallback(({ email }) => {
     Alert.alert(
       'Find Password',
-      `password reset link has been sent to your email: ${email}.`
+      `password reset link has been sent to your email: ${email}.`,
     );
     reset({ email: '' });
   }, []);
@@ -66,11 +69,15 @@ function FindPW(): ReactElement {
             onTextChanged={onTextChanged}
             error={errorMessage}
           />
-          {!!errors.email && <ErrorText isError={!!errors.email}>{errors.email.message}</ErrorText>}
+          {!!errors.email && (
+            <ErrorText isError={!!errors.email}>
+              {errors.email.message}
+            </ErrorText>
+          )}
           <StyledButtonWrapper>
             <Button
               testID="btnFindPwConfirm"
-              isDisabled={(!(touched && touched.length) || !!errorMessage)}
+              isDisabled={!(touched && touched.length) || !!errorMessage}
               onPress={handleSubmit(onSubmit)}
               width="100%"
               containerStyle={{ flexDirection: 'row' }}

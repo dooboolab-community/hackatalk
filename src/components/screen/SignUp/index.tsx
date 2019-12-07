@@ -50,15 +50,13 @@ export const initialValues: SignUpFormValues = {
   status: '',
 };
 
-function SignUpPage(props: Props): ReactElement {
+function SignUpPage(): ReactElement {
   const {
     register,
     errors,
     setValue,
     handleSubmit,
-    formState: {
-      touched,
-    },
+    formState: { touched },
     watch,
     reset,
   } = useForm<SignUpFormValues>({
@@ -68,27 +66,24 @@ function SignUpPage(props: Props): ReactElement {
     (label: string, text: string): void | Promise<boolean> => {
       setValue(label, text, true);
     },
-    [setValue]
+    [setValue],
   );
-  const onSignUpSubmit = useCallback((
-    {
-      email,
-      password,
-      name,
-      status,
-    }): void => {
-    Alert.alert(
-      'Signed Up',
-      `You've signed up with 
+  const onSignUpSubmit = useCallback(
+    ({ email, password, name, status }): void => {
+      Alert.alert(
+        'Signed Up',
+        `You've signed up with 
         email: ${email},
         password: ${password},
         name: ${name},
         status: ${status}
         successfully!
-      `
-    );
-    reset(initialValues);
-  }, []);
+      `,
+      );
+      reset(initialValues);
+    },
+    [],
+  );
   const values: SignUpFormValues = useMemo(() => watch(), [watch]);
 
   return (
@@ -107,10 +102,14 @@ function SignUpPage(props: Props): ReactElement {
                 txtLabel={getLabelName(label)}
                 txtHint={getLabelName(label)}
                 isPassword={label.toLowerCase().endsWith('password')}
-                onTextChanged={(text: string): void | Promise<boolean> => onTextChanged(label, text)}
+                onTextChanged={(text: string): void | Promise<boolean> =>
+                  onTextChanged(label, text)
+                }
                 error={errorMessage}
               />
-              {!!error && <ErrorText isError={!!error}>{errorMessage}</ErrorText>}
+              {!!error && (
+                <ErrorText isError={!!error}>{errorMessage}</ErrorText>
+              )}
             </InnerContainer>
           );
         })}
@@ -118,7 +117,9 @@ function SignUpPage(props: Props): ReactElement {
           <ButtonToRight>
             <Button
               testID="btnSignUpConfirm"
-              isDisabled={!(touched && touched.length) || !!Object.keys(errors).length}
+              isDisabled={
+                !(touched && touched.length) || !!Object.keys(errors).length
+              }
               onPress={handleSubmit(onSignUpSubmit)}
             >
               {getString('REGISTER')}
@@ -128,6 +129,6 @@ function SignUpPage(props: Props): ReactElement {
       </StyledScrollView>
     </StyledSafeAreaView>
   );
-};
+}
 
 export default memo(SignUpPage);

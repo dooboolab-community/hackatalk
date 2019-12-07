@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import { StatusBar } from 'react-native';
 import { ThemeType } from '../../types';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export default function Shared(): ReactElement {
   const { themeType } = useThemeContext();

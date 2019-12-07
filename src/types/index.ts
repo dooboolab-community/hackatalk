@@ -1,6 +1,5 @@
 import { StyleProp, TextStyle } from 'react-native';
 
-import { DefaultTheme } from 'styled-components';
 import { SFC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -89,11 +88,6 @@ export type IconType = SFC<IconProps>;
 export enum ThemeType {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
-}
-
-export interface ScreenProps {
-  theme: DefaultTheme;
-  changeThemeType: Function;
 }
 
 type StackParamList = {

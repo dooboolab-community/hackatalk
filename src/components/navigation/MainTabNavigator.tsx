@@ -11,7 +11,7 @@ import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Message from '../screen/Message';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Tab = createMaterialTopTabNavigator();
 

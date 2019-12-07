@@ -17,7 +17,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledContainer = styled.SafeAreaView`
   flex: 1;
@@ -30,7 +30,7 @@ interface Props {
   navigation: DefaultNavigationProps;
 }
 
-function Screen(props: Props): React.ReactElement {
+function Screen(): React.ReactElement {
   const { theme } = useThemeContext();
 
   const [isSending, setIsSending] = useState<boolean>(false);

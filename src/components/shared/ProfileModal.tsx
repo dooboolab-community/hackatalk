@@ -7,7 +7,7 @@ import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
   margin-top: 40px;
