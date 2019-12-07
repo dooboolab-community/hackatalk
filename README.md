@@ -262,7 +262,8 @@ export const getString = (param: string, mapObj?: object) => {
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td align="center"><a href="http://dooboolab.com"><img src="https://avatars0.githubusercontent.com/u/27461460?v=4" width="60px;" alt="Hyo Chan Jang"/><br /><sub><b>Hyo Chan Jang</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Tests">⚠️</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=hyochan" title="Documentation">📖</a></td>
@@ -280,9 +281,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jb9229"><img src="https://avatars3.githubusercontent.com/u/3200647?v=4" width="60px;" alt="cwalker"/><br /><sub><b>cwalker</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=jb9229" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://geoseong.github.io/"><img src="https://avatars0.githubusercontent.com/u/19166187?v=4" width="60px;" alt="TaeSeong Park"/><br /><sub><b>TaeSeong Park</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=geoseong" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=geoseong" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/daheeahn"><img src="https://avatars3.githubusercontent.com/u/38369729?v=4" width="60px;" alt="daheeahn"/><br /><sub><b>daheeahn</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=daheeahn" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/devohno"><img src="https://avatars1.githubusercontent.com/u/55861805?v=4" width="60px;" alt="Eunho Lee"/><br /><sub><b>Eunho Lee</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=devohno" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=devohno" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
