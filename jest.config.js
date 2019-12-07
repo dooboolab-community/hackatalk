@@ -31,7 +31,11 @@ module.exports = Object.assign(expoPreset, jestPreset, {
     '\\.svg': '<rootDir>/__mocks__/svgMock.js',
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'babel-jest',
   },
-  setupFiles: [...expoPreset.setupFiles, ...jestPreset.setupFiles, '<rootDir>/test/jestSetup.ts'],
+  setupFiles: [
+    ...expoPreset.setupFiles,
+    ...jestPreset.setupFiles,
+    '<rootDir>/test/jestSetup.ts',
+  ],
   transformIgnorePatterns: [
     'node_modules/(?!react-native|react-navigation|dooboo-native-widgets)/',
   ],

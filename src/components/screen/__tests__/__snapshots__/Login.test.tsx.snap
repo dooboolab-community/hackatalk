@@ -50,6 +50,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={[Function]}
+          testID="themeTest"
         >
           <Image
             source={

@@ -134,10 +134,10 @@ function Screen(props: Props): React.ReactElement {
     });
   };
 
-  const googleSignOutAsync = async (): Promise<void> => {
-    await GoogleSignIn.signOutAsync();
-    setGoogleUser(null);
-  };
+  // const googleSignOutAsync = async (): Promise<void> => {
+  //   await GoogleSignIn.signOutAsync();
+  //   setGoogleUser(null);
+  // };
 
   const googleSignInAsync = async (): Promise<void> => {
     setSigningInGoogle(true);
@@ -151,9 +151,9 @@ function Screen(props: Props): React.ReactElement {
             android: androidExpoClientId,
           }),
         });
-        // console.log(response);
+        Alert.alert('login:' + JSON.stringify(response.accessToken));
       } catch ({ message }) {
-        // console.log('err', message);
+        Alert.alert(`Google Login Error: ${message}`);
       } finally {
         setSigningInGoogle(false);
       }
@@ -164,9 +164,11 @@ function Screen(props: Props): React.ReactElement {
       const { type, user } = await GoogleSignIn.signInAsync();
       if (type === 'success') {
         setGoogleUser(user);
+        Alert.alert('login:' + JSON.stringify(user));
+        onLogin();
       }
     } catch ({ message }) {
-      Alert.alert('login: Error:' + message);
+      Alert.alert(`Google Login Error: ${message}`);
     } finally {
       setSigningInGoogle(false);
     }
@@ -187,12 +189,13 @@ function Screen(props: Props): React.ReactElement {
             id,name,email,birthday,gender,first_name,last_name,picture
             &access_token=${token}`,
         );
+        // console.log('success', response);
         const responseObject = JSON.parse(await response.text());
       } else {
         // type === 'cancel'
+        // console.log('cancel', token);
       }
     } catch ({ message }) {
-      /* istanbul ignore next */
       Alert.alert(`Facebook Login Error: ${message}`);
     } finally {
       setSigningInFacebook(false);
@@ -219,7 +222,10 @@ function Screen(props: Props): React.ReactElement {
         <StatusBar />
         <StyledContainer>
           <StyledIconWrapper>
-            <TouchableOpacity onPress={(): void => changeThemeType()}>
+            <TouchableOpacity
+              testID="themeTest"
+              onPress={(): void => changeThemeType()}
+            >
               <StyledIcon source={IC_ICON} />
             </TouchableOpacity>
             <StyledIconText>{getString('HELLO')}.</StyledIconText>
