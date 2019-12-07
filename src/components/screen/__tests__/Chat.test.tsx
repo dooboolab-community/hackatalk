@@ -19,6 +19,15 @@ import renderer from 'react-test-renderer';
 let props: any;
 let component: ReactElement;
 
+jest.mock('expo-permissions', () => ({
+  askAsync: (): string => 'granted',
+}));
+
+jest.mock('expo-image-picker', () => ({
+  launchCameraAsync: (): string => 'photo info',
+  launchImageLibraryAsync: (): string => 'photo info',
+}));
+
 describe('[Chat] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
@@ -73,13 +82,32 @@ describe('[Chat] interaction', () => {
       };
       jest
         .spyOn(ProfileContext, 'useProfileContext')
-        .mockImplementation(() => (mockedData));
+        .mockImplementation(() => mockedData);
       const chatListItem = testingLib.queryByTestId('CHAT_LIST_ITEM0');
       testingLib.rerender(component);
       act(() => {
         fireEvent.press(chatListItem);
       });
       expect(mockedData.showModal).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('should open image library when pressing photo icon button', () => {
+    const touchMenu = testingLib.getByTestId('touch_menu');
+    act(() => {
+      fireEvent.press(touchMenu);
+    });
+    const photoBtn = testingLib.getByTestId('icon_photo');
+
+    act(() => {
+      fireEvent.press(photoBtn);
+    });
+  });
+
+  it('should open camera when pressing camera icon button', () => {
+    const cameraBtn = testingLib.getByTestId('icon_camera');
+    act(() => {
+      fireEvent.press(cameraBtn);
     });
   });
 });

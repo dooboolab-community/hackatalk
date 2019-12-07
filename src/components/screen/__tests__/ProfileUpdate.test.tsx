@@ -17,6 +17,37 @@ import renderer from 'react-test-renderer';
 let props: any;
 let component: ReactElement;
 
+const BUTTON_INDEX_LAUNCH_CAMERA = 0;
+const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+
+let userPressLuanchCamera = true;
+jest.mock('@expo/react-native-action-sheet', () => ({
+  useActionSheet: (): any => {
+    return {
+      showActionSheetWithOptions: (
+        options: any,
+        callback: (index: number) => void,
+      ): void => {
+        if (userPressLuanchCamera) {
+          callback(BUTTON_INDEX_LAUNCH_CAMERA);
+        }
+        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY);
+      },
+    };
+  },
+}));
+
+jest.mock('expo-permissions', () => ({
+  askAsync: (): { status: string } => ({
+    status: 'granted',
+  }),
+}));
+
+jest.mock('expo-image-picker', () => ({
+  launchCameraAsync: (): string => 'photo info',
+  launchImageLibraryAsync: (): string => 'photo info',
+}));
+
 describe('rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
@@ -74,6 +105,22 @@ describe('interaction', () => {
       fireEvent.change(inputStatus, 'name');
     });
     // expect(inputStatus.props.txt).toEqual('name');
+  });
+
+  it('should launch camera when user select "Take a picture"', () => {
+    userPressLuanchCamera = true;
+    const profileBtn = testingLib.getByTestId('user_icon_button');
+    act(() => {
+      fireEvent.press(profileBtn);
+    });
+  });
+
+  it('should open album when user select "Select from Album"', () => {
+    userPressLuanchCamera = false;
+    const profileBtn = testingLib.getByTestId('user_icon_button');
+    act(() => {
+      fireEvent.press(profileBtn);
+    });
   });
 
   afterAll(() => {

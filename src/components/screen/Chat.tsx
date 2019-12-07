@@ -1,6 +1,10 @@
 import { Chat, DefaultNavigationProps, MessageType } from '../../types';
 import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
 
 import Button from '../shared/Button';
 import ChatListItem from '../shared/ChatListItem';
@@ -103,6 +107,14 @@ function Screen(props: Props): React.ReactElement {
     setIsSending(true);
   };
 
+  const onRequestImagePicker = async (type: string): Promise<void> => {
+    if (type === 'photo') {
+      const result = await launchImageLibraryAsync();
+      return;
+    }
+    const result = await launchCameraAsync();
+  };
+
   return (
     <StyledContainer>
       <GiftedChat
@@ -153,6 +165,8 @@ function Screen(props: Props): React.ReactElement {
             }}
           >
             <TouchableOpacity
+              testID="icon_camera"
+              onPress={(): Promise<void> => onRequestImagePicker('camera')}
               style={{
                 marginLeft: 16,
                 marginTop: 2,
@@ -169,6 +183,8 @@ function Screen(props: Props): React.ReactElement {
               />
             </TouchableOpacity>
             <TouchableOpacity
+              testID="icon_photo"
+              onPress={(): Promise<void> => onRequestImagePicker('photo')}
               style={{
                 marginLeft: 16,
                 marginTop: 4,

@@ -1,5 +1,4 @@
 import 'react-native';
-
 import * as React from 'react';
 
 import { RenderResult, fireEvent, render } from '@testing-library/react-native';
@@ -10,7 +9,6 @@ import renderer from 'react-test-renderer';
 
 let props: any;
 let component: React.ReactElement;
-// let testingLib: RenderResult;
 
 const createTestProps = (obj: object): object => ({
   navigation: {
@@ -80,15 +78,6 @@ describe('[GiftedChatInput] render', () => {
       testingLib = render(component);
     });
 
-    it('should invoke changeText event handler when message changed', () => {
-      const textInput = testingLib.getByTestId('input_chat');
-      jest.useFakeTimers();
-      jest.runAllTimers();
-      fireEvent.changeText(textInput, 'chat test');
-      // TODO: expect should pass
-      // expect(textInput.props.value).toEqual('chat test');
-    });
-
     it('should call [setShowMenu] when focused', () => {
       const textInput = testingLib.getByTestId('input_chat');
       textInput.props.onFocus();
@@ -105,6 +94,15 @@ describe('[GiftedChatInput] render', () => {
     it('should call [setShowMenu] when focused', () => {
       const touchMenu = testingLib.getByTestId('touch_menu');
       fireEvent.press(touchMenu);
+    });
+
+    it('should invoke changeText event handler when message changed', () => {
+      const textInput = testingLib.getByTestId('input_chat');
+      jest.useFakeTimers();
+      jest.runAllTimers();
+      fireEvent.changeText(textInput, 'chat test');
+      // TODO: expect should pass
+      // expect(textInput.props.value).toEqual('chat test');
     });
   });
 });

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
+import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
 import Button from '../shared/Button';
-// import { CommonActions } from '@react-navigation/core';
 import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
+
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
-import styled from 'styled-components/native';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '../../providers/ThemeProvider';
+// import { CommonActions } from '@react-navigation/core';
+
+const BUTTON_INDEX_LAUNCH_CAMERA = 0;
+const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+const BUTTON_INDEX_CANCEL = 2;
 
 const StyledContainer = styled.View`
   flex: 1;
@@ -39,7 +48,13 @@ const StyledBtnWrapper = styled.View`
   margin-bottom: 48px;
 `;
 
-interface Props {
+const ProfileImage = styled.Image`
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+`;
+
+interface Props extends ThemeProps<DefaultTheme> {
   navigation: DefaultNavigationProps;
 }
 
@@ -47,6 +62,8 @@ function Screen(props: Props): React.ReactElement {
   const [isUpdating, setIsUpdating] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
+  const { showActionSheetWithOptions } = useActionSheet();
+  const [profilePath, setProfilePath] = useState('');
 
   useEffect(() => {
     if (isUpdating) {
@@ -87,7 +104,36 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
-  const onPressImg = (): void => {};
+  const onPressImg = (): void => {
+    const options = [
+      getString('TAKE_A_PICTURE'),
+      getString('SELSCT_FROM_ALBUM'),
+      getString('CANCEL'),
+    ];
+
+    showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex: BUTTON_INDEX_CANCEL,
+      },
+      async (buttonIndex: number) => {
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
+          const result = await launchCameraAsync();
+          if (result && !result.cancelled) {
+            setProfilePath(result.uri);
+          }
+          return;
+        }
+
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY) {
+          const result = await launchImageLibraryAsync();
+          if (result && !result.cancelled) {
+            setProfilePath(result.uri);
+          }
+        }
+      },
+    );
+  };
 
   const { theme } = useThemeContext();
 
@@ -100,12 +146,23 @@ function Screen(props: Props): React.ReactElement {
         }}
       >
         <StyledWrapper>
-          <TouchableOpacity activeOpacity={0.5} onPress={onPressImg}>
-            <Ionicons
-              name="ios-person"
-              size={80}
-              color={theme ? theme.fontColor : '#3d3d3d'}
-            />
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={onPressImg}
+            testID="user_icon_button"
+          >
+            {!profilePath ? (
+              <Ionicons
+                name="ios-person"
+                size={80}
+                color={theme ? theme.fontColor : '#3d3d3d'}
+              />
+            ) : (
+              <ProfileImage
+                testID="profile_img"
+                source={{ uri: profilePath }}
+              />
+            )}
           </TouchableOpacity>
           <TextInput
             testID="input_name"
