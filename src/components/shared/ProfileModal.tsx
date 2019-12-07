@@ -7,8 +7,8 @@ import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
 import { useFriendContext } from '../../providers/FriendProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
   margin-top: 40px;
@@ -128,16 +128,6 @@ export const Shared = forwardRef<Ref, Props>((props, ref) => {
     addFriend: ctxAddFriend,
     deleteFriend: ctxDeleteFriend,
   } = useFriendContext();
-
-  // useEffect(() => {
-  //   if (screen === 'SearchUser') {
-  //     setIsFriendAlreadyAdded(
-  //       friends.findIndex((friend) => friend.uid === user.uid) !== -1,
-  //     );
-  //   } else {
-  //     setIsFriendAlreadyAdded(false);
-  //   }
-  // }, [user, friends]);
 
   const open = (): void => {
     setIsFriendAdded(false);

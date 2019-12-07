@@ -32,9 +32,7 @@ export const AllProviders = ({
 export default ({ initialThemeType, children }: Props): React.ReactElement => {
   return (
     <ThemeProvider initialThemeType={initialThemeType}>
-      <ActionSheetProvider>
-        <FriendProvider>{children}</FriendProvider>
-      </ActionSheetProvider>
+      <ActionSheetProvider>{children}</ActionSheetProvider>
     </ThemeProvider>
   );
 };

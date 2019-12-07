@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { Button, FlatList, View } from 'react-native';
-import { FriendProvider, useFriendContext } from '../FriendProvider';
 import {
   RenderResult,
   act,
@@ -9,11 +8,12 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { ThemeProvider } from '../ThemeProvider';
+import { AllProviders } from '../../providers';
 import { User } from '../../types';
 import UserListItem from '../../components/shared/UserListItem';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
+import { useFriendContext } from '../FriendProvider';
 
 const fakeUsers: User[] = [
   {
@@ -80,11 +80,9 @@ const FakeChild = (): React.ReactElement => {
 };
 
 const TestComponent = (): React.ReactElement => (
-  <FriendProvider>
-    <ThemeProvider>
-      <FakeChild />
-    </ThemeProvider>
-  </FriendProvider>
+  <AllProviders>
+    <FakeChild />
+  </AllProviders>
 );
 
 describe('[FriendProvider] rendering test', () => {
