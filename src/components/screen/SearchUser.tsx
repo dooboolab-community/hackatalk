@@ -7,6 +7,7 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 export const fakeUsers: User[] = [
@@ -153,9 +154,34 @@ const Screen = (): React.ReactElement => {
   const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
-  const userListOnPress = (item: User): void => {
+  const {
+    friendState: { friends },
+  } = useFriendContext();
+
+  const userListOnPress = (user: User): void => {
     if (state.modal) {
-      showModal(item, false);
+      const deleteMode =
+        friends.findIndex((friend) => friend.uid === user.uid) !== -1;
+      showModal({
+        user,
+        deleteMode,
+        isFriendAlreadyAdded: deleteMode,
+        onDeleteFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.showAddBtn(true);
+            profileModal.setIsFriendAdded(false);
+            profileModal.setIsFriendAlreadyAdded(false);
+          }
+        },
+        onAddFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.showAddBtn(false);
+            profileModal.setIsFriendAdded(true);
+          }
+        },
+      });
     }
   };
   const renderItem = ({

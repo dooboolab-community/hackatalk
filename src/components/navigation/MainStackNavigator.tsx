@@ -1,9 +1,13 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
+import {
+  ProfileModalProvider,
+  useProfileContext,
+} from '../../providers/ProfileModalProvider';
 import React, { useRef } from 'react';
 
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
+import { FriendProvider } from '../../providers/FriendProvider';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import SearchUser from '../screen/SearchUser';
@@ -31,7 +35,11 @@ function MainStackNavigator(): React.ReactElement {
         headerTintColor: theme.fontColor,
       }}
     >
-      <Stack.Screen name="MainTab" component={MainTabNavigator} options={MainTabNavigationOptions}/>
+      <Stack.Screen
+        name="MainTab"
+        component={MainTabNavigator}
+        options={MainTabNavigationOptions}
+      />
       <Stack.Screen name="ProfileUpdate" component={ProfileUpdate} />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
@@ -49,10 +57,12 @@ function RootNavigator(): React.ReactElement {
   const modalEl = useRef(null);
   state.modal = modalEl;
   return (
-    <View style={{
-      flex: 1,
-      flexDirection: 'column',
-    }}>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'column',
+      }}
+    >
       <StatusBar />
       <MainStackNavigator />
       <ProfileModal
@@ -72,7 +82,9 @@ function RootNavigator(): React.ReactElement {
 export default function RootNavigatorWrapper(): React.ReactElement {
   return (
     <ProfileModalProvider>
-      <RootNavigator/>
+      <FriendProvider>
+        <RootNavigator />
+      </FriendProvider>
     </ProfileModalProvider>
   );
 }

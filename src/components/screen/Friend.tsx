@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
@@ -6,6 +6,7 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 const StyledContainer = styled.View`
@@ -18,27 +19,38 @@ const StyledContainer = styled.View`
 
 export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
-  const [friends] = useState<User[]>([
-    {
-      uid: 'my_uid',
-      displayName: 'hello',
-      thumbURL: '',
-      photoURL: '',
-      statusMsg: 'I am fine today',
-      online: true,
-    },
-  ]);
+  const {
+    friendState: { friends },
+  } = useFriendContext();
 
-  const renderItem = (item: User): ReactElement => {
+  const userListOnPress = (user: User): void => {
+    if (state.modal) {
+      showModal({
+        user,
+        deleteMode: true,
+        onDeleteFriend: () => (): void => {
+          if (state.modal && state.modal.current) {
+            const profileModal = state.modal.current;
+            profileModal.close();
+          }
+        },
+      });
+    }
+  };
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: User;
+    index: number;
+  }): ReactElement => {
+    const testID = `USER_ID_${index}`;
+    const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
       <UserListItem
-        testID="USER_ID"
+        testID={testID}
         user={item}
-        onPress={(): void => {
-          if (state.modal) {
-            showModal(item, true);
-          }
-        }}
+        onPress={userListOnPressInlineFn}
       />
     );
   };
@@ -46,21 +58,22 @@ export default function Screen(): ReactElement {
   return (
     <StyledContainer>
       <FlatList
+        testID="friend-list"
         style={{
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
           friends.length === 0
             ? {
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
         data={friends}
-        renderItem={({ item }): ReactElement => renderItem(item)}
+        renderItem={renderItem}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }

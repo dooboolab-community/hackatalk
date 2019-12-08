@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {
   RenderResult,
-  cleanup,
   fireEvent,
   render,
   toJSON,
@@ -11,7 +10,10 @@ import SearchUser, { fakeUsers } from '../SearchUser';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Animated } from 'react-native';
+import ProfileModal from '../../shared/ProfileModal';
 import { User } from '../../../types';
+import { act } from 'react-test-renderer';
+import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
 // import UserListItem from '../../shared/UserListItem';
 
@@ -78,6 +80,7 @@ describe('[serachUser] interaction', () => {
     }, 600);
     // setTimeout called - 6
   });
+
   // it('when profile modal clicked -> should call showProfileModal', () => {
   //   const itemTestID = 'userListItem0';
   //   const userListItemInst: renderer.ReactTestInstance = testingLib.getByTestId(
@@ -94,4 +97,53 @@ describe('[serachUser] interaction', () => {
   //   // console.log('~>~>~>~>~>~>userListItemInst/2', UserItem);
   //   // expect(userListItemInst).toEqual(UserItem); // effects nothing
   // });
+});
+
+const TestComponent = (): React.ReactElement => {
+  const { state } = useProfileContext();
+  const modalEl = React.useRef(null);
+  state.modal = modalEl;
+
+  return (
+    <>
+      <ProfileModal ref={state.modal} />
+      <SearchUser {...props} />
+    </>
+  );
+};
+
+describe('[SearchUser] interaction with Profile Modal', () => {
+  let component: React.ReactElement;
+  let testingLib: RenderResult;
+  let itemTestID: string;
+
+  beforeEach(() => {
+    component = createTestElement(<TestComponent />);
+    testingLib = render(component);
+    itemTestID = 'userListItem0';
+  });
+
+  it('show profile modal when press user in search user list', () => {
+    const userListItem = testingLib.queryByTestId(itemTestID);
+    act(() => {
+      fireEvent.press(userListItem);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
+
+  it('show changged state when press add and delete button on profile modal', () => {
+    const userListItem = testingLib.queryByTestId(itemTestID);
+    act(() => {
+      fireEvent.press(userListItem);
+    });
+    const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+    act(() => {
+      fireEvent.press(btnAdFriend);
+    });
+    expect(testingLib.asJSON()).toMatchSnapshot();
+  });
 });

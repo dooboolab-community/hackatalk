@@ -1,6 +1,7 @@
 import { dark, light } from '../theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
 import { ThemeProvider } from '@dooboo-ui/native-theme';
@@ -21,7 +22,9 @@ export const AllProviders = ({
       initialThemeType={initialThemeType}
       customTheme={{ light, dark }}
     >
-      <ProfileModalProvider>{children}</ProfileModalProvider>
+      <FriendProvider>
+        <ProfileModalProvider>{children}</ProfileModalProvider>
+      </FriendProvider>
     </ThemeProvider>
   );
 };

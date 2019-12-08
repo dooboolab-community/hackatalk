@@ -7,6 +7,7 @@ import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useFriendContext } from '../../providers/FriendProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
@@ -77,6 +78,10 @@ interface Ref {
   close: () => void;
   setUser: (user: User) => void;
   showAddBtn: (show: boolean) => void;
+  setIsFriendAdded: (isFriendAdded: boolean) => void;
+  setIsFriendAlreadyAdded: (isFriendAlreadyAdded: boolean) => void;
+  setOnDeleteFriend: (callback?: () => void) => void;
+  setOnAddFriend: (callback?: () => void) => void;
 }
 
 interface Styles {
@@ -102,7 +107,7 @@ const styles: Styles = {
   },
 };
 
-const Shared = forwardRef<Ref, Props>((props, ref) => {
+export const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: any;
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
@@ -115,10 +120,17 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMsg: '',
     online: false,
   });
+  const [onDeleteFriend, setOnDeleteFriend] = useState();
+  const [onAddFriend, setOnAddFriend] = useState();
+
+  const {
+    friendState: { friends },
+    addFriend: ctxAddFriend,
+    deleteFriend: ctxDeleteFriend,
+  } = useFriendContext();
 
   const open = (): void => {
     setIsFriendAdded(false);
-    setIsFriendAlreadyAdded(false);
     if (modal) {
       modal.open();
     }
@@ -130,23 +142,31 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     }
   };
 
-  const addFriend = (): void => {};
+  const addFriend = (): void => {
+    ctxAddFriend(user);
+    if (onAddFriend) {
+      onAddFriend();
+    }
+  };
 
   const deleteFriend = (): void => {
-    if (modal) {
-      modal.close();
+    ctxDeleteFriend(user);
+    if (onDeleteFriend) {
+      onDeleteFriend();
     }
   };
 
   useImperativeHandle(ref, () => ({
     open,
     close,
-    setUser: (newUser: User): void => {
-      setUser(newUser);
-    },
+    setUser,
     showAddBtn: (flag: boolean): void => {
       setShowAddBtn(flag);
     },
+    setIsFriendAdded,
+    setIsFriendAlreadyAdded,
+    setOnDeleteFriend,
+    setOnAddFriend,
   }));
   const { photoURL, displayName, statusMsg } = user;
   const {
@@ -198,23 +218,23 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <StyledTextStatusMsg>{statusMsg}</StyledTextStatusMsg>
         </StyledView>
         {isFriendAdded ? (
-          <StyledTextFriendAdded>
+          <StyledTextFriendAdded testID="added-message">
             {getString('FRIEND_ADDED')}
           </StyledTextFriendAdded>
         ) : isFriendAlreadyAdded ? (
-          <StyledTextFriendAlreadyAdded>
+          <StyledTextFriendAlreadyAdded testID="already-added-message">
             {getString('FRIEND_ALREADY_ADDED')}
           </StyledTextFriendAlreadyAdded>
         ) : null}
         <StyledViewBtns>
           <TouchableOpacity
-            testID="btn-add-or-delete"
+            testID="btn-ad-friend"
             activeOpacity={0.5}
             onPress={showAddBtn ? addFriend : deleteFriend}
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn>
+              <StyledTextBtn testID="btn-ad-title">
                 {showAddBtn
                   ? getString('ADD_FRIEND')
                   : getString('DELETE_FRIEND')}
