@@ -285,6 +285,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="http://stackoverflow.com/users/515932/jeff-gu-kang?tab=profile"><img src="https://avatars2.githubusercontent.com/u/216363?v=4" width="60px;" alt="Jeff Gu Kang"/><br /><sub><b>Jeff Gu Kang</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JeffGuKang" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=JeffGuKang" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/dlgmltjr0925"><img src="https://avatars0.githubusercontent.com/u/33364619?v=4" width="60px;" alt="dlgmltjr0925"/><br /><sub><b>dlgmltjr0925</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=dlgmltjr0925" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=dlgmltjr0925" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
