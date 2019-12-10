@@ -25,7 +25,7 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 const Stack = createStackNavigator();
 
 interface SettingButtonProps {
-  navigation: DefaultNavigationProps;
+  tintColor?: string;
 }
 
 function MainStackNavigator(): ReactElement {
@@ -33,16 +33,6 @@ function MainStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="MainTab"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: theme.background,
-          borderBottomColor: theme.primaryLight,
-        },
-        headerTitleStyle: {
-          color: theme.fontColor,
-        },
-        headerTintColor: theme.fontColor,
-      }}
     >
       <Stack.Screen
         name="MainTab"
@@ -50,37 +40,30 @@ function MainStackNavigator(): ReactElement {
         options={MainTabNavigationOptions}
       />
       <Stack.Screen
-        name="ProfileUpdate"
+        name="MainTab"
         component={ProfileUpdate}
-        options={({
-          navigation,
-        }: {
-          navigation: DefaultNavigationProps;
-        }): StackNavigationOptions => {
-          const settingButton = (): ReactElement => (
-            <TouchableOpacity
-              style={{
-                height: '100%',
-                minWidth: 20,
-                justifyContent: 'center',
-                marginRight: 15,
-              }}
-              onPress={(): void => {
-                navigation.navigate('Setting');
-              }}
-            >
-              <Ionicons name="md-settings" size={24} color={theme.fontColor} />
-            </TouchableOpacity>
-          );
+        options={(props: Props): StackNavigationOptions => {
+          const { navigation } = props;
+          const settingButton = (settingButtonProps: SettingButtonProps): ReactElement => {
+            const { tintColor } = settingButtonProps;
+            return (
+              <TouchableOpacity
+                style={{
+                  height: '100%',
+                  minWidth: 20,
+                  justifyContent: 'center',
+                  marginRight: 15,
+                }}
+                onPress={(): void => {
+                  navigation.navigate('Setting');
+                }}
+              >
+                <Ionicons name="md-settings" size={24} color={tintColor} />
+              </TouchableOpacity>
+            );
+          };
           return {
-            title: getString('MY_PROFILE'),
-            headerStyle: {
-              backgroundColor: theme.background,
-              borderBottomColor: theme.primaryLight,
-            },
-            headerTitleStyle: {
-              color: theme.fontColor,
-            },
+            headerTitle: getString('MY_PROFILE'),
             headerTintColor: theme.fontColor,
             headerRight: settingButton,
           };
