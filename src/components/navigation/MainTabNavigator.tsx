@@ -15,26 +15,6 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Tab = createMaterialTopTabNavigator();
 
-const MaterialTopTabBar = (props: any): ReactElement => {
-  const { theme } = useThemeContext();
-  return (
-    <RNMaterialTopTabBar
-      {...props}
-      activeTintColor={theme.indicatorColor}
-      inactiveTintColor={theme.inactiveColor}
-      indicatorStyle={{
-        backgroundColor: theme.indicatorColor,
-      }}
-      tabStyle={{
-        backgroundColor: 'transparent',
-      }}
-      style={{
-        backgroundColor: theme.background,
-      }}
-    />
-  );
-};
-
 interface CustomHeaderProps {
   navigation: DefaultNavigationProps;
 }
@@ -90,14 +70,27 @@ const CustomHeader = (props: CustomHeaderProps): ReactElement => {
 };
 
 function MainTabNavigator(): ReactElement {
+  const { theme } = useThemeContext();
   return (
     <Tab.Navigator
       swipeEnabled={true}
-      tabBarComponent={MaterialTopTabBar}
+      tabBarOptions={{
+        activeTintColor: theme.indicatorColor,
+        inactiveTintColor: theme.inactiveColor,
+        indicatorStyle: {
+          backgroundColor: theme.indicatorColor,
+        },
+        tabStyle: {
+          backgroundColor: 'transparent',
+        },
+        style: {
+          backgroundColor: theme.background,
+        },
+      }}
     >
       <Tab.Screen name="Friend" component={Friend} />
       <Tab.Screen name="Message" component={Message} />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 }
 

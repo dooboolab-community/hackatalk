@@ -63,7 +63,7 @@ function SignUpPage(): ReactElement {
     validationSchema: signUpValidationSchema,
   });
   const onTextChanged = useCallback(
-    (label: string, text: string): void | Promise<boolean> => {
+    (label: keyof SignUpFormValues, text: string): void | Promise<boolean> => {
       setValue(label, text, true);
     },
     [setValue],

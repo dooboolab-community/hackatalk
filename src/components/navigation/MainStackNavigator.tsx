@@ -40,7 +40,7 @@ function MainStackNavigator(): ReactElement {
         options={MainTabNavigationOptions}
       />
       <Stack.Screen
-        name="MainTab"
+        name="ProfileUpdate"
         component={ProfileUpdate}
         options={(props: Props): StackNavigationOptions => {
           const { navigation } = props;

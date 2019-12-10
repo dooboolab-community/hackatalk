@@ -158,11 +158,11 @@ function Screen(props: Props): React.ReactElement {
                 color={theme ? theme.fontColor : '#3d3d3d'}
               />
             ) : (
-                <ProfileImage
-                  testID="profile_img"
-                  source={{ uri: profilePath }}
-                />
-              )}
+              <ProfileImage
+                testID="profile_img"
+                source={{ uri: profilePath }}
+              />
+            )}
           </TouchableOpacity>
           <TextInput
             testID="input_name"
