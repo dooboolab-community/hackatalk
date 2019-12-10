@@ -7,9 +7,7 @@ import {
   wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../utils/testUtils';
-import { Alert } from 'react-native';
 import ChangePw from '../ChangePW';
-import { callbackify } from 'util';
 
 const mockAlert = {
   alert: jest.fn(),
@@ -58,15 +56,15 @@ describe('[ChangePW] screen', () => {
       fireEvent.changeText(pwInput, 'right');
       fireEvent.press(verifyBtn);
 
-      // keyboardEvent test 
+      // keyboardEvent test
       const keyboardEvents = mockKeyboard.addListener.mock.calls;
-      keyboardEvents.forEach( ([eventName, callback]) => {
+      keyboardEvents.forEach(([eventName, ftn]: [string, (arg: any) => void]) => {
         switch (eventName) {
           case 'keyboardWillShow':
-            callback({endCoordinates: {height: 301}});
+            ftn({ endCoordinates: { height: 301 } });
             break;
           case 'keyboardWillHide':
-            callback();
+            ftn();
             break;
           default:
         }
@@ -89,7 +87,6 @@ describe('[ChangePW] screen', () => {
       fireEvent.press(verifyBtn);
 
       expect(mockAlert.alert).toHaveBeenCalled();
-      console.log(mockAlert.alert.mock.calls);
       mockAlert.alert.mock.calls[2][2][0].onPress();
     });
   });
