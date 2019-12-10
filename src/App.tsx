@@ -2,11 +2,11 @@ import { AppLoading, Asset } from 'expo';
 import React, { useState } from 'react';
 import { dark, light } from './theme';
 
+import { AuthUserProvider } from './providers/AuthUserProvider';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { ThemeProvider } from '@dooboo-ui/native-theme';
-import { AuthUserProvider } from './providers/AuthUserProvider';
 
 function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {

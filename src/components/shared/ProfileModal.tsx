@@ -202,17 +202,17 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             {photoURL ? (
               <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
-                <View
-                  style={{
-                    width: 80,
-                    height: 80,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Ionicons name="ios-person" size={80} color="white" />
-                </View>
-              )}
+              <View
+                style={{
+                  width: 80,
+                  height: 80,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="ios-person" size={80} color="white" />
+              </View>
+            )}
           </TouchableOpacity>
           <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
           <StyledTextStatusMsg>{statusMsg}</StyledTextStatusMsg>

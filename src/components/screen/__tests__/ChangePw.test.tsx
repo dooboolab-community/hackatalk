@@ -35,7 +35,7 @@ describe('[ChangePW] screen', () => {
   beforeEach(() => {
     const props = createTestProps({});
     const component = createTestElement(
-      <ChangePw {...props} />
+      <ChangePw {...props} />,
     );
     testingLib = render(component);
     mockAlert.alert.mockClear();

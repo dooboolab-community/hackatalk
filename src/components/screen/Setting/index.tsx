@@ -11,10 +11,10 @@ import {
   SettingsOption,
   SignInType,
 } from '../../../types';
-import { DefaultTheme, ThemeProps } from 'styled-components/native';
 import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
 import { SectionList, SectionListData } from 'react-native';
 
+import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
 import { getString } from '../../../../STRINGS';

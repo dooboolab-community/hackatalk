@@ -1,10 +1,5 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
-import {
   ProfileModalProvider,
   useProfileContext,
 } from '../../providers/ProfileModalProvider';
@@ -26,7 +21,6 @@ import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/native-theme';
-import ChangePW from '../screen/ChangePW';
 
 const Stack = createStackNavigator();
 
@@ -61,7 +55,7 @@ function MainStackNavigator(): ReactElement {
         options={({
           navigation,
         }: {
-          navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+          navigation: DefaultNavigationProps;
         }): StackNavigationOptions => {
           const settingButton = (): ReactElement => (
             <TouchableOpacity
@@ -71,7 +65,9 @@ function MainStackNavigator(): ReactElement {
                 justifyContent: 'center',
                 marginRight: 15,
               }}
-              onPress={(): void => navigation.navigate('Setting')}
+              onPress={(): void => {
+                navigation.navigate('Setting');
+              }}
             >
               <Ionicons name="md-settings" size={24} color={theme.fontColor} />
             </TouchableOpacity>
@@ -93,7 +89,6 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Setting" component={Setting} />
-      <Stack.Screen name="ChangePw" component={ChangePW} />
     </Stack.Navigator>
   );
 }

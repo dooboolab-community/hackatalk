@@ -6,7 +6,6 @@ import {
   StyledTextInput,
   Title,
 } from './styles';
-import { DefaultTheme, ThemeProps } from 'styled-components/native';
 import React, {
   ReactElement,
   useEffect,
@@ -25,7 +24,7 @@ export interface Props {
   navigation: DefaultNavigationProps;
 }
 
-export function ChangePW(props: Props): ReactElement {
+function ChangePW(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
   const [isValidCurrentPw, setCurrentPwValid] = useState(false);
@@ -109,16 +108,16 @@ export function ChangePW(props: Props): ReactElement {
           />
         </InnerContainer>
       ) : (
-          <InnerContainer>
-            <StyledTextInput
-              key="currentPwTextInput"
-              testID="currentPwTextInput"
-              isPassword
-              onTextChanged={(pw): void => setCurrentPw(pw)}
-              txtLabel={getString('PASSWORD_CURRENT')}
-            />
-          </InnerContainer>
-        )}
+        <InnerContainer>
+          <StyledTextInput
+            key="currentPwTextInput"
+            testID="currentPwTextInput"
+            isPassword
+            onTextChanged={(pw): void => setCurrentPw(pw)}
+            txtLabel={getString('PASSWORD_CURRENT')}
+          />
+        </InnerContainer>
+      )}
       <Button
         testID="checkCurrentPwBtn"
         onPress={isValidCurrentPw ? changePassword : validateCurrent}

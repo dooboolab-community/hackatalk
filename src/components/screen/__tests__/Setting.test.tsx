@@ -49,10 +49,10 @@ describe('[Setting] screen', () => {
     expect(rendered.toJSON()).toBeTruthy();
 
     rendered.update(
-      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Facebook))
+      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Facebook)),
     );
     rendered.update(
-      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Google))
+      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Google)),
     );
   });
 

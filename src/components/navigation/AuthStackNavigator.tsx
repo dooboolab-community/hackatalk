@@ -13,17 +13,9 @@ function AuthNavigator(): React.ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="Login"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: theme.background,
-          borderBottomWidth: 0,
-          elevation: 0,
-        },
-        headerTintColor: theme.fontColor,
-      }}
     >
       <Stack.Screen name="Login" component={Login} options={{
-        header: null,
+        headerShown: false,
       }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{
         title: getString('SIGN_UP'),
