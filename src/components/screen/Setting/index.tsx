@@ -19,7 +19,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import React from 'react';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
-import { useThemeContext } from '../../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 function SectionItem(
   option: SettingsOption,
@@ -36,8 +36,8 @@ function SectionItem(
   );
 }
 
-export interface Props extends ThemeProps<DefaultTheme> {
-  navigation: DefaultNavigationProps<'Setting'>;
+export interface Props {
+  navigation: DefaultNavigationProps;
 }
 
 function SettingScreen(props: Props): React.ReactElement {

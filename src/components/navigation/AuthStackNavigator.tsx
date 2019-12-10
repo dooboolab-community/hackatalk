@@ -24,13 +24,13 @@ function AuthNavigator(): React.ReactElement {
     >
       <Stack.Screen name="Login" component={Login} options={{
         header: null,
-      }}/>
+      }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{
         title: getString('SIGN_UP'),
-      }}/>
+      }} />
       <Stack.Screen name="FindPw" component={FindPw} options={{
         title: getString('FIND_PW'),
-      }}/>
+      }} />
     </Stack.Navigator>
   );
 }

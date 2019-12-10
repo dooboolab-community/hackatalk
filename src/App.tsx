@@ -6,6 +6,7 @@ import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { ThemeProvider } from '@dooboo-ui/native-theme';
+import { AuthUserProvider } from './providers/AuthUserProvider';
 
 function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {
@@ -30,13 +31,15 @@ function ProviderWrapper(): React.ReactElement {
       <AppLoading
         startAsync={loadAssetsAsync}
         onFinish={(): void => setLoading(true)}
-        // onError={console.warn}
+      // onError={console.warn}
       />
     );
   }
   return (
     <ThemeProvider customTheme={{ light, dark }}>
-      <RootNavigator />
+      <AuthUserProvider>
+        <RootNavigator />
+      </AuthUserProvider>
     </ThemeProvider>
   );
 }

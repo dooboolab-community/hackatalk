@@ -10,33 +10,15 @@ import {
   cleanup,
   fireEvent,
   render,
-  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
-import { Button as DoobooButton } from '@dooboo-ui/native';
 
 import Login from '../Login';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-
-jest.mock('expo-google-sign-in', () => ({
-  askForPlayServicesAsync: jest.fn(),
-  signInAsync: jest.fn()
-    .mockReturnValueOnce({ type: 'fail' })
-    .mockReturnValueOnce({ type: 'success', user: {} }),
-  initAsync: jest.fn(),
-}));
-
-jest.mock('expo-facebook', () => ({
-  logInWithReadPermissionsAsync: jest.fn()
-    .mockReturnValueOnce({ type: 'fail' })
-    .mockReturnValueOnce({ type: 'success', token: {} }),
-}));
-
-jest.mock('node-fetch');
 
 let props: any;
 let component: ReactElement;

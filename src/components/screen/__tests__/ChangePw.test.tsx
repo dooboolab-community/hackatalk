@@ -6,7 +6,7 @@ import {
   render,
   wait,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../utils/testUtils';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import ChangePw from '../ChangePW';
 
 const mockAlert = {

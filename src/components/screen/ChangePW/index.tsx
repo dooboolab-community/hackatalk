@@ -19,10 +19,10 @@ import { DefaultNavigationProps } from '../../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
 import { getString } from '../../../../STRINGS';
-import { useThemeContext } from '../../../providers/ThemeProvider';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
-export interface Props extends ThemeProps<DefaultTheme> {
-  navigation: DefaultNavigationProps<'ChangePW'>;
+export interface Props {
+  navigation: DefaultNavigationProps;
 }
 
 export function ChangePW(props: Props): ReactElement {
@@ -109,16 +109,16 @@ export function ChangePW(props: Props): ReactElement {
           />
         </InnerContainer>
       ) : (
-        <InnerContainer>
-          <StyledTextInput
-            key="currentPwTextInput"
-            testID="currentPwTextInput"
-            isPassword
-            onTextChanged={(pw): void => setCurrentPw(pw)}
-            txtLabel={getString('PASSWORD_CURRENT')}
-          />
-        </InnerContainer>
-      )}
+          <InnerContainer>
+            <StyledTextInput
+              key="currentPwTextInput"
+              testID="currentPwTextInput"
+              isPassword
+              onTextChanged={(pw): void => setCurrentPw(pw)}
+              txtLabel={getString('PASSWORD_CURRENT')}
+            />
+          </InnerContainer>
+        )}
       <Button
         testID="checkCurrentPwBtn"
         onPress={isValidCurrentPw ? changePassword : validateCurrent}

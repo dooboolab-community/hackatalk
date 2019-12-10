@@ -1,5 +1,4 @@
 import AuthStack from './AuthStackNavigator';
-import ChangePW from '../screen/ChangePW';
 import MainStack from './MainStackNavigator';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
@@ -26,7 +25,6 @@ function RootNavigator(): React.ReactElement {
       >
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="MainStack" component={MainStack} />
-        <Stack.Screen name="ChangePwModal" component={ChangePW} />
         <Stack.Screen name="NotFound" component={NotFound} />
       </Stack.Navigator>
     </NavigationNativeContainer>

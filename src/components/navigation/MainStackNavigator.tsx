@@ -26,6 +26,7 @@ import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+import ChangePW from '../screen/ChangePW';
 
 const Stack = createStackNavigator();
 
@@ -92,6 +93,7 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="ChangePw" component={ChangePW} />
     </Stack.Navigator>
   );
 }
