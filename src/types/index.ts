@@ -121,6 +121,7 @@ type StackParamList = {
     chatId: string;
   };
   Temp: undefined;
+  ChangePW: undefined;
   NotFound: undefined;
 };
 

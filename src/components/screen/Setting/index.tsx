@@ -1,4 +1,3 @@
-import ChangePwModal, { ChangPwModalRef } from '../../shared/ChangePwModal';
 import {
   Container,
   HeaderContainer,
@@ -14,10 +13,10 @@ import {
 } from '../../../types';
 import { DefaultTheme, ThemeProps } from 'styled-components/native';
 import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
-import React, { useRef } from 'react';
 import { SectionList, SectionListData } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
+import React from 'react';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '../../../providers/ThemeProvider';
@@ -41,9 +40,9 @@ export interface Props extends ThemeProps<DefaultTheme> {
   navigation: DefaultNavigationProps<'Setting'>;
 }
 
-function SettingScreen(): React.ReactElement {
+function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
-  const modal: React.MutableRefObject<ChangPwModalRef | null> = useRef(null);
+  const { navigation } = props;
   const {
     state: { user },
   } = useAuthUserContext();
@@ -56,7 +55,7 @@ function SettingScreen(): React.ReactElement {
         icon: IC_GOOGLE,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
-          modal.current && modal.current.open();
+          navigation.navigate('ChangePwModal');
         },
         testID: 'changePwItem',
       };
@@ -66,7 +65,7 @@ function SettingScreen(): React.ReactElement {
         icon: IC_FACEBOOK,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
-          modal.current && modal.current.open();
+          navigation.navigate('ChangePwModal');
         },
         testID: 'changePwItem',
       };
@@ -76,7 +75,7 @@ function SettingScreen(): React.ReactElement {
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),
         onPress: (): void => {
-          modal.current && modal.current.open();
+          navigation.navigate('ChangePwModal');
         },
         testID: 'changePwItem',
       };
@@ -103,7 +102,6 @@ function SettingScreen(): React.ReactElement {
           </HeaderContainer>
         )}
       />
-      <ChangePwModal ref={modal} />
     </Container>
   );
 }
