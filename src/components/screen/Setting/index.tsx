@@ -55,7 +55,7 @@ function SettingScreen(props: Props): React.ReactElement {
         icon: IC_GOOGLE,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
-          navigation.navigate('ChangePwModal');
+          navigation.navigate('ChangePW');
         },
         testID: 'changePwItem',
       };
@@ -65,7 +65,7 @@ function SettingScreen(props: Props): React.ReactElement {
         icon: IC_FACEBOOK,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
-          navigation.navigate('ChangePwModal');
+          navigation.navigate('ChangePW');
         },
         testID: 'changePwItem',
       };
@@ -75,7 +75,7 @@ function SettingScreen(props: Props): React.ReactElement {
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),
         onPress: (): void => {
-          navigation.navigate('ChangePwModal');
+          navigation.navigate('ChangePW');
         },
         testID: 'changePwItem',
       };

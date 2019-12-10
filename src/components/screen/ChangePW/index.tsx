@@ -1,4 +1,4 @@
-import { Alert, Keyboard, KeyboardEvent, View } from 'react-native';
+import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, View } from 'react-native';
 import {
   CloseButton,
   Header,
@@ -65,16 +65,16 @@ export function ChangePW(props: Props): ReactElement {
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const onKeyboardShow = (event: KeyboardEvent): void => setKeyboardOffset(event.endCoordinates.height);
   const onKeyboardHide = (): void => setKeyboardOffset(0);
-  const keyboardDidShowListener = useRef();
-  const keyboardDidHideListener = useRef();
+  const keyboardDidShowListener = useRef<EmitterSubscription>();
+  const keyboardDidHideListener = useRef<EmitterSubscription>();
 
   useEffect(() => {
     keyboardDidShowListener.current = Keyboard.addListener('keyboardWillShow', onKeyboardShow);
     keyboardDidHideListener.current = Keyboard.addListener('keyboardWillHide', onKeyboardHide);
 
     return (): void => {
-      keyboardDidShowListener.current.remove();
-      keyboardDidHideListener.current.remove();
+      keyboardDidShowListener.current && keyboardDidShowListener.current.remove();
+      keyboardDidHideListener.current && keyboardDidHideListener.current.remove();
     };
   }, []);
   return (
