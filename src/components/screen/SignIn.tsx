@@ -2,7 +2,7 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { DefaultNavigationProps, User } from '../../types';
 import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -17,6 +17,7 @@ import Constants from 'expo-constants';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import StatusBar from '../shared/StatusBar';
+import { WebView } from 'react-native-webview';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -332,6 +333,21 @@ function SignIn(props: Props): ReactElement {
               textStyle={{ fontWeight: '700', color: 'white' }}
             />
           </SocialButtonWrapper>
+          <View style={{ flexDirection: 'row' }}>
+            <WebView
+              source={{ uri: 'https://dooboolab.com/termsofservice' }}
+              style={{ marginTop: 20 }}
+            />
+            <Text>
+              <Text>{getString('AGREEMENT1')}</Text>
+              {/* <TouchableOpacity onPress={() => { alert('hi') }}> */}
+              <Text style={{ textDecorationLine: 'underline' }}>{getString('AGREEMENT2')}</Text>
+              {/* </TouchableOpacity> */}
+              <Text>{getString('AGREEMENT3')}</Text>
+              <Text>{getString('AGREEMENT4')}</Text>
+              <Text>{getString('AGREEMENT5')}</Text>
+            </Text>
+          </View>
         </Wrapper>
       </ScrollView>
     </Container>
