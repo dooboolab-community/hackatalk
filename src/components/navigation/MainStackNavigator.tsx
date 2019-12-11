@@ -11,6 +11,7 @@ import {
 import { TouchableOpacity, View } from 'react-native';
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
+import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { Ionicons } from '@expo/vector-icons';
 import ProfileModal from '../shared/ProfileModal';
@@ -26,6 +27,14 @@ const Stack = createStackNavigator();
 
 interface SettingButtonProps {
   tintColor?: string;
+}
+
+function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOptions {
+  return {
+    headerTitle: title,
+    headerTintColor: theme.fontColor,
+    headerStyle: { backgroundColor: theme.background },
+  };
 }
 
 function MainStackNavigator(): ReactElement {
@@ -63,20 +72,17 @@ function MainStackNavigator(): ReactElement {
             );
           };
           return {
-            headerTitle: getString('MY_PROFILE'),
-            headerTintColor: theme.fontColor,
+            ...getSimpleHeader(getString('MY_PROFILE'), theme),
             headerRight: settingButton,
-            headerStyle: { backgroundColor: theme.background },
           };
         }}
       />
-      <Stack.Screen name="SearchUser" component={SearchUser} />
-      <Stack.Screen name="Chat" component={Chat} />
-      <Stack.Screen name="Setting" component={Setting} options={{
-        headerTitle: getString('SETTING'),
-        headerTintColor: theme.fontColor,
-        headerStyle: { backgroundColor: theme.background },
-      }} />
+      <Stack.Screen
+        name="SearchUser"
+        component={SearchUser}
+        options={getSimpleHeader(getString('SEARCH_USER'), theme)} />
+      <Stack.Screen name="Chat" component={Chat} options={getSimpleHeader(getString('CHAT'), theme)} />
+      <Stack.Screen name="Setting" component={Setting} options={getSimpleHeader(getString('SETTING'), theme)} />
     </Stack.Navigator>
   );
 }
