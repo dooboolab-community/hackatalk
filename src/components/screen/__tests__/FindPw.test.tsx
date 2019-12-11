@@ -12,7 +12,7 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import { dark, light } from '../../../theme';
 
-import FindPw from '../FindPW';
+import FindPw from '../FindPw';
 import { getString } from '../../../../STRINGS';
 
 let props: any;
