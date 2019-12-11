@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[ChangePW] screen interactions should simulate textChanged 1`] = `
+exports[`[ChangePw] screen interactions should simulate textChanged 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"
@@ -283,7 +283,7 @@ exports[`[ChangePW] screen interactions should simulate textChanged 1`] = `
 </View>
 `;
 
-exports[`[ChangePW] screen renders without crashing 1`] = `
+exports[`[ChangePw] screen renders without crashing 1`] = `
 <View
   collapsable={true}
   pointerEvents="box-none"

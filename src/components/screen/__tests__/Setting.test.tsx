@@ -30,16 +30,18 @@ function getEmptyAuthUserWithSignInType(signInType: SignInType): AuthUser {
 
 function SettingTest(): React.ReactElement {
   const settingProps = createTestProps();
-  return (
-    <Setting {...settingProps} />
-  );
+  return <Setting {...settingProps} />;
 }
 
 describe('[Setting] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
-    component = createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Email));
+    component = createTestElement(
+      <SettingTest />,
+      undefined,
+      getEmptyAuthUserWithSignInType(SignInType.Email),
+    );
     testingLib = render(component);
   });
 
@@ -49,10 +51,18 @@ describe('[Setting] screen', () => {
     expect(rendered.toJSON()).toBeTruthy();
 
     rendered.update(
-      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Facebook)),
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(SignInType.Facebook),
+      ),
     );
     rendered.update(
-      createTestElement(<SettingTest />, undefined, getEmptyAuthUserWithSignInType(SignInType.Google)),
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(SignInType.Google),
+      ),
     );
   });
 

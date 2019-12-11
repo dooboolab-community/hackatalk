@@ -59,7 +59,7 @@ interface File extends ChatCommon<MessageType.File> {
 
 export type ChatProps<
   T extends MessageType = MessageType.Message
-  > = T extends MessageType.Message
+> = T extends MessageType.Message
   ? Message
   : T extends MessageType.Photo
   ? Photo
@@ -121,10 +121,10 @@ type StackParamList = {
     chatId: string;
   };
   Temp: undefined;
-  ChangePW: undefined;
+  ChangePw: undefined;
   NotFound: undefined;
 };
 
 export type DefaultNavigationProps<
   T extends keyof StackParamList = 'Default'
-  > = StackNavigationProp<StackParamList, T>;
+> = StackNavigationProp<StackParamList, T>;

@@ -24,7 +24,7 @@ export interface Props {
   navigation: DefaultNavigationProps;
 }
 
-function ChangePW(props: Props): ReactElement {
+function ChangePw(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
   const [isValidCurrentPw, setCurrentPwValid] = useState(false);
@@ -128,4 +128,4 @@ function ChangePW(props: Props): ReactElement {
   );
 }
 
-export default ChangePW;
+export default ChangePw;

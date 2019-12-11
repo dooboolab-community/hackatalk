@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   RenderResult,
   cleanup,
@@ -7,7 +8,8 @@ import {
   wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import ChangePw from '../ChangePW';
+
+import ChangePw from '../ChangePw';
 
 const mockAlert = {
   alert: jest.fn(),
@@ -29,14 +31,12 @@ jest.mock('react-native', () => {
   return ReactNative;
 });
 
-describe('[ChangePW] screen', () => {
+describe('[ChangePw] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
     const props = createTestProps({});
-    const component = createTestElement(
-      <ChangePw {...props} />,
-    );
+    const component = createTestElement(<ChangePw {...props} />);
     testingLib = render(component);
     mockAlert.alert.mockClear();
   });
@@ -58,20 +58,24 @@ describe('[ChangePW] screen', () => {
 
       // keyboardEvent test
       const keyboardEvents = mockKeyboard.addListener.mock.calls;
-      keyboardEvents.forEach(([eventName, ftn]: [string, (arg: any) => void]) => {
-        switch (eventName) {
-          case 'keyboardWillShow':
-            ftn({ endCoordinates: { height: 301 } });
-            break;
-          case 'keyboardWillHide':
-            ftn();
-            break;
-          default:
-        }
-      });
+      keyboardEvents.forEach(
+        ([eventName, ftn]: [string, (arg: any) => void]) => {
+          switch (eventName) {
+            case 'keyboardWillShow':
+              ftn({ endCoordinates: { height: 301 } });
+              break;
+            case 'keyboardWillHide':
+              ftn();
+              break;
+            default:
+          }
+        },
+      );
 
       // wait for newPwTextInput
-      await wait(() => expect(testingLib.queryByTestId('newPwTextInput')).toBeTruthy());
+      await wait(() =>
+        expect(testingLib.queryByTestId('newPwTextInput')).toBeTruthy(),
+      );
 
       expect(testingLib.asJSON()).toMatchSnapshot();
       expect(testingLib.asJSON()).toBeTruthy();
