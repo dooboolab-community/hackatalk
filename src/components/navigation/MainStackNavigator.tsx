@@ -66,12 +66,17 @@ function MainStackNavigator(): ReactElement {
             headerTitle: getString('MY_PROFILE'),
             headerTintColor: theme.fontColor,
             headerRight: settingButton,
+            headerStyle: { backgroundColor: theme.background },
           };
         }}
       />
       <Stack.Screen name="SearchUser" component={SearchUser} />
       <Stack.Screen name="Chat" component={Chat} />
-      <Stack.Screen name="Setting" component={Setting} />
+      <Stack.Screen name="Setting" component={Setting} options={{
+        headerTitle: getString('SETTING'),
+        headerTintColor: theme.fontColor,
+        headerStyle: { backgroundColor: theme.background },
+      }} />
     </Stack.Navigator>
   );
 }
