@@ -9,7 +9,8 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import ChangePw from '../ChangePw';
+import ChangePw, { ChangePwHeaderOptions } from '../ChangePw';
+import { act } from 'react-test-renderer';
 
 const mockAlert = {
   alert: jest.fn(),
@@ -59,7 +60,7 @@ describe('[ChangePw] screen', () => {
       // keyboardEvent test
       const keyboardEvents = mockKeyboard.addListener.mock.calls;
       keyboardEvents.forEach(
-        ([eventName, ftn]: [string, (arg: any) => void]) => {
+        ([eventName, ftn]: [string, (arg?: any) => void]) => {
           switch (eventName) {
             case 'keyboardWillShow':
               ftn({ endCoordinates: { height: 301 } });
@@ -97,5 +98,26 @@ describe('[ChangePw] screen', () => {
 
   afterAll(() => {
     cleanup();
+  });
+});
+
+describe('[ChangePwHeader] component', () => {
+  const props = createTestProps({});
+  const options = ChangePwHeaderOptions();
+  const Header = options.header;
+  const component = createTestElement(<Header {...props} />);
+
+  it('renders without crashing', () => {
+    const renderedHeader = render(component);
+    expect(renderedHeader.asJSON()).toMatchSnapshot();
+  });
+
+  it('shoud call naviagation.pop when close button clicked', () => {
+    const renderedHeader = render(component);
+    const closeBtn = renderedHeader.getByTestId('closeBtn');
+    act(() => {
+      fireEvent.press(closeBtn);
+    });
+    expect(props.navigation.goBack).toBeCalled();
   });
 });

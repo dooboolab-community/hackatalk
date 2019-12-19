@@ -1,3 +1,4 @@
+import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import {
   ProfileModalProvider,
@@ -42,6 +43,7 @@ function MainStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="MainTab"
+      headerMode="screen"
     >
       <Stack.Screen
         name="MainTab"
@@ -83,6 +85,11 @@ function MainStackNavigator(): ReactElement {
         options={getSimpleHeader(getString('SEARCH_USER'), theme)} />
       <Stack.Screen name="Chat" component={Chat} options={getSimpleHeader(getString('CHAT'), theme)} />
       <Stack.Screen name="Setting" component={Setting} options={getSimpleHeader(getString('SETTING'), theme)} />
+      <Stack.Screen
+        name="ChangePw"
+        component={ChangePw}
+        options={ChangePwHeaderOptions}
+      />
     </Stack.Navigator>
   );
 }

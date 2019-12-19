@@ -24,6 +24,19 @@ export interface Props {
   navigation: DefaultNavigationProps;
 }
 
+const ChangePwHeader = (props: Props): ReactElement => {
+  const { navigation } = props;
+  const { theme } = useThemeContext();
+  return (
+    <Header>
+      <Title>{getString('PASSWORD_CHANGE')}</Title>
+      <CloseButton testID="closeBtn" onPress={(): void => navigation.goBack()}>
+        <Ionicons name="md-close" size={24} color={theme.fontColor} />
+      </CloseButton>
+    </Header>
+  );
+};
+
 function ChangePw(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
@@ -78,18 +91,6 @@ function ChangePw(props: Props): ReactElement {
   }, []);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background, paddingBottom: keyboardOffset }}>
-      <Header>
-        <Title>{getString('PASSWORD_CHANGE')}</Title>
-        <CloseButton testID="closeBtn" onPress={close}>
-          <View
-            style={{
-              padding: 8,
-            }}
-          >
-            <Ionicons name="md-close" size={24} color={theme.fontColor} />
-          </View>
-        </CloseButton>
-      </Header>
       {isValidCurrentPw ? (
         <InnerContainer>
           <StyledTextInput
@@ -128,4 +129,5 @@ function ChangePw(props: Props): ReactElement {
   );
 }
 
+export const ChangePwHeaderOptions = (): object => ({ header: ChangePwHeader });
 export default ChangePw;

@@ -27,52 +27,6 @@ exports[`[ChangePw] screen interactions should simulate textChanged 1`] = `
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 52,
-            "justifyContent": "center",
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "black",
-              "fontSize": 20,
-            },
-          ]
-        }
-      >
-        Change Password
-      </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
-        style={
-          Array [
-            Object {
-              "position": "absolute",
-              "right": 10,
-            },
-          ]
-        }
-        testID="closeBtn"
-      >
-        <View
-          style={
-            Object {
-              "padding": 8,
-            }
-          }
-        >
-          <Text />
-        </View>
-      </TouchableOpacity>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -310,52 +264,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "height": 52,
-            "justifyContent": "center",
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "black",
-              "fontSize": 20,
-            },
-          ]
-        }
-      >
-        Change Password
-      </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
-        style={
-          Array [
-            Object {
-              "position": "absolute",
-              "right": 10,
-            },
-          ]
-        }
-        testID="closeBtn"
-      >
-        <View
-          style={
-            Object {
-              "padding": 8,
-            }
-          }
-        >
-          <Text />
-        </View>
-      </TouchableOpacity>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
@@ -483,6 +391,66 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
       >
         Next
       </Text>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
+exports[`[ChangePwHeader] component renders without crashing 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "height": 72,
+          "justifyContent": "center",
+          "paddingTop": 20,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 20,
+          },
+        ]
+      }
+    >
+      Change Password
+    </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Array [
+          Object {
+            "height": 52,
+            "justifyContent": "center",
+            "paddingBottom": 8,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "paddingTop": 8,
+            "position": "absolute",
+            "right": 10,
+            "top": 20,
+          },
+        ]
+      }
+      testID="closeBtn"
+    >
+      <Text />
     </TouchableOpacity>
   </View>
 </View>
