@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import ChangePw, { ChangePwHeaderOptions } from '../ChangePw';
 import {
   RenderResult,
   cleanup,
@@ -9,7 +10,6 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import ChangePw, { ChangePwHeaderOptions } from '../ChangePw';
 import { act } from 'react-test-renderer';
 
 const mockAlert = {
