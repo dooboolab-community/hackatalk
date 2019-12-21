@@ -5,6 +5,7 @@ const jestPreset = require('@testing-library/react-native/jest-preset');
 
 module.exports = Object.assign(expoPreset, jestPreset, {
   preset: '@testing-library/react-native',
+  automock: false,
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',
@@ -13,7 +14,6 @@ module.exports = Object.assign(expoPreset, jestPreset, {
   moduleDirectories: ['node_modules'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
   moduleFileExtensions: ['js', 'ts', 'tsx', 'svg', 'png'],
-
   globals: {
     'ts-jest': {
       tsConfig: {
@@ -35,9 +35,11 @@ module.exports = Object.assign(expoPreset, jestPreset, {
     ...expoPreset.setupFiles,
     ...jestPreset.setupFiles,
     '<rootDir>/test/jestSetup.ts',
+    './node_modules/react-native-gesture-handler/jestSetup.js',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!react-native|react-navigation|dooboo-native-widgets)/',
+    // eslint-disable-next-line max-len
+    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base|@dooboo-ui/native)',
   ],
   setupFilesAfterEnv: ['./test/setupTest.js'],
 });
