@@ -611,6 +611,87 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           </View>
         </TouchableOpacity>
       </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "center",
+              "paddingBottom": 0,
+              "paddingLeft": 30,
+              "paddingRight": 30,
+              "paddingTop": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+          We consider that you agree with 
+        </Text>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "lineHeight": 22,
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+          testID="webView"
+        >
+          Terms for Agreement
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+           and 
+        </Text>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "lineHeight": 22,
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          Privacy Policy
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+           by going onto next step.
+        </Text>
+      </View>
     </View>
   </ScrollView>
 </SafeAreaView>

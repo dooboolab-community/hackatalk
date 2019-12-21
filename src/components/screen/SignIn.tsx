@@ -75,8 +75,26 @@ interface Props {
   navigation: DefaultNavigationProps<'SignIn'>;
 }
 
+const StyledAgreementTextWrapper = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 30px;
+`;
+
+const StyledAgreementText = styled.Text`
+  line-height: 22px;
+  color: #777;
+`;
+
+const StyledAgreementLinedText = styled.Text`
+  line-height: 22px;
+  color: #333;
+  text-decoration-line: underline;
+`;
+
 function SignIn(props: Props): ReactElement {
-  const [isSignIn, setIsSignIn] = useState<boolean>(false);
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
   const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
@@ -106,10 +124,9 @@ function SignIn(props: Props): ReactElement {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
       return;
     }
-
-    setIsSignIn(true);
+    setIsLoggingIn(true);
     timer = setTimeout(() => {
-      setIsSignIn(false);
+      setIsLoggingIn(false);
       clearTimeout(timer);
       if (props.navigation) {
         props.navigation.resetRoot({
@@ -118,6 +135,10 @@ function SignIn(props: Props): ReactElement {
         });
       }
     }, 1000);
+  };
+
+  const goToWebView = (uri: string): void => {
+    props.navigation.navigate('WebView', { uri });
   };
 
   const initAsync = async (): Promise<void> => {
@@ -266,7 +287,7 @@ function SignIn(props: Props): ReactElement {
             <View style={{ width: 8 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isSignIn}
+              isLoading={isLoggingIn}
               onPress={onSignIn}
               containerStyle={{ flex: 1, flexDirection: 'row' }}
             >
@@ -333,21 +354,22 @@ function SignIn(props: Props): ReactElement {
               textStyle={{ fontWeight: '700', color: 'white' }}
             />
           </SocialButtonWrapper>
-          <View style={{ flexDirection: 'row' }}>
-            <WebView
-              source={{ uri: 'https://dooboolab.com/termsofservice' }}
-              style={{ marginTop: 20 }}
-            />
-            <Text>
-              <Text>{getString('AGREEMENT1')}</Text>
-              {/* <TouchableOpacity onPress={() => { alert('hi') }}> */}
-              <Text style={{ textDecorationLine: 'underline' }}>{getString('AGREEMENT2')}</Text>
-              {/* </TouchableOpacity> */}
-              <Text>{getString('AGREEMENT3')}</Text>
-              <Text>{getString('AGREEMENT4')}</Text>
-              <Text>{getString('AGREEMENT5')}</Text>
-            </Text>
-          </View>
+          <StyledAgreementTextWrapper>
+            <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
+            <StyledAgreementLinedText
+              onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
+              testID="webView"
+            >
+              {getString('AGREEMENT2')}
+            </StyledAgreementLinedText>
+            <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
+            <StyledAgreementLinedText
+              onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
+            >
+              {getString('AGREEMENT4')}
+            </StyledAgreementLinedText>
+            <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
+          </StyledAgreementTextWrapper>
         </Wrapper>
       </ScrollView>
     </Container>

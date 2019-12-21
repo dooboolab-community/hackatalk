@@ -58,10 +58,11 @@ const en = {
   SIGNED_IN_WITH_FACEBOOK: 'Signed in with Facebook',
   SIGNED_IN_WITH_EMAIL: 'Signed in with Email',
   AGREEMENT1: 'We consider that you agree with ',
-  AGREEMENT2: 'terms for agreement',
+  AGREEMENT2: 'Terms for Agreement',
   AGREEMENT3: ' and ',
-  AGREEMENT4: 'privacy policy',
+  AGREEMENT4: 'Privacy Policy',
   AGREEMENT5: ' by going onto next step.',
+  WEB_VIEW: 'Web View',
 };
 
 const ko = {

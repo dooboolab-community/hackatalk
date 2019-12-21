@@ -123,6 +123,9 @@ type StackParamList = {
   Temp: undefined;
   ChangePw: undefined;
   NotFound: undefined;
+  WebView: {
+    uri: string;
+  };
 }
 
 export type DefaultNavigationProps<
