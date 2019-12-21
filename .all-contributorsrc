@@ -173,6 +173,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "real0131",
+      "name": "Jaeho Cho (Barney)",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12093323?v=4",
+      "profile": "http://utaha.moe/about",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
