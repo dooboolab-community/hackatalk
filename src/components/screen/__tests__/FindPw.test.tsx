@@ -15,6 +15,7 @@ import { dark, light } from '../../../theme';
 import FindPw from '../FindPW';
 import { getString } from '../../../../STRINGS';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;

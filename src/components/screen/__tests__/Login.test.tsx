@@ -19,6 +19,7 @@ import Login from '../Login';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
 

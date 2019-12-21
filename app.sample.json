@@ -22,6 +22,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.dooboolab.hackatalk",
+      "userInterfaceStyle": "automatic",
       "config": {
         "googleSignIn": {
           "reservedClientId": "<reservedClientId>"

@@ -63,12 +63,13 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
+          // prettier-ignore
           friends.length === 0
             ? {
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
