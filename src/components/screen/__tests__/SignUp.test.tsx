@@ -18,7 +18,7 @@ import { getString } from '../../../../STRINGS';
 
 // import { useFormContext } from 'react-hook-form';
 
-// jest.mock('react-hook-form');
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
 

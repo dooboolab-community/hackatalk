@@ -2,24 +2,43 @@
 
 exports[`[EmptyListItem] render renders without crashing 1`] = `
 <View
+  pointerEvents="box-none"
   style={
     Object {
-      "alignItems": "center",
-      "alignSelf": "stretch",
       "flex": 1,
-      "justifyContent": "center",
-      "width": "100%",
     }
   }
 >
-  <Text
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
       Object {
-        "alignSelf": "center",
-        "color": "rgb(155,155,155)",
-        "fontSize": 14,
+        "flex": 1,
       }
     }
-  />
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "flex": 1,
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "rgb(155,155,155)",
+            "fontSize": 14,
+          }
+        }
+      />
+    </View>
+  </View>
 </View>
 `;
