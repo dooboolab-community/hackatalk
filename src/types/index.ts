@@ -91,7 +91,7 @@ export enum ThemeType {
 }
 
 type StackParamList = {
-  Default: undefined;
+  default: undefined;
   AuthStack: undefined;
   MainStack: undefined;
   Login: undefined;
@@ -111,5 +111,5 @@ type StackParamList = {
 };
 
 export type DefaultNavigationProps<
-  T extends keyof StackParamList = 'Default'
+  T extends keyof StackParamList = 'default'
 > = StackNavigationProp<StackParamList, T>;
