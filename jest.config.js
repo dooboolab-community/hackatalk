@@ -5,7 +5,6 @@ const jestPreset = require('@testing-library/react-native/jest-preset');
 
 module.exports = Object.assign(expoPreset, jestPreset, {
   preset: '@testing-library/react-native',
-  automock: false,
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',
@@ -35,11 +34,11 @@ module.exports = Object.assign(expoPreset, jestPreset, {
     ...expoPreset.setupFiles,
     ...jestPreset.setupFiles,
     '<rootDir>/test/jestSetup.ts',
-    './node_modules/react-native-gesture-handler/jestSetup.js',
   ],
+  /* eslint-disable */
   transformIgnorePatterns: [
-    // eslint-disable-next-line max-len
     'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base|@dooboo-ui/native)',
   ],
+  /* eslint-enable */
   setupFilesAfterEnv: ['./test/setupTest.js'],
 });

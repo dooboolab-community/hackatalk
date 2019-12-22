@@ -78,7 +78,6 @@
     "@testing-library/jest-native": "^3.1.0",
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/react-native": "^5.0.3",
-    "@types/expo": "^33.0.1",
     "@types/i18n-js": "^3.0.1",
     "@types/jest": "^24.0.24",
     "@types/react": "^16.9",
