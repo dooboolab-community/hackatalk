@@ -1,8 +1,5 @@
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import {
-  ProfileModalProvider,
-  useProfileContext,
-} from '../../providers/ProfileModalProvider';
+import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { useRef } from 'react';
 
 import Chat from '../screen/Chat';
@@ -14,7 +11,7 @@ import SearchUser from '../screen/SearchUser';
 import StatusBar from '../shared/StatusBar';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();

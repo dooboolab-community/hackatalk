@@ -434,6 +434,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="iconLeft"
             >
               <View
                 style={
@@ -459,6 +460,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="text"
               theme={
                 Object {
                   "fontColor": "white",
@@ -476,6 +478,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="iconRight"
             />
           </View>
         </TouchableOpacity>
@@ -530,6 +533,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="iconLeft"
             >
               <View
                 style={
@@ -555,6 +559,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="text"
               theme={
                 Object {
                   "fontColor": "white",
@@ -572,6 +577,7 @@ exports[`[Login] rendering test renders as expected 1`] = `
                   },
                 ]
               }
+              testID="iconRight"
             />
           </View>
         </TouchableOpacity>

@@ -177,13 +177,17 @@ function Screen(props: Props): React.ReactElement {
   const facebookLogin = async (): Promise<void> => {
     setSigningInFacebook(true);
     try {
-      const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+      await Facebook.initializeAsync(
         Constants.manifest.facebookAppId,
-        {
-          permissions: ['email', 'public_profile'],
-        },
+        undefined,
       );
-      if (type === 'success') {
+      const result = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['email', 'public_profile'],
+      });
+
+      if (result.type === 'success') {
+        const { token, expires, permissions, declinedPermissions } = result;
+
         const response = await fetch(
           `https://graph.facebook.com/me?fields=
             id,name,email,birthday,gender,first_name,last_name,picture

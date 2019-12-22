@@ -4,7 +4,6 @@ import {
   ButtonToRight,
   ErrorText,
   InnerContainer,
-  Props,
   SignUpFormValues,
   StyledButtonWrapper,
   StyledSafeAreaView,
@@ -64,6 +63,7 @@ function SignUpPage(): ReactElement {
   });
   const onTextChanged = useCallback(
     (label: string, text: string): void | Promise<boolean> => {
+      // @ts-ignore
       setValue(label, text, true);
     },
     [setValue],

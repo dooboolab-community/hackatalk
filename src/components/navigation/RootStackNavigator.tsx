@@ -20,7 +20,7 @@ function RootNavigator(): React.ReactElement {
           },
           headerTitleStyle: { color: theme.fontColor },
           headerTintColor: theme.tintColor,
-          header: null,
+          headerShown: false,
         }}
       >
         <Stack.Screen name="AuthStack" component={AuthStack} />
