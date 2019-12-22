@@ -90,8 +90,7 @@ function Screen(props: Props): React.ReactElement {
     setIsUpdating(true);
   };
 
-  const onTextChanged = (type: string, text: string): void => {
-    // prettier-ignore
+  const onChangeText = (type: string, text: string): void => {
     switch (type) {
       case 'DISPLAY_NAME':
         setDisplayName(text);
@@ -169,7 +168,7 @@ function Screen(props: Props): React.ReactElement {
             txtHint={getString('NAME')}
             txt={displayName}
             onTextChanged={(text: string): void =>
-              onTextChanged('DISPLAY_NAME', text)
+              onChangeText('DISPLAY_NAME', text)
             }
           />
           <TextInput
@@ -179,7 +178,7 @@ function Screen(props: Props): React.ReactElement {
             txtHint={getString('STATUS_MSG')}
             txt={statusMsg}
             onTextChanged={(text: string): void =>
-              onTextChanged('STATUS_MSG', text)
+              onChangeText('STATUS_MSG', text)
             }
           />
           <StyledBtnWrapper>
