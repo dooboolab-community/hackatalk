@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-} from '../../utils/ImagePicker';
-import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
+import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+
 import Button from '../shared/Button';
 import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
-
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+
 // import { CommonActions } from '@react-navigation/core';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
@@ -54,7 +52,7 @@ const ProfileImage = styled.Image`
   border-radius: 45px;
 `;
 
-interface Props extends ThemeProps<DefaultTheme> {
+interface Props {
   navigation: DefaultNavigationProps;
 }
 

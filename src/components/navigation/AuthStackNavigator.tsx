@@ -23,7 +23,7 @@ function AuthNavigator(): React.ReactElement {
       }}
     >
       <Stack.Screen name="Login" component={Login} options={{
-        header: null,
+        headerShown: false,
       }}/>
       <Stack.Screen name="SignUp" component={SignUp} options={{
         title: getString('SIGN_UP'),

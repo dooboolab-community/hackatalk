@@ -2,21 +2,12 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {
-  RenderResult,
-  cleanup,
-  fireEvent,
-  render,
-  toJSON,
-  within,
-} from '@testing-library/react-native';
+import { RenderResult, cleanup, fireEvent, render, toJSON, within } from '@testing-library/react-native';
 import SignUp, { initialValues } from '../SignUp';
 // import { act, renderHook } from '@testing-library/react-hooks';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { getString } from '../../../../STRINGS';
-
-// import { useFormContext } from 'react-hook-form';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;

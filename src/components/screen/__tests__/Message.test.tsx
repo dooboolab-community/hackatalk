@@ -13,7 +13,7 @@ let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
 
-jest.mock('@react-navigation/core', () => {
+jest.mock('@react-navigation/native', () => {
   return {
     useNavigation: (): object => {
       return {

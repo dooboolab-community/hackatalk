@@ -1,16 +1,6 @@
 import * as Yup from 'yup';
 
-import {
-  ButtonToRight,
-  ErrorText,
-  InnerContainer,
-  Props,
-  SignUpFormValues,
-  StyledButtonWrapper,
-  StyledSafeAreaView,
-  StyledScrollView,
-  StyledTextInput,
-} from './styles';
+import { ButtonToRight, ErrorText, InnerContainer, SignUpFormValues, StyledButtonWrapper, StyledSafeAreaView, StyledScrollView, StyledTextInput } from './styles';
 import React, { ReactElement, memo, useCallback, useMemo } from 'react';
 
 import { Alert } from 'react-native';
@@ -64,6 +54,7 @@ function SignUpPage(): ReactElement {
   });
   const onTextChanged = useCallback(
     (label: string, text: string): void | Promise<boolean> => {
+      // @ts-ignore
       setValue(label, text, true);
     },
     [setValue],

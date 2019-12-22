@@ -6,7 +6,7 @@ import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 
 const StyledContainer = styled.View`
   flex: 1;
