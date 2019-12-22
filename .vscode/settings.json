@@ -6,8 +6,10 @@
     "typescript",
     "typescriptreact"
   ],
-  // prettier extension setting
-  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll": true
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

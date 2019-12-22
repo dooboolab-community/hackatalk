@@ -3,7 +3,7 @@ const expoPreset = require('jest-expo/jest-preset');
 const jestPreset = require('@testing-library/react-native/jest-preset');
 /* eslint-enable @typescript-eslint/no-var-requires */
 
-module.exports = Object.assign(expoPreset, jestPreset, {
+module.exports = {
   preset: '@testing-library/react-native',
   transform: {
     '^.+\\.js$': 'babel-jest',
@@ -37,8 +37,8 @@ module.exports = Object.assign(expoPreset, jestPreset, {
   ],
   /* eslint-disable */
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base|@dooboo-ui/native)',
+    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|@dooboo-ui)',
   ],
   /* eslint-enable */
   setupFilesAfterEnv: ['./test/setupTest.js'],
-});
+};

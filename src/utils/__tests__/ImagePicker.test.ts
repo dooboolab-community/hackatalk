@@ -1,17 +1,18 @@
 import 'react-native';
-import * as ImagePicker from '../ImagePicker';
 
-jest.mock('expo-permissions', () => ({
-  ...require.requireActual('expo-permissions'),
-  askAsync: jest.fn(),
-}));
+import * as ImagePicker from '../ImagePicker';
 
 /* eslint-disable import/first */
 import { askAsync } from 'expo-permissions';
 
+jest.mock('expo-permissions', () => ({
+  ...jest.requireActual('expo-permissions'),
+  askAsync: jest.fn(),
+}));
+
 jest.mock('expo-image-picker', () => ({
-  launchCameraAsync: (): string => 'photo info',
-  launchImageLibraryAsync: (): string => 'photo info',
+  launchCameraAsync: (): Promise<string> => Promise.resolve('photo info'),
+  launchImageLibraryAsync: (): Promise<string> => Promise.resolve('photo info'),
 }));
 
 describe('ImagePicker interaction', () => {
