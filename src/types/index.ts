@@ -55,10 +55,10 @@ export type ChatProps<
 > = T extends MessageType.Message
   ? Message
   : T extends MessageType.Photo
-  ? Photo
-  : T extends MessageType.File
-  ? File
-  : ChatCommon<T>;
+    ? Photo
+    : T extends MessageType.File
+      ? File
+      : ChatCommon<T>;
 
 type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
 export type Chat = ChatProps<ChatType>;
@@ -108,7 +108,7 @@ type StackParamList = {
   };
   Temp: undefined;
   NotFound: undefined;
-};
+}
 
 export type DefaultNavigationProps<
   T extends keyof StackParamList = 'default'

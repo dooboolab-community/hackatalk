@@ -1,6 +1,15 @@
 import * as Yup from 'yup';
 
-import { ButtonToRight, ErrorText, InnerContainer, SignUpFormValues, StyledButtonWrapper, StyledSafeAreaView, StyledScrollView, StyledTextInput } from './styles';
+import {
+  ButtonToRight,
+  ErrorText,
+  InnerContainer,
+  SignUpFormValues,
+  StyledButtonWrapper,
+  StyledSafeAreaView,
+  StyledScrollView,
+  StyledTextInput,
+} from './styles';
 import React, { ReactElement, memo, useCallback, useMemo } from 'react';
 
 import { Alert } from 'react-native';
