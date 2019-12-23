@@ -11,28 +11,26 @@ const Stack = createStackNavigator();
 function AuthNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="SignUp"
-        component={SignUp}
-        options={{
-          title: getString('SIGN_UP'),
-        }}
-      />
-      <Stack.Screen
-        name="FindPw"
-        component={FindPw}
-        options={{
-          title: getString('FIND_PW'),
-        }}
-      />
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: theme.background,
+          borderBottomWidth: 0,
+          elevation: 0,
+        },
+        headerTintColor: theme.fontColor,
+      }}
+    >
+      <Stack.Screen name="Login" component={Login} options={{
+        headerShown: false,
+      }} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{
+        title: getString('SIGN_UP'),
+      }} />
+      <Stack.Screen name="FindPw" component={FindPw} options={{
+        title: getString('FIND_PW'),
+      }} />
     </Stack.Navigator>
   );
 }
