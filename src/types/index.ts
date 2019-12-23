@@ -62,10 +62,10 @@ export type ChatProps<
 > = T extends MessageType.Message
   ? Message
   : T extends MessageType.Photo
-  ? Photo
-  : T extends MessageType.File
-  ? File
-  : ChatCommon<T>;
+    ? Photo
+    : T extends MessageType.File
+      ? File
+      : ChatCommon<T>;
 
 type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
 export type Chat = ChatProps<ChatType>;
@@ -105,7 +105,7 @@ export enum ThemeType {
 }
 
 type StackParamList = {
-  Default: undefined;
+  default: undefined;
   AuthStack: undefined;
   MainStack: undefined;
   Login: undefined;
@@ -123,8 +123,8 @@ type StackParamList = {
   Temp: undefined;
   ChangePw: undefined;
   NotFound: undefined;
-};
+}
 
 export type DefaultNavigationProps<
-  T extends keyof StackParamList = 'Default'
+  T extends keyof StackParamList = 'default'
 > = StackNavigationProp<StackParamList, T>;

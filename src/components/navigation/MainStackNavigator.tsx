@@ -1,15 +1,13 @@
 import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import {
-  ProfileModalProvider,
-  useProfileContext,
-} from '../../providers/ProfileModalProvider';
+import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { ReactElement, useRef } from 'react';
 import {
   StackNavigationOptions,
   createStackNavigator,
 } from '@react-navigation/stack';
 import { TouchableOpacity, View } from 'react-native';
+
 import Chat from '../screen/Chat';
 import { DefaultNavigationProps } from '../../types';
 import { DefaultTheme } from 'styled-components';
@@ -21,7 +19,7 @@ import SearchUser from '../screen/SearchUser';
 import Setting from '../screen/Setting';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Stack = createStackNavigator();

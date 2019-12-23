@@ -8,11 +8,12 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import Message from '../Message';
 import renderer from 'react-test-renderer';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
 
-jest.mock('@react-navigation/core', () => {
+jest.mock('@react-navigation/native', () => {
   return {
     useNavigation: (): object => {
       return {

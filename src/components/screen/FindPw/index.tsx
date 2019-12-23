@@ -1,17 +1,7 @@
 import * as yup from 'yup';
 
-import {
-  Container,
-  ErrorText,
-  InnerContainer,
-  StyledButtonWrapper,
-  StyledScrollView,
-} from './styles';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import { Container, ErrorText, InnerContainer, StyledButtonWrapper, StyledScrollView } from './styles';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
 import React, { ReactElement, memo, useCallback } from 'react';
 
 import { Alert } from 'react-native';

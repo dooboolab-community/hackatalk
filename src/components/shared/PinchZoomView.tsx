@@ -3,6 +3,7 @@ import ImageViewer, {
 } from 'react-native-image-zoom-viewer';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+
 import { IImageInfo } from 'react-native-image-zoom-viewer/built/image-viewer.type';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';

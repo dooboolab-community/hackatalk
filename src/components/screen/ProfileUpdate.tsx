@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-} from '../../utils/ImagePicker';
-import styled, { DefaultTheme, ThemeProps } from 'styled-components/native';
+import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+
 import Button from '../shared/Button';
 import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
-
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
+import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+
 // import { CommonActions } from '@react-navigation/core';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
@@ -92,8 +90,7 @@ function Screen(props: Props): React.ReactElement {
     setIsUpdating(true);
   };
 
-  const onTextChanged = (type: string, text: string): void => {
-    // prettier-ignore
+  const onChangeText = (type: string, text: string): void => {
     switch (type) {
       case 'DISPLAY_NAME':
         setDisplayName(text);
@@ -171,7 +168,7 @@ function Screen(props: Props): React.ReactElement {
             txtHint={getString('NAME')}
             txt={displayName}
             onTextChanged={(text: string): void =>
-              onTextChanged('DISPLAY_NAME', text)
+              onChangeText('DISPLAY_NAME', text)
             }
           />
           <TextInput
@@ -181,7 +178,7 @@ function Screen(props: Props): React.ReactElement {
             txtHint={getString('STATUS_MSG')}
             txt={statusMsg}
             onTextChanged={(text: string): void =>
-              onTextChanged('STATUS_MSG', text)
+              onChangeText('STATUS_MSG', text)
             }
           />
           <StyledBtnWrapper>

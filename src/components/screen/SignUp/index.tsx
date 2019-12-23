@@ -4,7 +4,6 @@ import {
   ButtonToRight,
   ErrorText,
   InnerContainer,
-  Props,
   SignUpFormValues,
   StyledButtonWrapper,
   StyledSafeAreaView,

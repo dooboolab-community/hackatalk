@@ -11,7 +11,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChatListItem from '../ChatListItem';
-import { createTheme } from '../../../theme';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -39,7 +38,6 @@ let props = {
     message: 'hello1',
   },
   onPressPeerImage: jest.fn(),
-  createTheme,
   testID: 'chatListItem0',
 };
 let component: React.ReactElement;

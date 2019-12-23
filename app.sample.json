@@ -3,7 +3,7 @@
     "name": "HackaTalk",
     "slug": "HackaTalk",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
+    "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "default",
@@ -22,6 +22,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.dooboolab.hackatalk",
+      "userInterfaceStyle": "automatic",
       "config": {
         "googleSignIn": {
           "reservedClientId": "<reservedClientId>"
@@ -40,6 +41,7 @@
     "packagerOpts": {
       "config": "./rn-cli.config.js",
       "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
-    }
+    },
+    "description": "Opensource chat app"
   }
 }

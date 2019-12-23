@@ -12,7 +12,8 @@ import { getString } from '../../../../STRINGS';
 import { useFriendContext } from '../../../providers/FriendProvider';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
-let props: object;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let props: any;
 let component: React.ReactElement;
 // let testingLib: RenderResult;
 

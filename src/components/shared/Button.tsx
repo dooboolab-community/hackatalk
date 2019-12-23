@@ -32,7 +32,8 @@ interface Props {
 }
 
 const StyledButton = styled.TouchableOpacity<StyledElement>`
-  background-color: ${({ white, disabled, theme }): string =>
+  background-color: ${
+  ({ white, disabled, theme }): string =>
     (disabled && theme.btnDisabled) ||
     (white && theme.btnPrimaryLight) ||
     theme.btnPrimary

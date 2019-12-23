@@ -1,7 +1,3 @@
-import {
-  MaterialTopTabBar as RNMaterialTopTabBar,
-  createMaterialTopTabNavigator,
-} from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
@@ -11,6 +7,7 @@ import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Message from '../screen/Message';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Tab = createMaterialTopTabNavigator();

@@ -14,6 +14,7 @@ import ProfileUpdate from '../ProfileUpdate';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
 
@@ -93,7 +94,7 @@ describe('interaction', () => {
   it('should changeText when display name changed', () => {
     const inputName = testingLib.getByTestId('input_name');
     act(() => {
-      fireEvent.change(inputName, 'name');
+      fireEvent.changeText(inputName, 'name');
     });
     // TODO: what to expect?
     // expect(inputName.props.txt).toEqual('name');
@@ -102,7 +103,7 @@ describe('interaction', () => {
   it('should changeText when status message changed', () => {
     const inputStatus = testingLib.getByTestId('input_status');
     act(() => {
-      fireEvent.change(inputStatus, 'name');
+      fireEvent.changeText(inputStatus, 'name');
     });
     // expect(inputStatus.props.txt).toEqual('name');
   });
