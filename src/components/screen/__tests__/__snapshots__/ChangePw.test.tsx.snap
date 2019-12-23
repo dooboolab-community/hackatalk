@@ -412,9 +412,9 @@ exports[`[ChangePwHeader] component renders without crashing 1`] = `
         Object {
           "alignItems": "center",
           "backgroundColor": "#ffffff",
-          "height": 72,
+          "height": 96,
           "justifyContent": "center",
-          "paddingTop": 20,
+          "paddingTop": 44,
         },
       ]
     }
@@ -444,7 +444,7 @@ exports[`[ChangePwHeader] component renders without crashing 1`] = `
             "paddingTop": 8,
             "position": "absolute",
             "right": 10,
-            "top": 20,
+            "top": 44,
           },
         ]
       }
