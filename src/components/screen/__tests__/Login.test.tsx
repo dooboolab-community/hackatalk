@@ -142,6 +142,8 @@ describe('[Login] Facebook Signin', () => {
     await flushPromises();
 
     await wait(() => expect(fetch).toHaveBeenCalledTimes(1));
+
+    await wait(() => expect(props.navigation.resetRoot).toHaveBeenCalledTimes(2));
   });
 
   it('should cancel signin with facebook', async () => {

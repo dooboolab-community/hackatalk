@@ -6,6 +6,7 @@ global.fetch = jest.fn().mockImplementation(() => {
       json: function () {
         return { id: 1 };
       },
+      text: async () => '{}',
     });
   });
 });
