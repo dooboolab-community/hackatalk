@@ -10,6 +10,7 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -140,7 +141,7 @@ describe('[Login] Facebook Signin', () => {
     const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
     await flushPromises();
 
-    // expect(fetch).toHaveBeenCalledTimes(1);
+    await wait(() => expect(fetch).toHaveBeenCalledTimes(1));
   });
 
   it('should cancel signin with facebook', async () => {

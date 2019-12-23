@@ -3,3 +3,5 @@ export const logInWithReadPermissionsAsync = (): Promise<object> => {
     resolve({ type: 'success', token: 'testToken' });
   });
 };
+
+export const initializeAsync = jest.fn();
