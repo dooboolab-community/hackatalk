@@ -302,12 +302,13 @@ function Screen(props: Props): React.ReactElement {
               // placeholderTextColor="#ADB5BD"
               value={password}
               onChangeText={(text: string): void => {
+                setPassword(text);
+
                 if (text === '') {
                   setErrorPassword(getString('PASSWORD_REQUIRED'));
                   return;
                 }
                 setErrorPassword('');
-                setPassword(text);
               }}
               style={{ marginTop: 20, marginBottom: 20 }}
               errorText={errorPassword}
