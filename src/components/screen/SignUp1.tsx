@@ -20,10 +20,11 @@ const StyledWrapper = styled.View`
 const StyledButtonWrapper = styled.View`
   width: 100%;
   margin-top: 20px;
+  flex-direction: row;
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'default'>;
+  navigation: DefaultNavigationProps<'SignUp'>;
 }
 
 function Page(props: Props): ReactElement {
@@ -53,10 +54,22 @@ function Page(props: Props): ReactElement {
   };
 
   const onSignUp = (): void => {
-    if (email === '' && password === '' && confirmPassword === '' && name === '') {
-      Alert.alert('입력폼을 확인해주세요!');
+    if (email === '' || password === '' || confirmPassword === '' || name === '') {
+      if (email === '') {
+        setErrorEmail(getString('EMAIL_REQUIRED'));
+      }
+      if (password === '') {
+        setErrorPassword(getString('PASSWORD_REQUIRED'));
+      }
+      if (confirmPassword === '') {
+        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+      }
+      if (name === '') {
+        setErrorName(getString('NAME_MIN'));
+      }
       return;
     }
+
     setIsSignUp(true);
     timer = setTimeout(() => {
       setIsSignUp(false);
@@ -78,14 +91,14 @@ function Page(props: Props): ReactElement {
           label={getString('EMAIL')}
           placeholder="hello@example.com"
           placeholderTextColor="#ADB5BD"
-          text={email}
+          value={email}
           onChangeText={(text: string): void => {
+            setEmail(text);
             if (!validateEmail(text)) {
               setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
               return;
             }
             setErrorEmail('');
-            setEmail(text);
           }}
           style={{ marginTop: 20 }}
           errorText={errorEmail}
@@ -97,16 +110,14 @@ function Page(props: Props): ReactElement {
             color: theme.fontColor,
           }}
           label={getString('PASSWORD')}
-          // placeholder={getString('PASSWORD_PLACEHOLDER')}
-          // placeholderTextColor="#ADB5BD"
-          text={password}
+          value={password}
           onChangeText={(text: string): void => {
+            setPassword(text);
             if (!validatePassword(text)) {
               setErrorPassword(getString('PASSWORD_MIN'));
               return;
             }
             setErrorPassword('');
-            setPassword(text);
           }}
           style={{ marginTop: 20 }}
           errorText={errorPassword}
@@ -119,16 +130,14 @@ function Page(props: Props): ReactElement {
             color: theme.fontColor,
           }}
           label={getString('CONFIRM_PASSWORD')}
-          // placeholder={getString('PASSWORD_PLACEHOLDER')}
-          // placeholderTextColor="#ADB5BD"
-          text={confirmPassword}
+          value={confirmPassword}
           onChangeText={(text: string): void => {
+            setConfirmPassword(text);
             if (text !== password) {
               setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
               return;
             }
             setErrorConfirmPassword('');
-            setPassword(text);
           }}
           style={{ marginTop: 20 }}
           errorText={errorConfirmPassword}
@@ -143,14 +152,14 @@ function Page(props: Props): ReactElement {
           label={getString('NAME')}
           placeholder="Write email address"
           placeholderTextColor="#ADB5BD"
-          text={name}
+          value={name}
           onChangeText={(text: string): void => {
+            setName(text);
             if (text.length < 3) {
               setErrorName(getString('NAME_MIN'));
               return;
             }
             setErrorName('');
-            setName(text);
           }}
           style={{ marginTop: 20 }}
           errorText={errorName}
@@ -164,20 +173,20 @@ function Page(props: Props): ReactElement {
           label={getString('STATUS')}
           placeholder="Write status"
           placeholderTextColor="#ADB5BD"
-          text={status}
+          value={status}
           onChangeText={(text: string): void => {
             setStatus(text);
           }}
           style={{ marginTop: 20 }}
-          // errorText={errorStatus}
           onSubmitEditing={onSignUp}
         />
         <StyledButtonWrapper>
+          <View style={{ flex: 1 }}/>
           <Button
-            testID="btnSignUp"
+            testID="SIGN_UP_INPUT"
             isLoading={isSignUp}
             onPress={onSignUp}
-            containerStyle={{ padding: 5 }}
+            containerStyle={{ padding: 5, flex: 1 }}
           >
             {getString('SIGN_UP')}
           </Button>

@@ -1,6 +1,5 @@
 import React, { ReactElement, useState } from 'react';
 
-import { Alert } from 'react-native';
 import Button from '../shared/Button';
 import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
@@ -23,7 +22,7 @@ const StyledButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'FindPW'>;
+  navigation: DefaultNavigationProps<'FindPw'>;
 }
 
 function Page(props: Props): ReactElement {
@@ -65,14 +64,15 @@ function Page(props: Props): ReactElement {
           label={getString('EMAIL')}
           placeholder="hello@example.com"
           placeholderTextColor="#ADB5BD"
-          text={email}
+          value={email}
           onChangeText={(text: string): void => {
+            setEmail(text);
+
             if (!validateEmail(text)) {
               setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
               return;
             }
             setErrorEmail('');
-            setEmail(text);
           }}
           style={{ marginTop: 20 }}
           errorText={errorEmail}
