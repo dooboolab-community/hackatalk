@@ -1,7 +1,7 @@
 import FindPw from '../screen/FindPw';
 import Login from '../screen/Login';
 import React from 'react';
-import SignUp from '../screen/SignUp';
+import SignUp from '../screen/SignUp1';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/native-theme';
