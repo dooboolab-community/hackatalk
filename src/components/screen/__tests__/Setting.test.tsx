@@ -46,24 +46,29 @@ describe('[Setting] screen', () => {
   });
 
   it('renders without crashing', () => {
-    const rendered = renderer.create(component);
+    let rendered = renderer.create(component);
     expect(rendered.toJSON()).toMatchSnapshot();
     expect(rendered.toJSON()).toBeTruthy();
 
-    rendered.update(
+    rendered = renderer.create(
       createTestElement(
         <SettingTest />,
         undefined,
         getEmptyAuthUserWithSignInType(SignInType.Facebook),
       ),
     );
-    rendered.update(
+    expect(rendered.toJSON()).toMatchSnapshot();
+    expect(rendered.toJSON()).toBeTruthy();
+
+    rendered = renderer.create(
       createTestElement(
         <SettingTest />,
         undefined,
         getEmptyAuthUserWithSignInType(SignInType.Google),
       ),
     );
+    expect(rendered.toJSON()).toMatchSnapshot();
+    expect(rendered.toJSON()).toBeTruthy();
   });
 
   describe('interactions', () => {

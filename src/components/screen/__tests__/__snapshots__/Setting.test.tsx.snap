@@ -147,3 +147,369 @@ exports[`[Setting] screen renders without crashing 1`] = `
   </ScrollView>
 </View>
 `;
+
+exports[`[Setting] screen renders without crashing 2`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <ScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              },
+              "label": "Signed in with Facebook",
+              "onPress": [Function],
+              "testID": "changePwItem",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              },
+              "label": "Signed in with Facebook",
+              "onPress": [Function],
+              "testID": "changePwItem",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
+    testID="mySectionList"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomColor": "rgb(221,226,236)",
+              "borderBottomWidth": 1,
+              "height": 52,
+              "justifyContent": "center",
+              "marginLeft": 10,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "rgb(65,77,107)",
+              },
+            ]
+          }
+        >
+          Login information
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            },
+          ]
+        }
+        testID="changePwItem"
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
+          style={
+            Array [
+              Object {
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "height": 32,
+                "marginRight": 10,
+                "width": 32,
+              },
+            ]
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "black",
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "fontSize": 16,
+              },
+            ]
+          }
+        >
+          Signed in with Facebook
+        </Text>
+        <Text />
+      </TouchableOpacity>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    />
+  </ScrollView>
+</View>
+`;
+
+exports[`[Setting] screen renders without crashing 3`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <ScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              },
+              "label": "Signed in with Google",
+              "onPress": [Function],
+              "testID": "changePwItem",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              },
+              "label": "Signed in with Google",
+              "onPress": [Function],
+              "testID": "changePwItem",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
+    testID="mySectionList"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomColor": "rgb(221,226,236)",
+              "borderBottomWidth": 1,
+              "height": 52,
+              "justifyContent": "center",
+              "marginLeft": 10,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "rgb(65,77,107)",
+              },
+            ]
+          }
+        >
+          Login information
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            },
+          ]
+        }
+        testID="changePwItem"
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
+          style={
+            Array [
+              Object {
+                "borderColor": "rgb(221,226,236)",
+                "borderRadius": 4,
+                "borderWidth": 1,
+                "height": 32,
+                "marginRight": 10,
+                "width": 32,
+              },
+            ]
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "black",
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "fontSize": 16,
+              },
+            ]
+          }
+        >
+          Signed in with Google
+        </Text>
+        <Text />
+      </TouchableOpacity>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    />
+  </ScrollView>
+</View>
+`;
