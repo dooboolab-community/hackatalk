@@ -3,7 +3,8 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, TouchableOpacity, View } from 'react-native';
-import { DefaultNavigationProps, SignInType, User } from '../../types';
+import { DefaultNavigationProps, User } from '../../types';
+import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
 import React, { useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -13,11 +14,9 @@ import {
 
 import Button from '../shared/Button';
 import Constants from 'expo-constants';
-import { Button as DoobooButton } from '@dooboo-ui/native';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import StatusBar from '../shared/StatusBar';
-import TextInput from '../shared/TextInput';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -25,7 +24,7 @@ import { useAuthUserContext } from '../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: DefaultNavigationProps<'Login'>;
 }
 
 const StyledScrollView = styled.ScrollView``;
@@ -92,21 +91,12 @@ function Screen(props: Props): React.ReactElement {
   const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
-  const [pw, setPw] = useState<string>('');
-  const { setAuthUser } = useAuthUserContext();
-  let timer: number;
 
-  const onTextChanged = (type: string, text: string): void => {
-    // prettier-ignore
-    switch (type) {
-      case 'EMAIL':
-        setEmail(text);
-        break;
-      case 'PW':
-        setPw(text);
-        break;
-    }
-  };
+  const [password, setPassword] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string>('');
+
+  let timer: number;
 
   const goToSignUp = (): void => {
     props.navigation.navigate('SignUp');
@@ -246,6 +236,11 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
+  const validateEmail = (email: string): boolean => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  };
+
   useEffect(() => {
     initAsync();
     // console.log('appOwnership', Constants.appOwnership);
@@ -275,23 +270,49 @@ function Screen(props: Props): React.ReactElement {
             <StyledIconText>{getString('HELLO')}.</StyledIconText>
           </StyledIconWrapper>
           <StyledInputWrapper>
-            <TextInput
-              testID="email_input"
-              // txtLabel={ getString('EMAIL') }
-              txtHint={getString('EMAIL')}
-              txt={email}
-              onTextChanged={(text: string): void =>
-                onTextChanged('EMAIL', text)
-              }
+            <EditText
+              testID="EMAIL_INPUT"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              isRow={true}
+              label={getString('EMAIL')}
+              placeholder="hello@example.com"
+              placeholderTextColor="#ADB5BD"
+              value={email}
+              onChangeText={(text: string): void => {
+                setEmail(text);
+                if (!validateEmail(text)) {
+                  setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+                  return;
+                }
+                setErrorEmail('');
+              }}
+              errorText={errorEmail}
+              onSubmitEditing={onLogin}
             />
-            <TextInput
-              testID="pw_input"
-              style={{ marginTop: 8 }}
-              // txtLabel={ getString('EMAIL') }
-              txtHint={getString('PASSWORD')}
-              txt={pw}
-              onTextChanged={(text: string): void => onTextChanged('PW', text)}
-              isPassword={true}
+            <EditText
+              testID="PASSWORD_INPUT"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              isRow={true}
+              label={getString('PASSWORD')}
+              // placeholder={getString('PASSWORD_PLACEHOLDER')}
+              // placeholderTextColor="#ADB5BD"
+              value={password}
+              onChangeText={(text: string): void => {
+                if (text === '') {
+                  setErrorPassword(getString('PASSWORD_REQUIRED'));
+                  return;
+                }
+                setErrorPassword('');
+                setPassword(text);
+              }}
+              style={{ marginTop: 20, marginBottom: 20 }}
+              errorText={errorPassword}
+              onSubmitEditing={onLogin}
+              secureTextEntry={true}
             />
             <StyledButtonWrapper>
               <Button
