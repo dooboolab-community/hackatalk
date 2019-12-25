@@ -1,7 +1,8 @@
-import { AuthUser, ThemeType } from '../src/types';
 import React, { ReactElement } from 'react';
 
 import { AllProviders } from '../src/providers';
+import { AuthUser } from '../src/types';
+import { ThemeType } from '@dooboo-ui/native-theme';
 
 export const createTestElement = (
   child: ReactElement,
