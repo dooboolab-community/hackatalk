@@ -1,13 +1,18 @@
+import { AuthUser, ThemeType } from '../src/types';
 import React, { ReactElement } from 'react';
 
 import { AllProviders } from '../src/providers';
-import { ThemeType } from '../src/types';
 
 export const createTestElement = (
   child: ReactElement,
   themeType?: ThemeType,
+  authUser?: AuthUser,
 ): ReactElement => (
-  <AllProviders initialThemeType={themeType}>{child}</AllProviders>
+  <AllProviders
+    initialThemeType={themeType}
+    initialAuthUser={authUser}>
+    {child}
+  </AllProviders>
 );
 
 export const createTestProps = (obj: object = {}): object | unknown | any => ({

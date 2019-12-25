@@ -2,6 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
+import { AuthUser, SignInType } from '../../../types';
 import {
   RenderResult,
   cleanup,
@@ -13,28 +14,61 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import Setting from '../Setting';
 import renderer from 'react-test-renderer';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
 let component: React.ReactElement;
+function getEmptyAuthUserWithSignInType(signInType: SignInType): AuthUser {
+  return {
+    uid: '',
+    displayName: '',
+    thumbURL: '',
+    photoURL: '',
+    statusMsg: '',
+    friends: [],
+    chatrooms: [],
+    signedInWith: signInType,
+  };
+}
+
+function SettingTest(): React.ReactElement {
+  const settingProps = createTestProps();
+  return <Setting {...settingProps} />;
+}
 
 describe('[Setting] screen', () => {
   let testingLib: RenderResult;
 
   beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Setting {...props} />);
+    component = createTestElement(
+      <SettingTest />,
+      undefined,
+      getEmptyAuthUserWithSignInType(SignInType.Email),
+    );
     testingLib = render(component);
   });
 
   it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
-  });
+    let rendered = renderer.create(component);
+    expect(rendered.toJSON()).toMatchSnapshot();
+    expect(rendered.toJSON()).toBeTruthy();
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
+    rendered = renderer.create(
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(SignInType.Facebook),
+      ),
+    );
+    expect(rendered.toJSON()).toMatchSnapshot();
+    expect(rendered.toJSON()).toBeTruthy();
+
+    rendered = renderer.create(
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(SignInType.Google),
+      ),
+    );
+    expect(rendered.toJSON()).toMatchSnapshot();
+    expect(rendered.toJSON()).toBeTruthy();
   });
 
   describe('interactions', () => {
@@ -42,13 +76,9 @@ describe('[Setting] screen', () => {
       testingLib = render(component);
     });
 
-    it('should simulate onPress', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
+    it('should simulate onPress login state item', async () => {
+      const btn = testingLib.getByTestId('changePwItem');
+      fireEvent.press(btn);
     });
   });
 

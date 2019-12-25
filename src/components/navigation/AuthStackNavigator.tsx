@@ -1,4 +1,4 @@
-import FindPw from '../screen/FindPW';
+import FindPw from '../screen/FindPw';
 import Login from '../screen/Login';
 import React from 'react';
 import SignUp from '../screen/SignUp';
@@ -24,13 +24,13 @@ function AuthNavigator(): React.ReactElement {
     >
       <Stack.Screen name="Login" component={Login} options={{
         headerShown: false,
-      }}/>
+      }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{
         title: getString('SIGN_UP'),
-      }}/>
+      }} />
       <Stack.Screen name="FindPw" component={FindPw} options={{
         title: getString('FIND_PW'),
-      }}/>
+      }} />
     </Stack.Navigator>
   );
 }

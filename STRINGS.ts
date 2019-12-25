@@ -46,6 +46,17 @@ const en = {
   TAKE_A_PICTURE: 'Take a picture',
   SELSCT_FROM_ALBUM: 'Select from album',
   CANCEL: 'Cancel',
+  PASSWORD_CHANGE: 'Change Password',
+  PASSWORD_CURRENT: 'Enter Current Password',
+  PASSWORD_NEW: 'Enter New Password',
+  PASSWORD_NEW_REPEAT: 'Repeat New Password',
+  NEXT: 'Next',
+  OK: 'OK',
+  CONFIRM: 'Confirm',
+  LOGIN_INFORMATION: 'Login information',
+  SIGNED_IN_WITH_GOOGLE: 'Signed in with Google',
+  SIGNED_IN_WITH_FACEBOOK: 'Signed in with Facebook',
+  SIGNED_IN_WITH_EMAIL: 'Signed in with Email',
 };
 
 const ko = {
@@ -92,6 +103,17 @@ const ko = {
   TAKE_A_PICTURE: '촬영하기',
   SELSCT_FROM_ALBUM: '앨범에서 선택하기',
   CANCEL: '취소',
+  PASSWORD_CHANGE: '비밀번호 변경하기',
+  PASSWORD_CURRENT: '기존 비밀번호',
+  PASSWORD_NEW: '새로운 비밀번호',
+  PASSWORD_NEW_REPEAT: '새로운 비밀번호 확인',
+  NEXT: '다음',
+  OK: '확인',
+  CONFIRM: '확인',
+  LOGIN_INFORMATION: '계정 정보',
+  SIGNED_IN_WITH_GOOGLE: '구글 계정으로 로그인 됨',
+  SIGNED_IN_WITH_FACEBOOK: '페이스북 계정으로 로그인 됨',
+  SIGNED_IN_WITH_EMAIL: '이메일로 로그인 됨',
 };
 
 i18n.fallbacks = true;

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
+import { AuthUserProvider } from './providers/AuthUserProvider';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
@@ -46,14 +47,16 @@ function ProviderWrapper(): React.ReactElement {
       <AppLoading
         startAsync={loadAssetsAsync}
         onFinish={(): void => setLoading(true)}
-        // onError={console.warn}
+      // onError={console.warn}
       />
     );
   }
 
   return (
     <AppearanceProvider>
-      <App />
+      <AuthUserProvider>
+        <App />
+      </AuthUserProvider>
     </AppearanceProvider>
   );
 }

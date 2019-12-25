@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle } from 'react-native';
+import { ImageSourcePropType, StyleProp, TextStyle } from 'react-native';
 
 import { SFC } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -7,6 +7,12 @@ export enum MessageType {
   Message,
   Photo,
   File,
+}
+
+export enum SignInType {
+  Email,
+  Google,
+  Facebook,
 }
 
 export interface User {
@@ -28,6 +34,7 @@ export interface Friend extends User {
 export interface AuthUser extends User {
   friends?: [];
   chatrooms?: [];
+  signedInWith?: SignInType;
 }
 
 export interface ChatCommon<T extends MessageType = MessageType.Message> {
@@ -85,6 +92,13 @@ interface IconProps {
 
 export type IconType = SFC<IconProps>;
 
+export interface SettingsOption {
+  label: string;
+  icon?: ImageSourcePropType;
+  onPress(): void;
+  testID: string;
+}
+
 export enum ThemeType {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
@@ -107,6 +121,7 @@ type StackParamList = {
     chatId: string;
   };
   Temp: undefined;
+  ChangePw: undefined;
   NotFound: undefined;
 }
 

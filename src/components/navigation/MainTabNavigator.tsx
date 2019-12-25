@@ -87,7 +87,7 @@ function MainTabNavigator(): ReactElement {
     >
       <Tab.Screen name="Friend" component={Friend} />
       <Tab.Screen name="Message" component={Message} />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 }
 

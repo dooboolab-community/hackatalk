@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     .required(getString('EMAIL_REQUIRED')),
 });
 
-function FindPW(): ReactElement {
+function FindPw(): ReactElement {
   const {
     register,
     errors,
@@ -81,4 +81,4 @@ function FindPW(): ReactElement {
   );
 }
 
-export default memo(FindPW);
+export default memo(FindPw);

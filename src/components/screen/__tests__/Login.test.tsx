@@ -10,11 +10,13 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Alert } from 'react-native';
 import Button from '../../shared/Button';
+
 import Login from '../Login';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -91,6 +93,7 @@ describe('[Login] interaction', () => {
     expect(setTimeout).toHaveBeenCalledTimes(1);
     jest.runAllTimers();
     expect(clearTimeout).toHaveBeenCalledTimes(1);
+    expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
     expect(buttons[0].props.isLoading).toEqual(false);
   });
 
@@ -138,7 +141,9 @@ describe('[Login] Facebook Signin', () => {
     const flushPromises = (): Promise<unknown> => new Promise(setImmediate);
     await flushPromises();
 
-    // expect(fetch).toHaveBeenCalledTimes(1);
+    await wait(() => expect(fetch).toHaveBeenCalledTimes(1));
+
+    await wait(() => expect(props.navigation.resetRoot).toHaveBeenCalledTimes(2));
   });
 
   it('should cancel signin with facebook', async () => {
