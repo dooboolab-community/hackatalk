@@ -3,12 +3,12 @@ import * as React from 'react';
 import { Button, Text, View } from 'react-native';
 import {
   ThemeProvider,
+  ThemeType,
   defaultThemeType,
   useThemeContext,
 } from '@dooboo-ui/native-theme';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
-import { ThemeType } from '../../types';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 

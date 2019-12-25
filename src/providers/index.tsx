@@ -1,12 +1,12 @@
-import { AuthUser, ThemeType } from '../types';
+import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from '../theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { AuthUser } from '../types';
 import { AuthUserProvider } from './AuthUserProvider';
 import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
-import { ThemeProvider } from '@dooboo-ui/native-theme';
 
 interface Props {
   initialThemeType?: ThemeType;
