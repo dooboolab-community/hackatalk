@@ -247,11 +247,11 @@ export const getString = (param: string, mapObj?: object) => {
 
 ### Expo version
 
-35
+36
 
 ### React navigation
 
-3
+5
 
 ### Troubleshoot
 
