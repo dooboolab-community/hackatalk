@@ -32,11 +32,6 @@ describe('[NotFound] screen', () => {
     expect(rendered).toBeTruthy();
   });
 
-  it('should render [Text] with value "myText"', () => {
-    const textInstance = testingLib.getByTestId('myText');
-    expect(textInstance.props.children).toEqual('dooboolab');
-  });
-
   describe('interactions', () => {
     beforeEach(() => {
       testingLib = render(component);
