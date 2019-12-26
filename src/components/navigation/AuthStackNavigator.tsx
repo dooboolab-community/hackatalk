@@ -1,4 +1,4 @@
-import FindPw from '../screen/FindPW';
+import FindPw from '../screen/FindPw';
 import React from 'react';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
