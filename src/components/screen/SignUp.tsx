@@ -1,9 +1,9 @@
-import { Alert, Text, View } from 'react-native';
 import React, { ReactElement, useState } from 'react';
 
 import Button from '../shared/Button';
 import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
+import { View } from 'react-native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -75,7 +75,7 @@ function Page(props: Props): ReactElement {
       setIsSignUp(false);
       clearTimeout(timer);
       if (props.navigation) {
-        props.navigation.navigate('Login');
+        props.navigation.navigate('SignIn');
       }
     }, 1000);
   };

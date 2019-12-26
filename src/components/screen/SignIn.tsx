@@ -1,11 +1,22 @@
+import * as AppAuth from 'expo-app-auth';
+import * as Facebook from 'expo-facebook';
+import * as GoogleSignIn from 'expo-google-sign-in';
+
+import { Alert, Platform, TouchableOpacity, View } from 'react-native';
+import { DefaultNavigationProps, User } from '../../types';
 import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
-import React, { ReactElement, useState } from 'react';
-import { Text, View } from 'react-native';
+import React, { ReactElement, useEffect, useState } from 'react';
+import {
+  androidExpoClientId,
+  iOSClientId,
+  iOSExpoClientId,
+} from '../../../config';
 
 import Button from '../shared/Button';
-import { DefaultNavigationProps } from '../../types';
+import Constants from 'expo-constants';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
+import StatusBar from '../shared/StatusBar';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -13,18 +24,27 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledContainer = styled.SafeAreaView`
   flex: 1;
-  /* background: ${({ theme }): string => theme.background}; */
-  background-color: red;
   justify-content: center;
+  background: ${({ theme }): string => theme.background};
 `;
 
 const StyledLogoWrapper = styled.View`
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+`;
+
+const StyledLogoImage = styled.Image`
+  width: 60px;
+  height: 60px;
+`;
+
+const StyledLogoText = styled.Text`
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const StyledWrapper = styled.View`
   margin: 0 40px;
-  background-color: black;
 `;
 
 const StyledButtonWrapper = styled.View`
@@ -50,18 +70,21 @@ const StyledSocialButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'default'>;
+  navigation: DefaultNavigationProps<'SignIn'>;
 }
 
 function Page(props: Props): ReactElement {
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
+  const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
+  const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
+  const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   let timer: number;
 
-  const { theme } = useThemeContext();
+  const { theme, changeThemeType } = useThemeContext();
 
   const validateEmail = (email: string): boolean => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -90,17 +113,106 @@ function Page(props: Props): ReactElement {
     }, 1000);
   };
 
+  const initAsync = async (): Promise<void> => {
+    await GoogleSignIn.initAsync({
+      clientId: iOSClientId,
+    });
+  };
+
+  // const googleSignOutAsync = async (): Promise<void> => {
+  //   await GoogleSignIn.signOutAsync();
+  //   setGoogleUser(null);
+  // };
+
+  const googleSignInAsync = async (): Promise<void> => {
+    setSigningInGoogle(true);
+    if (Constants.appOwnership === 'expo') {
+      try {
+        const response = await AppAuth.authAsync({
+          issuer: 'https://accounts.google.com',
+          scopes: ['profile'],
+          clientId: Platform.select({
+            ios: iOSExpoClientId,
+            android: androidExpoClientId,
+          }),
+        });
+        Alert.alert('login:' + JSON.stringify(response.accessToken));
+      } catch ({ message }) {
+        Alert.alert(`Google Login Error: ${message}`);
+      } finally {
+        setSigningInGoogle(false);
+      }
+      return;
+    }
+    try {
+      await GoogleSignIn.askForPlayServicesAsync();
+      const { type, user } = await GoogleSignIn.signInAsync();
+      if (type === 'success') {
+        setGoogleUser(user);
+        Alert.alert('login:' + JSON.stringify(user));
+        onSignIn();
+      }
+    } catch ({ message }) {
+      Alert.alert(`Google Login Error: ${message}`);
+    } finally {
+      setSigningInGoogle(false);
+    }
+  };
+
+  const facebookLogin = async (): Promise<void> => {
+    setSigningInFacebook(true);
+    try {
+      await Facebook.initializeAsync(
+        Constants.manifest.facebookAppId,
+        undefined,
+      );
+      const result = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['email', 'public_profile'],
+      });
+
+      if (result.type === 'success') {
+        const { token, expires, permissions, declinedPermissions } = result;
+
+        const response = await fetch(
+          `https://graph.facebook.com/me?fields=
+            id,name,email,birthday,gender,first_name,last_name,picture
+            &access_token=${token}`,
+        );
+        // console.log('success', response);
+        const responseObject = JSON.parse(await response.text());
+      } else {
+        // type === 'cancel'
+        // console.log('cancel', token);
+      }
+    } catch ({ message }) {
+      Alert.alert(`Facebook Login Error: ${message}`);
+    } finally {
+      setSigningInFacebook(false);
+    }
+  };
+
+  useEffect(() => {
+    initAsync();
+    // console.log('appOwnership', Constants.appOwnership);
+  }, []);
+
   return (
     <StyledContainer>
+      <StatusBar />
       <StyledWrapper>
         <StyledLogoWrapper>
-          <IC_ICON />
+          <TouchableOpacity onPress={(): void => changeThemeType()} style={{ width: 60 }}>
+            <StyledLogoImage source={IC_ICON} />
+            <View style={{ height: 16 }} />
+            <StyledLogoText>Hello!</StyledLogoText>
+          </TouchableOpacity>
         </StyledLogoWrapper>
         <EditText
           testID="EMAIL_INPUT"
           textStyle={{
             color: theme.fontColor,
           }}
+          style={{ height: 70 }}
           isRow={true}
           label={getString('EMAIL')}
           placeholder="hello@example.com"
@@ -122,20 +234,21 @@ function Page(props: Props): ReactElement {
           textStyle={{
             color: theme.fontColor,
           }}
+          style={{ height: 70, marginBottom: 20 }}
           isRow={true}
           label={getString('PASSWORD')}
           // placeholder={getString('PASSWORD_PLACEHOLDER')}
           // placeholderTextColor="#ADB5BD"
           value={password}
           onChangeText={(text: string): void => {
+            setPassword(text);
+
             if (text === '') {
               setErrorPassword(getString('PASSWORD_REQUIRED'));
               return;
             }
             setErrorPassword('');
-            setPassword(text);
           }}
-          style={{ marginTop: 20, marginBottom: 20 }}
           errorText={errorPassword}
           onSubmitEditing={onSignIn}
           secureTextEntry={true}
@@ -160,7 +273,7 @@ function Page(props: Props): ReactElement {
           </Button>
         </StyledButtonWrapper>
         <StyledFindPWWrapper>
-          <StyledFindPWTouchOpacity>
+          <StyledFindPWTouchOpacity onPress={goToFindPw}>
             <StyledFindPWText>
               {getString('FORGOT_PW')}
             </StyledFindPWText>
@@ -183,17 +296,16 @@ function Page(props: Props): ReactElement {
                   marginLeft: 16,
                 }}
               >
-                {/* <Text>123</Text> */}
                 <Ionicons name="logo-facebook" size={20} color="white" />
               </View>
             }
-            isLoading={false}
+            isLoading={signingInFacebook}
             indicatorColor={theme.primary}
-            onClick={() => {}}
+            onClick={facebookLogin}
             text={getString('SIGN_IN_WITH_FACEBOOK')}
             textStyle={{ fontWeight: '700', color: 'white' }}
           />
-          <View style={{ width: '100%', height: 9 }} />
+          <View style={{ width: '100%', height: 5 }} />
           <DoobooButton
             testID="GOOGLE_SIGN_IN_BUTTON"
             style={[
@@ -210,13 +322,12 @@ function Page(props: Props): ReactElement {
                   marginLeft: 16,
                 }}
               >
-                {/* <Text>123</Text> */}
                 <Ionicons name="logo-google" size={20} color="white" />
               </View>
             }
-            isLoading={false}
+            isLoading={signingInGoogle}
             indicatorColor={theme.primary}
-            onClick={() => {}}
+            onClick={googleSignInAsync}
             text={getString('SIGN_IN_WITH_GOOGLE')}
             textStyle={{ fontWeight: '700', color: 'white' }}
           />

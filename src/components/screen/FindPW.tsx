@@ -48,7 +48,7 @@ function Page(props: Props): ReactElement {
       setIsFindPW(false);
       clearTimeout(timer);
       if (props.navigation) {
-        props.navigation.navigate('Login');
+        props.navigation.navigate('SignUp');
       }
     }, 1000);
   };
