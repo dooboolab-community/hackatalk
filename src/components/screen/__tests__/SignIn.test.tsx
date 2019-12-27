@@ -108,11 +108,15 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and ask to validate email', async () => {
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
+
       await wait(() => expect(btnSignIn).toBeTruthy());
       act(() => {
         fireEvent.press(btnSignIn);
       });
+
+      const errorText = testingLib.getByTestId('error-email');
       await act(() => wait());
+      expect(errorText).toBeTruthy();
     });
 
     it('should call signIn when button has clicked and ask to validate password', async () => {
@@ -128,7 +132,9 @@ describe('[SignIn] interaction', () => {
       act(() => {
         fireEvent.press(btnSignIn);
       });
+      const errorText = testingLib.getByTestId('error-password');
       await act(() => wait());
+      expect(errorText).toBeTruthy();
     });
 
     it('should call signIn when button has clicked and navigation resetRoot', async () => {

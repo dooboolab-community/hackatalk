@@ -220,6 +220,7 @@ function SignIn(props: Props): ReactElement {
           </LogoWrapper>
           <EditText
             testID="input-email"
+            errorTestID="error-email"
             textStyle={{
               color: theme.fontColor,
             }}
@@ -238,6 +239,7 @@ function SignIn(props: Props): ReactElement {
           />
           <EditText
             testID="input-password"
+            errorTestID="error-password"
             textStyle={{
               color: theme.fontColor,
             }}
