@@ -26,7 +26,6 @@
 - [react-hook](https://reactjs.org/docs/hooks-intro.html)
 - [graphql](https://graphql.org)
 - [apollo-client](https://www.apollographql.com/docs/react)
-- [react-native-animatable](https://github.com/oblador/react-native-animatable)
 
 ### Gain points
 
