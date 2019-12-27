@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Screen] screen renders without crashing 1`] = `
+exports[`[SignIn] rendering test renders as expected 1`] = `
 <SafeAreaView
   style={
     Array [
@@ -51,6 +51,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
               "width": 60,
             }
           }
+          testID="theme-test"
         >
           <Image
             source={
@@ -162,7 +163,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
                 },
               ]
             }
-            testID="EMAIL_INPUT"
+            testID="input-email"
             underlineColorAndroid="transparent"
             value=""
           />
@@ -254,7 +255,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
                 },
               ]
             }
-            testID="PASSWORD_INPUT"
+            testID="input-password"
             underlineColorAndroid="transparent"
             value=""
           />
@@ -309,7 +310,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
               },
             ]
           }
-          testID="SIGN_UP_BUTTON"
+          testID="btn-sign-up"
           white={true}
           width="auto"
         >
@@ -359,7 +360,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
               },
             ]
           }
-          testID="SIGN_IN_BUTTON"
+          testID="btn-sign-in"
           white={false}
           width="auto"
         >
@@ -395,6 +396,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
             },
           ]
         }
+        testID="btn-find-pw"
       >
         <Text
           style={
@@ -421,7 +423,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={[Function]}
-          testID="FACEBOOK_SIGN_IN_BUTTON"
+          testID="btn-facebook"
         >
           <View
             style={
@@ -520,7 +522,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
         <TouchableOpacity
           activeOpacity={0.5}
           onPress={[Function]}
-          testID="GOOGLE_SIGN_IN_BUTTON"
+          testID="btn-google"
         >
           <View
             style={

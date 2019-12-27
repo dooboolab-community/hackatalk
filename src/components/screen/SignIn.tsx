@@ -73,7 +73,7 @@ interface Props {
   navigation: DefaultNavigationProps<'SignIn'>;
 }
 
-function Page(props: Props): ReactElement {
+function SignIn(props: Props): ReactElement {
   const [isSignIn, setIsSignIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
@@ -212,14 +212,14 @@ function Page(props: Props): ReactElement {
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity onPress={(): void => changeThemeType()} style={{ width: 60 }}>
+            <TouchableOpacity testID="theme-test" onPress={(): void => changeThemeType()} style={{ width: 60 }}>
               <StyledLogoImage source={IC_ICON} />
               <View style={{ height: 16 }} />
               <StyledLogoText>Hello!</StyledLogoText>
             </TouchableOpacity>
           </LogoWrapper>
           <EditText
-            testID="EMAIL_INPUT"
+            testID="input-email"
             textStyle={{
               color: theme.fontColor,
             }}
@@ -237,7 +237,7 @@ function Page(props: Props): ReactElement {
             onSubmitEditing={onSignIn}
           />
           <EditText
-            testID="PASSWORD_INPUT"
+            testID="input-password"
             textStyle={{
               color: theme.fontColor,
             }}
@@ -257,7 +257,7 @@ function Page(props: Props): ReactElement {
           />
           <ButtonWrapper>
             <Button
-              testID="SIGN_UP_BUTTON"
+              testID="btn-sign-up"
               onPress={goToSignUp}
               containerStyle={{ flex: 1, flexDirection: 'row' }}
               isWhite
@@ -266,7 +266,7 @@ function Page(props: Props): ReactElement {
             </Button>
             <View style={{ width: 8 }} />
             <Button
-              testID="SIGN_IN_BUTTON"
+              testID="btn-sign-in"
               isLoading={isSignIn}
               onPress={onSignIn}
               containerStyle={{ flex: 1, flexDirection: 'row' }}
@@ -274,14 +274,14 @@ function Page(props: Props): ReactElement {
               {getString('LOGIN')}
             </Button>
           </ButtonWrapper>
-          <StyledFindPwTouchOpacity onPress={goToFindPw}>
+          <StyledFindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
             <StyledFindPwText>
               {getString('FORGOT_PW')}
             </StyledFindPwText>
           </StyledFindPwTouchOpacity>
           <SocialButtonWrapper>
             <DoobooButton
-              testID="FACEBOOK_SIGN_IN_BUTTON"
+              testID="btn-facebook"
               style={[
                 {
                   backgroundColor: colors.facebook,
@@ -308,7 +308,7 @@ function Page(props: Props): ReactElement {
             />
             <View style={{ width: '100%', height: 5 }} />
             <DoobooButton
-              testID="GOOGLE_SIGN_IN_BUTTON"
+              testID="btn-google"
               style={[
                 {
                   backgroundColor: colors.google,
@@ -340,4 +340,4 @@ function Page(props: Props): ReactElement {
   );
 }
 
-export default Page;
+export default SignIn;
