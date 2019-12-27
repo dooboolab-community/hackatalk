@@ -100,15 +100,20 @@ function Page(props: Props): ReactElement {
   };
 
   const onSignIn = (): void => {
+    if (!validateEmail(email)) {
+      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      return;
+    }
+
+    if (password === '') {
+      setErrorPassword(getString('PASSWORD_REQUIRED'));
+      return;
+    }
+
     setIsSignIn(true);
     timer = setTimeout(() => {
       setIsSignIn(false);
       clearTimeout(timer);
-      if (!validateEmail(email)) {
-        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-        return;
-      }
-
       if (props.navigation) {
         props.navigation.resetRoot({
           index: 0,
@@ -244,11 +249,6 @@ function Page(props: Props): ReactElement {
             value={password}
             onChangeText={(text: string): void => {
               setPassword(text);
-
-              if (text === '') {
-                setErrorPassword(getString('PASSWORD_REQUIRED'));
-                return;
-              }
               setErrorPassword('');
             }}
             errorText={errorPassword}
