@@ -107,7 +107,7 @@ const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
   background: ${({ theme }): string => theme.background};
 `;
-const StyledContainer = styled.View`
+const Container = styled.View`
   flex: 1;
   background-color: transparent;
   flex-direction: column;
@@ -227,7 +227,7 @@ const Screen = (): React.ReactElement => {
   };
   return (
     <StyledSafeAreaView>
-      <StyledContainer>
+      <Container>
         <StyledSearchView>
           <StyledTextInputWrapper>
             <StyledTextInput
@@ -265,7 +265,7 @@ const Screen = (): React.ReactElement => {
             <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
           }
         />
-      </StyledContainer>
+      </Container>
     </StyledSafeAreaView>
   );
 };

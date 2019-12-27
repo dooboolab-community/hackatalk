@@ -2,7 +2,7 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Platform, TouchableOpacity, View } from 'react-native';
+import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { DefaultNavigationProps, User } from '../../types';
 import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -22,13 +22,14 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const StyledContainer = styled.SafeAreaView`
+const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
   background: ${({ theme }): string => theme.background};
 `;
 
-const StyledLogoWrapper = styled.View`
+const LogoWrapper = styled.View`
+  margin-top: 104px;
   margin-bottom: 60px;
 `;
 
@@ -43,30 +44,29 @@ const StyledLogoText = styled.Text`
   font-weight: bold;
 `;
 
-const StyledWrapper = styled.View`
+const Wrapper = styled.View`
   margin: 0 40px;
 `;
 
-const StyledButtonWrapper = styled.View`
+const ButtonWrapper = styled.View`
+  margin-top: 16px;
   width: 100%;
   flex-direction: row;
 `;
 
-const StyledFindPWWrapper = styled.View`
-  width: 100%;
-  align-items: center;
-`;
-
-const StyledFindPWTouchOpacity = styled.TouchableOpacity`
+const StyledFindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
+  margin-bottom: 16px;
+  align-self: center;
 `;
 
-const StyledFindPWText = styled.Text`
+const StyledFindPwText = styled.Text`
   color: ${({ theme }): string => theme.tintColor};
   text-decoration-line: underline;
 `;
 
-const StyledSocialButtonWrapper = styled.View`
+const SocialButtonWrapper = styled.View`
+  margin-bottom: 40px;
 `;
 
 interface Props {
@@ -104,6 +104,11 @@ function Page(props: Props): ReactElement {
     timer = setTimeout(() => {
       setIsSignIn(false);
       clearTimeout(timer);
+      if (!validateEmail(email)) {
+        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+        return;
+      }
+
       if (props.navigation) {
         props.navigation.resetRoot({
           index: 0,
@@ -197,143 +202,141 @@ function Page(props: Props): ReactElement {
   }, []);
 
   return (
-    <StyledContainer>
+    <Container>
       <StatusBar />
-      <StyledWrapper>
-        <StyledLogoWrapper>
-          <TouchableOpacity onPress={(): void => changeThemeType()} style={{ width: 60 }}>
-            <StyledLogoImage source={IC_ICON} />
-            <View style={{ height: 16 }} />
-            <StyledLogoText>Hello!</StyledLogoText>
-          </TouchableOpacity>
-        </StyledLogoWrapper>
-        <EditText
-          testID="EMAIL_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          style={{ height: 70 }}
-          isRow={true}
-          label={getString('EMAIL')}
-          placeholder="hello@example.com"
-          placeholderTextColor="#ADB5BD"
-          value={email}
-          onChangeText={(text: string): void => {
-            setEmail(text);
-            if (!validateEmail(text)) {
-              setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-              return;
-            }
-            setErrorEmail('');
-          }}
-          errorText={errorEmail}
-          onSubmitEditing={onSignIn}
-        />
-        <EditText
-          testID="PASSWORD_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          style={{ height: 70, marginBottom: 20 }}
-          isRow={true}
-          label={getString('PASSWORD')}
-          // placeholder={getString('PASSWORD_PLACEHOLDER')}
-          // placeholderTextColor="#ADB5BD"
-          value={password}
-          onChangeText={(text: string): void => {
-            setPassword(text);
+      <ScrollView style={{ alignSelf: 'stretch' }}>
+        <Wrapper>
+          <LogoWrapper>
+            <TouchableOpacity onPress={(): void => changeThemeType()} style={{ width: 60 }}>
+              <StyledLogoImage source={IC_ICON} />
+              <View style={{ height: 16 }} />
+              <StyledLogoText>Hello!</StyledLogoText>
+            </TouchableOpacity>
+          </LogoWrapper>
+          <EditText
+            testID="EMAIL_INPUT"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            style={{ marginBottom: 20 }}
+            isRow={true}
+            label={getString('EMAIL')}
+            placeholder="hello@example.com"
+            placeholderTextColor={theme.placeholder}
+            value={email}
+            onChangeText={(text: string): void => {
+              setEmail(text);
+              setErrorEmail('');
+            }}
+            errorText={errorEmail}
+            onSubmitEditing={onSignIn}
+          />
+          <EditText
+            testID="PASSWORD_INPUT"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            style={{ marginBottom: 20 }}
+            isRow={true}
+            label={getString('PASSWORD')}
+            placeholder="******"
+            placeholderTextColor={theme.placeholder}
+            value={password}
+            onChangeText={(text: string): void => {
+              setPassword(text);
 
-            if (text === '') {
-              setErrorPassword(getString('PASSWORD_REQUIRED'));
-              return;
-            }
-            setErrorPassword('');
-          }}
-          errorText={errorPassword}
-          onSubmitEditing={onSignIn}
-          secureTextEntry={true}
-        />
-        <StyledButtonWrapper>
-          <Button
-            testID="SIGN_UP_BUTTON"
-            onPress={goToSignUp}
-            containerStyle={{ flex: 1, flexDirection: 'row' }}
-            isWhite
-          >
-            {getString('SIGN_UP')}
-          </Button>
-          <View style={{ width: 8 }} />
-          <Button
-            testID="SIGN_IN_BUTTON"
-            isLoading={isSignIn}
-            onPress={onSignIn}
-            containerStyle={{ flex: 1, flexDirection: 'row' }}
-          >
-            {getString('LOGIN')}
-          </Button>
-        </StyledButtonWrapper>
-        <StyledFindPWWrapper>
-          <StyledFindPWTouchOpacity onPress={goToFindPw}>
-            <StyledFindPWText>
+              if (text === '') {
+                setErrorPassword(getString('PASSWORD_REQUIRED'));
+                return;
+              }
+              setErrorPassword('');
+            }}
+            errorText={errorPassword}
+            onSubmitEditing={onSignIn}
+            secureTextEntry={true}
+          />
+          <ButtonWrapper>
+            <Button
+              testID="SIGN_UP_BUTTON"
+              onPress={goToSignUp}
+              containerStyle={{ flex: 1, flexDirection: 'row' }}
+              isWhite
+            >
+              {getString('SIGN_UP')}
+            </Button>
+            <View style={{ width: 8 }} />
+            <Button
+              testID="SIGN_IN_BUTTON"
+              isLoading={isSignIn}
+              onPress={onSignIn}
+              containerStyle={{ flex: 1, flexDirection: 'row' }}
+            >
+              {getString('LOGIN')}
+            </Button>
+          </ButtonWrapper>
+          <StyledFindPwTouchOpacity onPress={goToFindPw}>
+            <StyledFindPwText>
               {getString('FORGOT_PW')}
-            </StyledFindPWText>
-          </StyledFindPWTouchOpacity>
-        </StyledFindPWWrapper>
-        <StyledSocialButtonWrapper>
-          <DoobooButton
-            testID="FACEBOOK_SIGN_IN_BUTTON"
-            style={[
-              {
-                backgroundColor: colors.facebook,
-                borderColor: theme.background,
-                borderRadius: 4,
-                width: '100%',
-              },
-            ]}
-            iconLeft={
-              <View
-                style={{
-                  marginLeft: 16,
-                }}
-              >
-                <Ionicons name="logo-facebook" size={20} color="white" />
-              </View>
-            }
-            isLoading={signingInFacebook}
-            indicatorColor={theme.primary}
-            onClick={facebookLogin}
-            text={getString('SIGN_IN_WITH_FACEBOOK')}
-            textStyle={{ fontWeight: '700', color: 'white' }}
-          />
-          <View style={{ width: '100%', height: 5 }} />
-          <DoobooButton
-            testID="GOOGLE_SIGN_IN_BUTTON"
-            style={[
-              {
-                backgroundColor: colors.google,
-                borderColor: theme.background,
-                borderRadius: 4,
-                width: '100%',
-              },
-            ]}
-            iconLeft={
-              <View
-                style={{
-                  marginLeft: 16,
-                }}
-              >
-                <Ionicons name="logo-google" size={20} color="white" />
-              </View>
-            }
-            isLoading={signingInGoogle}
-            indicatorColor={theme.primary}
-            onClick={googleSignInAsync}
-            text={getString('SIGN_IN_WITH_GOOGLE')}
-            textStyle={{ fontWeight: '700', color: 'white' }}
-          />
-        </StyledSocialButtonWrapper>
-      </StyledWrapper>
-    </StyledContainer>
+            </StyledFindPwText>
+          </StyledFindPwTouchOpacity>
+          <SocialButtonWrapper>
+            <DoobooButton
+              testID="FACEBOOK_SIGN_IN_BUTTON"
+              style={[
+                {
+                  backgroundColor: colors.facebook,
+                  borderColor: theme.background,
+                  borderRadius: 4,
+                  width: '100%',
+                  height: 60,
+                },
+              ]}
+              iconLeft={
+                <View
+                  style={{
+                    marginLeft: 16,
+                  }}
+                >
+                  <Ionicons name="logo-facebook" size={20} color="white" />
+                </View>
+              }
+              isLoading={signingInFacebook}
+              indicatorColor={theme.primary}
+              onClick={facebookLogin}
+              text={getString('SIGN_IN_WITH_FACEBOOK')}
+              textStyle={{ fontWeight: '700', color: 'white' }}
+            />
+            <View style={{ width: '100%', height: 5 }} />
+            <DoobooButton
+              testID="GOOGLE_SIGN_IN_BUTTON"
+              style={[
+                {
+                  backgroundColor: colors.google,
+                  borderColor: theme.background,
+                  borderRadius: 4,
+                  width: '100%',
+                  height: 60,
+                },
+              ]}
+              iconLeft={
+                <View
+                  style={{
+                    marginLeft: 16,
+                  }}
+                >
+                  <Ionicons name="logo-google" size={20} color="white" />
+                </View>
+              }
+              isLoading={signingInGoogle}
+              indicatorColor={theme.primary}
+              onClick={googleSignInAsync}
+              text={getString('SIGN_IN_WITH_GOOGLE')}
+              textStyle={{ fontWeight: '700', color: 'white' }}
+            />
+          </SocialButtonWrapper>
+        </Wrapper>
+      </ScrollView>
+    </Container>
   );
 }
 

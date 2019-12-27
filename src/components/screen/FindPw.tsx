@@ -12,11 +12,11 @@ const StyledSafeAreaView = styled.View`
   background-color: ${({ theme }): string => theme.background};
 `;
 
-const StyledWrapper = styled.View`
+const Wrapper = styled.View`
   margin: 44px;
 `;
 
-const StyledButtonWrapper = styled.View`
+const ButtonWrapper = styled.View`
   width: 100%;
   margin-top: 20px;
 `;
@@ -28,7 +28,7 @@ interface Props {
 function Page(props: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
-  const [isFindPW, setIsFindPW] = useState<boolean>(false);
+  const [isFindPw, setIsFindPw] = useState<boolean>(false);
   let timer: number;
 
   const { theme } = useThemeContext();
@@ -38,14 +38,14 @@ function Page(props: Props): ReactElement {
     return re.test(email);
   };
 
-  const onFindPW = (): void => {
+  const onFindPw = (): void => {
     if (email === '') {
       setErrorEmail(getString('EMAIL_REQUIRED'));
       return;
     }
-    setIsFindPW(true);
+    setIsFindPw(true);
     timer = setTimeout(() => {
-      setIsFindPW(false);
+      setIsFindPw(false);
       clearTimeout(timer);
       if (props.navigation) {
         props.navigation.navigate('SignUp');
@@ -55,7 +55,7 @@ function Page(props: Props): ReactElement {
 
   return (
     <StyledSafeAreaView>
-      <StyledWrapper>
+      <Wrapper>
         <EditText
           testID="EMAIL_INPUT"
           textStyle={{
@@ -76,19 +76,19 @@ function Page(props: Props): ReactElement {
           }}
           style={{ marginTop: 20 }}
           errorText={errorEmail}
-          onSubmitEditing={onFindPW}
+          onSubmitEditing={onFindPw}
         />
-        <StyledButtonWrapper>
+        <ButtonWrapper>
           <Button
-            testID="btnFindPW"
-            isLoading={isFindPW}
-            onPress={onFindPW}
+            testID="btnFindPw"
+            isLoading={isFindPw}
+            onPress={onFindPw}
             containerStyle={{ padding: 5 }}
           >
             {getString('FIND_PW')}
           </Button>
-        </StyledButtonWrapper>
-      </StyledWrapper>
+        </ButtonWrapper>
+      </Wrapper>
     </StyledSafeAreaView>
   );
 }

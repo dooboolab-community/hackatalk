@@ -14,7 +14,7 @@ interface Props {
   onLongPress?: () => void;
 }
 
-const StyledWrapperView = styled.View`
+const WrapperView = styled.View`
   background-color: ${({ theme }): string => theme.background};
   height: 80px;
   border-bottom-width: 1px;
@@ -25,7 +25,7 @@ const StyledWrapperView = styled.View`
   padding: 0 20px;
 `;
 
-const StyledContainerView = styled.View`
+const ContainerView = styled.View`
   width: 100%;
 `;
 
@@ -62,14 +62,14 @@ function Shared({
   const photoURLObj =
     typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
-    <StyledContainerView>
+    <ContainerView>
       <TouchableOpacity
         testID={testID}
         activeOpacity={0.5}
         onPress={onPress}
         onLongPress={onLongPress}
       >
-        <StyledWrapperView>
+        <WrapperView>
           {photoURL ? (
             <StyledImage source={photoURLObj} />
           ) : (
@@ -90,9 +90,9 @@ function Shared({
           ) : (
             <View />
           )}
-        </StyledWrapperView>
+        </WrapperView>
       </TouchableOpacity>
-    </StyledContainerView>
+    </ContainerView>
   );
 }
 

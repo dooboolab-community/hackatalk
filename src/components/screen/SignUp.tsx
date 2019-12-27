@@ -13,11 +13,11 @@ const StyledSafeAreaView = styled.SafeAreaView`
   background: ${({ theme }): string => theme.background};
 `;
 
-const StyledWrapper = styled.View`
+const Wrapper = styled.View`
   margin: 44px;
 `;
 
-const StyledButtonWrapper = styled.View`
+const ButtonWrapper = styled.View`
   width: 100%;
   margin-top: 20px;
   flex-direction: row;
@@ -82,7 +82,7 @@ function Page(props: Props): ReactElement {
 
   return (
     <StyledSafeAreaView>
-      <StyledWrapper>
+      <Wrapper>
         <EditText
           testID="EMAIL_INPUT"
           textStyle={{
@@ -180,7 +180,7 @@ function Page(props: Props): ReactElement {
           style={{ marginTop: 20 }}
           onSubmitEditing={onSignUp}
         />
-        <StyledButtonWrapper>
+        <ButtonWrapper>
           <View style={{ flex: 1 }}/>
           <Button
             testID="SIGN_UP_INPUT"
@@ -190,8 +190,8 @@ function Page(props: Props): ReactElement {
           >
             {getString('SIGN_UP')}
           </Button>
-        </StyledButtonWrapper>
-      </StyledWrapper>
+        </ButtonWrapper>
+      </Wrapper>
     </StyledSafeAreaView>
   );
 }

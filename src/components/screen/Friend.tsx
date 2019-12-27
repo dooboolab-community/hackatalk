@@ -9,7 +9,7 @@ import styled from 'styled-components/native';
 import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
-const StyledContainer = styled.View`
+const Container = styled.View`
   flex: 1;
   flex-direction: column;
   background: ${({ theme }): string => theme.background};
@@ -56,7 +56,7 @@ export default function Screen(): ReactElement {
   };
 
   return (
-    <StyledContainer>
+    <Container>
       <FlatList
         testID="friend-list"
         style={{
@@ -79,6 +79,6 @@ export default function Screen(): ReactElement {
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }
       />
-    </StyledContainer>
+    </Container>
   );
 }

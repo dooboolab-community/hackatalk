@@ -8,7 +8,7 @@ import moment from 'moment';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const StyledWrapperPeer = styled.View<{ isSame: boolean }>`
+const WrapperPeer = styled.View<{ isSame: boolean }>`
   min-height: 48px;
   flex-direction: row;
   align-items: flex-start;
@@ -51,7 +51,7 @@ const StyledTextPeerDate = styled.Text`
   margin-top: 4px;
 `;
 
-const StyledWrapperMy = styled.View`
+const WrapperMy = styled.View`
   min-height: 48px;
   width: 100%;
   margin-top: 20px;
@@ -129,7 +129,7 @@ function Shared(props: Props): React.ReactElement {
   if (uid !== myFakeUid) {
     // peer message
     return (
-      <StyledWrapperPeer isSame={!!isSamePeerMsg}>
+      <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
           <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
             <ImageSenderComp
@@ -154,11 +154,11 @@ function Shared(props: Props): React.ReactElement {
               : '0 : 0'}
           </StyledTextPeerDate>
         </View>
-      </StyledWrapperPeer>
+      </WrapperPeer>
     );
   }
   return (
-    <StyledWrapperMy>
+    <WrapperMy>
       <StyledLinearGradient
         start={[0.7, 0.4]}
         end={[1.0, 0.6]}
@@ -172,7 +172,7 @@ function Shared(props: Props): React.ReactElement {
           ? `${moment(created).hour()} : ${moment(created).minutes()}`
           : '0 : 0'}
       </StyledTextDate>
-    </StyledWrapperMy>
+    </WrapperMy>
   );
 }
 

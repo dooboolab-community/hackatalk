@@ -130,7 +130,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
             },
           ]
         }
-        testID="btnFindPW"
+        testID="btnFindPw"
         white={false}
         width="auto"
       >
