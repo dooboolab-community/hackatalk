@@ -182,6 +182,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ilikeu7246",
+      "name": "jinsun Park",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/31176502?v=4",
+      "profile": "https://selina-park.tistory.com/",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
