@@ -8,7 +8,7 @@ import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 import { validateEmail } from '../../utils/common';
 
-const StyledSafeAreaView = styled.View`
+const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }): string => theme.background};
 `;
@@ -51,7 +51,7 @@ function Page(props: Props): ReactElement {
   };
 
   return (
-    <StyledSafeAreaView>
+    <Container>
       <Wrapper>
         <EditText
           testID="input-email"
@@ -82,7 +82,7 @@ function Page(props: Props): ReactElement {
           </Button>
         </ButtonWrapper>
       </Wrapper>
-    </StyledSafeAreaView>
+    </Container>
   );
 }
 

@@ -6,7 +6,6 @@ import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
-import { View } from 'react-native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';

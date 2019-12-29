@@ -29,6 +29,10 @@ const Container = styled.SafeAreaView`
   background: ${({ theme }): string => theme.background};
 `;
 
+const Wrapper = styled.View`
+  margin: 0 40px;
+`;
+
 const LogoWrapper = styled.View`
   margin-top: 104px;
   margin-bottom: 60px;
@@ -43,10 +47,6 @@ const StyledLogoText = styled.Text`
   color: ${({ theme }): string => theme.fontColor};
   font-size: 20px;
   font-weight: bold;
-`;
-
-const Wrapper = styled.View`
-  margin: 0 40px;
 `;
 
 const ButtonWrapper = styled.View`
