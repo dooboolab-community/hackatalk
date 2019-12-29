@@ -39,16 +39,17 @@ function Page(props: Props): ReactElement {
   };
 
   const onFindPw = (): void => {
-    if (email === '') {
-      setErrorEmail(getString('EMAIL_REQUIRED'));
+    if (!validateEmail(email)) {
+      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       return;
     }
+
     setIsFindPw(true);
     timer = setTimeout(() => {
       setIsFindPw(false);
       clearTimeout(timer);
       if (props.navigation) {
-        props.navigation.navigate('SignUp');
+        props.navigation.navigate('SignIn');
       }
     }, 1000);
   };
@@ -57,7 +58,8 @@ function Page(props: Props): ReactElement {
     <StyledSafeAreaView>
       <Wrapper>
         <EditText
-          testID="EMAIL_INPUT"
+          testID="input-email"
+          errorTestID="error-email"
           textStyle={{
             color: theme.fontColor,
           }}
@@ -67,11 +69,6 @@ function Page(props: Props): ReactElement {
           value={email}
           onChangeText={(text: string): void => {
             setEmail(text);
-
-            if (!validateEmail(text)) {
-              setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-              return;
-            }
             setErrorEmail('');
           }}
           style={{ marginTop: 20 }}
@@ -80,7 +77,7 @@ function Page(props: Props): ReactElement {
         />
         <ButtonWrapper>
           <Button
-            testID="btnFindPw"
+            testID="btn-find-pw"
             isLoading={isFindPw}
             onPress={onFindPw}
             containerStyle={{ padding: 5 }}

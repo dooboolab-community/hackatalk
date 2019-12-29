@@ -3,12 +3,14 @@ import React, { ReactElement, useState } from 'react';
 import Button from '../shared/Button';
 import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
+import { ScrollView } from 'react-native-gesture-handler';
+import StatusBar from '../shared/StatusBar';
 import { View } from 'react-native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const StyledSafeAreaView = styled.SafeAreaView`
+const Container = styled.SafeAreaView`
   flex: 1;
   background: ${({ theme }): string => theme.background};
 `;
@@ -54,18 +56,18 @@ function Page(props: Props): ReactElement {
   };
 
   const onSignUp = (): void => {
-    if (email === '' || password === '' || confirmPassword === '' || name === '') {
-      if (email === '') {
-        setErrorEmail(getString('EMAIL_REQUIRED'));
+    if (!validateEmail(email) || !validatePassword(password) || name.length < 4 || password !== confirmPassword) {
+      if (!validateEmail(email)) {
+        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       }
-      if (password === '') {
-        setErrorPassword(getString('PASSWORD_REQUIRED'));
+      if (!validatePassword(password)) {
+        setErrorPassword(getString('PASSWORD_MIN'));
       }
-      if (confirmPassword === '') {
-        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      }
-      if (name === '') {
+      if (name.length < 4) {
         setErrorName(getString('NAME_MIN'));
+      }
+      if (password !== confirmPassword) {
+        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
       }
       return;
     }
@@ -81,118 +83,110 @@ function Page(props: Props): ReactElement {
   };
 
   return (
-    <StyledSafeAreaView>
-      <Wrapper>
-        <EditText
-          testID="EMAIL_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          label={getString('EMAIL')}
-          placeholder="hello@example.com"
-          placeholderTextColor="#ADB5BD"
-          value={email}
-          onChangeText={(text: string): void => {
-            setEmail(text);
-            if (!validateEmail(text)) {
-              setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-              return;
-            }
-            setErrorEmail('');
-          }}
-          style={{ marginTop: 20 }}
-          errorText={errorEmail}
-          onSubmitEditing={onSignUp}
-        />
-        <EditText
-          testID="PASSWORD_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          label={getString('PASSWORD')}
-          value={password}
-          onChangeText={(text: string): void => {
-            setPassword(text);
-            if (!validatePassword(text)) {
-              setErrorPassword(getString('PASSWORD_MIN'));
-              return;
-            }
-            setErrorPassword('');
-          }}
-          style={{ marginTop: 20 }}
-          errorText={errorPassword}
-          onSubmitEditing={onSignUp}
-          secureTextEntry={true}
-        />
-        <EditText
-          testID="CONFIRM_PASSWORD_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          label={getString('CONFIRM_PASSWORD')}
-          value={confirmPassword}
-          onChangeText={(text: string): void => {
-            setConfirmPassword(text);
-            if (text !== password) {
-              setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-              return;
-            }
-            setErrorConfirmPassword('');
-          }}
-          style={{ marginTop: 20 }}
-          errorText={errorConfirmPassword}
-          onSubmitEditing={onSignUp}
-          secureTextEntry={true}
-        />
-        <EditText
-          testID="NAME_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          label={getString('NAME')}
-          placeholder="Write email address"
-          placeholderTextColor="#ADB5BD"
-          value={name}
-          onChangeText={(text: string): void => {
-            setName(text);
-            if (text.length < 3) {
-              setErrorName(getString('NAME_MIN'));
-              return;
-            }
-            setErrorName('');
-          }}
-          style={{ marginTop: 20 }}
-          errorText={errorName}
-          onSubmitEditing={onSignUp}
-        />
-        <EditText
-          testID="STATUS_INPUT"
-          textStyle={{
-            color: theme.fontColor,
-          }}
-          label={getString('STATUS')}
-          placeholder="Write status"
-          placeholderTextColor="#ADB5BD"
-          value={status}
-          onChangeText={(text: string): void => {
-            setStatus(text);
-          }}
-          style={{ marginTop: 20 }}
-          onSubmitEditing={onSignUp}
-        />
-        <ButtonWrapper>
-          <View style={{ flex: 1 }}/>
-          <Button
-            testID="SIGN_UP_INPUT"
-            isLoading={isSignUp}
-            onPress={onSignUp}
-            containerStyle={{ padding: 5, flex: 1 }}
-          >
-            {getString('SIGN_UP')}
-          </Button>
-        </ButtonWrapper>
-      </Wrapper>
-    </StyledSafeAreaView>
+    <Container>
+      <StatusBar />
+      <ScrollView style={{ alignSelf: 'stretch' }}>
+        <Wrapper>
+          <EditText
+            testID="input-email"
+            errorTestID="error-email"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            label={getString('EMAIL')}
+            placeholder="hello@example.com"
+            placeholderTextColor="#ADB5BD"
+            value={email}
+            onChangeText={(text: string): void => {
+              setEmail(text);
+              setErrorEmail('');
+            }}
+            style={{ marginTop: 20 }}
+            errorText={errorEmail}
+            onSubmitEditing={onSignUp}
+          />
+          <EditText
+            testID="input-password"
+            errorTestID="error-password"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            label={getString('PASSWORD')}
+            value={password}
+            onChangeText={(text: string): void => {
+              setPassword(text);
+              setErrorPassword('');
+            }}
+            style={{ marginTop: 20 }}
+            errorText={errorPassword}
+            onSubmitEditing={onSignUp}
+            secureTextEntry={true}
+          />
+          <EditText
+            testID="input-confirm-password"
+            errorTestID="error-confirm-password"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            label={getString('CONFIRM_PASSWORD')}
+            value={confirmPassword}
+            onChangeText={(text: string): void => {
+              setConfirmPassword(text);
+              setErrorConfirmPassword('');
+            }}
+            style={{ marginTop: 20 }}
+            errorText={errorConfirmPassword}
+            onSubmitEditing={onSignUp}
+            secureTextEntry={true}
+          />
+          <EditText
+            testID="input-name"
+            errorTestID="error-name"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            label={getString('NAME')}
+            placeholder="Write email address"
+            placeholderTextColor="#ADB5BD"
+            value={name}
+            onChangeText={(text: string): void => {
+              setName(text);
+              setErrorName('');
+            }}
+            style={{ marginTop: 20 }}
+            errorText={errorName}
+            onSubmitEditing={onSignUp}
+          />
+          <EditText
+            testID="input-status"
+            errorTestID="error-status"
+            textStyle={{
+              color: theme.fontColor,
+            }}
+            label={getString('STATUS')}
+            placeholder="Write status"
+            placeholderTextColor="#ADB5BD"
+            value={status}
+            onChangeText={(text: string): void => {
+              setStatus(text);
+            }}
+            style={{ marginTop: 20 }}
+            onSubmitEditing={onSignUp}
+          />
+          <ButtonWrapper>
+            <View style={{ flex: 1 }}/>
+            <Button
+              testID="btn-sign-up"
+              isLoading={isSignUp}
+              onPress={onSignUp}
+              containerStyle={{ padding: 5, flex: 1 }}
+            >
+              {getString('SIGN_UP')}
+            </Button>
+          </ButtonWrapper>
+        </Wrapper>
+      </ScrollView>
+    </Container>
   );
 }
 

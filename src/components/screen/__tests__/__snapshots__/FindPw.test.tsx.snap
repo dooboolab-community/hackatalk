@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Screen] screen renders without crashing 1`] = `
+exports[`[FindPw] rendering test renders as expected 1`] = `
 <View
   style={
     Array [
@@ -80,7 +80,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
             },
           ]
         }
-        testID="EMAIL_INPUT"
+        testID="input-email"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -130,7 +130,7 @@ exports[`[Screen] screen renders without crashing 1`] = `
             },
           ]
         }
-        testID="btnFindPw"
+        testID="btn-find-pw"
         white={false}
         width="auto"
       >

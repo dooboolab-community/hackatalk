@@ -54,13 +54,13 @@ const ButtonWrapper = styled.View`
   flex-direction: row;
 `;
 
-const StyledFindPwTouchOpacity = styled.TouchableOpacity`
+const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
   margin-bottom: 16px;
   align-self: center;
 `;
 
-const StyledFindPwText = styled.Text`
+const FindPwText = styled.Text`
   color: ${({ theme }): string => theme.tintColor};
   text-decoration-line: underline;
 `;
@@ -276,11 +276,11 @@ function SignIn(props: Props): ReactElement {
               {getString('LOGIN')}
             </Button>
           </ButtonWrapper>
-          <StyledFindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <StyledFindPwText>
+          <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
+            <FindPwText>
               {getString('FORGOT_PW')}
-            </StyledFindPwText>
-          </StyledFindPwTouchOpacity>
+            </FindPwText>
+          </FindPwTouchOpacity>
           <SocialButtonWrapper>
             <DoobooButton
               testID="btn-facebook"
