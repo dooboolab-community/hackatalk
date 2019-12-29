@@ -36,7 +36,7 @@ exports[`[TextInput] render renders without crashing 1`] = `
       focused={false}
       onBlur={[Function]}
       onFocus={[Function]}
-      placeholderTextColor="rgb(175,194,219)"
+      placeholderTextColor="#B9B9C4"
       rejectResponderTermination={true}
       style={
         Array [

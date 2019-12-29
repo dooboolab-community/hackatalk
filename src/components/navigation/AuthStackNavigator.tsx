@@ -1,6 +1,6 @@
 import FindPw from '../screen/FindPw';
-import Login from '../screen/Login';
 import React from 'react';
+import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
@@ -12,7 +12,7 @@ function AuthNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="SignIn"
       screenOptions={{
         headerStyle: {
           backgroundColor: theme.background,
@@ -22,7 +22,7 @@ function AuthNavigator(): React.ReactElement {
         headerTintColor: theme.fontColor,
       }}
     >
-      <Stack.Screen name="Login" component={Login} options={{
+      <Stack.Screen name="SignIn" component={SignIn} options={{
         headerShown: false,
       }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{

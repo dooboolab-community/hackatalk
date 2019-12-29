@@ -11,7 +11,7 @@ const StyledLabelText = styled.Text<{ focused: boolean }>`
   font-size: 12px;
 `;
 
-const StyledWrapperView = styled.View`
+const WrapperView = styled.View`
   align-self: stretch;
   flex-direction: column;
   justify-content: flex-start;
@@ -80,7 +80,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   };
 
   return (
-    <StyledWrapperView>
+    <WrapperView>
       {renderTxtLabel()}
       <StyledTextInputContainer isFocused={focused}>
         <StyledTextInput
@@ -103,7 +103,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
         />
         {(!!props.txt && !props.error) && <StyledStatusMark />}
       </StyledTextInputContainer>
-    </StyledWrapperView>
+    </WrapperView>
   );
 }
 

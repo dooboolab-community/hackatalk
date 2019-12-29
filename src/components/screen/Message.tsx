@@ -8,7 +8,7 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 
-const StyledContainer = styled.View`
+const Container = styled.View`
   flex: 1;
   background: ${({ theme }): string => theme.background};
   flex-direction: column;
@@ -85,7 +85,7 @@ function Screen(): React.ReactElement {
     );
   };
   return (
-    <StyledContainer>
+    <Container>
       <FlatList
         style={{
           alignSelf: 'stretch',
@@ -110,7 +110,7 @@ function Screen(): React.ReactElement {
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }
       />
-    </StyledContainer>
+    </Container>
   );
 }
 export default Screen;

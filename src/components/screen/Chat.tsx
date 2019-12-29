@@ -19,7 +19,7 @@ import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const StyledContainer = styled.SafeAreaView`
+const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }): string => theme.background};
   flex-direction: column;
@@ -116,7 +116,7 @@ function Screen(): React.ReactElement {
   };
 
   return (
-    <StyledContainer>
+    <Container>
       <GiftedChat
         chats={chats}
         borderColor={theme.lineColor}
@@ -213,7 +213,7 @@ function Screen(): React.ReactElement {
           </Button>
         )}
       />
-    </StyledContainer>
+    </Container>
   );
 }
 

@@ -108,7 +108,7 @@ type StackParamList = {
   default: undefined;
   AuthStack: undefined;
   MainStack: undefined;
-  Login: undefined;
+  SignIn: undefined;
   SignUp: undefined;
   FindPw: undefined;
   ProfileUpdate: undefined;

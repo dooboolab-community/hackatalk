@@ -17,7 +17,7 @@ const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
 
-const StyledContainer = styled.View`
+const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }): string => theme.background};
   flex-direction: column;
@@ -28,7 +28,7 @@ const StyledScrollView = styled.ScrollView`
   align-self: stretch;
 `;
 
-const StyledWrapper = styled.View`
+const Wrapper = styled.View`
   margin-top: 48px;
   width: 78%;
   flex-direction: column;
@@ -135,14 +135,14 @@ function Screen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
 
   return (
-    <StyledContainer>
+    <Container>
       <StyledScrollView
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <StyledWrapper>
+        <Wrapper>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={onPressImg}
@@ -200,9 +200,9 @@ function Screen(props: Props): React.ReactElement {
               {getString('UPDATE')}
             </Button>
           </StyledBtnWrapper>
-        </StyledWrapper>
+        </Wrapper>
       </StyledScrollView>
-    </StyledContainer>
+    </Container>
   );
 }
 

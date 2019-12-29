@@ -100,7 +100,7 @@ exports[`rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             placeholder="Name"
-            placeholderTextColor="rgb(175,194,219)"
+            placeholderTextColor="#B9B9C4"
             rejectResponderTermination={true}
             style={
               Array [
@@ -182,7 +182,7 @@ exports[`rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             placeholder="Status message"
-            placeholderTextColor="rgb(175,194,219)"
+            placeholderTextColor="#B9B9C4"
             rejectResponderTermination={true}
             style={
               Array [

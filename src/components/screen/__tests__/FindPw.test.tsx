@@ -1,89 +1,129 @@
-import * as React from 'react';
+import 'react-native';
 
+import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
-  toJSON,
-  waitForElement,
-  within,
+  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { dark, light } from '../../../theme';
 
 import FindPw from '../FindPw';
-import { getString } from '../../../../STRINGS';
+import renderer from 'react-test-renderer';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
+let component: ReactElement;
 
-describe('[FindPw] screen', () => {
+describe('[FindPw] rendering test', () => {
   beforeEach(() => {
+    props = createTestProps();
+    component = createTestElement(<FindPw {...props} />);
+  });
+
+  it('renders as expected', () => {
+    const json = renderer.create(component).toJSON();
+    expect(json).toMatchSnapshot();
+  });
+});
+
+describe('[FindPw] interaction', () => {
+  let testingLib: RenderResult;
+
+  beforeAll(() => {
     props = createTestProps();
     component = createTestElement(<FindPw {...props} />);
     testingLib = render(component);
   });
 
-  it('renders without crashing', () => {
-    const { container } = testingLib;
-    expect(toJSON(container)).toMatchSnapshot();
+  it('should invoke changeText event handler when email changed', async () => {
+    const textInput = testingLib.getByTestId('input-email');
+    await wait(() => expect(textInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(textInput, 'email@email.com');
+    });
+
+    expect(textInput.props.value).toEqual('email@email.com');
   });
 
-  describe('interactions', () => {
-    beforeEach(() => {
+  describe('onFindPw', () => {
+    beforeAll(() => {
+      props = createTestProps();
+      component = createTestElement(<FindPw {...props} />);
       testingLib = render(component);
     });
 
-    it('should be highlighted when the input is focused', async () => {
-      const theme = light;
-      const { getByTestId, getByText } = testingLib;
-      const emailInput = getByTestId('findPw_email_input');
-      const emailInputLabel = await waitForElement(() =>
-        getByText(getString('EMAIL')),
-      );
-      expect(emailInputLabel.props.style).toHaveProperty(
-        [0, 'color'],
-        theme.inactiveColor,
-      );
+    it('should show error text when the email is not validated', async () => {
+      const textInput = testingLib.getByTestId('input-email');
+      await wait(() => expect(textInput).toBeTruthy());
 
-      fireEvent.focus(emailInput);
-      const emailInputLabel2 = await waitForElement(() =>
-        getByText(getString('EMAIL')),
-      );
-      expect(emailInputLabel2.props.style).toHaveProperty(
-        [0, 'color'],
-        theme.primary,
-      );
+      act(() => {
+        fireEvent.changeText(textInput, 'example@example');
+      });
+
+      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      await wait(() => expect(btnFindPw).toBeTruthy());
+      act(() => {
+        fireEvent.press(btnFindPw);
+      });
+      const errorText = testingLib.getByTestId('error-email');
+      await act(() => wait());
+      expect(errorText).toBeTruthy();
     });
 
-    it('should validate email format', async () => {
-      const { getByTestId, getByText } = testingLib;
-      const emailInput = getByTestId('findPw_email_input');
+    it('should call FindPw when button has clicked and navigate to SignIn', async () => {
+      const textInput = testingLib.getByTestId('input-email');
 
-      fireEvent.changeText(emailInput, 'wrongEmailFormat.bah');
-      const emailInputError = await waitForElement(() =>
-        getByText(getString('EMAIL_FORMAT_NOT_VALID')),
-      );
-      expect(emailInputError).toBeTruthy();
-      const btnFindPwConfirmText = getByText(getString('PASSWORD_RESET'));
-      expect(btnFindPwConfirmText.props).toHaveProperty('disabled');
+      act(() => {
+        fireEvent.changeText(textInput, 'email@email.com');
+      });
 
-      fireEvent.changeText(emailInput, 'correctEmailFormat@bah.meh');
-      const btnFindPwConfirm = await waitForElement(() =>
-        getByTestId('btnFindPwConfirm'),
-      );
-      const btnFindPwConfirmText2 = within(btnFindPwConfirm).getByText(
-        getString('PASSWORD_RESET'),
-      );
+      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      await wait(() => expect(btnFindPw).toBeTruthy());
 
-      expect(btnFindPwConfirmText2.props).toHaveProperty('disabled', false);
+      jest.useFakeTimers();
+      act(() => {
+        fireEvent.press(btnFindPw);
+        jest.runAllTimers();
+      });
+
+      await act(() => wait());
+      expect(props.navigation.navigate).toHaveBeenCalledTimes(1);
     });
 
-    afterEach(() => {
-      cleanup();
+    it('should do nothing when navigation is not defined.', async () => {
+      props = createTestProps({
+        navigation: null,
+      });
+      component = createTestElement(<FindPw {...props} />);
+      testingLib = render(component);
+
+      const textInput = testingLib.getByTestId('input-email');
+      await wait(() => expect(textInput).toBeTruthy());
+
+      act(() => {
+        fireEvent.changeText(textInput, 'email@email.com');
+      });
+
+      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      await wait(() => expect(btnFindPw).toBeTruthy());
+
+      jest.useFakeTimers();
+      act(() => {
+        fireEvent.press(btnFindPw);
+        jest.runAllTimers();
+      });
+
+      await act(() => wait());
+      expect(props.navigation).toBeNull();
     });
+  });
+
+  afterAll((done) => {
+    cleanup();
+    done();
   });
 });
