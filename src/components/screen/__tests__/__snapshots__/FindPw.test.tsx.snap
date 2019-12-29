@@ -62,7 +62,7 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
         onFocus={[Function]}
         onSubmitEditing={[Function]}
         placeholder="hello@example.com"
-        placeholderTextColor="#ADB5BD"
+        placeholderTextColor="#B9B9C4"
         rejectResponderTermination={true}
         style={
           Array [

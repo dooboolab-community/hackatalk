@@ -72,7 +72,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           onFocus={[Function]}
           onSubmitEditing={[Function]}
           placeholder="hello@example.com"
-          placeholderTextColor="#ADB5BD"
+          placeholderTextColor="#B9B9C4"
           rejectResponderTermination={true}
           style={
             Array [
@@ -289,7 +289,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           onFocus={[Function]}
           onSubmitEditing={[Function]}
           placeholder="Write email address"
-          placeholderTextColor="#ADB5BD"
+          placeholderTextColor="#B9B9C4"
           rejectResponderTermination={true}
           style={
             Array [
@@ -362,7 +362,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           onFocus={[Function]}
           onSubmitEditing={[Function]}
           placeholder="Write status"
-          placeholderTextColor="#ADB5BD"
+          placeholderTextColor="#B9B9C4"
           rejectResponderTermination={true}
           style={
             Array [
@@ -402,20 +402,13 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "flexDirection": "row",
+              "flexDirection": "row-reverse",
               "marginTop": 20,
               "width": "100%",
             },
           ]
         }
       >
-        <View
-          style={
-            Object {
-              "flex": 1,
-            }
-          }
-        />
         <TouchableOpacity
           activeOpacity={0.5}
           disabled={false}
@@ -434,8 +427,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 "width": "auto",
               },
               Object {
-                "flex": 1,
                 "padding": 5,
+                "width": "50%",
               },
             ]
           }

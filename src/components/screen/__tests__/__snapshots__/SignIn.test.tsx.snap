@@ -143,7 +143,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             onFocus={[Function]}
             onSubmitEditing={[Function]}
             placeholder="hello@example.com"
-            placeholderTextColor="rgb(175,194,219)"
+            placeholderTextColor="#B9B9C4"
             rejectResponderTermination={true}
             style={
               Array [
@@ -234,7 +234,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             onFocus={[Function]}
             onSubmitEditing={[Function]}
             placeholder="******"
-            placeholderTextColor="rgb(175,194,219)"
+            placeholderTextColor="#B9B9C4"
             rejectResponderTermination={true}
             secureTextEntry={true}
             style={
