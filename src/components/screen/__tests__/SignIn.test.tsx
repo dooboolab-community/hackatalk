@@ -29,7 +29,6 @@ jest.mock('expo-constants', () => ({
 }));
 
 describe('[SignIn] rendering test', () => {
-  jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<SignIn {...props} />);
@@ -320,6 +319,7 @@ describe('[SignIn] Google Signin', () => {
 
   describe('expo env', () => {
     let testingLib: RenderResult;
+    jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
 
     beforeAll(() => {
       props = createTestProps();
