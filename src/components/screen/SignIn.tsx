@@ -21,6 +21,7 @@ import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+import { validateEmail } from '../../utils/common';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -86,11 +87,6 @@ function SignIn(props: Props): ReactElement {
 
   const { theme, changeThemeType } = useThemeContext();
 
-  const validateEmail = (email: string): boolean => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
-
   const goToSignUp = (): void => {
     props.navigation.navigate('SignUp');
   };
@@ -105,7 +101,7 @@ function SignIn(props: Props): ReactElement {
       return;
     }
 
-    if (password === '') {
+    if (!password) {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
       return;
     }

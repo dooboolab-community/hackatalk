@@ -16,13 +16,11 @@ import renderer from 'react-test-renderer';
 
 let props: any;
 let component: ReactElement;
-// let testingLib: RenderResult;
 
 describe('[SignUp] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<SignUp {...props} />);
-    // testingLib = render(component);
   });
 
   it('renders as expected', () => {
@@ -51,7 +49,7 @@ describe('[SignUp] interaction', () => {
     expect(textInput.props.value).toEqual('email@email.com');
   });
 
-  it('should invoke changeText event handler when password changed ', async () => {
+  it('should invoke changeText event handler when password changed', async () => {
     testingLib = render(component);
     const textInput = testingLib.getByTestId('input-password');
     await wait(() => expect(textInput).toBeTruthy());
@@ -62,7 +60,7 @@ describe('[SignUp] interaction', () => {
     expect(textInput.props.value).toEqual('pw test');
   });
 
-  it('should invoke changeText event when confirm password changed', async () => {
+  it('should confirm password', async () => {
     testingLib = render(component);
     const textInput = testingLib.getByTestId('input-confirm-password');
     await wait(() => expect(textInput).toBeTruthy());
@@ -109,7 +107,7 @@ describe('[SignUp] interaction', () => {
         testingLib = render(component);
       });
 
-      it('should show error message when email validation fails during signUp', async () => {
+      it('should show error text when the email is not validated', async () => {
         const emailInput = testingLib.getByTestId('input-email');
         await wait(() => expect(emailInput).toBeTruthy());
         act(() => {
@@ -144,7 +142,7 @@ describe('[SignUp] interaction', () => {
         await wait(() => expect(errorText).toBeTruthy());
       });
 
-      it('should show error message when password validation fails during signUp', async () => {
+      it('should show error text when the password is not validated', async () => {
         const emailInput = testingLib.getByTestId('input-email');
         await wait(() => expect(emailInput).toBeTruthy());
         act(() => {
@@ -180,7 +178,7 @@ describe('[SignUp] interaction', () => {
       });
     });
 
-    it('should show error message when name validation fails during signUp', async () => {
+    it('should show error text when the name is not validated', async () => {
       const emailInput = testingLib.getByTestId('input-email');
       await wait(() => expect(emailInput).toBeTruthy());
       act(() => {
@@ -215,7 +213,7 @@ describe('[SignUp] interaction', () => {
       await wait(() => expect(errorText).toBeTruthy());
     });
 
-    it('should show error message when passwords confirms fail during signUp', async () => {
+    it('should show error text when the password is not confirmed', async () => {
       const emailInput = testingLib.getByTestId('input-email');
       await wait(() => expect(emailInput).toBeTruthy());
       act(() => {
@@ -249,100 +247,100 @@ describe('[SignUp] interaction', () => {
       const errorText = testingLib.getByTestId('error-confirm-password');
       await wait(() => expect(errorText).toBeTruthy());
     });
+  });
 
-    it('should call signUp when button has clicked and navigate to SignIn', async () => {
-      const emailInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(emailInput).toBeTruthy());
+  it('should call signUp when button has clicked and navigate to SignIn', async () => {
+    const emailInput = testingLib.getByTestId('input-email');
+    await wait(() => expect(emailInput).toBeTruthy());
 
-      act(() => {
-        fireEvent.changeText(emailInput, 'email@email.com');
-      });
-
-      const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(passwordInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(passwordInput, 'Abc123##');
-      });
-
-      const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-      await wait(() => expect(confirmPasswordInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(confirmPasswordInput, 'Abc123##');
-      });
-
-      const nameInput = testingLib.getByTestId('input-name');
-      await wait(() => expect(nameInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(nameInput, 'dooboo');
-      });
-
-      const btnSignUp = testingLib.getByTestId('btn-sign-up');
-      await wait(() => expect(btnSignUp).toBeTruthy());
-
-      jest.useFakeTimers();
-      act(() => {
-        fireEvent.press(btnSignUp);
-        jest.runAllTimers();
-      });
-
-      await act(() => wait());
-      expect(props.navigation.navigate).toHaveBeenCalledTimes(1);
+    act(() => {
+      fireEvent.changeText(emailInput, 'email@email.com');
     });
 
-    it('should call signUp when button has clicked and do nothing when there is no navigation', async () => {
-      props = createTestProps({
-        navigation: null,
-      });
-      component = createTestElement(<SignUp {...props} />);
-      testingLib = render(component);
+    const passwordInput = testingLib.getByTestId('input-password');
+    await wait(() => expect(passwordInput).toBeTruthy());
 
-      const emailInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(emailInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(emailInput, 'email@email.com');
-      });
-
-      const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(passwordInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(passwordInput, 'Abc123##');
-      });
-
-      const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-      await wait(() => expect(confirmPasswordInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(confirmPasswordInput, 'Abc123##');
-      });
-
-      const nameInput = testingLib.getByTestId('input-name');
-      await wait(() => expect(nameInput).toBeTruthy());
-
-      act(() => {
-        fireEvent.changeText(nameInput, 'dooboo');
-      });
-
-      const btnSignUp = testingLib.getByTestId('btn-sign-up');
-      await wait(() => expect(btnSignUp).toBeTruthy());
-
-      jest.useFakeTimers();
-      act(() => {
-        fireEvent.press(btnSignUp);
-        jest.runAllTimers();
-      });
-
-      await act(() => wait());
-      expect(props.navigation).toBeNull();
+    act(() => {
+      fireEvent.changeText(passwordInput, 'Abc123##');
     });
 
-    afterAll((done) => {
-      cleanup();
-      done();
+    const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
+    await wait(() => expect(confirmPasswordInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(confirmPasswordInput, 'Abc123##');
     });
+
+    const nameInput = testingLib.getByTestId('input-name');
+    await wait(() => expect(nameInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(nameInput, 'dooboo');
+    });
+
+    const btnSignUp = testingLib.getByTestId('btn-sign-up');
+    await wait(() => expect(btnSignUp).toBeTruthy());
+
+    jest.useFakeTimers();
+    act(() => {
+      fireEvent.press(btnSignUp);
+      jest.runAllTimers();
+    });
+
+    await act(() => wait());
+    expect(props.navigation.navigate).toHaveBeenCalledTimes(1);
+  });
+
+  it('should do nothing when there is no navigation', async () => {
+    props = createTestProps({
+      navigation: null,
+    });
+    component = createTestElement(<SignUp {...props} />);
+    testingLib = render(component);
+
+    const emailInput = testingLib.getByTestId('input-email');
+    await wait(() => expect(emailInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(emailInput, 'email@email.com');
+    });
+
+    const passwordInput = testingLib.getByTestId('input-password');
+    await wait(() => expect(passwordInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(passwordInput, 'Abc123##');
+    });
+
+    const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
+    await wait(() => expect(confirmPasswordInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(confirmPasswordInput, 'Abc123##');
+    });
+
+    const nameInput = testingLib.getByTestId('input-name');
+    await wait(() => expect(nameInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(nameInput, 'dooboo');
+    });
+
+    const btnSignUp = testingLib.getByTestId('btn-sign-up');
+    await wait(() => expect(btnSignUp).toBeTruthy());
+
+    jest.useFakeTimers();
+    act(() => {
+      fireEvent.press(btnSignUp);
+      jest.runAllTimers();
+    });
+
+    await act(() => wait());
+    expect(props.navigation).toBeNull();
+  });
+
+  afterAll((done) => {
+    cleanup();
+    done();
   });
 });

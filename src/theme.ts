@@ -14,6 +14,7 @@ export const colors = {
   darkBackground: '#323739',
   darkBackgroundLight: '#393241',
   cloudyBlue: 'rgb(175,194,219)',
+  lightGray: '#B9B9C4',
   lightSalmon: '#f5aeae',
   google: 'rgb(224,66,56)',
   facebook: 'rgb(52,89,151)',
@@ -39,7 +40,7 @@ export const light = {
   primaryLight: colors.skyBlue,
   searchBackground: 'rgb(247,248,251)',
   status: colors.greenishCyan,
-  placeholder: colors.cloudyBlue,
+  placeholder: colors.lightGray,
   focused: colors.dodgerBlue,
   placeholderFocused: colors.mellowBlue,
 };
@@ -66,7 +67,7 @@ export const dark = {
   primaryLight: '#262A2C',
   searchBackground: '#243447',
   status: colors.greenishCyan,
-  placeholder: colors.cloudyBlue,
+  placeholder: colors.lightGray,
   focused: 'lightcoral',
   placeholderFocused: colors.lightSalmon,
 };

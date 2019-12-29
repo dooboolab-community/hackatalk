@@ -56,7 +56,7 @@ describe('[FindPw] interaction', () => {
       testingLib = render(component);
     });
 
-    it('should call findPw when button has clicked and ask to validate email', async () => {
+    it('should show error text when the email is not validated', async () => {
       const textInput = testingLib.getByTestId('input-email');
       await wait(() => expect(textInput).toBeTruthy());
 
@@ -74,7 +74,7 @@ describe('[FindPw] interaction', () => {
       expect(errorText).toBeTruthy();
     });
 
-    it('should call FindPw when button has clicked and navigation navigate', async () => {
+    it('should call FindPw when button has clicked and navigate to SignIn', async () => {
       const textInput = testingLib.getByTestId('input-email');
 
       act(() => {
@@ -94,7 +94,7 @@ describe('[FindPw] interaction', () => {
       expect(props.navigation.navigate).toHaveBeenCalledTimes(1);
     });
 
-    it('should call FindPw when button has clicked and do nothing when there is no navigation', async () => {
+    it('should do nothing when navigation is not defined.', async () => {
       props = createTestProps({
         navigation: null,
       });
