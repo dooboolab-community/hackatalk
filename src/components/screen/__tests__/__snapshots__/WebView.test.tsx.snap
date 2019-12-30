@@ -18,16 +18,21 @@ exports[`[WebView] screen renders without crashing 1`] = `
 >
   <View
     style={
-      Object {
-        "flex": 1,
-        "overflow": "hidden",
-      }
+      Array [
+        Object {
+          "flex": 1,
+          "overflow": "hidden",
+        },
+        undefined,
+      ]
     }
   >
     <RNCWebView
       cacheEnabled={true}
       javaScriptEnabled={true}
       messagingEnabled={false}
+      onContentProcessDidTerminate={[Function]}
+      onHttpError={[Function]}
       onLoadingError={[Function]}
       onLoadingFinish={[Function]}
       onLoadingProgress={[Function]}
