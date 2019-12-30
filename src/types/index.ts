@@ -104,7 +104,7 @@ export enum ThemeType {
   DARK = 'DARK',
 }
 
-type StackParamList = {
+export type StackParamList = {
   default: undefined;
   AuthStack: undefined;
   MainStack: undefined;

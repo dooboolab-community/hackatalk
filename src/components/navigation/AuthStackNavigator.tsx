@@ -32,6 +32,8 @@ function AuthNavigator(): React.ReactElement {
       <Stack.Screen name="FindPw" component={FindPw} options={{
         title: getString('FIND_PW'),
       }} />
+      {/*
+      // @ts-ignore */}
       <Stack.Screen name="WebView" component={WebView} options={{
         title: getString('WEB_VIEW'),
       }} />

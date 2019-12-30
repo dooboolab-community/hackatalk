@@ -1,6 +1,7 @@
-import { DefaultNavigationProps, DefaultRouteProps } from '../../types';
+import { DefaultNavigationProps, StackParamList } from '../../types';
+import React, { ReactElement } from 'react';
 
-import React from 'react';
+import { RouteProp } from '@react-navigation/core';
 import { WebView } from 'react-native-webview';
 import styled from 'styled-components/native';
 
@@ -13,12 +14,12 @@ const Container = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps;
-  route: DefaultRouteProps;
+  navigation: DefaultNavigationProps<'WebView'>;
+  route: RouteProp<StackParamList, 'WebView'>;
 }
 
-function Page(props: Props): React.ReactElement {
-  const { uri } = props.route.params;
+function Page(props: Props): ReactElement {
+  const { route: { params: { uri } } } = props;
 
   return (
     <Container>
