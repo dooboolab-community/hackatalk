@@ -34,8 +34,8 @@ const Wrapper = styled.View`
 `;
 
 const LogoWrapper = styled.View`
-  margin-top: 64px;
-  margin-bottom: 60px;
+  margin-top: 60px;
+  margin-bottom: 88px;
 `;
 
 const StyledLogoImage = styled.Image`
@@ -57,7 +57,7 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   align-self: center;
 `;
 
@@ -67,7 +67,7 @@ const FindPwText = styled.Text`
 `;
 
 const SocialButtonWrapper = styled.View`
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 `;
 
 interface Props {
@@ -78,7 +78,7 @@ const StyledAgreementTextWrapper = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 30px;
+  padding: 0 0 40px 0;
 `;
 
 const StyledAgreementText = styled.Text`
@@ -88,7 +88,7 @@ const StyledAgreementText = styled.Text`
 
 const StyledAgreementLinedText = styled.Text`
   line-height: 22px;
-  color: ${({ theme }): string => theme.brandLight};
+  color: ${({ theme }): string => theme.tintColor};
   text-decoration-line: underline;
 `;
 

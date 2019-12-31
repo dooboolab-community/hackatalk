@@ -37,8 +37,8 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "marginBottom": 60,
-              "marginTop": 64,
+              "marginBottom": 88,
+              "marginTop": 60,
             },
           ]
         }
@@ -388,7 +388,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignSelf": "center",
-              "marginBottom": 16,
+              "marginBottom": 4,
               "paddingBottom": 20,
               "paddingLeft": 20,
               "paddingRight": 20,
@@ -415,7 +415,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "marginBottom": 40,
+              "marginBottom": 24,
             },
           ]
         }
@@ -618,9 +618,9 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
               "flexDirection": "row",
               "flexWrap": "wrap",
               "justifyContent": "center",
-              "paddingBottom": 0,
-              "paddingLeft": 30,
-              "paddingRight": 30,
+              "paddingBottom": 40,
+              "paddingLeft": 0,
+              "paddingRight": 0,
               "paddingTop": 0,
             },
           ]
@@ -643,7 +643,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#2973FF",
+                "color": "rgb(58,139,255)",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },
@@ -670,7 +670,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#2973FF",
+                "color": "rgb(58,139,255)",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },
