@@ -388,7 +388,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignSelf": "center",
-              "marginBottom": 4,
+              "marginBottom": 12,
               "paddingBottom": 20,
               "paddingLeft": 20,
               "paddingRight": 20,
@@ -443,7 +443,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "backgroundColor": "rgb(52,89,151)",
                   "borderColor": "#ffffff",
                   "borderRadius": 4,
-                  "height": 60,
+                  "height": 52,
                   "width": "100%",
                 },
               ]
@@ -542,7 +542,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "backgroundColor": "rgb(224,66,56)",
                   "borderColor": "#ffffff",
                   "borderRadius": 4,
-                  "height": 60,
+                  "height": 52,
                   "width": "100%",
                 },
               ]

@@ -57,7 +57,7 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
   align-self: center;
 `;
 
@@ -307,7 +307,7 @@ function SignIn(props: Props): ReactElement {
                   borderColor: theme.background,
                   borderRadius: 4,
                   width: '100%',
-                  height: 60,
+                  height: 52,
                 },
               ]}
               iconLeft={
@@ -334,7 +334,7 @@ function SignIn(props: Props): ReactElement {
                   borderColor: theme.background,
                   borderRadius: 4,
                   width: '100%',
-                  height: 60,
+                  height: 52,
                 },
               ]}
               iconLeft={
