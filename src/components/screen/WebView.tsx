@@ -5,9 +5,9 @@ import { RouteProp } from '@react-navigation/core';
 import { WebView } from 'react-native-webview';
 import styled from 'styled-components/native';
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: transparent;
+  background-color: ${({ theme }): string => theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: center;
