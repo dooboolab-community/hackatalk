@@ -1,7 +1,6 @@
 import { ImageSourcePropType, StyleProp, TextStyle } from 'react-native';
 
 import { SFC } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 export enum MessageType {
   Message,
@@ -57,25 +56,13 @@ interface File extends ChatCommon<MessageType.File> {
   file: string;
 }
 
-export type ChatProps<
-  T extends MessageType = MessageType.Message
-> = T extends MessageType.Message
-  ? Message
-  : T extends MessageType.Photo
-    ? Photo
-    : T extends MessageType.File
-      ? File
-      : ChatCommon<T>;
-
-type ChatType = MessageType.Message | MessageType.Photo | MessageType.File;
-export type Chat = ChatProps<ChatType>;
+export type ChatProps = Message | Photo | File;
 
 export interface Chatroom {
   id: string;
-  secret: string;
-  lastChat: Chat;
+  lastChat: ChatProps;
   lastChatCnt: number;
-  chats?: Chat[];
+  chats?: ChatProps[];
   users?: User[];
   created?: Date;
   updated?: Date;
@@ -103,31 +90,3 @@ export enum ThemeType {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
 }
-
-export type StackParamList = {
-  default: undefined;
-  AuthStack: undefined;
-  MainStack: undefined;
-  SignIn: undefined;
-  SignUp: undefined;
-  FindPw: undefined;
-  ProfileUpdate: undefined;
-  Setting: undefined;
-  Friend: undefined;
-  Message: undefined;
-  Chatroom: undefined;
-  SearchUser: undefined;
-  Chat: {
-    chatId: string;
-  };
-  Temp: undefined;
-  ChangePw: undefined;
-  NotFound: undefined;
-  WebView: {
-    uri: string;
-  };
-}
-
-export type DefaultNavigationProps<
-  T extends keyof StackParamList = 'default'
-> = StackNavigationProp<StackParamList, T>;

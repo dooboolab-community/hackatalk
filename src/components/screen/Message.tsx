@@ -1,9 +1,10 @@
-import { Chatroom, DefaultNavigationProps, MessageType } from '../../types';
+import { Chatroom, MessageType } from '../../types';
 import React, { useState } from 'react';
 
 import ChatroomListItem from '../shared/ChatroomListItem';
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +18,7 @@ const Container = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'Chat'>;
+  navigation: MainStackNavigationProps<'Chat'>;
 }
 
 interface State {
@@ -27,7 +28,6 @@ interface State {
 const initRooms: Chatroom[] = [
   {
     id: 'room1',
-    secret: '',
     lastChat: {
       id: 'id_3',
       sender: {
@@ -47,7 +47,6 @@ const initRooms: Chatroom[] = [
   },
   {
     id: 'room2',
-    secret: '',
     lastChat: {
       id: 'id_3',
       sender: {

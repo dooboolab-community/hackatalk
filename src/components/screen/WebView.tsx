@@ -1,21 +1,21 @@
-import { DefaultNavigationProps, StackParamList } from '../../types';
 import React, { ReactElement } from 'react';
+import { RootStackNavigationProps, RootStackParamList } from '../navigation/RootStackNavigator';
 
 import { RouteProp } from '@react-navigation/core';
 import { WebView } from 'react-native-webview';
 import styled from 'styled-components/native';
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: transparent;
+  background-color: ${({ theme }): string => theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: center;
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'WebView'>;
-  route: RouteProp<StackParamList, 'WebView'>;
+  navigation: RootStackNavigationProps<'WebView'>;
+  route: RouteProp<RootStackParamList, 'WebView'>;
 }
 
 function Page(props: Props): ReactElement {

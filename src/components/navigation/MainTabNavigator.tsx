@@ -1,23 +1,42 @@
+import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { CompositeNavigationProp } from '@react-navigation/native';
 import Constants from 'expo-constants';
-import { DefaultNavigationProps } from '../../types';
 import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import Message from '../screen/Message';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const Tab = createMaterialTopTabNavigator();
+export type MaterialTopTabParamList = {
+  default: undefined;
+  Friend: undefined;
+  Message: undefined;
+};
 
-interface CustomHeaderProps {
-  navigation: DefaultNavigationProps;
+type NavigationProps<
+  T extends keyof MaterialTopTabParamList = 'default'
+> = MaterialTopTabNavigationProp<MaterialTopTabParamList, T>;
+
+export type MaterialTopTabNavigationProps<
+  T extends keyof MaterialTopTabParamList = 'default'
+> = CompositeNavigationProp<
+NavigationProps<T>,
+MainStackNavigationProps<'MainTab'>
+>;
+
+const Tab = createMaterialTopTabNavigator<MaterialTopTabNavigationProps>();
+
+interface Props {
+  navigation: MaterialTopTabNavigationProps;
 }
 
-const CustomHeader = (props: CustomHeaderProps): ReactElement => {
+const CustomHeader = (props: Props): ReactElement => {
   const { theme, changeThemeType } = useThemeContext();
+  const { navigation } = props;
   return (
     <LinearGradient
       style={{
@@ -37,7 +56,7 @@ const CustomHeader = (props: CustomHeaderProps): ReactElement => {
         <TouchableOpacity
           style={{ padding: 8 }}
           activeOpacity={0.5}
-          onPress={(): void => props.navigation.navigate('ProfileUpdate')}
+          onPress={(): void => navigation.navigate('ProfileUpdate')}
         >
           <Ionicons name="ios-person" size={24} color="white" />
         </TouchableOpacity>
@@ -57,7 +76,7 @@ const CustomHeader = (props: CustomHeaderProps): ReactElement => {
         <TouchableOpacity
           style={{ padding: 8 }}
           activeOpacity={0.5}
-          onPress={(): void => props.navigation.navigate('SearchUser')}
+          onPress={(): void => navigation.navigate('SearchUser')}
         >
           <Ionicons name="ios-search" size={24} color="white" />
         </TouchableOpacity>
@@ -85,7 +104,11 @@ function MainTabNavigator(): ReactElement {
         },
       }}
     >
+      {/*
+      // @ts-ignore */}
       <Tab.Screen name="Friend" component={Friend} />
+      {/*
+      // @ts-ignore */}
       <Tab.Screen name="Message" component={Message} />
     </Tab.Navigator >
   );

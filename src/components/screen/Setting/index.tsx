@@ -6,16 +6,16 @@ import {
   ItemLabel,
   SectionHeader,
 } from './styles';
+import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
+import { SectionList, SectionListData } from 'react-native';
 import {
-  DefaultNavigationProps,
   SettingsOption,
   SignInType,
 } from '../../../types';
-import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
-import { SectionList, SectionListData } from 'react-native';
 
 import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
+import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
 import React from 'react';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
@@ -37,7 +37,7 @@ function SectionItem(
 }
 
 export interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: MainStackNavigationProps;
 }
 
 function SettingScreen(props: Props): React.ReactElement {

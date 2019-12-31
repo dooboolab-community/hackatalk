@@ -14,14 +14,14 @@ import React, {
 } from 'react';
 
 import Button from '../../shared/Button';
-import { DefaultNavigationProps } from '../../../types';
 import { Ionicons } from '@expo/vector-icons';
+import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
 import { SafeAreaView } from 'react-navigation';
 import { getString } from '../../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: MainStackNavigationProps<'ChangePw'>;
 }
 
 const ChangePwHeader = (props: Props): ReactElement => {

@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { Chat } from '../../types';
+import { ChatProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import moment from 'moment';
@@ -80,8 +80,8 @@ const StyledLinearGradient = styled(LinearGradient)`
 `;
 
 interface Props {
-  item: Chat;
-  prevItem?: Chat;
+  item: ChatProps;
+  prevItem?: ChatProps;
   onPressPeerImage?: () => void;
   testID?: string;
 }
