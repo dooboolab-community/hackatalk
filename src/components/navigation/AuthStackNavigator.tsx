@@ -1,13 +1,33 @@
+import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+
+import { CompositeNavigationProp } from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
 import React from 'react';
+import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
-import WebView from '../screen/WebView';
-import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const Stack = createStackNavigator();
+export type AuthStackParamList = {
+  default: undefined;
+  SignIn: undefined;
+  SignUp: undefined;
+  FindPw: undefined;
+};
+
+type NavigationProps<
+  T extends keyof AuthStackParamList = 'default'
+> = StackNavigationProp<AuthStackParamList, T>;
+
+export type AuthStackNavigationProps<
+  T extends keyof AuthStackParamList = 'default'
+> = CompositeNavigationProp<
+NavigationProps<T>,
+RootStackNavigationProps<'AuthStack'>
+>;
+
+const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
@@ -31,11 +51,6 @@ function AuthNavigator(): React.ReactElement {
       }} />
       <Stack.Screen name="FindPw" component={FindPw} options={{
         title: getString('FIND_PW'),
-      }} />
-      {/*
-      // @ts-ignore */}
-      <Stack.Screen name="WebView" component={WebView} options={{
-        title: getString('WEB_VIEW'),
       }} />
     </Stack.Navigator>
   );

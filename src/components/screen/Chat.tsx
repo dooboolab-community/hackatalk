@@ -1,4 +1,4 @@
-import { Chat, DefaultNavigationProps, MessageType } from '../../types';
+import { ChatProps, MessageType } from '../../types';
 import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import {
@@ -14,6 +14,7 @@ import GiftedChat from '../shared/GiftedChat';
 import { Header } from 'react-navigation-stack';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
@@ -27,7 +28,7 @@ const Container = styled.SafeAreaView`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: MainStackNavigationProps<'Chat'>;
 }
 
 function Screen(): React.ReactElement {
@@ -36,7 +37,7 @@ function Screen(): React.ReactElement {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const { state, showModal } = useProfileContext();
-  const [chats, setChats] = useState<Chat[]>([
+  const [chats, setChats] = useState<ChatProps[]>([
     {
       id: '',
       message: 'hello1',
@@ -131,7 +132,7 @@ function Screen(): React.ReactElement {
           item,
           index,
         }: {
-          item: Chat;
+          item: ChatProps;
           index: number;
         }): React.ReactElement => {
           return (

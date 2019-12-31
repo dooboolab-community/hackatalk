@@ -1,28 +1,46 @@
 import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { ReactElement, useRef } from 'react';
-import {
-  StackNavigationOptions,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, View } from 'react-native';
 
 import Chat from '../screen/Chat';
-import { DefaultNavigationProps } from '../../types';
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { Ionicons } from '@expo/vector-icons';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
+import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
 import Setting from '../screen/Setting';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import { useNavigation } from '@react-navigation/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-const Stack = createStackNavigator();
+export type MainStackParamList = {
+  default: undefined;
+  MainTab: undefined;
+  ProfileUpdate: undefined;
+  SearchUser: undefined;
+  Chat: { chatroomId: string };
+  Setting: undefined;
+  ChangePw: undefined;
+};
+
+type NavigationProps<
+  T extends keyof MainStackParamList = 'default'
+> = StackNavigationProp<MainStackParamList, T>;
+
+export type MainStackNavigationProps<
+  T extends keyof MainStackParamList = 'default'
+> = CompositeNavigationProp<
+NavigationProps<T>,
+RootStackNavigationProps<'MainStack'>
+>;
+
+const Stack = createStackNavigator<MainStackParamList>();
 
 interface SettingButtonProps {
   tintColor?: string;
@@ -93,7 +111,7 @@ function MainStackNavigator(): ReactElement {
 }
 
 interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: MainStackNavigationProps;
 }
 
 function RootNavigator(): ReactElement {

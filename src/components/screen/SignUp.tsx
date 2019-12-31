@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from 'react';
 import { validateEmail, validatePassword } from '../../utils/common';
 
+import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Button from '../shared/Button';
-import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
@@ -26,7 +26,7 @@ const ButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'SignUp'>;
+  navigation: AuthStackNavigationProps<'SignUp'>;
 }
 
 function Page(props: Props): ReactElement {

@@ -3,8 +3,8 @@ import { TouchableOpacity, View } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
 import Button from '../shared/Button';
-import { DefaultNavigationProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import TextInput from '../shared/TextInput';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -53,7 +53,7 @@ const ProfileImage = styled.Image`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps;
+  navigation: MainStackNavigationProps<'ProfileUpdate'>;
 }
 
 function Screen(props: Props): React.ReactElement {

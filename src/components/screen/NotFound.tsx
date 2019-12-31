@@ -1,5 +1,5 @@
-import { DefaultNavigationProps } from '../../types';
 import React from 'react';
+import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -16,7 +16,7 @@ const StyledText = styled.Text`
 `;
 
 interface Props {
-  navigation?: DefaultNavigationProps<'NotFound'>;
+  navigation?: RootStackNavigationProps<'NotFound'>;
 }
 
 function Page(props: Props): React.ReactElement {

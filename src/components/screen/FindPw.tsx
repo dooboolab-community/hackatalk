@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 
+import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Button from '../shared/Button';
-import { DefaultNavigationProps } from '../../types';
 import { EditText } from '@dooboo-ui/native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -23,7 +23,7 @@ const ButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'FindPw'>;
+  navigation: AuthStackNavigationProps<'FindPw'>;
 }
 
 function Page(props: Props): ReactElement {

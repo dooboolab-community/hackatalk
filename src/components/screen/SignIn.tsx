@@ -3,7 +3,6 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { DefaultNavigationProps, User } from '../../types';
 import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
@@ -12,11 +11,13 @@ import {
   iOSExpoClientId,
 } from '../../../config';
 
+import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Button from '../shared/Button';
 import Constants from 'expo-constants';
 import { IC_ICON } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import StatusBar from '../shared/StatusBar';
+import { User } from '../../types';
 import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -71,7 +72,7 @@ const SocialButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: DefaultNavigationProps<'SignIn'>;
+  navigation: AuthStackNavigationProps<'SignIn'>;
 }
 
 const StyledAgreementTextWrapper = styled.View`
