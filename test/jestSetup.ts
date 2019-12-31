@@ -3,7 +3,7 @@
 global.fetch = jest.fn().mockImplementation(() => {
   return new Promise((resolve): void => {
     resolve({
-      json: function () {
+      json: function() {
         return { id: 1 };
       },
       text: async () => '{}',
