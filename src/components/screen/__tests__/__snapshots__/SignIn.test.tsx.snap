@@ -25,10 +25,10 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
       style={
         Array [
           Object {
-            "marginBottom": 0,
+            "marginBottom": 40,
             "marginLeft": 40,
             "marginRight": 40,
-            "marginTop": 0,
+            "marginTop": 40,
           },
         ]
       }
@@ -37,8 +37,8 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "marginBottom": 60,
-              "marginTop": 104,
+              "marginBottom": 88,
+              "marginTop": 60,
             },
           ]
         }
@@ -388,7 +388,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignSelf": "center",
-              "marginBottom": 16,
+              "marginBottom": 12,
               "paddingBottom": 20,
               "paddingLeft": 20,
               "paddingRight": 20,
@@ -415,7 +415,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "marginBottom": 40,
+              "marginBottom": 24,
             },
           ]
         }
@@ -443,7 +443,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "backgroundColor": "rgb(52,89,151)",
                   "borderColor": "#ffffff",
                   "borderRadius": 4,
-                  "height": 60,
+                  "height": 52,
                   "width": "100%",
                 },
               ]
@@ -542,7 +542,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "backgroundColor": "rgb(224,66,56)",
                   "borderColor": "#ffffff",
                   "borderRadius": 4,
-                  "height": 60,
+                  "height": 52,
                   "width": "100%",
                 },
               ]
@@ -610,6 +610,87 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             />
           </View>
         </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "center",
+              "paddingBottom": 40,
+              "paddingLeft": 0,
+              "paddingRight": 0,
+              "paddingTop": 0,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+          We consider that you agree with 
+        </Text>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "color": "rgb(58,139,255)",
+                "lineHeight": 22,
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+          testID="webView"
+        >
+          Terms for Agreement
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+           and 
+        </Text>
+        <Text
+          onPress={[Function]}
+          style={
+            Array [
+              Object {
+                "color": "rgb(58,139,255)",
+                "lineHeight": 22,
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          Privacy Policy
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#777",
+                "lineHeight": 22,
+              },
+            ]
+          }
+        >
+           by going onto next step.
+        </Text>
       </View>
     </View>
   </ScrollView>

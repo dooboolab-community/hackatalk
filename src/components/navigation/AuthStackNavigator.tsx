@@ -2,6 +2,7 @@ import FindPw from '../screen/FindPw';
 import React from 'react';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
+import WebView from '../screen/WebView';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -30,6 +31,11 @@ function AuthNavigator(): React.ReactElement {
       }} />
       <Stack.Screen name="FindPw" component={FindPw} options={{
         title: getString('FIND_PW'),
+      }} />
+      {/*
+      // @ts-ignore */}
+      <Stack.Screen name="WebView" component={WebView} options={{
+        title: getString('WEB_VIEW'),
       }} />
     </Stack.Navigator>
   );

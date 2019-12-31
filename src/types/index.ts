@@ -104,7 +104,7 @@ export enum ThemeType {
   DARK = 'DARK',
 }
 
-type StackParamList = {
+export type StackParamList = {
   default: undefined;
   AuthStack: undefined;
   MainStack: undefined;
@@ -123,6 +123,9 @@ type StackParamList = {
   Temp: undefined;
   ChangePw: undefined;
   NotFound: undefined;
+  WebView: {
+    uri: string;
+  };
 }
 
 export type DefaultNavigationProps<

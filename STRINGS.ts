@@ -57,6 +57,12 @@ const en = {
   SIGNED_IN_WITH_GOOGLE: 'Signed in with Google',
   SIGNED_IN_WITH_FACEBOOK: 'Signed in with Facebook',
   SIGNED_IN_WITH_EMAIL: 'Signed in with Email',
+  AGREEMENT1: 'We consider that you agree with ',
+  AGREEMENT2: 'Terms for Agreement',
+  AGREEMENT3: ' and ',
+  AGREEMENT4: 'Privacy Policy',
+  AGREEMENT5: ' by going onto next step.',
+  WEB_VIEW: 'Web View',
 };
 
 const ko = {
@@ -114,6 +120,11 @@ const ko = {
   SIGNED_IN_WITH_GOOGLE: '구글 계정으로 로그인 됨',
   SIGNED_IN_WITH_FACEBOOK: '페이스북 계정으로 로그인 됨',
   SIGNED_IN_WITH_EMAIL: '이메일로 로그인 됨',
+  AGREEMENT1: '다음 단계로 진행함과 동시에 ',
+  AGREEMENT2: '이용약관',
+  AGREEMENT3: ' 및 ',
+  AGREEMENT4: '개인정보취급방침',
+  AGREEMENT5: '에 동의하는 것으로 간주합니다.',
 };
 
 i18n.fallbacks = true;
@@ -122,7 +133,7 @@ i18n.locale = Localization.locale;
 
 export const getString = (param: string, mapObj?: object): string => {
   if (mapObj) {
-    i18n.t(param, mapObj);
+    return i18n.t(param, mapObj);
   }
   return i18n.t(param);
 };
