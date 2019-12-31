@@ -25,10 +25,10 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
       style={
         Array [
           Object {
-            "marginBottom": 0,
+            "marginBottom": 40,
             "marginLeft": 40,
             "marginRight": 40,
-            "marginTop": 0,
+            "marginTop": 40,
           },
         ]
       }
@@ -38,7 +38,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           Array [
             Object {
               "marginBottom": 60,
-              "marginTop": 104,
+              "marginTop": 64,
             },
           ]
         }
@@ -643,7 +643,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#2973FF",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },
@@ -670,7 +670,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#2973FF",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },

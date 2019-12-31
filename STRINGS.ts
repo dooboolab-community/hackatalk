@@ -133,7 +133,7 @@ i18n.locale = Localization.locale;
 
 export const getString = (param: string, mapObj?: object): string => {
   if (mapObj) {
-    i18n.t(param, mapObj);
+    return i18n.t(param, mapObj);
   }
   return i18n.t(param);
 };
