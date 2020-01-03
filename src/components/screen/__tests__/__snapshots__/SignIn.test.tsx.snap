@@ -115,6 +115,15 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "flex-end",
               },
+              Object {
+                "borderColor": "#eaeaf9",
+              },
+              null,
+              Array [
+                Object {
+                  "borderBottomWidth": 0.6,
+                },
+              ],
             ]
           }
         >
@@ -129,6 +138,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "position": "absolute",
                 },
                 undefined,
+                null,
                 null,
               ]
             }
@@ -152,14 +162,19 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "fontSize": 14,
                   "fontWeight": "bold",
                   "paddingBottom": 16,
-                  "paddingLeft": 120,
-                  "paddingRight": 0,
                   "paddingTop": 16,
-                  "textAlign": "right",
                   "width": "100%",
                 },
                 Object {
                   "color": "black",
+                },
+                Object {
+                  "borderColor": "#eaeaf9",
+                  "paddingLeft": 110,
+                },
+                null,
+                Object {
+                  "textAlign": "right",
                 },
               ]
             }
@@ -168,21 +183,6 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             value=""
           />
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "borderColor": "#eaeaf9",
-                "borderStyle": "solid",
-                "borderWidth": 0.6,
-              },
-              Object {
-                "borderColor": "#eaeaf9",
-              },
-              null,
-            ]
-          }
-        />
       </View>
       <View
         style={
@@ -206,6 +206,15 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                 "flexDirection": "row",
                 "justifyContent": "flex-end",
               },
+              Object {
+                "borderColor": "#eaeaf9",
+              },
+              null,
+              Array [
+                Object {
+                  "borderBottomWidth": 0.6,
+                },
+              ],
             ]
           }
         >
@@ -220,6 +229,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "position": "absolute",
                 },
                 undefined,
+                null,
                 null,
               ]
             }
@@ -244,14 +254,19 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "fontSize": 14,
                   "fontWeight": "bold",
                   "paddingBottom": 16,
-                  "paddingLeft": 120,
-                  "paddingRight": 0,
                   "paddingTop": 16,
-                  "textAlign": "right",
                   "width": "100%",
                 },
                 Object {
                   "color": "black",
+                },
+                Object {
+                  "borderColor": "#eaeaf9",
+                  "paddingLeft": 110,
+                },
+                null,
+                Object {
+                  "textAlign": "right",
                 },
               ]
             }
@@ -260,21 +275,6 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             value=""
           />
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "borderColor": "#eaeaf9",
-                "borderStyle": "solid",
-                "borderWidth": 0.6,
-              },
-              Object {
-                "borderColor": "#eaeaf9",
-              },
-              null,
-            ]
-          }
-        />
       </View>
       <View
         style={

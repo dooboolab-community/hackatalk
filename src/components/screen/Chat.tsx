@@ -123,6 +123,7 @@ function Screen(): React.ReactElement {
         borderColor={theme.lineColor}
         backgroundColor={theme.background}
         fontColor={theme.fontColor}
+        // @ts-ignore
         keyboardOffset={Constants.statusBarHeight + Header.HEIGHT}
         message={message}
         placeholder={getString('WRITE_MESSAGE')}

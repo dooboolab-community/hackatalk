@@ -46,6 +46,7 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
               "color": "#b9b9c4",
               "fontSize": 14,
               "fontWeight": "500",
+              "marginBottom": 5,
             },
             null,
             undefined,
@@ -54,49 +55,52 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
       >
         Email
       </Text>
-      <TextInput
-        allowFontScaling={true}
-        autoCapitalize="none"
-        onBlur={[Function]}
-        onChangeText={[Function]}
-        onFocus={[Function]}
-        onSubmitEditing={[Function]}
-        placeholder="hello@example.com"
-        placeholderTextColor="#B9B9C4"
-        rejectResponderTermination={true}
-        style={
-          Array [
-            Object {
-              "color": "#2c374e",
-              "fontSize": 15,
-              "fontWeight": "500",
-              "paddingBottom": 10,
-              "paddingLeft": 0,
-              "paddingRight": 0,
-              "paddingTop": 15,
-            },
-            Object {
-              "color": "black",
-            },
-          ]
-        }
-        testID="input-email"
-        underlineColorAndroid="transparent"
-        value=""
-      />
       <View
         style={
           Array [
             Object {
+              "width": "100%",
+            },
+            Object {
               "borderColor": "#eaeaf9",
-              "borderStyle": "solid",
-              "borderWidth": 0.6,
             },
             null,
-            undefined,
+            Object {
+              "borderBottomWidth": 0.6,
+            },
           ]
         }
-      />
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          onBlur={[Function]}
+          onChangeText={[Function]}
+          onFocus={[Function]}
+          onSubmitEditing={[Function]}
+          placeholder="hello@example.com"
+          placeholderTextColor="#B9B9C4"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "color": "#2c374e",
+                "fontSize": 15,
+                "fontWeight": "500",
+                "paddingBottom": 15,
+                "paddingTop": 15,
+                "width": "100%",
+              },
+              Object {
+                "color": "black",
+              },
+            ]
+          }
+          testID="input-email"
+          underlineColorAndroid="transparent"
+          value=""
+        />
+      </View>
     </View>
     <View
       style={

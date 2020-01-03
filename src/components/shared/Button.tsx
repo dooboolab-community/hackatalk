@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   ImageSourcePropType,
   StyleProp,
+  StyleSheet,
   ViewStyle,
 } from 'react-native';
 import React, { ReactText } from 'react';
@@ -90,7 +91,7 @@ function Button(props: Props): React.ReactElement {
       activeOpacity={activeOpacity}
       onPress={onPress}
       white={isWhite}
-      style={containerStyle}
+      style={StyleSheet.flatten(containerStyle)}
       disabled={isDisabled}
       width={width}
       height={height}
