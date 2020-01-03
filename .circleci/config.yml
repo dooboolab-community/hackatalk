@@ -1,4 +1,6 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
 jobs:
   node:
     working_directory: ~/dooboo
@@ -58,11 +60,9 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
 
-      - run:
-          name: Coverage
-          working_directory: .
-          command: |
-            npm run codecov -- -t 0fc24d24-3658-478c-8976-9e832903e609
+      - codecov/upload:
+          file: ./coverage/lcov.info
+          token: 0fc24d24-3658-478c-8976-9e832903e609
 
       - store_test_results:
           path: coverage
