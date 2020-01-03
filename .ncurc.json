@@ -1,0 +1,16 @@
+{
+  "upgrade": true,
+  "reject": [
+    "react",
+    "react-native",
+    "react-dom",
+    "react-test-renderer",
+    "react-native-screens",
+    "react-native-safe-area-context",
+    "react-native-gesture-handler",
+    "@react-navigation/material-top-tabs",
+    "@react-navigation/stack",
+    "react-native-svg",
+    "react-native-webview"
+  ]
+}
