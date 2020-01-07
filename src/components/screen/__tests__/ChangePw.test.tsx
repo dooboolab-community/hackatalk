@@ -7,6 +7,7 @@ import {
   fireEvent,
   render,
   wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -51,45 +52,57 @@ describe('[ChangePw] screen', () => {
     it('should simulate textChanged', async () => {
       const pwInput = testingLib.getByTestId('currentPwTextInput');
       const verifyBtn = testingLib.getByTestId('checkCurrentPwBtn');
-      fireEvent.changeText(pwInput, 'left');
-      fireEvent.press(verifyBtn);
+      act(() => {
+        fireEvent.changeText(pwInput, 'left');
+      });
+      act(() => {
+        fireEvent.press(verifyBtn);
+      });
+      act(() => {
+        fireEvent.changeText(pwInput, 'right');
+      });
+      act(() => {
+        fireEvent.press(verifyBtn);
+      });
 
-      fireEvent.changeText(pwInput, 'right');
-      fireEvent.press(verifyBtn);
-
-      // keyboardEvent test
       const keyboardEvents = mockKeyboard.addListener.mock.calls;
       keyboardEvents.forEach(
-        ([eventName, ftn]: [string, (arg?: any) => void]) => {
+        async ([eventName, ftn]: [string, (arg?: any) => void]) => {
           switch (eventName) {
             case 'keyboardWillShow':
-              ftn({ endCoordinates: { height: 301 } });
+              act(() => ftn({ endCoordinates: { height: 301 } }));
               break;
             case 'keyboardWillHide':
-              ftn();
+              act(() => ftn());
               break;
             default:
           }
         },
       );
 
-      // wait for newPwTextInput
-      await wait(() =>
-        expect(testingLib.queryByTestId('newPwTextInput')).toBeTruthy(),
-      );
-
-      expect(testingLib.asJSON()).toMatchSnapshot();
-      expect(testingLib.asJSON()).toBeTruthy();
+      const newPwTextInput = testingLib.getByTestId('newPwTextInput');
+      await waitForElement(() => newPwTextInput);
+      expect(newPwTextInput).toBeTruthy();
 
       const newPwInput = testingLib.getByTestId('newPwTextInput');
       const newPwInputCheck = testingLib.getByTestId('validationWordTextInput');
-      fireEvent.changeText(newPwInput, 'test');
-      fireEvent.changeText(newPwInputCheck, 'test1');
-      fireEvent.press(verifyBtn);
+      act(() => {
+        fireEvent.changeText(newPwInput, 'test');
+      });
+      act(() => {
+        fireEvent.changeText(newPwInputCheck, 'test1');
+      });
+      act(() => {
+        fireEvent.press(verifyBtn);
+      });
 
       // test after password changed
-      fireEvent.changeText(newPwInputCheck, 'test');
-      fireEvent.press(verifyBtn);
+      act(() => {
+        fireEvent.changeText(newPwInputCheck, 'test');
+      });
+      act(() => {
+        fireEvent.press(verifyBtn);
+      });
 
       expect(mockAlert.alert).toHaveBeenCalled();
       mockAlert.alert.mock.calls[2][2][0].onPress();
@@ -102,7 +115,7 @@ describe('[ChangePw] screen', () => {
 });
 
 describe('[ChangePwHeader] component', () => {
-  const props = createTestProps({});
+  const props = createTestProps();
   const options = ChangePwHeaderOptions();
   const Header = options.header;
   const component = createTestElement(<Header {...props} />);

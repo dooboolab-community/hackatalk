@@ -7,6 +7,8 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -23,10 +25,10 @@ const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 
 let userPressLuanchCamera = true;
 jest.mock('@expo/react-native-action-sheet', () => ({
-  useActionSheet: (): any => {
+  useActionSheet: (): object => {
     return {
       showActionSheetWithOptions: (
-        options: any,
+        options: object,
         callback: (index: number) => void,
       ): void => {
         if (userPressLuanchCamera) {
@@ -62,15 +64,9 @@ describe('rendering test', () => {
 });
 
 describe('interaction', () => {
-  let testingLib: RenderResult;
-  let rendered: renderer.ReactTestRenderer;
   let props;
   let component: React.ReactElement;
-
-  beforeAll(() => {
-    rendered = renderer.create(component);
-    testingLib = render(component);
-  });
+  let testingLib: RenderResult;
 
   beforeEach(() => {
     props = createTestProps();
@@ -85,7 +81,7 @@ describe('interaction', () => {
     expect(props.navigation.resetRoot).toHaveBeenCalled();
   });
 
-  it('should fireEvent when logout button pressed', () => {
+  it('should fireEvent when update button pressed', () => {
     act(() => {
       fireEvent.press(testingLib.getByTestId('update_btn'));
     });
@@ -96,8 +92,6 @@ describe('interaction', () => {
     act(() => {
       fireEvent.changeText(inputName, 'name');
     });
-    // TODO: what to expect?
-    // expect(inputName.props.txt).toEqual('name');
   });
 
   it('should changeText when status message changed', () => {
@@ -105,23 +99,30 @@ describe('interaction', () => {
     act(() => {
       fireEvent.changeText(inputStatus, 'name');
     });
-    // expect(inputStatus.props.txt).toEqual('name');
+    expect(inputStatus.props.value).toEqual('name');
   });
 
-  it('should launch camera when user select "Take a picture"', () => {
+  it('should launch camera when user select "Take a picture"', async () => {
     userPressLuanchCamera = true;
-    const profileBtn = testingLib.getByTestId('user_icon_button');
+    const profileBtn = await waitForElement(() =>
+      testingLib.queryByTestId('user_icon_button'),
+    );
     act(() => {
       fireEvent.press(profileBtn);
     });
+    await wait();
   });
 
-  it('should open album when user select "Select from Album"', () => {
+  it('should open album when user select "Select from Album"', async () => {
     userPressLuanchCamera = false;
-    const profileBtn = testingLib.getByTestId('user_icon_button');
+    const profileBtn = await waitForElement(() =>
+      testingLib.queryByTestId('user_icon_button'),
+    );
+    await wait(() => expect(profileBtn).toBeTruthy());
     act(() => {
       fireEvent.press(profileBtn);
     });
+    await wait();
   });
 
   afterAll(() => {

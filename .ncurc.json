@@ -11,6 +11,8 @@
     "@react-navigation/material-top-tabs",
     "@react-navigation/stack",
     "react-native-svg",
-    "react-native-webview"
+    "react-native-webview",
+    "react-navigation-stack",
+    "react-native-svg"
   ]
 }

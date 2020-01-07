@@ -129,5 +129,6 @@ function ChangePw(props: Props): ReactElement {
   );
 }
 
-export const ChangePwHeaderOptions = (): object => ({ header: ChangePwHeader });
+// eslint-disable-next-line
+export const ChangePwHeaderOptions = (): { header: any } => ({ header: ChangePwHeader });
 export default ChangePw;
