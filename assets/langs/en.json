@@ -11,6 +11,7 @@
   "FIND_PW": "Find Password",
   "NAME": "Name",
   "STATUS_MSG": "Status message",
+  "STATUS_MSG_HINT": "Please write your status message",
   "REGISTER": "Register",
   "SEND_LINK": "Send Link",
   "FRIEND": "Friend",
