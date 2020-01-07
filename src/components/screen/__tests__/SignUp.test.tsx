@@ -200,7 +200,7 @@ describe('[SignUp] interaction', () => {
       const nameInput = testingLib.getByTestId('input-name');
       await wait(() => expect(nameInput).toBeTruthy());
       act(() => {
-        fireEvent.changeText(nameInput, 'me');
+        fireEvent.changeText(nameInput, '');
       });
 
       const btnSignUp = testingLib.getByTestId('btn-sign-up');
