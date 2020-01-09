@@ -116,9 +116,11 @@ const Container = styled.View`
 `;
 const StyledSearchView = styled.View`
   width: 100%;
-  height: 50;
+  height: 50px;
   justify-content: center;
   overflow: hidden;
+  align-items: center;
+  margin-bottom: 4px;
 `;
 const StyledAnimatedFlatList = styled(AnimatedFlatList)`
   width: 100%;
@@ -126,25 +128,25 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
 `;
 const StyledTextInputWrapper = styled.View`
   width: 100%;
-  height: 50;
-  position: absolute;
-  padding-horizontal: 20;
+  height: 50px;
+  padding: 0 20px;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 `;
 const StyledTextInput = styled.TextInput`
   width: 100%;
-  height: 30;
-  top: 10;
+  height: 36px;
   color: ${({ theme }): string => theme.fontColor};
   background-color: ${({ theme }): string => theme.searchBackground};
-  border-radius: 4;
-  padding-left: 34;
-  padding-right: 10;
+  border-radius: 4px;
+  padding-left: 40px;
+  padding-right: 10px;
 `;
 const StyledSearchImage = styled.Image`
-  width: 16;
-  height: 16;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  top: 18;
   left: 30;
 `;
 

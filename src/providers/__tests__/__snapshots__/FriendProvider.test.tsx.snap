@@ -84,7 +84,7 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
                   "alignItems": "center",
                   "backgroundColor": "#ffffff",
                   "borderBottomWidth": 1,
-                  "borderColor": "#000000",
+                  "borderColor": "#e2f2ff",
                   "flexDirection": "row",
                   "height": 80,
                   "justifyContent": "flex-start",
@@ -126,7 +126,7 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
               style={
                 Array [
                   Object {
-                    "borderColor": "#000000",
+                    "borderColor": "#d3d8e8",
                     "borderWidth": 0.3,
                     "color": "#1E6EFA",
                     "fontSize": 12,

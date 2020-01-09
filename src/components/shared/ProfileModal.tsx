@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
@@ -19,25 +18,25 @@ const StyledImage = styled.Image`
 `;
 
 const StyledViewBtns = styled.View`
-  height: 80px;
+  height: 48px;
   align-self: stretch;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.modalBtnBackground};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
 const StyledViewBtnDivider = styled.View`
-  width: 1px;
-  height: 80px;
-  background-color: ${({ theme }): string => theme.lineColor};
+  width: 0.5px;
+  height: 48px;
+  background-color: ${({ theme }): string => theme.placeholder};
 `;
 
 const StyledTextDisplayName = styled.Text`
   font-size: 24px;
   color: white;
   font-weight: bold;
-  margin-top: 32px;
+  margin-top: 16px;
   align-self: center;
 `;
 
@@ -49,7 +48,7 @@ const StyledTextStatusMsg = styled.Text`
 `;
 
 const StyledTextBtn = styled.Text`
-  color: ${({ theme }): string => theme.tintColor};
+  color: ${({ theme }): string => theme.modalBtnFont};
   font-size: 16px;
 `;
 
@@ -170,7 +169,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   }));
   const { photoURL, displayName, statusMsg } = user;
   const {
-    theme: { primary, primaryLight },
+    theme: { primary, primaryLight, modalBtnPrimaryFont },
   } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
@@ -181,18 +180,15 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       position={'center'}
       style={styles.wrapper}
     >
-      <LinearGradient
+      <View
         style={{
-          height: 320,
+          height: 300,
           marginHorizontal: 20,
           alignSelf: 'stretch',
           alignItems: 'center',
           justifyContent: 'space-between',
+          backgroundColor: primary,
         }}
-        start={[0.4, 0.6]}
-        end={[1.0, 0.8]}
-        locations={[0, 0.85]}
-        colors={[primary, primaryLight]}
       >
         <StyledView>
           <TouchableOpacity
@@ -249,11 +245,13 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn>{getString('CHAT')}</StyledTextBtn>
+              <StyledTextBtn style={{
+                color: modalBtnPrimaryFont,
+              }}>{getString('CHAT')}</StyledTextBtn>
             </View>
           </TouchableOpacity>
         </StyledViewBtns>
-      </LinearGradient>
+      </View>
     </Modal>
   );
 });

@@ -22,7 +22,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
             "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
-            "borderColor": "#000000",
+            "borderColor": "#e2f2ff",
             "flexDirection": "row",
             "height": 80,
             "justifyContent": "flex-start",

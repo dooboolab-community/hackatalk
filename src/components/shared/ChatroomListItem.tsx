@@ -8,10 +8,10 @@ import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledViewChatRoomListItem = styled.View`
-  background-color: ${({ theme }): string => theme.background};
-  height: 80px;
+  background-color: ${({ theme }): string => theme.itemBackground};
+  height: 92px;
   border-bottom-width: 1px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({ theme }): string => theme.underline};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -58,7 +58,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: white;
+  color: ${({ theme }): string => theme.primary};
 `;
 
 const StyledViewBottom = styled.View`

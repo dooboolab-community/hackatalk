@@ -223,10 +223,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#000000",
-                    "borderRadius": 3,
-                    "borderWidth": 1,
+                    "backgroundColor": "#e2f2ff",
                     "marginRight": 8,
                     "paddingBottom": 12,
                     "paddingLeft": 12,
@@ -285,30 +282,11 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             ]
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            proxiedProperties={
-              Object {
-                "colors": Array [
-                  4280184570,
-                  4287351295,
-                ],
-                "endPoint": Array [
-                  1,
-                  0.6,
-                ],
-                "locations": Array [
-                  0,
-                  1,
-                ],
-                "startPoint": Array [
-                  0.7,
-                  0.4,
-                ],
-              }
-            }
+          <View
             style={
               Array [
                 Object {
+                  "backgroundColor": "#8bc9ff",
                   "borderRadius": 3,
                   "marginLeft": 28,
                   "marginRight": 20,
@@ -324,7 +302,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "white",
+                    "color": "#151A25",
                     "fontSize": 14,
                   },
                 ]
@@ -332,7 +310,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             >
               Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
             </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
           <Text
             style={
               Array [
@@ -418,10 +396,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#000000",
-                    "borderRadius": 3,
-                    "borderWidth": 1,
+                    "backgroundColor": "#e2f2ff",
                     "marginRight": 8,
                     "paddingBottom": 12,
                     "paddingLeft": 12,
@@ -517,10 +492,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#000000",
-                    "borderRadius": 3,
-                    "borderWidth": 1,
+                    "backgroundColor": "#e2f2ff",
                     "marginRight": 8,
                     "paddingBottom": 12,
                     "paddingLeft": 12,
@@ -616,10 +588,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#000000",
-                    "borderRadius": 3,
-                    "borderWidth": 1,
+                    "backgroundColor": "#e2f2ff",
                     "marginRight": 8,
                     "paddingBottom": 12,
                     "paddingLeft": 12,
@@ -675,21 +644,22 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "borderTopWidth": 0.5,
+            "borderColor": "#d3d8e8",
+            "borderTopWidth": 0.3,
             "flexBasis": 0,
             "flexDirection": "row",
             "flexGrow": 1,
             "flexShrink": 1,
             "justifyContent": "space-between",
-            "maxHeight": 52,
-            "minHeight": 52,
+            "maxHeight": 56,
+            "minHeight": 56,
             "paddingLeft": 8,
             "paddingRight": 8,
             "width": "100%",
           },
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#000000",
+            "borderColor": "#d3d8e8",
           },
         ]
       }
@@ -701,7 +671,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Write message..."
-        placeholderTextColor="#A1EEDB"
+        placeholderTextColor="#676c7a"
         rejectResponderTermination={true}
         style={
           Array [
@@ -709,6 +679,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               "color": "black",
               "fontSize": 14,
               "marginRight": 20,
+              "paddingBottom": 4,
               "paddingLeft": 48,
               "width": "80%",
             },
@@ -749,8 +720,8 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           }
           style={
             Object {
-              "height": 20,
-              "width": 20,
+              "height": 24,
+              "width": 24,
             }
           }
         />

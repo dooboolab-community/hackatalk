@@ -81,7 +81,7 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#000000",
+                "borderColor": "#d3d8e8",
                 "borderRadius": 3,
                 "borderWidth": 1,
                 "flexDirection": "row",
@@ -163,7 +163,7 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#000000",
+                "borderColor": "#d3d8e8",
                 "borderRadius": 3,
                 "borderWidth": 1,
                 "flexDirection": "row",

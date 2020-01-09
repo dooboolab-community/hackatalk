@@ -35,9 +35,9 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                 "alignItems": "center",
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "#000000",
+                "borderColor": "rgb(229, 229, 229)",
                 "flexDirection": "row",
-                "height": 80,
+                "height": 92,
                 "justifyContent": "space-between",
               },
             ]
@@ -119,7 +119,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "white",
+                        "color": "#1E6EFA",
                         "fontSize": 10,
                       },
                     ]

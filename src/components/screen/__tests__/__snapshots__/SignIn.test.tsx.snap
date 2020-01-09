@@ -116,7 +116,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                 "justifyContent": "flex-end",
               },
               Object {
-                "borderColor": "#eaeaf9",
+                "borderColor": "#2E2E2E",
               },
               null,
               Array [
@@ -169,7 +169,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "color": "#151A25",
                 },
                 Object {
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                   "paddingLeft": 110,
                 },
                 null,
@@ -207,7 +207,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                 "justifyContent": "flex-end",
               },
               Object {
-                "borderColor": "#eaeaf9",
+                "borderColor": "#2E2E2E",
               },
               null,
               Array [
@@ -261,7 +261,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "color": "#151A25",
                 },
                 Object {
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                   "paddingLeft": 110,
                 },
                 null,

@@ -49,8 +49,13 @@ interface SettingButtonProps {
 function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOptions {
   return {
     headerTitle: title,
-    headerTintColor: theme.fontColor,
-    headerStyle: { backgroundColor: theme.background },
+    headerTintColor: theme.headerFont,
+    headerStyle: {
+      backgroundColor: theme.primary,
+      borderBottomWidth: 0,
+      elevation: 0,
+      shadowColor: 'transparent',
+    },
   };
 }
 
@@ -60,6 +65,9 @@ function MainStackNavigator(): ReactElement {
     <Stack.Navigator
       initialRouteName="MainTab"
       headerMode="screen"
+      screenOptions={{
+        headerBackTitle: '',
+      }}
     >
       <Stack.Screen
         name="MainTab"
@@ -99,7 +107,11 @@ function MainStackNavigator(): ReactElement {
         name="SearchUser"
         component={SearchUser}
         options={getSimpleHeader(getString('SEARCH_USER'), theme)} />
-      <Stack.Screen name="Chat" component={Chat} options={getSimpleHeader(getString('CHAT'), theme)} />
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={getSimpleHeader(getString('CHAT'), theme)}
+      />
       <Stack.Screen name="Setting" component={Setting} options={getSimpleHeader(getString('SETTING'), theme)} />
       <Stack.Screen
         name="ChangePw"
