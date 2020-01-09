@@ -89,7 +89,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onFocus={[Function]}
             onSubmitEditing={[Function]}
             placeholder="hello@example.com"
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -102,7 +102,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
               ]
             }
@@ -165,7 +165,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             onSubmitEditing={[Function]}
-            placeholder="********"
+            placeholder="******"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             secureTextEntry={true}
             style={
@@ -179,7 +180,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
               ]
             }
@@ -242,7 +243,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             onSubmitEditing={[Function]}
-            placeholder="********"
+            placeholder="******"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             secureTextEntry={true}
             style={
@@ -256,7 +258,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
               ]
             }
@@ -319,8 +321,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             onSubmitEditing={[Function]}
-            placeholder="youremail@email.com"
-            placeholderTextColor="#B9B9C4"
+            placeholder="Write email address"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -333,7 +335,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
               ]
             }
@@ -396,8 +398,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             onSubmitEditing={[Function]}
-            placeholder="Please write your status message"
-            placeholderTextColor="#B9B9C4"
+            placeholder="Write status"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -410,7 +412,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
               ]
             }
@@ -440,8 +442,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(58,139,255)",
-                "borderColor": "white",
+                "backgroundColor": "#1E6EFA",
+                "borderColor": "#ffffff",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 60,
@@ -449,6 +451,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 "width": "auto",
               },
               Object {
+                "height": 52,
                 "padding": 5,
                 "width": "50%",
               },
@@ -463,7 +466,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "white",
+                  "color": "#ffffff",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },

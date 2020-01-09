@@ -96,8 +96,8 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
           proxiedProperties={
             Object {
               "colors": Array [
-                4282027007,
-                4284794879,
+                4280184570,
+                4287351295,
               ],
               "endPoint": Array [
                 1,
@@ -218,7 +218,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#A1EEDB",
                         "fontSize": 16,
                       },
                     ]
@@ -233,7 +233,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
+                    "backgroundColor": "#000000",
                     "height": 80,
                     "width": 1,
                   },
@@ -266,7 +266,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#A1EEDB",
                         "fontSize": 16,
                       },
                     ]
@@ -367,7 +367,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -395,7 +395,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -409,9 +409,9 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#000000",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,
@@ -531,8 +531,8 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
           proxiedProperties={
             Object {
               "colors": Array [
-                4282027007,
-                4284794879,
+                4280184570,
+                4287351295,
               ],
               "endPoint": Array [
                 1,
@@ -653,7 +653,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#A1EEDB",
                         "fontSize": 16,
                       },
                     ]
@@ -668,7 +668,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
+                    "backgroundColor": "#000000",
                     "height": 80,
                     "width": 1,
                   },
@@ -701,7 +701,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#A1EEDB",
                         "fontSize": 16,
                       },
                     ]
@@ -914,7 +914,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -945,7 +945,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -959,9 +959,9 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#000000",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,
@@ -1003,7 +1003,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -1031,7 +1031,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -1045,9 +1045,9 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#000000",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,

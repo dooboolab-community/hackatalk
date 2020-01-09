@@ -210,7 +210,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginBottom": 2,
                   },
@@ -224,7 +224,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 Array [
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "borderRadius": 3,
                     "borderWidth": 1,
                     "marginRight": 8,
@@ -241,7 +241,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                     },
                   ]
@@ -254,7 +254,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginRight": 20,
                     "marginTop": 4,
@@ -289,8 +289,8 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             proxiedProperties={
               Object {
                 "colors": Array [
-                  4282027007,
-                  4284794879,
+                  4280184570,
+                  4287351295,
                 ],
                 "endPoint": Array [
                   1,
@@ -337,7 +337,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#50e3c2",
+                  "color": "#A1EEDB",
                   "fontSize": 12,
                   "marginRight": 20,
                   "marginTop": 4,
@@ -405,7 +405,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginBottom": 2,
                   },
@@ -419,7 +419,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 Array [
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "borderRadius": 3,
                     "borderWidth": 1,
                     "marginRight": 8,
@@ -436,7 +436,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                     },
                   ]
@@ -449,7 +449,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginRight": 20,
                     "marginTop": 4,
@@ -518,7 +518,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 Array [
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "borderRadius": 3,
                     "borderWidth": 1,
                     "marginRight": 8,
@@ -535,7 +535,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                     },
                   ]
@@ -548,7 +548,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginRight": 20,
                     "marginTop": 4,
@@ -617,7 +617,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 Array [
                   Object {
                     "backgroundColor": "#ffffff",
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#000000",
                     "borderRadius": 3,
                     "borderWidth": 1,
                     "marginRight": 8,
@@ -634,7 +634,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                     },
                   ]
@@ -645,7 +645,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 12,
                     "marginRight": 20,
                     "marginTop": 4,
@@ -689,7 +689,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
           },
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
+            "borderColor": "#000000",
           },
         ]
       }
@@ -701,7 +701,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Write message..."
-        placeholderTextColor="#50e3c2"
+        placeholderTextColor="#A1EEDB"
         rejectResponderTermination={true}
         style={
           Array [
@@ -714,7 +714,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             },
             Object {
               "backgroundColor": "#ffffff",
-              "color": "black",
+              "color": "#151A25",
             },
           ]
         }
@@ -772,8 +772,8 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(58,139,255)",
-                "borderColor": "white",
+                "backgroundColor": "#1E6EFA",
+                "borderColor": "#ffffff",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 40,
@@ -791,7 +791,7 @@ exports[`[Chat] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "white",
+                  "color": "#ffffff",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },

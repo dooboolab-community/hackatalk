@@ -19,7 +19,7 @@ exports[`[TextInput] render renders without crashing 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "borderColor": "rgb(221,226,236)",
+          "borderColor": "#000000",
           "borderRadius": 3,
           "borderWidth": 1,
           "flexDirection": "row",
@@ -36,7 +36,7 @@ exports[`[TextInput] render renders without crashing 1`] = `
       focused={false}
       onBlur={[Function]}
       onFocus={[Function]}
-      placeholderTextColor="#B9B9C4"
+      placeholderTextColor="#676c7a"
       rejectResponderTermination={true}
       style={
         Array [
@@ -46,7 +46,7 @@ exports[`[TextInput] render renders without crashing 1`] = `
             "borderColor": "black",
             "borderStyle": "solid",
             "borderWidth": 0,
-            "color": "black",
+            "color": "#151A25",
             "flexBasis": 0,
             "flexDirection": "row",
             "flexGrow": 1,

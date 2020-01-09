@@ -53,7 +53,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
         Array [
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
+            "borderColor": "#000000",
             "borderRadius": 3,
             "borderWidth": 1,
             "marginRight": 8,
@@ -70,7 +70,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
         style={
           Array [
             Object {
-              "color": "black",
+              "color": "#151A25",
               "fontSize": 14,
             },
           ]
@@ -83,7 +83,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
       style={
         Array [
           Object {
-            "color": "black",
+            "color": "#151A25",
             "fontSize": 12,
             "marginRight": 20,
             "marginTop": 4,
@@ -158,7 +158,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
         Array [
           Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
+            "borderColor": "#000000",
             "borderRadius": 3,
             "borderWidth": 1,
             "marginRight": 8,
@@ -175,7 +175,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
         style={
           Array [
             Object {
-              "color": "black",
+              "color": "#151A25",
               "fontSize": 14,
             },
           ]
@@ -188,7 +188,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
       style={
         Array [
           Object {
-            "color": "black",
+            "color": "#151A25",
             "fontSize": 12,
             "marginRight": 20,
             "marginTop": 4,

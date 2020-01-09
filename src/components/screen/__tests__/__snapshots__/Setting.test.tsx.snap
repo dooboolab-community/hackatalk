@@ -79,7 +79,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
           Array [
             Object {
               "backgroundColor": "#ffffff",
-              "borderBottomColor": "rgb(221,226,236)",
+              "borderBottomColor": "#000000",
               "borderBottomWidth": 1,
               "height": 52,
               "justifyContent": "center",
@@ -92,7 +92,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
           style={
             Array [
               Object {
-                "color": "rgb(65,77,107)",
+                "color": "#1E6EFA",
               },
             ]
           }
@@ -126,7 +126,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
           style={
             Array [
               Object {
-                "color": "black",
+                "color": "#151A25",
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -239,7 +239,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
           Array [
             Object {
               "backgroundColor": "#ffffff",
-              "borderBottomColor": "rgb(221,226,236)",
+              "borderBottomColor": "#000000",
               "borderBottomWidth": 1,
               "height": 52,
               "justifyContent": "center",
@@ -252,7 +252,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
           style={
             Array [
               Object {
-                "color": "rgb(65,77,107)",
+                "color": "#1E6EFA",
               },
             ]
           }
@@ -295,7 +295,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
           style={
             Array [
               Object {
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "#000000",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 32,
@@ -309,7 +309,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
           style={
             Array [
               Object {
-                "color": "black",
+                "color": "#151A25",
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,
@@ -422,7 +422,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
           Array [
             Object {
               "backgroundColor": "#ffffff",
-              "borderBottomColor": "rgb(221,226,236)",
+              "borderBottomColor": "#000000",
               "borderBottomWidth": 1,
               "height": 52,
               "justifyContent": "center",
@@ -435,7 +435,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
           style={
             Array [
               Object {
-                "color": "rgb(65,77,107)",
+                "color": "#1E6EFA",
               },
             ]
           }
@@ -478,7 +478,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
           style={
             Array [
               Object {
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "#000000",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 32,
@@ -492,7 +492,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
           style={
             Array [
               Object {
-                "color": "black",
+                "color": "#151A25",
                 "flexBasis": 0,
                 "flexGrow": 1,
                 "flexShrink": 1,

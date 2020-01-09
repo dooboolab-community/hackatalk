@@ -82,7 +82,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                   "fontSize": 20,
                   "fontWeight": "bold",
                 },
@@ -153,7 +153,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             onFocus={[Function]}
             onSubmitEditing={[Function]}
             placeholder="hello@example.com"
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -166,7 +166,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
                 Object {
                   "borderColor": "#eaeaf9",
@@ -244,7 +244,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             onFocus={[Function]}
             onSubmitEditing={[Function]}
             placeholder="******"
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             secureTextEntry={true}
             style={
@@ -258,7 +258,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "color": "black",
+                  "color": "#151A25",
                 },
                 Object {
                   "borderColor": "#eaeaf9",
@@ -296,8 +296,8 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
-                "borderColor": "rgb(58,139,255)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 60,
@@ -307,6 +307,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
               Object {
                 "flex": 1,
                 "flexDirection": "row",
+                "height": 52,
               },
             ]
           }
@@ -319,7 +320,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "rgb(58,139,255)",
+                  "color": "#1E6EFA",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },
@@ -333,7 +334,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         <View
           style={
             Object {
-              "width": 8,
+              "width": 20,
             }
           }
         />
@@ -346,8 +347,8 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(58,139,255)",
-                "borderColor": "white",
+                "backgroundColor": "#1E6EFA",
+                "borderColor": "#ffffff",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 60,
@@ -357,6 +358,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
               Object {
                 "flex": 1,
                 "flexDirection": "row",
+                "height": 52,
               },
             ]
           }
@@ -369,7 +371,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "white",
+                  "color": "#ffffff",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },
@@ -388,7 +390,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignSelf": "center",
-              "marginBottom": 12,
+              "marginBottom": 60,
               "paddingBottom": 20,
               "paddingLeft": 20,
               "paddingRight": 20,
@@ -402,7 +404,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "rgb(58,139,255)",
+                "color": "#1E6EFA",
                 "textDecorationLine": "underline",
               },
             ]
@@ -415,14 +417,53 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "marginBottom": 24,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "marginBottom": 60,
             },
           ]
         }
       >
         <TouchableOpacity
-          activeOpacity={0.5}
+          activeOpacity={0.2}
           onPress={[Function]}
+          testID="btn-apple"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#e2f2ff",
+                  "borderRadius": 24,
+                  "height": 48,
+                  "justifyContent": "center",
+                  "width": 48,
+                },
+              ]
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "canInstrument": true,
+                  "createTransformer": [Function],
+                  "getCacheKey": [Function],
+                  "process": [Function],
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
+          style={
+            Object {
+              "marginHorizontal": 16,
+            }
+          }
           testID="btn-facebook"
         >
           <View
@@ -430,97 +471,29 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(52,89,151)",
-                  "borderColor": "#ffffff",
-                  "borderRadius": 4,
-                  "borderWidth": 2,
-                  "flexDirection": "row",
-                  "height": 52,
+                  "backgroundColor": "#e2f2ff",
+                  "borderRadius": 24,
+                  "height": 48,
                   "justifyContent": "center",
-                  "width": 320,
-                },
-                Object {
-                  "backgroundColor": "rgb(52,89,151)",
-                  "borderColor": "#ffffff",
-                  "borderRadius": 4,
-                  "height": 52,
-                  "width": "100%",
+                  "width": 48,
                 },
               ]
             }
-            theme={
-              Object {
-                "backgroundColor": "rgb(52,89,151)",
-                "borderColor": "#ffffff",
-              }
-            }
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "left": 0,
-                    "position": "absolute",
-                  },
-                ]
-              }
-              testID="iconLeft"
-            >
-              <View
-                style={
-                  Object {
-                    "marginLeft": 16,
-                  }
-                }
-              >
-                <Text />
-              </View>
-            </View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "white",
-                    "fontSize": 14,
-                  },
-                  Object {
-                    "color": "white",
-                    "fontWeight": "700",
-                  },
-                ]
-              }
-              testID="text"
-              theme={
+            <Image
+              source={
                 Object {
-                  "fontColor": "white",
+                  "canInstrument": true,
+                  "createTransformer": [Function],
+                  "getCacheKey": [Function],
+                  "process": [Function],
                 }
               }
-            >
-              Sign in with Facebook
-            </Text>
-            <View
-              style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                    "right": 0,
-                  },
-                ]
-              }
-              testID="iconRight"
             />
           </View>
         </TouchableOpacity>
-        <View
-          style={
-            Object {
-              "height": 5,
-              "width": "100%",
-            }
-          }
-        />
         <TouchableOpacity
-          activeOpacity={0.5}
+          activeOpacity={0.2}
           onPress={[Function]}
           testID="btn-google"
         >
@@ -529,84 +502,24 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "rgb(224,66,56)",
-                  "borderColor": "#ffffff",
-                  "borderRadius": 4,
-                  "borderWidth": 2,
-                  "flexDirection": "row",
-                  "height": 52,
+                  "backgroundColor": "#e2f2ff",
+                  "borderRadius": 24,
+                  "height": 48,
                   "justifyContent": "center",
-                  "width": 320,
-                },
-                Object {
-                  "backgroundColor": "rgb(224,66,56)",
-                  "borderColor": "#ffffff",
-                  "borderRadius": 4,
-                  "height": 52,
-                  "width": "100%",
+                  "width": 48,
                 },
               ]
             }
-            theme={
-              Object {
-                "backgroundColor": "rgb(224,66,56)",
-                "borderColor": "#ffffff",
-              }
-            }
           >
-            <View
-              style={
-                Array [
-                  Object {
-                    "left": 0,
-                    "position": "absolute",
-                  },
-                ]
-              }
-              testID="iconLeft"
-            >
-              <View
-                style={
-                  Object {
-                    "marginLeft": 16,
-                  }
-                }
-              >
-                <Text />
-              </View>
-            </View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "white",
-                    "fontSize": 14,
-                  },
-                  Object {
-                    "color": "white",
-                    "fontWeight": "700",
-                  },
-                ]
-              }
-              testID="text"
-              theme={
+            <Image
+              source={
                 Object {
-                  "fontColor": "white",
+                  "canInstrument": true,
+                  "createTransformer": [Function],
+                  "getCacheKey": [Function],
+                  "process": [Function],
                 }
               }
-            >
-              Sign in with Google
-            </Text>
-            <View
-              style={
-                Array [
-                  Object {
-                    "position": "absolute",
-                    "right": 0,
-                  },
-                ]
-              }
-              testID="iconRight"
             />
           </View>
         </TouchableOpacity>
@@ -643,7 +556,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "rgb(58,139,255)",
+                "color": "#1E6EFA",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },
@@ -670,7 +583,7 @@ exports[`[SignIn] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "rgb(58,139,255)",
+                "color": "#1E6EFA",
                 "lineHeight": 22,
                 "textDecorationLine": "underline",
               },

@@ -1,5 +1,6 @@
 import { IconType } from '../types';
 import icAddW from '../../assets/icons/btnAdd.png';
+import icApple from '../../assets/icons/apple.png';
 import icBack from '../../assets/icons/btnBack.png';
 import icFacebook from '../../assets/icons/facebook.png';
 import icGoogle from '../../assets/icons/google.png';
@@ -22,6 +23,7 @@ export const IC_SEARCH = icSearch;
 export const IC_SMILE = icSmile;
 export const IC_GOOGLE = icGoogle;
 export const IC_FACEBOOK = icFacebook;
+export const IC_APPLE = icApple;
 
 export default [
   SvgPlus,
@@ -35,4 +37,5 @@ export default [
   IC_SMILE,
   IC_FACEBOOK,
   IC_GOOGLE,
+  IC_APPLE,
 ];
