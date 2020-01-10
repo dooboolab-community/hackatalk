@@ -52,10 +52,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
-            "borderRadius": 3,
-            "borderWidth": 1,
+            "backgroundColor": "#e2f2ff",
             "marginRight": 8,
             "paddingBottom": 12,
             "paddingLeft": 12,
@@ -70,7 +67,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
         style={
           Array [
             Object {
-              "color": "black",
+              "color": "#151A25",
               "fontSize": 14,
             },
           ]
@@ -83,7 +80,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
       style={
         Array [
           Object {
-            "color": "black",
+            "color": "#151A25",
             "fontSize": 12,
             "marginRight": 20,
             "marginTop": 4,
@@ -157,10 +154,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
       style={
         Array [
           Object {
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgb(221,226,236)",
-            "borderRadius": 3,
-            "borderWidth": 1,
+            "backgroundColor": "#e2f2ff",
             "marginRight": 8,
             "paddingBottom": 12,
             "paddingLeft": 12,
@@ -175,7 +169,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
         style={
           Array [
             Object {
-              "color": "black",
+              "color": "#151A25",
               "fontSize": 14,
             },
           ]
@@ -188,7 +182,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
       style={
         Array [
           Object {
-            "color": "black",
+            "color": "#151A25",
             "fontSize": 12,
             "marginRight": 20,
             "marginTop": 4,

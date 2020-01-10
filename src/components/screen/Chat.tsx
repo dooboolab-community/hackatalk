@@ -22,7 +22,7 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.chatBackground};
   flex-direction: column;
   align-items: center;
 `;
@@ -127,7 +127,7 @@ function Screen(): React.ReactElement {
         keyboardOffset={Constants.statusBarHeight + Header.HEIGHT}
         message={message}
         placeholder={getString('WRITE_MESSAGE')}
-        placeholderTextColor={theme.status}
+        placeholderTextColor={theme.placeholder}
         onChangeMessage={(text: string): void => setMessage(text)}
         renderItem={({
           item,
@@ -152,8 +152,8 @@ function Screen(): React.ReactElement {
         optionView={
           <Image
             style={{
-              width: 20,
-              height: 20,
+              width: 24,
+              height: 24,
             }}
             source={IC_SMILE}
           />

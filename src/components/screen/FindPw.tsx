@@ -76,7 +76,7 @@ function Page(props: Props): ReactElement {
             testID="btn-find-pw"
             isLoading={findingPw}
             onPress={onFindPw}
-            containerStyle={{ padding: 5 }}
+            containerStyle={{ padding: 5, height: 52 }}
           >
             {getString('FIND_PW')}
           </Button>

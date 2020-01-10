@@ -19,10 +19,10 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View`
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.itemBackground};
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({ theme }): string => theme.backgroundDark};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;

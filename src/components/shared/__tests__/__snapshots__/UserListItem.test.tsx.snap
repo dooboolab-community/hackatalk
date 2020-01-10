@@ -22,7 +22,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
             "alignItems": "center",
             "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
-            "borderColor": "rgb(221,226,236)",
+            "borderColor": "#e2f2ff",
             "flexDirection": "row",
             "height": 80,
             "justifyContent": "flex-start",
@@ -50,7 +50,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "color": "black",
+              "color": "#151A25",
               "fontSize": 14,
               "marginLeft": 12,
               "width": 100,

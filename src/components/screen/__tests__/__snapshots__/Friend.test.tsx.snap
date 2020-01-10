@@ -92,32 +92,13 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -156,7 +137,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -186,7 +167,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -218,7 +199,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -233,9 +214,9 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -266,8 +247,11 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -277,7 +261,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -367,7 +351,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#e2f2ff",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -395,7 +379,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -409,9 +393,9 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#d3d8e8",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,
@@ -527,32 +511,13 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -591,7 +556,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -621,7 +586,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -653,7 +618,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -668,9 +633,9 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -701,8 +666,11 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -712,7 +680,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -914,7 +882,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#e2f2ff",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -945,7 +913,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -959,9 +927,9 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#d3d8e8",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,
@@ -1003,7 +971,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     "alignItems": "center",
                     "backgroundColor": "#ffffff",
                     "borderBottomWidth": 1,
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#e2f2ff",
                     "flexDirection": "row",
                     "height": 80,
                     "justifyContent": "flex-start",
@@ -1031,7 +999,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "marginLeft": 12,
                       "width": 100,
@@ -1045,9 +1013,9 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
-                      "borderColor": "rgb(221,226,236)",
+                      "borderColor": "#d3d8e8",
                       "borderWidth": 0.3,
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "maxWidth": 134.2,
                       "paddingBottom": 4,

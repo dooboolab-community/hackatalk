@@ -2,8 +2,8 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { Button as DoobooButton, EditText } from '@dooboo-ui/native';
+import { Alert, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { IC_APPLE, IC_FACEBOOK, IC_GOOGLE, IC_ICON } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -14,11 +14,9 @@ import {
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Button from '../shared/Button';
 import Constants from 'expo-constants';
-import { IC_ICON } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
+import { EditText } from '@dooboo-ui/native';
 import StatusBar from '../shared/StatusBar';
 import { User } from '../../types';
-import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -58,17 +56,29 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 60px;
   align-self: center;
 `;
 
 const FindPwText = styled.Text`
-  color: ${({ theme }): string => theme.tintColor};
+  color: ${({ theme }): string => theme.link};
   text-decoration-line: underline;
 `;
 
 const SocialButtonWrapper = styled.View`
-  margin-bottom: 24px;
+  margin-bottom: 60px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SocialBtnRound = styled.View`
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: ${({ theme }): string => theme.socialBtn};
+  justify-content: center;
+  align-items: center;
 `;
 
 interface Props {
@@ -89,7 +99,7 @@ const StyledAgreementText = styled.Text`
 
 const StyledAgreementLinedText = styled.Text`
   line-height: 22px;
-  color: ${({ theme }): string => theme.tintColor};
+  color: ${({ theme }): string => theme.link};
   text-decoration-line: underline;
 `;
 
@@ -219,6 +229,10 @@ function SignIn(props: Props): ReactElement {
     }
   };
 
+  const appleLogin = async (): Promise<void> => {
+    console.log('apple login');
+  };
+
   useEffect(() => {
     initAsync();
     // console.log('appOwnership', Constants.appOwnership);
@@ -245,6 +259,8 @@ function SignIn(props: Props): ReactElement {
             style={{ marginBottom: 20 }}
             isRow={true}
             label={getString('EMAIL')}
+            borderColor={theme.font}
+            focusColor={theme.focused}
             placeholder="hello@example.com"
             placeholderTextColor={theme.placeholder}
             value={email}
@@ -264,6 +280,8 @@ function SignIn(props: Props): ReactElement {
             style={{ marginBottom: 20 }}
             isRow={true}
             label={getString('PASSWORD')}
+            borderColor={theme.font}
+            focusColor={theme.focused}
             placeholder="******"
             placeholderTextColor={theme.placeholder}
             value={password}
@@ -279,17 +297,17 @@ function SignIn(props: Props): ReactElement {
             <Button
               testID="btn-sign-up"
               onPress={goToSignUp}
-              containerStyle={{ flex: 1, flexDirection: 'row' }}
+              containerStyle={{ flex: 1, flexDirection: 'row', height: 52 }}
               isWhite
             >
               {getString('SIGN_UP')}
             </Button>
-            <View style={{ width: 8 }} />
+            <View style={{ width: 20 }} />
             <Button
               testID="btn-sign-in"
               isLoading={isLoggingIn}
               onPress={onSignIn}
-              containerStyle={{ flex: 1, flexDirection: 'row' }}
+              containerStyle={{ flex: 1, flexDirection: 'row', height: 52 }}
             >
               {getString('LOGIN')}
             </Button>
@@ -300,11 +318,48 @@ function SignIn(props: Props): ReactElement {
             </FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            <DoobooButton
+            {
+              Platform.select({
+                ios: <TouchableOpacity
+                  testID="btn-apple"
+                  onPress={appleLogin}
+                >
+                  <SocialBtnRound>
+                    <Image
+                      source={IC_APPLE}
+                    />
+                  </SocialBtnRound>
+                </TouchableOpacity>,
+              })
+            }
+            <TouchableOpacity
+              testID="btn-facebook"
+              onPress={facebookLogin}
+              style={{
+                marginHorizontal: 16,
+              }}
+            >
+              <SocialBtnRound>
+                <Image
+                  source={IC_FACEBOOK}
+                />
+              </SocialBtnRound>
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="btn-google"
+              onPress={googleSignInAsync}
+            >
+              <SocialBtnRound>
+                <Image
+                  source={IC_GOOGLE}
+                />
+              </SocialBtnRound>
+            </TouchableOpacity>
+            {/* <DoobooButton
               testID="btn-facebook"
               style={[
                 {
-                  backgroundColor: colors.facebook,
+                  backgroundColor: theme.socialBtn,
                   borderColor: theme.background,
                   borderRadius: 4,
                   width: '100%',
@@ -331,7 +386,7 @@ function SignIn(props: Props): ReactElement {
               testID="btn-google"
               style={[
                 {
-                  backgroundColor: colors.google,
+                  backgroundColor: theme.socialBtn,
                   borderColor: theme.background,
                   borderRadius: 4,
                   width: '100%',
@@ -352,7 +407,7 @@ function SignIn(props: Props): ReactElement {
               onClick={googleSignInAsync}
               text={getString('SIGN_IN_WITH_GOOGLE')}
               textStyle={{ fontWeight: '700', color: 'white' }}
-            />
+            /> */}
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>

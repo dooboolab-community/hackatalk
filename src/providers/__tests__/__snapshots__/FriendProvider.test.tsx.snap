@@ -84,7 +84,7 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
                   "alignItems": "center",
                   "backgroundColor": "#ffffff",
                   "borderBottomWidth": 1,
-                  "borderColor": "rgb(221,226,236)",
+                  "borderColor": "#e2f2ff",
                   "flexDirection": "row",
                   "height": 80,
                   "justifyContent": "flex-start",
@@ -112,7 +112,7 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "black",
+                    "color": "#151A25",
                     "fontSize": 14,
                     "marginLeft": 12,
                     "width": 100,
@@ -126,9 +126,9 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
               style={
                 Array [
                   Object {
-                    "borderColor": "rgb(221,226,236)",
+                    "borderColor": "#d3d8e8",
                     "borderWidth": 0.3,
-                    "color": "rgb(65,77,107)",
+                    "color": "#1E6EFA",
                     "fontSize": 12,
                     "maxWidth": 134.2,
                     "paddingBottom": 4,

@@ -3,7 +3,6 @@ import { TouchableOpacity, View } from 'react-native';
 
 import { ChatProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -25,17 +24,14 @@ const StyledImageSender = styled.Image`
 
 const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
-  background-color: ${({ theme }): string => theme.background};
-  border-radius: 3px;
-  border-width: 1px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  background-color: ${({ theme }): string => theme.peerMessageBackground};
   padding: 12px;
   width: 100%;
 `;
 
-const StyledTextPeerMessage = styled.Text`
+const StyledPeerTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({ theme }): string => theme.peerMessageText};
 `;
 
 const StyledTextPeerName = styled.Text`
@@ -67,12 +63,13 @@ const StyledTextDate = styled.Text`
   margin-right: 20px;
 `;
 
-const StyledTextMessage = styled.Text`
+const StyledMyTextMessage = styled.Text`
   font-size: 14px;
-  color: white;
+  color: ${({ theme }): string => theme.myMessageText};
 `;
 
-const StyledLinearGradient = styled(LinearGradient)`
+const StyledMyMessage = styled.View`
+  background-color: ${({ theme }): string => theme.myMessageBackground};
   margin-right: 20px;
   margin-left: 28px;
   padding: 12px;
@@ -127,7 +124,6 @@ function Shared(props: Props): React.ReactElement {
   } = props;
   const isSamePeerMsg = prevItem && prevItem.sender.uid === uid;
   if (uid !== myFakeUid) {
-    // peer message
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
@@ -146,7 +142,7 @@ function Shared(props: Props): React.ReactElement {
             <StyledTextPeerName>{displayName}</StyledTextPeerName>
           )}
           <StyledTextPeerMessageContainer>
-            <StyledTextPeerMessage>{message}</StyledTextPeerMessage>
+            <StyledPeerTextMessage>{message}</StyledPeerTextMessage>
           </StyledTextPeerMessageContainer>
           <StyledTextPeerDate>
             {created
@@ -159,14 +155,9 @@ function Shared(props: Props): React.ReactElement {
   }
   return (
     <WrapperMy>
-      <StyledLinearGradient
-        start={[0.7, 0.4]}
-        end={[1.0, 0.6]}
-        locations={[0, 1]}
-        colors={[theme.primary, theme.primaryLight]}
-      >
-        <StyledTextMessage>{message}</StyledTextMessage>
-      </StyledLinearGradient>
+      <StyledMyMessage>
+        <StyledMyTextMessage>{message}</StyledMyTextMessage>
+      </StyledMyMessage>
       <StyledTextDate>
         {created
           ? `${moment(created).hour()} : ${moment(created).minutes()}`
@@ -187,6 +178,8 @@ Shared.defaultProps = {
       statusMsg: '',
     },
     message: 'hello1',
+    created: new Date('1 1 2019'),
+    updated: new Date('1 1 2019'),
   },
 };
 

@@ -13,9 +13,10 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
 
 const StyledViewChat = styled.View`
   width: 100%;
-  border-top-width: 0.5px;
-  min-height: 52px;
-  max-height: 52;
+  border-top-width: 0.3px;
+  border-color: ${({ theme }): string => theme.lineColor};
+  min-height: 56px;
+  max-height: 56px;
   padding-right: 8;
   padding-left: 8;
   flex-direction: row;
@@ -29,6 +30,7 @@ const StyledInputChat = styled.TextInput`
   font-size: 14px;
   margin-right: 20px;
   padding-left: 48px;
+  padding-bottom: 4px;
   color: black;
 `;
 

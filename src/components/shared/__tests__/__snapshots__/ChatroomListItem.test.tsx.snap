@@ -35,9 +35,9 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                 "alignItems": "center",
                 "backgroundColor": "#ffffff",
                 "borderBottomWidth": 1,
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "rgb(229, 229, 229)",
                 "flexDirection": "row",
-                "height": 80,
+                "height": 92,
                 "justifyContent": "space-between",
               },
             ]
@@ -92,7 +92,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 14,
                       "fontWeight": "bold",
                     },
@@ -106,7 +106,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "rgb(58,139,255)",
+                      "backgroundColor": "#A1EEDB",
                       "borderRadius": 8,
                       "height": 16,
                       "justifyContent": "center",
@@ -119,7 +119,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "white",
+                        "color": "#1E6EFA",
                         "fontSize": 10,
                       },
                     ]
@@ -147,7 +147,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "black",
+                      "color": "#151A25",
                       "fontSize": 12,
                       "fontWeight": "bold",
                       "maxWidth": 150,
@@ -161,7 +161,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "rgb(65,77,107)",
+                      "color": "#1E6EFA",
                       "fontSize": 12,
                       "textAlign": "right",
                     },

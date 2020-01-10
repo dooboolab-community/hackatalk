@@ -100,32 +100,13 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -170,7 +151,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -200,7 +181,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -232,7 +213,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -247,9 +228,9 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -280,8 +261,11 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -291,7 +275,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -398,32 +382,13 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -468,7 +433,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -498,7 +463,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -530,7 +495,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -545,9 +510,9 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -578,8 +543,11 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -589,7 +557,7 @@ exports[`[ProfileModal] interactions should be shown and closed when press butto
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -696,32 +664,13 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -760,7 +709,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -790,7 +739,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -822,7 +771,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -837,9 +786,9 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -870,8 +819,11 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -881,7 +833,7 @@ exports[`[ProfileModal] interactions should close when press delete button in [F
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -988,32 +940,13 @@ exports[`[ProfileModal] interactions should display added friend message when pr
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -1058,7 +991,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -1088,7 +1021,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -1120,7 +1053,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -1135,9 +1068,9 @@ exports[`[ProfileModal] interactions should display added friend message when pr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -1168,8 +1101,11 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -1179,7 +1115,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>
@@ -1286,32 +1222,13 @@ exports[`[ProfileModal] interactions should display added friend message when pr
           }
         }
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          proxiedProperties={
-            Object {
-              "colors": Array [
-                4282027007,
-                4284794879,
-              ],
-              "endPoint": Array [
-                1,
-                0.8,
-              ],
-              "locations": Array [
-                0,
-                0.85,
-              ],
-              "startPoint": Array [
-                0.4,
-                0.6,
-              ],
-            }
-          }
+        <View
           style={
             Object {
               "alignItems": "center",
               "alignSelf": "stretch",
-              "height": 320,
+              "backgroundColor": "#1E6EFA",
+              "height": 300,
               "justifyContent": "space-between",
               "marginHorizontal": 20,
             }
@@ -1356,7 +1273,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                     "color": "white",
                     "fontSize": 24,
                     "fontWeight": "bold",
-                    "marginTop": 32,
+                    "marginTop": 16,
                   },
                 ]
               }
@@ -1404,7 +1321,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   "alignSelf": "stretch",
                   "backgroundColor": "#ffffff",
                   "flexDirection": "row",
-                  "height": 80,
+                  "height": 48,
                   "justifyContent": "space-between",
                 },
               ]
@@ -1436,7 +1353,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
                       },
                     ]
@@ -1451,9 +1368,9 @@ exports[`[ProfileModal] interactions should display added friend message when pr
               style={
                 Array [
                   Object {
-                    "backgroundColor": "rgb(221,226,236)",
-                    "height": 80,
-                    "width": 1,
+                    "backgroundColor": "#676c7a",
+                    "height": 48,
+                    "width": 0.5,
                   },
                 ]
               }
@@ -1484,8 +1401,11 @@ exports[`[ProfileModal] interactions should display added friend message when pr
                   style={
                     Array [
                       Object {
-                        "color": "rgb(58,139,255)",
+                        "color": "#676c7a",
                         "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#2F38C7",
                       },
                     ]
                   }
@@ -1495,7 +1415,7 @@ exports[`[ProfileModal] interactions should display added friend message when pr
               </View>
             </TouchableOpacity>
           </View>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
   </View>

@@ -83,6 +83,7 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            focusColor={theme.focused}
             label={getString('EMAIL')}
             placeholder="hello@example.com"
             placeholderTextColor={theme.placeholder}
@@ -101,6 +102,7 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            focusColor={theme.focused}
             placeholder="********"
             label={getString('PASSWORD')}
             value={password}
@@ -109,6 +111,7 @@ function Page(props: Props): ReactElement {
               setErrorPassword('');
             }}
             style={{ marginTop: 20 }}
+            placeholderTextColor={theme.placeholder}
             errorText={errorPassword}
             onSubmitEditing={onSignUp}
             secureTextEntry={true}
@@ -119,6 +122,7 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            focusColor={theme.focused}
             placeholder="********"
             label={getString('CONFIRM_PASSWORD')}
             value={confirmPassword}
@@ -127,6 +131,7 @@ function Page(props: Props): ReactElement {
               setErrorConfirmPassword('');
             }}
             style={{ marginTop: 20 }}
+            placeholderTextColor={theme.placeholder}
             errorText={errorConfirmPassword}
             onSubmitEditing={onSignUp}
             secureTextEntry={true}
@@ -137,6 +142,7 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            focusColor={theme.focused}
             label={getString('NAME')}
             placeholder="youremail@email.com"
             placeholderTextColor={theme.placeholder}
@@ -155,6 +161,7 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            focusColor={theme.focused}
             label={getString('STATUS')}
             placeholder={getString('STATUS_MSG_HINT')}
             placeholderTextColor={theme.placeholder}
@@ -170,7 +177,7 @@ function Page(props: Props): ReactElement {
               testID="btn-sign-up"
               isLoading={isSignUp}
               onPress={onSignUp}
-              containerStyle={{ padding: 5, width: '50%' }}
+              containerStyle={{ padding: 5, width: '50%', height: 52 }}
             >
               {getString('SIGN_UP')}
             </Button>

@@ -66,7 +66,7 @@ exports[`rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#a3a3a3",
+                "color": "#676c7a",
                 "fontSize": 12,
                 "marginBottom": 8,
               },
@@ -81,7 +81,7 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "#d3d8e8",
                 "borderRadius": 3,
                 "borderWidth": 1,
                 "flexDirection": "row",
@@ -100,7 +100,7 @@ exports[`rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             placeholder="Name"
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -110,7 +110,7 @@ exports[`rendering test renders as expected 1`] = `
                   "borderColor": "black",
                   "borderStyle": "solid",
                   "borderWidth": 0,
-                  "color": "black",
+                  "color": "#151A25",
                   "flexBasis": 0,
                   "flexDirection": "row",
                   "flexGrow": 1,
@@ -148,7 +148,7 @@ exports[`rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "#a3a3a3",
+                "color": "#676c7a",
                 "fontSize": 12,
                 "marginBottom": 8,
               },
@@ -163,7 +163,7 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "#d3d8e8",
                 "borderRadius": 3,
                 "borderWidth": 1,
                 "flexDirection": "row",
@@ -182,7 +182,7 @@ exports[`rendering test renders as expected 1`] = `
             onChangeText={[Function]}
             onFocus={[Function]}
             placeholder="Status message"
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             style={
               Array [
@@ -192,7 +192,7 @@ exports[`rendering test renders as expected 1`] = `
                   "borderColor": "black",
                   "borderStyle": "solid",
                   "borderWidth": 0,
-                  "color": "black",
+                  "color": "#151A25",
                   "flexBasis": 0,
                   "flexDirection": "row",
                   "flexGrow": 1,
@@ -240,8 +240,8 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "white",
-                "borderColor": "rgb(58,139,255)",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 60,
@@ -263,7 +263,7 @@ exports[`rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "rgb(58,139,255)",
+                  "color": "#1E6EFA",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },
@@ -290,8 +290,8 @@ exports[`rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "rgb(58,139,255)",
-                "borderColor": "white",
+                "backgroundColor": "#1E6EFA",
+                "borderColor": "#ffffff",
                 "borderRadius": 4,
                 "borderWidth": 1,
                 "height": 60,
@@ -313,7 +313,7 @@ exports[`rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "white",
+                  "color": "#ffffff",
                   "fontSize": 14,
                   "fontWeight": "bold",
                 },

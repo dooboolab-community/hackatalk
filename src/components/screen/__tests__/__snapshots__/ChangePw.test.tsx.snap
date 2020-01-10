@@ -55,7 +55,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
           style={
             Array [
               Object {
-                "color": "#a3a3a3",
+                "color": "#676c7a",
                 "fontSize": 12,
                 "marginBottom": 8,
               },
@@ -70,7 +70,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "rgb(221,226,236)",
+                "borderColor": "#d3d8e8",
                 "borderRadius": 3,
                 "borderWidth": 1,
                 "flexDirection": "row",
@@ -85,7 +85,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
             autoCapitalize="none"
             autoCorrect={false}
             focused={false}
-            placeholderTextColor="#B9B9C4"
+            placeholderTextColor="#676c7a"
             rejectResponderTermination={true}
             secureTextEntry={true}
             style={
@@ -96,7 +96,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                   "borderColor": "black",
                   "borderStyle": "solid",
                   "borderWidth": 0,
-                  "color": "black",
+                  "color": "#151A25",
                   "flexBasis": 0,
                   "flexDirection": "row",
                   "flexGrow": 1,
@@ -125,8 +125,8 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "rgb(58,139,255)",
-            "borderColor": "white",
+            "backgroundColor": "#1E6EFA",
+            "borderColor": "#ffffff",
             "borderRadius": 4,
             "borderWidth": 1,
             "height": 60,
@@ -144,7 +144,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
         style={
           Array [
             Object {
-              "color": "white",
+              "color": "#ffffff",
               "fontSize": 14,
               "fontWeight": "bold",
             },
@@ -186,7 +186,7 @@ exports[`[ChangePwHeader] component renders without crashing 1`] = `
       style={
         Array [
           Object {
-            "color": "black",
+            "color": "#151A25",
             "fontSize": 20,
           },
         ]

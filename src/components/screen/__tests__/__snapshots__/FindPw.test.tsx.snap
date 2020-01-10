@@ -31,7 +31,6 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
           Object {
             "alignSelf": "stretch",
             "flexDirection": "column",
-            "width": "100%",
           },
           Object {
             "marginTop": 20,
@@ -48,8 +47,8 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
               "fontWeight": "500",
               "marginBottom": 5,
             },
-            null,
             undefined,
+            null,
           ]
         }
       >
@@ -59,47 +58,63 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
         style={
           Array [
             Object {
-              "width": "100%",
-            },
-            Object {
-              "borderColor": "#eaeaf9",
-            },
-            null,
-            Object {
-              "borderBottomWidth": 0.6,
+              "alignItems": "center",
+              "flexDirection": "row",
             },
           ]
         }
       >
-        <TextInput
-          allowFontScaling={true}
-          autoCapitalize="none"
-          onBlur={[Function]}
-          onChangeText={[Function]}
-          onFocus={[Function]}
-          onSubmitEditing={[Function]}
-          placeholder="hello@example.com"
-          placeholderTextColor="#B9B9C4"
-          rejectResponderTermination={true}
+        <View
           style={
             Array [
               Object {
-                "color": "#2c374e",
-                "fontSize": 15,
-                "fontWeight": "500",
-                "paddingBottom": 15,
-                "paddingTop": 15,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
                 "width": "100%",
               },
               Object {
-                "color": "black",
+                "borderBottomWidth": 0.6,
+                "borderColor": "#eaeaf9",
               },
+              undefined,
+              null,
             ]
           }
-          testID="input-email"
-          underlineColorAndroid="transparent"
-          value=""
-        />
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onFocus={[Function]}
+            onSubmitEditing={[Function]}
+            placeholder="hello@example.com"
+            placeholderTextColor="#676c7a"
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "color": "#2c374e",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 15,
+                  "fontWeight": "500",
+                  "height": "100%",
+                  "paddingBottom": 15,
+                  "paddingTop": 15,
+                },
+                Object {
+                  "color": "#151A25",
+                },
+              ]
+            }
+            testID="input-email"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
       </View>
     </View>
     <View
@@ -121,8 +136,8 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "backgroundColor": "rgb(58,139,255)",
-              "borderColor": "white",
+              "backgroundColor": "#1E6EFA",
+              "borderColor": "#ffffff",
               "borderRadius": 4,
               "borderWidth": 1,
               "height": 60,
@@ -130,6 +145,7 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
               "width": "auto",
             },
             Object {
+              "height": 52,
               "padding": 5,
             },
           ]
@@ -143,7 +159,7 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "color": "white",
+                "color": "#ffffff",
                 "fontSize": 14,
                 "fontWeight": "bold",
               },
