@@ -318,16 +318,20 @@ function SignIn(props: Props): ReactElement {
             </FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            <TouchableOpacity
-              testID="btn-apple"
-              onPress={appleLogin}
-            >
-              <SocialBtnRound>
-                <Image
-                  source={IC_APPLE}
-                />
-              </SocialBtnRound>
-            </TouchableOpacity>
+            {
+              Platform.select({
+                ios: <TouchableOpacity
+                  testID="btn-apple"
+                  onPress={appleLogin}
+                >
+                  <SocialBtnRound>
+                    <Image
+                      source={IC_APPLE}
+                    />
+                  </SocialBtnRound>
+                </TouchableOpacity>,
+              })
+            }
             <TouchableOpacity
               testID="btn-facebook"
               onPress={facebookLogin}
