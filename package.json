@@ -22,7 +22,7 @@
   "author": "hyochan <dooboolab@gmail.com>",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@dooboo-ui/native": "^0.4.8",
+    "@dooboo-ui/native": "^0.4.10",
     "@dooboo-ui/native-theme": "^0.1.5",
     "@expo/react-native-action-sheet": "^3.4.1",
     "@expo/vector-icons": "^10.0.6",
