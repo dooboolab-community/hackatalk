@@ -18,8 +18,9 @@ export const colors = {
   gray_40: '#AFB4C3',
   gray_30: '#d3d8e8',
   gray_05: '#f3f9ff',
-  google: 'rgb(224,66,56)',
-  facebook: 'rgb(52,89,151)',
+  apple: '#151E22',
+  google: '#E04238',
+  facebook: '#345997',
 };
 /* eslint-enable */
 
@@ -58,6 +59,15 @@ export const light = {
   modalBtnBackground: colors.light,
   modalBtnPrimaryFont: colors.blue_80,
   modalBtnFont: colors.gray_60,
+  appleIcon: colors.apple,
+  appleText: colors.apple,
+  appleBackground: colors.light,
+  facebookIcon: colors.light,
+  facebookText: colors.light,
+  facebookBackground: colors.facebook,
+  googleIcon: colors.light,
+  googleText: colors.light,
+  googleBackground: colors.google,
 };
 export type Theme = typeof light;
 export const dark = {
@@ -66,7 +76,7 @@ export const dark = {
   itemBackground: colors.dark,
   btnPrimary: colors.paleBlue_10,
   btnPrimaryFont: colors.deepDark,
-  btnPrimaryLight: colors.gray_80,
+  btnPrimaryLight: colors.dark,
   btnPrimaryLightFont: colors.paleBlue_10,
   textDisabled: colors.gray_80,
   btnDisabled: colors.gray_40,
@@ -95,4 +105,13 @@ export const dark = {
   modalBtnBackground: colors.gray_80,
   modalBtnPrimaryFont: colors.paleBlue_10,
   modalBtnFont: colors.gray_40,
+  appleIcon: colors.apple,
+  appleText: colors.apple,
+  appleBackground: colors.light,
+  facebookIcon: colors.facebook,
+  facebookText: colors.dark,
+  facebookBackground: colors.light,
+  googleIcon: colors.google,
+  googleText: colors.dark,
+  googleBackground: colors.light,
 };

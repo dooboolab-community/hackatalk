@@ -52,6 +52,7 @@
   "OK": "확인",
   "CONFIRM": "확인",
   "LOGIN_INFORMATION": "계정 정보",
+  "SIGNED_IN_WITH_APPLE": "애플 계정으로 로그인 됨",
   "SIGNED_IN_WITH_GOOGLE": "구글 계정으로 로그인 됨",
   "SIGNED_IN_WITH_FACEBOOK": "페이스북 계정으로 로그인 됨",
   "SIGNED_IN_WITH_EMAIL": "이메일로 로그인 됨",

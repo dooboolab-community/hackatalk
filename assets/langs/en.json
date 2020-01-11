@@ -52,6 +52,7 @@
   "OK": "OK",
   "CONFIRM": "Confirm",
   "LOGIN_INFORMATION": "Login information",
+  "SIGNED_IN_WITH_APPLE": "Signed in with Apple",
   "SIGNED_IN_WITH_GOOGLE": "Signed in with Google",
   "SIGNED_IN_WITH_FACEBOOK": "Signed in with Facebook",
   "SIGNED_IN_WITH_EMAIL": "Signed in with Email",

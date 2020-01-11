@@ -2,24 +2,27 @@ import {
   Container,
   HeaderContainer,
   ItemContainer,
-  ItemIcon,
   ItemLabel,
   SectionHeader,
 } from './styles';
-import { IC_FACEBOOK, IC_GOOGLE } from '../../../utils/Icons';
+import React, { ReactElement } from 'react';
 import { SectionList, SectionListData } from 'react-native';
-import {
-  SettingsOption,
-  SignInType,
-} from '../../../types';
+import { SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
 
 import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
-import React from 'react';
+import { SocialType } from '../../../types';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+
+interface SettingsOption {
+  label: string;
+  icon?: ReactElement;
+  onPress(): void;
+  testID: string;
+}
 
 function SectionItem(
   option: SettingsOption,
@@ -27,9 +30,7 @@ function SectionItem(
 ): React.ReactElement {
   return (
     <ItemContainer onPress={option.onPress} testID={option.testID}>
-      {option.icon ? (
-        <ItemIcon resizeMode="contain" source={option.icon} />
-      ) : null}
+      {option.icon || null}
       <ItemLabel>{option.label}</ItemLabel>
       <FontAwesome name="angle-right" size={24} color={theme.fontColor} />
     </ItemContainer>
@@ -49,10 +50,10 @@ function SettingScreen(props: Props): React.ReactElement {
 
   let signInInfoOption: SettingsOption;
 
-  switch (user && user.signedInWith) {
-    case SignInType.Google:
+  switch (user && user.social) {
+    case SocialType.Google:
       signInInfoOption = {
-        icon: IC_GOOGLE,
+        icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -60,9 +61,9 @@ function SettingScreen(props: Props): React.ReactElement {
         testID: 'changePwItem',
       };
       break;
-    case SignInType.Facebook:
+    case SocialType.Facebook:
       signInInfoOption = {
-        icon: IC_FACEBOOK,
+        icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -70,7 +71,17 @@ function SettingScreen(props: Props): React.ReactElement {
         testID: 'changePwItem',
       };
       break;
-    case SignInType.Email:
+    case SocialType.Apple:
+      signInInfoOption = {
+        icon: <SvgApple width={24} fill={theme.appleIcon}/>,
+        label: getString('SIGNED_IN_WITH_APPLE'),
+        onPress: (): void => {
+          navigation.navigate('ChangePw');
+        },
+        testID: 'changePwItem',
+      };
+      break;
+    case SocialType.Email:
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),

@@ -8,12 +8,6 @@ export enum MessageType {
   File,
 }
 
-export enum SignInType {
-  Email,
-  Google,
-  Facebook,
-}
-
 export interface User {
   uid: string;
   displayName: string;
@@ -30,10 +24,17 @@ export interface Friend extends User {
   friendSince: Date;
 }
 
+export enum SocialType {
+  Email,
+  Google,
+  Facebook,
+  Apple,
+}
+
 export interface AuthUser extends User {
   friends?: [];
   chatrooms?: [];
-  signedInWith?: SignInType;
+  social?: SocialType;
 }
 
 export interface ChatCommon<T extends MessageType = MessageType.Message> {
@@ -78,13 +79,6 @@ interface IconProps {
 }
 
 export type IconType = SFC<IconProps>;
-
-export interface SettingsOption {
-  label: string;
-  icon?: ImageSourcePropType;
-  onPress(): void;
-  testID: string;
-}
 
 export enum ThemeType {
   LIGHT = 'LIGHT',

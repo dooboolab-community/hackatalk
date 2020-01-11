@@ -4,6 +4,7 @@ import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { IC_ICON, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -14,11 +15,8 @@ import {
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Constants from 'expo-constants';
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
-import { IC_ICON } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
 import StatusBar from '../shared/StatusBar';
 import { User } from '../../types';
-import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -339,78 +337,66 @@ function SignIn(props: Props): ReactElement {
                 ios: <Button
                   testID="btn-apple"
                   style={{
-                    backgroundColor: '#fff',
-                    borderColor: colors.backgroundDark,
+                    backgroundColor: theme.appleBackground,
+                    borderColor: theme.appleText,
                     width: '100%',
                     height: 48,
                     borderWidth: 1,
                     marginBottom: 6,
                   }}
                   leftElement={
-                    <View
-                      style={{
-                        marginLeft: 18,
-                      }}
-                    >
-                      <Ionicons name="logo-apple" size={26} color={colors.backgroundDark} />
+                    <View style={{ marginRight: 6 }}>
+                      <SvgApple width={24} fill={theme.appleIcon}/>
                     </View>
                   }
                   isLoading={signingInFacebook}
                   indicatorColor={theme.primary}
-                  onPress={facebookLogin}
+                  onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
-                  textStyle={{ fontWeight: '700', color: 'black' }}
+                  textStyle={{ fontWeight: '700', color: theme.appleText }}
                 />,
               })
             }
             <Button
               testID="btn-facebook"
               style={{
-                backgroundColor: colors.facebook,
-                borderColor: theme.background,
+                backgroundColor: theme.facebookBackground,
+                borderColor: theme.facebookBackground,
                 borderWidth: 1,
                 width: '100%',
                 height: 48,
                 marginBottom: 6,
               }}
               leftElement={
-                <View
-                  style={{
-                    marginLeft: 16,
-                  }}
-                >
-                  <Ionicons name="logo-facebook" size={24} color="white" />
+                <View style={{ marginRight: 6 }}>
+                  <SvgFacebook width={24} fill={theme.facebookIcon}/>
                 </View>
               }
               isLoading={signingInFacebook}
               indicatorColor={theme.primary}
               onPress={facebookLogin}
               text={getString('SIGN_IN_WITH_FACEBOOK')}
-              textStyle={{ fontWeight: '700', color: 'white' }}
+              textStyle={{ fontWeight: '700', color: theme.facebookText }}
             />
             <Button
               testID="btn-google"
               style={{
-                backgroundColor: colors.google,
-                borderColor: theme.background,
+                backgroundColor: theme.googleBackground,
+                borderColor: theme.googleBackground,
                 borderWidth: 1,
                 width: '100%',
                 height: 48,
               }}
               leftElement={
-                <View
-                  style={{
-                    marginLeft: 16,
-                  }}
-                >
-                  <Ionicons name="logo-google" size={24} color="white" />
+                <View style={{ marginRight: 6 }}>
+                  <SvgGoogle width={24} fill={theme.googleIcon}/>
                 </View>
               }
               isLoading={signingInGoogle}
               indicatorColor={theme.primary}
               onPress={googleSignInAsync}
               text={getString('SIGN_IN_WITH_GOOGLE')}
-              textStyle={{ fontWeight: '700', color: 'white' }}
+              textStyle={{ fontWeight: '700', color: theme.googleText }}
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>

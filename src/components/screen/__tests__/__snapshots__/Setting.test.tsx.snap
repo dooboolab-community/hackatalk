@@ -168,12 +168,10 @@ exports[`[Setting] screen renders without crashing 2`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
+              "icon": <SvgMock
+                fill="#ffffff"
+                width={24}
+              />,
               "label": "Signed in with Facebook",
               "onPress": [Function],
               "testID": "changePwItem",
@@ -205,12 +203,10 @@ exports[`[Setting] screen renders without crashing 2`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
+              "icon": <SvgMock
+                fill="#ffffff"
+                width={24}
+              />,
               "label": "Signed in with Facebook",
               "onPress": [Function],
               "testID": "changePwItem",
@@ -282,28 +278,9 @@ exports[`[Setting] screen renders without crashing 2`] = `
         }
         testID="changePwItem"
       >
-        <Image
-          resizeMode="contain"
-          source={
-            Object {
-              "canInstrument": true,
-              "createTransformer": [Function],
-              "getCacheKey": [Function],
-              "process": [Function],
-            }
-          }
-          style={
-            Array [
-              Object {
-                "borderColor": "#d3d8e8",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 32,
-                "marginRight": 10,
-                "width": 32,
-              },
-            ]
-          }
+        <SvgMock
+          fill="#ffffff"
+          width={24}
         />
         <Text
           style={
@@ -351,12 +328,10 @@ exports[`[Setting] screen renders without crashing 3`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
+              "icon": <SvgMock
+                fill="#ffffff"
+                width={24}
+              />,
               "label": "Signed in with Google",
               "onPress": [Function],
               "testID": "changePwItem",
@@ -388,12 +363,10 @@ exports[`[Setting] screen renders without crashing 3`] = `
         Object {
           "data": Array [
             Object {
-              "icon": Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              },
+              "icon": <SvgMock
+                fill="#ffffff"
+                width={24}
+              />,
               "label": "Signed in with Google",
               "onPress": [Function],
               "testID": "changePwItem",
@@ -465,28 +438,9 @@ exports[`[Setting] screen renders without crashing 3`] = `
         }
         testID="changePwItem"
       >
-        <Image
-          resizeMode="contain"
-          source={
-            Object {
-              "canInstrument": true,
-              "createTransformer": [Function],
-              "getCacheKey": [Function],
-              "process": [Function],
-            }
-          }
-          style={
-            Array [
-              Object {
-                "borderColor": "#d3d8e8",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 32,
-                "marginRight": 10,
-                "width": 32,
-              },
-            ]
-          }
+        <SvgMock
+          fill="#ffffff"
+          width={24}
         />
         <Text
           style={

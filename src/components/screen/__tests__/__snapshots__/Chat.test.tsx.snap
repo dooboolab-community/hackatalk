@@ -735,43 +735,45 @@ exports[`[Chat] rendering test renders as expected 1`] = `
         }
       >
         <TouchableOpacity
-          activeOpacity={0.5}
-          disabled={false}
-          height={40}
+          activeOpacity={0.2}
           onPress={[Function]}
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E6EFA",
-                "borderColor": "#ffffff",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 40,
-                "justifyContent": "center",
-                "width": "auto",
-              },
-            ]
-          }
           testID="btn_chat"
-          white={false}
-          width="auto"
         >
-          <Text
-            disabled={false}
+          <View
             style={
               Array [
                 Object {
-                  "color": "#ffffff",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "backgroundColor": "#1E6EFA",
+                  "height": 40,
+                  "width": 60,
                 },
               ]
             }
-            white={false}
           >
-            Send
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#ffffff",
+                  },
+                ]
+              }
+            >
+              Send
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>

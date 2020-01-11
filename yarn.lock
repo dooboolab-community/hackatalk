@@ -889,10 +889,10 @@
   dependencies:
     dooboolab-welcome "^1.1.1"
 
-"@dooboo-ui/native@^0.4.12":
-  version "0.4.12"
-  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.4.12.tgz#22f2d6d4075d25a1e2710d48fd1a474c6e058025"
-  integrity sha512-Cw5FEeigCLuCVP8EfF22EnR8UiO2xDGwIkZfyvLRmzekRv9ggKImDa4TA5bs8lh8OZ1UjovdTSDAKwE0YNEhBw==
+"@dooboo-ui/native@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.5.0.tgz#18617c68ce98225b49c1b788787b2ebc1f515b95"
+  integrity sha512-taCtTE5uLjLQQd7M5Dcdi0h5d+89krwXckwtyrBV0g5booI2yglaYNuY2qJCHRVqXIcIJXW3gBhlXdTtehdwfA==
   dependencies:
     dooboolab-welcome "^1.1.1"
 
