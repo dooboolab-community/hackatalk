@@ -1,4 +1,4 @@
-import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, View } from 'react-native';
+import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, SafeAreaView } from 'react-native';
 import {
   CloseButton,
   Header,
@@ -14,15 +14,25 @@ import React, {
 } from 'react';
 
 import { Button } from '@dooboo-ui/native';
+import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
-import { SafeAreaView } from 'react-navigation';
 import { getString } from '../../../../STRINGS';
+import { isIPhoneXSize } from '../../../utils/Styles';
+import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export interface Props {
   navigation: MainStackNavigationProps<'ChangePw'>;
 }
+
+const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
+  flex: 1;
+  justify-content: center;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const ChangePwHeader = (props: Props): ReactElement => {
   const { navigation } = props;
@@ -90,53 +100,65 @@ function ChangePw(props: Props): ReactElement {
     };
   }, []);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.background, paddingBottom: keyboardOffset }}>
-      {isValidCurrentPw ? (
-        <InnerContainer>
-          <StyledTextInput
-            key="newPwTextInput"
-            testID="newPwTextInput"
-            isPassword
-            onTextChanged={(pw): void => setNewPw(pw)}
-            txtLabel={getString('PASSWORD_NEW')}
-          />
-          <StyledTextInput
-            key="validationWordTextInput"
-            testID="validationWordTextInput"
-            isPassword
-            onTextChanged={(pw): void => setValidationWord(pw)}
-            txtLabel={getString('PASSWORD_NEW_REPEAT')}
-          />
-        </InnerContainer>
-      ) : (
-        <InnerContainer>
-          <StyledTextInput
-            key="currentPwTextInput"
-            testID="currentPwTextInput"
-            isPassword
-            onTextChanged={(pw): void => setCurrentPw(pw)}
-            txtLabel={getString('PASSWORD_CURRENT')}
-          />
-        </InnerContainer>
-      )}
-      <Button
-        testID="checkCurrentPwBtn"
-        onPress={isValidCurrentPw ? changePassword : validateCurrent}
-        // containerStyle={{
-        //   width: '100%',
-        // }}
-        style={{
-          backgroundColor: theme.btnPrimary,
-          borderWidth: 0,
-          height: 56,
-          width: '100%',
-        }}
-        textStyle={{
-          color: theme.btnPrimaryFont,
-          fontSize: 16,
-        }}
-        text={isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
-      />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: theme.background,
+        paddingBottom: keyboardOffset,
+      }}>
+      <StyledKeyboardAvoidingView
+        keyboardVerticalOffset={isIPhoneXSize
+          ? Constants.statusBarHeight + 52
+          : Constants.statusBarHeight}
+        behavior={'padding'}
+      >
+        {isValidCurrentPw ? (
+          <InnerContainer>
+            <StyledTextInput
+              key="newPwTextInput"
+              testID="newPwTextInput"
+              isPassword
+              onTextChanged={(pw): void => setNewPw(pw)}
+              txtLabel={getString('PASSWORD_NEW')}
+            />
+            <StyledTextInput
+              key="validationWordTextInput"
+              testID="validationWordTextInput"
+              isPassword
+              onTextChanged={(pw): void => setValidationWord(pw)}
+              txtLabel={getString('PASSWORD_NEW_REPEAT')}
+            />
+          </InnerContainer>
+        ) : (
+          <InnerContainer>
+            <StyledTextInput
+              key="currentPwTextInput"
+              testID="currentPwTextInput"
+              isPassword
+              onTextChanged={(pw): void => setCurrentPw(pw)}
+              txtLabel={getString('PASSWORD_CURRENT')}
+            />
+          </InnerContainer>
+        )}
+        <Button
+          testID="checkCurrentPwBtn"
+          onPress={isValidCurrentPw ? changePassword : validateCurrent}
+          containerStyle={{
+            width: '100%',
+          }}
+          style={{
+            backgroundColor: theme.btnPrimary,
+            borderWidth: 0,
+            height: 56,
+            width: '100%',
+          }}
+          textStyle={{
+            color: theme.btnPrimaryFont,
+            fontSize: 16,
+          }}
+          text={isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
+        />
+      </StyledKeyboardAvoidingView>
     </SafeAreaView>
   );
 }

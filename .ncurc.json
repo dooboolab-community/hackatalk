@@ -12,7 +12,6 @@
     "@react-navigation/stack",
     "react-native-svg",
     "react-native-webview",
-    "react-navigation-stack",
     "react-native-svg"
   ]
 }
