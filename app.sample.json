@@ -39,7 +39,7 @@
       }
     },
     "packagerOpts": {
-      "config": "./rn-cli.config.js",
+      "config": "./metro.config.js",
       "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
     },
     "description": "Opensource chat app"

@@ -11,17 +11,18 @@ import {
   fireEvent,
   render,
   wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Alert } from 'react-native';
 import SignIn from '../SignIn';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import { ThemeType } from '@dooboo-ui/native-theme';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
+let testingLib: RenderResult;
 
 jest.mock('expo-constants', () => ({
   ...jest.requireActual('expo-constants'),
@@ -34,15 +35,21 @@ describe('[SignIn] rendering test', () => {
     component = createTestElement(<SignIn {...props} />);
   });
 
-  it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+  it('should render without crashing', () => {
+    testingLib = render(component);
+    expect(testingLib.baseElement).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
+  });
+
+  it('should render [Dark] mode without crashing', () => {
+    component = createTestElement(<SignIn {...props} />, ThemeType.DARK);
+    testingLib = render(component);
+    expect(testingLib.baseElement).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
   });
 });
 
 describe('[SignIn] interaction', () => {
-  let testingLib: RenderResult;
-
   beforeAll(() => {
     props = createTestProps();
     component = createTestElement(<SignIn {...props} />);
@@ -51,7 +58,8 @@ describe('[SignIn] interaction', () => {
 
   it('should change theme when icon is pressed', async () => {
     const themeTouch = testingLib.getByTestId('theme-test');
-    await wait(() => expect(themeTouch).toBeTruthy());
+
+    await waitForElement(() => themeTouch);
 
     act(() => {
       fireEvent.press(themeTouch);
@@ -60,7 +68,7 @@ describe('[SignIn] interaction', () => {
 
   it('should invoke changeText event handler when email changed ', async () => {
     const textInput = testingLib.getByTestId('input-email');
-    await wait(() => expect(textInput).toBeTruthy());
+    await waitForElement(() => textInput);
 
     act(() => {
       fireEvent.changeText(textInput, 'email@email.com');
@@ -72,7 +80,7 @@ describe('[SignIn] interaction', () => {
   it('should invoke changeText event handler when password changed ', async () => {
     testingLib = render(component);
     const textInput = testingLib.getByTestId('input-password');
-    await wait(() => expect(textInput).toBeTruthy());
+    await waitForElement(() => textInput);
 
     act(() => {
       fireEvent.changeText(textInput, 'pw test');
@@ -82,7 +90,7 @@ describe('[SignIn] interaction', () => {
 
   it('should simulate signUp button has clicked', async () => {
     const btnSignUp = testingLib.getByTestId('btn-sign-up');
-    await wait(() => expect(btnSignUp).toBeTruthy());
+    await waitForElement(() => btnSignUp);
     act(() => {
       fireEvent.press(btnSignUp);
     });
@@ -91,11 +99,29 @@ describe('[SignIn] interaction', () => {
 
   it('should navigate to [FindPw] when button has pressed', async () => {
     const findPwBtn = testingLib.getByTestId('btn-find-pw');
-    await wait(() => expect(findPwBtn).toBeTruthy());
+    await waitForElement(() => findPwBtn);
     act(() => {
       fireEvent.press(findPwBtn);
     });
     expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
+  });
+
+  it('should navigate to [WebView] when terms has been pressed', async () => {
+    const btnTerms = testingLib.getByTestId('btn-terms');
+    await waitForElement(() => btnTerms);
+    act(() => {
+      fireEvent.press(btnTerms);
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/termsofservice' });
+  });
+
+  it('should navigate to [WebView] when terms has been pressed', async () => {
+    const btnPrivary = testingLib.getByTestId('btn-privacy');
+    await waitForElement(() => btnPrivary);
+    act(() => {
+      fireEvent.press(btnPrivary);
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/privacyandpolicy' });
   });
 
   describe('onSignIn', () => {
@@ -107,8 +133,8 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and ask to validate email', async () => {
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
+      await waitForElement(() => btnSignIn);
 
-      await wait(() => expect(btnSignIn).toBeTruthy());
       act(() => {
         fireEvent.press(btnSignIn);
       });
@@ -120,14 +146,14 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and ask to validate password', async () => {
       const textInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(textInput).toBeTruthy());
+      await waitForElement(() => textInput);
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await wait(() => expect(btnSignIn).toBeTruthy());
+      await waitForElement(() => btnSignIn);
       act(() => {
         fireEvent.press(btnSignIn);
       });
@@ -138,21 +164,21 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and navigation resetRoot', async () => {
       const textInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(textInput).toBeTruthy());
+      await waitForElement(() => textInput);
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(passwordInput).toBeTruthy());
+      await waitForElement(() => passwordInput);
 
       act(() => {
         fireEvent.changeText(passwordInput, 'password');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await wait(() => expect(btnSignIn).toBeTruthy());
+      await waitForElement(() => btnSignIn);
 
       jest.useFakeTimers();
       act(() => {
@@ -196,6 +222,15 @@ describe('[SignIn] interaction', () => {
 
       await act(() => wait());
       expect(props.navigation).toBeNull();
+    });
+  });
+
+  it('should call Apple signin when pressing button', async () => {
+    const btnApple = testingLib.getByTestId('btn-apple');
+    await wait(() => expect(btnApple).toBeTruthy());
+
+    act(() => {
+      fireEvent.press(btnApple);
     });
   });
 

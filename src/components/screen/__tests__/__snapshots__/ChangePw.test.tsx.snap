@@ -118,42 +118,46 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
       </View>
     </View>
     <TouchableOpacity
-      activeOpacity={0.5}
-      disabled={false}
-      height={60}
-      style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#1E6EFA",
-            "borderColor": "#ffffff",
-            "borderRadius": 4,
-            "borderWidth": 1,
-            "height": 60,
-            "justifyContent": "center",
-            "width": "auto",
-          },
-        ]
-      }
+      activeOpacity={0.2}
       testID="checkCurrentPwBtn"
-      white={false}
-      width="auto"
     >
-      <Text
-        disabled={false}
+      <View
         style={
           Array [
             Object {
-              "color": "#ffffff",
-              "fontSize": 14,
-              "fontWeight": "bold",
+              "alignItems": "center",
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "#1E6EFA",
+              "borderWidth": 0,
+              "height": 56,
+              "width": "100%",
             },
           ]
         }
-        white={false}
       >
-        Next
-      </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 16,
+              },
+            ]
+          }
+        >
+          Next
+        </Text>
+      </View>
     </TouchableOpacity>
   </View>
 </View>

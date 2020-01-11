@@ -6,7 +6,7 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import Button from '../shared/Button';
+import { Button } from '@dooboo-ui/native';
 import ChatListItem from '../shared/ChatListItem';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
@@ -207,12 +207,18 @@ function Screen(): React.ReactElement {
         renderSendButton={(): React.ReactElement => (
           <Button
             testID="btn_chat"
-            height={40}
+            style={{
+              backgroundColor: theme.btnPrimary,
+              width: 60,
+              height: 40,
+            }}
+            textStyle={{
+              color: theme.btnPrimaryFont,
+            }}
             isLoading={isSending}
             onPress={onSubmit}
-          >
-            {getString('SEND')}
-          </Button>
+            text={getString('SEND')}
+          />
         )}
       />
     </Container>

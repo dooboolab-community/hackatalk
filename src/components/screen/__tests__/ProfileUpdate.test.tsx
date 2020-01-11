@@ -76,26 +76,26 @@ describe('interaction', () => {
 
   it('should fireEvent when logout button pressed', () => {
     act(() => {
-      fireEvent.press(testingLib.getByTestId('logout_btn'));
+      fireEvent.press(testingLib.getByTestId('button-logout'));
     });
     expect(props.navigation.resetRoot).toHaveBeenCalled();
   });
 
   it('should fireEvent when update button pressed', () => {
     act(() => {
-      fireEvent.press(testingLib.getByTestId('update_btn'));
+      fireEvent.press(testingLib.getByTestId('button-update'));
     });
   });
 
   it('should changeText when display name changed', () => {
-    const inputName = testingLib.getByTestId('input_name');
+    const inputName = testingLib.getByTestId('input-name');
     act(() => {
       fireEvent.changeText(inputName, 'name');
     });
   });
 
   it('should changeText when status message changed', () => {
-    const inputStatus = testingLib.getByTestId('input_status');
+    const inputStatus = testingLib.getByTestId('input-status');
     act(() => {
       fireEvent.changeText(inputStatus, 'name');
     });
@@ -105,7 +105,7 @@ describe('interaction', () => {
   it('should launch camera when user select "Take a picture"', async () => {
     userPressLuanchCamera = true;
     const profileBtn = await waitForElement(() =>
-      testingLib.queryByTestId('user_icon_button'),
+      testingLib.queryByTestId('button-user-icon'),
     );
     act(() => {
       fireEvent.press(profileBtn);
@@ -116,7 +116,7 @@ describe('interaction', () => {
   it('should open album when user select "Select from Album"', async () => {
     userPressLuanchCamera = false;
     const profileBtn = await waitForElement(() =>
-      testingLib.queryByTestId('user_icon_button'),
+      testingLib.queryByTestId('button-user-icon'),
     );
     await wait(() => expect(profileBtn).toBeTruthy());
     act(() => {

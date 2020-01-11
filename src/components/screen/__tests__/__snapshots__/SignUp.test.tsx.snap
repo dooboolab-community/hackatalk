@@ -42,9 +42,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               "alignSelf": "stretch",
               "flexDirection": "column",
             },
-            Object {
-              "marginTop": 20,
-            },
           ]
         }
       >
@@ -85,7 +82,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 },
                 Object {
                   "borderBottomWidth": 0.6,
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                 },
                 undefined,
                 null,
@@ -135,7 +132,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               "flexDirection": "column",
             },
             Object {
-              "marginTop": 20,
+              "marginTop": 32,
             },
           ]
         }
@@ -177,7 +174,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 },
                 Object {
                   "borderBottomWidth": 0.6,
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                 },
                 undefined,
                 null,
@@ -228,7 +225,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               "flexDirection": "column",
             },
             Object {
-              "marginTop": 20,
+              "marginTop": 32,
             },
           ]
         }
@@ -270,7 +267,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 },
                 Object {
                   "borderBottomWidth": 0.6,
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                 },
                 undefined,
                 null,
@@ -321,7 +318,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               "flexDirection": "column",
             },
             Object {
-              "marginTop": 20,
+              "marginTop": 32,
             },
           ]
         }
@@ -363,7 +360,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 },
                 Object {
                   "borderBottomWidth": 0.6,
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                 },
                 undefined,
                 null,
@@ -413,7 +410,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               "flexDirection": "column",
             },
             Object {
-              "marginTop": 20,
+              "marginTop": 32,
             },
           ]
         }
@@ -455,7 +452,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 },
                 Object {
                   "borderBottomWidth": 0.6,
-                  "borderColor": "#eaeaf9",
+                  "borderColor": "#2E2E2E",
                 },
                 undefined,
                 null,
@@ -502,55 +499,55 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           Array [
             Object {
               "flexDirection": "row-reverse",
-              "marginTop": 20,
+              "marginTop": 32,
               "width": "100%",
             },
           ]
         }
       >
         <TouchableOpacity
-          activeOpacity={0.5}
-          disabled={false}
-          height={60}
+          activeOpacity={0.2}
           onPress={[Function]}
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E6EFA",
-                "borderColor": "#ffffff",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 60,
-                "justifyContent": "center",
-                "width": "auto",
-              },
-              Object {
-                "height": 52,
-                "padding": 5,
-                "width": "50%",
-              },
-            ]
+            Object {
+              "backgroundColor": "#1E6EFA",
+              "height": 52,
+              "width": "50%",
+            }
           }
           testID="btn-sign-up"
-          white={false}
-          width="auto"
         >
-          <Text
-            disabled={false}
+          <View
             style={
               Array [
                 Object {
-                  "color": "#ffffff",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
                 },
               ]
             }
-            white={false}
           >
-            Sign Up
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#ffffff",
+                    "fontSize": 16,
+                  },
+                ]
+              }
+            >
+              Sign Up
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>

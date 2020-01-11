@@ -1,11 +1,11 @@
+import { Button, EditText } from '@dooboo-ui/native';
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
-import Button from '../shared/Button';
-import { Ionicons } from '@expo/vector-icons';
+import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import TextInput from '../shared/TextInput';
+import { SvgNoProfile } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
@@ -35,14 +35,14 @@ const Wrapper = styled.View`
   align-items: center;
 `;
 
-const StyledBtnWrapper = styled.View`
+const StyledButtonWrapper = styled.View`
   flex: 1;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   align-self: stretch;
   height: 60px;
-  margin-top: 20px;
+  margin-top: 28px;
   margin-bottom: 48px;
 `;
 
@@ -144,62 +144,89 @@ function Screen(props: Props): React.ReactElement {
       >
         <Wrapper>
           <TouchableOpacity
+            testID="button-user-icon"
             activeOpacity={0.5}
             onPress={onPressImg}
-            testID="user_icon_button"
           >
             {!profilePath ? (
-              <Ionicons
-                name="ios-person"
-                size={80}
-                color={theme ? theme.fontColor : '#3d3d3d'}
-              />
+              <SvgNoProfile width={60} height={60} fill={theme.fontColor} />
             ) : (
               <ProfileImage
-                testID="profile_img"
+                testID="profile-image"
                 source={{ uri: profilePath }}
               />
             )}
           </TouchableOpacity>
-          <TextInput
-            testID="input_name"
-            style={{ marginTop: 80 }}
-            txtLabel={getString('NAME')}
-            txtHint={getString('NAME')}
-            txt={displayName}
-            onTextChanged={(text: string): void =>
+          <EditText
+            testID="input-name"
+            type={EditTextInputType.BOX}
+            style={{ marginTop: 32 }}
+            label={getString('NAME')}
+            placeholder={getString('NAME')}
+            value={displayName}
+            borderColor={theme.font}
+            focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
+            onChangeText={(text: string): void =>
               onChangeText('DISPLAY_NAME', text)
             }
           />
-          <TextInput
-            testID="input_status"
+          <EditText
+            type={EditTextInputType.BOX}
+            testID="input-status"
             style={{ marginTop: 24 }}
-            txtLabel={getString('STATUS_MSG')}
-            txtHint={getString('STATUS_MSG')}
-            txt={statusMsg}
-            onTextChanged={(text: string): void =>
+            label={getString('STATUS_MSG')}
+            placeholder={getString('STATUS_MSG')}
+            value={statusMsg}
+            borderColor={theme.font}
+            focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
+            onChangeText={(text: string): void =>
               onChangeText('STATUS_MSG', text)
             }
           />
-          <StyledBtnWrapper>
+          <StyledButtonWrapper>
             <Button
-              testID="logout_btn"
+              testID="button-logout"
+              containerStyle={{
+                flex: 0.5,
+              }}
+              style={{
+                width: '100%',
+                backgroundColor: theme.btnPrimaryLight,
+                borderColor: theme.btnPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                color: theme.btnPrimary,
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}
               onPress={onLogout}
-              isWhite
-              containerStyle={{ flex: 1, flexDirection: 'row' }}
-            >
-              {getString('LOGOUT')}
-            </Button>
+              text={getString('LOGOUT')}
+            />
             <View style={{ width: 8 }} />
             <Button
-              testID="update_btn"
+              testID="button-update"
+              containerStyle={{
+                flex: 0.5,
+              }}
+              style={{
+                width: '100%',
+                backgroundColor: theme.btnPrimary,
+                borderColor: theme.btnPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                color: theme.btnPrimaryFont,
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}
               isLoading={isUpdating}
               onPress={onUpdate}
-              containerStyle={{ flex: 1, flexDirection: 'row' }}
-            >
-              {getString('UPDATE')}
-            </Button>
-          </StyledBtnWrapper>
+              text={getString('UPDATE')}
+            />
+          </StyledButtonWrapper>
         </Wrapper>
       </StyledScrollView>
     </Container>

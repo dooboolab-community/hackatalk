@@ -45,172 +45,202 @@ exports[`rendering test renders as expected 1`] = `
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={[Function]}
-        testID="user_icon_button"
+        testID="button-user-icon"
       >
-        <Text />
+        <SvgMock
+          fill="#151A25"
+          height={60}
+          width={60}
+        />
       </TouchableOpacity>
       <View
         style={
           Array [
             Object {
-              "alignItems": "flex-start",
               "alignSelf": "stretch",
               "flexDirection": "column",
-              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 32,
             },
           ]
         }
       >
         <Text
-          focused={false}
           style={
             Array [
               Object {
-                "color": "#676c7a",
-                "fontSize": 12,
-                "marginBottom": 8,
+                "color": "#b9b9c4",
+                "fontSize": 14,
+                "fontWeight": "500",
+                "marginBottom": 5,
               },
+              undefined,
+              null,
             ]
           }
         >
           Name
         </Text>
         <View
-          isFocused={false}
           style={
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#d3d8e8",
-                "borderRadius": 3,
-                "borderWidth": 1,
                 "flexDirection": "row",
-                "justifyContent": "center",
-                "marginBottom": 8,
               },
             ]
           }
         >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            focused={false}
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Name"
-            placeholderTextColor="#676c7a"
-            rejectResponderTermination={true}
+          <View
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "alignSelf": "stretch",
-                  "borderColor": "black",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "color": "#151A25",
-                  "flexBasis": 0,
                   "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "fontSize": 16,
-                  "justifyContent": "flex-start",
-                  "paddingBottom": 22,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 22,
+                  "justifyContent": "space-between",
+                  "width": "100%",
+                },
+                Object {
+                  "borderColor": "#2E2E2E",
+                  "borderRadius": 3,
+                  "borderWidth": 0.6,
+                },
+                undefined,
+                null,
+                Object {
+                  "paddingLeft": 15,
+                },
+                Object {
+                  "paddingRight": 15,
                 },
               ]
             }
-            testID="input_name"
-            textContentType="none"
-            underlineColorAndroid="transparent"
-            value=""
-          />
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              placeholder="Name"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#2c374e",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "height": "100%",
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                ]
+              }
+              testID="input-name"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </View>
         </View>
       </View>
       <View
         style={
           Array [
             Object {
-              "alignItems": "flex-start",
               "alignSelf": "stretch",
               "flexDirection": "column",
-              "justifyContent": "flex-start",
+            },
+            Object {
+              "marginTop": 24,
             },
           ]
         }
       >
         <Text
-          focused={false}
           style={
             Array [
               Object {
-                "color": "#676c7a",
-                "fontSize": 12,
-                "marginBottom": 8,
+                "color": "#b9b9c4",
+                "fontSize": 14,
+                "fontWeight": "500",
+                "marginBottom": 5,
               },
+              undefined,
+              null,
             ]
           }
         >
           Status message
         </Text>
         <View
-          isFocused={false}
           style={
             Array [
               Object {
                 "alignItems": "center",
-                "borderColor": "#d3d8e8",
-                "borderRadius": 3,
-                "borderWidth": 1,
                 "flexDirection": "row",
-                "justifyContent": "center",
-                "marginBottom": 8,
               },
             ]
           }
         >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            focused={false}
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Status message"
-            placeholderTextColor="#676c7a"
-            rejectResponderTermination={true}
+          <View
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "alignSelf": "stretch",
-                  "borderColor": "black",
-                  "borderStyle": "solid",
-                  "borderWidth": 0,
-                  "color": "#151A25",
-                  "flexBasis": 0,
                   "flexDirection": "row",
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "fontSize": 16,
-                  "justifyContent": "flex-start",
-                  "paddingBottom": 22,
-                  "paddingLeft": 20,
-                  "paddingRight": 20,
-                  "paddingTop": 22,
+                  "justifyContent": "space-between",
+                  "width": "100%",
+                },
+                Object {
+                  "borderColor": "#2E2E2E",
+                  "borderRadius": 3,
+                  "borderWidth": 0.6,
+                },
+                undefined,
+                null,
+                Object {
+                  "paddingLeft": 15,
+                },
+                Object {
+                  "paddingRight": 15,
                 },
               ]
             }
-            testID="input_status"
-            textContentType="none"
-            underlineColorAndroid="transparent"
-            value=""
-          />
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              placeholder="Status message"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#2c374e",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "height": "100%",
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                ]
+              }
+              testID="input-status"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </View>
         </View>
       </View>
       <View
@@ -226,53 +256,59 @@ exports[`rendering test renders as expected 1`] = `
               "height": 60,
               "justifyContent": "space-between",
               "marginBottom": 48,
-              "marginTop": 20,
+              "marginTop": 28,
             },
           ]
         }
       >
         <TouchableOpacity
-          activeOpacity={0.5}
-          disabled={false}
-          height={60}
+          activeOpacity={0.2}
           onPress={[Function]}
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 60,
-                "justifyContent": "center",
-                "width": "auto",
-              },
-              Object {
-                "flex": 1,
-                "flexDirection": "row",
-              },
-            ]
+            Object {
+              "flex": 0.5,
+            }
           }
-          testID="logout_btn"
-          white={true}
-          width="auto"
+          testID="button-logout"
         >
-          <Text
-            disabled={false}
+          <View
             style={
               Array [
                 Object {
-                  "color": "#1E6EFA",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "#1E6EFA",
+                  "borderWidth": 1,
+                  "width": "100%",
                 },
               ]
             }
-            white={true}
           >
-            Logout
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#1E6EFA",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+            >
+              Logout
+            </Text>
+          </View>
         </TouchableOpacity>
         <View
           style={
@@ -282,47 +318,53 @@ exports[`rendering test renders as expected 1`] = `
           }
         />
         <TouchableOpacity
-          activeOpacity={0.5}
-          disabled={false}
-          height={60}
+          activeOpacity={0.2}
           onPress={[Function]}
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E6EFA",
-                "borderColor": "#ffffff",
-                "borderRadius": 4,
-                "borderWidth": 1,
-                "height": 60,
-                "justifyContent": "center",
-                "width": "auto",
-              },
-              Object {
-                "flex": 1,
-                "flexDirection": "row",
-              },
-            ]
+            Object {
+              "flex": 0.5,
+            }
           }
-          testID="update_btn"
-          white={false}
-          width="auto"
+          testID="button-update"
         >
-          <Text
-            disabled={false}
+          <View
             style={
               Array [
                 Object {
-                  "color": "#ffffff",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "backgroundColor": "#1E6EFA",
+                  "borderColor": "#1E6EFA",
+                  "borderWidth": 1,
+                  "width": "100%",
                 },
               ]
             }
-            white={false}
           >
-            Update
-          </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#ffffff",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+            >
+              Update
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>

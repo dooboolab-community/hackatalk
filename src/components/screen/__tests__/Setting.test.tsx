@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AuthUser, SignInType } from '../../../types';
+import { AuthUser, SocialType } from '../../../types';
 import {
   RenderResult,
   cleanup,
@@ -15,7 +15,7 @@ import Setting from '../Setting';
 import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
-function getEmptyAuthUserWithSignInType(signInType: SignInType): AuthUser {
+function getEmptyAuthUserWithSignInType(signInType: SocialType): AuthUser {
   return {
     uid: '',
     displayName: '',
@@ -24,7 +24,7 @@ function getEmptyAuthUserWithSignInType(signInType: SignInType): AuthUser {
     statusMsg: '',
     friends: [],
     chatrooms: [],
-    signedInWith: signInType,
+    social: signInType,
   };
 }
 
@@ -40,7 +40,7 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(SignInType.Email),
+      getEmptyAuthUserWithSignInType(SocialType.Email),
     );
     testingLib = render(component);
   });
@@ -54,7 +54,7 @@ describe('[Setting] screen', () => {
       createTestElement(
         <SettingTest />,
         undefined,
-        getEmptyAuthUserWithSignInType(SignInType.Facebook),
+        getEmptyAuthUserWithSignInType(SocialType.Facebook),
       ),
     );
     expect(rendered.toJSON()).toMatchSnapshot();
@@ -64,7 +64,7 @@ describe('[Setting] screen', () => {
       createTestElement(
         <SettingTest />,
         undefined,
-        getEmptyAuthUserWithSignInType(SignInType.Google),
+        getEmptyAuthUserWithSignInType(SocialType.Google),
       ),
     );
     expect(rendered.toJSON()).toMatchSnapshot();
