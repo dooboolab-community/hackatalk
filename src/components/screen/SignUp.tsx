@@ -144,7 +144,7 @@ function Page(props: Props): ReactElement {
               color: theme.fontColor,
             }}
             label={getString('NAME')}
-            placeholder="youremail@email.com"
+            placeholder={getString('NAME_HINT')}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
