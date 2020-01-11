@@ -4,8 +4,9 @@ import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
-import { IC_ICON, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import {
   androidExpoClientId,
   iOSClientId,
@@ -19,7 +20,6 @@ import StatusBar from '../shared/StatusBar';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
 import { validateEmail } from '../../utils/common';
 
 const Container = styled.SafeAreaView`
@@ -102,7 +102,7 @@ function SignIn(props: Props): ReactElement {
   const [errorPassword, setErrorPassword] = useState<string>('');
   let timer: number;
 
-  const { theme, changeThemeType } = useThemeContext();
+  const { theme, changeThemeType, themeType } = useThemeContext();
 
   const goToSignUp = (): void => {
     props.navigation.navigate('SignUp');
@@ -232,8 +232,12 @@ function SignIn(props: Props): ReactElement {
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity testID="theme-test" onPress={(): void => changeThemeType()} style={{ width: 60 }}>
-              <StyledLogoImage source={IC_ICON} />
+            <TouchableOpacity testID="theme-test"
+              onPress={(): void => changeThemeType()}
+              style={{
+                width: 60, alignItems: 'center',
+              }}>
+              <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
               <View style={{ height: 12 }} />
               <StyledLogoText>{getString('HELLO')}</StyledLogoText>
             </TouchableOpacity>
