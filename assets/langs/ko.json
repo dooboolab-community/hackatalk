@@ -10,6 +10,7 @@
   "FORGOT_PW": "비밀번호를 잊어버리셨나요?",
   "FIND_PW": "비밀번호 찾기",
   "NAME": "이름",
+  "NAME_HINT": "이름을 입력해주세요",
   "STATUS_MSG": "상태 메세지",
   "STATUS_MSG_HINT": "상태 메시지를 입력해주세요",
   "REGISTER": "가입",

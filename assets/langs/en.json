@@ -10,6 +10,7 @@
   "FORGOT_PW": "Forgot password?",
   "FIND_PW": "Find Password",
   "NAME": "Name",
+  "NAME_HINT": "Please write your name",
   "STATUS_MSG": "Status message",
   "STATUS_MSG_HINT": "Please write your status message",
   "REGISTER": "Register",
