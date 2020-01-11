@@ -81,9 +81,9 @@ exports[`[Setting] screen renders without crashing 1`] = `
               "backgroundColor": "#ffffff",
               "borderBottomColor": "#d3d8e8",
               "borderBottomWidth": 1,
-              "height": 52,
+              "height": 40,
               "justifyContent": "center",
-              "marginLeft": 10,
+              "marginLeft": 12,
             },
           ]
         }
@@ -93,6 +93,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             Array [
               Object {
                 "color": "#1E6EFA",
+                "marginLeft": 2,
               },
             ]
           }
@@ -237,9 +238,9 @@ exports[`[Setting] screen renders without crashing 2`] = `
               "backgroundColor": "#ffffff",
               "borderBottomColor": "#d3d8e8",
               "borderBottomWidth": 1,
-              "height": 52,
+              "height": 40,
               "justifyContent": "center",
-              "marginLeft": 10,
+              "marginLeft": 12,
             },
           ]
         }
@@ -249,6 +250,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Array [
               Object {
                 "color": "#1E6EFA",
+                "marginLeft": 2,
               },
             ]
           }
@@ -397,9 +399,9 @@ exports[`[Setting] screen renders without crashing 3`] = `
               "backgroundColor": "#ffffff",
               "borderBottomColor": "#d3d8e8",
               "borderBottomWidth": 1,
-              "height": 52,
+              "height": 40,
               "justifyContent": "center",
-              "marginLeft": 10,
+              "marginLeft": 12,
             },
           ]
         }
@@ -409,6 +411,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Array [
               Object {
                 "color": "#1E6EFA",
+                "marginLeft": 2,
               },
             ]
           }

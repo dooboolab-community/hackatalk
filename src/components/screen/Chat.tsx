@@ -11,11 +11,11 @@ import ChatListItem from '../shared/ChatListItem';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
-import { Header } from 'react-navigation-stack';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
+import { isIPhoneXSize } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -123,8 +123,9 @@ function Screen(): React.ReactElement {
         borderColor={theme.lineColor}
         backgroundColor={theme.background}
         fontColor={theme.fontColor}
-        // @ts-ignore
-        keyboardOffset={Constants.statusBarHeight + Header.HEIGHT}
+        keyboardOffset={isIPhoneXSize
+          ? Constants.statusBarHeight + 40
+          : Constants.statusBarHeight}
         message={message}
         placeholder={getString('WRITE_MESSAGE')}
         placeholderTextColor={theme.placeholder}

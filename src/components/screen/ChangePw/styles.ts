@@ -25,8 +25,9 @@ export const CloseButton = styled.TouchableOpacity`
 `;
 
 export const InnerContainer = styled.View`
-  padding: 15px;
+  padding: 0 24px;
   flex: 1;
+  width: 100%;
 `;
 
 export const StyledTextInput = styled(TextInput).attrs(({ theme }) => ({

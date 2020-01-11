@@ -8440,14 +8440,7 @@ react-native-webview@7.4.3:
     stacktrace-parser "^0.1.3"
     whatwg-fetch "^3.0.0"
 
-react-navigation-stack@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-navigation-stack/-/react-navigation-stack-2.0.2.tgz#ae2e4556a33bd0f6db14ec1f2bff390e32378ba0"
-  integrity sha512-DDh1vEC0Sp3nNIsuFxXk5hM0eTH+PgrjDcoivyZ2+EubQYsJISB5Cw6jOyy+1i0LbfBs8YouZ+1fJsbPo3IyOw==
-  dependencies:
-    color "^3.1.2"
-
-react-navigation@*, react-navigation@^4.0.10:
+react-navigation@*:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-4.0.10.tgz#ddf41134600689d6ba99e35dd22ba1f664f91e5c"
   integrity sha512-7PqvmsdQ7HIyxPUMYbd9Uq//VoMdniEOLAOSvIhb/ExtbAt/1INSjUF+RiMWOMCWLTCNvNPRvTz7xy7qwWureg==

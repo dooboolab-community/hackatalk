@@ -8,15 +8,16 @@ export const Container = styled.View`
 
 export const HeaderContainer = styled.View`
   background-color: ${({ theme }): string => theme.background};
-  height: 52px;
+  height: 40px;
   justify-content: center;
-  margin-left: 10px;
+  margin-left: 12px;
   border-bottom-width: 1;
   border-bottom-color: ${({ theme }): string => theme.lineColor};
 `;
 
 export const SectionHeader = styled.Text`
   color: ${({ theme }): string => theme.fontSubColor};
+  margin-left: 2px;
 `;
 
 export const ItemContainer = styled.TouchableOpacity`
