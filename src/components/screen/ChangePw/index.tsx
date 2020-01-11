@@ -13,7 +13,7 @@ import React, {
   useState,
 } from 'react';
 
-import Button from '../../shared/Button';
+import { Button } from '@dooboo-ui/native';
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
 import { SafeAreaView } from 'react-navigation';
@@ -122,9 +122,21 @@ function ChangePw(props: Props): ReactElement {
       <Button
         testID="checkCurrentPwBtn"
         onPress={isValidCurrentPw ? changePassword : validateCurrent}
-      >
-        {isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
-      </Button>
+        // containerStyle={{
+        //   width: '100%',
+        // }}
+        style={{
+          backgroundColor: theme.btnPrimary,
+          borderWidth: 0,
+          height: 56,
+          width: '100%',
+        }}
+        textStyle={{
+          color: theme.btnPrimaryFont,
+          fontSize: 16,
+        }}
+        text={isValidCurrentPw ? getString('CONFIRM') : getString('NEXT')}
+      />
     </SafeAreaView>
   );
 }

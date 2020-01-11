@@ -2,6 +2,7 @@
 export const colors = {
   light: '#ffffff',
   dark: '#151A25',
+  backgroundDark: '#151E22',
   deepDark: '#000000',
   blue_80: '#2F38C7',
   blue_70: '#1E6EFA',
@@ -17,6 +18,8 @@ export const colors = {
   gray_40: '#AFB4C3',
   gray_30: '#d3d8e8',
   gray_05: '#f3f9ff',
+  google: 'rgb(224,66,56)',
+  facebook: 'rgb(52,89,151)',
 };
 /* eslint-enable */
 

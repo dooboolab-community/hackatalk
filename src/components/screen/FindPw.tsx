@@ -1,8 +1,7 @@
+import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import Button from '../shared/Button';
-import { EditText } from '@dooboo-ui/native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -59,9 +58,11 @@ function Page(props: Props): ReactElement {
           textStyle={{
             color: theme.fontColor,
           }}
+          borderColor={theme.font}
+          focusColor={theme.focused}
+          placeholderTextColor={theme.placeholder}
           label={getString('EMAIL')}
           placeholder="hello@example.com"
-          placeholderTextColor={theme.placeholder}
           value={email}
           onChangeText={(text: string): void => {
             setEmail(text);
@@ -76,10 +77,10 @@ function Page(props: Props): ReactElement {
             testID="btn-find-pw"
             isLoading={findingPw}
             onPress={onFindPw}
-            containerStyle={{ padding: 5, height: 52 }}
-          >
-            {getString('FIND_PW')}
-          </Button>
+            containerStyle={{ height: 52, backgroundColor: theme.btnPrimary }}
+            textStyle={{ color: theme.btnPrimaryFont }}
+            text={getString('FIND_PW')}
+          />
         </ButtonWrapper>
       </Wrapper>
     </Container>

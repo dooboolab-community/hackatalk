@@ -1,9 +1,8 @@
+import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 import { validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import Button from '../shared/Button';
-import { EditText } from '@dooboo-ui/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
@@ -21,7 +20,7 @@ const Wrapper = styled.View`
 
 const ButtonWrapper = styled.View`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 32px;
   flex-direction: row-reverse;
 `;
 
@@ -83,16 +82,16 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            borderColor={theme.font}
             focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
             label={getString('EMAIL')}
             placeholder="hello@example.com"
-            placeholderTextColor={theme.placeholder}
             value={email}
             onChangeText={(text: string): void => {
               setEmail(text);
               setErrorEmail('');
             }}
-            style={{ marginTop: 20 }}
             errorText={errorEmail}
             onSubmitEditing={onSignUp}
           />
@@ -102,7 +101,9 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            borderColor={theme.font}
             focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
             placeholder="********"
             label={getString('PASSWORD')}
             value={password}
@@ -110,8 +111,7 @@ function Page(props: Props): ReactElement {
               setPassword(text);
               setErrorPassword('');
             }}
-            style={{ marginTop: 20 }}
-            placeholderTextColor={theme.placeholder}
+            style={{ marginTop: 32 }}
             errorText={errorPassword}
             onSubmitEditing={onSignUp}
             secureTextEntry={true}
@@ -122,7 +122,6 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
-            focusColor={theme.focused}
             placeholder="********"
             label={getString('CONFIRM_PASSWORD')}
             value={confirmPassword}
@@ -130,7 +129,9 @@ function Page(props: Props): ReactElement {
               setConfirmPassword(text);
               setErrorConfirmPassword('');
             }}
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 32 }}
+            borderColor={theme.font}
+            focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             errorText={errorConfirmPassword}
             onSubmitEditing={onSignUp}
@@ -142,16 +143,17 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
-            focusColor={theme.focused}
             label={getString('NAME')}
             placeholder="youremail@email.com"
+            borderColor={theme.font}
+            focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             value={name}
             onChangeText={(text: string): void => {
               setName(text);
               setErrorName('');
             }}
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 32 }}
             errorText={errorName}
             onSubmitEditing={onSignUp}
           />
@@ -161,15 +163,16 @@ function Page(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
+            borderColor={theme.font}
             focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
             label={getString('STATUS')}
             placeholder={getString('STATUS_MSG_HINT')}
-            placeholderTextColor={theme.placeholder}
             value={status}
             onChangeText={(text: string): void => {
               setStatus(text);
             }}
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 32 }}
             onSubmitEditing={onSignUp}
           />
           <ButtonWrapper>
@@ -177,10 +180,10 @@ function Page(props: Props): ReactElement {
               testID="btn-sign-up"
               isLoading={isSignUp}
               onPress={onSignUp}
-              containerStyle={{ padding: 5, width: '50%', height: 52 }}
-            >
-              {getString('SIGN_UP')}
-            </Button>
+              containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
+              textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
+              text={getString('SIGN_UP')}
+            />
           </ButtonWrapper>
         </Wrapper>
       </ScrollView>

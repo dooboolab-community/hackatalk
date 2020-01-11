@@ -29,6 +29,7 @@
   "FRIEND_ADDED": "친구로 등록되었습니다.",
   "FRIEND_ALREADY_ADDED": "이미 친구입니다.",
   "SETTING": "설정",
+  "SIGN_IN_WITH_APPLE": "애플 계정으로 시작하기",
   "SIGN_IN_WITH_GOOGLE": "구글 계정으로 시작하기",
   "SIGN_IN_WITH_FACEBOOK": "페이스북 계정으로 시작하기",
   "STATUS": "상태 메세지",

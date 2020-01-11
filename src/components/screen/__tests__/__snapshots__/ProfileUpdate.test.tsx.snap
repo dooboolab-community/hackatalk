@@ -45,7 +45,7 @@ exports[`rendering test renders as expected 1`] = `
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={[Function]}
-        testID="user_icon_button"
+        testID="button-user-icon"
       >
         <Text />
       </TouchableOpacity>
@@ -124,7 +124,7 @@ exports[`rendering test renders as expected 1`] = `
                 },
               ]
             }
-            testID="input_name"
+            testID="input-name"
             textContentType="none"
             underlineColorAndroid="transparent"
             value=""
@@ -206,7 +206,7 @@ exports[`rendering test renders as expected 1`] = `
                 },
               ]
             }
-            testID="input_status"
+            testID="input-status"
             textContentType="none"
             underlineColorAndroid="transparent"
             value=""
@@ -254,7 +254,7 @@ exports[`rendering test renders as expected 1`] = `
               },
             ]
           }
-          testID="logout_btn"
+          testID="button-logout"
           white={true}
           width="auto"
         >
@@ -304,7 +304,7 @@ exports[`rendering test renders as expected 1`] = `
               },
             ]
           }
-          testID="update_btn"
+          testID="button-update"
           white={false}
           width="auto"
         >

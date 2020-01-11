@@ -11,6 +11,7 @@ import {
   fireEvent,
   render,
   wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -51,7 +52,8 @@ describe('[SignIn] interaction', () => {
 
   it('should change theme when icon is pressed', async () => {
     const themeTouch = testingLib.getByTestId('theme-test');
-    await wait(() => expect(themeTouch).toBeTruthy());
+
+    await waitForElement(() => themeTouch);
 
     act(() => {
       fireEvent.press(themeTouch);

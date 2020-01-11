@@ -2,8 +2,8 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { IC_APPLE, IC_FACEBOOK, IC_GOOGLE, IC_ICON } from '../../utils/Icons';
+import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useEffect, useState } from 'react';
 import {
   androidExpoClientId,
@@ -12,11 +12,13 @@ import {
 } from '../../../config';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import Button from '../shared/Button';
 import Constants from 'expo-constants';
-import { EditText } from '@dooboo-ui/native';
+import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import { IC_ICON } from '../../utils/Icons';
+import { Ionicons } from '@expo/vector-icons';
 import StatusBar from '../shared/StatusBar';
 import { User } from '../../types';
+import { colors } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -33,8 +35,8 @@ const Wrapper = styled.View`
 `;
 
 const LogoWrapper = styled.View`
-  margin-top: 60px;
-  margin-bottom: 88px;
+  margin-top: 44px;
+  margin-bottom: 72px;
 `;
 
 const StyledLogoImage = styled.Image`
@@ -49,14 +51,14 @@ const StyledLogoText = styled.Text`
 `;
 
 const ButtonWrapper = styled.View`
-  margin-top: 16px;
+  margin-top: 12px;
   width: 100%;
   flex-direction: row;
 `;
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 44px;
   align-self: center;
 `;
 
@@ -66,19 +68,7 @@ const FindPwText = styled.Text`
 `;
 
 const SocialButtonWrapper = styled.View`
-  margin-bottom: 60px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SocialBtnRound = styled.View`
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: ${({ theme }): string => theme.socialBtn};
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 24px;
 `;
 
 interface Props {
@@ -246,13 +236,14 @@ function SignIn(props: Props): ReactElement {
           <LogoWrapper>
             <TouchableOpacity testID="theme-test" onPress={(): void => changeThemeType()} style={{ width: 60 }}>
               <StyledLogoImage source={IC_ICON} />
-              <View style={{ height: 16 }} />
-              <StyledLogoText>Hello!</StyledLogoText>
+              <View style={{ height: 12 }} />
+              <StyledLogoText>{getString('HELLO')}</StyledLogoText>
             </TouchableOpacity>
           </LogoWrapper>
           <EditText
             testID="input-email"
             errorTestID="error-email"
+            type={EditTextInputType.ROW}
             textStyle={{
               color: theme.fontColor,
             }}
@@ -261,8 +252,8 @@ function SignIn(props: Props): ReactElement {
             label={getString('EMAIL')}
             borderColor={theme.font}
             focusColor={theme.focused}
-            placeholder="hello@example.com"
             placeholderTextColor={theme.placeholder}
+            placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
               setEmail(text);
@@ -274,6 +265,7 @@ function SignIn(props: Props): ReactElement {
           <EditText
             testID="input-password"
             errorTestID="error-password"
+            type={EditTextInputType.ROW}
             textStyle={{
               color: theme.fontColor,
             }}
@@ -297,20 +289,44 @@ function SignIn(props: Props): ReactElement {
             <Button
               testID="btn-sign-up"
               onPress={goToSignUp}
-              containerStyle={{ flex: 1, flexDirection: 'row', height: 52 }}
-              isWhite
-            >
-              {getString('SIGN_UP')}
-            </Button>
+              containerStyle={{
+                flex: 1,
+                flexDirection: 'row',
+                height: 52,
+                justifyContent: 'center',
+              }}
+              style={{
+                width: '100%',
+                backgroundColor: theme.btnPrimaryLight,
+                borderColor: theme.btnPrimary,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                color: theme.btnPrimary,
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}
+              text={getString('SIGN_UP')}
+            />
             <View style={{ width: 20 }} />
             <Button
               testID="btn-sign-in"
               isLoading={isLoggingIn}
               onPress={onSignIn}
-              containerStyle={{ flex: 1, flexDirection: 'row', height: 52 }}
-            >
-              {getString('LOGIN')}
-            </Button>
+              containerStyle={{
+                flex: 1,
+                flexDirection: 'row',
+                height: 52,
+                justifyContent: 'center',
+                backgroundColor: theme.btnPrimary,
+              }}
+              textStyle={{
+                color: theme.btnPrimaryFont,
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}
+              text={getString('LOGIN')}
+            />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
             <FindPwText>
@@ -320,94 +336,82 @@ function SignIn(props: Props): ReactElement {
           <SocialButtonWrapper>
             {
               Platform.select({
-                ios: <TouchableOpacity
+                ios: <Button
                   testID="btn-apple"
-                  onPress={appleLogin}
-                >
-                  <SocialBtnRound>
-                    <Image
-                      source={IC_APPLE}
-                    />
-                  </SocialBtnRound>
-                </TouchableOpacity>,
+                  style={{
+                    backgroundColor: '#fff',
+                    borderColor: colors.backgroundDark,
+                    width: '100%',
+                    height: 48,
+                    borderWidth: 1,
+                    marginBottom: 6,
+                  }}
+                  leftElement={
+                    <View
+                      style={{
+                        marginLeft: 18,
+                      }}
+                    >
+                      <Ionicons name="logo-apple" size={26} color={colors.backgroundDark} />
+                    </View>
+                  }
+                  isLoading={signingInFacebook}
+                  indicatorColor={theme.primary}
+                  onPress={facebookLogin}
+                  text={getString('SIGN_IN_WITH_APPLE')}
+                  textStyle={{ fontWeight: '700', color: 'black' }}
+                />,
               })
             }
-            <TouchableOpacity
+            <Button
               testID="btn-facebook"
-              onPress={facebookLogin}
               style={{
-                marginHorizontal: 16,
+                backgroundColor: colors.facebook,
+                borderColor: theme.background,
+                borderWidth: 1,
+                width: '100%',
+                height: 48,
+                marginBottom: 6,
               }}
-            >
-              <SocialBtnRound>
-                <Image
-                  source={IC_FACEBOOK}
-                />
-              </SocialBtnRound>
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="btn-google"
-              onPress={googleSignInAsync}
-            >
-              <SocialBtnRound>
-                <Image
-                  source={IC_GOOGLE}
-                />
-              </SocialBtnRound>
-            </TouchableOpacity>
-            {/* <DoobooButton
-              testID="btn-facebook"
-              style={[
-                {
-                  backgroundColor: theme.socialBtn,
-                  borderColor: theme.background,
-                  borderRadius: 4,
-                  width: '100%',
-                  height: 52,
-                },
-              ]}
-              iconLeft={
+              leftElement={
                 <View
                   style={{
                     marginLeft: 16,
                   }}
                 >
-                  <Ionicons name="logo-facebook" size={20} color="white" />
+                  <Ionicons name="logo-facebook" size={24} color="white" />
                 </View>
               }
               isLoading={signingInFacebook}
               indicatorColor={theme.primary}
-              onClick={facebookLogin}
+              onPress={facebookLogin}
               text={getString('SIGN_IN_WITH_FACEBOOK')}
               textStyle={{ fontWeight: '700', color: 'white' }}
             />
-            <View style={{ width: '100%', height: 5 }} />
-            <DoobooButton
+            <Button
               testID="btn-google"
-              style={[
-                {
-                  backgroundColor: theme.socialBtn,
-                  borderColor: theme.background,
-                  borderRadius: 4,
-                  width: '100%',
-                  height: 52,
-                },
-              ]}
-              iconLeft={
+              style={{
+                backgroundColor: colors.google,
+                borderColor: theme.background,
+                borderWidth: 1,
+                width: '100%',
+                height: 48,
+              }}
+              leftElement={
                 <View
                   style={{
                     marginLeft: 16,
                   }}
                 >
-                  <Ionicons name="logo-google" size={20} color="white" />
+                  <Ionicons name="logo-google" size={24} color="white" />
                 </View>
               }
               isLoading={signingInGoogle}
               indicatorColor={theme.primary}
-              onClick={googleSignInAsync}
+              onPress={googleSignInAsync}
               text={getString('SIGN_IN_WITH_GOOGLE')}
               textStyle={{ fontWeight: '700', color: 'white' }}
-            /> */}
+            />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
