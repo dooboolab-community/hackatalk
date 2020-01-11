@@ -406,13 +406,14 @@ function SignIn(props: Props): ReactElement {
           <StyledAgreementTextWrapper>
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
+              testID="btn-terms"
               onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
-              testID="webView"
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
+              testID="btn-privacy"
               onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
             >
               {getString('AGREEMENT4')}

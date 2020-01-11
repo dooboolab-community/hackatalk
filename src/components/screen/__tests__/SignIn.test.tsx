@@ -17,6 +17,7 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Alert } from 'react-native';
 import SignIn from '../SignIn';
+import { ThemeType } from '@dooboo-ui/native-theme';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -32,10 +33,17 @@ describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<SignIn {...props} />);
-    testingLib = render(component);
   });
 
-  it('renders as expected', () => {
+  it('should render without crashing', () => {
+    testingLib = render(component);
+    expect(testingLib.baseElement).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
+  });
+
+  it('should render [Dark] mode without crashing', () => {
+    component = createTestElement(<SignIn {...props} />, ThemeType.DARK);
+    testingLib = render(component);
     expect(testingLib.baseElement).toBeTruthy();
     expect(testingLib.baseElement).toMatchSnapshot();
   });
@@ -96,6 +104,24 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(findPwBtn);
     });
     expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
+  });
+
+  it('should navigate to [WebView] when terms has been pressed', async () => {
+    const btnTerms = testingLib.getByTestId('btn-terms');
+    await waitForElement(() => btnTerms);
+    act(() => {
+      fireEvent.press(btnTerms);
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/termsofservice' });
+  });
+
+  it('should navigate to [WebView] when terms has been pressed', async () => {
+    const btnPrivary = testingLib.getByTestId('btn-privacy');
+    await waitForElement(() => btnPrivary);
+    act(() => {
+      fireEvent.press(btnPrivary);
+    });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/privacyandpolicy' });
   });
 
   describe('onSignIn', () => {
@@ -196,6 +222,15 @@ describe('[SignIn] interaction', () => {
 
       await act(() => wait());
       expect(props.navigation).toBeNull();
+    });
+  });
+
+  it('should call Apple signin when pressing button', async () => {
+    const btnApple = testingLib.getByTestId('btn-apple');
+    await wait(() => expect(btnApple).toBeTruthy());
+
+    act(() => {
+      fireEvent.press(btnApple);
     });
   });
 
