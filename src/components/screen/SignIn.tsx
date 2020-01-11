@@ -172,7 +172,7 @@ function SignIn(props: Props): ReactElement {
           clientId: Platform.select({
             ios: iOSExpoClientId,
             android: androidExpoClientId,
-          }),
+          }) as string,
         });
         Alert.alert('login:' + JSON.stringify(response.accessToken));
       } catch ({ message }) {
