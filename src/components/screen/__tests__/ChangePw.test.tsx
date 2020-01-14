@@ -6,7 +6,6 @@ import {
   cleanup,
   fireEvent,
   render,
-  wait,
   waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';

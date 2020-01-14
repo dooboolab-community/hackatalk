@@ -105,7 +105,6 @@ function ChannelListItem(props: Props): React.ReactElement {
         sender: { photoURL, online, displayName },
         // @ts-ignore
         message,
-        messageType,
         created,
       },
       lastMessageCnt,

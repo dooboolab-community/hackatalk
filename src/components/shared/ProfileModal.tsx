@@ -169,7 +169,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   }));
   const { photoURL, displayName, statusMsg } = user;
   const {
-    theme: { primary, primaryLight, modalBtnPrimaryFont },
+    theme: { primary, modalBtnPrimaryFont },
   } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (

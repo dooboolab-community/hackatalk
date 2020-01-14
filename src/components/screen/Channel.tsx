@@ -21,7 +21,7 @@ interface Props {
   navigation: MainStackNavigationProps<'Message'>;
 }
 
-const channels: ChannelType[] = [
+const initialChannels: ChannelType[] = [
   {
     id: 'room1',
     lastMessage: {
@@ -63,7 +63,7 @@ const channels: ChannelType[] = [
 ];
 
 function Channel(): React.ReactElement {
-  const [rooms, setRooms] = useState(channels);
+  const [channels, setChannels] = useState(initialChannels);
   const navigation = useNavigation();
 
   const onItemClick = (itemId: string): void => {
@@ -87,7 +87,7 @@ function Channel(): React.ReactElement {
         }}
         // prettier-ignore
         contentContainerStyle={
-          rooms.length === 0
+          channels.length === 0
             ? {
               flex: 1,
               alignSelf: 'stretch',
@@ -97,7 +97,7 @@ function Channel(): React.ReactElement {
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={rooms}
+        data={channels}
         renderItem={({ item, index }): React.ReactElement =>
           renderItem(item, index)
         }
