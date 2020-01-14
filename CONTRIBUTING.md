@@ -118,6 +118,16 @@ array.forEach((e) => {
 ```
 
 - Space before `(` and after `)`.
+
+*** Important ***
+- testID should be written in `kebab-case`
+  `testID = "my-test-id"`
+- Class name should be a `PascalCase`
+- Constants should be written in `UPPER_SNAKE_CASE`
+- Variables and functions should be written in `camelCase`
+- Constant string variables should be written in `LOWER_SNAKE_CASE`
+  `const imgUrl = 'assets/icons/icon_add.png'`
+
 - **If you find code that does not fit in the coding convention, do not ever try to fix code that is not related to your purpose.**
 
 #### Prettier
