@@ -4,11 +4,11 @@ import React, { ReactElement } from 'react';
 import { RenderResult, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import ChatroomListItem from '../ChatroomListItem';
+import ChannelListItem from '../ChannelListItem';
 
 // Note: test renderer must be required after react-native.
 
-describe('[ChatroomListItem] rendering test', () => {
+describe('[ChannelListItem] rendering test', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let props: any;
   let component: ReactElement;
@@ -19,7 +19,7 @@ describe('[ChatroomListItem] rendering test', () => {
       item: {
         id: 'room1',
         secret: 'secret1',
-        lastChat: {
+        lastMessage: {
           id: 'id_3',
           sender: {
             uid: 'uid_3',
@@ -33,10 +33,10 @@ describe('[ChatroomListItem] rendering test', () => {
           created: new Date(0),
           updated: new Date(0),
         },
-        lastChatCnt: 3,
+        lastMessageCnt: 3,
       },
     });
-    component = createTestElement(<ChatroomListItem {...props} />);
+    component = createTestElement(<ChannelListItem {...props} />);
     testingLib = render(component);
   });
 

@@ -16,7 +16,7 @@ let component: React.ReactElement;
 describe('[GiftedChatInput] render', () => {
   beforeEach(() => {
     props = createTestProps({
-      chats: [
+      messages: [
         {
           id: '',
           sender: {

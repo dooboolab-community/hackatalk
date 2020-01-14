@@ -14,6 +14,7 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import SignUp from '../SignUp';
 import renderer from 'react-test-renderer';
 
+// eslint-disable-next-line
 let props: any;
 let component: ReactElement;
 

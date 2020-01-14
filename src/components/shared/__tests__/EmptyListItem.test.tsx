@@ -6,8 +6,6 @@ import { RenderResult, render } from '@testing-library/react-native';
 
 import EmptyListItem from '../EmptyListItem';
 import { createTestProps } from '../../../../test/testUtils';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 describe('[EmptyListItem] render', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -2,12 +2,15 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, render } from '@testing-library/react-native';
+import {
+  RenderResult,
+  render,
+} from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import WebView from '../WebView';
-import renderer from 'react-test-renderer';
 
+// eslint-disable-next-line
 let props: any;
 let component: React.ReactElement;
 let testingLib: RenderResult;
@@ -26,8 +29,6 @@ describe('[WebView] screen', () => {
   });
 
   it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
   });
 });

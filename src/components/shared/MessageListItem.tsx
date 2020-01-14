@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { ChatProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
+import { MessageProps } from '../../types';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -77,8 +77,8 @@ const StyledMyMessage = styled.View`
 `;
 
 interface Props {
-  item: ChatProps;
-  prevItem?: ChatProps;
+  item: MessageProps;
+  prevItem?: MessageProps;
   onPressPeerImage?: () => void;
   testID?: string;
 }
@@ -108,7 +108,7 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
   );
 };
 
-function Shared(props: Props): React.ReactElement {
+function MessageListItem(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const {
     item: {
@@ -167,7 +167,7 @@ function Shared(props: Props): React.ReactElement {
   );
 }
 
-Shared.defaultProps = {
+MessageListItem.defaultProps = {
   item: {
     id: '',
     sender: {
@@ -183,4 +183,4 @@ Shared.defaultProps = {
   },
 };
 
-export default Shared;
+export default MessageListItem;

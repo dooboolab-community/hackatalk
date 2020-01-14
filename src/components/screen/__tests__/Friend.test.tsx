@@ -3,7 +3,7 @@
 import ProfileContext, {
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement } from 'react';
 import {
   RenderResult,
   cleanup,

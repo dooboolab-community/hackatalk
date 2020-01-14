@@ -104,7 +104,7 @@ Shared.defaultProps = {
     statusMsg: '',
     online: false,
     friends: [],
-    chatrooms: [],
+    channels: [],
     created: undefined,
     updated: undefined,
   },

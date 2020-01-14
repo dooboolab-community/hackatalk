@@ -1,6 +1,6 @@
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
-import { Chatroom } from '../../types';
+import { ChannelType } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import moment from 'moment';
@@ -68,11 +68,11 @@ const StyledViewBottom = styled.View`
   justify-content: space-between;
 `;
 
-const StyledTextMessage = styled.Text<{ lastChatCnt: number }>`
+const StyledTextMessage = styled.Text<{ lastMessageCnt: number }>`
   font-size: 12px;
   color: ${({ theme }): string => theme.fontColor};
   max-width: 150px;
-  ${({ lastChatCnt }): string => (lastChatCnt ? 'font-weight: bold;' : '')}
+  ${({ lastMessageCnt }): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
 const StyledTextDate = styled.Text`
@@ -89,26 +89,25 @@ const StyledImage = styled.Image`
 interface Props {
   testID?: string;
   style?: ViewStyle;
-  item: Chatroom;
+  item: ChannelType;
   onPress?: () => void;
   fontColor?: string;
 }
 
-function Shared(props: Props): React.ReactElement {
+function ChannelListItem(props: Props): React.ReactElement {
   const {
     theme: { fontColor },
   } = useThemeContext();
 
   const {
     item: {
-      lastChat: {
+      lastMessage: {
         sender: { photoURL, online, displayName },
         // @ts-ignore
         message,
-        messageType,
         created,
       },
-      lastChatCnt,
+      lastMessageCnt,
     },
     onPress,
   } = props;
@@ -140,16 +139,16 @@ function Shared(props: Props): React.ReactElement {
           <StyledViewContent>
             <StyledViewTop>
               <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
-              {lastChatCnt !== 0 ? (
+              {lastMessageCnt !== 0 ? (
                 <StyledTextWrapper>
-                  <StyledTextCount>{lastChatCnt}</StyledTextCount>
+                  <StyledTextCount>{lastMessageCnt}</StyledTextCount>
                 </StyledTextWrapper>
               ) : (
                 <View />
               )}
             </StyledViewTop>
             <StyledViewBottom>
-              <StyledTextMessage numberOfLines={2} lastChatCnt={lastChatCnt}>
+              <StyledTextMessage numberOfLines={2} lastMessageCnt={lastMessageCnt}>
                 {message}
               </StyledTextMessage>
               <StyledTextDate>
@@ -163,10 +162,10 @@ function Shared(props: Props): React.ReactElement {
   );
 }
 
-Shared.defaultProps = {
+ChannelListItem.defaultProps = {
   item: {
     id: 'room1',
-    lastChat: {
+    lastMessage: {
       id: 'id_3',
       sender: {
         uid: 'uid_3',
@@ -180,8 +179,8 @@ Shared.defaultProps = {
       created: new Date(0),
       updated: new Date(0),
     },
-    lastChatCnt: 3,
+    lastMessageCnt: 3,
   },
 };
 
-export default Shared;
+export default ChannelListItem;

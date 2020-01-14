@@ -23,7 +23,7 @@ function getEmptyAuthUserWithSignInType(signInType: SocialType): AuthUser {
     photoURL: '',
     statusMsg: '',
     friends: [],
-    chatrooms: [],
+    channels: [],
     social: signInType,
   };
 }
