@@ -11,8 +11,6 @@ import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
-// import { CommonActions } from '@react-navigation/core';
-
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
@@ -149,7 +147,7 @@ function Screen(props: Props): React.ReactElement {
             onPress={onPressImg}
           >
             {!profilePath ? (
-              <SvgNoProfile width={60} height={60} fill={theme.fontColor} />
+              <SvgNoProfile width={80} height={80} fill={theme.fontColor} />
             ) : (
               <ProfileImage
                 testID="profile-image"
