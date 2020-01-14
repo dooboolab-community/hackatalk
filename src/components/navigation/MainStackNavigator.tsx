@@ -6,10 +6,10 @@ import React, { ReactElement, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, View } from 'react-native';
 
-import Chat from '../screen/Chat';
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { Ionicons } from '@expo/vector-icons';
+import Message from '../screen/Message';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
@@ -24,7 +24,7 @@ export type MainStackParamList = {
   MainTab: undefined;
   ProfileUpdate: undefined;
   SearchUser: undefined;
-  Chat: { chatroomId: string };
+  Message: { channelId: string };
   Setting: undefined;
   ChangePw: undefined;
 };
@@ -108,9 +108,9 @@ function MainStackNavigator(): ReactElement {
         component={SearchUser}
         options={getSimpleHeader(getString('SEARCH_USER'), theme)} />
       <Stack.Screen
-        name="Chat"
-        component={Chat}
-        options={getSimpleHeader(getString('CHAT'), theme)}
+        name="Message"
+        component={Message}
+        options={getSimpleHeader(getString('MESSAGE'), theme)}
       />
       <Stack.Screen name="Setting" component={Setting} options={getSimpleHeader(getString('SETTING'), theme)} />
       <Stack.Screen
@@ -147,7 +147,7 @@ function RootNavigator(): ReactElement {
           if (state.modal && state.modal.current) {
             state.modal.current.close();
           }
-          navigation.navigate('Chat');
+          navigation.navigate('Message');
         }}
       />
     </View>

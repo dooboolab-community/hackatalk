@@ -33,44 +33,14 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         }
       />
     }
-    contentContainerStyle={null}
-    data={
-      Array [
-        Object {
-          "id": "",
-          "message": "hello1",
-          "sender": Object {
-            "displayName": "sender111",
-            "photoURL": "",
-            "statusMsg": "",
-            "thumbURL": "",
-            "uid": "0",
-          },
-        },
-        Object {
-          "id": "",
-          "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
-          "sender": Object {
-            "displayName": "sender111",
-            "photoURL": "",
-            "statusMsg": "",
-            "thumbURL": "",
-            "uid": "2",
-          },
-        },
-        Object {
-          "id": "",
-          "message": "hello",
-          "sender": Object {
-            "displayName": "sender111",
-            "photoURL": "",
-            "statusMsg": "",
-            "thumbURL": "",
-            "uid": "0",
-          },
-        },
-      ]
+    contentContainerStyle={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
     }
+    data={Array []}
     disableVirtualization={false}
     getItem={[Function]}
     getItemCount={[Function]}
@@ -101,22 +71,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
   >
     <View
       onLayout={[Function]}
-      style={null}
-    >
-      <View />
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View />
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View />
-    </View>
+    />
     <View
       onLayout={[Function]}
     >

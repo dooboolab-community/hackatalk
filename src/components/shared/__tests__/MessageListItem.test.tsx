@@ -10,7 +10,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import ChatListItem from '../ChatListItem';
+import MessageListItem from '../MessageListItem';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -38,14 +38,14 @@ let props = {
     message: 'hello1',
   },
   onPressPeerImage: jest.fn(),
-  testID: 'chatListItem0',
+  testID: 'chat-list-item0',
 };
 let component: React.ReactElement;
 
-describe('[ChatListItem] rendering test', () => {
+describe('[MessageListItem] rendering test', () => {
   beforeEach(() => {
     props = createTestProps(props);
-    component = createTestElement(<ChatListItem {...props} />);
+    component = createTestElement(<MessageListItem {...props} />);
   });
 
   afterAll(() => cleanup());
@@ -57,19 +57,19 @@ describe('[ChatListItem] rendering test', () => {
 
   it('renders [peerMessage] with URL as expected', () => {
     props.item.sender.photoURL = 'https://';
-    component = createTestElement(<ChatListItem {...props} />);
+    component = createTestElement(<MessageListItem {...props} />);
     const json = renderer.create(component).toJSON();
     expect(json).toMatchSnapshot();
   });
 });
 
-describe('[ChatListItem] interaction', () => {
+describe('[MessageListItem] interaction', () => {
   let testingLib: RenderResult;
   let component;
 
   beforeEach(() => {
     props = createTestProps(props);
-    component = createTestElement(<ChatListItem {...props} />);
+    component = createTestElement(<MessageListItem {...props} />);
     testingLib = render(component);
   });
 

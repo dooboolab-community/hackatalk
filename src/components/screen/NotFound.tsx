@@ -19,6 +19,7 @@ interface Props {
   navigation?: RootStackNavigationProps<'NotFound'>;
 }
 
+// eslint-disable-next-line
 function Page(props: Props): React.ReactElement {
   return (
     <Container>

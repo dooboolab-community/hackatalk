@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Message] screen renders without crashing 1`] = `
-<View
+exports[`[Message] rendering test renders as expected 1`] = `
+<SafeAreaView
   style={
     Array [
       Object {
@@ -11,397 +11,772 @@ exports[`[Message] screen renders without crashing 1`] = `
         "flexDirection": "column",
         "flexGrow": 1,
         "flexShrink": 1,
-        "justifyContent": "center",
       },
     ]
   }
 >
-  <ScrollView
-    ListEmptyComponent={
-      <Shared
-        style={
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Array [
           Object {
             "alignItems": "center",
             "alignSelf": "stretch",
-            "flex": 1,
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
-            "width": "100%",
-          }
-        }
-      >
-        No content
-      </Shared>
-    }
-    contentContainerStyle={null}
-    data={
-      Array [
-        Object {
-          "id": "room1",
-          "lastChat": Object {
-            "created": 1970-01-01T00:00:00.000Z,
-            "id": "id_3",
-            "message": "How are you doing?",
-            "messageType": 0,
-            "sender": Object {
-              "displayName": "displayName3",
-              "online": false,
-              "photoURL": "",
-              "statusMsg": "",
-              "thumbURL": "",
-              "uid": "uid_3",
-            },
-            "updated": 1970-01-01T00:00:00.000Z,
           },
-          "lastChatCnt": 3,
-        },
+        ],
         Object {
-          "id": "room2",
-          "lastChat": Object {
-            "created": 1970-01-01T00:00:00.000Z,
-            "id": "id_3",
-            "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
-            "messageType": 0,
-            "sender": Object {
-              "displayName": "Byun8585",
-              "online": false,
-              "photoURL": "",
-              "statusMsg": "",
-              "thumbURL": "",
-              "uid": "uid_3",
-            },
-            "updated": 1970-01-01T00:00:00.000Z,
-          },
-          "lastChatCnt": 0,
+          "paddingBottom": 0,
         },
       ]
     }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "alignSelf": "stretch",
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
   >
-    <View
+    <ScrollView
+      ListEmptyComponent={
+        <Shared
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          No content
+        </Shared>
+      }
+      ListFooterComponent={
+        <View
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      }
+      contentContainerStyle={null}
+      data={
+        Array [
+          Object {
+            "id": "",
+            "message": "hello1",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "0",
+            },
+          },
+          Object {
+            "id": "",
+            "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "2",
+            },
+          },
+          Object {
+            "id": "",
+            "message": "hello",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "0",
+            },
+          },
+          Object {
+            "id": "",
+            "message": "hello2",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "0",
+            },
+          },
+          Object {
+            "id": "",
+            "messageType": 1,
+            "photo": "http://photo.png",
+            "sender": Object {
+              "displayName": "sender111",
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "0",
+            },
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
-      style={null}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
     >
       <View
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={[Function]}
+        <View
+          isSame={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 20,
+                "minHeight": 48,
+              },
+            ]
+          }
         >
           <View
             style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#ffffff",
-                  "borderBottomWidth": 1,
-                  "borderColor": "rgb(229, 229, 229)",
-                  "flexDirection": "row",
-                  "height": 92,
-                  "justifyContent": "space-between",
-                },
-              ]
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
             }
           >
-            <View
-              style={
-                Object {
-                  "marginHorizontal": 20,
-                }
-              }
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[Function]}
+              testID="message-list-item0"
             >
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "height": 40,
-                    "justifyContent": "center",
                     "width": 40,
                   }
                 }
               >
                 <Text />
               </View>
-              <View />
-            </View>
-            <View
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <Text
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexDirection": "column",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "paddingRight": 20,
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginBottom": 2,
                   },
                 ]
               }
             >
-              <View
+              sender111
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#e2f2ff",
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
+                      "color": "#151A25",
+                      "fontSize": 14,
                     },
                   ]
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                >
-                  displayName3
-                </Text>
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#A1EEDB",
-                        "borderRadius": 8,
-                        "height": 16,
-                        "justifyContent": "center",
-                        "width": 16,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#1E6EFA",
-                          "fontSize": 10,
-                        },
-                      ]
-                    }
-                  >
-                    3
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "marginTop": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  lastChatCnt={3}
-                  numberOfLines={2}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 12,
-                        "fontWeight": "bold",
-                        "maxWidth": 150,
-                      },
-                    ]
-                  }
-                >
-                  How are you doing?
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "textAlign": "right",
-                      },
-                    ]
-                  }
-                >
-                  50 years ago
-                </Text>
-              </View>
+                hello1
+              </Text>
             </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
           </View>
-        </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
       <View
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
+        onLayout={[Function]}
+        style={null}
       >
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={[Function]}
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "flexDirection": "column",
+                "justifyContent": "flex-end",
+                "marginTop": 20,
+                "minHeight": 48,
+                "width": "100%",
+              },
+            ]
+          }
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#ffffff",
-                  "borderBottomWidth": 1,
-                  "borderColor": "rgb(229, 229, 229)",
-                  "flexDirection": "row",
-                  "height": 92,
-                  "justifyContent": "space-between",
+                  "backgroundColor": "#8bc9ff",
+                  "borderRadius": 3,
+                  "marginLeft": 28,
+                  "marginRight": 20,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
                 },
               ]
             }
           >
-            <View
+            <Text
               style={
-                Object {
-                  "marginHorizontal": 20,
-                }
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "fontSize": 14,
+                  },
+                ]
               }
+            >
+              Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
+            </Text>
+          </View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#A1EEDB",
+                  "fontSize": 12,
+                  "marginRight": 20,
+                  "marginTop": 4,
+                },
+              ]
+            }
+          >
+            0 : 0
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          isSame={false}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 20,
+                "minHeight": 48,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[Function]}
+              testID="message-list-item2"
             >
               <View
                 style={
                   Object {
-                    "alignItems": "center",
-                    "height": 40,
-                    "justifyContent": "center",
                     "width": 40,
                   }
                 }
               >
                 <Text />
               </View>
-              <View />
-            </View>
-            <View
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <Text
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexDirection": "column",
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "paddingRight": 20,
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginBottom": 2,
                   },
                 ]
               }
             >
-              <View
+              sender111
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#e2f2ff",
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
+                      "color": "#151A25",
+                      "fontSize": 14,
                     },
                   ]
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                >
-                  Byun8585
-                </Text>
-                <View />
-              </View>
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "marginTop": 8,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  lastChatCnt={0}
-                  numberOfLines={2}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 12,
-                        "maxWidth": 150,
-                      },
-                    ]
-                  }
-                >
-                  Hi. This is student from react-native-seoul. Nice to meet you.
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "textAlign": "right",
-                      },
-                    ]
-                  }
-                >
-                  50 years ago
-                </Text>
-              </View>
+                hello
+              </Text>
             </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          isSame={true}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 8,
+                "minHeight": 48,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[Function]}
+              testID="message-list-item3"
+            >
+              <View
+                style={
+                  Object {
+                    "width": 40,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <View />
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#e2f2ff",
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#151A25",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              >
+                hello2
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          isSame={true}
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-start",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginLeft": 20,
+                "marginRight": 8,
+                "marginTop": 8,
+                "minHeight": 48,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "marginRight": 8,
+                "width": 40,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              onPress={[Function]}
+              testID="message-list-item4"
+            >
+              <View
+                style={
+                  Object {
+                    "width": 40,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "maxWidth": "90%",
+              }
+            }
+          >
+            <View />
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#e2f2ff",
+                    "marginRight": 8,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "width": "100%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#151A25",
+                      "fontSize": 14,
+                    },
+                  ]
+                }
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "fontSize": 12,
+                    "marginRight": 20,
+                    "marginTop": 4,
+                  },
+                ]
+              }
+            >
+              0 : 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      </View>
+    </ScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderColor": "#d3d8e8",
+            "borderTopWidth": 0.3,
+            "flexBasis": 0,
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "space-between",
+            "maxHeight": 56,
+            "minHeight": 56,
+            "paddingLeft": 8,
+            "paddingRight": 8,
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#d3d8e8",
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        defaultValue=""
+        multiline={true}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder="Write message..."
+        placeholderTextColor="#676c7a"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "color": "black",
+              "fontSize": 14,
+              "marginRight": 20,
+              "paddingBottom": 4,
+              "paddingLeft": 48,
+              "width": "80%",
+            },
+            Object {
+              "backgroundColor": "#ffffff",
+              "color": "#151A25",
+            },
+          ]
+        }
+        testID="input_chat"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": "100%",
+              "justifyContent": "center",
+              "left": 10,
+              "minWidth": 20,
+              "position": "absolute",
+            },
+          ]
+        }
+        testID="touch_menu"
+      >
+        <Image
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
+          style={
+            Object {
+              "height": 24,
+              "width": 24,
+            }
+          }
+        />
+      </TouchableOpacity>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "marginVertical": 8,
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
+          testID="btn-message"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "borderColor": "blue",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                Object {
+                  "backgroundColor": "#1E6EFA",
+                  "height": 40,
+                  "width": 60,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#069ccd",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#ffffff",
+                  },
+                ]
+              }
+            >
+              Send
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
     </View>
-  </ScrollView>
-</View>
+  </View>
+</SafeAreaView>
 `;

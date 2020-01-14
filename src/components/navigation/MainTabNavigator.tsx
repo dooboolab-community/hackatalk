@@ -2,19 +2,19 @@ import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@re
 import React, { ReactElement } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import Channel from '../screen/Channel';
 import { CompositeNavigationProp } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import Message from '../screen/Message';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export type MaterialTopTabParamList = {
   default: undefined;
   Friend: undefined;
-  Message: undefined;
+  Channel: undefined;
 };
 
 type NavigationProps<
@@ -109,7 +109,7 @@ function MainTabNavigator(): ReactElement {
       <Tab.Screen name="Friend" component={Friend} />
       {/*
       // @ts-ignore */}
-      <Tab.Screen name="Message" component={Message} />
+      <Tab.Screen name="Channel" component={Channel} />
     </Tab.Navigator >
   );
 }

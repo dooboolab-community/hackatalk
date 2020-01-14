@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
+exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] = `
 <View
   isSame={true}
   style={
@@ -28,7 +28,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
     <TouchableOpacity
       activeOpacity={0.2}
       onPress={[MockFunction]}
-      testID="chatListItem0"
+      testID="chat-list-item0"
     >
       <View
         style={
@@ -94,7 +94,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] as expected 1`] = `
 </View>
 `;
 
-exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expected 1`] = `
+exports[`[MessageListItem] rendering test renders [peerMessage] with URL as expected 1`] = `
 <View
   isSame={true}
   style={
@@ -122,7 +122,7 @@ exports[`[ChatListItem] rendering test renders [peerMessage] with URL as expecte
     <TouchableOpacity
       activeOpacity={0.2}
       onPress={[MockFunction]}
-      testID="chatListItem0"
+      testID="chat-list-item0"
     >
       <Image
         source={

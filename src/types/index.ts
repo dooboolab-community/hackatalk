@@ -1,4 +1,4 @@
-import { ImageSourcePropType, StyleProp, TextStyle } from 'react-native';
+import { StyleProp, TextStyle } from 'react-native';
 
 import { SFC } from 'react';
 
@@ -33,11 +33,11 @@ export enum SocialType {
 
 export interface AuthUser extends User {
   friends?: [];
-  chatrooms?: [];
+  channels?: [];
   social?: SocialType;
 }
 
-export interface ChatCommon<T extends MessageType = MessageType.Message> {
+export interface ChannelCommon<T extends MessageType = MessageType.Message> {
   id: string;
   sender: User;
   messageType?: T;
@@ -45,25 +45,25 @@ export interface ChatCommon<T extends MessageType = MessageType.Message> {
   updated?: Date;
 }
 
-interface Message extends ChatCommon<MessageType.Message> {
+interface Message extends ChannelCommon<MessageType.Message> {
   message: string;
 }
 
-interface Photo extends ChatCommon<MessageType.Photo> {
+interface Photo extends ChannelCommon<MessageType.Photo> {
   photo: string;
 }
 
-interface File extends ChatCommon<MessageType.File> {
+interface File extends ChannelCommon<MessageType.File> {
   file: string;
 }
 
-export type ChatProps = Message | Photo | File;
+export type MessageProps = Message | Photo | File;
 
-export interface Chatroom {
+export interface ChannelType {
   id: string;
-  lastChat: ChatProps;
-  lastChatCnt: number;
-  chats?: ChatProps[];
+  lastMessage: MessageProps;
+  lastMessageCnt: number;
+  messages?: MessageProps[];
   users?: User[];
   created?: Date;
   updated?: Date;

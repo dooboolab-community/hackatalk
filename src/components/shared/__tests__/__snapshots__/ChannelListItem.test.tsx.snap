@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
+exports[`[ChannelListItem] rendering test renders as expected 1`] = `
 <View
   pointerEvents="box-none"
   style={
@@ -142,7 +142,7 @@ exports[`[ChatroomListItem] rendering test renders as expected 1`] = `
               }
             >
               <Text
-                lastChatCnt={3}
+                lastMessageCnt={3}
                 numberOfLines={2}
                 style={
                   Array [

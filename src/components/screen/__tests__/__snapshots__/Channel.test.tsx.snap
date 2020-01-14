@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Channel] screen renders without crashing 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <ScrollView
+    ListEmptyComponent={
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        No content
+      </Shared>
+    }
+    contentContainerStyle={null}
+    data={
+      Array [
+        Object {
+          "id": "room1",
+          "lastMessage": Object {
+            "created": 1970-01-01T00:00:00.000Z,
+            "id": "id_3",
+            "message": "How are you doing?",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "displayName3",
+              "online": false,
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "uid_3",
+            },
+            "updated": 1970-01-01T00:00:00.000Z,
+          },
+          "lastMessageCnt": 3,
+        },
+        Object {
+          "id": "room2",
+          "lastMessage": Object {
+            "created": 1970-01-01T00:00:00.000Z,
+            "id": "id_3",
+            "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
+            "messageType": 0,
+            "sender": Object {
+              "displayName": "Byun8585",
+              "online": false,
+              "photoURL": "",
+              "statusMsg": "",
+              "thumbURL": "",
+              "uid": "uid_3",
+            },
+            "updated": 1970-01-01T00:00:00.000Z,
+          },
+          "lastMessageCnt": 0,
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(229, 229, 229)",
+                  "flexDirection": "row",
+                  "height": 92,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "marginHorizontal": 20,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "width": 40,
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <View />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": 0,
+                    "flexDirection": "column",
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "paddingRight": 20,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "fontWeight": "bold",
+                      },
+                    ]
+                  }
+                >
+                  displayName3
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#A1EEDB",
+                        "borderRadius": 8,
+                        "height": 16,
+                        "justifyContent": "center",
+                        "width": 16,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#1E6EFA",
+                          "fontSize": 10,
+                        },
+                      ]
+                    }
+                  >
+                    3
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginTop": 8,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  lastMessageCnt={3}
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 12,
+                        "fontWeight": "bold",
+                        "maxWidth": 150,
+                      },
+                    ]
+                  }
+                >
+                  How are you doing?
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#1E6EFA",
+                        "fontSize": 12,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                >
+                  50 years ago
+                </Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderBottomWidth": 1,
+                  "borderColor": "rgb(229, 229, 229)",
+                  "flexDirection": "row",
+                  "height": 92,
+                  "justifyContent": "space-between",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "marginHorizontal": 20,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "width": 40,
+                  }
+                }
+              >
+                <Text />
+              </View>
+              <View />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": 0,
+                    "flexDirection": "column",
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "paddingRight": 20,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "fontWeight": "bold",
+                      },
+                    ]
+                  }
+                >
+                  Byun8585
+                </Text>
+                <View />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "marginTop": 8,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  lastMessageCnt={0}
+                  numberOfLines={2}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 12,
+                        "maxWidth": 150,
+                      },
+                    ]
+                  }
+                >
+                  Hi. This is student from react-native-seoul. Nice to meet you.
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#1E6EFA",
+                        "fontSize": 12,
+                        "textAlign": "right",
+                      },
+                    ]
+                  }
+                >
+                  50 years ago
+                </Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </ScrollView>
+</View>
+`;
