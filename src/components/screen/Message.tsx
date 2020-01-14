@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, TouchableOpacity, View } from 'react-native';
 import { MessageProps, MessageType } from '../../types';
 import React, { useState } from 'react';
 import {
@@ -15,7 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
-import { isIPhoneXSize } from '../../utils/Styles';
+import { isIphoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -123,9 +123,12 @@ function Message(): React.ReactElement {
         borderColor={theme.lineColor}
         backgroundColor={theme.background}
         fontColor={theme.fontColor}
-        keyboardOffset={isIPhoneXSize
-          ? Constants.statusBarHeight + 40
-          : Constants.statusBarHeight}
+        keyboardOffset={Platform.select({
+          ios: isIphoneX
+            ? Constants.statusBarHeight + 40
+            : Constants.statusBarHeight,
+          android: Constants.statusBarHeight + 52,
+        })}
         message={textToSend}
         placeholder={getString('WRITE_MESSAGE')}
         placeholderTextColor={theme.placeholder}
