@@ -49,8 +49,8 @@ exports[`rendering test renders as expected 1`] = `
       >
         <SvgMock
           fill="#151A25"
-          height={60}
-          width={60}
+          height={80}
+          width={80}
         />
       </TouchableOpacity>
       <View
