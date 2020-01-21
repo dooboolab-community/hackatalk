@@ -2,9 +2,20 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { Button, EditText } from '@dooboo-ui/native';
-import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import {
+  Alert,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {
+  IC_LOGO_D,
+  IC_LOGO_W,
+  SvgApple,
+  SvgFacebook,
+  SvgGoogle,
+} from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import {
@@ -14,10 +25,13 @@ import {
 } from '../../../config';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import Button from '../shared/Button';
 import Constants from 'expo-constants';
+import { EditText } from '@dooboo-ui/native';
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import StatusBar from '../shared/StatusBar';
 import { User } from '../../types';
+import { commonShadow } from '../../theme';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { validateEmail } from '../../utils/common';
@@ -232,12 +246,17 @@ function SignIn(props: Props): ReactElement {
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity testID="theme-test"
+            <TouchableOpacity
+              testID="theme-test"
               onPress={(): void => changeThemeType()}
               style={{
-                width: 60, alignItems: 'center',
-              }}>
-              <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
+                width: 60,
+                alignItems: 'center',
+              }}
+            >
+              <StyledLogoImage
+                source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
+              />
               <View style={{ height: 12 }} />
               <StyledLogoText>{getString('HELLO')}</StyledLogoText>
             </TouchableOpacity>
@@ -290,6 +309,7 @@ function SignIn(props: Props): ReactElement {
           <ButtonWrapper>
             <Button
               testID="btn-sign-up"
+              colorfulShadow
               onPress={goToSignUp}
               containerStyle={{
                 flex: 1,
@@ -331,14 +351,12 @@ function SignIn(props: Props): ReactElement {
             />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <FindPwText>
-              {getString('FORGOT_PW')}
-            </FindPwText>
+            <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            {
-              Platform.select({
-                ios: <Button
+            {Platform.select({
+              ios: (
+                <Button
                   testID="btn-apple"
                   style={{
                     backgroundColor: theme.appleBackground,
@@ -350,7 +368,7 @@ function SignIn(props: Props): ReactElement {
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
-                      <SvgApple width={24} fill={theme.appleIcon}/>
+                      <SvgApple width={24} fill={theme.appleIcon} />
                     </View>
                   }
                   isLoading={signingInFacebook}
@@ -358,9 +376,9 @@ function SignIn(props: Props): ReactElement {
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                   textStyle={{ fontWeight: '700', color: theme.appleText }}
-                />,
-              })
-            }
+                />
+              ),
+            })}
             <Button
               testID="btn-facebook"
               style={{
@@ -373,7 +391,7 @@ function SignIn(props: Props): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgFacebook width={24} fill={theme.facebookIcon}/>
+                  <SvgFacebook width={24} fill={theme.facebookIcon} />
                 </View>
               }
               isLoading={signingInFacebook}
@@ -393,7 +411,7 @@ function SignIn(props: Props): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgGoogle width={24} fill={theme.googleIcon}/>
+                  <SvgGoogle width={24} fill={theme.googleIcon} />
                 </View>
               }
               isLoading={signingInGoogle}
@@ -407,14 +425,18 @@ function SignIn(props: Props): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
-              onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
+              onPress={(): void =>
+                goToWebView('https://dooboolab.com/termsofservice')
+              }
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
-              onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
+              onPress={(): void =>
+                goToWebView('https://dooboolab.com/privacyandpolicy')
+              }
             >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>

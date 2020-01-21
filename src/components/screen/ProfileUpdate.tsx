@@ -1,8 +1,12 @@
-import { Button, EditText } from '@dooboo-ui/native';
 import React, { useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
-import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
 
+import Button from '../shared/Button';
+import { EditText } from '@dooboo-ui/native';
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { SvgNoProfile } from '../../utils/Icons';

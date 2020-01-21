@@ -13,7 +13,7 @@ import React, {
   useState,
 } from 'react';
 
-import { Button } from '@dooboo-ui/native';
+import Button from '../../shared/Button';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';

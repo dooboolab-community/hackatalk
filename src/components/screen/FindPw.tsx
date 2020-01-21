@@ -1,7 +1,8 @@
-import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import Button from '../shared/Button';
+import { EditText } from '@dooboo-ui/native';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';

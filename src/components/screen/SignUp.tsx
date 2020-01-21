@@ -1,8 +1,9 @@
-import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 import { validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import Button from '../shared/Button';
+import { EditText } from '@dooboo-ui/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
@@ -45,7 +46,12 @@ function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
 
   const onSignUp = async (): Promise<void> => {
-    if (!validateEmail(email) || !validatePassword(password) || name.length < 2 || password !== confirmPassword) {
+    if (
+      !validateEmail(email) ||
+      !validatePassword(password) ||
+      name.length < 2 ||
+      password !== confirmPassword
+    ) {
       if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       }
@@ -180,7 +186,11 @@ function Page(props: Props): ReactElement {
               testID="btn-sign-up"
               isLoading={isSignUp}
               onPress={onSignUp}
-              containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
+              containerStyle={{
+                height: 52,
+                width: '50%',
+                backgroundColor: theme.btnPrimary,
+              }}
               textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
               text={getString('SIGN_UP')}
             />

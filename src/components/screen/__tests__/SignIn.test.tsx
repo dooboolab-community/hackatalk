@@ -112,7 +112,9 @@ describe('[SignIn] interaction', () => {
     act(() => {
       fireEvent.press(btnTerms);
     });
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/termsofservice' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', {
+      uri: 'https://dooboolab.com/termsofservice',
+    });
   });
 
   it('should navigate to [WebView] when terms has been pressed', async () => {
@@ -121,7 +123,9 @@ describe('[SignIn] interaction', () => {
     act(() => {
       fireEvent.press(btnPrivary);
     });
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/privacyandpolicy' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', {
+      uri: 'https://dooboolab.com/privacyandpolicy',
+    });
   });
 
   describe('onSignIn', () => {
@@ -269,9 +273,11 @@ describe('[SignIn] Facebook Signin', () => {
       fireEvent.press(btnFacebook);
     });
 
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).resolves.toEqual({
+    expect(
+      Facebook.logInWithReadPermissionsAsync({
+        permissions: ['email', 'public_profile'],
+      }),
+    ).resolves.toEqual({
       type: 'success',
       token: 'testToken',
     });
@@ -305,9 +311,11 @@ describe('[SignIn] Facebook Signin', () => {
 
     await act(() => wait());
 
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).resolves.toEqual({
+    expect(
+      Facebook.logInWithReadPermissionsAsync({
+        permissions: ['email', 'public_profile'],
+      }),
+    ).resolves.toEqual({
       type: 'cancel',
     });
   });
@@ -318,7 +326,9 @@ describe('[SignIn] Facebook Signin', () => {
       bundleUrl: 'bundleUrl',
     };
 
-    jest.spyOn(Facebook, 'logInWithReadPermissionsAsync').mockRejectedValue('error');
+    jest
+      .spyOn(Facebook, 'logInWithReadPermissionsAsync')
+      .mockRejectedValue('error');
 
     const btnFacebook = testingLib.queryByTestId('btn-facebook');
     await wait(() => expect(btnFacebook).toBeTruthy());
@@ -329,9 +339,11 @@ describe('[SignIn] Facebook Signin', () => {
 
     await act(() => wait());
 
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).rejects.toEqual('error');
+    expect(
+      Facebook.logInWithReadPermissionsAsync({
+        permissions: ['email', 'public_profile'],
+      }),
+    ).rejects.toEqual('error');
   });
 });
 

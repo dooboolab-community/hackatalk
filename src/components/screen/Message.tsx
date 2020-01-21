@@ -6,7 +6,7 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import { Button } from '@dooboo-ui/native';
+import Button from '../shared/Button';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
