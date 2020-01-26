@@ -147,7 +147,7 @@ const StyledSearchImage = styled.Image`
   width: 20px;
   height: 20px;
   position: absolute;
-  left: 30;
+  left: 30px;
 `;
 
 const Screen = (): React.ReactElement => {
