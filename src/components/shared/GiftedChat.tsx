@@ -71,14 +71,14 @@ interface Props<T> {
   renderSendButton?: () => React.ReactElement;
 }
 
-function Shared(props: Props): React.ReactElement {
+function Shared(props: Props<any>): React.ReactElement {
   let keyboardShowListener: any;
   // TODO: typings
   const input1 = useRef<any>();
   const input2 = useRef<any>();
 
   const {
-    chats,
+    chats = [],
     borderColor,
     backgroundColor,
     fontColor,
