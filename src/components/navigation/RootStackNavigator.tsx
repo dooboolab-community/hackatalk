@@ -6,6 +6,7 @@ import { NavigationNativeContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
 import React from 'react';
 import WebView from '../screen/WebView';
+import { useAuthUserContext } from '../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export type RootStackParamList = {
@@ -26,10 +27,11 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
+  const { state: { user } } = useAuthUserContext();
+
   return (
     <NavigationNativeContainer>
       <Stack.Navigator
-        initialRouteName="AuthStack"
         screenOptions={{
           headerStyle: {
             backgroundColor: theme.background,
@@ -39,8 +41,11 @@ function RootNavigator(): React.ReactElement {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="AuthStack" component={AuthStack} />
-        <Stack.Screen name="MainStack" component={MainStack} />
+        {
+          !user
+            ? <Stack.Screen name="AuthStack" component={AuthStack} />
+            : <Stack.Screen name="MainStack" component={MainStack} />
+        }
         <Stack.Screen name="WebView" component={WebView}
           options={{
             headerShown: true,

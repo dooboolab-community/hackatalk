@@ -22,7 +22,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             Object {
               "label": "Signed in with Email",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -53,7 +53,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             Object {
               "label": "Signed in with Email",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -66,7 +66,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
       ]
     }
     stickySectionHeadersEnabled={true}
-    testID="mySectionList"
+    testID="test-section-list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
@@ -121,7 +121,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             },
           ]
         }
-        testID="changePwItem"
+        testID="change-pw-item"
       >
         <Text
           style={
@@ -175,7 +175,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
               />,
               "label": "Signed in with Facebook",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -210,7 +210,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
               />,
               "label": "Signed in with Facebook",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -223,7 +223,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
       ]
     }
     stickySectionHeadersEnabled={true}
-    testID="mySectionList"
+    testID="test-section-list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
@@ -278,7 +278,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             },
           ]
         }
-        testID="changePwItem"
+        testID="change-pw-item"
       >
         <SvgMock
           fill="#ffffff"
@@ -336,7 +336,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
               />,
               "label": "Signed in with Google",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -371,7 +371,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
               />,
               "label": "Signed in with Google",
               "onPress": [Function],
-              "testID": "changePwItem",
+              "testID": "change-pw-item",
             },
           ],
           "title": "Login information",
@@ -384,7 +384,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
       ]
     }
     stickySectionHeadersEnabled={true}
-    testID="mySectionList"
+    testID="test-section-list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
@@ -439,7 +439,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             },
           ]
         }
-        testID="changePwItem"
+        testID="change-pw-item"
       >
         <SvgMock
           fill="#ffffff"
@@ -459,6 +459,167 @@ exports[`[Setting] screen renders without crashing 3`] = `
           }
         >
           Signed in with Google
+        </Text>
+        <Text />
+      </TouchableOpacity>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    />
+  </ScrollView>
+</View>
+`;
+
+exports[`[Setting] screen renders without crashing 4`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <ScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": <SvgMock
+                fill="#151E22"
+                width={24}
+              />,
+              "label": "Signed in with Apple",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "icon": <SvgMock
+                fill="#151E22"
+                width={24}
+              />,
+              "label": "Signed in with Apple",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderBottomColor": "#d3d8e8",
+              "borderBottomWidth": 1,
+              "height": 40,
+              "justifyContent": "center",
+              "marginLeft": 12,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#1E6EFA",
+                "marginLeft": 2,
+              },
+            ]
+          }
+        >
+          Login information
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+      style={null}
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            },
+          ]
+        }
+        testID="change-pw-item"
+      >
+        <SvgMock
+          fill="#151E22"
+          width={24}
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#151A25",
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "fontSize": 16,
+              },
+            ]
+          }
+        >
+          Signed in with Apple
         </Text>
         <Text />
       </TouchableOpacity>

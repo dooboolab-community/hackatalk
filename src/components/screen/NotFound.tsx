@@ -11,7 +11,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   color: blue;
 `;
 
@@ -23,7 +23,7 @@ interface Props {
 function Page(props: Props): React.ReactElement {
   return (
     <Container>
-      <StyledText testID="myText">dooboolab</StyledText>
+      <StyledText testID="my-text">dooboolab</StyledText>
     </Container>
   );
 }

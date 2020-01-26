@@ -40,7 +40,7 @@ const StyledTextDisplayName = styled.Text`
   align-self: center;
 `;
 
-const StyledTextStatusMsg = styled.Text`
+const StyledTextstatusMessage = styled.Text`
   font-size: 12px;
   color: white;
   margin-top: 8px;
@@ -72,7 +72,7 @@ interface Props {
   onChatPressed?: () => void;
 }
 
-interface Ref {
+export interface Ref {
   open: () => void;
   close: () => void;
   setUser: (user: User) => void;
@@ -112,12 +112,12 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
   const [user, setUser] = useState<User>({
-    displayName: '',
-    uid: '',
+    nickname: '',
+    id: '',
     thumbURL: '',
     photoURL: '',
-    statusMsg: '',
-    online: false,
+    statusMessage: '',
+    isOnline: false,
   });
   const [onDeleteFriend, setOnDeleteFriend] = useState();
   const [onAddFriend, setOnAddFriend] = useState();
@@ -167,7 +167,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     setOnDeleteFriend,
     setOnAddFriend,
   }));
-  const { photoURL, displayName, statusMsg } = user;
+  const { photoURL = '', nickname, statusMessage } = user;
   const {
     theme: { primary, modalBtnPrimaryFont },
   } = useThemeContext();
@@ -210,8 +210,8 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
               </View>
             )}
           </TouchableOpacity>
-          <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
-          <StyledTextStatusMsg>{statusMsg}</StyledTextStatusMsg>
+          <StyledTextDisplayName>{nickname}</StyledTextDisplayName>
+          <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
         {isFriendAdded ? (
           <StyledTextFriendAdded testID="added-message">

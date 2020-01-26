@@ -83,6 +83,7 @@ describe('[Message] interaction', () => {
       };
       jest
         .spyOn(ProfileContext, 'useProfileContext')
+        // @ts-ignore
         .mockImplementation(() => mockedData);
       const MessageListItem = testingLib.queryByTestId('message-list-item0');
       testingLib.rerender(component);
@@ -94,11 +95,11 @@ describe('[Message] interaction', () => {
   });
 
   it('should open image library when pressing photo icon button', () => {
-    const touchMenu = testingLib.getByTestId('touch_menu');
+    const touchMenu = testingLib.getByTestId('touch-menu');
     act(() => {
       fireEvent.press(touchMenu);
     });
-    const photoBtn = testingLib.getByTestId('icon_photo');
+    const photoBtn = testingLib.getByTestId('icon-photo');
 
     act(() => {
       fireEvent.press(photoBtn);
@@ -106,7 +107,7 @@ describe('[Message] interaction', () => {
   });
 
   it('should open camera when pressing camera icon button', () => {
-    const cameraBtn = testingLib.getByTestId('icon_camera');
+    const cameraBtn = testingLib.getByTestId('icon-camera');
     act(() => {
       fireEvent.press(cameraBtn);
     });

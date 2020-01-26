@@ -27,12 +27,12 @@ interface Payload {
 
 const MockInitialFriends = [
   {
-    uid: '0',
-    displayName: 'hello',
+    id: '0',
+    nickname: 'hello',
     thumbURL: '',
     photoURL: '',
-    statusMsg: 'I am fine today',
-    online: true,
+    statusMessage: 'I am fine today',
+    isOnline: true,
   },
 ];
 
@@ -69,11 +69,11 @@ const reducer: Reducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
       case ActionType.AddFriend: {
-        if (!draft.friends.find((friend) => friend.uid === payload.user.uid)) {
+        if (!draft.friends.find((friend) => friend.id === payload.user.id)) {
           const index = draft.friends.findIndex(
             (friend) =>
-              payload.user.displayName.toLowerCase() <
-              friend.displayName.toLowerCase(),
+              (payload.user?.nickname || '').toLowerCase() <
+              (friend?.nickname || '').toLowerCase(),
           );
           draft.friends.splice(
             index === -1 ? draft.friends.length : index,
@@ -85,7 +85,7 @@ const reducer: Reducer = (state = initialState, action) => {
       }
       case ActionType.DeleteFriend: {
         const index = draft.friends.findIndex(
-          (friend) => friend.uid === payload.user.uid,
+          (friend) => friend.id === payload.user.id,
         );
         if (index !== -1) {
           draft.friends.splice(index, 1);

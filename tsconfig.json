@@ -15,7 +15,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017",
+    "target": "es2020",
     "baseUrl": "src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

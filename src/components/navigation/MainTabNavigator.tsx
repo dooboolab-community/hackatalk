@@ -85,7 +85,7 @@ const CustomHeader = (props: Props): ReactElement => {
   );
 };
 
-function MainTabNavigator(): ReactElement {
+function TabNavigator(): ReactElement {
   const { theme } = useThemeContext();
   return (
     <Tab.Navigator
@@ -120,4 +120,4 @@ export const MainTabNavigationOptions = (): object => {
   };
 };
 
-export default MainTabNavigator;
+export default TabNavigator;

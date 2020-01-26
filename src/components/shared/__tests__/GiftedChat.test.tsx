@@ -20,22 +20,22 @@ describe('[GiftedChatInput] render', () => {
         {
           id: '',
           sender: {
-            uid: '0',
-            displayName: 'sender111',
+            id: '0',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message: 'hello1',
         },
         {
           id: '',
           sender: {
-            uid: '2',
-            displayName: 'sender111',
+            id: '2',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message:
             'Hello2. This is long message. This is long message.This is long message.' +
@@ -46,11 +46,11 @@ describe('[GiftedChatInput] render', () => {
         {
           id: '',
           sender: {
-            uid: '0',
-            displayName: 'sender111',
+            id: '0',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message: 'hello',
         },
@@ -75,25 +75,25 @@ describe('[GiftedChatInput] render', () => {
     });
 
     it('should call [setShowMenu] when focused', () => {
-      const textInput = testingLib.getByTestId('input_chat');
+      const textInput = testingLib.getByTestId('input-chat');
       textInput.props.onFocus();
     });
 
     it('should [showMenu] when touch pressed', () => {
-      let touchMenu = testingLib.getByTestId('touch_menu');
+      let touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
 
-      touchMenu = testingLib.getByTestId('touch_menu');
+      touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
     });
 
     it('should call [setShowMenu] when focused', () => {
-      const touchMenu = testingLib.getByTestId('touch_menu');
+      const touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
     });
 
     it('should invoke changeText event handler when message changed', () => {
-      const textInput = testingLib.getByTestId('input_chat');
+      const textInput = testingLib.getByTestId('input-chat');
       jest.useFakeTimers();
       jest.runAllTimers();
       fireEvent.changeText(textInput, 'chat test');

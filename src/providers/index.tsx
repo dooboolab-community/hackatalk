@@ -2,15 +2,17 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from '../theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { AuthUser } from '../types';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { AuthUserProvider } from './AuthUserProvider';
 import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
+import { User } from '../types';
+import testClient from '../apollo/testClient';
 
 interface Props {
   initialThemeType?: ThemeType;
-  initialAuthUser?: AuthUser;
+  initialAuthUser?: User;
   children?: React.ReactElement;
 }
 
@@ -25,13 +27,15 @@ export const AllProviders = ({
       initialThemeType={initialThemeType}
       customTheme={{ light, dark }}
     >
-      <FriendProvider>
-        <AuthUserProvider initialAuthUser={initialAuthUser}>
-          <ProfileModalProvider>
-            {children}
-          </ProfileModalProvider>
-        </AuthUserProvider>
-      </FriendProvider>
+      <ApolloProvider client={testClient}>
+        <FriendProvider>
+          <AuthUserProvider initialAuthUser={initialAuthUser}>
+            <ProfileModalProvider>
+              {children}
+            </ProfileModalProvider>
+          </AuthUserProvider>
+        </FriendProvider>
+      </ApolloProvider>
     </ThemeProvider>
   );
 };

@@ -1,6 +1,6 @@
+import { AsyncStorage, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
@@ -9,6 +9,7 @@ import { SvgNoProfile } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { useAuthUserContext } from '../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
@@ -55,17 +56,19 @@ interface Props {
 }
 
 function Screen(props: Props): React.ReactElement {
+  const { navigation } = props;
   const [isUpdating, setIsUpdating] = useState(false);
-  const [displayName, setDisplayName] = useState('');
-  const [statusMsg, setStatusMsg] = useState('');
+  const [nickname, setNickName] = useState('');
+  const [statusMessage, setstatusMessage] = useState('');
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
+  const { setAuthUser } = useAuthUserContext();
 
   useEffect(() => {
     if (isUpdating) {
       try {
-        if (props.navigation) {
-          props.navigation.goBack();
+        if (navigation) {
+          navigation.goBack();
         }
       } catch (err) {
         // console.error(err);
@@ -76,11 +79,9 @@ function Screen(props: Props): React.ReactElement {
   }, [isUpdating]);
 
   const onLogout = (): void => {
-    if (props.navigation) {
-      props.navigation.resetRoot({
-        index: 0,
-        routes: [{ name: 'AuthStack' }],
-      });
+    if (navigation) {
+      AsyncStorage.removeItem('token');
+      setAuthUser(undefined);
     }
   };
 
@@ -91,10 +92,10 @@ function Screen(props: Props): React.ReactElement {
   const onChangeText = (type: string, text: string): void => {
     switch (type) {
       case 'DISPLAY_NAME':
-        setDisplayName(text);
+        setNickName(text);
         break;
       case 'STATUS_MSG':
-        setStatusMsg(text);
+        setstatusMessage(text);
         break;
     }
   };
@@ -161,7 +162,7 @@ function Screen(props: Props): React.ReactElement {
             style={{ marginTop: 32 }}
             label={getString('NAME')}
             placeholder={getString('NAME')}
-            value={displayName}
+            value={nickname}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -175,7 +176,7 @@ function Screen(props: Props): React.ReactElement {
             style={{ marginTop: 24 }}
             label={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG')}
-            value={statusMsg}
+            value={statusMessage}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}

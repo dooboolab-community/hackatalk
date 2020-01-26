@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AuthUser, SocialType } from '../../../types';
+import { AuthType, User } from '../../../types';
 import {
   RenderResult,
   cleanup,
@@ -15,16 +15,15 @@ import Setting from '../Setting';
 import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
-function getEmptyAuthUserWithSignInType(signInType: SocialType): AuthUser {
+function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
   return {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     thumbURL: '',
     photoURL: '',
-    statusMsg: '',
-    friends: [],
-    channels: [],
-    social: signInType,
+    statusMessage: '',
+    authType: signInType,
+    socialId: '',
   };
 }
 
@@ -40,7 +39,7 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(SocialType.Email),
+      getEmptyAuthUserWithSignInType(AuthType.EMAIL),
     );
     testingLib = render(component);
   });
@@ -54,7 +53,7 @@ describe('[Setting] screen', () => {
       createTestElement(
         <SettingTest />,
         undefined,
-        getEmptyAuthUserWithSignInType(SocialType.Facebook),
+        getEmptyAuthUserWithSignInType(AuthType.FACEBOOK),
       ),
     );
     expect(rendered.toJSON()).toMatchSnapshot();
@@ -64,7 +63,16 @@ describe('[Setting] screen', () => {
       createTestElement(
         <SettingTest />,
         undefined,
-        getEmptyAuthUserWithSignInType(SocialType.Google),
+        getEmptyAuthUserWithSignInType(AuthType.GOOGLE),
+      ),
+    );
+    expect(rendered.toJSON()).toMatchSnapshot();
+
+    rendered = renderer.create(
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(AuthType.APPLE),
       ),
     );
     expect(rendered.toJSON()).toMatchSnapshot();
@@ -77,7 +85,7 @@ describe('[Setting] screen', () => {
     });
 
     it('should simulate onPress login state item', async () => {
-      const btn = testingLib.getByTestId('changePwItem');
+      const btn = testingLib.getByTestId('change-pw-item');
       fireEvent.press(btn);
     });
   });

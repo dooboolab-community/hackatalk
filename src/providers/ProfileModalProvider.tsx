@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react';
+import React, { MutableRefObject, useReducer } from 'react';
 
+import { Ref as ProfileModalRef } from '../components/shared/ProfileModal';
 import { User } from '../types';
 import createCtx from '../utils/createCtx';
 
 interface ShowModalParams {
-  user: Partial<User>;
+  user: User;
   deleteMode: boolean;
   isFriendAlreadyAdded?: boolean;
   onDeleteFriend?: () => void;
@@ -27,9 +28,9 @@ export enum ActionType {
 }
 
 export interface State {
-  user: Partial<User>;
+  user: User;
   deleteMode: boolean;
-  modal?: any;
+  modal?: React.MutableRefObject<ProfileModalRef | null>;
 }
 
 export interface Payload extends State {
@@ -40,13 +41,13 @@ export interface Payload extends State {
 
 const initialState: State = {
   user: {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     photoURL: '',
-    statusMsg: '',
+    statusMessage: '',
   },
   deleteMode: false,
-  modal: null,
+  modal: undefined,
 };
 
 type Action = { type: ActionType.ShowModal; payload: Payload };
@@ -111,11 +112,10 @@ function ProfileModalProvider(props: Props): React.ReactElement {
   return <Provider value={{ state, ...actions }}>{props.children}</Provider>;
 }
 
-export { useCtx as useProfileContext, ProfileModalProvider };
-
 const ProfileContext = {
   useProfileContext: useCtx,
   ProfileModalProvider,
 };
 
+export { useCtx as useProfileContext, ProfileModalProvider };
 export default ProfileContext;

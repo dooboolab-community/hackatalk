@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
 
-import { AuthUser } from '../types';
+import { User } from '../types';
 import createCtx from '../utils/createCtx';
 
 interface Context {
   state: State;
-  setAuthUser(authUser: AuthUser): void;
+  setAuthUser(user: User | undefined): void;
 }
 const [useCtx, Provider] = createCtx<Context>();
 
@@ -14,7 +14,7 @@ export enum ActionType {
 }
 
 export interface State {
-  user?: AuthUser;
+  user?: User;
 }
 
 type Action =
@@ -22,12 +22,12 @@ type Action =
 
 interface Props {
   children?: React.ReactElement;
-  initialAuthUser?: AuthUser;
+  initialAuthUser?: User;
 }
 
 type Reducer = (state: State, action: Action) => State;
 
-const setAuthUser = (dispatch: React.Dispatch<Action>) => (authUser: AuthUser): void => {
+const setAuthUser = (dispatch: React.Dispatch<Action>) => (authUser: User): void => {
   dispatch({
     type: ActionType.SetAuthUser,
     payload: { user: authUser },
@@ -59,4 +59,10 @@ function AuthUserProvider(props: Props): React.ReactElement {
   return <Provider value={{ state, ...actions }}>{children}</Provider>;
 }
 
+const AuthUserContext = {
+  useAuthUserContext: useCtx,
+  AuthUserProvider,
+};
+
 export { useCtx as useAuthUserContext, AuthUserProvider };
+export default AuthUserContext;

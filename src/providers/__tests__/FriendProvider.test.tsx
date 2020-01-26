@@ -17,22 +17,22 @@ import { useFriendContext } from '../FriendProvider';
 
 const fakeUsers: User[] = [
   {
-    uid: '1',
-    displayName: 'admin',
+    id: '1',
+    nickname: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMsg: 'online',
-    online: true,
+    statusMessage: 'online',
+    isOnline: true,
     // created: new Date(),
     // updated: new Date(),
   },
   {
-    uid: '2',
-    displayName: 'zeoseong',
+    id: '2',
+    nickname: 'zeoseong',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'hello',
+    isOnlinen: false,
   },
 ];
 
@@ -71,7 +71,7 @@ const FakeChild = (): React.ReactElement => {
       />
       <FlatList
         testID="friend-list"
-        keyExtractor={(item): string => `${item.uid}`}
+        keyExtractor={(item): string => `${item.id}`}
         data={friends}
         renderItem={renderItem}
       />
@@ -120,7 +120,7 @@ describe('[FriendProvider] interactions', () => {
       const registeredFriendList = [
         ...initFriendList,
         fakeUsers[0],
-      ].sort((a, b) => (a.displayName > b.displayName ? 1 : -1));
+      ].sort((a, b) => (a.nickname > b.nickname ? 1 : -1));
       expect(friendList.props.data).toMatchObject(registeredFriendList);
 
       //
@@ -144,7 +144,7 @@ describe('[FriendProvider] interactions', () => {
         ...initFriendList,
         fakeUsers[0],
         fakeUsers[1],
-      ].sort((a, b) => (a.displayName > b.displayName ? 1 : -1));
+      ].sort((a, b) => (a.nickname > b.nickname ? 1 : -1));
       expect(friendList.props.data.length).toBe(initFriendCount + 2);
       expect(friendList.props.data).toMatchObject(registeredFriendList);
     });

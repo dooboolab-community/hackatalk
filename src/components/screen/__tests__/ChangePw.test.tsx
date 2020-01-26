@@ -49,8 +49,8 @@ describe('[ChangePw] screen', () => {
 
   describe('interactions', () => {
     it('should simulate textChanged', async () => {
-      const pwInput = testingLib.getByTestId('currentPwTextInput');
-      const verifyBtn = testingLib.getByTestId('checkCurrentPwBtn');
+      const pwInput = testingLib.getByTestId('current-pw-text-input');
+      const verifyBtn = testingLib.getByTestId('close-current-pw-btn');
       act(() => {
         fireEvent.changeText(pwInput, 'left');
       });
@@ -126,7 +126,7 @@ describe('[ChangePwHeader] component', () => {
 
   it('shoud call naviagation.pop when close button clicked', () => {
     const renderedHeader = render(component);
-    const closeBtn = renderedHeader.getByTestId('closeBtn');
+    const closeBtn = renderedHeader.getByTestId('close-btn');
     act(() => {
       fireEvent.press(closeBtn);
     });

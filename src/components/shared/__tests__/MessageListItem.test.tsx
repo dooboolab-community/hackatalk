@@ -18,22 +18,22 @@ let props = {
   item: {
     id: '',
     sender: {
-      uid: '0',
-      displayName: 'sender111',
+      id: '0',
+      nickname: 'sender111',
       thumbURL: '',
       photoURL: '',
-      statusMsg: '',
+      statusMessage: '',
     },
     message: 'hello1',
   },
   prevItem: {
     id: '',
     sender: {
-      uid: '0',
-      displayName: 'sender111',
+      id: '0',
+      nickname: 'sender111',
       thumbURL: '',
       photoURL: '',
-      statusMsg: '',
+      statusMessage: '',
     },
     message: 'hello1',
   },

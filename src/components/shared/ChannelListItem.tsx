@@ -49,9 +49,9 @@ const StyledTextDisplayName = styled.Text`
 
 const StyledTextWrapper = styled.View`
   background-color: ${({ theme }): string => theme.tintColor};
-  width: 16;
-  height: 16;
-  border-radius: 8;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
 `;
@@ -102,7 +102,7 @@ function ChannelListItem(props: Props): React.ReactElement {
   const {
     item: {
       lastMessage: {
-        sender: { photoURL, online, displayName },
+        sender: { photoURL, isOnline, nickname },
         // @ts-ignore
         message,
         created,
@@ -134,11 +134,11 @@ function ChannelListItem(props: Props): React.ReactElement {
                 />
               </View>
             )}
-            {online ? <StyledStatus /> : <View />}
+            {isOnline ? <StyledStatus /> : <View />}
           </View>
           <StyledViewContent>
             <StyledViewTop>
-              <StyledTextDisplayName>{displayName}</StyledTextDisplayName>
+              <StyledTextDisplayName>{nickname}</StyledTextDisplayName>
               {lastMessageCnt !== 0 ? (
                 <StyledTextWrapper>
                   <StyledTextCount>{lastMessageCnt}</StyledTextCount>
@@ -168,12 +168,9 @@ ChannelListItem.defaultProps = {
     lastMessage: {
       id: 'id_3',
       sender: {
-        uid: 'uid_3',
-        displayName: 'displayName3',
+        id: 'uid_3',
+        nickname: 'displayName3',
         thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
-        online: false,
       },
       message: 'How are you doing?',
       created: new Date(0),

@@ -127,7 +127,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                   },
                 ]
               }
-              testID="currentPwTextInput"
+              testID="current-pw-text-input"
               textContentType="none"
               underlineColorAndroid="transparent"
             />
@@ -141,7 +141,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
             "width": "100%",
           }
         }
-        testID="checkCurrentPwBtn"
+        testID="close-current-pw-btn"
       >
         <View
           style={
@@ -238,7 +238,7 @@ exports[`[ChangePwHeader] component renders without crashing 1`] = `
           },
         ]
       }
-      testID="closeBtn"
+      testID="close-btn"
     >
       <Text />
     </TouchableOpacity>

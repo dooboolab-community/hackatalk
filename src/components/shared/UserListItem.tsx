@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
@@ -56,10 +56,10 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL, displayName, statusMsg },
+  user: { photoURL = '', nickname, statusMessage },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
-  const photoURLObj =
+  const photoURLObj: ImageSourcePropType =
     typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
   return (
     <Container>
@@ -84,9 +84,9 @@ function Shared({
               <Ionicons name="ios-person" size={24} color={theme.fontColor} />
             </View>
           )}
-          <StyledText>{displayName}</StyledText>
-          {statusMsg ? (
-            <StyledRightText>{statusMsg}</StyledRightText>
+          <StyledText>{nickname}</StyledText>
+          {statusMessage ? (
+            <StyledRightText>{statusMessage}</StyledRightText>
           ) : (
             <View />
           )}
@@ -98,11 +98,11 @@ function Shared({
 
 Shared.defaultProps = {
   user: {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     photoURL: null,
-    statusMsg: '',
-    online: false,
+    statusMessage: '',
+    isOnline: false,
     friends: [],
     channels: [],
     created: undefined,

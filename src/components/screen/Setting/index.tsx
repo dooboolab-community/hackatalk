@@ -9,10 +9,10 @@ import React, { ReactElement } from 'react';
 import { SectionList, SectionListData } from 'react-native';
 import { SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
 
+import { AuthType } from '../../../types';
 import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
-import { SocialType } from '../../../types';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -44,51 +44,49 @@ export interface Props {
 function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const {
-    state: { user },
-  } = useAuthUserContext();
+  const { state: { user } } = useAuthUserContext();
 
   let signInInfoOption: SettingsOption;
 
-  switch (user && user.social) {
-    case SocialType.Google:
+  switch (user && user.authType) {
+    case AuthType.GOOGLE:
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
-    case SocialType.Facebook:
+    case AuthType.FACEBOOK:
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
-    case SocialType.Apple:
+    case AuthType.APPLE:
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.appleIcon}/>,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
-    case SocialType.Email:
+    case AuthType.EMAIL:
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
   }
@@ -103,7 +101,7 @@ function SettingScreen(props: Props): React.ReactElement {
   return (
     <Container>
       <SectionList
-        testID="mySectionList"
+        testID="test-section-list"
         sections={settings}
         renderItem={({ item }): React.ReactElement => SectionItem(item, theme)}
         keyExtractor={(item: SettingsOption): string => item.label}

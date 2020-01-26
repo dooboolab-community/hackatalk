@@ -5,11 +5,11 @@ export const TransparentButton = styled.View`
   width: 100%;
   height: 100%;
 
-  border-radius: 3;
+  border-radius: 3px;
   border-style: solid;
   border-width: 1;
   border-color: #e3e3e3;
-  margin-bottom: 8;
+  margin-bottom: 8px;
 
   justify-content: center;
   align-items: center;
@@ -29,10 +29,10 @@ export const WhiteButton = styled.View`
   display: flex;
   width: 100%;
   height: 100%;
-  border-radius: 3;
+  border-radius: 3px;
   border-style: solid;
-  border-width: 1;
-  margin-bottom: 8;
+  border-width: 1px;
+  margin-bottom: 8px;
 
   justify-content: center;
   align-items: center;

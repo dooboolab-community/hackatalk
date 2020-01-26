@@ -2,7 +2,8 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, AsyncStorage, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { AuthPayload, User } from '../../types';
 import { Button, EditText } from '@dooboo-ui/native';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -16,10 +17,12 @@ import {
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Constants from 'expo-constants';
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import { MUTATION_SIGN_IN } from '../../graphql/mutations';
 import StatusBar from '../shared/StatusBar';
-import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useAuthUserContext } from '../../providers/AuthUserProvider';
+import { useMutation } from '@apollo/react-hooks';
 import { validateEmail } from '../../utils/common';
 
 const Container = styled.SafeAreaView`
@@ -92,6 +95,8 @@ const StyledAgreementLinedText = styled.Text`
 `;
 
 function SignIn(props: Props): ReactElement {
+  const { navigation } = props;
+  const { setAuthUser } = useAuthUserContext();
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
@@ -100,19 +105,18 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-  let timer: number;
-
   const { theme, changeThemeType, themeType } = useThemeContext();
+  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, {}>(MUTATION_SIGN_IN);
 
   const goToSignUp = (): void => {
-    props.navigation.navigate('SignUp');
+    navigation.navigate('SignUp');
   };
 
   const goToFindPw = (): void => {
-    props.navigation.navigate('FindPw');
+    navigation.navigate('FindPw');
   };
 
-  const onSignIn = (): void => {
+  const onSignIn = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       return;
@@ -123,16 +127,20 @@ function SignIn(props: Props): ReactElement {
       return;
     }
     setIsLoggingIn(true);
-    timer = setTimeout(() => {
+    const variables = {
+      email,
+      password,
+    };
+
+    try {
+      const { data } = await signInEmail({ variables });
+      AsyncStorage.setItem('token', data?.signInEmail.token || '');
+      setAuthUser(data?.signInEmail.user);
+    } catch (err) {
+      Alert.alert(getString('ERROR'), err.message);
+    } finally {
       setIsLoggingIn(false);
-      clearTimeout(timer);
-      if (props.navigation) {
-        props.navigation.resetRoot({
-          index: 0,
-          routes: [{ name: 'MainStack' }],
-        });
-      }
-    }, 1000);
+    }
   };
 
   const goToWebView = (uri: string): void => {

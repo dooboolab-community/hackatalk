@@ -67,13 +67,12 @@ exports[`[Message] rendering test renders as expected 1`] = `
           Object {
             "id": "",
             "message": "hello1",
-            "messageType": 0,
             "sender": Object {
-              "displayName": "sender111",
+              "id": "0",
+              "nickname": "sender111",
               "photoURL": "",
-              "statusMsg": "",
+              "statusMessage": "",
               "thumbURL": "",
-              "uid": "0",
             },
           },
           Object {
@@ -81,11 +80,9 @@ exports[`[Message] rendering test renders as expected 1`] = `
             "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
             "messageType": 0,
             "sender": Object {
-              "displayName": "sender111",
-              "photoURL": "",
-              "statusMsg": "",
+              "id": "2",
+              "nickname": "sender111",
               "thumbURL": "",
-              "uid": "2",
             },
           },
           Object {
@@ -93,11 +90,9 @@ exports[`[Message] rendering test renders as expected 1`] = `
             "message": "hello",
             "messageType": 0,
             "sender": Object {
-              "displayName": "sender111",
-              "photoURL": "",
-              "statusMsg": "",
+              "id": "0",
+              "nickname": "sender111",
               "thumbURL": "",
-              "uid": "0",
             },
           },
           Object {
@@ -105,11 +100,9 @@ exports[`[Message] rendering test renders as expected 1`] = `
             "message": "hello2",
             "messageType": 0,
             "sender": Object {
-              "displayName": "sender111",
-              "photoURL": "",
-              "statusMsg": "",
+              "id": "0",
+              "nickname": "sender111",
               "thumbURL": "",
-              "uid": "0",
             },
           },
           Object {
@@ -117,11 +110,9 @@ exports[`[Message] rendering test renders as expected 1`] = `
             "messageType": 1,
             "photo": "http://photo.png",
             "sender": Object {
-              "displayName": "sender111",
-              "photoURL": "",
-              "statusMsg": "",
+              "id": "0",
+              "nickname": "sender111",
               "thumbURL": "",
-              "uid": "0",
             },
           },
         ]
@@ -360,15 +351,21 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item2"
             >
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "width": 40,
+                    "uri": undefined,
                   }
                 }
-              >
-                <Text />
-              </View>
+                style={
+                  Array [
+                    Object {
+                      "height": 32,
+                      "width": 32,
+                    },
+                  ]
+                }
+              />
             </TouchableOpacity>
           </View>
           <View
@@ -470,11 +467,19 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item3"
             >
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "width": 40,
+                    "uri": undefined,
                   }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 32,
+                      "width": 32,
+                    },
+                  ]
                 }
               />
             </TouchableOpacity>
@@ -566,11 +571,19 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item4"
             >
-              <View
-                style={
+              <Image
+                source={
                   Object {
-                    "width": 40,
+                    "uri": undefined,
                   }
+                }
+                style={
+                  Array [
+                    Object {
+                      "height": 32,
+                      "width": 32,
+                    },
+                  ]
                 }
               />
             </TouchableOpacity>
@@ -689,7 +702,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           ]
         }
-        testID="input_chat"
+        testID="input-chat"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -707,7 +720,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           ]
         }
-        testID="touch_menu"
+        testID="touch-menu"
       >
         <Image
           source={

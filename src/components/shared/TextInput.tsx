@@ -67,6 +67,7 @@ interface Props {
   error?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   const [focused, setFocused] = useState(false);
 

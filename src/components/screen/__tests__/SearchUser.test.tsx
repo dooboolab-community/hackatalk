@@ -39,15 +39,15 @@ describe('[serachUser] interaction', () => {
 
   beforeAll(() => {
     testingLib = render(component);
-    txtInputInst = testingLib.getByTestId('txtInput');
-    animatedFlatListInst = testingLib.getByTestId('animatedFlatlist');
+    txtInputInst = testingLib.getByTestId('text-input');
+    animatedFlatListInst = testingLib.getByTestId('animated-flatlist');
   });
   it(
     'when friend name typed in TextInput: (onTxtChanged -> onSearch)' +
       ' and (renderItem) and (keyExtractor)',
     () => {
       // setTimeout called - 0
-      fireEvent.changeText(txtInputInst, inputData.displayName);
+      fireEvent.changeText(txtInputInst, inputData.nickname);
       // setTimeout called - 2
       expect(animatedFlatListInst.props.data[0]).toEqual(inputData);
 
@@ -86,7 +86,7 @@ describe('[serachUser] interaction', () => {
   //   const userListItemInst: renderer.ReactTestInstance = testingLib.getByTestId(
   //     itemTestID,
   //   );
-  //   fireEvent.changeText(txtInputInst, inputData.displayName);
+  //   fireEvent.changeText(txtInputInst, inputData.nickname);
   //   fireEvent.press(userListItemInst);
   //   // const { profileModal } = userListItemInst.props.testObj;
   //   // const UserItem = withTheme(<UserListItem testID={itemTestID} user={inputData} />);
@@ -120,7 +120,7 @@ describe('[SearchUser] interaction with Profile Modal', () => {
   beforeEach(() => {
     component = createTestElement(<TestComponent />);
     testingLib = render(component);
-    itemTestID = 'userListItem0';
+    itemTestID = 'user-list-item0';
   });
 
   it('show profile modal when press user in search user list', () => {

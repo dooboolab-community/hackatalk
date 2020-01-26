@@ -44,7 +44,7 @@ export default function Screen(): ReactElement {
     item: User;
     index: number;
   }): ReactElement => {
-    const testID = `USER_ID_${index}`;
+    const testID = `user-id-${index}`;
     const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
       <UserListItem

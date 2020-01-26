@@ -17,8 +17,8 @@ const StyledViewChat = styled.View`
   border-color: ${({ theme }): string => theme.lineColor};
   min-height: 56px;
   max-height: 56px;
-  padding-right: 8;
-  padding-left: 8;
+  padding-right: 8px;
+  padding-left: 8px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +36,7 @@ const StyledInputChat = styled.TextInput`
 
 const StyledTouchMenu = styled.TouchableOpacity`
   position: absolute;
-  left: 10;
+  left: 10px;
   height: 100%;
   min-width: 20px;
   justify-content: center;
@@ -44,23 +44,23 @@ const StyledTouchMenu = styled.TouchableOpacity`
 
 const StyledViewBottom = styled.View`
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
 `;
 
 const StyledViewMenu = styled.View<{ height: number }>`
   flex-direction: row;
   flex-wrap: wrap;
-  height: ${({ height }): number => height};
+  height: ${({ height }): string => `${height}px`};
 `;
 
-interface Props {
-  chats?: any;
+interface Props<T> {
+  chats?: T[];
   borderColor?: string;
   backgroundColor?: string;
   fontColor?: string;
   keyboardOffset?: number;
-  renderItem: ListRenderItem<any>;
+  renderItem: ListRenderItem<T>;
   optionView?: React.ReactElement;
   emptyItem?: React.ReactElement;
   renderViewMenu?: () => React.ReactElement;
@@ -71,14 +71,14 @@ interface Props {
   renderSendButton?: () => React.ReactElement;
 }
 
-function Shared(props: Props): React.ReactElement {
+function Shared(props: Props<any>): React.ReactElement {
   let keyboardShowListener: any;
   // TODO: typings
   const input1 = useRef<any>();
   const input2 = useRef<any>();
 
   const {
-    chats,
+    chats = [],
     borderColor,
     backgroundColor,
     fontColor,
@@ -152,7 +152,7 @@ function Shared(props: Props): React.ReactElement {
             }}
           >
             <StyledInputChat
-              testID="input_chat"
+              testID="input-chat"
               style={{
                 color: fontColor,
                 backgroundColor: backgroundColor,
@@ -167,7 +167,7 @@ function Shared(props: Props): React.ReactElement {
               onChangeText={onChangeMessage}
             />
             <StyledTouchMenu
-              testID="touch_menu"
+              testID="touch-menu"
               onPress={(): void => setShowMenu(true)}
             >
               {optionView}
@@ -205,7 +205,7 @@ function Shared(props: Props): React.ReactElement {
               defaultValue={message}
             />
             <StyledTouchMenu
-              testID="touch_menu"
+              testID="touch-menu"
               onPress={(): void => setShowMenu(false)}
             >
               {optionView}
@@ -220,7 +220,7 @@ function Shared(props: Props): React.ReactElement {
             </View>
           </StyledViewChat>
           <StyledViewMenu
-            testID="viewMenu"
+            testID="view-menu"
             height={keyboardHeight}
             style={{
               backgroundColor: backgroundColor,
