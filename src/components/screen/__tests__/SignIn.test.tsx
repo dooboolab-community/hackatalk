@@ -2,6 +2,7 @@ import * as AppAuth from 'expo-app-auth';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
+import { Alert, AsyncStorage } from 'react-native';
 import Constants, { AppOwnership } from 'expo-constants';
 import React, { ReactElement } from 'react';
 import {
@@ -15,7 +16,8 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { Alert } from 'react-native';
+import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
+import { MockedProvider } from '@apollo/react-testing';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/native-theme';
 
@@ -23,6 +25,25 @@ import { ThemeType } from '@dooboo-ui/native-theme';
 let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
+
+const mockSignInEmail = [
+  {
+    request: {
+      query: MUTATION_SIGN_IN,
+      variables: {
+        email: 'test@email.com',
+        password: 'password',
+      },
+    },
+    result: {
+      data: {
+        signInEmail: {
+          token: 'access token',
+        },
+      },
+    },
+  },
+];
 
 jest.mock('expo-constants', () => ({
   ...jest.requireActual('expo-constants'),
@@ -32,7 +53,11 @@ jest.mock('expo-constants', () => ({
 describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<SignIn {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+    );
   });
 
   it('should render without crashing', () => {
@@ -42,7 +67,12 @@ describe('[SignIn] rendering test', () => {
   });
 
   it('should render [Dark] mode without crashing', () => {
-    component = createTestElement(<SignIn {...props} />, ThemeType.DARK);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+      ThemeType.DARK,
+    );
     testingLib = render(component);
     expect(testingLib.baseElement).toBeTruthy();
     expect(testingLib.baseElement).toMatchSnapshot();
@@ -52,7 +82,11 @@ describe('[SignIn] rendering test', () => {
 describe('[SignIn] interaction', () => {
   beforeAll(() => {
     props = createTestProps();
-    component = createTestElement(<SignIn {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
   });
 
@@ -126,8 +160,6 @@ describe('[SignIn] interaction', () => {
 
   describe('onSignIn', () => {
     beforeAll(() => {
-      props = createTestProps();
-      component = createTestElement(<SignIn {...props} />);
       testingLib = render(component);
     });
 
@@ -163,11 +195,13 @@ describe('[SignIn] interaction', () => {
     });
 
     it('should call signIn when button has clicked and navigation resetRoot', async () => {
+      jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+
       const textInput = testingLib.getByTestId('input-email');
       await waitForElement(() => textInput);
 
       act(() => {
-        fireEvent.changeText(textInput, 'email@email.com');
+        fireEvent.changeText(textInput, 'test@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
@@ -180,28 +214,28 @@ describe('[SignIn] interaction', () => {
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
       await waitForElement(() => btnSignIn);
 
-      jest.useFakeTimers();
       act(() => {
         fireEvent.press(btnSignIn);
-        jest.runAllTimers();
       });
 
       await act(() => wait());
       expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
     });
 
-    it('should call signIn when button has clicked and do nothing when there is no navigation', async () => {
-      props = createTestProps({
-        navigation: null,
-      });
-      component = createTestElement(<SignIn {...props} />);
+    it('should call signIn when the button has clicked and check whether it catches error', async () => {
+      props = createTestProps({ navigation: null });
+      component = createTestElement(
+        <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+          <SignIn {...props} />
+        </MockedProvider>,
+      );
       testingLib = render(component);
 
       const textInput = testingLib.getByTestId('input-email');
       await wait(() => expect(textInput).toBeTruthy());
 
       act(() => {
-        fireEvent.changeText(textInput, 'email@email.com');
+        fireEvent.changeText(textInput, 'invalid@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
@@ -214,14 +248,11 @@ describe('[SignIn] interaction', () => {
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
       await wait(() => expect(btnSignIn).toBeTruthy());
 
-      jest.useFakeTimers();
       act(() => {
         fireEvent.press(btnSignIn);
-        jest.runAllTimers();
       });
 
       await act(() => wait());
-      expect(props.navigation).toBeNull();
     });
   });
 
@@ -245,7 +276,11 @@ describe('[SignIn] Facebook Signin', () => {
 
   beforeAll(() => {
     props = createTestProps();
-    component = createTestElement(<SignIn {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
   });
 
@@ -358,7 +393,11 @@ describe('[SignIn] Google Signin', () => {
 
     beforeAll(() => {
       props = createTestProps();
-      component = createTestElement(<SignIn {...props} />);
+      component = createTestElement(
+        <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+          <SignIn {...props} />
+        </MockedProvider>,
+      );
       testingLib = render(component);
     });
 
@@ -409,8 +448,6 @@ describe('[SignIn] Google Signin', () => {
       cleanup();
       done();
 
-      props = createTestProps();
-      component = createTestElement(<SignIn {...props} />);
       testingLib = render(component);
     });
 
