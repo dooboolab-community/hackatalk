@@ -17,9 +17,9 @@ const FakeChild = (): React.ReactElement => {
 
   return (
     <View>
-      <Text testID="TEXT">{JSON.stringify(themeType, null, 2)}</Text>
+      <Text testID="test-text">{JSON.stringify(themeType, null, 2)}</Text>
       <Button
-        testID="BUTTON"
+        testID="test-button"
         onPress={(): void => {
           changeThemeType();
         }}
@@ -51,7 +51,7 @@ describe('[ThemeProvider] interactions', () => {
         <FakeChild />
       </ThemeProvider>,
     );
-    const text = getByTestId('TEXT');
+    const text = getByTestId('test-text');
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       defaultThemeType,
     );
@@ -63,9 +63,9 @@ describe('[ThemeProvider] interactions', () => {
         <FakeChild />
       </ThemeProvider>,
     );
-    const text = getByTestId('TEXT');
+    const text = getByTestId('test-text');
     act(() => {
-      fireEvent.press(getByTestId('BUTTON'));
+      fireEvent.press(getByTestId('test-button'));
     });
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.DARK,
@@ -81,7 +81,7 @@ describe('[ThemeProvider] interactions', () => {
     );
 
     const { getByTestId } = render(ComponentWithProps);
-    const text = getByTestId('TEXT');
+    const text = getByTestId('test-text');
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.DARK,
     );
@@ -96,9 +96,9 @@ describe('[ThemeProvider] interactions', () => {
     );
 
     const { getByTestId } = render(ComponentWithProps);
-    const text = getByTestId('TEXT');
+    const text = getByTestId('test-text');
     act(() => {
-      fireEvent.press(getByTestId('BUTTON'));
+      fireEvent.press(getByTestId('test-button'));
     });
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.LIGHT,

@@ -42,7 +42,7 @@ exports[`[NotFound] screen renders without crashing 1`] = `
             },
           ]
         }
-        testID="myText"
+        testID="my-text"
       >
         dooboolab
       </Text>

@@ -75,25 +75,25 @@ describe('[GiftedChatInput] render', () => {
     });
 
     it('should call [setShowMenu] when focused', () => {
-      const textInput = testingLib.getByTestId('input_chat');
+      const textInput = testingLib.getByTestId('input-chat');
       textInput.props.onFocus();
     });
 
     it('should [showMenu] when touch pressed', () => {
-      let touchMenu = testingLib.getByTestId('touch_menu');
+      let touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
 
-      touchMenu = testingLib.getByTestId('touch_menu');
+      touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
     });
 
     it('should call [setShowMenu] when focused', () => {
-      const touchMenu = testingLib.getByTestId('touch_menu');
+      const touchMenu = testingLib.getByTestId('touch-menu');
       fireEvent.press(touchMenu);
     });
 
     it('should invoke changeText event handler when message changed', () => {
-      const textInput = testingLib.getByTestId('input_chat');
+      const textInput = testingLib.getByTestId('input-chat');
       jest.useFakeTimers();
       jest.runAllTimers();
       fireEvent.changeText(textInput, 'chat test');

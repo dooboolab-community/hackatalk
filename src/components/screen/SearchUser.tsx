@@ -193,7 +193,7 @@ const Screen = (): React.ReactElement => {
     item: User;
     index: number;
   }): React.ReactElement => {
-    const itemTestID = `userListItem${index}`;
+    const itemTestID = `user-list-item${index}`;
     const userListOnPressInlineFn = (): void => userListOnPress(item);
     return (
       <UserListItem
@@ -233,7 +233,7 @@ const Screen = (): React.ReactElement => {
         <StyledSearchView>
           <StyledTextInputWrapper>
             <StyledTextInput
-              testID="txtInput"
+              testID="text-input"
               onChangeText={onTxtChanged}
               underlineColorAndroid="transparent" // android fix
               autoCapitalize="none"
@@ -245,7 +245,7 @@ const Screen = (): React.ReactElement => {
           </StyledTextInputWrapper>
         </StyledSearchView>
         <StyledAnimatedFlatList
-          testID="animatedFlatlist"
+          testID="animated-flatlist"
           testObj={{ scrollY }}
           style={{
             transform: [

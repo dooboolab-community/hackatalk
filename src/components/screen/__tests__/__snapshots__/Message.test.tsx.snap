@@ -702,7 +702,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           ]
         }
-        testID="input_chat"
+        testID="input-chat"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -720,7 +720,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           ]
         }
-        testID="touch_menu"
+        testID="touch-menu"
       >
         <Image
           source={

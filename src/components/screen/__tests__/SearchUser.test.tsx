@@ -39,8 +39,8 @@ describe('[serachUser] interaction', () => {
 
   beforeAll(() => {
     testingLib = render(component);
-    txtInputInst = testingLib.getByTestId('txtInput');
-    animatedFlatListInst = testingLib.getByTestId('animatedFlatlist');
+    txtInputInst = testingLib.getByTestId('text-input');
+    animatedFlatListInst = testingLib.getByTestId('animated-flatlist');
   });
   it(
     'when friend name typed in TextInput: (onTxtChanged -> onSearch)' +
@@ -120,7 +120,7 @@ describe('[SearchUser] interaction with Profile Modal', () => {
   beforeEach(() => {
     component = createTestElement(<TestComponent />);
     testingLib = render(component);
-    itemTestID = 'userListItem0';
+    itemTestID = 'user-list-item0';
   });
 
   it('show profile modal when press user in search user list', () => {

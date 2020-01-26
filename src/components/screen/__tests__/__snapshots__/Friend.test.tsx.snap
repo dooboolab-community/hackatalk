@@ -342,7 +342,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
         >
           <TouchableOpacity
             activeOpacity={0.5}
-            testID="USER_ID_0"
+            testID="user-id-0"
           >
             <View
               style={
@@ -873,7 +873,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
         >
           <TouchableOpacity
             activeOpacity={0.5}
-            testID="USER_ID_0"
+            testID="user-id-0"
           >
             <View
               style={
@@ -962,7 +962,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
         >
           <TouchableOpacity
             activeOpacity={0.5}
-            testID="USER_ID_1"
+            testID="user-id-1"
           >
             <View
               style={

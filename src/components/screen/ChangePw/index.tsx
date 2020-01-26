@@ -40,7 +40,7 @@ const ChangePwHeader = (props: Props): ReactElement => {
   return (
     <Header>
       <Title>{getString('PASSWORD_CHANGE')}</Title>
-      <CloseButton testID="closeBtn" onPress={(): void => navigation.goBack()}>
+      <CloseButton testID="close-btn" onPress={(): void => navigation.goBack()}>
         <Ionicons name="md-close" size={24} color={theme.fontColor} />
       </CloseButton>
     </Header>
@@ -132,8 +132,8 @@ function ChangePw(props: Props): ReactElement {
         ) : (
           <InnerContainer>
             <StyledTextInput
-              key="currentPwTextInput"
-              testID="currentPwTextInput"
+              key="current-pw-text-input"
+              testID="current-pw-text-input"
               isPassword
               onTextChanged={(pw): void => setCurrentPw(pw)}
               txtLabel={getString('PASSWORD_CURRENT')}
@@ -141,7 +141,7 @@ function ChangePw(props: Props): ReactElement {
           </InnerContainer>
         )}
         <Button
-          testID="checkCurrentPwBtn"
+          testID="close-current-pw-btn"
           onPress={isValidCurrentPw ? changePassword : validateCurrent}
           containerStyle={{
             width: '100%',

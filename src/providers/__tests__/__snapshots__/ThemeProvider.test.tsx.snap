@@ -3,13 +3,13 @@
 exports[`[ThemeProvider] rendering test component and snapshot matches 1`] = `
 <View>
   <Text
-    testID="TEXT"
+    testID="test-text"
   >
     "LIGHT"
   </Text>
   <Button
     onPress={[Function]}
-    testID="BUTTON"
+    testID="test-button"
     title="Button"
   />
 </View>

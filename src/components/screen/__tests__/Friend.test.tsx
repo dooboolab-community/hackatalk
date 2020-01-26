@@ -80,7 +80,7 @@ describe('[Friend] interaction', () => {
           showModal: jest.fn(),
           state: null,
         }));
-      const userListItem = testingLib.queryByTestId('USER_ID_0');
+      const userListItem = testingLib.queryByTestId('user-id-0');
       act(() => {
         fireEvent.press(userListItem);
       });
@@ -94,10 +94,10 @@ describe('[Friend] interaction', () => {
           state: {
             user: null,
             deleteMode: true,
-            modal: jest.mock,
+            // modal: jest.mock,
           },
         }));
-      const userListItem = testingLib.queryByTestId('USER_ID_0');
+      const userListItem = testingLib.queryByTestId('user-id-0');
       testingLib.rerender(component);
       act(() => {
         fireEvent.press(userListItem);
@@ -157,6 +157,7 @@ describe('[Friend] interaction', () => {
   });
 
   describe('Show the interaction of the [ProfileModal] and [Friend] screen.', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = createTestProps({
       screenProps: { changeTheme: jest.fn() },
     });
@@ -180,7 +181,7 @@ describe('[Friend] interaction', () => {
     beforeEach(() => {
       component = createTestElement(<TestComponent />);
       testingLib = render(component);
-      itemTestID = 'USER_ID_0';
+      itemTestID = 'user-id-0';
     });
 
     it('Show the friend is removed from list and the modal turns off when the delete button is pressed', () => {

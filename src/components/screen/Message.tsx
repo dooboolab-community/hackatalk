@@ -163,7 +163,7 @@ function Message(): React.ReactElement {
             }}
           >
             <TouchableOpacity
-              testID="icon_camera"
+              testID="icon-camera"
               onPress={(): Promise<void> => onRequestImagePicker('camera')}
               style={{
                 marginLeft: 16,
@@ -181,7 +181,7 @@ function Message(): React.ReactElement {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              testID="icon_photo"
+              testID="icon-photo"
               onPress={(): Promise<void> => onRequestImagePicker('photo')}
               style={{
                 marginLeft: 16,

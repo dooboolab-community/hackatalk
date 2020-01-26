@@ -56,7 +56,7 @@ function SettingScreen(props: Props): React.ReactElement {
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
     case AuthType.FACEBOOK:
@@ -66,7 +66,7 @@ function SettingScreen(props: Props): React.ReactElement {
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
     case AuthType.APPLE:
@@ -76,7 +76,7 @@ function SettingScreen(props: Props): React.ReactElement {
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
     case AuthType.EMAIL:
@@ -86,7 +86,7 @@ function SettingScreen(props: Props): React.ReactElement {
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
-        testID: 'changePwItem',
+        testID: 'change-pw-item',
       };
       break;
   }
@@ -101,7 +101,7 @@ function SettingScreen(props: Props): React.ReactElement {
   return (
     <Container>
       <SectionList
-        testID="mySectionList"
+        testID="test-section-list"
         sections={settings}
         renderItem={({ item }): React.ReactElement => SectionItem(item, theme)}
         keyExtractor={(item: SettingsOption): string => item.label}

@@ -27,7 +27,7 @@ interface Props extends Omit<ImageViewerPropsDefine, 'imageUrls'> {
 const HeaderContainer = styled.SafeAreaView`
   position: absolute;
   width: 100%;
-  height: 80;
+  height: 80px;
   z-index: 1;
   flex-direction: row;
   align-items: center;
@@ -36,7 +36,7 @@ const HeaderContainer = styled.SafeAreaView`
 
 const Title = styled.Text`
   color: white;
-  font-size: 20;
+  font-size: 20px;
 `;
 
 const SubTitle = styled.Text`

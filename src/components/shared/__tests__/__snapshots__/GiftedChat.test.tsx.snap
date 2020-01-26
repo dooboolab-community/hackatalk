@@ -133,7 +133,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           },
         ]
       }
-      testID="input_chat"
+      testID="input-chat"
       underlineColorAndroid="transparent"
       value=""
     />
@@ -151,7 +151,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           },
         ]
       }
-      testID="touch_menu"
+      testID="touch-menu"
     >
       <View />
     </TouchableOpacity>

@@ -44,7 +44,7 @@ function App(): React.ReactElement {
       <AppLoading
         startAsync={loadAssetsAsync}
         onFinish={(): void => setReady(true)}
-        onError={console.warn}
+        // onError={console.warn}
       />
     );
   }

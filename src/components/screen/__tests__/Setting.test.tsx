@@ -67,6 +67,15 @@ describe('[Setting] screen', () => {
       ),
     );
     expect(rendered.toJSON()).toMatchSnapshot();
+
+    rendered = renderer.create(
+      createTestElement(
+        <SettingTest />,
+        undefined,
+        getEmptyAuthUserWithSignInType(AuthType.APPLE),
+      ),
+    );
+    expect(rendered.toJSON()).toMatchSnapshot();
     expect(rendered.toJSON()).toBeTruthy();
   });
 
@@ -76,7 +85,7 @@ describe('[Setting] screen', () => {
     });
 
     it('should simulate onPress login state item', async () => {
-      const btn = testingLib.getByTestId('changePwItem');
+      const btn = testingLib.getByTestId('change-pw-item');
       fireEvent.press(btn);
     });
   });

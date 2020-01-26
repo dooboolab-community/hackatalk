@@ -367,7 +367,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 },
               ]
             }
-            testID="txtInput"
+            testID="text-input"
             underlineColorAndroid="transparent"
           />
           <Image
@@ -512,7 +512,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             "width": "100%",
           }
         }
-        testID="animatedFlatlist"
+        testID="animated-flatlist"
         testObj={
           Object {
             "scrollY": 0,
@@ -536,7 +536,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem0"
+              testID="user-list-item0"
             >
               <View
                 style={
@@ -625,7 +625,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem1"
+              testID="user-list-item1"
             >
               <View
                 style={
@@ -714,7 +714,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem2"
+              testID="user-list-item2"
             >
               <View
                 style={
@@ -803,7 +803,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem3"
+              testID="user-list-item3"
             >
               <View
                 style={
@@ -892,7 +892,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem4"
+              testID="user-list-item4"
             >
               <View
                 style={
@@ -981,7 +981,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem5"
+              testID="user-list-item5"
             >
               <View
                 style={
@@ -1070,7 +1070,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem6"
+              testID="user-list-item6"
             >
               <View
                 style={
@@ -1159,7 +1159,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem7"
+              testID="user-list-item7"
             >
               <View
                 style={
@@ -1248,7 +1248,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem8"
+              testID="user-list-item8"
             >
               <View
                 style={
@@ -1337,7 +1337,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem9"
+              testID="user-list-item9"
             >
               <View
                 style={
@@ -1767,7 +1767,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 },
               ]
             }
-            testID="txtInput"
+            testID="text-input"
             underlineColorAndroid="transparent"
           />
           <Image
@@ -1912,7 +1912,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             "width": "100%",
           }
         }
-        testID="animatedFlatlist"
+        testID="animated-flatlist"
         testObj={
           Object {
             "scrollY": 0,
@@ -1936,7 +1936,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem0"
+              testID="user-list-item0"
             >
               <View
                 style={
@@ -2025,7 +2025,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem1"
+              testID="user-list-item1"
             >
               <View
                 style={
@@ -2114,7 +2114,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem2"
+              testID="user-list-item2"
             >
               <View
                 style={
@@ -2203,7 +2203,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem3"
+              testID="user-list-item3"
             >
               <View
                 style={
@@ -2292,7 +2292,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem4"
+              testID="user-list-item4"
             >
               <View
                 style={
@@ -2381,7 +2381,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem5"
+              testID="user-list-item5"
             >
               <View
                 style={
@@ -2470,7 +2470,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem6"
+              testID="user-list-item6"
             >
               <View
                 style={
@@ -2559,7 +2559,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem7"
+              testID="user-list-item7"
             >
               <View
                 style={
@@ -2648,7 +2648,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem8"
+              testID="user-list-item8"
             >
               <View
                 style={
@@ -2737,7 +2737,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem9"
+              testID="user-list-item9"
             >
               <View
                 style={
@@ -3167,7 +3167,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 },
               ]
             }
-            testID="txtInput"
+            testID="text-input"
             underlineColorAndroid="transparent"
           />
           <Image
@@ -3312,7 +3312,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             "width": "100%",
           }
         }
-        testID="animatedFlatlist"
+        testID="animated-flatlist"
         testObj={
           Object {
             "scrollY": 0,
@@ -3336,7 +3336,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem0"
+              testID="user-list-item0"
             >
               <View
                 style={
@@ -3425,7 +3425,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem1"
+              testID="user-list-item1"
             >
               <View
                 style={
@@ -3514,7 +3514,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem2"
+              testID="user-list-item2"
             >
               <View
                 style={
@@ -3603,7 +3603,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem3"
+              testID="user-list-item3"
             >
               <View
                 style={
@@ -3692,7 +3692,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem4"
+              testID="user-list-item4"
             >
               <View
                 style={
@@ -3781,7 +3781,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem5"
+              testID="user-list-item5"
             >
               <View
                 style={
@@ -3870,7 +3870,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem6"
+              testID="user-list-item6"
             >
               <View
                 style={
@@ -3959,7 +3959,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem7"
+              testID="user-list-item7"
             >
               <View
                 style={
@@ -4048,7 +4048,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem8"
+              testID="user-list-item8"
             >
               <View
                 style={
@@ -4137,7 +4137,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem9"
+              testID="user-list-item9"
             >
               <View
                 style={
@@ -4306,7 +4306,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
                 },
               ]
             }
-            testID="txtInput"
+            testID="text-input"
             underlineColorAndroid="transparent"
           />
           <Image
@@ -4451,7 +4451,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
             "width": "100%",
           }
         }
-        testID="animatedFlatlist"
+        testID="animated-flatlist"
         testObj={
           Object {
             "scrollY": 0,
@@ -4475,7 +4475,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem0"
+              testID="user-list-item0"
             >
               <View
                 style={
@@ -4564,7 +4564,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem1"
+              testID="user-list-item1"
             >
               <View
                 style={
@@ -4653,7 +4653,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem2"
+              testID="user-list-item2"
             >
               <View
                 style={
@@ -4742,7 +4742,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem3"
+              testID="user-list-item3"
             >
               <View
                 style={
@@ -4831,7 +4831,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem4"
+              testID="user-list-item4"
             >
               <View
                 style={
@@ -4920,7 +4920,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem5"
+              testID="user-list-item5"
             >
               <View
                 style={
@@ -5009,7 +5009,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem6"
+              testID="user-list-item6"
             >
               <View
                 style={
@@ -5098,7 +5098,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem7"
+              testID="user-list-item7"
             >
               <View
                 style={
@@ -5187,7 +5187,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem8"
+              testID="user-list-item8"
             >
               <View
                 style={
@@ -5276,7 +5276,7 @@ exports[`[SearchUser] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.5}
-              testID="userListItem9"
+              testID="user-list-item9"
             >
               <View
                 style={
