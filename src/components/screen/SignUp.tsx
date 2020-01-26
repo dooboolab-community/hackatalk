@@ -1,12 +1,16 @@
+import { Alert, AsyncStorage } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 import { validateEmail, validatePassword } from '../../utils/common';
 
+import { AuthPayload } from '../../types';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import { MUTATION_SIGN_UP } from '../../graphql/mutations';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.SafeAreaView`
@@ -28,23 +32,33 @@ interface Props {
   navigation: AuthStackNavigationProps<'SignUp'>;
 }
 
+interface MutationSignUpInput {
+  user: {
+    email: string;
+    password: string;
+    name: string;
+    statusMessage: string;
+  };
+}
+
 function Page(props: Props): ReactElement {
+  const { navigation } = props;
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [name, setName] = useState<string>('');
-  const [status, setStatus] = useState<string>('');
+  const [statusMessage, setStatusMessage] = useState<string>('');
 
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
-  const [isSignUp, setIsSignUp] = useState<boolean>(false);
-  let timer: number;
+  const [signingUp, setSigningUp] = useState<boolean>(false);
 
   const { theme } = useThemeContext();
+  const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
 
-  const onSignUp = async (): Promise<void> => {
+  const requestSignUp = async (): Promise<void> => {
     if (!validateEmail(email) || !validatePassword(password) || name.length < 2 || password !== confirmPassword) {
       if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
@@ -61,14 +75,28 @@ function Page(props: Props): ReactElement {
       return;
     }
 
-    setIsSignUp(true);
-    timer = setTimeout(() => {
-      setIsSignUp(false);
-      clearTimeout(timer);
-      if (props.navigation) {
-        props.navigation.navigate('SignIn');
-      }
-    }, 1000);
+    setSigningUp(true);
+    const variables = {
+      user: {
+        email,
+        name,
+        password,
+        statusMessage,
+      },
+    };
+
+    try {
+      const { data } = await signUp({ variables });
+      AsyncStorage.setItem('token', data?.signUp.token || '');
+      navigation.resetRoot({
+        index: 0,
+        routes: [{ name: 'MainStack' }],
+      });
+    } catch (err) {
+      Alert.alert(getString('ERROR'), err.message);
+    } finally {
+      setSigningUp(false);
+    }
   };
 
   return (
@@ -93,7 +121,7 @@ function Page(props: Props): ReactElement {
               setErrorEmail('');
             }}
             errorText={errorEmail}
-            onSubmitEditing={onSignUp}
+            onSubmitEditing={requestSignUp}
           />
           <EditText
             testID="input-password"
@@ -113,7 +141,7 @@ function Page(props: Props): ReactElement {
             }}
             style={{ marginTop: 32 }}
             errorText={errorPassword}
-            onSubmitEditing={onSignUp}
+            onSubmitEditing={requestSignUp}
             secureTextEntry={true}
           />
           <EditText
@@ -134,7 +162,7 @@ function Page(props: Props): ReactElement {
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             errorText={errorConfirmPassword}
-            onSubmitEditing={onSignUp}
+            onSubmitEditing={requestSignUp}
             secureTextEntry={true}
           />
           <EditText
@@ -155,7 +183,7 @@ function Page(props: Props): ReactElement {
             }}
             style={{ marginTop: 32 }}
             errorText={errorName}
-            onSubmitEditing={onSignUp}
+            onSubmitEditing={requestSignUp}
           />
           <EditText
             testID="input-status"
@@ -168,18 +196,18 @@ function Page(props: Props): ReactElement {
             placeholderTextColor={theme.placeholder}
             label={getString('STATUS')}
             placeholder={getString('STATUS_MSG_HINT')}
-            value={status}
+            value={statusMessage}
             onChangeText={(text: string): void => {
-              setStatus(text);
+              setStatusMessage(text);
             }}
             style={{ marginTop: 32 }}
-            onSubmitEditing={onSignUp}
+            onSubmitEditing={requestSignUp}
           />
           <ButtonWrapper>
             <Button
               testID="btn-sign-up"
-              isLoading={isSignUp}
-              onPress={onSignUp}
+              isLoading={signingUp}
+              onPress={requestSignUp}
               containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
               textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
               text={getString('SIGN_UP')}

@@ -15,8 +15,16 @@ export interface User {
   photoURL: string;
   statusMsg: string;
   online?: boolean;
+  socialId: string;
+  AuthType: string;
+  verified: boolean;
   created?: Date;
   updated?: Date;
+}
+
+export interface AuthPayload {
+  token: string;
+  user: User;
 }
 
 export interface Friend extends User {
