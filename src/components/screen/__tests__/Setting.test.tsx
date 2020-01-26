@@ -17,11 +17,11 @@ import renderer from 'react-test-renderer';
 let component: React.ReactElement;
 function getEmptyAuthUserWithSignInType(signInType: SocialType): AuthUser {
   return {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     thumbURL: '',
     photoURL: '',
-    statusMsg: '',
+    statusMessage: '',
     friends: [],
     channels: [],
     social: signInType,

@@ -89,7 +89,7 @@ interface ImageSenderProps {
   fontColor: string;
 }
 
-const myFakeUid = '2'; // TODO: temporary
+const myFakeId = '2'; // TODO: temporary
 
 const ImageSenderComp: SFC<ImageSenderProps> = ({
   photoURL,
@@ -112,7 +112,7 @@ function MessageListItem(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const {
     item: {
-      sender: { uid, displayName, photoURL },
+      sender: { id, nickname, photoURL },
       messageType,
       // @ts-ignore
       message,
@@ -122,8 +122,8 @@ function MessageListItem(props: Props): React.ReactElement {
     onPressPeerImage,
     testID,
   } = props;
-  const isSamePeerMsg = prevItem && prevItem.sender.uid === uid;
-  if (uid !== myFakeUid) {
+  const isSamePeerMsg = prevItem && prevItem.sender.id === id;
+  if (id !== myFakeId) {
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
@@ -139,7 +139,7 @@ function MessageListItem(props: Props): React.ReactElement {
           {isSamePeerMsg ? (
             <View />
           ) : (
-            <StyledTextPeerName>{displayName}</StyledTextPeerName>
+            <StyledTextPeerName>{nickname}</StyledTextPeerName>
           )}
           <StyledTextPeerMessageContainer>
             <StyledPeerTextMessage>{message}</StyledPeerTextMessage>
@@ -171,11 +171,11 @@ MessageListItem.defaultProps = {
   item: {
     id: '',
     sender: {
-      uid: '0',
-      displayName: 'sender111',
+      id: '0',
+      nickname: 'sender111',
       thumbURL: '',
       photoURL: '',
-      statusMsg: '',
+      statusMessage: '',
     },
     message: 'hello1',
     created: new Date('1 1 2019'),

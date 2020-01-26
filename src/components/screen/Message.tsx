@@ -37,17 +37,17 @@ function Message(): React.ReactElement {
   const [isSending, setIsSending] = useState<boolean>(false);
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
+
   const [messages, setMessages] = useState<MessageProps[]>([
     {
       id: '',
       message: 'hello1',
-      messageType: MessageType.Message,
       sender: {
-        uid: '0',
-        displayName: 'sender111',
+        id: '0',
+        nickname: 'sender111',
         thumbURL: '',
         photoURL: '',
-        statusMsg: '',
+        statusMessage: '',
       },
     },
     {
@@ -59,11 +59,9 @@ function Message(): React.ReactElement {
         'This is long message. This is long message.' +
         'This is long message. This is long message. This is long message.',
       sender: {
-        uid: '2',
-        displayName: 'sender111',
+        id: '2',
+        nickname: 'sender111',
         thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
       },
     },
     {
@@ -71,11 +69,9 @@ function Message(): React.ReactElement {
       messageType: MessageType.Message,
       message: 'hello',
       sender: {
-        uid: '0',
-        displayName: 'sender111',
+        id: '0',
+        nickname: 'sender111',
         thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
       },
     },
     {
@@ -83,11 +79,9 @@ function Message(): React.ReactElement {
       messageType: MessageType.Message,
       message: 'hello2',
       sender: {
-        uid: '0',
-        displayName: 'sender111',
+        id: '0',
+        nickname: 'sender111',
         thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
       },
     },
     {
@@ -95,11 +89,9 @@ function Message(): React.ReactElement {
       messageType: MessageType.Photo,
       photo: 'http://photo.png',
       sender: {
-        uid: '0',
-        displayName: 'sender111',
+        id: '0',
+        nickname: 'sender111',
         thumbURL: '',
-        photoURL: '',
-        statusMsg: '',
       },
     },
   ]);

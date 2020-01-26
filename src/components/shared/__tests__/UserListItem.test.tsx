@@ -23,12 +23,12 @@ const onPress = (): void => {
 const propsObj = {
   testID: 'test_yo',
   user: {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     thumbURL: null,
     photoURL: null,
-    statusMsg: '',
-    online: false,
+    statusMessage: '',
+    isOnline: false,
     created: undefined,
     updated: undefined,
   },

@@ -12,94 +12,94 @@ import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 export const fakeUsers: User[] = [
   {
-    uid: '1',
-    displayName: 'admin',
+    id: '1',
+    nickname: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMsg: 'online',
-    online: true,
+    statusMessage: 'online',
+    isOnline: true,
     // created: new Date(),
     // updated: new Date(),
   },
   {
-    uid: '2',
-    displayName: 'geoseong',
+    id: '2',
+    nickname: 'geoseong',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'offline',
+    isOnline: false,
   },
   {
-    uid: '3',
-    displayName: 'hyochan',
+    id: '3',
+    nickname: 'hyochan',
     thumbURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'offline',
+    isOnline: false,
   },
   {
-    uid: '4',
-    displayName: 'mars',
+    id: '4',
+    nickname: 'mars',
     thumbURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
     photoURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
-    statusMsg: 'offline',
-    online: true,
+    statusMessage: 'offline',
+    isOnline: true,
   },
   {
-    uid: '5',
-    displayName: 'gordon',
+    id: '5',
+    nickname: 'gordon',
     thumbURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
     photoURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
-    statusMsg: 'offline',
-    online: true,
+    statusMessage: 'offline',
+    isOnline: true,
   },
   {
-    uid: '6',
-    displayName: 'admin2',
+    id: '6',
+    nickname: 'admin2',
     thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
     photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    statusMsg: 'online',
-    online: true,
+    statusMessage: 'online',
+    isOnline: true,
   },
   {
-    uid: '7',
-    displayName: 'geoseong2',
+    id: '7',
+    nickname: 'geoseong2',
     thumbURL:
       'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
     photoURL:
       'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'offline',
+    isOnline: false,
   },
   {
-    uid: '8',
-    displayName: 'hyochan2',
+    id: '8',
+    nickname: 'hyochan2',
     thumbURL:
       'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
     photoURL:
       'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'offline',
+    isOnline: false,
   },
   {
-    uid: '9',
-    displayName: 'mars2',
+    id: '9',
+    nickname: 'mars2',
     thumbURL:
       'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
     photoURL:
       'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
-    statusMsg: 'offline',
-    online: true,
+    statusMessage: 'offline',
+    isOnline: true,
   },
   {
-    uid: '10',
-    displayName: 'gordon2',
+    id: '10',
+    nickname: 'gordon2',
     thumbURL:
       'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
     photoURL:
       'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
-    statusMsg: 'offline',
-    online: true,
+    statusMessage: 'offline',
+    isOnline: true,
   },
 ];
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -163,7 +163,7 @@ const Screen = (): React.ReactElement => {
   const userListOnPress = (user: User): void => {
     if (state.modal) {
       const deleteMode =
-        friends.findIndex((friend) => friend.uid === user.uid) !== -1;
+        friends.findIndex((friend) => friend.id === user.id) !== -1;
       showModal({
         user,
         deleteMode,
@@ -207,7 +207,7 @@ const Screen = (): React.ReactElement => {
     const searchedUser =
       txt === ''
         ? searchedUsers
-        : searchedUsers.filter((item) => item.displayName.includes(txt));
+        : searchedUsers.filter((item) => item.nickname.includes(txt));
     setUsers(searchedUser);
   };
   const onTxtChanged = (txt: string): void => {

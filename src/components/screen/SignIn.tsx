@@ -107,11 +107,11 @@ function SignIn(props: Props): ReactElement {
   const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, {}>(MUTATION_SIGN_IN);
 
   const goToSignUp = (): void => {
-    props.navigation.navigate('SignUp');
+    navigation.navigate('SignUp');
   };
 
   const goToFindPw = (): void => {
-    props.navigation.navigate('FindPw');
+    navigation.navigate('FindPw');
   };
 
   const onSignIn = async (): Promise<void> => {

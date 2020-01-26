@@ -20,22 +20,22 @@ describe('[GiftedChatInput] render', () => {
         {
           id: '',
           sender: {
-            uid: '0',
-            displayName: 'sender111',
+            id: '0',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message: 'hello1',
         },
         {
           id: '',
           sender: {
-            uid: '2',
-            displayName: 'sender111',
+            id: '2',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message:
             'Hello2. This is long message. This is long message.This is long message.' +
@@ -46,11 +46,11 @@ describe('[GiftedChatInput] render', () => {
         {
           id: '',
           sender: {
-            uid: '0',
-            displayName: 'sender111',
+            id: '0',
+            nickname: 'sender111',
             thumbURL: '',
             photoURL: '',
-            statusMsg: '',
+            statusMessage: '',
           },
           message: 'hello',
         },

@@ -47,7 +47,7 @@ describe('[serachUser] interaction', () => {
       ' and (renderItem) and (keyExtractor)',
     () => {
       // setTimeout called - 0
-      fireEvent.changeText(txtInputInst, inputData.displayName);
+      fireEvent.changeText(txtInputInst, inputData.nickname);
       // setTimeout called - 2
       expect(animatedFlatListInst.props.data[0]).toEqual(inputData);
 
@@ -86,7 +86,7 @@ describe('[serachUser] interaction', () => {
   //   const userListItemInst: renderer.ReactTestInstance = testingLib.getByTestId(
   //     itemTestID,
   //   );
-  //   fireEvent.changeText(txtInputInst, inputData.displayName);
+  //   fireEvent.changeText(txtInputInst, inputData.nickname);
   //   fireEvent.press(userListItemInst);
   //   // const { profileModal } = userListItemInst.props.testObj;
   //   // const UserItem = withTheme(<UserListItem testID={itemTestID} user={inputData} />);

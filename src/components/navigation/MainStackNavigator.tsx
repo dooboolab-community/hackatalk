@@ -1,9 +1,9 @@
 import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
-import MainTabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { ReactElement, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import { TouchableOpacity, View } from 'react-native';
 
 import { DefaultTheme } from 'styled-components';
@@ -71,7 +71,7 @@ function MainStackNavigator(): ReactElement {
     >
       <Stack.Screen
         name="MainTab"
-        component={MainTabNavigator}
+        component={TabNavigator}
         options={MainTabNavigationOptions}
       />
       <Stack.Screen

@@ -28,12 +28,12 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
     data={
       Array [
         Object {
-          "displayName": "hello",
-          "online": true,
+          "id": "0",
+          "isOnline": true,
+          "nickname": "hello",
           "photoURL": "",
-          "statusMsg": "I am fine today",
+          "statusMessage": "I am fine today",
           "thumbURL": "",
-          "uid": "0",
         },
       ]
     }

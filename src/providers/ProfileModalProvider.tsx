@@ -40,10 +40,10 @@ export interface Payload extends State {
 
 const initialState: State = {
   user: {
-    uid: '',
-    displayName: '',
+    id: '',
+    nickname: '',
     photoURL: '',
-    statusMsg: '',
+    statusMessage: '',
   },
   deleteMode: false,
   modal: null,

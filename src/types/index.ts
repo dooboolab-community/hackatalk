@@ -9,22 +9,24 @@ export enum MessageType {
 }
 
 export interface User {
-  uid: string;
-  displayName: string;
-  thumbURL: string;
-  photoURL: string;
-  statusMsg: string;
-  online?: boolean;
-  socialId: string;
-  AuthType: string;
-  verified: boolean;
+  id: string;
+  nickname?: string;
+  name?: string;
+  thumbURL?: string;
+  photoURL?: string;
+  statusMessage?: string;
+  isOnline?: boolean;
+  socialId?: string;
+  lastSignedIn?: Date;
+  AuthType?: string;
+  verified?: boolean;
   created?: Date;
   updated?: Date;
 }
 
 export interface AuthPayload {
   token: string;
-  user: User;
+  user?: User;
 }
 
 export interface Friend extends User {
@@ -45,7 +47,7 @@ export interface AuthUser extends User {
   social?: SocialType;
 }
 
-export interface ChannelCommon<T extends MessageType = MessageType.Message> {
+export interface MessageCommon<T extends MessageType = MessageType.Message> {
   id: string;
   sender: User;
   messageType?: T;
@@ -53,15 +55,15 @@ export interface ChannelCommon<T extends MessageType = MessageType.Message> {
   updated?: Date;
 }
 
-interface Message extends ChannelCommon<MessageType.Message> {
+interface Message extends MessageCommon<MessageType.Message> {
   message: string;
 }
 
-interface Photo extends ChannelCommon<MessageType.Photo> {
+interface Photo extends MessageCommon<MessageType.Photo> {
   photo: string;
 }
 
-interface File extends ChannelCommon<MessageType.File> {
+interface File extends MessageCommon<MessageType.File> {
   file: string;
 }
 

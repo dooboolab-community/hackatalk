@@ -21,22 +21,22 @@ import { useFriendContext } from '../../../providers/FriendProvider';
 
 const fakeUsers: User[] = [
   {
-    uid: '1',
-    displayName: 'admin',
+    id: '1',
+    nickname: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMsg: 'online',
-    online: true,
+    statusMessage: 'hello',
+    isOnline: true,
     // created: new Date(),
     // updated: new Date(),
   },
   {
-    uid: '2',
-    displayName: 'geoseong',
+    id: '2',
+    nickname: 'geoseong',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'hello baby',
+    isOnline: false,
   },
 ];
 

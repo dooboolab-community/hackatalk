@@ -300,12 +300,12 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
       data={
         Array [
           Object {
-            "displayName": "hello",
-            "online": true,
+            "id": "0",
+            "isOnline": true,
+            "nickname": "hello",
             "photoURL": "",
-            "statusMsg": "I am fine today",
+            "statusMessage": "I am fine today",
             "thumbURL": "",
-            "uid": "0",
           },
         ]
       }
@@ -823,20 +823,20 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
       data={
         Array [
           Object {
-            "displayName": "admin",
-            "online": true,
+            "id": "1",
+            "isOnline": true,
+            "nickname": "admin",
             "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "statusMsg": "online",
+            "statusMessage": "hello",
             "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "uid": "1",
           },
           Object {
-            "displayName": "hello",
-            "online": true,
+            "id": "0",
+            "isOnline": true,
+            "nickname": "hello",
             "photoURL": "",
-            "statusMsg": "I am fine today",
+            "statusMessage": "I am fine today",
             "thumbURL": "",
-            "uid": "0",
           },
         ]
       }
@@ -942,7 +942,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                   ]
                 }
               >
-                online
+                hello
               </Text>
             </View>
           </TouchableOpacity>

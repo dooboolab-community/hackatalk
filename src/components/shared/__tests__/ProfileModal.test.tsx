@@ -19,22 +19,22 @@ let component: React.ReactElement;
 
 const fakeUsers: User[] = [
   {
-    uid: '1',
-    displayName: 'admin',
+    id: '1',
+    nickname: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMsg: 'online',
-    online: true,
+    statusMessage: 'online',
+    isOnline: true,
     // created: new Date(),
     // updated: new Date(),
   },
   {
-    uid: '2',
-    displayName: 'zeoseong',
+    id: '2',
+    nickname: 'zeoseong',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMsg: 'offline',
-    online: false,
+    statusMessage: 'offline',
+    isOnline: false,
   },
 ];
 
@@ -75,7 +75,7 @@ const TestComponent = ({ showModalParams }): React.ReactElement => {
   state.modal = modalEl;
   const user = showModalParams.user || friends[0];
   const deleteMode =
-    friends.findIndex((friend) => friend.uid === user.uid) !== -1;
+    friends.findIndex((friend) => friend.id === user.id) !== -1;
   return (
     <>
       <Button

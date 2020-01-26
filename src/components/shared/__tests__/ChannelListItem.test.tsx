@@ -22,12 +22,9 @@ describe('[ChannelListItem] rendering test', () => {
         lastMessage: {
           id: 'id_3',
           sender: {
-            uid: 'uid_3',
-            displayName: 'displayName3',
+            id: 'uid_3',
+            nickname: 'displayName3',
             thumbURL: '',
-            photoURL: '',
-            statusMsg: '',
-            online: false,
           },
           message: 'How are you doing?',
           created: new Date(0),
