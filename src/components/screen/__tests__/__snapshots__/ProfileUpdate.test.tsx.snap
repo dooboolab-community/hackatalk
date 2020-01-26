@@ -139,6 +139,9 @@ exports[`rendering test renders as expected 1`] = `
                     "paddingBottom": 15,
                     "paddingTop": 15,
                   },
+                  Object {
+                    "paddingVertical": 16,
+                  },
                 ]
               }
               testID="input-name"
@@ -233,6 +236,9 @@ exports[`rendering test renders as expected 1`] = `
                     "height": "100%",
                     "paddingBottom": 15,
                     "paddingTop": 15,
+                  },
+                  Object {
+                    "paddingVertical": 16,
                   },
                 ]
               }

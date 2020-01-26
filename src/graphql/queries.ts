@@ -5,6 +5,8 @@ export const QUERY_ME = gql`
     me {
       id
       email
+      nickname
+      statusMessage
     }
   }
 `;
