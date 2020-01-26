@@ -111,11 +111,10 @@ function ProfileModalProvider(props: Props): React.ReactElement {
   return <Provider value={{ state, ...actions }}>{props.children}</Provider>;
 }
 
-export { useCtx as useProfileContext, ProfileModalProvider };
-
 const ProfileContext = {
   useProfileContext: useCtx,
   ProfileModalProvider,
 };
 
+export { useCtx as useProfileContext, ProfileModalProvider };
 export default ProfileContext;

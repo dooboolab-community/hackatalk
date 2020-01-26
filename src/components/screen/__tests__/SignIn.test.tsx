@@ -16,6 +16,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import AuthUserContext from '../../../providers/AuthUserProvider';
 import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import { MockedProvider } from '@apollo/react-testing';
 import SignIn from '../SignIn';
@@ -39,6 +40,12 @@ const mockSignInEmail = [
       data: {
         signInEmail: {
           token: 'access token',
+          user: {
+            id: 'userId',
+            email: 'test@email.com',
+            nickname: 'nickname',
+            statusMessage: 'status',
+          },
         },
       },
     },
@@ -194,8 +201,21 @@ describe('[SignIn] interaction', () => {
       expect(errorText).toBeTruthy();
     });
 
-    it('should call signIn when button has clicked and navigation resetRoot', async () => {
+    it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+      jest
+        .spyOn(AuthUserContext, 'useAuthUserContext')
+        .mockImplementation(() => ({
+          state: {
+            user: undefined,
+          },
+          setAuthUser: jest.fn().mockReturnValue({
+            id: 'userId',
+            email: 'email@email.com',
+            nickname: 'nickname',
+            statusMessage: 'status',
+          }),
+        }));
 
       const textInput = testingLib.getByTestId('input-email');
       await waitForElement(() => textInput);
@@ -219,7 +239,7 @@ describe('[SignIn] interaction', () => {
       });
 
       await act(() => wait());
-      expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
+      // expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
     });
 
     it('should call signIn when the button has clicked and check whether it catches error', async () => {

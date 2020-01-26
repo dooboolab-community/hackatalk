@@ -9,6 +9,7 @@ import { QUERY_ME } from '../../graphql/queries';
 import React from 'react';
 import { User } from '../../types';
 import WebView from '../screen/WebView';
+import { useAuthUserContext } from '../../providers/AuthUserProvider';
 import { useQuery } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -30,6 +31,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
+  const { state: { user } } = useAuthUserContext();
   const { loading, error, data } = useQuery<Partial<User>, {}>(QUERY_ME);
 
   if (loading) {
@@ -53,8 +55,11 @@ function RootNavigator(): React.ReactElement {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="AuthStack" component={AuthStack} />
-        <Stack.Screen name="MainStack" component={MainStack} />
+        {
+          !user
+            ? <Stack.Screen name="AuthStack" component={AuthStack} />
+            : <Stack.Screen name="MainStack" component={MainStack} />
+        }
         <Stack.Screen name="WebView" component={WebView}
           options={{
             headerShown: true,

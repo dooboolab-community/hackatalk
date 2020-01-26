@@ -26,7 +26,7 @@ export interface User {
 
 export interface AuthPayload {
   token: string;
-  user?: User;
+  user: User;
 }
 
 export interface Friend extends User {
@@ -39,12 +39,6 @@ export enum SocialType {
   Google,
   Facebook,
   Apple,
-}
-
-export interface AuthUser extends User {
-  friends?: [];
-  channels?: [];
-  social?: SocialType;
 }
 
 export interface MessageCommon<T extends MessageType = MessageType.Message> {

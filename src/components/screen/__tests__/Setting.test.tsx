@@ -2,20 +2,20 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AuthUser, SocialType } from '../../../types';
 import {
   RenderResult,
   cleanup,
   fireEvent,
   render,
 } from '@testing-library/react-native';
+import { SocialType, User } from '../../../types';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Setting from '../Setting';
 import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
-function getEmptyAuthUserWithSignInType(signInType: SocialType): AuthUser {
+function getEmptyAuthUserWithSignInType(signInType: SocialType): User {
   return {
     id: '',
     nickname: '',

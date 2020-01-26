@@ -44,9 +44,7 @@ export interface Props {
 function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const {
-    state: { user },
-  } = useAuthUserContext();
+  const { state: { user } } = useAuthUserContext();
 
   let signInInfoOption: SettingsOption;
 
