@@ -27,11 +27,12 @@ export const IC_LOGO_D = icLogoD;
 export const IC_LOGO_W = icLogoW;
 
 export default [
-  SvgPlus,
-  SvgNoProfile,
-  SvgApple,
-  SvgGoogle,
-  SvgFacebook,
+  // Do not run svgs for now
+  // SvgPlus,
+  // SvgNoProfile,
+  // SvgApple,
+  // SvgGoogle,
+  // SvgFacebook,
   IC_LOGO_W,
   IC_LOGO_D,
   IC_ADD_W,
