@@ -1,6 +1,6 @@
+import { AsyncStorage, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import React, { useEffect, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
@@ -55,6 +55,7 @@ interface Props {
 }
 
 function Screen(props: Props): React.ReactElement {
+  const { navigation } = props;
   const [isUpdating, setIsUpdating] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
@@ -64,8 +65,8 @@ function Screen(props: Props): React.ReactElement {
   useEffect(() => {
     if (isUpdating) {
       try {
-        if (props.navigation) {
-          props.navigation.goBack();
+        if (navigation) {
+          navigation.goBack();
         }
       } catch (err) {
         // console.error(err);
@@ -76,8 +77,9 @@ function Screen(props: Props): React.ReactElement {
   }, [isUpdating]);
 
   const onLogout = (): void => {
-    if (props.navigation) {
-      props.navigation.resetRoot({
+    if (navigation) {
+      AsyncStorage.removeItem('token');
+      navigation.resetRoot({
         index: 0,
         routes: [{ name: 'AuthStack' }],
       });
