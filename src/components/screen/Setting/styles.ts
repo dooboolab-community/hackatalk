@@ -35,7 +35,7 @@ export const ItemIcon = styled.Image`
   height: 32px;
   border-width: 1;
   border-color: ${({ theme }): string => theme.lineColor};
-  border-radius: 4;
+  border-radius: 4px;
   margin-right: 10px;
 `;
 

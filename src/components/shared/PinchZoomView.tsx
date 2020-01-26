@@ -41,7 +41,7 @@ const Title = styled.Text`
 
 const SubTitle = styled.Text`
   color: white;
-  font-size: 16;
+  font-size: 16px;
 `;
 
 const Header = ({

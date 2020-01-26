@@ -49,9 +49,9 @@ const StyledTextDisplayName = styled.Text`
 
 const StyledTextWrapper = styled.View`
   background-color: ${({ theme }): string => theme.tintColor};
-  width: 16;
-  height: 16;
-  border-radius: 8;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
 `;
