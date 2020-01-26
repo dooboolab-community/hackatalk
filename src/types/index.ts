@@ -8,6 +8,13 @@ export enum MessageType {
   File,
 }
 
+export enum AuthType {
+  EMAIL,
+  FACEBOOK,
+  GOOGLE,
+  APPLE
+}
+
 export interface User {
   id: string;
   nickname?: string;
@@ -18,7 +25,7 @@ export interface User {
   isOnline?: boolean;
   socialId?: string;
   lastSignedIn?: Date;
-  AuthType?: string;
+  authType?: AuthType;
   verified?: boolean;
   created?: Date;
   updated?: Date;
@@ -32,13 +39,6 @@ export interface AuthPayload {
 export interface Friend extends User {
   isFriend?: boolean;
   friendSince: Date;
-}
-
-export enum SocialType {
-  Email,
-  Google,
-  Facebook,
-  Apple,
 }
 
 export interface MessageCommon<T extends MessageType = MessageType.Message> {

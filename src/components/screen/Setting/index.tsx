@@ -9,10 +9,10 @@ import React, { ReactElement } from 'react';
 import { SectionList, SectionListData } from 'react-native';
 import { SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
 
+import { AuthType } from '../../../types';
 import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
-import { SocialType } from '../../../types';
 import { getString } from '../../../../STRINGS';
 import { useAuthUserContext } from '../../../providers/AuthUserProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -48,8 +48,8 @@ function SettingScreen(props: Props): React.ReactElement {
 
   let signInInfoOption: SettingsOption;
 
-  switch (user && user.social) {
-    case SocialType.Google:
+  switch (user && user.authType) {
+    case AuthType.GOOGLE:
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
@@ -59,7 +59,7 @@ function SettingScreen(props: Props): React.ReactElement {
         testID: 'changePwItem',
       };
       break;
-    case SocialType.Facebook:
+    case AuthType.FACEBOOK:
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
@@ -69,7 +69,7 @@ function SettingScreen(props: Props): React.ReactElement {
         testID: 'changePwItem',
       };
       break;
-    case SocialType.Apple:
+    case AuthType.APPLE:
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.appleIcon}/>,
         label: getString('SIGNED_IN_WITH_APPLE'),
@@ -79,7 +79,7 @@ function SettingScreen(props: Props): React.ReactElement {
         testID: 'changePwItem',
       };
       break;
-    case SocialType.Email:
+    case AuthType.EMAIL:
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),

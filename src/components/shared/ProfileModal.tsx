@@ -72,7 +72,7 @@ interface Props {
   onChatPressed?: () => void;
 }
 
-interface Ref {
+export interface Ref {
   open: () => void;
   close: () => void;
   setUser: (user: User) => void;
@@ -167,7 +167,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     setOnDeleteFriend,
     setOnAddFriend,
   }));
-  const { photoURL, nickname, statusMessage } = user;
+  const { photoURL = '', nickname, statusMessage } = user;
   const {
     theme: { primary, modalBtnPrimaryFont },
   } = useThemeContext();

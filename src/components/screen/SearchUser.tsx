@@ -203,11 +203,11 @@ const Screen = (): React.ReactElement => {
       />
     );
   };
-  const onSearch = (txt: string): void => {
+  const onSearch = (searchText: string): void => {
     const searchedUser =
-      txt === ''
+      searchText === ''
         ? searchedUsers
-        : searchedUsers.filter((item) => item.nickname.includes(txt));
+        : searchedUsers.filter((item) => item.nickname && item.nickname.includes(searchText));
     setUsers(searchedUser);
   };
   const onTxtChanged = (txt: string): void => {

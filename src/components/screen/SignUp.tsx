@@ -4,7 +4,6 @@ import React, { ReactElement, useState } from 'react';
 import { validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthPayload } from '../../types';
-import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { MUTATION_SIGN_UP } from '../../graphql/mutations';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
@@ -29,10 +28,6 @@ const ButtonWrapper = styled.View`
   flex-direction: row-reverse;
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'SignUp'>;
-}
-
 interface MutationSignUpInput {
   user: {
     email: string;
@@ -42,8 +37,7 @@ interface MutationSignUpInput {
   };
 }
 
-function Page(props: Props): ReactElement {
-  const { navigation } = props;
+function Page(): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');

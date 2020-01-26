@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react';
+import React, { MutableRefObject, useReducer } from 'react';
 
+import { Ref as ProfileModalRef } from '../components/shared/ProfileModal';
 import { User } from '../types';
 import createCtx from '../utils/createCtx';
 
 interface ShowModalParams {
-  user: Partial<User>;
+  user: User;
   deleteMode: boolean;
   isFriendAlreadyAdded?: boolean;
   onDeleteFriend?: () => void;
@@ -27,9 +28,9 @@ export enum ActionType {
 }
 
 export interface State {
-  user: Partial<User>;
+  user: User;
   deleteMode: boolean;
-  modal?: any;
+  modal?: React.MutableRefObject<ProfileModalRef | null>;
 }
 
 export interface Payload extends State {
@@ -46,7 +47,7 @@ const initialState: State = {
     statusMessage: '',
   },
   deleteMode: false,
-  modal: null,
+  modal: undefined,
 };
 
 type Action = { type: ActionType.ShowModal; payload: Payload };
