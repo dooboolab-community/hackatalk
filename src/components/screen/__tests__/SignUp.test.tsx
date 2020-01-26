@@ -11,6 +11,8 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import { MUTATION_SIGN_UP } from '../../../graphql/mutations';
+import { MockedProvider } from '@apollo/react-testing';
 import SignUp from '../SignUp';
 import renderer from 'react-test-renderer';
 
@@ -18,10 +20,37 @@ import renderer from 'react-test-renderer';
 let props: any;
 let component: ReactElement;
 
+const mockSignUpMutation = [
+  {
+    request: {
+      query: MUTATION_SIGN_UP,
+      variables: {
+        user: {
+          email: 'test@email.com',
+          name: 'name',
+          password: 'testpass12!',
+          statusMessage: 'status',
+        },
+      },
+    },
+    result: {
+      data: {
+        signUp: {
+          token: 'access token',
+        },
+      },
+    },
+  },
+];
+
 describe('[SignUp] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<SignUp {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
+        <SignUp {...props} />
+      </MockedProvider>,
+    );
   });
 
   it('renders as expected', () => {
@@ -35,7 +64,11 @@ describe('[SignUp] interaction', () => {
 
   beforeAll(() => {
     props = createTestProps();
-    component = createTestElement(<SignUp {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
+        <SignUp {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
   });
 
@@ -97,14 +130,22 @@ describe('[SignUp] interaction', () => {
   describe('onSignUp', () => {
     beforeAll(() => {
       props = createTestProps();
-      component = createTestElement(<SignUp {...props} />);
+      component = createTestElement(
+        <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
+          <SignUp {...props} />
+        </MockedProvider>,
+      );
       testingLib = render(component);
     });
 
     describe('check validation', () => {
       beforeAll(() => {
         props = createTestProps();
-        component = createTestElement(<SignUp {...props} />);
+        component = createTestElement(
+          <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
+            <SignUp {...props} />
+          </MockedProvider>,
+        );
         testingLib = render(component);
       });
 
@@ -250,53 +291,62 @@ describe('[SignUp] interaction', () => {
     });
   });
 
-  it('should call signUp when button has clicked and navigate to SignIn', async () => {
+  it('should call signUp when button has clicked and navigate to MainStack', async () => {
     const emailInput = testingLib.getByTestId('input-email');
     await wait(() => expect(emailInput).toBeTruthy());
 
     act(() => {
-      fireEvent.changeText(emailInput, 'email@email.com');
+      fireEvent.changeText(emailInput, 'test@email.com');
     });
 
     const passwordInput = testingLib.getByTestId('input-password');
     await wait(() => expect(passwordInput).toBeTruthy());
 
     act(() => {
-      fireEvent.changeText(passwordInput, 'Abc123##');
+      fireEvent.changeText(passwordInput, 'testpass12!');
     });
 
     const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
     await wait(() => expect(confirmPasswordInput).toBeTruthy());
 
     act(() => {
-      fireEvent.changeText(confirmPasswordInput, 'Abc123##');
+      fireEvent.changeText(confirmPasswordInput, 'testpass12!');
     });
 
     const nameInput = testingLib.getByTestId('input-name');
     await wait(() => expect(nameInput).toBeTruthy());
 
     act(() => {
-      fireEvent.changeText(nameInput, 'dooboo');
+      fireEvent.changeText(nameInput, 'name');
+    });
+
+    const statusInput = testingLib.getByTestId('input-status');
+    await wait(() => expect(nameInput).toBeTruthy());
+
+    act(() => {
+      fireEvent.changeText(statusInput, 'status');
     });
 
     const btnSignUp = testingLib.getByTestId('btn-sign-up');
     await wait(() => expect(btnSignUp).toBeTruthy());
 
-    jest.useFakeTimers();
     act(() => {
       fireEvent.press(btnSignUp);
-      jest.runAllTimers();
     });
 
     await act(() => wait());
-    expect(props.navigation.navigate).toHaveBeenCalledTimes(1);
+    expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
   });
 
-  it('should do nothing when there is no navigation', async () => {
+  it('should call signUp when the button has clicked and check whether it catches error', async () => {
     props = createTestProps({
       navigation: null,
     });
-    component = createTestElement(<SignUp {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
+        <SignUp {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
 
     const emailInput = testingLib.getByTestId('input-email');
@@ -330,10 +380,8 @@ describe('[SignUp] interaction', () => {
     const btnSignUp = testingLib.getByTestId('btn-sign-up');
     await wait(() => expect(btnSignUp).toBeTruthy());
 
-    jest.useFakeTimers();
     act(() => {
       fireEvent.press(btnSignUp);
-      jest.runAllTimers();
     });
 
     await act(() => wait());
