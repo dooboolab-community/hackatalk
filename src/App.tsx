@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
+import { ApolloProvider } from '@apollo/react-hooks';
 import { AuthUserProvider } from './providers/AuthUserProvider';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import client from './apollo/Client';
 
 function cacheImages(images: Image[]): Image[] {
   return images.map((image: Image) => {
@@ -34,19 +36,21 @@ function App(): React.ReactElement {
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
     >
-      <RootNavigator />
+      <ApolloProvider client={client}>
+        <RootNavigator />
+      </ApolloProvider>
     </ThemeProvider>
   );
 }
 
 function ProviderWrapper(): React.ReactElement {
-  const [loading, setLoading] = useState(false);
+  const [ready, setReady] = useState(false);
 
-  if (loading) {
+  if (ready) {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={(): void => setLoading(true)}
+        onFinish={(): void => setReady(true)}
       // onError={console.warn}
       />
     );
