@@ -18,8 +18,6 @@ export const fakeUsers: User[] = [
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     statusMessage: 'online',
     isOnline: true,
-    // created: new Date(),
-    // updated: new Date(),
   },
   {
     id: '2',

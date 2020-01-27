@@ -58,7 +58,7 @@ const WrapperMy = styled.View`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.status};
+  color: ${({ theme }): string => theme.fontColor};
   margin-top: 4px;
   margin-right: 20px;
 `;
@@ -79,27 +79,42 @@ const StyledMyMessage = styled.View`
 interface Props {
   item: MessageProps;
   prevItem?: MessageProps;
+  nextItem?: MessageProps;
   onPressPeerImage?: () => void;
   testID?: string;
 }
 
 interface ImageSenderProps {
-  photoURL?: string;
+  thumbURL?: string;
   isSamePeerMsg: boolean;
   fontColor: string;
 }
 
 const myFakeId = '2'; // TODO: temporary
 
+function shouldShowDate(
+  currentDate: string | undefined,
+  nextDate: string | undefined,
+): boolean {
+  if (!currentDate || !nextDate) return false;
+
+  const currentMoment = moment(currentDate);
+  const nextMoment = moment(nextDate);
+
+  const diffNextSeconds = nextMoment.diff(currentMoment, 'seconds');
+
+  return diffNextSeconds < 60 && (nextMoment.minute === currentMoment.minute);
+}
+
 const ImageSenderComp: SFC<ImageSenderProps> = ({
-  photoURL,
+  thumbURL,
   isSamePeerMsg,
   fontColor,
 }) => {
-  if (photoURL !== '') {
-    return <StyledImageSender source={{ uri: photoURL }} />;
-  } else if (isSamePeerMsg) {
+  if (isSamePeerMsg) {
     return <View style={{ width: 40 }} />;
+  } else if (thumbURL) {
+    return <StyledImageSender source={{ uri: thumbURL }} />;
   }
   return (
     <View style={{ width: 40 }}>
@@ -112,24 +127,27 @@ function MessageListItem(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const {
     item: {
-      sender: { id, nickname, photoURL },
+      id,
+      sender: { id: senderId, nickname, photoURL: thumbURL },
       messageType,
       // @ts-ignore
       message,
       created,
     },
     prevItem,
+    nextItem,
     onPressPeerImage,
     testID,
   } = props;
-  const isSamePeerMsg = prevItem && prevItem.sender.id === id;
-  if (id !== myFakeId) {
+  const isSamePeerMsg = prevItem && prevItem.sender.id === senderId;
+  const showDate = shouldShowDate(created, nextItem?.created);
+  if (senderId !== myFakeId) {
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
           <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
             <ImageSenderComp
-              photoURL={photoURL}
+              thumbURL={thumbURL}
               isSamePeerMsg={!!isSamePeerMsg}
               fontColor={theme.fontColor}
             />
@@ -144,11 +162,15 @@ function MessageListItem(props: Props): React.ReactElement {
           <StyledTextPeerMessageContainer>
             <StyledPeerTextMessage>{message}</StyledPeerTextMessage>
           </StyledTextPeerMessageContainer>
-          <StyledTextPeerDate>
-            {created
-              ? `${moment(created).hour()} : ${moment(created).minutes()}`
-              : '0 : 0'}
-          </StyledTextPeerDate>
+          {
+            !showDate
+              ? <StyledTextPeerDate>
+                {created
+                  ? `${moment(created).hour()} : ${moment(created).minutes()}`
+                  : '0 : 0'}
+              </StyledTextPeerDate>
+              : null
+          }
         </View>
       </WrapperPeer>
     );
@@ -178,8 +200,8 @@ MessageListItem.defaultProps = {
       statusMessage: '',
     },
     message: 'hello1',
-    created: new Date('1 1 2019'),
-    updated: new Date('1 1 2019'),
+    created: '2020-01-01 12:00',
+    updated: '2020-01-01 12:00',
   },
 };
 
