@@ -11,7 +11,7 @@ export const HeaderContainer = styled.View`
   height: 40px;
   justify-content: center;
   margin-left: 12px;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: ${({ theme }): string => theme.lineColor};
 `;
 

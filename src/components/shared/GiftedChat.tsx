@@ -1,4 +1,4 @@
-import { FlatList, Keyboard, ListRenderItem, View } from 'react-native';
+import { EmitterSubscription, FlatList, Keyboard, ListRenderItem, TextInput, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components/native';
@@ -71,11 +71,11 @@ interface Props<T> {
   renderSendButton?: () => React.ReactElement;
 }
 
-function Shared(props: Props<any>): React.ReactElement {
-  let keyboardShowListener: any;
-  // TODO: typings
-  const input1 = useRef<any>();
-  const input2 = useRef<any>();
+function Shared<T>(props: Props<T>): React.ReactElement {
+  let keyboardShowListener: EmitterSubscription;
+  // NOTE: typings are not working well with useRef
+  const input1 = useRef<TextInput>();
+  const input2 = useRef<TextInput>();
 
   const {
     chats = [],
@@ -126,7 +126,6 @@ function Shared(props: Props<any>): React.ReactElement {
       >
         <FlatList
           style={{ alignSelf: 'stretch' }}
-          // prettier-ignore
           contentContainerStyle={
             chats.length === 0
               ? {
@@ -157,6 +156,7 @@ function Shared(props: Props<any>): React.ReactElement {
                 color: fontColor,
                 backgroundColor: backgroundColor,
               }}
+              // @ts-ignore
               ref={input1}
               onFocus={(): void => setShowMenu(false)}
               multiline={true}
@@ -192,6 +192,7 @@ function Shared(props: Props<any>): React.ReactElement {
             }}
           >
             <StyledInputChat
+              // @ts-ignore
               ref={input2}
               onFocus={(): void => setShowMenu(false)}
               style={{

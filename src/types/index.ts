@@ -24,11 +24,11 @@ export interface User {
   statusMessage?: string;
   isOnline?: boolean;
   socialId?: string;
-  lastSignedIn?: Date;
+  lastSignedIn?: string;
   authType?: AuthType;
   verified?: boolean;
-  created?: Date;
-  updated?: Date;
+  created?: string;
+  updated?: string;
 }
 
 export interface AuthPayload {
@@ -45,8 +45,8 @@ export interface MessageCommon<T extends MessageType = MessageType.Message> {
   id: string;
   sender: User;
   messageType?: T;
-  created?: Date;
-  updated?: Date;
+  created?: string;
+  updated?: string;
 }
 
 interface Message extends MessageCommon<MessageType.Message> {

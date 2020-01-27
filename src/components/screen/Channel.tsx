@@ -36,8 +36,8 @@ const initialChannels: ChannelType[] = [
       },
       messageType: MessageType.Message,
       message: 'How are you doing?',
-      created: new Date(0),
-      updated: new Date(0),
+      created: '2020-01-01 12:00',
+      updated: '2020-01-01 12:00',
     },
     lastMessageCnt: 3,
   },
@@ -55,15 +55,15 @@ const initialChannels: ChannelType[] = [
       },
       messageType: MessageType.Message,
       message: 'Hi. This is student from react-native-seoul. Nice to meet you.',
-      created: new Date(0),
-      updated: new Date(0),
+      created: '2020-01-01 12:00',
+      updated: '2020-01-01 12:00',
     },
     lastMessageCnt: 0,
   },
 ];
 
 function Channel(): React.ReactElement {
-  const [channels, setChannels] = useState(initialChannels);
+  const [channels] = useState(initialChannels);
   const navigation = useNavigation();
 
   const onItemClick = (itemId: string): void => {
@@ -73,7 +73,7 @@ function Channel(): React.ReactElement {
   const renderItem = (item: ChannelType, index: number): React.ReactElement => {
     return (
       <ChannelListItem
-        testID={`listitem${index}`}
+        testID={`list-item-${index}`}
         item={item}
         onPress={(): void => onItemClick(item.id)}
       />
@@ -85,7 +85,6 @@ function Channel(): React.ReactElement {
         style={{
           alignSelf: 'stretch',
         }}
-        // prettier-ignore
         contentContainerStyle={
           channels.length === 0
             ? {
@@ -96,7 +95,7 @@ function Channel(): React.ReactElement {
             }
             : null
         }
-        keyExtractor={(item, index): string => index.toString()}
+        keyExtractor={(_, index): string => index.toString()}
         data={channels}
         renderItem={({ item, index }): React.ReactElement =>
           renderItem(item, index)

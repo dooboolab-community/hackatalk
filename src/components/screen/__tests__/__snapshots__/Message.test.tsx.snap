@@ -65,6 +65,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
       data={
         Array [
           Object {
+            "created": "2020-01-01 11:22",
             "id": "",
             "message": "hello1",
             "sender": Object {
@@ -76,6 +77,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           },
           Object {
+            "created": "2020-01-01 11:23",
             "id": "",
             "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
             "messageType": 0,
@@ -86,6 +88,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           },
           Object {
+            "created": "2020-01-01 11:23",
             "id": "",
             "message": "hello",
             "messageType": 0,
@@ -96,6 +99,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           },
           Object {
+            "created": "2020-01-01 11:26",
             "id": "",
             "message": "hello2",
             "messageType": 0,
@@ -106,6 +110,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             },
           },
           Object {
+            "created": "2020-01-01 11:26",
             "id": "",
             "messageType": 1,
             "photo": "http://photo.png",
@@ -250,7 +255,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              0 : 0
+              11 : 22
             </Text>
           </View>
         </View>
@@ -306,7 +311,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#A1EEDB",
+                  "color": "#151A25",
                   "fontSize": 12,
                   "marginRight": 20,
                   "marginTop": 4,
@@ -314,7 +319,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
               ]
             }
           >
-            0 : 0
+            11 : 23
           </Text>
         </View>
       </View>
@@ -351,21 +356,15 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item2"
             >
-              <Image
-                source={
+              <View
+                style={
                   Object {
-                    "uri": undefined,
+                    "width": 40,
                   }
                 }
-                style={
-                  Array [
-                    Object {
-                      "height": 32,
-                      "width": 32,
-                    },
-                  ]
-                }
-              />
+              >
+                <Text />
+              </View>
             </TouchableOpacity>
           </View>
           <View
@@ -429,7 +428,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              0 : 0
+              11 : 23
             </Text>
           </View>
         </View>
@@ -467,19 +466,11 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item3"
             >
-              <Image
-                source={
-                  Object {
-                    "uri": undefined,
-                  }
-                }
+              <View
                 style={
-                  Array [
-                    Object {
-                      "height": 32,
-                      "width": 32,
-                    },
-                  ]
+                  Object {
+                    "width": 40,
+                  }
                 }
               />
             </TouchableOpacity>
@@ -521,20 +512,6 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 hello2
               </Text>
             </View>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#151A25",
-                    "fontSize": 12,
-                    "marginRight": 20,
-                    "marginTop": 4,
-                  },
-                ]
-              }
-            >
-              0 : 0
-            </Text>
           </View>
         </View>
       </View>
@@ -571,19 +548,11 @@ exports[`[Message] rendering test renders as expected 1`] = `
               onPress={[Function]}
               testID="message-list-item4"
             >
-              <Image
-                source={
-                  Object {
-                    "uri": undefined,
-                  }
-                }
+              <View
                 style={
-                  Array [
-                    Object {
-                      "height": 32,
-                      "width": 32,
-                    },
-                  ]
+                  Object {
+                    "width": 40,
+                  }
                 }
               />
             </TouchableOpacity>
@@ -635,7 +604,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              0 : 0
+              11 : 26
             </Text>
           </View>
         </View>

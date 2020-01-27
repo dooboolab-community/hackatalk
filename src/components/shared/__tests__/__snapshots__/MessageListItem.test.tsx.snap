@@ -124,19 +124,11 @@ exports[`[MessageListItem] rendering test renders [peerMessage] with URL as expe
       onPress={[MockFunction]}
       testID="chat-list-item0"
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://",
-          }
-        }
+      <View
         style={
-          Array [
-            Object {
-              "height": 32,
-              "width": 32,
-            },
-          ]
+          Object {
+            "width": 40,
+          }
         }
       />
     </TouchableOpacity>

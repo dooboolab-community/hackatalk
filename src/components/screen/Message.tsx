@@ -38,7 +38,7 @@ function Message(): React.ReactElement {
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
 
-  const [messages, setMessages] = useState<MessageProps[]>([
+  const [messages] = useState<MessageProps[]>([
     {
       id: '',
       message: 'hello1',
@@ -49,6 +49,7 @@ function Message(): React.ReactElement {
         photoURL: '',
         statusMessage: '',
       },
+      created: '2020-01-01 11:22',
     },
     {
       id: '',
@@ -63,6 +64,7 @@ function Message(): React.ReactElement {
         nickname: 'sender111',
         thumbURL: '',
       },
+      created: '2020-01-01 11:23',
     },
     {
       id: '',
@@ -73,6 +75,7 @@ function Message(): React.ReactElement {
         nickname: 'sender111',
         thumbURL: '',
       },
+      created: '2020-01-01 11:23',
     },
     {
       id: '',
@@ -83,6 +86,7 @@ function Message(): React.ReactElement {
         nickname: 'sender111',
         thumbURL: '',
       },
+      created: '2020-01-01 11:26',
     },
     {
       id: '',
@@ -93,6 +97,7 @@ function Message(): React.ReactElement {
         nickname: 'sender111',
         thumbURL: '',
       },
+      created: '2020-01-01 11:26',
     },
   ]);
 
@@ -135,8 +140,9 @@ function Message(): React.ReactElement {
           return (
             <MessageListItem
               testID={`message-list-item${index}`}
-              prevItem={index > 0 ? messages[index - 1] : undefined}
+              prevItem={messages[index - 1]}
               item={item}
+              nextItem={messages[index + 1]}
               onPressPeerImage={(): void => {
                 if (state.modal) {
                   showModal({ user: item, deleteMode: true });
