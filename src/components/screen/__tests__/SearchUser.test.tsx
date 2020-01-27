@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {
+  ReactTestInstanceExtended,
   RenderResult,
   fireEvent,
   render,
@@ -15,7 +16,10 @@ import { User } from '../../../types';
 import { act } from 'react-test-renderer';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
-// import UserListItem from '../../shared/UserListItem';
+type TestingLibInput = Pick<
+ReactTestInstanceExtended,
+'type' | 'props' | 'parent' | 'children' | 'find' | 'findAll' | 'getProp' | 'parentNode'
+>;
 
 const props = createTestProps();
 
@@ -33,8 +37,8 @@ describe('[SearchUser] rendering test', () => {
 describe('[serachUser] interaction', () => {
   // let searchUserLib: RenderAPI;
   let testingLib: RenderResult;
-  let txtInputInst: any;
-  let animatedFlatListInst: any;
+  let txtInputInst: TestingLibInput;
+  let animatedFlatListInst: TestingLibInput;
   const inputData: User = fakeUsers[0];
 
   beforeAll(() => {

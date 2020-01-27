@@ -63,7 +63,7 @@ const initialChannels: ChannelType[] = [
 ];
 
 function Channel(): React.ReactElement {
-  const [channels, setChannels] = useState(initialChannels);
+  const [channels] = useState(initialChannels);
   const navigation = useNavigation();
 
   const onItemClick = (itemId: string): void => {

@@ -127,7 +127,6 @@ function MessageListItem(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const {
     item: {
-      id,
       sender: { id: senderId, nickname, photoURL: thumbURL },
       messageType,
       // @ts-ignore

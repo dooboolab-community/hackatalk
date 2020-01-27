@@ -38,7 +38,7 @@ function Message(): React.ReactElement {
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
 
-  const [messages, setMessages] = useState<MessageProps[]>([
+  const [messages] = useState<MessageProps[]>([
     {
       id: '',
       message: 'hello1',

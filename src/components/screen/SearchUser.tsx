@@ -150,7 +150,7 @@ const StyledSearchImage = styled.Image`
 
 const Screen = (): React.ReactElement => {
   const { state, showModal } = useProfileContext();
-  const [searchedUsers, setSearchedUsers] = useState<User[]>(fakeUsers);
+  const [searchedUsers] = useState<User[]>(fakeUsers);
   const [users, setUsers] = useState<User[]>(fakeUsers);
   const scrollY = new Animated.Value(0);
 
