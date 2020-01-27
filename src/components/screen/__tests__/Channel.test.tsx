@@ -2,11 +2,10 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, cleanup, render } from '@testing-library/react-native';
+import { RenderResult, act, cleanup, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Channel from '../Channel';
-import renderer from 'react-test-renderer';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -17,9 +16,7 @@ jest.mock('@react-navigation/native', () => {
   return {
     useNavigation: (): object => {
       return {
-        navigation: {
-          navigate: jest.fn(),
-        },
+        navigate: jest.fn(),
       };
     },
   };
@@ -28,14 +25,15 @@ jest.mock('@react-navigation/native', () => {
 describe('[Channel] screen', () => {
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<Channel {...props} />);
-    testingLib = render(component);
+    component = createTestElement(
+      <Channel {...props} />,
+    );
   });
 
   it('renders without crashing', () => {
-    const rendered = renderer.create(component).toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+    testingLib = render(component);
+    expect(testingLib.baseElement).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
   });
 
   describe('interactions', () => {
@@ -44,12 +42,10 @@ describe('[Channel] screen', () => {
     });
 
     it('should simulate onPress', () => {
-      // const btn = testingLib.queryByTestId('btn');
-      // act(() => {
-      //   fireEvent.press(btn);
-      //   fireEvent.press(btn);
-      // });
-      // expect(cnt).toBe(3);
+      const btn = testingLib.queryByTestId('list-item-0');
+      act(() => {
+        fireEvent.press(btn);
+      });
     });
   });
 

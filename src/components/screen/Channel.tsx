@@ -73,7 +73,7 @@ function Channel(): React.ReactElement {
   const renderItem = (item: ChannelType, index: number): React.ReactElement => {
     return (
       <ChannelListItem
-        testID={`listitem${index}`}
+        testID={`list-item-${index}`}
         item={item}
         onPress={(): void => onItemClick(item.id)}
       />
@@ -85,7 +85,6 @@ function Channel(): React.ReactElement {
         style={{
           alignSelf: 'stretch',
         }}
-        // prettier-ignore
         contentContainerStyle={
           channels.length === 0
             ? {
@@ -96,7 +95,7 @@ function Channel(): React.ReactElement {
             }
             : null
         }
-        keyExtractor={(item, index): string => index.toString()}
+        keyExtractor={(_, index): string => index.toString()}
         data={channels}
         renderItem={({ item, index }): React.ReactElement =>
           renderItem(item, index)

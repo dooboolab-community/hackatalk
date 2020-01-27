@@ -100,6 +100,7 @@ function ChannelListItem(props: Props): React.ReactElement {
   } = useThemeContext();
 
   const {
+    testID,
     item: {
       lastMessage: {
         sender: { photoURL, isOnline, nickname },
@@ -113,7 +114,10 @@ function ChannelListItem(props: Props): React.ReactElement {
   } = props;
   return (
     <View style={{ width: '100%' }}>
-      <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+      <TouchableOpacity
+        testID={testID}
+        activeOpacity={0.5} onPress={onPress}
+      >
         <StyledViewChatRoomListItem>
           <View style={{ marginHorizontal: 20 }}>
             {photoURL ? (

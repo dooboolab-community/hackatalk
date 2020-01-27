@@ -126,7 +126,6 @@ function Shared<T>(props: Props<T>): React.ReactElement {
       >
         <FlatList
           style={{ alignSelf: 'stretch' }}
-          // prettier-ignore
           contentContainerStyle={
             chats.length === 0
               ? {
