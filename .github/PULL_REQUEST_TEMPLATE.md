@@ -19,6 +19,6 @@ Before you create this PR confirms that it meets all requirements listed below b
 
 - [ ] I read the [Contributor Guide](https://github.com/dooboolab/hackatalk-mobile/blob/master/CONTRIBUTING.md) and followed the process outlined there for submitting PRs.
 - [ ] I signed the [CLA].
+- [ ] Run `yarn lint && yarn tsc`
 - [ ] Run `yarn test` or `yarn test -u` if you need to update snapshot.
-- [ ] Run `yarn lint`
 - [ ] I am willing to follow-up on review comments in a timely manner.
