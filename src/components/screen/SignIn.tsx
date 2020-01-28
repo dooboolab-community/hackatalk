@@ -21,7 +21,7 @@ import { MUTATION_SIGN_IN } from '../../graphql/mutations';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useAuthUserContext } from '../../providers/AuthUserProvider';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useMutation } from '@apollo/react-hooks';
 import { validateEmail } from '../../utils/common';
 
@@ -96,7 +96,7 @@ const StyledAgreementLinedText = styled.Text`
 
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
-  const { setAuthUser } = useAuthUserContext();
+  const { setUser } = useAuthContext();
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
@@ -134,8 +134,10 @@ function SignIn(props: Props): ReactElement {
 
     try {
       const { data } = await signInEmail({ variables });
-      AsyncStorage.setItem('token', data?.signInEmail.token || '');
-      setAuthUser(data?.signInEmail.user);
+      if (data && data.signInEmail) {
+        AsyncStorage.setItem('token', data.signInEmail.token);
+        setUser(data.signInEmail.user);
+      }
     } catch (err) {
       Alert.alert(getString('ERROR'), err.message);
     } finally {

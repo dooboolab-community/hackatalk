@@ -17,6 +17,7 @@ import SearchUser from '../screen/SearchUser';
 import Setting from '../screen/Setting';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
+import useAppState from '../../hooks/useAppState';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export type MainStackParamList = {
@@ -61,6 +62,9 @@ function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOpt
 
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
+  const currentAppState = useAppState();
+  console.log('currentAppState', currentAppState);
+
   return (
     <Stack.Navigator
       initialRouteName="MainTab"

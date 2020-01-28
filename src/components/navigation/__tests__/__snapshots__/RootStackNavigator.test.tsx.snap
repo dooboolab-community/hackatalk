@@ -107,7 +107,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                   "flex": 1,
                   "transform": Array [
                     Object {
-                      "translateX": 0,
+                      "translateX": -0,
                     },
                     Object {
                       "translateX": 0,
@@ -121,18 +121,18 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                 style={
                   Object {
                     "backgroundColor": "#fff",
-                    "bottom": 0,
+                    "height": 3,
                     "left": 0,
                     "position": "absolute",
+                    "right": 0,
                     "shadowColor": "#000",
                     "shadowOffset": Object {
-                      "height": 1,
-                      "width": -1,
+                      "height": -1,
+                      "width": 1,
                     },
                     "shadowOpacity": 0.3,
                     "shadowRadius": 5,
                     "top": 0,
-                    "width": 3,
                   }
                 }
               />

@@ -16,7 +16,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import AuthUserContext from '../../../providers/AuthUserProvider';
+import AuthContext from '../../../providers/AuthProvider';
 import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import { MockedProvider } from '@apollo/react-testing';
 import SignIn from '../SignIn';
@@ -36,19 +36,26 @@ const mockSignInEmail = [
         password: 'password',
       },
     },
-    result: {
-      data: {
-        signInEmail: {
-          token: 'access token',
-          user: {
-            id: 'userId',
-            email: 'test@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
+    newData: jest.fn()
+      .mockReturnValueOnce({
+        data: {
+          signInEmail: {
+            token: 'access token',
+            user: {
+              id: 'userId',
+              email: 'test@email.com',
+              nickname: 'nickname',
+              statusMessage: 'status',
+            },
           },
         },
-      },
-    },
+      })
+      .mockReturnValueOnce({
+        data: {
+          signInEmail: undefined,
+        },
+      })
+    ,
   },
 ];
 
@@ -204,12 +211,12 @@ describe('[SignIn] interaction', () => {
     it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
       jest
-        .spyOn(AuthUserContext, 'useAuthUserContext')
+        .spyOn(AuthContext, 'useAuthContext')
         .mockImplementation(() => ({
           state: {
             user: undefined,
           },
-          setAuthUser: jest.fn().mockReturnValue({
+          setUser: jest.fn().mockReturnValue({
             id: 'userId',
             email: 'email@email.com',
             nickname: 'nickname',
@@ -238,11 +245,52 @@ describe('[SignIn] interaction', () => {
         fireEvent.press(btnSignIn);
       });
 
-      await act(() => wait());
-      // expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
+      const userMock = mockSignInEmail[0].newData;
+      await wait(() => expect(userMock).toHaveBeenCalled());
     });
 
-    it('should call signIn when the button has clicked and check whether it catches error', async () => {
+    it('should call signIn when button has clicked and check that signInEmail is undefined', async () => {
+      jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+      jest
+        .spyOn(AuthContext, 'useAuthContext')
+        .mockImplementation(() => ({
+          state: {
+            user: undefined,
+          },
+          setUser: jest.fn().mockReturnValue({
+            id: 'userId',
+            email: 'email@email.com',
+            nickname: 'nickname',
+            statusMessage: 'status',
+          }),
+        }));
+
+      const textInput = testingLib.getByTestId('input-email');
+      await waitForElement(() => textInput);
+
+      act(() => {
+        fireEvent.changeText(textInput, 'test@email.com');
+      });
+
+      const passwordInput = testingLib.getByTestId('input-password');
+      await waitForElement(() => passwordInput);
+
+      act(() => {
+        fireEvent.changeText(passwordInput, 'password');
+      });
+
+      const btnSignIn = testingLib.getByTestId('btn-sign-in');
+      await waitForElement(() => btnSignIn);
+
+      act(() => {
+        fireEvent.press(btnSignIn);
+      });
+
+      const userMock = mockSignInEmail[0].newData;
+      await wait(() => expect(userMock).toHaveBeenCalled());
+    });
+
+    it('should call signIn with invalid params and  check whether it catches error', async () => {
       props = createTestProps({ navigation: null });
       component = createTestElement(
         <MockedProvider mocks={mockSignInEmail} addTypename={false}>
@@ -272,7 +320,8 @@ describe('[SignIn] interaction', () => {
         fireEvent.press(btnSignIn);
       });
 
-      await act(() => wait());
+      const userMock = mockSignInEmail[0].newData;
+      await wait(() => expect(userMock).toHaveBeenCalled());
     });
   });
 

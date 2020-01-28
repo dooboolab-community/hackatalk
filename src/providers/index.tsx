@@ -3,7 +3,7 @@ import { dark, light } from '../theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { AuthUserProvider } from './AuthUserProvider';
+import { AuthProvider } from './AuthProvider';
 import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
@@ -29,11 +29,11 @@ export const AllProviders = ({
     >
       <ApolloProvider client={testClient}>
         <FriendProvider>
-          <AuthUserProvider initialAuthUser={initialAuthUser}>
+          <AuthProvider initialAuthUser={initialAuthUser}>
             <ProfileModalProvider>
               {children}
             </ProfileModalProvider>
-          </AuthUserProvider>
+          </AuthProvider>
         </FriendProvider>
       </ApolloProvider>
     </ThemeProvider>
@@ -45,9 +45,9 @@ export default ({ initialThemeType, children }: Props): React.ReactElement => {
     <ThemeProvider
       initialThemeType={initialThemeType}
     >
-      <AuthUserProvider>
+      <AuthProvider>
         <ActionSheetProvider>{children}</ActionSheetProvider>
-      </AuthUserProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 };

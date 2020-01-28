@@ -4,9 +4,10 @@ import AuthStack from './AuthStackNavigator';
 import MainStack from './MainStackNavigator';
 import { NavigationNativeContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
+import { Platform } from 'react-native';
 import React from 'react';
 import WebView from '../screen/WebView';
-import { useAuthUserContext } from '../../providers/AuthUserProvider';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export type RootStackParamList = {
@@ -27,7 +28,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
-  const { state: { user } } = useAuthUserContext();
+  const { state: { user } } = useAuthContext();
 
   return (
     <NavigationNativeContainer>
@@ -43,8 +44,26 @@ function RootNavigator(): React.ReactElement {
       >
         {
           !user
-            ? <Stack.Screen name="AuthStack" component={AuthStack} />
-            : <Stack.Screen name="MainStack" component={MainStack} />
+            ? <Stack.Screen
+              name="AuthStack"
+              component={AuthStack}
+              options={{
+                gestureDirection: Platform.select({
+                  ios: !user ? 'horizontal-inverted' : 'horizontal',
+                  default: !user ? 'vertical-inverted' : 'vertical',
+                }),
+              }}
+            />
+            : <Stack.Screen
+              name="MainStack"
+              component={MainStack}
+              options={{
+                gestureDirection: Platform.select({
+                  ios: !user ? 'horizontal-inverted' : 'horizontal',
+                  default: !user ? 'vertical-inverted' : 'vertical',
+                }),
+              }}
+            />
         }
         <Stack.Screen name="WebView" component={WebView}
           options={{
