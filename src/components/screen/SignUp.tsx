@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useAuthUserContext } from '../../providers/AuthUserProvider';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -50,7 +50,7 @@ function Page(): ReactElement {
   const [errorName, setErrorName] = useState<string>('');
   const [signingUp, setSigningUp] = useState<boolean>(false);
 
-  const { setAuthUser } = useAuthUserContext();
+  const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
 
@@ -84,7 +84,7 @@ function Page(): ReactElement {
     try {
       const { data } = await signUp({ variables });
       AsyncStorage.setItem('token', data?.signUp.token || '');
-      setAuthUser(data?.signUp.user);
+      setUser(data?.signUp.user);
     } catch (err) {
       Alert.alert(getString('ERROR'), err.message);
     } finally {

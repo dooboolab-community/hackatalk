@@ -12,7 +12,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import AuthUserContext from '../../../providers/AuthUserProvider';
+import AuthContext from '../../../providers/AuthProvider';
 import ProfileUpdate from '../ProfileUpdate';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -77,12 +77,12 @@ describe('interaction', () => {
 
   it('should fireEvent when logout button pressed', () => {
     jest
-      .spyOn(AuthUserContext, 'useAuthUserContext')
+      .spyOn(AuthContext, 'useAuthContext')
       .mockImplementation(() => ({
         state: {
           user: undefined,
         },
-        setAuthUser: jest.fn().mockReturnValue({
+        setUser: jest.fn().mockReturnValue({
           id: 'userId',
           email: 'email@email.com',
           nickname: 'nickname',

@@ -5,12 +5,12 @@ import createCtx from '../utils/createCtx';
 
 interface Context {
   state: State;
-  setAuthUser(user: User | undefined): void;
+  setUser(user: User | undefined): void;
 }
 const [useCtx, Provider] = createCtx<Context>();
 
 export enum ActionType {
-  SetAuthUser = 'set-auth-user',
+  SetUser = 'set-user',
 }
 
 export interface State {
@@ -18,7 +18,7 @@ export interface State {
 }
 
 type Action =
-  | { type: ActionType.SetAuthUser; payload: State };
+  | { type: ActionType.SetUser; payload: State };
 
 interface Props {
   children?: React.ReactElement;
@@ -27,9 +27,9 @@ interface Props {
 
 type Reducer = (state: State, action: Action) => State;
 
-const setAuthUser = (dispatch: React.Dispatch<Action>) => (authUser: User): void => {
+const setUser = (dispatch: React.Dispatch<Action>) => (authUser: User): void => {
   dispatch({
-    type: ActionType.SetAuthUser,
+    type: ActionType.SetUser,
     payload: { user: authUser },
   });
 };
@@ -39,7 +39,7 @@ const initialState: State = {};
 const reducer: Reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case ActionType.SetAuthUser:
+    case ActionType.SetUser:
       return {
         user: payload.user,
       };
@@ -48,21 +48,21 @@ const reducer: Reducer = (state = initialState, action) => {
   }
 };
 
-function AuthUserProvider(props: Props): React.ReactElement {
+function AuthProvider(props: Props): React.ReactElement {
   const { children, initialAuthUser } = props;
   const [state, dispatch] = useReducer<Reducer>(reducer, { user: initialAuthUser });
 
   const actions = {
-    setAuthUser: setAuthUser(dispatch),
+    setUser: setUser(dispatch),
   };
 
   return <Provider value={{ state, ...actions }}>{children}</Provider>;
 }
 
-const AuthUserContext = {
-  useAuthUserContext: useCtx,
-  AuthUserProvider,
+const AuthContext = {
+  useAuthContext: useCtx,
+  AuthProvider,
 };
 
-export { useCtx as useAuthUserContext, AuthUserProvider };
-export default AuthUserContext;
+export { useCtx as useAuthContext, AuthProvider };
+export default AuthContext;

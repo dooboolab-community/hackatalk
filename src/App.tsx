@@ -1,6 +1,6 @@
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
-import { AuthUserProvider, useAuthUserContext } from './providers/AuthUserProvider';
+import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
@@ -29,13 +29,13 @@ function App(): React.ReactElement {
   const colorScheme = useColorScheme();
 
   const [ready, setReady] = useState(false);
-  const { setAuthUser } = useAuthUserContext();
+  const { setUser } = useAuthContext();
 
   const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
 
   useEffect(() => {
     if (data && data.me) {
-      setAuthUser(data.me);
+      setUser(data.me);
     }
   }, [loading]);
 
@@ -64,11 +64,11 @@ function App(): React.ReactElement {
 function ProviderWrapper(): React.ReactElement {
   return (
     <AppearanceProvider>
-      <AuthUserProvider>
+      <AuthProvider>
         <ApolloProvider client={client}>
           <App />
         </ApolloProvider>
-      </AuthUserProvider>
+      </AuthProvider>
     </AppearanceProvider>
   );
 }

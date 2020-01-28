@@ -9,7 +9,7 @@ import { SvgNoProfile } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useAuthUserContext } from '../../providers/AuthUserProvider';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
@@ -62,7 +62,7 @@ function Screen(props: Props): React.ReactElement {
   const [statusMessage, setstatusMessage] = useState('');
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
-  const { setAuthUser } = useAuthUserContext();
+  const { setUser } = useAuthContext();
 
   useEffect(() => {
     if (isUpdating) {
@@ -81,7 +81,7 @@ function Screen(props: Props): React.ReactElement {
   const onLogout = (): void => {
     if (navigation) {
       AsyncStorage.removeItem('token');
-      setAuthUser(undefined);
+      setUser(undefined);
     }
   };
 

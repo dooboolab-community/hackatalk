@@ -14,7 +14,7 @@ import { DefaultTheme } from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
 import { getString } from '../../../../STRINGS';
-import { useAuthUserContext } from '../../../providers/AuthUserProvider';
+import { useAuthContext } from '../../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 interface SettingsOption {
@@ -44,7 +44,7 @@ export interface Props {
 function SettingScreen(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const { state: { user } } = useAuthUserContext();
+  const { state: { user } } = useAuthContext();
 
   let signInInfoOption: SettingsOption;
 
