@@ -1,6 +1,9 @@
+import * as Device from 'expo-device';
+
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
+import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
@@ -20,9 +23,16 @@ function cacheImages(images: any[]): any[] {
   });
 }
 
-const loadAssetsAsync = async (): Promise<void> => {
+const loadAssetsAsync = async (
+  setDeviceType: (val: Device.DeviceType) => void):
+Promise<void> => {
   const imageAssets = cacheImages(Icons);
-  await Promise.all([...imageAssets]);
+  await Promise.all([
+    ...imageAssets,
+  ]);
+
+  const deviceType = await Device.getDeviceTypeAsync();
+  setDeviceType(deviceType);
 };
 
 function App(): React.ReactElement {
@@ -30,6 +40,7 @@ function App(): React.ReactElement {
 
   const [ready, setReady] = useState(false);
   const { setUser } = useAuthContext();
+  const { setDeviceType } = useDeviceContext();
 
   const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
 
@@ -42,7 +53,7 @@ function App(): React.ReactElement {
   if (loading || !ready) {
     return (
       <AppLoading
-        startAsync={loadAssetsAsync}
+        startAsync={(): Promise<void> => loadAssetsAsync(setDeviceType)}
         onFinish={(): void => setReady(true)}
         // onError={console.warn}
       />
@@ -64,11 +75,13 @@ function App(): React.ReactElement {
 function ProviderWrapper(): React.ReactElement {
   return (
     <AppearanceProvider>
-      <AuthProvider>
-        <ApolloProvider client={client}>
-          <App />
-        </ApolloProvider>
-      </AuthProvider>
+      <DeviceProvider>
+        <AuthProvider>
+          <ApolloProvider client={client}>
+            <App />
+          </ApolloProvider>
+        </AuthProvider>
+      </DeviceProvider>
     </AppearanceProvider>
   );
 }

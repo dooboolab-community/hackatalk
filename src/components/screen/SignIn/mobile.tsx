@@ -1,29 +1,14 @@
-import * as AppAuth from 'expo-app-auth';
-import * as Facebook from 'expo-facebook';
-import * as GoogleSignIn from 'expo-google-sign-in';
-
-import { Alert, AsyncStorage, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { AuthPayload, User } from '../../types';
 import { Button, EditText } from '@dooboo-ui/native';
-import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
-import React, { ReactElement, useEffect, useState } from 'react';
-import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
-import {
-  androidExpoClientId,
-  iOSClientId,
-  iOSExpoClientId,
-} from '../../../config';
+import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
+import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import React, { ReactElement } from 'react';
 
-import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import Constants from 'expo-constants';
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
-import { MUTATION_SIGN_IN } from '../../graphql/mutations';
-import StatusBar from '../shared/StatusBar';
-import { getString } from '../../../STRINGS';
+import StatusBar from '../../shared/StatusBar';
+import { ThemeType } from '@dooboo-ui/native-theme';
+import { Variables } from './';
+import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
-import { useAuthContext } from '../../providers/AuthProvider';
-import { useMutation } from '@apollo/react-hooks';
-import { validateEmail } from '../../utils/common';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -72,10 +57,6 @@ const SocialButtonWrapper = styled.View`
   margin-bottom: 24px;
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'SignIn'>;
-}
-
 const StyledAgreementTextWrapper = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
@@ -94,147 +75,32 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
-function SignIn(props: Props): ReactElement {
-  const { navigation } = props;
-  const { setUser } = useAuthContext();
-  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
-  const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
-  const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
-  const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [errorEmail, setErrorEmail] = useState<string>('');
-  const [errorPassword, setErrorPassword] = useState<string>('');
-  const { theme, changeThemeType, themeType } = useThemeContext();
-  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, {}>(MUTATION_SIGN_IN);
-
-  const goToSignUp = (): void => {
-    navigation.navigate('SignUp');
-  };
-
-  const goToFindPw = (): void => {
-    navigation.navigate('FindPw');
-  };
-
-  const onSignIn = async (): Promise<void> => {
-    if (!validateEmail(email)) {
-      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-      return;
-    }
-
-    if (!password) {
-      setErrorPassword(getString('PASSWORD_REQUIRED'));
-      return;
-    }
-    setIsLoggingIn(true);
-    const variables = {
-      email,
-      password,
-    };
-
-    try {
-      const { data } = await signInEmail({ variables });
-      if (data && data.signInEmail) {
-        AsyncStorage.setItem('token', data.signInEmail.token);
-        setUser(data.signInEmail.user);
-      }
-    } catch (err) {
-      Alert.alert(getString('ERROR'), err.message);
-    } finally {
-      setIsLoggingIn(false);
-    }
-  };
-
-  const goToWebView = (uri: string): void => {
-    props.navigation.navigate('WebView', { uri });
-  };
-
-  const initAsync = async (): Promise<void> => {
-    await GoogleSignIn.initAsync({
-      clientId: iOSClientId,
-    });
-  };
-
-  // const googleSignOutAsync = async (): Promise<void> => {
-  //   await GoogleSignIn.signOutAsync();
-  //   setGoogleUser(null);
-  // };
-
-  const googleSignInAsync = async (): Promise<void> => {
-    setSigningInGoogle(true);
-    if (Constants.appOwnership === 'expo') {
-      try {
-        const response = await AppAuth.authAsync({
-          issuer: 'https://accounts.google.com',
-          scopes: ['profile'],
-          clientId: Platform.select({
-            ios: iOSExpoClientId,
-            android: androidExpoClientId,
-          }) as string,
-        });
-        Alert.alert('login:' + JSON.stringify(response.accessToken));
-      } catch ({ message }) {
-        Alert.alert(`Google Login Error: ${message}`);
-      } finally {
-        setSigningInGoogle(false);
-      }
-      return;
-    }
-    try {
-      await GoogleSignIn.askForPlayServicesAsync();
-      const { type, user } = await GoogleSignIn.signInAsync();
-      if (type === 'success') {
-        setGoogleUser(user);
-        Alert.alert('login:' + JSON.stringify(user));
-        onSignIn();
-      }
-    } catch ({ message }) {
-      Alert.alert(`Google Login Error: ${message}`);
-    } finally {
-      setSigningInGoogle(false);
-    }
-  };
-
-  const facebookLogin = async (): Promise<void> => {
-    setSigningInFacebook(true);
-    try {
-      await Facebook.initializeAsync(
-        Constants.manifest.facebookAppId,
-        undefined,
-      );
-      const result = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ['email', 'public_profile'],
-      });
-
-      if (result.type === 'success') {
-        const { token, expires, permissions, declinedPermissions } = result;
-
-        const response = await fetch(
-          `https://graph.facebook.com/me?fields=
-            id,name,email,birthday,gender,first_name,last_name,picture
-            &access_token=${token}`,
-        );
-        // console.log('success', response);
-        const responseObject = JSON.parse(await response.text());
-      } else {
-        // type === 'cancel'
-        // console.log('cancel', token);
-      }
-    } catch ({ message }) {
-      Alert.alert(`Facebook Login Error: ${message}`);
-    } finally {
-      setSigningInFacebook(false);
-    }
-  };
-
-  const appleLogin = async (): Promise<void> => {
-    console.log('apple login');
-  };
-
-  useEffect(() => {
-    initAsync();
-    // console.log('appOwnership', Constants.appOwnership);
-  }, []);
+export default function mobile(variables: Variables): ReactElement {
+  const {
+    navigation,
+    isLoggingIn,
+    signingInFacebook,
+    signingInGoogle,
+    googleUser,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    errorEmail,
+    setErrorEmail,
+    errorPassword,
+    setErrorPassword,
+    theme,
+    changeThemeType,
+    themeType,
+    goToSignUp,
+    goToFindPw,
+    goToWebView,
+    signIn,
+    googleSignInAsync,
+    facebookLogin,
+    appleLogin,
+  } = variables;
 
   return (
     <Container>
@@ -242,7 +108,8 @@ function SignIn(props: Props): ReactElement {
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity testID="theme-test"
+            <TouchableOpacity
+              testID="theme-test"
               onPress={(): void => changeThemeType()}
               style={{
                 width: 60, alignItems: 'center',
@@ -272,7 +139,7 @@ function SignIn(props: Props): ReactElement {
               setErrorEmail('');
             }}
             errorText={errorEmail}
-            onSubmitEditing={onSignIn}
+            onSubmitEditing={signIn}
           />
           <EditText
             testID="input-password"
@@ -294,7 +161,7 @@ function SignIn(props: Props): ReactElement {
               setErrorPassword('');
             }}
             errorText={errorPassword}
-            onSubmitEditing={onSignIn}
+            onSubmitEditing={signIn}
             secureTextEntry={true}
           />
           <ButtonWrapper>
@@ -324,7 +191,7 @@ function SignIn(props: Props): ReactElement {
             <Button
               testID="btn-sign-in"
               isLoading={isLoggingIn}
-              onPress={onSignIn}
+              onPress={signIn}
               containerStyle={{
                 flex: 1,
                 flexDirection: 'row',
@@ -435,5 +302,3 @@ function SignIn(props: Props): ReactElement {
     </Container>
   );
 }
-
-export default SignIn;
