@@ -16,7 +16,7 @@ interface Props {
 
 function DeviceProvider(props: Props): React.ReactElement {
   const { children } = props;
-  const [deviceType, setDeviceType] = useState<Device.DeviceType >(Device.DeviceType.UNKNOWN);
+  const [deviceType, setDeviceType] = useState<Device.DeviceType >(Device.DeviceType.PHONE);
 
   return (
     <Provider

@@ -234,7 +234,7 @@ function SignIn(props: Props): ReactElement {
     appleLogin,
   };
 
-  if (Device.DeviceType.PHONE) {
+  if (Device.DeviceType.PHONE === deviceType) {
     return renderMobile(variables);
   }
   return renderTablet(variables);
