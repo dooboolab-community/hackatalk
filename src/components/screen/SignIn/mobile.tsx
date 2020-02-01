@@ -77,11 +77,9 @@ const StyledAgreementLinedText = styled.Text`
 
 export default function mobile(variables: Variables): ReactElement {
   const {
-    navigation,
     isLoggingIn,
     signingInFacebook,
     signingInGoogle,
-    googleUser,
     email,
     setEmail,
     password,

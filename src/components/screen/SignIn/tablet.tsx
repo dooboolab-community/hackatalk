@@ -17,23 +17,12 @@ const Container = styled.SafeAreaView`
 `;
 
 const Wrapper = styled.View`
-  margin: 40px;
-`;
-
-const LogoWrapper = styled.View`
-  margin-top: 44px;
-  margin-bottom: 72px;
+  margin: 40px 200px;
 `;
 
 const StyledLogoImage = styled.Image`
-  width: 60px;
-  height: 60px;
-`;
-
-const StyledLogoText = styled.Text`
-  color: ${({ theme }): string => theme.fontColor};
-  font-size: 20px;
-  font-weight: bold;
+  width: 124px;
+  height: 124px;
 `;
 
 const ButtonWrapper = styled.View`
@@ -77,11 +66,9 @@ const StyledAgreementLinedText = styled.Text`
 
 export default function tablet(variables: Variables): ReactElement {
   const {
-    navigation,
     isLoggingIn,
     signingInFacebook,
     signingInGoogle,
-    googleUser,
     email,
     setEmail,
     password,
@@ -107,18 +94,17 @@ export default function tablet(variables: Variables): ReactElement {
       <StatusBar />
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <Wrapper>
-          <LogoWrapper>
-            <TouchableOpacity
-              testID="theme-test"
-              onPress={(): void => changeThemeType()}
-              style={{
-                width: 60, alignItems: 'center',
-              }}>
-              <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
-              <View style={{ height: 12 }} />
-              <StyledLogoText>{getString('HELLO')}</StyledLogoText>
-            </TouchableOpacity>
-          </LogoWrapper>
+          <TouchableOpacity
+            testID="theme-test"
+            onPress={(): void => changeThemeType()}
+            style={{
+              marginTop: 116,
+              marginBottom: 30,
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}>
+            <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
+          </TouchableOpacity>
           <EditText
             testID="input-email"
             errorTestID="error-email"
