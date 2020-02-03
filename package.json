@@ -57,7 +57,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-appearance": "~0.3.2",
     "react-native-gesture-handler": "~1.5.0",
-    "react-native-image-zoom-viewer": "^2.2.27",
+    "react-native-image-pan-zoom": "^2.1.11",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-modalbox": "^2.0.0",
     "react-native-reanimated": "~1.4.0",
