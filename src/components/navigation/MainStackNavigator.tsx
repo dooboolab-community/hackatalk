@@ -10,6 +10,7 @@ import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { Ionicons } from '@expo/vector-icons';
 import Message from '../screen/Message';
+import PinchZoomViewPager from '../screen/PinchZoomViewPager';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
@@ -28,6 +29,7 @@ export type MainStackParamList = {
   Message: { channelId: string };
   Setting: undefined;
   ChangePw: undefined;
+  PinchZoomViewPager: undefined;
 };
 
 type NavigationProps<
@@ -121,6 +123,13 @@ function MainStackNavigator(): ReactElement {
         name="ChangePw"
         component={ChangePw}
         options={ChangePwHeaderOptions}
+      />
+      <Stack.Screen
+        name="PinchZoomViewPager"
+        component={PinchZoomViewPager}
+        options={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );

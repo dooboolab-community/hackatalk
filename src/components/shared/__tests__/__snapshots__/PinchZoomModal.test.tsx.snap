@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Modal
+      hardwareAccelerated={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      transparent={true}
+      visible={true}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          scrollEventThrottle={16}
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 80,
+                "position": "absolute",
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text>
+            1
+             / 
+            0
+          </Text>
+        </View>
+        <SafeAreaView
+          style={
+            Object {
+              "position": "absolute",
+              "right": 24,
+              "top": 48,
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+          >
+            <View />
+          </TouchableOpacity>
+        </SafeAreaView>
+      </View>
+    </Modal>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Modal
+      hardwareAccelerated={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      transparent={true}
+      visible={true}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          scrollEventThrottle={16}
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 80,
+                "position": "absolute",
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text>
+            1
+             / 
+            0
+          </Text>
+        </View>
+        <SafeAreaView
+          style={
+            Object {
+              "position": "absolute",
+              "right": 24,
+              "top": 48,
+            }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+          >
+            <View />
+          </TouchableOpacity>
+        </SafeAreaView>
+      </View>
+    </Modal>
+  </View>
+</View>
+`;

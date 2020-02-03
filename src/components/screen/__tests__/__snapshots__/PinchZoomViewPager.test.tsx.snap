@@ -1,0 +1,1161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "flexBasis": 0,
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Modal
+        hardwareAccelerated={false}
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
+        }
+        transparent={true}
+        visible={true}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+              },
+            ]
+          }
+        >
+          <ScrollView
+            horizontal={true}
+            pagingEnabled={true}
+            scrollEventThrottle={16}
+          >
+            <View
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "position": "absolute",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "height": 1334,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "width": 750,
+                    }
+                  }
+                >
+                  <View
+                    renderToHardwareTextureAndroid={true}
+                    style={
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                          Object {
+                            "translateX": 0,
+                          },
+                          Object {
+                            "translateY": 0,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={
+                          Object {
+                            "uri": "https://avatars2.githubusercontent.com/u/7970947?v=3&s=460",
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 1334,
+                            "width": 750,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "position": "absolute",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "height": 1334,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "width": 750,
+                    }
+                  }
+                >
+                  <View
+                    renderToHardwareTextureAndroid={true}
+                    style={
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                          Object {
+                            "translateX": 0,
+                          },
+                          Object {
+                            "translateY": 0,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={
+                          Object {
+                            "uri": "https://avatars2.githubusercontent.com/u/7970947?v=3&s=460",
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 1334,
+                            "width": 750,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 80,
+                  "position": "absolute",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text>
+              1
+               / 
+              2
+            </Text>
+          </View>
+          <SafeAreaView
+            style={
+              Object {
+                "position": "absolute",
+                "right": 24,
+                "top": 48,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+            >
+              <Text />
+            </TouchableOpacity>
+          </SafeAreaView>
+        </View>
+      </Modal>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2118,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 20,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2137,
+                    "methodName": "lowPriorityWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 7,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2304,
+                    "methodName": "Object.<anonymous>.ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 31,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13904,
+                    "methodName": "flushRenderPhaseStrictModeWarningsInDEV",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 3,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13198,
+                    "methodName": "commitRootImpl",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2118,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 20,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2137,
+                    "methodName": "lowPriorityWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 7,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2298,
+                    "methodName": "Object.<anonymous>.ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 31,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13904,
+                    "methodName": "flushRenderPhaseStrictModeWarningsInDEV",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 3,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13198,
+                    "methodName": "commitRootImpl",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 97,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "flexBasis": 0,
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Modal
+        hardwareAccelerated={false}
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
+        }
+        transparent={true}
+        visible={true}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "flexBasis": 0,
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "flexShrink": 1,
+                "justifyContent": "center",
+              },
+            ]
+          }
+        >
+          <ScrollView
+            horizontal={true}
+            pagingEnabled={true}
+            scrollEventThrottle={16}
+          >
+            <View
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "position": "absolute",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "height": 1334,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "width": 750,
+                    }
+                  }
+                >
+                  <View
+                    renderToHardwareTextureAndroid={true}
+                    style={
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                          Object {
+                            "translateX": 0,
+                          },
+                          Object {
+                            "translateY": 0,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={
+                          Object {
+                            "uri": "https://avatars2.githubusercontent.com/u/7970947?v=3&s=460",
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 1334,
+                            "width": 750,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 1334,
+                  "width": 750,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "position": "absolute",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "height": 1334,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                      "width": 750,
+                    }
+                  }
+                >
+                  <View
+                    renderToHardwareTextureAndroid={true}
+                    style={
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                          Object {
+                            "translateX": 0,
+                          },
+                          Object {
+                            "translateY": 0,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Image
+                        resizeMode="contain"
+                        source={
+                          Object {
+                            "uri": "https://avatars2.githubusercontent.com/u/7970947?v=3&s=460",
+                          }
+                        }
+                        style={
+                          Object {
+                            "height": 1334,
+                            "width": 750,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 80,
+                  "position": "absolute",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text>
+              1
+               / 
+              2
+            </Text>
+          </View>
+          <SafeAreaView
+            style={
+              Object {
+                "position": "absolute",
+                "right": 24,
+                "top": 48,
+              }
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+            >
+              <Text />
+            </TouchableOpacity>
+          </SafeAreaView>
+        </View>
+      </Modal>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2118,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 20,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2137,
+                    "methodName": "lowPriorityWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 7,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2304,
+                    "methodName": "Object.<anonymous>.ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 31,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13904,
+                    "methodName": "flushRenderPhaseStrictModeWarningsInDEV",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 3,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13198,
+                    "methodName": "commitRootImpl",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2118,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 20,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2137,
+                    "methodName": "lowPriorityWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 7,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 2298,
+                    "methodName": "Object.<anonymous>.ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 31,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13904,
+                    "methodName": "flushRenderPhaseStrictModeWarningsInDEV",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 3,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
+                    "lineNumber": 13198,
+                    "methodName": "commitRootImpl",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 97,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Warning: componentWillReceiveProps has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://fb.me/react-derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Warning: componentWillMount has been renamed, and is not recommended for use. See https://fb.me/react-async-component-lifecycle-hooks for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 17.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: ImageViewer
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
+  </View>
+</View>
+`;
