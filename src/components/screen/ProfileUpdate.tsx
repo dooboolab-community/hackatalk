@@ -1,11 +1,11 @@
-import { AsyncStorage, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
 import React, { useEffect, useState } from 'react';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import { SvgNoProfile } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
@@ -100,7 +100,7 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
-  const onPressImg = (): void => {
+  const pressProfileImage = (): void => {
     const options = [
       getString('TAKE_A_PICTURE'),
       getString('SELSCT_FROM_ALBUM'),
@@ -145,16 +145,25 @@ function Screen(props: Props): React.ReactElement {
           <TouchableOpacity
             testID="button-user-icon"
             activeOpacity={0.5}
-            onPress={onPressImg}
+            onPress={pressProfileImage}
           >
-            {!profilePath ? (
-              <SvgNoProfile width={80} height={80} fill={theme.fontColor} />
-            ) : (
-              <ProfileImage
+            {!profilePath
+              ? <View style={{
+                width: 90,
+                height: 90,
+              }}>
+                <Image width={80} height={80} source={IC_PROFILE} />
+                <Image style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  right: 0,
+                }} source={IC_CAMERA}/>
+              </View>
+              : <ProfileImage
                 testID="profile-image"
                 source={{ uri: profilePath }}
               />
-            )}
+            }
           </TouchableOpacity>
           <EditText
             testID="input-name"

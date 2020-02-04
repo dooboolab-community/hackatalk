@@ -33,27 +33,17 @@ export const AllProviders = ({
         customTheme={{ light, dark }}
       >
         <ApolloProvider client={testClient}>
-          <FriendProvider>
-            <AuthProvider initialAuthUser={initialAuthUser}>
-              <ProfileModalProvider>
-                {children}
-              </ProfileModalProvider>
-            </AuthProvider>
-          </FriendProvider>
+          <ActionSheetProvider>
+            <FriendProvider>
+              <AuthProvider initialAuthUser={initialAuthUser}>
+                <ProfileModalProvider>
+                  {children}
+                </ProfileModalProvider>
+              </AuthProvider>
+            </FriendProvider>
+          </ActionSheetProvider>
         </ApolloProvider>
       </ThemeProvider>
     </DeviceProvider>
-  );
-};
-
-export default ({ initialThemeType, children }: Props): React.ReactElement => {
-  return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >
-      <AuthProvider>
-        <ActionSheetProvider>{children}</ActionSheetProvider>
-      </AuthProvider>
-    </ThemeProvider>
   );
 };

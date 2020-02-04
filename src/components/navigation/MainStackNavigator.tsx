@@ -1,14 +1,14 @@
 import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
 import React, { ReactElement, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { TouchableOpacity, View } from 'react-native';
 
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
-import { Ionicons } from '@expo/vector-icons';
+import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
 import PinchZoomViewPager from '../screen/PinchZoomViewPager';
 import ProfileModal from '../shared/ProfileModal';
@@ -85,8 +85,7 @@ function MainStackNavigator(): ReactElement {
         component={ProfileUpdate}
         options={(props: Props): StackNavigationOptions => {
           const { navigation } = props;
-          const settingButton = (settingButtonProps: SettingButtonProps): ReactElement => {
-            const { tintColor } = settingButtonProps;
+          const settingButton = (): ReactElement => {
             return (
               <TouchableOpacity
                 style={{
@@ -99,7 +98,8 @@ function MainStackNavigator(): ReactElement {
                   navigation.navigate('Setting');
                 }}
               >
-                <Ionicons name="md-settings" size={24} color={tintColor} />
+                {/* <Ionicons name="md-settings" size={24} color={tintColor} /> */}
+                <Image width={24} height={24} source={IC_SETTING_W}/>
               </TouchableOpacity>
             );
           };
