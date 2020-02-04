@@ -64,5 +64,10 @@
   "AGREEMENT2": "이용약관",
   "AGREEMENT3": " 및 ",
   "AGREEMENT4": "개인정보취급방침",
-  "AGREEMENT5": "에 동의하는 것으로 간주합니다."
+  "AGREEMENT5": "에 동의하는 것으로 간주합니다.",
+  "VERIFY_EMAIL": "이메일 인증",
+  "VERIFY": "인증하기",
+  "RESEND_EMAIL": "메일 재전송",
+  "VERIFICATION_EMAIL_SENT": "인증 메일을 보냈습니다. 메일함을 확인해주세요. GMAIL의 경우 스팸함도 확인해주세오.",
+  "RESENT_VERIFICATION_EMAIL": "인증 메일을 다시 보냈습니다."
 }

@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 
 import Constants from 'expo-constants';
-import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
@@ -36,26 +35,15 @@ export interface Props {
 function ChangePw(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
-  const [isValidCurrentPw, setCurrentPwValid] = useState(false);
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
-  const [validationWord, setValidationWord] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
   const close = (): void => {
     navigation.goBack();
   };
-  const validateCurrent = (): void => {
-    try {
-      if (currentPw === 'right') {
-        setCurrentPwValid(true);
-      } else {
-        throw Error(getString('PASSWORD_MUST_MATCH'));
-      }
-    } catch (err) {
-      Alert.alert('', err.message);
-    }
-  };
+
   const changePassword = async (): Promise<void> => {
-    if (newPw === validationWord) {
+    if (newPw === confirmPw) {
       // TODO change password api call
       Keyboard.dismiss();
       Alert.alert('', 'Password changed.', [
@@ -109,6 +97,7 @@ function ChangePw(props: Props): ReactElement {
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
             label={getString('PASSWORD_CURRENT')}
+            value={currentPw}
             placeholder="******"
           />
           <EditText
@@ -121,6 +110,7 @@ function ChangePw(props: Props): ReactElement {
             placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setNewPw(pw)}
             label={getString('PASSWORD_NEW')}
+            value={newPw}
             placeholder="******"
           />
           <EditText
@@ -131,14 +121,15 @@ function ChangePw(props: Props): ReactElement {
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
-            onChangeText={(pw: string): void => setValidationWord(pw)}
+            onChangeText={(pw: string): void => setConfirmPw(pw)}
             label={getString('PASSWORD_NEW_REPEAT')}
+            value={confirmPw}
             placeholder="******"
           />
         </InnerContainer>
         <Button
           testID="close-current-pw-btn"
-          onPress={isValidCurrentPw ? changePassword : validateCurrent}
+          onPress={changePassword}
           containerStyle={{
             width: '100%',
             paddingHorizontal: 20,

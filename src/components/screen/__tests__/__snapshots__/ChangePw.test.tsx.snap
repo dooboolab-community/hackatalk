@@ -139,6 +139,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 }
                 testID="input-pw"
                 underlineColorAndroid="transparent"
+                value=""
               />
             </View>
           </View>
@@ -227,6 +228,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 }
                 testID="new-pw-input"
                 underlineColorAndroid="transparent"
+                value=""
               />
             </View>
           </View>
@@ -315,6 +317,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 }
                 testID="input-validation"
                 underlineColorAndroid="transparent"
+                value=""
               />
             </View>
           </View>

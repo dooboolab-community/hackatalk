@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate next button press 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "paddingTop": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "center",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 24,
+            },
+          ]
+        }
+      >
+        dooboolab@gmail.com
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "marginTop": 24,
+          }
+        }
+        testID="touch-email"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "center",
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          Resend email
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "marginTop": 80,
+            "paddingHorizontal": 20,
+            "width": "100%",
+          }
+        }
+        testID="btn-next"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#1E6EFA",
+                "borderWidth": 0,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Next
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "transparent",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 24,
+            "paddingRight": 24,
+            "paddingTop": 0,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "center",
+            },
+            Object {
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 24,
+            },
+          ]
+        }
+      >
+        dooboolab@gmail.com
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "marginTop": 24,
+          }
+        }
+        testID="touch-email"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "center",
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          Resend email
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "marginTop": 80,
+            "paddingHorizontal": 20,
+            "width": "100%",
+          }
+        }
+        testID="btn-next"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#1E6EFA",
+                "borderWidth": 0,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Next
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
