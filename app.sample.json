@@ -20,9 +20,13 @@
     "facebookDisplayName": "hackatalk",
     "facebookAppId": "<facebookAppId>",
     "ios": {
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.dooboolab.hackatalk",
       "userInterfaceStyle": "automatic",
+      "splash": {
+        "resizeMode": "cover",
+        "tabletImage": "./assets/splashTablet.png"
+      },
       "config": {
         "googleSignIn": {
           "reservedClientId": "<reservedClientId>"

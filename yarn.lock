@@ -5120,6 +5120,13 @@ expo-constants@*, expo-constants@~8.0.0:
   dependencies:
     ua-parser-js "^0.7.19"
 
+expo-device@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-2.0.0.tgz#05c8c2cc0147e937783bf7496d6dea83a25bdebf"
+  integrity sha512-iF5U55AbARpuywByFlf4uFGigMaXXPTc34TcC36CLKiwkoUguW0TXuq1UCfEjZiLYEF9v+rKZ2rQb2CSvo+nQA==
+  dependencies:
+    ua-parser-js "^0.7.19"
+
 expo-error-recovery@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/expo-error-recovery/-/expo-error-recovery-1.0.0.tgz#2ca9d59fcd16c5c881af877993731056f2d46afe"
