@@ -247,7 +247,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             style={
                               Object {
                                 "flex": 1,
-                                "marginTop": 64,
                               }
                             }
                           >
@@ -318,127 +317,668 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       }
                                     }
                                   >
-                                    <View
+                                    <SafeAreaView
                                       style={
                                         Array [
                                           Object {
-                                            "alignItems": "center",
-                                            "backgroundColor": "transparent",
+                                            "backgroundColor": "#ffffff",
                                             "flexBasis": 0,
-                                            "flexDirection": "column",
                                             "flexGrow": 1,
                                             "flexShrink": 1,
                                             "justifyContent": "center",
-                                            "paddingBottom": 0,
-                                            "paddingLeft": 24,
-                                            "paddingRight": 24,
-                                            "paddingTop": 0,
                                           },
                                         ]
                                       }
                                     >
-                                      <Text
-                                        style={
-                                          Array [
-                                            Object {
-                                              "fontSize": 18,
-                                              "lineHeight": 28,
-                                              "textAlign": "center",
-                                            },
-                                            Object {
-                                              "marginBottom": 24,
-                                            },
-                                          ]
-                                        }
-                                      >
-                                        Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.
-                                      </Text>
-                                      <Text
-                                        style={
-                                          Array [
-                                            Object {
-                                              "color": "#1E6EFA",
-                                              "fontSize": 24,
-                                            },
-                                          ]
-                                        }
-                                      >
-                                        dooboolab@gmail.com
-                                      </Text>
-                                      <TouchableOpacity
-                                        activeOpacity={0.2}
+                                      <ScrollView
                                         style={
                                           Object {
-                                            "marginTop": 24,
+                                            "alignSelf": "stretch",
                                           }
                                         }
-                                        testID="touch-email"
-                                      >
-                                        <Text
-                                          style={
-                                            Array [
-                                              Object {
-                                                "fontSize": 18,
-                                                "lineHeight": 28,
-                                                "textAlign": "center",
-                                                "textDecorationLine": "underline",
-                                              },
-                                            ]
-                                          }
-                                        >
-                                          Resend email
-                                        </Text>
-                                      </TouchableOpacity>
-                                      <TouchableOpacity
-                                        activeOpacity={0.2}
-                                        style={
-                                          Object {
-                                            "marginTop": 80,
-                                            "paddingHorizontal": 20,
-                                            "width": "100%",
-                                          }
-                                        }
-                                        testID="btn-next"
                                       >
                                         <View
                                           style={
                                             Array [
                                               Object {
-                                                "alignItems": "center",
-                                                "alignSelf": "center",
-                                                "borderColor": "blue",
-                                                "flexDirection": "row",
-                                                "height": 52,
-                                                "justifyContent": "center",
-                                              },
-                                              Object {
-                                                "backgroundColor": "#1E6EFA",
-                                                "borderWidth": 0,
-                                                "height": 48,
-                                                "width": "100%",
+                                                "marginBottom": 40,
+                                                "marginLeft": 40,
+                                                "marginRight": 40,
+                                                "marginTop": 40,
                                               },
                                             ]
                                           }
                                         >
-                                          <Text
+                                          <View
                                             style={
                                               Array [
                                                 Object {
-                                                  "color": "#069ccd",
-                                                  "fontSize": 16,
-                                                },
-                                                Object {
-                                                  "color": "#ffffff",
-                                                  "fontSize": 16,
+                                                  "marginBottom": 72,
+                                                  "marginTop": 44,
                                                 },
                                               ]
                                             }
                                           >
-                                            Next
-                                          </Text>
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              style={
+                                                Object {
+                                                  "alignItems": "center",
+                                                  "width": 60,
+                                                }
+                                              }
+                                              testID="theme-test"
+                                            >
+                                              <Image
+                                                source={
+                                                  Object {
+                                                    "canInstrument": true,
+                                                    "createTransformer": [Function],
+                                                    "getCacheKey": [Function],
+                                                    "process": [Function],
+                                                  }
+                                                }
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "height": 60,
+                                                      "width": 60,
+                                                    },
+                                                  ]
+                                                }
+                                              />
+                                              <View
+                                                style={
+                                                  Object {
+                                                    "height": 12,
+                                                  }
+                                                }
+                                              />
+                                              <Text
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "color": "#151A25",
+                                                      "fontSize": 20,
+                                                      "fontWeight": "bold",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                Hello
+                                              </Text>
+                                            </TouchableOpacity>
+                                          </View>
+                                          <View
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "alignSelf": "stretch",
+                                                  "flexDirection": "column",
+                                                },
+                                                Object {
+                                                  "marginBottom": 20,
+                                                },
+                                              ]
+                                            }
+                                          >
+                                            <View
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "alignItems": "center",
+                                                    "flexDirection": "row",
+                                                    "justifyContent": "space-between",
+                                                    "width": "100%",
+                                                  },
+                                                  Object {
+                                                    "borderBottomWidth": 0.6,
+                                                    "borderColor": "#2E2E2E",
+                                                  },
+                                                  undefined,
+                                                  null,
+                                                ]
+                                              }
+                                            >
+                                              <Text
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "color": "#b9b9c4",
+                                                      "fontSize": 14,
+                                                      "fontWeight": "bold",
+                                                    },
+                                                    undefined,
+                                                    null,
+                                                    Object {
+                                                      "width": 110,
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                Email
+                                              </Text>
+                                              <TextInput
+                                                allowFontScaling={true}
+                                                autoCapitalize="none"
+                                                placeholder="hello@example.com"
+                                                placeholderTextColor="#676c7a"
+                                                rejectResponderTermination={true}
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "color": "#2c374e",
+                                                      "flexBasis": 0,
+                                                      "flexGrow": 1,
+                                                      "flexShrink": 1,
+                                                      "fontSize": 14,
+                                                      "fontWeight": "bold",
+                                                      "height": "100%",
+                                                      "paddingBottom": 16,
+                                                      "paddingTop": 16,
+                                                    },
+                                                    Object {
+                                                      "color": "#151A25",
+                                                    },
+                                                    Object {
+                                                      "textAlign": "right",
+                                                    },
+                                                  ]
+                                                }
+                                                testID="input-email"
+                                                underlineColorAndroid="transparent"
+                                                value=""
+                                              />
+                                            </View>
+                                          </View>
+                                          <View
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "alignSelf": "stretch",
+                                                  "flexDirection": "column",
+                                                },
+                                                Object {
+                                                  "marginBottom": 20,
+                                                },
+                                              ]
+                                            }
+                                          >
+                                            <View
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "alignItems": "center",
+                                                    "flexDirection": "row",
+                                                    "justifyContent": "space-between",
+                                                    "width": "100%",
+                                                  },
+                                                  Object {
+                                                    "borderBottomWidth": 0.6,
+                                                    "borderColor": "#2E2E2E",
+                                                  },
+                                                  undefined,
+                                                  null,
+                                                ]
+                                              }
+                                            >
+                                              <Text
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "color": "#b9b9c4",
+                                                      "fontSize": 14,
+                                                      "fontWeight": "bold",
+                                                    },
+                                                    undefined,
+                                                    null,
+                                                    Object {
+                                                      "width": 110,
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                Password
+                                              </Text>
+                                              <TextInput
+                                                allowFontScaling={true}
+                                                autoCapitalize="none"
+                                                placeholder="******"
+                                                placeholderTextColor="#676c7a"
+                                                rejectResponderTermination={true}
+                                                secureTextEntry={true}
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "color": "#2c374e",
+                                                      "flexBasis": 0,
+                                                      "flexGrow": 1,
+                                                      "flexShrink": 1,
+                                                      "fontSize": 14,
+                                                      "fontWeight": "bold",
+                                                      "height": "100%",
+                                                      "paddingBottom": 16,
+                                                      "paddingTop": 16,
+                                                    },
+                                                    Object {
+                                                      "color": "#151A25",
+                                                    },
+                                                    Object {
+                                                      "textAlign": "right",
+                                                    },
+                                                  ]
+                                                }
+                                                testID="input-password"
+                                                underlineColorAndroid="transparent"
+                                                value=""
+                                              />
+                                            </View>
+                                          </View>
+                                          <View
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "flexDirection": "row",
+                                                  "marginTop": 12,
+                                                  "width": "100%",
+                                                },
+                                              ]
+                                            }
+                                          >
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              style={
+                                                Object {
+                                                  "flex": 1,
+                                                  "flexDirection": "row",
+                                                  "height": 52,
+                                                  "justifyContent": "center",
+                                                }
+                                              }
+                                              testID="btn-sign-up"
+                                            >
+                                              <View
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "alignItems": "center",
+                                                      "alignSelf": "center",
+                                                      "borderColor": "blue",
+                                                      "flexDirection": "row",
+                                                      "height": 52,
+                                                      "justifyContent": "center",
+                                                    },
+                                                    Object {
+                                                      "backgroundColor": "#ffffff",
+                                                      "borderColor": "#1E6EFA",
+                                                      "borderWidth": 1,
+                                                      "width": "100%",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                <Text
+                                                  style={
+                                                    Array [
+                                                      Object {
+                                                        "color": "#069ccd",
+                                                        "fontSize": 16,
+                                                      },
+                                                      Object {
+                                                        "color": "#1E6EFA",
+                                                        "fontSize": 14,
+                                                        "fontWeight": "bold",
+                                                      },
+                                                    ]
+                                                  }
+                                                >
+                                                  Sign Up
+                                                </Text>
+                                              </View>
+                                            </TouchableOpacity>
+                                            <View
+                                              style={
+                                                Object {
+                                                  "width": 20,
+                                                }
+                                              }
+                                            />
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              style={
+                                                Object {
+                                                  "backgroundColor": "#1E6EFA",
+                                                  "flex": 1,
+                                                  "flexDirection": "row",
+                                                  "height": 52,
+                                                  "justifyContent": "center",
+                                                }
+                                              }
+                                              testID="btn-sign-in"
+                                            >
+                                              <View
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "alignItems": "center",
+                                                      "alignSelf": "center",
+                                                      "borderColor": "blue",
+                                                      "flexDirection": "row",
+                                                      "height": 52,
+                                                      "justifyContent": "center",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                <Text
+                                                  style={
+                                                    Array [
+                                                      Object {
+                                                        "color": "#069ccd",
+                                                        "fontSize": 16,
+                                                      },
+                                                      Object {
+                                                        "color": "#ffffff",
+                                                        "fontSize": 14,
+                                                        "fontWeight": "bold",
+                                                      },
+                                                    ]
+                                                  }
+                                                >
+                                                  Login
+                                                </Text>
+                                              </View>
+                                            </TouchableOpacity>
+                                          </View>
+                                          <TouchableOpacity
+                                            activeOpacity={0.2}
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "alignSelf": "center",
+                                                  "marginBottom": 44,
+                                                  "paddingBottom": 20,
+                                                  "paddingLeft": 20,
+                                                  "paddingRight": 20,
+                                                  "paddingTop": 20,
+                                                },
+                                              ]
+                                            }
+                                            testID="btn-find-pw"
+                                          >
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#1E6EFA",
+                                                    "textDecorationLine": "underline",
+                                                  },
+                                                ]
+                                              }
+                                            >
+                                              Forgot password?
+                                            </Text>
+                                          </TouchableOpacity>
+                                          <View
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "marginBottom": 24,
+                                                },
+                                              ]
+                                            }
+                                          >
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              testID="btn-apple"
+                                            >
+                                              <View
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "alignItems": "center",
+                                                      "alignSelf": "center",
+                                                      "borderColor": "blue",
+                                                      "flexDirection": "row",
+                                                      "height": 52,
+                                                      "justifyContent": "center",
+                                                    },
+                                                    Object {
+                                                      "backgroundColor": "#ffffff",
+                                                      "borderColor": "#151E22",
+                                                      "borderWidth": 1,
+                                                      "height": 48,
+                                                      "marginBottom": 6,
+                                                      "width": "100%",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                <View
+                                                  style={
+                                                    Object {
+                                                      "marginRight": 6,
+                                                    }
+                                                  }
+                                                >
+                                                  <SvgMock
+                                                    fill="#151E22"
+                                                    width={24}
+                                                  />
+                                                </View>
+                                                <Text
+                                                  style={
+                                                    Array [
+                                                      Object {
+                                                        "color": "#069ccd",
+                                                        "fontSize": 16,
+                                                      },
+                                                      Object {
+                                                        "color": "#151E22",
+                                                        "fontWeight": "700",
+                                                      },
+                                                    ]
+                                                  }
+                                                >
+                                                  Sign in with Apple
+                                                </Text>
+                                              </View>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              testID="btn-facebook"
+                                            >
+                                              <View
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "alignItems": "center",
+                                                      "alignSelf": "center",
+                                                      "borderColor": "blue",
+                                                      "flexDirection": "row",
+                                                      "height": 52,
+                                                      "justifyContent": "center",
+                                                    },
+                                                    Object {
+                                                      "backgroundColor": "#345997",
+                                                      "borderColor": "#345997",
+                                                      "borderWidth": 1,
+                                                      "height": 48,
+                                                      "marginBottom": 6,
+                                                      "width": "100%",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                <View
+                                                  style={
+                                                    Object {
+                                                      "marginRight": 6,
+                                                    }
+                                                  }
+                                                >
+                                                  <SvgMock
+                                                    fill="#ffffff"
+                                                    width={24}
+                                                  />
+                                                </View>
+                                                <Text
+                                                  style={
+                                                    Array [
+                                                      Object {
+                                                        "color": "#069ccd",
+                                                        "fontSize": 16,
+                                                      },
+                                                      Object {
+                                                        "color": "#ffffff",
+                                                        "fontWeight": "700",
+                                                      },
+                                                    ]
+                                                  }
+                                                >
+                                                  Sign in with Facebook
+                                                </Text>
+                                              </View>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              testID="btn-google"
+                                            >
+                                              <View
+                                                style={
+                                                  Array [
+                                                    Object {
+                                                      "alignItems": "center",
+                                                      "alignSelf": "center",
+                                                      "borderColor": "blue",
+                                                      "flexDirection": "row",
+                                                      "height": 52,
+                                                      "justifyContent": "center",
+                                                    },
+                                                    Object {
+                                                      "backgroundColor": "#E04238",
+                                                      "borderColor": "#E04238",
+                                                      "borderWidth": 1,
+                                                      "height": 48,
+                                                      "width": "100%",
+                                                    },
+                                                  ]
+                                                }
+                                              >
+                                                <View
+                                                  style={
+                                                    Object {
+                                                      "marginRight": 6,
+                                                    }
+                                                  }
+                                                >
+                                                  <SvgMock
+                                                    fill="#ffffff"
+                                                    width={24}
+                                                  />
+                                                </View>
+                                                <Text
+                                                  style={
+                                                    Array [
+                                                      Object {
+                                                        "color": "#069ccd",
+                                                        "fontSize": 16,
+                                                      },
+                                                      Object {
+                                                        "color": "#ffffff",
+                                                        "fontWeight": "700",
+                                                      },
+                                                    ]
+                                                  }
+                                                >
+                                                  Sign in with Google
+                                                </Text>
+                                              </View>
+                                            </TouchableOpacity>
+                                          </View>
+                                          <View
+                                            style={
+                                              Array [
+                                                Object {
+                                                  "flexDirection": "row",
+                                                  "flexWrap": "wrap",
+                                                  "justifyContent": "center",
+                                                  "paddingBottom": 40,
+                                                  "paddingLeft": 0,
+                                                  "paddingRight": 0,
+                                                  "paddingTop": 0,
+                                                },
+                                              ]
+                                            }
+                                          >
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#777",
+                                                    "lineHeight": 22,
+                                                  },
+                                                ]
+                                              }
+                                            >
+                                              We consider that you agree with 
+                                            </Text>
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#1E6EFA",
+                                                    "lineHeight": 22,
+                                                    "textDecorationLine": "underline",
+                                                  },
+                                                ]
+                                              }
+                                              testID="btn-terms"
+                                            >
+                                              Terms for Agreement
+                                            </Text>
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#777",
+                                                    "lineHeight": 22,
+                                                  },
+                                                ]
+                                              }
+                                            >
+                                               and 
+                                            </Text>
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#1E6EFA",
+                                                    "lineHeight": 22,
+                                                    "textDecorationLine": "underline",
+                                                  },
+                                                ]
+                                              }
+                                              testID="btn-privacy"
+                                            >
+                                              Privacy Policy
+                                            </Text>
+                                            <Text
+                                              style={
+                                                Array [
+                                                  Object {
+                                                    "color": "#777",
+                                                    "lineHeight": 22,
+                                                  },
+                                                ]
+                                              }
+                                            >
+                                               by going onto next step.
+                                            </Text>
+                                          </View>
                                         </View>
-                                      </TouchableOpacity>
-                                    </View>
+                                      </ScrollView>
+                                    </SafeAreaView>
                                   </View>
                                 </View>
                               </View>
@@ -470,95 +1010,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             "top": 0,
                           }
                         }
-                      >
-                        <View
-                          pointerEvents="none"
-                          style={
-                            Object {
-                              "bottom": 0,
-                              "left": 0,
-                              "opacity": 1,
-                              "position": "absolute",
-                              "right": 0,
-                              "top": 0,
-                            }
-                          }
-                        >
-                          <View
-                            style={
-                              Object {
-                                "backgroundColor": "#ffffff",
-                                "borderBottomColor": "rgb(199, 199, 204)",
-                                "borderBottomWidth": 0,
-                                "elevation": 0,
-                                "flex": 1,
-                                "shadowColor": "rgb(199, 199, 204)",
-                                "shadowOffset": Object {
-                                  "height": 0.5,
-                                  "width": 0,
-                                },
-                                "shadowOpacity": 0.85,
-                                "shadowRadius": 0,
-                              }
-                            }
-                          />
-                        </View>
-                        <View
-                          pointerEvents="box-none"
-                          style={
-                            Object {
-                              "height": 64,
-                              "maxHeight": undefined,
-                              "minHeight": undefined,
-                              "opacity": undefined,
-                              "transform": undefined,
-                            }
-                          }
-                        >
-                          <View
-                            pointerEvents="none"
-                            style={
-                              Object {
-                                "height": 20,
-                              }
-                            }
-                          />
-                          <View
-                            pointerEvents="box-none"
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "flex": 1,
-                                "flexDirection": "row",
-                                "justifyContent": "center",
-                              }
-                            }
-                          >
-                            <View
-                              pointerEvents="box-none"
-                              style={
-                                Object {
-                                  "marginHorizontal": 18,
-                                  "opacity": 1,
-                                }
-                              }
-                            >
-                              <Text
-                                numberOfLines={1}
-                                style={
-                                  Object {
-                                    "color": "#151A25",
-                                    "fontSize": 17,
-                                    "fontWeight": "600",
-                                  }
-                                }
-                              >
-                                Verify Email
-                              </Text>
-                            </View>
-                          </View>
-                        </View>
-                      </View>
+                      />
                     </View>
                   </View>
                 </View>
