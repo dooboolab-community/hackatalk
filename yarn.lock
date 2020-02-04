@@ -1151,6 +1151,14 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dooboo-ui/native-pinch-zoom-slider-modal@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native-pinch-zoom-slider-modal/-/native-pinch-zoom-slider-modal-0.0.3.tgz#c1911c8fe31eafee58d4ba87489bc444adcb16f4"
+  integrity sha512-UVOZGfL1ohiyGSCznV1KJHhg3c8f0NpQnAH9Wn1ZFSsQ4GVSkwcRflRnlkQbPGex8WHgG8U5xVNrq19gFKHJcw==
+  dependencies:
+    dooboolab-welcome "^1.1.1"
+    react-native-image-pan-zoom "^2.1.11"
+
 "@dooboo-ui/native-theme@^0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@dooboo-ui/native-theme/-/native-theme-0.1.5.tgz#9766abeb8d24abd6e611adf6782fdffd3aee2f00"

@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { Text, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import PinchZoomModal from '../shared/PinchZoomModal';
+import PinchZoomSliderModal from '@dooboo-ui/native-pinch-zoom-slider-modal';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -27,16 +28,31 @@ const images = [
 function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
   const { navigation: { goBack } } = props;
+  const [visible, setVisible] = useState<boolean>(false);
+  const [pageNum, setPageNum] = useState<number>(0);
 
   return (
     <Container>
-      <PinchZoomModal
+      <PinchZoomSliderModal
         renderCloseElement={
           (): ReactElement =>
             <Ionicons name="md-close" size={24} color={theme.fontColor} />
         }
-        onClose={goBack}
         images={images}
+        visible={visible}
+        onClose={(): void => {
+          setVisible(false);
+          goBack();
+        }}
+        onPageChanged={(page: number): void => setPageNum(page)}
+        renderIndicator={(): ReactElement => <View style={[
+          {
+            position: 'absolute',
+            bottom: 80,
+          },
+        ]}>
+          <Text>{pageNum + 1} / {images.length}</Text>
+        </View>}
       />
     </Container>
   );
