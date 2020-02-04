@@ -12,10 +12,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import AuthContext from '../../../providers/AuthProvider';
 import ProfileUpdate from '../ProfileUpdate';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -24,7 +21,7 @@ let component: ReactElement;
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 
-let userPressLuanchCamera = true;
+const userPressLuanchCamera = true;
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): object => {
     return {
@@ -59,8 +56,9 @@ describe('rendering test', () => {
   });
 
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 });
 
@@ -75,48 +73,42 @@ describe('interaction', () => {
     testingLib = render(component);
   });
 
-  it('should fireEvent when logout button pressed', () => {
-    jest
-      .spyOn(AuthContext, 'useAuthContext')
-      .mockImplementation(() => ({
-        state: {
-          user: undefined,
-        },
-        setUser: jest.fn().mockReturnValue({
-          id: 'userId',
-          email: 'email@email.com',
-          nickname: 'nickname',
-          statusMessage: 'status',
-        }),
-      }));
-    act(() => {
-      fireEvent.press(testingLib.getByTestId('button-logout'));
-    });
-  });
-
   it('should fireEvent when update button pressed', () => {
     act(() => {
       fireEvent.press(testingLib.getByTestId('button-update'));
     });
   });
 
-  it('should changeText when display name changed', () => {
+  it('should change nickname', async () => {
+    const inputStatus = testingLib.getByTestId('input-nickname');
+    await wait(() => expect(inputStatus).toBeTruthy());
+    act(() => {
+      fireEvent.changeText(inputStatus, 'nickname');
+    });
+    expect(inputStatus.props.value).toEqual('nickname');
+  });
+
+  it('should change name', async () => {
     const inputName = testingLib.getByTestId('input-name');
+    await wait(() => expect(inputName).toBeTruthy());
+
     act(() => {
       fireEvent.changeText(inputName, 'name');
     });
+    expect(inputName.props.value).toEqual('name');
   });
 
-  it('should changeText when status message changed', () => {
+  it('should change status text', async () => {
     const inputStatus = testingLib.getByTestId('input-status');
+    await wait(() => expect(inputStatus).toBeTruthy());
     act(() => {
-      fireEvent.changeText(inputStatus, 'name');
+      fireEvent.changeText(inputStatus, 'status');
     });
-    expect(inputStatus.props.value).toEqual('name');
+    expect(inputStatus.props.value).toEqual('status');
   });
 
   it('should launch camera when user select "Take a picture"', async () => {
-    userPressLuanchCamera = true;
+    // userPressLuanchCamera = true;
     const profileBtn = await waitForElement(() =>
       testingLib.queryByTestId('button-user-icon'),
     );
@@ -127,7 +119,7 @@ describe('interaction', () => {
   });
 
   it('should open album when user select "Select from Album"', async () => {
-    userPressLuanchCamera = false;
+    // userPressLuanchCamera = false;
     const profileBtn = await waitForElement(() =>
       testingLib.queryByTestId('button-user-icon'),
     );

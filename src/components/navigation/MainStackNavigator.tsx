@@ -1,4 +1,3 @@
-import ChangePw, { ChangePwHeaderOptions } from '../screen/ChangePw';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
@@ -6,6 +5,7 @@ import React, { ReactElement, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 
+import ChangePw from '../screen/ChangePw';
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { IC_SETTING_W } from '../../utils/Icons';
@@ -15,7 +15,7 @@ import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
-import Setting from '../screen/Setting';
+import Settings from '../screen/Settings';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import useAppState from '../../hooks/useAppState';
@@ -27,7 +27,7 @@ export type MainStackParamList = {
   ProfileUpdate: undefined;
   SearchUser: undefined;
   Message: { channelId: string };
-  Setting: undefined;
+  Settings: undefined;
   ChangePw: undefined;
   PinchZoomViewPager: undefined;
 };
@@ -95,7 +95,7 @@ function MainStackNavigator(): ReactElement {
                   marginRight: 15,
                 }}
                 onPress={(): void => {
-                  navigation.navigate('Setting');
+                  navigation.navigate('Settings');
                 }}
               >
                 {/* <Ionicons name="md-settings" size={24} color={tintColor} /> */}
@@ -118,11 +118,11 @@ function MainStackNavigator(): ReactElement {
         component={Message}
         options={getSimpleHeader(getString('MESSAGE'), theme)}
       />
-      <Stack.Screen name="Setting" component={Setting} options={getSimpleHeader(getString('SETTING'), theme)} />
+      <Stack.Screen name="Settings" component={Settings} options={getSimpleHeader(getString('SETTINGS'), theme)} />
       <Stack.Screen
         name="ChangePw"
         component={ChangePw}
-        options={ChangePwHeaderOptions}
+        options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
       />
       <Stack.Screen
         name="PinchZoomViewPager"

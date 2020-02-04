@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[Setting] screen renders without crashing 1`] = `
-<View
+<SafeAreaView
   style={
     Array [
       Object {
@@ -146,11 +146,62 @@ exports[`[Setting] screen renders without crashing 1`] = `
       style={null}
     />
   </ScrollView>
-</View>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
+      }
+    }
+    testID="button-logout"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "borderColor": "blue",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#1E6EFA",
+            "borderWidth": 0.3,
+            "height": 48,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#069ccd",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 14,
+              "fontWeight": "bold",
+            },
+          ]
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </TouchableOpacity>
+</SafeAreaView>
 `;
 
 exports[`[Setting] screen renders without crashing 2`] = `
-<View
+<SafeAreaView
   style={
     Array [
       Object {
@@ -307,11 +358,62 @@ exports[`[Setting] screen renders without crashing 2`] = `
       style={null}
     />
   </ScrollView>
-</View>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
+      }
+    }
+    testID="button-logout"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "borderColor": "blue",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#1E6EFA",
+            "borderWidth": 0.3,
+            "height": 48,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#069ccd",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 14,
+              "fontWeight": "bold",
+            },
+          ]
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </TouchableOpacity>
+</SafeAreaView>
 `;
 
 exports[`[Setting] screen renders without crashing 3`] = `
-<View
+<SafeAreaView
   style={
     Array [
       Object {
@@ -468,11 +570,62 @@ exports[`[Setting] screen renders without crashing 3`] = `
       style={null}
     />
   </ScrollView>
-</View>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
+      }
+    }
+    testID="button-logout"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "borderColor": "blue",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#1E6EFA",
+            "borderWidth": 0.3,
+            "height": 48,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#069ccd",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 14,
+              "fontWeight": "bold",
+            },
+          ]
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </TouchableOpacity>
+</SafeAreaView>
 `;
 
 exports[`[Setting] screen renders without crashing 4`] = `
-<View
+<SafeAreaView
   style={
     Array [
       Object {
@@ -629,5 +782,56 @@ exports[`[Setting] screen renders without crashing 4`] = `
       style={null}
     />
   </ScrollView>
-</View>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    onPress={[Function]}
+    style={
+      Object {
+        "paddingHorizontal": 20,
+        "paddingVertical": 20,
+      }
+    }
+    testID="button-logout"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "borderColor": "blue",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "#ffffff",
+            "borderColor": "#1E6EFA",
+            "borderWidth": 0.3,
+            "height": 48,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#069ccd",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#1E6EFA",
+              "fontSize": 14,
+              "fontWeight": "bold",
+            },
+          ]
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </TouchableOpacity>
+</SafeAreaView>
 `;

@@ -1,6 +1,6 @@
-import { AsyncStorage, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
+import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
@@ -9,7 +9,6 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
@@ -41,7 +40,7 @@ const StyledButtonWrapper = styled.View`
   align-items: center;
   align-self: stretch;
   height: 60px;
-  margin-top: 28px;
+  margin-top: 36px;
   margin-bottom: 48px;
 `;
 
@@ -57,12 +56,13 @@ interface Props {
 
 function Screen(props: Props): React.ReactElement {
   const { navigation } = props;
+  const { theme } = useThemeContext();
   const [isUpdating, setIsUpdating] = useState(false);
-  const [nickname, setNickName] = useState('');
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [statusMessage, setstatusMessage] = useState('');
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
-  const { setUser } = useAuthContext();
 
   useEffect(() => {
     if (isUpdating) {
@@ -78,23 +78,20 @@ function Screen(props: Props): React.ReactElement {
     }
   }, [isUpdating]);
 
-  const onLogout = (): void => {
-    if (navigation) {
-      AsyncStorage.removeItem('token');
-      setUser(undefined);
-    }
-  };
-
-  const onUpdate = (): void => {
+  const updateProfile = (): void => {
     setIsUpdating(true);
   };
 
-  const onChangeText = (type: string, text: string): void => {
+  const changeText = (type: string, text: string): void => {
     switch (type) {
-      case 'DISPLAY_NAME':
-        setNickName(text);
+      case 'NICKNAME':
+        setNickname(text);
+        break;
+      case 'NAME':
+        setName(text);
         break;
       case 'STATUS_MSG':
+      default:
         setstatusMessage(text);
         break;
     }
@@ -131,8 +128,6 @@ function Screen(props: Props): React.ReactElement {
     );
   };
 
-  const { theme } = useThemeContext();
-
   return (
     <Container>
       <StyledScrollView
@@ -166,59 +161,51 @@ function Screen(props: Props): React.ReactElement {
             }
           </TouchableOpacity>
           <EditText
-            testID="input-name"
-            type={EditTextInputType.BOX}
+            testID="input-nickname"
+            type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
-            label={getString('NAME')}
-            placeholder={getString('NAME')}
+            label={getString('NICKNAME')}
+            placeholder={getString('NICKNAME')}
             value={nickname}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void =>
-              onChangeText('DISPLAY_NAME', text)
+              changeText('NICKNAME', text)
             }
           />
           <EditText
-            type={EditTextInputType.BOX}
+            testID="input-name"
+            type={EditTextInputType.DEFAULT}
+            style={{ marginTop: 32 }}
+            label={getString('NAME')}
+            placeholder={getString('NAME_HINT')}
+            value={name}
+            borderColor={theme.font}
+            focusColor={theme.focused}
+            placeholderTextColor={theme.placeholder}
+            onChangeText={(text: string): void =>
+              changeText('NAME', text)
+            }
+          />
+          <EditText
+            type={EditTextInputType.DEFAULT}
             testID="input-status"
             style={{ marginTop: 24 }}
             label={getString('STATUS_MSG')}
-            placeholder={getString('STATUS_MSG')}
+            placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void =>
-              onChangeText('STATUS_MSG', text)
+              changeText('STATUS_MSG', text)
             }
           />
           <StyledButtonWrapper>
             <Button
-              testID="button-logout"
-              containerStyle={{
-                flex: 0.5,
-              }}
-              style={{
-                width: '100%',
-                backgroundColor: theme.btnPrimaryLight,
-                borderColor: theme.btnPrimary,
-                borderWidth: 1,
-              }}
-              textStyle={{
-                color: theme.btnPrimary,
-                fontSize: 14,
-                fontWeight: 'bold',
-              }}
-              onPress={onLogout}
-              text={getString('LOGOUT')}
-            />
-            <View style={{ width: 8 }} />
-            <Button
               testID="button-update"
-              containerStyle={{
-                flex: 0.5,
-              }}
+              containerStyle={{ flex: 1 }}
               style={{
                 width: '100%',
                 backgroundColor: theme.btnPrimary,
@@ -231,7 +218,7 @@ function Screen(props: Props): React.ReactElement {
                 fontWeight: 'bold',
               }}
               isLoading={isUpdating}
-              onPress={onUpdate}
+              onPress={updateProfile}
               text={getString('UPDATE')}
             />
           </StyledButtonWrapper>
