@@ -162,7 +162,7 @@ exports[`rendering test renders as expected 1`] = `
                 <TextInput
                   allowFontScaling={true}
                   autoCapitalize="none"
-                  placeholder="Nickname"
+                  placeholder="Nickname can help others to find you"
                   placeholderTextColor="#676c7a"
                   rejectResponderTermination={true}
                   style={

@@ -165,7 +165,7 @@ function Screen(props: Props): React.ReactElement {
             type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
             label={getString('NICKNAME')}
-            placeholder={getString('NICKNAME')}
+            placeholder={getString('NICKNAME_HINT')}
             value={nickname}
             borderColor={theme.font}
             focusColor={theme.focused}
