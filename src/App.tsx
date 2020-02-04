@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import Icons from './utils/Icons';
@@ -78,7 +79,9 @@ function ProviderWrapper(): React.ReactElement {
       <DeviceProvider>
         <AuthProvider>
           <ApolloProvider client={client}>
-            <App />
+            <ActionSheetProvider>
+              <App />
+            </ActionSheetProvider>
           </ApolloProvider>
         </AuthProvider>
       </DeviceProvider>

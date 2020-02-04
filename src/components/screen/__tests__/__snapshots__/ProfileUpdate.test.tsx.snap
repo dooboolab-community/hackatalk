@@ -2,32 +2,20 @@
 
 exports[`rendering test renders as expected 1`] = `
 <View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexDirection": "column",
-        "flexGrow": 1,
-        "flexShrink": 1,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    contentContainerStyle={
-      Object {
-        "alignItems": "center",
-        "justifyContent": "center",
-      }
-    }
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
-      Array [
-        Object {
-          "alignSelf": "stretch",
-        },
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
@@ -35,264 +23,94 @@ exports[`rendering test renders as expected 1`] = `
         Array [
           Object {
             "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
             "flexDirection": "column",
-            "marginTop": 48,
-            "width": "78%",
+            "flexGrow": 1,
+            "flexShrink": 1,
           },
         ]
       }
     >
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={[Function]}
-        testID="button-user-icon"
-      >
-        <SvgMock
-          fill="#151A25"
-          height={80}
-          width={80}
-        />
-      </TouchableOpacity>
-      <View
+      <ScrollView
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          }
+        }
         style={
           Array [
             Object {
               "alignSelf": "stretch",
-              "flexDirection": "column",
-            },
-            Object {
-              "marginTop": 32,
             },
           ]
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#b9b9c4",
-                "fontSize": 14,
-                "fontWeight": "500",
-                "marginBottom": 5,
-              },
-              undefined,
-              null,
-            ]
-          }
-        >
-          Name
-        </Text>
         <View
           style={
             Array [
               Object {
                 "alignItems": "center",
-                "flexDirection": "row",
+                "flexDirection": "column",
+                "marginTop": 48,
+                "width": "78%",
               },
             ]
           }
         >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "width": "100%",
-                },
-                Object {
-                  "borderColor": "#2E2E2E",
-                  "borderRadius": 3,
-                  "borderWidth": 0.6,
-                },
-                undefined,
-                null,
-                Object {
-                  "paddingLeft": 15,
-                },
-                Object {
-                  "paddingRight": 15,
-                },
-              ]
-            }
+          <TouchableOpacity
+            activeOpacity={0.5}
+            testID="button-user-icon"
           >
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              onBlur={[Function]}
-              onChangeText={[Function]}
-              onFocus={[Function]}
-              placeholder="Name"
-              placeholderTextColor="#676c7a"
-              rejectResponderTermination={true}
+            <View
               style={
-                Array [
-                  Object {
-                    "color": "#2c374e",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 15,
-                    "fontWeight": "500",
-                    "height": "100%",
-                    "paddingBottom": 15,
-                    "paddingTop": 15,
-                  },
-                  Object {
-                    "paddingVertical": 16,
-                  },
-                ]
+                Object {
+                  "height": 90,
+                  "width": 90,
+                }
               }
-              testID="input-name"
-              underlineColorAndroid="transparent"
-              value=""
-            />
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignSelf": "stretch",
-              "flexDirection": "column",
-            },
-            Object {
-              "marginTop": 24,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#b9b9c4",
-                "fontSize": 14,
-                "fontWeight": "500",
-                "marginBottom": 5,
-              },
-              undefined,
-              null,
-            ]
-          }
-        >
-          Status message
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
+            >
+              <Image
+                height={80}
+                source={
+                  Object {
+                    "canInstrument": true,
+                    "createTransformer": [Function],
+                    "getCacheKey": [Function],
+                    "process": [Function],
+                  }
+                }
+                width={80}
+              />
+              <Image
+                source={
+                  Object {
+                    "canInstrument": true,
+                    "createTransformer": [Function],
+                    "getCacheKey": [Function],
+                    "process": [Function],
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              />
+            </View>
+          </TouchableOpacity>
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "width": "100%",
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
                 },
                 Object {
-                  "borderColor": "#2E2E2E",
-                  "borderRadius": 3,
-                  "borderWidth": 0.6,
-                },
-                undefined,
-                null,
-                Object {
-                  "paddingLeft": 15,
-                },
-                Object {
-                  "paddingRight": 15,
-                },
-              ]
-            }
-          >
-            <TextInput
-              allowFontScaling={true}
-              autoCapitalize="none"
-              onBlur={[Function]}
-              onChangeText={[Function]}
-              onFocus={[Function]}
-              placeholder="Status message"
-              placeholderTextColor="#676c7a"
-              rejectResponderTermination={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#2c374e",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 15,
-                    "fontWeight": "500",
-                    "height": "100%",
-                    "paddingBottom": 15,
-                    "paddingTop": 15,
-                  },
-                  Object {
-                    "paddingVertical": 16,
-                  },
-                ]
-              }
-              testID="input-status"
-              underlineColorAndroid="transparent"
-              value=""
-            />
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "flexBasis": 0,
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "flexShrink": 1,
-              "height": 60,
-              "justifyContent": "space-between",
-              "marginBottom": 48,
-              "marginTop": 28,
-            },
-          ]
-        }
-      >
-        <TouchableOpacity
-          activeOpacity={0.2}
-          onPress={[Function]}
-          style={
-            Object {
-              "flex": 0.5,
-            }
-          }
-          testID="button-logout"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "alignSelf": "center",
-                  "borderColor": "blue",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "justifyContent": "center",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderColor": "#1E6EFA",
-                  "borderWidth": 1,
-                  "width": "100%",
+                  "marginTop": 32,
                 },
               ]
             }
@@ -301,54 +119,86 @@ exports[`rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#069ccd",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#1E6EFA",
+                    "color": "#b9b9c4",
                     "fontSize": 14,
-                    "fontWeight": "bold",
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  null,
+                ]
+              }
+            >
+              Nickname
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
                   },
                 ]
               }
             >
-              Logout
-            </Text>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    },
+                    Object {
+                      "borderBottomWidth": 0.6,
+                      "borderColor": "#2E2E2E",
+                    },
+                    undefined,
+                    null,
+                  ]
+                }
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  placeholder="Nickname can help others to find you"
+                  placeholderTextColor="#676c7a"
+                  rejectResponderTermination={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2c374e",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontSize": 15,
+                        "fontWeight": "500",
+                        "height": "100%",
+                        "paddingBottom": 15,
+                        "paddingTop": 15,
+                      },
+                      Object {
+                        "paddingVertical": 16,
+                      },
+                    ]
+                  }
+                  testID="input-nickname"
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
           </View>
-        </TouchableOpacity>
-        <View
-          style={
-            Object {
-              "width": 8,
-            }
-          }
-        />
-        <TouchableOpacity
-          activeOpacity={0.2}
-          onPress={[Function]}
-          style={
-            Object {
-              "flex": 0.5,
-            }
-          }
-          testID="button-update"
-        >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "alignSelf": "center",
-                  "borderColor": "blue",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "justifyContent": "center",
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
                 },
                 Object {
-                  "backgroundColor": "#1E6EFA",
-                  "borderColor": "#1E6EFA",
-                  "borderWidth": 1,
-                  "width": "100%",
+                  "marginTop": 32,
                 },
               ]
             }
@@ -357,23 +207,235 @@ exports[`rendering test renders as expected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#069ccd",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#ffffff",
+                    "color": "#b9b9c4",
                     "fontSize": 14,
-                    "fontWeight": "bold",
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  null,
+                ]
+              }
+            >
+              Name
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
                   },
                 ]
               }
             >
-              Update
-            </Text>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    },
+                    Object {
+                      "borderBottomWidth": 0.6,
+                      "borderColor": "#2E2E2E",
+                    },
+                    undefined,
+                    null,
+                  ]
+                }
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  placeholder="Please write your name"
+                  placeholderTextColor="#676c7a"
+                  rejectResponderTermination={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2c374e",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontSize": 15,
+                        "fontWeight": "500",
+                        "height": "100%",
+                        "paddingBottom": 15,
+                        "paddingTop": 15,
+                      },
+                      Object {
+                        "paddingVertical": 16,
+                      },
+                    ]
+                  }
+                  testID="input-name"
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
           </View>
-        </TouchableOpacity>
-      </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 24,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  null,
+                ]
+              }
+            >
+              Status message
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    },
+                    Object {
+                      "borderBottomWidth": 0.6,
+                      "borderColor": "#2E2E2E",
+                    },
+                    undefined,
+                    null,
+                  ]
+                }
+              >
+                <TextInput
+                  allowFontScaling={true}
+                  autoCapitalize="none"
+                  placeholder="Please write your status message"
+                  placeholderTextColor="#676c7a"
+                  rejectResponderTermination={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2c374e",
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "fontSize": 15,
+                        "fontWeight": "500",
+                        "height": "100%",
+                        "paddingBottom": 15,
+                        "paddingTop": 15,
+                      },
+                      Object {
+                        "paddingVertical": 16,
+                      },
+                    ]
+                  }
+                  testID="input-status"
+                  underlineColorAndroid="transparent"
+                  value=""
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "height": 60,
+                  "justifyContent": "space-between",
+                  "marginBottom": 48,
+                  "marginTop": 36,
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.2}
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+              testID="button-update"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "center",
+                      "borderColor": "blue",
+                      "flexDirection": "row",
+                      "height": 52,
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "backgroundColor": "#1E6EFA",
+                      "borderColor": "#1E6EFA",
+                      "borderWidth": 1,
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#069ccd",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#ffffff",
+                        "fontSize": 14,
+                        "fontWeight": "bold",
+                      },
+                    ]
+                  }
+                >
+                  Update
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     </View>
-  </ScrollView>
+  </View>
 </View>
 `;

@@ -11,6 +11,8 @@
   "FIND_PW": "Find Password",
   "NAME": "Name",
   "NAME_HINT": "Please write your name",
+  "NICKNAME": "Nickname",
+  "NICKNAME_HINT": "Nickname can help others to find you",
   "STATUS_MSG": "Status message",
   "STATUS_MSG_HINT": "Please write your status message",
   "REGISTER": "Register",
@@ -30,7 +32,7 @@
   "ERROR": "Error",
   "FRIEND_ADDED": "Added to your friend.",
   "FRIEND_ALREADY_ADDED": "Already your friend.",
-  "SETTING": "Setting",
+  "SETTINGS": "Settings",
   "SIGN_IN_WITH_APPLE": "Sign in with Apple",
   "SIGN_IN_WITH_GOOGLE": "Sign in with Google",
   "SIGN_IN_WITH_FACEBOOK": "Sign in with Facebook",
@@ -62,5 +64,10 @@
   "AGREEMENT2": "Terms for Agreement",
   "AGREEMENT3": " and ",
   "AGREEMENT4": "Privacy Policy",
-  "AGREEMENT5": " by going onto next step."
+  "AGREEMENT5": " by going onto next step.",
+  "VERIFY_EMAIL": "Verify Email",
+  "VERIFY": "Verify",
+  "RESEND_EMAIL": "Resend email",
+  "VERIFICATION_EMAIL_SENT": "Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.",
+  "RESENT_VERIFICATION_EMAIL": "Email verification link has resent"
 }

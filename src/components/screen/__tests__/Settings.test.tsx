@@ -5,13 +5,15 @@ import * as React from 'react';
 import { AuthType, User } from '../../../types';
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import Setting from '../Setting';
+import AuthContext from '../../../providers/AuthProvider';
+import Settings from '../Settings';
 import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
@@ -29,7 +31,7 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
 
 function SettingTest(): React.ReactElement {
   const settingProps = createTestProps();
-  return <Setting {...settingProps} />;
+  return <Settings {...settingProps} />;
 }
 
 describe('[Setting] screen', () => {
@@ -87,6 +89,25 @@ describe('[Setting] screen', () => {
     it('should simulate onPress login state item', async () => {
       const btn = testingLib.getByTestId('change-pw-item');
       fireEvent.press(btn);
+    });
+
+    it('should fireEvent when logout button pressed', () => {
+      jest
+        .spyOn(AuthContext, 'useAuthContext')
+        .mockImplementation(() => ({
+          state: {
+            user: undefined,
+          },
+          setUser: jest.fn().mockReturnValue({
+            id: 'userId',
+            email: 'email@email.com',
+            nickname: 'nickname',
+            statusMessage: 'status',
+          }),
+        }));
+      act(() => {
+        fireEvent.press(testingLib.getByTestId('button-logout'));
+      });
     });
   });
 

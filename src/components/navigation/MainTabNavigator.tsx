@@ -1,12 +1,12 @@
+import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
 
 import Channel from '../screen/Channel';
 import { CompositeNavigationProp } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
-import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -58,7 +58,8 @@ const CustomHeader = (props: Props): ReactElement => {
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('ProfileUpdate')}
         >
-          <Ionicons name="ios-person" size={24} color="white" />
+          {/* <Ionicons name="ios-person" size={24} color="white" /> */}
+          <Image width={24} height={24} source={IC_PROFILE_W}/>
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={(): void => changeThemeType()}>
@@ -78,7 +79,8 @@ const CustomHeader = (props: Props): ReactElement => {
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('SearchUser')}
         >
-          <Ionicons name="ios-search" size={24} color="white" />
+          {/* <Ionicons name="ios-search" size={24} color="white" /> */}
+          <Image width={24} height={24} source={IC_SEARCH_W}/>
         </TouchableOpacity>
       </View>
     </LinearGradient>

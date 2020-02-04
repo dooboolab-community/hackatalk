@@ -3,7 +3,6 @@ import * as Device from 'expo-device';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from '../theme';
 
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { AuthProvider } from './AuthProvider';
 import { DeviceProvider } from './DeviceProvider';
@@ -43,17 +42,5 @@ export const AllProviders = ({
         </ApolloProvider>
       </ThemeProvider>
     </DeviceProvider>
-  );
-};
-
-export default ({ initialThemeType, children }: Props): React.ReactElement => {
-  return (
-    <ThemeProvider
-      initialThemeType={initialThemeType}
-    >
-      <AuthProvider>
-        <ActionSheetProvider>{children}</ActionSheetProvider>
-      </AuthProvider>
-    </ThemeProvider>
   );
 };

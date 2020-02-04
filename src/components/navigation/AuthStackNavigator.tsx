@@ -6,6 +6,7 @@ import React from 'react';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
+import VerifyEmail from '../screen/VerifyEmail';
 import { getString } from '../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -14,6 +15,7 @@ export type AuthStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   FindPw: undefined;
+  VerifyEmail: undefined;
 };
 
 type NavigationProps<
@@ -49,9 +51,20 @@ function AuthNavigator(): React.ReactElement {
       <Stack.Screen name="SignUp" component={SignUp} options={{
         title: getString('SIGN_UP'),
       }} />
-      <Stack.Screen name="FindPw" component={FindPw} options={{
-        title: getString('FIND_PW'),
-      }} />
+      <Stack.Screen
+        name="FindPw"
+        component={FindPw}
+        options={{
+          title: getString('FIND_PW'),
+        }}
+      />
+      <Stack.Screen
+        name="VerifyEmail"
+        component={VerifyEmail}
+        options={{
+          title: getString('VERIFY_EMAIL'),
+        }}
+      />
     </Stack.Navigator>
   );
 }

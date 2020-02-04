@@ -1,21 +1,50 @@
-import {
-  Container,
-  HeaderContainer,
-  ItemContainer,
-  ItemLabel,
-  SectionHeader,
-} from './styles';
+import { AsyncStorage, SectionList, SectionListData } from 'react-native';
 import React, { ReactElement } from 'react';
-import { SectionList, SectionListData } from 'react-native';
-import { SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
+import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import styled, { DefaultTheme } from 'styled-components/native';
 
-import { AuthType } from '../../../types';
-import { DefaultTheme } from 'styled-components/native';
+import { AuthType } from '../../types';
+import { Button } from '@dooboo-ui/native';
 import { FontAwesome } from '@expo/vector-icons';
-import { MainStackNavigationProps } from '../../navigation/MainStackNavigator';
-import { getString } from '../../../../STRINGS';
-import { useAuthContext } from '../../../providers/AuthProvider';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import { getString } from '../../../STRINGS';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  padding-top: 10px;
+  background-color: ${({ theme }): string => theme.background};
+`;
+
+const HeaderContainer = styled.View`
+  background-color: ${({ theme }): string => theme.background};
+  border-bottom-color: ${({ theme }): string => theme.lineColor};
+  height: 40px;
+  justify-content: center;
+  margin-left: 12px;
+  border-bottom-width: 1px;
+`;
+
+const SectionHeader = styled.Text`
+  color: ${({ theme }): string => theme.fontSubColor};
+  margin-left: 2px;
+`;
+
+const ItemContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  height: 52px;
+  align-items: center;
+`;
+
+const ItemLabel = styled.Text`
+  color: ${({ theme }): string => theme.fontColor};
+  font-size: 16px;
+  flex: 1;
+`;
 
 interface SettingsOption {
   label: string;
@@ -41,12 +70,20 @@ export interface Props {
   navigation: MainStackNavigationProps;
 }
 
-function SettingScreen(props: Props): React.ReactElement {
+function Settings(props: Props): React.ReactElement {
+  const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const { navigation } = props;
   const { state: { user } } = useAuthContext();
 
   let signInInfoOption: SettingsOption;
+
+  const logout = (): void => {
+    if (navigation) {
+      AsyncStorage.removeItem('token');
+      setUser(undefined);
+    }
+  };
 
   switch (user && user.authType) {
     case AuthType.GOOGLE:
@@ -111,8 +148,29 @@ function SettingScreen(props: Props): React.ReactElement {
           </HeaderContainer>
         )}
       />
+      <Button
+        testID="button-logout"
+        containerStyle={{
+          paddingHorizontal: 20,
+          paddingVertical: 20,
+        }}
+        style={{
+          width: '100%',
+          height: 48,
+          backgroundColor: theme.btnPrimaryLight,
+          borderColor: theme.btnPrimary,
+          borderWidth: 0.3,
+        }}
+        textStyle={{
+          color: theme.btnPrimary,
+          fontSize: 14,
+          fontWeight: 'bold',
+        }}
+        onPress={logout}
+        text={getString('LOGOUT')}
+      />
     </Container>
   );
 }
 
-export default SettingScreen;
+export default Settings;

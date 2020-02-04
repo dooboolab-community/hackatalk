@@ -11,7 +11,8 @@
     "splash": {
       "resizeMode": "cover",
       "backgroundColor": "#ffffff",
-      "image": "./assets/splash.png"
+      "image": "./assets/splash.png",
+      "tabletImage": "./assets/splashTablet.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -25,6 +26,7 @@
       "userInterfaceStyle": "automatic",
       "splash": {
         "resizeMode": "cover",
+        "image": "./assets/splash.png",
         "tabletImage": "./assets/splashTablet.png"
       },
       "config": {
