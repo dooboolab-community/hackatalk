@@ -2,168 +2,169 @@
 
 exports[`[GiftedChatInput] render renders without crashing 1`] = `
 <View
-  onLayout={[Function]}
+  pointerEvents="box-none"
   style={
-    Array [
-      Array [
-        Object {
-          "alignItems": "center",
-          "alignSelf": "stretch",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-        },
-      ],
-      Object {
-        "paddingBottom": 0,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    ListEmptyComponent={<View />}
-    ListFooterComponent={
-      <View
-        style={
-          Object {
-            "height": 60,
-          }
-        }
-      />
-    }
-    contentContainerStyle={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    removeClippedSubviews={false}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "alignSelf": "stretch",
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    viewabilityConfigCallbackPairs={Array []}
-    windowSize={21}
-  >
-    <View
-      onLayout={[Function]}
-    />
-    <View
-      onLayout={[Function]}
-    >
-      <View
-        style={
-          Object {
-            "height": 60,
-          }
-        }
-      />
-    </View>
-  </ScrollView>
   <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "borderColor": "#d3d8e8",
-          "borderTopWidth": 0.3,
-          "flexBasis": 0,
-          "flexDirection": "row",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "space-between",
-          "maxHeight": 56,
-          "minHeight": 56,
-          "paddingLeft": 8,
-          "paddingRight": 8,
-          "width": "100%",
-        },
-        Object {
-          "backgroundColor": undefined,
-          "borderColor": undefined,
-        },
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
-    <TextInput
-      allowFontScaling={true}
-      defaultValue=""
-      multiline={true}
-      onChangeText={[Function]}
-      onFocus={[Function]}
-      placeholder=""
-      rejectResponderTermination={true}
-      style={
-        Array [
-          Object {
-            "color": "black",
-            "fontSize": 14,
-            "marginRight": 20,
-            "paddingBottom": 4,
-            "paddingLeft": 48,
-            "width": "80%",
-          },
-          Object {
-            "backgroundColor": undefined,
-            "color": undefined,
-          },
-        ]
-      }
-      testID="input-chat"
-      underlineColorAndroid="transparent"
-      value=""
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      onPress={[Function]}
-      style={
-        Array [
-          Object {
-            "height": "100%",
-            "justifyContent": "center",
-            "left": 10,
-            "minWidth": 20,
-            "position": "absolute",
-          },
-        ]
-      }
-      testID="touch-menu"
-    >
-      <View />
-    </TouchableOpacity>
     <View
       style={
-        Object {
-          "flex": 1,
-          "marginVertical": 8,
-        }
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flexBasis": 0,
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "center",
+            },
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
       }
     >
-      <View />
+      <ScrollView
+        ListEmptyComponent={<View />}
+        ListFooterComponent={
+          <View
+            style={
+              Object {
+                "height": 60,
+              }
+            }
+          />
+        }
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+        data={Array []}
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        numColumns={1}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "alignSelf": "stretch",
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View />
+        <View>
+          <View
+            style={
+              Object {
+                "height": 60,
+              }
+            }
+          />
+        </View>
+      </ScrollView>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "#d3d8e8",
+              "borderTopWidth": 0.3,
+              "flexBasis": 0,
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "flexShrink": 1,
+              "justifyContent": "space-between",
+              "maxHeight": 56,
+              "minHeight": 56,
+              "paddingLeft": 8,
+              "paddingRight": 8,
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": undefined,
+              "borderColor": undefined,
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          defaultValue=""
+          multiline={true}
+          placeholder=""
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "color": "black",
+                "fontSize": 14,
+                "marginRight": 20,
+                "paddingBottom": 4,
+                "paddingLeft": 48,
+                "width": "80%",
+              },
+              Object {
+                "backgroundColor": undefined,
+                "color": undefined,
+              },
+            ]
+          }
+          testID="input-chat"
+          underlineColorAndroid="transparent"
+          value=""
+        />
+        <TouchableOpacity
+          activeOpacity={0.2}
+          style={
+            Array [
+              Object {
+                "height": "100%",
+                "justifyContent": "center",
+                "left": 10,
+                "minWidth": 20,
+                "position": "absolute",
+              },
+            ]
+          }
+          testID="touch-menu"
+        >
+          <View />
+        </TouchableOpacity>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "marginVertical": 8,
+            }
+          }
+        >
+          <View />
+        </View>
+      </View>
     </View>
   </View>
 </View>

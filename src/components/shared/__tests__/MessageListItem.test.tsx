@@ -11,8 +11,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import MessageListItem from '../MessageListItem';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 let props = {
   item: {
@@ -51,15 +49,17 @@ describe('[MessageListItem] rendering test', () => {
   afterAll(() => cleanup());
 
   it('renders [peerMessage] as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 
   it('renders [peerMessage] with URL as expected', () => {
     props.item.sender.photoURL = 'https://';
     component = createTestElement(<MessageListItem {...props} />);
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 });
 

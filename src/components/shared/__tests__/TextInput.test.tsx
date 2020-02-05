@@ -6,12 +6,11 @@ import * as React from 'react';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import TextInput from '../TextInput';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
-// let testingLib: RenderResult;
 
 describe('[TextInput] render', () => {
   beforeEach(() => {
@@ -19,12 +18,10 @@ describe('[TextInput] render', () => {
     component = createTestElement(<TextInput {...props} />);
   });
 
-  it('renders without crashing', () => {
-    const rendered: renderer.ReactTestRendererJSON | null = renderer
-      .create(component)
-      .toJSON();
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+  it('should renders without crashing', () => {
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 
   // describe('interactions', () => {

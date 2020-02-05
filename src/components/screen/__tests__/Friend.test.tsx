@@ -6,12 +6,12 @@ import ProfileContext, {
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import renderer, { act } from 'react-test-renderer';
 
 import { Button } from 'react-native';
 import Friend from '../Friend';
@@ -51,8 +51,9 @@ describe('[Friend] rendering test', () => {
   });
 
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 });
 

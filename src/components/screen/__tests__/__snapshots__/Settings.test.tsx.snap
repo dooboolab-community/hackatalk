@@ -1,837 +1,849 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[Setting] screen renders without crashing 1`] = `
-<SafeAreaView
+<View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "paddingTop": 10,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "label": "Signed in with Email",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "label": "Signed in with Email",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="test-section-list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomColor": "#d3d8e8",
-              "borderBottomWidth": 1,
-              "height": 40,
-              "justifyContent": "center",
-              "marginLeft": 12,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#1E6EFA",
-                "marginLeft": 2,
-              },
-            ]
-          }
-        >
-          Login information
-        </Text>
-      </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "height": 52,
-              "paddingLeft": 15,
-              "paddingRight": 15,
-              "width": "100%",
-            },
-          ]
-        }
-        testID="change-pw-item"
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "fontSize": 16,
-              },
-            ]
-          }
-        >
-          Signed in with Email
-        </Text>
-        <Text />
-      </TouchableOpacity>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-  </ScrollView>
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
       Object {
-        "paddingHorizontal": 20,
-        "paddingVertical": 20,
+        "flex": 1,
       }
     }
-    testID="button-logout"
   >
-    <View
+    <SafeAreaView
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "borderColor": "blue",
-            "flexDirection": "row",
-            "height": 52,
-            "justifyContent": "center",
-          },
-          Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#1E6EFA",
-            "borderWidth": 0.3,
-            "height": 48,
-            "width": "100%",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "paddingTop": 10,
           },
         ]
       }
     >
-      <Text
-        style={
+      <ScrollView
+        data={
           Array [
             Object {
-              "color": "#069ccd",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#1E6EFA",
-              "fontSize": 14,
-              "fontWeight": "bold",
+              "data": Array [
+                Object {
+                  "label": "Signed in with Email",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
             },
           ]
         }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        scrollEventThrottle={50}
+        sections={
+          Array [
+            Object {
+              "data": Array [
+                Object {
+                  "label": "Signed in with Email",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
+            },
+          ]
+        }
+        stickyHeaderIndices={
+          Array [
+            0,
+          ]
+        }
+        stickySectionHeadersEnabled={true}
+        testID="test-section-list"
+        updateCellsBatchingPeriod={50}
+        windowSize={21}
       >
-        Logout
-      </Text>
-    </View>
-  </TouchableOpacity>
-</SafeAreaView>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderBottomColor": "#d3d8e8",
+                  "borderBottomWidth": 1,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 12,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#1E6EFA",
+                    "marginLeft": 2,
+                  },
+                ]
+              }
+            >
+              Login information
+            </Text>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="change-pw-item"
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 16,
+                  },
+                ]
+              }
+            >
+              Signed in with Email
+            </Text>
+            <Text />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={null}
+        />
+      </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "paddingHorizontal": 20,
+            "paddingVertical": 20,
+          }
+        }
+        testID="button-logout"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
+                "borderWidth": 0.3,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#1E6EFA",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Logout
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  </View>
+</View>
 `;
 
 exports[`[Setting] screen renders without crashing 2`] = `
-<SafeAreaView
+<View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "paddingTop": 10,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#ffffff"
-                width={24}
-              />,
-              "label": "Signed in with Facebook",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#ffffff"
-                width={24}
-              />,
-              "label": "Signed in with Facebook",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="test-section-list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomColor": "#d3d8e8",
-              "borderBottomWidth": 1,
-              "height": 40,
-              "justifyContent": "center",
-              "marginLeft": 12,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#1E6EFA",
-                "marginLeft": 2,
-              },
-            ]
-          }
-        >
-          Login information
-        </Text>
-      </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "height": 52,
-              "paddingLeft": 15,
-              "paddingRight": 15,
-              "width": "100%",
-            },
-          ]
-        }
-        testID="change-pw-item"
-      >
-        <SvgMock
-          fill="#ffffff"
-          width={24}
-        />
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "fontSize": 16,
-              },
-            ]
-          }
-        >
-          Signed in with Facebook
-        </Text>
-        <Text />
-      </TouchableOpacity>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-  </ScrollView>
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
       Object {
-        "paddingHorizontal": 20,
-        "paddingVertical": 20,
+        "flex": 1,
       }
     }
-    testID="button-logout"
   >
-    <View
+    <SafeAreaView
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "borderColor": "blue",
-            "flexDirection": "row",
-            "height": 52,
-            "justifyContent": "center",
-          },
-          Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#1E6EFA",
-            "borderWidth": 0.3,
-            "height": 48,
-            "width": "100%",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "paddingTop": 10,
           },
         ]
       }
     >
-      <Text
-        style={
+      <ScrollView
+        data={
           Array [
             Object {
-              "color": "#069ccd",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#1E6EFA",
-              "fontSize": 14,
-              "fontWeight": "bold",
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Facebook",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
             },
           ]
         }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        scrollEventThrottle={50}
+        sections={
+          Array [
+            Object {
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Facebook",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
+            },
+          ]
+        }
+        stickyHeaderIndices={
+          Array [
+            0,
+          ]
+        }
+        stickySectionHeadersEnabled={true}
+        testID="test-section-list"
+        updateCellsBatchingPeriod={50}
+        windowSize={21}
       >
-        Logout
-      </Text>
-    </View>
-  </TouchableOpacity>
-</SafeAreaView>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderBottomColor": "#d3d8e8",
+                  "borderBottomWidth": 1,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 12,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#1E6EFA",
+                    "marginLeft": 2,
+                  },
+                ]
+              }
+            >
+              Login information
+            </Text>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="change-pw-item"
+          >
+            <SvgMock
+              fill="#ffffff"
+              width={24}
+            />
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 16,
+                  },
+                ]
+              }
+            >
+              Signed in with Facebook
+            </Text>
+            <Text />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={null}
+        />
+      </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "paddingHorizontal": 20,
+            "paddingVertical": 20,
+          }
+        }
+        testID="button-logout"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
+                "borderWidth": 0.3,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#1E6EFA",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Logout
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  </View>
+</View>
 `;
 
 exports[`[Setting] screen renders without crashing 3`] = `
-<SafeAreaView
+<View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "paddingTop": 10,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#ffffff"
-                width={24}
-              />,
-              "label": "Signed in with Google",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#ffffff"
-                width={24}
-              />,
-              "label": "Signed in with Google",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="test-section-list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomColor": "#d3d8e8",
-              "borderBottomWidth": 1,
-              "height": 40,
-              "justifyContent": "center",
-              "marginLeft": 12,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#1E6EFA",
-                "marginLeft": 2,
-              },
-            ]
-          }
-        >
-          Login information
-        </Text>
-      </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "height": 52,
-              "paddingLeft": 15,
-              "paddingRight": 15,
-              "width": "100%",
-            },
-          ]
-        }
-        testID="change-pw-item"
-      >
-        <SvgMock
-          fill="#ffffff"
-          width={24}
-        />
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "fontSize": 16,
-              },
-            ]
-          }
-        >
-          Signed in with Google
-        </Text>
-        <Text />
-      </TouchableOpacity>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-  </ScrollView>
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
       Object {
-        "paddingHorizontal": 20,
-        "paddingVertical": 20,
+        "flex": 1,
       }
     }
-    testID="button-logout"
   >
-    <View
+    <SafeAreaView
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "borderColor": "blue",
-            "flexDirection": "row",
-            "height": 52,
-            "justifyContent": "center",
-          },
-          Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#1E6EFA",
-            "borderWidth": 0.3,
-            "height": 48,
-            "width": "100%",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "paddingTop": 10,
           },
         ]
       }
     >
-      <Text
-        style={
+      <ScrollView
+        data={
           Array [
             Object {
-              "color": "#069ccd",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#1E6EFA",
-              "fontSize": 14,
-              "fontWeight": "bold",
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Google",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
             },
           ]
         }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        scrollEventThrottle={50}
+        sections={
+          Array [
+            Object {
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Google",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
+            },
+          ]
+        }
+        stickyHeaderIndices={
+          Array [
+            0,
+          ]
+        }
+        stickySectionHeadersEnabled={true}
+        testID="test-section-list"
+        updateCellsBatchingPeriod={50}
+        windowSize={21}
       >
-        Logout
-      </Text>
-    </View>
-  </TouchableOpacity>
-</SafeAreaView>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderBottomColor": "#d3d8e8",
+                  "borderBottomWidth": 1,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 12,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#1E6EFA",
+                    "marginLeft": 2,
+                  },
+                ]
+              }
+            >
+              Login information
+            </Text>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="change-pw-item"
+          >
+            <SvgMock
+              fill="#ffffff"
+              width={24}
+            />
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 16,
+                  },
+                ]
+              }
+            >
+              Signed in with Google
+            </Text>
+            <Text />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={null}
+        />
+      </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "paddingHorizontal": 20,
+            "paddingVertical": 20,
+          }
+        }
+        testID="button-logout"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
+                "borderWidth": 0.3,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#1E6EFA",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Logout
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  </View>
+</View>
 `;
 
 exports[`[Setting] screen renders without crashing 4`] = `
-<SafeAreaView
+<View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-        "paddingTop": 10,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <ScrollView
-    data={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#151E22"
-                width={24}
-              />,
-              "label": "Signed in with Apple",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    renderItem={[Function]}
-    renderSectionHeader={[Function]}
-    scrollEventThrottle={50}
-    sections={
-      Array [
-        Object {
-          "data": Array [
-            Object {
-              "icon": <SvgMock
-                fill="#151E22"
-                width={24}
-              />,
-              "label": "Signed in with Apple",
-              "onPress": [Function],
-              "testID": "change-pw-item",
-            },
-          ],
-          "title": "Login information",
-        },
-      ]
-    }
-    stickyHeaderIndices={
-      Array [
-        0,
-      ]
-    }
-    stickySectionHeadersEnabled={true}
-    testID="test-section-list"
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#ffffff",
-              "borderBottomColor": "#d3d8e8",
-              "borderBottomWidth": 1,
-              "height": 40,
-              "justifyContent": "center",
-              "marginLeft": 12,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#1E6EFA",
-                "marginLeft": 2,
-              },
-            ]
-          }
-        >
-          Login information
-        </Text>
-      </View>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    >
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "height": 52,
-              "paddingLeft": 15,
-              "paddingRight": 15,
-              "width": "100%",
-            },
-          ]
-        }
-        testID="change-pw-item"
-      >
-        <SvgMock
-          fill="#151E22"
-          width={24}
-        />
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "fontSize": 16,
-              },
-            ]
-          }
-        >
-          Signed in with Apple
-        </Text>
-        <Text />
-      </TouchableOpacity>
-    </View>
-    <View
-      onLayout={[Function]}
-      style={null}
-    />
-  </ScrollView>
-  <TouchableOpacity
-    activeOpacity={0.2}
-    onPress={[Function]}
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
       Object {
-        "paddingHorizontal": 20,
-        "paddingVertical": 20,
+        "flex": 1,
       }
     }
-    testID="button-logout"
   >
-    <View
+    <SafeAreaView
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "alignSelf": "center",
-            "borderColor": "blue",
-            "flexDirection": "row",
-            "height": 52,
-            "justifyContent": "center",
-          },
-          Object {
             "backgroundColor": "#ffffff",
-            "borderColor": "#1E6EFA",
-            "borderWidth": 0.3,
-            "height": 48,
-            "width": "100%",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "paddingTop": 10,
           },
         ]
       }
     >
-      <Text
-        style={
+      <ScrollView
+        data={
           Array [
             Object {
-              "color": "#069ccd",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#1E6EFA",
-              "fontSize": 14,
-              "fontWeight": "bold",
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#151E22"
+                    width={24}
+                  />,
+                  "label": "Signed in with Apple",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
             },
           ]
         }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        onEndReachedThreshold={2}
+        scrollEventThrottle={50}
+        sections={
+          Array [
+            Object {
+              "data": Array [
+                Object {
+                  "icon": <SvgMock
+                    fill="#151E22"
+                    width={24}
+                  />,
+                  "label": "Signed in with Apple",
+                  "onPress": [Function],
+                  "testID": "change-pw-item",
+                },
+              ],
+              "title": "Login information",
+            },
+          ]
+        }
+        stickyHeaderIndices={
+          Array [
+            0,
+          ]
+        }
+        stickySectionHeadersEnabled={true}
+        testID="test-section-list"
+        updateCellsBatchingPeriod={50}
+        windowSize={21}
       >
-        Logout
-      </Text>
-    </View>
-  </TouchableOpacity>
-</SafeAreaView>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "borderBottomColor": "#d3d8e8",
+                  "borderBottomWidth": 1,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginLeft": 12,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#1E6EFA",
+                    "marginLeft": 2,
+                  },
+                ]
+              }
+            >
+              Login information
+            </Text>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "height": 52,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="change-pw-item"
+          >
+            <SvgMock
+              fill="#151E22"
+              width={24}
+            />
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#151A25",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                    "fontSize": 16,
+                  },
+                ]
+              }
+            >
+              Signed in with Apple
+            </Text>
+            <Text />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={null}
+        />
+      </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "paddingHorizontal": 20,
+            "paddingVertical": 20,
+          }
+        }
+        testID="button-logout"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderColor": "#1E6EFA",
+                "borderWidth": 0.3,
+                "height": 48,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#1E6EFA",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Logout
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </SafeAreaView>
+  </View>
+</View>
 `;

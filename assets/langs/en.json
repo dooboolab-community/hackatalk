@@ -69,5 +69,7 @@
   "VERIFY": "Verify",
   "RESEND_EMAIL": "Resend email",
   "VERIFICATION_EMAIL_SENT": "Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.",
-  "RESENT_VERIFICATION_EMAIL": "Email verification link has resent"
+  "RESENT_VERIFICATION_EMAIL": "Email verification link has resent",
+  "RESENT_VERIFICATION_EMAIL_FAILED": "Email has not sent. Please check the email address once more.",
+  "RETURN_TO_SIGNIN": "Return to sign in"
 }

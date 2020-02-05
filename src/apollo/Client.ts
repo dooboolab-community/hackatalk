@@ -36,7 +36,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.map(({ message, locations, path }) =>
       // eslint-disable-next-line no-console
       console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+        `Message: ${message}, Location: ${locations}, Path: ${path}`,
       ),
     );
   }

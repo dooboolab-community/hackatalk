@@ -5,8 +5,7 @@ import * as React from 'react';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import StatusBar from '../StatusBar';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react-native';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -20,10 +19,9 @@ describe('[StatusBar] render', () => {
   });
 
   it('renders without crashing', () => {
-    const rendered: renderer.ReactTestRendererJSON | null = renderer
-      .create(component)
-      .toJSON();
-    expect(rendered).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 
   // describe('interactions', () => {

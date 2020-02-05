@@ -12,8 +12,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import UserListItem from '../UserListItem';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 let cnt = 0;
 const onPress = (): void => {
@@ -45,8 +43,9 @@ describe('[UserListItem] rendering test', () => {
   });
 
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 });
 

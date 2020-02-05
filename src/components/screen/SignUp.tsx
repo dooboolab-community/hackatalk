@@ -1,15 +1,14 @@
-import { Alert, AsyncStorage } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_SEND_VERIFICATION, MUTATION_SIGN_UP } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
-import { validateEmail, validatePassword } from '../../utils/common';
+import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthPayload } from '../../types';
-import { MUTATION_SIGN_UP } from '../../graphql/mutations';
+import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useAuthContext } from '../../providers/AuthProvider';
 import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -37,7 +36,16 @@ interface MutationSignUpInput {
   };
 }
 
-function Page(): ReactElement {
+interface MutationSendVerificationInput {
+  email: string;
+}
+
+interface Props {
+  navigation: AuthStackNavigationProps<'SignUp'>;
+}
+
+function Page(props: Props): ReactElement {
+  const { navigation } = props;
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -50,9 +58,10 @@ function Page(): ReactElement {
   const [errorName, setErrorName] = useState<string>('');
   const [signingUp, setSigningUp] = useState<boolean>(false);
 
-  const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
+  const [sendVerification] =
+    useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
 
   const requestSignUp = async (): Promise<void> => {
     if (!validateEmail(email) || !validatePassword(password) || name.length < 2 || password !== confirmPassword) {
@@ -68,6 +77,7 @@ function Page(): ReactElement {
       if (password !== confirmPassword) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
       }
+
       return;
     }
 
@@ -83,10 +93,23 @@ function Page(): ReactElement {
 
     try {
       const { data } = await signUp({ variables });
-      AsyncStorage.setItem('token', data?.signUp.token || '');
-      setUser(data?.signUp.user);
-    } catch (err) {
-      Alert.alert(getString('ERROR'), err.message);
+      const { data: emailVerificationData } = await sendVerification({
+        variables: {
+          email,
+        },
+      });
+      if (emailVerificationData?.sendVerification) {
+        // email sent
+      }
+      const user = data?.signUp.user;
+
+      if (user) {
+        navigation.replace('VerifyEmail', {
+          email,
+        });
+      }
+    } catch ({ graphQLErrors }) {
+      showAlertForGrpahqlError(graphQLErrors);
     } finally {
       setSigningUp(false);
     }

@@ -14,7 +14,6 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import AuthContext from '../../../providers/AuthProvider';
 import Settings from '../Settings';
-import renderer from 'react-test-renderer';
 
 let component: React.ReactElement;
 function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
@@ -47,38 +46,36 @@ describe('[Setting] screen', () => {
   });
 
   it('renders without crashing', () => {
-    let rendered = renderer.create(component);
-    expect(rendered.toJSON()).toMatchSnapshot();
-    expect(rendered.toJSON()).toBeTruthy();
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
 
-    rendered = renderer.create(
-      createTestElement(
-        <SettingTest />,
-        undefined,
-        getEmptyAuthUserWithSignInType(AuthType.FACEBOOK),
-      ),
+    component = createTestElement(
+      <SettingTest />,
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.FACEBOOK),
     );
-    expect(rendered.toJSON()).toMatchSnapshot();
-    expect(rendered.toJSON()).toBeTruthy();
+    const { baseElement: baseElement2 } = render(component);
+    expect(baseElement2).toBeTruthy();
+    expect(baseElement2).toMatchSnapshot();
 
-    rendered = renderer.create(
-      createTestElement(
-        <SettingTest />,
-        undefined,
-        getEmptyAuthUserWithSignInType(AuthType.GOOGLE),
-      ),
+    component = createTestElement(
+      <SettingTest />,
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.GOOGLE),
     );
-    expect(rendered.toJSON()).toMatchSnapshot();
+    const { baseElement: baseElement3 } = render(component);
+    expect(baseElement3).toBeTruthy();
+    expect(baseElement3).toMatchSnapshot();
 
-    rendered = renderer.create(
-      createTestElement(
-        <SettingTest />,
-        undefined,
-        getEmptyAuthUserWithSignInType(AuthType.APPLE),
-      ),
+    component = createTestElement(
+      <SettingTest />,
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.APPLE),
     );
-    expect(rendered.toJSON()).toMatchSnapshot();
-    expect(rendered.toJSON()).toBeTruthy();
+    const { baseElement: baseElement4 } = render(component);
+    expect(baseElement4).toBeTruthy();
+    expect(baseElement4).toMatchSnapshot();
   });
 
   describe('interactions', () => {

@@ -14,7 +14,6 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import { MUTATION_SIGN_UP } from '../../../graphql/mutations';
 import { MockedProvider } from '@apollo/react-testing';
 import SignUp from '../SignUp';
-import renderer from 'react-test-renderer';
 
 // eslint-disable-next-line
 let props: any;
@@ -60,8 +59,9 @@ describe('[SignUp] rendering test', () => {
   });
 
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 });
 

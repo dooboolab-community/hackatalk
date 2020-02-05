@@ -43,7 +43,7 @@ function RootNavigator(): React.ReactElement {
         }}
       >
         {
-          !user
+          !user || !user.verified
             ? <Stack.Screen
               name="AuthStack"
               component={AuthStack}

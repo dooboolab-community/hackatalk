@@ -7,8 +7,15 @@ export const MUTATION_SIGN_UP = gql`
       user {
         id
         email
+        verified
       }
     }
+  }
+`;
+
+export const MUTATION_SEND_VERIFICATION = gql`
+  mutation sendVerification($email: String!) {
+    sendVerification(email: $email)
   }
 `;
 
@@ -20,6 +27,7 @@ export const MUTATION_SIGN_IN = gql`
         id
         email
         nickname
+        verified
         statusMessage
       }
     }

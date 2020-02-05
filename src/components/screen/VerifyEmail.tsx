@@ -1,9 +1,13 @@
 import { Alert, TouchableOpacity } from 'react-native';
-import React, { ReactElement } from 'react';
+import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
+import { Button, LoadingIndicator } from '@dooboo-ui/native';
+import React, { ReactElement, useState } from 'react';
 
-import { Button } from '@dooboo-ui/native';
+import { MUTATION_SEND_VERIFICATION } from '../../graphql/mutations';
+import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.View`
@@ -30,15 +34,44 @@ const StyledTextLine = styled(StyledText)`
   text-decoration-line: underline;
 `;
 
-function Page(): ReactElement {
-  const { theme } = useThemeContext();
+interface Props {
+  navigation: AuthStackNavigationProps<'VerifyEmail'>;
+  route: RouteProp<AuthStackParamList, 'VerifyEmail'>;
+}
 
-  const sendVerificationLink = (): void => {
-    Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+interface MutationSendVerificationInput {
+  email: string;
+}
+
+function Page(props: Props): ReactElement {
+  const { theme } = useThemeContext();
+  const { navigation, route: { params: { email } } } = props;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [sendVerification] =
+    useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
+
+  const sendVerificationLink = async (): Promise<void> => {
+    try {
+      setLoading(true);
+      const { data: emailVerificationData } = await sendVerification({
+        variables: {
+          email,
+        },
+      });
+
+      if (emailVerificationData?.sendVerification) {
+        return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+      }
+      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+    } catch (err) {
+      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+    } finally {
+      setLoading(false);
+    }
   };
 
   const pressNext = (): void => {
-    Alert.alert('next');
+    navigation.goBack();
   };
 
   return (
@@ -46,7 +79,7 @@ function Page(): ReactElement {
       <StyledText style={{
         marginBottom: 24,
       }}>{getString('VERIFICATION_EMAIL_SENT')}</StyledText>
-      <StyledHighlightText>dooboolab@gmail.com</StyledHighlightText>
+      <StyledHighlightText>{email}</StyledHighlightText>
       <TouchableOpacity
         testID="touch-email"
         onPress={sendVerificationLink}
@@ -74,8 +107,13 @@ function Page(): ReactElement {
           color: theme.btnPrimaryFont,
           fontSize: 16,
         }}
-        text={getString('NEXT')}
+        text={getString('RETURN_TO_SIGNIN')}
       />
+      {
+        loading
+          ? <LoadingIndicator/>
+          : null
+      }
     </Container>
   );
 }
