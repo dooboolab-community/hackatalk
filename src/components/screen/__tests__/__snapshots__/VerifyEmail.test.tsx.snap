@@ -63,7 +63,7 @@ exports[`Interaction should simulate next button press 1`] = `
           ]
         }
       >
-        dooboolab@gmail.com
+        test@email.com
       </Text>
       <TouchableOpacity
         activeOpacity={0.2}
@@ -134,7 +134,7 @@ exports[`Interaction should simulate next button press 1`] = `
               ]
             }
           >
-            Next
+            Return to sign in
           </Text>
         </View>
       </TouchableOpacity>
@@ -206,7 +206,7 @@ exports[`Rendering renders without crashing 1`] = `
           ]
         }
       >
-        dooboolab@gmail.com
+        test@email.com
       </Text>
       <TouchableOpacity
         activeOpacity={0.2}
@@ -277,7 +277,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            Next
+            Return to sign in
           </Text>
         </View>
       </TouchableOpacity>

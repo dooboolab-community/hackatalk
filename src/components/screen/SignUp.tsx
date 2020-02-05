@@ -1,9 +1,8 @@
 import { Button, EditText } from '@dooboo-ui/native';
 import { MUTATION_SEND_VERIFICATION, MUTATION_SIGN_UP } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
-import { validateEmail, validatePassword } from '../../utils/common';
+import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
 
-import { Alert } from 'react-native';
 import { AuthPayload } from '../../types';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -110,7 +109,7 @@ function Page(props: Props): ReactElement {
         });
       }
     } catch ({ graphQLErrors }) {
-      Alert.alert(getString('ERROR'), graphQLErrors[0]?.message || '');
+      showAlertForGrpahqlError(graphQLErrors);
     } finally {
       setSigningUp(false);
     }

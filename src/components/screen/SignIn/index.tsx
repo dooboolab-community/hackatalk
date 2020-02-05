@@ -12,6 +12,7 @@ import {
   iOSClientId,
   iOSExpoClientId,
 } from '../../../../config';
+import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 
 import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
 import Constants from 'expo-constants';
@@ -23,7 +24,6 @@ import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
 import { useMutation } from '@apollo/react-hooks';
-import { validateEmail } from '../../../utils/common';
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
@@ -121,7 +121,7 @@ function SignIn(props: Props): ReactElement {
         setUser(user);
       }
     } catch ({ graphQLErrors }) {
-      Alert.alert(getString('ERROR'), graphQLErrors[0]?.message || '');
+      showAlertForGrpahqlError(graphQLErrors);
     } finally {
       setIsLoggingIn(false);
     }
