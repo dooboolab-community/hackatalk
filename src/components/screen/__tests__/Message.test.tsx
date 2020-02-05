@@ -13,8 +13,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Message from '../Message';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -36,8 +34,9 @@ describe('[Message] rendering test', () => {
   });
 
   it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 });
 

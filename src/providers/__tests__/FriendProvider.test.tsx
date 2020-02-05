@@ -11,8 +11,6 @@ import {
 import { AllProviders } from '../../providers';
 import { User } from '../../types';
 import UserListItem from '../../components/shared/UserListItem';
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 import { useFriendContext } from '../FriendProvider';
 
 const fakeUsers: User[] = [
@@ -87,9 +85,9 @@ describe('[FriendProvider] rendering test', () => {
   let json;
 
   it('component and snapshot matches', () => {
-    json = renderer.create(<TestComponent />).toJSON();
-    expect(json).toMatchSnapshot();
-    expect(json).toBeTruthy();
+    const { baseElement } = render(<TestComponent/>);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 });
 

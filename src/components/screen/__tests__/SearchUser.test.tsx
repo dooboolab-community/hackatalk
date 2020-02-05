@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   ReactTestInstanceExtended,
   RenderResult,
+  act,
   fireEvent,
   render,
   toJSON,
@@ -13,7 +14,6 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import { Animated } from 'react-native';
 import ProfileModal from '../../shared/ProfileModal';
 import { User } from '../../../types';
-import { act } from 'react-test-renderer';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
 type TestingLibInput = Pick<
@@ -28,9 +28,10 @@ const component: React.ReactElement = createTestElement(
 );
 
 describe('[SearchUser] rendering test', () => {
-  it('renders as expected', () => {
-    const { container } = render(component);
-    expect(toJSON(container)).toMatchSnapshot();
+  it('should render as expected', () => {
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 });
 

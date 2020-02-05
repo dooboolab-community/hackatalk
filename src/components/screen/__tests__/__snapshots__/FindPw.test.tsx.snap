@@ -1,65 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[FindPw] rendering test renders as expected 1`] = `
+exports[`[FindPw] rendering test should renders as expected 1`] = `
 <View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "backgroundColor": "#ffffff",
-        "flexBasis": 0,
-        "flexGrow": 1,
-        "flexShrink": 1,
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
   <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
-      Array [
-        Object {
-          "marginBottom": 44,
-          "marginLeft": 44,
-          "marginRight": 44,
-          "marginTop": 44,
-        },
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
     <View
       style={
         Array [
           Object {
-            "alignSelf": "stretch",
-            "flexDirection": "column",
-          },
-          Object {
-            "marginTop": 20,
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
           },
         ]
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#b9b9c4",
-              "fontSize": 14,
-              "fontWeight": "500",
-              "marginBottom": 5,
-            },
-            undefined,
-            null,
-          ]
-        }
-      >
-        Email
-      </Text>
       <View
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "flexDirection": "row",
+              "marginBottom": 44,
+              "marginLeft": 44,
+              "marginRight": 44,
+              "marginTop": 44,
             },
           ]
         }
@@ -68,86 +46,11 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "width": "100%",
+                "alignSelf": "stretch",
+                "flexDirection": "column",
               },
               Object {
-                "borderBottomWidth": 0.6,
-                "borderColor": "#2E2E2E",
-              },
-              undefined,
-              null,
-            ]
-          }
-        >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            onBlur={[Function]}
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            onSubmitEditing={[Function]}
-            placeholder="hello@example.com"
-            placeholderTextColor="#676c7a"
-            rejectResponderTermination={true}
-            style={
-              Array [
-                Object {
-                  "color": "#2c374e",
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "flexShrink": 1,
-                  "fontSize": 15,
-                  "fontWeight": "500",
-                  "height": "100%",
-                  "paddingBottom": 15,
-                  "paddingTop": 15,
-                },
-                Object {
-                  "color": "#151A25",
-                },
-              ]
-            }
-            testID="input-email"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-        </View>
-      </View>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "marginTop": 20,
-            "width": "100%",
-          },
-        ]
-      }
-    >
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Object {
-            "backgroundColor": "#1E6EFA",
-            "height": 52,
-          }
-        }
-        testID="btn-find-pw"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "borderColor": "blue",
-                "flexDirection": "row",
-                "height": 52,
-                "justifyContent": "center",
+                "marginTop": 20,
               },
             ]
           }
@@ -156,19 +59,130 @@ exports[`[FindPw] rendering test renders as expected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#069ccd",
-                  "fontSize": 16,
+                  "color": "#b9b9c4",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "marginBottom": 5,
                 },
+                undefined,
+                null,
+              ]
+            }
+          >
+            Email
+          </Text>
+          <View
+            style={
+              Array [
                 Object {
-                  "color": "#ffffff",
+                  "alignItems": "center",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-            Find Password
-          </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "width": "100%",
+                  },
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  undefined,
+                  null,
+                ]
+              }
+            >
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                placeholder="hello@example.com"
+                placeholderTextColor="#676c7a"
+                rejectResponderTermination={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#2c374e",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "fontSize": 15,
+                      "fontWeight": "500",
+                      "height": "100%",
+                      "paddingBottom": 15,
+                      "paddingTop": 15,
+                    },
+                    Object {
+                      "color": "#151A25",
+                    },
+                  ]
+                }
+                testID="input-email"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+          </View>
         </View>
-      </TouchableOpacity>
+        <View
+          style={
+            Array [
+              Object {
+                "marginTop": 20,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            style={
+              Object {
+                "backgroundColor": "#1E6EFA",
+                "height": 52,
+              }
+            }
+            testID="btn-find-pw"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "borderColor": "blue",
+                    "flexDirection": "row",
+                    "height": 52,
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#069ccd",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#ffffff",
+                    },
+                  ]
+                }
+              >
+                Find Password
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   </View>
 </View>

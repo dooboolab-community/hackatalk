@@ -2,66 +2,84 @@
 
 exports[`[UserListItem] rendering test renders as expected 1`] = `
 <View
+  pointerEvents="box-none"
   style={
-    Array [
-      Object {
-        "width": "100%",
-      },
-    ]
+    Object {
+      "flex": 1,
+    }
   }
 >
-  <TouchableOpacity
-    activeOpacity={0.5}
-    onPress={[Function]}
-    testID="test_yo"
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   >
     <View
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "borderBottomWidth": 1,
-            "borderColor": "#e2f2ff",
-            "flexDirection": "row",
-            "height": 80,
-            "justifyContent": "flex-start",
-            "paddingBottom": 0,
-            "paddingLeft": 20,
-            "paddingRight": 20,
-            "paddingTop": 0,
+            "width": "100%",
           },
         ]
       }
     >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "height": 40,
-            "justifyContent": "center",
-            "width": 40,
+      <TouchableOpacity
+        activeOpacity={0.5}
+        testID="test_yo"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderBottomWidth": 1,
+                "borderColor": "#e2f2ff",
+                "flexDirection": "row",
+                "height": 80,
+                "justifyContent": "flex-start",
+                "paddingBottom": 0,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 0,
+              },
+            ]
           }
-        }
-      >
-        <Text />
-      </View>
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#151A25",
-              "fontSize": 14,
-              "marginLeft": 12,
-              "width": 100,
-            },
-          ]
-        }
-      >
-        
-      </Text>
-      <View />
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 40,
+                "justifyContent": "center",
+                "width": 40,
+              }
+            }
+          >
+            <Text />
+          </View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "fontSize": 14,
+                  "marginLeft": 12,
+                  "width": 100,
+                },
+              ]
+            }
+          >
+            
+          </Text>
+          <View />
+        </View>
+      </TouchableOpacity>
     </View>
-  </TouchableOpacity>
+  </View>
 </View>
 `;

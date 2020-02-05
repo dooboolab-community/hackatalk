@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {
   RenderResult,
+  act,
   cleanup,
   fireEvent,
   render,
@@ -10,7 +11,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
-import { act } from 'react-test-renderer';
 
 const mockAlert = {
   alert: jest.fn(),

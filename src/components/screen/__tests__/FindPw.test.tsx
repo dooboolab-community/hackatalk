@@ -12,7 +12,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import FindPw from '../FindPw';
-import renderer from 'react-test-renderer';
 
 // eslint-disable-next-line
 let props: any;
@@ -24,9 +23,10 @@ describe('[FindPw] rendering test', () => {
     component = createTestElement(<FindPw {...props} />);
   });
 
-  it('renders as expected', () => {
-    const json = renderer.create(component).toJSON();
-    expect(json).toMatchSnapshot();
+  it('should renders as expected', () => {
+    const { baseElement } = render(component);
+    expect(baseElement).toMatchSnapshot();
+    expect(baseElement).toBeTruthy();
   });
 });
 
