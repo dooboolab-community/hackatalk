@@ -2,7 +2,7 @@ import { StackNavigationProp, createStackNavigator } from '@react-navigation/sta
 
 import AuthStack from './AuthStackNavigator';
 import MainStack from './MainStackNavigator';
-import { NavigationNativeContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
 import { Platform } from 'react-native';
 import React from 'react';
@@ -31,7 +31,7 @@ function RootNavigator(): React.ReactElement {
   const { state: { user } } = useAuthContext();
 
   return (
-    <NavigationNativeContainer>
+    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -74,7 +74,7 @@ function RootNavigator(): React.ReactElement {
         />
         <Stack.Screen name="NotFound" component={NotFound} />
       </Stack.Navigator>
-    </NavigationNativeContainer>
+    </NavigationContainer>
   );
 }
 

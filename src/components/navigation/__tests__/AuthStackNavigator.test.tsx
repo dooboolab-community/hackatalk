@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { NavigationNativeContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import StackNavigator from '../AuthStackNavigator';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,9 +19,9 @@ describe('[Stack] navigator', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(
-      <NavigationNativeContainer>
+      <NavigationContainer>
         <StackNavigator {...props} />
-      </NavigationNativeContainer>,
+      </NavigationContainer>,
     );
   });
 

@@ -244,6 +244,7 @@ const Screen = (): React.ReactElement => {
         </StyledSearchView>
         <StyledAnimatedFlatList
           testID="animated-flatlist"
+          // @ts-ignore
           testObj={{ scrollY }}
           style={{
             transform: [
