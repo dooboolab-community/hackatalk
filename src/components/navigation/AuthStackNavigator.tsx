@@ -15,7 +15,9 @@ export type AuthStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   FindPw: undefined;
-  VerifyEmail: undefined;
+  VerifyEmail: {
+    email: string;
+  };
 };
 
 type NavigationProps<

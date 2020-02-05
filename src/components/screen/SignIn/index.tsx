@@ -108,11 +108,20 @@ function SignIn(props: Props): ReactElement {
     try {
       const { data } = await signInEmail({ variables });
       if (data && data.signInEmail) {
+        const user = data.signInEmail.user;
+
+        if (user && !user.verified) {
+          navigation.navigate('VerifyEmail', {
+            email,
+          });
+          return;
+        }
+
         AsyncStorage.setItem('token', data.signInEmail.token);
-        setUser(data.signInEmail.user);
+        setUser(user);
       }
-    } catch (err) {
-      Alert.alert(getString('ERROR'), err.message);
+    } catch ({ graphQLErrors }) {
+      Alert.alert(getString('ERROR'), graphQLErrors[0]?.message || '');
     } finally {
       setIsLoggingIn(false);
     }

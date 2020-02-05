@@ -6,7 +6,9 @@ export const QUERY_ME = gql`
       id
       email
       nickname
+      name
       statusMessage
+      verified
     }
   }
 `;
