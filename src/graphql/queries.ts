@@ -9,6 +9,7 @@ export const QUERY_ME = gql`
       name
       statusMessage
       verified
+      authType
     }
   }
 `;

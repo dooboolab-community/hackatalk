@@ -29,6 +29,7 @@ export const MUTATION_SIGN_IN = gql`
         nickname
         verified
         statusMessage
+        authType
       }
     }
   }

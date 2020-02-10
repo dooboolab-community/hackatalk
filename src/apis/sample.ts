@@ -1,4 +1,4 @@
-const ROOT_URL = 'http://localhost:3000/api';
+import { ROOT_URL } from '../../config';
 
 export const sample = async (
   body: object,
