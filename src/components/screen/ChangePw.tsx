@@ -44,7 +44,7 @@ function ChangePw(props: Props): ReactElement {
 
   const changePassword = async (): Promise<void> => {
     if (newPw === confirmPw) {
-      // TODO change password api call
+      // TODO: change password api call
       Keyboard.dismiss();
       Alert.alert('', 'Password changed.', [
         {

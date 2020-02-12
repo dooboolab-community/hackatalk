@@ -39,6 +39,7 @@ function Page(props: Props): ReactElement {
       return;
     }
 
+    // TODO: findPassword api call
     setFindingPw(true);
     timer = setTimeout(() => {
       setFindingPw(false);
