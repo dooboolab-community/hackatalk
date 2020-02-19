@@ -5236,17 +5236,15 @@ expect@^25.1.0:
     jest-message-util "^25.1.0"
     jest-regex-util "^25.1.0"
 
-expo-app-auth@~8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/expo-app-auth/-/expo-app-auth-8.0.0.tgz#607813705bf7c56178cc427dfb2b67e0b180aa89"
-  integrity sha512-sb1gsmS4C2YB1ZnBKmQ2RBnjcW0oPfSJ6OTCyQkineY99qIQ37nqkOCReLEMj/fAhDDbGzIqrlLdCXUyzhr7zQ==
-  dependencies:
-    invariant "^2.2.4"
-
 expo-app-loader-provider@~8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/expo-app-loader-provider/-/expo-app-loader-provider-8.0.0.tgz#c18ef20a24153f5a0dbb297106ef0bcb5de57180"
   integrity sha512-uMEdstZdm14JW8jfWXBWItIjGPNBH7cLj2pNu5e0pYF21W4j759rGL17NTNWit4UdLZg/zJB/HHRidVwEINfxA==
+
+expo-apple-authentication@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/expo-apple-authentication/-/expo-apple-authentication-2.0.0.tgz#ac4fc06619990ffc388312cf34883c861384c004"
+  integrity sha512-vzFNzsVrv4eYuXV5PG0rKmNdwFvk7bVQH/DzsZ98vD9wuBRY9vBgAnF1TyKG/foY01dlCH1zb+3lhAyp2nAg/Q==
 
 expo-asset@~8.0.0:
   version "8.0.0"
