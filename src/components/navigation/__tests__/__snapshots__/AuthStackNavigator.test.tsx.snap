@@ -218,12 +218,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             >
                               <TouchableOpacity
                                 activeOpacity={0.2}
-                                style={
-                                  Object {
-                                    "alignItems": "center",
-                                    "width": 60,
-                                  }
-                                }
                                 testID="theme-test"
                               >
                                 <Image

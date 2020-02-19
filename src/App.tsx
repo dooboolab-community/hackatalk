@@ -9,34 +9,11 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { Asset } from 'expo-asset';
-import AsyncStorage from '@react-native-community/async-storage';
-import Icons from './utils/Icons';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import SplashScreen from 'react-native-splash-screen';
 import { User } from './types';
-import { View } from 'react-native';
 import client from './apollo/Client';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function cacheImages(images: any[]): any[] {
-  return images.map((image) => {
-    return Asset.fromModule(image).downloadAsync();
-  });
-}
-
-const loadAssetsAsync = async (
-  setDeviceType: (val: Device.DeviceType) => void):
-Promise<void> => {
-  const imageAssets = cacheImages(Icons);
-  await Promise.all([
-    ...imageAssets,
-  ]);
-
-  const deviceType = await Device.getDeviceTypeAsync();
-  setDeviceType(deviceType);
-};
 
 function App(): React.ReactElement {
   const colorScheme = useColorScheme();
@@ -46,17 +23,19 @@ function App(): React.ReactElement {
 
   const { loading, data, error } = useQuery<{ me: User}, {}>(QUERY_ME);
 
-  if (error) {
-    AsyncStorage.removeItem('token');
-  }
+  const setDevice = async (): Promise<void> => {
+    const deviceType = await Device.getDeviceTypeAsync();
+    setDeviceType(deviceType);
+  };
 
   useEffect(() => {
     if (data && data.me) {
       setUser(data.me);
     }
+    setDevice();
   }, [loading]);
 
-  if (!loading) {
+  if (!loading && !error) {
     SplashScreen.hide();
   }
 

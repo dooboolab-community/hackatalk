@@ -26,21 +26,22 @@ const authLink = setContext(async (_, { headers }) => {
   return {
     headers: {
       ...headers,
-      Authorization: token,
+      authorization: token,
     },
   };
 });
 
 const httpAuthLink = authLink.concat(httpLink);
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError((error): void => {
+  const { graphQLErrors, networkError } = error;
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, locations, path }) =>
+    graphQLErrors.map(({ message, locations, path }) => {
       // eslint-disable-next-line no-console
       console.log(
         `Message: ${message}, Location: ${locations}, Path: ${path}`,
-      ),
-    );
+      );
+    });
   }
   // eslint-disable-next-line no-console
   if (networkError) console.log(`[Network error]: ${networkError}`);

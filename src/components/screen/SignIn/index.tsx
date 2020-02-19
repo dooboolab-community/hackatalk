@@ -4,6 +4,7 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { AuthPayload, User } from '../../../types';
+import { MUTATION_SIGN_IN, SignInEmailInput } from '../../../graphql/mutations';
 import { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
@@ -14,7 +15,6 @@ import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
 import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
-import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import { getString } from '../../../../STRINGS';
 import renderMobile from './mobile';
 import renderTablet from './tablet';
@@ -75,7 +75,7 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
   const { theme, changeThemeType, themeType } = useThemeContext();
-  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, {}>(MUTATION_SIGN_IN);
+  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, SignInEmailInput>(MUTATION_SIGN_IN);
   const { deviceType } = useDeviceContext();
 
   const initAsync = async (): Promise<void> => {
