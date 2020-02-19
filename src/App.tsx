@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icons from './utils/Icons';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import SplashScreen from 'react-native-splash-screen';
 import { User } from './types';
 import { View } from 'react-native';
 import client from './apollo/Client';
@@ -55,15 +56,8 @@ function App(): React.ReactElement {
     }
   }, [loading]);
 
-  if (loading) {
-    return (
-      // <AppLoading
-      //   startAsync={(): Promise<void> => loadAssetsAsync(setDeviceType)}
-      //   onFinish={(): void => setReady(true)}
-      //   // onError={console.warn}
-      // />
-      <View/>
-    );
+  if (!loading) {
+    SplashScreen.hide();
   }
 
   return (
