@@ -109,9 +109,7 @@ export default function mobile(variables: Variables): ReactElement {
             <TouchableOpacity
               testID="theme-test"
               onPress={(): void => changeThemeType()}
-              style={{
-                width: 60, alignItems: 'center',
-              }}>
+            >
               <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
               <View style={{ height: 12 }} />
               <StyledLogoText>{getString('HELLO')}</StyledLogoText>
