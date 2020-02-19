@@ -98,7 +98,7 @@ app/
 └─ yarn.lock
 ```
 
-### `app.json`
+### .ENV
 
 Run below to make your own `app` variables.
 
@@ -218,9 +218,9 @@ export const getString = (param: string, mapObj?: object) => {
 1. Set bundleIdentifier com.dooboolab.hackatalk
 1. Download `GoogleService-Info.plist` to hackatalk root folder
 
-### Expo version
+### Version of react-native
 
-36
+0.61
 
 ### React navigation
 
