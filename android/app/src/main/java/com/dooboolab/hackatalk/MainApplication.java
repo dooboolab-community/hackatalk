@@ -1,6 +1,6 @@
-package com.hackatalk;
+package com.dooboolab.hackatalk;
 
-import com.hackatalk.generated.BasePackageList;
+import com.dooboolab.hackatalk.generated.BasePackageList;
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
 import org.unimodules.core.interfaces.SingletonModule;

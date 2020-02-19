@@ -1,4 +1,4 @@
-package com.hackatalk;
+package com.dooboolab.hackatalk;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;
