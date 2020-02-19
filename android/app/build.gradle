@@ -128,13 +128,13 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hackatalk"
+        applicationId "com.dooboolab.hackatalk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [appAuthRedirectScheme: 'com.hackatalk']
-        resValue "string", "build_config_package", "com.hackatalk"
+        manifestPlaceholders = [appAuthRedirectScheme: 'com.dooboolab.hackatalk']
+        resValue "string", "build_config_package", "com.dooboolab.hackatalk"
     }
     splits {
         abi {
