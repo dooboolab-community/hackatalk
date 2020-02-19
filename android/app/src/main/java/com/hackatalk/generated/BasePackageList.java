@@ -7,7 +7,6 @@ import org.unimodules.core.interfaces.Package;
 public class BasePackageList {
   public List<Package> getPackageList() {
     return Arrays.<Package>asList(
-        new expo.modules.appauth.AppAuthPackage(),
         new expo.modules.constants.ConstantsPackage(),
         new expo.modules.device.DevicePackage(),
         new expo.modules.facebook.FacebookPackage(),
