@@ -1,8 +1,9 @@
-import { AsyncStorage, SectionList, SectionListData } from 'react-native';
 import React, { ReactElement } from 'react';
+import { SectionList, SectionListData } from 'react-native';
 import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import styled, { DefaultTheme } from 'styled-components/native';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import { AuthType } from '../../types';
 import { Button } from '@dooboo-ui/native';
 import { FontAwesome } from '@expo/vector-icons';

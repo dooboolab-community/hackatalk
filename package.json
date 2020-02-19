@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "node node_modules/react-native/local-cli/cli.js start",
     "tsc": "tsc",
+    "cp:config": "cp .env.sample .env",
     "watch": "tsc -w",
     "start": "npm run dev",
     "codecov": "codecov",
@@ -72,6 +73,7 @@
     "react-dom": "16.9.0",
     "react-native": "^0.61.5",
     "react-native-appearance": "~0.3.2",
+    "react-native-config": "^0.12.0",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-image-pan-zoom": "^2.1.11",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
@@ -125,7 +127,6 @@
     "jetifier": "^1.6.5",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^1.19.1",
-    "react-dom": "^16.9.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "^16.9.0",
     "ts-jest": "^25.2.1",

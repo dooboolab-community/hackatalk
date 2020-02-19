@@ -1,12 +1,14 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost';
 
-import { AsyncStorage } from 'react-native';
-import { GRAPHQL_URL } from '../../config';
+import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
 import { split } from 'apollo-link';
+
+const { GRAPHQL_URL } = Config;
 
 const httpLink = new HttpLink({
   uri: `${GRAPHQL_URL}`,

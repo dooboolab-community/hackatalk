@@ -68,7 +68,6 @@ ios/Pods/
 .history
 
 # env
-config.ts
+.env
 google-services.json
 GoogleService-Info.plist
-app.json

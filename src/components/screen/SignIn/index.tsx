@@ -3,18 +3,15 @@ import * as Device from 'expo-device';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, AsyncStorage, Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import { AuthPayload, User } from '../../../types';
 import { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
-import {
-  androidExpoClientId,
-  iOSClientId,
-  iOSExpoClientId,
-} from '../../../../config';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
+import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
 import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
@@ -24,6 +21,12 @@ import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
 import { useMutation } from '@apollo/react-hooks';
+
+const {
+  androidExpoClientId,
+  iOSClientId,
+  iOSExpoClientId,
+} = Config;
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;

@@ -134,6 +134,7 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [appAuthRedirectScheme: 'com.hackatalk']
+        resValue "string", "build_config_package", "com.hackatalk"
     }
     splits {
         abi {
@@ -180,6 +181,7 @@ android {
 }
 
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])

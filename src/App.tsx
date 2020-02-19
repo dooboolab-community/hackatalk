@@ -4,12 +4,13 @@ import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { Asset } from 'expo-asset';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icons from './utils/Icons';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
@@ -42,7 +43,11 @@ function App(): React.ReactElement {
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
-  const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
+  const { loading, data, error } = useQuery<{ me: User}, {}>(QUERY_ME);
+
+  if (error) {
+    AsyncStorage.removeItem('token');
+  }
 
   useEffect(() => {
     if (data && data.me) {
