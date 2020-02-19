@@ -11,7 +11,7 @@ import { split } from 'apollo-link';
 const { GRAPHQL_URL } = Config;
 
 const httpLink = new HttpLink({
-  uri: `${GRAPHQL_URL}`,
+  uri: GRAPHQL_URL,
 });
 
 const wsLink = new WebSocketLink({

@@ -1,7 +1,7 @@
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 
@@ -65,7 +65,10 @@ function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOpt
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   const currentAppState = useAppState();
-  console.log('currentAppState', currentAppState);
+
+  useEffect(() => {
+    console.log('currentAppState', currentAppState);
+  }, [currentAppState]);
 
   return (
     <Stack.Navigator

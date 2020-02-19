@@ -9,6 +9,7 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import AsyncStorage from '@react-native-community/async-storage';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import SplashScreen from 'react-native-splash-screen';
@@ -31,13 +32,15 @@ function App(): React.ReactElement {
   useEffect(() => {
     if (data && data.me) {
       setUser(data.me);
+    } else if (data) {
+      AsyncStorage.removeItem('token');
     }
     setDevice();
-  }, [loading]);
 
-  if (!loading && !error) {
-    SplashScreen.hide();
-  }
+    if (!loading) {
+      SplashScreen.hide();
+    }
+  }, [loading]);
 
   return (
     <ThemeProvider
