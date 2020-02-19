@@ -1,8 +1,7 @@
-import * as AppAuth from 'expo-app-auth';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, AsyncStorage } from 'react-native';
 import Constants, { AppOwnership } from 'expo-constants';
 import React, { ReactElement } from 'react';
 import {
@@ -16,11 +15,18 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
+import { FetchMock } from 'jest-fetch-mock';
 import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import { MockedProvider } from '@apollo/react-testing';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/native-theme';
+
+const fetchMock = fetch as FetchMock;
+
+fetchMock.mockResponse(JSON.stringify({ id: 1 }));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -43,9 +49,11 @@ const mockSignInEmail = [
             token: 'access token',
             user: {
               id: 'userId',
+              authType: 'email',
               email: 'test@email.com',
               nickname: 'nickname',
               statusMessage: 'status',
+              verified: true,
             },
           },
         },
@@ -456,60 +464,6 @@ describe('[SignIn] Google Signin', () => {
     });
   });
 
-  describe('expo env', () => {
-    let testingLib: RenderResult;
-    jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
-
-    beforeAll(() => {
-      props = createTestProps();
-      component = createTestElement(
-        <MockedProvider mocks={mockSignInEmail} addTypename={false}>
-          <SignIn {...props} />
-        </MockedProvider>,
-      );
-      testingLib = render(component);
-    });
-
-    it('should signin with [AppAuth] when ownership is expo', async () => {
-      Constants.appOwnership = AppOwnership.Expo;
-      testingLib = render(component);
-
-      const btnGoogle = testingLib.queryByTestId('btn-google');
-      await wait(() => expect(btnGoogle).toBeTruthy());
-
-      act(() => {
-        fireEvent.press(btnGoogle);
-      });
-      await act(() => wait());
-
-      expect(AppAuth.authAsync(null)).resolves.toBe({
-        accessToken: 'accessToken',
-      });
-
-      expect(Alert.alert).toHaveBeenCalled();
-    });
-
-    it('should catch error while signing in with [AppAuth]', async () => {
-      jest
-        .spyOn(AppAuth, 'authAsync')
-        .mockImplementationOnce(
-          (): Promise<AppAuth.TokenResponse> =>
-            Promise.reject(new Error('error')),
-        );
-
-      const btnGoogle = testingLib.queryByTestId('btn-google');
-      await wait(() => expect(btnGoogle).toBeTruthy());
-
-      act(() => {
-        fireEvent.press(btnGoogle);
-      });
-
-      await act(() => wait());
-
-      expect(Alert.alert).toHaveBeenCalled();
-    });
-  });
-
   describe('standalone env', () => {
     let testingLib: RenderResult;
 
@@ -559,11 +513,10 @@ describe('[SignIn] Google Signin', () => {
         fireEvent.press(btnGoogle);
       });
       await act(() => wait());
-
-      expect(Alert.alert).toHaveBeenCalled();
     });
 
     it('should catch error while signing in with expo Google', async () => {
+      jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
       jest
         .spyOn(GoogleSignIn, 'signInAsync')
         .mockImplementationOnce(
