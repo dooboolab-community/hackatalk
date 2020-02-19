@@ -9,12 +9,12 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import Icons from './utils/Icons';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from './types';
+import { View } from 'react-native';
 import client from './apollo/Client';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,7 +39,6 @@ Promise<void> => {
 function App(): React.ReactElement {
   const colorScheme = useColorScheme();
 
-  const [ready, setReady] = useState(false);
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
@@ -51,13 +50,14 @@ function App(): React.ReactElement {
     }
   }, [loading]);
 
-  if (loading || !ready) {
+  if (loading) {
     return (
-      <AppLoading
-        startAsync={(): Promise<void> => loadAssetsAsync(setDeviceType)}
-        onFinish={(): void => setReady(true)}
-        // onError={console.warn}
-      />
+      // <AppLoading
+      //   startAsync={(): Promise<void> => loadAssetsAsync(setDeviceType)}
+      //   onFinish={(): void => setReady(true)}
+      //   // onError={console.warn}
+      // />
+      <View/>
     );
   }
 
