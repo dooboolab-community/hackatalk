@@ -23,9 +23,7 @@ import { useDeviceContext } from '../../../providers/DeviceProvider';
 import { useMutation } from '@apollo/react-hooks';
 
 const {
-  androidExpoClientId,
   iOSClientId,
-  iOSExpoClientId,
 } = Config;
 
 interface Props {
