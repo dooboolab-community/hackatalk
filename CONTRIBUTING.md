@@ -7,7 +7,7 @@
 
 1. [React Native](https://facebook.github.io/react-native)
    - [iOS / Android setup guide](https://facebook.github.io/react-native/docs/getting-started)
-2. [expo](https://expo.io)
+2. [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
 3. [VSCODE](https://code.visualstudio.com)
    - We are using `vscode` as our ide. Please install `eslint` plugin.
 4. [Graphql](https://graphql.org)
@@ -41,24 +41,17 @@
    - ~~Not much required. Be aware your project should be compatible with `androidx`.~~
      - ~~Above means you should be careful when using third party `react-native native modules` because they might not be compatible with `androidx` which will result in failed build.~~
 6. Configure `environment` for project
-   - Copy `config.sample.ts` to `config.ts`.
+   - Copy `.env.sample` to `.env`.
      ```
-     cp config.sample.ts config.ts
+     cp .env.sample .env
      ```
-   - Copy `app.sample.json` to `app.json`.
-     ```
-     cp app.sample.json app.json
-     ```
-     > Note that you should avoid using fake string like `"reservedClientId": "<reservedClientId>"`. Please erase it if you've not have one or put the real one otherwise `expo` won't start your app.
-7. Install `expo-cli`
-   - `npm install -g expo-cli`
-8. Run your project
+7. Run your project
    - `ios`
      - yarn run `ios`
    - `android`
      - yarn run `android`
        > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
-9. Configure linting in [vscode](https://code.visualstudio.com) correctly.
+8. Configure linting in [vscode](https://code.visualstudio.com) correctly.
    - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
 
 ### Commit message
@@ -69,7 +62,7 @@ Write the title in the imperative mood and prefix it with a tag that describes t
 
 In the summary, explain the motivation behind the commit ("why") and the approach it takes ("how"). Note things that aren't communicated by the code or require more context to infer.
 
-Use the test plan to communicate how to verify the code actually works and to help others in the future create their test plans for the same area of the codebase. Read the Expo guide on Git and Code Reviews for more guidance on PRs and test plans.
+Use the test plan to communicate how to verify the code actually works and to help others in the future create their test plans for the same area of the codebase.
 
 This post called [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) has a lot of good guidance, too.
 

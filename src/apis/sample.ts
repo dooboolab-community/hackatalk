@@ -1,4 +1,6 @@
-import { ROOT_URL } from '../../config';
+import Config from 'react-native-config';
+
+const { ROOT_URL } = Config;
 
 export const sample = async (
   body: object,

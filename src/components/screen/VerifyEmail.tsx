@@ -1,9 +1,9 @@
 import { Alert, TouchableOpacity } from 'react-native';
 import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
 import { Button, LoadingIndicator } from '@dooboo-ui/native';
+import { MUTATION_SEND_VERIFICATION, MutationSendVerificationInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 
-import { MUTATION_SEND_VERIFICATION } from '../../graphql/mutations';
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -37,10 +37,6 @@ const StyledTextLine = styled(StyledText)`
 interface Props {
   navigation: AuthStackNavigationProps<'VerifyEmail'>;
   route: RouteProp<AuthStackParamList, 'VerifyEmail'>;
-}
-
-interface MutationSendVerificationInput {
-  email: string;
 }
 
 function Page(props: Props): ReactElement {

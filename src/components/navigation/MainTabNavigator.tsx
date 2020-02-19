@@ -1,5 +1,5 @@
 import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 
@@ -40,8 +40,14 @@ const CustomHeader = (props: Props): ReactElement => {
   return (
     <LinearGradient
       style={{
-        paddingTop: Constants.statusBarHeight,
-        height: 44 + Constants.statusBarHeight,
+        paddingTop: Platform.select({
+          ios: Constants.statusBarHeight,
+          android: 0,
+        }),
+        height: Platform.select({
+          ios: 44 + Constants.statusBarHeight,
+          android: 56,
+        }),
         alignSelf: 'stretch',
         alignItems: 'center',
         flexDirection: 'row',
