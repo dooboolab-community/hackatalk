@@ -38,25 +38,25 @@ jobs:
           name: Lint Test
           working_directory: .
           command: |
-            npm run lint --quiet
+            yarn lint --quiet
 
       - run:
           name: COPY config
           working_directory: .
           command: |
-            npm run cp:config
+            yarn cp:config
 
       - run:
           name: TS Test
           working_directory: .
           command: |
-            npm run tsc
+            yarn tsc
 
       - run:
           name: Jest Test
           command: |
             mkdir -p coverage
-            yarn run test --coverage --max-workers=2 --silent
+            yarn test --coverage --max-workers=2 --silent
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
 
@@ -135,13 +135,13 @@ jobs:
           name: COPY config
           working_directory: .
           command: |
-            npm run cp:config
+            yarn cp:config
 
       - run:
           name: Build Android JS Bundle
           working_directory: android
           command: |
-            npm run build:android
+            yarn build:android
 
       - run:
           name: Build Android APK

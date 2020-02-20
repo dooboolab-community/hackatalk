@@ -153,10 +153,12 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file(project.env.get('MYAPP_RELEASE_STORE_FILE'))
-            storePassword project.env.get('MYAPP_RELEASE_STORE_PASSWORD')
-            keyAlias project.env.get('MYAPP_RELEASE_KEY_ALIAS')
-            keyPassword project.env.get('MYAPP_RELEASE_KEY_PASSWORD')
+            if (file('../../.env').exists()) {
+                storeFile file(project.env.get('MYAPP_RELEASE_STORE_FILE'))
+                storePassword project.env.get('MYAPP_RELEASE_STORE_PASSWORD')
+                keyAlias project.env.get('MYAPP_RELEASE_KEY_ALIAS')
+                keyPassword project.env.get('MYAPP_RELEASE_KEY_PASSWORD')
+            }
         }
     }
     buildTypes {
