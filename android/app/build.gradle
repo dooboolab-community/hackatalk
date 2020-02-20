@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -152,12 +153,10 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
+            storeFile file(project.env.get('MYAPP_RELEASE_STORE_FILE'))
+            storePassword project.env.get('MYAPP_RELEASE_STORE_PASSWORD')
+            keyAlias project.env.get('MYAPP_RELEASE_KEY_ALIAS')
+            keyPassword project.env.get('MYAPP_RELEASE_KEY_PASSWORD')
         }
     }
     buildTypes {
@@ -189,7 +188,6 @@ android {
 }
 
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
