@@ -106,18 +106,32 @@ Run below to make your own `app` variables.
 
 - `env` variables
 
-  | Name                | default | required | description                 |
+MYAPP_RELEASE_STORE_FILE=
+MYAPP_RELEASE_KEY_ALIAS=
+MYAPP_RELEASE_STORE_PASSWORD=
+MYAPP_RELEASE_KEY_PASSWORD=
+
+
+  | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
-  | iOSClientId         |                                      |     | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. |
-  | GRAPHQL_URL         | `http://stage.hackatalk.dev/graphql` | yes |  |
-  | ROOT_URL            | `http://stage.hackatalk.dev`         | yes |  |
+  | iOSClientId                  |                                      |     | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. |
+  | GRAPHQL_URL                  | `http://stage.hackatalk.dev/graphql` | yes |  |
+  | ROOT_URL                     | `http://stage.hackatalk.dev`         | yes |  |
+  | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
+  | MYAPP_RELEASE_KEY_ALIAS      |                                      |     |  |
+  | MYAPP_RELEASE_STORE_PASSWORD |                                      |     |  |
+  | MYAPP_RELEASE_KEY_PASSWORD   |                                      |     |  |
 
   ```
   iOSClientId=iOSClientId
-  iOSExpoClientId=iOSExpoClientId
-  androidExpoClientId=androidExpoClientId
   GRAPHQL_URL=http://stage.hackatalk.dev/graphql
   ROOT_URL=http://stage.hackatalk.dev
+
+  # Android
+  MYAPP_RELEASE_STORE_FILE=
+  MYAPP_RELEASE_KEY_ALIAS=
+  MYAPP_RELEASE_STORE_PASSWORD=
+  MYAPP_RELEASE_KEY_PASSWORD=
   ```
 
 ### Running the project
