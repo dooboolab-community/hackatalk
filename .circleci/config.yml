@@ -132,12 +132,6 @@ jobs:
             - ~/.gradle
 
       - run:
-          name: COPY config
-          working_directory: .
-          command: |
-            yarn cp:config
-
-      - run:
           name: Build Android JS Bundle
           working_directory: android
           command: |
