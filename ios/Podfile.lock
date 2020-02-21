@@ -292,6 +292,8 @@ PODS:
     - React
   - RNGestureHandler (1.6.0):
     - React
+  - RNKeychain (4.0.5):
+    - React
   - RNLocalize (1.3.3):
     - React
   - RNReanimated (1.7.0):
@@ -300,6 +302,11 @@ PODS:
     - React
   - RNSVG (11.0.1):
     - React
+  - RNVirgilCrypto (0.5.3):
+    - React
+    - VirgilCrypto (= 5.3.0)
+    - VirgilCryptoFoundation (= 0.12.0)
+    - VirgilCryptoPythia (= 0.12.0)
   - UMBarCodeScannerInterface (5.0.0)
   - UMCameraInterface (5.0.0)
   - UMConstantsInterface (5.0.0)
@@ -315,6 +322,19 @@ PODS:
     - UMFontInterface
   - UMSensorsInterface (5.0.0)
   - UMTaskManagerInterface (5.0.0)
+  - VirgilCrypto (5.3.0):
+    - VirgilCryptoFoundation (~> 0.12.0)
+  - VirgilCryptoFoundation (0.12.0):
+    - VSCCrypto/Common (= 0.12.0)
+    - VSCCrypto/Foundation (= 0.12.0)
+  - VirgilCryptoPythia (0.12.0):
+    - VirgilCryptoFoundation (= 0.12.0)
+    - VSCCrypto/Common (= 0.12.0)
+    - VSCCrypto/Foundation (= 0.12.0)
+    - VSCCrypto/Pythia (= 0.12.0)
+  - VSCCrypto/Common (0.12.0)
+  - VSCCrypto/Foundation (0.12.0)
+  - VSCCrypto/Pythia (0.12.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -365,10 +385,12 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVirgilCrypto (from `../node_modules/react-native-virgil-crypto`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
   - UMConstantsInterface (from `../node_modules/unimodules-constants-interface/ios`)
@@ -392,6 +414,10 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - VirgilCrypto
+    - VirgilCryptoFoundation
+    - VirgilCryptoPythia
+    - VSCCrypto
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -494,6 +520,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNReanimated:
@@ -502,6 +530,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVirgilCrypto:
+    :path: "../node_modules/react-native-virgil-crypto"
   UMBarCodeScannerInterface:
     :path: !ruby/object:Pathname
     path: "../node_modules/unimodules-barcode-scanner-interface/ios"
@@ -593,10 +623,12 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 5d83b49070d41fd72906a116c5e7bdac4ea3a814
   RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
   RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
+  RNKeychain: 840f8e6f13be0576202aefcdffd26a4f54bfe7b5
   RNLocalize: a734b53c45e77acd3ffb78b92e63bb4d6cd13257
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
   RNScreens: b9ea46d65967a1f74b9aaa1229d0f74f58d216b5
   RNSVG: 67f1f12dae2cef6ed59a42cae74a6b8f5a9e7b46
+  RNVirgilCrypto: 670c8e3be15f533e80d11d56df6bba3e82bf4570
   UMBarCodeScannerInterface: 3802c8574ef119c150701d679ab386e2266d6a54
   UMCameraInterface: 985d301f688ed392f815728f0dd906ca34b7ccb1
   UMConstantsInterface: bda5f8bd3403ad99e663eb3c4da685d063c5653c
@@ -609,6 +641,10 @@ SPEC CHECKSUMS:
   UMReactNativeAdapter: 230406e3335a8dbd4c9c0e654488a1cf3b44552f
   UMSensorsInterface: d708a892ef1500bdd9fc3ff03f7836c66d1634d3
   UMTaskManagerInterface: a98e37a576a5220bf43b8faf33cfdc129d2f441d
+  VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59
+  VirgilCryptoFoundation: 79f23a7ab6db642268d31bc63b0cf54db416f089
+  VirgilCryptoPythia: 4234b6f84de6fd2448faf6628ecdce84f43650a4
+  VSCCrypto: e2c8df89e0dc348c2713554f6a2c8864e1cf412d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: ad945196a2690e21b4337fe6fd5a8753ca3555fc
