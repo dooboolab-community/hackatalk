@@ -39,7 +39,7 @@ const StyledImage = styled.Image`
 
 const StyledText = styled.Text`
   margin-left: 12px;
-  width: 100px;
+  width: 200px;
   font-size: 14px;
   color: ${({ theme }): string => theme.fontColor};
 `;
@@ -49,7 +49,7 @@ const StyledRightText = styled.Text`
   right: 20px;
   font-size: 12px;
   color: ${({ theme }): string => theme.fontSubColor};
-  max-width: 134.2px;
+  max-width: 120px;
   border-width: 0.3px;
   border-color: ${({ theme }): string => theme.lineColor};
   padding: 4px 8px;
@@ -90,7 +90,9 @@ function Shared({
                 <Ionicons name="ios-person" size={24} color={theme.fontColor} />
               </View>
           }
-          <StyledText>{nickname}</StyledText>
+          <StyledText
+            numberOfLines={1}
+          >{nickname}</StyledText>
           {
             showCheckBox
               ? <CheckBox

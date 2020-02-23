@@ -111,13 +111,14 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
                   <Text />
                 </View>
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -132,7 +133,7 @@ exports[`[FriendProvider] rendering test component and snapshot matches 1`] = `
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,

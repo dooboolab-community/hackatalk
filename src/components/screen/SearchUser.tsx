@@ -21,10 +21,10 @@ export const fakeUsers: User[] = [
   },
   {
     id: '2',
-    nickname: 'geoseong',
+    nickname: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMessage: 'hi I am fine',
+    statusMessage: 'hi I am fine -hello-hello-hello',
     isOnline: false,
   },
   {

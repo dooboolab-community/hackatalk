@@ -134,7 +134,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong-hello",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
@@ -284,13 +284,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -430,18 +431,19 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong-hello
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <View
                   style={
@@ -576,13 +578,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -722,13 +725,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -868,13 +872,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1014,13 +1019,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1160,13 +1166,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1306,13 +1313,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1452,13 +1460,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1598,13 +1607,14 @@ exports[`Rendering renders without crashing 1`] = `
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }

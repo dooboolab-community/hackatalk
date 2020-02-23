@@ -423,9 +423,9 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -575,13 +575,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -596,7 +597,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -664,18 +665,19 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -685,7 +687,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -696,7 +698,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  hi I am fine
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -753,13 +755,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -774,7 +777,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -842,13 +845,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -863,7 +867,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -931,13 +935,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -952,7 +957,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1020,13 +1025,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1041,7 +1047,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1109,13 +1115,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1130,7 +1137,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1198,13 +1205,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1219,7 +1227,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1287,13 +1295,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1308,7 +1317,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1376,13 +1385,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1397,7 +1407,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1825,9 +1835,9 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -1977,13 +1987,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1998,7 +2009,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2066,18 +2077,19 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -2087,7 +2099,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2098,7 +2110,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  hi I am fine
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2155,13 +2167,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2176,7 +2189,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2244,13 +2257,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2265,7 +2279,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2333,13 +2347,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2354,7 +2369,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2422,13 +2437,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2443,7 +2459,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2511,13 +2527,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2532,7 +2549,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2600,13 +2617,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2621,7 +2639,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2689,13 +2707,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2710,7 +2729,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2778,13 +2797,14 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2799,7 +2819,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3227,9 +3247,9 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -3379,13 +3399,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3400,7 +3421,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3468,18 +3489,19 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -3489,7 +3511,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3500,7 +3522,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  hi I am fine
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3557,13 +3579,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3578,7 +3601,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3646,13 +3669,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3667,7 +3691,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3735,13 +3759,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3756,7 +3781,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3824,13 +3849,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3845,7 +3871,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3913,13 +3939,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3934,7 +3961,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4002,13 +4029,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4023,7 +4051,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4091,13 +4119,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4112,7 +4141,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4180,13 +4209,14 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4201,7 +4231,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4376,9 +4406,9 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               Object {
                 "id": "2",
                 "isOnline": false,
-                "nickname": "geoseong",
+                "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
                 "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                "statusMessage": "hi I am fine",
+                "statusMessage": "hi I am fine -hello-hello-hello",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               },
               Object {
@@ -4528,13 +4558,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4549,7 +4580,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4617,18 +4648,19 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
                   >
-                    geoseong
+                    geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                   </Text>
                   <Text
                     style={
@@ -4638,7 +4670,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4649,7 +4681,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    hi I am fine
+                    hi I am fine -hello-hello-hello
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4706,13 +4738,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4727,7 +4760,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4795,13 +4828,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4816,7 +4850,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4884,13 +4918,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4905,7 +4940,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4973,13 +5008,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4994,7 +5030,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5062,13 +5098,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5083,7 +5120,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5151,13 +5188,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5172,7 +5210,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5240,13 +5278,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5261,7 +5300,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5329,13 +5368,14 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5350,7 +5390,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
