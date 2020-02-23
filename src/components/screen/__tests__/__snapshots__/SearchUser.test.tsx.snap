@@ -162,7 +162,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
           <Text
@@ -170,7 +170,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               Array [
                 Object {
                   "backgroundColor": "#ffffff",
-                  "color": "#A1EEDB",
+                  "color": "#00D4AB",
                   "fontSize": 12,
                   "paddingBottom": 4,
                   "paddingLeft": 4,
@@ -354,6 +354,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -369,6 +370,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -415,7 +417,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
@@ -423,7 +425,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "geoseong",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -431,7 +433,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -455,7 +457,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -605,7 +607,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -694,7 +696,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hi I am fine
                 </Text>
               </View>
             </TouchableOpacity>
@@ -783,7 +785,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1050,7 +1052,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1580,7 +1582,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
           <View
@@ -1754,6 +1756,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -1769,6 +1772,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -1815,7 +1819,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
@@ -1823,7 +1827,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "geoseong",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -1831,7 +1835,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -1855,7 +1859,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -2005,7 +2009,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2094,7 +2098,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hi I am fine
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2183,7 +2187,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2450,7 +2454,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2980,7 +2984,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
           <View
@@ -3154,6 +3158,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -3169,6 +3174,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -3215,7 +3221,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
@@ -3223,7 +3229,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": false,
               "nickname": "geoseong",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -3231,7 +3237,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -3255,7 +3261,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -3405,7 +3411,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3494,7 +3500,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  offline
+                  hi I am fine
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3583,7 +3589,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3850,7 +3856,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -4301,6 +4307,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               defaultValue=""
               multiline={false}
               rejectResponderTermination={true}
+              selectionColor="#151A25"
               style={
                 Array [
                   Object {
@@ -4316,6 +4323,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               }
               testID="text-input"
               underlineColorAndroid="transparent"
+              value=""
             />
             <Image
               source={
@@ -4362,7 +4370,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": true,
                 "nickname": "admin",
                 "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                "statusMessage": "online",
+                "statusMessage": "this is my status message......",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
               },
               Object {
@@ -4370,7 +4378,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": false,
                 "nickname": "geoseong",
                 "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                "statusMessage": "offline",
+                "statusMessage": "hi I am fine",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               },
               Object {
@@ -4378,7 +4386,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": false,
                 "nickname": "hyochan",
                 "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                "statusMessage": "offline",
+                "statusMessage": "hello",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
               },
               Object {
@@ -4402,7 +4410,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": true,
                 "nickname": "admin2",
                 "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                "statusMessage": "online",
+                "statusMessage": "how are you",
                 "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
               },
               Object {
@@ -4552,7 +4560,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    online
+                    this is my status message......
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4641,7 +4649,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    offline
+                    hi I am fine
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4730,7 +4738,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    offline
+                    hello
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4997,7 +5005,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    online
+                    how are you
                   </Text>
                 </View>
               </TouchableOpacity>

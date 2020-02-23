@@ -106,7 +106,7 @@ exports[`[ChannelListItem] rendering test renders as expected 1`] = `
                   Array [
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "#A1EEDB",
+                      "backgroundColor": "#00D4AB",
                       "borderRadius": 8,
                       "height": 16,
                       "justifyContent": "center",

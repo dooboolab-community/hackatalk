@@ -76,7 +76,6 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
           >
             
           </Text>
-          <View />
         </View>
       </TouchableOpacity>
     </View>

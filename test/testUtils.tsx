@@ -21,6 +21,7 @@ export const createTestProps = (obj: object = {}): object | unknown | any => ({
     navigate: jest.fn(),
     goBack: jest.fn(),
     replace: jest.fn(),
+    setOptions: jest.fn(),
   },
   ...obj,
 });

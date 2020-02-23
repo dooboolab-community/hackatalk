@@ -202,7 +202,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         Array [
                           Object {
                             "alignItems": "center",
-                            "backgroundColor": "#A1EEDB",
+                            "backgroundColor": "#00D4AB",
                             "borderRadius": 8,
                             "height": 16,
                             "justifyContent": "center",
@@ -408,6 +408,35 @@ exports[`[Channel] screen renders without crashing 1`] = `
           </View>
         </View>
       </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.65}
+        style={
+          Object {
+            "bottom": 44,
+            "position": "absolute",
+            "right": 20,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#1E6EFA",
+                "borderRadius": 28,
+                "height": 56,
+                "justifyContent": "center",
+                "width": 56,
+              },
+            ]
+          }
+        >
+          <SvgMock
+            fill="#ffffff"
+          />
+        </View>
+      </TouchableOpacity>
     </View>
   </View>
 </View>

@@ -1,5 +1,6 @@
 import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
+import CheckBox from './CheckBox';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { User } from '../../types';
@@ -12,6 +13,8 @@ interface Props {
   user: User;
   onPress?: () => void;
   onLongPress?: () => void;
+  showCheckBox?: boolean;
+  checked?: boolean;
 }
 
 const Container = styled.View`
@@ -53,6 +56,8 @@ const StyledRightText = styled.Text`
 `;
 
 function Shared({
+  showCheckBox = false,
+  checked = false,
   onPress,
   onLongPress,
   testID,
@@ -61,6 +66,7 @@ function Shared({
   const { theme } = useThemeContext();
   const photoURLObj: ImageSourcePropType =
     typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
+
   return (
     <Container>
       <TouchableOpacity
@@ -70,26 +76,35 @@ function Shared({
         onLongPress={onLongPress}
       >
         <Wrapper>
-          {photoURL ? (
-            <StyledImage source={photoURLObj} />
-          ) : (
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Ionicons name="ios-person" size={24} color={theme.fontColor} />
-            </View>
-          )}
+          {
+            photoURL
+              ? <StyledImage source={photoURLObj} />
+              : <View
+                style={{
+                  width: 40,
+                  height: 40,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="ios-person" size={24} color={theme.fontColor} />
+              </View>
+          }
           <StyledText>{nickname}</StyledText>
-          {statusMessage ? (
-            <StyledRightText>{statusMessage}</StyledRightText>
-          ) : (
-            <View />
-          )}
+          {
+            showCheckBox
+              ? <CheckBox
+                containerStyle={{
+                  position: 'absolute',
+                  right: 20,
+                }}
+                checkColor={theme.tintColor}
+                hasChecked={checked}
+              />
+              : statusMessage
+                ? <StyledRightText>{statusMessage}</StyledRightText>
+                : null
+          }
         </Wrapper>
       </TouchableOpacity>
     </Container>

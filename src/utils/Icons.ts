@@ -1,6 +1,7 @@
 import icAddW from '../../assets/icons/btnAdd.png';
 import icBack from '../../assets/icons/btnBack.png';
 import icCamera from '../../assets/icons/camera.png';
+import icCircleX from '../../assets/icons/x_circle.png';
 import icError from '../../assets/icons/error.png';
 import icIcon from '../../assets/icons/icon.png';
 import icLogoD from '../../assets/icons/logo_d.png';
@@ -20,6 +21,7 @@ import svgPlus from '../../assets/icons/plus.svg';
 export const IC_ADD_W = icAddW;
 export const IC_ICON = icIcon;
 export const IC_CAMERA = icCamera;
+export const IC_CIRCLE_X = icCircleX;
 export const IC_ERROR = icError;
 export const IC_PROFILE = icProfile;
 export const IC_BACK = icBack;
@@ -48,6 +50,7 @@ export default [
   IC_ADD_W,
   IC_ICON,
   IC_CAMERA,
+  IC_CIRCLE_X,
   IC_ERROR,
   IC_PROFILE,
   IC_BACK,

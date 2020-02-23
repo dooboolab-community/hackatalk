@@ -100,6 +100,7 @@ export const fakeUsers: User[] = [
     isOnline: true,
   },
 ];
+
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
