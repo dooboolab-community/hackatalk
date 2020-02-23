@@ -23,10 +23,13 @@ interface Props {
 export const AllProviders = ({
   initialThemeType,
   initialAuthUser,
+  initialDeviceType,
   children,
 }: Props): React.ReactElement => {
   return (
-    <DeviceProvider>
+    <DeviceProvider
+      initialDeviceType={initialDeviceType}
+    >
       <ThemeProvider
         initialThemeType={initialThemeType}
         customTheme={{ light, dark }}

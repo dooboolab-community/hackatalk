@@ -1,4 +1,5 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Device from 'expo-device';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
@@ -63,6 +64,21 @@ const mockSignInEmail = [
           signInEmail: undefined,
         },
       })
+      .mockReturnValueOnce({
+        data: {
+          signInEmail: {
+            token: 'access token',
+            user: {
+              id: 'userId',
+              authType: 'email',
+              email: 'test@email.com',
+              nickname: 'nickname',
+              statusMessage: 'status',
+              verified: false,
+            },
+          },
+        },
+      })
     ,
   },
 ];
@@ -94,6 +110,19 @@ describe('[SignIn] rendering test', () => {
         <SignIn {...props} />
       </MockedProvider>,
       ThemeType.DARK,
+    );
+    testingLib = render(component);
+    expect(testingLib.baseElement).toBeTruthy();
+    expect(testingLib.baseElement).toMatchSnapshot();
+  });
+
+  it('should render tablet mode without crashing', () => {
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+      ThemeType.DARK,
+      Device.DeviceType.TABLET,
     );
     testingLib = render(component);
     expect(testingLib.baseElement).toBeTruthy();
@@ -323,6 +352,47 @@ describe('[SignIn] interaction', () => {
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
       await wait(() => expect(btnSignIn).toBeTruthy());
+
+      act(() => {
+        fireEvent.press(btnSignIn);
+      });
+
+      const userMock = mockSignInEmail[0].newData;
+      await wait(() => expect(userMock).toHaveBeenCalled());
+    });
+
+    it('should call signIn with and get `!user.verified`', async () => {
+      jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+      jest
+        .spyOn(AuthContext, 'useAuthContext')
+        .mockImplementation(() => ({
+          state: {
+            user: undefined,
+          },
+          setUser: jest.fn().mockReturnValue({
+            id: 'userId',
+            email: 'email@email.com',
+            nickname: 'nickname',
+            statusMessage: 'status',
+          }),
+        }));
+
+      const textInput = testingLib.getByTestId('input-email');
+      await waitForElement(() => textInput);
+
+      act(() => {
+        fireEvent.changeText(textInput, 'test@email.com');
+      });
+
+      const passwordInput = testingLib.getByTestId('input-password');
+      await waitForElement(() => passwordInput);
+
+      act(() => {
+        fireEvent.changeText(passwordInput, 'password');
+      });
+
+      const btnSignIn = testingLib.getByTestId('btn-sign-in');
+      await waitForElement(() => btnSignIn);
 
       act(() => {
         fireEvent.press(btnSignIn);
