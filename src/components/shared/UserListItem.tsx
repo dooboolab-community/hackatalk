@@ -100,6 +100,7 @@ function Shared({
                 }}
                 checkColor={theme.tintColor}
                 hasChecked={checked}
+                onToggle={onPress}
               />
               : statusMessage
                 ? <StyledRightText>{statusMessage}</StyledRightText>
