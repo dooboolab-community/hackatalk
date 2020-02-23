@@ -117,6 +117,7 @@ exports[`Rendering renders without crashing 1`] = `
             body="You currently do not have any friend. Please search for users and then add to your friend list."
             buttonText="Go back"
             onButtonPressed={[Function]}
+            testID="btn-error"
             title="No friends"
           />
         }

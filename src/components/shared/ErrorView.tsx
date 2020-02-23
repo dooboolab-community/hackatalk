@@ -50,6 +50,7 @@ interface Props {
   onButtonPressed?: () => void;
   buttonText?: string;
   hideButton?: boolean;
+  testID?: string;
 }
 
 const ErrorView: FC<Props> = (props) => {
@@ -59,6 +60,7 @@ const ErrorView: FC<Props> = (props) => {
     body = '',
     buttonText = getString('TRY_AGAIN'),
     hideButton,
+    testID,
   } = props;
   const { theme } = useThemeContext();
 
@@ -69,6 +71,7 @@ const ErrorView: FC<Props> = (props) => {
     {
       !hideButton
         ? <Button
+          testID={testID}
           onPress={onButtonPressed}
           text={buttonText}
           containerStyle={{

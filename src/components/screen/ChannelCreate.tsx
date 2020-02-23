@@ -147,8 +147,9 @@ function Page(props: Props): ReactElement {
   };
 
   navigation.setOptions({
-    headerRight: () => (
+    headerRight: (): ReactElement => (
       <TouchableOpacity
+        testID="touch-done"
         onPress={pressDone}
       >
         <View style={{
@@ -201,7 +202,7 @@ function Page(props: Props): ReactElement {
     setFriends(nextState);
   };
 
-  const renderFriendThumbnail = (friend: Friend): ReactElement => {
+  const renderFriendThumbnail = (friend: Friend, index: number): ReactElement => {
     return <FriendThumbView key={friend.id}>
       <View
         style={{
@@ -228,6 +229,7 @@ function Page(props: Props): ReactElement {
         >{friend.nickname}</Text>
       </View>
       <TouchableOpacity
+        testID={`remove-${index}`}
         style={{
           position: 'absolute',
           top: 0,
@@ -270,11 +272,12 @@ function Page(props: Props): ReactElement {
             style={{ paddingHorizontal: 24 }}
             horizontal
           >
-            {filtered.map((friend) => renderFriendThumbnail(friend))}
+            {filtered.map((friend, i) => renderFriendThumbnail(friend, i))}
           </ScrollView>;
         }}
         ListEmptyComponent={
           <ErroView
+            testID="btn-error"
             title={getString('NO_FRIEND')}
             body={getString('NO_FRIEND_BODY')}
             buttonText={getString('GO_BACK')}
