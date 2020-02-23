@@ -4,7 +4,7 @@ import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
@@ -16,18 +16,24 @@ import SplashScreen from 'react-native-splash-screen';
 import { User } from './types';
 import client from './apollo/Client';
 
-function App(): React.ReactElement {
-  const colorScheme = useColorScheme();
+let timer: number;
 
+function AppWithTheme(): ReactElement {
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
-  const { loading, data, error } = useQuery<{ me: User}, {}>(QUERY_ME);
+  const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
     setDeviceType(deviceType);
   };
+
+  useEffect(() => {
+    return (): void => {
+      if (timer) { clearTimeout(timer); }
+    };
+  }, []);
 
   useEffect(() => {
     if (data && data.me) {
@@ -37,10 +43,14 @@ function App(): React.ReactElement {
     }
     setDevice();
 
-    if (!loading) {
-      SplashScreen.hide();
-    }
+    timer = setTimeout(() => SplashScreen.hide(), 1000);
   }, [loading]);
+
+  return <RootNavigator />;
+}
+
+function App(): ReactElement {
+  const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider
@@ -49,12 +59,12 @@ function App(): React.ReactElement {
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
     >
-      <RootNavigator />
+      <AppWithTheme/>
     </ThemeProvider>
   );
 }
 
-function ProviderWrapper(): React.ReactElement {
+function ProviderWrapper(): ReactElement {
   return (
     <AppearanceProvider>
       <DeviceProvider>

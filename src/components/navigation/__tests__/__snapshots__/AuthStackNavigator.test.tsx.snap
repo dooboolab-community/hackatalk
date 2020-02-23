@@ -218,6 +218,12 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             >
                               <TouchableOpacity
                                 activeOpacity={0.2}
+                                style={
+                                  Object {
+                                    "height": 60,
+                                    "width": 60,
+                                  }
+                                }
                                 testID="theme-test"
                               >
                                 <Image
@@ -238,27 +244,28 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     ]
                                   }
                                 />
-                                <View
-                                  style={
-                                    Object {
-                                      "height": 12,
-                                    }
-                                  }
-                                />
-                                <Text
-                                  style={
-                                    Array [
-                                      Object {
-                                        "color": "#151A25",
-                                        "fontSize": 20,
-                                        "fontWeight": "bold",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  Hello
-                                </Text>
                               </TouchableOpacity>
+                              <View
+                                style={
+                                  Object {
+                                    "height": 12,
+                                  }
+                                }
+                              />
+                              <Text
+                                style={
+                                  Array [
+                                    Object {
+                                      "color": "#151A25",
+                                      "fontSize": 20,
+                                      "fontWeight": "bold",
+                                      "marginLeft": 6,
+                                    },
+                                  ]
+                                }
+                              >
+                                Hello
+                              </Text>
                             </View>
                             <View
                               style={

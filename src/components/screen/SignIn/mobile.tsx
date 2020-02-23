@@ -34,6 +34,7 @@ const StyledLogoText = styled.Text`
   color: ${({ theme }): string => theme.fontColor};
   font-size: 20px;
   font-weight: bold;
+  margin-left: 6px;
 `;
 
 const ButtonWrapper = styled.View`
@@ -109,11 +110,15 @@ export default function mobile(variables: Variables): ReactElement {
             <TouchableOpacity
               testID="theme-test"
               onPress={(): void => changeThemeType()}
+              style={{
+                width: 60,
+                height: 60,
+              }}
             >
               <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
-              <View style={{ height: 12 }} />
-              <StyledLogoText>{getString('HELLO')}</StyledLogoText>
             </TouchableOpacity>
+            <View style={{ height: 12 }} />
+            <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
             testID="input-email"
