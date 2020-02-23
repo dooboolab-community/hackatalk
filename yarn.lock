@@ -10541,6 +10541,13 @@ react-native-modalbox@^2.0.0:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-onesignal@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.4.tgz#81d16e495efa76d1fb9e8941001bac9ffb87dfff"
+  integrity sha512-zd1NH80sW0gn2DDpFvS5EViiU30sCS5w/FALcDJB5fVDX0DMgqRamQkD2rslZwoFQkA2SwbOytko6xJlE4cfGg==
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-reanimated@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.7.0.tgz#896db2576552ac59d288a1f6c7f00afc171f240c"
