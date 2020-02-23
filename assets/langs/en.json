@@ -7,6 +7,7 @@
   "CONFIRM_PASSWORD": "Confirm password",
   "SIGN_UP": "Sign Up",
   "LOGOUT": "Logout",
+  "GO_BACK": "Go back",
   "FORGOT_PW": "Forgot password?",
   "FIND_PW": "Find Password",
   "NAME": "Name",
@@ -76,5 +77,7 @@
   "PLZ_TRY_AGAIN_LATER": "Please try again later.",
   "TRY_AGAIN": "Try again",
   "NEW_CHAT": "New Chat",
-  "DONE": "Done"
+  "DONE": "Done",
+  "NO_FRIEND": "No friends",
+  "NO_FRIEND_BODY": "You currently do not have any friend. Please search for users and then add to your friend list."
 }
