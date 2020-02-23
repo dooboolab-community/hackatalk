@@ -74,5 +74,7 @@
   "RETURN_TO_SIGNIN": "로그인 화면으로 돌아가기",
   "ERROR_OCCURED": "오류가 발생했습니다.",
   "PLZ_TRY_AGAIN_LATER": "잠시후 다시 시도해주세요.",
-  "TRY_AGAIN": "다시 시도"
+  "TRY_AGAIN": "다시 시도",
+  "NEW_CHAT": "새 채팅",
+  "DONE": "완료"
 }
