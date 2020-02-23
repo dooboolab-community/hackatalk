@@ -112,10 +112,9 @@ function SignIn(props: Props): ReactElement {
         const user = data.signInEmail.user;
 
         if (user && !user.verified) {
-          navigation.navigate('VerifyEmail', {
+          return navigation.navigate('VerifyEmail', {
             email,
           });
-          return;
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);

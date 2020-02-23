@@ -2,7 +2,7 @@ import { Animated, FlatList } from 'react-native';
 import React, { useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import { IC_SEARCH } from '../../utils/Icons';
+import SearchTextInput from '../shared/SearchTextInput';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -16,15 +16,15 @@ export const fakeUsers: User[] = [
     nickname: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMessage: 'online',
+    statusMessage: 'this is my status message......',
     isOnline: true,
   },
   {
     id: '2',
-    nickname: 'geoseong',
+    nickname: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMessage: 'offline',
+    statusMessage: 'hi I am fine -hello-hello-hello',
     isOnline: false,
   },
   {
@@ -32,7 +32,7 @@ export const fakeUsers: User[] = [
     nickname: 'hyochan',
     thumbURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    statusMessage: 'offline',
+    statusMessage: 'hello',
     isOnline: false,
   },
   {
@@ -56,7 +56,7 @@ export const fakeUsers: User[] = [
     nickname: 'admin2',
     thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
     photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    statusMessage: 'online',
+    statusMessage: 'how are you',
     isOnline: true,
   },
   {
@@ -100,6 +100,7 @@ export const fakeUsers: User[] = [
     isOnline: true,
   },
 ];
+
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -112,46 +113,17 @@ const Container = styled.View`
   align-items: center;
   justify-content: center;
 `;
-const StyledSearchView = styled.View`
-  width: 100%;
-  height: 50px;
-  justify-content: center;
-  overflow: hidden;
-  align-items: center;
-  margin-bottom: 4px;
-`;
+
 const StyledAnimatedFlatList = styled(AnimatedFlatList)`
   width: 100%;
   height: 100%;
-`;
-const StyledTextInputWrapper = styled.View`
-  width: 100%;
-  height: 50px;
-  padding: 0 20px;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-`;
-const StyledTextInput = styled.TextInput`
-  width: 100%;
-  height: 36px;
-  color: ${({ theme }): string => theme.fontColor};
-  background-color: ${({ theme }): string => theme.searchBackground};
-  border-radius: 4px;
-  padding-left: 40px;
-  padding-right: 10px;
-`;
-const StyledSearchImage = styled.Image`
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  left: 30px;
 `;
 
 const Screen = (): React.ReactElement => {
   const { state, showModal } = useProfileContext();
   const [searchedUsers] = useState<User[]>(fakeUsers);
   const [users, setUsers] = useState<User[]>(fakeUsers);
+  const [searchText, setSearchText] = useState<string>('');
   const scrollY = new Animated.Value(0);
 
   const {
@@ -184,6 +156,7 @@ const Screen = (): React.ReactElement => {
       });
     }
   };
+
   const renderItem = ({
     item,
     index,
@@ -201,21 +174,25 @@ const Screen = (): React.ReactElement => {
       />
     );
   };
-  const onSearch = (searchText: string): void => {
+
+  const searchUsers = (searchText: string): void => {
     const searchedUser =
       searchText === ''
         ? searchedUsers
         : searchedUsers.filter((item) => item.nickname && item.nickname.includes(searchText));
     setUsers(searchedUser);
   };
-  const onTxtChanged = (txt: string): void => {
-    onSearch(txt);
+
+  const onChangeText = (text: string): void => {
+    searchUsers(text);
+    setSearchText(text);
     scrollY.setValue(0);
     Animated.timing(scrollY, {
       toValue: 100,
       duration: 500,
     }).start();
   };
+
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
@@ -225,23 +202,15 @@ const Screen = (): React.ReactElement => {
       }
       : null;
   };
+
   return (
     <StyledSafeAreaView>
       <Container>
-        <StyledSearchView>
-          <StyledTextInputWrapper>
-            <StyledTextInput
-              testID="text-input"
-              onChangeText={onTxtChanged}
-              underlineColorAndroid="transparent" // android fix
-              autoCapitalize="none"
-              autoCorrect={false}
-              multiline={false}
-              defaultValue={''}
-            />
-            <StyledSearchImage source={IC_SEARCH} />
-          </StyledTextInputWrapper>
-        </StyledSearchView>
+        <SearchTextInput
+          testID="text-input"
+          onChangeText={onChangeText}
+          value={searchText}
+        />
         <StyledAnimatedFlatList
           testID="animated-flatlist"
           // @ts-ignore

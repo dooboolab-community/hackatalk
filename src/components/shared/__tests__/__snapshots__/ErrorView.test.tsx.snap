@@ -29,6 +29,10 @@ exports[`Interaction should simulate onClick 1`] = `
             "flexGrow": 1,
             "flexShrink": 1,
             "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
           },
         ]
       }
@@ -84,7 +88,9 @@ exports[`Interaction should simulate onClick 1`] = `
             },
           ]
         }
-      />
+      >
+        
+      </Text>
       <TouchableOpacity
         activeOpacity={0.2}
         style={
@@ -93,6 +99,7 @@ exports[`Interaction should simulate onClick 1`] = `
             "flexDirection": "row",
             "height": 52,
             "justifyContent": "center",
+            "marginTop": 44,
           }
         }
       >
@@ -168,6 +175,10 @@ exports[`Rendering renders without crashing 1`] = `
             "flexGrow": 1,
             "flexShrink": 1,
             "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
           },
         ]
       }
@@ -223,7 +234,9 @@ exports[`Rendering renders without crashing 1`] = `
             },
           ]
         }
-      />
+      >
+        
+      </Text>
       <TouchableOpacity
         activeOpacity={0.2}
         style={
@@ -232,6 +245,7 @@ exports[`Rendering renders without crashing 1`] = `
             "flexDirection": "row",
             "height": 52,
             "justifyContent": "center",
+            "marginTop": 44,
           }
         }
       >

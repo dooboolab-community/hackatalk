@@ -12,6 +12,7 @@ const Container = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
 `;
 
 const StyledImage = styled.Image`
@@ -44,37 +45,55 @@ const Body = styled.Text`
 
 interface Props {
   children?: ReactChildren;
-  onButtonPressed: () => void;
+  title?: string;
+  body?: string;
+  onButtonPressed?: () => void;
+  buttonText?: string;
+  hideButton?: boolean;
+  testID?: string;
 }
 
 const ErrorView: FC<Props> = (props) => {
-  const { children, onButtonPressed } = props;
+  const {
+    onButtonPressed,
+    title = getString('ERROR_OCCURED'),
+    body = '',
+    buttonText = getString('TRY_AGAIN'),
+    hideButton,
+    testID,
+  } = props;
   const { theme } = useThemeContext();
 
   return <Container>
     <StyledImage source={IC_ERROR}/>
-    <Title>{getString('ERROR_OCCURED')}</Title>
-    <Body>{children}</Body>
-    <Button
-      onPress={onButtonPressed}
-      text={getString('TRY_AGAIN')}
-      containerStyle={{
-        flexDirection: 'row',
-        height: 52,
-        justifyContent: 'center',
-        backgroundColor: theme.btnPrimary,
-      }}
-      style={{
-        width: 156,
-        height: 48,
-        backgroundColor: theme.btnPrimary,
-      }}
-      textStyle={{
-        color: theme.btnPrimaryLight,
-        fontSize: 14,
-        fontWeight: 'bold',
-      }}
-    />
+    <Title>{title}</Title>
+    <Body>{body}</Body>
+    {
+      !hideButton
+        ? <Button
+          testID={testID}
+          onPress={onButtonPressed}
+          text={buttonText}
+          containerStyle={{
+            flexDirection: 'row',
+            marginTop: 44,
+            height: 52,
+            justifyContent: 'center',
+            backgroundColor: theme.btnPrimary,
+          }}
+          style={{
+            width: 156,
+            height: 48,
+            backgroundColor: theme.btnPrimary,
+          }}
+          textStyle={{
+            color: theme.btnPrimaryLight,
+            fontSize: 14,
+            fontWeight: 'bold',
+          }}
+        />
+        : null
+    }
   </Container>;
 };
 

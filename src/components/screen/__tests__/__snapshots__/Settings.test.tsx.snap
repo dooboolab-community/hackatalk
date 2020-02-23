@@ -240,11 +240,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Facebook",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -264,11 +260,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Facebook",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -337,10 +329,6 @@ exports[`[Setting] screen renders without crashing 2`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#ffffff"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -354,7 +342,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
                 ]
               }
             >
-              Signed in with Facebook
+              Signed in with Email
             </Text>
             <Text />
           </TouchableOpacity>
@@ -455,11 +443,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Google",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -479,11 +463,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Google",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -552,10 +532,6 @@ exports[`[Setting] screen renders without crashing 3`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#ffffff"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -569,7 +545,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
                 ]
               }
             >
-              Signed in with Google
+              Signed in with Email
             </Text>
             <Text />
           </TouchableOpacity>
@@ -670,11 +646,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#151E22"
-                    width={24}
-                  />,
-                  "label": "Signed in with Apple",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -694,11 +666,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#151E22"
-                    width={24}
-                  />,
-                  "label": "Signed in with Apple",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -767,10 +735,6 @@ exports[`[Setting] screen renders without crashing 4`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#151E22"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -784,7 +748,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
                 ]
               }
             >
-              Signed in with Apple
+              Signed in with Email
             </Text>
             <Text />
           </TouchableOpacity>

@@ -1,0 +1,193 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 24,
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#707070",
+                "borderRadius": 2,
+                "borderWidth": 2,
+                "height": 20,
+                "justifyContent": "center",
+                "width": 20,
+              },
+              undefined,
+              Object {
+                "borderColor": "#707070",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "width": 12,
+                },
+                Object {
+                  "backgroundColor": "transparent",
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableOpacity>
+      <TouchableWithoutFeedback
+        testID="undefined-nofeed"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "marginLeft": 8,
+              },
+              Object {
+                "color": "#707070",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </TouchableWithoutFeedback>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 24,
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderColor": "#707070",
+                "borderRadius": 2,
+                "borderWidth": 2,
+                "height": 20,
+                "justifyContent": "center",
+                "width": 20,
+              },
+              undefined,
+              Object {
+                "borderColor": "#707070",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 12,
+                  "width": 12,
+                },
+                Object {
+                  "backgroundColor": "transparent",
+                },
+              ]
+            }
+          />
+        </View>
+      </TouchableOpacity>
+      <TouchableWithoutFeedback
+        testID="undefined-nofeed"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "marginLeft": 8,
+              },
+              Object {
+                "color": "#707070",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </TouchableWithoutFeedback>
+    </View>
+  </View>
+</View>
+`;

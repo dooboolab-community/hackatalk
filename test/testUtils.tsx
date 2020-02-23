@@ -1,3 +1,5 @@
+import * as Device from 'expo-device';
+
 import React, { ReactElement } from 'react';
 
 import { AllProviders } from '../src/providers';
@@ -7,9 +9,11 @@ import { User } from '../src/types';
 export const createTestElement = (
   child: ReactElement,
   themeType?: ThemeType,
+  deviceType?: Device.DeviceType,
   user?: User,
 ): ReactElement => (
   <AllProviders
+    initialDeviceType={deviceType}
     initialThemeType={themeType}
     initialAuthUser={user}>
     {child}
@@ -21,6 +25,7 @@ export const createTestProps = (obj: object = {}): object | unknown | any => ({
     navigate: jest.fn(),
     goBack: jest.fn(),
     replace: jest.fn(),
+    setOptions: jest.fn(),
   },
   ...obj,
 });

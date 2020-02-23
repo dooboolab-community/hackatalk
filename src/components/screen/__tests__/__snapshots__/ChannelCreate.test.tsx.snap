@@ -1,0 +1,1711 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <SafeAreaView
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "height": 50,
+              "justifyContent": "center",
+              "marginBottom": 4,
+              "overflow": "hidden",
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "center",
+                "paddingBottom": 0,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+                "paddingTop": 0,
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            defaultValue=""
+            multiline={false}
+            rejectResponderTermination={true}
+            selectionColor="#151A25"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#f3f9ff",
+                  "borderRadius": 4,
+                  "color": "#151A25",
+                  "height": 36,
+                  "paddingLeft": 40,
+                  "paddingRight": 10,
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <Image
+            source={
+              Object {
+                "canInstrument": true,
+                "createTransformer": [Function],
+                "getCacheKey": [Function],
+                "process": [Function],
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "height": 20,
+                  "left": 30,
+                  "position": "absolute",
+                  "width": 20,
+                },
+              ]
+            }
+          />
+        </View>
+      </View>
+      <ScrollView
+        ListEmptyComponent={
+          <ErrorView
+            body="You currently do not have any friend. Please search for users and then add to your friend list."
+            buttonText="Go back"
+            onButtonPressed={[Function]}
+            testID="btn-error"
+            title="No friends"
+          />
+        }
+        contentContainerStyle={null}
+        data={
+          Array [
+            Object {
+              "id": "1",
+              "isOnline": true,
+              "nickname": "admin",
+              "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+              "statusMessage": "this is my status message......",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+            },
+            Object {
+              "id": "2",
+              "isOnline": false,
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
+              "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+              "statusMessage": "hi I am fine",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+            },
+            Object {
+              "id": "3",
+              "isOnline": false,
+              "nickname": "hyochan",
+              "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+              "statusMessage": "hello",
+              "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+            },
+            Object {
+              "id": "4",
+              "isOnline": true,
+              "nickname": "mars",
+              "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+              "statusMessage": "offline",
+              "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+            },
+            Object {
+              "id": "5",
+              "isOnline": true,
+              "nickname": "gordon",
+              "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+              "statusMessage": "offline",
+              "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+            },
+            Object {
+              "id": "6",
+              "isOnline": true,
+              "nickname": "admin2",
+              "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
+              "statusMessage": "how are you",
+              "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
+            },
+            Object {
+              "id": "7",
+              "isOnline": false,
+              "nickname": "geoseong2",
+              "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+              "statusMessage": "offline",
+              "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+            },
+            Object {
+              "id": "8",
+              "isOnline": false,
+              "nickname": "hyochan2",
+              "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+              "statusMessage": "offline",
+              "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+            },
+            Object {
+              "id": "9",
+              "isOnline": true,
+              "nickname": "mars2",
+              "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+              "statusMessage": "offline",
+              "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+            },
+            Object {
+              "id": "10",
+              "isOnline": true,
+              "nickname": "gordon2",
+              "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+              "statusMessage": "offline",
+              "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+            },
+          ]
+        }
+        disableVirtualization={false}
+        horizontal={false}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        numColumns={1}
+        onEndReachedThreshold={2}
+        removeClippedSubviews={false}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "alignSelf": "stretch",
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <ScrollView
+            horizontal={true}
+            style={
+              Object {
+                "paddingHorizontal": 24,
+              }
+            }
+          />
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item0"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  admin
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item1"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item2"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  hyochan
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item3"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  mars
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item4"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  gordon
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item5"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  admin2
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item6"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  geoseong2
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item7"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  hyochan2
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item8"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  mars2
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View
+          style={null}
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TouchableOpacity
+              activeOpacity={0.5}
+              testID="user-list-item9"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffffff",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#e2f2ff",
+                      "flexDirection": "row",
+                      "height": 80,
+                      "justifyContent": "flex-start",
+                      "paddingBottom": 0,
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 0,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                        "marginLeft": 12,
+                        "width": 200,
+                      },
+                    ]
+                  }
+                >
+                  gordon2
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "position": "absolute",
+                        "right": 20,
+                      },
+                    ]
+                  }
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.2}
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "borderColor": "#707070",
+                            "borderRadius": 2,
+                            "borderWidth": 2,
+                            "height": 20,
+                            "justifyContent": "center",
+                            "width": 20,
+                          },
+                          undefined,
+                          Object {
+                            "borderColor": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "height": 12,
+                              "width": 12,
+                            },
+                            Object {
+                              "backgroundColor": "transparent",
+                            },
+                          ]
+                        }
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableWithoutFeedback
+                    testID="undefined-nofeed"
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "#00D4AB",
+                          },
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </TouchableWithoutFeedback>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  </View>
+</View>
+`;

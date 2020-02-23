@@ -63,20 +63,20 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
             <Text />
           </View>
           <Text
+            numberOfLines={1}
             style={
               Array [
                 Object {
                   "color": "#151A25",
                   "fontSize": 14,
                   "marginLeft": 12,
-                  "width": 100,
+                  "width": 200,
                 },
               ]
             }
           >
             
           </Text>
-          <View />
         </View>
       </TouchableOpacity>
     </View>

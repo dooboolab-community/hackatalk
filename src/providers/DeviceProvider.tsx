@@ -11,12 +11,13 @@ interface Context {
 const [useCtx, Provider] = createCtx<Context>();
 
 interface Props {
+  initialDeviceType?: Device.DeviceType;
   children?: React.ReactElement;
 }
 
 function DeviceProvider(props: Props): React.ReactElement {
-  const { children } = props;
-  const [deviceType, setDeviceType] = useState<Device.DeviceType >(Device.DeviceType.PHONE);
+  const { initialDeviceType = Device.DeviceType.PHONE, children } = props;
+  const [deviceType, setDeviceType] = useState<Device.DeviceType >(initialDeviceType);
 
   return (
     <Provider
@@ -30,4 +31,10 @@ function DeviceProvider(props: Props): React.ReactElement {
   );
 }
 
+const DeviceContext = {
+  useDeviceContext: useCtx,
+  DeviceProvider,
+};
+
 export { useCtx as useDeviceContext, DeviceProvider };
+export default DeviceContext;

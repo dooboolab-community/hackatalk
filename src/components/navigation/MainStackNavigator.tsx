@@ -6,6 +6,7 @@ import { StackNavigationOptions, StackNavigationProp, createStackNavigator } fro
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 
 import ChangePw from '../screen/ChangePw';
+import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { IC_SETTING_W } from '../../utils/Icons';
@@ -29,6 +30,7 @@ export type MainStackParamList = {
   Message: { channelId: string };
   Settings: undefined;
   ChangePw: undefined;
+  ChannelCreate: undefined;
   PinchZoomViewPager: undefined;
 };
 
@@ -126,6 +128,11 @@ function MainStackNavigator(): ReactElement {
         name="ChangePw"
         component={ChangePw}
         options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
+      />
+      <Stack.Screen
+        name="ChannelCreate"
+        component={ChannelCreate}
+        options={getSimpleHeader(getString('NEW_CHAT'), theme)}
       />
       <Stack.Screen
         name="PinchZoomViewPager"
