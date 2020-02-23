@@ -68,6 +68,8 @@ export const light = {
   googleIcon: colors.light,
   googleText: colors.light,
   googleBackground: colors.google,
+  errorTitle: colors.gray_60,
+  errorBody: colors.gray_50,
 };
 export type Theme = typeof light;
 export const dark = {
@@ -114,4 +116,6 @@ export const dark = {
   googleIcon: colors.google,
   googleText: colors.dark,
   googleBackground: colors.light,
+  errorTitle: colors.paleBlue_10,
+  errorBody: colors.gray_40,
 };

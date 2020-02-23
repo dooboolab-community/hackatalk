@@ -4,7 +4,7 @@ import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
@@ -15,31 +15,25 @@ import RootNavigator from './components/navigation/RootStackNavigator';
 import SplashScreen from 'react-native-splash-screen';
 import { User } from './types';
 import client from './apollo/Client';
-import styled from 'styled-components/native';
 
-const ErrorContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
+let timer: number;
 
-const ErrorText = styled.Text`
-  color: ${({ theme }): string => theme.error};
-  font-size: 16px;
-`;
-
-function App(): React.ReactElement {
-  const colorScheme = useColorScheme();
-
+function AppWithTheme(): ReactElement {
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
-  const { loading, data, error } = useQuery<{ me: User}, {}>(QUERY_ME);
+  const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
     setDeviceType(deviceType);
   };
+
+  useEffect(() => {
+    return (): void => {
+      if (timer) { clearTimeout(timer); }
+    };
+  }, []);
 
   useEffect(() => {
     if (data && data.me) {
@@ -49,16 +43,14 @@ function App(): React.ReactElement {
     }
     setDevice();
 
-    if (!loading) {
-      SplashScreen.hide();
-    }
+    timer = setTimeout(() => SplashScreen.hide(), 1000);
   }, [loading]);
 
-  if (error) {
-    return <ErrorContainer>
-      <ErrorText>{error.graphQLErrors && error.graphQLErrors[0]?.message}</ErrorText>
-    </ErrorContainer>;
-  }
+  return <RootNavigator />;
+}
+
+function App(): ReactElement {
+  const colorScheme = useColorScheme();
 
   return (
     <ThemeProvider
@@ -67,12 +59,12 @@ function App(): React.ReactElement {
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
     >
-      <RootNavigator />
+      <AppWithTheme/>
     </ThemeProvider>
   );
 }
 
-function ProviderWrapper(): React.ReactElement {
+function ProviderWrapper(): ReactElement {
   return (
     <AppearanceProvider>
       <DeviceProvider>

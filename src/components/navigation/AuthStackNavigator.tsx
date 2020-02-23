@@ -1,8 +1,8 @@
+import React, { ReactElement, useEffect } from 'react';
 import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 
 import { CompositeNavigationProp } from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
-import React from 'react';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
@@ -33,8 +33,9 @@ RootStackNavigationProps<'AuthStack'>
 
 const Stack = createStackNavigator<AuthStackParamList>();
 
-function AuthNavigator(): React.ReactElement {
+function AuthNavigator(): ReactElement {
   const { theme } = useThemeContext();
+
   return (
     <Stack.Navigator
       initialRouteName="SignIn"
