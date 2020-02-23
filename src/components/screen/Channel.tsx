@@ -1,13 +1,15 @@
 import { ChannelType, MessageType } from '../../types';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 
 import ChannelListItem from '../shared/ChannelListItem';
 import EmptyListItem from '../shared/EmptyListItem';
-import { FlatList } from 'react-native';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import { SvgPlus } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.View`
   flex: 1;
@@ -15,6 +17,15 @@ const Container = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const Fab = styled.View`
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  justify-content: center;
+  align-items: center;
+  background: ${({ theme }): string => theme.fab};
 `;
 
 interface Props {
@@ -64,6 +75,7 @@ const initialChannels: ChannelType[] = [
 
 function Channel(): React.ReactElement {
   const [channels] = useState(initialChannels);
+  const { theme } = useThemeContext();
   const navigation = useNavigation();
 
   const onItemClick = (itemId: string): void => {
@@ -104,6 +116,19 @@ function Channel(): React.ReactElement {
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }
       />
+      <TouchableOpacity
+        activeOpacity={0.65}
+        style={{
+          position: 'absolute',
+          right: 20,
+          bottom: 44,
+        }}
+        onPress={(): void => navigation.navigate('ChannelCreate')}
+      >
+        <Fab>
+          <SvgPlus fill={theme.background}/>
+        </Fab>
+      </TouchableOpacity>
     </Container>
   );
 }

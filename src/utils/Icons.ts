@@ -8,7 +8,7 @@ import icLogoW from '../../assets/icons/logo_w.png';
 import icPic from '../../assets/icons/pictoGallery.png';
 import icProfile from '../../assets/icons/profile.png';
 import icProfileW from '../../assets/icons/profile_w.png';
-import icSearch from '../../assets/icons/picSearch.png';
+import icSearch from '../../assets/icons/search.png';
 import icSearchW from '../../assets/icons/search_w.png';
 import icSettingW from '../../assets/icons/setting_w.png';
 import icSmile from '../../assets/icons/icSmile.png';

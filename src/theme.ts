@@ -70,6 +70,7 @@ export const light = {
   googleBackground: colors.google,
   errorTitle: colors.gray_60,
   errorBody: colors.gray_50,
+  fab: colors.blue_70,
 };
 export type Theme = typeof light;
 export const dark = {
@@ -118,4 +119,5 @@ export const dark = {
   googleBackground: colors.light,
   errorTitle: colors.paleBlue_10,
   errorBody: colors.gray_40,
+  fab: colors.paleBlue_10,
 };
