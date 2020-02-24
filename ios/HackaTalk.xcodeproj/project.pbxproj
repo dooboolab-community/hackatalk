@@ -12,15 +12,15 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1E704B0DCA0D7C8015876163 /* libPods-HackaTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F454C05A207ED80C28EF809 /* libPods-HackaTalkTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HackaTalkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HackaTalkTests.m */; };
-		308016C414158AA1256C639C /* libPods-HackaTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F89A5C1E06C1C59D3E2213E /* libPods-HackaTalk.a */; };
 		451C19822400302900BD57D3 /* ForSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C19812400302900BD57D3 /* ForSwift.swift */; };
 		4579FD9F23FEAF310055A43E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4579FD9E23FEAF310055A43E /* StoreKit.framework */; };
 		A1CDECF39D4E0036730DAE5F /* libPods-HackaTalk-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53873E45108CAF973F9CF4D5 /* libPods-HackaTalk-tvOS.a */; };
+		BA2DB3B1AB0331F77FBC4DBD /* Pods_HackaTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C8F0353F78047D92C4B8DD /* Pods_HackaTalk.framework */; };
+		BFA28479C186003ACD4A1D7B /* Pods_HackaTalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B9278813931AEC1B111955 /* Pods_HackaTalkTests.framework */; };
 		EBA5B688C4ADBE6B4AFE5B27 /* libPods-HackaTalk-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0149F9BC4B0DFF5889FD6425 /* libPods-HackaTalk-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +55,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HackaTalk/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HackaTalk/main.m; sourceTree = "<group>"; };
 		1C4C499E12E531AA0F4B81B3 /* Pods-HackaTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.debug.xcconfig"; sourceTree = "<group>"; };
-		1F89A5C1E06C1C59D3E2213E /* libPods-HackaTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackaTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B9278813931AEC1B111955 /* Pods_HackaTalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* HackaTalk-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackaTalk-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HackaTalk-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HackaTalk-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2397AA6B9FB44FDAE5EBAF /* Pods-HackaTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalkTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalkTests/Pods-HackaTalkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,9 +64,9 @@
 		451C19812400302900BD57D3 /* ForSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForSwift.swift; sourceTree = "<group>"; };
 		4579FD9D23FEAEF10055A43E /* HackaTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HackaTalk.entitlements; path = HackaTalk/HackaTalk.entitlements; sourceTree = "<group>"; };
 		4579FD9E23FEAF310055A43E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		46C8F0353F78047D92C4B8DD /* Pods_HackaTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		482A326D909C61EA716F7922 /* Pods-HackaTalk-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-tvOS/Pods-HackaTalk-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		53873E45108CAF973F9CF4D5 /* libPods-HackaTalk-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackaTalk-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F454C05A207ED80C28EF809 /* libPods-HackaTalkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackaTalkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73933D109281863BA031C4AA /* Pods-HackaTalk-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-tvOS.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-tvOS/Pods-HackaTalk-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		88BB3B2DAEC00A8E37DBFDBE /* Pods-HackaTalk-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-tvOSTests/Pods-HackaTalk-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8D58AF9E99AB6727BEC789D /* Pods-HackaTalk-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-tvOSTests/Pods-HackaTalk-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E704B0DCA0D7C8015876163 /* libPods-HackaTalkTests.a in Frameworks */,
+				BFA28479C186003ACD4A1D7B /* Pods_HackaTalkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4579FD9F23FEAF310055A43E /* StoreKit.framework in Frameworks */,
-				308016C414158AA1256C639C /* libPods-HackaTalk.a in Frameworks */,
+				BA2DB3B1AB0331F77FBC4DBD /* Pods_HackaTalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,8 +152,8 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				53873E45108CAF973F9CF4D5 /* libPods-HackaTalk-tvOS.a */,
 				0149F9BC4B0DFF5889FD6425 /* libPods-HackaTalk-tvOSTests.a */,
-				1F89A5C1E06C1C59D3E2213E /* libPods-HackaTalk.a */,
-				6F454C05A207ED80C28EF809 /* libPods-HackaTalkTests.a */,
+				46C8F0353F78047D92C4B8DD /* Pods_HackaTalk.framework */,
+				25B9278813931AEC1B111955 /* Pods_HackaTalkTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -501,12 +501,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-resources.sh",
-				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,15 +519,131 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework",
+				"${BUILT_PRODUCTS_DIR}/EXAppLoaderProvider/EXAppLoaderProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/EXAppleAuthentication/EXAppleAuthentication.framework",
+				"${BUILT_PRODUCTS_DIR}/EXConstants/EXConstants.framework",
+				"${BUILT_PRODUCTS_DIR}/EXDevice/EXDevice.framework",
+				"${BUILT_PRODUCTS_DIR}/EXFacebook/EXFacebook.framework",
+				"${BUILT_PRODUCTS_DIR}/EXFileSystem/EXFileSystem.framework",
+				"${BUILT_PRODUCTS_DIR}/EXFont/EXFont.framework",
+				"${BUILT_PRODUCTS_DIR}/EXGoogleSignIn/EXGoogleSignIn.framework",
+				"${BUILT_PRODUCTS_DIR}/EXImagePicker/EXImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/EXLinearGradient/EXLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/EXLocalization/EXLocalization.framework",
+				"${BUILT_PRODUCTS_DIR}/EXPermissions/EXPermissions.framework",
+				"${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework",
+				"${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework",
+				"${BUILT_PRODUCTS_DIR}/RNKeychain/RNKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/RNLocalize/RNLocalize.framework",
+				"${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework",
+				"${BUILT_PRODUCTS_DIR}/React-Core/React.framework",
+				"${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTActionSheet/RCTActionSheet.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTAnimation/RCTAnimation.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTBlob/RCTBlob.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTImage/RCTImage.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTLinking/RCTLinking.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTNetwork/RCTNetwork.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTSettings/RCTSettings.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTText/RCTText.framework",
+				"${BUILT_PRODUCTS_DIR}/React-RCTVibration/RCTVibration.framework",
+				"${BUILT_PRODUCTS_DIR}/React-cxxreact/cxxreact.framework",
+				"${BUILT_PRODUCTS_DIR}/React-jsi/jsi.framework",
+				"${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework",
+				"${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework",
+				"${BUILT_PRODUCTS_DIR}/UMCore/UMCore.framework",
+				"${BUILT_PRODUCTS_DIR}/UMPermissionsInterface/UMPermissionsInterface.framework",
+				"${BUILT_PRODUCTS_DIR}/UMReactNativeAdapter/UMReactNativeAdapter.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCCommon.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCFoundation.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCPythia.framework",
+				"${BUILT_PRODUCTS_DIR}/VirgilCrypto/VirgilCrypto.framework",
+				"${BUILT_PRODUCTS_DIR}/VirgilCryptoFoundation/VirgilCryptoFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/VirgilCryptoPythia/VirgilCryptoPythia.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/glog/glog.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-appearance/react_native_appearance.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-config/react_native_config.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-splash-screen/react_native_splash_screen.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoubleConversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXAppLoaderProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXAppleAuthentication.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXConstants.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXDevice.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXFacebook.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXFileSystem.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXFont.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXGoogleSignIn.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXLocalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXPermissions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBReactNativeSpec.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTTypeSafety.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCAsyncStorage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCMaskedView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNGestureHandler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNLocalize.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNReanimated.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNScreens.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreModules.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTActionSheet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTAnimation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTBlob.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTLinking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTNetwork.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSettings.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTText.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTVibration.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/cxxreact.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsireact.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/jsinspector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMPermissionsInterface.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMReactNativeAdapter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCCommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCPythia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCrypto.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirgilCryptoPythia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_appearance.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_config.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_safe_area_context.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_splash_screen.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_webview.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
