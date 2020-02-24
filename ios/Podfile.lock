@@ -31,6 +31,7 @@ PODS:
   - EXImagePicker (8.0.2):
     - UMCore
     - UMFileSystemInterface
+    - UMPermissionsInterface
   - EXLinearGradient (8.0.0):
     - UMCore
   - EXLocalization (8.0.0):
@@ -315,7 +316,8 @@ PODS:
   - UMFileSystemInterface (5.0.0)
   - UMFontInterface (5.0.0)
   - UMImageLoaderInterface (5.0.0)
-  - UMPermissionsInterface (5.0.0)
+  - UMPermissionsInterface (5.0.0):
+    - UMCore
   - UMReactNativeAdapter (5.0.0):
     - React-Core
     - UMCore
@@ -582,8 +584,8 @@ SPEC CHECKSUMS:
   EXFacebook: c10f77ea97b3003c29b4f0a49942acc1ba8330b5
   EXFileSystem: 6e0d9bb6cc4ea404dbb8f583c1a8a2dcdf4b83b6
   EXFont: 6187b5ab46ee578d5f8e7f2ea092752e78772235
-  EXGoogleSignIn: a1b520381af8954aa3e9f1e84407c05b016ae479
-  EXImagePicker: 43af317c67da8e0208e96da1e5e2be4f8ec807cc
+  EXGoogleSignIn: f44d83d717ecff1d620050770df1076a187c7dee
+  EXImagePicker: 756b576180d4f24fabc23ab97bc3330fd8385813
   EXLinearGradient: 75f302f9d6484267a3f6d3252df2e7a5f00e716a
   EXLocalization: 6a3ec1e9dda2ec9ba9dcc4a29dd840e5e950115e
   EXPermissions: 9bc08859a675d291e89be9a0870155c27c16ac35
@@ -637,8 +639,8 @@ SPEC CHECKSUMS:
   UMFileSystemInterface: 2ed004c9620f43f0b36b33c42ce668500850d6a4
   UMFontInterface: 24fbc0a02ade6c60ad3ee3e2b5d597c8dcfc3208
   UMImageLoaderInterface: 3976a14c588341228881ff75970fbabf122efca4
-  UMPermissionsInterface: 2abf9f7f4aa7110e27beaf634a7deda2d50ff3d7
-  UMReactNativeAdapter: 230406e3335a8dbd4c9c0e654488a1cf3b44552f
+  UMPermissionsInterface: 0f68a2e35b8951a03fa087e54f33bb2691bbf981
+  UMReactNativeAdapter: fa2c956c93deb92fb918bd920f6c387e61868afe
   UMSensorsInterface: d708a892ef1500bdd9fc3ff03f7836c66d1634d3
   UMTaskManagerInterface: a98e37a576a5220bf43b8faf33cfdc129d2f441d
   VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59
@@ -647,6 +649,6 @@ SPEC CHECKSUMS:
   VSCCrypto: e2c8df89e0dc348c2713554f6a2c8864e1cf412d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: f48676c1e9a4ae4627ea087a05d255cd1b0c9c77
+PODFILE CHECKSUM: be5ddc31d951a49fa60687bb8151e372b6c47a4c
 
 COCOAPODS: 1.8.4
