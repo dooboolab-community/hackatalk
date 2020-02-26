@@ -104,7 +104,10 @@ function Shared({
                   position: 'absolute',
                   right: 20,
                 }}
-                checkColor={theme.tintColor}
+                backgroundColor={theme.background}
+                checkColor={theme.font}
+                inActiveColor={theme.inactiveColor}
+                activeColor={theme.checkBackground}
                 hasChecked={checked}
                 onToggle={onPress}
               />

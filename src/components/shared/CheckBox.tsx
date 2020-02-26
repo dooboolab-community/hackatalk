@@ -6,6 +6,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import { SvgCheck } from '../../utils/Icons';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -26,11 +27,6 @@ const StyledCheck = styled.View`
   justify-content: center;
 `;
 
-const StyledCheckBox = styled.View`
-  height: 12px;
-  width: 12px;
-`;
-
 const StyledText = styled.Text`
   font-size: 14px;
   margin-left: 8px;
@@ -45,13 +41,19 @@ interface Props {
   hasChecked?: boolean;
   text?: string;
   checkColor?: string;
+  activeColor?: string;
+  inActiveColor?: string;
+  backgroundColor?: string;
 }
 
 function Shared(props: Props): ReactElement {
   const {
     containerStyle,
     checkStyle,
-    checkColor = '#707070',
+    checkColor = '#000',
+    activeColor = '#707070',
+    inActiveColor = '#000',
+    backgroundColor = '#fff',
     text = '',
     hasChecked,
     onToggle,
@@ -68,13 +70,21 @@ function Shared(props: Props): ReactElement {
           style={[
             checkStyle,
             {
-              borderColor: checkColor,
+              backgroundColor: hasChecked ? activeColor : backgroundColor,
+              borderColor: inActiveColor,
+              borderWidth: hasChecked ? 0 : 2,
             },
           ]}
         >
-          <StyledCheckBox
-            style={{ backgroundColor: hasChecked ? checkColor : 'transparent' }}
-          ></StyledCheckBox>
+          {
+            hasChecked
+              ? <SvgCheck
+                width={14}
+                height={14}
+                fill={checkColor}
+              />
+              : null
+          }
         </StyledCheck>
       </TouchableOpacity>
       <TouchableWithoutFeedback testID={`${testID}-nofeed`} onPress={onToggle}>
