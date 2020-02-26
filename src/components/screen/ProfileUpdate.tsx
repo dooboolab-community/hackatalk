@@ -80,10 +80,7 @@ function Screen(props: Props): React.ReactElement {
   }, [isUpdating]);
 
   const updateProfile = async (): Promise<void> => {
-    // setIsUpdating(true);
-
-    const message = await encryptMessage(['testUser', 'tester']);
-    console.log('message', message);
+    setIsUpdating(true);
   };
 
   const changeText = (type: string, text: string): void => {
