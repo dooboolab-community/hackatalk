@@ -127,8 +127,8 @@ function SignIn(props: Props): ReactElement {
 
         setUser(user);
       }
-    } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+    } catch (error) {
+      showAlertForGrpahqlError(error.graphQLErrors);
     } finally {
       setIsLoggingIn(false);
     }

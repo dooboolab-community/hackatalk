@@ -784,7 +784,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                     "column": 5,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/react-native/react-native-implementation.js",
                     "lineNumber": 175,
-                    "methodName": "Object.AsyncStorage",
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
@@ -1638,7 +1638,7 @@ exports[`[SignIn] rendering test should render tablet mode without crashing 1`] 
                     "column": 5,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/react-native/react-native-implementation.js",
                     "lineNumber": 175,
-                    "methodName": "Object.AsyncStorage",
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
@@ -2522,7 +2522,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                     "column": 5,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/react-native/react-native-implementation.js",
                     "lineNumber": 175,
-                    "methodName": "Object.AsyncStorage",
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
