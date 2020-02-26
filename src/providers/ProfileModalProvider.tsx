@@ -88,8 +88,6 @@ const reducer: Reducer = (state = initialState, action) => {
         modal.current.setIsFriendAlreadyAdded(
           payload.isFriendAlreadyAdded || false,
         );
-        modal.current.setOnDeleteFriend(payload.onDeleteFriend);
-        modal.current.setOnAddFriend(payload.onAddFriend);
         modal.current.open();
       }
       return {
