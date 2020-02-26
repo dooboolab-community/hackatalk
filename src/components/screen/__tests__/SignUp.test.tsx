@@ -41,6 +41,7 @@ const mockSignUpMutation = [
             email: 'test@email.com',
             nickname: 'nickname',
             statusMessage: 'status',
+            verified: false,
           },
         },
       },

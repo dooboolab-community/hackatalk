@@ -17,6 +17,7 @@ export enum AuthType {
 
 export interface User {
   id: string;
+  virgilToken?: string;
   email?: string;
   nickname?: string;
   name?: string;

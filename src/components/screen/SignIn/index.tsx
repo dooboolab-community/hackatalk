@@ -118,6 +118,7 @@ function SignIn(props: Props): ReactElement {
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);
+        AsyncStorage.setItem('virgil_token', data.signInEmail.user.virgilToken || '');
         setUser(user);
       }
     } catch ({ graphQLErrors }) {
