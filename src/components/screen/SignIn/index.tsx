@@ -121,10 +121,7 @@ function SignIn(props: Props): ReactElement {
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);
-        await AsyncStorage.setItem('virgil_token', data.signInEmail.user.virgilToken || '');
-
-        if (data.signInEmail.user.virgilToken) { initializeEThree(); }
-
+        initializeEThree(data.signInEmail.user.id);
         setUser(user);
       }
     } catch (error) {

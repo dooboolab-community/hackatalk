@@ -38,7 +38,7 @@ function AppWithTheme(): ReactElement {
 
   useEffect(() => {
     if (data && data.me) {
-      initializeEThree();
+      initializeEThree(data.me.id);
       setUser(data.me);
     } else if (data) {
       AsyncStorage.removeItem('token');

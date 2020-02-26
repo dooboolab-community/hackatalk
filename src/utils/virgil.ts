@@ -1,11 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config';
 import { EThree } from '@virgilsecurity/e3kit-native';
+
+const { ROOT_URL } = Config;
 
 export let eThree: EThree;
 
-const getVirgilToken = async (): Promise<string> => {
-  const virgilToken = await AsyncStorage.getItem('virgil_token');
-  return virgilToken || '';
+export const getTokenFactory = (identity: string): () => Promise<string> => {
+  return (): Promise<string> =>
+    fetch(`${ROOT_URL}/virgil-jwt/${encodeURIComponent(identity)}`)
+      .then((res) => res.text());
 };
 
 export const encryptMessage = async (users: string[]): Promise<string | Buffer> => {
@@ -34,8 +38,9 @@ export const decryptMessage = async (users: string[], encryptedMessage: string):
   return decryptedMessage;
 };
 
-export const initializeEThree = async (): Promise<void> => {
+export const initializeEThree = async (userId: string): Promise<void> => {
+  const getToken = getTokenFactory(userId);
   // @ts-ignore ==> https://github.com/VirgilSecurity/virgil-e3kit-js/issues/82
-  eThree = await EThree.initialize(getVirgilToken, { AsyncStorage });
-  await eThree.register();
+  eThree = await EThree.initialize(getToken, { AsyncStorage });
+  eThree.register();
 };

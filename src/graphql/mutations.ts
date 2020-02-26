@@ -42,7 +42,6 @@ export const MUTATION_SIGN_IN = gql`
       token
       user {
         id
-        virgilToken
         email
         nickname
         verified
