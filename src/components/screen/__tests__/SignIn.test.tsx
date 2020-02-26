@@ -54,7 +54,6 @@ const mockSignInEmail = [
               email: 'test@email.com',
               nickname: 'nickname',
               statusMessage: 'status',
-              virgilToken: 'virgil',
               verified: true,
             },
           },
@@ -75,7 +74,6 @@ const mockSignInEmail = [
               email: 'test@email.com',
               nickname: 'nickname',
               statusMessage: 'status',
-              virgilToken: 'virgil',
               verified: false,
             },
           },
@@ -461,7 +459,7 @@ describe('[SignIn] Facebook Signin', () => {
       token: 'testToken',
     });
 
-    await wait(() => expect(fetch).toHaveBeenCalledTimes(1));
+    await wait(() => expect(fetch).toHaveBeenCalledTimes(2));
   });
 
   it('should cancel signin with facebook', async () => {
