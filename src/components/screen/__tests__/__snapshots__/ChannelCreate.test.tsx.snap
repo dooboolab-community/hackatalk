@@ -278,6 +278,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -291,6 +292,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -425,6 +427,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -438,6 +441,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -572,6 +576,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -585,6 +590,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -719,6 +725,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -732,6 +739,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -866,6 +874,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -879,6 +888,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1013,6 +1023,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1026,6 +1037,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1160,6 +1172,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1173,6 +1186,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1307,6 +1321,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1320,6 +1335,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1454,6 +1470,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1467,6 +1484,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1601,6 +1619,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1614,6 +1633,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },

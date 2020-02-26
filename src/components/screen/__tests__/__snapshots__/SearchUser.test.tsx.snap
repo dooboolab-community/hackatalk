@@ -555,6 +555,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -568,6 +569,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -645,6 +647,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -658,6 +661,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -735,6 +739,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -748,6 +753,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -825,6 +831,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -838,6 +845,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -915,6 +923,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -928,6 +937,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1005,6 +1015,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1018,6 +1029,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1095,6 +1107,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1108,6 +1121,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1185,6 +1199,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1198,6 +1213,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1275,6 +1291,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1288,6 +1305,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1365,6 +1383,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1378,6 +1397,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1972,6 +1992,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1985,6 +2006,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2062,6 +2084,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2075,6 +2098,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2152,6 +2176,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2165,6 +2190,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2242,6 +2268,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2255,6 +2282,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2332,6 +2360,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2345,6 +2374,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2422,6 +2452,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2435,6 +2466,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2512,6 +2544,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2525,6 +2558,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2602,6 +2636,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2615,6 +2650,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2692,6 +2728,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2705,6 +2742,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -2782,6 +2820,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2795,6 +2834,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3389,6 +3429,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3402,6 +3443,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3479,6 +3521,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3492,6 +3535,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3569,6 +3613,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3582,6 +3627,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3659,6 +3705,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3672,6 +3719,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3749,6 +3797,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3762,6 +3811,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3839,6 +3889,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3852,6 +3903,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -3929,6 +3981,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3942,6 +3995,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -4019,6 +4073,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -4032,6 +4087,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -4109,6 +4165,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -4122,6 +4179,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -4199,6 +4257,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -4212,6 +4271,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -4548,6 +4608,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4561,6 +4622,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -4638,6 +4700,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4651,6 +4714,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -4728,6 +4792,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4741,6 +4806,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -4818,6 +4884,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4831,6 +4898,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -4908,6 +4976,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4921,6 +4990,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -4998,6 +5068,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5011,6 +5082,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -5088,6 +5160,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5101,6 +5174,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -5178,6 +5252,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5191,6 +5266,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -5268,6 +5344,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5281,6 +5358,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },
@@ -5358,6 +5436,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5371,6 +5450,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
                           "width": 200,
                         },

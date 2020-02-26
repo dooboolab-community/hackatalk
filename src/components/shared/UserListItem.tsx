@@ -1,7 +1,7 @@
-import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Image, ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import CheckBox from './CheckBox';
-import { Ionicons } from '@expo/vector-icons';
+import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
 import { User } from '../../types';
 import styled from 'styled-components/native';
@@ -35,12 +35,14 @@ const Wrapper = styled.View`
 const StyledImage = styled.Image`
   width: 40px;
   height: 40px;
+  border-radius: 20px;
 `;
 
 const StyledText = styled.Text`
   margin-left: 12px;
   width: 200px;
   font-size: 14px;
+  font-weight: bold;
   color: ${({ theme }): string => theme.fontColor};
 `;
 
@@ -87,7 +89,9 @@ function Shared({
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="ios-person" size={24} color={theme.fontColor} />
+                <StyledImage
+                  source={IC_NO_IMAGE}
+                />
               </View>
           }
           <StyledText
