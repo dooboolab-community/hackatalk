@@ -15,6 +15,7 @@ import RootNavigator from './components/navigation/RootStackNavigator';
 import SplashScreen from 'react-native-splash-screen';
 import { User } from './types';
 import client from './apollo/Client';
+import { initializeEThree } from './utils/virgil';
 
 let timer: number;
 
@@ -37,6 +38,7 @@ function AppWithTheme(): ReactElement {
 
   useEffect(() => {
     if (data && data.me) {
+      initializeEThree();
       setUser(data.me);
     } else if (data) {
       AsyncStorage.removeItem('token');
