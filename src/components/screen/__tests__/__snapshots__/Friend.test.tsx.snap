@@ -130,6 +130,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -138,6 +139,10 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -550,6 +555,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -558,6 +564,10 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
