@@ -18,18 +18,17 @@ import ProfileUpdate from '../ProfileUpdate';
 let props: any;
 let component: ReactElement;
 
-const BUTTON_INDEX_LAUNCH_CAMERA = 0;
-const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
-
-const userPressLuanchCamera = true;
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): object => {
+    const userPressLaunchCamera = true;
+    const BUTTON_INDEX_LAUNCH_CAMERA = 0;
+    const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
     return {
       showActionSheetWithOptions: (
         options: object,
         callback: (index: number) => void,
       ): void => {
-        if (userPressLuanchCamera) {
+        if (userPressLaunchCamera) {
           callback(BUTTON_INDEX_LAUNCH_CAMERA);
         }
         callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY);
@@ -108,7 +107,7 @@ describe('interaction', () => {
   });
 
   it('should launch camera when user select "Take a picture"', async () => {
-    // userPressLuanchCamera = true;
+    // userPressLaunchCamera = true;
     const profileBtn = await waitForElement(() =>
       testingLib.queryByTestId('button-user-icon'),
     );
@@ -119,7 +118,7 @@ describe('interaction', () => {
   });
 
   it('should open album when user select "Select from Album"', async () => {
-    // userPressLuanchCamera = false;
+    // userPressLaunchCamera = false;
     const profileBtn = await waitForElement(() =>
       testingLib.queryByTestId('button-user-icon'),
     );

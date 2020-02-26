@@ -31,6 +31,7 @@ PODS:
   - EXImagePicker (8.0.2):
     - UMCore
     - UMFileSystemInterface
+    - UMPermissionsInterface
   - EXLinearGradient (8.0.0):
     - UMCore
   - EXLocalization (8.0.0):
@@ -292,6 +293,8 @@ PODS:
     - React
   - RNGestureHandler (1.6.0):
     - React
+  - RNKeychain (4.0.5):
+    - React
   - RNLocalize (1.3.3):
     - React
   - RNReanimated (1.7.0):
@@ -300,6 +303,11 @@ PODS:
     - React
   - RNSVG (11.0.1):
     - React
+  - RNVirgilCrypto (0.5.3):
+    - React
+    - VirgilCrypto (= 5.3.0)
+    - VirgilCryptoFoundation (= 0.12.0)
+    - VirgilCryptoPythia (= 0.12.0)
   - UMBarCodeScannerInterface (5.0.0)
   - UMCameraInterface (5.0.0)
   - UMConstantsInterface (5.0.0)
@@ -308,13 +316,27 @@ PODS:
   - UMFileSystemInterface (5.0.0)
   - UMFontInterface (5.0.0)
   - UMImageLoaderInterface (5.0.0)
-  - UMPermissionsInterface (5.0.0)
+  - UMPermissionsInterface (5.0.0):
+    - UMCore
   - UMReactNativeAdapter (5.0.0):
     - React-Core
     - UMCore
     - UMFontInterface
   - UMSensorsInterface (5.0.0)
   - UMTaskManagerInterface (5.0.0)
+  - VirgilCrypto (5.3.0):
+    - VirgilCryptoFoundation (~> 0.12.0)
+  - VirgilCryptoFoundation (0.12.0):
+    - VSCCrypto/Common (= 0.12.0)
+    - VSCCrypto/Foundation (= 0.12.0)
+  - VirgilCryptoPythia (0.12.0):
+    - VirgilCryptoFoundation (= 0.12.0)
+    - VSCCrypto/Common (= 0.12.0)
+    - VSCCrypto/Foundation (= 0.12.0)
+    - VSCCrypto/Pythia (= 0.12.0)
+  - VSCCrypto/Common (0.12.0)
+  - VSCCrypto/Foundation (0.12.0)
+  - VSCCrypto/Pythia (0.12.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -365,10 +387,12 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVirgilCrypto (from `../node_modules/react-native-virgil-crypto`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
   - UMConstantsInterface (from `../node_modules/unimodules-constants-interface/ios`)
@@ -392,6 +416,10 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - VirgilCrypto
+    - VirgilCryptoFoundation
+    - VirgilCryptoPythia
+    - VSCCrypto
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -494,6 +522,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
   RNReanimated:
@@ -502,6 +532,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVirgilCrypto:
+    :path: "../node_modules/react-native-virgil-crypto"
   UMBarCodeScannerInterface:
     :path: !ruby/object:Pathname
     path: "../node_modules/unimodules-barcode-scanner-interface/ios"
@@ -552,8 +584,8 @@ SPEC CHECKSUMS:
   EXFacebook: c10f77ea97b3003c29b4f0a49942acc1ba8330b5
   EXFileSystem: 6e0d9bb6cc4ea404dbb8f583c1a8a2dcdf4b83b6
   EXFont: 6187b5ab46ee578d5f8e7f2ea092752e78772235
-  EXGoogleSignIn: a1b520381af8954aa3e9f1e84407c05b016ae479
-  EXImagePicker: 43af317c67da8e0208e96da1e5e2be4f8ec807cc
+  EXGoogleSignIn: f44d83d717ecff1d620050770df1076a187c7dee
+  EXImagePicker: 756b576180d4f24fabc23ab97bc3330fd8385813
   EXLinearGradient: 75f302f9d6484267a3f6d3252df2e7a5f00e716a
   EXLocalization: 6a3ec1e9dda2ec9ba9dcc4a29dd840e5e950115e
   EXPermissions: 9bc08859a675d291e89be9a0870155c27c16ac35
@@ -593,10 +625,12 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 5d83b49070d41fd72906a116c5e7bdac4ea3a814
   RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
   RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
+  RNKeychain: 840f8e6f13be0576202aefcdffd26a4f54bfe7b5
   RNLocalize: a734b53c45e77acd3ffb78b92e63bb4d6cd13257
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
   RNScreens: b9ea46d65967a1f74b9aaa1229d0f74f58d216b5
   RNSVG: 67f1f12dae2cef6ed59a42cae74a6b8f5a9e7b46
+  RNVirgilCrypto: 670c8e3be15f533e80d11d56df6bba3e82bf4570
   UMBarCodeScannerInterface: 3802c8574ef119c150701d679ab386e2266d6a54
   UMCameraInterface: 985d301f688ed392f815728f0dd906ca34b7ccb1
   UMConstantsInterface: bda5f8bd3403ad99e663eb3c4da685d063c5653c
@@ -605,12 +639,16 @@ SPEC CHECKSUMS:
   UMFileSystemInterface: 2ed004c9620f43f0b36b33c42ce668500850d6a4
   UMFontInterface: 24fbc0a02ade6c60ad3ee3e2b5d597c8dcfc3208
   UMImageLoaderInterface: 3976a14c588341228881ff75970fbabf122efca4
-  UMPermissionsInterface: 2abf9f7f4aa7110e27beaf634a7deda2d50ff3d7
-  UMReactNativeAdapter: 230406e3335a8dbd4c9c0e654488a1cf3b44552f
+  UMPermissionsInterface: 0f68a2e35b8951a03fa087e54f33bb2691bbf981
+  UMReactNativeAdapter: fa2c956c93deb92fb918bd920f6c387e61868afe
   UMSensorsInterface: d708a892ef1500bdd9fc3ff03f7836c66d1634d3
   UMTaskManagerInterface: a98e37a576a5220bf43b8faf33cfdc129d2f441d
+  VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59
+  VirgilCryptoFoundation: 79f23a7ab6db642268d31bc63b0cf54db416f089
+  VirgilCryptoPythia: 4234b6f84de6fd2448faf6628ecdce84f43650a4
+  VSCCrypto: e2c8df89e0dc348c2713554f6a2c8864e1cf412d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: ad945196a2690e21b4337fe6fd5a8753ca3555fc
+PODFILE CHECKSUM: be5ddc31d951a49fa60687bb8151e372b6c47a4c
 
 COCOAPODS: 1.8.4

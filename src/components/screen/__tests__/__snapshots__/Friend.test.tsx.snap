@@ -130,6 +130,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -138,6 +139,10 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -373,7 +378,25 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                   }
                 }
               >
-                <Text />
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
               </View>
               <Text
                 numberOfLines={1}
@@ -382,6 +405,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     Object {
                       "color": "#151A25",
                       "fontSize": 14,
+                      "fontWeight": "bold",
                       "marginLeft": 12,
                       "width": 200,
                     },
@@ -550,6 +574,7 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
               </View>
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -558,6 +583,10 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -904,6 +933,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                 style={
                   Array [
                     Object {
+                      "borderRadius": 20,
                       "height": 40,
                       "width": 40,
                     },
@@ -917,6 +947,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     Object {
                       "color": "#151A25",
                       "fontSize": 14,
+                      "fontWeight": "bold",
                       "marginLeft": 12,
                       "width": 200,
                     },
@@ -995,7 +1026,25 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                   }
                 }
               >
-                <Text />
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
               </View>
               <Text
                 numberOfLines={1}
@@ -1004,6 +1053,7 @@ exports[`[Friend] interaction add friends should be added to the friend list whe
                     Object {
                       "color": "#151A25",
                       "fontSize": 14,
+                      "fontWeight": "bold",
                       "marginLeft": 12,
                       "width": 200,
                     },

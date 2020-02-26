@@ -16,6 +16,7 @@ import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
 import { getString } from '../../../../STRINGS';
+import { initializeEThree } from '../../../utils/virgil';
 import renderMobile from './mobile';
 import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
@@ -64,6 +65,9 @@ export interface Variables {
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
+  const { theme, changeThemeType, themeType } = useThemeContext();
+  const { deviceType } = useDeviceContext();
+
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
@@ -72,9 +76,8 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-  const { theme, changeThemeType, themeType } = useThemeContext();
+
   const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, SignInEmailInput>(MUTATION_SIGN_IN);
-  const { deviceType } = useDeviceContext();
 
   const initAsync = async (): Promise<void> => {
     await GoogleSignIn.initAsync({
@@ -118,10 +121,14 @@ function SignIn(props: Props): ReactElement {
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);
+        await AsyncStorage.setItem('virgil_token', data.signInEmail.user.virgilToken || '');
+
+        if (data.signInEmail.user.virgilToken) { initializeEThree(); }
+
         setUser(user);
       }
-    } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+    } catch (error) {
+      showAlertForGrpahqlError(error.graphQLErrors);
     } finally {
       setIsLoggingIn(false);
     }

@@ -278,6 +278,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -291,6 +292,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -337,25 +339,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -368,7 +358,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -425,6 +415,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -438,6 +429,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -484,25 +476,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -515,7 +495,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -572,6 +552,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -585,6 +566,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -631,25 +613,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -662,7 +632,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -719,6 +689,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -732,6 +703,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -778,25 +750,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -809,7 +769,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -866,6 +826,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -879,6 +840,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -925,25 +887,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -956,7 +906,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -1013,6 +963,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1026,6 +977,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1072,25 +1024,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -1103,7 +1043,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -1160,6 +1100,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1173,6 +1114,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1219,25 +1161,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -1250,7 +1180,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -1307,6 +1237,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1320,6 +1251,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1366,25 +1298,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -1397,7 +1317,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -1454,6 +1374,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1467,6 +1388,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1513,25 +1435,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -1544,7 +1454,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }
@@ -1601,6 +1511,7 @@ exports[`Rendering renders without crashing 1`] = `
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1614,6 +1525,7 @@ exports[`Rendering renders without crashing 1`] = `
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
                         "width": 200,
                       },
@@ -1660,25 +1572,13 @@ exports[`Rendering renders without crashing 1`] = `
                           },
                           undefined,
                           Object {
-                            "borderColor": "#00D4AB",
+                            "backgroundColor": "#ffffff",
+                            "borderColor": "#676c7a",
+                            "borderWidth": 2,
                           },
                         ]
                       }
-                    >
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "height": 12,
-                              "width": 12,
-                            },
-                            Object {
-                              "backgroundColor": "transparent",
-                            },
-                          ]
-                        }
-                      />
-                    </View>
+                    />
                   </TouchableOpacity>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
@@ -1691,7 +1591,7 @@ exports[`Rendering renders without crashing 1`] = `
                             "marginLeft": 8,
                           },
                           Object {
-                            "color": "#00D4AB",
+                            "color": "#2E2E2E",
                           },
                         ]
                       }

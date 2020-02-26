@@ -52,25 +52,13 @@ exports[`Interaction should simulate onClick 1`] = `
               },
               undefined,
               Object {
-                "borderColor": "#707070",
+                "backgroundColor": "#fff",
+                "borderColor": "#000",
+                "borderWidth": 2,
               },
             ]
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "height": 12,
-                  "width": 12,
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                },
-              ]
-            }
-          />
-        </View>
+        />
       </TouchableOpacity>
       <TouchableWithoutFeedback
         testID="undefined-nofeed"
@@ -83,7 +71,7 @@ exports[`Interaction should simulate onClick 1`] = `
                 "marginLeft": 8,
               },
               Object {
-                "color": "#707070",
+                "color": "#000",
               },
             ]
           }
@@ -148,25 +136,13 @@ exports[`Rendering renders without crashing 1`] = `
               },
               undefined,
               Object {
-                "borderColor": "#707070",
+                "backgroundColor": "#fff",
+                "borderColor": "#000",
+                "borderWidth": 2,
               },
             ]
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "height": 12,
-                  "width": 12,
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                },
-              ]
-            }
-          />
-        </View>
+        />
       </TouchableOpacity>
       <TouchableWithoutFeedback
         testID="undefined-nofeed"
@@ -179,7 +155,7 @@ exports[`Rendering renders without crashing 1`] = `
                 "marginLeft": 8,
               },
               Object {
-                "color": "#707070",
+                "color": "#000",
               },
             ]
           }

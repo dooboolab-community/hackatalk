@@ -60,7 +60,25 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
               }
             }
           >
-            <Text />
+            <Image
+              source={
+                Object {
+                  "canInstrument": true,
+                  "createTransformer": [Function],
+                  "getCacheKey": [Function],
+                  "process": [Function],
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "borderRadius": 20,
+                    "height": 40,
+                    "width": 40,
+                  },
+                ]
+              }
+            />
           </View>
           <Text
             numberOfLines={1}
@@ -69,6 +87,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
                 Object {
                   "color": "#151A25",
                   "fontSize": 14,
+                  "fontWeight": "bold",
                   "marginLeft": 12,
                   "width": 200,
                 },
