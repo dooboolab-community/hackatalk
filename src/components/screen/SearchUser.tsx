@@ -138,7 +138,7 @@ const Screen = (): React.ReactElement => {
         user,
         deleteMode,
         isFriendAlreadyAdded: deleteMode,
-        onDeleteFriend: () => (): void => {
+        onDeleteFriend: (): void => {
           if (state.modal && state.modal.current) {
             const profileModal = state.modal.current;
             profileModal.showAddBtn(true);
@@ -146,7 +146,7 @@ const Screen = (): React.ReactElement => {
             profileModal.setIsFriendAlreadyAdded(false);
           }
         },
-        onAddFriend: () => (): void => {
+        onAddFriend: (): void => {
           if (state.modal && state.modal.current) {
             const profileModal = state.modal.current;
             profileModal.showAddBtn(false);

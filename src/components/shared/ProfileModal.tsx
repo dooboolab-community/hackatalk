@@ -140,10 +140,16 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
 
   const addFriend = (): void => {
     ctxAddFriend(user);
+    if (modal) {
+      modal.close();
+    }
   };
 
   const deleteFriend = (): void => {
     ctxDeleteFriend(user);
+    if (modal) {
+      modal.close();
+    }
   };
 
   useImperativeHandle(ref, () => ({
