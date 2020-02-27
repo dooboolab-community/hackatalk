@@ -540,6 +540,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               />
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -548,6 +549,10 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -938,6 +943,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               />
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -946,6 +952,10 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
