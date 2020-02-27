@@ -168,7 +168,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              this is my status message......
+              online
             </Text>
           </View>
           <View
@@ -277,31 +277,89 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
       </View>
     </View>
   </View>
-  <SafeAreaView
+  <View
     style={
       Array [
         Object {
+          "alignItems": "center",
           "backgroundColor": "#ffffff",
           "flexBasis": 0,
+          "flexDirection": "column",
           "flexGrow": 1,
           "flexShrink": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 0,
         },
       ]
     }
   >
-    <View
+    <Image
+      source={
+        Object {
+          "canInstrument": true,
+          "createTransformer": [Function],
+          "getCacheKey": [Function],
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 110,
+            "width": 116,
+          },
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#676c7a",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "bold",
+            "lineHeight": 24,
+            "marginBottom": 2,
+            "marginTop": 16,
+          },
+        ]
+      }
+    >
+      Error occured.
+    </Text>
+    <Text
       style={
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "transparent",
-            "flexBasis": 0,
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
+            "color": "#8f94a3",
+            "display": "flex",
+            "fontSize": 14,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+            "letterSpacing": -0.25,
+            "lineHeight": 20,
+            "textAlign": "center",
           },
         ]
+      }
+    >
+      Network error: Unexpected end of JSON input
+    </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "backgroundColor": "#1E6EFA",
+          "flexDirection": "row",
+          "height": 52,
+          "justifyContent": "center",
+          "marginTop": 44,
+        }
       }
     >
       <View
@@ -309,1131 +367,40 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           Array [
             Object {
               "alignItems": "center",
-              "height": 48,
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
               "justifyContent": "center",
-              "marginBottom": 4,
-              "overflow": "hidden",
-              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#1E6EFA",
+              "height": 48,
+              "width": 156,
             },
           ]
         }
       >
-        <View
+        <Text
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 58,
-                "justifyContent": "center",
-                "paddingBottom": 0,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 0,
-                "width": "100%",
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "fontWeight": "bold",
               },
             ]
           }
         >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            defaultValue=""
-            multiline={false}
-            rejectResponderTermination={true}
-            selectionColor="#151A25"
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#f3f9ff",
-                  "borderRadius": 4,
-                  "color": "#151A25",
-                  "paddingLeft": 40,
-                  "paddingRight": 10,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="text-input"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <Image
-            source={
-              Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "height": 20,
-                  "left": 30,
-                  "position": "absolute",
-                  "width": 20,
-                },
-              ]
-            }
-          />
-        </View>
+          Try again
+        </Text>
       </View>
-      <ScrollView
-        ListEmptyComponent={
-          <Shared
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "flex": 1,
-                "justifyContent": "center",
-                "width": "100%",
-              }
-            }
-          >
-            No content
-          </Shared>
-        }
-        data={
-          Array [
-            Object {
-              "id": "1",
-              "isOnline": true,
-              "nickname": "admin",
-              "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "this is my status message......",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            },
-            Object {
-              "id": "2",
-              "isOnline": false,
-              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
-              "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine -hello-hello-hello",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            },
-            Object {
-              "id": "3",
-              "isOnline": false,
-              "nickname": "hyochan",
-              "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "hello",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-            },
-            Object {
-              "id": "4",
-              "isOnline": true,
-              "nickname": "mars",
-              "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-              "statusMessage": "offline",
-              "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-            },
-            Object {
-              "id": "5",
-              "isOnline": true,
-              "nickname": "gordon",
-              "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-              "statusMessage": "offline",
-              "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-            },
-            Object {
-              "id": "6",
-              "isOnline": true,
-              "nickname": "admin2",
-              "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "how are you",
-              "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-            },
-            Object {
-              "id": "7",
-              "isOnline": false,
-              "nickname": "geoseong2",
-              "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-              "statusMessage": "offline",
-              "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-            },
-            Object {
-              "id": "8",
-              "isOnline": false,
-              "nickname": "hyochan2",
-              "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-              "statusMessage": "offline",
-              "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-            },
-            Object {
-              "id": "9",
-              "isOnline": true,
-              "nickname": "mars2",
-              "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-              "statusMessage": "offline",
-              "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-            },
-            Object {
-              "id": "10",
-              "isOnline": true,
-              "nickname": "gordon2",
-              "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-              "statusMessage": "offline",
-              "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        numColumns={1}
-        onEndReachedThreshold={2}
-        removeClippedSubviews={false}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={Array []}
-        style={
-          Object {
-            "height": "100%",
-            "transform": Array [
-              Object {
-                "translateY": 0,
-              },
-            ],
-            "width": "100%",
-          }
-        }
-        testID="animated-flatlist"
-        testObj={
-          Object {
-            "scrollY": 0,
-          }
-        }
-        updateCellsBatchingPeriod={50}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item0"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  admin
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  this is my status message......
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item1"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  hi I am fine -hello-hello-hello
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item2"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  hyochan
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  hello
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item3"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  mars
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item4"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  gordon
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item5"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  admin2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  how are you
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item6"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  geoseong2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item7"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  hyochan2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item8"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  mars2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item9"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  gordon2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  </SafeAreaView>
+    </TouchableOpacity>
+  </View>
 </View>
 `;
 
@@ -1562,7 +529,6 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 style={
                   Array [
                     Object {
-                      "borderRadius": 40,
                       "height": 80,
                       "width": 80,
                     },
@@ -1574,7 +540,6 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               />
             </TouchableOpacity>
             <Text
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -1583,10 +548,6 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
-                    "paddingBottom": 0,
-                    "paddingLeft": 32,
-                    "paddingRight": 32,
-                    "paddingTop": 0,
                   },
                 ]
               }
@@ -1605,7 +566,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              this is my status message......
+              online
             </Text>
           </View>
           <View
@@ -1714,31 +675,89 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
       </View>
     </View>
   </View>
-  <SafeAreaView
+  <View
     style={
       Array [
         Object {
+          "alignItems": "center",
           "backgroundColor": "#ffffff",
           "flexBasis": 0,
+          "flexDirection": "column",
           "flexGrow": 1,
           "flexShrink": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 0,
         },
       ]
     }
   >
-    <View
+    <Image
+      source={
+        Object {
+          "canInstrument": true,
+          "createTransformer": [Function],
+          "getCacheKey": [Function],
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 110,
+            "width": 116,
+          },
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#676c7a",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "bold",
+            "lineHeight": 24,
+            "marginBottom": 2,
+            "marginTop": 16,
+          },
+        ]
+      }
+    >
+      Error occured.
+    </Text>
+    <Text
       style={
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "transparent",
-            "flexBasis": 0,
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
+            "color": "#8f94a3",
+            "display": "flex",
+            "fontSize": 14,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+            "letterSpacing": -0.25,
+            "lineHeight": 20,
+            "textAlign": "center",
           },
         ]
+      }
+    >
+      Network error: Unexpected end of JSON input
+    </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "backgroundColor": "#1E6EFA",
+          "flexDirection": "row",
+          "height": 52,
+          "justifyContent": "center",
+          "marginTop": 44,
+        }
       }
     >
       <View
@@ -1746,1131 +765,40 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           Array [
             Object {
               "alignItems": "center",
-              "height": 48,
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
               "justifyContent": "center",
-              "marginBottom": 4,
-              "overflow": "hidden",
-              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#1E6EFA",
+              "height": 48,
+              "width": 156,
             },
           ]
         }
       >
-        <View
+        <Text
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 58,
-                "justifyContent": "center",
-                "paddingBottom": 0,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 0,
-                "width": "100%",
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "fontWeight": "bold",
               },
             ]
           }
         >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            defaultValue=""
-            multiline={false}
-            rejectResponderTermination={true}
-            selectionColor="#151A25"
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#f3f9ff",
-                  "borderRadius": 4,
-                  "color": "#151A25",
-                  "paddingLeft": 40,
-                  "paddingRight": 10,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="text-input"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <Image
-            source={
-              Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "height": 20,
-                  "left": 30,
-                  "position": "absolute",
-                  "width": 20,
-                },
-              ]
-            }
-          />
-        </View>
+          Try again
+        </Text>
       </View>
-      <ScrollView
-        ListEmptyComponent={
-          <Shared
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "flex": 1,
-                "justifyContent": "center",
-                "width": "100%",
-              }
-            }
-          >
-            No content
-          </Shared>
-        }
-        data={
-          Array [
-            Object {
-              "id": "1",
-              "isOnline": true,
-              "nickname": "admin",
-              "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "this is my status message......",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            },
-            Object {
-              "id": "2",
-              "isOnline": false,
-              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
-              "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine -hello-hello-hello",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            },
-            Object {
-              "id": "3",
-              "isOnline": false,
-              "nickname": "hyochan",
-              "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "hello",
-              "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-            },
-            Object {
-              "id": "4",
-              "isOnline": true,
-              "nickname": "mars",
-              "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-              "statusMessage": "offline",
-              "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-            },
-            Object {
-              "id": "5",
-              "isOnline": true,
-              "nickname": "gordon",
-              "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-              "statusMessage": "offline",
-              "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-            },
-            Object {
-              "id": "6",
-              "isOnline": true,
-              "nickname": "admin2",
-              "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "how are you",
-              "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-            },
-            Object {
-              "id": "7",
-              "isOnline": false,
-              "nickname": "geoseong2",
-              "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-              "statusMessage": "offline",
-              "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-            },
-            Object {
-              "id": "8",
-              "isOnline": false,
-              "nickname": "hyochan2",
-              "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-              "statusMessage": "offline",
-              "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-            },
-            Object {
-              "id": "9",
-              "isOnline": true,
-              "nickname": "mars2",
-              "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-              "statusMessage": "offline",
-              "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-            },
-            Object {
-              "id": "10",
-              "isOnline": true,
-              "nickname": "gordon2",
-              "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-              "statusMessage": "offline",
-              "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        numColumns={1}
-        onEndReachedThreshold={2}
-        removeClippedSubviews={false}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={Array []}
-        style={
-          Object {
-            "height": "100%",
-            "transform": Array [
-              Object {
-                "translateY": 0,
-              },
-            ],
-            "width": "100%",
-          }
-        }
-        testID="animated-flatlist"
-        testObj={
-          Object {
-            "scrollY": 0,
-          }
-        }
-        updateCellsBatchingPeriod={50}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item0"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  admin
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  this is my status message......
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item1"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  hi I am fine -hello-hello-hello
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item2"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  hyochan
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  hello
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item3"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  mars
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item4"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  gordon
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item5"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  admin2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  how are you
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item6"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  geoseong2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item7"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  hyochan2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item8"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  mars2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item9"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  gordon2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  </SafeAreaView>
+    </TouchableOpacity>
+  </View>
 </View>
 `;
 
@@ -2999,7 +927,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 style={
                   Array [
                     Object {
-                      "borderRadius": 40,
                       "height": 80,
                       "width": 80,
                     },
@@ -3011,7 +938,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               />
             </TouchableOpacity>
             <Text
-              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -3020,10 +946,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
-                    "paddingBottom": 0,
-                    "paddingLeft": 32,
-                    "paddingRight": 32,
-                    "paddingTop": 0,
                   },
                 ]
               }
@@ -3042,7 +964,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 ]
               }
             >
-              this is my status message......
+              online
             </Text>
           </View>
           <View
@@ -3183,7 +1105,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           Array [
             Object {
               "alignItems": "center",
-              "height": 48,
+              "height": 50,
               "justifyContent": "center",
               "marginBottom": 4,
               "overflow": "hidden",
@@ -3198,7 +1120,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 58,
+                "height": 50,
                 "justifyContent": "center",
                 "paddingBottom": 0,
                 "paddingLeft": 20,
@@ -3223,6 +1145,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   "backgroundColor": "#f3f9ff",
                   "borderRadius": 4,
                   "color": "#151A25",
+                  "height": 36,
                   "paddingLeft": 40,
                   "paddingRight": 10,
                   "width": "100%",
@@ -3274,84 +1197,106 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
         data={
           Array [
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "1",
               "isOnline": true,
+              "lastSignedIn": "",
+              "name": "admin",
               "nickname": "admin",
+              "phone": "",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "this is my status message......",
+              "socialId": "",
+              "statusMessage": "online",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
+              "verified": "",
             },
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
+              "lastSignedIn": "",
+              "name": "admin",
+              "nickname": "geoseong",
+              "phone": "",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "hi I am fine -hello-hello-hello",
+              "socialId": "",
+              "statusMessage": "offline",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
+              "verified": "",
             },
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "3",
               "isOnline": false,
+              "lastSignedIn": "",
+              "name": "admin",
               "nickname": "hyochan",
+              "phone": "",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "hello",
+              "socialId": "",
+              "statusMessage": "offline",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
+              "verified": "",
             },
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "4",
               "isOnline": true,
+              "lastSignedIn": "",
+              "name": "admin",
               "nickname": "mars",
+              "phone": "",
               "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+              "socialId": "",
               "statusMessage": "offline",
               "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
+              "verified": "",
             },
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "5",
               "isOnline": true,
+              "lastSignedIn": "",
+              "name": "admin",
               "nickname": "gordon",
+              "phone": "",
               "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+              "socialId": "",
               "statusMessage": "offline",
               "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
+              "verified": "",
             },
             Object {
+              "authType": "",
+              "birthday": "",
+              "email": "",
+              "gender": 0,
               "id": "6",
-              "isOnline": true,
-              "nickname": "admin2",
-              "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "how are you",
-              "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-            },
-            Object {
-              "id": "7",
               "isOnline": false,
-              "nickname": "geoseong2",
-              "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-              "statusMessage": "offline",
-              "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-            },
-            Object {
-              "id": "8",
-              "isOnline": false,
+              "lastSignedIn": "",
+              "name": "admin",
               "nickname": "hyochan2",
+              "phone": "",
               "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
+              "socialId": "",
               "statusMessage": "offline",
               "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-            },
-            Object {
-              "id": "9",
-              "isOnline": true,
-              "nickname": "mars2",
-              "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-              "statusMessage": "offline",
-              "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-            },
-            Object {
-              "id": "10",
-              "isOnline": true,
-              "nickname": "gordon2",
-              "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-              "statusMessage": "offline",
-              "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
+              "verified": "",
             },
           ]
         }
@@ -3471,7 +1416,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  this is my status message......
+                  online
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3542,7 +1487,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
+                  geoseong
                 </Text>
                 <Text
                   style={
@@ -3563,7 +1508,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  hi I am fine -hello-hello-hello
+                  offline
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3655,7 +1600,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  hello
+                  offline
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3883,190 +1828,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 <Image
                   source={
                     Object {
-                      "uri": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  admin2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  how are you
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item6"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  geoseong2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item7"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
                       "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
                     }
                   }
@@ -4121,193 +1882,146 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             </TouchableOpacity>
           </View>
         </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item8"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  mars2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "width": "100%",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              testID="user-list-item9"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "#e2f2ff",
-                      "flexDirection": "row",
-                      "height": 80,
-                      "justifyContent": "flex-start",
-                      "paddingBottom": 0,
-                      "paddingLeft": 20,
-                      "paddingRight": 20,
-                      "paddingTop": 0,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "borderRadius": 20,
-                        "height": 40,
-                        "width": 40,
-                      },
-                    ]
-                  }
-                />
-                <Text
-                  numberOfLines={1}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                        "fontWeight": "bold",
-                        "marginLeft": 12,
-                        "width": 200,
-                      },
-                    ]
-                  }
-                >
-                  gordon2
-                </Text>
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "borderColor": "#d3d8e8",
-                        "borderWidth": 0.3,
-                        "color": "#1E6EFA",
-                        "fontSize": 12,
-                        "maxWidth": 120,
-                        "paddingBottom": 4,
-                        "paddingLeft": 8,
-                        "paddingRight": 8,
-                        "paddingTop": 4,
-                        "position": "absolute",
-                        "right": 20,
-                      },
-                    ]
-                  }
-                >
-                  offline
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
     </View>
   </SafeAreaView>
+</View>
+`;
+
+exports[`[SearchUser] rendering test renders error view 1`] = `
+<View
+  collapsable={true}
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+          "paddingBottom": 0,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 0,
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "canInstrument": true,
+          "createTransformer": [Function],
+          "getCacheKey": [Function],
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 110,
+            "width": 116,
+          },
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#676c7a",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "bold",
+            "lineHeight": 24,
+            "marginBottom": 2,
+            "marginTop": 16,
+          },
+        ]
+      }
+    >
+      Error occured.
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "color": "#8f94a3",
+            "display": "flex",
+            "fontSize": 14,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+            "letterSpacing": -0.25,
+            "lineHeight": 20,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      Network error: error
+    </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "backgroundColor": "#1E6EFA",
+          "flexDirection": "row",
+          "height": 52,
+          "justifyContent": "center",
+          "marginTop": 44,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
+              "justifyContent": "center",
+            },
+            Object {
+              "backgroundColor": "#1E6EFA",
+              "height": 48,
+              "width": 156,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 14,
+                "fontWeight": "bold",
+              },
+            ]
+          }
+        >
+          Try again
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
 </View>
 `;
 
@@ -4449,90 +2163,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               No content
             </Shared>
           }
-          data={
-            Array [
-              Object {
-                "id": "1",
-                "isOnline": true,
-                "nickname": "admin",
-                "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                "statusMessage": "this is my status message......",
-                "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              },
-              Object {
-                "id": "2",
-                "isOnline": false,
-                "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
-                "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                "statusMessage": "hi I am fine -hello-hello-hello",
-                "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              },
-              Object {
-                "id": "3",
-                "isOnline": false,
-                "nickname": "hyochan",
-                "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                "statusMessage": "hello",
-                "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              },
-              Object {
-                "id": "4",
-                "isOnline": true,
-                "nickname": "mars",
-                "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-                "statusMessage": "offline",
-                "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-              },
-              Object {
-                "id": "5",
-                "isOnline": true,
-                "nickname": "gordon",
-                "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-                "statusMessage": "offline",
-                "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-              },
-              Object {
-                "id": "6",
-                "isOnline": true,
-                "nickname": "admin2",
-                "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                "statusMessage": "how are you",
-                "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              },
-              Object {
-                "id": "7",
-                "isOnline": false,
-                "nickname": "geoseong2",
-                "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-                "statusMessage": "offline",
-                "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-              },
-              Object {
-                "id": "8",
-                "isOnline": false,
-                "nickname": "hyochan2",
-                "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-                "statusMessage": "offline",
-                "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-              },
-              Object {
-                "id": "9",
-                "isOnline": true,
-                "nickname": "mars2",
-                "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-                "statusMessage": "offline",
-                "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-              },
-              Object {
-                "id": "10",
-                "isOnline": true,
-                "nickname": "gordon2",
-                "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-                "statusMessage": "offline",
-                "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-              },
-            ]
-          }
+          data={Array []}
           disableVirtualization={false}
           horizontal={false}
           initialNumToRender={10}
@@ -4564,924 +2195,27 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
           windowSize={21}
         >
           <View
-            style={null}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
           >
-            <View
+            <Text
               style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
+                Object {
+                  "alignSelf": "center",
+                  "color": "rgb(155,155,155)",
+                  "fontSize": 14,
+                }
               }
             >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item0"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    admin
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    this is my status message......
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item1"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    geoseong-hello-hello-hello-hello-hello-hello-hello-hello
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    hi I am fine -hello-hello-hello
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item2"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    hyochan
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    hello
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item3"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    mars
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item4"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    gordon
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item5"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    admin2
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    how are you
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item6"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    geoseong2
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item7"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    hyochan2
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item8"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    mars2
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View
-            style={null}
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <TouchableOpacity
-                activeOpacity={0.5}
-                testID="user-list-item9"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "#ffffff",
-                        "borderBottomWidth": 1,
-                        "borderColor": "#e2f2ff",
-                        "flexDirection": "row",
-                        "height": 80,
-                        "justifyContent": "flex-start",
-                        "paddingBottom": 0,
-                        "paddingLeft": 20,
-                        "paddingRight": 20,
-                        "paddingTop": 0,
-                      },
-                    ]
-                  }
-                >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
-                      }
-                    }
-                    style={
-                      Array [
-                        Object {
-                          "borderRadius": 20,
-                          "height": 40,
-                          "width": 40,
-                        },
-                      ]
-                    }
-                  />
-                  <Text
-                    numberOfLines={1}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                          "fontWeight": "bold",
-                          "marginLeft": 12,
-                          "width": 200,
-                        },
-                      ]
-                    }
-                  >
-                    gordon2
-                  </Text>
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "borderColor": "#d3d8e8",
-                          "borderWidth": 0.3,
-                          "color": "#1E6EFA",
-                          "fontSize": 12,
-                          "maxWidth": 120,
-                          "paddingBottom": 4,
-                          "paddingLeft": 8,
-                          "paddingRight": 8,
-                          "paddingTop": 4,
-                          "position": "absolute",
-                          "right": 20,
-                        },
-                      ]
-                    }
-                  >
-                    offline
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+              No content
+            </Text>
           </View>
         </ScrollView>
       </View>

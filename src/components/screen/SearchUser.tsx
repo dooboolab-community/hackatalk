@@ -1,7 +1,11 @@
 import { Animated, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
+import ErrorView from '../shared/ErrorView';
+import { Ref as ProfileModalRef } from '../shared/ProfileModal';
+import { QUERY_USERS } from '../../graphql/queries';
 import SearchTextInput from '../shared/SearchTextInput';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
@@ -9,97 +13,7 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
-
-export const fakeUsers: User[] = [
-  {
-    id: '1',
-    nickname: 'admin',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMessage: 'this is my status message......',
-    isOnline: true,
-  },
-  {
-    id: '2',
-    nickname: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMessage: 'hi I am fine -hello-hello-hello',
-    isOnline: false,
-  },
-  {
-    id: '3',
-    nickname: 'hyochan',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    statusMessage: 'hello',
-    isOnline: false,
-  },
-  {
-    id: '4',
-    nickname: 'mars',
-    thumbURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
-    photoURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '5',
-    nickname: 'gordon',
-    thumbURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
-    photoURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '6',
-    nickname: 'admin2',
-    thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    statusMessage: 'how are you',
-    isOnline: true,
-  },
-  {
-    id: '7',
-    nickname: 'geoseong2',
-    thumbURL:
-      'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
-    photoURL:
-      'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
-    statusMessage: 'offline',
-    isOnline: false,
-  },
-  {
-    id: '8',
-    nickname: 'hyochan2',
-    thumbURL:
-      'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
-    photoURL:
-      'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
-    statusMessage: 'offline',
-    isOnline: false,
-  },
-  {
-    id: '9',
-    nickname: 'mars2',
-    thumbURL:
-      'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
-    photoURL:
-      'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '10',
-    nickname: 'gordon2',
-    thumbURL:
-      'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
-    photoURL:
-      'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-];
+import { useQuery } from '@apollo/react-hooks';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const StyledSafeAreaView = styled.SafeAreaView`
@@ -119,43 +33,109 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
   height: 100%;
 `;
 
-const Screen = (): React.ReactElement => {
+type Modal = React.MutableRefObject<ProfileModalRef | null | undefined>;
+interface Users {
+  users: User[];
+}
+interface Props {
+  users?: User[];
+  onDeleteFriend?: (modal?: Modal) => () => void;
+  onAddFriend?: (modal?: Modal) => () => void;
+}
+interface StateSetters {
+  setUsers: (users: User[]) => void;
+  setSearchedUsers: (users: User[]) => void;
+}
+interface ShowModalParams {
+  user: User;
+  deleteMode: boolean;
+  isFriendAlreadyAdded?: boolean;
+  onDeleteFriend?: () => void;
+  onAddFriend?: () => void;
+}
+interface UserListOnPress {
+  user: User;
+  friends: User[];
+  modal?: Modal;
+  showModal: (showModalParams: ShowModalParams) => void;
+  event: {
+    onDeleteFriend: (modal?: Modal) => () => void;
+    onAddFriend: (modal?: Modal) => () => void;
+  };
+}
+export const updateUsers = ({ data, stateSetters }: { data?: Users; stateSetters: StateSetters }): Users | void => {
+  const { setUsers, setSearchedUsers } = stateSetters;
+  if (data?.users) {
+    setUsers(data.users);
+    setSearchedUsers(data.users);
+  }
+  return data;
+};
+export const onDeleteFriend = (
+  modal?: Modal,
+) => (): void => {
+  if (modal && modal.current) {
+    const profileModal = modal.current;
+    profileModal.showAddBtn(true);
+    profileModal.setIsFriendAdded(false);
+    profileModal.setIsFriendAlreadyAdded(false);
+  }
+};
+export const onAddFriend = (
+  modal?: Modal,
+) => (): void => {
+  if (modal && modal.current) {
+    const profileModal = modal.current;
+    profileModal.showAddBtn(false);
+    profileModal.setIsFriendAdded(true);
+  }
+};
+const userListOnPress = ({
+  user,
+  friends,
+  modal,
+  showModal,
+  event,
+}: UserListOnPress) => (): void => {
+  const { onDeleteFriend, onAddFriend } = event;
+  const deleteMode =
+    friends.findIndex((friend) => friend.id === user.id) !== -1;
+  showModal({
+    user,
+    deleteMode,
+    isFriendAlreadyAdded: deleteMode,
+    onDeleteFriend: onDeleteFriend(modal),
+    onAddFriend: onAddFriend(modal),
+  });
+};
+const Screen = (props: Props): React.ReactElement => {
   const { state, showModal } = useProfileContext();
-  const [searchedUsers] = useState<User[]>(fakeUsers);
-  const [users, setUsers] = useState<User[]>(fakeUsers);
-  const [searchText, setSearchText] = useState<string>('');
-  const scrollY = new Animated.Value(0);
-
   const {
     friendState: { friends },
   } = useFriendContext();
+  const scrollY = new Animated.Value(0);
 
-  const userListOnPress = (user: User): void => {
-    if (state.modal) {
-      const deleteMode =
-        friends.findIndex((friend) => friend.id === user.id) !== -1;
-      showModal({
-        user,
-        deleteMode,
-        isFriendAlreadyAdded: deleteMode,
-        onDeleteFriend: (): void => {
-          if (state.modal && state.modal.current) {
-            const profileModal = state.modal.current;
-            profileModal.showAddBtn(true);
-            profileModal.setIsFriendAdded(false);
-            profileModal.setIsFriendAlreadyAdded(false);
-          }
-        },
-        onAddFriend: (): void => {
-          if (state.modal && state.modal.current) {
-            const profileModal = state.modal.current;
-            profileModal.showAddBtn(false);
-            profileModal.setIsFriendAdded(true);
-          }
-        },
-      });
-    }
-  };
+  const { loading, data, error, refetch } = useQuery<Users>(QUERY_USERS, {
+    fetchPolicy: 'network-only',
+  });
+
+  const [searchedUsers, setSearchedUsers] = useState<User[]>(props.users || []);
+  const [users, setUsers] = useState<User[]>(props.users || []);
+  const [searchText, setSearchText] = useState<string>('');
+
+  useEffect(() => {
+    updateUsers({
+      data,
+      stateSetters: {
+        setUsers,
+        setSearchedUsers,
+      },
+    });
+  }, [data]);
+
+  if (error) {
+    return <ErrorView body={error.message} onButtonPressed={(): Promise<ApolloQueryResult<Users>> => refetch()} />;
+  }
 
   const renderItem = ({
     item,
@@ -165,7 +145,16 @@ const Screen = (): React.ReactElement => {
     index: number;
   }): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
-    const userListOnPressInlineFn = (): void => userListOnPress(item);
+    const userListOnPressInlineFn = userListOnPress({
+      user: item,
+      friends,
+      modal: state.modal,
+      showModal,
+      event: {
+        onDeleteFriend: props.onDeleteFriend || onDeleteFriend,
+        onAddFriend: props.onAddFriend || onAddFriend,
+      },
+    });
     return (
       <UserListItem
         testID={itemTestID}
@@ -174,25 +163,26 @@ const Screen = (): React.ReactElement => {
       />
     );
   };
-
   const searchUsers = (searchText: string): void => {
     const searchedUser =
       searchText === ''
         ? searchedUsers
-        : searchedUsers.filter((item) => item.nickname && item.nickname.includes(searchText));
+        : searchedUsers.filter(
+          (item) =>
+            item.nickname && item.nickname.toLowerCase().includes(searchText),
+        );
     setUsers(searchedUser);
   };
-
-  const onChangeText = (text: string): void => {
-    searchUsers(text);
-    setSearchText(text);
+  const onTxtChanged = (text: string): void => {
+    const lowercaseTxt = text.toLowerCase();
+    searchUsers(lowercaseTxt);
+    setSearchText(lowercaseTxt);
     scrollY.setValue(0);
     Animated.timing(scrollY, {
       toValue: 100,
       duration: 500,
     }).start();
   };
-
   const getContentContainerStyle = (): object | null => {
     return users.length === 0
       ? {
@@ -208,7 +198,7 @@ const Screen = (): React.ReactElement => {
       <Container>
         <SearchTextInput
           testID="text-input"
-          onChangeText={onChangeText}
+          onChangeText={onTxtChanged}
           value={searchText}
         />
         <StyledAnimatedFlatList

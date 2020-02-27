@@ -13,3 +13,29 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_USERS = gql`
+  query users($nickname: String) {
+    users(
+      user: {
+        nickname: $nickname
+      }
+    ) {
+      id
+      email
+      name
+      nickname
+      thumbURL
+      photoURL
+      birthday
+      gender
+      socialId
+      authType
+      phone
+      verified
+      statusMessage
+      isOnline
+      lastSignedIn
+    }
+  }
+`;
