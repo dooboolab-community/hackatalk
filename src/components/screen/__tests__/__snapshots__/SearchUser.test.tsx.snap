@@ -1900,7 +1900,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
 
 exports[`[SearchUser] rendering test renders error view 1`] = `
 <View
-  collapsable={true}
   pointerEvents="box-none"
   style={
     Object {
@@ -1909,88 +1908,24 @@ exports[`[SearchUser] rendering test renders error view 1`] = `
   }
 >
   <View
+    collapsable={true}
+    pointerEvents="box-none"
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-          "paddingBottom": 0,
-          "paddingLeft": 20,
-          "paddingRight": 20,
-          "paddingTop": 0,
-        },
-      ]
+      Object {
+        "flex": 1,
+      }
     }
   >
-    <Image
-      source={
-        Object {
-          "canInstrument": true,
-          "createTransformer": [Function],
-          "getCacheKey": [Function],
-          "process": [Function],
-        }
-      }
+    <SafeAreaView
       style={
         Array [
           Object {
-            "height": 110,
-            "width": 116,
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
           },
         ]
-      }
-    />
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#676c7a",
-            "fontSize": 16,
-            "fontStyle": "normal",
-            "fontWeight": "bold",
-            "lineHeight": 24,
-            "marginBottom": 2,
-            "marginTop": 16,
-          },
-        ]
-      }
-    >
-      Error occured.
-    </Text>
-    <Text
-      style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "color": "#8f94a3",
-            "display": "flex",
-            "fontSize": 14,
-            "fontStyle": "normal",
-            "fontWeight": "normal",
-            "letterSpacing": -0.25,
-            "lineHeight": 20,
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      Network error: error
-    </Text>
-    <TouchableOpacity
-      activeOpacity={0.2}
-      style={
-        Object {
-          "backgroundColor": "#1E6EFA",
-          "flexDirection": "row",
-          "height": 52,
-          "justifyContent": "center",
-          "marginTop": 44,
-        }
       }
     >
       <View
@@ -1998,39 +1933,167 @@ exports[`[SearchUser] rendering test renders error view 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "alignSelf": "center",
-              "borderColor": "blue",
-              "flexDirection": "row",
-              "height": 52,
+              "backgroundColor": "transparent",
+              "flexBasis": 0,
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "flexShrink": 1,
               "justifyContent": "center",
-            },
-            Object {
-              "backgroundColor": "#1E6EFA",
-              "height": 48,
-              "width": 156,
             },
           ]
         }
       >
-        <Text
+        <View
           style={
             Array [
               Object {
-                "color": "#069ccd",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#ffffff",
-                "fontSize": 14,
-                "fontWeight": "bold",
+                "alignItems": "center",
+                "height": 50,
+                "justifyContent": "center",
+                "marginBottom": 4,
+                "overflow": "hidden",
+                "width": "100%",
               },
             ]
           }
         >
-          Try again
-        </Text>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "height": 50,
+                  "justifyContent": "center",
+                  "paddingBottom": 0,
+                  "paddingLeft": 20,
+                  "paddingRight": 20,
+                  "paddingTop": 0,
+                  "width": "100%",
+                },
+              ]
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              autoCorrect={false}
+              defaultValue=""
+              multiline={false}
+              rejectResponderTermination={true}
+              selectionColor="#151A25"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#f3f9ff",
+                    "borderRadius": 4,
+                    "color": "#151A25",
+                    "height": 36,
+                    "paddingLeft": 40,
+                    "paddingRight": 10,
+                    "width": "100%",
+                  },
+                ]
+              }
+              testID="text-input"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <Image
+              source={
+                Object {
+                  "canInstrument": true,
+                  "createTransformer": [Function],
+                  "getCacheKey": [Function],
+                  "process": [Function],
+                }
+              }
+              style={
+                Array [
+                  Object {
+                    "height": 20,
+                    "left": 30,
+                    "position": "absolute",
+                    "width": 20,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <ScrollView
+          ListEmptyComponent={
+            <Shared
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "flex": 1,
+                  "justifyContent": "center",
+                  "width": "100%",
+                }
+              }
+            >
+              No content
+            </Shared>
+          }
+          data={Array []}
+          disableVirtualization={false}
+          horizontal={false}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          numColumns={1}
+          onEndReachedThreshold={2}
+          removeClippedSubviews={false}
+          scrollEventThrottle={50}
+          stickyHeaderIndices={Array []}
+          style={
+            Object {
+              "height": "100%",
+              "transform": Array [
+                Object {
+                  "translateY": 0,
+                },
+              ],
+              "width": "100%",
+            }
+          }
+          testID="animated-flatlist"
+          testObj={
+            Object {
+              "scrollY": 0,
+            }
+          }
+          updateCellsBatchingPeriod={50}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={21}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "flex": 1,
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "color": "rgb(155,155,155)",
+                  "fontSize": 14,
+                }
+              }
+            >
+              No content
+            </Text>
+          </View>
+        </ScrollView>
       </View>
-    </TouchableOpacity>
+    </SafeAreaView>
   </View>
 </View>
 `;

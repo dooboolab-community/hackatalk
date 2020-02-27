@@ -179,13 +179,16 @@ describe('[SearchUser] rendering test', () => {
       </MockedProvider>,
     );
 
-    const testingLib = render(component);
-    await wait(() => {
-      testingLib.rerender(component);
-      expect(testingLib.asJSON()).toBeTruthy();
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
-    await act(() => wait());
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
+    // const testingLib = render(component);
+    // await wait(() => {
+    //   testingLib.rerender(component);
+    //   expect(testingLib.asJSON()).toBeTruthy();
+    //   expect(testingLib.asJSON()).toMatchSnapshot();
+    // });
+    // await act(() => wait());
   });
 });
 
