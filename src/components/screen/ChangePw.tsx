@@ -40,38 +40,42 @@ function ChangePw(props: Props): ReactElement {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const close = (): void => {
-    navigation.goBack();
-  };
   const [mutationChangePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
     MUTATION_CHANGE_PASSWORD,
   );
 
   const changePassword = async (): Promise<void> => {
-    if (newPw === confirmPw) {
-      const variables = {
-        currentPassword: currentPw,
-        newPassword: newPw,
-      };
-      const result = await mutationChangePassword({ variables });
+    if (newPw !== confirmPw) {
+      Alert.alert(getString('PASSWORD_MUST_MATCH'));
+      return;
+    }
 
+    const variables = {
+      currentPassword: currentPw,
+      newPassword: newPw,
+    };
+
+    try {
+      const result = await mutationChangePassword({ variables });
       if (result.data?.changeEmailPassword) {
         Keyboard.dismiss();
         Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
           {
             text: getString('OK'),
-            onPress: (): void => {
-              close();
-            },
+            onPress: (): void => navigation.goBack(),
           },
         ]);
-      } else {
-        Alert.alert(getString('Fail to change password'));
       }
-    } else {
-      Alert.alert(getString('PASSWORD_MUST_MATCH'));
+    } catch (e) {
+      Alert.alert('', getString('CHANGE_PASSWORD_IS_FAILED'), [
+        {
+          text: getString('OK'),
+          onPress: (): void => navigation.goBack(),
+        },
+      ]);
     }
   };
+
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const onKeyboardShow = (event: KeyboardEvent): void => setKeyboardOffset(event.endCoordinates.height);
   const onKeyboardHide = (): void => setKeyboardOffset(0);
