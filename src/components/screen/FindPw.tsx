@@ -1,7 +1,8 @@
 import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
-
 import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
+import { Alert } from 'react-native';
+
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { MUTATION_FIND_PASSWORD } from '../../graphql/mutations';
 import { getString } from '../../../STRINGS';
@@ -31,7 +32,7 @@ interface Props {
   navigation: AuthStackNavigationProps<'FindPw'>;
 }
 
-function Page(props: Props): ReactElement {
+function Page({ navigation }: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [findingPw, setFindingPw] = useState<boolean>(false);
@@ -45,11 +46,16 @@ function Page(props: Props): ReactElement {
       return;
     }
 
-    setFindingPw(true);
     try {
+      setFindingPw(true);
       const result = await findPassword({ variables: { email } });
-      if (result.data?.findPassword && props.navigation) {
-        props.navigation.navigate('SignIn');
+      if (result.data?.findPassword) {
+        Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
+          {
+            text: getString('OK'),
+            onPress: (): void => navigation.navigate('SignIn'),
+          },
+        ]);
       }
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
