@@ -45,3 +45,9 @@ export const MUTATION_CHANGE_PASSWORD = gql`
     changeEmailPassword(password: $currentPassword newPassword: $newPassword) 
   }
 `;
+
+export const MUTATION_FIND_PASSWORD = gql`
+  mutation findPassword($email: String!) {
+    findPassword(email: $email)
+  }
+`;
