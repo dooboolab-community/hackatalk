@@ -13,6 +13,8 @@ import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
+import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
+import { useMutation } from '@apollo/react-hooks';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -41,19 +43,29 @@ function ChangePw(props: Props): ReactElement {
   const close = (): void => {
     navigation.goBack();
   };
+  const [mutationChangePassword] = useMutation<{ isChanged: boolean }, MutationChangePasswordInput>(MUTATION_CHANGE_PASSWORD);
 
   const changePassword = async (): Promise<void> => {
     if (newPw === confirmPw) {
-      // TODO: change password api call
-      Keyboard.dismiss();
-      Alert.alert('', 'Password changed.', [
-        {
-          text: getString('OK'),
-          onPress: (): void => {
-            close();
+      const variables = {
+        currentPassword: currentPw,
+        newPassword: newPw,
+      };
+      const isChanged = await mutationChangePassword({variables});
+
+      if(isChanged) {
+        Keyboard.dismiss();
+        Alert.alert('', 'Password changed.', [
+          {
+            text: getString('OK'),
+            onPress: (): void => {
+              close();
+            },
           },
-        },
-      ]);
+        ]);
+      } else {
+        Alert.alert(getString('Fail to change password'));
+      }
     } else {
       Alert.alert(getString('PASSWORD_MUST_MATCH'));
     }
