@@ -72,5 +72,6 @@
   "RESENT_VERIFICATION_EMAIL": "Email verification link has resent",
   "RESENT_VERIFICATION_EMAIL_FAILED": "Email has not sent. Please check the email address once more.",
   "RETURN_TO_SIGNIN": "Return to sign in",
-  "PASSWORD_RESET_EMAIL_SENT": "Password reset link has been sent. Please check your email."
+  "PASSWORD_RESET_EMAIL_SENT": "Password reset link has been sent. Please check your email.",
+  "PASSWORD_IS_CHANGED": "Password is changed successfully"
 }

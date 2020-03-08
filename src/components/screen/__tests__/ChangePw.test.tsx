@@ -6,11 +6,32 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
   waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
+import { MUTATION_CHANGE_PASSWORD } from '../../../graphql/mutations';
+import { MockedProvider } from '@apollo/react-testing';
+import { getString } from '../../../../STRINGS';
+
+const mockChangePwMutation = [
+  {
+    request: {
+      query: MUTATION_CHANGE_PASSWORD,
+      variables: {
+        currentPassword: 'right',
+        newPassword: 'test',
+      },
+    },
+    result: {
+      data: {
+        changeEmailPassword: true,
+      },
+    },
+  },
+];
 
 const mockAlert = {
   alert: jest.fn(),
@@ -37,7 +58,11 @@ describe('[ChangePw] screen', () => {
 
   beforeEach(() => {
     const props = createTestProps({});
-    const component = createTestElement(<ChangePw {...props} />);
+    const component = createTestElement(
+      <MockedProvider mocks={mockChangePwMutation}>
+        <ChangePw {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
     mockAlert.alert.mockClear();
   });
@@ -95,15 +120,12 @@ describe('[ChangePw] screen', () => {
       });
 
       // test after password changed
-      act(() => {
-        fireEvent.changeText(inputValidation, 'test');
-      });
-      act(() => {
-        fireEvent.press(verifyBtn);
-      });
+      act(() => { fireEvent.changeText(inputValidation, 'test'); });
 
-      // expect(mockAlert.alert).toHaveBeenCalled();
-      // mockAlert.alert.mock.calls[2][2][0].onPress();
+      const changePwBtn = testingLib.getByTestId('close-current-pw-btn');
+      act(() => { fireEvent.press(changePwBtn); });
+      await wait(() => expect(mockAlert.alert).toHaveBeenCalled());
+      expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('PASSWORD_IS_CHANGED'));
     });
   });
 

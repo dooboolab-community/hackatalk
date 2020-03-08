@@ -1,5 +1,6 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, SafeAreaView } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import React, {
   ReactElement,
   useEffect,
@@ -12,9 +13,8 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
-import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import { useMutation } from '@apollo/react-hooks';
+import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -43,7 +43,9 @@ function ChangePw(props: Props): ReactElement {
   const close = (): void => {
     navigation.goBack();
   };
-  const [mutationChangePassword] = useMutation<{ isChanged: boolean }, MutationChangePasswordInput>(MUTATION_CHANGE_PASSWORD);
+  const [mutationChangePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
+    MUTATION_CHANGE_PASSWORD,
+  );
 
   const changePassword = async (): Promise<void> => {
     if (newPw === confirmPw) {
@@ -51,11 +53,11 @@ function ChangePw(props: Props): ReactElement {
         currentPassword: currentPw,
         newPassword: newPw,
       };
-      const isChanged = await mutationChangePassword({variables});
+      const result = await mutationChangePassword({ variables });
 
-      if(isChanged) {
+      if (result.data?.changeEmailPassword) {
         Keyboard.dismiss();
-        Alert.alert('', 'Password changed.', [
+        Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
           {
             text: getString('OK'),
             onPress: (): void => {
