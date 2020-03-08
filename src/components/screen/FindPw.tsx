@@ -1,10 +1,10 @@
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_FIND_PASSWORD, MutationFindPasswordInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
 import { Alert } from 'react-native';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import { MUTATION_FIND_PASSWORD } from '../../graphql/mutations';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useMutation } from '@apollo/react-hooks';
@@ -23,10 +23,6 @@ const ButtonWrapper = styled.View`
   width: 100%;
   margin-top: 20px;
 `;
-
-interface MutationFindPasswordInput {
-  email: string;
-}
 
 interface Props {
   navigation: AuthStackNavigationProps<'FindPw'>;

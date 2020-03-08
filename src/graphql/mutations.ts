@@ -65,6 +65,10 @@ export const MUTATION_CHANGE_PASSWORD = gql`
   }
 `;
 
+export interface MutationFindPasswordInput {
+  email: string;
+}
+
 export const MUTATION_FIND_PASSWORD = gql`
   mutation findPassword($email: String!) {
     findPassword(email: $email) {

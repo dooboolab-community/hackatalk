@@ -7,8 +7,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-
 import Constants from 'expo-constants';
+
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
