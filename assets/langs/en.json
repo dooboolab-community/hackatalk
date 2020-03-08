@@ -7,6 +7,7 @@
   "CONFIRM_PASSWORD": "Confirm password",
   "SIGN_UP": "Sign Up",
   "LOGOUT": "Logout",
+  "GO_BACK": "Go back",
   "FORGOT_PW": "Forgot password?",
   "FIND_PW": "Find Password",
   "NAME": "Name",
@@ -73,5 +74,12 @@
   "RESENT_VERIFICATION_EMAIL_FAILED": "Email has not sent. Please check the email address once more.",
   "RETURN_TO_SIGNIN": "Return to sign in",
   "PASSWORD_RESET_EMAIL_SENT": "Password reset link has been sent. Please check your email.",
-  "PASSWORD_IS_CHANGED": "Password is changed successfully"
+  "PASSWORD_IS_CHANGED": "Password is changed successfully",
+  "ERROR_OCCURED": "Error occured.",
+  "PLZ_TRY_AGAIN_LATER": "Please try again later.",
+  "TRY_AGAIN": "Try again",
+  "NEW_CHAT": "New Chat",
+  "DONE": "Done",
+  "NO_FRIEND": "No friends",
+  "NO_FRIEND_BODY": "You currently do not have any friend. Please search for users and then add to your friend list."
 }

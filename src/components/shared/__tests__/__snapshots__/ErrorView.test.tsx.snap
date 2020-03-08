@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "canInstrument": true,
+            "createTransformer": [Function],
+            "getCacheKey": [Function],
+            "process": [Function],
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 110,
+              "width": 116,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#676c7a",
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "bold",
+              "lineHeight": 24,
+              "marginBottom": 2,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Error occured.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "color": "#8f94a3",
+              "display": "flex",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+              "letterSpacing": -0.25,
+              "lineHeight": 20,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "backgroundColor": "#1E6EFA",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#1E6EFA",
+                "height": 48,
+                "width": 156,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Try again
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#ffffff",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
+          },
+        ]
+      }
+    >
+      <Image
+        source={
+          Object {
+            "canInstrument": true,
+            "createTransformer": [Function],
+            "getCacheKey": [Function],
+            "process": [Function],
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 110,
+              "width": 116,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#676c7a",
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "bold",
+              "lineHeight": 24,
+              "marginBottom": 2,
+              "marginTop": 16,
+            },
+          ]
+        }
+      >
+        Error occured.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "color": "#8f94a3",
+              "display": "flex",
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+              "letterSpacing": -0.25,
+              "lineHeight": 20,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Object {
+            "backgroundColor": "#1E6EFA",
+            "flexDirection": "row",
+            "height": 52,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "borderColor": "blue",
+                "flexDirection": "row",
+                "height": 52,
+                "justifyContent": "center",
+              },
+              Object {
+                "backgroundColor": "#1E6EFA",
+                "height": 48,
+                "width": 156,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#069ccd",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Try again
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;

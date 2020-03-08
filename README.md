@@ -18,6 +18,7 @@
 
 - [react-native](https://github.com/facebook/react-native)
 - [react-navigation](https://github.com/react-navigation/react-navigation)
+- [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
 - [typescript](https://github.com/Microsoft/TypeScript)
 - [localization](https://github.com/stefalda/ReactNativeLocalization)
 - [styled-components](https://github.com/styled-components/styled-components)
@@ -33,9 +34,11 @@
 1. Sample of context-api with `react-hook` (`useContext`).
 2. Know how to structure react native app with typescript.
 3. Know how to navigate between screens with `react-navigation`.
-4. Know how to write test code with `@testing-library/react-native`.
-5. Know how to `lint` your project with `eslint`.
-6. Know how to localize your project.
+4. Know how to write `react-native` app with bare work flow from `expo` with `unimodules`.
+5. Know how to write test code with `@testing-library/react-native`.
+6. Know how to `lint` your project with `eslint`.
+7. Know how to localize your project.
+8. Know the hack of e2e encryption chat app.
 ```
 
 ### INSTALL
@@ -57,101 +60,86 @@ app/
 ├─ node_modules/
 ├─ src/
 │  └─ apis
+│  └─ apollo
 │  └─ components
 │     └─ navigations
 │     └─ screen
 │     └─ shared
-│  └─ contexts
+│  └─ graphql
 │  └─ hooks
+│  └─ contexts
+│  └─ providers
+│  └─ types
 │  └─ utils
 │  └─ App.tsx
+│  └─ styled.d.ts
+│  └─ theme.ts
 ├─ test/
+├─ .env.sample
+├─ .eslintrc.js
 ├─ .buckconfig
 ├─ .gitattributes
 ├─ .gitignore
 ├─ .watchmanconfig
-├─ app.sample.json
+├─ app.json
 ├─ babel.config.js
+├─ CLA.md
+├─ CODE_OF_CONDUCT.md
+├─ CONTRIBUTING.md
+├─ environment.d.ts
 ├─ index.js
 ├─ jest.config.js
-├─ GoogleService-Info.plist
-├─ google-services.json
+├─ metro.config.js
 ├─ package.json
 ├─ README.md
-├─ STRINGS.js
+├─ STRINGS.ts
+├─ tsconfig.jest.json
 ├─ tsconfig.json
-└─ tslint.json
+└─ yarn.lock
 ```
 
-### `app.json`
+### .ENV
 
 Run below to make your own `app` variables.
 
-> `cp app.sample.json app.json`
+> `cp .env.sample .env`
 
-- `app` variables
+- `env` variables
 
-  | Name                                        | Description                                                                  | required? | default        |
-  | ------------------------------------------- | ---------------------------------------------------------------------------- | --------- | -------------- |
-  | facebookAppId                               | facebook app id                                                              | true      | null           |
-  | facebookDisplayName                         | facebook display name                                                        | true      | hackatalk      |
-  | ios.config.googleSignIn.reservedClientId    | REVERSED_CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. | true      | {our test ios} |
-  | android.config.googleSignIn.certificateHash | SHA1 or SHA256 hash keys from `expo fetch:android:hashes`                    | true      | {our test ios} |
+MYAPP_RELEASE_STORE_FILE=
+MYAPP_RELEASE_KEY_ALIAS=
+MYAPP_RELEASE_STORE_PASSWORD=
+MYAPP_RELEASE_KEY_PASSWORD=
 
-  ```json
-  ...
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "com.dooboolab.hackatalk",
-      "config": {
-        "googleSignIn": {
-          "reservedClientId": "<reservedClientId>"
-        }
-      }
-    },
-    "android": {
-      "package": "com.dooboolab.hackatalk",
-      "googleServicesFile": "./google-services.json",
-      "config": {
-        "googleSignIn": {
-          "certificateHash": "<certificateHash>"
-        }
-      }
-    }
-  ...
-  ```
 
-  - Add `expo` key hash if you want to sign in with `facebook` in expo client.
-    `rRW++LUjmZZ+58EbN5DVhGAnkX4=`
-
-### `config.ts`
-
-Run below to make your own `config` variables.
-
-> `cp config.sample.ts config.ts`
-
-- `config` variables
-
-  | Name                | Description                                                                      | required? | default                 |
+  | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
-  | iOSClientId         | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project.              | true      | {our test ios clientId} |
-  | iOSExpoClientId     | CLIENT_ID in `GoogleService-Info.plist` ios app project with `host.exp.exponent` | true      | {our test ios clientId} |
-  | androidExpoClientId | CLIENT_ID in `google-service.json` android app project with `host.exp.exponent`  | true      | {our test and clientId} |
+  | iOSClientId                  |                                      |     | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. |
+  | GRAPHQL_URL                  | `http://stage.hackatalk.dev/graphql` | yes |  |
+  | ROOT_URL                     | `http://stage.hackatalk.dev`         | yes |  |
+  | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
+  | MYAPP_RELEASE_KEY_ALIAS      |                                      |     |  |
+  | MYAPP_RELEASE_STORE_PASSWORD |                                      |     |  |
+  | MYAPP_RELEASE_KEY_PASSWORD   |                                      |     |  |
 
-  ```typescript
-  export const iOSClientId = '';
-  export const iOSExpoClientId = '';
-  export const androidExpoClientId = '';
   ```
+  iOSClientId=iOSClientId
+  GRAPHQL_URL=http://stage.hackatalk.dev/graphql
+  ROOT_URL=http://stage.hackatalk.dev
 
-  > For android, you should run `openssl rand -base64 32 | openssl sha1 -c` and paste the result in your `host.exp.exponent` firebase project. Also note that you can't use `googleSignIn` in `emulator`.
+  # Android
+  MYAPP_RELEASE_STORE_FILE=
+  MYAPP_RELEASE_KEY_ALIAS=
+  MYAPP_RELEASE_STORE_PASSWORD=
+  MYAPP_RELEASE_KEY_PASSWORD=
+  ```
 
 ### Running the project
 
 Running the project is as simple as running
 
 ```sh
-npm run start
+yarn start
 ```
 
 This runs the `start` script specified in our `package.json`, and will spawn off a server which reloads the page as we save our files.
@@ -162,7 +150,7 @@ Typically the server runs at `http://localhost:8080`, but should be automaticall
 Testing is also just a command away:
 
 ```sh
-npm test
+yarn test
 ```
 
 > Result
@@ -244,9 +232,9 @@ export const getString = (param: string, mapObj?: object) => {
 1. Set bundleIdentifier com.dooboolab.hackatalk
 1. Download `GoogleService-Info.plist` to hackatalk root folder
 
-### Expo version
+### Version of react-native
 
-36
+0.61
 
 ### React navigation
 
@@ -255,6 +243,7 @@ export const getString = (param: string, mapObj?: object) => {
 ### Troubleshoot
 
 - Experiencing Localization.locale `undefined`? Setup your emulator once again as [decribed here](https://github.com/expo/expo/issues/5735#issuecomment-534063072).
+- Build failing with `virgil sdk`? [Here is workaround](https://github.com/dooboolab/hackatalk-mobile/pull/111#issuecomment-590284580).
 
 ## Contributors ✨
 

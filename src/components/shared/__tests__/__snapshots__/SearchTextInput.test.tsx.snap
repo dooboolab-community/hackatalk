@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 4,
+            "overflow": "hidden",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "center",
+              "paddingBottom": 0,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 0,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          defaultValue=""
+          multiline={false}
+          rejectResponderTermination={true}
+          selectionColor="#151A25"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f3f9ff",
+                "borderRadius": 4,
+                "color": "#151A25",
+                "height": 36,
+                "paddingLeft": 40,
+                "paddingRight": 10,
+                "width": "100%",
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <Image
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
+          style={
+            Array [
+              Object {
+                "height": 20,
+                "left": 30,
+                "position": "absolute",
+                "width": 20,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "height": 50,
+            "justifyContent": "center",
+            "marginBottom": 4,
+            "overflow": "hidden",
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 50,
+              "justifyContent": "center",
+              "paddingBottom": 0,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 0,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          defaultValue=""
+          multiline={false}
+          rejectResponderTermination={true}
+          selectionColor="#151A25"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#f3f9ff",
+                "borderRadius": 4,
+                "color": "#151A25",
+                "height": 36,
+                "paddingLeft": 40,
+                "paddingRight": 10,
+                "width": "100%",
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+        <Image
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
+            }
+          }
+          style={
+            Array [
+              Object {
+                "height": 20,
+                "left": 30,
+                "position": "absolute",
+                "width": 20,
+              },
+            ]
+          }
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

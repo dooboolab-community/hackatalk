@@ -3,6 +3,7 @@
   "HELLO": "안녕하세요",
   "LOGIN": "로그인",
   "LOGOUT": "로그아웃",
+  "GO_BACK": "뒤로가기",
   "EMAIL": "이메일",
   "PASSWORD": "비밀번호",
   "CONFIRM_PASSWORD": "비밀번호 재입력",
@@ -73,5 +74,12 @@
   "RESENT_VERIFICATION_EMAIL_FAILED": "이메일이 전송되지 않았습니다. 이메일 주소를 다시 한번 확인해주세요.",
   "RETURN_TO_SIGNIN": "로그인 화면으로 돌아가기",
   "PASSWORD_RESET_EMAIL_SENT": "비밀번호 재설정 메일을 보냈습니다. 메일함을 확인해주세요.",
-  "PASSWORD_IS_CHANGED": "비밀번호 변경이 되었습니다"
+  "PASSWORD_IS_CHANGED": "비밀번호 변경이 되었습니다",
+  "ERROR_OCCURED": "오류가 발생했습니다.",
+  "PLZ_TRY_AGAIN_LATER": "잠시후 다시 시도해주세요.",
+  "TRY_AGAIN": "다시 시도",
+  "NEW_CHAT": "새 채팅",
+  "DONE": "완료",
+  "NO_FRIEND": "친구 없음",
+  "NO_FRIEND_BODY": "친구가 없습니다. 사용자를 검색 후 친구 리스트에 추가한 후 다시 이용해주세요."
 }

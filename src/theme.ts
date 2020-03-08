@@ -37,7 +37,8 @@ export const light = {
   fontColor: colors.dark,
   fontSubColor: colors.blue_70,
   labelColor: colors.dark,
-  tintColor: colors.green_10,
+  tintColor: colors.green_30,
+  checkBackground: colors.green_10,
   lineColor: colors.gray_30,
   indicatorColor: colors.blue_70,
   inactiveColor: colors.gray_60,
@@ -68,6 +69,9 @@ export const light = {
   googleIcon: colors.light,
   googleText: colors.light,
   googleBackground: colors.google,
+  errorTitle: colors.gray_60,
+  errorBody: colors.gray_50,
+  fab: colors.blue_70,
 };
 export type Theme = typeof light;
 export const dark = {
@@ -83,7 +87,8 @@ export const dark = {
   fontColor: colors.light,
   fontSubColor: colors.paleBlue_10,
   labelColor: colors.light,
-  tintColor: colors.green_30,
+  tintColor: colors.green_10,
+  checkBackground: colors.green_30,
   lineColor: colors.light,
   indicatorColor: colors.paleBlue_10,
   inactiveColor: colors.gray_50,
@@ -114,4 +119,7 @@ export const dark = {
   googleIcon: colors.google,
   googleText: colors.dark,
   googleBackground: colors.light,
+  errorTitle: colors.paleBlue_10,
+  errorBody: colors.gray_40,
+  fab: colors.paleBlue_10,
 };

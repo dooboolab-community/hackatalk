@@ -1,7 +1,7 @@
-import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { ChannelType } from '../../types';
-import { Ionicons } from '@expo/vector-icons';
+import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components/native';
@@ -84,6 +84,7 @@ const StyledTextDate = styled.Text`
 const StyledImage = styled.Image`
   width: 40px;
   height: 40px;
+  border-radius: 20px;
 `;
 
 interface Props {
@@ -131,10 +132,8 @@ function ChannelListItem(props: Props): React.ReactElement {
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons
-                  name="ios-person"
-                  size={24}
-                  color={fontColor || '#3d3d3d'}
+                <StyledImage
+                  source={IC_NO_IMAGE}
                 />
               </View>
             )}

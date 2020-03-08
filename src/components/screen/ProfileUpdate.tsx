@@ -6,6 +6,7 @@ import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePic
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import { encryptMessage } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
@@ -78,7 +79,7 @@ function Screen(props: Props): React.ReactElement {
     }
   }, [isUpdating]);
 
-  const updateProfile = (): void => {
+  const updateProfile = async (): Promise<void> => {
     setIsUpdating(true);
   };
 

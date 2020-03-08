@@ -1,11 +1,12 @@
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 
 import ChangePw from '../screen/ChangePw';
+import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
 import { FriendProvider } from '../../providers/FriendProvider';
 import { IC_SETTING_W } from '../../utils/Icons';
@@ -29,6 +30,7 @@ export type MainStackParamList = {
   Message: { channelId: string };
   Settings: undefined;
   ChangePw: undefined;
+  ChannelCreate: undefined;
   PinchZoomViewPager: undefined;
 };
 
@@ -65,7 +67,10 @@ function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOpt
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   const currentAppState = useAppState();
-  console.log('currentAppState', currentAppState);
+
+  useEffect(() => {
+    console.log('currentAppState', currentAppState);
+  }, [currentAppState]);
 
   return (
     <Stack.Navigator
@@ -123,6 +128,11 @@ function MainStackNavigator(): ReactElement {
         name="ChangePw"
         component={ChangePw}
         options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
+      />
+      <Stack.Screen
+        name="ChannelCreate"
+        component={ChannelCreate}
+        options={getSimpleHeader(getString('NEW_CHAT'), theme)}
       />
       <Stack.Screen
         name="PinchZoomViewPager"

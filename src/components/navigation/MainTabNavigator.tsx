@@ -1,10 +1,10 @@
+import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 
 import Channel from '../screen/Channel';
-import { CompositeNavigationProp } from '@react-navigation/native';
 import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -28,20 +28,23 @@ NavigationProps<T>,
 MainStackNavigationProps<'MainTab'>
 >;
 
-const Tab = createMaterialTopTabNavigator<MaterialTopTabNavigationProps>();
+const Tab = createMaterialTopTabNavigator<MaterialTopTabParamList>();
 
-interface Props {
-  navigation: MaterialTopTabNavigationProps;
-}
-
-const CustomHeader = (props: Props): ReactElement => {
+const CustomHeader = (): ReactElement => {
   const { theme, changeThemeType } = useThemeContext();
-  const { navigation } = props;
+  const navigation = useNavigation();
+
   return (
     <LinearGradient
       style={{
-        paddingTop: Constants.statusBarHeight,
-        height: 44 + Constants.statusBarHeight,
+        paddingTop: Platform.select({
+          ios: Constants.statusBarHeight,
+          android: 0,
+        }),
+        height: Platform.select({
+          ios: 44 + Constants.statusBarHeight,
+          android: 56,
+        }),
         alignSelf: 'stretch',
         alignItems: 'center',
         flexDirection: 'row',

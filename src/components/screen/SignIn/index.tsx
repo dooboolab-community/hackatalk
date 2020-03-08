@@ -1,29 +1,31 @@
-import * as AppAuth from 'expo-app-auth';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { Alert, AsyncStorage, Platform } from 'react-native';
 import { AuthPayload, User } from '../../../types';
+import { MUTATION_SIGN_IN, SignInEmailInput } from '../../../graphql/mutations';
 import { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
-import {
-  androidExpoClientId,
-  iOSClientId,
-  iOSExpoClientId,
-} from '../../../../config';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 
+import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
+import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
-import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import { getString } from '../../../../STRINGS';
+import { initializeEThree } from '../../../utils/virgil';
 import renderMobile from './mobile';
 import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
 import { useMutation } from '@apollo/react-hooks';
+
+const {
+  iOSClientId,
+} = Config;
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
@@ -63,6 +65,9 @@ export interface Variables {
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
+  const { theme, changeThemeType, themeType } = useThemeContext();
+  const { deviceType } = useDeviceContext();
+
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
@@ -71,9 +76,8 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-  const { theme, changeThemeType, themeType } = useThemeContext();
-  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, {}>(MUTATION_SIGN_IN);
-  const { deviceType } = useDeviceContext();
+
+  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, SignInEmailInput>(MUTATION_SIGN_IN);
 
   const initAsync = async (): Promise<void> => {
     await GoogleSignIn.initAsync({
@@ -111,17 +115,17 @@ function SignIn(props: Props): ReactElement {
         const user = data.signInEmail.user;
 
         if (user && !user.verified) {
-          navigation.navigate('VerifyEmail', {
+          return navigation.navigate('VerifyEmail', {
             email,
           });
-          return;
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);
+        initializeEThree(data.signInEmail.user.id);
         setUser(user);
       }
-    } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+    } catch (error) {
+      showAlertForGrpahqlError(error.graphQLErrors);
     } finally {
       setIsLoggingIn(false);
     }
@@ -138,24 +142,6 @@ function SignIn(props: Props): ReactElement {
 
   const googleSignInAsync = async (): Promise<void> => {
     setSigningInGoogle(true);
-    if (Constants.appOwnership === 'expo') {
-      try {
-        const response = await AppAuth.authAsync({
-          issuer: 'https://accounts.google.com',
-          scopes: ['profile'],
-          clientId: Platform.select({
-            ios: iOSExpoClientId,
-            android: androidExpoClientId,
-          }) as string,
-        });
-        Alert.alert('login:' + JSON.stringify(response.accessToken));
-      } catch ({ message }) {
-        Alert.alert(`Google Login Error: ${message}`);
-      } finally {
-        setSigningInGoogle(false);
-      }
-      return;
-    }
     try {
       await GoogleSignIn.askForPlayServicesAsync();
       const { type, user } = await GoogleSignIn.signInAsync();

@@ -136,6 +136,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               />
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -144,6 +145,10 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -162,27 +167,9 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "color": "#A1EEDB",
-                  "fontSize": 12,
-                  "paddingBottom": 4,
-                  "paddingLeft": 4,
-                  "paddingRight": 4,
-                  "paddingTop": 4,
-                },
-              ]
-            }
-            testID="added-message"
-          >
-            Added to your friend.
-          </Text>
           <View
             style={
               Array [
@@ -230,7 +217,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                   testID="btn-ad-title"
                 >
-                  Delete
+                  Add
                 </Text>
               </View>
             </TouchableOpacity>
@@ -354,6 +341,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -369,6 +357,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -415,15 +404,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -431,7 +420,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -455,7 +444,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -566,6 +555,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -573,13 +563,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -594,7 +586,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -605,7 +597,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -655,6 +647,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -662,18 +655,20 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -683,7 +678,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -694,7 +689,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -744,6 +739,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -751,13 +747,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -772,7 +770,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -783,7 +781,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -833,6 +831,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -840,13 +839,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -861,7 +862,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -922,6 +923,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -929,13 +931,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -950,7 +954,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1011,6 +1015,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1018,13 +1023,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1039,7 +1046,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1050,7 +1057,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1100,6 +1107,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1107,13 +1115,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1128,7 +1138,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1189,6 +1199,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1196,13 +1207,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1217,7 +1230,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1278,6 +1291,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1285,13 +1299,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1306,7 +1322,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1367,6 +1383,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1374,13 +1391,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1395,7 +1414,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -1554,6 +1573,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               />
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -1562,6 +1582,10 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -1580,7 +1604,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
           <View
@@ -1754,6 +1778,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -1769,6 +1794,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -1815,15 +1841,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -1831,7 +1857,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -1855,7 +1881,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -1966,6 +1992,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -1973,13 +2000,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -1994,7 +2023,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2005,7 +2034,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2055,6 +2084,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2062,18 +2092,20 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -2083,7 +2115,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2094,7 +2126,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2144,6 +2176,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2151,13 +2184,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2172,7 +2207,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2183,7 +2218,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2233,6 +2268,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2240,13 +2276,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2261,7 +2299,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2322,6 +2360,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2329,13 +2368,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2350,7 +2391,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2411,6 +2452,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2418,13 +2460,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2439,7 +2483,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2450,7 +2494,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2500,6 +2544,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2507,13 +2552,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2528,7 +2575,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2589,6 +2636,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2596,13 +2644,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2617,7 +2667,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2678,6 +2728,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2685,13 +2736,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2706,7 +2759,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2767,6 +2820,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -2774,13 +2828,15 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -2795,7 +2851,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -2954,6 +3010,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               />
             </TouchableOpacity>
             <Text
+              numberOfLines={1}
               style={
                 Array [
                   Object {
@@ -2962,6 +3019,10 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     "fontSize": 24,
                     "fontWeight": "bold",
                     "marginTop": 16,
+                    "paddingBottom": 0,
+                    "paddingLeft": 32,
+                    "paddingRight": 32,
+                    "paddingTop": 0,
                   },
                 ]
               }
@@ -2980,7 +3041,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 ]
               }
             >
-              online
+              this is my status message......
             </Text>
           </View>
           <View
@@ -3154,6 +3215,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             defaultValue=""
             multiline={false}
             rejectResponderTermination={true}
+            selectionColor="#151A25"
             style={
               Array [
                 Object {
@@ -3169,6 +3231,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
             }
             testID="text-input"
             underlineColorAndroid="transparent"
+            value=""
           />
           <Image
             source={
@@ -3215,15 +3278,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": true,
               "nickname": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
             },
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong",
+              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hi I am fine -hello-hello-hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
             },
             Object {
@@ -3231,7 +3294,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": false,
               "nickname": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-              "statusMessage": "offline",
+              "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
             },
             Object {
@@ -3255,7 +3318,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               "isOnline": true,
               "nickname": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-              "statusMessage": "online",
+              "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
             },
             Object {
@@ -3366,6 +3429,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3373,13 +3437,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3394,7 +3460,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3405,7 +3471,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  online
+                  this is my status message......
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3455,6 +3521,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3462,18 +3529,20 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
                 >
-                  geoseong
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                 </Text>
                 <Text
                   style={
@@ -3483,7 +3552,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3494,7 +3563,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  offline
+                  hi I am fine -hello-hello-hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3544,6 +3613,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3551,13 +3621,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3572,7 +3644,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3583,7 +3655,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  offline
+                  hello
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3633,6 +3705,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3640,13 +3713,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3661,7 +3736,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3722,6 +3797,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3729,13 +3805,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3750,7 +3828,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3811,6 +3889,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3818,13 +3897,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3839,7 +3920,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3850,7 +3931,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                     ]
                   }
                 >
-                  online
+                  how are you
                 </Text>
               </View>
             </TouchableOpacity>
@@ -3900,6 +3981,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3907,13 +3989,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -3928,7 +4012,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -3989,6 +4073,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -3996,13 +4081,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4017,7 +4104,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4078,6 +4165,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -4085,13 +4173,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4106,7 +4196,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4167,6 +4257,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   style={
                     Array [
                       Object {
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 40,
                       },
@@ -4174,13 +4265,15 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   }
                 />
                 <Text
+                  numberOfLines={1}
                   style={
                     Array [
                       Object {
                         "color": "#151A25",
                         "fontSize": 14,
+                        "fontWeight": "bold",
                         "marginLeft": 12,
-                        "width": 100,
+                        "width": 200,
                       },
                     ]
                   }
@@ -4195,7 +4288,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                         "borderWidth": 0.3,
                         "color": "#1E6EFA",
                         "fontSize": 12,
-                        "maxWidth": 134.2,
+                        "maxWidth": 120,
                         "paddingBottom": 4,
                         "paddingLeft": 8,
                         "paddingRight": 8,
@@ -4301,6 +4394,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               defaultValue=""
               multiline={false}
               rejectResponderTermination={true}
+              selectionColor="#151A25"
               style={
                 Array [
                   Object {
@@ -4316,6 +4410,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
               }
               testID="text-input"
               underlineColorAndroid="transparent"
+              value=""
             />
             <Image
               source={
@@ -4362,15 +4457,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": true,
                 "nickname": "admin",
                 "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                "statusMessage": "online",
+                "statusMessage": "this is my status message......",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
               },
               Object {
                 "id": "2",
                 "isOnline": false,
-                "nickname": "geoseong",
+                "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
                 "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                "statusMessage": "offline",
+                "statusMessage": "hi I am fine -hello-hello-hello",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               },
               Object {
@@ -4378,7 +4473,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": false,
                 "nickname": "hyochan",
                 "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
-                "statusMessage": "offline",
+                "statusMessage": "hello",
                 "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
               },
               Object {
@@ -4402,7 +4497,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 "isOnline": true,
                 "nickname": "admin2",
                 "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
-                "statusMessage": "online",
+                "statusMessage": "how are you",
                 "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
               },
               Object {
@@ -4513,6 +4608,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4520,13 +4616,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4541,7 +4639,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4552,7 +4650,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    online
+                    this is my status message......
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4602,6 +4700,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4609,18 +4708,20 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
                   >
-                    geoseong
+                    geoseong-hello-hello-hello-hello-hello-hello-hello-hello
                   </Text>
                   <Text
                     style={
@@ -4630,7 +4731,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4641,7 +4742,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    offline
+                    hi I am fine -hello-hello-hello
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4691,6 +4792,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4698,13 +4800,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4719,7 +4823,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4730,7 +4834,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    offline
+                    hello
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -4780,6 +4884,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4787,13 +4892,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4808,7 +4915,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4869,6 +4976,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4876,13 +4984,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4897,7 +5007,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4958,6 +5068,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -4965,13 +5076,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -4986,7 +5099,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -4997,7 +5110,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                       ]
                     }
                   >
-                    online
+                    how are you
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -5047,6 +5160,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5054,13 +5168,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5075,7 +5191,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5136,6 +5252,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5143,13 +5260,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5164,7 +5283,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5225,6 +5344,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5232,13 +5352,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5253,7 +5375,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,
@@ -5314,6 +5436,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     style={
                       Array [
                         Object {
+                          "borderRadius": 20,
                           "height": 40,
                           "width": 40,
                         },
@@ -5321,13 +5444,15 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     }
                   />
                   <Text
+                    numberOfLines={1}
                     style={
                       Array [
                         Object {
                           "color": "#151A25",
                           "fontSize": 14,
+                          "fontWeight": "bold",
                           "marginLeft": 12,
-                          "width": 100,
+                          "width": 200,
                         },
                       ]
                     }
@@ -5342,7 +5467,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                           "borderWidth": 0.3,
                           "color": "#1E6EFA",
                           "fontSize": 12,
-                          "maxWidth": 134.2,
+                          "maxWidth": 120,
                           "paddingBottom": 4,
                           "paddingLeft": 8,
                           "paddingRight": 8,

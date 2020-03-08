@@ -37,6 +37,7 @@ const StyledTextDisplayName = styled.Text`
   color: white;
   font-weight: bold;
   margin-top: 16px;
+  padding: 0 32px;
   align-self: center;
 `;
 
@@ -79,8 +80,6 @@ export interface Ref {
   showAddBtn: (show: boolean) => void;
   setIsFriendAdded: (isFriendAdded: boolean) => void;
   setIsFriendAlreadyAdded: (isFriendAlreadyAdded: boolean) => void;
-  setOnDeleteFriend: (callback?: () => void) => void;
-  setOnAddFriend: (callback?: () => void) => void;
 }
 
 interface Styles {
@@ -119,8 +118,6 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMessage: '',
     isOnline: false,
   });
-  const [onDeleteFriend, setOnDeleteFriend] = useState();
-  const [onAddFriend, setOnAddFriend] = useState();
 
   const {
     friendState: { friends },
@@ -143,15 +140,15 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
 
   const addFriend = (): void => {
     ctxAddFriend(user);
-    if (onAddFriend) {
-      onAddFriend();
+    if (modal) {
+      modal.close();
     }
   };
 
   const deleteFriend = (): void => {
     ctxDeleteFriend(user);
-    if (onDeleteFriend) {
-      onDeleteFriend();
+    if (modal) {
+      modal.close();
     }
   };
 
@@ -164,9 +161,8 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     },
     setIsFriendAdded,
     setIsFriendAlreadyAdded,
-    setOnDeleteFriend,
-    setOnAddFriend,
   }));
+
   const { photoURL = '', nickname, statusMessage } = user;
   const {
     theme: { primary, modalBtnPrimaryFont },
@@ -210,7 +206,9 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
               </View>
             )}
           </TouchableOpacity>
-          <StyledTextDisplayName>{nickname}</StyledTextDisplayName>
+          <StyledTextDisplayName
+            numberOfLines={1}
+          >{nickname}</StyledTextDisplayName>
           <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
         {isFriendAdded ? (

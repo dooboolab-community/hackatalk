@@ -1,5 +1,10 @@
 import { Button, EditText } from '@dooboo-ui/native';
-import { MUTATION_SEND_VERIFICATION, MUTATION_SIGN_UP } from '../../graphql/mutations';
+import {
+  MUTATION_SEND_VERIFICATION,
+  MUTATION_SIGN_UP,
+  MutationSendVerificationInput,
+  MutationSignUpInput,
+} from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
 
@@ -26,19 +31,6 @@ const ButtonWrapper = styled.View`
   margin-top: 32px;
   flex-direction: row-reverse;
 `;
-
-interface MutationSignUpInput {
-  user: {
-    email: string;
-    password: string;
-    name: string;
-    statusMessage: string;
-  };
-}
-
-interface MutationSendVerificationInput {
-  email: string;
-}
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignUp'>;
