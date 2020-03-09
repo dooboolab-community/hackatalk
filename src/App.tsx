@@ -12,7 +12,7 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-bootsplash';
 import { User } from './types';
 import client from './apollo/Client';
 import { initializeEThree } from './utils/virgil';

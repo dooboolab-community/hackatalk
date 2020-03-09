@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNSplashScreen.h"
+#import "RNBootSplash.h"
 #import "AppDelegate.h"
 
 #import <React/RCTBridge.h>
@@ -31,9 +31,11 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
   rootViewController.view = rootView;
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [RNSplashScreen show];
+  [RNBootSplash initialShow];
   return YES;
 }
 
