@@ -44,6 +44,8 @@ function ChangePw(props: Props): ReactElement {
     MUTATION_CHANGE_PASSWORD,
   );
 
+  const navigateBack = (): void => navigation.goBack();
+
   const changePassword = async (): Promise<void> => {
     if (newPw !== confirmPw) {
       Alert.alert(getString('PASSWORD_MUST_MATCH'));
@@ -62,7 +64,7 @@ function ChangePw(props: Props): ReactElement {
         Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
           {
             text: getString('OK'),
-            onPress: (): void => navigation.goBack(),
+            onPress: navigateBack,
           },
         ]);
       }
@@ -70,7 +72,7 @@ function ChangePw(props: Props): ReactElement {
       Alert.alert('', getString('CHANGE_PASSWORD_IS_FAILED'), [
         {
           text: getString('OK'),
-          onPress: (): void => navigation.goBack(),
+          onPress: navigateBack,
         },
       ]);
     }

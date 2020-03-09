@@ -36,6 +36,8 @@ function Page({ navigation }: Props): ReactElement {
   const { theme } = useThemeContext();
   const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
 
+  const navigateToSignIn = (): void => navigation.navigate('SignIn');
+
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
@@ -49,7 +51,7 @@ function Page({ navigation }: Props): ReactElement {
         Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
           {
             text: getString('OK'),
-            onPress: (): void => navigation.navigate('SignIn'),
+            onPress: navigateToSignIn,
           },
         ]);
       }
