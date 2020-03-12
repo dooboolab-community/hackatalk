@@ -1,4 +1,6 @@
 {
+  "name": "HackaTalk",
+  "description": "Opensource chat app",
   "expo": {
     "name": "HackaTalk",
     "slug": "HackaTalk",

@@ -72,3 +72,8 @@ ios/Pods/
 .env
 google-services.json
 GoogleService-Info.plist
+
+# Android built asset for release
+node_modules*
+assets_icons*
+assets_langs*
