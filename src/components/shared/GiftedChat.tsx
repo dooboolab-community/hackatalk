@@ -1,4 +1,4 @@
-import { EmitterSubscription, FlatList, Keyboard, ListRenderItem, TextInput, View } from 'react-native';
+import { EmitterSubscription, FlatList, Keyboard, ListRenderItem, Platform, TextInput, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components/native';
@@ -122,7 +122,10 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     <>
       <StyledKeyboardAvoidingView
         keyboardVerticalOffset={keyboardOffset}
-        behavior={'padding'}
+        behavior={Platform.select({
+          ios: 'padding',
+          default: undefined,
+        })}
       >
         <FlatList
           style={{ alignSelf: 'stretch' }}
