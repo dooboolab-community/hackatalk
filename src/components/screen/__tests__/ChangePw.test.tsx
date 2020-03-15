@@ -135,7 +135,7 @@ describe('[ChangePw] screen', () => {
       // api falied
       act(() => { fireEvent.press(changePwBtn); });
       await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(1));
-      expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('CHANGE_PASSWORD_IS_FAILED'));
+      expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('CHANGE_PASSWORD_HAS_FAILED'));
 
       // api succeeded
       act(() => { fireEvent.press(changePwBtn); });
