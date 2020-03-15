@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node node_modules/react-native/local-cli/cli.js start",
     "tsc": "tsc",
-    "cp:config": "cp .env.sample .env",
+    "cp:config": "cp .env.sample .env && cp .env.sample .env.prod",
     "watch": "tsc -w",
     "start": "npm run dev",
     "codecov": "codecov",
