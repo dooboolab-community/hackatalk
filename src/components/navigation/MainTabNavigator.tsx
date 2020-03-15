@@ -61,7 +61,6 @@ const CustomHeader = (): ReactElement => {
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('ProfileUpdate')}
         >
-          {/* <Ionicons name="ios-person" size={24} color="white" /> */}
           <Image width={24} height={24} source={IC_PROFILE_W}/>
         </TouchableOpacity>
       </View>

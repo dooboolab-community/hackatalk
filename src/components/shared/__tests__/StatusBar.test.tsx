@@ -3,9 +3,9 @@ import 'react-native';
 import * as React from 'react';
 
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { render, wait } from '@testing-library/react-native';
 
 import StatusBar from '../StatusBar';
-import { render } from '@testing-library/react-native';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -18,10 +18,12 @@ describe('[StatusBar] render', () => {
     component = createTestElement(<StatusBar {...props} />);
   });
 
-  it('renders without crashing', () => {
+  it('renders without crashing', async () => {
     const { baseElement } = render(component);
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    await wait(() => {
+      expect(baseElement).toMatchSnapshot();
+      expect(baseElement).toBeTruthy();
+    });
   });
 
   // describe('interactions', () => {

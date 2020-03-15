@@ -1,4 +1,4 @@
-import { Image, ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import CheckBox from './CheckBox';
 import { IC_NO_IMAGE } from '../../utils/Icons';

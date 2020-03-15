@@ -78,7 +78,6 @@ exports[`Rendering renders without crashing 1`] = `
                   "backgroundColor": "#f3f9ff",
                   "borderRadius": 4,
                   "color": "#151A25",
-                  "height": 36,
                   "paddingLeft": 40,
                   "paddingRight": 10,
                   "width": "100%",

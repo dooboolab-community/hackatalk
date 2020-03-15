@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 
 const StyledSearchView = styled.View`
   width: 100%;
-  height: 50px;
+  height: 48px;
   justify-content: center;
   overflow: hidden;
   align-items: center;
@@ -15,7 +15,7 @@ const StyledSearchView = styled.View`
 
 const StyledTextInputWrapper = styled.View`
   width: 100%;
-  height: 50px;
+  height: 58px;
   padding: 0 20px;
   align-items: center;
   flex-direction: row;
@@ -23,7 +23,6 @@ const StyledTextInputWrapper = styled.View`
 `;
 const StyledTextInput = styled.TextInput`
   width: 100%;
-  height: 36px;
   color: ${({ theme }): string => theme.fontColor};
   background-color: ${({ theme }): string => theme.searchBackground};
   border-radius: 4px;
