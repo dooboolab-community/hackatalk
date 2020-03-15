@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
+import { IC_NO_IMAGE } from '../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
@@ -15,6 +15,7 @@ const StyledView = styled.View`
 const StyledImage = styled.Image`
   width: 80px;
   height: 80px;
+  border-radius: 40px;
 `;
 
 const StyledViewBtns = styled.View`
@@ -198,11 +199,14 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
                 style={{
                   width: 80,
                   height: 80,
+                  alignSelf: 'center',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="ios-person" size={80} color="white" />
+                <StyledImage
+                  source={IC_NO_IMAGE}
+                />
               </View>
             )}
           </TouchableOpacity>

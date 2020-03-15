@@ -93,6 +93,7 @@ exports[`Interaction should simulate onClick 1`] = `
       </Text>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "backgroundColor": "#1E6EFA",
@@ -239,6 +240,7 @@ exports[`Rendering renders without crashing 1`] = `
       </Text>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "backgroundColor": "#1E6EFA",

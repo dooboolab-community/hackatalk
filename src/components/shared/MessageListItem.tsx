@@ -1,7 +1,7 @@
 import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
+import { IC_NO_IMAGE } from '../../utils/Icons';
 import { MessageProps } from '../../types';
 import moment from 'moment';
 import styled from 'styled-components/native';
@@ -15,6 +15,12 @@ const WrapperPeer = styled.View<{ isSame: boolean }>`
   margin-left: 20px;
   margin-right: 8px;
   margin-top: ${({ isSame }): number => (isSame ? 8 : 20)}px;
+`;
+
+const StyledImage = styled.Image`
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
 `;
 
 const StyledImageSender = styled.Image`
@@ -117,8 +123,17 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
     return <StyledImageSender source={{ uri: thumbURL }} />;
   }
   return (
-    <View style={{ width: 40 }}>
-      <Ionicons name="ios-person" size={40} color={fontColor} />
+    <View
+      style={{
+        width: 40,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <StyledImage
+        source={IC_NO_IMAGE}
+      />
     </View>
   );
 };

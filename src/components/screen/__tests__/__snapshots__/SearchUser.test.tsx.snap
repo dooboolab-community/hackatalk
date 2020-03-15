@@ -125,6 +125,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 style={
                   Array [
                     Object {
+                      "borderRadius": 40,
                       "height": 80,
                       "width": 80,
                     },
@@ -308,7 +309,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           Array [
             Object {
               "alignItems": "center",
-              "height": 50,
+              "height": 48,
               "justifyContent": "center",
               "marginBottom": 4,
               "overflow": "hidden",
@@ -323,7 +324,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 50,
+                "height": 58,
                 "justifyContent": "center",
                 "paddingBottom": 0,
                 "paddingLeft": 20,
@@ -348,7 +349,6 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   "backgroundColor": "#f3f9ff",
                   "borderRadius": 4,
                   "color": "#151A25",
-                  "height": 36,
                   "paddingLeft": 40,
                   "paddingRight": 10,
                   "width": "100%",
@@ -1562,6 +1562,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                 style={
                   Array [
                     Object {
+                      "borderRadius": 40,
                       "height": 80,
                       "width": 80,
                     },
@@ -1745,7 +1746,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
           Array [
             Object {
               "alignItems": "center",
-              "height": 50,
+              "height": 48,
               "justifyContent": "center",
               "marginBottom": 4,
               "overflow": "hidden",
@@ -1760,7 +1761,7 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 50,
+                "height": 58,
                 "justifyContent": "center",
                 "paddingBottom": 0,
                 "paddingLeft": 20,
@@ -1785,7 +1786,6 @@ exports[`[SearchUser] interaction with Profile Modal show changged state when pr
                   "backgroundColor": "#f3f9ff",
                   "borderRadius": 4,
                   "color": "#151A25",
-                  "height": 36,
                   "paddingLeft": 40,
                   "paddingRight": 10,
                   "width": "100%",
@@ -2999,6 +2999,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                 style={
                   Array [
                     Object {
+                      "borderRadius": 40,
                       "height": 80,
                       "width": 80,
                     },
@@ -3182,7 +3183,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
           Array [
             Object {
               "alignItems": "center",
-              "height": 50,
+              "height": 48,
               "justifyContent": "center",
               "marginBottom": 4,
               "overflow": "hidden",
@@ -3197,7 +3198,7 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 50,
+                "height": 58,
                 "justifyContent": "center",
                 "paddingBottom": 0,
                 "paddingLeft": 20,
@@ -3222,7 +3223,6 @@ exports[`[SearchUser] interaction with Profile Modal show profile modal when pre
                   "backgroundColor": "#f3f9ff",
                   "borderRadius": 4,
                   "color": "#151A25",
-                  "height": 36,
                   "paddingLeft": 40,
                   "paddingRight": 10,
                   "width": "100%",
@@ -4361,7 +4361,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "height": 50,
+                "height": 48,
                 "justifyContent": "center",
                 "marginBottom": 4,
                 "overflow": "hidden",
@@ -4376,7 +4376,7 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                 Object {
                   "alignItems": "center",
                   "flexDirection": "row",
-                  "height": 50,
+                  "height": 58,
                   "justifyContent": "center",
                   "paddingBottom": 0,
                   "paddingLeft": 20,
@@ -4401,7 +4401,6 @@ exports[`[SearchUser] rendering test should render as expected 1`] = `
                     "backgroundColor": "#f3f9ff",
                     "borderRadius": 4,
                     "color": "#151A25",
-                    "height": 36,
                     "paddingLeft": 40,
                     "paddingRight": 10,
                     "width": "100%",

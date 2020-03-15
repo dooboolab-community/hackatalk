@@ -23,7 +23,7 @@ exports[`Interaction should simulate onClick 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "height": 50,
+            "height": 48,
             "justifyContent": "center",
             "marginBottom": 4,
             "overflow": "hidden",
@@ -38,7 +38,7 @@ exports[`Interaction should simulate onClick 1`] = `
             Object {
               "alignItems": "center",
               "flexDirection": "row",
-              "height": 50,
+              "height": 58,
               "justifyContent": "center",
               "paddingBottom": 0,
               "paddingLeft": 20,
@@ -63,7 +63,6 @@ exports[`Interaction should simulate onClick 1`] = `
                 "backgroundColor": "#f3f9ff",
                 "borderRadius": 4,
                 "color": "#151A25",
-                "height": 36,
                 "paddingLeft": 40,
                 "paddingRight": 10,
                 "width": "100%",
@@ -121,7 +120,7 @@ exports[`Rendering renders without crashing 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "height": 50,
+            "height": 48,
             "justifyContent": "center",
             "marginBottom": 4,
             "overflow": "hidden",
@@ -136,7 +135,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "alignItems": "center",
               "flexDirection": "row",
-              "height": 50,
+              "height": 58,
               "justifyContent": "center",
               "paddingBottom": 0,
               "paddingLeft": 20,
@@ -161,7 +160,6 @@ exports[`Rendering renders without crashing 1`] = `
                 "backgroundColor": "#f3f9ff",
                 "borderRadius": 4,
                 "color": "#151A25",
-                "height": 36,
                 "paddingLeft": 40,
                 "paddingRight": 10,
                 "width": "100%",

@@ -404,11 +404,11 @@ describe('[SignIn] interaction', () => {
     });
   });
 
-  it('should call Apple signin when pressing button', async () => {
+  it('should call Apple signin when pressing button', () => {
     const btnApple = testingLib.getByTestId('btn-apple');
-    await wait(() => expect(btnApple).toBeTruthy());
 
-    act(() => {
+    act(async () => {
+      await wait(() => expect(btnApple).toBeTruthy());
       fireEvent.press(btnApple);
     });
   });

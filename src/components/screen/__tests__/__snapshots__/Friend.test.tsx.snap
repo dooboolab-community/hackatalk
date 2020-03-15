@@ -120,13 +120,32 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Object {
                     "alignItems": "center",
+                    "alignSelf": "center",
                     "height": 80,
                     "justifyContent": "center",
                     "width": 80,
                   }
                 }
               >
-                <Text />
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 40,
+                        "height": 80,
+                        "width": 80,
+                      },
+                    ]
+                  }
+                />
               </View>
             </TouchableOpacity>
             <Text
@@ -564,13 +583,32 @@ exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Fr
                 style={
                   Object {
                     "alignItems": "center",
+                    "alignSelf": "center",
                     "height": 80,
                     "justifyContent": "center",
                     "width": 80,
                   }
                 }
               >
-                <Text />
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 40,
+                        "height": 80,
+                        "width": 80,
+                      },
+                    ]
+                  }
+                />
               </View>
             </TouchableOpacity>
             <Text

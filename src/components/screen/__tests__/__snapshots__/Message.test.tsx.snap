@@ -190,11 +190,32 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   <View
                     style={
                       Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
                         "width": 40,
                       }
                     }
                   >
-                    <Text />
+                    <Image
+                      source={
+                        Object {
+                          "canInstrument": true,
+                          "createTransformer": [Function],
+                          "getCacheKey": [Function],
+                          "process": [Function],
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 16,
+                            "height": 32,
+                            "width": 32,
+                          },
+                        ]
+                      }
+                    />
                   </View>
                 </TouchableOpacity>
               </View>
@@ -360,11 +381,32 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   <View
                     style={
                       Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
                         "width": 40,
                       }
                     }
                   >
-                    <Text />
+                    <Image
+                      source={
+                        Object {
+                          "canInstrument": true,
+                          "createTransformer": [Function],
+                          "getCacheKey": [Function],
+                          "process": [Function],
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "borderRadius": 16,
+                            "height": 32,
+                            "width": 32,
+                          },
+                        ]
+                      }
+                    />
                   </View>
                 </TouchableOpacity>
               </View>
@@ -710,6 +752,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
+              delayPressIn={30}
               testID="btn-message"
             >
               <View
