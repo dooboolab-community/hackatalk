@@ -61,7 +61,7 @@ function ChangePw(props: Props): ReactElement {
       const result = await mutationChangePassword({ variables });
       if (result.data?.changeEmailPassword) {
         Keyboard.dismiss();
-        Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
+        Alert.alert(getString('ERROR'), getString('PASSWORD_IS_CHANGED'), [
           {
             text: getString('OK'),
             onPress: navigateBack,
@@ -69,7 +69,7 @@ function ChangePw(props: Props): ReactElement {
         ]);
       }
     } catch (e) {
-      Alert.alert('', getString('CHANGE_PASSWORD_IS_FAILED'), [
+      Alert.alert('', getString('CHANGE_PASSWORD_HAS_FAILED'), [
         {
           text: getString('OK'),
           onPress: navigateBack,

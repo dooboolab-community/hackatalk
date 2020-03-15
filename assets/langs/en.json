@@ -75,7 +75,7 @@
   "RETURN_TO_SIGNIN": "Return to sign in",
   "PASSWORD_RESET_EMAIL_SENT": "Password reset link has been sent. Please check your email.",
   "PASSWORD_IS_CHANGED": "Password is changed successfully",
-  "CHANGE_PASSWORD_IS_FAILED": "Failed to change password. Please retry.",
+  "CHANGE_PASSWORD_HAS_FAILED": "Failed to change password. Please retry.",
   "ERROR_OCCURED": "Error occured.",
   "PLZ_TRY_AGAIN_LATER": "Please try again later.",
   "TRY_AGAIN": "Try again",
