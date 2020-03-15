@@ -38,7 +38,7 @@ exports[`Rendering renders without crashing 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "height": 50,
+              "height": 48,
               "justifyContent": "center",
               "marginBottom": 4,
               "overflow": "hidden",
@@ -53,7 +53,7 @@ exports[`Rendering renders without crashing 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "height": 50,
+                "height": 58,
                 "justifyContent": "center",
                 "paddingBottom": 0,
                 "paddingLeft": 20,

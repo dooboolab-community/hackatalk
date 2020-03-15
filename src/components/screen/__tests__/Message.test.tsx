@@ -100,14 +100,14 @@ describe('[Message] interaction', () => {
     const touchMenu = testingLib.getByTestId('touch-menu');
     act(() => {
       fireEvent.press(touchMenu);
-    });
 
-    jest.runAllTimers();
+      jest.runAllTimers();
 
-    const photoBtn = testingLib.getByTestId('icon-photo');
+      const photoBtn = testingLib.getByTestId('icon-photo');
 
-    act(() => {
-      fireEvent.press(photoBtn);
+      act(() => {
+        fireEvent.press(photoBtn);
+      });
     });
   });
 
