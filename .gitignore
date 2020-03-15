@@ -70,6 +70,7 @@ ios/Pods/
 
 # env
 .env
+.env.prod
 google-services.json
 GoogleService-Info.plist
 

@@ -1,8 +1,8 @@
 {
-  "upgrade": true,
+  "upgrade": false,
   "reject": [
     "react",
     "react-dom",
-    "react-test-renderer",
+    "react-test-renderer"
   ]
 }

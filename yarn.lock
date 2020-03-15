@@ -1719,10 +1719,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dooboo-ui/native-pinch-zoom-slider-modal@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@dooboo-ui/native-pinch-zoom-slider-modal/-/native-pinch-zoom-slider-modal-0.0.4.tgz#180e3d1d122397faf134f5100a65d82b18963f1b"
-  integrity sha512-FQdv2OSydyzlwb43U9JazMGiCJCbR7lmT6Wp2uDQg2TcSUGuXciWWrR6xTuH2r7Qb7d1oLpB8FDJ30BydZHV3A==
+"@dooboo-ui/native-pinch-zoom-slider-modal@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native-pinch-zoom-slider-modal/-/native-pinch-zoom-slider-modal-0.0.5.tgz#c3561f2289590e9405b8231f05e7bd5893234180"
+  integrity sha512-f9vOgHEJrB2nz8VGgnq5ln10dcxW22W/sGPrM2SdaDPzoZbLjfsfArHcQk6DPfn7lMLSbBjyy9ToqpzEHhd2NA==
   dependencies:
     "@react-native-community/viewpager" "^3.3.0"
     dooboolab-welcome "^1.1.1"
@@ -1735,10 +1735,10 @@
   dependencies:
     dooboolab-welcome "^1.1.1"
 
-"@dooboo-ui/native@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.6.1.tgz#82391399b147d43f83e96c9069b355d9da90ab4e"
-  integrity sha512-c5PpxwSFDWrDNka7d3K0luNimezQnBOHVUW6HEgVb8KgUXfJqNQnxvve0n5zZl5JnW9HcwjvSiHwY4/001gZbw==
+"@dooboo-ui/native@^0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@dooboo-ui/native/-/native-0.6.3.tgz#95923468e6dfab100d8ec75ed4dd17497019b396"
+  integrity sha512-cJLtNNUj3zkJQ/B9cZfimemFkXsSNqI03zy7Zt6co7adnO0bHIEBL+2FD6jgMIwfO6bV7x+61/VvCNfYhHzVlQ==
   dependencies:
     dooboolab-welcome "^1.1.1"
 
@@ -2961,10 +2961,10 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
-"@types/react-native@^0.61.20":
-  version "0.61.20"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.20.tgz#937d8ed9768bdfc982e785563c07b4905ba0fd1f"
-  integrity sha512-EEtaP15gpDhpB1N8G3a+nWAzSa3HiLAZvfFkvczCluQXiB2vXAVJyxWls1i3Q9TERVWE3JbOuufgCY6bV1qTzw==
+"@types/react-native@^0.61.22":
+  version "0.61.22"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.22.tgz#c624cce728f7d3f57c0f0c53bf4d95a8903f5b16"
+  integrity sha512-17FmMa157l5lSfGf0ft5asMsKGsgFGYr9N3ULRat5YPfZSOlhwNJ0u9OR7MJOmxILKCdLvsfotPH2Vh+VVuGlQ==
   dependencies:
     "@types/react" "*"
 
@@ -7671,10 +7671,10 @@ jest-expo@^36.0.1:
     lodash "^4.5.0"
     react-test-renderer "~16.9.0"
 
-jest-fetch-mock@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-3.0.2.tgz#b89f59704a6866c8dee3425ce17e853ab408ee69"
-  integrity sha512-DiMuGPSH9/ZGo/rQzuBEtR75huhIeC36L8P9+hkVSkw7G6+f20R34DvL1Q71bkAgk9KRrlQ8Kcm/aQuNsqMoKg==
+jest-fetch-mock@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-3.0.3.tgz#31749c456ae27b8919d69824f1c2bd85fe0a1f3b"
+  integrity sha512-Ux1nWprtLrdrH4XwE7O7InRY6psIi3GOsqNESJgMJ+M5cv4A8Lh7SN9d2V2kKRZ8ebAfcd1LNyZguAOb6JiDqw==
   dependencies:
     cross-fetch "^3.0.4"
     promise-polyfill "^8.1.3"
@@ -10484,10 +10484,10 @@ react-native-appearance@~0.3.3:
     invariant "^2.2.4"
     use-subscription "^1.0.0"
 
-react-native-bootsplash@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-2.0.5.tgz#34ac1f42564fa16f75c0c3450486aa768175c2b9"
-  integrity sha512-0xfSmEcVbZxlGb6kTZDRg1UHOsScgaoICz8Wx7/jUUBAs2izRz0BCMijs8CHOZtPI1fisdcKMZ/NUtNEnIJNBw==
+react-native-bootsplash@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-2.1.0.tgz#87fdaa2dda973de933aade21a5ef727d051ac8a1"
+  integrity sha512-LXoOp5+VXuHnKOH9eQUqAw8oywup3g2jdUvOuuEVJBUY8lSLnMvtsz4JUezjSjiNdl1kY8+l1gQBJvrui+RXRw==
   dependencies:
     jimp "0.9.5"
 
@@ -10529,10 +10529,10 @@ react-native-keychain@^5.0.1:
   resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-5.0.1.tgz#2751de436f017c87b8aabb32533bee88657d643e"
   integrity sha512-CLIPNexPBufPpNqgF7/smZNAiv6x0SCsztfEi/hWPCQ7yHxNwdRUyUzOLGrw1lPe/6fQE+TC3iS1+cbDTaRJag==
 
-react-native-localize@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.3.tgz#3e29520b4c7907227729326dfbf2f2643a07495a"
-  integrity sha512-lpKx/iqDKQ7dC58fb/vGGERLT4ZYfk+H2AXMg6aaVkgv8eEIgApQAzB2Oaotx7FIM/RopJponUFyJ4PMIHi4Rw==
+react-native-localize@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-1.3.4.tgz#7d5c7b7ea30548d777a641457434d363cfac48db"
+  integrity sha512-ZVdapfTIcizCQ6nfbkTzjN/+D1eFb3aRtmOSC6d4LtjYRovUnv0QmNSg35CI/Q8Jy3nx4bHg6M9QyQ75MHzf7Q==
 
 react-native-modalbox@^2.0.0:
   version "2.0.0"
@@ -10551,10 +10551,10 @@ react-native-safe-area-context@0.7.3:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-0.7.3.tgz#ad6bd4abbabe195332c53810e4ce5851eb21aa2a"
   integrity sha512-9Uqu1vlXPi+2cKW/CW6OnHxA76mWC4kF3wvlqzq4DY8hn37AeiXtLFs2WkxH4yXQRrnJdP6ivc65Lz+MqwRZAA==
 
-react-native-screens@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.2.0.tgz#cc4cdf17426fdda97ad93a5e812a1899390f1978"
-  integrity sha512-a0VzxOWot7F9B/GQyDSssBRd3jUJazFnTQS61IiyReWB6aHlFhf3Xz10jBRoURXy1EMCDCHgenmTVTkKHpKyqQ==
+react-native-screens@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.3.0.tgz#fd2b0c841f4fdebb2937c0e84acccc62bf9ebb22"
+  integrity sha512-b+zazYedHPZoDzeKOE4RF/rPpJX8AAITazZCsVFUtw5Qn2QNHvAi0xbzWvQFNgqfvET0TLuu8F2HfBDh1WSqdQ==
   dependencies:
     debounce "^1.2.0"
 
