@@ -28,6 +28,8 @@ jest.mock('expo-image-picker', () => ({
 }));
 
 describe('[Message] rendering test', () => {
+  jest.useFakeTimers();
+
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<Message {...props} />);
@@ -41,6 +43,7 @@ describe('[Message] rendering test', () => {
 });
 
 describe('[Message] interaction', () => {
+  jest.useFakeTimers();
   let testingLib: RenderResult;
 
   beforeAll(() => {
@@ -98,6 +101,9 @@ describe('[Message] interaction', () => {
     act(() => {
       fireEvent.press(touchMenu);
     });
+
+    jest.runAllTimers();
+
     const photoBtn = testingLib.getByTestId('icon-photo');
 
     act(() => {
@@ -110,5 +116,7 @@ describe('[Message] interaction', () => {
     act(() => {
       fireEvent.press(cameraBtn);
     });
+
+    jest.runAllTimers();
   });
 });

@@ -325,6 +325,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
       </View>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "paddingHorizontal": 20,

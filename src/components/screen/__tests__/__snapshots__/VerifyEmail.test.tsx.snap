@@ -91,6 +91,7 @@ exports[`Interaction should simulate next button press 1`] = `
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "marginTop": 80,
@@ -234,6 +235,7 @@ exports[`Rendering renders without crashing 1`] = `
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "marginTop": 80,

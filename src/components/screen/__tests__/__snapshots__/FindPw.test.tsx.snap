@@ -142,6 +142,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
         >
           <TouchableOpacity
             activeOpacity={0.2}
+            delayPressIn={30}
             style={
               Object {
                 "backgroundColor": "#1E6EFA",

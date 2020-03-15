@@ -710,6 +710,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
           >
             <TouchableOpacity
               activeOpacity={0.2}
+              delayPressIn={30}
               testID="btn-message"
             >
               <View

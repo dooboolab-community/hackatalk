@@ -576,6 +576,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                               >
                                                 <TouchableOpacity
                                                   activeOpacity={0.2}
+                                                  delayPressIn={30}
                                                   style={
                                                     Object {
                                                       "flex": 1,
@@ -634,6 +635,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 />
                                                 <TouchableOpacity
                                                   activeOpacity={0.2}
+                                                  delayPressIn={30}
                                                   style={
                                                     Object {
                                                       "backgroundColor": "#1E6EFA",
@@ -719,6 +721,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                               >
                                                 <TouchableOpacity
                                                   activeOpacity={0.2}
+                                                  delayPressIn={30}
                                                   testID="btn-apple"
                                                 >
                                                   <View
@@ -775,6 +778,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                   activeOpacity={0.2}
+                                                  delayPressIn={30}
                                                   testID="btn-facebook"
                                                 >
                                                   <View
@@ -831,6 +835,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                   activeOpacity={0.2}
+                                                  delayPressIn={30}
                                                   testID="btn-google"
                                                 >
                                                   <View

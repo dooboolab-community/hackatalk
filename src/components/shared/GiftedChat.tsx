@@ -116,7 +116,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         keyboardShowListener.remove();
       }
     };
-  });
+  }, []);
 
   return (
     <>
@@ -171,7 +171,13 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             />
             <StyledTouchMenu
               testID="touch-menu"
-              onPress={(): void => setShowMenu(true)}
+              onPress={(): void => {
+                Keyboard.dismiss();
+                const timeout = setTimeout(() => {
+                  setShowMenu(true);
+                  clearTimeout(timeout);
+                }, 100);
+              }}
             >
               {optionView}
             </StyledTouchMenu>

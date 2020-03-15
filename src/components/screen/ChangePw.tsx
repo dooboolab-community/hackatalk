@@ -1,4 +1,4 @@
-import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, SafeAreaView } from 'react-native';
+import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import React, {
   ReactElement,
@@ -84,7 +84,10 @@ function ChangePw(props: Props): ReactElement {
         keyboardVerticalOffset={isIPhoneXSize
           ? Constants.statusBarHeight + 52
           : Constants.statusBarHeight}
-        behavior={'padding'}
+        behavior={Platform.select({
+          ios: 'padding',
+          default: undefined,
+        })}
       >
         <InnerContainer>
           <EditText

@@ -150,6 +150,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
       </ScrollView>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "paddingHorizontal": 20,
@@ -353,6 +354,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
       </ScrollView>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "paddingHorizontal": 20,
@@ -556,6 +558,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
       </ScrollView>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "paddingHorizontal": 20,
@@ -759,6 +762,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
       </ScrollView>
       <TouchableOpacity
         activeOpacity={0.2}
+        delayPressIn={30}
         style={
           Object {
             "paddingHorizontal": 20,
