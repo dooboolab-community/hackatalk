@@ -81,6 +81,7 @@ export default function mobile(variables: Variables): ReactElement {
     isLoggingIn,
     signingInFacebook,
     signingInGoogle,
+    signingInApple,
     email,
     setEmail,
     password,
@@ -231,7 +232,7 @@ export default function mobile(variables: Variables): ReactElement {
                       <SvgApple width={24} fill={theme.appleIcon}/>
                     </View>
                   }
-                  isLoading={signingInFacebook}
+                  isLoading={signingInApple}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
