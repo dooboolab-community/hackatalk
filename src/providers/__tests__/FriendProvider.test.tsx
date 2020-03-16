@@ -82,8 +82,6 @@ const TestComponent = (): React.ReactElement => (
 );
 
 describe('[FriendProvider] rendering test', () => {
-  let json;
-
   it('component and snapshot matches', () => {
     const { baseElement } = render(<TestComponent/>);
     expect(baseElement).toMatchSnapshot();

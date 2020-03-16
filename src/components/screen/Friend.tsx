@@ -1,13 +1,18 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
+import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
+import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
+import { LoadingIndicator } from '@dooboo-ui/native';
+import { QUERY_FRIENDS } from '../../graphql/queries';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
+import { useQuery } from '@apollo/react-hooks';
 
 const Container = styled.View`
   flex: 1;
@@ -21,7 +26,15 @@ export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
   const {
     friendState: { friends },
+    setFriends,
   } = useFriendContext();
+  const { loading, error, data, refetch } = useQuery<{ friends: User[] }, {}>(QUERY_FRIENDS);
+
+  useEffect(() => {
+    if (data && data.friends) {
+      setFriends(data.friends);
+    }
+  }, [data]);
 
   const userListOnPress = (user: User): void => {
     if (state.modal) {
@@ -54,6 +67,16 @@ export default function Screen(): ReactElement {
       />
     );
   };
+
+  if (loading) {
+    return (<Container><LoadingIndicator /></Container>);
+  }
+  if (error) {
+    return <ErrorView
+      body={error.message}
+      onButtonPressed={(): Promise<ApolloQueryResult<{ friends: User[] }>> => refetch()}
+    />;
+  }
 
   return (
     <Container>

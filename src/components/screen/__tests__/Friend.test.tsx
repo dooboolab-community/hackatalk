@@ -10,12 +10,15 @@ import {
   cleanup,
   fireEvent,
   render,
+  wait,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Button } from 'react-native';
 import Friend from '../Friend';
+import { MockedProvider } from '@apollo/react-testing';
 import ProfileModal from '../../shared/ProfileModal';
+import { QUERY_FRIENDS } from '../../../graphql/queries';
 import { User } from '../../../types';
 import { useFriendContext } from '../../../providers/FriendProvider';
 
@@ -42,18 +45,93 @@ const fakeUsers: User[] = [
 let props: any;
 let component: ReactElement;
 
+const mocks = [
+  {
+    request: {
+      query: QUERY_FRIENDS,
+    },
+    result: {
+      data: {
+        friends: [
+          {
+            id: '1',
+            nickname: 'admin',
+            name: 'admin',
+            thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+            photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+            statusMessage: 'hello',
+            isOnline: true,
+          }, {
+            id: '2',
+            nickname: 'geoseong',
+            name: 'geoseong',
+            thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+            photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+            statusMessage: 'hello baby',
+            isOnline: false,
+          },
+        ],
+      },
+    },
+  },
+];
+
 describe('[Friend] rendering test', () => {
   beforeEach(() => {
-    beforeEach(() => {
-      props = createTestProps();
-      component = createTestElement(<Friend {...props} />);
-    });
+    props = createTestProps();
   });
 
-  it('renders as expected', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('renders as expected', async () => {
+    component = createTestElement(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
+
+    const testingLib = render(component);
+    await wait(() => {
+      testingLib.rerender(component);
+      expect(testingLib.asJSON()).toBeTruthy();
+      expect(testingLib.asJSON()).toMatchSnapshot();
+    });
+    await act(() => wait());
+  });
+
+  it('renders loading', () => {
+    component = createTestElement(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
+
     const { baseElement } = render(component);
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
+  });
+
+  it('renders error view', async () => {
+    const errorMock = {
+      request: { query: QUERY_FRIENDS },
+      error: new Error('error'),
+    };
+
+    component = createTestElement(
+      <MockedProvider mocks={[errorMock]} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
+
+    const testingLib = render(component);
+    await wait(() => {
+      testingLib.rerender(component);
+      expect(testingLib.asJSON()).toBeTruthy();
+      expect(testingLib.asJSON()).toMatchSnapshot();
+    });
+    await act(() => wait());
   });
 });
 
@@ -63,7 +141,11 @@ describe('[Friend] interaction', () => {
 
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<Friend {...props} />);
+    component = createTestElement(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
   });
 
@@ -72,20 +154,21 @@ describe('[Friend] interaction', () => {
   });
 
   describe('dispatch showModal', () => {
-    it('should dispatch [show-modal] when user is pressed', () => {
+    it('should dispatch [show-modal] when user is pressed', async () => {
       jest
         .spyOn(ProfileContext, 'useProfileContext')
         .mockImplementation(() => ({
           showModal: jest.fn(),
           state: null,
         }));
-      const userListItem = testingLib.queryByTestId('user-id-0');
-      act(() => {
+      await wait(() => {
+        const userListItem = testingLib.queryByTestId('user-id-0');
         fireEvent.press(userListItem);
       });
+      await act(() => wait());
     });
 
-    it('should call [show-modal] when modal is available', () => {
+    it('should call [show-modal] when modal is available', async () => {
       jest
         .spyOn(ProfileContext, 'useProfileContext')
         .mockImplementation(() => ({
@@ -93,14 +176,15 @@ describe('[Friend] interaction', () => {
           state: {
             user: null,
             deleteMode: true,
-            // modal: jest.mock,
           },
         }));
-      const userListItem = testingLib.queryByTestId('user-id-0');
-      testingLib.rerender(component);
-      act(() => {
+
+      await wait(() => {
+        const userListItem = testingLib.queryByTestId('user-id-0');
+        testingLib.rerender(component);
         fireEvent.press(userListItem);
       });
+      await act(() => wait());
     });
   });
 
@@ -132,7 +216,9 @@ describe('[Friend] interaction', () => {
       component = createTestElement(
         <>
           <Buttons />
-          <Friend {...props} />
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <Friend {...props} />
+          </MockedProvider>
         </>,
       );
       testingLib = render(component);
@@ -172,18 +258,21 @@ describe('[Friend] interaction', () => {
       return (
         <>
           <ProfileModal ref={state.modal} />
-          <Friend {...props} />
+          <MockedProvider mocks={mocks} addTypename={false}>
+            <Friend {...props} />
+          </MockedProvider>
         </>
       );
     };
 
-    beforeEach(() => {
+    beforeEach(async () => {
       component = createTestElement(<TestComponent />);
       testingLib = render(component);
       itemTestID = 'user-id-0';
+      await wait();
     });
 
-    it('Show the friend is removed from list and the modal turns off when the delete button is pressed', () => {
+    it('Show the friend is removed from list and the modal turns off when the delete button is pressed', async () => {
       const userListItem = testingLib.queryByTestId(itemTestID);
       act(() => {
         fireEvent.press(userListItem);
