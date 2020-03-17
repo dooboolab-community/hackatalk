@@ -1,3 +1,5 @@
+export { AppleAuthenticationScope, AppleAuthenticationCredential } from 'expo-apple-authentication';
+
 export const isAvailableAsync = jest.fn(() => Promise.resolve(true));
 export const signInAsync = jest.fn(() =>
   Promise.resolve({

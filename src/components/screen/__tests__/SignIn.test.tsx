@@ -607,3 +607,133 @@ describe('[SignIn] Google Signin', () => {
     });
   });
 });
+
+describe('Apple SignIn', () => {
+  let testingLib: RenderResult;
+
+  beforeAll(() => {
+    props = createTestProps();
+    component = createTestElement(
+      <MockedProvider mocks={mockSignInEmail} addTypename={false}>
+        <SignIn {...props} />
+      </MockedProvider>,
+    );
+    testingLib = render(component);
+  });
+
+  afterAll((done) => {
+    cleanup();
+    done();
+  });
+
+  it('should Apple auth available', async () => {
+    return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeTruthy();
+  });
+
+  it('should Apple auth unavailable', async () => {
+    jest.spyOn(AppleAuthentication, 'isAvailableAsync').mockImplementation(
+      () => Promise.resolve(false),
+    );
+    return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeFalsy();
+  });
+
+  it('should signin with Apple when [btn-apple] has pressed', async () => {
+    testingLib = render(component);
+
+    const btnApple = testingLib.queryByTestId('btn-apple');
+    await wait(() => expect(btnApple).toBeTruthy());
+
+    act(() => {
+      fireEvent.press(btnApple);
+    });
+
+    return expect(AppleAuthentication.signInAsync({
+      requestedScopes: [
+        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+      ],
+    })).resolves.toMatchObject<AppleAuthentication.AppleAuthenticationCredential>({
+      user: 'uniqueUserId',
+      identityToken: 'identityToken',
+      realUserStatus: 1,
+      authorizationCode: 'authorizationCode',
+      fullName:
+        {
+          namePrefix: null,
+          givenName: 'GivenName',
+          nameSuffix: null,
+          nickname: null,
+          familyName: 'FamilyName',
+          middleName: null,
+        },
+      email: 'email@privaterelay.appleid.com',
+      state: null,
+    });
+  });
+
+  it('should cancel signin with apple', async () => {
+    jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
+      () =>
+        new Promise((resolve, reject): void => {
+          const error = {
+            code: 'ERR_CANCELED',
+          };
+          reject(error);
+        }),
+    );
+
+    const btnApple = testingLib.queryByTestId('btn-apple');
+    await wait(() => expect(btnApple).toBeTruthy());
+
+    act(() => {
+      fireEvent.press(btnApple);
+    });
+
+    await act(() => wait());
+
+    await expect(AppleAuthentication.signInAsync({
+      requestedScopes: [
+        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+      ],
+    })).rejects.toEqual({
+      code: 'ERR_CANCELED',
+    });
+  });
+
+  it('should catch signin with apple error', async () => {
+    jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
+      () =>
+        new Promise((resolve, reject): void => {
+          /**
+           * ## Error Codes
+           * - ERR_APPLE_AUTHENTICATION_CREDENTIAL,
+           * - ERR_APPLE_AUTHENTICATION_INVALID_SCOPE,
+           * - ERR_APPLE_AUTHENTICATION_REQUEST_FAILED,
+           * - ERR_APPLE_AUTHENTICATION_UNAVAILABLE,
+           * - ERR_CANCELED
+           */
+          const error = {
+            code: 'ERR_APPLE_AUTHENTICATION_CREDENTIAL',
+          };
+          reject(error);
+        }),
+    );
+
+    const btnApple = testingLib.queryByTestId('btn-apple');
+    await wait(() => expect(btnApple).toBeTruthy());
+
+    act(() => {
+      fireEvent.press(btnApple);
+    });
+
+    await act(() => wait());
+
+    return expect(AppleAuthentication.signInAsync({
+      requestedScopes: [
+        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+      ],
+    })).rejects.not.toBeNull();
+  });
+});
