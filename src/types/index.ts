@@ -19,6 +19,7 @@ export interface User {
   id: string;
   email?: string;
   nickname?: string;
+  birthday?: Date;
   name?: string;
   thumbURL?: string;
   photoURL?: string;

@@ -10,7 +10,6 @@ import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useFriendContext } from '../../providers/FriendProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -24,17 +23,13 @@ const Container = styled.View`
 
 export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
-  const {
-    friendState: { friends },
-    setFriends,
-  } = useFriendContext();
-  const { loading, error, data, refetch } = useQuery<{ friends: User[] }, {}>(QUERY_FRIENDS);
 
-  useEffect(() => {
-    if (data && data.friends) {
-      setFriends(data.friends);
-    }
-  }, [data]);
+  // prettier-ignore
+  const { loading, data, error, refetch } = useQuery<{
+    friends: User[];
+  }>(QUERY_FRIENDS, {
+    fetchPolicy: 'network-only',
+  });
 
   const userListOnPress = (user: User): void => {
     if (state.modal) {
@@ -86,7 +81,8 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          friends.length === 0
+          // prettier-ignore
+          data?.friends.length === 0
             ? {
               flex: 1,
               alignItems: 'center',
@@ -95,7 +91,7 @@ export default function Screen(): ReactElement {
             : null
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={friends}
+        data={data?.friends}
         renderItem={renderItem}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>

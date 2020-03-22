@@ -14,28 +14,32 @@ export const QUERY_ME = gql`
   }
 `;
 
+export interface QueryUsersInput {
+  nickname: string;
+}
+
 export const QUERY_USERS = gql`
   query users($nickname: String) {
-    users(
-      user: {
-        nickname: $nickname
+    users(user: { nickname: $nickname }) {
+      edges {
+        node {
+          id
+          email
+          name
+          nickname
+          thumbURL
+          photoURL
+          birthday
+          gender
+          socialId
+          authType
+          phone
+          verified
+          statusMessage
+          isOnline
+          lastSignedIn
+        }
       }
-    ) {
-      id
-      email
-      name
-      nickname
-      thumbURL
-      photoURL
-      birthday
-      gender
-      socialId
-      authType
-      phone
-      verified
-      statusMessage
-      isOnline
-      lastSignedIn
     }
   }
 `;
@@ -44,12 +48,16 @@ export const QUERY_FRIENDS = gql`
   query friends {
     friends {
       id
-      isOnline
+      email
       nickname
+      birthday
       name
-      photoURL
       statusMessage
+      verified
+      authType
       thumbURL
+      photoURL
+      isOnline
     }
   }
 `;

@@ -123,11 +123,11 @@ function FriendProvider(props: Props): React.ReactElement {
   const [friendState, dispatch] = useReducer<Reducer>(reducer, initialState);
 
   const actions = {
+    // legacy
     addFriend: addFriend(dispatch),
     deleteFriend: deleteFriend(dispatch),
     setFriends: setFriends(dispatch),
   };
-
   return (
     <Provider value={{ friendState, ...actions }}>{props.children}</Provider>
   );

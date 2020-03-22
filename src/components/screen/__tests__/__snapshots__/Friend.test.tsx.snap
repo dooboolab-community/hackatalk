@@ -1,1105 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Friend] screen. Show the friend is removed from list and the modal turns off when the delete button is pressed 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    accessibilityViewIsModal={true}
-    importantForAccessibility="yes"
-    pointerEvents="box-none"
-    style={
-      Array [
-        Object {
-          "backgroundColor": "rgba(0,0,0,0)",
-          "zIndex": 2,
-        },
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
-    }
-  >
-    <View
-      pointerEvents="box-none"
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <TouchableWithoutFeedback>
-        <View
-          importantForAccessibility="no"
-          style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                },
-                Object {
-                  "backgroundColor": "black",
-                  "opacity": 0.075,
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableWithoutFeedback>
-      <View
-        style={
-          Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "alignSelf": "stretch",
-            "backgroundColor": "transparent",
-            "height": 320,
-            "justifyContent": "center",
-            "transform": Array [
-              Object {
-                "translateY": -1334,
-              },
-              Object {
-                "translateX": 0,
-              },
-            ],
-            "width": "90%",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#1E6EFA",
-              "height": 300,
-              "justifyContent": "space-between",
-              "marginHorizontal": 20,
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "marginTop": 40,
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "alignSelf": "center",
-                    },
-                  ]
-                }
-              />
-            </TouchableOpacity>
-            <Text
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "center",
-                    "color": "white",
-                    "fontSize": 24,
-                    "fontWeight": "bold",
-                    "marginTop": 16,
-                    "paddingBottom": 0,
-                    "paddingLeft": 32,
-                    "paddingRight": 32,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              admin
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "center",
-                    "color": "white",
-                    "fontSize": 12,
-                    "marginTop": 8,
-                  },
-                ]
-              }
-            >
-              hello
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "alignSelf": "stretch",
-                  "backgroundColor": "#ffffff",
-                  "flexDirection": "row",
-                  "height": 48,
-                  "justifyContent": "space-between",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "height": 80,
-                  "justifyContent": "center",
-                  "width": "50%",
-                }
-              }
-              testID="btn-ad-friend"
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
-                    "width": "50%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#676c7a",
-                        "fontSize": 16,
-                      },
-                    ]
-                  }
-                  testID="btn-ad-title"
-                >
-                  Delete
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#676c7a",
-                    "height": 48,
-                    "width": 0.5,
-                  },
-                ]
-              }
-            />
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "height": 80,
-                  "justifyContent": "center",
-                  "width": "50%",
-                }
-              }
-              testID="btn-chat"
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
-                    "width": "50%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#676c7a",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2F38C7",
-                      },
-                    ]
-                  }
-                >
-                  Chat
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <ScrollView
-      ListEmptyComponent={
-        <Shared
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "flex": 1,
-              "justifyContent": "center",
-              "width": "100%",
-            }
-          }
-        >
-          No content
-        </Shared>
-      }
-      contentContainerStyle={null}
-      data={
-        Array [
-          Object {
-            "id": "1",
-            "isOnline": true,
-            "name": "admin",
-            "nickname": "admin",
-            "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "statusMessage": "hello",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-          },
-          Object {
-            "id": "2",
-            "isOnline": false,
-            "name": "geoseong",
-            "nickname": "geoseong",
-            "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            "statusMessage": "hello baby",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      horizontal={false}
-      initialNumToRender={10}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onEndReachedThreshold={2}
-      removeClippedSubviews={false}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "alignSelf": "stretch",
-        }
-      }
-      testID="friend-list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View
-        style={null}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            testID="user-id-0"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#e2f2ff",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 40,
-                    },
-                  ]
-                }
-              />
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#151A25",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
-                      "marginLeft": 12,
-                      "width": 200,
-                    },
-                  ]
-                }
-              >
-                admin
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "#d3d8e8",
-                      "borderWidth": 0.3,
-                      "color": "#1E6EFA",
-                      "fontSize": 12,
-                      "maxWidth": 120,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                hello
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        style={null}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            testID="user-id-1"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#e2f2ff",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 40,
-                    },
-                  ]
-                }
-              />
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#151A25",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
-                      "marginLeft": 12,
-                      "width": 200,
-                    },
-                  ]
-                }
-              >
-                geoseong
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "#d3d8e8",
-                      "borderWidth": 0.3,
-                      "color": "#1E6EFA",
-                      "fontSize": 12,
-                      "maxWidth": 120,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                hello baby
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
-    </ScrollView>
-  </View>
-</View>
-`;
-
-exports[`[Friend] interaction Show the interaction of the [ProfileModal] and [Friend] screen. Show the friend is removed from list and the modal turns off when the delete button is pressed 2`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    accessibilityViewIsModal={true}
-    importantForAccessibility="yes"
-    pointerEvents="box-none"
-    style={
-      Array [
-        Object {
-          "backgroundColor": "rgba(0,0,0,0)",
-          "zIndex": 2,
-        },
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        },
-      ]
-    }
-  >
-    <View
-      pointerEvents="box-none"
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    >
-      <TouchableWithoutFeedback>
-        <View
-          importantForAccessibility="no"
-          style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "opacity": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                },
-                Object {
-                  "backgroundColor": "black",
-                  "opacity": 0.075,
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableWithoutFeedback>
-      <View
-        style={
-          Object {
-            "alignContent": "center",
-            "alignItems": "center",
-            "alignSelf": "stretch",
-            "backgroundColor": "transparent",
-            "height": 320,
-            "justifyContent": "center",
-            "transform": Array [
-              Object {
-                "translateY": -1334,
-              },
-              Object {
-                "translateX": 0,
-              },
-            ],
-            "width": "90%",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#1E6EFA",
-              "height": 300,
-              "justifyContent": "space-between",
-              "marginHorizontal": 20,
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "marginTop": 40,
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "height": 80,
-                      "width": 80,
-                    },
-                    Object {
-                      "alignSelf": "center",
-                    },
-                  ]
-                }
-              />
-            </TouchableOpacity>
-            <Text
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "center",
-                    "color": "white",
-                    "fontSize": 24,
-                    "fontWeight": "bold",
-                    "marginTop": 16,
-                    "paddingBottom": 0,
-                    "paddingLeft": 32,
-                    "paddingRight": 32,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              admin
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "center",
-                    "color": "white",
-                    "fontSize": 12,
-                    "marginTop": 8,
-                  },
-                ]
-              }
-            >
-              hello
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "alignSelf": "stretch",
-                  "backgroundColor": "#ffffff",
-                  "flexDirection": "row",
-                  "height": 48,
-                  "justifyContent": "space-between",
-                },
-              ]
-            }
-          >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "height": 80,
-                  "justifyContent": "center",
-                  "width": "50%",
-                }
-              }
-              testID="btn-ad-friend"
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
-                    "width": "50%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#676c7a",
-                        "fontSize": 16,
-                      },
-                    ]
-                  }
-                  testID="btn-ad-title"
-                >
-                  Delete
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <View
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "#676c7a",
-                    "height": 48,
-                    "width": 0.5,
-                  },
-                ]
-              }
-            />
-            <TouchableOpacity
-              activeOpacity={0.5}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "height": 80,
-                  "justifyContent": "center",
-                  "width": "50%",
-                }
-              }
-              testID="btn-chat"
-            >
-              <View
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "height": 80,
-                    "justifyContent": "center",
-                    "width": "50%",
-                  }
-                }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#676c7a",
-                        "fontSize": 16,
-                      },
-                      Object {
-                        "color": "#2F38C7",
-                      },
-                    ]
-                  }
-                >
-                  Chat
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <ScrollView
-      ListEmptyComponent={
-        <Shared
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "flex": 1,
-              "justifyContent": "center",
-              "width": "100%",
-            }
-          }
-        >
-          No content
-        </Shared>
-      }
-      contentContainerStyle={null}
-      data={
-        Array [
-          Object {
-            "id": "2",
-            "isOnline": false,
-            "name": "geoseong",
-            "nickname": "geoseong",
-            "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            "statusMessage": "hello baby",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      horizontal={false}
-      initialNumToRender={10}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onEndReachedThreshold={2}
-      removeClippedSubviews={false}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "alignSelf": "stretch",
-        }
-      }
-      testID="friend-list"
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
-    >
-      <View
-        style={null}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            testID="user-id-0"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#e2f2ff",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 40,
-                    },
-                  ]
-                }
-              />
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#151A25",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
-                      "marginLeft": 12,
-                      "width": 200,
-                    },
-                  ]
-                }
-              >
-                geoseong
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "#d3d8e8",
-                      "borderWidth": 0.3,
-                      "color": "#1E6EFA",
-                      "fontSize": 12,
-                      "maxWidth": 120,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                hello baby
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </ScrollView>
-  </View>
-</View>
-`;
-
-exports[`[Friend] interaction add friends should be added to the friend list when called addFriend function 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Button
-    testID="btn-add"
-    title="ADD"
-  />
-  <Button
-    testID="btn-delete"
-    title="DEL"
-  />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "alignSelf": "center",
-          "backgroundColor": "transparent",
-          "flex": 1,
-          "flexDirection": "row",
-          "height": "100%",
-          "justifyContent": "center",
-          "position": "absolute",
-          "width": "100%",
-        }
-      }
-    >
-      <ActivityIndicator
-        animating={true}
-        color="#969696"
-        hidesWhenStopped={true}
-        size="large"
-      />
-    </View>
-  </View>
-</View>
-`;
-
-exports[`[Friend] interaction add friends should be deleted to the friend list when called deleteFriend function 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <Button
-    testID="btn-add"
-    title="ADD"
-  />
-  <Button
-    testID="btn-delete"
-    title="DEL"
-  />
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "flexBasis": 0,
-          "flexDirection": "column",
-          "flexGrow": 1,
-          "flexShrink": 1,
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "alignSelf": "center",
-          "backgroundColor": "transparent",
-          "flex": 1,
-          "flexDirection": "row",
-          "height": "100%",
-          "justifyContent": "center",
-          "position": "absolute",
-          "width": "100%",
-        }
-      }
-    >
-      <ActivityIndicator
-        animating={true}
-        color="#969696"
-        hidesWhenStopped={true}
-        size="large"
-      />
-    </View>
-  </View>
-</View>
-`;
-
 exports[`[Friend] rendering test renders as expected 1`] = `
 <View
   collapsable={true}
@@ -1142,28 +42,6 @@ exports[`[Friend] rendering test renders as expected 1`] = `
         </Shared>
       }
       contentContainerStyle={null}
-      data={
-        Array [
-          Object {
-            "id": "1",
-            "isOnline": true,
-            "name": "admin",
-            "nickname": "admin",
-            "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-            "statusMessage": "hello",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-          },
-          Object {
-            "id": "2",
-            "isOnline": false,
-            "name": "geoseong",
-            "nickname": "geoseong",
-            "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-            "statusMessage": "hello baby",
-            "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-          },
-        ]
-      }
       disableVirtualization={false}
       horizontal={false}
       initialNumToRender={10}
@@ -1184,196 +62,28 @@ exports[`[Friend] rendering test renders as expected 1`] = `
       windowSize={21}
     >
       <View
-        style={null}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            testID="user-id-0"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#e2f2ff",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 40,
-                    },
-                  ]
-                }
-              />
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#151A25",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
-                      "marginLeft": 12,
-                      "width": 200,
-                    },
-                  ]
-                }
-              >
-                admin
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "#d3d8e8",
-                      "borderWidth": 0.3,
-                      "color": "#1E6EFA",
-                      "fontSize": 12,
-                      "maxWidth": 120,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                hello
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
-        style={null}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <TouchableOpacity
-            activeOpacity={0.5}
-            testID="user-id-1"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#ffffff",
-                    "borderBottomWidth": 1,
-                    "borderColor": "#e2f2ff",
-                    "flexDirection": "row",
-                    "height": 80,
-                    "justifyContent": "flex-start",
-                    "paddingBottom": 0,
-                    "paddingLeft": 20,
-                    "paddingRight": 20,
-                    "paddingTop": 0,
-                  },
-                ]
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "uri": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
-                  }
-                }
-                style={
-                  Array [
-                    Object {
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 40,
-                    },
-                  ]
-                }
-              />
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "color": "#151A25",
-                      "fontSize": 14,
-                      "fontWeight": "bold",
-                      "marginLeft": 12,
-                      "width": 200,
-                    },
-                  ]
-                }
-              >
-                geoseong
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "borderColor": "#d3d8e8",
-                      "borderWidth": 0.3,
-                      "color": "#1E6EFA",
-                      "fontSize": 12,
-                      "maxWidth": 120,
-                      "paddingBottom": 4,
-                      "paddingLeft": 8,
-                      "paddingRight": 8,
-                      "paddingTop": 4,
-                      "position": "absolute",
-                      "right": 20,
-                    },
-                  ]
-                }
-              >
-                hello baby
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View
         style={
           Object {
-            "height": 0,
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
           }
         }
-      />
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "rgb(155,155,155)",
+              "fontSize": 14,
+            }
+          }
+        >
+          No content
+        </Text>
+      </View>
     </ScrollView>
   </View>
 </View>
@@ -1572,6 +282,1001 @@ exports[`[Friend] rendering test renders loading 1`] = `
         />
       </View>
     </View>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "Missing field authType in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field authType in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field verified in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field verified in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field birthday in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field birthday in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field email in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field email in {
+  \\"id\\": \\"2\\",
+  \\"nickname\\": \\"geoseong\\",
+  \\"name\\": \\"geoseong\\",
+  \\"thumbURL\\": \\"https://avatars2.githu",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field authType in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field authType in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field verified in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field verified in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field birthday in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field birthday in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+          Object {
+            "category": "Missing field email in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "Missing field email in {
+  \\"id\\": \\"1\\",
+  \\"nickname\\": \\"admin\\",
+  \\"name\\": \\"admin\\",
+  \\"thumbURL\\": \\"https://avatars2.githubuserc",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "lineNumber": 29,
+                    "methodName": "Function.warn",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 77,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 782,
+                    "methodName": "<unknown>",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": null,
+                    "file": "<anonymous>",
+                    "lineNumber": null,
+                    "methodName": "Array.forEach",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 750,
+                    "methodName": "StoreWriter.writeSelectionSetToStore",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 15,
+                    "file": "/Users/dongkyun/Documents/Projects/hackatalk/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "lineNumber": 938,
+                    "methodName": "<unknown>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 388,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field authType in {
+  "id": "2",
+  "nickname": "geoseong",
+  "name": "geoseong",
+  "thumbURL": "https://avatars2.githu
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field verified in {
+  "id": "2",
+  "nickname": "geoseong",
+  "name": "geoseong",
+  "thumbURL": "https://avatars2.githu
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field birthday in {
+  "id": "2",
+  "nickname": "geoseong",
+  "name": "geoseong",
+  "thumbURL": "https://avatars2.githu
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field email in {
+  "id": "2",
+  "nickname": "geoseong",
+  "name": "geoseong",
+  "thumbURL": "https://avatars2.githu
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field authType in {
+  "id": "1",
+  "nickname": "admin",
+  "name": "admin",
+  "thumbURL": "https://avatars2.githubuserc
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field verified in {
+  "id": "1",
+  "nickname": "admin",
+  "name": "admin",
+  "thumbURL": "https://avatars2.githubuserc
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field birthday in {
+  "id": "1",
+  "nickname": "admin",
+  "name": "admin",
+  "thumbURL": "https://avatars2.githubuserc
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  Missing field email in {
+  "id": "1",
+  "nickname": "admin",
+  "name": "admin",
+  "thumbURL": "https://avatars2.githubuserc
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
   </View>
 </View>
 `;

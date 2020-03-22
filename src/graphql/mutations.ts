@@ -37,8 +37,8 @@ export interface SignInEmailInput {
 }
 
 export const MUTATION_SIGN_IN = gql`
-  mutation signInEmail($email: String! $password: String!) {
-    signInEmail(email: $email password: $password) {
+  mutation signInEmail($email: String!, $password: String!) {
+    signInEmail(email: $email, password: $password) {
       token
       user {
         id
@@ -73,6 +73,16 @@ export const MUTATION_FIND_PASSWORD = gql`
   mutation findPassword($email: String!) {
     findPassword(email: $email) {
       findPassword
+    }
+  }
+`;
+
+export const MUTATION_ADD_FRIEND = gql`
+  mutation addFriend($friendId: ID!){
+    addFriend(friendId: $friendId) {
+      id
+      email
+      name
     }
   }
 `;

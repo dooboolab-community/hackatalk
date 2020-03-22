@@ -1,12 +1,14 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
-import { IC_NO_IMAGE } from '../../utils/Icons';
+import { Ionicons } from '@expo/vector-icons';
+import { MUTATION_ADD_FRIEND } from '../../graphql/mutations';
 import Modal from 'react-native-modalbox';
+import { QUERY_FRIENDS } from '../../graphql/queries';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useFriendContext } from '../../providers/FriendProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
@@ -80,7 +82,6 @@ export interface Ref {
   setUser: (user: User) => void;
   showAddBtn: (show: boolean) => void;
   setIsFriendAdded: (isFriendAdded: boolean) => void;
-  setIsFriendAlreadyAdded: (isFriendAlreadyAdded: boolean) => void;
 }
 
 interface Styles {
@@ -110,7 +111,6 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
-  const [isFriendAlreadyAdded, setIsFriendAlreadyAdded] = useState(false);
   const [user, setUser] = useState<User>({
     nickname: '',
     id: '',
@@ -120,11 +120,18 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     isOnline: false,
   });
 
-  const {
-    friendState: { friends },
-    addFriend: ctxAddFriend,
-    deleteFriend: ctxDeleteFriend,
-  } = useFriendContext();
+  const [addFriendMutation] = useMutation<
+  { addFriend: User },
+  { friendId: string }
+  >(MUTATION_ADD_FRIEND, {
+    refetchQueries: () => [{ query: QUERY_FRIENDS }],
+  });
+
+  const { loading, data, error } = useQuery<{
+    friends: User[];
+  }>(QUERY_FRIENDS, {
+    fetchPolicy: 'network-only',
+  });
 
   const open = (): void => {
     setIsFriendAdded(false);
@@ -140,14 +147,18 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   };
 
   const addFriend = (): void => {
-    ctxAddFriend(user);
+    addFriendMutation({
+      variables: {
+        friendId: user.id,
+      },
+      // refetchQueries: [QUERY_FRIENDS],
+    });
     if (modal) {
       modal.close();
     }
   };
 
   const deleteFriend = (): void => {
-    ctxDeleteFriend(user);
     if (modal) {
       modal.close();
     }
@@ -161,7 +172,6 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       setShowAddBtn(flag);
     },
     setIsFriendAdded,
-    setIsFriendAlreadyAdded,
   }));
 
   const { photoURL = '', nickname, statusMessage } = user;
@@ -190,7 +200,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
         <StyledView>
           <TouchableOpacity
             activeOpacity={0.5}
-          // onPress={goToProfile}
+            // onPress={goToProfile}
           >
             {photoURL ? (
               <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
@@ -210,16 +220,16 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
               </View>
             )}
           </TouchableOpacity>
-          <StyledTextDisplayName
-            numberOfLines={1}
-          >{nickname}</StyledTextDisplayName>
+          <StyledTextDisplayName numberOfLines={1}>
+            {nickname}
+          </StyledTextDisplayName>
           <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
         {isFriendAdded ? (
           <StyledTextFriendAdded testID="added-message">
             {getString('FRIEND_ADDED')}
           </StyledTextFriendAdded>
-        ) : isFriendAlreadyAdded ? (
+        ) : data?.friends?.find((friend) => friend.id === user?.id) ? (
           <StyledTextFriendAlreadyAdded testID="already-added-message">
             {getString('FRIEND_ALREADY_ADDED')}
           </StyledTextFriendAlreadyAdded>
@@ -247,9 +257,13 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn style={{
-                color: modalBtnPrimaryFont,
-              }}>{getString('CHAT')}</StyledTextBtn>
+              <StyledTextBtn
+                style={{
+                  color: modalBtnPrimaryFont,
+                }}
+              >
+                {getString('CHAT')}
+              </StyledTextBtn>
             </View>
           </TouchableOpacity>
         </StyledViewBtns>

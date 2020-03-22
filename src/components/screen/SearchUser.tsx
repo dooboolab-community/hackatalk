@@ -1,17 +1,22 @@
 import { Animated, FlatList } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {
+  QUERY_FRIENDS,
+  QUERY_USERS,
+  QueryUsersInput,
+} from '../../graphql/queries';
+import React, { useMemo, useState } from 'react';
 
 import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
+import { LoadingIndicator } from '@dooboo-ui/native';
 import { Ref as ProfileModalRef } from '../shared/ProfileModal';
-import { QUERY_USERS } from '../../graphql/queries';
 import SearchTextInput from '../shared/SearchTextInput';
 import { User } from '../../types';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useFriendContext } from '../../providers/FriendProvider';
+import useDebounce from '../../hooks/useDebounce';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -34,28 +39,30 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
 `;
 
 type Modal = React.MutableRefObject<ProfileModalRef | null | undefined>;
-interface Users {
-  users: User[];
+interface QueryUsersData {
+  users: {
+    edges: {
+      node: User;
+    }[];
+  };
+}
+interface QueryFriendsData {
+  friends: User[];
 }
 interface Props {
   users?: User[];
   onDeleteFriend?: (modal?: Modal) => () => void;
   onAddFriend?: (modal?: Modal) => () => void;
 }
-interface StateSetters {
-  setUsers: (users: User[]) => void;
-  setSearchedUsers: (users: User[]) => void;
-}
 interface ShowModalParams {
   user: User;
   deleteMode: boolean;
-  isFriendAlreadyAdded?: boolean;
   onDeleteFriend?: () => void;
   onAddFriend?: () => void;
 }
 interface UserListOnPress {
   user: User;
-  friends: User[];
+  friends?: User[];
   modal?: Modal;
   showModal: (showModalParams: ShowModalParams) => void;
   event: {
@@ -63,27 +70,16 @@ interface UserListOnPress {
     onAddFriend: (modal?: Modal) => () => void;
   };
 }
-export const updateUsers = ({ data, stateSetters }: { data?: Users; stateSetters: StateSetters }): Users | void => {
-  const { setUsers, setSearchedUsers } = stateSetters;
-  if (data?.users) {
-    setUsers(data.users);
-    setSearchedUsers(data.users);
-  }
-  return data;
-};
-export const onDeleteFriend = (
-  modal?: Modal,
-) => (): void => {
+
+export const onDeleteFriend = (modal?: Modal) => (): void => {
   if (modal && modal.current) {
     const profileModal = modal.current;
     profileModal.showAddBtn(true);
     profileModal.setIsFriendAdded(false);
-    profileModal.setIsFriendAlreadyAdded(false);
   }
 };
-export const onAddFriend = (
-  modal?: Modal,
-) => (): void => {
+
+export const onAddFriend = (modal?: Modal) => (): void => {
   if (modal && modal.current) {
     const profileModal = modal.current;
     profileModal.showAddBtn(false);
@@ -99,43 +95,90 @@ const userListOnPress = ({
 }: UserListOnPress) => (): void => {
   const { onDeleteFriend, onAddFriend } = event;
   const deleteMode =
-    friends.findIndex((friend) => friend.id === user.id) !== -1;
+    friends?.findIndex((friend) => friend.id === user.id) !== -1;
   showModal({
     user,
     deleteMode,
-    isFriendAlreadyAdded: deleteMode,
     onDeleteFriend: onDeleteFriend(modal),
     onAddFriend: onAddFriend(modal),
   });
 };
 const Screen = (props: Props): React.ReactElement => {
   const { state, showModal } = useProfileContext();
-  const {
-    friendState: { friends },
-  } = useFriendContext();
+
   const scrollY = new Animated.Value(0);
 
-  const { loading, data, error, refetch } = useQuery<Users>(QUERY_USERS, {
+  const {
+    loading: loadingFriends,
+    error: friendsQueryError,
+    data: friendsData,
+    refetch: refetchFreinds,
+  } = useQuery<QueryFriendsData>(QUERY_FRIENDS, {
     fetchPolicy: 'network-only',
   });
 
-  const [searchedUsers, setSearchedUsers] = useState<User[]>(props.users || []);
-  const [users, setUsers] = useState<User[]>(props.users || []);
   const [searchText, setSearchText] = useState<string>('');
+  const debouncedText = useDebounce(searchText, 500);
 
-  useEffect(() => {
-    updateUsers({
-      data,
-      stateSetters: {
-        setUsers,
-        setSearchedUsers,
-      },
-    });
-  }, [data]);
+  const {
+    loading: loadingUsers,
+    data: usersData,
+    error: usersQueryError,
+    refetch: refetchUsers,
+  } = useQuery<QueryUsersData, QueryUsersInput>(QUERY_USERS, {
+    fetchPolicy: 'network-only',
+    variables:
+      debouncedText === ''
+        ? undefined
+        : {
+          nickname: debouncedText,
+        },
+  });
 
-  if (error) {
-    return <ErrorView body={error.message} onButtonPressed={(): Promise<ApolloQueryResult<Users>> => refetch()} />;
+  const users = useMemo(() => {
+    return usersData?.users?.edges?.map((edge) => edge?.node) || [];
+  }, [usersData]);
+
+  if (usersQueryError) {
+    return (
+      <ErrorView
+        body={usersQueryError.message}
+        onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
+          refetchUsers()
+        }
+      />
+    );
   }
+
+  if (friendsQueryError) {
+    return (
+      <ErrorView
+        body={friendsQueryError.message}
+        onButtonPressed={(): Promise<ApolloQueryResult<QueryFriendsData>> =>
+          refetchFreinds()
+        }
+      />
+    );
+  }
+
+  const onTxtChanged = (text: string): void => {
+    setSearchText(text);
+    scrollY.setValue(0);
+    Animated.timing(scrollY, {
+      toValue: 100,
+      duration: 500,
+    }).start();
+  };
+
+  const getContentContainerStyle = (): object | null => {
+    return users.length === 0
+      ? {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }
+      : null;
+  };
 
   const renderItem = ({
     item,
@@ -147,7 +190,7 @@ const Screen = (props: Props): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
     const userListOnPressInlineFn = userListOnPress({
       user: item,
-      friends,
+      friends: friendsData?.friends,
       modal: state.modal,
       showModal,
       event: {
@@ -163,34 +206,40 @@ const Screen = (props: Props): React.ReactElement => {
       />
     );
   };
-  const searchUsers = (searchText: string): void => {
-    const searchedUser =
-      searchText === ''
-        ? searchedUsers
-        : searchedUsers.filter(
-          (item) =>
-            item.nickname && item.nickname.toLowerCase().includes(searchText),
-        );
-    setUsers(searchedUser);
-  };
-  const onTxtChanged = (text: string): void => {
-    const lowercaseTxt = text.toLowerCase();
-    searchUsers(lowercaseTxt);
-    setSearchText(lowercaseTxt);
-    scrollY.setValue(0);
-    Animated.timing(scrollY, {
-      toValue: 100,
-      duration: 500,
-    }).start();
-  };
-  const getContentContainerStyle = (): object | null => {
-    return users.length === 0
-      ? {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
-      : null;
+
+  const renderUsers = (): React.ReactElement => {
+    if (loadingUsers || loadingFriends) {
+      return (
+        <Container>
+          <LoadingIndicator />
+        </Container>
+      );
+    }
+
+    return (
+      <StyledAnimatedFlatList
+        testID="animated-flatlist"
+        // @ts-ignore
+        testObj={{ scrollY }}
+        style={{
+          transform: [
+            {
+              translateY: scrollY.interpolate({
+                inputRange: [0, 50, 100],
+                outputRange: [0, 25, 0],
+              }),
+            },
+          ],
+        }}
+        contentContainerStyle={getContentContainerStyle}
+        keyExtractor={(item: object, index: number): string => index.toString()}
+        data={users}
+        renderItem={renderItem}
+        ListEmptyComponent={
+          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+        }
+      />
+    );
   };
 
   return (
@@ -201,30 +250,7 @@ const Screen = (props: Props): React.ReactElement => {
           onChangeText={onTxtChanged}
           value={searchText}
         />
-        <StyledAnimatedFlatList
-          testID="animated-flatlist"
-          // @ts-ignore
-          testObj={{ scrollY }}
-          style={{
-            transform: [
-              {
-                translateY: scrollY.interpolate({
-                  inputRange: [0, 50, 100],
-                  outputRange: [0, 25, 0],
-                }),
-              },
-            ],
-          }}
-          contentContainerStyle={getContentContainerStyle}
-          keyExtractor={(item: object, index: number): string =>
-            index.toString()
-          }
-          data={users}
-          renderItem={renderItem}
-          ListEmptyComponent={
-            <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
-          }
-        />
+        {renderUsers()}
       </Container>
     </StyledSafeAreaView>
   );
