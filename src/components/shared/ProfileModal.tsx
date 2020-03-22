@@ -214,9 +214,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
                   justifyContent: 'center',
                 }}
               >
-                <StyledImage
-                  source={IC_NO_IMAGE}
-                />
+                <Ionicons name="ios-person" size={80} color="white" />
               </View>
             )}
           </TouchableOpacity>
