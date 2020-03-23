@@ -8,6 +8,7 @@ import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { encryptMessage } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
+import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -15,6 +16,10 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
+const DEFAULT = {
+  PROFILEIMAGE_WIDTH: 300,
+  PROFILEIMAGE_HEIGHT: 300,
+};
 
 const Container = styled.View`
   flex: 1;
@@ -98,7 +103,7 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
-  const pressProfileImage = (): void => {
+  const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
       getString('SELSCT_FROM_ALBUM'),
@@ -112,17 +117,29 @@ function Screen(props: Props): React.ReactElement {
       },
       async (buttonIndex: number) => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
-          const result = await launchCameraAsync();
-          if (result && !result.cancelled) {
-            setProfilePath(result.uri);
+          const image = await launchCameraAsync();
+          if (image && !image.cancelled) {
+            const resizedImage = await resizeImage({
+              imageUri: image.uri,
+              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
+              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+            });
+
+            setProfilePath(resizedImage.uri);
           }
           return;
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY) {
-          const result = await launchImageLibraryAsync();
-          if (result && !result.cancelled) {
-            setProfilePath(result.uri);
+          const image = await launchImageLibraryAsync();
+          if (image && !image.cancelled) {
+            const resizedImage = await resizeImage({
+              imageUri: image.uri,
+              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
+              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+            });
+
+            setProfilePath(resizedImage.uri);
           }
         }
       },
