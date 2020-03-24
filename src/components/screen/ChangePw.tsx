@@ -40,13 +40,13 @@ function ChangePw(props: Props): ReactElement {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const [mutationChangePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
+  const [changePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
     MUTATION_CHANGE_PASSWORD,
   );
 
   const navigateBack = (): void => navigation.goBack();
 
-  const changePassword = async (): Promise<void> => {
+  const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
       Alert.alert(getString('ERROR'), getString('PASSWORD_MUST_MATCH'));
       return;
@@ -58,7 +58,7 @@ function ChangePw(props: Props): ReactElement {
     };
 
     try {
-      const result = await mutationChangePassword({ variables });
+      const result = await changePassword({ variables });
       if (result.data?.changeEmailPassword) {
         Keyboard.dismiss();
         Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
@@ -149,7 +149,7 @@ function ChangePw(props: Props): ReactElement {
         </InnerContainer>
         <Button
           testID="close-current-pw-btn"
-          onPress={changePassword}
+          onPress={handleChangePasswordPress}
           containerStyle={{
             width: '100%',
             paddingHorizontal: 20,
