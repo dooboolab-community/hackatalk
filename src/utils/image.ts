@@ -3,14 +3,25 @@ import * as ImageManipulator from 'expo-image-manipulator';
 import { Image } from 'react-native';
 
 const DEFAULT = {
-  IMAGE_WIDTH: 300,
-  IMAGE_HEIGHT: 300,
+  IMAGE_MAX_WIDTH: 300,
+  IMAGE_MAX_HEIGHT: 300,
 };
 
 export interface ImageSize {
   width: number;
   height: number;
 }
+
+export const getOriginalImageSize = async (imageUri: string): Promise<ImageSize> => new Promise<ImageSize>(
+  (resolve, reject) => Image.getSize(
+    imageUri,
+    (width: number, height: number) => resolve({
+      width,
+      height,
+    }),
+    reject,
+  ),
+);
 
 export const resizeImage = async ({
   imageUri,
@@ -21,17 +32,6 @@ export const resizeImage = async ({
   maxWidth?: number;
   maxHeight?: number;
 }): Promise<ImageManipulator.ImageResult> => {
-  const getOriginalSize = (imageUri: string): Promise<ImageSize> => new Promise<ImageSize>(
-    (resolve, reject) => Image.getSize(
-      imageUri,
-      (width: number, height: number) => resolve({
-        width,
-        height,
-      }),
-      reject,
-    ),
-  );
-
   const manipulate = ({
     width,
     height,
@@ -44,14 +44,18 @@ export const resizeImage = async ({
     { compress: 1, format: ImageManipulator.SaveFormat.PNG },
   );
 
-  const { width: originWidth, height: originHeight } = await getOriginalSize(imageUri);
+  const { width: originWidth, height: originHeight } = await getOriginalImageSize(imageUri);
 
   if (originWidth >= originHeight) {
     if (maxWidth === undefined || maxWidth === null) {
-      return manipulate({ width: DEFAULT.IMAGE_WIDTH });
+      if (originWidth < DEFAULT.IMAGE_MAX_WIDTH) {
+        return manipulate({ width: originWidth });
+      }
+
+      return manipulate({ width: DEFAULT.IMAGE_MAX_WIDTH });
     }
 
-    if (maxWidth !== undefined && originWidth < maxWidth) {
+    if (originWidth < maxWidth) {
       return manipulate({ width: originWidth });
     }
 
@@ -59,7 +63,11 @@ export const resizeImage = async ({
   }
 
   if (maxHeight === undefined || maxHeight === null) {
-    return manipulate({ height: DEFAULT.IMAGE_HEIGHT });
+    if (originHeight < DEFAULT.IMAGE_MAX_HEIGHT) {
+      return manipulate({ height: originHeight });
+    }
+
+    return manipulate({ height: DEFAULT.IMAGE_MAX_HEIGHT });
   }
 
   if (originHeight < maxHeight) {
