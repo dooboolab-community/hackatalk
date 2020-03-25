@@ -1,8 +1,10 @@
+import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
@@ -103,6 +105,38 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
+  const uploadImage = async (uri: string): Promise<string> => {
+    const fileName = uri.split('/').pop() || '';
+    const fileTypeMatch = /\.(\w+)$/.exec(fileName);
+    const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+    const data: FormData = new FormData();
+    const token = await AsyncStorage.getItem('token');
+    data.append('profile', {
+      uri: uri,
+      type: fileType,
+      name: fileName,
+    });
+
+    const fetchInitOption = {
+      method: 'POST',
+      body: {
+        inputFile: data,
+        dir: 'profiles',
+      },
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+
+    return fetch(`${Config.ROOT_URL}/upload_single`, fetchInitOption)
+      .then((res: Response) => res.url)
+      .catch(() => {
+        Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
+        return '';
+      });
+  };
+
   const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
@@ -124,8 +158,9 @@ function Screen(props: Props): React.ReactElement {
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
+            const imageURL = await uploadImage(resizedImage.uri);
 
-            setProfilePath(resizedImage.uri);
+            setProfilePath(imageURL);
           }
           return;
         }
@@ -138,8 +173,9 @@ function Screen(props: Props): React.ReactElement {
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
+            const imageURL = await uploadImage(resizedImage.uri);
 
-            setProfilePath(resizedImage.uri);
+            setProfilePath(imageURL);
           }
         }
       },
