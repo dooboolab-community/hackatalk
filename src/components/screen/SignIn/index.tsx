@@ -208,7 +208,7 @@ function SignIn(props: Props): ReactElement {
         fullName,
       } = credential;
 
-      // @TODO Signed in using user
+      // SignIn using credential
     } catch (e) {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow
