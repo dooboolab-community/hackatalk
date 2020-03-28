@@ -39,6 +39,8 @@ export interface Variables {
   signingInFacebook: boolean;
   setSigningInFacebook: (val: boolean) => void;
   signingInGoogle: boolean;
+  setSigningInApple: (val: boolean) => void;
+  signingInApple: boolean;
   setSigningInGoogle: (val: boolean) => void;
   googleUser: User | null | unknown;
   setGoogleUser: (val: User | null | unknown) => void;
@@ -71,6 +73,7 @@ function SignIn(props: Props): ReactElement {
   const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
+  const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [googleUser, setGoogleUser] = useState<User | null | unknown>(null);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -190,7 +193,31 @@ function SignIn(props: Props): ReactElement {
   };
 
   const appleLogin = async (): Promise<void> => {
-    console.log('apple login');
+    setSigningInApple(true);
+    try {
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        ],
+      });
+
+      const {
+        user, // The unique identifier for the user
+        email,
+        fullName,
+      } = credential;
+
+      // SignIn using credential
+    } catch (e) {
+      if (e.code === 'ERR_CANCELED') {
+        // handle that the user canceled the sign-in flow
+      } else {
+        Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`);
+      }
+    } finally {
+      setSigningInApple(false);
+    }
   };
 
   useEffect(() => {
@@ -207,6 +234,8 @@ function SignIn(props: Props): ReactElement {
     setSigningInFacebook,
     signingInGoogle,
     setSigningInGoogle,
+    signingInApple,
+    setSigningInApple,
     googleUser,
     setGoogleUser,
     email,
