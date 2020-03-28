@@ -42,6 +42,18 @@ exports[`[Friend] rendering test renders as expected 1`] = `
         </Shared>
       }
       contentContainerStyle={null}
+      data={
+        Array [
+          Object {
+            "id": "0",
+            "isOnline": true,
+            "nickname": "hello",
+            "photoURL": "",
+            "statusMessage": "I am fine today",
+            "thumbURL": "",
+          },
+        ]
+      }
       disableVirtualization={false}
       horizontal={false}
       initialNumToRender={10}
@@ -62,27 +74,108 @@ exports[`[Friend] rendering test renders as expected 1`] = `
       windowSize={21}
     >
       <View
-        style={
-          Object {
-            "alignItems": "center",
-            "alignSelf": "stretch",
-            "flex": 1,
-            "justifyContent": "center",
-            "width": "100%",
-          }
-        }
+        style={null}
       >
-        <Text
+        <View
           style={
-            Object {
-              "alignSelf": "center",
-              "color": "rgb(155,155,155)",
-              "fontSize": 14,
-            }
+            Array [
+              Object {
+                "width": "100%",
+              },
+            ]
           }
         >
-          No content
-        </Text>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            testID="user-id-0"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "#e2f2ff",
+                    "flexDirection": "row",
+                    "height": 80,
+                    "justifyContent": "flex-start",
+                    "paddingBottom": 0,
+                    "paddingLeft": 20,
+                    "paddingRight": 20,
+                    "paddingTop": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "height": 40,
+                    "justifyContent": "center",
+                    "width": 40,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#151A25",
+                      "fontSize": 14,
+                      "fontWeight": "bold",
+                      "marginLeft": 12,
+                      "width": 200,
+                    },
+                  ]
+                }
+              />
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "borderColor": "#d3d8e8",
+                      "borderWidth": 0.3,
+                      "color": "#1E6EFA",
+                      "fontSize": 12,
+                      "maxWidth": 120,
+                      "paddingBottom": 4,
+                      "paddingLeft": 8,
+                      "paddingRight": 8,
+                      "paddingTop": 4,
+                      "position": "absolute",
+                      "right": 20,
+                    },
+                  ]
+                }
+              >
+                I am fine today
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   </View>
@@ -371,14 +464,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -392,14 +485,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -432,14 +525,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -453,14 +546,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -493,14 +586,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -514,14 +607,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -554,14 +647,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -575,14 +668,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -615,14 +708,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -636,14 +729,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -676,14 +769,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -697,14 +790,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -737,14 +830,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -758,14 +851,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },
@@ -798,14 +891,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/ts-invariant/lib/invariant.esm.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\ts-invariant\\\\lib\\\\invariant.esm.js",
                     "lineNumber": 29,
                     "methodName": "Function.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 77,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 782,
                     "methodName": "<unknown>",
                   },
@@ -819,14 +912,14 @@ exports[`[Friend] rendering test renders loading 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 750,
                     "methodName": "StoreWriter.writeSelectionSetToStore",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 15,
-                    "file": "/Users/geoseong/Documents/Meetup/ReactNative/dooboolab/hackatalk-mobile/node_modules/apollo-cache-inmemory/lib/bundle.cjs.js",
+                    "file": "C:\\\\Users\\\\Happy\\\\Desktop\\\\javascript\\\\hacka-talk\\\\hackatalk-mobile\\\\node_modules\\\\apollo-cache-inmemory\\\\lib\\\\bundle.cjs.js",
                     "lineNumber": 938,
                     "methodName": "<unknown>",
                   },

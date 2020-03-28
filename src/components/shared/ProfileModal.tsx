@@ -1,14 +1,16 @@
+import { MUTATION_ADD_FRIEND, MUTATION_DELETE_FRIEND, MutationDeleteFriend } from '../../graphql/mutations';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 
 import { Ionicons } from '@expo/vector-icons';
-import { MUTATION_ADD_FRIEND } from '../../graphql/mutations';
 import Modal from 'react-native-modalbox';
 import { QUERY_FRIENDS } from '../../graphql/queries';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
+import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
+import { useFriendContext } from '../../providers/FriendProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
@@ -109,6 +111,10 @@ const styles: Styles = {
 
 const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
+  const [deleteFriendMutation, {
+    error: deleteFriendError, loading: deleteFriendLoading,
+  }] = useMutation<{ id: string }, MutationDeleteFriend>(MUTATION_DELETE_FRIEND,
+    { refetchQueries: [{ query: QUERY_FRIENDS }] });
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [user, setUser] = useState<User>({
@@ -132,6 +138,10 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   }>(QUERY_FRIENDS, {
     fetchPolicy: 'network-only',
   });
+
+  const {
+    deleteFriend: ctxDeleteFriend,
+  } = useFriendContext();
 
   const open = (): void => {
     setIsFriendAdded(false);
@@ -158,9 +168,19 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     }
   };
 
-  const deleteFriend = (): void => {
+  const deleteFriend = async (): Promise<void> => {
     if (modal) {
       modal.close();
+    }
+
+    const variables = {
+      friendId: user.id,
+    };
+
+    try {
+      await deleteFriendMutation({ variables });
+    } catch ({ graphQLErrors }) {
+      showAlertForGrpahqlError(graphQLErrors);
     }
   };
 
@@ -200,7 +220,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
         <StyledView>
           <TouchableOpacity
             activeOpacity={0.5}
-            // onPress={goToProfile}
+          // onPress={goToProfile}
           >
             {photoURL ? (
               <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />

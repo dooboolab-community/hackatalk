@@ -86,3 +86,15 @@ export const MUTATION_ADD_FRIEND = gql`
     }
   }
 `;
+
+export interface MutationDeleteFriend {
+  friendId: string;
+}
+
+export const MUTATION_DELETE_FRIEND = gql`
+  mutation deleteFriend($friendId: ID!) {
+    deleteFriend(friendId: $friendId) {
+      id
+    }
+  }
+`;

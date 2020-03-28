@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 
 import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
