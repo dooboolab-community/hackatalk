@@ -14,13 +14,45 @@ export const QUERY_ME = gql`
   }
 `;
 
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+}
+interface UserQueryInput {
+  email?: string;
+  name: string;
+  nickname?: string;
+  birthday?: Date;
+  gender?: Gender;
+  phone?: string;
+}
 export interface QueryUsersInput {
-  nickname: string;
+  filter?: boolean;
+  user?: UserQueryInput;
+  first: number;
+  last?: number;
+  before?: string;
+  after?: string;
 }
 
 export const QUERY_USERS = gql`
-  query users($nickname: String) {
-    users(user: { nickname: $nickname }) {
+  query users(
+    $filter: Boolean
+    $user: UserQueryInput
+    $first: Int
+    $last: Int
+    $before: String
+    $after: String
+  ) {
+    users(
+      filter: $filter
+      user: $user
+      first: $first
+      last: $last
+      before: $before
+      after: $after
+    ) {
+      totalCount
       edges {
         node {
           id
@@ -39,6 +71,12 @@ export const QUERY_USERS = gql`
           isOnline
           lastSignedIn
         }
+      }
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+        hasPreviousPage
       }
     }
   }

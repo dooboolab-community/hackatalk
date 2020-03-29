@@ -8,10 +8,6 @@ import Friend from '../Friend';
 import { MockedProvider } from '@apollo/react-testing';
 import { QUERY_FRIENDS } from '../../../graphql/queries';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-
 const mocks = [
   {
     request: {
@@ -22,24 +18,32 @@ const mocks = [
         friends: [
           {
             id: '1',
+            email: 'admin@hackatalk.dev',
             nickname: 'admin',
+            birthday: '2020-03-29T04:59:21.967Z',
             name: 'admin',
             thumbURL:
               'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
             photoURL:
               'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
             statusMessage: 'hello',
+            verified: true,
+            authType: 'EMAIL',
             isOnline: true,
           },
           {
             id: '2',
+            email: 'parkopp@gmail.com',
             nickname: 'geoseong',
+            birthday: '2020-03-29T04:59:21.967Z',
             name: 'geoseong',
             thumbURL:
               'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
             photoURL:
               'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
             statusMessage: 'hello baby',
+            verified: true,
+            authType: 'EMAIL',
             isOnline: false,
           },
         ],
@@ -49,6 +53,8 @@ const mocks = [
 ];
 
 describe('[Friend] rendering test', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let props: any;
   beforeEach(() => {
     props = createTestProps();
   });
@@ -58,23 +64,20 @@ describe('[Friend] rendering test', () => {
   });
 
   it('renders as expected', async () => {
-    component = createTestElement(
+    const component = createTestElement(
       <MockedProvider mocks={mocks} addTypename={false}>
         <Friend {...props} />
       </MockedProvider>,
     );
 
     const testingLib = render(component);
-    await wait(() => {
-      testingLib.rerender(component);
-      expect(testingLib.asJSON()).toBeTruthy();
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
-    await act(() => wait());
+    testingLib.rerender(component);
+    expect(testingLib.asJSON()).toBeTruthy();
+    expect(testingLib.asJSON()).toMatchSnapshot();
   });
 
   it('renders loading', () => {
-    component = createTestElement(
+    const component = createTestElement(
       <MockedProvider mocks={[]} addTypename={false}>
         <Friend {...props} />
       </MockedProvider>,
@@ -91,18 +94,15 @@ describe('[Friend] rendering test', () => {
       error: new Error('error'),
     };
 
-    component = createTestElement(
+    const component = createTestElement(
       <MockedProvider mocks={[errorMock]} addTypename={false}>
         <Friend {...props} />
       </MockedProvider>,
     );
 
     const testingLib = render(component);
-    await wait(() => {
-      testingLib.rerender(component);
-      expect(testingLib.asJSON()).toBeTruthy();
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
-    await act(() => wait());
+    testingLib.rerender(component);
+    expect(testingLib.asJSON()).toBeTruthy();
+    expect(testingLib.asJSON()).toMatchSnapshot();
   });
 });

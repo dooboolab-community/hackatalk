@@ -1,4 +1,5 @@
 import { Animated, FlatList } from 'react-native';
+import { ApolloQueryResult, OperationVariables } from 'apollo-client';
 import {
   QUERY_FRIENDS,
   QUERY_USERS,
@@ -6,7 +7,6 @@ import {
 } from '../../graphql/queries';
 import React, { useMemo, useState } from 'react';
 
-import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
 import { LoadingIndicator } from '@dooboo-ui/native';
@@ -39,11 +39,21 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
 `;
 
 type Modal = React.MutableRefObject<ProfileModalRef | null | undefined>;
+interface UserEdges {
+  node: User;
+  cursor: string;
+}
 interface QueryUsersData {
   users: {
-    edges: {
-      node: User;
-    }[];
+    __typename: string;
+    totalCount: number;
+    edges: UserEdges[];
+    pageInfo: {
+      startCursor: string;
+      endCursor: string;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+    };
   };
 }
 interface QueryFriendsData {
@@ -103,6 +113,7 @@ const userListOnPress = ({
     onAddFriend: onAddFriend(modal),
   });
 };
+
 const Screen = (props: Props): React.ReactElement => {
   const { state, showModal } = useProfileContext();
 
@@ -125,18 +136,27 @@ const Screen = (props: Props): React.ReactElement => {
     data: usersData,
     error: usersQueryError,
     refetch: refetchUsers,
+    fetchMore: fetchMoreUsers,
   } = useQuery<QueryUsersData, QueryUsersInput>(QUERY_USERS, {
     fetchPolicy: 'network-only',
     variables:
       debouncedText === ''
-        ? undefined
+        ? {
+          first: 20,
+        }
         : {
-          nickname: debouncedText,
+          first: 20,
+          filter: true,
+          user: {
+            email: debouncedText,
+            name: debouncedText,
+            nickname: debouncedText,
+          },
         },
   });
 
   const users = useMemo(() => {
-    return usersData?.users?.edges?.map((edge) => edge?.node) || [];
+    return usersData?.users?.edges?.map((edge: UserEdges) => edge?.node) || [];
   }, [usersData]);
 
   if (usersQueryError) {
@@ -144,7 +164,9 @@ const Screen = (props: Props): React.ReactElement => {
       <ErrorView
         body={usersQueryError.message}
         onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
-          refetchUsers()
+          refetchUsers({
+            first: 20,
+          })
         }
       />
     );
@@ -216,6 +238,37 @@ const Screen = (props: Props): React.ReactElement => {
       );
     }
 
+    const onEndReached = (): void => {
+      const { endCursor } = usersData?.users?.pageInfo || {};
+      const variables = debouncedText === ''
+        ? {
+          first: 20,
+          after: endCursor,
+        }
+        : {
+          first: 20,
+          after: endCursor,
+          filter: true,
+          user: {
+            email: debouncedText,
+            name: debouncedText,
+            nickname: debouncedText,
+          },
+        };
+      const updateQuery = (previousResult: QueryUsersData, { fetchMoreResult }: OperationVariables): QueryUsersData => {
+        const { edges: prevEdges, __typename } = previousResult.users;
+        const { edges: newEdges, pageInfo, totalCount } = fetchMoreResult.users;
+        return newEdges.length ? {
+          users: {
+            __typename,
+            totalCount,
+            edges: [...prevEdges, ...newEdges],
+            pageInfo,
+          },
+        } : previousResult;
+      };
+      fetchMoreUsers({ variables, updateQuery });
+    };
     return (
       <StyledAnimatedFlatList
         testID="animated-flatlist"
@@ -238,6 +291,9 @@ const Screen = (props: Props): React.ReactElement => {
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
         }
+        onEndReachedThreshold={0.1}
+        onEndReached={onEndReached}
+        scrollEventThrottle={500}
       />
     );
   };
