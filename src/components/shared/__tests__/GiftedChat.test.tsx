@@ -10,6 +10,7 @@ import GiftedChatInput from '../GiftedChat';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
+jest.useFakeTimers();
 
 describe('[GiftedChatInput] render', () => {
   beforeEach(() => {

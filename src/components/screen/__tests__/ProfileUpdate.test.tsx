@@ -65,6 +65,8 @@ describe('interaction', () => {
   let props;
   let component: React.ReactElement;
   let testingLib: RenderResult;
+  // jest.useFakeTimers();
+  // jest.setTimeout(30000);
 
   beforeEach(() => {
     props = createTestProps();
@@ -113,6 +115,7 @@ describe('interaction', () => {
     );
     act(() => {
       fireEvent.press(profileBtn);
+      // jest.runAllTimers();
     });
     await wait();
   });
@@ -125,6 +128,7 @@ describe('interaction', () => {
     await wait(() => expect(profileBtn).toBeTruthy());
     act(() => {
       fireEvent.press(profileBtn);
+      // jest.runAllTimers();
     });
     await wait();
   });
