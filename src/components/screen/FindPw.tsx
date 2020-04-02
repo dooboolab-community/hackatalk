@@ -1,11 +1,14 @@
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_FIND_PASSWORD, MutationFindPasswordInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
+import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
+import { Alert } from 'react-native';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
+import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
-import { validateEmail } from '../../utils/common';
 
 const Container = styled.View`
   flex: 1;
@@ -25,28 +28,38 @@ interface Props {
   navigation: AuthStackNavigationProps<'FindPw'>;
 }
 
-function Page(props: Props): ReactElement {
+function Page({ navigation }: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [findingPw, setFindingPw] = useState<boolean>(false);
-  let timer: number;
 
   const { theme } = useThemeContext();
+  const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
 
-  const onFindPw = (): void => {
+  const navigateToSignIn = (): void => navigation.navigate('SignIn');
+
+  const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       return;
     }
 
-    setFindingPw(true);
-    timer = setTimeout(() => {
-      setFindingPw(false);
-      clearTimeout(timer);
-      if (props.navigation) {
-        props.navigation.navigate('SignIn');
+    try {
+      setFindingPw(true);
+      const result = await findPassword({ variables: { email } });
+      if (result.data?.findPassword) {
+        Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
+          {
+            text: getString('OK'),
+            onPress: navigateToSignIn,
+          },
+        ]);
       }
-    }, 1000);
+    } catch ({ graphQLErrors }) {
+      showAlertForGrpahqlError(graphQLErrors);
+    } finally {
+      setFindingPw(false);
+    }
   };
 
   return (

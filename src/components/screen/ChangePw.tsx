@@ -1,17 +1,19 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
+import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import React, {
   ReactElement,
   useEffect,
   useRef,
   useState,
 } from 'react';
-
 import Constants from 'expo-constants';
+
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneXSize } from '../../utils/Styles';
 import styled from 'styled-components/native';
+import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const InnerContainer = styled.View`
@@ -38,26 +40,44 @@ function ChangePw(props: Props): ReactElement {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const close = (): void => {
-    navigation.goBack();
-  };
+  const [changePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
+    MUTATION_CHANGE_PASSWORD,
+  );
 
-  const changePassword = async (): Promise<void> => {
-    if (newPw === confirmPw) {
-      // TODO change password api call
-      Keyboard.dismiss();
-      Alert.alert('', 'Password changed.', [
+  const navigateBack = (): void => navigation.goBack();
+
+  const handleChangePasswordPress = async (): Promise<void> => {
+    if (newPw !== confirmPw) {
+      Alert.alert(getString('ERROR'), getString('PASSWORD_MUST_MATCH'));
+      return;
+    }
+
+    const variables = {
+      currentPassword: currentPw,
+      newPassword: newPw,
+    };
+
+    try {
+      const result = await changePassword({ variables });
+      if (result.data?.changeEmailPassword) {
+        Keyboard.dismiss();
+        Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
+          {
+            text: getString('OK'),
+            onPress: navigateBack,
+          },
+        ]);
+      }
+    } catch (e) {
+      Alert.alert('', getString('CHANGE_PASSWORD_HAS_FAILED'), [
         {
           text: getString('OK'),
-          onPress: (): void => {
-            close();
-          },
+          onPress: navigateBack,
         },
       ]);
-    } else {
-      Alert.alert(getString('PASSWORD_MUST_MATCH'));
     }
   };
+
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const onKeyboardShow = (event: KeyboardEvent): void => setKeyboardOffset(event.endCoordinates.height);
   const onKeyboardHide = (): void => setKeyboardOffset(0);
@@ -132,7 +152,7 @@ function ChangePw(props: Props): ReactElement {
         </InnerContainer>
         <Button
           testID="close-current-pw-btn"
-          onPress={changePassword}
+          onPress={handleChangePasswordPress}
           containerStyle={{
             width: '100%',
             paddingHorizontal: 20,
