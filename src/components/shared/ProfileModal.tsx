@@ -10,7 +10,6 @@ import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
-import { useFriendContext } from '../../providers/FriendProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
@@ -138,10 +137,6 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   }>(QUERY_FRIENDS, {
     fetchPolicy: 'network-only',
   });
-
-  const {
-    deleteFriend: ctxDeleteFriend,
-  } = useFriendContext();
 
   const open = (): void => {
     setIsFriendAdded(false);

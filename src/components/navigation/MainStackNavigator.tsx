@@ -8,7 +8,6 @@ import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
-import { FriendProvider } from '../../providers/FriendProvider';
 import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
 import PinchZoomViewPager from '../screen/PinchZoomViewPager';
@@ -180,9 +179,7 @@ function RootNavigator(): ReactElement {
 export default function RootNavigatorWrapper(): ReactElement {
   return (
     <ProfileModalProvider>
-      <FriendProvider>
-        <RootNavigator />
-      </FriendProvider>
+      <RootNavigator />
     </ProfileModalProvider>
   );
 }
