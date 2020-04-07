@@ -37,8 +37,8 @@ export interface SignInEmailInput {
 }
 
 export const MUTATION_SIGN_IN = gql`
-  mutation signInEmail($email: String!, $password: String!) {
-    signInEmail(email: $email, password: $password) {
+  mutation signInEmail($email: String! $password: String!) {
+    signInEmail(email: $email password: $password) {
       token
       user {
         id
