@@ -82,7 +82,6 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          // prettier-ignore
           data?.friends.length === 0
             ? {
               flex: 1,
