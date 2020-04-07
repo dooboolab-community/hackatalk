@@ -275,12 +275,9 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn
-                style={{
-                  color: modalBtnPrimaryFont,
-                }}
-              >
-                {getString('CHAT')}
+              <StyledTextBtn style={{
+                color: modalBtnPrimaryFont,
+              }}>{getString('CHAT')}
               </StyledTextBtn>
             </View>
           </TouchableOpacity>
