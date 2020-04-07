@@ -66,6 +66,7 @@ export default function Screen(): ReactElement {
   if (loading) {
     return (<Container><LoadingIndicator /></Container>);
   }
+
   if (error) {
     return <ErrorView
       body={error.message}
