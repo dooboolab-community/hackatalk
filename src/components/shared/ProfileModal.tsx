@@ -20,7 +20,6 @@ const StyledImage = styled.Image`
   height: 80px;
   border-radius: 40px;
 `;
-
 const StyledViewBtns = styled.View`
   height: 48px;
   align-self: stretch;
@@ -29,13 +28,11 @@ const StyledViewBtns = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
-
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
   background-color: ${({ theme }): string => theme.placeholder};
 `;
-
 const StyledTextDisplayName = styled.Text`
   font-size: 24px;
   color: white;
@@ -44,52 +41,49 @@ const StyledTextDisplayName = styled.Text`
   padding: 0 32px;
   align-self: center;
 `;
-
 const StyledTextstatusMessage = styled.Text`
   font-size: 12px;
   color: white;
   margin-top: 8px;
   align-self: center;
 `;
-
 const StyledTextBtn = styled.Text`
   color: ${({ theme }): string => theme.modalBtnFont};
   font-size: 16px;
 `;
-
 const StyledTextFriendAdded = styled.Text`
   color: ${({ theme }): string => theme.tintColor};
   font-size: 12px;
   background-color: ${({ theme }): string => theme.background};
   padding: 4px;
 `;
-
 const StyledTextFriendAlreadyAdded = styled.Text`
   color: red;
   font-size: 12px;
   background-color: ${({ theme }): string => theme.background};
   padding: 4px;
 `;
-
 interface Props {
   testID?: string;
   ref?: React.MutableRefObject<Modal | null>;
   onChatPressed?: () => void;
+  onAddFriend?: () => void;
+  onDeleteFriend?: () => void;
 }
-
 export interface Ref {
   open: () => void;
   close: () => void;
   setUser: (user: User) => void;
   showAddBtn: (show: boolean) => void;
   setIsFriendAdded: (isFriendAdded: boolean) => void;
+  deleteFriend: () => Promise<void>;
+  addFriend: () => void;
+  modal: Modal | null;
 }
-
 interface Styles {
   wrapper: ViewStyle;
   viewBtn: ViewStyle;
 }
-
 const styles: Styles = {
   wrapper: {
     backgroundColor: 'transparent',
@@ -107,7 +101,6 @@ const styles: Styles = {
     justifyContent: 'center',
   },
 };
-
 const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
   const [deleteFriendMutation, {
@@ -124,19 +117,21 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMessage: '',
     isOnline: false,
   });
-
   const [addFriendMutation] = useMutation<
   { addFriend: User },
   { friendId: string }
   >(MUTATION_ADD_FRIEND, {
     refetchQueries: () => [{ query: QUERY_FRIENDS }],
   });
-
   const { loading, data, error } = useQuery<{
     friends: User[];
   }>(QUERY_FRIENDS, {
     fetchPolicy: 'network-only',
   });
+
+  const isFriendAlreadyAdded = data?.friends?.find(
+    (friend) => friend.id === user?.id,
+  );
 
   const open = (): void => {
     setIsFriendAdded(false);
@@ -144,14 +139,16 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       modal.open();
     }
   };
-
   const close = (): void => {
     if (modal) {
       modal.close();
     }
   };
-
   const addFriend = (): void => {
+    if (props.onAddFriend) {
+      props.onAddFriend();
+      return;
+    }
     addFriendMutation({
       variables: {
         friendId: user.id,
@@ -162,23 +159,23 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       modal.close();
     }
   };
-
   const deleteFriend = async (): Promise<void> => {
+    if (props.onDeleteFriend) {
+      props.onDeleteFriend();
+      return;
+    }
     if (modal) {
       modal.close();
     }
-
     const variables = {
       friendId: user.id,
     };
-
     try {
       await deleteFriendMutation({ variables });
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
     }
   };
-
   useImperativeHandle(ref, () => ({
     open,
     close,
@@ -187,8 +184,10 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       setShowAddBtn(flag);
     },
     setIsFriendAdded,
+    deleteFriend,
+    addFriend,
+    modal,
   }));
-
   const { photoURL = '', nickname, statusMessage } = user;
   const {
     theme: { primary, modalBtnPrimaryFont },
@@ -213,10 +212,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
         }}
       >
         <StyledView>
-          <TouchableOpacity
-            activeOpacity={0.5}
-          // onPress={goToProfile}
-          >
+          <TouchableOpacity activeOpacity={0.5}>
             {photoURL ? (
               <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
             ) : (
@@ -242,7 +238,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <StyledTextFriendAdded testID="added-message">
             {getString('FRIEND_ADDED')}
           </StyledTextFriendAdded>
-        ) : data?.friends?.find((friend) => friend.id === user?.id) ? (
+        ) : isFriendAlreadyAdded ? (
           <StyledTextFriendAlreadyAdded testID="already-added-message">
             {getString('FRIEND_ALREADY_ADDED')}
           </StyledTextFriendAlreadyAdded>
@@ -281,5 +277,4 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     </Modal>
   );
 });
-
 export default Shared;
