@@ -63,6 +63,7 @@ coverage/
 package-lock.json
 
 ios/Pods/
+ios/assets/
 
 # IDE
 .idea/

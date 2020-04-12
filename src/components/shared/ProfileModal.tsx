@@ -1,4 +1,8 @@
-import { MUTATION_ADD_FRIEND, MUTATION_DELETE_FRIEND, MutationDeleteFriend } from '../../graphql/mutations';
+import {
+  MUTATION_ADD_FRIEND,
+  MUTATION_DELETE_FRIEND,
+  MutationDeleteFriend,
+} from '../../graphql/mutations';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import { useMutation, useQuery } from '@apollo/react-hooks';
@@ -103,10 +107,12 @@ const styles: Styles = {
 };
 const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
-  const [deleteFriendMutation, {
-    error: deleteFriendError, loading: deleteFriendLoading,
-  }] = useMutation<{ id: string }, MutationDeleteFriend>(MUTATION_DELETE_FRIEND,
-    { refetchQueries: [{ query: QUERY_FRIENDS }] });
+  const [
+    deleteFriendMutation,
+    { error: deleteFriendError, loading: deleteFriendLoading },
+  ] = useMutation<{ id: string }, MutationDeleteFriend>(MUTATION_DELETE_FRIEND, {
+    refetchQueries: [{ query: QUERY_FRIENDS }],
+  });
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
   const [user, setUser] = useState<User>({

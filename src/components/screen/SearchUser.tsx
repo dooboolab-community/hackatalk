@@ -61,58 +61,10 @@ interface QueryFriendsData {
 }
 interface Props {
   users?: User[];
+  queryArgs?: QueryUsersInput;
   onDeleteFriend?: (modal?: Modal) => () => void;
   onAddFriend?: (modal?: Modal) => () => void;
 }
-interface ShowModalParams {
-  user: User;
-  deleteMode: boolean;
-  onDeleteFriend?: () => void;
-  onAddFriend?: () => void;
-}
-interface UserListOnPress {
-  user: User;
-  friends?: User[];
-  modal?: Modal;
-  showModal: (showModalParams: ShowModalParams) => void;
-  event: {
-    onDeleteFriend: (modal?: Modal) => () => void;
-    onAddFriend: (modal?: Modal) => () => void;
-  };
-}
-
-export const onDeleteFriend = (modal?: Modal) => (): void => {
-  if (modal && modal.current) {
-    const profileModal = modal.current;
-    profileModal.showAddBtn(true);
-    profileModal.setIsFriendAdded(false);
-  }
-};
-
-export const onAddFriend = (modal?: Modal) => (): void => {
-  if (modal && modal.current) {
-    const profileModal = modal.current;
-    profileModal.showAddBtn(false);
-    profileModal.setIsFriendAdded(true);
-  }
-};
-const userListOnPress = ({
-  user,
-  friends,
-  modal,
-  showModal,
-  event,
-}: UserListOnPress) => (): void => {
-  const { onDeleteFriend, onAddFriend } = event;
-  const deleteMode =
-    friends?.findIndex((friend) => friend.id === user.id) !== -1;
-  showModal({
-    user,
-    deleteMode,
-    onDeleteFriend: onDeleteFriend(modal),
-    onAddFriend: onAddFriend(modal),
-  });
-};
 
 const Screen = (props: Props): React.ReactElement => {
   const { state, showModal } = useProfileContext();
@@ -141,7 +93,7 @@ const Screen = (props: Props): React.ReactElement => {
     fetchPolicy: 'network-only',
     variables:
       debouncedText === ''
-        ? {
+        ? props.queryArgs || {
           first: 20,
         }
         : {
@@ -183,7 +135,7 @@ const Screen = (props: Props): React.ReactElement => {
     );
   }
 
-  const onTxtChanged = (text: string): void => {
+  const onChangeText = (text: string): void => {
     setSearchText(text);
     scrollY.setValue(0);
     Animated.timing(scrollY, {
@@ -210,16 +162,17 @@ const Screen = (props: Props): React.ReactElement => {
     index: number;
   }): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
-    const userListOnPressInlineFn = userListOnPress({
-      user: item,
-      friends: friendsData?.friends,
-      modal: state.modal,
-      showModal,
-      event: {
-        onDeleteFriend: props.onDeleteFriend || onDeleteFriend,
-        onAddFriend: props.onAddFriend || onAddFriend,
-      },
-    });
+    const userListOnPressInlineFn = (): void => {
+      const deleteMode = !friendsData
+        ? false
+        : !friendsData.friends
+          ? false
+          : friendsData.friends.findIndex((friend) => friend.id === item.id) > -1;
+      showModal({
+        user: item,
+        deleteMode,
+      });
+    };
     return (
       <UserListItem
         testID={itemTestID}
@@ -240,40 +193,44 @@ const Screen = (props: Props): React.ReactElement => {
 
     const onEndReached = (): void => {
       const { endCursor } = usersData?.users?.pageInfo || {};
-      const variables = debouncedText === ''
-        ? {
-          first: 20,
-          after: endCursor,
-        }
-        : {
-          first: 20,
-          after: endCursor,
-          filter: true,
-          user: {
-            email: debouncedText,
-            name: debouncedText,
-            nickname: debouncedText,
-          },
-        };
-      const updateQuery = (previousResult: QueryUsersData, { fetchMoreResult }: OperationVariables): QueryUsersData => {
+      const variables =
+        debouncedText === ''
+          ? {
+            first: 20,
+            after: endCursor,
+          }
+          : {
+            first: 20,
+            after: endCursor,
+            filter: true,
+            user: {
+              email: debouncedText,
+              name: debouncedText,
+              nickname: debouncedText,
+            },
+          };
+      const updateQuery = (
+        previousResult: QueryUsersData,
+        { fetchMoreResult }: OperationVariables,
+      ): QueryUsersData => {
         const { edges: prevEdges, __typename } = previousResult.users;
         const { edges: newEdges, pageInfo, totalCount } = fetchMoreResult.users;
-        return newEdges.length ? {
-          users: {
-            __typename,
-            totalCount,
-            edges: [...prevEdges, ...newEdges],
-            pageInfo,
-          },
-        } : previousResult;
+        return newEdges.length
+          ? {
+            users: {
+              __typename,
+              totalCount,
+              edges: [...prevEdges, ...newEdges],
+              pageInfo,
+            },
+          }
+          : previousResult;
       };
       fetchMoreUsers({ variables, updateQuery });
     };
     return (
       <StyledAnimatedFlatList
         testID="animated-flatlist"
-        // @ts-ignore
-        testObj={{ scrollY }}
         style={{
           transform: [
             {
@@ -303,7 +260,7 @@ const Screen = (props: Props): React.ReactElement => {
       <Container>
         <SearchTextInput
           testID="text-input"
-          onChangeText={onTxtChanged}
+          onChangeText={onChangeText}
           value={searchText}
         />
         {renderUsers()}

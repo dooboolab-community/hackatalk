@@ -23,11 +23,9 @@ import Shared from '../ProfileModal';
 import { act } from 'react-test-renderer';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';
 
-// Extract type of Ref from forwarding component.
 type Handle<T> = T extends ForwardRefExoticComponent<RefAttributes<infer T2>>
   ? T2
   : never;
-
 interface Ref {
   showModal: (showModalParams: any) => void;
 }
@@ -35,7 +33,7 @@ interface Props {
   onAddFriend?: () => void;
   onDeleteFriend?: () => void;
 }
-
+// interface Props {}
 const FakeProfileModal = forwardRef<Ref, Props>((props, ref) => {
   const { state, showModal } = useProfileContext();
   const modalEl = React.useRef(null);
@@ -58,8 +56,8 @@ describe('[ProfileModal] rendering test', () => {
   let testingLib: RenderResult;
   const ref = createRef<Handle<typeof Shared>>();
   let fakeProfileModalRef;
-  let fakeModalTestingLib;
-  let fakeProfileModalTestComponent;
+  let testingLib2;
+  let component2;
   const onAddFriend = jest.fn();
   const onDeleteFriend = jest.fn();
   const mocks: Array<MockedResponse> = [
@@ -126,18 +124,16 @@ describe('[ProfileModal] rendering test', () => {
       </MockedProvider>,
     );
     testingLib = render(component);
-
     fakeProfileModalRef = createRef<Ref>();
-    fakeProfileModalTestComponent = createTestElement(
+    component2 = createTestElement(
       <FakeProfileModal
         ref={fakeProfileModalRef}
         onAddFriend={onAddFriend}
         onDeleteFriend={onDeleteFriend}
       />,
     );
-    fakeModalTestingLib = render(fakeProfileModalTestComponent);
+    testingLib2 = render(component2);
   });
-
   it('Render without crashing', async () => {
     const { baseElement } = testingLib;
     await wait(() => {
@@ -145,7 +141,6 @@ describe('[ProfileModal] rendering test', () => {
       expect(baseElement).toBeTruthy();
     });
   });
-
   it('Should be opened', async () => {
     const { current } = ref;
     // Open modal by using it's state.
@@ -155,7 +150,6 @@ describe('[ProfileModal] rendering test', () => {
     const button = testingLib.queryByTestId('btn-ad-friend');
     expect(button).not.toBeNull();
   });
-
   it('Check "Added to your friend." button', async () => {
     const { current } = ref;
     await act(async () => {
@@ -165,7 +159,6 @@ describe('[ProfileModal] rendering test', () => {
     const button = testingLib.queryByTestId('added-message');
     expect(button).not.toBeNull();
   });
-
   it('Check "Already your friend." button', async () => {
     const { current } = ref;
     await act(async () => {
@@ -175,7 +168,6 @@ describe('[ProfileModal] rendering test', () => {
     const alreadyAddedMsgButton = testingLib.queryByTestId('already-added-message');
     expect(alreadyAddedMsgButton).not.toBeNull();
   });
-
   it('Should be closed', async () => {
     const { current } = ref;
     // Cloase modal by using it's state.
@@ -185,21 +177,7 @@ describe('[ProfileModal] rendering test', () => {
     const button = testingLib.queryByTestId('btn-ad-friend');
     expect(button).toBeNull();
   });
-
-  it('Add Friend', async () => {
-    await act(async () => {
-      fakeProfileModalRef.current.showModal({
-        user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
-      });
-    });
-    const button = fakeModalTestingLib.queryByTestId('btn-ad-friend');
-    await act(async () => {
-      fireEvent.press(button);
-    });
-    expect(onAddFriend).toHaveBeenCalled();
-  });
-
-  it('Delete Friend by using its state', async () => {
+  it('delete', async () => {
     const { current } = ref;
     await act(async () => {
       current.showAddBtn(false);
@@ -211,15 +189,26 @@ describe('[ProfileModal] rendering test', () => {
     });
     expect(current.modal).toBeTruthy();
   });
-
-  it('Delete Friend by using ModalProvider', async () => {
+  it('Add Friend', async () => {
+    await act(async () => {
+      fakeProfileModalRef.current.showModal({
+        user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
+      });
+    });
+    const button = testingLib2.queryByTestId('btn-ad-friend');
+    await act(async () => {
+      fireEvent.press(button);
+    });
+    expect(onAddFriend).toHaveBeenCalled();
+  });
+  it('Delete Friend', async () => {
     await act(async () => {
       fakeProfileModalRef.current.showModal({
         user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
         deleteMode: true,
       });
     });
-    const button = fakeModalTestingLib.queryByTestId('btn-ad-friend');
+    const button = testingLib2.queryByTestId('btn-ad-friend');
     await act(async () => {
       fireEvent.press(button);
     });

@@ -1,6 +1,6 @@
 import { QUERY_FRIENDS, QUERY_USERS } from '../../../graphql/queries';
 import React, { ReactElement } from 'react';
-import { RenderResult, act, cleanup, fireEvent, render, wait } from '@testing-library/react-native';
+import { RenderResult, act, cleanup, fireEvent, render, wait, waitForElement } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MockedProvider } from '@apollo/react-testing';
@@ -10,6 +10,15 @@ const mocks = [
   {
     request: {
       query: QUERY_USERS,
+      variables: {
+        filter: true,
+        first: 20,
+        user: {
+          email: 'geoseong',
+          name: 'geoseong',
+          nickname: 'geoseong',
+        },
+      },
     },
     result: {
       data: {
@@ -18,25 +27,27 @@ const mocks = [
           edges: [
             {
               node: {
-                id: '3fd05630-4b4b-11ea-b8e6-57b0ff231f9b',
-                email: 'dev.ted.kim@gmail.com',
-                name: 'Ted Kim',
-                nickname: null,
-              },
-              cursor: '1581259715000',
-            },
-            {
-              node: {
                 id: '135f79b0-5545-11ea-9ea9-ad4e7fcc8ca2',
                 email: 'parkopp@gmail.com',
                 name: 'geoseong',
                 nickname: 'geoseong',
+                thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=80&v=4',
+                photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+                birthday: null,
+                gender: null,
+                socialId: null,
+                authType: 'EMAIL',
+                phone: '+82100000000',
+                verified: true,
+                statusMessage: 'geoseong',
+                isOnline: null,
+                lastSignedIn: null,
               },
               cursor: '1582356575000',
             },
           ],
           pageInfo: {
-            startCursor: '1581259715000',
+            startCursor: '1582356575000',
             endCursor: '1582356575000',
             hasNextPage: false,
             hasPreviousPage: false,

@@ -36,12 +36,6 @@ export default function Screen(): ReactElement {
       showModal({
         user,
         deleteMode: true,
-        onDeleteFriend: (): void => {
-          if (state.modal && state.modal.current) {
-            const profileModal = state.modal.current;
-            profileModal.close();
-          }
-        },
       });
     }
   };
