@@ -33,11 +33,6 @@ export interface User {
   updated?: string;
 }
 
-export interface AuthPayload {
-  token: string;
-  user: User;
-}
-
 export interface Friend extends User {
   isFriend?: boolean;
   friendSince: Date;

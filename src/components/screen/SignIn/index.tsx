@@ -3,8 +3,7 @@ import * as Device from 'expo-device';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { AuthPayload, User } from '../../../types';
-import { MUTATION_SIGN_IN, SignInEmailInput } from '../../../graphql/mutations';
+import { AuthPayload, MUTATION_SIGN_IN, SignInEmailInput } from '../../../graphql/mutations';
 import { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
@@ -15,6 +14,7 @@ import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
 import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
+import { User } from '../../../types';
 import { getString } from '../../../../STRINGS';
 import { initializeEThree } from '../../../utils/virgil';
 import renderMobile from './mobile';

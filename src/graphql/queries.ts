@@ -18,6 +18,7 @@ export enum Gender {
   MALE = 'MALE',
   FEMALE = 'FEMALE',
 }
+
 interface UserQueryInput {
   email?: string;
   name: string;
@@ -26,6 +27,7 @@ interface UserQueryInput {
   gender?: Gender;
   phone?: string;
 }
+
 export interface QueryUsersInput {
   filter?: boolean;
   user?: UserQueryInput;

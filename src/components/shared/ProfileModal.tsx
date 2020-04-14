@@ -1,11 +1,11 @@
 import {
+  AddOrDeleteFriendInput,
+  FriendPayload,
   MUTATION_ADD_FRIEND,
   MUTATION_DELETE_FRIEND,
-  MutationDeleteFriend,
 } from '../../graphql/mutations';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
-import { useMutation, useQuery } from '@apollo/react-hooks';
 
 import { Ionicons } from '@expo/vector-icons';
 import Modal from 'react-native-modalbox';
@@ -14,16 +14,19 @@ import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
+import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
   margin-top: 40px;
 `;
+
 const StyledImage = styled.Image`
   width: 80px;
   height: 80px;
   border-radius: 40px;
 `;
+
 const StyledViewBtns = styled.View`
   height: 48px;
   align-self: stretch;
@@ -32,11 +35,13 @@ const StyledViewBtns = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
+
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
   background-color: ${({ theme }): string => theme.placeholder};
 `;
+
 const StyledTextDisplayName = styled.Text`
   font-size: 24px;
   color: white;
@@ -45,28 +50,33 @@ const StyledTextDisplayName = styled.Text`
   padding: 0 32px;
   align-self: center;
 `;
+
 const StyledTextstatusMessage = styled.Text`
   font-size: 12px;
   color: white;
   margin-top: 8px;
   align-self: center;
 `;
-const StyledTextBtn = styled.Text`
+
+const StyledText = styled.Text`
   color: ${({ theme }): string => theme.modalBtnFont};
   font-size: 16px;
 `;
+
 const StyledTextFriendAdded = styled.Text`
   color: ${({ theme }): string => theme.tintColor};
   font-size: 12px;
   background-color: ${({ theme }): string => theme.background};
   padding: 4px;
 `;
+
 const StyledTextFriendAlreadyAdded = styled.Text`
   color: red;
   font-size: 12px;
   background-color: ${({ theme }): string => theme.background};
   padding: 4px;
 `;
+
 interface Props {
   testID?: string;
   ref?: React.MutableRefObject<Modal | null>;
@@ -74,6 +84,7 @@ interface Props {
   onAddFriend?: () => void;
   onDeleteFriend?: () => void;
 }
+
 export interface Ref {
   open: () => void;
   close: () => void;
@@ -84,10 +95,12 @@ export interface Ref {
   addFriend: () => void;
   modal: Modal | null;
 }
+
 interface Styles {
   wrapper: ViewStyle;
   viewBtn: ViewStyle;
 }
+
 const styles: Styles = {
   wrapper: {
     backgroundColor: 'transparent',
@@ -105,16 +118,32 @@ const styles: Styles = {
     justifyContent: 'center',
   },
 };
+
 const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
+
+  const {
+    testID,
+    onChatPressed,
+    onAddFriend,
+    onDeleteFriend,
+  } = props;
+
   const [
     deleteFriendMutation,
     { error: deleteFriendError, loading: deleteFriendLoading },
-  ] = useMutation<{ id: string }, MutationDeleteFriend>(MUTATION_DELETE_FRIEND, {
+  ] = useMutation<{ deleteFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_DELETE_FRIEND, {
     refetchQueries: [{ query: QUERY_FRIENDS }],
   });
-  const [showAddBtn, setShowAddBtn] = useState(true);
-  const [isFriendAdded, setIsFriendAdded] = useState(false);
+
+  const [addFriendMutation] = useMutation<{ addFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_ADD_FRIEND, {
+    refetchQueries: () => [{ query: QUERY_FRIENDS }],
+  });
+
+  const [hasFriendBeenAdded, setHasFriendBeenAdded] = useState<boolean>(false);
+  const [showAddBtn, setShowAddBtn] = useState<boolean>(true);
+  const [isFriendAdded, setIsFriendAdded] = useState<boolean>(false);
+
   const [user, setUser] = useState<User>({
     nickname: '',
     id: '',
@@ -123,59 +152,53 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMessage: '',
     isOnline: false,
   });
-  const [addFriendMutation] = useMutation<
-  { addFriend: User },
-  { friendId: string }
-  >(MUTATION_ADD_FRIEND, {
-    refetchQueries: () => [{ query: QUERY_FRIENDS }],
-  });
-  const { loading, data, error } = useQuery<{
-    friends: User[];
-  }>(QUERY_FRIENDS, {
-    fetchPolicy: 'network-only',
-  });
-
-  const isFriendAlreadyAdded = data?.friends?.find(
-    (friend) => friend.id === user?.id,
-  );
 
   const open = (): void => {
     setIsFriendAdded(false);
+    setHasFriendBeenAdded(false);
     if (modal) {
       modal.open();
     }
   };
+
   const close = (): void => {
     if (modal) {
       modal.close();
     }
   };
-  const addFriend = (): void => {
-    if (props.onAddFriend) {
-      props.onAddFriend();
-      return;
-    }
-    addFriendMutation({
-      variables: {
-        friendId: user.id,
-      },
-      // refetchQueries: [QUERY_FRIENDS],
-    });
+
+  const addFriend = async (): Promise<void> => {
+    if (onAddFriend) { onAddFriend(); }
+
     if (modal) {
       modal.close();
+    }
+
+    try {
+      const result = await addFriendMutation({
+        variables: {
+          friendId: user.id,
+        },
+        // refetchQueries: [QUERY_FRIENDS],
+      });
+
+      setHasFriendBeenAdded(result.data?.addFriend.added || false);
+    } catch ({ graphQLErrors }) {
+      showAlertForGrpahqlError(graphQLErrors);
     }
   };
+
   const deleteFriend = async (): Promise<void> => {
-    if (props.onDeleteFriend) {
-      props.onDeleteFriend();
-      return;
-    }
+    if (props.onDeleteFriend) { props.onDeleteFriend(); }
+
     if (modal) {
       modal.close();
     }
+
     const variables = {
       friendId: user.id,
     };
+
     try {
       await deleteFriendMutation({ variables });
     } catch ({ graphQLErrors }) {
@@ -196,11 +219,10 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     modal,
   }));
 
-  const { photoURL = '', nickname, statusMessage } = user;
-  const {
-    theme: { primary, modalBtnPrimaryFont },
-  } = useThemeContext();
+  const { photoURL = '', nickname, name, statusMessage } = user;
+  const { theme: { primary, modalBtnPrimaryFont } } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
+
   return (
     <Modal
       ref={(v): Modal | null => (modal = v)}
@@ -238,7 +260,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             }
           </TouchableOpacity>
           <StyledTextDisplayName numberOfLines={1}>
-            {nickname}
+            {nickname || name}
           </StyledTextDisplayName>
           <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
@@ -247,7 +269,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             ? <StyledTextFriendAdded testID="added-message">
               {getString('FRIEND_ADDED')}
             </StyledTextFriendAdded>
-            : isFriendAlreadyAdded
+            : hasFriendBeenAdded
               ? <StyledTextFriendAlreadyAdded testID="already-added-message">
                 {getString('FRIEND_ALREADY_ADDED')}
               </StyledTextFriendAlreadyAdded>
@@ -255,19 +277,19 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
         }
         <StyledViewBtns>
           <TouchableOpacity
-            testID="btn-ad-friend"
+            testID="touch-add-friend"
             activeOpacity={0.5}
             onPress={showAddBtn ? addFriend : deleteFriend}
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn testID="btn-ad-title">
+              <StyledText testID="text-add-title">
                 {
                   showAddBtn
                     ? getString('ADD_FRIEND')
                     : getString('DELETE_FRIEND')
                 }
-              </StyledTextBtn>
+              </StyledText>
             </View>
           </TouchableOpacity>
           <StyledViewBtnDivider />
@@ -278,9 +300,9 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
-              <StyledTextBtn style={{
+              <StyledText style={{
                 color: modalBtnPrimaryFont,
-              }}>{getString('CHAT')}</StyledTextBtn>
+              }}>{getString('CHAT')}</StyledText>
             </View>
           </TouchableOpacity>
         </StyledViewBtns>
