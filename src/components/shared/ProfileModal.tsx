@@ -182,6 +182,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       showAlertForGrpahqlError(graphQLErrors);
     }
   };
+
   useImperativeHandle(ref, () => ({
     open,
     close,
@@ -194,6 +195,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     addFriend,
     modal,
   }));
+
   const { photoURL = '', nickname, statusMessage } = user;
   const {
     theme: { primary, modalBtnPrimaryFont },
@@ -219,36 +221,38 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
       >
         <StyledView>
           <TouchableOpacity activeOpacity={0.5}>
-            {photoURL ? (
-              <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
-            ) : (
-              <View
-                style={{
-                  width: 80,
-                  height: 80,
-                  alignSelf: 'center',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Ionicons name="ios-person" size={80} color="white" />
-              </View>
-            )}
+            {
+              photoURL
+                ? <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
+                : <View
+                  style={{
+                    width: 80,
+                    height: 80,
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Ionicons name="ios-person" size={80} color="white" />
+                </View>
+            }
           </TouchableOpacity>
           <StyledTextDisplayName numberOfLines={1}>
             {nickname}
           </StyledTextDisplayName>
           <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
-        {isFriendAdded ? (
-          <StyledTextFriendAdded testID="added-message">
-            {getString('FRIEND_ADDED')}
-          </StyledTextFriendAdded>
-        ) : isFriendAlreadyAdded ? (
-          <StyledTextFriendAlreadyAdded testID="already-added-message">
-            {getString('FRIEND_ALREADY_ADDED')}
-          </StyledTextFriendAlreadyAdded>
-        ) : null}
+        {
+          isFriendAdded
+            ? <StyledTextFriendAdded testID="added-message">
+              {getString('FRIEND_ADDED')}
+            </StyledTextFriendAdded>
+            : isFriendAlreadyAdded
+              ? <StyledTextFriendAlreadyAdded testID="already-added-message">
+                {getString('FRIEND_ALREADY_ADDED')}
+              </StyledTextFriendAlreadyAdded>
+              : null
+        }
         <StyledViewBtns>
           <TouchableOpacity
             testID="btn-ad-friend"
@@ -258,9 +262,11 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           >
             <View style={styles.viewBtn}>
               <StyledTextBtn testID="btn-ad-title">
-                {showAddBtn
-                  ? getString('ADD_FRIEND')
-                  : getString('DELETE_FRIEND')}
+                {
+                  showAddBtn
+                    ? getString('ADD_FRIEND')
+                    : getString('DELETE_FRIEND')
+                }
               </StyledTextBtn>
             </View>
           </TouchableOpacity>
@@ -274,8 +280,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
             <View style={styles.viewBtn}>
               <StyledTextBtn style={{
                 color: modalBtnPrimaryFont,
-              }}>{getString('CHAT')}
-              </StyledTextBtn>
+              }}>{getString('CHAT')}</StyledTextBtn>
             </View>
           </TouchableOpacity>
         </StyledViewBtns>
