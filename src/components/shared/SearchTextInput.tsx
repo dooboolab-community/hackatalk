@@ -2,20 +2,11 @@ import { IC_SEARCH, IC_SEARCH_W } from '../../utils/Icons';
 import React, { ReactChildren, ReactElement } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 
+import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
-
-const StyledSearchView = styled.View`
-  width: 100%;
-  height: 48px;
-  justify-content: center;
-  overflow: hidden;
-  align-items: center;
-  margin-bottom: 4px;
-`;
 
 const StyledTextInputWrapper = styled.View`
   width: 100%;
-  height: 58px;
   padding: 0 20px;
   align-items: center;
   flex-direction: row;
@@ -23,6 +14,7 @@ const StyledTextInputWrapper = styled.View`
 `;
 const StyledTextInput = styled.TextInput`
   width: 100%;
+  padding: 12px 0;
   color: ${({ theme }): string => theme.fontColor};
   background-color: ${({ theme }): string => theme.searchBackground};
   border-radius: 4px;
@@ -41,30 +33,33 @@ interface Props {
   onChangeText?: (text: string) => void;
   value?: string;
   children?: ReactChildren;
+  containerStyle?: ViewStyle;
+  style?: ViewStyle;
 }
 
 function SearchTextInput(props: Props): ReactElement {
-  const { testID, onChangeText, value } = props;
+  const { testID, onChangeText, value, containerStyle, style } = props;
   const { themeType, theme } = useThemeContext();
 
-  return <StyledSearchView>
-    <StyledTextInputWrapper>
-      <StyledTextInput
-        testID={testID}
-        onChangeText={onChangeText}
-        value={value}
-        underlineColorAndroid="transparent" // android fix
-        selectionColor={theme.fontColor}
-        autoCapitalize="none"
-        autoCorrect={false}
-        multiline={false}
-        defaultValue={''}
-      />
-      <StyledSearchImage source={
-        themeType === ThemeType.LIGHT ? IC_SEARCH : IC_SEARCH_W}
-      />
-    </StyledTextInputWrapper>
-  </StyledSearchView>;
+  return <StyledTextInputWrapper
+    style={containerStyle}
+  >
+    <StyledTextInput
+      testID={testID}
+      onChangeText={onChangeText}
+      style={style}
+      value={value}
+      underlineColorAndroid="transparent" // android fix
+      selectionColor={theme.fontColor}
+      autoCapitalize="none"
+      autoCorrect={false}
+      multiline={false}
+      defaultValue={''}
+    />
+    <StyledSearchImage source={
+      themeType === ThemeType.LIGHT ? IC_SEARCH : IC_SEARCH_W}
+    />
+  </StyledTextInputWrapper>;
 }
 
 export default SearchTextInput;

@@ -93,9 +93,7 @@ const Screen = (props: Props): React.ReactElement => {
     fetchPolicy: 'network-only',
     variables:
       debouncedText === ''
-        ? props.queryArgs || {
-          first: 20,
-        }
+        ? props.queryArgs || { first: 20 }
         : {
           first: 20,
           filter: true,
@@ -116,9 +114,7 @@ const Screen = (props: Props): React.ReactElement => {
       <ErrorView
         body={usersQueryError.message}
         onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
-          refetchUsers({
-            first: 20,
-          })
+          refetchUsers({ first: 20 })
         }
       />
     );
@@ -260,6 +256,7 @@ const Screen = (props: Props): React.ReactElement => {
       <Container>
         <SearchTextInput
           testID="text-input"
+          containerStyle={{ marginTop: 12 }}
           onChangeText={onChangeText}
           value={searchText}
         />
