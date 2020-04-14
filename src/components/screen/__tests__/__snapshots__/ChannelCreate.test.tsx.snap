@@ -38,77 +38,63 @@ exports[`Rendering renders without crashing 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "height": 48,
+              "flexDirection": "row",
               "justifyContent": "center",
-              "marginBottom": 4,
-              "overflow": "hidden",
+              "paddingBottom": 0,
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 0,
               "width": "100%",
             },
           ]
         }
       >
-        <View
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          defaultValue=""
+          multiline={false}
+          rejectResponderTermination={true}
+          selectionColor="#151A25"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "height": 58,
-                "justifyContent": "center",
-                "paddingBottom": 0,
-                "paddingLeft": 20,
-                "paddingRight": 20,
-                "paddingTop": 0,
+                "backgroundColor": "#f3f9ff",
+                "borderRadius": 4,
+                "color": "#151A25",
+                "paddingBottom": 12,
+                "paddingLeft": 40,
+                "paddingRight": 10,
+                "paddingTop": 12,
                 "width": "100%",
               },
             ]
           }
-        >
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            autoCorrect={false}
-            defaultValue=""
-            multiline={false}
-            rejectResponderTermination={true}
-            selectionColor="#151A25"
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#f3f9ff",
-                  "borderRadius": 4,
-                  "color": "#151A25",
-                  "paddingLeft": 40,
-                  "paddingRight": 10,
-                  "width": "100%",
-                },
-              ]
+          testID="text-input"
+          underlineColorAndroid="transparent"
+          value=""
+        />
+        <Image
+          source={
+            Object {
+              "canInstrument": true,
+              "createTransformer": [Function],
+              "getCacheKey": [Function],
+              "process": [Function],
             }
-            testID="text-input"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <Image
-            source={
+          }
+          style={
+            Array [
               Object {
-                "canInstrument": true,
-                "createTransformer": [Function],
-                "getCacheKey": [Function],
-                "process": [Function],
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "height": 20,
-                  "left": 30,
-                  "position": "absolute",
-                  "width": 20,
-                },
-              ]
-            }
-          />
-        </View>
+                "height": 20,
+                "left": 30,
+                "position": "absolute",
+                "width": 20,
+              },
+            ]
+          }
+        />
       </View>
       <ScrollView
         ListEmptyComponent={
