@@ -1,154 +1,137 @@
-import * as React from 'react';
-
-import {
-  ReactTestInstanceExtended,
-  RenderResult,
-  act,
-  fireEvent,
-  render,
-  toJSON,
-} from '@testing-library/react-native';
-import SearchUser, { fakeUsers } from '../SearchUser';
+import { QUERY_FRIENDS, QUERY_USERS } from '../../../graphql/queries';
+import React, { ReactElement } from 'react';
+import { RenderResult, act, cleanup, fireEvent, render, wait, waitForElement } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { Animated } from 'react-native';
-import ProfileModal from '../../shared/ProfileModal';
-import { User } from '../../../types';
-import { useProfileContext } from '../../../providers/ProfileModalProvider';
+import { MockedProvider } from '@apollo/react-testing';
+import SearchUser from '../SearchUser';
 
-type TestingLibInput = Pick<
-ReactTestInstanceExtended,
-'type' | 'props' | 'parent' | 'children' | 'find' | 'findAll' | 'getProp' | 'parentNode'
->;
-
-const props = createTestProps();
-
-const component: React.ReactElement = createTestElement(
-  <SearchUser {...props} />,
-);
+const mocks = [
+  {
+    request: {
+      query: QUERY_USERS,
+      variables: {
+        filter: true,
+        first: 20,
+        user: {
+          email: 'geoseong',
+          name: 'geoseong',
+          nickname: 'geoseong',
+        },
+      },
+    },
+    result: {
+      data: {
+        users: {
+          totalCount: 1,
+          edges: [
+            {
+              node: {
+                id: '135f79b0-5545-11ea-9ea9-ad4e7fcc8ca2',
+                email: 'parkopp@gmail.com',
+                name: 'geoseong',
+                nickname: 'geoseong',
+                thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=80&v=4',
+                photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+                birthday: null,
+                gender: null,
+                socialId: null,
+                authType: 'EMAIL',
+                phone: '+82100000000',
+                verified: true,
+                statusMessage: 'geoseong',
+                isOnline: null,
+                lastSignedIn: null,
+              },
+              cursor: '1582356575000',
+            },
+          ],
+          pageInfo: {
+            startCursor: '1582356575000',
+            endCursor: '1582356575000',
+            hasNextPage: false,
+            hasPreviousPage: false,
+          },
+        },
+      },
+    },
+  },
+];
 
 describe('[SearchUser] rendering test', () => {
-  it('should render as expected', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let props: any;
+  beforeEach(() => {
+    props = createTestProps();
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('renders as expected', () => {
+    const component = createTestElement(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <SearchUser {...props} />
+      </MockedProvider>,
+    );
+
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it('renders loading', () => {
+    const component = createTestElement(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <SearchUser {...props} />
+      </MockedProvider>,
+    );
+
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it('renders error view', () => {
+    const errorMock = {
+      request: { query: QUERY_USERS },
+      error: new Error('error'),
+    };
+
+    const component = createTestElement(
+      <MockedProvider mocks={[errorMock]} addTypename={false}>
+        <SearchUser {...props} />
+      </MockedProvider>,
+    );
+
     const { baseElement } = render(component);
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
   });
 });
 
-describe('[serachUser] interaction', () => {
-  // let searchUserLib: RenderAPI;
+describe('[SearchUser] interaction', () => {
+  jest.useFakeTimers();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let props: any;
   let testingLib: RenderResult;
-  let txtInputInst: TestingLibInput;
-  let animatedFlatListInst: TestingLibInput;
-  const inputData: User = fakeUsers[0];
-
+  let component: ReactElement;
   beforeAll(() => {
+    component = createTestElement(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <SearchUser {...props} />
+      </MockedProvider>,
+    );
     testingLib = render(component);
-    txtInputInst = testingLib.getByTestId('text-input');
-    animatedFlatListInst = testingLib.getByTestId('animated-flatlist');
   });
-  it(
-    'when friend name typed in TextInput: (onTxtChanged -> onSearch)' +
-      ' and (renderItem) and (keyExtractor)',
-    () => {
-      // setTimeout called - 0
-      fireEvent.changeText(txtInputInst, inputData.nickname);
-      // setTimeout called - 2
-      expect(animatedFlatListInst.props.data[0]).toEqual(inputData);
-
-      expect(animatedFlatListInst.props.contentContainerStyle()).toEqual(null);
-      fireEvent.changeText(txtInputInst, 'noresult!');
-      // setTimeout called - 3
-      expect(animatedFlatListInst.props.data.length).toEqual(0);
-      expect(animatedFlatListInst.props.contentContainerStyle()).toEqual({
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      });
-
-      fireEvent.changeText(txtInputInst, '');
-      // setTimeout called - 4
-      expect(animatedFlatListInst.props.data.length).toEqual(fakeUsers.length);
-    },
-  );
-  it('see Animation is working well', () => {
-    jest.useFakeTimers(); // related to timer
-    const scrollY = animatedFlatListInst.props.testObj.scrollY;
-    const afterScrollY = new Animated.Value(0);
-    Animated.timing(afterScrollY, {
-      toValue: 100,
-      duration: 500,
-    }).start();
-    // setTimeout called - 5
-    setTimeout(() => {
-      expect(scrollY).toEqual(afterScrollY); // doesn't work
-    }, 600);
-    // setTimeout called - 6
-  });
-
-  // it('when profile modal clicked -> should call showProfileModal', () => {
-  //   const itemTestID = 'userListItem0';
-  //   const userListItemInst: renderer.ReactTestInstance = testingLib.getByTestId(
-  //     itemTestID,
-  //   );
-  //   fireEvent.changeText(txtInputInst, inputData.nickname);
-  //   fireEvent.press(userListItemInst);
-  //   // const { profileModal } = userListItemInst.props.testObj;
-  //   // const UserItem = withTheme(<UserListItem testID={itemTestID} user={inputData} />);
-  //   console.log(
-  //     '~>~>~>~>~>~>userListItemInst/1',
-  //     userListItemInst.findByType('StyledText'),
-  //   );
-  //   // console.log('~>~>~>~>~>~>userListItemInst/2', UserItem);
-  //   // expect(userListItemInst).toEqual(UserItem); // effects nothing
-  // });
-});
-
-const TestComponent = (): React.ReactElement => {
-  const { state } = useProfileContext();
-  const modalEl = React.useRef(null);
-  state.modal = modalEl;
-
-  return (
-    <>
-      <ProfileModal ref={state.modal} />
-      <SearchUser {...props} />
-    </>
-  );
-};
-
-describe('[SearchUser] interaction with Profile Modal', () => {
-  let component: React.ReactElement;
-  let testingLib: RenderResult;
-  let itemTestID: string;
-
-  beforeEach(() => {
-    component = createTestElement(<TestComponent />);
-    testingLib = render(component);
-    itemTestID = 'user-list-item0';
-  });
-
-  it('show profile modal when press user in search user list', () => {
-    const userListItem = testingLib.queryByTestId(itemTestID);
+  it('change text in SearchTextInput', async () => {
+    const searchTextInput = testingLib.getByTestId('text-input');
+    expect(searchTextInput).toBeTruthy();
+    const searchText = 'geoseong';
     act(() => {
-      fireEvent.press(userListItem);
+      fireEvent.changeText(searchTextInput, searchText);
     });
-    expect(testingLib.asJSON()).toMatchSnapshot();
-  });
-
-  it('show changged state when press add and delete button on profile modal', () => {
-    const userListItem = testingLib.queryByTestId(itemTestID);
-    act(() => {
-      fireEvent.press(userListItem);
-    });
-    const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
-    act(() => {
-      fireEvent.press(btnAdFriend);
-    });
-    expect(testingLib.asJSON()).toMatchSnapshot();
-    act(() => {
-      fireEvent.press(btnAdFriend);
-    });
-    expect(testingLib.asJSON()).toMatchSnapshot();
+    expect(searchTextInput.props.value).toEqual(searchText);
   });
 });

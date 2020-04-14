@@ -1,3 +1,4 @@
+import { User } from '../types';
 import gql from 'graphql-tag';
 
 export interface MutationSignUpInput {
@@ -7,6 +8,11 @@ export interface MutationSignUpInput {
     name: string;
     statusMessage: string;
   };
+}
+
+export interface AuthPayload {
+  token: string;
+  user: User;
 }
 
 export const MUTATION_SIGN_UP = gql`
@@ -73,6 +79,40 @@ export const MUTATION_FIND_PASSWORD = gql`
   mutation findPassword($email: String!) {
     findPassword(email: $email) {
       findPassword
+    }
+  }
+`;
+
+export interface AddOrDeleteFriendInput {
+  friendId: string;
+}
+
+export interface FriendPayload {
+  user: User;
+  added?: boolean;
+  deleted?: boolean;
+};
+
+export const MUTATION_ADD_FRIEND = gql`
+  mutation addFriend($friendId: ID!){
+    addFriend(friendId: $friendId) {
+      user {
+        id
+        email
+        name
+      }
+      added
+    }
+  }
+`;
+
+export const MUTATION_DELETE_FRIEND = gql`
+  mutation deleteFriend($friendId: ID!) {
+    deleteFriend(friendId: $friendId) {
+      user {
+        id
+      }
+      deleted
     }
   }
 `;

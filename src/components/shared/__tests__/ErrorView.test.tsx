@@ -10,6 +10,8 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Shared from '../ErrorView';
 
+jest.useFakeTimers();
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;

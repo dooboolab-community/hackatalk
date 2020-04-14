@@ -13,6 +13,8 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import UserListItem from '../UserListItem';
 
+jest.useFakeTimers();
+
 let cnt = 0;
 const onPress = (): void => {
   cnt++;

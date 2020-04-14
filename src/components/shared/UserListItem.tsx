@@ -63,7 +63,7 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', nickname, statusMessage },
+  user: { photoURL = '', name, statusMessage },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
   const photoURLObj: ImageSourcePropType =
@@ -96,7 +96,7 @@ function Shared({
           }
           <StyledText
             numberOfLines={1}
-          >{nickname}</StyledText>
+          >{name}</StyledText>
           {
             showCheckBox
               ? <CheckBox
@@ -124,7 +124,7 @@ function Shared({
 Shared.defaultProps = {
   user: {
     id: '',
-    nickname: '',
+    name: '',
     photoURL: null,
     statusMessage: '',
     isOnline: false,

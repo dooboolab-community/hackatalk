@@ -10,6 +10,8 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import WebView from '../WebView';
 
+jest.useFakeTimers();
+
 // eslint-disable-next-line
 let props: any;
 let component: React.ReactElement;

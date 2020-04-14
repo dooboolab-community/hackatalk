@@ -19,6 +19,7 @@ export interface User {
   id: string;
   email?: string;
   nickname?: string;
+  birthday?: Date;
   name?: string;
   thumbURL?: string;
   photoURL?: string;
@@ -30,11 +31,6 @@ export interface User {
   verified?: boolean;
   created?: string;
   updated?: string;
-}
-
-export interface AuthPayload {
-  token: string;
-  user: User;
 }
 
 export interface Friend extends User {

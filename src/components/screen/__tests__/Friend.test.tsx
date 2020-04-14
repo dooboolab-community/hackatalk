@@ -1,199 +1,108 @@
 // import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import ProfileContext, {
-  useProfileContext,
-} from '../../../providers/ProfileModalProvider';
 import React, { ReactElement } from 'react';
-import {
-  RenderResult,
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+import { act, cleanup, render, wait } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { Button } from 'react-native';
 import Friend from '../Friend';
-import ProfileModal from '../../shared/ProfileModal';
-import { User } from '../../../types';
-import { useFriendContext } from '../../../providers/FriendProvider';
+import { MockedProvider } from '@apollo/react-testing';
+import { QUERY_FRIENDS } from '../../../graphql/queries';
 
-const fakeUsers: User[] = [
+const mocks = [
   {
-    id: '1',
-    nickname: 'admin',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMessage: 'hello',
-    isOnline: true,
-  },
-  {
-    id: '2',
-    nickname: 'geoseong',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMessage: 'hello baby',
-    isOnline: false,
+    request: {
+      query: QUERY_FRIENDS,
+    },
+    result: {
+      data: {
+        friends: [
+          {
+            id: '1',
+            email: 'admin@hackatalk.dev',
+            nickname: 'admin',
+            birthday: '2020-03-29T04:59:21.967Z',
+            name: 'admin',
+            thumbURL:
+              'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+            photoURL:
+              'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
+            statusMessage: 'hello',
+            verified: true,
+            authType: 'EMAIL',
+            isOnline: true,
+          },
+          {
+            id: '2',
+            email: 'parkopp@gmail.com',
+            nickname: 'geoseong',
+            birthday: '2020-03-29T04:59:21.967Z',
+            name: 'geoseong',
+            thumbURL:
+              'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+            photoURL:
+              'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
+            statusMessage: 'hello baby',
+            verified: true,
+            authType: 'EMAIL',
+            isOnline: false,
+          },
+        ],
+      },
+    },
   },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-
 describe('[Friend] rendering test', () => {
-  beforeEach(() => {
-    beforeEach(() => {
-      props = createTestProps();
-      component = createTestElement(<Friend {...props} />);
-    });
-  });
-
-  it('renders as expected', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
-  });
-});
-
-describe('[Friend] interaction', () => {
-  let testingLib: RenderResult;
-  let component: React.ReactElement;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let props: any;
   beforeEach(() => {
     props = createTestProps();
-    component = createTestElement(<Friend {...props} />);
-    testingLib = render(component);
   });
 
   afterEach(() => {
     cleanup();
   });
 
-  describe('dispatch showModal', () => {
-    it('should dispatch [show-modal] when user is pressed', () => {
-      jest
-        .spyOn(ProfileContext, 'useProfileContext')
-        .mockImplementation(() => ({
-          showModal: jest.fn(),
-          state: null,
-        }));
-      const userListItem = testingLib.queryByTestId('user-id-0');
-      act(() => {
-        fireEvent.press(userListItem);
-      });
-    });
+  it('renders as expected', async () => {
+    const component = createTestElement(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
 
-    it('should call [show-modal] when modal is available', () => {
-      jest
-        .spyOn(ProfileContext, 'useProfileContext')
-        .mockImplementation(() => ({
-          showModal: jest.fn(),
-          state: {
-            user: null,
-            deleteMode: true,
-            // modal: jest.mock,
-          },
-        }));
-      const userListItem = testingLib.queryByTestId('user-id-0');
-      testingLib.rerender(component);
-      act(() => {
-        fireEvent.press(userListItem);
-      });
-    });
+    const testingLib = render(component);
+    testingLib.rerender(component);
+    expect(testingLib.asJSON()).toBeTruthy();
+    expect(testingLib.asJSON()).toMatchSnapshot();
   });
 
-  describe('add friends', () => {
-    const Buttons = (): React.ReactElement => {
-      const {
-        friendState: { friends },
-        addFriend,
-        deleteFriend,
-      } = useFriendContext();
+  it('renders loading', () => {
+    const component = createTestElement(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
 
-      const addNewFriend = (): void => {
-        addFriend(fakeUsers[0]);
-      };
-
-      const deleteFirstFriend = (): void => {
-        if (friends.length > 0) {
-          deleteFriend(friends[0]);
-        }
-      };
-      return (
-        <>
-          <Button testID="btn-add" title="ADD" onPress={addNewFriend} />
-          <Button testID="btn-delete" title="DEL" onPress={deleteFirstFriend} />
-        </>
-      );
-    };
-    beforeEach(() => {
-      component = createTestElement(
-        <>
-          <Buttons />
-          <Friend {...props} />
-        </>,
-      );
-      testingLib = render(component);
-    });
-
-    it('should be added to the friend list when called addFriend function', () => {
-      const btnAdd = testingLib.queryByTestId('btn-add');
-      act(() => {
-        fireEvent.press(btnAdd);
-      });
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
-
-    it('should be deleted to the friend list when called deleteFriend function', () => {
-      const btnDel = testingLib.queryByTestId('btn-delete');
-      act(() => {
-        fireEvent.press(btnDel);
-      });
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
+    const { baseElement } = render(component);
+    expect(baseElement).toBeTruthy();
+    expect(baseElement).toMatchSnapshot();
   });
 
-  describe('Show the interaction of the [ProfileModal] and [Friend] screen.', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const props: any = createTestProps({
-      screenProps: { changeTheme: jest.fn() },
-    });
-    let component: React.ReactElement;
-    let testingLib: RenderResult;
-    let itemTestID: string;
-
-    const TestComponent = (): React.ReactElement => {
-      const { state } = useProfileContext();
-      const modalEl = React.useRef(null);
-      state.modal = modalEl;
-
-      return (
-        <>
-          <ProfileModal ref={state.modal} />
-          <Friend {...props} />
-        </>
-      );
+  it('renders error view', async () => {
+    const errorMock = {
+      request: { query: QUERY_FRIENDS },
+      error: new Error('error'),
     };
 
-    beforeEach(() => {
-      component = createTestElement(<TestComponent />);
-      testingLib = render(component);
-      itemTestID = 'user-id-0';
-    });
+    const component = createTestElement(
+      <MockedProvider mocks={[errorMock]} addTypename={false}>
+        <Friend {...props} />
+      </MockedProvider>,
+    );
 
-    it('Show the friend is removed from list and the modal turns off when the delete button is pressed', () => {
-      const userListItem = testingLib.queryByTestId(itemTestID);
-      act(() => {
-        fireEvent.press(userListItem);
-      });
-      expect(testingLib.asJSON()).toMatchSnapshot();
-      const btnAdFriend = testingLib.queryByTestId('btn-ad-friend');
-      act(() => {
-        fireEvent.press(btnAdFriend);
-      });
-      expect(testingLib.asJSON()).toMatchSnapshot();
-    });
+    const testingLib = render(component);
+    testingLib.rerender(component);
+    expect(testingLib.asJSON()).toBeTruthy();
+    expect(testingLib.asJSON()).toMatchSnapshot();
   });
 });

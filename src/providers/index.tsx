@@ -6,7 +6,6 @@ import { dark, light } from '../theme';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { AuthProvider } from './AuthProvider';
 import { DeviceProvider } from './DeviceProvider';
-import { FriendProvider } from './FriendProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
 import { User } from '../types';
@@ -35,13 +34,11 @@ export const AllProviders = ({
         customTheme={{ light, dark }}
       >
         <ApolloProvider client={testClient}>
-          <FriendProvider>
-            <AuthProvider initialAuthUser={initialAuthUser}>
-              <ProfileModalProvider>
-                {children}
-              </ProfileModalProvider>
-            </AuthProvider>
-          </FriendProvider>
+          <AuthProvider initialAuthUser={initialAuthUser}>
+            <ProfileModalProvider>
+              {children}
+            </ProfileModalProvider>
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>
     </DeviceProvider>

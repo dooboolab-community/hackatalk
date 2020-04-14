@@ -7,7 +7,6 @@ import createCtx from '../utils/createCtx';
 interface ShowModalParams {
   user: User;
   deleteMode: boolean;
-  isFriendAlreadyAdded?: boolean;
   onDeleteFriend?: () => void;
   onAddFriend?: () => void;
 }
@@ -34,7 +33,6 @@ export interface State {
 }
 
 export interface Payload extends State {
-  isFriendAlreadyAdded?: boolean;
   onDeleteFriend?: () => void;
   onAddFriend?: () => void;
 }
@@ -61,7 +59,6 @@ type Reducer = (state: State, action: Action) => State;
 const showModal = (dispatch: React.Dispatch<Action>) => ({
   user,
   deleteMode,
-  isFriendAlreadyAdded,
   onDeleteFriend,
   onAddFriend,
 }: ShowModalParams): void => {
@@ -70,7 +67,6 @@ const showModal = (dispatch: React.Dispatch<Action>) => ({
     payload: {
       user,
       deleteMode,
-      isFriendAlreadyAdded,
       onDeleteFriend,
       onAddFriend,
     },
@@ -85,9 +81,6 @@ const reducer: Reducer = (state = initialState, action) => {
       if (modal && modal.current) {
         modal.current.setUser(payload.user);
         modal.current.showAddBtn(!payload.deleteMode);
-        modal.current.setIsFriendAlreadyAdded(
-          payload.isFriendAlreadyAdded || false,
-        );
         modal.current.open();
       }
       return {

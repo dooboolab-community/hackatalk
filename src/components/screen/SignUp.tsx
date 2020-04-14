@@ -1,14 +1,14 @@
-import { Button, EditText } from '@dooboo-ui/native';
 import {
+  AuthPayload,
   MUTATION_SEND_VERIFICATION,
   MUTATION_SIGN_UP,
   MutationSendVerificationInput,
   MutationSignUpInput,
 } from '../../graphql/mutations';
+import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
 
-import { AuthPayload } from '../../types';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
