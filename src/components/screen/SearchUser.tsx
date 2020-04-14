@@ -59,14 +59,9 @@ interface QueryUsersData {
 interface QueryFriendsData {
   friends: User[];
 }
-interface Props {
-  users?: User[];
-  queryArgs?: QueryUsersInput;
-  onDeleteFriend?: (modal?: Modal) => () => void;
-  onAddFriend?: (modal?: Modal) => () => void;
-}
 
-const Screen = (props: Props): React.ReactElement => {
+const Screen = (): React.ReactElement => {
+  const PAGE_CNT = 20;
   const { state, showModal } = useProfileContext();
 
   const scrollY = new Animated.Value(0);
@@ -93,9 +88,9 @@ const Screen = (props: Props): React.ReactElement => {
     fetchPolicy: 'network-only',
     variables:
       debouncedText === ''
-        ? props.queryArgs || { first: 20 }
+        ? { first: PAGE_CNT }
         : {
-          first: 20,
+          first: PAGE_CNT,
           filter: true,
           user: {
             email: debouncedText,
@@ -114,7 +109,7 @@ const Screen = (props: Props): React.ReactElement => {
       <ErrorView
         body={usersQueryError.message}
         onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
-          refetchUsers({ first: 20 })
+          refetchUsers({ first: PAGE_CNT })
         }
       />
     );
@@ -189,14 +184,15 @@ const Screen = (props: Props): React.ReactElement => {
 
     const onEndReached = (): void => {
       const { endCursor } = usersData?.users?.pageInfo || {};
+
       const variables =
         debouncedText === ''
           ? {
-            first: 20,
+            first: PAGE_CNT,
             after: endCursor,
           }
           : {
-            first: 20,
+            first: PAGE_CNT,
             after: endCursor,
             filter: true,
             user: {
@@ -205,6 +201,7 @@ const Screen = (props: Props): React.ReactElement => {
               nickname: debouncedText,
             },
           };
+
       const updateQuery = (
         previousResult: QueryUsersData,
         { fetchMoreResult }: OperationVariables,
@@ -222,6 +219,7 @@ const Screen = (props: Props): React.ReactElement => {
           }
           : previousResult;
       };
+
       fetchMoreUsers({ variables, updateQuery });
     };
     return (
