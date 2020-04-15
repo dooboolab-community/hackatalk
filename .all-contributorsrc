@@ -211,6 +211,16 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "qkreltms",
+      "name": "JungHoonPark",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25196026?v=4",
+      "profile": "https://gist.github.com/qkreltms",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
