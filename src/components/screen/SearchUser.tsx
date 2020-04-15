@@ -130,6 +130,7 @@ const Screen = (): React.ReactElement => {
     setSearchText(text);
     scrollY.setValue(0);
     Animated.timing(scrollY, {
+      useNativeDriver: true,
       toValue: 100,
       duration: 500,
     }).start();
