@@ -276,6 +276,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://utaha.moe/about"><img src="https://avatars0.githubusercontent.com/u/12093323?v=4" width="60px;" alt=""/><br /><sub><b>Jaeho Cho (Barney)</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=real0131" title="Code">💻</a></td>
     <td align="center"><a href="https://selina-park.tistory.com/"><img src="https://avatars3.githubusercontent.com/u/31176502?v=4" width="60px;" alt=""/><br /><sub><b>jinsun Park</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=ilikeu7246" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=ilikeu7246" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://pickhealer.netlify.com"><img src="https://avatars0.githubusercontent.com/u/47362439?v=4" width="60px;" alt=""/><br /><sub><b>Yunsup Sim</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=SimYunSup" title="Code">💻</a></td>
+    <td align="center"><a href="http://tedkim.dev"><img src="https://avatars3.githubusercontent.com/u/20268356?v=4" width="60px;" alt=""/><br /><sub><b>Ted Kim</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=00aney" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk-mobile/commits?author=00aney" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
