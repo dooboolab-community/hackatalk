@@ -201,6 +201,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "00aney",
+      "name": "Ted Kim",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20268356?v=4",
+      "profile": "http://tedkim.dev",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
