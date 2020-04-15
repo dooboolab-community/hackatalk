@@ -4,5 +4,6 @@ module.exports = {
   rules: {
     'react/display-name': 0,
     '@typescript-eslint/ban-ts-ignore': 0,
+    
   },
 };
