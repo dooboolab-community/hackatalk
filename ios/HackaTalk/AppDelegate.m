@@ -5,6 +5,9 @@
 #import <React/RCTRootView.h>
 
 #import "RNBootSplash.h"
+#import <UMCore/UMModuleRegistry.h>
+#import <UMReactNativeAdapter/UMNativeModulesProxy.h>	
+#import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
