@@ -11,4 +11,4 @@ YellowBox.ignoreWarnings([
   'Module RCTImageLoader',
 ]);
 
-AppRegistry.registerComponent('hackatalk', () => App);
+AppRegistry.registerComponent('HackaTalk', () => App);
