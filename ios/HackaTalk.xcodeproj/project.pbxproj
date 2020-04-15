@@ -367,7 +367,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = LCXV255WTL;
+						DevelopmentTeam = S73RUF2XJ3;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -851,7 +851,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marsonearth.hackatalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dooboolab.hackatalk;
 				PRODUCT_NAME = HackaTalk;
 				SWIFT_OBJC_BRIDGING_HEADER = "HackaTalk-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -880,7 +880,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marsonearth.hackatalk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dooboolab.hackatalk;
 				PRODUCT_NAME = HackaTalk;
 				SWIFT_OBJC_BRIDGING_HEADER = "HackaTalk-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
