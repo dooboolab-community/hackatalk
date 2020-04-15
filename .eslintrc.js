@@ -6,12 +6,4 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 0,
     
   },
-  overrides: [
-    {
-        files: ['*.ts', '*.tsx'],
-        rules: {
-            'no-dupe-class-members': 'off'
-        }
-    }
-]
 };
