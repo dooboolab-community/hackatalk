@@ -1,13 +1,16 @@
+import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import { Image, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { encryptMessage } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
+import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -15,6 +18,10 @@ import { useThemeContext } from '@dooboo-ui/native-theme';
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
+const DEFAULT = {
+  PROFILEIMAGE_WIDTH: 300,
+  PROFILEIMAGE_HEIGHT: 300,
+};
 
 const Container = styled.View`
   flex: 1;
@@ -98,7 +105,39 @@ function Screen(props: Props): React.ReactElement {
     }
   };
 
-  const pressProfileImage = (): void => {
+  const uploadImage = async (uri: string): Promise<string> => {
+    const fileName = uri.split('/').pop() || '';
+    const fileTypeMatch = /\.(\w+)$/.exec(fileName);
+    const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+    const data: FormData = new FormData();
+    const token = await AsyncStorage.getItem('token');
+    data.append('profile', {
+      uri: uri,
+      type: fileType,
+      name: fileName,
+    });
+
+    const fetchInitOption = {
+      method: 'POST',
+      body: {
+        inputFile: data,
+        dir: 'profiles',
+      },
+      headers: new Headers({
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      }),
+    };
+
+    return fetch(`${Config.ROOT_URL}/upload_single`, fetchInitOption)
+      .then((res: Response) => res.url)
+      .catch(() => {
+        Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
+        return '';
+      });
+  };
+
+  const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
       getString('SELSCT_FROM_ALBUM'),
@@ -112,17 +151,31 @@ function Screen(props: Props): React.ReactElement {
       },
       async (buttonIndex: number) => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
-          const result = await launchCameraAsync();
-          if (result && !result.cancelled) {
-            setProfilePath(result.uri);
+          const image = await launchCameraAsync();
+          if (image && !image.cancelled) {
+            const resizedImage = await resizeImage({
+              imageUri: image.uri,
+              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
+              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+            });
+            const imageURL = await uploadImage(resizedImage.uri);
+
+            setProfilePath(imageURL);
           }
           return;
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY) {
-          const result = await launchImageLibraryAsync();
-          if (result && !result.cancelled) {
-            setProfilePath(result.uri);
+          const image = await launchImageLibraryAsync();
+          if (image && !image.cancelled) {
+            const resizedImage = await resizeImage({
+              imageUri: image.uri,
+              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
+              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+            });
+            const imageURL = await uploadImage(resizedImage.uri);
+
+            setProfilePath(imageURL);
           }
         }
       },
