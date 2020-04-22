@@ -28,6 +28,10 @@ PODS:
   - EXGoogleSignIn (8.0.0):
     - GoogleSignIn (~> 5.0.2)
     - UMCore
+  - EXImageManipulator (8.0.0):
+    - UMCore
+    - UMFileSystemInterface
+    - UMImageLoaderInterface
   - EXImagePicker (8.0.2):
     - UMCore
     - UMFileSystemInterface
@@ -353,6 +357,7 @@ DEPENDENCIES:
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXGoogleSignIn (from `../node_modules/expo-google-sign-in/ios`)
+  - EXImageManipulator (from `../node_modules/expo-image-manipulator/ios`)
   - EXImagePicker (from `../node_modules/expo-image-picker/ios`)
   - EXLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - EXLocalization (from `../node_modules/expo-localization/ios`)
@@ -422,11 +427,11 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - OneSignal
     - VirgilCrypto
     - VirgilCryptoFoundation
     - VirgilCryptoPythia
     - VSCCrypto
-    - OneSignal
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -455,6 +460,9 @@ EXTERNAL SOURCES:
   EXGoogleSignIn:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-google-sign-in/ios"
+  EXImageManipulator:
+    :path: !ruby/object:Pathname
+    path: "../node_modules/expo-image-manipulator/ios"
   EXImagePicker:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-image-picker/ios"
@@ -594,7 +602,8 @@ SPEC CHECKSUMS:
   EXFileSystem: 6e0d9bb6cc4ea404dbb8f583c1a8a2dcdf4b83b6
   EXFont: 6187b5ab46ee578d5f8e7f2ea092752e78772235
   EXGoogleSignIn: f44d83d717ecff1d620050770df1076a187c7dee
-  EXImagePicker: 756b576180d4f24fabc23ab97bc3330fd8385813
+  EXImageManipulator: 61b3def86d64350c7413c6a4ea5aacaef58211eb
+  EXImagePicker: cf501ccc6faa0df78a17a57a633ab9caf26b5a01
   EXLinearGradient: 75f302f9d6484267a3f6d3252df2e7a5f00e716a
   EXLocalization: 6a3ec1e9dda2ec9ba9dcc4a29dd840e5e950115e
   EXPermissions: 9bc08859a675d291e89be9a0870155c27c16ac35
@@ -660,6 +669,6 @@ SPEC CHECKSUMS:
   VSCCrypto: e2c8df89e0dc348c2713554f6a2c8864e1cf412d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: be5ddc31d951a49fa60687bb8151e372b6c47a4c
+PODFILE CHECKSUM: 2a002bb4f93f6d90beb74f4a760a1b13125d3a9c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
