@@ -124,6 +124,7 @@ function SignIn(props: Props): ReactElement {
         }
 
         AsyncStorage.setItem('token', data.signInEmail.token);
+        AsyncStorage.setItem('password', password);
         initializeEThree(data.signInEmail.user.id);
         setUser(user);
       }
