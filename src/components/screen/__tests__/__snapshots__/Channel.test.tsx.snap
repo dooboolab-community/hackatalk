@@ -96,7 +96,6 @@ exports[`[Channel] screen renders without crashing 1`] = `
         horizontal={false}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
-        numColumns={1}
         onEndReachedThreshold={2}
         removeClippedSubviews={false}
         scrollEventThrottle={50}
@@ -120,7 +119,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
               }
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="list-item-0"
             >
@@ -287,7 +286,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -300,7 +299,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
               }
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="list-item-1"
             >
@@ -440,11 +439,11 @@ exports[`[Channel] screen renders without crashing 1`] = `
                   </View>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity
+      <View
         activeOpacity={0.65}
         style={
           Object {
@@ -472,7 +471,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
             fill="#ffffff"
           />
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>

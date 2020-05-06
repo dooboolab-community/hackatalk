@@ -34,6 +34,7 @@ module.exports = {
   setupFiles: [
     ...expoPreset.setupFiles,
     ...jestPreset.setupFiles,
+    '<rootDir>/test/jestSetup.js',
     '<rootDir>/test/jestSetup.ts',
   ],
   /* eslint-disable */

@@ -28,7 +28,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
         style={
           Object {
             "flex": 1,
-            "overflow": "hidden",
           }
         }
       >
@@ -114,7 +113,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                   pointerEvents="none"
                   style={
                     Object {
-                      "backgroundColor": "#fff",
+                      "backgroundColor": "rgb(242, 242, 242)",
                       "bottom": 0,
                       "position": "absolute",
                       "right": 0,
@@ -172,7 +171,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                           style={
                             Object {
                               "flex": 1,
-                              "overflow": "hidden",
                             }
                           }
                         >
@@ -258,7 +256,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     pointerEvents="none"
                                     style={
                                       Object {
-                                        "backgroundColor": "#fff",
+                                        "backgroundColor": "rgb(242, 242, 242)",
                                         "bottom": 0,
                                         "left": 0,
                                         "position": "absolute",
@@ -347,8 +345,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   ]
                                                 }
                                               >
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                <View
                                                   style={
                                                     Object {
                                                       "height": 60,
@@ -375,7 +372,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       ]
                                                     }
                                                   />
-                                                </TouchableOpacity>
+                                                </View>
                                                 <View
                                                   style={
                                                     Object {
@@ -574,8 +571,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   ]
                                                 }
                                               >
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                <View
                                                   delayPressIn={30}
                                                   style={
                                                     Object {
@@ -625,7 +621,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       Sign Up
                                                     </Text>
                                                   </View>
-                                                </TouchableOpacity>
+                                                </View>
                                                 <View
                                                   style={
                                                     Object {
@@ -633,8 +629,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                     }
                                                   }
                                                 />
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                <View
                                                   delayPressIn={30}
                                                   style={
                                                     Object {
@@ -679,10 +674,9 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       Login
                                                     </Text>
                                                   </View>
-                                                </TouchableOpacity>
+                                                </View>
                                               </View>
-                                              <TouchableOpacity
-                                                activeOpacity={0.2}
+                                              <View
                                                 style={
                                                   Array [
                                                     Object {
@@ -709,7 +703,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 >
                                                   Forgot password?
                                                 </Text>
-                                              </TouchableOpacity>
+                                              </View>
                                               <View
                                                 style={
                                                   Array [
@@ -719,8 +713,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   ]
                                                 }
                                               >
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                <View
                                                   delayPressIn={30}
                                                   testID="btn-apple"
                                                 >
@@ -775,9 +768,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       Sign in with Apple
                                                     </Text>
                                                   </View>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                </View>
+                                                <View
                                                   delayPressIn={30}
                                                   testID="btn-facebook"
                                                 >
@@ -832,9 +824,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       Sign in with Facebook
                                                     </Text>
                                                   </View>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity
-                                                  activeOpacity={0.2}
+                                                </View>
+                                                <View
                                                   delayPressIn={30}
                                                   testID="btn-google"
                                                 >
@@ -888,7 +879,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                       Sign in with Google
                                                     </Text>
                                                   </View>
-                                                </TouchableOpacity>
+                                                </View>
                                               </View>
                                               <View
                                                 style={

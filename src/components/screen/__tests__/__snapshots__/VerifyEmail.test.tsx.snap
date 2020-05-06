@@ -65,8 +65,7 @@ exports[`Interaction should simulate next button press 1`] = `
       >
         test@email.com
       </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         style={
           Object {
             "marginTop": 24,
@@ -88,9 +87,8 @@ exports[`Interaction should simulate next button press 1`] = `
         >
           Resend email
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      </View>
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -138,7 +136,7 @@ exports[`Interaction should simulate next button press 1`] = `
             Return to sign in
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>
@@ -209,8 +207,7 @@ exports[`Rendering renders without crashing 1`] = `
       >
         test@email.com
       </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         style={
           Object {
             "marginTop": 24,
@@ -232,9 +229,8 @@ exports[`Rendering renders without crashing 1`] = `
         >
           Resend email
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      </View>
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -282,7 +278,7 @@ exports[`Rendering renders without crashing 1`] = `
             Return to sign in
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>

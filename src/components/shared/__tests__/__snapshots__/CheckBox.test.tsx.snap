@@ -30,8 +30,7 @@ exports[`Interaction should simulate onClick 1`] = `
         ]
       }
     >
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         style={
           Object {
             "flexDirection": "row",
@@ -59,7 +58,7 @@ exports[`Interaction should simulate onClick 1`] = `
             ]
           }
         />
-      </TouchableOpacity>
+      </View>
       <TouchableWithoutFeedback
         testID="undefined-nofeed"
       >
@@ -114,8 +113,7 @@ exports[`Rendering renders without crashing 1`] = `
         ]
       }
     >
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         style={
           Object {
             "flexDirection": "row",
@@ -143,7 +141,7 @@ exports[`Rendering renders without crashing 1`] = `
             ]
           }
         />
-      </TouchableOpacity>
+      </View>
       <TouchableWithoutFeedback
         testID="undefined-nofeed"
       >

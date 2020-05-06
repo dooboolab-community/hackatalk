@@ -195,7 +195,6 @@ exports[`Rendering renders without crashing 1`] = `
         horizontal={false}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
-        numColumns={1}
         onEndReachedThreshold={2}
         removeClippedSubviews={false}
         scrollEventThrottle={50}
@@ -231,7 +230,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item0"
             >
@@ -300,8 +299,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -329,7 +327,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -351,7 +349,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -366,7 +364,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item1"
             >
@@ -435,8 +433,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -464,7 +461,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -486,7 +483,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -501,7 +498,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item2"
             >
@@ -570,8 +567,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -599,7 +595,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -621,7 +617,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -636,7 +632,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item3"
             >
@@ -705,8 +701,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -734,7 +729,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -756,7 +751,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -771,7 +766,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item4"
             >
@@ -840,8 +835,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -869,7 +863,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -891,7 +885,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -906,7 +900,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item5"
             >
@@ -975,8 +969,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -1004,7 +997,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -1026,7 +1019,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -1041,7 +1034,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item6"
             >
@@ -1110,8 +1103,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -1139,7 +1131,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -1161,7 +1153,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -1176,7 +1168,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item7"
             >
@@ -1245,8 +1237,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -1274,7 +1265,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -1296,7 +1287,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -1311,7 +1302,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item8"
             >
@@ -1380,8 +1371,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -1409,7 +1399,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -1431,7 +1421,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View
@@ -1446,7 +1436,7 @@ exports[`Rendering renders without crashing 1`] = `
               ]
             }
           >
-            <TouchableOpacity
+            <View
               activeOpacity={0.5}
               testID="user-list-item9"
             >
@@ -1515,8 +1505,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.2}
+                  <View
                     style={
                       Object {
                         "flexDirection": "row",
@@ -1544,7 +1533,7 @@ exports[`Rendering renders without crashing 1`] = `
                         ]
                       }
                     />
-                  </TouchableOpacity>
+                  </View>
                   <TouchableWithoutFeedback
                     testID="undefined-nofeed"
                   >
@@ -1566,7 +1555,7 @@ exports[`Rendering renders without crashing 1`] = `
                   </TouchableWithoutFeedback>
                 </View>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>

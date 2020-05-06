@@ -323,8 +323,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
           </View>
         </View>
       </View>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -371,7 +370,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
             Update
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </SafeAreaView>
 </View>

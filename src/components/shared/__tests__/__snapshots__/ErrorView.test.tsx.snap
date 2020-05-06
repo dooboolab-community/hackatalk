@@ -91,8 +91,7 @@ exports[`Interaction should simulate onClick 1`] = `
       >
         
       </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -141,7 +140,7 @@ exports[`Interaction should simulate onClick 1`] = `
             Try again
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>
@@ -238,8 +237,7 @@ exports[`Rendering renders without crashing 1`] = `
       >
         
       </Text>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -288,7 +286,7 @@ exports[`Rendering renders without crashing 1`] = `
             Try again
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>

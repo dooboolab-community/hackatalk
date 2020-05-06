@@ -52,26 +52,11 @@ exports[`[Setting] screen renders without crashing 1`] = `
         maxToRenderPerBatch={10}
         onEndReachedThreshold={2}
         scrollEventThrottle={50}
-        sections={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
         stickyHeaderIndices={
           Array [
             0,
           ]
         }
-        stickySectionHeadersEnabled={true}
         testID="test-section-list"
         updateCellsBatchingPeriod={50}
         windowSize={21}
@@ -110,8 +95,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
         <View
           style={null}
         >
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             style={
               Array [
                 Object {
@@ -142,14 +126,13 @@ exports[`[Setting] screen renders without crashing 1`] = `
               Signed in with Email
             </Text>
             <Text />
-          </TouchableOpacity>
+          </View>
         </View>
         <View
           style={null}
         />
       </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -198,7 +181,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
             Logout
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </SafeAreaView>
   </View>
 </View>
@@ -256,26 +239,11 @@ exports[`[Setting] screen renders without crashing 2`] = `
         maxToRenderPerBatch={10}
         onEndReachedThreshold={2}
         scrollEventThrottle={50}
-        sections={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
         stickyHeaderIndices={
           Array [
             0,
           ]
         }
-        stickySectionHeadersEnabled={true}
         testID="test-section-list"
         updateCellsBatchingPeriod={50}
         windowSize={21}
@@ -314,8 +282,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
         <View
           style={null}
         >
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             style={
               Array [
                 Object {
@@ -346,14 +313,13 @@ exports[`[Setting] screen renders without crashing 2`] = `
               Signed in with Email
             </Text>
             <Text />
-          </TouchableOpacity>
+          </View>
         </View>
         <View
           style={null}
         />
       </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -402,7 +368,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Logout
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </SafeAreaView>
   </View>
 </View>
@@ -460,26 +426,11 @@ exports[`[Setting] screen renders without crashing 3`] = `
         maxToRenderPerBatch={10}
         onEndReachedThreshold={2}
         scrollEventThrottle={50}
-        sections={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
         stickyHeaderIndices={
           Array [
             0,
           ]
         }
-        stickySectionHeadersEnabled={true}
         testID="test-section-list"
         updateCellsBatchingPeriod={50}
         windowSize={21}
@@ -518,8 +469,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
         <View
           style={null}
         >
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             style={
               Array [
                 Object {
@@ -550,14 +500,13 @@ exports[`[Setting] screen renders without crashing 3`] = `
               Signed in with Email
             </Text>
             <Text />
-          </TouchableOpacity>
+          </View>
         </View>
         <View
           style={null}
         />
       </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -606,7 +555,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Logout
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </SafeAreaView>
   </View>
 </View>
@@ -664,26 +613,11 @@ exports[`[Setting] screen renders without crashing 4`] = `
         maxToRenderPerBatch={10}
         onEndReachedThreshold={2}
         scrollEventThrottle={50}
-        sections={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
         stickyHeaderIndices={
           Array [
             0,
           ]
         }
-        stickySectionHeadersEnabled={true}
         testID="test-section-list"
         updateCellsBatchingPeriod={50}
         windowSize={21}
@@ -722,8 +656,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
         <View
           style={null}
         >
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             style={
               Array [
                 Object {
@@ -754,14 +687,13 @@ exports[`[Setting] screen renders without crashing 4`] = `
               Signed in with Email
             </Text>
             <Text />
-          </TouchableOpacity>
+          </View>
         </View>
         <View
           style={null}
         />
       </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.2}
+      <View
         delayPressIn={30}
         style={
           Object {
@@ -810,7 +742,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
             Logout
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     </SafeAreaView>
   </View>
 </View>

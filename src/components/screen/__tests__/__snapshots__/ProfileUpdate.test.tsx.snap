@@ -59,7 +59,7 @@ exports[`rendering test renders as expected 1`] = `
             ]
           }
         >
-          <TouchableOpacity
+          <View
             activeOpacity={0.5}
             testID="button-user-icon"
           >
@@ -101,7 +101,7 @@ exports[`rendering test renders as expected 1`] = `
                 }
               />
             </View>
-          </TouchableOpacity>
+          </View>
           <View
             style={
               Array [
@@ -384,8 +384,7 @@ exports[`rendering test renders as expected 1`] = `
               ]
             }
           >
-            <TouchableOpacity
-              activeOpacity={0.2}
+            <View
               delayPressIn={30}
               style={
                 Object {
@@ -432,7 +431,7 @@ exports[`rendering test renders as expected 1`] = `
                   Update
                 </Text>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>

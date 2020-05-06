@@ -27,7 +27,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
         ]
       }
     >
-      <TouchableOpacity
+      <View
         activeOpacity={0.5}
         testID="test_yo"
       >
@@ -95,7 +95,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
             }
           />
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   </View>
 </View>

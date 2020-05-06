@@ -46,6 +46,8 @@ exports[`[WebView] screen renders without crashing 1`] = `
       >
         <RNCWebView
           cacheEnabled={true}
+          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+          injectedJavaScriptForMainFrameOnly={true}
           javaScriptEnabled={true}
           messagingEnabled={false}
           source={
