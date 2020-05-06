@@ -323,6 +323,41 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                               }
                                             }
                                           >
+                                            <TouchableOpacity
+                                              activeOpacity={0.2}
+                                              style={
+                                                Object {
+                                                  "left": 332.30371618617465,
+                                                  "position": "absolute",
+                                                  "top": 582.5179806766903,
+                                                  "transform": Array [
+                                                    Object {
+                                                      "scale": 1.9911597252005726,
+                                                    },
+                                                  ],
+                                                  "zIndex": 15,
+                                                }
+                                              }
+                                              testID="theme-test"
+                                            >
+                                              <Image
+                                                source={
+                                                  Object {
+                                                    "canInstrument": true,
+                                                    "createTransformer": [Function],
+                                                    "getCacheKey": [Function],
+                                                    "process": [Function],
+                                                  }
+                                                }
+                                                style={
+                                                  Object {
+                                                    "height": 80,
+                                                    "resizeMode": "cover",
+                                                    "width": 80,
+                                                  }
+                                                }
+                                              />
+                                            </TouchableOpacity>
                                             <View
                                               style={
                                                 Array [
@@ -376,7 +411,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 <View
                                                   style={
                                                     Object {
-                                                      "height": 12,
+                                                      "height": 72,
                                                     }
                                                   }
                                                 />
@@ -384,6 +419,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   style={
                                                     Array [
                                                       Object {
+                                                        "alignSelf": "flex-start",
                                                         "color": "#151A25",
                                                         "fontSize": 20,
                                                         "fontWeight": "bold",

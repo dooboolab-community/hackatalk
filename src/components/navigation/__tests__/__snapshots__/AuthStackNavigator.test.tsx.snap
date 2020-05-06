@@ -180,6 +180,41 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             }
                           }
                         >
+                          <TouchableOpacity
+                            activeOpacity={0.2}
+                            style={
+                              Object {
+                                "left": 333.139150025942,
+                                "position": "absolute",
+                                "top": 583.9067182398445,
+                                "transform": Array [
+                                  Object {
+                                    "scale": 1.993898852544072,
+                                  },
+                                ],
+                                "zIndex": 15,
+                              }
+                            }
+                            testID="theme-test"
+                          >
+                            <Image
+                              source={
+                                Object {
+                                  "canInstrument": true,
+                                  "createTransformer": [Function],
+                                  "getCacheKey": [Function],
+                                  "process": [Function],
+                                }
+                              }
+                              style={
+                                Object {
+                                  "height": 80,
+                                  "resizeMode": "cover",
+                                  "width": 80,
+                                }
+                              }
+                            />
+                          </TouchableOpacity>
                           <View
                             style={
                               Array [
@@ -233,7 +268,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                               <View
                                 style={
                                   Object {
-                                    "height": 12,
+                                    "height": 72,
                                   }
                                 }
                               />
@@ -241,6 +276,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 style={
                                   Array [
                                     Object {
+                                      "alignSelf": "flex-start",
                                       "color": "#151A25",
                                       "fontSize": 20,
                                       "fontWeight": "bold",

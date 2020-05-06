@@ -14,12 +14,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
 import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import SplashScreen from 'react-native-bootsplash';
 import { User } from './types';
 import client from './apollo/Client';
 import { initializeEThree } from './utils/virgil';
 
-let timer: number;
 const onReceived = (notification: ReceivedNotification): void => {
   console.log('Notification received: ', notification);
 };
@@ -47,12 +45,6 @@ function AppWithTheme(): ReactElement {
   };
 
   useEffect(() => {
-    return (): void => {
-      if (timer) { clearTimeout(timer); }
-    };
-  }, []);
-
-  useEffect(() => {
     if (data && data.me) {
       initializeEThree(data.me.id);
       setUser(data.me);
@@ -60,8 +52,6 @@ function AppWithTheme(): ReactElement {
       AsyncStorage.removeItem('token');
     }
     setDevice();
-
-    timer = setTimeout(() => SplashScreen.hide(), 1000);
   }, [loading]);
 
   return <RootNavigator />;

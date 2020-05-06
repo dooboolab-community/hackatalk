@@ -1,8 +1,18 @@
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
-import { ProfileModalProvider, useProfileContext } from '../../providers/ProfileModalProvider';
+import {
+  ProfileModalProvider,
+  useProfileContext,
+} from '../../providers/ProfileModalProvider';
 import React, { ReactElement, useEffect, useRef } from 'react';
-import { StackNavigationOptions, StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+import {
+  StackNavigationOptions,
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 
 import ChangePw from '../screen/ChangePw';
@@ -13,7 +23,7 @@ import Message from '../screen/Message';
 import PinchZoomViewPager from '../screen/PinchZoomViewPager';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
-import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
+import { RootStackNavigationProps } from './RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
 import Settings from '../screen/Settings';
 import StatusBar from '../shared/StatusBar';
@@ -50,7 +60,10 @@ interface SettingButtonProps {
   tintColor?: string;
 }
 
-function getSimpleHeader(title: string, theme: DefaultTheme): StackNavigationOptions {
+function getSimpleHeader(
+  title: string,
+  theme: DefaultTheme,
+): StackNavigationOptions {
   return {
     headerTitle: title,
     headerTintColor: theme.headerFont,
@@ -103,7 +116,7 @@ function MainStackNavigator(): ReactElement {
                 }}
               >
                 {/* <Ionicons name="md-settings" size={24} color={tintColor} /> */}
-                <Image width={24} height={24} source={IC_SETTING_W}/>
+                <Image width={24} height={24} source={IC_SETTING_W} />
               </TouchableOpacity>
             );
           };
@@ -116,13 +129,18 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen
         name="SearchUser"
         component={SearchUser}
-        options={getSimpleHeader(getString('SEARCH_USER'), theme)} />
+        options={getSimpleHeader(getString('SEARCH_USER'), theme)}
+      />
       <Stack.Screen
         name="Message"
         component={Message}
         options={getSimpleHeader(getString('MESSAGE'), theme)}
       />
-      <Stack.Screen name="Settings" component={Settings} options={getSimpleHeader(getString('SETTINGS'), theme)} />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={getSimpleHeader(getString('SETTINGS'), theme)}
+      />
       <Stack.Screen
         name="ChangePw"
         component={ChangePw}

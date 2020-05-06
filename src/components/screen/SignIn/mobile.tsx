@@ -1,14 +1,28 @@
+import {
+  Animated,
+  Dimensions,
+  Image,
+  InteractionManager,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
-import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import SplashModule from '../../../utils/splash';
 import StatusBar from '../../shared/StatusBar';
 import { ThemeType } from '@dooboo-ui/native-theme';
 import { Variables } from './';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
+
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
+  TouchableOpacity,
+);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -25,12 +39,8 @@ const LogoWrapper = styled.View`
   margin-bottom: 72px;
 `;
 
-const StyledLogoImage = styled.Image`
-  width: 60px;
-  height: 60px;
-`;
-
 const StyledLogoText = styled.Text`
+  align-self: flex-start;
   color: ${({ theme }): string => theme.fontColor};
   font-size: 20px;
   font-weight: bold;
@@ -102,23 +112,78 @@ export default function mobile(variables: Variables): ReactElement {
     appleLogin,
   } = variables;
 
+  const [logoAnimDone, setLogoAnimDone] = useState(false);
+
+  const logoSize = 80;
+  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+  const logoInitialPosition = {
+    x: (screenWidth - logoSize) * 0.5,
+    y: screenHeight * 0.5 - logoSize,
+  };
+  const logoFinalPosition = {
+    x: 30,
+    y: 80,
+  };
+
+  const logoTransformAnimValue = useRef(new Animated.Value(1)).current;
+  const logoScale = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 2],
+  });
+  const logoPositionX = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [logoFinalPosition.x, logoInitialPosition.x],
+  });
+  const logoPositionY = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [logoFinalPosition.y, logoInitialPosition.y],
+  });
+
+  useEffect(() => {
+    if (!logoAnimDone) {
+      const { cancel } = InteractionManager.runAfterInteractions(() => {
+        SplashModule.hide(500);
+        Animated.timing(logoTransformAnimValue, {
+          useNativeDriver: false,
+          duration: 1000,
+          toValue: 0,
+        }).start(() => {
+          setLogoAnimDone(true);
+          logoTransformAnimValue.setValue(0);
+        });
+      });
+
+      return (): void => {
+        cancel();
+        logoTransformAnimValue.stopAnimation();
+      };
+    }
+  }, [logoAnimDone, logoTransformAnimValue]);
+
   return (
     <Container>
       <StatusBar />
+
       <ScrollView style={{ alignSelf: 'stretch' }}>
+        <AnimatedTouchableOpacity
+          testID="theme-test"
+          onPress={(): void => changeThemeType()}
+          style={{
+            zIndex: 15,
+            position: 'absolute',
+            left: logoPositionX,
+            top: logoPositionY,
+            transform: [{ scale: logoAnimDone ? 1 : logoScale }],
+          }}
+        >
+          <Image
+            style={{ width: logoSize, height: logoSize, resizeMode: 'cover' }}
+            source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
+          />
+        </AnimatedTouchableOpacity>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity
-              testID="theme-test"
-              onPress={(): void => changeThemeType()}
-              style={{
-                width: 60,
-                height: 60,
-              }}
-            >
-              <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
-            </TouchableOpacity>
-            <View style={{ height: 12 }} />
+            <View style={{ height: 12 + 60 }} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
@@ -210,14 +275,12 @@ export default function mobile(variables: Variables): ReactElement {
             />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <FindPwText>
-              {getString('FORGOT_PW')}
-            </FindPwText>
+            <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            {
-              Platform.select({
-                ios: <Button
+            {Platform.select({
+              ios: (
+                <Button
                   testID="btn-apple"
                   style={{
                     backgroundColor: theme.appleBackground,
@@ -229,7 +292,7 @@ export default function mobile(variables: Variables): ReactElement {
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
-                      <SvgApple width={24} fill={theme.appleIcon}/>
+                      <SvgApple width={24} fill={theme.appleIcon} />
                     </View>
                   }
                   isLoading={signingInApple}
@@ -237,9 +300,9 @@ export default function mobile(variables: Variables): ReactElement {
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                   textStyle={{ fontWeight: '700', color: theme.appleText }}
-                />,
-              })
-            }
+                />
+              ),
+            })}
             <Button
               testID="btn-facebook"
               style={{
@@ -252,7 +315,7 @@ export default function mobile(variables: Variables): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgFacebook width={24} fill={theme.facebookIcon}/>
+                  <SvgFacebook width={24} fill={theme.facebookIcon} />
                 </View>
               }
               isLoading={signingInFacebook}
@@ -272,7 +335,7 @@ export default function mobile(variables: Variables): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgGoogle width={24} fill={theme.googleIcon}/>
+                  <SvgGoogle width={24} fill={theme.googleIcon} />
                 </View>
               }
               isLoading={signingInGoogle}
@@ -286,14 +349,18 @@ export default function mobile(variables: Variables): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
-              onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
+              onPress={(): void =>
+                goToWebView('https://dooboolab.com/termsofservice')
+              }
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
-              onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
+              onPress={(): void =>
+                goToWebView('https://dooboolab.com/privacyandpolicy')
+              }
             >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>
