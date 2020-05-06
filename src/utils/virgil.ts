@@ -56,10 +56,13 @@ async function isKeyValid(e3kit: EThree, card: ICard): Promise<boolean> {
     return false;
   }
   const privateKey: IPrivateKey = e3kit.virgilCrypto.importPrivateKey(keyEntry.value);
+  // @ts-ignore
   if (privateKey.identifier.byteLength !== card.publicKey.identifier.byteLength) {
     return false;
   }
+  // @ts-ignore
   for (let i = 0; i < privateKey.identifier.byteLength; i += 1) {
+    // @ts-ignore
     if (privateKey.identifier[i] !== card.publicKey.identifier[i]) {
       return false;
     }
