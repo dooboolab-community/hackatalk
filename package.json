@@ -134,10 +134,23 @@
     "jest-styled-components": "^7.0.0",
     "jetifier": "^1.6.5",
     "metro-react-native-babel-preset": "^0.58.0",
-    "prettier": "^1.19.1",
+    "import-sort-style-eslint": "^6.0.0",
+    "prettier": "^2.0.4",
+    "prettier-plugin-import-sort": "^0.0.4",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "^16.9.0",
     "ts-jest": "^25.2.1",
     "typescript": "3.8.3"
+  },
+  "importSort": {
+    ".js, .jsx": {
+      "style": "eslint",
+      "options": {}
+    },
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "eslint",
+      "options": {}
+    }
   }
 }
