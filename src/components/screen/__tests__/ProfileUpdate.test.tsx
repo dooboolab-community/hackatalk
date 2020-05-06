@@ -108,32 +108,30 @@ describe('interaction', () => {
     expect(inputStatus.props.value).toEqual('status');
   });
 
-  it('should launch camera when user select "Take a picture"', async () => {
-    // userPressLaunchCamera = true;
-    const profileBtn = await waitForElement(() =>
-      testingLib.queryByTestId('button-user-icon'),
-    );
-    act(() => {
-      fireEvent.press(profileBtn);
-      // jest.runAllTimers();
-    });
-    await wait();
-  });
+  // it('should launch camera when user select "Take a picture"', async () => {
+  //   // userPressLaunchCamera = true;
+  //   const profileBtn = await waitForElement(() =>
+  //     testingLib.queryByTestId('button-user-icon'),
+  //   );
+  //   await act(() => {
+  //     fireEvent.press(profileBtn);
+  //     // jest.runAllTimers();
+  //   });
+  //   await wait();
+  // });
 
-  it('should open album when user select "Select from Album"', async () => {
-    // userPressLaunchCamera = false;
-    const profileBtn = await waitForElement(() =>
-      testingLib.queryByTestId('button-user-icon'),
-    );
-    await wait(() => expect(profileBtn).toBeTruthy());
-    act(() => {
-      fireEvent.press(profileBtn);
-      // jest.runAllTimers();
-    });
-    await wait();
-  });
+  // it('should open album when user select "Select from Album"', async () => {
+  //   // userPressLaunchCamera = false;
+  //   const profileBtn = await waitForElement(() =>
+  //     testingLib.queryByTestId('button-user-icon'),
+  //   );
+  //   await wait(() => expect(profileBtn).toBeTruthy());
+  //   act(() => {
+  //     fireEvent.press(profileBtn);
+  //     // jest.runAllTimers();
+  //   });
+  //   await wait();
+  // });
 
-  afterAll(() => {
-    cleanup();
-  });
+  afterAll(cleanup);
 });
