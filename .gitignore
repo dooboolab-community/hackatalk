@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 *.hprof
+android/app/src/main/java/com/dooboolab/hackatalk/generated/*
 
 # node.js
 #
