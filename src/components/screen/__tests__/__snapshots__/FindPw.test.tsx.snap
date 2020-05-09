@@ -140,8 +140,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
             ]
           }
         >
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             delayPressIn={30}
             style={
               Object {
@@ -181,7 +180,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
                 Find Password
               </Text>
             </View>
-          </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

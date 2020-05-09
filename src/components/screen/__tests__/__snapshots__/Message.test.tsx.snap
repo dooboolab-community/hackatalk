@@ -142,7 +142,6 @@ exports[`[Message] rendering test renders as expected 1`] = `
           horizontal={false}
           initialNumToRender={10}
           maxToRenderPerBatch={10}
-          numColumns={1}
           onEndReachedThreshold={2}
           removeClippedSubviews={false}
           scrollEventThrottle={50}
@@ -183,8 +182,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   }
                 }
               >
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <View
                   testID="message-list-item0"
                 >
                   <View
@@ -217,7 +215,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                       }
                     />
                   </View>
-                </TouchableOpacity>
+                </View>
               </View>
               <View
                 style={
@@ -374,8 +372,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   }
                 }
               >
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <View
                   testID="message-list-item2"
                 >
                   <View
@@ -408,7 +405,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                       }
                     />
                   </View>
-                </TouchableOpacity>
+                </View>
               </View>
               <View
                 style={
@@ -503,8 +500,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   }
                 }
               >
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <View
                   testID="message-list-item3"
                 >
                   <View
@@ -514,7 +510,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                       }
                     }
                   />
-                </TouchableOpacity>
+                </View>
               </View>
               <View
                 style={
@@ -583,8 +579,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   }
                 }
               >
-                <TouchableOpacity
-                  activeOpacity={0.2}
+                <View
                   testID="message-list-item4"
                 >
                   <View
@@ -594,7 +589,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                       }
                     }
                   />
-                </TouchableOpacity>
+                </View>
               </View>
               <View
                 style={
@@ -710,8 +705,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
             underlineColorAndroid="transparent"
             value=""
           />
-          <TouchableOpacity
-            activeOpacity={0.2}
+          <View
             style={
               Array [
                 Object {
@@ -741,7 +735,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 }
               }
             />
-          </TouchableOpacity>
+          </View>
           <View
             style={
               Object {
@@ -750,8 +744,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
               }
             }
           >
-            <TouchableOpacity
-              activeOpacity={0.2}
+            <View
               delayPressIn={30}
               testID="btn-message"
             >
@@ -790,7 +783,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                   Send
                 </Text>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>

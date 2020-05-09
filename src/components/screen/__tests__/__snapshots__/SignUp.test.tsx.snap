@@ -500,8 +500,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               ]
             }
           >
-            <TouchableOpacity
-              activeOpacity={0.2}
+            <View
               delayPressIn={30}
               style={
                 Object {
@@ -543,7 +542,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Sign Up
                 </Text>
               </View>
-            </TouchableOpacity>
+            </View>
           </View>
         </View>
       </ScrollView>

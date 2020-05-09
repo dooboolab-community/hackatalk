@@ -108,11 +108,7 @@ function TabNavigator(): ReactElement {
         },
       }}
     >
-      {/*
-      // @ts-ignore */}
       <Tab.Screen name="Friend" component={Friend} />
-      {/*
-      // @ts-ignore */}
       <Tab.Screen name="Channel" component={Channel} />
     </Tab.Navigator >
   );

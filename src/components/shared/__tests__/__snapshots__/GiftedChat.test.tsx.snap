@@ -61,7 +61,6 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         horizontal={false}
         initialNumToRender={10}
         maxToRenderPerBatch={10}
-        numColumns={1}
         onEndReachedThreshold={2}
         removeClippedSubviews={false}
         scrollEventThrottle={50}
@@ -137,8 +136,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           underlineColorAndroid="transparent"
           value=""
         />
-        <TouchableOpacity
-          activeOpacity={0.2}
+        <View
           style={
             Array [
               Object {
@@ -153,7 +151,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           testID="touch-menu"
         >
           <View />
-        </TouchableOpacity>
+        </View>
         <View
           style={
             Object {
