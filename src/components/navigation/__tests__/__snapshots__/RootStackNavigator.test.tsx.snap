@@ -323,8 +323,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                               }
                                             }
                                           >
-                                            <TouchableOpacity
-                                              activeOpacity={0.2}
+                                            <View
                                               style={
                                                 Object {
                                                   "left": 335,
@@ -357,7 +356,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   }
                                                 }
                                               />
-                                            </TouchableOpacity>
+                                            </View>
                                             <View
                                               style={
                                                 Array [
@@ -380,34 +379,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   ]
                                                 }
                                               >
-                                                <View
-                                                  style={
-                                                    Object {
-                                                      "height": 60,
-                                                      "width": 60,
-                                                    }
-                                                  }
-                                                  testID="theme-test"
-                                                >
-                                                  <Image
-                                                    source={
-                                                      Object {
-                                                        "canInstrument": true,
-                                                        "createTransformer": [Function],
-                                                        "getCacheKey": [Function],
-                                                        "process": [Function],
-                                                      }
-                                                    }
-                                                    style={
-                                                      Array [
-                                                        Object {
-                                                          "height": 60,
-                                                          "width": 60,
-                                                        },
-                                                      ]
-                                                    }
-                                                  />
-                                                </View>
                                                 <View
                                                   style={
                                                     Object {

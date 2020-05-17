@@ -1,11 +1,7 @@
 import 'react-native';
 
 import React, { ReactElement } from 'react';
-import {
-  act,
-  render,
-  wait,
-} from '@testing-library/react-native';
+import { act, render, wait } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import StackNavigator from '../RootStackNavigator';

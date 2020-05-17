@@ -23,9 +23,7 @@ import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
 import { useMutation } from '@apollo/react-hooks';
 
-const {
-  iOSClientId,
-} = Config;
+const { iOSClientId } = Config;
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
@@ -80,7 +78,10 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [signInEmail] = useMutation<{ signInEmail: AuthPayload }, SignInEmailInput>(MUTATION_SIGN_IN);
+  const [signInEmail] = useMutation<
+    { signInEmail: AuthPayload },
+    SignInEmailInput
+  >(MUTATION_SIGN_IN);
 
   const initAsync = async (): Promise<void> => {
     await GoogleSignIn.initAsync({

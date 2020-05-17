@@ -1,16 +1,9 @@
-import {
-  Animated,
-  Dimensions,
-  Image,
-  InteractionManager,
-  Platform,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
 import { Button, EditText } from '@dooboo-ui/native';
+import { Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { delay, spring, useClock, useValue } from 'react-native-redash';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
 import SplashModule from '../../../utils/splash';
@@ -20,9 +13,7 @@ import { Variables } from './';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
 
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
-  TouchableOpacity,
-);
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -112,8 +103,6 @@ export default function mobile(variables: Variables): ReactElement {
     appleLogin,
   } = variables;
 
-  const [logoAnimDone, setLogoAnimDone] = useState(false);
-
   const logoSize = 80;
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
   const logoInitialPosition = {
@@ -125,40 +114,39 @@ export default function mobile(variables: Variables): ReactElement {
     y: 80,
   };
 
-  const logoTransformAnimValue = useRef(new Animated.Value(1)).current;
+  const logoTransformAnimValue = useValue(0);
   const logoScale = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [1, 2],
+    outputRange: [2, 1],
   });
   const logoPositionX = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [logoFinalPosition.x, logoInitialPosition.x],
+    outputRange: [logoInitialPosition.x, logoFinalPosition.x],
   });
   const logoPositionY = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [logoFinalPosition.y, logoInitialPosition.y],
+    outputRange: [logoInitialPosition.y, logoFinalPosition.y],
   });
 
-  useEffect(() => {
-    if (!logoAnimDone) {
-      const { cancel } = InteractionManager.runAfterInteractions(() => {
-        SplashModule.hide(500);
-        Animated.timing(logoTransformAnimValue, {
-          useNativeDriver: false,
-          duration: 1000,
-          toValue: 0,
-        }).start(() => {
-          setLogoAnimDone(true);
-          logoTransformAnimValue.setValue(0);
-        });
-      });
+  const animating = useValue<number>(0);
+  const clock = useClock();
 
-      return (): void => {
-        cancel();
-        logoTransformAnimValue.stopAnimation();
-      };
-    }
-  }, [logoAnimDone, logoTransformAnimValue]);
+  useEffect(() => {
+    SplashModule.hide(500);
+  }, []);
+
+  useCode(() => block([delay(set(animating, 1), 100)]), []);
+
+  useCode(
+    () =>
+      block([
+        cond(animating, [
+          set(logoTransformAnimValue, spring({ clock, to: 1, from: 0, config: { mass: 1.5, stiffness: 36 } })),
+        ]),
+        cond(not(clockRunning(clock)), set(animating, 0)),
+      ]),
+    [],
+  );
 
   return (
     <Container>
@@ -168,12 +156,13 @@ export default function mobile(variables: Variables): ReactElement {
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
+          // @ts-ignore
           style={{
             zIndex: 15,
             position: 'absolute',
             left: logoPositionX,
             top: logoPositionY,
-            transform: [{ scale: logoAnimDone ? 1 : logoScale }],
+            transform: [{ scale: logoScale }],
           }}
         >
           <Image
@@ -349,18 +338,14 @@ export default function mobile(variables: Variables): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
-              onPress={(): void =>
-                goToWebView('https://dooboolab.com/termsofservice')
-              }
+              onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
-              onPress={(): void =>
-                goToWebView('https://dooboolab.com/privacyandpolicy')
-              }
+              onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
             >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>
