@@ -327,12 +327,12 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                               activeOpacity={0.2}
                                               style={
                                                 Object {
-                                                  "left": 332.30371618617465,
+                                                  "left": 335,
                                                   "position": "absolute",
-                                                  "top": 582.5179806766903,
+                                                  "top": 587,
                                                   "transform": Array [
                                                     Object {
-                                                      "scale": 1.9911597252005726,
+                                                      "scale": 2,
                                                     },
                                                   ],
                                                   "zIndex": 15,
