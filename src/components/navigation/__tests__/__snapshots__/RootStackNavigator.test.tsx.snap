@@ -326,12 +326,12 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                             <View
                                               style={
                                                 Object {
-                                                  "left": 335,
+                                                  "left": true,
                                                   "position": "absolute",
-                                                  "top": 587,
+                                                  "top": true,
                                                   "transform": Array [
                                                     Object {
-                                                      "scale": 2,
+                                                      "scale": true,
                                                     },
                                                   ],
                                                   "zIndex": 15,
