@@ -86,7 +86,7 @@
     "react-native-modalbox": "^2.0.0",
     "react-native-onesignal": "^3.7.3",
     "react-native-reanimated": "~1.8.0",
-    "react-native-redash": "^14.0.4",
+    "react-native-redash": "^14.1.1",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "2.7.0",
     "react-native-svg": "^12.1.0",
