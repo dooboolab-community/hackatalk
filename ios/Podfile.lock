@@ -707,7 +707,7 @@ SPEC CHECKSUMS:
   UMFontInterface: d9d3b27af698c5389ae9e20b99ef56a083f491fb
   UMImageLoaderInterface: 14dd2c46c67167491effc9e91250e9510f12709e
   UMPermissionsInterface: 5e83a9167c177e4a0f0a3539345983cc749efb3e
-  UMReactNativeAdapter: a4221ffb5a4a7f2d078f988b2a864b025e2421aa
+  UMReactNativeAdapter: 126da3486c1a1f11945b649d557d6c2ebb9407b2
   UMSensorsInterface: 48941f70175e2975af1a9386c6d6cb16d8126805
   UMTaskManagerInterface: cb890c79c63885504ddc0efd7a7d01481760aca2
   VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59
