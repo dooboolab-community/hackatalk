@@ -1,14 +1,19 @@
+import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
 import { Button, EditText } from '@dooboo-ui/native';
+import { Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
-import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
+import { delay, spring, useClock, useValue } from 'react-native-redash';
 
 import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import SplashModule from '../../../utils/splash';
 import StatusBar from '../../shared/StatusBar';
 import { ThemeType } from '@dooboo-ui/native-theme';
 import { Variables } from './';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';
+
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -25,12 +30,8 @@ const LogoWrapper = styled.View`
   margin-bottom: 72px;
 `;
 
-const StyledLogoImage = styled.Image`
-  width: 60px;
-  height: 60px;
-`;
-
 const StyledLogoText = styled.Text`
+  align-self: flex-start;
   color: ${({ theme }): string => theme.fontColor};
   font-size: 20px;
   font-weight: bold;
@@ -102,23 +103,76 @@ export default function mobile(variables: Variables): ReactElement {
     appleLogin,
   } = variables;
 
+  const logoSize = 80;
+  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+  const logoInitialPosition = {
+    x: (screenWidth - logoSize) * 0.5,
+    y: screenHeight * 0.5 - logoSize,
+  };
+  const logoFinalPosition = {
+    x: 30,
+    y: 80,
+  };
+
+  const logoTransformAnimValue = useValue(0);
+  const logoScale = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [2, 1],
+  });
+  const logoPositionX = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [logoInitialPosition.x, logoFinalPosition.x],
+  });
+  const logoPositionY = logoTransformAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [logoInitialPosition.y, logoFinalPosition.y],
+  });
+
+  const animating = useValue<number>(0);
+  const clock = useClock();
+
+  useEffect(() => {
+    SplashModule.hide(500);
+  }, []);
+
+  useCode(() => block([delay(set(animating, 1), 100)]), []);
+
+  useCode(
+    () =>
+      block([
+        cond(animating, [
+          set(logoTransformAnimValue, spring({ clock, to: 1, from: 0, config: { mass: 1.5, stiffness: 36 } })),
+        ]),
+        cond(not(clockRunning(clock)), set(animating, 0)),
+      ]),
+    [],
+  );
+
   return (
     <Container>
       <StatusBar />
+
       <ScrollView style={{ alignSelf: 'stretch' }}>
+        <AnimatedTouchableOpacity
+          testID="theme-test"
+          onPress={(): void => changeThemeType()}
+          // @ts-ignore
+          style={{
+            zIndex: 15,
+            position: 'absolute',
+            left: logoPositionX,
+            top: logoPositionY,
+            transform: [{ scale: logoScale }],
+          }}
+        >
+          <Image
+            style={{ width: logoSize, height: logoSize, resizeMode: 'cover' }}
+            source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
+          />
+        </AnimatedTouchableOpacity>
         <Wrapper>
           <LogoWrapper>
-            <TouchableOpacity
-              testID="theme-test"
-              onPress={(): void => changeThemeType()}
-              style={{
-                width: 60,
-                height: 60,
-              }}
-            >
-              <StyledLogoImage source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W} />
-            </TouchableOpacity>
-            <View style={{ height: 12 }} />
+            <View style={{ height: 12 + 60 }} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
@@ -210,14 +264,12 @@ export default function mobile(variables: Variables): ReactElement {
             />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <FindPwText>
-              {getString('FORGOT_PW')}
-            </FindPwText>
+            <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            {
-              Platform.select({
-                ios: <Button
+            {Platform.select({
+              ios: (
+                <Button
                   testID="btn-apple"
                   style={{
                     backgroundColor: theme.appleBackground,
@@ -229,7 +281,7 @@ export default function mobile(variables: Variables): ReactElement {
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
-                      <SvgApple width={24} fill={theme.appleIcon}/>
+                      <SvgApple width={24} fill={theme.appleIcon} />
                     </View>
                   }
                   isLoading={signingInApple}
@@ -237,9 +289,9 @@ export default function mobile(variables: Variables): ReactElement {
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                   textStyle={{ fontWeight: '700', color: theme.appleText }}
-                />,
-              })
-            }
+                />
+              ),
+            })}
             <Button
               testID="btn-facebook"
               style={{
@@ -252,7 +304,7 @@ export default function mobile(variables: Variables): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgFacebook width={24} fill={theme.facebookIcon}/>
+                  <SvgFacebook width={24} fill={theme.facebookIcon} />
                 </View>
               }
               isLoading={signingInFacebook}
@@ -272,7 +324,7 @@ export default function mobile(variables: Variables): ReactElement {
               }}
               leftElement={
                 <View style={{ marginRight: 6 }}>
-                  <SvgGoogle width={24} fill={theme.googleIcon}/>
+                  <SvgGoogle width={24} fill={theme.googleIcon} />
                 </View>
               }
               isLoading={signingInGoogle}

@@ -325,6 +325,40 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                           >
                                             <View
                                               style={
+                                                Object {
+                                                  "left": true,
+                                                  "position": "absolute",
+                                                  "top": true,
+                                                  "transform": Array [
+                                                    Object {
+                                                      "scale": true,
+                                                    },
+                                                  ],
+                                                  "zIndex": 15,
+                                                }
+                                              }
+                                              testID="theme-test"
+                                            >
+                                              <Image
+                                                source={
+                                                  Object {
+                                                    "canInstrument": true,
+                                                    "createTransformer": [Function],
+                                                    "getCacheKey": [Function],
+                                                    "process": [Function],
+                                                  }
+                                                }
+                                                style={
+                                                  Object {
+                                                    "height": 80,
+                                                    "resizeMode": "cover",
+                                                    "width": 80,
+                                                  }
+                                                }
+                                              />
+                                            </View>
+                                            <View
+                                              style={
                                                 Array [
                                                   Object {
                                                     "marginBottom": 40,
@@ -348,35 +382,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                 <View
                                                   style={
                                                     Object {
-                                                      "height": 60,
-                                                      "width": 60,
-                                                    }
-                                                  }
-                                                  testID="theme-test"
-                                                >
-                                                  <Image
-                                                    source={
-                                                      Object {
-                                                        "canInstrument": true,
-                                                        "createTransformer": [Function],
-                                                        "getCacheKey": [Function],
-                                                        "process": [Function],
-                                                      }
-                                                    }
-                                                    style={
-                                                      Array [
-                                                        Object {
-                                                          "height": 60,
-                                                          "width": 60,
-                                                        },
-                                                      ]
-                                                    }
-                                                  />
-                                                </View>
-                                                <View
-                                                  style={
-                                                    Object {
-                                                      "height": 12,
+                                                      "height": 72,
                                                     }
                                                   }
                                                 />
@@ -384,6 +390,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                   style={
                                                     Array [
                                                       Object {
+                                                        "alignSelf": "flex-start",
                                                         "color": "#151A25",
                                                         "fontSize": 20,
                                                         "fontWeight": "bold",

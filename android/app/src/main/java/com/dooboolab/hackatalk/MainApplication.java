@@ -1,13 +1,10 @@
 package com.dooboolab.hackatalk;
 
-import com.dooboolab.hackatalk.generated.BasePackageList;
-import org.unimodules.adapters.react.ModuleRegistryAdapter;
-import org.unimodules.adapters.react.ReactModuleRegistryProvider;
-import org.unimodules.core.interfaces.SingletonModule;
-import java.util.Arrays;
-
 import android.app.Application;
 import android.content.Context;
+
+import com.dooboolab.hackatalk.generated.BasePackageList;
+import com.dooboolab.hackatalk.splash.SplashPackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
@@ -15,7 +12,13 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import org.unimodules.adapters.react.ModuleRegistryAdapter;
+import org.unimodules.adapters.react.ReactModuleRegistryProvider;
+import org.unimodules.core.interfaces.SingletonModule;
+
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -43,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
             new ModuleRegistryAdapter(mModuleRegistryProvider)
           );
           packages.addAll(unimodules);
+          packages.add(new SplashPackage());
           return packages;
         }
 

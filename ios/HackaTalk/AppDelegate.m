@@ -51,7 +51,7 @@
 
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  [RNBootSplash initialShow];
+  
   return YES;
 }
 

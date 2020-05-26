@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HackaTalkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HackaTalkTests.m */; };
-		032E9EBFD3C10F0FAA0C6E5D /* Pods_HackaTalk_HackaTalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6265E76935B3C25A2078CF /* Pods_HackaTalk_HackaTalkTests.framework */; };
+		0EF25446707BA42DF78619B9 /* Pods_HackaTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD6DA01198FB6C964B5BD672 /* Pods_HackaTalk.framework */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -19,8 +19,8 @@
 		451C19822400302900BD57D3 /* ForSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C19812400302900BD57D3 /* ForSwift.swift */; };
 		45346A3D2415F9D100E20991 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45346A3C2415F9D100E20991 /* BootSplash.storyboard */; };
 		4579FD9F23FEAF310055A43E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4579FD9E23FEAF310055A43E /* StoreKit.framework */; };
-		582E259C5FD3CAF87C5D0980 /* Pods_HackaTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8B12987FAC380BB400E4AE /* Pods_HackaTalk.framework */; };
-		83E405F0E97776BA4C40B418 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E03C2B9D98AC8CBF2AA174B /* Pods_OneSignalNotificationServiceExtension.framework */; };
+		4EE3AD00E8F2AFEECD57A94C /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */; };
+		E68C70A449B6E17D36E43797 /* Pods_HackaTalk_HackaTalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,29 +58,29 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HackaTalk/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HackaTalk/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HackaTalk/main.m; sourceTree = "<group>"; };
+		1861D964A57F50E5208A0620 /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* HackaTalk-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackaTalk-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HackaTalk-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HackaTalk-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B7C7E9A63FD88A87C90EBEC /* Pods-HackaTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.debug.xcconfig"; sourceTree = "<group>"; };
+		2D370077BB17D57C71C92AAB /* Pods-HackaTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.debug.xcconfig"; sourceTree = "<group>"; };
 		451C19802400302800BD57D3 /* HackaTalk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackaTalk-Bridging-Header.h"; sourceTree = "<group>"; };
 		451C19812400302900BD57D3 /* ForSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForSwift.swift; sourceTree = "<group>"; };
 		45346A3C2415F9D100E20991 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = HackaTalk/BootSplash.storyboard; sourceTree = "<group>"; };
 		4579FD9D23FEAEF10055A43E /* HackaTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HackaTalk.entitlements; path = HackaTalk/HackaTalk.entitlements; sourceTree = "<group>"; };
 		4579FD9E23FEAF310055A43E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		5F8B12987FAC380BB400E4AE /* Pods_HackaTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E03C2B9D98AC8CBF2AA174B /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F6265E76935B3C25A2078CF /* Pods_HackaTalk_HackaTalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk_HackaTalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B419EF7A0A5C6153D91E9677 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC1136F14A2533A2930CF65A /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		70B4C53793747F4106B1B1F8 /* Pods-HackaTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.release.xcconfig"; sourceTree = "<group>"; };
+		90E86382E967707DECF21B41 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk_HackaTalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD6DA01198FB6C964B5BD672 /* Pods_HackaTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF36D3A324026CF5006C44A1 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF36D3A524026CF5006C44A1 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		CF36D3A624026CF5006C44A1 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		CF36D3A824026CF5006C44A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF36D3B02402729B006C44A1 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
-		E042CEB758E7F32D698B8C9D /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		E7AAE9D40D606576791CBD52 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F2B47B7EA9CE6E5A48A13512 /* Pods-HackaTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032E9EBFD3C10F0FAA0C6E5D /* Pods_HackaTalk_HackaTalkTests.framework in Frameworks */,
+				E68C70A449B6E17D36E43797 /* Pods_HackaTalk_HackaTalkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4579FD9F23FEAF310055A43E /* StoreKit.framework in Frameworks */,
-				582E259C5FD3CAF87C5D0980 /* Pods_HackaTalk.framework in Frameworks */,
+				0EF25446707BA42DF78619B9 /* Pods_HackaTalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E405F0E97776BA4C40B418 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
+				4EE3AD00E8F2AFEECD57A94C /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,9 +164,9 @@
 				4579FD9E23FEAF310055A43E /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				5F8B12987FAC380BB400E4AE /* Pods_HackaTalk.framework */,
-				9F6265E76935B3C25A2078CF /* Pods_HackaTalk_HackaTalkTests.framework */,
-				6E03C2B9D98AC8CBF2AA174B /* Pods_OneSignalNotificationServiceExtension.framework */,
+				BD6DA01198FB6C964B5BD672 /* Pods_HackaTalk.framework */,
+				B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */,
+				1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,12 +174,12 @@
 		3AFDB60944DD249CA540207C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B7C7E9A63FD88A87C90EBEC /* Pods-HackaTalk.debug.xcconfig */,
-				F2B47B7EA9CE6E5A48A13512 /* Pods-HackaTalk.release.xcconfig */,
-				B419EF7A0A5C6153D91E9677 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */,
-				CC1136F14A2533A2930CF65A /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */,
-				E042CEB758E7F32D698B8C9D /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				E7AAE9D40D606576791CBD52 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				2D370077BB17D57C71C92AAB /* Pods-HackaTalk.debug.xcconfig */,
+				70B4C53793747F4106B1B1F8 /* Pods-HackaTalk.release.xcconfig */,
+				90E86382E967707DECF21B41 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */,
+				1861D964A57F50E5208A0620 /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */,
+				2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -239,12 +239,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HackaTalkTests" */;
 			buildPhases = (
-				F06A3A36CAA2C7F71B3AFC33 /* [CP] Check Pods Manifest.lock */,
+				666F3B18D5239F59ECACAC6F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				9EBE29856A1F7B6428FD0729 /* [CP] Copy Pods Resources */,
-				3474B83AEB2661F190232FB1 /* [CP] Embed Pods Frameworks */,
+				8BD1A87C93DC031F5AB24CB6 /* [CP] Embed Pods Frameworks */,
+				18BEF5B1153C1B61977ADCC8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,14 +260,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HackaTalk" */;
 			buildPhases = (
-				45924246BBCC43F908B1E468 /* [CP] Check Pods Manifest.lock */,
+				AD19799D9BF1F104D00E56F1 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				A74687C7241332BCE6146272 /* [CP] Copy Pods Resources */,
-				5DF7472DC1D0787411F627F3 /* [CP] Embed Pods Frameworks */,
+				B05DAF933E72BA4741B45333 /* [CP] Embed Pods Frameworks */,
+				5AE72DAC67F86A589C7D5F12 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -320,7 +320,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF36D3AC24026CF5006C44A1 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				D29A72A45B50E75D0506EFAC /* [CP] Check Pods Manifest.lock */,
+				EBA25F14E82CEE5F1B8B9D9C /* [CP] Check Pods Manifest.lock */,
 				CF36D39F24026CF5006C44A1 /* Sources */,
 				CF36D3A024026CF5006C44A1 /* Frameworks */,
 				CF36D3A124026CF5006C44A1 /* Resources */,
@@ -449,6 +449,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		18BEF5B1153C1B61977ADCC8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -463,7 +481,47 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		3474B83AEB2661F190232FB1 /* [CP] Embed Pods Frameworks */ = {
+		5AE72DAC67F86A589C7D5F12 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		666F3B18D5239F59ECACAC6F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HackaTalk-HackaTalkTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BD1A87C93DC031F5AB24CB6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -518,6 +576,7 @@
 				"${BUILT_PRODUCTS_DIR}/UMAppLoader/UMAppLoader.framework",
 				"${BUILT_PRODUCTS_DIR}/UMCore/UMCore.framework",
 				"${BUILT_PRODUCTS_DIR}/UMPermissionsInterface/UMPermissionsInterface.framework",
+				"${BUILT_PRODUCTS_DIR}/UMReactNativeAdapter/UMReactNativeAdapter.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCCommon.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCFoundation.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCPythia.framework",
@@ -581,6 +640,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMAppLoader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMPermissionsInterface.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMReactNativeAdapter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCCommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCPythia.framework",
@@ -599,7 +659,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		45924246BBCC43F908B1E468 /* [CP] Check Pods Manifest.lock */ = {
+		AD19799D9BF1F104D00E56F1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -621,7 +681,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DF7472DC1D0787411F627F3 /* [CP] Embed Pods Frameworks */ = {
+		B05DAF933E72BA4741B45333 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -676,6 +736,7 @@
 				"${BUILT_PRODUCTS_DIR}/UMAppLoader/UMAppLoader.framework",
 				"${BUILT_PRODUCTS_DIR}/UMCore/UMCore.framework",
 				"${BUILT_PRODUCTS_DIR}/UMPermissionsInterface/UMPermissionsInterface.framework",
+				"${BUILT_PRODUCTS_DIR}/UMReactNativeAdapter/UMReactNativeAdapter.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCCommon.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCFoundation.framework",
 				"${PODS_ROOT}/VSCCrypto/Carthage/iOS/VSCPythia.framework",
@@ -739,6 +800,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMAppLoader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMPermissionsInterface.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UMReactNativeAdapter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCCommon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCFoundation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VSCPythia.framework",
@@ -757,43 +819,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9EBE29856A1F7B6428FD0729 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A74687C7241332BCE6146272 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D29A72A45B50E75D0506EFAC /* [CP] Check Pods Manifest.lock */ = {
+		EBA25F14E82CEE5F1B8B9D9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -809,28 +835,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F06A3A36CAA2C7F71B3AFC33 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HackaTalk-HackaTalkTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -943,7 +947,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B419EF7A0A5C6153D91E9677 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */;
+			baseConfigurationReference = 90E86382E967707DECF21B41 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -972,7 +976,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC1136F14A2533A2930CF65A /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */;
+			baseConfigurationReference = 1861D964A57F50E5208A0620 /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -998,7 +1002,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7C7E9A63FD88A87C90EBEC /* Pods-HackaTalk.debug.xcconfig */;
+			baseConfigurationReference = 2D370077BB17D57C71C92AAB /* Pods-HackaTalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1028,7 +1032,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2B47B7EA9CE6E5A48A13512 /* Pods-HackaTalk.release.xcconfig */;
+			baseConfigurationReference = 70B4C53793747F4106B1B1F8 /* Pods-HackaTalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1281,7 +1285,7 @@
 		};
 		CF36D3AD24026CF5006C44A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E042CEB758E7F32D698B8C9D /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1312,7 +1316,7 @@
 		};
 		CF36D3AE24026CF5006C44A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7AAE9D40D606576791CBD52 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

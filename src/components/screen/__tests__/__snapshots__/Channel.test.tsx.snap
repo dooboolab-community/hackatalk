@@ -281,7 +281,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         ]
                       }
                     >
-                      4 months ago
+                      5 months ago
                     </Text>
                   </View>
                 </View>
@@ -434,7 +434,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         ]
                       }
                     >
-                      4 months ago
+                      5 months ago
                     </Text>
                   </View>
                 </View>

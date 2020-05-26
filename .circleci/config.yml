@@ -112,6 +112,12 @@ jobs:
       #       - android/vendor/bundle
 
       - run:
+          name: COPY env
+          working_directory: .
+          command: |
+            cp .env.sample .env
+
+      - run:
           name: Check MD5 on files
           command: |
             md5sum android/build.gradle
@@ -123,7 +129,7 @@ jobs:
 
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew androidDependencies --max-workers=2
           working_directory: android
 
       - save_cache:
@@ -135,13 +141,13 @@ jobs:
           name: Build Android JS Bundle
           working_directory: android
           command: |
-            yarn build:android
+            yarn build:android --max-workers=2
 
       - run:
           name: Build Android APK
           working_directory: android
           command: |
-            ./gradlew assembleRelease -x bundleReleaseJsAndAssets
+            ./gradlew assembleDebug --max-workers=2
 
   ios:
     macos:

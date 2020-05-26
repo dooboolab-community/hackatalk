@@ -33,7 +33,7 @@
     "ios:reset": "rm -rf ios/build/ModuleCache",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "build:ios": "ENVFILE=.env.prod react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./ios",
-    "build:android": "ENVFILE=.env.prod react-native bundle --entry-file index.js --platform android --dev false --bundle-output android/main.jsbundle --assets-dest ./android"
+    "build:android": "ENVFILE=.env.prod react-native bundle --entry-file index.js --platform android --dev false --verbose --bundle-output android/main.jsbundle --assets-dest ./android"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -86,6 +86,7 @@
     "react-native-modalbox": "^2.0.0",
     "react-native-onesignal": "^3.7.3",
     "react-native-reanimated": "~1.8.0",
+    "react-native-redash": "^14.1.1",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "2.7.0",
     "react-native-svg": "^12.1.0",

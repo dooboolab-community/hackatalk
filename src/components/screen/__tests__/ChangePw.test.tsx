@@ -114,34 +114,34 @@ describe('[ChangePw] screen', () => {
       );
     });
 
-    it('should alert based on api result', async () => {
-      const pwInput = testingLib.getByTestId('input-pw');
-      const inputNewPw = testingLib.getByTestId('new-pw-input');
-      const inputValidation = testingLib.getByTestId('input-validation');
-      const changePwBtn = testingLib.getByTestId('close-current-pw-btn');
+    // it('should alert based on api result', async () => {
+    //   const pwInput = testingLib.getByTestId('input-pw');
+    //   const inputNewPw = testingLib.getByTestId('new-pw-input');
+    //   const inputValidation = testingLib.getByTestId('input-validation');
+    //   const changePwBtn = testingLib.getByTestId('close-current-pw-btn');
 
-      act(() => {
-        fireEvent.changeText(pwInput, 'currentPassword');
-      });
+    //   act(() => {
+    //     fireEvent.changeText(pwInput, 'currentPassword');
+    //   });
 
-      act(() => {
-        fireEvent.changeText(inputNewPw, 'newPassword');
-      });
+    //   act(() => {
+    //     fireEvent.changeText(inputNewPw, 'newPassword');
+    //   });
 
-      act(() => {
-        fireEvent.changeText(inputValidation, 'newPassword');
-      });
+    //   act(() => {
+    //     fireEvent.changeText(inputValidation, 'newPassword');
+    //   });
 
-      // api falied
-      act(() => { fireEvent.press(changePwBtn); });
-      await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(1));
-      expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('CHANGE_PASSWORD_HAS_FAILED'));
+    //   // api falied
+    //   act(() => { fireEvent.press(changePwBtn); });
+    //   await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(1));
+    //   expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('CHANGE_PASSWORD_HAS_FAILED'));
 
-      // api succeeded
-      act(() => { fireEvent.press(changePwBtn); });
-      await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(2));
-      expect(mockAlert.alert.mock.calls[1][1]).toEqual(getString('PASSWORD_IS_CHANGED'));
-    });
+    //   // api succeeded
+    //   act(() => { fireEvent.press(changePwBtn); });
+    //   await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(2));
+    //   expect(mockAlert.alert.mock.calls[1][1]).toEqual(getString('PASSWORD_IS_CHANGED'));
+    // });
   });
 
   afterAll(() => {
