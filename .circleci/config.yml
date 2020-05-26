@@ -141,7 +141,7 @@ jobs:
           name: Build Android APK
           working_directory: android
           command: |
-            ./gradlew assembleRelease -x bundleReleaseJsAndAssets --max-workers=2
+            ./gradlew assembleDebug --max-workers=2
 
   ios:
     macos:
