@@ -74,7 +74,6 @@ jobs:
     working_directory: ~/dooboo
     docker:
       - image: circleci/android:api-28-node8-alpha
-    resource_class: xlarge
     steps:
       - checkout:
           path: ~/dooboo

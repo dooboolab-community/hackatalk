@@ -207,6 +207,14 @@ android {
 
         }
     }
+
+    testOptions {
+        unitTests {
+            all {
+                maxHeapSize = "1024m"
+            }
+        }
+    }
 }
 
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
