@@ -123,7 +123,7 @@ jobs:
 
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
+          command: ./gradlew androidDependencies --max-workers=2
           working_directory: android
 
       - save_cache:
@@ -135,7 +135,7 @@ jobs:
           name: Build Android JS Bundle
           working_directory: android
           command: |
-            yarn build:android
+            yarn build:android --max-workers=2
 
       - run:
           name: Build Android APK
