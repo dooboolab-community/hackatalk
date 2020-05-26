@@ -5,6 +5,7 @@ import * as ImagePicker from '../ImagePicker';
 import { askAsync } from 'expo-permissions';
 
 jest.mock('expo-permissions', () => ({
+  // @ts-ignore
   ...jest.requireActual('expo-permissions'),
   askAsync: jest.fn(),
 }));

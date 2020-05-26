@@ -14,7 +14,7 @@ let testingLib: RenderResult;
 
 jest.mock('@react-navigation/native', () => {
   return {
-    useNavigation: (): object => {
+    useNavigation: (): Record<string, unknown> => {
       return {
         navigate: jest.fn(),
       };

@@ -20,7 +20,7 @@ export const createTestElement = (
   </AllProviders>
 );
 
-export const createTestProps = (obj: object = {}): object | unknown | any => ({
+export const createTestProps = (obj: Record<string, unknown> = {}): Record<string, unknown> | unknown | any => ({
   navigation: {
     navigate: jest.fn(),
     goBack: jest.fn(),

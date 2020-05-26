@@ -114,7 +114,7 @@ function TabNavigator(): ReactElement {
   );
 }
 
-export const MainTabNavigationOptions = (): object => {
+export const MainTabNavigationOptions = (): Record<string, unknown> => {
   return {
     header: CustomHeader,
   };

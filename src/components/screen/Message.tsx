@@ -15,7 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
-import { isIphoneX } from '../../utils/Styles';
+import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -121,7 +121,7 @@ function Message(): React.ReactElement {
         backgroundColor={theme.background}
         fontColor={theme.fontColor}
         keyboardOffset={Platform.select({
-          ios: isIphoneX
+          ios: isIPhoneX()
             ? Constants.statusBarHeight + 40
             : Constants.statusBarHeight,
           android: Constants.statusBarHeight + 52,

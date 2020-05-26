@@ -7,11 +7,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Constants from 'expo-constants';
 
+import Constants from 'expo-constants';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
-import { isIPhoneXSize } from '../../utils/Styles';
+import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -101,7 +101,7 @@ function ChangePw(props: Props): ReactElement {
         paddingBottom: keyboardOffset,
       }}>
       <StyledKeyboardAvoidingView
-        keyboardVerticalOffset={isIPhoneXSize
+        keyboardVerticalOffset={isIPhoneX()
           ? Constants.statusBarHeight + 52
           : Constants.statusBarHeight}
         behavior={Platform.select({
