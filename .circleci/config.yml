@@ -112,6 +112,12 @@ jobs:
       #       - android/vendor/bundle
 
       - run:
+          name: COPY env
+          working_directory: .
+          command: |
+            cp .env.sample .env
+
+      - run:
           name: Check MD5 on files
           command: |
             md5sum android/build.gradle
