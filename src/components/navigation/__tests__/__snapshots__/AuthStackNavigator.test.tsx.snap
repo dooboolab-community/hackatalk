@@ -17,7 +17,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
       }
     }
   >
-    <RNCSafeAreaView
+    <RNCSafeAreaProvider
       style={
         Object {
           "flex": 1,
@@ -66,8 +66,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                     "damping": 500,
                     "mass": 3,
                     "overshootClamping": true,
-                    "restDisplacementThreshold": 0.01,
-                    "restSpeedThreshold": 0.01,
+                    "restDisplacementThreshold": 10,
+                    "restSpeedThreshold": 10,
                     "stiffness": 1000,
                   },
                 },
@@ -77,8 +77,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                     "damping": 500,
                     "mass": 3,
                     "overshootClamping": true,
-                    "restDisplacementThreshold": 0.01,
-                    "restSpeedThreshold": 0.01,
+                    "restDisplacementThreshold": 10,
+                    "restSpeedThreshold": 10,
                     "stiffness": 1000,
                   },
                 },
@@ -854,7 +854,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
           style={null}
         />
       </View>
-    </RNCSafeAreaView>
+    </RNCSafeAreaProvider>
   </View>
 </View>
 `;

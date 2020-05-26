@@ -19,13 +19,13 @@ let props: any;
 let component: ReactElement;
 
 jest.mock('@expo/react-native-action-sheet', () => ({
-  useActionSheet: (): object => {
+  useActionSheet: (): Record<string, unknown> => {
     const userPressLaunchCamera = true;
     const BUTTON_INDEX_LAUNCH_CAMERA = 0;
     const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
     return {
       showActionSheetWithOptions: (
-        options: object,
+        options: Record<string, unknown>,
         callback: (index: number) => void,
       ): void => {
         if (userPressLaunchCamera) {

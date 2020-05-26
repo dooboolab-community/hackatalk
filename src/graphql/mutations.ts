@@ -91,7 +91,7 @@ export interface FriendPayload {
   user: User;
   added?: boolean;
   deleted?: boolean;
-};
+}
 
 export const MUTATION_ADD_FRIEND = gql`
   mutation addFriend($friendId: ID!){

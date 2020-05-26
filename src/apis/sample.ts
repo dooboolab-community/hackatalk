@@ -3,7 +3,7 @@ import Config from 'react-native-config';
 const { ROOT_URL } = Config;
 
 export const sample = async (
-  body?: object,
+  body?: Record<string, unknown>,
   // signal?: AbortController['signal'],
 ): Promise<Response> => {
   const fetchOption: RequestInit = {

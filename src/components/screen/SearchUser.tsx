@@ -136,7 +136,7 @@ const Screen = (): React.ReactElement => {
     }).start();
   };
 
-  const getContentContainerStyle = (): object | null => {
+  const getContentContainerStyle = (): Record<string, unknown> | null => {
     return users.length === 0
       ? {
         flex: 1,
@@ -237,7 +237,7 @@ const Screen = (): React.ReactElement => {
           ],
         }}
         contentContainerStyle={getContentContainerStyle}
-        keyExtractor={(item: object, index: number): string => index.toString()}
+        keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
         data={users}
         renderItem={renderItem}
         ListEmptyComponent={

@@ -50,7 +50,7 @@ declare module 'react-native-onesignal' {
     title: string;
     body: string;
     launchURL?: string;
-    additionalData?: object;
+    additionalData?: Record<string, unknown>;
     p2p_notification?: Array<any>;
   }
 
@@ -112,7 +112,7 @@ declare module 'react-native-onesignal' {
      * You can set multiple tags for user with this function.
      * @param {object} tags Tags you want to set. Sample: {key1: 'value1', key2: 'value2'}
      */
-    public static sendTags(tags: object): void;
+    public static sendTags(tags: Record<string, unknown>): void;
 
     /**
      * Getting the tags from the server and use the received object
@@ -209,10 +209,10 @@ declare module 'react-native-onesignal' {
      * @param {object} otherParameters Sample: {"ios_attachments" : {"image1" : "{image_url}"}}
      */
     public static postNotification(
-      contents: object,
+      contents: Record<string, unknown>,
       data: Array<any>,
       playerId: string,
-      otherParameters?: object,
+      otherParameters?: Record<string, unknown>,
     ): void;
 
     /**

@@ -37,7 +37,7 @@ function AppWithTheme(): ReactElement {
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
-  const { loading, data } = useQuery<{ me: User}, {}>(QUERY_ME);
+  const { loading, data } = useQuery<{ me: User }>(QUERY_ME);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
