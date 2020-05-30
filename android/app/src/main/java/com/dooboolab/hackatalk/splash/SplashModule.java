@@ -27,7 +27,7 @@ public class SplashModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void hide(float duration) {
         if(this.getCurrentActivity() != null)
-            BootSplash.hide(duration);
+            BootSplash.getInstance().hide(duration);
     }
 
 

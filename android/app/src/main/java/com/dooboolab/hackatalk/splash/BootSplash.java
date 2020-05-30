@@ -23,13 +23,21 @@ import com.facebook.react.bridge.UiThreadUtil;
  */
 public class BootSplash {
 
-    private static boolean mVisible = false;
-    private static int viewId = ViewCompat.generateViewId();
-    private static ObjectAnimator logoScaleXAnimator;
-    private static ObjectAnimator logoScaleYAnimator;
-    private static FrameLayout root;
+    private static BootSplash INSTANCE;
+    public static BootSplash getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new BootSplash();
+        }
+        return INSTANCE;
+    }
 
-    public static void init(@NonNull final Activity activity) {
+    private boolean mVisible = false;
+    private int viewId = ViewCompat.generateViewId();
+    private ObjectAnimator logoScaleXAnimator;
+    private ObjectAnimator logoScaleYAnimator;
+    private FrameLayout root;
+
+    public void show(@NonNull final Activity activity) {
 
         Context context = activity.getApplicationContext();
 
@@ -50,7 +58,7 @@ public class BootSplash {
 
     }
 
-    private static void anim(ViewGroup view) {
+    private void anim(ViewGroup view) {
         ImageView logo = view.findViewById(R.id.logo);
         logoScaleXAnimator = ObjectAnimator.ofFloat(logo, "scaleX", 1.1f).setDuration(500);
         logoScaleXAnimator.setRepeatCount(ObjectAnimator.INFINITE);
@@ -64,7 +72,7 @@ public class BootSplash {
     }
 
 
-    static void hide(final Float duration) {
+    void hide(final Float duration) {
         UiThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -82,6 +90,7 @@ public class BootSplash {
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         ((ViewGroup) root.getParent()).removeView(root);
+                        root = null;
                     }
                 }).start();
             }
