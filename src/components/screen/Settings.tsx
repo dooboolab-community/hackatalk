@@ -8,6 +8,7 @@ import { AuthType } from '../../types';
 import { Button } from '@dooboo-ui/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import { cleanupEThree } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
@@ -80,6 +81,7 @@ function Settings(props: Props): React.ReactElement {
   let signInInfoOption: SettingsOption;
 
   const logout = (): void => {
+    cleanupEThree();
     if (navigation) {
       AsyncStorage.removeItem('token');
       setUser(undefined);

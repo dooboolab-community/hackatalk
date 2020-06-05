@@ -168,3 +168,7 @@ export const initializeEThree = async (userId: string): Promise<void> => {
     console.log('Ethree register error', err);
   }
 };
+
+export const cleanupEThree = async (): Promise<void> => {
+  if (eThree) eThree.cleanup();
+};
