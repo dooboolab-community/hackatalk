@@ -143,11 +143,11 @@ jobs:
           command: |
             yarn build:android --max-workers=2
 
-      - run:
-          name: Build Android APK
-          working_directory: android
-          command: |
-            ./gradlew assembleDebug --max-workers=2
+      # - run:
+      #     name: Build Android APK
+      #     working_directory: android
+      #     command: |
+      #       ./gradlew assembleDebug --max-workers=2
 
   ios:
     macos:
