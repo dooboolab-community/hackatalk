@@ -12,28 +12,27 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import FindPw from '../FindPw';
-import { MUTATION_FIND_PASSWORD } from '../../../graphql/mutations';
 import { getString } from '../../../../STRINGS';
 
 // eslint-disable-next-line
 let props: any;
 let component: ReactElement;
 
-const mockFindPwMutation = [
-  {
-    request: {
-      query: MUTATION_FIND_PASSWORD,
-      variables: {
-        email: 'email@email.com',
-      },
-    },
-    result: {
-      data: {
-        findPassword: true,
-      },
-    },
-  },
-];
+// const mockFindPwMutation = [
+//   {
+//     request: {
+//       query: MUTATION_FIND_PASSWORD,
+//       variables: {
+//         email: 'email@email.com',
+//       },
+//     },
+//     result: {
+//       data: {
+//         findPassword: true,
+//       },
+//     },
+//   },
+// ];
 
 const mockAlert = {
   alert: jest.fn(),

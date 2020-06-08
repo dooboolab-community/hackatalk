@@ -11,7 +11,6 @@ import { dark, light } from './theme';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
-import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from './types';
 import { initializeEThree } from './utils/virgil';

@@ -1,7 +1,3 @@
-import {
-  MUTATION_ADD_FRIEND,
-  MUTATION_DELETE_FRIEND,
-} from '../../../graphql/mutations';
 import React, {
   ForwardRefExoticComponent,
   RefAttributes,
@@ -17,7 +13,6 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { QUERY_FRIENDS } from '../../../graphql/queries';
 import Shared from '../ProfileModal';
 import { act } from 'react-test-renderer';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';

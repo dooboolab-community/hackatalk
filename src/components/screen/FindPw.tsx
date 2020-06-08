@@ -1,5 +1,4 @@
 import { Button, EditText } from '@dooboo-ui/native';
-import { MUTATION_FIND_PASSWORD, MutationFindPasswordInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
 

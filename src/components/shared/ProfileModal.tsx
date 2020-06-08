@@ -1,15 +1,8 @@
-import {
-  AddOrDeleteFriendInput,
-  FriendPayload,
-  MUTATION_ADD_FRIEND,
-  MUTATION_DELETE_FRIEND,
-} from '../../graphql/mutations';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import Modal from 'react-native-modalbox';
-import { QUERY_FRIENDS } from '../../graphql/queries';
 import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
