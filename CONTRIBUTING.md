@@ -11,7 +11,7 @@
 3. [VSCODE](https://code.visualstudio.com)
    - We are using `vscode` as our ide. Please install `eslint` plugin.
 4. [Graphql](https://graphql.org)
-5. [Apollo Client](https://www.apollographql.com/docs/react/why-apollo)
+5. [Relay](https://relay.dev)
 
 ### Installation
 

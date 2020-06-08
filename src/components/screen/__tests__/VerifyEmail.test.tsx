@@ -5,7 +5,6 @@ import { RenderResult, act, fireEvent, render, wait } from '@testing-library/rea
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MUTATION_SEND_VERIFICATION } from '../../../graphql/mutations';
-import { MockedProvider } from '@apollo/react-testing';
 import Screen from '../VerifyEmail';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,9 +38,7 @@ describe('Rendering', () => {
       },
     });
     component = createTestElement(
-      <MockedProvider mocks={mockSendVerification} addTypename={false}>
-        <Screen {...props} />
-      </MockedProvider>,
+      <Screen {...props} />,
     );
     testingLib = render(component);
   });
@@ -63,9 +60,7 @@ describe('Interaction', () => {
       },
     });
     component = createTestElement(
-      <MockedProvider mocks={mockSendVerification} addTypename={false}>
-        <Screen {...props} />
-      </MockedProvider>,
+      <Screen {...props} />,
     );
     testingLib = render(component);
   });

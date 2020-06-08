@@ -12,7 +12,6 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
 import { MUTATION_CHANGE_PASSWORD } from '../../../graphql/mutations';
-import { MockedProvider } from '@apollo/react-testing';
 import { getString } from '../../../../STRINGS';
 
 const mockChangePwMutation = [
@@ -68,9 +67,7 @@ describe('[ChangePw] screen', () => {
   beforeEach(() => {
     const props = createTestProps({});
     const component = createTestElement(
-      <MockedProvider mocks={mockChangePwMutation}>
-        <ChangePw {...props} />
-      </MockedProvider>,
+      <ChangePw {...props} />,
     );
     testingLib = render(component);
     mockAlert.alert.mockClear();
@@ -113,35 +110,6 @@ describe('[ChangePw] screen', () => {
         },
       );
     });
-
-    // it('should alert based on api result', async () => {
-    //   const pwInput = testingLib.getByTestId('input-pw');
-    //   const inputNewPw = testingLib.getByTestId('new-pw-input');
-    //   const inputValidation = testingLib.getByTestId('input-validation');
-    //   const changePwBtn = testingLib.getByTestId('close-current-pw-btn');
-
-    //   act(() => {
-    //     fireEvent.changeText(pwInput, 'currentPassword');
-    //   });
-
-    //   act(() => {
-    //     fireEvent.changeText(inputNewPw, 'newPassword');
-    //   });
-
-    //   act(() => {
-    //     fireEvent.changeText(inputValidation, 'newPassword');
-    //   });
-
-    //   // api falied
-    //   act(() => { fireEvent.press(changePwBtn); });
-    //   await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(1));
-    //   expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('CHANGE_PASSWORD_HAS_FAILED'));
-
-    //   // api succeeded
-    //   act(() => { fireEvent.press(changePwBtn); });
-    //   await wait(() => expect(mockAlert.alert).toHaveBeenCalledTimes(2));
-    //   expect(mockAlert.alert.mock.calls[1][1]).toEqual(getString('PASSWORD_IS_CHANGED'));
-    // });
   });
 
   afterAll(() => {

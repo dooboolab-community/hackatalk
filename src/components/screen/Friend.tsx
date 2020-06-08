@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 
-import { ApolloQueryResult } from 'apollo-client';
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
@@ -11,7 +10,6 @@ import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useQuery } from '@apollo/react-hooks';
 
 const Container = styled.View`
   flex: 1;
@@ -24,12 +22,8 @@ const Container = styled.View`
 export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
 
-  // prettier-ignore
-  const { loading, data, error, refetch } = useQuery<{
-    friends: User[];
-  }>(QUERY_FRIENDS, {
-    fetchPolicy: 'network-only',
-  });
+  // TODO: get data from fragment
+  const data: any = {};
 
   const userListOnPress = (user: User): void => {
     if (state.modal) {
@@ -57,16 +51,16 @@ export default function Screen(): ReactElement {
     );
   };
 
-  if (loading) {
-    return (<Container><LoadingIndicator /></Container>);
-  }
+  // if (loading) {
+  //   return (<Container><LoadingIndicator /></Container>);
+  // }
 
-  if (error) {
-    return <ErrorView
-      body={error.message}
-      onButtonPressed={(): Promise<ApolloQueryResult<{ friends: User[] }>> => refetch()}
-    />;
-  }
+  // if (error) {
+  //   return <ErrorView
+  //     body={error.message}
+  //     onButtonPressed={(): Promise<ApolloQueryResult<{ friends: User[] }>> => refetch()}
+  //   />;
+  // }
 
   return (
     <Container>
@@ -76,7 +70,7 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          data?.friends.length === 0
+          data?.friends?.length === 0
             ? {
               flex: 1,
               alignItems: 'center',

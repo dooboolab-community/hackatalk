@@ -26,7 +26,7 @@
 - [@testing-library/react-native](https://www.native-testing-library.com/docs/install)
 - [react-hook](https://reactjs.org/docs/hooks-intro.html)
 - [graphql](https://graphql.org)
-- [apollo-client](https://www.apollographql.com/docs/react)
+- [relay](https://relay.dev)
 
 ### Gain points
 
@@ -60,7 +60,6 @@ app/
 ├─ node_modules/
 ├─ src/
 │  └─ apis
-│  └─ apollo
 │  └─ components
 │     └─ navigations
 │     └─ screen

@@ -14,7 +14,6 @@ import { User } from '../../types';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
-import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const StyledView = styled.View`
@@ -129,16 +128,16 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     onDeleteFriend,
   } = props;
 
-  const [
-    deleteFriendMutation,
-    { error: deleteFriendError, loading: deleteFriendLoading },
-  ] = useMutation<{ deleteFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_DELETE_FRIEND, {
-    refetchQueries: [{ query: QUERY_FRIENDS }],
-  });
+  // const [
+  //   deleteFriendMutation,
+  //   { error: deleteFriendError, loading: deleteFriendLoading },
+  // ] = useMutation<{ deleteFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_DELETE_FRIEND, {
+  //   refetchQueries: [{ query: QUERY_FRIENDS }],
+  // });
 
-  const [addFriendMutation] = useMutation<{ addFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_ADD_FRIEND, {
-    refetchQueries: () => [{ query: QUERY_FRIENDS }],
-  });
+  // const [addFriendMutation] = useMutation<{ addFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_ADD_FRIEND, {
+  //   refetchQueries: () => [{ query: QUERY_FRIENDS }],
+  // });
 
   const [hasFriendBeenAdded, setHasFriendBeenAdded] = useState<boolean>(false);
   const [showAddBtn, setShowAddBtn] = useState<boolean>(true);
@@ -175,14 +174,14 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     }
 
     try {
-      const result = await addFriendMutation({
-        variables: {
-          friendId: user.id,
-        },
-        // refetchQueries: [QUERY_FRIENDS],
-      });
+      // const result = await addFriendMutation({
+      //   variables: {
+      //     friendId: user.id,
+      //   },
+      //   // refetchQueries: [QUERY_FRIENDS],
+      // });
 
-      setHasFriendBeenAdded(result.data?.addFriend.added || false);
+      // setHasFriendBeenAdded(result.data?.addFriend.added || false);
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
     }
@@ -200,7 +199,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     };
 
     try {
-      await deleteFriendMutation({ variables });
+      // await deleteFriendMutation({ variables });
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
     }

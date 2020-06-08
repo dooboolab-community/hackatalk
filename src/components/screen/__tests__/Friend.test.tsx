@@ -5,7 +5,6 @@ import { act, cleanup, render, wait } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Friend from '../Friend';
-import { MockedProvider } from '@apollo/react-testing';
 import { QUERY_FRIENDS } from '../../../graphql/queries';
 
 const mocks = [
@@ -65,9 +64,7 @@ describe('[Friend] rendering test', () => {
 
   it('renders as expected', async () => {
     const component = createTestElement(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Friend {...props} />
-      </MockedProvider>,
+      <Friend {...props} />,
     );
 
     const testingLib = render(component);
@@ -78,9 +75,7 @@ describe('[Friend] rendering test', () => {
 
   it('renders loading', () => {
     const component = createTestElement(
-      <MockedProvider mocks={[]} addTypename={false}>
-        <Friend {...props} />
-      </MockedProvider>,
+      <Friend {...props} />,
     );
 
     const { baseElement } = render(component);
@@ -95,9 +90,7 @@ describe('[Friend] rendering test', () => {
     };
 
     const component = createTestElement(
-      <MockedProvider mocks={[errorMock]} addTypename={false}>
-        <Friend {...props} />
-      </MockedProvider>,
+      <Friend {...props} />,
     );
 
     const testingLib = render(component);

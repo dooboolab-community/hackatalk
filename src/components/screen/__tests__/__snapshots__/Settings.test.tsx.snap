@@ -184,6 +184,239 @@ exports[`[Setting] screen renders without crashing 1`] = `
       </View>
     </SafeAreaView>
   </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "lineNumber": 58,
+                    "methodName": "Function.parse",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 56,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 180,
+                    "methodName": "registerError",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 21,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 84,
+                    "methodName": "errorImpl",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 13,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 63,
+                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 12,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 30,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 17,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 51,
+                    "methodName": "warning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 2,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "lineNumber": 29,
+                    "methodName": "warnOnce",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 4,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/index.js",
+                    "lineNumber": 290,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 23,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20470,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20473,
+                    "methodName": "Object.<anonymous>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 48.5,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -370,6 +603,239 @@ exports[`[Setting] screen renders without crashing 2`] = `
         </View>
       </View>
     </SafeAreaView>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "lineNumber": 58,
+                    "methodName": "Function.parse",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 56,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 180,
+                    "methodName": "registerError",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 21,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 84,
+                    "methodName": "errorImpl",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 13,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 63,
+                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 12,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 30,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 17,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 51,
+                    "methodName": "warning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 2,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "lineNumber": 29,
+                    "methodName": "warnOnce",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 4,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/index.js",
+                    "lineNumber": 290,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 23,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20470,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20473,
+                    "methodName": "Object.<anonymous>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 48.5,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
   </View>
 </View>
 `;
@@ -558,6 +1024,239 @@ exports[`[Setting] screen renders without crashing 3`] = `
       </View>
     </SafeAreaView>
   </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "lineNumber": 58,
+                    "methodName": "Function.parse",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 56,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 180,
+                    "methodName": "registerError",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 21,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 84,
+                    "methodName": "errorImpl",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 13,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 63,
+                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 12,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 30,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 17,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 51,
+                    "methodName": "warning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 2,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "lineNumber": 29,
+                    "methodName": "warnOnce",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 4,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/index.js",
+                    "lineNumber": 290,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 23,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20470,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20473,
+                    "methodName": "Object.<anonymous>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 48.5,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -744,6 +1443,239 @@ exports[`[Setting] screen renders without crashing 4`] = `
         </View>
       </View>
     </SafeAreaView>
+  </View>
+  <View
+    style={
+      Object {
+        "bottom": 0,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      pointerEvents="box-none"
+      style={
+        Object {
+          "bottom": "100%",
+          "flexDirection": "row",
+          "justifyContent": "flex-end",
+          "paddingBottom": 4,
+          "paddingEnd": 4,
+          "position": "absolute",
+          "width": "100%",
+        }
+      }
+    >
+      <TouchableWithoutFeedback
+        hitSlop={
+          Object {
+            "bottom": 4,
+            "left": 4,
+            "right": 4,
+            "top": 4,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(250, 186, 48, 0.95)",
+              },
+              Object {
+                "borderRadius": 14,
+                "height": 28,
+                "justifyContent": "center",
+                "paddingHorizontal": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              Object {
+                "color": "rgba(255, 255, 255, 1)",
+                "fontSize": 12,
+                "includeFontPadding": false,
+                "lineHeight": 16,
+              }
+            }
+          >
+            Dismiss All
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+    <ScrollView
+      data={
+        Array [
+          Object {
+            "category": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+            "warnings": Array [
+              YellowBoxWarning {
+                "message": Object {
+                  "content": "AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage",
+                  "substitutions": Array [],
+                },
+                "stack": Array [
+                  Object {
+                    "arguments": Array [],
+                    "column": 29,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "lineNumber": 58,
+                    "methodName": "Function.parse",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 56,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 180,
+                    "methodName": "registerError",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 21,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 84,
+                    "methodName": "errorImpl",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 13,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "lineNumber": 63,
+                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 12,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 30,
+                    "methodName": "printWarning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 17,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/fbjs/lib/warning.js",
+                    "lineNumber": 51,
+                    "methodName": "warning",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 2,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "lineNumber": 29,
+                    "methodName": "warnOnce",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 4,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/index.js",
+                    "lineNumber": 290,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 23,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20470,
+                    "methodName": "Object.get AsyncStorage [as AsyncStorage]",
+                  },
+                  Object {
+                    "arguments": Array [],
+                    "column": 32,
+                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "lineNumber": 20473,
+                    "methodName": "Object.<anonymous>",
+                  },
+                ],
+                "symbolicated": Object {
+                  "error": null,
+                  "stack": null,
+                  "status": "NONE",
+                },
+              },
+            ],
+          },
+        ]
+      }
+      disableVirtualization={false}
+      horizontal={false}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      onEndReachedThreshold={2}
+      removeClippedSubviews={false}
+      scrollEnabled={false}
+      scrollEventThrottle={50}
+      scrollsToTop={false}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "height": 48.5,
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View
+        style={null}
+      >
+        <TouchableWithoutFeedback>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
+                },
+                Object {
+                  "height": 48,
+                  "justifyContent": "center",
+                  "marginTop": 0.5,
+                  "paddingHorizontal": 12,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "flex-start",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                numberOfLines={2}
+                style={
+                  Object {
+                    "color": "rgba(255, 255, 255, 1)",
+                    "flex": 1,
+                    "fontSize": 14,
+                    "includeFontPadding": false,
+                    "lineHeight": 18,
+                  }
+                }
+              >
+                <Text>
+                  AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from '@react-native-community/async-storage' instead of 'react-native'. See https://github.com/react-native-community/async-storage
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    </ScrollView>
+    <SafeAreaView
+      style={
+        Object {
+          "backgroundColor": "rgba(250, 186, 48, 0.95)",
+          "marginTop": 0.5,
+        }
+      }
+    />
   </View>
 </View>
 `;

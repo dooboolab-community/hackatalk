@@ -1,13 +1,11 @@
 import { Alert, TouchableOpacity } from 'react-native';
 import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
 import { Button, LoadingIndicator } from '@dooboo-ui/native';
-import { MUTATION_SEND_VERIFICATION, MutationSendVerificationInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.View`
@@ -43,28 +41,28 @@ function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
   const { navigation, route: { params: { email } } } = props;
   const [loading, setLoading] = useState<boolean>(false);
-  const [sendVerification] =
-    useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
+  // const [sendVerification] =
+  //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
 
-  const sendVerificationLink = async (): Promise<void> => {
-    try {
-      setLoading(true);
-      const { data: emailVerificationData } = await sendVerification({
-        variables: {
-          email,
-        },
-      });
+  // const sendVerificationLink = async (): Promise<void> => {
+  //   try {
+  //     setLoading(true);
+  //     const { data: emailVerificationData } = await sendVerification({
+  //       variables: {
+  //         email,
+  //       },
+  //     });
 
-      if (emailVerificationData?.sendVerification) {
-        return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
-      }
-      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
-    } catch (err) {
-      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     if (emailVerificationData?.sendVerification) {
+  //       return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+  //     }
+  //     Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+  //   } catch (err) {
+  //     Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const pressNext = (): void => {
     navigation.goBack();
@@ -78,7 +76,7 @@ function Page(props: Props): ReactElement {
       <StyledHighlightText>{email}</StyledHighlightText>
       <TouchableOpacity
         testID="touch-email"
-        onPress={sendVerificationLink}
+        // onPress={sendVerificationLink}
         style={{
           marginTop: 24,
         }}
