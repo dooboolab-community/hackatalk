@@ -1,8 +1,3 @@
-import {
-  MUTATION_ADD_FRIEND,
-  MUTATION_DELETE_FRIEND,
-} from '../../../graphql/mutations';
-import { MockedProvider, MockedResponse } from '@apollo/react-testing';
 import React, {
   ForwardRefExoticComponent,
   RefAttributes,
@@ -18,7 +13,6 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { QUERY_FRIENDS } from '../../../graphql/queries';
 import Shared from '../ProfileModal';
 import { act } from 'react-test-renderer';
 import { useProfileContext } from '../../../providers/ProfileModalProvider';
@@ -61,68 +55,67 @@ describe('[ProfileModal] rendering test', () => {
   const ref = createRef<Handle<typeof Shared>>();
   const onAddFriend = jest.fn();
   const onDeleteFriend = jest.fn();
-  const mocks: Array<MockedResponse> = [
-    {
-      request: { query: MUTATION_ADD_FRIEND, variables: { friendId: '1' } },
-      result: {
-        data: {
-          friends: [
-            {
-              id: 'aa11',
-              photoURL: '',
-              name: 'testName',
-            },
-          ],
-        },
-      },
-    },
-    {
-      request: {
-        query: MUTATION_DELETE_FRIEND,
-      },
-      result: {
-        data: {
-          friends: [
-            {
-              id: 'aa11',
-              photoURL: '',
-              name: 'testName',
-            },
-          ],
-        },
-      },
-    },
-    {
-      request: {
-        query: QUERY_FRIENDS,
-      },
-      result: {
-        data: {
-          friends: [
-            {
-              id: 'aa11',
-              photoURL: '',
-              name: 'testName',
-              email: 'test@email.com',
-              nickname: '',
-              birthday: '',
-              statusMessage: '',
-              verified: true,
-              authType: '',
-              thumbURL: '',
-              isOnline: '',
-            },
-          ],
-        },
-      },
-    },
-  ];
+  // const mocks: Array<MockedResponse> = [
+  //   {
+  //     request: { query: MUTATION_ADD_FRIEND, variables: { friendId: '1' } },
+  //     result: {
+  //       data: {
+  //         friends: [
+  //           {
+  //             id: 'aa11',
+  //             photoURL: '',
+  //             name: 'testName',
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   },
+  //   {
+  //     request: {
+  //       query: MUTATION_DELETE_FRIEND,
+  //     },
+  //     result: {
+  //       data: {
+  //         friends: [
+  //           {
+  //             id: 'aa11',
+  //             photoURL: '',
+  //             name: 'testName',
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   },
+  //   {
+  //     request: {
+  //       query: QUERY_FRIENDS,
+  //     },
+  //     result: {
+  //       data: {
+  //         friends: [
+  //           {
+  //             id: 'aa11',
+  //             photoURL: '',
+  //             name: 'testName',
+  //             email: 'test@email.com',
+  //             nickname: '',
+  //             birthday: '',
+  //             statusMessage: '',
+  //             verified: true,
+  //             authType: '',
+  //             thumbURL: '',
+  //             isOnline: '',
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   },
+  // ];
+
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Shared ref={ref} {...props} />
-      </MockedProvider>,
+      <Shared ref={ref} {...props} />,
     );
     testingLib = render(component);
     fakeProfileModalRef = createRef<Ref>();

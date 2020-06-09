@@ -1,6 +1,5 @@
 import * as Device from 'expo-device';
 
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
@@ -12,10 +11,8 @@ import { dark, light } from './theme';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
-import { QUERY_ME } from './graphql/queries';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from './types';
-import client from './apollo/Client';
 import { initializeEThree } from './utils/virgil';
 
 const onReceived = (notification: ReceivedNotification): void => {
@@ -37,22 +34,22 @@ function AppWithTheme(): ReactElement {
   const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
-  const { loading, data } = useQuery<{ me: User }>(QUERY_ME);
+  // const { loading, data } = useQuery<{ me: User }>(QUERY_ME);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
     setDeviceType(deviceType);
   };
 
-  useEffect(() => {
-    if (data && data.me) {
-      initializeEThree(data.me.id);
-      setUser(data.me);
-    } else if (data) {
-      AsyncStorage.removeItem('token');
-    }
-    setDevice();
-  }, [loading]);
+  // useEffect(() => {
+  //   if (data && data.me) {
+  //     initializeEThree(data.me.id);
+  //     setUser(data.me);
+  //   } else if (data) {
+  //     AsyncStorage.removeItem('token');
+  //   }
+  //   setDevice();
+  // }, [loading]);
 
   return <RootNavigator />;
 }
@@ -90,11 +87,9 @@ function ProviderWrapper(): ReactElement {
     <AppearanceProvider>
       <DeviceProvider>
         <AuthProvider>
-          <ApolloProvider client={client}>
-            <ActionSheetProvider>
-              <App />
-            </ActionSheetProvider>
-          </ApolloProvider>
+          <ActionSheetProvider>
+            <App />
+          </ActionSheetProvider>
         </AuthProvider>
       </DeviceProvider>
     </AppearanceProvider>

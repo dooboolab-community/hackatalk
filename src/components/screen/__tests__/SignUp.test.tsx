@@ -12,7 +12,6 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MUTATION_SIGN_UP } from '../../../graphql/mutations';
-import { MockedProvider } from '@apollo/react-testing';
 import SignUp from '../SignUp';
 
 // eslint-disable-next-line
@@ -53,9 +52,7 @@ describe('[SignUp] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(
-      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
-        <SignUp {...props} />
-      </MockedProvider>,
+      <SignUp {...props} />,
     );
   });
 
@@ -72,9 +69,7 @@ describe('[SignUp] interaction', () => {
   beforeAll(() => {
     props = createTestProps();
     component = createTestElement(
-      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
-        <SignUp {...props} />
-      </MockedProvider>,
+      <SignUp {...props} />,
     );
     testingLib = render(component);
   });
@@ -138,9 +133,7 @@ describe('[SignUp] interaction', () => {
     beforeAll(() => {
       props = createTestProps();
       component = createTestElement(
-        <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
-          <SignUp {...props} />
-        </MockedProvider>,
+        <SignUp {...props} />,
       );
       testingLib = render(component);
     });
@@ -149,9 +142,7 @@ describe('[SignUp] interaction', () => {
       beforeAll(() => {
         props = createTestProps();
         component = createTestElement(
-          <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
-            <SignUp {...props} />
-          </MockedProvider>,
+          <SignUp {...props} />,
         );
         testingLib = render(component);
       });
@@ -350,9 +341,7 @@ describe('[SignUp] interaction', () => {
       navigation: null,
     });
     component = createTestElement(
-      <MockedProvider mocks={mockSignUpMutation} addTypename={false}>
-        <SignUp {...props} />
-      </MockedProvider>,
+      <SignUp {...props} />,
     );
     testingLib = render(component);
 

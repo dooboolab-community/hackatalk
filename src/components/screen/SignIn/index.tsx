@@ -3,7 +3,6 @@ import * as Device from 'expo-device';
 import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
-import { AuthPayload, MUTATION_SIGN_IN, SignInEmailInput } from '../../../graphql/mutations';
 import { ReactElement, useEffect, useState } from 'react';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
@@ -21,7 +20,6 @@ import renderMobile from './mobile';
 import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
-import { useMutation } from '@apollo/react-hooks';
 
 const { iOSClientId } = Config;
 
@@ -78,10 +76,10 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [signInEmail] = useMutation<
-    { signInEmail: AuthPayload },
-    SignInEmailInput
-  >(MUTATION_SIGN_IN);
+  // const [signInEmail] = useMutation<
+  //   { signInEmail: AuthPayload },
+  //   SignInEmailInput
+  // >(MUTATION_SIGN_IN);
 
   const initAsync = async (): Promise<void> => {
     await GoogleSignIn.initAsync({
@@ -114,21 +112,21 @@ function SignIn(props: Props): ReactElement {
     };
 
     try {
-      const { data } = await signInEmail({ variables });
-      if (data && data.signInEmail) {
-        const user = data.signInEmail.user;
+      // const { data } = await signInEmail({ variables });
+      // if (data && data.signInEmail) {
+      //   const user = data.signInEmail.user;
 
-        if (user && !user.verified) {
-          return navigation.navigate('VerifyEmail', {
-            email,
-          });
-        }
+      //   if (user && !user.verified) {
+      //     return navigation.navigate('VerifyEmail', {
+      //       email,
+      //     });
+      //   }
 
-        await AsyncStorage.setItem('token', data.signInEmail.token);
-        await AsyncStorage.setItem('password', password);
-        initializeEThree(data.signInEmail.user.id);
-        setUser(user);
-      }
+      //   await AsyncStorage.setItem('token', data.signInEmail.token);
+      //   await AsyncStorage.setItem('password', password);
+      //   initializeEThree(data.signInEmail.user.id);
+      //   setUser(user);
+      // }
     } catch (error) {
       showAlertForGrpahqlError(error.graphQLErrors);
     } finally {

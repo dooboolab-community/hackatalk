@@ -1,6 +1,5 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
 import { Button, EditText } from '@dooboo-ui/native';
-import { MUTATION_CHANGE_PASSWORD, MutationChangePasswordInput } from '../../graphql/mutations';
 import React, {
   ReactElement,
   useEffect,
@@ -13,7 +12,6 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
-import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const InnerContainer = styled.View`
@@ -40,9 +38,6 @@ function ChangePw(props: Props): ReactElement {
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const [changePassword] = useMutation<{ changeEmailPassword: boolean }, MutationChangePasswordInput>(
-    MUTATION_CHANGE_PASSWORD,
-  );
 
   const navigateBack = (): void => navigation.goBack();
 
@@ -57,25 +52,25 @@ function ChangePw(props: Props): ReactElement {
       newPassword: newPw,
     };
 
-    try {
-      const result = await changePassword({ variables });
-      if (result.data?.changeEmailPassword) {
-        Keyboard.dismiss();
-        Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
-          {
-            text: getString('OK'),
-            onPress: navigateBack,
-          },
-        ]);
-      }
-    } catch (e) {
-      Alert.alert('', getString('CHANGE_PASSWORD_HAS_FAILED'), [
-        {
-          text: getString('OK'),
-          onPress: navigateBack,
-        },
-      ]);
-    }
+    // try {
+    //   const result = await changePassword({ variables });
+    //   if (result.data?.changeEmailPassword) {
+    //     Keyboard.dismiss();
+    //     Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
+    //       {
+    //         text: getString('OK'),
+    //         onPress: navigateBack,
+    //       },
+    //     ]);
+    //   }
+    // } catch (e) {
+    //   Alert.alert('', getString('CHANGE_PASSWORD_HAS_FAILED'), [
+    //     {
+    //       text: getString('OK'),
+    //       onPress: navigateBack,
+    //     },
+    //   ]);
+    // }
   };
 
   const [keyboardOffset, setKeyboardOffset] = useState(0);

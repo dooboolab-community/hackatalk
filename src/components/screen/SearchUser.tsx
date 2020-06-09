@@ -1,10 +1,4 @@
 import { Animated, FlatList } from 'react-native';
-import { ApolloQueryResult, OperationVariables } from 'apollo-client';
-import {
-  QUERY_FRIENDS,
-  QUERY_USERS,
-  QueryUsersInput,
-} from '../../graphql/queries';
 import React, { useMemo, useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
@@ -18,7 +12,6 @@ import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useQuery } from '@apollo/react-hooks';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const StyledSafeAreaView = styled.SafeAreaView`
@@ -66,65 +59,59 @@ const Screen = (): React.ReactElement => {
 
   const scrollY = new Animated.Value(0);
 
-  const {
-    loading: loadingFriends,
-    error: friendsQueryError,
-    data: friendsData,
-    refetch: refetchFreinds,
-  } = useQuery<QueryFriendsData>(QUERY_FRIENDS, {
-    fetchPolicy: 'network-only',
-  });
-
   const [searchText, setSearchText] = useState<string>('');
   const debouncedText = useDebounce(searchText, 500);
 
-  const {
-    loading: loadingUsers,
-    data: usersData,
-    error: usersQueryError,
-    refetch: refetchUsers,
-    fetchMore: fetchMoreUsers,
-  } = useQuery<QueryUsersData, QueryUsersInput>(QUERY_USERS, {
-    fetchPolicy: 'network-only',
-    variables:
-      debouncedText === ''
-        ? { first: PAGE_CNT }
-        : {
-          first: PAGE_CNT,
-          filter: true,
-          user: {
-            email: debouncedText,
-            name: debouncedText,
-            nickname: debouncedText,
-          },
-        },
-  });
+  // TODO: Get fragment data
+  const users: any = {};
 
-  const users = useMemo(() => {
-    return usersData?.users?.edges?.map((edge: UserEdges) => edge?.node) || [];
-  }, [usersData]);
+  // const {
+  //   loading: loadingUsers,
+  //   data: usersData,
+  //   error: usersQueryError,
+  //   refetch: refetchUsers,
+  //   fetchMore: fetchMoreUsers,
+  // } = useQuery<QueryUsersData, QueryUsersInput>(QUERY_USERS, {
+  //   fetchPolicy: 'network-only',
+  //   variables:
+  //     debouncedText === ''
+  //       ? { first: PAGE_CNT }
+  //       : {
+  //         first: PAGE_CNT,
+  //         filter: true,
+  //         user: {
+  //           email: debouncedText,
+  //           name: debouncedText,
+  //           nickname: debouncedText,
+  //         },
+  //       },
+  // });
 
-  if (usersQueryError) {
-    return (
-      <ErrorView
-        body={usersQueryError.message}
-        onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
-          refetchUsers({ first: PAGE_CNT })
-        }
-      />
-    );
-  }
+  // const users = useMemo(() => {
+  //   return usersData?.users?.edges?.map((edge: UserEdges) => edge?.node) || [];
+  // }, [usersData]);
 
-  if (friendsQueryError) {
-    return (
-      <ErrorView
-        body={friendsQueryError.message}
-        onButtonPressed={(): Promise<ApolloQueryResult<QueryFriendsData>> =>
-          refetchFreinds()
-        }
-      />
-    );
-  }
+  // if (usersQueryError) {
+  //   return (
+  //     <ErrorView
+  //       body={usersQueryError.message}
+  //       onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
+  //         refetchUsers({ first: PAGE_CNT })
+  //       }
+  //     />
+  //   );
+  // }
+
+  // if (friendsQueryError) {
+  //   return (
+  //     <ErrorView
+  //       body={friendsQueryError.message}
+  //       onButtonPressed={(): Promise<ApolloQueryResult<QueryFriendsData>> =>
+  //         refetchFreinds()
+  //       }
+  //     />
+  //   );
+  // }
 
   const onChangeText = (text: string): void => {
     setSearchText(text);
@@ -154,74 +141,74 @@ const Screen = (): React.ReactElement => {
     index: number;
   }): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
-    const userListOnPressInlineFn = (): void => {
-      const deleteMode = !friendsData
-        ? false
-        : !friendsData.friends
-          ? false
-          : friendsData.friends.findIndex((friend) => friend.id === item.id) > -1;
-      showModal({
-        user: item,
-        deleteMode,
-      });
-    };
+    // const userListOnPressInlineFn = (): void => {
+    //   const deleteMode = !friendsData
+    //     ? false
+    //     : !friendsData.friends
+    //       ? false
+    //       : friendsData.friends.findIndex((friend) => friend.id === item.id) > -1;
+    //   showModal({
+    //     user: item,
+    //     deleteMode,
+    //   });
+    // };
     return (
       <UserListItem
         testID={itemTestID}
         user={item}
-        onPress={userListOnPressInlineFn}
+        // onPress={userListOnPressInlineFn}
       />
     );
   };
 
   const renderUsers = (): React.ReactElement => {
-    if (loadingUsers || loadingFriends) {
-      return (
-        <Container>
-          <LoadingIndicator />
-        </Container>
-      );
-    }
+    // if (loadingUsers || loadingFriends) {
+    //   return (
+    //     <Container>
+    //       <LoadingIndicator />
+    //     </Container>
+    //   );
+    // }
 
     const onEndReached = (): void => {
-      const { endCursor } = usersData?.users?.pageInfo || {};
+      // const { endCursor } = usersData?.users?.pageInfo || {};
 
-      const variables =
-        debouncedText === ''
-          ? {
-            first: PAGE_CNT,
-            after: endCursor,
-          }
-          : {
-            first: PAGE_CNT,
-            after: endCursor,
-            filter: true,
-            user: {
-              email: debouncedText,
-              name: debouncedText,
-              nickname: debouncedText,
-            },
-          };
+      // const variables =
+      //   debouncedText === ''
+      //     ? {
+      //       first: PAGE_CNT,
+      //       after: endCursor,
+      //     }
+      //     : {
+      //       first: PAGE_CNT,
+      //       after: endCursor,
+      //       filter: true,
+      //       user: {
+      //         email: debouncedText,
+      //         name: debouncedText,
+      //         nickname: debouncedText,
+      //       },
+      //     };
 
-      const updateQuery = (
-        previousResult: QueryUsersData,
-        { fetchMoreResult }: OperationVariables,
-      ): QueryUsersData => {
-        const { edges: prevEdges, __typename } = previousResult.users;
-        const { edges: newEdges, pageInfo, totalCount } = fetchMoreResult.users;
-        return newEdges.length
-          ? {
-            users: {
-              __typename,
-              totalCount,
-              edges: [...prevEdges, ...newEdges],
-              pageInfo,
-            },
-          }
-          : previousResult;
-      };
+      // const updateQuery = (
+      //   previousResult: QueryUsersData,
+      //   { fetchMoreResult }: OperationVariables,
+      // ): QueryUsersData => {
+      //   const { edges: prevEdges, __typename } = previousResult.users;
+      //   const { edges: newEdges, pageInfo, totalCount } = fetchMoreResult.users;
+      //   return newEdges.length
+      //     ? {
+      //       users: {
+      //         __typename,
+      //         totalCount,
+      //         edges: [...prevEdges, ...newEdges],
+      //         pageInfo,
+      //       },
+      //     }
+      //     : previousResult;
+      // };
 
-      fetchMoreUsers({ variables, updateQuery });
+      // fetchMoreUsers({ variables, updateQuery });
     };
     return (
       <StyledAnimatedFlatList

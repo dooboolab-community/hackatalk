@@ -1,13 +1,11 @@
 import { Button, EditText } from '@dooboo-ui/native';
-import { MUTATION_FIND_PASSWORD, MutationFindPasswordInput } from '../../graphql/mutations';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
-import { Alert } from 'react-native';
 
+import { Alert } from 'react-native';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.View`
@@ -34,7 +32,7 @@ function Page({ navigation }: Props): ReactElement {
   const [findingPw, setFindingPw] = useState<boolean>(false);
 
   const { theme } = useThemeContext();
-  const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
+  // const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
 
   const navigateToSignIn = (): void => navigation.navigate('SignIn');
 
@@ -46,15 +44,15 @@ function Page({ navigation }: Props): ReactElement {
 
     try {
       setFindingPw(true);
-      const result = await findPassword({ variables: { email } });
-      if (result.data?.findPassword) {
-        Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
-          {
-            text: getString('OK'),
-            onPress: navigateToSignIn,
-          },
-        ]);
-      }
+      // const result = await findPassword({ variables: { email } });
+      // if (result.data?.findPassword) {
+      //   Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
+      //     {
+      //       text: getString('OK'),
+      //       onPress: navigateToSignIn,
+      //     },
+      //   ]);
+      // }
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
     } finally {

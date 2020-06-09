@@ -1,10 +1,3 @@
-import {
-  AuthPayload,
-  MUTATION_SEND_VERIFICATION,
-  MUTATION_SIGN_UP,
-  MutationSendVerificationInput,
-  MutationSignUpInput,
-} from '../../graphql/mutations';
 import { Button, EditText } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
@@ -14,7 +7,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useMutation } from '@apollo/react-hooks';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 const Container = styled.SafeAreaView`
@@ -51,9 +43,9 @@ function Page(props: Props): ReactElement {
   const [signingUp, setSigningUp] = useState<boolean>(false);
 
   const { theme } = useThemeContext();
-  const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
-  const [sendVerification] =
-    useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
+  // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
+  // const [sendVerification] =
+  //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
 
   const requestSignUp = async (): Promise<void> => {
     if (!validateEmail(email) || !validatePassword(password) || name.length < 2 || password !== confirmPassword) {
@@ -84,22 +76,22 @@ function Page(props: Props): ReactElement {
     };
 
     try {
-      const { data } = await signUp({ variables });
-      const { data: emailVerificationData } = await sendVerification({
-        variables: {
-          email,
-        },
-      });
-      if (emailVerificationData?.sendVerification) {
-        // email sent
-      }
-      const user = data?.signUp.user;
+      // const { data } = await signUp({ variables });
+      // const { data: emailVerificationData } = await sendVerification({
+      //   variables: {
+      //     email,
+      //   },
+      // });
+      // if (emailVerificationData?.sendVerification) {
+      //   // email sent
+      // }
+      // const user = data?.signUp.user;
 
-      if (user) {
-        navigation.replace('VerifyEmail', {
-          email,
-        });
-      }
+      // if (user) {
+      //   navigation.replace('VerifyEmail', {
+      //     email,
+      //   });
+      // }
     } catch ({ graphQLErrors }) {
       showAlertForGrpahqlError(graphQLErrors);
     } finally {
