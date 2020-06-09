@@ -34,7 +34,5 @@ describe('[NotFound] screen', () => {
     });
   });
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 });

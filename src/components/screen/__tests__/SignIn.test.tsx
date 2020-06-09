@@ -20,9 +20,9 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
-import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/native-theme';
+import { createMockEnvironment } from 'relay-test-utils';
 
 const fetchMock = fetch as FetchMock;
 
@@ -33,54 +33,54 @@ let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
 
-const mockSignInEmail = [
-  {
-    request: {
-      query: MUTATION_SIGN_IN,
-      variables: {
-        email: 'test@email.com',
-        password: 'password',
-      },
-    },
-    newData: jest.fn()
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: {
-            token: 'access token',
-            user: {
-              id: 'userId',
-              authType: 'email',
-              email: 'test@email.com',
-              nickname: 'nickname',
-              statusMessage: 'status',
-              verified: true,
-            },
-          },
-        },
-      })
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: undefined,
-        },
-      })
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: {
-            token: 'access token',
-            user: {
-              id: 'userId',
-              authType: 'email',
-              email: 'test@email.com',
-              nickname: 'nickname',
-              statusMessage: 'status',
-              verified: false,
-            },
-          },
-        },
-      })
-    ,
-  },
-];
+// const mockSignInEmail = [
+//   {
+//     request: {
+//       query: MUTATION_SIGN_IN,
+//       variables: {
+//         email: 'test@email.com',
+//         password: 'password',
+//       },
+//     },
+//     newData: jest.fn()
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: {
+//             token: 'access token',
+//             user: {
+//               id: 'userId',
+//               authType: 'email',
+//               email: 'test@email.com',
+//               nickname: 'nickname',
+//               statusMessage: 'status',
+//               verified: true,
+//             },
+//           },
+//         },
+//       })
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: undefined,
+//         },
+//       })
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: {
+//             token: 'access token',
+//             user: {
+//               id: 'userId',
+//               authType: 'email',
+//               email: 'test@email.com',
+//               nickname: 'nickname',
+//               statusMessage: 'status',
+//               verified: false,
+//             },
+//           },
+//         },
+//       })
+//     ,
+//   },
+// ];
 
 jest.mock('expo-constants', () => ({
   ...jest.requireActual('expo-constants'),
@@ -88,10 +88,13 @@ jest.mock('expo-constants', () => ({
 }));
 
 describe('[SignIn] rendering test', () => {
+  let environment;
   beforeEach(() => {
+    environment = createMockEnvironment();
+
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
     );
   });
 
@@ -104,7 +107,7 @@ describe('[SignIn] rendering test', () => {
 
   it('should render [Dark] mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
       ThemeType.DARK,
     );
     testingLib = render(component);
@@ -114,7 +117,7 @@ describe('[SignIn] rendering test', () => {
 
   it('should render tablet mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
       ThemeType.DARK,
       Device.DeviceType.TABLET,
     );
@@ -125,10 +128,12 @@ describe('[SignIn] rendering test', () => {
 });
 
 describe('[SignIn] interaction', () => {
+  let environment;
   beforeAll(() => {
+    environment = createMockEnvironment();
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
     );
     testingLib = render(component);
   });
@@ -322,7 +327,7 @@ describe('[SignIn] interaction', () => {
     it('should call signIn with invalid params and  check whether it catches error', async () => {
       props = createTestProps({ navigation: null });
       component = createTestElement(
-        <SignIn {...props} />,
+        <SignIn {...props} environment={environment}/>,
       );
       testingLib = render(component);
 
@@ -410,11 +415,13 @@ describe('[SignIn] interaction', () => {
 
 describe('[SignIn] Facebook Signin', () => {
   let testingLib: RenderResult;
+  let environment;
 
   beforeAll(() => {
     props = createTestProps();
+    environment = createMockEnvironment();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
     );
     testingLib = render(component);
   });
@@ -597,11 +604,13 @@ describe('[SignIn] Google Signin', () => {
 
 describe('Apple SignIn', () => {
   let testingLib: RenderResult;
+  let environment;
 
   beforeAll(() => {
     props = createTestProps();
+    environment = createMockEnvironment();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props} environment={environment}/>,
     );
     testingLib = render(component);
   });

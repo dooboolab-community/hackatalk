@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AuthType, User } from '../../../types';
+import { AuthType, User } from '../../../types/graphql';
 import {
   RenderResult,
   act,
@@ -40,7 +40,8 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.EMAIL),
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.Email),
     );
     testingLib = render(component);
   });
@@ -53,7 +54,8 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.FACEBOOK),
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.Facebook),
     );
     const { baseElement: baseElement2 } = render(component);
     expect(baseElement2).toBeTruthy();
@@ -62,7 +64,8 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.GOOGLE),
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.Google),
     );
     const { baseElement: baseElement3 } = render(component);
     expect(baseElement3).toBeTruthy();
@@ -71,7 +74,8 @@ describe('[Setting] screen', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.APPLE),
+      undefined,
+      getEmptyAuthUserWithSignInType(AuthType.Apple),
     );
     const { baseElement: baseElement4 } = render(component);
     expect(baseElement4).toBeTruthy();
@@ -102,6 +106,7 @@ describe('[Setting] screen', () => {
             statusMessage: 'status',
           }),
         }));
+
       act(() => {
         fireEvent.press(testingLib.getByTestId('button-logout'));
       });

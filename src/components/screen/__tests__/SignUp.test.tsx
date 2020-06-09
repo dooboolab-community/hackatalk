@@ -11,42 +11,41 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { MUTATION_SIGN_UP } from '../../../graphql/mutations';
 import SignUp from '../SignUp';
 
 // eslint-disable-next-line
 let props: any;
 let component: ReactElement;
 
-const mockSignUpMutation = [
-  {
-    request: {
-      query: MUTATION_SIGN_UP,
-      variables: {
-        user: {
-          email: 'test@email.com',
-          name: 'name',
-          password: 'testpass12!',
-          statusMessage: 'status',
-        },
-      },
-    },
-    result: {
-      data: {
-        signUp: {
-          token: 'access token',
-          user: {
-            id: 'userId',
-            email: 'test@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
-            verified: false,
-          },
-        },
-      },
-    },
-  },
-];
+// const mockSignUpMutation = [
+//   {
+//     request: {
+//       query: MUTATION_SIGN_UP,
+//       variables: {
+//         user: {
+//           email: 'test@email.com',
+//           name: 'name',
+//           password: 'testpass12!',
+//           statusMessage: 'status',
+//         },
+//       },
+//     },
+//     result: {
+//       data: {
+//         signUp: {
+//           token: 'access token',
+//           user: {
+//             id: 'userId',
+//             email: 'test@email.com',
+//             nickname: 'nickname',
+//             statusMessage: 'status',
+//             verified: false,
+//           },
+//         },
+//       },
+//     },
+//   },
+// ];
 
 describe('[SignUp] rendering test', () => {
   beforeEach(() => {

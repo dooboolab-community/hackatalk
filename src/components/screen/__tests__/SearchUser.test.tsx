@@ -63,9 +63,7 @@ describe('[SearchUser] rendering test', () => {
     props = createTestProps();
   });
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 
   it('should be true', () => {
     expect(1).toBeTruthy();

@@ -49,7 +49,5 @@ describe('[Channel] screen', () => {
     });
   });
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 });
