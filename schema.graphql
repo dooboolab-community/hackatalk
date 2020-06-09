@@ -1,0 +1,340 @@
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+enum AuthType {
+  EMAIL
+  FACEBOOK
+  GOOGLE
+  APPLE
+}
+
+type Channel {
+  id: ID!
+  type: ChannelType
+  name: String
+  messages: [Message]
+  memberships: [Membership]
+  myMembership: Membership
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+input ChannelInput {
+  type: ChannelType
+  name: String
+  friendIds: [String!]!
+}
+
+enum ChannelType {
+  PRIVATE
+  PUBLIC
+}
+
+scalar Date
+
+scalar DateTime
+
+type File {
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
+type Friend {
+  id: ID!
+  user: User
+  friend: User
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type FriendPayload {
+  user: User!
+  added: Boolean
+  deleted: Int
+}
+
+type FriendSub {
+  user: User
+  action: FriendSubAction
+}
+
+enum FriendSubAction {
+  ADDED
+  UPDATED
+  DELETED
+}
+
+type Gallery {
+  id: ID!
+  photoURL: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+type Membership {
+  id: ID!
+  channel: Channel
+  user: User
+  type: MemberType
+  userAlert: Boolean
+  userMode: UserModeType
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+enum MemberType {
+  OWNER
+  MEMBER
+}
+
+type Message {
+  id: String!
+  channel: Channel
+  sender: User
+  type: String
+  text: String
+  picture: [Photo]
+  filePath: String
+  replies: [Reply]
+  reactions: [Reaction]
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type MessagePayload {
+  channelId: String!
+  message: Message
+}
+
+type Mutation {
+  signInEmail(email: String!, password: String!): AuthPayload!
+  signInWithSocialAccount(socialUser: SocialUserInput!): AuthPayload!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signUp(user: UserInput!): AuthPayload!
+  findPassword(email: String!): Boolean
+  sendVerification(email: String!): Boolean
+  addNotificationToken(notification: NotificationCreateInput!): Notification
+  removeNotificationToken(token: String!): Int
+  updateProfile(user: UserProfileInput!): User
+  addFriend(friendId: ID!): FriendPayload
+  deleteFriend(friendId: ID!): FriendPayload
+
+  """`friendIds` in Channel should exclude userid."""
+  createChannel(channel: ChannelInput): Channel
+  updateChannel(channel: ChannelInput): Int
+  deleteChannel(channelId: ID!): Int
+
+  """
+  Create message and return channelId when meessage has successfully sent.
+  Do not pass current userId inside `users`.
+  """
+  createMessage(message: String!, channelId: String!): MessagePayload
+  setOnlineStatus(isOnline: Boolean): Int
+  changeEmailPassword(password: String!, newPassword: String!): Boolean
+  createGallery(photoURL: String!): Gallery
+  updateGallery(galleryId: ID!, photoURL: String!): Int
+  deleteGallery(galleryId: ID!): Int
+  singleUpload(file: Upload!, dir: String): String!
+  createReaction(messageId: ID!, type: String!): Reaction
+  deleteReaction(reactionId: ID!): Int
+}
+
+type Notification {
+  id: ID!
+  token: String
+  device: String
+  os: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input NotificationCreateInput {
+  token: String!
+  device: String
+  os: String
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type Photo {
+  id: String!
+  thumbURL: String
+  photoURL: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type Query {
+  """
+  If filter is true, it will filter user with email, nickname or name.
+  You can add pagination with first and after args.
+  """
+  users(
+    user: UserQueryInput
+    includeUser: Boolean
+
+    """
+    It will filter `user` with email, nickname or name. with `user` parameter
+    """
+    filter: Boolean
+
+    """Pagination: The number of results to show. Must be >= 1"""
+    first: Int
+
+    """Pagination: The number of results to show. Must be >= 1"""
+    last: Int
+
+    """
+    Pagination: If you add a cursor here, it will only return results `before` this cursor
+    """
+    before: String
+
+    """
+    Pagination: If you add a cursor here, it will only return results `after` this cursor
+    """
+    after: String
+  ): UsersConnection
+  user(id: ID!): User
+  me: User
+  messages: [Message!]!
+  channels: [Channel!]!
+  friends: [User!]!
+  galleries(userId: String!): [Gallery!]!
+}
+
+type Reaction {
+  id: ID!
+  type: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type Reply {
+  id: String!
+  sender: User
+  type: String
+  text: String
+  filePath: String
+  replies: [Reply]
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+input SocialUserInput {
+  socialId: String!
+  authType: AuthType!
+  email: String
+  photoURL: String
+  thumbURL: String
+  name: String
+  nickname: String
+  birthday: Date
+  gender: Gender
+  phone: String
+}
+
+type Subscription {
+  userSignedIn(userId: ID!): User
+  userUpdated(userId: ID!): User
+  friendChanged(userId: ID!): FriendSub
+}
+
+scalar Upload
+
+type User {
+  id: ID!
+  email: String
+  name: String
+  nickname: String
+  thumbURL: String
+  photoURL: String
+  birthday: Date
+  gender: Gender
+  socialId: String
+  authType: AuthType
+  phone: String
+  verified: Boolean
+  statusMessage: String
+  isOnline: Boolean
+  lastSignedIn: DateTime
+  notifications: [Notification]
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type UserEdge {
+  node: User
+  cursor: String
+}
+
+input UserInput {
+  email: String!
+  password: String!
+  name: String
+  nickname: String
+  birthday: Date
+  gender: Gender
+  phone: String
+  statusMessage: String
+}
+
+enum UserModeType {
+  DEFAULT
+  HIDDEN
+  BLOCK
+}
+
+input UserProfileInput {
+  name: String
+  nickname: String
+  birthday: Date
+  gender: Gender
+  phone: String
+  thumbURL: String
+  photoURL: String
+  statusMessage: String
+}
+
+input UserQueryInput {
+  email: String
+  name: String
+  nickname: String
+  birthday: Date
+  gender: Gender
+  phone: String
+}
+
+"""
+Simple wrapper around our list of launches that contains a cursor to the
+last item in the list. Pass this cursor to the launches query to fetch results
+after these.
+"""
+type UsersConnection {
+  totalCount: Int
+  edges: [UserEdge]
+  pageInfo: PageInfo
+}
+

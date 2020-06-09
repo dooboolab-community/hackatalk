@@ -16,6 +16,10 @@ declare module '*.json' {
   export default content;
 }
 
+declare module 'babel-plugin-relay/macro' {
+  export { graphql } from 'react-relay';
+}
+
 declare module 'react-native-onesignal' {
   enum InFocusDisplayOption {
     none = 0,
@@ -51,6 +55,7 @@ declare module 'react-native-onesignal' {
     body: string;
     launchURL?: string;
     additionalData?: Record<string, unknown>;
+    // eslint-disable-next-line camelcase
     p2p_notification?: Array<any>;
   }
 
@@ -118,14 +123,14 @@ declare module 'react-native-onesignal' {
      * Getting the tags from the server and use the received object
      * @param {Function} handler You can read tags from this parameter.
      */
-    public static getTags(handler: (receivedTags: any) => {}): void;
+    public static getTags(handler: (receivedTags: any) => Record<string, unknown>): void;
 
     /**
      * Allows you to check whether notifications are enabled for the app, whether user is subscribed to notifications through OneSignal, and what the user's in-app subscription preference is. It also provides access to pushToken and userId
      * @param {Function} handler Handler function you can read subscription status from first parameter.
      */
     public static getPermissionSubscriptionState(
-      handler: (status: any) => {},
+      handler: (status: any) => Record<string, unknown>,
     ): void;
 
     /**
@@ -143,7 +148,7 @@ declare module 'react-native-onesignal' {
     public static setEmail(
       email: string,
       emailAuthCode: string,
-      callback: (error?: any) => {},
+      callback: (error?: any) => Record<string, unknown>,
     ): void;
 
     /**
@@ -151,13 +156,13 @@ declare module 'react-native-onesignal' {
      * @param {string} email User's email address.
      * @param {Function} callback Handler function for error if it occurred
      */
-    public static setEmail(email: string, callback: (error?: any) => {}): void;
+    public static setEmail(email: string, callback: (error?: any) => Record<string, unknown>): void;
 
     /**
      * If your application implements logout functionality, you can logout of the OneSignal email for this user using the logout function.
      * @param {Function} callback Handler function for error if it occurred
      */
-    public static logoutEmail(callback: (error?: any) => {}): void;
+    public static logoutEmail(callback: (error?: any) => Recrod<string, unknown>): void;
 
     /**
      * You can call this from your UI from a button press for example to give your user's options for your notifications. By default OneSignal always vibrates the device when a notification is displayed unless the device is in a total silent mode. Passing false means that the device will only vibrate lightly when the device is in it's vibrate only mode.
@@ -225,7 +230,7 @@ declare module 'react-native-onesignal' {
      * See what push permissions are currently enabled. callback will be invoked with a permissions object (currently supported only on iOS).
      * @param {Function} callback Callback function you can read the permissions from first parameter.
      */
-    public static checkPermissions(callback: (permissions: any) => {}): void;
+    public static checkPermissions(callback: (permissions: any) => Record<string, unknown>): void;
 
     /**
      * Requests Push Notification Permissions (iOS Only)
@@ -268,7 +273,7 @@ declare module 'react-native-onesignal' {
      */
     public static addEventListener(
       type: oneSignalEvents,
-      handler: Function,
+      handler: (notification: ReceivedNotification | onOpened) => void,
     ): void;
 
     /**
@@ -278,7 +283,7 @@ declare module 'react-native-onesignal' {
      */
     public static removeEventListener(
       type: oneSignalEvents,
-      handler?: Function,
+      handler?: (notification: ReceivedNotification | onOpened | DeviceInfo) => void,
     ): void;
   }
 }
