@@ -4,6 +4,10 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { ReactElement, useEffect, useState } from 'react';
+import type {
+  SignInMutation,
+  SignInMutationResponse,
+} from '../../../__generated__/SignInMutation.graphql';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 
@@ -13,13 +17,15 @@ import { AuthStackNavigationProps } from '../../navigation/AuthStackNavigator';
 import Config from 'react-native-config';
 import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
-import { User } from '../../../types';
+import { User } from '../../../types/graphql';
 import { getString } from '../../../../STRINGS';
+import { graphql } from 'babel-plugin-relay/macro';
 import { initializeEThree } from '../../../utils/virgil';
 import renderMobile from './mobile';
 import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
+import { useMutation } from 'react-relay/hooks';
 
 const { iOSClientId } = Config;
 
@@ -30,8 +36,7 @@ interface Props {
 export interface Variables {
   navigation: AuthStackNavigationProps<'SignIn'>;
   setUser: (user: User | undefined) => void;
-  isLoggingIn: boolean;
-  setIsLoggingIn: (val: boolean) => void;
+  isInFlight: boolean;
   signingInFacebook: boolean;
   setSigningInFacebook: (val: boolean) => void;
   signingInGoogle: boolean;
@@ -60,13 +65,27 @@ export interface Variables {
   appleLogin: () => Promise<void>;
 }
 
+const SignInEmailMutation = graphql`
+  mutation SignInMutation($email: String!, $password: String!) {
+    signInEmail(email: $email, password: $password) {
+      token
+      user {
+        id
+        email
+        name
+        photoURL
+        verified
+      }
+    }
+  }
+`;
+
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
   const { theme, changeThemeType, themeType } = useThemeContext();
   const { deviceType } = useDeviceContext();
 
-  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
   const [signingInFacebook, setSigningInFacebook] = useState<boolean>(false);
   const [signingInGoogle, setSigningInGoogle] = useState<boolean>(false);
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
@@ -76,10 +95,31 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  // const [signInEmail] = useMutation<
-  //   { signInEmail: AuthPayload },
-  //   SignInEmailInput
-  // >(MUTATION_SIGN_IN);
+  const [commitEmail, isInFlight] = useMutation<SignInMutation>(SignInEmailMutation);
+
+  const mutationConfig = {
+    variables: {
+      email,
+      password,
+    },
+    onCompleted: async (response: SignInMutationResponse): Promise<void> => {
+      const { token, user } = response.signInEmail;
+
+      if (user && !user.verified) {
+        return navigation.navigate('VerifyEmail', {
+          email,
+        });
+      }
+
+      await AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem('password', password);
+      initializeEThree(user.id);
+      setUser(user);
+    },
+    onError: (error: any): void => {
+      showAlertForGrpahqlError(error.graphQLErrors);
+    },
+  };
 
   const initAsync = async (): Promise<void> => {
     await GoogleSignIn.initAsync({
@@ -105,33 +145,8 @@ function SignIn(props: Props): ReactElement {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
       return;
     }
-    setIsLoggingIn(true);
-    const variables = {
-      email,
-      password,
-    };
 
-    try {
-      // const { data } = await signInEmail({ variables });
-      // if (data && data.signInEmail) {
-      //   const user = data.signInEmail.user;
-
-      //   if (user && !user.verified) {
-      //     return navigation.navigate('VerifyEmail', {
-      //       email,
-      //     });
-      //   }
-
-      //   await AsyncStorage.setItem('token', data.signInEmail.token);
-      //   await AsyncStorage.setItem('password', password);
-      //   initializeEThree(data.signInEmail.user.id);
-      //   setUser(user);
-      // }
-    } catch (error) {
-      showAlertForGrpahqlError(error.graphQLErrors);
-    } finally {
-      setIsLoggingIn(false);
-    }
+    commitEmail(mutationConfig);
   };
 
   const goToWebView = (uri: string): void => {
@@ -228,8 +243,7 @@ function SignIn(props: Props): ReactElement {
   const variables: Variables = {
     navigation,
     setUser,
-    isLoggingIn,
-    setIsLoggingIn,
+    isInFlight,
     signingInFacebook,
     setSigningInFacebook,
     signingInGoogle,

@@ -3,7 +3,7 @@ import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-na
 import CheckBox from './CheckBox';
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
-import { User } from '../../types';
+import { User } from '../../types/graphql';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -66,8 +66,10 @@ function Shared({
   user: { photoURL = '', name, statusMessage },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
-  const photoURLObj: ImageSourcePropType =
-    typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
+  const photoURLObj: ImageSourcePropType | null =
+    typeof photoURL === 'string'
+      ? { uri: photoURL }
+      : photoURL;
 
   return (
     <Container>
@@ -79,7 +81,7 @@ function Shared({
       >
         <Wrapper>
           {
-            photoURL
+            photoURL && photoURLObj
               ? <StyledImage source={photoURLObj} />
               : <View
                 style={{

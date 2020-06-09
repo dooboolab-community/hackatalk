@@ -1,36 +1,12 @@
 import { StyleProp, TextStyle } from 'react-native';
 
 import { SFC } from 'react';
+import { User } from './graphql';
 
 export enum MessageType {
   Message,
   Photo,
   File,
-}
-
-export enum AuthType {
-  EMAIL,
-  FACEBOOK,
-  GOOGLE,
-  APPLE
-}
-
-export interface User {
-  id: string;
-  email?: string;
-  nickname?: string;
-  birthday?: Date;
-  name?: string;
-  thumbURL?: string;
-  photoURL?: string;
-  statusMessage?: string;
-  isOnline?: boolean;
-  socialId?: string;
-  lastSignedIn?: string;
-  authType?: AuthType;
-  verified?: boolean;
-  created?: string;
-  updated?: string;
 }
 
 export interface Friend extends User {

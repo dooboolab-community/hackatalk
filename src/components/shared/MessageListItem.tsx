@@ -91,7 +91,7 @@ interface Props {
 }
 
 interface ImageSenderProps {
-  thumbURL?: string;
+  thumbURL?: string | null;
   isSamePeerMsg: boolean;
   fontColor: string;
 }

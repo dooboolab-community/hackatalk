@@ -7,7 +7,7 @@ import { AuthProvider } from './AuthProvider';
 import { DeviceProvider } from './DeviceProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
-import { User } from '../types';
+import { User } from '../types/graphql';
 
 interface Props {
   initialDeviceType?: Device.DeviceType;

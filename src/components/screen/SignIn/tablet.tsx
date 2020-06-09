@@ -66,7 +66,7 @@ const StyledAgreementLinedText = styled.Text`
 
 export default function tablet(variables: Variables): ReactElement {
   const {
-    isLoggingIn,
+    isInFlight,
     signingInFacebook,
     signingInGoogle,
     email,
@@ -176,7 +176,7 @@ export default function tablet(variables: Variables): ReactElement {
             <View style={{ width: 20 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isLoggingIn}
+              isLoading={isInFlight}
               onPress={signIn}
               containerStyle={{
                 flex: 1,

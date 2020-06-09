@@ -4,7 +4,7 @@ import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
 import { LoadingIndicator } from '@dooboo-ui/native';
-import { User } from '../../types';
+import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
