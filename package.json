@@ -104,9 +104,6 @@
     "unimodules-font-interface": "^5.1.0"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.15.0",
-    "@graphql-codegen/core": "^1.15.0",
-    "@graphql-codegen/typescript": "^1.15.0",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -117,6 +114,9 @@
     "@babel/runtime": "^7.9.6",
     "@bam.tech/react-native-make": "^3.0.0",
     "@dooboo/eslint-config": "^0.4.2",
+    "@graphql-codegen/cli": "^1.15.0",
+    "@graphql-codegen/core": "^1.15.0",
+    "@graphql-codegen/typescript": "^1.15.0",
     "@testing-library/jest-native": "^3.1.0",
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/react-native": "^5.0.3",
@@ -151,6 +151,7 @@
     "react-test-renderer": "^16.13.1",
     "relay-compiler": "^9.1.0",
     "relay-compiler-language-typescript": "^12.0.2",
+    "relay-test-utils": "^9.1.0",
     "ts-jest": "^25.5.1",
     "typescript": "3.9.3"
   },

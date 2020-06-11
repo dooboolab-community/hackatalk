@@ -14797,6 +14797,15 @@ relay-runtime@9.1.0:
     "@babel/runtime" "^7.0.0"
     fbjs "^1.0.0"
 
+relay-test-utils@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-9.1.0.tgz#b516a96c47f905e73f5a577df24d0195f2a65ea6"
+  integrity sha512-fTgtLbV/7nXD9u/Ujevc9ohRaZpsQBtvJogh076bUB+Vcvv4G9TQ1oZLKLXxJTBcnQEEzrgzLHGjrxVGRb548A==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    fbjs "^1.0.0"
+    relay-runtime "9.1.0"
+
 remedial@^1.0.7:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/remedial/-/remedial-1.0.8.tgz#a5e4fd52a0e4956adbaf62da63a5a46a78c578a0"
