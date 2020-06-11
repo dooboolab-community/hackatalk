@@ -9,10 +9,12 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import { initializeEThree } from './utils/virgil';
+import environment from './relay/RelayEnvironment';
+// import { initializeEThree } from './utils/virgil';
 
 const onReceived = (notification: ReceivedNotification): void => {
   console.log('Notification received: ', notification);
@@ -72,26 +74,26 @@ function App(): ReactElement {
   return (
     <ThemeProvider
       customTheme={{ light, dark }}
-      initialThemeType={
-        colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
-      }
+      initialThemeType={colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT}
     >
-      <AppWithTheme/>
+      <AppWithTheme />
     </ThemeProvider>
   );
 }
 
 function ProviderWrapper(): ReactElement {
   return (
-    <AppearanceProvider>
-      <DeviceProvider>
-        <AuthProvider>
-          <ActionSheetProvider>
-            <App />
-          </ActionSheetProvider>
-        </AuthProvider>
-      </DeviceProvider>
-    </AppearanceProvider>
+    <RelayEnvironmentProvider environment={environment}>
+      <AppearanceProvider>
+        <DeviceProvider>
+          <AuthProvider>
+            <ActionSheetProvider>
+              <App />
+            </ActionSheetProvider>
+          </AuthProvider>
+        </DeviceProvider>
+      </AppearanceProvider>
+    </RelayEnvironmentProvider>
   );
 }
 

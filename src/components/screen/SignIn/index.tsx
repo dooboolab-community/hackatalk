@@ -4,11 +4,9 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { ReactElement, useEffect, useState } from 'react';
-import type {
-  SignInMutation,
-  SignInMutationResponse,
-} from '../../../__generated__/SignInMutation.graphql';
+import type { SignInMutation, SignInMutationResponse } from '../../../__generated__/SignInMutation.graphql';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
+import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 
 import { Alert } from 'react-native';
@@ -19,13 +17,11 @@ import Constants from 'expo-constants';
 import { DefaultTheme } from 'styled-components';
 import { User } from '../../../types/graphql';
 import { getString } from '../../../../STRINGS';
-import { graphql } from 'babel-plugin-relay/macro';
 import { initializeEThree } from '../../../utils/virgil';
 import renderMobile from './mobile';
 import renderTablet from './tablet';
 import { useAuthContext } from '../../../providers/AuthProvider';
 import { useDeviceContext } from '../../../providers/DeviceProvider';
-import { useMutation } from 'react-relay/hooks';
 
 const { iOSClientId } = Config;
 
@@ -178,10 +174,7 @@ function SignIn(props: Props): ReactElement {
   const facebookLogin = async (): Promise<void> => {
     setSigningInFacebook(true);
     try {
-      await Facebook.initializeAsync(
-        Constants.manifest.facebookAppId,
-        undefined,
-      );
+      await Facebook.initializeAsync(Constants.manifest.facebookAppId, undefined);
       const result = await Facebook.logInWithReadPermissionsAsync({
         permissions: ['email', 'public_profile'],
       });
