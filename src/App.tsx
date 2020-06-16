@@ -14,6 +14,7 @@ import Config from 'react-native-config';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import environment from './relay/RelayEnvironment';
+
 // import { initializeEThree } from './utils/virgil';
 
 const onReceived = (notification: ReceivedNotification): void => {
@@ -83,17 +84,17 @@ function App(): ReactElement {
 
 function ProviderWrapper(): ReactElement {
   return (
-    <RelayEnvironmentProvider environment={environment}>
-      <AppearanceProvider>
-        <DeviceProvider>
+    <AppearanceProvider>
+      <DeviceProvider>
+        <RelayEnvironmentProvider environment={environment}>
           <AuthProvider>
             <ActionSheetProvider>
               <App />
             </ActionSheetProvider>
           </AuthProvider>
-        </DeviceProvider>
-      </AppearanceProvider>
-    </RelayEnvironmentProvider>
+        </RelayEnvironmentProvider>
+      </DeviceProvider>
+    </AppearanceProvider>
   );
 }
 

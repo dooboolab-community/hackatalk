@@ -4381,7 +4381,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-relay@^7.0.8":
+"@types/react-relay@*", "@types/react-relay@^7.0.8":
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-7.0.8.tgz#928e91d7c7b58844738d6a7b18aa224ab564c98c"
   integrity sha512-cs1dqvSzlZI4Gxm4gUalL/f8uRozLCOAaoHmMWIRS7ggDCkF/gaua86sAbRr5/5GeBCDcLAZDUzmAxzS9exrlA==
@@ -4416,6 +4416,15 @@
   version "8.0.11"
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-8.0.11.tgz#7b186ee9fd3b0fa1ee787bf66164d0154f7e8c0a"
   integrity sha512-m2j4UD1BB6nNS5QBbvjulHT+pxNV15wHCy0yG40CYbavwYfNxte63uN/elOCI0p/+2qRUc3ymtuneth0iNgNmA==
+
+"@types/relay-test-utils@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-6.0.2.tgz#d27e095ef211be964d861afa20f421693e4fcb7f"
+  integrity sha512-tAPZ9h4iyuyigbcLysVhk0S7hyCGLlyFMyHIN3Lv3ivHGEM1WSpPDBUMV5Bl1pGhQT5+0OADHNB0NCC85IMGpA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-relay" "*"
+    "@types/relay-runtime" "*"
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"

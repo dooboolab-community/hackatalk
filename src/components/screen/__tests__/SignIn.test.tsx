@@ -22,7 +22,6 @@ import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/native-theme';
-import { createMockEnvironment } from 'relay-test-utils';
 
 const fetchMock = fetch as FetchMock;
 
@@ -88,26 +87,26 @@ jest.mock('expo-constants', () => ({
 }));
 
 describe('[SignIn] rendering test', () => {
-  let environment;
   beforeEach(() => {
-    environment = createMockEnvironment();
-
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
     );
   });
 
   it('should render without crashing', () => {
+    component = createTestElement(
+      <SignIn {...props}/>,
+    );
     testingLib = render(component);
-    expect(testingLib.baseElement).toBeTruthy();
+
     // Remove snapshot testing for now for issue https://github.com/VirgilSecurity/virgil-e3kit-js/issues/82
-    // expect(testingLib.baseElement).toMatchSnapshot();
+    expect(testingLib.baseElement).toMatchSnapshot();
   });
 
   it('should render [Dark] mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
       ThemeType.DARK,
     );
     testingLib = render(component);
@@ -117,7 +116,7 @@ describe('[SignIn] rendering test', () => {
 
   it('should render tablet mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
       ThemeType.DARK,
       Device.DeviceType.TABLET,
     );
@@ -128,12 +127,10 @@ describe('[SignIn] rendering test', () => {
 });
 
 describe('[SignIn] interaction', () => {
-  let environment;
   beforeAll(() => {
-    environment = createMockEnvironment();
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });
@@ -325,9 +322,11 @@ describe('[SignIn] interaction', () => {
     });
 
     it('should call signIn with invalid params and  check whether it catches error', async () => {
-      props = createTestProps({ navigation: null });
+      props = createTestProps({
+        navigation: null,
+      });
       component = createTestElement(
-        <SignIn {...props} environment={environment}/>,
+        <SignIn {...props}/>,
       );
       testingLib = render(component);
 
@@ -415,13 +414,11 @@ describe('[SignIn] interaction', () => {
 
 describe('[SignIn] Facebook Signin', () => {
   let testingLib: RenderResult;
-  let environment;
 
   beforeAll(() => {
     props = createTestProps();
-    environment = createMockEnvironment();
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });
@@ -604,13 +601,11 @@ describe('[SignIn] Google Signin', () => {
 
 describe('Apple SignIn', () => {
   let testingLib: RenderResult;
-  let environment;
 
   beforeAll(() => {
     props = createTestProps();
-    environment = createMockEnvironment();
     component = createTestElement(
-      <SignIn {...props} environment={environment}/>,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });
