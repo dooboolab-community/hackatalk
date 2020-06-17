@@ -4,16 +4,24 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
 import OneSignal, { DeviceInfo, OpenResult, ReceivedNotification } from 'react-native-onesignal';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, Suspense, useEffect } from 'react';
+import {
+  RelayEnvironmentProvider,
+  graphql,
+  preloadQuery,
+  usePreloadedQuery,
+  useRelayEnvironment,
+} from 'react-relay/hooks';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-// import AsyncStorage from '@react-native-community/async-storage';
+import type { AppUserQuery } from './__generated__/AppUserQuery.graphql';
+import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
-import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import environment from './relay/RelayEnvironment';
+import { Text } from 'react-native';
+import relayEnvironment from './relay/RelayEnvironment';
 
 // import { initializeEThree } from './utils/virgil';
 
@@ -33,7 +41,6 @@ const onIds = (device: DeviceInfo): void => {
 };
 
 function AppWithTheme(): ReactElement {
-  const { setUser } = useAuthContext();
   const { setDeviceType } = useDeviceContext();
 
   // const { loading, data } = useQuery<{ me: User }>(QUERY_ME);
@@ -56,7 +63,21 @@ function AppWithTheme(): ReactElement {
   return <RootNavigator />;
 }
 
+const UserQuery = graphql`
+  query AppUserQuery {
+    me {
+      id
+      email
+      verified
+    }
+  }
+`;
+
 function App(): ReactElement {
+  const { setUser } = useAuthContext();
+  const environment = useRelayEnvironment();
+  const result = preloadQuery<AppUserQuery>(environment, UserQuery, {}, { fetchPolicy: 'store-and-network' });
+  const data = usePreloadedQuery<AppUserQuery>(UserQuery, result);
   const colorScheme = useColorScheme();
   useEffect(() => {
     OneSignal.init(Config.ONESIGNAL_APP_ID, { kOSSettingsKeyAutoPrompt: true });
@@ -72,6 +93,17 @@ function App(): ReactElement {
     };
   }, []);
 
+  useEffect(() => {
+    if (data.me) {
+      setUser({
+        ...data.me,
+      });
+    } else {
+      AsyncStorage.removeItem('token');
+      AsyncStorage.removeItem('password');
+    }
+  }, [data.me]);
+
   return (
     <ThemeProvider
       customTheme={{ light, dark }}
@@ -86,12 +118,14 @@ function ProviderWrapper(): ReactElement {
   return (
     <AppearanceProvider>
       <DeviceProvider>
-        <RelayEnvironmentProvider environment={environment}>
-          <AuthProvider>
-            <ActionSheetProvider>
-              <App />
-            </ActionSheetProvider>
-          </AuthProvider>
+        <RelayEnvironmentProvider environment={relayEnvironment}>
+          <Suspense fallback={<Text>loading app...</Text>}>
+            <AuthProvider>
+              <ActionSheetProvider>
+                <App />
+              </ActionSheetProvider>
+            </AuthProvider>
+          </Suspense>
         </RelayEnvironmentProvider>
       </DeviceProvider>
     </AppearanceProvider>

@@ -18,7 +18,7 @@ function fetchFunction(
   cacheConfig: CacheConfig,
 ): Promise<GraphQLResponse> {
   const args = { request, variables, cacheConfig };
-  return AsyncStorage.getItem('@UserStorage:login_token').then((token) => {
+  return AsyncStorage.getItem('token').then((token) => {
     return fetchGraphQL({ ...args, token });
   });
 }
