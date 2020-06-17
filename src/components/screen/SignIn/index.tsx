@@ -4,7 +4,10 @@ import * as Facebook from 'expo-facebook';
 import * as GoogleSignIn from 'expo-google-sign-in';
 
 import { ReactElement, useEffect, useState } from 'react';
-import type { SignInMutation, SignInMutationResponse } from '../../../__generated__/SignInMutation.graphql';
+import type {
+  SignInEmailMutation,
+  SignInEmailMutationResponse,
+} from '../../../__generated__/SignInEmailMutation.graphql';
 import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
@@ -91,14 +94,14 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [commitEmail, isInFlight] = useMutation<SignInMutation>(signInEmail);
+  const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
 
   const mutationConfig = {
     variables: {
       email,
       password,
     },
-    onCompleted: async (response: SignInMutationResponse): Promise<void> => {
+    onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
       const { token, user } = response.signInEmail;
 
       if (user && !user.verified) {
