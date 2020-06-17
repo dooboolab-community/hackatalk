@@ -61,8 +61,8 @@ export interface Variables {
   appleLogin: () => Promise<void>;
 }
 
-const SignInEmailMutation = graphql`
-  mutation SignInMutation($email: String!, $password: String!) {
+const signInEmail = graphql`
+  mutation SignInEmailMutation($email: String!, $password: String!) {
     signInEmail(email: $email, password: $password) {
       token
       user {
@@ -91,7 +91,7 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [commitEmail, isInFlight] = useMutation<SignInMutation>(SignInEmailMutation);
+  const [commitEmail, isInFlight] = useMutation<SignInMutation>(signInEmail);
 
   const mutationConfig = {
     variables: {
@@ -113,7 +113,7 @@ function SignIn(props: Props): ReactElement {
       setUser(user);
     },
     onError: (error: any): void => {
-      showAlertForGrpahqlError(error.graphQLErrors);
+      showAlertForGrpahqlError(error?.graphQLErrors);
     },
   };
 

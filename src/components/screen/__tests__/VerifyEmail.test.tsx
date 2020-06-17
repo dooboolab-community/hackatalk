@@ -50,7 +50,7 @@ describe('Rendering', () => {
 });
 
 describe('Interaction', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     props = createTestProps({
       route: {
         params: {
@@ -73,7 +73,7 @@ describe('Interaction', () => {
   });
 
   it('should simulate next button press', () => {
-    expect(testingLib.baseElement).toMatchSnapshot();
+    testingLib.debug();
     const btn = testingLib.queryByTestId('btn-next');
     act(() => {
       fireEvent.press(btn);
