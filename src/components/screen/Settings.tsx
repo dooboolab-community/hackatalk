@@ -4,7 +4,7 @@ import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import styled, { DefaultTheme } from 'styled-components/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
-import { AuthType } from '../../types';
+import { AuthType } from '../../types/graphql';
 import { Button } from '@dooboo-ui/native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
@@ -89,7 +89,7 @@ function Settings(props: Props): React.ReactElement {
   };
 
   switch (user && user.authType) {
-    case AuthType.GOOGLE:
+    case AuthType.Google:
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
@@ -99,7 +99,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.FACEBOOK:
+    case AuthType.Facebook:
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
@@ -109,7 +109,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.APPLE:
+    case AuthType.Apple:
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.appleIcon}/>,
         label: getString('SIGNED_IN_WITH_APPLE'),
@@ -119,7 +119,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.EMAIL:
+    case AuthType.Email:
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),

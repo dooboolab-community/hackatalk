@@ -83,3 +83,7 @@ GoogleService-Info.plist
 node_modules*
 assets_icons*
 assets_langs*
+
+
+# Relay generated
+# src/__generated__

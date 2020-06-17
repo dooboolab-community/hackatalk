@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 
-import { User } from '../types';
+import { User } from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
 interface Context {

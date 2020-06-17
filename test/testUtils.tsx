@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 
 import { AllProviders } from '../src/providers';
 import { ThemeType } from '@dooboo-ui/native-theme';
-import { User } from '../src/types';
+import { User } from '../src/types/graphql';
 
 export const createTestElement = (
   child: ReactElement,

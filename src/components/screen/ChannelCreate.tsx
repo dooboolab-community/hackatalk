@@ -6,15 +6,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  IC_CIRCLE_X,
+  IC_NO_IMAGE,
+} from '../../utils/Icons';
 import React, { ReactElement, useState } from 'react';
 
 import ErroView from '../shared/ErrorView';
-import {
-  IC_CIRCLE_X,
-} from '../../utils/Icons';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import SearchTextInput from '../shared/SearchTextInput';
-import { User } from '../../types';
+import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import produce from 'immer';
@@ -218,7 +219,11 @@ function Page(props: Props): ReactElement {
             width: 60,
             height: 60,
           }}
-          source={{ uri: friend.thumbURL }}
+          source={
+            friend.thumbURL
+              ? { uri: friend.thumbURL }
+              : IC_NO_IMAGE
+          }
         />
         <Text
           numberOfLines={1}

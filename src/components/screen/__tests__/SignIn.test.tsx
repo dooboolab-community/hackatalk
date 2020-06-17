@@ -20,7 +20,6 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
-import { MUTATION_SIGN_IN } from '../../../graphql/mutations';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/native-theme';
 
@@ -33,54 +32,54 @@ let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
 
-const mockSignInEmail = [
-  {
-    request: {
-      query: MUTATION_SIGN_IN,
-      variables: {
-        email: 'test@email.com',
-        password: 'password',
-      },
-    },
-    newData: jest.fn()
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: {
-            token: 'access token',
-            user: {
-              id: 'userId',
-              authType: 'email',
-              email: 'test@email.com',
-              nickname: 'nickname',
-              statusMessage: 'status',
-              verified: true,
-            },
-          },
-        },
-      })
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: undefined,
-        },
-      })
-      .mockReturnValueOnce({
-        data: {
-          signInEmail: {
-            token: 'access token',
-            user: {
-              id: 'userId',
-              authType: 'email',
-              email: 'test@email.com',
-              nickname: 'nickname',
-              statusMessage: 'status',
-              verified: false,
-            },
-          },
-        },
-      })
-    ,
-  },
-];
+// const mockSignInEmail = [
+//   {
+//     request: {
+//       query: MUTATION_SIGN_IN,
+//       variables: {
+//         email: 'test@email.com',
+//         password: 'password',
+//       },
+//     },
+//     newData: jest.fn()
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: {
+//             token: 'access token',
+//             user: {
+//               id: 'userId',
+//               authType: 'email',
+//               email: 'test@email.com',
+//               nickname: 'nickname',
+//               statusMessage: 'status',
+//               verified: true,
+//             },
+//           },
+//         },
+//       })
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: undefined,
+//         },
+//       })
+//       .mockReturnValueOnce({
+//         data: {
+//           signInEmail: {
+//             token: 'access token',
+//             user: {
+//               id: 'userId',
+//               authType: 'email',
+//               email: 'test@email.com',
+//               nickname: 'nickname',
+//               statusMessage: 'status',
+//               verified: false,
+//             },
+//           },
+//         },
+//       })
+//     ,
+//   },
+// ];
 
 jest.mock('expo-constants', () => ({
   ...jest.requireActual('expo-constants'),
@@ -91,20 +90,23 @@ describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
     );
   });
 
   it('should render without crashing', () => {
+    component = createTestElement(
+      <SignIn {...props}/>,
+    );
     testingLib = render(component);
-    expect(testingLib.baseElement).toBeTruthy();
+
     // Remove snapshot testing for now for issue https://github.com/VirgilSecurity/virgil-e3kit-js/issues/82
-    // expect(testingLib.baseElement).toMatchSnapshot();
+    expect(testingLib.baseElement).toMatchSnapshot();
   });
 
   it('should render [Dark] mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
       ThemeType.DARK,
     );
     testingLib = render(component);
@@ -114,7 +116,7 @@ describe('[SignIn] rendering test', () => {
 
   it('should render tablet mode without crashing', () => {
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
       ThemeType.DARK,
       Device.DeviceType.TABLET,
     );
@@ -128,7 +130,7 @@ describe('[SignIn] interaction', () => {
   beforeAll(() => {
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });
@@ -320,9 +322,11 @@ describe('[SignIn] interaction', () => {
     });
 
     it('should call signIn with invalid params and  check whether it catches error', async () => {
-      props = createTestProps({ navigation: null });
+      props = createTestProps({
+        navigation: null,
+      });
       component = createTestElement(
-        <SignIn {...props} />,
+        <SignIn {...props}/>,
       );
       testingLib = render(component);
 
@@ -414,7 +418,7 @@ describe('[SignIn] Facebook Signin', () => {
   beforeAll(() => {
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });
@@ -601,7 +605,7 @@ describe('Apple SignIn', () => {
   beforeAll(() => {
     props = createTestProps();
     component = createTestElement(
-      <SignIn {...props} />,
+      <SignIn {...props}/>,
     );
     testingLib = render(component);
   });

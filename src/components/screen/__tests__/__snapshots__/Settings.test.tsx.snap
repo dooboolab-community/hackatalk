@@ -457,7 +457,11 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Object {
               "data": Array [
                 Object {
-                  "label": "Signed in with Email",
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Facebook",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -530,6 +534,10 @@ exports[`[Setting] screen renders without crashing 2`] = `
             }
             testID="change-pw-item"
           >
+            <SvgMock
+              fill="#ffffff"
+              width={24}
+            />
             <Text
               style={
                 Array [
@@ -543,7 +551,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
                 ]
               }
             >
-              Signed in with Email
+              Signed in with Facebook
             </Text>
             <Text />
           </View>
@@ -877,7 +885,11 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Object {
               "data": Array [
                 Object {
-                  "label": "Signed in with Email",
+                  "icon": <SvgMock
+                    fill="#ffffff"
+                    width={24}
+                  />,
+                  "label": "Signed in with Google",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -950,6 +962,10 @@ exports[`[Setting] screen renders without crashing 3`] = `
             }
             testID="change-pw-item"
           >
+            <SvgMock
+              fill="#ffffff"
+              width={24}
+            />
             <Text
               style={
                 Array [
@@ -963,7 +979,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
                 ]
               }
             >
-              Signed in with Email
+              Signed in with Google
             </Text>
             <Text />
           </View>
@@ -1297,7 +1313,11 @@ exports[`[Setting] screen renders without crashing 4`] = `
             Object {
               "data": Array [
                 Object {
-                  "label": "Signed in with Email",
+                  "icon": <SvgMock
+                    fill="#151E22"
+                    width={24}
+                  />,
+                  "label": "Signed in with Apple",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -1370,6 +1390,10 @@ exports[`[Setting] screen renders without crashing 4`] = `
             }
             testID="change-pw-item"
           >
+            <SvgMock
+              fill="#151E22"
+              width={24}
+            />
             <Text
               style={
                 Array [
@@ -1383,7 +1407,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
                 ]
               }
             >
-              Signed in with Email
+              Signed in with Apple
             </Text>
             <Text />
           </View>

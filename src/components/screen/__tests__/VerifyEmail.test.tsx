@@ -4,7 +4,6 @@ import React, { ReactElement } from 'react';
 import { RenderResult, act, fireEvent, render, wait } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { MUTATION_SEND_VERIFICATION } from '../../../graphql/mutations';
 import Screen from '../VerifyEmail';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,21 +11,21 @@ let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
 
-const mockSendVerification = [
-  {
-    request: {
-      query: MUTATION_SEND_VERIFICATION,
-      variables: {
-        email: 'test@email.com',
-      },
-    },
-    result: {
-      data: {
-        sendVerification: true,
-      },
-    },
-  },
-];
+// const mockSendVerification = [
+//   {
+//     request: {
+//       query: MUTATION_SEND_VERIFICATION,
+//       variables: {
+//         email: 'test@email.com',
+//       },
+//     },
+//     result: {
+//       data: {
+//         sendVerification: true,
+//       },
+//     },
+//   },
+// ];
 
 describe('Rendering', () => {
   beforeEach(() => {
@@ -51,7 +50,7 @@ describe('Rendering', () => {
 });
 
 describe('Interaction', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     props = createTestProps({
       route: {
         params: {
@@ -74,7 +73,7 @@ describe('Interaction', () => {
   });
 
   it('should simulate next button press', () => {
-    expect(testingLib.baseElement).toMatchSnapshot();
+    testingLib.debug();
     const btn = testingLib.queryByTestId('btn-next');
     act(() => {
       fireEvent.press(btn);

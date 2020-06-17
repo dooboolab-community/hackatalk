@@ -11,35 +11,34 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
-import { MUTATION_CHANGE_PASSWORD } from '../../../graphql/mutations';
 import { getString } from '../../../../STRINGS';
 
-const mockChangePwMutation = [
-  {
-    request: {
-      query: MUTATION_CHANGE_PASSWORD,
-      variables: {
-        currentPassword: 'currentPassword',
-        newPassword: 'newPassword',
-      },
-    },
-    error: new Error('Error occurred'),
-  },
-  {
-    request: {
-      query: MUTATION_CHANGE_PASSWORD,
-      variables: {
-        currentPassword: 'currentPassword',
-        newPassword: 'newPassword',
-      },
-    },
-    result: {
-      data: {
-        changeEmailPassword: true,
-      },
-    },
-  },
-];
+// const mockChangePwMutation = [
+//   {
+//     request: {
+//       query: MUTATION_CHANGE_PASSWORD,
+//       variables: {
+//         currentPassword: 'currentPassword',
+//         newPassword: 'newPassword',
+//       },
+//     },
+//     error: new Error('Error occurred'),
+//   },
+//   {
+//     request: {
+//       query: MUTATION_CHANGE_PASSWORD,
+//       variables: {
+//         currentPassword: 'currentPassword',
+//         newPassword: 'newPassword',
+//       },
+//     },
+//     result: {
+//       data: {
+//         changeEmailPassword: true,
+//       },
+//     },
+//   },
+// ];
 
 const mockAlert = {
   alert: jest.fn(),

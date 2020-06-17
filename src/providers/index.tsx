@@ -7,7 +7,9 @@ import { AuthProvider } from './AuthProvider';
 import { DeviceProvider } from './DeviceProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import React from 'react';
-import { User } from '../types';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { User } from '../types/graphql';
+import environment from '../relay/RelayEnvironment';
 
 interface Props {
   initialDeviceType?: Device.DeviceType;
@@ -31,11 +33,13 @@ export const AllProviders = ({
         initialThemeType={initialThemeType}
         customTheme={{ light, dark }}
       >
-        <AuthProvider initialAuthUser={initialAuthUser}>
-          <ProfileModalProvider>
-            {children}
-          </ProfileModalProvider>
-        </AuthProvider>
+        <RelayEnvironmentProvider environment={environment}>
+          <AuthProvider initialAuthUser={initialAuthUser}>
+            <ProfileModalProvider>
+              {children}
+            </ProfileModalProvider>
+          </AuthProvider>
+        </RelayEnvironmentProvider>
       </ThemeProvider>
     </DeviceProvider>
   );

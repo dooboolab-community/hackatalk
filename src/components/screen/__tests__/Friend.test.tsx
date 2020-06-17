@@ -57,9 +57,7 @@ describe('[Friend] rendering test', () => {
     props = createTestProps();
   });
 
-  afterEach(() => {
-    cleanup();
-  });
+  afterEach(cleanup);
 
   it('renders as expected', async () => {
     const component = createTestElement(

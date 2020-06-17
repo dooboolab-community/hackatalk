@@ -8,6 +8,7 @@ module.exports = function(api) {
     ],
     sourceMaps: 'inline',
     plugins: [
+      ['relay', { artifactDirectory: './src/__generated__' }],
       [
         '@babel/plugin-transform-runtime',
         {

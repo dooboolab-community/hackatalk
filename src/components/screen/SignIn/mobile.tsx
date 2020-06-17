@@ -79,7 +79,7 @@ const StyledAgreementLinedText = styled.Text`
 
 export default function mobile(variables: Variables): ReactElement {
   const {
-    isLoggingIn,
+    isInFlight,
     signingInFacebook,
     signingInGoogle,
     signingInApple,
@@ -246,7 +246,7 @@ export default function mobile(variables: Variables): ReactElement {
             <View style={{ width: 20 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isLoggingIn}
+              isLoading={isInFlight}
               onPress={signIn}
               containerStyle={{
                 flex: 1,

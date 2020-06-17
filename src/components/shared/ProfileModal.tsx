@@ -1,9 +1,10 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
+import { IC_NO_IMAGE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import Modal from 'react-native-modalbox';
-import { User } from '../../types';
+import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
@@ -237,7 +238,11 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <TouchableOpacity activeOpacity={0.5}>
             {
               photoURL
-                ? <StyledImage style={{ alignSelf: 'center' }} source={imageURL} />
+                ? <StyledImage style={{ alignSelf: 'center' }} source={
+                  imageURL
+                    ? { uri: imageURL }
+                    : IC_NO_IMAGE
+                } />
                 : <View
                   style={{
                     width: 80,

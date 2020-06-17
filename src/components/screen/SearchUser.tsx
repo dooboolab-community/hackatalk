@@ -6,7 +6,7 @@ import ErrorView from '../shared/ErrorView';
 import { LoadingIndicator } from '@dooboo-ui/native';
 import { Ref as ProfileModalRef } from '../shared/ProfileModal';
 import SearchTextInput from '../shared/SearchTextInput';
-import { User } from '../../types';
+import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';

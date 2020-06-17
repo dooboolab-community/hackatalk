@@ -2,9 +2,12 @@ import { Alert, TouchableOpacity } from 'react-native';
 import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
 import { Button, LoadingIndicator } from '@dooboo-ui/native';
 import React, { ReactElement, useState } from 'react';
+import type { VerifyEmailMutation, VerifyEmailMutationResponse } from '../../__generated__/VerifyEmailMutation.graphql';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
+import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
@@ -37,32 +40,43 @@ interface Props {
   route: RouteProp<AuthStackParamList, 'VerifyEmail'>;
 }
 
+const sendVerification = graphql`
+  mutation VerifyEmailMutation($email: String!) {
+    sendVerification(email: $email)
+  }
+`;
+
 function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
   const { navigation, route: { params: { email } } } = props;
   const [loading, setLoading] = useState<boolean>(false);
-  // const [sendVerification] =
-  //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
+  const [commitEmail, isInFlight] = useMutation<VerifyEmailMutation>(sendVerification);
 
-  // const sendVerificationLink = async (): Promise<void> => {
-  //   try {
-  //     setLoading(true);
-  //     const { data: emailVerificationData } = await sendVerification({
-  //       variables: {
-  //         email,
-  //       },
-  //     });
+  const mutationConfig = {
+    variables: {
+      email,
+    },
+    onCompleted: async (response: VerifyEmailMutationResponse): Promise<void> => {
+      if (response.sendVerification) {
+        return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+      }
+      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+    },
+    onError: (error: any): void => {
+      showAlertForGrpahqlError(error?.graphQLErrors);
+    },
+  };
 
-  //     if (emailVerificationData?.sendVerification) {
-  //       return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
-  //     }
-  //     Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
-  //   } catch (err) {
-  //     Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const sendVerificationLink = async (): Promise<void> => {
+    try {
+      setLoading(true);
+      commitEmail(mutationConfig);
+    } catch (err) {
+      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const pressNext = (): void => {
     navigation.goBack();
@@ -76,7 +90,7 @@ function Page(props: Props): ReactElement {
       <StyledHighlightText>{email}</StyledHighlightText>
       <TouchableOpacity
         testID="touch-email"
-        // onPress={sendVerificationLink}
+        onPress={sendVerificationLink}
         style={{
           marginTop: 24,
         }}
@@ -102,6 +116,7 @@ function Page(props: Props): ReactElement {
           fontSize: 16,
         }}
         text={getString('RETURN_TO_SIGNIN')}
+        isLoading={isInFlight}
       />
       {
         loading
