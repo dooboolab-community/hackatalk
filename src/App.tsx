@@ -21,9 +21,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { Text } from 'react-native';
+import { initializeEThree } from './utils/virgil';
 import relayEnvironment from './relay/RelayEnvironment';
-
-// import { initializeEThree } from './utils/virgil';
 
 const onReceived = (notification: ReceivedNotification): void => {
   console.log('Notification received: ', notification);
@@ -41,24 +40,27 @@ const onIds = (device: DeviceInfo): void => {
 };
 
 function AppWithTheme(): ReactElement {
+  const environment = useRelayEnvironment();
+  const result = preloadQuery<AppUserQuery>(environment, UserQuery, {}, { fetchPolicy: 'store-and-network' });
   const { setDeviceType } = useDeviceContext();
-
-  // const { loading, data } = useQuery<{ me: User }>(QUERY_ME);
+  const { setUser } = useAuthContext();
+  const data = usePreloadedQuery<AppUserQuery>(UserQuery, result);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
     setDeviceType(deviceType);
   };
 
-  // useEffect(() => {
-  //   if (data && data.me) {
-  //     initializeEThree(data.me.id);
-  //     setUser(data.me);
-  //   } else if (data) {
-  //     AsyncStorage.removeItem('token');
-  //   }
-  //   setDevice();
-  // }, [loading]);
+  useEffect(() => {
+    if (data.me) {
+      initializeEThree(data.me.id);
+      setUser(data.me);
+      return;
+    }
+
+    AsyncStorage.removeItem('token');
+    setDevice();
+  }, [data.me]);
 
   return <RootNavigator />;
 }
@@ -74,11 +76,8 @@ const UserQuery = graphql`
 `;
 
 function App(): ReactElement {
-  const { setUser } = useAuthContext();
-  const environment = useRelayEnvironment();
-  const result = preloadQuery<AppUserQuery>(environment, UserQuery, {}, { fetchPolicy: 'store-and-network' });
-  const data = usePreloadedQuery<AppUserQuery>(UserQuery, result);
   const colorScheme = useColorScheme();
+
   useEffect(() => {
     OneSignal.init(Config.ONESIGNAL_APP_ID, { kOSSettingsKeyAutoPrompt: true });
 
@@ -92,17 +91,6 @@ function App(): ReactElement {
       OneSignal.removeEventListener('ids', onIds);
     };
   }, []);
-
-  useEffect(() => {
-    if (data.me) {
-      setUser({
-        ...data.me,
-      });
-    } else {
-      AsyncStorage.removeItem('token');
-      AsyncStorage.removeItem('password');
-    }
-  }, [data.me]);
 
   return (
     <ThemeProvider
