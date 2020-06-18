@@ -49,7 +49,7 @@ const resetRelay = (dispatch: React.Dispatch<ResetRelayAction>) => (): void => {
 
 const initialState: State = {
   user: undefined,
-  relay: RelayEnvironment.getEnvironment(),
+  relay: RelayEnvironment.environment,
 };
 
 const reducer: Reducer = (state = initialState, action) => {
@@ -69,7 +69,7 @@ const reducer: Reducer = (state = initialState, action) => {
 function AuthProvider(props: Props): React.ReactElement {
   const initialAuthState = {
     user: props.initialAuthUser,
-    relay: RelayEnvironment.getEnvironment(),
+    relay: RelayEnvironment.environment,
   };
   const [state, dispatch] = useReducer<Reducer>(reducer, initialAuthState);
 
