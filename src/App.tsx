@@ -3,7 +3,11 @@ import * as Device from 'expo-device';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import OneSignal, { DeviceInfo, OpenResult, ReceivedNotification } from 'react-native-onesignal';
+import OneSignal, {
+  DeviceInfo,
+  OpenResult,
+  ReceivedNotification,
+} from 'react-native-onesignal';
 import React, { ReactElement, Suspense, useEffect } from 'react';
 import {
   RelayEnvironmentProvider,
@@ -22,7 +26,6 @@ import Config from 'react-native-config';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { Text } from 'react-native';
 import { initializeEThree } from './utils/virgil';
-import relayEnvironment from './relay/RelayEnvironment';
 
 const onReceived = (notification: ReceivedNotification): void => {
   console.log('Notification received: ', notification);
@@ -39,12 +42,27 @@ const onIds = (device: DeviceInfo): void => {
   console.log('Device info: ', device);
 };
 
+const userQuery = graphql`
+  query AppUserQuery {
+    me {
+      id
+      email
+      verified
+    }
+  }
+`;
+
 function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
-  const result = preloadQuery<AppUserQuery>(environment, UserQuery, {}, { fetchPolicy: 'store-and-network' });
+  const result = preloadQuery<AppUserQuery>(
+    environment,
+    userQuery,
+    {},
+    { fetchPolicy: 'store-and-network' },
+  );
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
-  const data = usePreloadedQuery<AppUserQuery>(UserQuery, result);
+  const data = usePreloadedQuery<AppUserQuery>(userQuery, result);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
@@ -64,16 +82,6 @@ function AppWithTheme(): ReactElement {
 
   return <RootNavigator />;
 }
-
-const UserQuery = graphql`
-  query AppUserQuery {
-    me {
-      id
-      email
-      verified
-    }
-  }
-`;
 
 function App(): ReactElement {
   const colorScheme = useColorScheme();
@@ -95,10 +103,27 @@ function App(): ReactElement {
   return (
     <ThemeProvider
       customTheme={{ light, dark }}
-      initialThemeType={colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT}
+      initialThemeType={
+        colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
+      }
     >
       <AppWithTheme />
     </ThemeProvider>
+  );
+}
+
+function RelayProviderWrapper(): ReactElement {
+  const {
+    state: { relay },
+  } = useAuthContext();
+  return (
+    <RelayEnvironmentProvider environment={relay}>
+      <Suspense fallback={<Text>loading app...</Text>}>
+        <ActionSheetProvider>
+          <App />
+        </ActionSheetProvider>
+      </Suspense>
+    </RelayEnvironmentProvider>
   );
 }
 
@@ -106,15 +131,9 @@ function ProviderWrapper(): ReactElement {
   return (
     <AppearanceProvider>
       <DeviceProvider>
-        <RelayEnvironmentProvider environment={relayEnvironment}>
-          <Suspense fallback={<Text>loading app...</Text>}>
-            <AuthProvider>
-              <ActionSheetProvider>
-                <App />
-              </ActionSheetProvider>
-            </AuthProvider>
-          </Suspense>
-        </RelayEnvironmentProvider>
+        <AuthProvider>
+          <RelayProviderWrapper />
+        </AuthProvider>
       </DeviceProvider>
     </AppearanceProvider>
   );

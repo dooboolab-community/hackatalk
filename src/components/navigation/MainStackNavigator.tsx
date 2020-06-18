@@ -29,6 +29,7 @@ import Settings from '../screen/Settings';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import useAppState from '../../hooks/useAppState';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/native-theme';
 
 export type MainStackParamList = {
@@ -50,8 +51,8 @@ type NavigationProps<
 export type MainStackNavigationProps<
   T extends keyof MainStackParamList = 'default'
 > = CompositeNavigationProp<
-NavigationProps<T>,
-RootStackNavigationProps<'MainStack'>
+  NavigationProps<T>,
+  RootStackNavigationProps<'MainStack'>
 >;
 
 const Stack = createStackNavigator<MainStackParamList>();
@@ -195,6 +196,13 @@ function RootNavigator(): ReactElement {
 }
 
 export default function RootNavigatorWrapper(): ReactElement {
+  const { resetRelay } = useAuthContext();
+  useEffect(() => {
+    return (): void => {
+      // console.log('Unmount MainStack');
+      resetRelay();
+    };
+  }, []);
   return (
     <ProfileModalProvider>
       <RootNavigator />
