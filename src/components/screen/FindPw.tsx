@@ -1,4 +1,4 @@
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
 
@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;

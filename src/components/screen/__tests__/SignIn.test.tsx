@@ -21,7 +21,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
 import SignIn from '../SignIn';
-import { ThemeType } from '@dooboo-ui/native-theme';
+import { ThemeType } from '@dooboo-ui/theme';
 
 const fetchMock = fetch as FetchMock;
 

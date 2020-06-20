@@ -20,7 +20,7 @@ import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import produce from 'immer';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export const fakeFriends: User[] = [
   {

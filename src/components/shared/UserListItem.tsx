@@ -5,7 +5,7 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
 import { User } from '../../types/graphql';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 interface Props {
   testID?: string;

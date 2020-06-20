@@ -1,5 +1,5 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import React, {
   ReactElement,
   useEffect,
@@ -12,7 +12,7 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;

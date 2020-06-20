@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
-import { LoadingIndicator } from '@dooboo-ui/native';
+import { LoadingIndicator } from 'dooboo-ui';
 import { Ref as ProfileModalRef } from '../shared/ProfileModal';
 import SearchTextInput from '../shared/SearchTextInput';
 import { User } from '../../types/graphql';

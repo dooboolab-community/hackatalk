@@ -1,10 +1,10 @@
 import React, { FC, ReactChildren } from 'react';
 
-import { Button } from '@dooboo-ui/native';
+import { Button } from 'dooboo-ui';
 import { IC_ERROR } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;

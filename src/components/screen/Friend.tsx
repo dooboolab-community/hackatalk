@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
-import { LoadingIndicator } from '@dooboo-ui/native';
+import { LoadingIndicator } from 'dooboo-ui';
 import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';

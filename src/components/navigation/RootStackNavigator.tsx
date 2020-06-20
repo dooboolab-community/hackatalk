@@ -11,7 +11,7 @@ import { Platform } from 'react-native';
 import React from 'react';
 import WebView from '../screen/WebView';
 import { useAuthContext } from '../../providers/AuthProvider';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export type RootStackParamList = {
   default: undefined;

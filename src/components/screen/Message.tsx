@@ -6,7 +6,7 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import { Button } from '@dooboo-ui/native';
+import { Button } from 'dooboo-ui';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
@@ -18,7 +18,7 @@ import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;

@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.3.0):
-    - AppAuth/Core (= 1.3.0)
-    - AppAuth/ExternalUserAgent (= 1.3.0)
-  - AppAuth/Core (1.3.0)
-  - AppAuth/ExternalUserAgent (1.3.0)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - EXAppleAuthentication (2.1.1):
@@ -57,7 +57,7 @@ PODS:
   - EXSQLite (8.1.0):
     - UMCore
     - UMFileSystemInterface
-  - EXUpdates (0.2.5):
+  - EXUpdates (0.2.9):
     - React
     - UMCore
   - EXWebBrowser (8.2.1):
@@ -97,12 +97,12 @@ PODS:
   - GTMAppAuth (1.0.0):
     - AppAuth/Core (~> 1.0)
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.3.1):
-    - GTMSessionFetcher/Full (= 1.3.1)
-  - GTMSessionFetcher/Core (1.3.1)
-  - GTMSessionFetcher/Full (1.3.1):
-    - GTMSessionFetcher/Core (= 1.3.1)
-  - OneSignal (2.13.1)
+  - GTMSessionFetcher (1.4.0):
+    - GTMSessionFetcher/Full (= 1.4.0)
+  - GTMSessionFetcher/Core (1.4.0)
+  - GTMSessionFetcher/Full (1.4.0):
+    - GTMSessionFetcher/Core (= 1.4.0)
+  - OneSignal (2.14.2)
   - RCTRequired (0.62.2)
   - RCTTypeSafety (0.62.2):
     - FBLazyVector (= 0.62.2)
@@ -268,14 +268,14 @@ PODS:
   - React-jsinspector (0.62.2)
   - react-native-appearance (0.3.4):
     - React
-  - react-native-config (1.1.0):
+  - react-native-config (1.2.1):
     - React
-  - react-native-onesignal (3.7.3):
-    - OneSignal (= 2.13.1)
+  - react-native-onesignal (3.8.1):
+    - OneSignal (= 2.14.2)
     - React (< 1.0.0, >= 0.13.0)
-  - react-native-safe-area-context (2.0.2):
+  - react-native-safe-area-context (3.0.5):
     - React
-  - react-native-webview (9.4.0):
+  - react-native-webview (10.3.1):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -344,13 +344,13 @@ PODS:
     - React
   - RNGestureHandler (1.6.1):
     - React
-  - RNKeychain (6.0.0):
+  - RNKeychain (6.1.1):
     - React
   - RNLocalize (1.4.0):
     - React
   - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.8.0):
+  - RNScreens (2.9.0):
     - React
   - RNSVG (12.1.0):
     - React
@@ -631,7 +631,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   EXAppleAuthentication: 046c76335343eaa97f6ed8d35a9cf493a2c4d351
@@ -651,7 +651,7 @@ SPEC CHECKSUMS:
   EXLocation: bbd487fd96a18a3ad9725389bbb94c4a5f78edf3
   EXPermissions: 24b97f734ce9172d245a5be38ad9ccfcb6135964
   EXSQLite: 877ad6c8eb169353a2f94d5ad26510ffadd46a1f
-  EXUpdates: f1c36ea0745b730e09aca1744884917f8ca6bd60
+  EXUpdates: 7176be81088b1628c94fa5546aceefba119fcae6
   EXWebBrowser: 5902f99ac5ac551e5c82ff46f13a337b323aa9ea
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
@@ -661,8 +661,8 @@ SPEC CHECKSUMS:
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
-  OneSignal: fa98eaa90372bb367b6a4a1c1622ffb9832c7600
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  OneSignal: 1dcb1fd96f9c15a5c352dcfcab9106a7c15eced7
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
   React: 29a8b1a02bd764fb7644ef04019270849b9a7ac3
@@ -673,10 +673,10 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
-  react-native-config: 313a1306066289211579b9655eb81d9a565462d0
-  react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
-  react-native-safe-area-context: 3cecc12a70698e46b5357f04c7cc8826ef7422e1
-  react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
+  react-native-config: ae9ef3bdbf539f2d14ebaf4ebeba508f766e066a
+  react-native-onesignal: 01fa850b002d60568a5a85857e1cbe643b58bdd2
+  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
+  react-native-webview: 40bbeb6d011226f34cb83f845aeb0fdf515cfc5f
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -691,10 +691,10 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNKeychain: bf2d7e9a0ae7a073c07770dd2aa6d11c67581733
+  RNKeychain: db956c02a018f7dd3a0ea8a6cf3087bc1894bf2b
   RNLocalize: b6df30cc25ae736d37874f9bce13351db2f56796
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
-  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
+  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVirgilCrypto: 5fc2ad3c14e1a91451590671f11d4702ce9535d4
   UMAppLoader: ee77a072f9e15128f777ccd6d2d00f52ab4387e6
@@ -718,4 +718,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 838ff224dfff5210f974cd5b7de393ccc6b815fb
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

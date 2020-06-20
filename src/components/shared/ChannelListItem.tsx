@@ -5,7 +5,7 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({ theme }): string => theme.itemBackground};

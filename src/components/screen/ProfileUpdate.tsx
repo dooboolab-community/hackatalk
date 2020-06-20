@@ -1,19 +1,19 @@
 import { Alert, Image, TouchableOpacity, View } from 'react-native';
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
 import React, { useEffect, useState } from 'react';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
-
-import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { encryptMessage } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
 import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;

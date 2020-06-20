@@ -1,5 +1,5 @@
 import 'styled-components';
-import { DoobooTheme } from '@dooboo-ui/native-theme';
+import { DoobooTheme } from '@dooboo-ui/theme';
 import { Theme } from './theme';
 
 type AllTheme = Theme & DoobooTheme;
