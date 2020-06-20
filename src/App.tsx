@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
 
+import type { AppUserQuery, AppUserQueryResponse } from './__generated__/AppUserQuery.graphql';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
@@ -20,7 +21,6 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import type { AppUserQuery } from './__generated__/AppUserQuery.graphql';
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
 import RootNavigator from './components/navigation/RootStackNavigator';
@@ -69,10 +69,15 @@ function AppWithTheme(): ReactElement {
     setDeviceType(deviceType);
   };
 
+  const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
+    if (!me) return;
+    await initializeEThree(me.id);
+    setUser(me);
+  };
+
   useEffect(() => {
     if (data.me) {
-      initializeEThree(data.me.id);
-      setUser(data.me);
+      initUser(data.me);
       return;
     }
 
