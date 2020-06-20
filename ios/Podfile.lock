@@ -102,7 +102,6 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
-  - OneSignal (2.14.2)
   - RCTRequired (0.62.2)
   - RCTTypeSafety (0.62.2):
     - FBLazyVector (= 0.62.2)
@@ -270,9 +269,6 @@ PODS:
     - React
   - react-native-config (1.2.1):
     - React
-  - react-native-onesignal (3.8.1):
-    - OneSignal (= 2.14.2)
-    - React (< 1.0.0, >= 0.13.0)
   - react-native-safe-area-context (3.0.5):
     - React
   - react-native-webview (10.3.1):
@@ -416,7 +412,6 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - OneSignal (< 3.0, >= 2.9.3)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -430,7 +425,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-appearance (from `../node_modules/react-native-appearance`)
   - react-native-config (from `../node_modules/react-native-config`)
-  - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -478,7 +472,6 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
-    - OneSignal
     - VirgilCrypto
     - VirgilCryptoFoundation
     - VirgilCryptoPythia
@@ -555,8 +548,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-appearance"
   react-native-config:
     :path: "../node_modules/react-native-config"
-  react-native-onesignal:
-    :path: "../node_modules/react-native-onesignal"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -662,7 +653,6 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
-  OneSignal: 1dcb1fd96f9c15a5c352dcfcab9106a7c15eced7
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
   React: 29a8b1a02bd764fb7644ef04019270849b9a7ac3
@@ -674,7 +664,6 @@ SPEC CHECKSUMS:
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
   react-native-config: ae9ef3bdbf539f2d14ebaf4ebeba508f766e066a
-  react-native-onesignal: 01fa850b002d60568a5a85857e1cbe643b58bdd2
   react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   react-native-webview: 40bbeb6d011226f34cb83f845aeb0fdf515cfc5f
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
@@ -716,6 +705,6 @@ SPEC CHECKSUMS:
   VSCCrypto: e2c8df89e0dc348c2713554f6a2c8864e1cf412d
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 838ff224dfff5210f974cd5b7de393ccc6b815fb
+PODFILE CHECKSUM: 53626dad4f6071019cb2aef9d7edf3c613348870
 
 COCOAPODS: 1.9.3

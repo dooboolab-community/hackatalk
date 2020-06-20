@@ -19,7 +19,6 @@
 		451C19822400302900BD57D3 /* ForSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C19812400302900BD57D3 /* ForSwift.swift */; };
 		45346A3D2415F9D100E20991 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45346A3C2415F9D100E20991 /* BootSplash.storyboard */; };
 		4579FD9F23FEAF310055A43E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4579FD9E23FEAF310055A43E /* StoreKit.framework */; };
-		4EE3AD00E8F2AFEECD57A94C /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		E68C70A449B6E17D36E43797 /* Pods_HackaTalk_HackaTalkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,13 +37,6 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "HackaTalk-tvOS";
 		};
-		CF36D3A924026CF5006C44A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF36D3A224026CF5006C44A1;
-			remoteInfo = OneSignalNotificationServiceExtension;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -59,8 +51,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HackaTalk/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HackaTalk/main.m; sourceTree = "<group>"; };
 		1861D964A57F50E5208A0620 /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.release.xcconfig"; sourceTree = "<group>"; };
-		1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* HackaTalk-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackaTalk-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HackaTalk-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HackaTalk-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D370077BB17D57C71C92AAB /* Pods-HackaTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,14 +61,9 @@
 		4579FD9E23FEAF310055A43E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		70B4C53793747F4106B1B1F8 /* Pods-HackaTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk/Pods-HackaTalk.release.xcconfig"; sourceTree = "<group>"; };
 		90E86382E967707DECF21B41 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk_HackaTalkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6DA01198FB6C964B5BD672 /* Pods_HackaTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackaTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF36D3A324026CF5006C44A1 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF36D3A524026CF5006C44A1 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
-		CF36D3A624026CF5006C44A1 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		CF36D3A824026CF5006C44A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF36D3B02402729B006C44A1 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -119,7 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EE3AD00E8F2AFEECD57A94C /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +150,6 @@
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				BD6DA01198FB6C964B5BD672 /* Pods_HackaTalk.framework */,
 				B98DE6C00055C2175528ADBB /* Pods_HackaTalk_HackaTalkTests.framework */,
-				1E26EE84E538C66C43DB758F /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,8 +161,6 @@
 				70B4C53793747F4106B1B1F8 /* Pods-HackaTalk.release.xcconfig */,
 				90E86382E967707DECF21B41 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */,
 				1861D964A57F50E5208A0620 /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */,
-				2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -198,7 +179,6 @@
 				13B07FAE1A68108700A75B9A /* HackaTalk */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HackaTalkTests */,
-				CF36D3A424026CF5006C44A1 /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				3AFDB60944DD249CA540207C /* Pods */,
@@ -216,20 +196,8 @@
 				00E356EE1AD99517003FC87E /* HackaTalkTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* HackaTalk-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* HackaTalk-tvOSTests.xctest */,
-				CF36D3A324026CF5006C44A1 /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CF36D3A424026CF5006C44A1 /* OneSignalNotificationServiceExtension */ = {
-			isa = PBXGroup;
-			children = (
-				CF36D3B02402729B006C44A1 /* OneSignalNotificationServiceExtension.entitlements */,
-				CF36D3A524026CF5006C44A1 /* NotificationService.h */,
-				CF36D3A624026CF5006C44A1 /* NotificationService.m */,
-				CF36D3A824026CF5006C44A1 /* Info.plist */,
-			);
-			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,24 +284,6 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* HackaTalk-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		CF36D3A224026CF5006C44A1 /* OneSignalNotificationServiceExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CF36D3AC24026CF5006C44A1 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
-			buildPhases = (
-				EBA25F14E82CEE5F1B8B9D9C /* [CP] Check Pods Manifest.lock */,
-				CF36D39F24026CF5006C44A1 /* Sources */,
-				CF36D3A024026CF5006C44A1 /* Frameworks */,
-				CF36D3A124026CF5006C44A1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = OneSignalNotificationServiceExtension;
-			productName = OneSignalNotificationServiceExtension;
-			productReference = CF36D3A324026CF5006C44A1 /* OneSignalNotificationServiceExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -388,7 +338,6 @@
 				00E356ED1AD99517003FC87E /* HackaTalkTests */,
 				2D02E47A1E0B4A5D006451C7 /* HackaTalk-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* HackaTalk-tvOSTests */,
-				CF36D3A224026CF5006C44A1 /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -839,28 +788,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HackaTalk/Pods-HackaTalk-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EBA25F14E82CEE5F1B8B9D9C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OneSignalNotificationServiceExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -956,11 +883,6 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* HackaTalk-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
-		};
-		CF36D3AA24026CF5006C44A1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CF36D3A224026CF5006C44A1 /* OneSignalNotificationServiceExtension */;
-			targetProxy = CF36D3A924026CF5006C44A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1305,7 +1227,6 @@
 		};
 		CF36D3AD24026CF5006C44A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AD731D96C6AD0DF04FA075F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1313,12 +1234,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = S73RUF2XJ3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1327,7 +1246,6 @@
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marsonearth.hackatalk.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1336,7 +1254,6 @@
 		};
 		CF36D3AE24026CF5006C44A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B376B2AAAB91038C46992A4C /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1344,13 +1261,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = OneSignalNotificationServiceExtension/OneSignalNotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = S73RUF2XJ3;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
@@ -1358,7 +1273,6 @@
 					"$(inherited)",
 					"-DFB_SONARKIT_ENABLED=1",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.marsonearth.hackatalk.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1409,15 +1323,6 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CF36D3AC24026CF5006C44A1 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CF36D3AD24026CF5006C44A1 /* Debug */,
-				CF36D3AE24026CF5006C44A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

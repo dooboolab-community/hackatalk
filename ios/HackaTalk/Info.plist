@@ -43,8 +43,6 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>OneSignal_app_groups_key</key>
-	<string>group.$(PRODUCT_BUNDLE_IDENTIFIER).onesignal</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

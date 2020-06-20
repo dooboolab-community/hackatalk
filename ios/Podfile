@@ -97,11 +97,6 @@ target 'HackaTalk' do
   # end
 end
 
-target 'OneSignalNotificationServiceExtension' do
-  use_frameworks!
-  pod 'OneSignal', '>= 2.9.3', '< 3.0'
-end
-
 def flipper_post_install(installer)
   installer.pods_project.targets.each do |target|
     if target.name == 'YogaKit'
