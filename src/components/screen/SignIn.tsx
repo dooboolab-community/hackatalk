@@ -1,17 +1,32 @@
-import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
-import { Button, EditText } from 'dooboo-ui';
-import { Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
-import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
-import React, { ReactElement, useEffect } from 'react';
-import { delay, spring, useClock, useValue } from 'react-native-redash';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Crypto from 'expo-crypto';
 
+import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
+import { AuthType, User } from '../../types/graphql';
+import { Button, EditText } from 'dooboo-ui';
+import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import React, { ReactElement, useEffect, useState } from 'react';
+import type {
+  SignInEmailMutation,
+  SignInEmailMutationResponse,
+} from '../../__generated__/SignInEmailMutation.graphql';
+import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
+import { delay, spring, useClock, useValue } from 'react-native-redash';
+import { graphql, useMutation } from 'react-relay/hooks';
+import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
+
+import AsyncStorage from '@react-native-community/async-storage';
+import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import Config from 'react-native-config';
 import { EditTextInputType } from 'dooboo-ui/EditText';
-import SplashModule from '../../../utils/splash';
-import StatusBar from '../../shared/StatusBar';
-import { ThemeType } from '@dooboo-ui/theme';
-import { Variables } from './';
-import { getString } from '../../../../STRINGS';
+import SocialSignInButton from '../shared/SocialSignInButton';
+import SplashModule from '../../utils/splash';
+import StatusBar from '../shared/StatusBar';
+import { getString } from '../../../STRINGS';
+import { initializeEThree } from '../../utils/virgil';
 import styled from 'styled-components/native';
+import { useAuthContext } from '../../providers/AuthProvider';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -77,31 +92,125 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
-export default function mobile(variables: Variables): ReactElement {
-  const {
-    isInFlight,
-    signingInFacebook,
-    signingInGoogle,
-    signingInApple,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    errorEmail,
-    setErrorEmail,
-    errorPassword,
-    setErrorPassword,
-    theme,
-    changeThemeType,
-    themeType,
-    goToSignUp,
-    goToFindPw,
-    goToWebView,
-    signIn,
-    googleSignInAsync,
-    facebookLogin,
-    appleLogin,
-  } = variables;
+const { iOSClientId, facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
+
+interface Props {
+  navigation: AuthStackNavigationProps<'SignIn'>;
+}
+
+const signInEmail = graphql`
+  mutation SignInEmailMutation($email: String!, $password: String!) {
+    signInEmail(email: $email, password: $password) {
+      token
+      user {
+        id
+        email
+        name
+        photoURL
+        verified
+      }
+    }
+  }
+`;
+
+function SignIn(props: Props): ReactElement {
+  const { navigation } = props;
+  const { setUser } = useAuthContext();
+  const { theme, changeThemeType, themeType } = useThemeContext();
+
+  const [signingInApple, setSigningInApple] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorEmail, setErrorEmail] = useState<string>('');
+  const [errorPassword, setErrorPassword] = useState<string>('');
+
+  const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
+
+  const mutationConfig = {
+    variables: {
+      email,
+      password,
+    },
+    onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
+      const { token, user } = response.signInEmail;
+
+      if (user && !user.verified) {
+        return navigation.navigate('VerifyEmail', {
+          email,
+        });
+      }
+
+      await AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem('password', password);
+      initializeEThree(user.id);
+      setUser(user);
+    },
+    onError: (error: any): void => {
+      showAlertForGrpahqlError(error?.graphQLErrors);
+    },
+  };
+
+  const goToSignUp = (): void => {
+    navigation.navigate('SignUp');
+  };
+
+  const goToFindPw = (): void => {
+    navigation.navigate('FindPw');
+  };
+
+  const signIn = async (): Promise<void> => {
+    if (!validateEmail(email)) {
+      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      return;
+    }
+
+    if (!password) {
+      setErrorPassword(getString('PASSWORD_REQUIRED'));
+      return;
+    }
+
+    commitEmail(mutationConfig);
+  };
+
+  const goToWebView = (uri: string): void => {
+    props.navigation.navigate('WebView', { uri });
+  };
+
+  const appleLogin = async (): Promise<void> => {
+    setSigningInApple(true);
+    try {
+      const csrf = Math.random().toString(36).substring(2, 15);
+      const nonce = Math.random().toString(36).substring(2, 10);
+      const hashedNonce = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256, nonce);
+      const appleCredential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+        state: csrf,
+        nonce: hashedNonce,
+      });
+      const { identityToken, email, state } = appleCredential;
+    } catch (e) {
+      if (e.code === 'ERR_CANCELED') {
+        // handle that the user canceled the sign-in flow
+      } else {
+        if (Platform.OS === 'web') {
+          // @ts-ignore
+          alert(`Apple Login Error: ${e.code} - ${e.message}`);
+          return;
+        }
+        Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`);
+      }
+    } finally {
+      setSigningInApple(false);
+    }
+  };
+
+  useEffect(() => {
+    // console.log('appOwnership', Constants.appOwnership);
+  }, []);
 
   const logoSize = 80;
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
@@ -267,9 +376,9 @@ export default function mobile(variables: Variables): ReactElement {
             <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            {Platform.select({
-              ios: (
-                <Button
+            {
+              Platform.select({
+                ios: <Button
                   testID="btn-apple"
                   style={{
                     backgroundColor: theme.appleBackground,
@@ -277,11 +386,12 @@ export default function mobile(variables: Variables): ReactElement {
                     width: '100%',
                     height: 48,
                     borderWidth: 1,
-                    marginBottom: 6,
+                    marginBottom: 12,
+                    borderRadius: 100,
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
-                      <SvgApple width={24} fill={theme.appleIcon} />
+                      <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
                   isLoading={signingInApple}
@@ -289,49 +399,26 @@ export default function mobile(variables: Variables): ReactElement {
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                   textStyle={{ fontWeight: '700', color: theme.appleText }}
-                />
-              ),
-            })}
-            <Button
-              testID="btn-facebook"
-              style={{
-                backgroundColor: theme.facebookBackground,
-                borderColor: theme.facebookBackground,
-                borderWidth: 1,
-                width: '100%',
-                height: 48,
-                marginBottom: 6,
+                />,
+              })
+            }
+            <SocialSignInButton
+              clientId={facebookAppId}
+              clientSecret={facebookSecret}
+              svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
+              onUserCreated={(user?: User): void => {
+                if (user) setUser(user);
               }}
-              leftElement={
-                <View style={{ marginRight: 6 }}>
-                  <SvgFacebook width={24} fill={theme.facebookIcon} />
-                </View>
-              }
-              isLoading={signingInFacebook}
-              indicatorColor={theme.primary}
-              onPress={facebookLogin}
-              text={getString('SIGN_IN_WITH_FACEBOOK')}
-              textStyle={{ fontWeight: '700', color: theme.facebookText }}
+              socialProvider={AuthType.Facebook}
             />
-            <Button
-              testID="btn-google"
-              style={{
-                backgroundColor: theme.googleBackground,
-                borderColor: theme.googleBackground,
-                borderWidth: 1,
-                width: '100%',
-                height: 48,
+            <SocialSignInButton
+              clientId={googleClientId}
+              clientSecret={googleSecret}
+              svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
+              onUserCreated={(user?: User): void => {
+                if (user) setUser(user);
               }}
-              leftElement={
-                <View style={{ marginRight: 6 }}>
-                  <SvgGoogle width={24} fill={theme.googleIcon} />
-                </View>
-              }
-              isLoading={signingInGoogle}
-              indicatorColor={theme.primary}
-              onPress={googleSignInAsync}
-              text={getString('SIGN_IN_WITH_GOOGLE')}
-              textStyle={{ fontWeight: '700', color: theme.googleText }}
+              socialProvider={AuthType.Google}
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
@@ -356,3 +443,5 @@ export default function mobile(variables: Variables): ReactElement {
     </Container>
   );
 }
+
+export default SignIn;

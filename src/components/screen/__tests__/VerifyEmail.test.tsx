@@ -73,7 +73,6 @@ describe('Interaction', () => {
   });
 
   it('should simulate next button press', () => {
-    testingLib.debug();
     const btn = testingLib.queryByTestId('btn-next');
     act(() => {
       fireEvent.press(btn);

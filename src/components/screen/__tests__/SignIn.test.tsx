@@ -1,9 +1,6 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
-import * as Facebook from 'expo-facebook';
-import * as GoogleSignIn from 'expo-google-sign-in';
 
-import Constants, { AppOwnership } from 'expo-constants';
 import React, { ReactElement } from 'react';
 import {
   RenderResult,
@@ -412,193 +409,6 @@ describe('[SignIn] interaction', () => {
   });
 });
 
-describe('[SignIn] Facebook Signin', () => {
-  let testingLib: RenderResult;
-
-  beforeAll(() => {
-    props = createTestProps();
-    component = createTestElement(
-      <SignIn {...props}/>,
-    );
-    testingLib = render(component);
-  });
-
-  afterAll((done) => {
-    cleanup();
-    done();
-  });
-
-  it('should signin with facebook when [btn-facebook] has pressed', async () => {
-    Constants.manifest = {
-      facebookAppId: 'faebookAppId',
-      bundleUrl: 'bundleUrl',
-    };
-
-    testingLib = render(component);
-
-    const btnFacebook = testingLib.queryByTestId('btn-facebook');
-    await wait(() => expect(btnFacebook).toBeTruthy());
-
-    act(() => {
-      fireEvent.press(btnFacebook);
-    });
-
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).resolves.toEqual({
-      type: 'success',
-      token: 'testToken',
-    });
-
-    await wait(() => expect(fetch).toHaveBeenCalled());
-  });
-
-  it('should cancel signin with facebook', async () => {
-    Constants.manifest = {
-      facebookAppId: 'faebookAppId',
-      bundleUrl: 'bundleUrl',
-    };
-
-    jest.spyOn(Facebook, 'logInWithReadPermissionsAsync').mockImplementation(
-      () =>
-        new Promise((resolve): void => {
-          const result = {
-            type: 'cancel',
-          };
-          // @ts-ignore
-          resolve(result);
-        }),
-    );
-
-    const btnFacebook = testingLib.queryByTestId('btn-facebook');
-    await wait(() => expect(btnFacebook).toBeTruthy());
-
-    act(() => {
-      fireEvent.press(btnFacebook);
-    });
-
-    await act(() => wait());
-
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).resolves.toEqual({
-      type: 'cancel',
-    });
-  });
-
-  it('should catch sign in with facebook error', async () => {
-    Constants.manifest = {
-      facebookAppId: 'faebookAppId',
-      bundleUrl: 'bundleUrl',
-    };
-
-    jest.spyOn(Facebook, 'logInWithReadPermissionsAsync').mockRejectedValue('error');
-
-    const btnFacebook = testingLib.queryByTestId('btn-facebook');
-    await wait(() => expect(btnFacebook).toBeTruthy());
-
-    act(() => {
-      fireEvent.press(btnFacebook);
-    });
-
-    await act(() => wait());
-
-    expect(Facebook.logInWithReadPermissionsAsync({
-      permissions: ['email', 'public_profile'],
-    })).rejects.toEqual('error');
-  });
-});
-
-describe('[SignIn] Google Signin', () => {
-  // hyochan => below unit test is actually useless
-  it('should pass [GoogleSignIn] unit test', async () => {
-    await GoogleSignIn.initAsync();
-    const ask = await GoogleSignIn.askForPlayServicesAsync();
-    const { type, user } = await GoogleSignIn.signInAsync();
-    expect(ask).toEqual(true);
-    expect(type).toEqual('success');
-    expect(user).toEqual({
-      auth: {
-        clientId: 'test',
-        accessToken: 'aabb',
-        accessTokenExpirationDate: 1562518153000,
-      },
-    });
-  });
-
-  describe('standalone env', () => {
-    let testingLib: RenderResult;
-
-    beforeAll((done) => {
-      cleanup();
-      done();
-
-      testingLib = render(component);
-    });
-
-    it('should signin with Google when ownership is standalone', async () => {
-      Constants.appOwnership = AppOwnership.Standalone;
-      testingLib = render(component);
-
-      const btnGoogle = testingLib.queryByTestId('btn-google');
-      await wait(() => expect(btnGoogle).toBeTruthy());
-
-      act(() => {
-        fireEvent.press(btnGoogle);
-      });
-      await act(() => wait());
-
-      expect(GoogleSignIn.signInAsync()).resolves.toEqual({
-        type: 'success',
-        user: {
-          auth: {
-            clientId: 'test',
-            accessToken: 'aabb',
-            accessTokenExpirationDate: 1562518153000,
-          },
-        },
-      });
-    });
-
-    it('should cancel while signing in with expo Google', async () => {
-      jest.spyOn(GoogleSignIn, 'signInAsync').mockImplementationOnce(
-        (): Promise<GoogleSignIn.GoogleSignInAuthResult> =>
-          Promise.resolve({
-            type: 'cancel',
-          }),
-      );
-
-      const btnGoogle = testingLib.queryByTestId('btn-google');
-      await wait(() => expect(btnGoogle).toBeTruthy());
-
-      act(() => {
-        fireEvent.press(btnGoogle);
-      });
-      await act(() => wait());
-    });
-
-    it('should catch error while signing in with expo Google', async () => {
-      jest.spyOn(Alert, 'alert').mockImplementation(() => jest.fn());
-      jest
-        .spyOn(GoogleSignIn, 'signInAsync')
-        .mockImplementationOnce(
-          (): Promise<GoogleSignIn.GoogleSignInAuthResult> =>
-            Promise.reject(new Error('error')),
-        );
-
-      const btnGoogle = testingLib.queryByTestId('btn-google');
-      await wait(() => expect(btnGoogle).toBeTruthy());
-
-      act(() => {
-        fireEvent.press(btnGoogle);
-      });
-      await act(() => wait());
-
-      expect(Alert.alert).toHaveBeenCalled();
-    });
-  });
-});
-
 describe('Apple SignIn', () => {
   let testingLib: RenderResult;
 
@@ -660,69 +470,69 @@ describe('Apple SignIn', () => {
     });
   });
 
-  it('should cancel signin with apple', async () => {
-    jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
-      () =>
-        new Promise((resolve, reject): void => {
-          const error = {
-            code: 'ERR_CANCELED',
-          };
-          reject(error);
-        }),
-    );
+  // it('should cancel signin with apple', async () => {
+  //   jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
+  //     () =>
+  //       new Promise((resolve, reject): void => {
+  //         const error = {
+  //           code: 'ERR_CANCELED',
+  //         };
+  //         reject(error);
+  //       }),
+  //   );
 
-    const btnApple = testingLib.queryByTestId('btn-apple');
-    await wait(() => expect(btnApple).toBeTruthy());
+  //   const btnApple = testingLib.queryByTestId('btn-apple');
+  //   await wait(() => expect(btnApple).toBeTruthy());
 
-    act(() => {
-      fireEvent.press(btnApple);
-    });
+  //   act(() => {
+  //     fireEvent.press(btnApple);
+  //   });
 
-    await act(() => wait());
+  //   await act(() => wait());
 
-    await expect(AppleAuthentication.signInAsync({
-      requestedScopes: [
-        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-      ],
-    })).rejects.toEqual({
-      code: 'ERR_CANCELED',
-    });
-  });
+  //   await expect(AppleAuthentication.signInAsync({
+  //     requestedScopes: [
+  //       AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+  //       AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  //     ],
+  //   })).rejects.toEqual({
+  //     code: 'ERR_CANCELED',
+  //   });
+  // });
 
-  it('should catch signin with apple error', async () => {
-    jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
-      () =>
-        new Promise((resolve, reject): void => {
-          /**
-           * ## Error Codes
-           * - ERR_APPLE_AUTHENTICATION_CREDENTIAL,
-           * - ERR_APPLE_AUTHENTICATION_INVALID_SCOPE,
-           * - ERR_APPLE_AUTHENTICATION_REQUEST_FAILED,
-           * - ERR_APPLE_AUTHENTICATION_UNAVAILABLE,
-           * - ERR_CANCELED
-           */
-          const error = {
-            code: 'ERR_APPLE_AUTHENTICATION_CREDENTIAL',
-          };
-          reject(error);
-        }),
-    );
+  // it('should catch signin with apple error', async () => {
+  //   jest.spyOn(AppleAuthentication, 'signInAsync').mockImplementation(
+  //     () =>
+  //       new Promise((resolve, reject): void => {
+  //         /**
+  //          * ## Error Codes
+  //          * - ERR_APPLE_AUTHENTICATION_CREDENTIAL,
+  //          * - ERR_APPLE_AUTHENTICATION_INVALID_SCOPE,
+  //          * - ERR_APPLE_AUTHENTICATION_REQUEST_FAILED,
+  //          * - ERR_APPLE_AUTHENTICATION_UNAVAILABLE,
+  //          * - ERR_CANCELED
+  //          */
+  //         const error = {
+  //           code: 'ERR_APPLE_AUTHENTICATION_CREDENTIAL',
+  //         };
+  //         reject(error);
+  //       }),
+  //   );
 
-    const btnApple = testingLib.queryByTestId('btn-apple');
-    await wait(() => expect(btnApple).toBeTruthy());
+  //   const btnApple = testingLib.queryByTestId('btn-apple');
+  //   await wait(() => expect(btnApple).toBeTruthy());
 
-    act(() => {
-      fireEvent.press(btnApple);
-    });
+  //   act(() => {
+  //     fireEvent.press(btnApple);
+  //   });
 
-    await act(() => wait());
+  //   await act(() => wait());
 
-    return expect(AppleAuthentication.signInAsync({
-      requestedScopes: [
-        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-      ],
-    })).rejects.not.toBeNull();
-  });
+  //   return expect(AppleAuthentication.signInAsync({
+  //     requestedScopes: [
+  //       AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+  //       AppleAuthentication.AppleAuthenticationScope.EMAIL,
+  //     ],
+  //   })).rejects.not.toBeNull();
+  // });
 });

@@ -750,9 +750,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                         Object {
                                                           "backgroundColor": "#ffffff",
                                                           "borderColor": "#151E22",
+                                                          "borderRadius": 100,
                                                           "borderWidth": 1,
                                                           "height": 48,
-                                                          "marginBottom": 6,
+                                                          "marginBottom": 12,
                                                           "width": "100%",
                                                         },
                                                       ]
@@ -767,7 +768,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                     >
                                                       <SvgMock
                                                         fill="#151E22"
-                                                        width={24}
+                                                        height={18}
+                                                        width={18}
                                                       />
                                                     </View>
                                                     <Text
@@ -807,9 +809,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                         Object {
                                                           "backgroundColor": "#345997",
                                                           "borderColor": "#345997",
+                                                          "borderRadius": 100,
                                                           "borderWidth": 1,
                                                           "height": 48,
-                                                          "marginBottom": 6,
+                                                          "marginBottom": 12,
                                                           "width": "100%",
                                                         },
                                                       ]
@@ -824,7 +827,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                     >
                                                       <SvgMock
                                                         fill="#ffffff"
-                                                        width={24}
+                                                        height={18}
+                                                        width={18}
                                                       />
                                                     </View>
                                                     <Text
@@ -864,8 +868,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                         Object {
                                                           "backgroundColor": "#E04238",
                                                           "borderColor": "#E04238",
+                                                          "borderRadius": 100,
                                                           "borderWidth": 1,
                                                           "height": 48,
+                                                          "marginBottom": 12,
                                                           "width": "100%",
                                                         },
                                                       ]
@@ -880,7 +886,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                     >
                                                       <SvgMock
                                                         fill="#ffffff"
-                                                        width={24}
+                                                        height={20}
+                                                        width={20}
                                                       />
                                                     </View>
                                                     <Text
