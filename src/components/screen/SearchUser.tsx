@@ -63,7 +63,7 @@ const Screen = (): React.ReactElement => {
   const debouncedText = useDebounce(searchText, 500);
 
   // TODO: Get fragment data
-  const users: any = {};
+  const users: any = [];
 
   // const {
   //   loading: loadingUsers,
@@ -121,16 +121,6 @@ const Screen = (): React.ReactElement => {
       toValue: 100,
       duration: 500,
     }).start();
-  };
-
-  const getContentContainerStyle = (): Record<string, unknown> | null => {
-    return users.length === 0
-      ? {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
-      : null;
   };
 
   const renderItem = ({
@@ -223,7 +213,15 @@ const Screen = (): React.ReactElement => {
             },
           ],
         }}
-        contentContainerStyle={getContentContainerStyle}
+        contentContainerStyle={
+          (users || []).length === 0
+            ? {
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
+            : undefined
+        }
         keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
         data={users}
         renderItem={renderItem}

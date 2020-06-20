@@ -75,7 +75,7 @@ export default function Screen(): ReactElement {
               alignItems: 'center',
               justifyContent: 'center',
             }
-            : null
+            : undefined
         }
         keyExtractor={(item, index): string => index.toString()}
         data={data?.friends}
