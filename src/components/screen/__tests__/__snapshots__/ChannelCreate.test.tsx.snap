@@ -46,6 +46,9 @@ exports[`Rendering renders without crashing 1`] = `
               "paddingTop": 0,
               "width": "100%",
             },
+            Object {
+              "marginTop": 12,
+            },
           ]
         }
       >
@@ -112,7 +115,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "1",
               "isOnline": true,
-              "nickname": "admin",
+              "name": "admin",
               "photoURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
               "statusMessage": "this is my status message......",
               "thumbURL": "https://avatars2.githubusercontent.com/u/45788556?s=200&v=4",
@@ -120,7 +123,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "2",
               "isOnline": false,
-              "nickname": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
+              "name": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
@@ -128,7 +131,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "3",
               "isOnline": false,
-              "nickname": "hyochan",
+              "name": "hyochan",
               "photoURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
               "statusMessage": "hello",
               "thumbURL": "https://avatars2.githubusercontent.com/u/27461460?s=460&v=4",
@@ -136,7 +139,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "4",
               "isOnline": true,
-              "nickname": "mars",
+              "name": "mars",
               "photoURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
               "statusMessage": "offline",
               "thumbURL": "https://avatars0.githubusercontent.com/u/6101260?s=460&v=4",
@@ -144,7 +147,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "5",
               "isOnline": true,
-              "nickname": "gordon",
+              "name": "gordon",
               "photoURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
               "statusMessage": "offline",
               "thumbURL": "https://avatars0.githubusercontent.com/u/10363850?s=460&v=4",
@@ -152,7 +155,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "6",
               "isOnline": true,
-              "nickname": "admin2",
+              "name": "admin2",
               "photoURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
               "statusMessage": "how are you",
               "thumbURL": "https://avatars3.githubusercontent.com/u/31645570?s=200&v=4",
@@ -160,7 +163,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "7",
               "isOnline": false,
-              "nickname": "geoseong2",
+              "name": "geoseong2",
               "photoURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
               "statusMessage": "offline",
               "thumbURL": "https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg",
@@ -168,7 +171,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "8",
               "isOnline": false,
-              "nickname": "hyochan2",
+              "name": "hyochan2",
               "photoURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
               "statusMessage": "offline",
               "thumbURL": "https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA",
@@ -176,7 +179,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "9",
               "isOnline": true,
-              "nickname": "mars2",
+              "name": "mars2",
               "photoURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
               "statusMessage": "offline",
               "thumbURL": "https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true",
@@ -184,7 +187,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "10",
               "isOnline": true,
-              "nickname": "gordon2",
+              "name": "gordon2",
               "photoURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
               "statusMessage": "offline",
               "thumbURL": "https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png",
@@ -213,6 +216,7 @@ exports[`Rendering renders without crashing 1`] = `
             horizontal={true}
             style={
               Object {
+                "marginBottom": 12,
                 "paddingHorizontal": 24,
               }
             }
@@ -282,7 +286,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  admin
+                </Text>
                 <View
                   style={
                     Array [
@@ -416,7 +422,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
+                </Text>
                 <View
                   style={
                     Array [
@@ -550,7 +558,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  hyochan
+                </Text>
                 <View
                   style={
                     Array [
@@ -684,7 +694,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  mars
+                </Text>
                 <View
                   style={
                     Array [
@@ -818,7 +830,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  gordon
+                </Text>
                 <View
                   style={
                     Array [
@@ -952,7 +966,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  admin2
+                </Text>
                 <View
                   style={
                     Array [
@@ -1086,7 +1102,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  geoseong2
+                </Text>
                 <View
                   style={
                     Array [
@@ -1220,7 +1238,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  hyochan2
+                </Text>
                 <View
                   style={
                     Array [
@@ -1354,7 +1374,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  mars2
+                </Text>
                 <View
                   style={
                     Array [
@@ -1488,7 +1510,9 @@ exports[`Rendering renders without crashing 1`] = `
                       },
                     ]
                   }
-                />
+                >
+                  gordon2
+                </Text>
                 <View
                   style={
                     Array [

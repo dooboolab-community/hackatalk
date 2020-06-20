@@ -152,6 +152,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#ffffff",
@@ -580,6 +581,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#ffffff",
@@ -1008,6 +1010,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#ffffff",
@@ -1436,6 +1439,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#ffffff",
