@@ -4,11 +4,6 @@ import type { AppUserQuery, AppUserQueryResponse } from './__generated__/AppUser
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import OneSignal, {
-  DeviceInfo,
-  OpenResult,
-  ReceivedNotification,
-} from 'react-native-onesignal';
 import React, { ReactElement, Suspense, useEffect } from 'react';
 import RelayEnvironment, {
   RelayEnvironmentProps,
@@ -25,25 +20,9 @@ import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
-import Config from 'react-native-config';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { Text } from 'react-native';
 import { initializeEThree } from './utils/virgil';
-
-const onReceived = (notification: ReceivedNotification): void => {
-  console.log('Notification received: ', notification);
-};
-
-const onOpened = (openResult: OpenResult): void => {
-  console.log('Notification Message: ', openResult.notification.payload.body);
-  console.log('Data: ', openResult.notification.payload.additionalData);
-  console.log('isActive: ', openResult.notification.isAppInFocus);
-  console.log('openResult: ', openResult);
-};
-
-const onIds = (device: DeviceInfo): void => {
-  console.log('Device info: ', device);
-};
 
 const userQuery = graphql`
   query AppUserQuery {
@@ -93,20 +72,6 @@ function AppWithTheme(): ReactElement {
 
 function App(): ReactElement {
   const colorScheme = useColorScheme();
-
-  useEffect(() => {
-    OneSignal.init(Config.ONESIGNAL_APP_ID, { kOSSettingsKeyAutoPrompt: true });
-
-    OneSignal.addEventListener('received', onReceived);
-    OneSignal.addEventListener('opened', onOpened);
-    OneSignal.addEventListener('ids', onIds);
-
-    return (): void => {
-      OneSignal.removeEventListener('received', onReceived);
-      OneSignal.removeEventListener('opened', onOpened);
-      OneSignal.removeEventListener('ids', onIds);
-    };
-  }, []);
 
   return (
     <ThemeProvider

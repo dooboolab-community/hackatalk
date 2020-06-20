@@ -85,7 +85,6 @@
     "react-native-keychain": "^6.1.1",
     "react-native-localize": "^1.4.0",
     "react-native-modalbox": "^2.0.0",
-    "react-native-onesignal": "^3.8.1",
     "react-native-reanimated": "~1.9.0",
     "react-native-redash": "^14.1.1",
     "react-native-safe-area-context": "3.0.5",
