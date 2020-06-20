@@ -7,7 +7,6 @@ import com.dooboolab.hackatalk.generated.BasePackageList;
 import com.dooboolab.hackatalk.splash.SplashPackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

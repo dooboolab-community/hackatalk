@@ -8,7 +8,7 @@ import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
 } from '../../../__generated__/SignInEmailMutation.graphql';
-import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
+import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForGrpahqlError, validateEmail } from '../../../utils/common';
 

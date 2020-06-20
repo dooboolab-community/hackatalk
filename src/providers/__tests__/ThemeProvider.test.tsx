@@ -6,7 +6,7 @@ import {
   ThemeType,
   defaultThemeType,
   useThemeContext,
-} from '@dooboo-ui/native-theme';
+} from '@dooboo-ui/theme';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
 // Note: test renderer must be required after react-native.

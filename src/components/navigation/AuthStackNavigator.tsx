@@ -8,7 +8,7 @@ import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
 import VerifyEmail from '../screen/VerifyEmail';
 import { getString } from '../../../STRINGS';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export type AuthStackParamList = {
   default: undefined;

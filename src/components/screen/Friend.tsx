@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import EmptyListItem from '../shared/EmptyListItem';
 import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
-import { LoadingIndicator } from '@dooboo-ui/native';
+import { LoadingIndicator } from 'dooboo-ui';
 import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -69,13 +69,13 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          data?.friends?.length === 0
+          (data?.friends || []).length === 0
             ? {
               flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
             }
-            : null
+            : undefined
         }
         keyExtractor={(item, index): string => index.toString()}
         data={data?.friends}

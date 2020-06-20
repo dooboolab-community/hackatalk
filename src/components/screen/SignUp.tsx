@@ -1,4 +1,4 @@
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
 
@@ -7,7 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;

@@ -3,7 +3,7 @@ import * as Device from 'expo-device';
 import React, { ReactElement } from 'react';
 
 import { AllProviders } from '../src/providers';
-import { ThemeType } from '@dooboo-ui/native-theme';
+import { ThemeType } from '@dooboo-ui/theme';
 import { User } from '../src/types/graphql';
 
 export const createTestElement = (

@@ -1,6 +1,6 @@
 import { Alert, TouchableOpacity } from 'react-native';
 import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
-import { Button, LoadingIndicator } from '@dooboo-ui/native';
+import { Button, LoadingIndicator } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
 import type { VerifyEmailMutation, VerifyEmailMutationResponse } from '../../__generated__/VerifyEmailMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
@@ -9,7 +9,7 @@ import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;

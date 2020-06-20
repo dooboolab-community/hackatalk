@@ -1,22 +1,39 @@
 import * as Device from 'expo-device';
 
-import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
+import { AuthProvider, useAuthContext } from './AuthProvider';
+import React, { ReactElement } from 'react';
+import RelayEnvironment, {
+  RelayEnvironmentProps,
+} from '../relay/RelayEnvironment';
+import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from '../theme';
 
-import { AuthProvider } from './AuthProvider';
 import { DeviceProvider } from './DeviceProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
-import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { User } from '../types/graphql';
-import environment from '../relay/RelayEnvironment';
 
-interface Props {
+interface AllProvidersProps {
   initialDeviceType?: Device.DeviceType;
   initialThemeType?: ThemeType;
   initialAuthUser?: User;
   children?: React.ReactElement;
 }
+interface RelayProvidersProps {
+  children?: React.ReactElement;
+}
+
+const RelayProviderWrapper = ({
+  children,
+}: RelayProvidersProps): ReactElement => {
+  const relay: RelayEnvironmentProps = RelayEnvironment.environment;
+
+  return (
+    <RelayEnvironmentProvider environment={relay}>
+      <ProfileModalProvider>{children}</ProfileModalProvider>
+    </RelayEnvironmentProvider>
+  );
+};
 
 // hyochan => for testing
 export const AllProviders = ({
@@ -24,22 +41,16 @@ export const AllProviders = ({
   initialAuthUser,
   initialDeviceType,
   children,
-}: Props): React.ReactElement => {
+}: AllProvidersProps): React.ReactElement => {
   return (
-    <DeviceProvider
-      initialDeviceType={initialDeviceType}
-    >
+    <DeviceProvider initialDeviceType={initialDeviceType}>
       <ThemeProvider
         initialThemeType={initialThemeType}
         customTheme={{ light, dark }}
       >
-        <RelayEnvironmentProvider environment={environment}>
-          <AuthProvider initialAuthUser={initialAuthUser}>
-            <ProfileModalProvider>
-              {children}
-            </ProfileModalProvider>
-          </AuthProvider>
-        </RelayEnvironmentProvider>
+        <AuthProvider initialAuthUser={initialAuthUser}>
+          <RelayProviderWrapper>{children}</RelayProviderWrapper>
+        </AuthProvider>
       </ThemeProvider>
     </DeviceProvider>
   );

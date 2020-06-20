@@ -3,9 +3,9 @@ import { Text, View } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import PinchZoomSliderModal from '@dooboo-ui/native-pinch-zoom-slider-modal';
+import PinchZoomSliderModal from '@dooboo-ui/pinch-zoom-slider-modal';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
