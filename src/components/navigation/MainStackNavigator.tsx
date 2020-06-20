@@ -196,13 +196,6 @@ function RootNavigator(): ReactElement {
 }
 
 export default function RootNavigatorWrapper(): ReactElement {
-  const { resetRelay } = useAuthContext();
-  useEffect(() => {
-    return (): void => {
-      // console.log('Unmount MainStack');
-      resetRelay();
-    };
-  }, []);
   return (
     <ProfileModalProvider>
       <RootNavigator />

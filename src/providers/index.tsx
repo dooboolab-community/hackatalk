@@ -2,6 +2,9 @@ import * as Device from 'expo-device';
 
 import { AuthProvider, useAuthContext } from './AuthProvider';
 import React, { ReactElement } from 'react';
+import RelayEnvironment, {
+  RelayEnvironmentProps,
+} from '../relay/RelayEnvironment';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
 import { dark, light } from '../theme';
 
@@ -23,9 +26,8 @@ interface RelayProvidersProps {
 const RelayProviderWrapper = ({
   children,
 }: RelayProvidersProps): ReactElement => {
-  const {
-    state: { relay },
-  } = useAuthContext();
+  const relay: RelayEnvironmentProps = RelayEnvironment.environment;
+
   return (
     <RelayEnvironmentProvider environment={relay}>
       <ProfileModalProvider>{children}</ProfileModalProvider>

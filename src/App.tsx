@@ -10,6 +10,9 @@ import OneSignal, {
   ReceivedNotification,
 } from 'react-native-onesignal';
 import React, { ReactElement, Suspense, useEffect } from 'react';
+import RelayEnvironment, {
+  RelayEnvironmentProps,
+} from './relay/RelayEnvironment';
 import {
   RelayEnvironmentProvider,
   graphql,
@@ -118,9 +121,8 @@ function App(): ReactElement {
 }
 
 function RelayProviderWrapper(): ReactElement {
-  const {
-    state: { relay },
-  } = useAuthContext();
+  const relay: RelayEnvironmentProps = RelayEnvironment.environment;
+
   return (
     <RelayEnvironmentProvider environment={relay}>
       <Suspense fallback={<Text>loading app...</Text>}>
