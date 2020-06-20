@@ -14,7 +14,7 @@ import fetchGraphQL from './fetch';
 
 const __DEV__ = process.env.NODE_ENV === 'development';
 
-function fetchFunction(
+async function fetchFunction(
   request: RequestParameters,
   variables: Variables,
   cacheConfig: CacheConfig,
