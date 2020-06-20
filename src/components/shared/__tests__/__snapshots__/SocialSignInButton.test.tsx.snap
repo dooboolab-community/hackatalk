@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interaction should simulate onClick 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      delayPressIn={30}
+      testID="btn-facebook"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
+              "justifyContent": "center",
+              "width": 320,
+            },
+            Object {
+              "backgroundColor": "#345997",
+              "borderColor": "#345997",
+              "borderRadius": 100,
+              "borderWidth": 1,
+              "height": 48,
+              "marginBottom": 12,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 6,
+            }
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontWeight": "700",
+              },
+            ]
+          }
+        >
+          Sign in with Facebook
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      delayPressIn={30}
+      testID="btn-facebook"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "borderColor": "blue",
+              "flexDirection": "row",
+              "height": 52,
+              "justifyContent": "center",
+              "width": 320,
+            },
+            Object {
+              "backgroundColor": "#345997",
+              "borderColor": "#345997",
+              "borderRadius": 100,
+              "borderWidth": 1,
+              "height": 48,
+              "marginBottom": 12,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 6,
+            }
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#069ccd",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#ffffff",
+                "fontWeight": "700",
+              },
+            ]
+          }
+        >
+          Sign in with Facebook
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

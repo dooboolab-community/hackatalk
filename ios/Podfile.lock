@@ -1,9 +1,4 @@
 PODS:
-  - AppAuth (1.4.0):
-    - AppAuth/Core (= 1.4.0)
-    - AppAuth/ExternalUserAgent (= 1.4.0)
-  - AppAuth/Core (1.4.0)
-  - AppAuth/ExternalUserAgent (1.4.0)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - EXAppleAuthentication (2.1.1):
@@ -11,14 +6,11 @@ PODS:
   - EXConstants (9.0.0):
     - UMConstantsInterface
     - UMCore
+  - EXCrypto (8.1.0):
+    - UMCore
   - EXDevice (2.1.0):
     - UMCore
   - EXErrorRecovery (1.1.0):
-    - UMCore
-  - EXFacebook (8.1.0):
-    - FBSDKCoreKit (~> 5.8.0)
-    - FBSDKLoginKit (~> 5.8.0)
-    - UMConstantsInterface
     - UMCore
   - EXFileSystem (8.1.0):
     - UMCore
@@ -26,9 +18,6 @@ PODS:
   - EXFont (8.1.1):
     - UMCore
     - UMFontInterface
-  - EXGoogleSignIn (8.1.0):
-    - GoogleSignIn (~> 5.0.2)
-    - UMCore
   - EXImageLoader (1.0.1):
     - React-Core
     - UMCore
@@ -54,6 +43,8 @@ PODS:
   - EXPermissions (8.1.0):
     - UMCore
     - UMPermissionsInterface
+  - EXRandom (8.1.0):
+    - UMCore
   - EXSQLite (8.1.0):
     - UMCore
     - UMFileSystemInterface
@@ -70,16 +61,6 @@ PODS:
     - React-Core (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/turbomodule/core (= 0.62.2)
-  - FBSDKCoreKit (5.8.0):
-    - FBSDKCoreKit/Basics (= 5.8.0)
-    - FBSDKCoreKit/Core (= 5.8.0)
-  - FBSDKCoreKit/Basics (5.8.0)
-  - FBSDKCoreKit/Core (5.8.0):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.8.0):
-    - FBSDKLoginKit/Login (= 5.8.0)
-  - FBSDKLoginKit/Login (5.8.0):
-    - FBSDKCoreKit (~> 5.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -90,18 +71,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - GoogleSignIn (5.0.2):
-    - AppAuth (~> 1.2)
-    - GTMAppAuth (~> 1.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GTMAppAuth (1.0.0):
-    - AppAuth/Core (~> 1.0)
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.4.0):
-    - GTMSessionFetcher/Full (= 1.4.0)
-  - GTMSessionFetcher/Core (1.4.0)
-  - GTMSessionFetcher/Full (1.4.0):
-    - GTMSessionFetcher/Core (= 1.4.0)
   - RCTRequired (0.62.2)
   - RCTTypeSafety (0.62.2):
     - FBLazyVector (= 0.62.2)
@@ -391,12 +360,11 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXAppleAuthentication (from `../node_modules/expo-apple-authentication/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXCrypto (from `../node_modules/expo-crypto/ios`)
   - EXDevice (from `../node_modules/expo-device/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
-  - EXFacebook (from `../node_modules/expo-facebook/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
-  - EXGoogleSignIn (from `../node_modules/expo-google-sign-in/ios`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - EXImageManipulator (from `../node_modules/expo-image-manipulator/ios`)
   - EXImagePicker (from `../node_modules/expo-image-picker/ios`)
@@ -405,6 +373,7 @@ DEPENDENCIES:
   - EXLocalization (from `../node_modules/expo-localization/ios`)
   - EXLocation (from `../node_modules/expo-location/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
+  - EXRandom (from `../node_modules/expo-random/ios`)
   - EXSQLite (from `../node_modules/expo-sqlite/ios`)
   - EXUpdates (from `../node_modules/expo-updates/ios`)
   - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
@@ -465,13 +434,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AppAuth
     - boost-for-react-native
-    - FBSDKCoreKit
-    - FBSDKLoginKit
-    - GoogleSignIn
-    - GTMAppAuth
-    - GTMSessionFetcher
     - VirgilCrypto
     - VirgilCryptoFoundation
     - VirgilCryptoPythia
@@ -484,18 +447,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-apple-authentication/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
+  EXCrypto:
+    :path: "../node_modules/expo-crypto/ios"
   EXDevice:
     :path: "../node_modules/expo-device/ios"
   EXErrorRecovery:
     :path: "../node_modules/expo-error-recovery/ios"
-  EXFacebook:
-    :path: "../node_modules/expo-facebook/ios"
   EXFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   EXFont:
     :path: "../node_modules/expo-font/ios"
-  EXGoogleSignIn:
-    :path: "../node_modules/expo-google-sign-in/ios"
   EXImageLoader:
     :path: "../node_modules/expo-image-loader/ios"
   EXImageManipulator:
@@ -512,6 +473,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-location/ios"
   EXPermissions:
     :path: "../node_modules/expo-permissions/ios"
+  EXRandom:
+    :path: "../node_modules/expo-random/ios"
   EXSQLite:
     :path: "../node_modules/expo-sqlite/ios"
   EXUpdates:
@@ -622,17 +585,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   EXAppleAuthentication: 046c76335343eaa97f6ed8d35a9cf493a2c4d351
   EXConstants: 5304709b1bea70a4828f48ba4c7fc3ec3b2d9b17
+  EXCrypto: c4ade2e300874e9175dbf0015734f411fe165d50
   EXDevice: 6e2b0178ab15cf57a46325e87f6e797cc72f6ddc
   EXErrorRecovery: 8f4c21ab2f51bf75defe4536f841a37de59b0661
-  EXFacebook: 74d53d9da75d1a953f1821dd417594ed18d7a72f
   EXFileSystem: cf4232ba7c62dc49b78c2d36005f97b6fddf0b01
   EXFont: b60f7a8900e3a12e7be3b2a40e19b22c7b5f89ba
-  EXGoogleSignIn: a0b58709109b6970e93140b0d0630b54c71a675b
   EXImageLoader: 5ad6896fa1ef2ee814b551873cbf7a7baccc694a
   EXImageManipulator: 97f61d14c292714d66884e83697e794f8cefe0b0
   EXImagePicker: 4126814cba56cc3dc5e7fc47abce0b263da84609
@@ -641,18 +602,14 @@ SPEC CHECKSUMS:
   EXLocalization: 1997068470bdfb7601fd58dbbf85ba1cde36fb82
   EXLocation: bbd487fd96a18a3ad9725389bbb94c4a5f78edf3
   EXPermissions: 24b97f734ce9172d245a5be38ad9ccfcb6135964
+  EXRandom: cafbaebd177d38a4c4ee514e75824245e6fc2046
   EXSQLite: 877ad6c8eb169353a2f94d5ad26510ffadd46a1f
   EXUpdates: 7176be81088b1628c94fa5546aceefba119fcae6
   EXWebBrowser: 5902f99ac5ac551e5c82ff46f13a337b323aa9ea
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
-  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
-  FBSDKLoginKit: 1b0cf04df0370b37404213157b060d6666ede814
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
   React: 29a8b1a02bd764fb7644ef04019270849b9a7ac3
@@ -696,7 +653,7 @@ SPEC CHECKSUMS:
   UMFontInterface: d9d3b27af698c5389ae9e20b99ef56a083f491fb
   UMImageLoaderInterface: 14dd2c46c67167491effc9e91250e9510f12709e
   UMPermissionsInterface: 5e83a9167c177e4a0f0a3539345983cc749efb3e
-  UMReactNativeAdapter: a4221ffb5a4a7f2d078f988b2a864b025e2421aa
+  UMReactNativeAdapter: 126da3486c1a1f11945b649d557d6c2ebb9407b2
   UMSensorsInterface: 48941f70175e2975af1a9386c6d6cb16d8126805
   UMTaskManagerInterface: cb890c79c63885504ddc0efd7a7d01481760aca2
   VirgilCrypto: c2831582c5230eeb2adba2365336c768cd6d8c59

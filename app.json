@@ -13,6 +13,7 @@
       "image": "./assets/splash.png",
       "tabletImage": "./assets/splashTablet.png"
     },
+    "scheme": "hackatalk",
     "updates": {
       "fallbackToCacheTimeout": 0
     },

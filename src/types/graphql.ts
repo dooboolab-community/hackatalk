@@ -18,10 +18,10 @@ export type AuthPayload = {
 };
 
 export enum AuthType {
-  Email = 'EMAIL',
-  Facebook = 'FACEBOOK',
-  Google = 'GOOGLE',
-  Apple = 'APPLE'
+  Email = 'email',
+  Facebook = 'facebook',
+  Google = 'google',
+  Apple = 'apple'
 }
 
 export type Channel = {
