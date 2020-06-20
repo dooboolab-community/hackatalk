@@ -166,6 +166,7 @@ export const initializeEThree = async (userId: string): Promise<void> => {
     AsyncStorage.removeItem('password');
   } catch (err) {
     console.log('Ethree register error', err);
+    cleanupEThree();
   }
 };
 
