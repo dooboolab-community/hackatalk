@@ -69,7 +69,7 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          data?.friends?.length === 0
+          (data?.friends || []).length === 0
             ? {
               flex: 1,
               alignItems: 'center',
