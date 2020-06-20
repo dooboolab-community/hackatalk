@@ -113,6 +113,7 @@ exports[`Interaction should simulate onClick 1`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#1E6EFA",
@@ -259,6 +260,7 @@ exports[`Rendering renders without crashing 1`] = `
                 "flexDirection": "row",
                 "height": 52,
                 "justifyContent": "center",
+                "width": 320,
               },
               Object {
                 "backgroundColor": "#1E6EFA",

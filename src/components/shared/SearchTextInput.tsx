@@ -1,6 +1,6 @@
 import { IC_SEARCH, IC_SEARCH_W } from '../../utils/Icons';
 import React, { ReactChildren, ReactElement } from 'react';
-import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
+import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 
 import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';

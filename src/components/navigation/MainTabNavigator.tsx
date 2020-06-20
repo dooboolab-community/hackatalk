@@ -9,7 +9,7 @@ import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MaterialTopTabParamList = {
   default: undefined;

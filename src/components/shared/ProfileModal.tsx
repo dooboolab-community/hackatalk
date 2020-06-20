@@ -8,7 +8,7 @@ import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
 import { showAlertForGrpahqlError } from '../../utils/common';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledView = styled.View`
   margin-top: 40px;

@@ -1,11 +1,11 @@
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
 import { Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import React, { ReactElement } from 'react';
 
-import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import { EditTextInputType } from 'dooboo-ui/EditText';
 import StatusBar from '../../shared/StatusBar';
-import { ThemeType } from '@dooboo-ui/native-theme';
+import { ThemeType } from '@dooboo-ui/theme';
 import { Variables } from './';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';

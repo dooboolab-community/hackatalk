@@ -1,14 +1,14 @@
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
-import { Button, EditText } from '@dooboo-ui/native';
+import { Button, EditText } from 'dooboo-ui';
 import { Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../../utils/Icons';
 import React, { ReactElement, useEffect } from 'react';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 
-import { EditTextInputType } from '@dooboo-ui/native/lib/EditText';
+import { EditTextInputType } from 'dooboo-ui/EditText';
 import SplashModule from '../../../utils/splash';
 import StatusBar from '../../shared/StatusBar';
-import { ThemeType } from '@dooboo-ui/native-theme';
+import { ThemeType } from '@dooboo-ui/theme';
 import { Variables } from './';
 import { getString } from '../../../../STRINGS';
 import styled from 'styled-components/native';

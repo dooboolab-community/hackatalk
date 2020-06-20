@@ -20,12 +20,12 @@ import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import produce from 'immer';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export const fakeFriends: User[] = [
   {
     id: '1',
-    nickname: 'admin',
+    name: 'admin',
     thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
     statusMessage: 'this is my status message......',
@@ -33,7 +33,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '2',
-    nickname: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
+    name: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     statusMessage: 'hi I am fine',
@@ -41,7 +41,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '3',
-    nickname: 'hyochan',
+    name: 'hyochan',
     thumbURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
     statusMessage: 'hello',
@@ -49,7 +49,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '4',
-    nickname: 'mars',
+    name: 'mars',
     thumbURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
     photoURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
     statusMessage: 'offline',
@@ -57,7 +57,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '5',
-    nickname: 'gordon',
+    name: 'gordon',
     thumbURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
     photoURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
     statusMessage: 'offline',
@@ -65,7 +65,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '6',
-    nickname: 'admin2',
+    name: 'admin2',
     thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
     photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
     statusMessage: 'how are you',
@@ -73,7 +73,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '7',
-    nickname: 'geoseong2',
+    name: 'geoseong2',
     thumbURL:
       'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
     photoURL:
@@ -83,7 +83,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '8',
-    nickname: 'hyochan2',
+    name: 'hyochan2',
     thumbURL:
       'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
     photoURL:
@@ -93,7 +93,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '9',
-    nickname: 'mars2',
+    name: 'mars2',
     thumbURL:
       'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
     photoURL:
@@ -103,7 +103,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '10',
-    nickname: 'gordon2',
+    name: 'gordon2',
     thumbURL:
       'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
     photoURL:
@@ -252,6 +252,9 @@ function Page(props: Props): ReactElement {
       <SearchTextInput
         testID="text-input"
         onChangeText={onChangeText}
+        containerStyle={{
+          marginTop: 12,
+        }}
         value={searchText}
       />
       <FlatList
@@ -274,7 +277,7 @@ function Page(props: Props): ReactElement {
         ListHeaderComponent={(): ReactElement => {
           const filtered = friends.filter((v) => (v.checked === true));
           return <ScrollView
-            style={{ paddingHorizontal: 24 }}
+            style={{ paddingHorizontal: 24, marginBottom: 12 }}
             horizontal
           >
             {filtered.map((friend, i) => renderFriendThumbnail(friend, i))}

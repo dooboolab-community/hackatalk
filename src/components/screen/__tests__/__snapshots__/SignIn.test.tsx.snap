@@ -169,6 +169,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
               <TextInput
                 allowFontScaling={true}
                 autoCapitalize="none"
+                multiline={false}
                 placeholder="hello@example.com"
                 placeholderTextColor="#676c7a"
                 rejectResponderTermination={true}
@@ -189,7 +190,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "color": "#151A25",
                     },
                     Object {
-                      "textAlign": "right",
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -251,6 +252,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
               <TextInput
                 allowFontScaling={true}
                 autoCapitalize="none"
+                multiline={false}
                 placeholder="******"
                 placeholderTextColor="#676c7a"
                 rejectResponderTermination={true}
@@ -272,7 +274,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "color": "#151A25",
                     },
                     Object {
-                      "textAlign": "right",
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -315,6 +317,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "flexDirection": "row",
                       "height": 52,
                       "justifyContent": "center",
+                      "width": 320,
                     },
                     Object {
                       "backgroundColor": "#ffffff",
@@ -374,6 +377,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "flexDirection": "row",
                       "height": 52,
                       "justifyContent": "center",
+                      "width": 320,
                     },
                   ]
                 }
@@ -449,6 +453,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "flexDirection": "row",
                       "height": 52,
                       "justifyContent": "center",
+                      "width": 320,
                     },
                     Object {
                       "backgroundColor": "#ffffff",
@@ -505,6 +510,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "flexDirection": "row",
                       "height": 52,
                       "justifyContent": "center",
+                      "width": 320,
                     },
                     Object {
                       "backgroundColor": "#345997",
@@ -561,6 +567,7 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
                       "flexDirection": "row",
                       "height": 52,
                       "justifyContent": "center",
+                      "width": 320,
                     },
                     Object {
                       "backgroundColor": "#E04238",

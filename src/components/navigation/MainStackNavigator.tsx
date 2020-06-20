@@ -30,7 +30,7 @@ import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import useAppState from '../../hooks/useAppState';
 import { useAuthContext } from '../../providers/AuthProvider';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MainStackParamList = {
   default: undefined;

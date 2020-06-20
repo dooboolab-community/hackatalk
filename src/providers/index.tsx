@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react';
 import RelayEnvironment, {
   RelayEnvironmentProps,
 } from '../relay/RelayEnvironment';
-import { ThemeProvider, ThemeType } from '@dooboo-ui/native-theme';
+import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from '../theme';
 
 import { DeviceProvider } from './DeviceProvider';

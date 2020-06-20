@@ -5,13 +5,13 @@ import styled, { DefaultTheme } from 'styled-components/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthType } from '../../types/graphql';
-import { Button } from '@dooboo-ui/native';
+import { Button } from 'dooboo-ui';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { cleanupEThree } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;

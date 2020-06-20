@@ -19,9 +19,12 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
   >
     <RNCSafeAreaProvider
       style={
-        Object {
-          "flex": 1,
-        }
+        Array [
+          Object {
+            "flex": 1,
+          },
+          undefined,
+        ]
       }
     >
       <View
@@ -90,6 +93,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
               style={
                 Object {
                   "flex": 1,
+                  "marginTop": 0,
+                  "opacity": 1,
                 }
               }
             >
@@ -311,6 +316,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 <TextInput
                                   allowFontScaling={true}
                                   autoCapitalize="none"
+                                  multiline={false}
                                   placeholder="hello@example.com"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
@@ -331,7 +337,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "color": "#151A25",
                                       },
                                       Object {
-                                        "textAlign": "right",
+                                        "textAlign": "left",
                                       },
                                     ]
                                   }
@@ -393,6 +399,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 <TextInput
                                   allowFontScaling={true}
                                   autoCapitalize="none"
+                                  multiline={false}
                                   placeholder="******"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
@@ -414,7 +421,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "color": "#151A25",
                                       },
                                       Object {
-                                        "textAlign": "right",
+                                        "textAlign": "left",
                                       },
                                     ]
                                   }
@@ -457,6 +464,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "flexDirection": "row",
                                         "height": 52,
                                         "justifyContent": "center",
+                                        "width": 320,
                                       },
                                       Object {
                                         "backgroundColor": "#ffffff",
@@ -516,6 +524,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "flexDirection": "row",
                                         "height": 52,
                                         "justifyContent": "center",
+                                        "width": 320,
                                       },
                                     ]
                                   }
@@ -591,6 +600,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "flexDirection": "row",
                                         "height": 52,
                                         "justifyContent": "center",
+                                        "width": 320,
                                       },
                                       Object {
                                         "backgroundColor": "#ffffff",
@@ -647,6 +657,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "flexDirection": "row",
                                         "height": 52,
                                         "justifyContent": "center",
+                                        "width": 320,
                                       },
                                       Object {
                                         "backgroundColor": "#345997",
@@ -703,6 +714,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         "flexDirection": "row",
                                         "height": 52,
                                         "justifyContent": "center",
+                                        "width": 320,
                                       },
                                       Object {
                                         "backgroundColor": "#E04238",
@@ -839,21 +851,19 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
       <View
         pointerEvents="box-none"
         style={
-          Object {
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
+          Array [
+            Object {
+              "zIndex": 1,
+            },
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          ]
         }
-      >
-        <View
-          accessibilityElementsHidden={false}
-          importantForAccessibility="auto"
-          pointerEvents="box-none"
-          style={null}
-        />
-      </View>
+      />
     </RNCSafeAreaProvider>
   </View>
 </View>

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { ThemeType, useThemeContext } from '@dooboo-ui/native-theme';
+import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 
 import { StatusBar } from 'react-native';
 

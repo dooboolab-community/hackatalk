@@ -5,7 +5,7 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import { MessageProps } from '../../types';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/native-theme';
+import { useThemeContext } from '@dooboo-ui/theme';
 
 const WrapperPeer = styled.View<{ isSame: boolean }>`
   min-height: 48px;
