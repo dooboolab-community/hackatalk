@@ -41,7 +41,13 @@ exports[`[Friend] rendering test renders as expected 1`] = `
           No content
         </Shared>
       }
-      contentContainerStyle={null}
+      contentContainerStyle={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
       disableVirtualization={false}
       horizontal={false}
       initialNumToRender={10}
@@ -129,7 +135,13 @@ exports[`[Friend] rendering test renders error view 1`] = `
           No content
         </Shared>
       }
-      contentContainerStyle={null}
+      contentContainerStyle={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
       disableVirtualization={false}
       horizontal={false}
       initialNumToRender={10}
@@ -225,7 +237,13 @@ exports[`[Friend] rendering test renders loading 1`] = `
             No content
           </Shared>
         }
-        contentContainerStyle={null}
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
         disableVirtualization={false}
         horizontal={false}
         initialNumToRender={10}
