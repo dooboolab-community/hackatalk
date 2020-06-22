@@ -12,6 +12,7 @@ import { DeviceProvider } from './DeviceProvider';
 import { ProfileModalProvider } from './ProfileModalProvider';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { User } from '../types/graphql';
+import { createMockEnvironment } from 'relay-test-utils';
 
 interface AllProvidersProps {
   initialDeviceType?: Device.DeviceType;
@@ -23,19 +24,18 @@ interface RelayProvidersProps {
   children?: React.ReactElement;
 }
 
+// hyochan => for testing
+export const environment: RelayEnvironmentProps & any = createMockEnvironment();
+
 const RelayProviderWrapper = ({
   children,
 }: RelayProvidersProps): ReactElement => {
-  const relay: RelayEnvironmentProps = RelayEnvironment.environment;
-
   return (
-    <RelayEnvironmentProvider environment={relay}>
+    <RelayEnvironmentProvider environment={environment}>
       <ProfileModalProvider>{children}</ProfileModalProvider>
     </RelayEnvironmentProvider>
   );
 };
-
-// hyochan => for testing
 export const AllProviders = ({
   initialThemeType,
   initialAuthUser,

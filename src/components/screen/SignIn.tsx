@@ -196,12 +196,11 @@ function SignIn(props: Props): ReactElement {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow
       } else {
-        if (Platform.OS === 'web') {
+        Platform.select({
           // @ts-ignore
-          alert(`Apple Login Error: ${e.code} - ${e.message}`);
-          return;
-        }
-        Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`);
+          web: alert(`Apple Login Error: ${e.code} - ${e.message}`),
+          default: Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`),
+        });
       }
     } finally {
       setSigningInApple(false);
