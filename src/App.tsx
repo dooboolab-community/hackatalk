@@ -1,13 +1,13 @@
 import * as Device from 'expo-device';
 
-import type { AppUserQuery, AppUserQueryResponse } from './__generated__/AppUserQuery.graphql';
+import type {
+  AppUserQuery,
+  AppUserQueryResponse,
+} from './__generated__/AppUserQuery.graphql';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { ReactElement, Suspense, useEffect } from 'react';
-import RelayEnvironment, {
-  RelayEnvironmentProps,
-} from './relay/RelayEnvironment';
+import React, { FC, ReactElement, Suspense, useEffect } from 'react';
 import {
   RelayEnvironmentProvider,
   graphql,
@@ -36,11 +36,7 @@ const meQuery = graphql`
 
 function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
-  const result = preloadQuery<AppUserQuery>(
-    environment,
-    meQuery,
-    {},
-  );
+  const result = preloadQuery<AppUserQuery>(environment, meQuery, {});
   const data = usePreloadedQuery<AppUserQuery>(meQuery, result);
 
   useEffect(() => {
@@ -85,26 +81,27 @@ function App(): ReactElement {
   );
 }
 
-function RelayProviderWrapper(): ReactElement {
-  const relay: RelayEnvironmentProps = RelayEnvironment.environment;
-
+const RelayProviderWrapper: FC = ({ children }) => {
+  const {
+    state: { relay },
+  } = useAuthContext();
   return (
     <RelayEnvironmentProvider environment={relay}>
-      <Suspense fallback={<LoadingIndicator/>}>
-        <ActionSheetProvider>
-          <App />
-        </ActionSheetProvider>
+      <Suspense fallback={<LoadingIndicator />}>
+        <ActionSheetProvider>{children}</ActionSheetProvider>
       </Suspense>
     </RelayEnvironmentProvider>
   );
-}
+};
 
 function ProviderWrapper(): ReactElement {
   return (
     <AppearanceProvider>
       <DeviceProvider>
         <AuthProvider>
-          <RelayProviderWrapper />
+          <RelayProviderWrapper>
+            <App />
+          </RelayProviderWrapper>
         </AuthProvider>
       </DeviceProvider>
     </AppearanceProvider>

@@ -1,21 +1,16 @@
-import { CacheConfig, GraphQLResponse, RequestParameters, Variables } from 'relay-runtime';
+import AsyncStorage from '@react-native-community/async-storage';
+import { FetchFunction } from 'relay-runtime';
+import { GRAPHQL_URL } from '../../config';
 
-const FETCH_URL = 'https://hackatalk.azurewebsites.net/graphql';
-
-export type FetchArgProps = {
-  request: RequestParameters;
-  variables: Variables;
-  cacheConfig: CacheConfig;
-  token?: string | null;
-};
-
-async function fetchGraphQL(args: FetchArgProps): Promise<GraphQLResponse> {
-  const { request, variables, cacheConfig, token } = args;
-  console.log(`fetching query ${request.name} with ${JSON.stringify(variables)}`);
-  const fetchConfig = {
+const fetchGraphQL: FetchFunction = async (request, variables) => {
+  console.log(
+    `fetching query ${request.name} with ${JSON.stringify(variables)}`,
+  );
+  const authorization = (await AsyncStorage.getItem('token')) || '';
+  const config = {
     method: 'POST',
     headers: {
-      Authorization: token || '',
+      authorization,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -23,7 +18,7 @@ async function fetchGraphQL(args: FetchArgProps): Promise<GraphQLResponse> {
       variables,
     }),
   };
-  return fetch(FETCH_URL, fetchConfig).then((response) => response.json());
-}
+  return fetch(GRAPHQL_URL, config).then((response) => response.json());
+};
 
 export default fetchGraphQL;
