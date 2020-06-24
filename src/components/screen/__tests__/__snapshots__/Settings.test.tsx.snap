@@ -287,7 +287,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
                     "column": 13,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
-                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                    "methodName": "NullConsole.Object.<anonymous>.console.error",
                   },
                   Object {
                     "arguments": Array [],
@@ -716,7 +716,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
                     "column": 13,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
-                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                    "methodName": "NullConsole.Object.<anonymous>.console.error",
                   },
                   Object {
                     "arguments": Array [],
@@ -1145,7 +1145,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
                     "column": 13,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
-                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                    "methodName": "NullConsole.Object.<anonymous>.console.error",
                   },
                   Object {
                     "arguments": Array [],
@@ -1574,7 +1574,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
                     "column": 13,
                     "file": "/Users/dooboolab/Github/dooboolab/hackatalk-mobile/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
-                    "methodName": "BufferedConsole.Object.<anonymous>.console.error",
+                    "methodName": "NullConsole.Object.<anonymous>.console.error",
                   },
                   Object {
                     "arguments": Array [],
