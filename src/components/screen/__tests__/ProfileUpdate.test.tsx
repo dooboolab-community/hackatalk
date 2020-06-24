@@ -70,11 +70,7 @@ describe('rendering test', () => {
       (operation) => MockPayloadGenerator.generate(operation, mockResolver),
     );
 
-    const prepared = {
-      postDetailQuery: preloadQuery(environment, ProfileUpdateMeQuery, {}),
-    };
-
-    props = createTestProps({ prepared });
+    props = createTestProps();
     component = createTestElement(<ProfileUpdate {...props} />);
     const { baseElement } = render(component);
 
