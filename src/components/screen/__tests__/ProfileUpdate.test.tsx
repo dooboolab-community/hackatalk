@@ -52,8 +52,6 @@ jest.mock('expo-image-picker', () => ({
   launchImageLibraryAsync: (): string => 'photo info',
 }));
 
-afterEach(cleanup);
-
 describe('rendering test', () => {
   it('renders as expected', () => {
     const mockResolver = {
