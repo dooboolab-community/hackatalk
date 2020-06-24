@@ -4,7 +4,6 @@ import React, { ReactElement } from 'react';
 import {
   RenderResult,
   act,
-  cleanup,
   fireEvent,
   render,
   wait,
@@ -152,10 +151,5 @@ describe('[FindPw] interaction', () => {
       await act(() => wait());
       expect(props.navigation).toBeNull();
     });
-  });
-
-  afterAll((done) => {
-    cleanup();
-    done();
   });
 });
