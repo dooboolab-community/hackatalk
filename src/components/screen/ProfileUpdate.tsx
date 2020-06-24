@@ -1,13 +1,20 @@
 import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import {
+  graphql,
+  preloadQuery,
+  usePreloadedQuery,
+  useRelayEnvironment,
+} from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
 import { encryptMessage } from '../../utils/virgil';
 import { getString } from '../../../STRINGS';
 import { resizeImage } from '../../utils/image';
@@ -62,33 +69,47 @@ interface Props {
   navigation: MainStackNavigationProps<'ProfileUpdate'>;
 }
 
-function Screen(props: Props): React.ReactElement {
+const meQuery = graphql`
+  query ProfileUpdateMeQuery {
+    me {
+      id
+      email
+      name
+      nickname,
+      statusMessage,
+      verified
+    }
+  }
+`;
+
+const Screen: FC<Props> = (props) => {
+  const environment = useRelayEnvironment();
+  const result = preloadQuery<ProfileUpdateMeQuery>(
+    environment,
+    meQuery,
+    {},
+  );
+  const data = usePreloadedQuery<ProfileUpdateMeQuery>(meQuery, result);
+
+  useEffect(() => {
+    if (data.me) {
+      const { name, nickname, statusMessage } = data.me;
+      setName(name ?? '');
+      setNickname(nickname ?? '');
+      setstatusMessage(statusMessage ?? '');
+    }
+  }, [data.me]);
+
   const { navigation } = props;
   const { theme } = useThemeContext();
-  const [isUpdating, setIsUpdating] = useState(false);
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [statusMessage, setstatusMessage] = useState('');
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
 
-  useEffect(() => {
-    if (isUpdating) {
-      try {
-        if (navigation) {
-          navigation.goBack();
-        }
-      } catch (err) {
-        // console.error(err);
-      } finally {
-        setIsUpdating(false);
-      }
-    }
-  }, [isUpdating]);
-
-  const updateProfile = async (): Promise<void> => {
-    setIsUpdating(true);
-  };
+  // const updateProfile = async (): Promise<void> => {
+  // };
 
   const changeText = (type: string, text: string): void => {
     switch (type) {
@@ -218,6 +239,7 @@ function Screen(props: Props): React.ReactElement {
             testID="input-nickname"
             type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
+            textStyle={{ color: theme.fontColor }}
             label={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             value={nickname}
@@ -232,6 +254,7 @@ function Screen(props: Props): React.ReactElement {
             testID="input-name"
             type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
+            textStyle={{ color: theme.fontColor }}
             label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
@@ -246,6 +269,9 @@ function Screen(props: Props): React.ReactElement {
             type={EditTextInputType.DEFAULT}
             testID="input-status"
             style={{ marginTop: 24 }}
+            textStyle={{
+              color: theme.fontColor,
+            }}
             label={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
@@ -271,8 +297,8 @@ function Screen(props: Props): React.ReactElement {
                 fontSize: 14,
                 fontWeight: 'bold',
               }}
-              isLoading={isUpdating}
-              onPress={updateProfile}
+              // isLoading={isUpdating}
+              // onPress={updateProfile}
               text={getString('UPDATE')}
             />
           </StyledButtonWrapper>
@@ -280,6 +306,6 @@ function Screen(props: Props): React.ReactElement {
       </StyledScrollView>
     </Container>
   );
-}
+};
 
 export default Screen;

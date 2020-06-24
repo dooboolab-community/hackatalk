@@ -20,11 +20,11 @@ import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
+import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import { Text } from 'react-native';
 import { initializeEThree } from './utils/virgil';
 
-const userQuery = graphql`
+const meQuery = graphql`
   query AppUserQuery {
     me {
       id
@@ -38,13 +38,23 @@ function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
   const result = preloadQuery<AppUserQuery>(
     environment,
-    userQuery,
+    meQuery,
     {},
-    { fetchPolicy: 'store-and-network' },
   );
+  const data = usePreloadedQuery<AppUserQuery>(meQuery, result);
+
+  useEffect(() => {
+    if (data.me) {
+      initUser(data.me);
+      return;
+    }
+
+    AsyncStorage.removeItem('token');
+    setDevice();
+  }, [data.me]);
+
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
-  const data = usePreloadedQuery<AppUserQuery>(userQuery, result);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
@@ -56,16 +66,6 @@ function AppWithTheme(): ReactElement {
     await initializeEThree(me.id);
     setUser(me);
   };
-
-  useEffect(() => {
-    if (data.me) {
-      initUser(data.me);
-      return;
-    }
-
-    AsyncStorage.removeItem('token');
-    setDevice();
-  }, [data.me]);
 
   return <RootNavigator />;
 }
@@ -90,7 +90,7 @@ function RelayProviderWrapper(): ReactElement {
 
   return (
     <RelayEnvironmentProvider environment={relay}>
-      <Suspense fallback={<Text>loading app...</Text>}>
+      <Suspense fallback={<LoadingIndicator/>}>
         <ActionSheetProvider>
           <App />
         </ActionSheetProvider>

@@ -17,8 +17,10 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
+import { MockPayloadGenerator } from 'relay-test-utils';
 import SignIn from '../SignIn';
 import { ThemeType } from '@dooboo-ui/theme';
+import { environment } from '../../../providers';
 
 const fetchMock = fetch as FetchMock;
 
@@ -91,7 +93,7 @@ describe('[SignIn] rendering test', () => {
     );
   });
 
-  it('should render without crashing', () => {
+  it('should render without crashing', async () => {
     component = createTestElement(
       <SignIn {...props}/>,
     );
@@ -105,17 +107,6 @@ describe('[SignIn] rendering test', () => {
     component = createTestElement(
       <SignIn {...props}/>,
       ThemeType.DARK,
-    );
-    testingLib = render(component);
-    expect(testingLib.baseElement).toBeTruthy();
-    // expect(testingLib.baseElement).toMatchSnapshot();
-  });
-
-  it('should render tablet mode without crashing', () => {
-    component = createTestElement(
-      <SignIn {...props}/>,
-      ThemeType.DARK,
-      Device.DeviceType.TABLET,
     );
     testingLib = render(component);
     expect(testingLib.baseElement).toBeTruthy();
@@ -273,49 +264,11 @@ describe('[SignIn] interaction', () => {
         fireEvent.press(btnSignIn);
       });
 
-      // const userMock = mockSignInEmail[0].newData;
-      // await wait(() => expect(userMock).toHaveBeenCalled());
-    });
-
-    it('should call signIn when button has clicked and check that signInEmail is undefined', async () => {
-      jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
-      jest
-        .spyOn(AuthContext, 'useAuthContext')
-        .mockImplementation(() => ({
-          state: {
-            user: undefined,
-          },
-          setUser: jest.fn().mockReturnValue({
-            id: 'userId',
-            email: 'email@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
-          }),
-        }));
-
-      const textInput = testingLib.getByTestId('input-email');
-      await waitForElement(() => textInput);
-
-      act(() => {
-        fireEvent.changeText(textInput, 'test@email.com');
-      });
-
-      const passwordInput = testingLib.getByTestId('input-password');
-      await waitForElement(() => passwordInput);
-
-      act(() => {
-        fireEvent.changeText(passwordInput, 'password');
-      });
-
-      const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await waitForElement(() => btnSignIn);
-
-      act(() => {
-        fireEvent.press(btnSignIn);
-      });
-
-      // const userMock = mockSignInEmail[0].newData;
-      // await wait(() => expect(userMock).toHaveBeenCalled());
+      const operation = environment.mock.getMostRecentOperation();
+      environment.mock.resolve(
+        operation,
+        MockPayloadGenerator.generate(operation),
+      );
     });
 
     it('should call signIn with invalid params and  check whether it catches error', async () => {
@@ -348,8 +301,7 @@ describe('[SignIn] interaction', () => {
         fireEvent.press(btnSignIn);
       });
 
-      // const userMock = mockSignInEmail[0].newData;
-      // await wait(() => expect(userMock).toHaveBeenCalled());
+      environment.mock.rejectMostRecentOperation(new Error('Uh-oh'));
     });
 
     it('should call signIn with and get `!user.verified`', async () => {
@@ -394,10 +346,10 @@ describe('[SignIn] interaction', () => {
     });
   });
 
-  it('should call Apple signin when pressing button', () => {
+  it('should call Apple signin when pressing button', async () => {
     const btnApple = testingLib.getByTestId('btn-apple');
 
-    act(async () => {
+    await act(async () => {
       await wait(() => expect(btnApple).toBeTruthy());
       fireEvent.press(btnApple);
     });

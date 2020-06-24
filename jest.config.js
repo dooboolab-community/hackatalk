@@ -37,6 +37,9 @@ module.exports = {
     '<rootDir>/test/jestSetup.js',
     '<rootDir>/test/jestSetup.ts',
   ],
+  setupFilesAfterEnv: [
+    './test/setupTest.js',
+  ],
   /* eslint-disable */
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui)',
@@ -47,5 +50,4 @@ module.exports = {
     '!src/App.tsx',
     '!<rootDir>/**/tablet.tsx',
   ],
-  setupFilesAfterEnv: ['./test/setupTest.js'],
 };

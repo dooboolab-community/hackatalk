@@ -9,7 +9,7 @@ export type FetchArgProps = {
   token?: string | null;
 };
 
-function fetchGraphQL(args: FetchArgProps): Promise<GraphQLResponse> {
+async function fetchGraphQL(args: FetchArgProps): Promise<GraphQLResponse> {
   const { request, variables, cacheConfig, token } = args;
   console.log(`fetching query ${request.name} with ${JSON.stringify(variables)}`);
   const fetchConfig = {
