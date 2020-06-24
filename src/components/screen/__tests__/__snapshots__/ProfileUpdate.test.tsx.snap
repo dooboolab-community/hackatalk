@@ -148,13 +148,13 @@ exports[`rendering test renders as expected 1`] = `
                     "paddingTop": 15,
                   },
                   Object {
-                    "paddingVertical": 16,
+                    "color": "#151A25",
                   },
                 ]
               }
               testID="input-nickname"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"nickname\\">"
             />
             <View
               style={
@@ -220,13 +220,13 @@ exports[`rendering test renders as expected 1`] = `
                     "paddingTop": 15,
                   },
                   Object {
-                    "paddingVertical": 16,
+                    "color": "#151A25",
                   },
                 ]
               }
               testID="input-name"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"name\\">"
             />
             <View
               style={
@@ -292,13 +292,13 @@ exports[`rendering test renders as expected 1`] = `
                     "paddingTop": 15,
                   },
                   Object {
-                    "paddingVertical": 16,
+                    "color": "#151A25",
                   },
                 ]
               }
               testID="input-status"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"statusMessage\\">"
             />
             <View
               style={
