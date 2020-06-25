@@ -31,7 +31,7 @@ const RelayProviderWrapper = ({
   children,
 }: RelayProvidersProps): ReactElement => {
   return (
-    <RelayEnvironmentProvider environment={Relay.environment}>
+    <RelayEnvironmentProvider environment={environment}>
       <Suspense fallback={<LoadingIndicator />}>
         <ProfileModalProvider>{children}</ProfileModalProvider>
       </Suspense>
