@@ -47,6 +47,14 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
           }
         >
           <View
+            collapsable={false}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          />
+          <View
             accessibilityElementsHidden={false}
             closing={false}
             gestureVelocityImpact={0.3}
@@ -94,7 +102,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                 Object {
                   "flex": 1,
                   "marginTop": 0,
-                  "opacity": 1,
                 }
               }
             >

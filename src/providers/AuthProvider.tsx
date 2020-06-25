@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 
-import RelayEnvironment from '../relay/RelayEnvironment';
+import Relay from '../relay';
+import { Environment as RelayEnvironment } from 'react-relay';
 import { User } from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
@@ -16,8 +17,12 @@ export enum ActionType {
 
 export interface State {
   user: User | undefined | null;
+  relay: RelayEnvironment;
 }
-type SetUserAction = { type: ActionType.SetUser; payload: { user: User } };
+type SetUserAction = {
+  type: ActionType.SetUser;
+  payload: { user: User; relay: RelayEnvironment };
+};
 type Action = SetUserAction;
 
 interface Props {
@@ -30,23 +35,22 @@ type Reducer = (state: State, action: Action) => State;
 const setUser = (dispatch: React.Dispatch<SetUserAction>) => (
   authUser: User,
 ): void => {
+  if (!authUser) Relay.init();
   dispatch({
     type: ActionType.SetUser,
-    payload: { user: authUser },
+    payload: { user: authUser, relay: Relay.environment },
   });
 };
 
 const initialState: State = {
   user: undefined,
+  relay: Relay.environment,
 };
 
 const reducer: Reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SetUser:
-      return {
-        ...state,
-        user: action.payload.user,
-      };
+      return { ...action.payload };
     default:
       return state;
   }
@@ -55,7 +59,7 @@ const reducer: Reducer = (state = initialState, action) => {
 function AuthProvider(props: Props): React.ReactElement {
   const initialAuthState = {
     user: props.initialAuthUser,
-    relay: RelayEnvironment.environment,
+    relay: Relay.environment,
   };
   const [state, dispatch] = useReducer<Reducer>(reducer, initialAuthState);
 

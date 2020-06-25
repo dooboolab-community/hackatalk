@@ -5,14 +5,11 @@ import React from 'react';
  */
 
 jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity.js', () => {
-  const { Component } = require('react');
+  // eslint-disable-next-line
   const { View } = require('react-native');
-
-  class MockTouchable extends Component {
-    render() {
-      return <View {...this.props} />;
-    }
-  }
+  const MockTouchable = (props) => {
+    return <View {...props} />;
+  };
 
   MockTouchable.displayName = 'TouchableOpacity';
 
@@ -20,14 +17,11 @@ jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity.js', () 
 });
 
 jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight.js', () => {
-  const { Component } = require('react');
+  // eslint-disable-next-line
   const { View } = require('react-native');
-
-  class MockTouchable extends Component {
-    render() {
-      return <View {...this.props} />;
-    }
-  }
+  const MockTouchable = (props) => {
+    return <View {...props} />;
+  };
 
   MockTouchable.displayName = 'TouchableHighlight';
 

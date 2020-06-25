@@ -1,5 +1,4 @@
 {
-  "upgrade": true,
   "reject": [
     "react",
     "react-dom",
