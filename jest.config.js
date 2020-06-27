@@ -23,6 +23,7 @@ module.exports = {
     },
   },
   modulePathIgnorePatterns: [
+    '<rootDir>/server/',
     '<rootDir>/build/',
     '<rootDir>/node_modules/',
     '<rootDir>/.history/',
