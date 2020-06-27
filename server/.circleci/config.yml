@@ -1,0 +1,60 @@
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.5
+jobs:
+  build:
+    # machine: true
+    docker:
+      - image: circleci/node:12.12.0
+      - image: circleci/postgres:9.6.2-alpine
+        environment:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test!
+    working_directory: ~/app
+    steps:
+      - checkout
+
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+
+      - run:
+          name: Install packages
+          working_directory: .
+          command: |
+            yarn
+
+      - run:
+          name: ESLint
+          working_directory: .
+          command: |
+            yarn lint
+
+      - run:
+          name: TSC build
+          working_directory: .
+          command: |
+            yarn tsc
+
+      - run:
+          name: Remove dist
+          working_directory: .
+          command: |
+            rm -rf ./dist
+
+      - run:
+          name: Jest test
+          working_directory: .
+          command: |
+            yarn test --coverage --silent --detectOpenHandles
+
+      - codecov/upload:
+          file: ./coverage/lcov.info
+          token: 0808f5a0-dd33-4a20-89fa-314e39a75711
+
+workflows:
+  version: 2.1
+  build-deploy:
+    jobs:
+      - build
