@@ -2,7 +2,57 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.5
 jobs:
-  node:
+  server:
+    docker:
+      - image: circleci/node:12.12.0
+      - image: circleci/postgres:11
+        environment:
+          POSTGRES_DB: test
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test!
+    working_directory: ~/app
+    steps:
+      - checkout
+
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+
+      - run:
+          name: Install packages
+          working_directory: .
+          command: |
+            yarn && cd server && yarn
+
+      - run:
+          name: ESLint
+          working_directory: .
+          command: |
+            cd server && yarn lint
+
+      - run:
+          name: TSC build
+          working_directory: .
+          command: |
+            cd server && yarn tsc
+
+      - run:
+          name: Remove dist
+          working_directory: .
+          command: |
+            cd server && rm -rf ./dist
+
+      - run:
+          name: Jest test
+          working_directory: .
+          command: |
+            cd server && yarn test --coverage --silent --detectOpenHandles
+
+      - codecov/upload:
+          file: ./coverage/lcov.info
+          token: 0fc24d24-3658-478c-8976-9e832903e609
+
+  client:
     working_directory: ~/dooboo
     docker:
       - image: circleci/node:12.12.0
@@ -17,7 +67,11 @@ jobs:
       - restore_cache:
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
 
-      - run: yarn install
+      - run:
+          name: Install packages
+          working_directory: .
+          command: |
+            yarn && cd server && yarn
 
       - save_cache:
           key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
@@ -87,7 +141,11 @@ jobs:
       - restore_cache:
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
 
-      - run: yarn install
+      - run:
+          name: Install packages
+          working_directory: .
+          command: |
+            yarn && cd server && yarn
 
       - save_cache:
           key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
@@ -98,18 +156,6 @@ jobs:
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
           paths:
             - node_modules
-
-      # - restore_cache:
-      #     key: bundle-v1-{{ checksum "android/Gemfile.lock" }}-{{ arch }}
-
-      # - run:
-      #     command: bundle install --path vendor/bundle
-      #     working_directory: android
-
-      # - save_cache:
-      #     key: bundle-v1-{{ checksum "android/Gemfile.lock" }}-{{ arch }}
-      #     paths:
-      #       - android/vendor/bundle
 
       - run:
           name: COPY env
@@ -214,63 +260,15 @@ jobs:
       - store_artifacts:
           path: ios/test-results
 
-  server:
-    docker:
-      - image: circleci/node:12.12.0
-      - image: circleci/postgres:9.6.2-alpine
-        environment:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test!
-    working_directory: ~/app
-    steps:
-      - checkout
-
-      - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-
-      - run:
-          name: Install packages
-          working_directory: server
-          command: |
-            yarn
-
-      - run:
-          name: ESLint
-          working_directory: server
-          command: |
-            yarn lint
-
-      - run:
-          name: TSC build
-          working_directory: server
-          command: |
-            yarn tsc
-
-      - run:
-          name: Remove dist
-          working_directory: server
-          command: |
-            rm -rf ./dist
-
-      - run:
-          name: Jest test
-          working_directory: server
-          command: |
-            yarn test --coverage --silent --detectOpenHandles
-
 workflows:
   version: 2.1
-  build-deploy:
-    jobs:
-      - server
   node-android-ios:
     jobs:
-      - node
+      - server
+      - client
       - android:
           requires:
-            - node
+            - client
       # - ios:
       #     requires:
-      #       - node
+      #       - client
