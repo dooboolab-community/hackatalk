@@ -3,15 +3,29 @@
 > Followed by `dooboolab.com`'s [CONTRIBUTING GUILDE](https://github.com/dooboolab/dooboolab.com/edit/master/contributing.md)
 > @copyright by dooboolab
 
-> You should be aware of below stacks(do not need to be professional) to contribute to our repository.
+**We prefer you to use [vscode](https://code.visualstudio.com)**
+
+## Server
+
+> You should be aware of below stacks(do not need to be professional) to contribute to server project.
+
+1. [Graphql](https://graphql.org)
+2. [Apollo Server](https://www.apollographql.com/docs/apollo-server)
+3. [Prisma](https://www.prisma.io)
+   - AKA Prisma2
+4. [Postgresql](https://www.postgresql.org)
+
+
+## Client
+
+> You should be aware of below stacks(do not need to be professional) to contribute to client project.
 
 1. [React Native](https://facebook.github.io/react-native)
    - [iOS / Android setup guide](https://facebook.github.io/react-native/docs/getting-started)
 2. [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
-3. [VSCODE](https://code.visualstudio.com)
-   - We are using `vscode` as our ide. Please install `eslint` plugin.
-4. [Graphql](https://graphql.org)
-5. [Relay](https://relay.dev)
+3. [Graphql](https://graphql.org)
+4. [Relay](https://relay.dev)
+
 
 ### Installation
 
@@ -28,29 +42,26 @@
    ```
    git clone https://github.com/<your-id>/hackatalk.git
    ```
-3. Install your packages
+3. Install your packages in `client` or `server` directory.
    ```
    yarn
    ```
    - Note that we recommend using yarn because all of our team members do.
    - Also node that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
-4. ~~Configure `ios` project~~
-   - ~~Go to `ios` directory and run `pod install`~~
-   - ~~Since `react-native` is using version `0.60` for now, the project is built with `pod` project which is required to install packages to build your `ios` project.~~
-5. ~~Configure `android` project~~
-   - ~~Not much required. Be aware your project should be compatible with `androidx`.~~
-     - ~~Above means you should be careful when using third party `react-native native modules` because they might not be compatible with `androidx` which will result in failed build.~~
-6. Configure `environment` for project
+4. Configure `environment` for project
    - Copy `.env.sample` to `.env`.
      ```
      cp .env.sample .env
      ```
-7. Run your project
-   - `ios`
-     - yarn run `ios`
-   - `android`
-     - yarn run `android`
-       > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
+5. Run your project
+   - Server
+     - Run `yarn dev` or `yarn local` if you want to run your local server.
+   - Client
+     - `ios`
+       - yarn `ios`
+     - `android`
+       - yarn `android`
+         > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
 8. Configure linting in [vscode](https://code.visualstudio.com) correctly.
    - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
 
