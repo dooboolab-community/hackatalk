@@ -27,7 +27,7 @@
 4. [Relay](https://relay.dev)
 
 
-### Installation
+## Installation
 
 1. Fork our project to yours.
    - Recommended to have `forked` master branch to be updated to upstream.
@@ -42,18 +42,23 @@
    ```
    git clone https://github.com/<your-id>/hackatalk.git
    ```
-3. Install your packages in `client` or `server` directory.
+
+#### Installation - Client specific
+
+1. Install your packages in `client` directory.
    ```
    yarn
    ```
    - Note that we recommend using yarn because all of our team members do.
-   - Also node that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
-4. Configure `environment` for project
+   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+
+2. Configure `environment` for project
    - Copy `.env.sample` to `.env`.
      ```
      cp .env.sample .env
      ```
-5. Run your project
+
+3. Run your project
    - Server
      - Run `yarn dev` or `yarn local` if you want to run your local server.
    - Client
@@ -62,8 +67,66 @@
      - `android`
        - yarn `android`
          > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
-8. Configure linting in [vscode](https://code.visualstudio.com) correctly.
+
+4. Configure linting in [vscode](https://code.visualstudio.com) correctly.
    - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
+
+
+#### Installation - Server specific
+
+1. Install your packages in `client` directory.
+   ```
+   yarn
+   ```
+   - Note that we recommend using yarn because all of our team members do.
+   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+
+2. Configure [postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) database.
+
+3. Setup environment
+   1. cp `./prisma/.env.sample` `./prisma/.env`
+   2. Include `DATABASE_URL`
+      ```
+      DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/postgres?schema=<scheme>"
+      ```
+      > Note that you should change appropriate values in `user`, `password`, `url`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
+   3. Also configure change `dotenv` variables if you want to run locally
+      - Copy `dotenv/.dev` to `dotenv/.env`.
+        ```
+        cp dotenv/.env.sample dotenv/.env
+        ```
+      - Then run `yarn local`
+   4. Please include `test` user locally to test queries in your database.
+      ```
+      CREATE ROLE test WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
+      GRANT CONNECT ON DATABASE postgres TO test;
+      GRANT ALL PRIVILEGES ON DATABASE postgres TO test;
+      // Inside `postgres` database create `test` schema.
+      CREATE SCHEMA test;
+      ```
+      - Above should match `test.env`
+        ```
+        DATABASE_URL="postgresql://test:test!@localhost:5432/postgres?schema=test"
+        ```
+
+4. Generate Prisma Client and Nexus
+   ```
+   yarn generate
+   ```
+
+5. Migration
+
+   1. Change models in `schema.prisma`.
+   2. Run migration script.
+      ```
+      yarn migrate:save
+      ```
+      > Prisma lift will generate migration file for you.
+   3. Run migration.
+      ```
+      yarn migrate:up
+      ```
+
 
 ### Commit message
 
