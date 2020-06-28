@@ -21,12 +21,7 @@ const createApolloServer = (): ApolloServer => new ApolloServer({
 });
 
 const initializeApolloServer = (apollo: ApolloServer, app: express.Application): () => void => {
-  apollo.applyMiddleware({
-    app,
-    bodyParserConfig: {
-      limit: '100mb',
-    },
-  });
+  apollo.applyMiddleware({ app });
 
   return (): void => {
     process.stdout.write(

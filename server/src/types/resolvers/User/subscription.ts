@@ -1,7 +1,4 @@
 import { stringArg, subscriptionField } from '@nexus/schema';
-
-import { User } from '../models/User';
-import { getUserId } from '../../utils';
 import { withFilter } from 'apollo-server';
 
 export const USER_SIGNED_IN = 'USER_SIGNED_IN';
@@ -22,7 +19,7 @@ interface User {
   deletedAt: Date;
 }
 
-export const UserSignedIn = subscriptionField('userSignedIn', {
+export const userSignedIn = subscriptionField('userSignedIn', {
   type: 'User',
   args: {
     userId: stringArg({ nullable: false }),
@@ -41,7 +38,7 @@ export const UserSignedIn = subscriptionField('userSignedIn', {
   },
 });
 
-export const UserUpdated = subscriptionField('userUpdated', {
+export const userUpdated = subscriptionField('userUpdated', {
   type: 'User',
   args: {
     userId: stringArg({ nullable: false }),
