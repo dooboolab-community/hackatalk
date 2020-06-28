@@ -3,22 +3,36 @@
 > Followed by `dooboolab.com`'s [CONTRIBUTING GUILDE](https://github.com/dooboolab/dooboolab.com/edit/master/contributing.md)
 > @copyright by dooboolab
 
-> You should be aware of below stacks(do not need to be professional) to contribute to our repository.
+**We prefer you to use [vscode](https://code.visualstudio.com)**
+
+## Server
+
+> You should be aware of below stacks(do not need to be professional) to contribute to server project.
+
+1. [Graphql](https://graphql.org)
+2. [Apollo Server](https://www.apollographql.com/docs/apollo-server)
+3. [Prisma](https://www.prisma.io)
+   - AKA Prisma2
+4. [Postgresql](https://www.postgresql.org)
+
+
+## Client
+
+> You should be aware of below stacks(do not need to be professional) to contribute to client project.
 
 1. [React Native](https://facebook.github.io/react-native)
    - [iOS / Android setup guide](https://facebook.github.io/react-native/docs/getting-started)
 2. [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
-3. [VSCODE](https://code.visualstudio.com)
-   - We are using `vscode` as our ide. Please install `eslint` plugin.
-4. [Graphql](https://graphql.org)
-5. [Relay](https://relay.dev)
+3. [Graphql](https://graphql.org)
+4. [Relay](https://relay.dev)
 
-### Installation
+
+## Installation
 
 1. Fork our project to yours.
    - Recommended to have `forked` master branch to be updated to upstream.
    - Configure [Syncing a fork](https://help.github.com/articles/configuring-a-remote-for-a-fork/).
-     - `git remote add upstream https://github.com/dooboolab/hackatalk-mobile`
+     - `git remote add upstream https://github.com/dooboolab/hackatalk`
      - Check it with `git remote -v`
    - Fetch the branches from upstream repository by `git fetch upstream`
    - When you want to give `PR`, make new branch `git checkout -b [feature_name]`
@@ -26,33 +40,93 @@
      - Check your status by `git log --decorate --oneline --all --graph` or `npm run git:log`
 2. Git clone your forked repository.
    ```
-   git clone https://github.com/<your-id>/hackatalk-mobile.git
+   git clone https://github.com/<your-id>/hackatalk.git
    ```
-3. Install your packages
+
+#### Installation - Client specific
+
+1. Install your packages in `client` directory.
    ```
    yarn
    ```
    - Note that we recommend using yarn because all of our team members do.
-   - Also node that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
-4. ~~Configure `ios` project~~
-   - ~~Go to `ios` directory and run `pod install`~~
-   - ~~Since `react-native` is using version `0.60` for now, the project is built with `pod` project which is required to install packages to build your `ios` project.~~
-5. ~~Configure `android` project~~
-   - ~~Not much required. Be aware your project should be compatible with `androidx`.~~
-     - ~~Above means you should be careful when using third party `react-native native modules` because they might not be compatible with `androidx` which will result in failed build.~~
-6. Configure `environment` for project
+   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+
+2. Configure `environment` for project
    - Copy `.env.sample` to `.env`.
      ```
      cp .env.sample .env
      ```
-7. Run your project
-   - `ios`
-     - yarn run `ios`
-   - `android`
-     - yarn run `android`
-       > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
-8. Configure linting in [vscode](https://code.visualstudio.com) correctly.
+
+3. Run your project
+   - Server
+     - Run `yarn dev` or `yarn local` if you want to run your local server.
+   - Client
+     - `ios`
+       - yarn `ios`
+     - `android`
+       - yarn `android`
+         > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
+
+4. Configure linting in [vscode](https://code.visualstudio.com) correctly.
    - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
+
+
+#### Installation - Server specific
+
+1. Install your packages in `client` directory.
+   ```
+   yarn
+   ```
+   - Note that we recommend using yarn because all of our team members do.
+   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+
+2. Configure [postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) database.
+
+3. Setup environment
+   1. cp `./prisma/.env.sample` `./prisma/.env`
+   2. Include `DATABASE_URL`
+      ```
+      DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/postgres?schema=<scheme>"
+      ```
+      > Note that you should change appropriate values in `user`, `password`, `url`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
+   3. Also configure change `dotenv` variables if you want to run locally
+      - Copy `dotenv/.dev` to `dotenv/.env`.
+        ```
+        cp dotenv/.env.sample dotenv/.env
+        ```
+      - Then run `yarn local`
+   4. Please include `test` user locally to test queries in your database.
+      ```
+      CREATE ROLE test WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
+      GRANT CONNECT ON DATABASE postgres TO test;
+      GRANT ALL PRIVILEGES ON DATABASE postgres TO test;
+      // Inside `postgres` database create `test` schema.
+      CREATE SCHEMA test;
+      ```
+      - Above should match `test.env`
+        ```
+        DATABASE_URL="postgresql://test:test!@localhost:5432/postgres?schema=test"
+        ```
+
+4. Generate Prisma Client and Nexus
+   ```
+   yarn generate
+   ```
+
+5. Migration
+
+   1. Change models in `schema.prisma`.
+   2. Run migration script.
+      ```
+      yarn migrate:save
+      ```
+      > Prisma lift will generate migration file for you.
+   3. Run migration.
+      ```
+      yarn migrate:up
+      ```
+
 
 ### Commit message
 

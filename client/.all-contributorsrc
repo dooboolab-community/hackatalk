@@ -1,0 +1,237 @@
+{
+  "projectName": "hackatalk",
+  "projectOwner": "dooboolab",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 60,
+  "commit": true,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "hyochan",
+      "name": "Hyo Chan Jang",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/27461460?v=4",
+      "profile": "http://dooboolab.com",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "heyman333",
+      "name": "Youngsu Han",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22214150?v=4",
+      "profile": "https://www.linkedin.com/in/youngsu-han/",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "godon019",
+      "name": "Dong-Kyun Ko",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10363850?v=4",
+      "profile": "https://github.com/godon019",
+      "contributions": [
+        "doc",
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "marsinearth",
+      "name": "Hwasung Kim",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6101260?v=4",
+      "profile": "https://github.com/marsinearth",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "JongtaekChoi",
+      "name": "Choi, Jongtaek",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17980230?v=4",
+      "profile": "https://github.com/JongtaekChoi",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "kty1965",
+      "name": "Huy, Tae Young",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1715578?v=4",
+      "profile": "https://www.facebook.com/huy1965",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "YongPilMoon",
+      "name": "YongPilMoon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22088158?v=4",
+      "profile": "https://github.com/YongPilMoon",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "bumjoo",
+      "name": "bumjoo.lee",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/43266906?v=4",
+      "profile": "https://github.com/bumjoo",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "hankkuu",
+      "name": "hankkuu",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7829802?v=4",
+      "profile": "https://github.com/hankkuu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Sandwichj",
+      "name": "Minseok",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/11019960?v=4",
+      "profile": "https://github.com/Sandwichj",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "jb9229",
+      "name": "cwalker",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3200647?v=4",
+      "profile": "https://github.com/jb9229",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "geoseong",
+      "name": "TaeSeong Park",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/19166187?v=4",
+      "profile": "https://geoseong.github.io/",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "daheeahn",
+      "name": "daheeahn",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/38369729?v=4",
+      "profile": "https://github.com/daheeahn",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "devohno",
+      "name": "Eunho Lee",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/55861805?v=4",
+      "profile": "https://github.com/devohno",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "JeffGuKang",
+      "name": "Jeff Gu Kang",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/216363?v=4",
+      "profile": "http://stackoverflow.com/users/515932/jeff-gu-kang?tab=profile",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "dlgmltjr0925",
+      "name": "dlgmltjr0925",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/33364619?v=4",
+      "profile": "https://github.com/dlgmltjr0925",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "real0131",
+      "name": "Jaeho Cho (Barney)",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12093323?v=4",
+      "profile": "http://utaha.moe/about",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ilikeu7246",
+      "name": "jinsun Park",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/31176502?v=4",
+      "profile": "https://selina-park.tistory.com/",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "SimYunSup",
+      "name": "Yunsup Sim",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47362439?v=4",
+      "profile": "http://pickhealer.netlify.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "00aney",
+      "name": "Ted Kim",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/20268356?v=4",
+      "profile": "http://tedkim.dev",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "qkreltms",
+      "name": "JungHoonPark",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25196026?v=4",
+      "profile": "https://gist.github.com/qkreltms",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "mym0404",
+      "name": "MJ Studio",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/33388801?v=4",
+      "profile": "http://blog.naver.com/mym0404",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
+}
