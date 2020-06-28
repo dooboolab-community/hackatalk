@@ -168,16 +168,16 @@ jobs:
           command: |
             cp .env.sample .env
 
-      - run:
-          name: Check MD5 on files
-          working_directory: client
-          command: |
-            md5sum client/android/build.gradle
-            md5sum clientandroid/app/build.gradle            
-            cat client/android/app/build.gradle | sed -n -e '/dependencies/,$p' > android.app.build.gradle.deps
+      # - run:
+      #     name: Check MD5 on files
+      #     working_directory: client
+      #     command: |
+      #       md5sum client/android/build.gradle
+      #       md5sum clientandroid/app/build.gradle            
+      #       cat client/android/app/build.gradle | sed -n -e '/dependencies/,$p' > android.app.build.gradle.deps
 
-      - restore_cache:
-          key: android-jars-v1-{{ checksum "client/android/build.gradle" }}-{{ checksum  "android.app.build.gradle.deps" }}
+      # - restore_cache:
+      #     key: android-jars-v1-{{ checksum "client/android/build.gradle" }}-{{ checksum  "android.app.build.gradle.deps" }}
 
       - run:
           name: Download Dependencies
