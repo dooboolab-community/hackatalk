@@ -178,7 +178,7 @@ jobs:
             cat android/app/build.gradle | sed -n -e '/dependencies/,$p' > android.app.build.gradle.deps
 
       - restore_cache:
-          key: android-jars-v1-{{ checksum "client/android/build.gradle" }}-{{ checksum  "android.app.build.gradle.deps" }}
+          key: android-jars-v1-{{ checksum "client/android/build.gradle" }}-{{ checksum  "client/android.app.build.gradle.deps" }}
 
       - run:
           name: Download Dependencies
