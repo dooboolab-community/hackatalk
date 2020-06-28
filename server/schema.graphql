@@ -71,6 +71,7 @@ type User {
   email: String!
   gender: Gender
   id: String!
+  lastSignedIn: DateTime
   name: String
   nickname: String
   notifications: [Notification!]!
