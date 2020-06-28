@@ -10,7 +10,7 @@ jobs:
           POSTGRES_DB: test
           POSTGRES_USER: test
           POSTGRES_PASSWORD: test!
-    working_directory: ~/app
+    working_directory: ~/dooboo
     steps:
       - checkout
 
@@ -20,33 +20,33 @@ jobs:
 
       - run:
           name: Install packages
-          working_directory: .
+          working_directory: server
           command: |
-            yarn && cd server && yarn
+            yarn
 
       - run:
           name: ESLint
-          working_directory: .
+          working_directory: server
           command: |
-            cd server && yarn lint
+            yarn lint
 
       - run:
           name: TSC build
-          working_directory: .
+          working_directory: server
           command: |
-            cd server && yarn tsc
+            yarn tsc
 
       - run:
           name: Remove dist
-          working_directory: .
+          working_directory: server
           command: |
-            cd server && rm -rf ./dist
+            rm -rf ./dist
 
       - run:
           name: Jest test
-          working_directory: .
+          working_directory: server
           command: |
-            cd server && yarn test --coverage --silent --detectOpenHandles
+            yarn test --coverage --silent --detectOpenHandles
 
       - codecov/upload:
           file: ./server/coverage/lcov.info
@@ -69,45 +69,49 @@ jobs:
 
       - run:
           name: Install packages
-          working_directory: .
+          working_directory: client
           command: |
-            yarn && cd server && yarn
+            yarn
 
       - save_cache:
           key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          working_directory: client
           paths:
             - ~/.cache/yarn
 
       - save_cache:
           key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          working_directory: client
           paths:
-            - node_modules
+            - ./node_modules
 
       - persist_to_workspace:
           root: ~/dooboo
+          working_directory: client
           paths:
-            - node_modules
+            - ./node_modules
 
       - run:
           name: Lint Test
-          working_directory: .
+          working_directory: client
           command: |
             yarn lint --quiet
 
       - run:
           name: COPY config
-          working_directory: .
+          working_directory: client
           command: |
             yarn cp:config
 
       - run:
           name: TS Test
-          working_directory: .
+          working_directory: client
           command: |
             yarn tsc
 
       - run:
           name: Jest Test
+          working_directory: client
           command: |
             mkdir -p coverage
             yarn test -u --coverage --max-workers=2 --silent
@@ -119,13 +123,15 @@ jobs:
           token: 0fc24d24-3658-478c-8976-9e832903e609
 
       - store_test_results:
+          working_directory: client
           path: coverage
 
       - store_artifacts:
+          working_directory: client
           path: coverage
 
   android:
-    working_directory: ~/dooboo
+    working_directory: ~/dooboo/client
     docker:
       - image: circleci/android:api-29-node
     steps:
@@ -143,9 +149,8 @@ jobs:
 
       - run:
           name: Install packages
-          working_directory: .
           command: |
-            yarn && cd server && yarn
+            yarn
 
       - save_cache:
           key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
@@ -159,7 +164,6 @@ jobs:
 
       - run:
           name: COPY env
-          working_directory: .
           command: |
             cp .env.sample .env
 
@@ -185,7 +189,6 @@ jobs:
 
       - run:
           name: Build Android JS Bundle
-          working_directory: android
           command: |
             yarn build:android --max-workers=2
 
@@ -198,7 +201,7 @@ jobs:
   ios:
     macos:
       xcode: '9.0'
-    working_directory: ~/dooboo
+    working_directory: ~/dooboo/client
 
     # use a --login shell so our "set Ruby version" command gets picked up for later steps
     shell: /bin/bash --login -o pipefail

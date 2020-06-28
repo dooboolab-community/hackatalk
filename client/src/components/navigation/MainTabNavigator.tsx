@@ -8,7 +8,7 @@ import Channel from '../screen/Channel';
 import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import { MainStackNavigationProps } from './MainStackNavigator';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MaterialTopTabParamList = {

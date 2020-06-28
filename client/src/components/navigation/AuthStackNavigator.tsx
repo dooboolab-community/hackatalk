@@ -1,9 +1,9 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 
 import { CompositeNavigationProp } from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
-import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
+import { RootStackNavigationProps } from './RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
 import VerifyEmail from '../screen/VerifyEmail';
