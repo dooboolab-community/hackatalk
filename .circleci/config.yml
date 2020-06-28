@@ -49,7 +49,7 @@ jobs:
             cd server && yarn test --coverage --silent --detectOpenHandles
 
       - codecov/upload:
-          file: ./coverage/lcov.info
+          file: ./server/coverage/lcov.info
           token: 0fc24d24-3658-478c-8976-9e832903e609
 
   client:
@@ -115,7 +115,7 @@ jobs:
             JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
 
       - codecov/upload:
-          file: ./server/coverage/lcov.info
+          file: ./coverage/lcov.info
           token: 0fc24d24-3658-478c-8976-9e832903e609
 
       - store_test_results:
