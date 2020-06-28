@@ -1,4 +1,4 @@
 export * from './AuthPayload';
-export * from './Post';
+export * from './Notification';
 export * from './User';
 export * from './Scalar';

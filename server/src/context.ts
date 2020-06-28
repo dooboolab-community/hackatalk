@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { PubSub } from 'graphql-subscriptions';
 import { Request } from 'apollo-server';
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 const { JWT_SECRET } = process.env;
 
 export interface Context {

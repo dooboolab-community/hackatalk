@@ -1,18 +1,22 @@
 import { ApolloServer } from 'apollo-server-express';
 import { Http2Server } from 'http2';
+import SendGridMail from '@sendgrid/mail';
 import { createApp } from './app';
 import { createContext } from './context';
 import { createServer as createHttpServer } from 'http';
 import express from 'express';
 import { schema } from './schema';
 
-const { PORT = 5000 } = process.env;
+const { PORT = 4000, SENDGRID_API_KEY } = process.env;
+SendGridMail.setApiKey(SENDGRID_API_KEY);
+
+console.log('apikey', SENDGRID_API_KEY);
 
 const createApolloServer = (): ApolloServer => new ApolloServer({
   schema,
   context: createContext,
-  introspection: process.env.NODE_ENV !== 'production',
-  playground: process.env.NODE_ENV !== 'production',
+  // introspection: process.env.NODE_ENV !== 'production',
+  // playground: process.env.NODE_ENV !== 'production',
   subscriptions: {
     onConnect: (): void => {
       process.stdout.write('Connected to websocket\n');

@@ -1,6 +1,6 @@
 # HackaTalk (React Native)
 
-- [Contributing](CONTRIBUTING.md)
+- [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#client)
 
 > Specification
 

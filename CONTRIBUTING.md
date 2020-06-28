@@ -90,14 +90,22 @@
       DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/postgres?schema=<scheme>"
       ```
       > Note that you should change appropriate values in `user`, `password`, `url`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
-   3. Also configure change `dotenv` variables if you want to run locally
+   3. If you want to use default server setting in when developing, create below database in your postgresql.
+      ```
+      CREATE DATABASE hackatalk;
+      CREATE ROLE postgres WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'dooboolab0!';
+      GRANT CONNECT ON DATABASE postgres TO hackatalk;
+      GRANT ALL PRIVILEGES ON DATABASE postgres TO hackatalk;
+      ```
+   4. Also change `dotenv` variables to use envrionment in previous step.
       - Copy `dotenv/.dev` to `dotenv/.env`.
         ```
         cp dotenv/.env.sample dotenv/.env
         ```
       - Then run `yarn local`
-   4. Please include `test` user locally to test queries in your database.
+   5. Please include `test` user locally to test queries in your database.
       ```
+      CREATE DATABASE test;
       CREATE ROLE test WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
       GRANT CONNECT ON DATABASE postgres TO test;
       GRANT ALL PRIVILEGES ON DATABASE postgres TO test;
