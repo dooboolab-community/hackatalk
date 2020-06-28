@@ -7,15 +7,15 @@ const rules = {
     const userId = getUserId(context);
     return Boolean(userId);
   }),
-  isPostOwner: rule()(async (parent, { id }, context) => {
+  isNotificationUser: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context);
-    const author = await context.prisma.post
+    const author = await context.prisma.notification
       .findOne({
         where: {
           id: Number(id),
         },
       })
-      .author();
+      .notification();
     return userId === author.id;
   }),
 };
@@ -23,12 +23,6 @@ const rules = {
 export const permissions = shield({
   Query: {
     me: rules.isAuthenticatedUser,
-    filterPosts: rules.isAuthenticatedUser,
-    post: rules.isAuthenticatedUser,
-  },
-  Mutation: {
-    createDraft: rules.isAuthenticatedUser,
-    deletePost: rules.isPostOwner,
-    publish: rules.isPostOwner,
+    changeEmailPassword: rules.isAuthenticatedUser,
   },
 });

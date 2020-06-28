@@ -5,12 +5,12 @@ import { GraphQLUpload } from 'graphql-upload';
 
 export const AuthType = enumType({
   name: 'AuthType',
-  members: ['Email', 'Facebook', 'Google', 'Apple'],
+  members: ['email', 'facebook', 'google', 'apple'],
 });
 
 enum GenderType {
-  Male = 'Male',
-  Female = 'Female',
+  male = 'male',
+  female = 'demale',
 }
 export const Gender = scalarType({
   name: 'Gender',

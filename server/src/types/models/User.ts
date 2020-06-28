@@ -1,4 +1,6 @@
+import { NexusGenRootTypes } from '../../generated/nexus';
 import { objectType } from '@nexus/schema';
+import { prisma } from '../../context';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -6,7 +8,6 @@ export const Profile = objectType({
     t.model.id();
     t.model.socialId();
     t.model.authType();
-    t.model.verified();
   },
 });
 
@@ -22,12 +23,29 @@ export const User = objectType({
     t.model.birthDay();
     t.model.gender();
     t.model.phone();
+    t.model.verified();
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.model.posts({ pagination: false });
-    t.model.profile({
-      type: 'Profile',
-    });
+    t.model.notifications({ pagination: false });
+    t.model.profile();
   },
 });
+
+export const resetPassword = (email: string, password: string)
+: Promise<NexusGenRootTypes['User']> => {
+  return prisma.user.update({
+    where: { email },
+    data: { password },
+  });
+};
+
+export const verifyEmail = (email: string)
+: Promise<NexusGenRootTypes['User']> => {
+  return prisma.user.update({
+    where: { email },
+    data: {
+      verified: true,
+    },
+  });
+};

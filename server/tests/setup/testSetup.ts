@@ -11,7 +11,7 @@ import express from 'express';
 import { startServer } from '../../src/server';
 
 const prisma = new PrismaClient();
-const port = 5000;
+const port = 4000;
 let server: Http2Server;
 let networkInterface;
 export let apolloClient;

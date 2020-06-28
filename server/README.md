@@ -1,6 +1,6 @@
 # HackaTalk (Server)
 
-- [Contributing](CONTRIBUTING.md)
+- [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#server)
 
 ## Specification
 * [node](https://nodejs.org)

@@ -1,11 +1,24 @@
 import { APP_SECRET, getUserId } from '../../../utils';
 import {
+  ErrorEmailNotValid,
+  ErrorEmailSentFailed,
+  ErrorPasswordIncorrect,
+} from '../../../utils/error';
+import {
   USER_SIGNED_IN,
   USER_UPDATED,
 } from './subscription';
 import { compare, hash } from 'bcryptjs';
+import {
+  encryptCredential,
+  getEmailVerificationHTML,
+  getPasswordResetHTML,
+  validateCredential,
+  validateEmail,
+} from '../../../utils/auth';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
+import SendGridMail from '@sendgrid/mail';
 import { sign } from 'jsonwebtoken';
 
 export const UserInputType = inputObjectType({
@@ -40,7 +53,7 @@ export const UserUpdateInputType = inputObjectType({
 });
 
 export const signUp = mutationField('signUp', {
-  type: 'AuthPayload',
+  type: 'User',
   args: {
     user: 'UserCreateInput',
   },
@@ -56,10 +69,7 @@ export const signUp = mutationField('signUp', {
       },
     });
 
-    return {
-      token: sign({ userId: created.id }, APP_SECRET),
-      user: created,
-    };
+    return created;
   },
 });
 
@@ -77,18 +87,50 @@ export const signIn = mutationField('signIn', {
         email,
       },
     });
+
     if (!user) {
       throw new Error(`No user found for email: ${email}`);
     }
+
     const passwordValid = await compare(password, user.password);
     if (!passwordValid) {
       throw new Error('Invalid password');
     }
+
     pubsub.publish(USER_SIGNED_IN, user);
+
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
     };
+  },
+});
+
+export const sendVerification = mutationField('sendVerification', {
+  type: 'Boolean',
+  args: {
+    email: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { email }, ctx) => {
+    const user = await ctx.prisma.user.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (user) {
+      const hashedEmail = await encryptCredential(email);
+      const html = getEmailVerificationHTML(email, hashedEmail);
+      const msg = {
+        to: email,
+        from: 'noreply@hackatalk.dev',
+        subject: '[HackaTalk] Verify your email address!',
+        html,
+      };
+      await SendGridMail.send(msg);
+      return true;
+    }
+    return false;
   },
 });
 
@@ -109,5 +151,65 @@ export const updateProfile = mutationField('updateProfile', {
 
     pubsub.publish(USER_UPDATED, updated);
     return updated;
+  },
+});
+
+export const findPassword = mutationField('findPassword', {
+  type: 'Boolean',
+  args: {
+    email: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { email }) => {
+    if (!email || !validateEmail(email)) {
+      throw ErrorEmailNotValid('Email is not valid');
+    }
+
+    const hashedEmail = await encryptCredential(email);
+
+    const msg = {
+      to: email,
+      from: 'noreply@hackatalk.dev',
+      subject: '[HackaTalk] Reset your password!',
+      html: getPasswordResetHTML(email, hashedEmail),
+    };
+    try {
+      await SendGridMail.send(msg);
+      return true;
+    } catch (err) {
+      throw ErrorEmailSentFailed(err.message);
+    }
+  },
+});
+
+export const changeEmailPassword = mutationField('changeEmailPassword', {
+  type: 'Boolean',
+  args: {
+    password: stringArg({ nullable: false }),
+    newPassword: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { password, newPassword }, ctx) => {
+    const userId = getUserId(ctx);
+    try {
+      const user = await ctx.prisma.user.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      const validate = await validateCredential(password, user.password);
+
+      if (!validate) throw ErrorPasswordIncorrect('Password is incorrect');
+
+      newPassword = await encryptCredential(newPassword);
+
+      await ctx.prisma.user.update({
+        where: { id: userId },
+        data: { password: newPassword },
+      });
+
+      return true;
+    } catch (err) {
+      throw new Error(err.message);
+    }
   },
 });

@@ -16,7 +16,7 @@ const userVariables = {
     name: 'dooboo1',
     email: 'dooboo@dooboolab.com',
     password: 'password',
-    gender: 'Male',
+    gender: 'male',
   },
 };
 
@@ -25,7 +25,7 @@ const userVariables2 = {
     name: 'clark',
     email: 'clark@dooboolab.com',
     password: 'password',
-    gender: 'Male',
+    gender: 'male',
   },
 };
 
@@ -34,9 +34,8 @@ describe('Resolver - User', () => {
     const response = await request(testHost, signUpMutation, userVariables);
 
     expect(response).toHaveProperty('signUp');
-    expect(response.signUp).toHaveProperty('token');
-    expect(response.signUp).toHaveProperty('user');
-    expect(response.signUp.user.email).toEqual(userVariables.user.email);
+    expect(response.signUp).toHaveProperty('email');
+    expect(response.signUp.email).toEqual(userVariables.user.email);
   });
 
   it('should throw error when user does not exists', async () => {
@@ -83,7 +82,7 @@ describe('Resolver - User', () => {
     const variables = {
       user: {
         name: 'HelloBro',
-        gender: 'Male',
+        gender: 'male',
       },
     };
 
@@ -121,9 +120,9 @@ describe('Resolver - User', () => {
     it("should subscribe 'userSignedIn' after 'signUp' mutation", async () => {
       let subscriptionValue;
       const response1 = await request(testHost, signUpMutation, userVariables2);
-      const userId = response1.signUp.user.id;
-      expect(response1.signUp.user.name).toEqual(userVariables2.user.name);
-      expect(response1.signUp.user.gender).toEqual(userVariables2.user.gender);
+      const userId = response1.signUp.id;
+      expect(response1.signUp.name).toEqual(userVariables2.user.name);
+      expect(response1.signUp.gender).toEqual(userVariables2.user.gender);
 
       apolloClient.subscribe({
         query: userSignedInSubscription,
@@ -176,7 +175,7 @@ describe('Resolver - User', () => {
       const variables2 = {
         user: {
           name: 'HelloBro',
-          gender: 'Female',
+          gender: 'female',
         },
       };
       const response2 = await client.request(updateProfileMutation, variables2);
