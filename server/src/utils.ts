@@ -9,6 +9,7 @@ const envPath = env === 'development'
     ? path.resolve(__dirname, '../dotenv/test.env')
     : path.resolve(__dirname, '../dotenv/.env');
 
+// eslint-disable-next-line
 require('dotenv').config({ path: envPath });
 
 const { JWT_SECRET } = process.env;

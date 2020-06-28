@@ -6,6 +6,9 @@ labels: ''
 assignees: ''
 ---
 
+**Specify project**
+Is this `react-native` issue or `server` side issue?
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
