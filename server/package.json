@@ -6,6 +6,7 @@
   "scripts": {
     "local": "NODE_ENV=local ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
     "dev": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
+    "prod": "NODE_ENV=production ts-node src/server.ts",
     "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",

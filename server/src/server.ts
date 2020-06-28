@@ -10,8 +10,6 @@ import { schema } from './schema';
 const { PORT = 4000, SENDGRID_API_KEY } = process.env;
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
-console.log('apikey', SENDGRID_API_KEY);
-
 const createApolloServer = (): ApolloServer => new ApolloServer({
   schema,
   context: createContext,
