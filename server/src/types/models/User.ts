@@ -24,6 +24,7 @@ export const User = objectType({
     t.model.gender();
     t.model.phone();
     t.model.verified();
+    t.model.lastSignedIn();
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();

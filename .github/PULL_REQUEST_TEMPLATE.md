@@ -1,5 +1,5 @@
-**Specify project**
-Is this related `react-native` project or `server` side?
+## Specify project
+_Is this related `react-native` project or `server` side? Or both?_
 
 ## Description
 

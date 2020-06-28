@@ -99,6 +99,13 @@ export const signIn = mutationField('signIn', {
 
     pubsub.publish(USER_SIGNED_IN, user);
 
+    ctx.prisma.user.update({
+      where: {
+        email,
+      },
+      data: { lastSignedIn: new Date() },
+    });
+
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
