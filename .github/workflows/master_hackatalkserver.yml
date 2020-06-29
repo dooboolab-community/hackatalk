@@ -24,13 +24,13 @@ jobs:
       run: |
         pushd server
         npm install
-        npm run generate
+        npm run build
         popd
 
     - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v1
       with:
         app-name: 'hackatalkserver'
-        # slot-name: 'production'
+        slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5b693f51c7f24d7eacd53ae7c7fcee7f }}
-        # package: server/
+        package: server
