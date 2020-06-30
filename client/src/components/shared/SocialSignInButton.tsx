@@ -27,7 +27,7 @@ const SocialSignInButton: FC<Props> = ({
   const { theme } = useThemeContext();
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
-  const discovery = socialProvider === AuthType.Google
+  const discovery = socialProvider === AuthType.google
     ? useAutoDiscovery('https://accounts.google.com')
     : {
       authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
@@ -36,7 +36,7 @@ const SocialSignInButton: FC<Props> = ({
 
   const useProxy = Platform.select({ web: false, default: true });
   const redirectUri = makeRedirectUri(
-    socialProvider === AuthType.Google
+    socialProvider === AuthType.google
       ? {
         native: 'com.dooboolab.hackatalk',
         useProxy,
@@ -48,7 +48,7 @@ const SocialSignInButton: FC<Props> = ({
   );
 
   const [request, response, promptAsync] = useAuthRequest(
-    socialProvider === AuthType.Google
+    socialProvider === AuthType.google
       ? {
         clientId,
         redirectUri,
@@ -87,7 +87,7 @@ const SocialSignInButton: FC<Props> = ({
       });
 
       if (result.type === 'success') {
-        if (socialProvider === AuthType.Google) {
+        if (socialProvider === AuthType.google) {
           const accessToken = result.params.access_token;
           // const credential = firebase.auth.GoogleAuthProvider.credential(null, accessToken);
           // const authResult = await firebase.auth().signInWithCredential(credential);
@@ -120,7 +120,7 @@ const SocialSignInButton: FC<Props> = ({
     }
   };
 
-  if (socialProvider === AuthType.Google) {
+  if (socialProvider === AuthType.google) {
     return <Button
       testID="btn-google"
       style={{

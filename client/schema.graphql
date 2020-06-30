@@ -42,9 +42,8 @@ type Notification {
 }
 
 type Profile {
-  id: String!
   socialId: String
-  authType: AuthType!
+  authType: AuthType
 }
 
 type Query {

@@ -5,7 +5,6 @@ import { prisma } from '../../context';
 export const Profile = objectType({
   name: 'Profile',
   definition(t) {
-    t.model.id();
     t.model.socialId();
     t.model.authType();
   },

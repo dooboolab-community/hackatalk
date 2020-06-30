@@ -54,7 +54,7 @@ model Notification {
 model Profile {
   id          String      @default(cuid()) @id
   socialId    String?
-  authType    AuthType
+  authType    AuthType?
   userId      String      @unique
   User        User        @relation(fields: [userId], references: [id])
 }

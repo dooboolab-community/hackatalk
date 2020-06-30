@@ -46,8 +46,7 @@ type Notification {
 }
 
 type Profile {
-  authType: AuthType!
-  id: String!
+  authType: AuthType
   socialId: String
 }
 

@@ -63,6 +63,7 @@ function AppWithTheme(): ReactElement {
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
     await initializeEThree(me.id);
+    // @ts-ignore ==> TODO
     setUser(me);
   };
 

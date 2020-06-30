@@ -26,10 +26,10 @@ export type AuthPayload = {
 };
 
 export enum AuthType {
-  Email = 'email',
-  Facebook = 'facebook',
-  Google = 'google',
-  Apple = 'apple'
+  email = 'email',
+  facebook = 'facebook',
+  google = 'google',
+  apple = 'apple'
 }
 
 
@@ -103,9 +103,8 @@ export type Notification = {
 
 export type Profile = {
   __typename?: 'Profile';
-  id: Scalars['String'];
   socialId?: Maybe<Scalars['String']>;
-  authType: AuthType;
+  authType?: Maybe<AuthType>;
 };
 
 export type Query = {
