@@ -22,7 +22,7 @@ jobs:
 
     - name: npm install, build
       run: |
-        pushd server
+        pushd ./server
         npm install
         npm run build
         popd
@@ -33,4 +33,4 @@ jobs:
         app-name: 'hackatalkserver'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5b693f51c7f24d7eacd53ae7c7fcee7f }}
-        package: server
+        package: ./server
