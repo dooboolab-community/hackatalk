@@ -23,12 +23,13 @@ export const User = objectType({
     t.model.birthDay();
     t.model.gender();
     t.model.phone();
+    t.model.statusMessage();
     t.model.verified();
     t.model.lastSignedIn();
     t.model.createdAt();
     t.model.updatedAt();
+    t.list.field('notifications', { type: 'Notification', nullable: true });
     t.model.deletedAt();
-    t.model.notifications({ pagination: false });
     t.model.profile();
   },
 });

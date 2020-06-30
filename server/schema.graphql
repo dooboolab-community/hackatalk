@@ -37,7 +37,7 @@ type Mutation {
 }
 
 type Notification {
-  createdAt: DateTime!
+  createdAt: DateTime
   device: String
   id: Int!
   os: String
@@ -66,7 +66,7 @@ scalar Upload
 
 type User {
   birthDay: DateTime
-  createdAt: DateTime!
+  createdAt: DateTime
   deletedAt: DateTime
   email: String!
   gender: Gender
@@ -74,12 +74,13 @@ type User {
   lastSignedIn: DateTime
   name: String
   nickname: String
-  notifications: [Notification!]!
+  notifications: [Notification!]
   phone: String
   photoURL: String
   profile: Profile
+  statusMessage: String
   thumbURL: String
-  updatedAt: DateTime!
+  updatedAt: DateTime
   verified: Boolean!
 }
 
