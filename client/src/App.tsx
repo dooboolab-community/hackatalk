@@ -30,6 +30,9 @@ const meQuery = graphql`
       id
       email
       verified
+      profile {
+        authType
+      }
     }
   }
 `;
@@ -50,7 +53,7 @@ function AppWithTheme(): ReactElement {
   }, [data.me]);
 
   const { setDeviceType } = useDeviceContext();
-  const { setUser } = useAuthContext();
+  const { setUser, state: { user } } = useAuthContext();
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
@@ -60,6 +63,7 @@ function AppWithTheme(): ReactElement {
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
     await initializeEThree(me.id);
+    // @ts-ignore ==> TODO
     setUser(me);
   };
 

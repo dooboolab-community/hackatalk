@@ -2,6 +2,7 @@
 /* eslint-disable */
 
 import { ConcreteRequest } from "relay-runtime";
+export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type ProfileUpdateMeQueryVariables = {};
 export type ProfileUpdateMeQueryResponse = {
     readonly me: {
@@ -11,7 +12,10 @@ export type ProfileUpdateMeQueryResponse = {
         readonly nickname: string | null;
         readonly statusMessage: string | null;
         readonly verified: boolean | null;
-    } | null;
+        readonly profile: {
+            readonly authType: AuthType;
+        } | null;
+    };
 };
 export type ProfileUpdateMeQuery = {
     readonly response: ProfileUpdateMeQueryResponse;
@@ -29,6 +33,9 @@ query ProfileUpdateMeQuery {
     nickname
     statusMessage
     verified
+    profile {
+      authType
+    }
   }
 }
 */
@@ -84,6 +91,24 @@ const node: ConcreteRequest = (function () {
                     "kind": "ScalarField",
                     "name": "verified",
                     "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Profile",
+                    "kind": "LinkedField",
+                    "name": "profile",
+                    "plural": false,
+                    "selections": [
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "authType",
+                            "storageKey": null
+                        }
+                    ],
+                    "storageKey": null
                 }
             ],
             "storageKey": null
@@ -110,9 +135,9 @@ const node: ConcreteRequest = (function () {
             "metadata": {},
             "name": "ProfileUpdateMeQuery",
             "operationKind": "query",
-            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n  }\n}\n"
+            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    profile {\n      authType\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '2460b110f26e597c5977148989d76bec';
+(node as any).hash = 'a90bc09d8e46e51e5b05576eb2e83ff2';
 export default node;

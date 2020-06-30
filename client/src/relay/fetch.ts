@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import Config from 'react-native-config';
 import { FetchFunction } from 'relay-runtime';
-import { GRAPHQL_URL } from '../../config';
+
+const { GRAPHQL_URL } = Config;
 
 const fetchGraphQL: FetchFunction = async (request, variables) => {
   console.log(

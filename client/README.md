@@ -93,32 +93,15 @@ Run below to make your own `app` variables.
 
 - `env` variables
 
-MYAPP_RELEASE_STORE_FILE=
-MYAPP_RELEASE_KEY_ALIAS=
-MYAPP_RELEASE_STORE_PASSWORD=
-MYAPP_RELEASE_KEY_PASSWORD=
-
   | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
   | iOSClientId                  |                                      |     | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. |
-  | GRAPHQL_URL                  | `https://hackatalk.azurewebsites.net/graphql` | yes |  |
-  | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
+  | GRAPHQL_URL                  | `https://hackatalkserver.azurewebsites.net/graphql` | yes |  |
+  | ROOT_URL                     | `https://hackatalkserver.azurewebsites.net`         | yes |  |
   | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
   | MYAPP_RELEASE_KEY_ALIAS      |                                      |     |  |
   | MYAPP_RELEASE_STORE_PASSWORD |                                      |     |  |
   | MYAPP_RELEASE_KEY_PASSWORD   |                                      |     |  |
-
-  ```
-  iOSClientId=iOSClientId
-  GRAPHQL_URL=https://hackatalk.azurewebsites.net/graphql
-  ROOT_URL=https://hackatalk.azurewebsites.net
-
-  # Android
-  MYAPP_RELEASE_STORE_FILE=
-  MYAPP_RELEASE_KEY_ALIAS=
-  MYAPP_RELEASE_STORE_PASSWORD=
-  MYAPP_RELEASE_KEY_PASSWORD=
-  ```
 
 ### Running the project
 

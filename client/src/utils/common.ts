@@ -12,6 +12,6 @@ export const validatePassword = (password: string): boolean => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const showAlertForGrpahqlError = (graphQLErrors: any): void => {
-  Alert.alert(getString('ERROR'), (graphQLErrors && graphQLErrors[0])?.message || '');
+export const showAlertForError = (error: any): void => {
+  Alert.alert(getString('ERROR'), error.message || '');
 };

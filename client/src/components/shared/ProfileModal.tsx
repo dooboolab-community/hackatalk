@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
-import { showAlertForGrpahqlError } from '../../utils/common';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -177,7 +177,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
 
       // setHasFriendBeenAdded(result.data?.addFriend.added || false);
     } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+      showAlertForError(graphQLErrors);
     }
   };
 
@@ -195,7 +195,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     try {
       // await deleteFriendMutation({ variables });
     } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+      showAlertForError(graphQLErrors);
     }
   };
 

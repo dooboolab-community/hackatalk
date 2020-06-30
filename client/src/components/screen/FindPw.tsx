@@ -1,6 +1,6 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
+import { showAlertForError, validateEmail } from '../../utils/common';
 
 import { Alert } from 'react-native';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
@@ -54,7 +54,7 @@ function Page({ navigation }: Props): ReactElement {
       //   ]);
       // }
     } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+      showAlertForError(graphQLErrors);
     } finally {
       setFindingPw(false);
     }

@@ -14,7 +14,7 @@ import type {
 import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { showAlertForGrpahqlError, validateEmail } from '../../utils/common';
+import { showAlertForError, validateEmail } from '../../utils/common';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
@@ -146,7 +146,7 @@ function SignIn(props: Props): ReactElement {
       setUser(user);
     },
     onError: (error: any): void => {
-      showAlertForGrpahqlError(error?.graphQLErrors);
+      showAlertForError(error);
     },
   };
 
@@ -408,7 +408,7 @@ function SignIn(props: Props): ReactElement {
               onUserCreated={(user?: User): void => {
                 if (user) setUser(user);
               }}
-              socialProvider={AuthType.Facebook}
+              socialProvider={AuthType.facebook}
             />
             <SocialSignInButton
               clientId={googleClientId}
@@ -417,7 +417,7 @@ function SignIn(props: Props): ReactElement {
               onUserCreated={(user?: User): void => {
                 if (user) setUser(user);
               }}
-              socialProvider={AuthType.Google}
+              socialProvider={AuthType.google}
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>

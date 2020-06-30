@@ -1,6 +1,6 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import { showAlertForGrpahqlError, validateEmail, validatePassword } from '../../utils/common';
+import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -93,7 +93,7 @@ function Page(props: Props): ReactElement {
       //   });
       // }
     } catch ({ graphQLErrors }) {
-      showAlertForGrpahqlError(graphQLErrors);
+      showAlertForError(graphQLErrors);
     } finally {
       setSigningUp(false);
     }

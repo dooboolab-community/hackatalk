@@ -41,7 +41,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Email),
+      getEmptyAuthUserWithSignInType(AuthType.email),
     );
     testingLib = render(component);
   });
@@ -55,7 +55,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Facebook),
+      getEmptyAuthUserWithSignInType(AuthType.facebook),
     );
     const { baseElement: baseElement2 } = render(component);
     expect(baseElement2).toBeTruthy();
@@ -65,7 +65,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Google),
+      getEmptyAuthUserWithSignInType(AuthType.google),
     );
     const { baseElement: baseElement3 } = render(component);
     expect(baseElement3).toBeTruthy();
@@ -75,7 +75,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Apple),
+      getEmptyAuthUserWithSignInType(AuthType.apple),
     );
     const { baseElement: baseElement4 } = render(component);
     expect(baseElement4).toBeTruthy();

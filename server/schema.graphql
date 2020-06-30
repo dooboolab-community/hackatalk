@@ -46,8 +46,7 @@ type Notification {
 }
 
 type Profile {
-  authType: AuthType!
-  id: String!
+  authType: AuthType
   socialId: String
 }
 
@@ -68,7 +67,7 @@ type User {
   birthDay: DateTime
   createdAt: DateTime
   deletedAt: DateTime
-  email: String!
+  email: String
   gender: Gender
   id: String!
   isOnline: Boolean
@@ -82,7 +81,7 @@ type User {
   statusMessage: String
   thumbURL: String
   updatedAt: DateTime
-  verified: Boolean!
+  verified: Boolean
 }
 
 input UserCreateInput {

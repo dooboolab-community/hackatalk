@@ -5,7 +5,6 @@ import { prisma } from '../../context';
 export const Profile = objectType({
   name: 'Profile',
   definition(t) {
-    t.model.id();
     t.model.socialId();
     t.model.authType();
   },
@@ -29,9 +28,9 @@ export const User = objectType({
     t.model.isOnline();
     t.model.createdAt();
     t.model.updatedAt();
-    t.list.field('notifications', { type: 'Notification', nullable: true });
     t.model.deletedAt();
     t.model.profile();
+    t.list.field('notifications', { type: 'Notification', nullable: true });
   },
 });
 
