@@ -26,6 +26,7 @@ export const User = objectType({
     t.model.statusMessage();
     t.model.verified();
     t.model.lastSignedIn();
+    t.model.isOnline();
     t.model.createdAt();
     t.model.updatedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });

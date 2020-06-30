@@ -52,7 +52,7 @@ type Profile {
 }
 
 type Query {
-  me: User
+  me: User!
   notifications(userId: String): [Notification!]
 }
 
@@ -71,6 +71,7 @@ type User {
   email: String!
   gender: Gender
   id: String!
+  isOnline: Boolean
   lastSignedIn: DateTime
   name: String
   nickname: String
