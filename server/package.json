@@ -25,6 +25,7 @@
     "migrate:save": "dotenv -e ./dotenv/.env -- prisma migrate save --experimental",
     "migrate:up": "dotenv -e ./dotenv/.env -- prisma migrate up --experimental",
     "migrate:down": "dotenv -e ./dotenv/.env -- prisma migrate down 1 --experimental",
+    "migrate:dev": "dotenv -e ./dotenv/dev.env -- prisma migrate up --experimental",
     "migrate:test": "dotenv -e ./dotenv/test.env -- prisma migrate up --experimental",
     "studio": "dotenv -e ./dotenv/.env -- prisma studio --experimental"
   },

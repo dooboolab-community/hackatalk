@@ -1,0 +1,23 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "createdAt",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "User",
+      "field": "updatedAt",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Notification",
+      "field": "createdAt",
+      "arity": "Optional"
+    }
+  ]
+}
