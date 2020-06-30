@@ -6,8 +6,8 @@ export type AppUserQueryVariables = {};
 export type AppUserQueryResponse = {
     readonly me: {
         readonly id: string;
-        readonly email: string | null;
-        readonly verified: boolean | null;
+        readonly email: string;
+        readonly verified: boolean;
     } | null;
 };
 export type AppUserQuery = {

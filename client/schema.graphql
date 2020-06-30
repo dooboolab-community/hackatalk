@@ -38,7 +38,7 @@ type Notification {
   device: String
   os: String
   user: User!
-  createdAt: DateTime!
+  createdAt: DateTime
 }
 
 type Profile {
@@ -48,7 +48,7 @@ type Profile {
 }
 
 type Query {
-  me: User
+  me: User!
   notifications(userId: String): [Notification!]
 }
 
@@ -70,12 +70,14 @@ type User {
   birthDay: DateTime
   gender: Gender
   phone: String
+  statusMessage: String
   verified: Boolean!
   lastSignedIn: DateTime
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  isOnline: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  notifications: [Notification!]
   deletedAt: DateTime
-  notifications: [Notification!]!
   profile: Profile
 }
 

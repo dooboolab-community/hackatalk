@@ -134,8 +134,6 @@ function SignIn(props: Props): ReactElement {
     onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
       const { token, user } = response.signInEmail;
 
-      console.log('onCompleted', user);
-
       if (user && !user.verified) {
         return navigation.navigate('VerifyEmail', {
           email,
@@ -148,7 +146,6 @@ function SignIn(props: Props): ReactElement {
       setUser(user);
     },
     onError: (error: any): void => {
-      console.log('error', error);
       showAlertForError(error);
     },
   };

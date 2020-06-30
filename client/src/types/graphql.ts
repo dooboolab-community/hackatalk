@@ -98,7 +98,7 @@ export type Notification = {
   device?: Maybe<Scalars['String']>;
   os?: Maybe<Scalars['String']>;
   user: User;
-  createdAt: Scalars['DateTime'];
+  createdAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Profile = {
@@ -110,7 +110,7 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
-  me?: Maybe<User>;
+  me: User;
   notifications?: Maybe<Array<Notification>>;
 };
 
@@ -147,12 +147,14 @@ export type User = {
   birthDay?: Maybe<Scalars['DateTime']>;
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
+  statusMessage?: Maybe<Scalars['String']>;
   verified: Scalars['Boolean'];
   lastSignedIn?: Maybe<Scalars['DateTime']>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  isOnline?: Maybe<Scalars['Boolean']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  notifications?: Maybe<Array<Notification>>;
   deletedAt?: Maybe<Scalars['DateTime']>;
-  notifications: Array<Notification>;
   profile?: Maybe<Profile>;
 };
 
