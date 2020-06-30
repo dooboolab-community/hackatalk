@@ -22,10 +22,10 @@
 - [Server](server) :computer:
 
   * Test Apis
-    [hackatalkserver.azurewebsites.net](hackatalkserver.azurewebsites.net)
+    [api](https://hackatalkserver.azurewebsites.net)
 
   * Test Graphql queries
-    [hackatalkserver.azurewebsites.net/graphql](hackatalkserver.azurewebsites.net/graphql)
+    [graphql](https://hackatalkserver.azurewebsites.net/graphql)
 
 
 ## Contributors ✨
