@@ -29,9 +29,9 @@ export const User = objectType({
     t.model.isOnline();
     t.model.createdAt();
     t.model.updatedAt();
-    t.list.field('notifications', { type: 'Notification', nullable: true });
     t.model.deletedAt();
     t.model.profile();
+    t.list.field('notifications', { type: 'Notification', nullable: true });
   },
 });
 

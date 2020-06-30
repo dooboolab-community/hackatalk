@@ -139,7 +139,7 @@ export type SubscriptionUserUpdatedArgs = {
 export type User = {
   __typename?: 'User';
   id: Scalars['String'];
-  email: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
   thumbURL?: Maybe<Scalars['String']>;
@@ -148,14 +148,14 @@ export type User = {
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;
-  verified: Scalars['Boolean'];
+  verified?: Maybe<Scalars['Boolean']>;
   lastSignedIn?: Maybe<Scalars['DateTime']>;
   isOnline?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  notifications?: Maybe<Array<Notification>>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   profile?: Maybe<Profile>;
+  notifications?: Maybe<Array<Notification>>;
 };
 
 export type UserCreateInput = {

@@ -62,7 +62,7 @@ scalar Upload
 
 type User {
   id: String!
-  email: String!
+  email: String
   name: String
   nickname: String
   thumbURL: String
@@ -71,14 +71,14 @@ type User {
   gender: Gender
   phone: String
   statusMessage: String
-  verified: Boolean!
+  verified: Boolean
   lastSignedIn: DateTime
   isOnline: Boolean
   createdAt: DateTime
   updatedAt: DateTime
-  notifications: [Notification!]
   deletedAt: DateTime
   profile: Profile
+  notifications: [Notification!]
 }
 
 input UserCreateInput {

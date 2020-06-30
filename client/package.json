@@ -39,8 +39,10 @@
     "relay": "relay-compiler --src ./src --schema schema.graphql --language typescript --artifactDirectory ./src/__generated__",
     "relay-watch": "yarn relay-compiler --schema schema.graphql --src ./src/ --extensions ts tsx --language typescript --artifactDirectory ./src/__generated__ --watch",
     "schema": "get-graphql-schema https://hackatalkserver.azurewebsites.net/graphql > schema.graphql",
+    "schema:local": "get-graphql-schema http://localhost:4000/graphql > schema.graphql",
     "codegen": "graphql-codegen --config codegen.yml",
-    "generate": "yarn schema && yarn codegen"
+    "generate": "yarn schema && yarn codegen",
+    "generate:local": "yarn schema:local && yarn codegen"
   },
   "dependencies": {
     "@dooboo-ui/pinch-zoom-slider-modal": "^0.0.1",

@@ -2,13 +2,17 @@
 /* eslint-disable */
 
 import { ConcreteRequest } from "relay-runtime";
+export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type AppUserQueryVariables = {};
 export type AppUserQueryResponse = {
     readonly me: {
         readonly id: string;
-        readonly email: string;
-        readonly verified: boolean;
-    } | null;
+        readonly email: string | null;
+        readonly verified: boolean | null;
+        readonly profile: {
+            readonly authType: AuthType;
+        } | null;
+    };
 };
 export type AppUserQuery = {
     readonly response: AppUserQueryResponse;
@@ -23,6 +27,9 @@ query AppUserQuery {
     id
     email
     verified
+    profile {
+      authType
+    }
   }
 }
 */
@@ -57,6 +64,24 @@ const node: ConcreteRequest = (function () {
                     "kind": "ScalarField",
                     "name": "verified",
                     "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Profile",
+                    "kind": "LinkedField",
+                    "name": "profile",
+                    "plural": false,
+                    "selections": [
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "authType",
+                            "storageKey": null
+                        }
+                    ],
+                    "storageKey": null
                 }
             ],
             "storageKey": null
@@ -83,9 +108,9 @@ const node: ConcreteRequest = (function () {
             "metadata": {},
             "name": "AppUserQuery",
             "operationKind": "query",
-            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n  }\n}\n"
+            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      authType\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '1c5a61f1624f7307c03ab3532479a1d0';
+(node as any).hash = '741765a762e78c334bb1f46e7d73852e';
 export default node;

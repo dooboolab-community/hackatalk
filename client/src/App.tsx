@@ -30,6 +30,9 @@ const meQuery = graphql`
       id
       email
       verified
+      profile {
+        authType
+      }
     }
   }
 `;
@@ -60,10 +63,7 @@ function AppWithTheme(): ReactElement {
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
     await initializeEThree(me.id);
-    setUser({
-      ...user,
-      ...me,
-    });
+    setUser(me);
   };
 
   return <RootNavigator />;

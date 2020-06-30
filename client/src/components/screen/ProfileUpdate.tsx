@@ -75,9 +75,12 @@ const meQuery = graphql`
       id
       email
       name
-      nickname,
-      statusMessage,
+      nickname
+      statusMessage
       verified
+      profile {
+        authType
+      }
     }
   }
 `;
@@ -100,7 +103,6 @@ const Screen: FC<Props> = (props) => {
     }
   }, [data.me]);
 
-  const { navigation } = props;
   const { theme } = useThemeContext();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');

@@ -88,7 +88,7 @@ function Settings(props: Props): React.ReactElement {
     }
   };
 
-  switch (user && user.authType) {
+  switch (user?.profile?.authType) {
     case AuthType.Google:
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,

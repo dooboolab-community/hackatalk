@@ -16,7 +16,7 @@ export enum ActionType {
 }
 
 export interface State {
-  user: User | undefined | null;
+  user: User | undefined;
   relay: RelayEnvironment;
 }
 type SetUserAction = {
