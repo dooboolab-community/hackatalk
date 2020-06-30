@@ -12,8 +12,8 @@ export const signUpMutation = /* GraphQL */`
 `;
 
 export const signInMutation = /* GraphQL */`
-  mutation signIn($email: String! $password: String!) {
-    signIn(email: $email password: $password) {
+  mutation signInEmail($email: String! $password: String!) {
+    signInEmail(email: $email password: $password) {
       token
       user {
         id

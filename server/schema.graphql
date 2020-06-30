@@ -31,7 +31,7 @@ type Mutation {
   deleteNotification(id: Int!): Notification
   findPassword(email: String!): Boolean!
   sendVerification(email: String!): Boolean!
-  signIn(email: String!, password: String!): AuthPayload!
+  signInEmail(email: String!, password: String!): AuthPayload!
   signUp(user: UserCreateInput): User!
   updateProfile(user: UserUpdateInput): User!
 }

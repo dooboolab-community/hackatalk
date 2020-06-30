@@ -73,7 +73,7 @@ export const signUp = mutationField('signUp', {
   },
 });
 
-export const signIn = mutationField('signIn', {
+export const signInEmail = mutationField('signInEmail', {
   type: 'AuthPayload',
   args: {
     email: stringArg({ nullable: false }),

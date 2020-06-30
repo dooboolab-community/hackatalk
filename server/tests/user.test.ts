@@ -2,7 +2,7 @@ import { GraphQLClient, request } from 'graphql-request';
 import { apolloClient, testHost } from './setup/testSetup';
 import {
   meQuery,
-  signInMutation,
+  signInMutation as signInEmailMutation,
   signUpMutation,
   updateProfileMutation,
   userSignedInSubscription,
@@ -44,7 +44,7 @@ describe('Resolver - User', () => {
       password: 'password',
     };
 
-    const promise = request(testHost, signInMutation, variables);
+    const promise = request(testHost, signInEmailMutation, variables);
     expect(promise).rejects.toThrow();
   });
 
@@ -54,31 +54,31 @@ describe('Resolver - User', () => {
       password: 'invalid',
     };
 
-    const promise = request(testHost, signInMutation, variables);
+    const promise = request(testHost, signInEmailMutation, variables);
     expect(promise).rejects.toThrow();
   });
 
-  it('should signIn user', async () => {
+  it('should signIn user with email', async () => {
     const variables = {
       email: 'dooboo@dooboolab.com',
       password: 'password',
     };
 
-    const response = await request(testHost, signInMutation, variables);
-    expect(response).toHaveProperty('signIn');
-    expect(response.signIn).toHaveProperty('token');
-    expect(response.signIn).toHaveProperty('user');
-    expect(response.signIn.user.email).toEqual(variables.email);
+    const response = await request(testHost, signInEmailMutation, variables);
+    expect(response).toHaveProperty('signInEmail');
+    expect(response.signInEmail).toHaveProperty('token');
+    expect(response.signInEmail).toHaveProperty('user');
+    expect(response.signInEmail.user.email).toEqual(variables.email);
 
     // hyochan => Setup auth client for next test case
     client = new GraphQLClient(testHost, {
       headers: {
-        authorization: response.signIn.token,
+        authorization: response.signInEmail.token,
       },
     });
   });
 
-  describe('Resolver - after signIn', () => {
+  describe('Resolver - after signInEmail', () => {
     const variables = {
       user: {
         name: 'HelloBro',
@@ -137,15 +137,15 @@ describe('Resolver - User', () => {
         email: 'clark@dooboolab.com',
         password: 'password',
       };
-      const response2 = await request(testHost, signInMutation, variables);
-      expect(response2).toHaveProperty('signIn');
-      expect(response2.signIn).toHaveProperty('token');
-      expect(response2.signIn).toHaveProperty('user');
-      expect(response2.signIn.user.id).toEqual(subscriptionValue.id);
-      expect(response2.signIn.user.email).toEqual(subscriptionValue.email);
-      expect(response2.signIn.user.name).toEqual(subscriptionValue.name);
-      expect(response2.signIn.user.gender).toEqual(subscriptionValue.gender);
-      expect(response2.signIn.user.createdAt).toEqual(subscriptionValue.createdAt);
+      const response2 = await request(testHost, signInEmailMutation, variables);
+      expect(response2).toHaveProperty('signInEmail');
+      expect(response2.signInEmail).toHaveProperty('token');
+      expect(response2.signInEmail).toHaveProperty('user');
+      expect(response2.signInEmail.user.id).toEqual(subscriptionValue.id);
+      expect(response2.signInEmail.user.email).toEqual(subscriptionValue.email);
+      expect(response2.signInEmail.user.name).toEqual(subscriptionValue.name);
+      expect(response2.signInEmail.user.gender).toEqual(subscriptionValue.gender);
+      expect(response2.signInEmail.user.createdAt).toEqual(subscriptionValue.createdAt);
     });
     it("should subscribe 'userUpdated' after 'updateProfile' mutation", async () => {
       let subscriptionValue;
@@ -153,9 +153,9 @@ describe('Resolver - User', () => {
         email: 'clark@dooboolab.com',
         password: 'password',
       };
-      const response = await request(testHost, signInMutation, variables);
-      expect(response.signIn).toHaveProperty('user');
-      const userId = response.signIn.user.id;
+      const response = await request(testHost, signInEmailMutation, variables);
+      expect(response.signInEmail).toHaveProperty('user');
+      const userId = response.signInEmail.user.id;
 
       apolloClient.subscribe({
         query: userUpdatedSubscription,
@@ -168,7 +168,7 @@ describe('Resolver - User', () => {
 
       client = new GraphQLClient(testHost, {
         headers: {
-          authorization: response.signIn.token,
+          authorization: response.signInEmail.token,
         },
       });
 
