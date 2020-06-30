@@ -7,4 +7,4 @@ assignees: ''
 ---
 
 **Specify project**
-Is this related `react-native` project or `server` side?
+Is this `Client` issue or `Server` side issue?

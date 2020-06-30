@@ -85,12 +85,6 @@ jobs:
           paths:
             - ./node_modules
 
-      - persist_to_workspace:
-          root: ~/dooboo
-          working_directory: client
-          paths:
-            - ./node_modules
-
       - run:
           name: Lint Test
           working_directory: client
