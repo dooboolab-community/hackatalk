@@ -7,8 +7,15 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /**
+   * A date string, such as 2007-12-03, compliant with the `full-date` format
+   * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+   * representation of dates and times using the Gregorian calendar.
+   */
   Date: any;
   DateTime: any;
+  Gender: any;
+  /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
 
@@ -25,152 +32,24 @@ export enum AuthType {
   Apple = 'apple'
 }
 
-export type Channel = {
-  __typename?: 'Channel';
-  id: Scalars['ID'];
-  type?: Maybe<ChannelType>;
-  name?: Maybe<Scalars['String']>;
-  messages?: Maybe<Array<Maybe<Message>>>;
-  memberships?: Maybe<Array<Maybe<Membership>>>;
-  myMembership?: Maybe<Membership>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type ChannelInput = {
-  type?: Maybe<ChannelType>;
-  name?: Maybe<Scalars['String']>;
-  friendIds: Array<Scalars['String']>;
-};
-
-export enum ChannelType {
-  Private = 'PRIVATE',
-  Public = 'PUBLIC'
-}
 
 
-
-export type File = {
-  __typename?: 'File';
-  filename: Scalars['String'];
-  mimetype: Scalars['String'];
-  encoding: Scalars['String'];
-};
-
-export type Friend = {
-  __typename?: 'Friend';
-  id: Scalars['ID'];
-  user?: Maybe<User>;
-  friend?: Maybe<User>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type FriendPayload = {
-  __typename?: 'FriendPayload';
-  user: User;
-  added?: Maybe<Scalars['Boolean']>;
-  deleted?: Maybe<Scalars['Int']>;
-};
-
-export type FriendSub = {
-  __typename?: 'FriendSub';
-  user?: Maybe<User>;
-  action?: Maybe<FriendSubAction>;
-};
-
-export enum FriendSubAction {
-  Added = 'ADDED',
-  Updated = 'UPDATED',
-  Deleted = 'DELETED'
-}
-
-export type Gallery = {
-  __typename?: 'Gallery';
-  id: Scalars['ID'];
-  photoURL: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export enum Gender {
-  Male = 'MALE',
-  Female = 'FEMALE'
-}
-
-export type Membership = {
-  __typename?: 'Membership';
-  id: Scalars['ID'];
-  channel?: Maybe<Channel>;
-  user?: Maybe<User>;
-  type?: Maybe<MemberType>;
-  userAlert?: Maybe<Scalars['Boolean']>;
-  userMode?: Maybe<UserModeType>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export enum MemberType {
-  Owner = 'OWNER',
-  Member = 'MEMBER'
-}
-
-export type Message = {
-  __typename?: 'Message';
-  id: Scalars['String'];
-  channel?: Maybe<Channel>;
-  sender?: Maybe<User>;
-  type?: Maybe<Scalars['String']>;
-  text?: Maybe<Scalars['String']>;
-  picture?: Maybe<Array<Maybe<Photo>>>;
-  filePath?: Maybe<Scalars['String']>;
-  replies?: Maybe<Array<Maybe<Reply>>>;
-  reactions?: Maybe<Array<Maybe<Reaction>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type MessagePayload = {
-  __typename?: 'MessagePayload';
-  channelId: Scalars['String'];
-  message?: Maybe<Message>;
-};
 
 export type Mutation = {
   __typename?: 'Mutation';
+  signUp: User;
   signInEmail: AuthPayload;
-  signInWithSocialAccount: AuthPayload;
-  signInWithFacebook: AuthPayload;
-  signUp: AuthPayload;
-  findPassword?: Maybe<Scalars['Boolean']>;
-  sendVerification?: Maybe<Scalars['Boolean']>;
-  addNotificationToken?: Maybe<Notification>;
-  removeNotificationToken?: Maybe<Scalars['Int']>;
-  updateProfile?: Maybe<User>;
-  addFriend?: Maybe<FriendPayload>;
-  deleteFriend?: Maybe<FriendPayload>;
-  /** `friendIds` in Channel should exclude userid. */
-  createChannel?: Maybe<Channel>;
-  updateChannel?: Maybe<Scalars['Int']>;
-  deleteChannel?: Maybe<Scalars['Int']>;
-  /**
-   * Create message and return channelId when meessage has successfully sent.
-   * Do not pass current userId inside `users`.
-   */
-  createMessage?: Maybe<MessagePayload>;
-  setOnlineStatus?: Maybe<Scalars['Int']>;
-  changeEmailPassword?: Maybe<Scalars['Boolean']>;
-  createGallery?: Maybe<Gallery>;
-  updateGallery?: Maybe<Scalars['Int']>;
-  deleteGallery?: Maybe<Scalars['Int']>;
-  singleUpload: Scalars['String'];
-  createReaction?: Maybe<Reaction>;
-  deleteReaction?: Maybe<Scalars['Int']>;
+  sendVerification: Scalars['Boolean'];
+  updateProfile: User;
+  findPassword: Scalars['Boolean'];
+  changeEmailPassword: Scalars['Boolean'];
+  createNotification: Notification;
+  deleteNotification?: Maybe<Notification>;
+};
+
+
+export type MutationSignUpArgs = {
+  user?: Maybe<UserCreateInput>;
 };
 
 
@@ -180,79 +59,18 @@ export type MutationSignInEmailArgs = {
 };
 
 
-export type MutationSignInWithSocialAccountArgs = {
-  socialUser: SocialUserInput;
-};
-
-
-export type MutationSignInWithFacebookArgs = {
-  accessToken: Scalars['String'];
-};
-
-
-export type MutationSignUpArgs = {
-  user: UserInput;
-};
-
-
-export type MutationFindPasswordArgs = {
-  email: Scalars['String'];
-};
-
-
 export type MutationSendVerificationArgs = {
   email: Scalars['String'];
 };
 
 
-export type MutationAddNotificationTokenArgs = {
-  notification: NotificationCreateInput;
-};
-
-
-export type MutationRemoveNotificationTokenArgs = {
-  token: Scalars['String'];
-};
-
-
 export type MutationUpdateProfileArgs = {
-  user: UserProfileInput;
+  user?: Maybe<UserUpdateInput>;
 };
 
 
-export type MutationAddFriendArgs = {
-  friendId: Scalars['ID'];
-};
-
-
-export type MutationDeleteFriendArgs = {
-  friendId: Scalars['ID'];
-};
-
-
-export type MutationCreateChannelArgs = {
-  channel?: Maybe<ChannelInput>;
-};
-
-
-export type MutationUpdateChannelArgs = {
-  channel?: Maybe<ChannelInput>;
-};
-
-
-export type MutationDeleteChannelArgs = {
-  channelId: Scalars['ID'];
-};
-
-
-export type MutationCreateMessageArgs = {
-  message: Scalars['String'];
-  channelId: Scalars['String'];
-};
-
-
-export type MutationSetOnlineStatusArgs = {
-  isOnline?: Maybe<Scalars['Boolean']>;
+export type MutationFindPasswordArgs = {
+  email: Scalars['String'];
 };
 
 
@@ -262,241 +80,99 @@ export type MutationChangeEmailPasswordArgs = {
 };
 
 
-export type MutationCreateGalleryArgs = {
-  photoURL: Scalars['String'];
-};
-
-
-export type MutationUpdateGalleryArgs = {
-  galleryId: Scalars['ID'];
-  photoURL: Scalars['String'];
-};
-
-
-export type MutationDeleteGalleryArgs = {
-  galleryId: Scalars['ID'];
-};
-
-
-export type MutationSingleUploadArgs = {
-  file: Scalars['Upload'];
-  dir?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationCreateReactionArgs = {
-  messageId: Scalars['ID'];
-  type: Scalars['String'];
-};
-
-
-export type MutationDeleteReactionArgs = {
-  reactionId: Scalars['ID'];
-};
-
-export type Notification = {
-  __typename?: 'Notification';
-  id: Scalars['ID'];
-  token?: Maybe<Scalars['String']>;
-  device?: Maybe<Scalars['String']>;
-  os?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type NotificationCreateInput = {
+export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
   device?: Maybe<Scalars['String']>;
   os?: Maybe<Scalars['String']>;
 };
 
-/** Information about pagination in a connection. */
-export type PageInfo = {
-  __typename?: 'PageInfo';
-  startCursor?: Maybe<Scalars['String']>;
-  endCursor?: Maybe<Scalars['String']>;
-  hasNextPage?: Maybe<Scalars['Boolean']>;
-  hasPreviousPage?: Maybe<Scalars['Boolean']>;
+
+export type MutationDeleteNotificationArgs = {
+  id: Scalars['Int'];
 };
 
-export type Photo = {
-  __typename?: 'Photo';
+export type Notification = {
+  __typename?: 'Notification';
+  id: Scalars['Int'];
+  token: Scalars['String'];
+  device?: Maybe<Scalars['String']>;
+  os?: Maybe<Scalars['String']>;
+  user: User;
+  createdAt: Scalars['DateTime'];
+};
+
+export type Profile = {
+  __typename?: 'Profile';
   id: Scalars['String'];
-  thumbURL?: Maybe<Scalars['String']>;
-  photoURL?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
+  socialId?: Maybe<Scalars['String']>;
+  authType: AuthType;
 };
 
 export type Query = {
   __typename?: 'Query';
-  /**
-   * If filter is true, it will filter user with email, nickname or name.
-   * You can add pagination with first and after args.
-   */
-  users?: Maybe<UsersConnection>;
-  user?: Maybe<User>;
   me?: Maybe<User>;
-  messages: Array<Message>;
-  channels: Array<Channel>;
-  friends: Array<User>;
-  galleries: Array<Gallery>;
+  notifications?: Maybe<Array<Notification>>;
 };
 
 
-export type QueryUsersArgs = {
-  user?: Maybe<UserQueryInput>;
-  includeUser?: Maybe<Scalars['Boolean']>;
-  filter?: Maybe<Scalars['Boolean']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['String']>;
-  after?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryUserArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type QueryGalleriesArgs = {
-  userId: Scalars['String'];
-};
-
-export type Reaction = {
-  __typename?: 'Reaction';
-  id: Scalars['ID'];
-  type?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type Reply = {
-  __typename?: 'Reply';
-  id: Scalars['String'];
-  sender?: Maybe<User>;
-  type?: Maybe<Scalars['String']>;
-  text?: Maybe<Scalars['String']>;
-  filePath?: Maybe<Scalars['String']>;
-  replies?: Maybe<Array<Maybe<Reply>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  deletedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type SocialUserInput = {
-  socialId: Scalars['String'];
-  authType: AuthType;
-  email?: Maybe<Scalars['String']>;
-  photoURL?: Maybe<Scalars['String']>;
-  thumbURL?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
-  birthday?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Gender>;
-  phone?: Maybe<Scalars['String']>;
+export type QueryNotificationsArgs = {
+  userId?: Maybe<Scalars['String']>;
 };
 
 export type Subscription = {
   __typename?: 'Subscription';
-  userSignedIn?: Maybe<User>;
-  userUpdated?: Maybe<User>;
-  friendChanged?: Maybe<FriendSub>;
+  userSignedIn: User;
+  userUpdated: User;
 };
 
 
 export type SubscriptionUserSignedInArgs = {
-  userId: Scalars['ID'];
+  userId: Scalars['String'];
 };
 
 
 export type SubscriptionUserUpdatedArgs = {
-  userId: Scalars['ID'];
-};
-
-
-export type SubscriptionFriendChangedArgs = {
-  userId: Scalars['ID'];
+  userId: Scalars['String'];
 };
 
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['ID'];
-  email?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  email: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
   thumbURL?: Maybe<Scalars['String']>;
   photoURL?: Maybe<Scalars['String']>;
-  birthday?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Gender>;
-  socialId?: Maybe<Scalars['String']>;
-  authType?: Maybe<AuthType>;
+  birthDay?: Maybe<Scalars['DateTime']>;
+  gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
-  verified?: Maybe<Scalars['Boolean']>;
-  statusMessage?: Maybe<Scalars['String']>;
-  isOnline?: Maybe<Scalars['Boolean']>;
+  verified: Scalars['Boolean'];
   lastSignedIn?: Maybe<Scalars['DateTime']>;
-  notifications?: Maybe<Array<Maybe<Notification>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
+  notifications: Array<Notification>;
+  profile?: Maybe<Profile>;
 };
 
-export type UserEdge = {
-  __typename?: 'UserEdge';
-  node?: Maybe<User>;
-  cursor?: Maybe<Scalars['String']>;
-};
-
-export type UserInput = {
+export type UserCreateInput = {
   email: Scalars['String'];
   password: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Gender>;
+  gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;
 };
 
-export enum UserModeType {
-  Default = 'DEFAULT',
-  Hidden = 'HIDDEN',
-  Block = 'BLOCK'
-}
-
-export type UserProfileInput = {
-  name?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
-  birthday?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Gender>;
-  phone?: Maybe<Scalars['String']>;
-  thumbURL?: Maybe<Scalars['String']>;
-  photoURL?: Maybe<Scalars['String']>;
-  statusMessage?: Maybe<Scalars['String']>;
-};
-
-export type UserQueryInput = {
+export type UserUpdateInput = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Gender>;
   phone?: Maybe<Scalars['String']>;
-};
-
-/**
- * Simple wrapper around our list of launches that contains a cursor to the
- * last item in the list. Pass this cursor to the launches query to fetch results
- * after these.
- */
-export type UsersConnection = {
-  __typename?: 'UsersConnection';
-  totalCount?: Maybe<Scalars['Int']>;
-  edges?: Maybe<Array<Maybe<UserEdge>>>;
-  pageInfo?: Maybe<PageInfo>;
+  statusMessage?: Maybe<Scalars['String']>;
+  gender?: Maybe<Scalars['Gender']>;
 };

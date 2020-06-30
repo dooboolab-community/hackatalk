@@ -7,7 +7,7 @@ import { graphql, useMutation } from 'react-relay/hooks';
 
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
-import { showAlertForGrpahqlError } from '../../utils/common';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -63,7 +63,7 @@ function Page(props: Props): ReactElement {
       Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
     },
     onError: (error: any): void => {
-      showAlertForGrpahqlError(error?.graphQLErrors);
+      showAlertForError(error?.graphQLErrors);
     },
   };
 

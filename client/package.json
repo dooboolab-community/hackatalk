@@ -38,7 +38,7 @@
     "build:android": "ENVFILE=.env.prod react-native bundle --entry-file index.js --platform android --dev false --verbose --bundle-output android/main.jsbundle --assets-dest ./android",
     "relay": "relay-compiler --src ./src --schema schema.graphql --language typescript --artifactDirectory ./src/__generated__",
     "relay-watch": "yarn relay-compiler --schema schema.graphql --src ./src/ --extensions ts tsx --language typescript --artifactDirectory ./src/__generated__ --watch",
-    "schema": "get-graphql-schema https://hackatalk.azurewebsites.net/graphql > schema.graphql",
+    "schema": "get-graphql-schema https://hackatalkserver.azurewebsites.net/graphql > schema.graphql",
     "codegen": "graphql-codegen --config codegen.yml",
     "generate": "yarn schema && yarn codegen"
   },
