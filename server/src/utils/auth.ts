@@ -19,7 +19,10 @@ export const encryptCredential = async (password: string): Promise<string> =>
       if (err) {
         return reject(err);
       }
+      // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
       hash = hash.replace(/\//g, 'slash');
+      hash = hash.replace(/\.$/g, 'dot');
+
       resolve(hash);
     });
   });
@@ -28,7 +31,10 @@ export const validateCredential = async (
   value: string,
   hashedValue: string,
 ): Promise<boolean> => new Promise<boolean>((resolve, reject) => {
+  // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
   hashedValue = hashedValue.replace(/slash/g, '/');
+  hashedValue = hashedValue.replace(/dot$/g, '.');
+
   bcrypt.compare(value, hashedValue, (err, res) => {
     if (err) {
       return reject(err);
