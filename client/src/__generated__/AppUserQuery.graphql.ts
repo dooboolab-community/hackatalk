@@ -10,7 +10,7 @@ export type AppUserQueryResponse = {
         readonly email: string | null;
         readonly verified: boolean | null;
         readonly profile: {
-            readonly authType: AuthType;
+            readonly authType: AuthType | null;
         } | null;
     };
 };

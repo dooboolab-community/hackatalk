@@ -89,7 +89,7 @@ function Settings(props: Props): React.ReactElement {
   };
 
   switch (user?.profile?.authType) {
-    case AuthType.google:
+    case AuthType.Google:
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
@@ -99,7 +99,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.facebook:
+    case AuthType.Facebook:
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
@@ -109,7 +109,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.apple:
+    case AuthType.Apple:
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.appleIcon}/>,
         label: getString('SIGNED_IN_WITH_APPLE'),
@@ -119,7 +119,7 @@ function Settings(props: Props): React.ReactElement {
         testID: 'change-pw-item',
       };
       break;
-    case AuthType.email:
+    case AuthType.Email:
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),

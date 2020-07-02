@@ -12,6 +12,7 @@ const getRelayConfig = (): EnvironmentConfig => {
     log: __DEV__ ? relayTransactionLogger : null,
   };
 };
+
 class Relay {
   environment: Environment = new Environment(getRelayConfig());
 
