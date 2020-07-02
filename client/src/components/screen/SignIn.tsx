@@ -408,7 +408,7 @@ function SignIn(props: Props): ReactElement {
               onUserCreated={(user?: User): void => {
                 if (user) setUser(user);
               }}
-              socialProvider={AuthType.facebook}
+              socialProvider={AuthType.Facebook}
             />
             <SocialSignInButton
               clientId={googleClientId}
@@ -417,7 +417,7 @@ function SignIn(props: Props): ReactElement {
               onUserCreated={(user?: User): void => {
                 if (user) setUser(user);
               }}
-              socialProvider={AuthType.google}
+              socialProvider={AuthType.Google}
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
