@@ -54,7 +54,7 @@ function AppWithTheme(): ReactElement {
   }, [data.me]);
 
   const { setDeviceType } = useDeviceContext();
-  const { setUser, state: { user } } = useAuthContext();
+  const { setUser } = useAuthContext();
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();

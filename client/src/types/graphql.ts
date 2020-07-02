@@ -26,10 +26,10 @@ export type AuthPayload = {
 };
 
 export enum AuthType {
-  email = 'email',
-  facebook = 'facebook',
-  google = 'google',
-  apple = 'apple'
+  Email = 'email',
+  Facebook = 'facebook',
+  Google = 'google',
+  Apple = 'apple'
 }
 
 
