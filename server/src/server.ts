@@ -9,12 +9,15 @@ import express from 'express';
 import { permissions } from './permissions';
 import { schema } from './schema';
 
-const schemaWithMiddleware = applyMiddleware(
-  schema,
-  permissions,
-);
+const { PORT = 4000, NODE_ENV, SENDGRID_API_KEY } = process.env;
 
-const { PORT = 4000, SENDGRID_API_KEY } = process.env;
+const schemaWithMiddleware = NODE_ENV === 'test'
+  ? schema
+  : applyMiddleware(
+    schema,
+    permissions,
+  );
+
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
 const createApolloServer = (): ApolloServer => new ApolloServer({
