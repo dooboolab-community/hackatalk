@@ -1,17 +1,24 @@
 import { ApolloServer } from 'apollo-server-express';
 import { Http2Server } from 'http2';
 import SendGridMail from '@sendgrid/mail';
+import { applyMiddleware } from 'graphql-middleware';
 import { createApp } from './app';
 import { createContext } from './context';
 import { createServer as createHttpServer } from 'http';
 import express from 'express';
+import { permissions } from './permissions';
 import { schema } from './schema';
+
+const schemaWithMiddleware = applyMiddleware(
+  schema,
+  permissions,
+);
 
 const { PORT = 4000, SENDGRID_API_KEY } = process.env;
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
 const createApolloServer = (): ApolloServer => new ApolloServer({
-  schema,
+  schema: schemaWithMiddleware,
   context: createContext,
   // introspection: process.env.NODE_ENV !== 'production',
   // playground: process.env.NODE_ENV !== 'production',
