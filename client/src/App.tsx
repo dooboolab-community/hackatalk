@@ -22,6 +22,7 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import { User } from 'types/graphql';
 import { initializeEThree } from './utils/virgil';
 
 const meQuery = graphql`
@@ -63,8 +64,7 @@ function AppWithTheme(): ReactElement {
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
     await initializeEThree(me.id);
-    // @ts-ignore ==> TODO
-    setUser(me);
+    setUser(me as User);
   };
 
   return <RootNavigator />;
