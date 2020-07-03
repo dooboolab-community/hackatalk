@@ -21,7 +21,6 @@ import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import Config from 'react-native-config';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import SocialSignInButton from '../shared/SocialSignInButton';
-import SplashModule from '../../utils/splash';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { initializeEThree } from '../../utils/virgil';
@@ -238,10 +237,6 @@ function SignIn(props: Props): ReactElement {
 
   const animating = useValue<number>(0);
   const clock = useClock();
-
-  useEffect(() => {
-    SplashModule.hide(500);
-  }, []);
 
   useCode(() => block([delay(set(animating, 1), 100)]), []);
 

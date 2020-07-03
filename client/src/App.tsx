@@ -21,6 +21,7 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import SplashModule from './utils/splash';
 import { User } from 'types/graphql';
 import { initializeEThree } from './utils/virgil';
 
@@ -54,6 +55,7 @@ function AppWithTheme(): ReactElement {
     await initializeEThree(me.id);
     setUser(me as User);
     setLoading(false);
+    SplashModule.hide(300);
   };
 
   useEffect(() => {
@@ -69,6 +71,7 @@ function AppWithTheme(): ReactElement {
         error: (error: any) => {
           console.log('error', error);
           setLoading(false);
+          SplashModule.hide(300);
         },
         next: (data) => {
           if (data.me) {
