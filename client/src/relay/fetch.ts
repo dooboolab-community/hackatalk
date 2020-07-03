@@ -23,7 +23,7 @@ const fetchGraphQL: FetchFunction = async (request, variables) => {
   return fetch(GRAPHQL_URL, config)
     .then((response) => response.json())
     .catch((err) => {
-      console.log('graphqlError', err);
+      throw new Error(err);
     });
 };
 

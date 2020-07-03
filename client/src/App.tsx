@@ -7,12 +7,11 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, Suspense, useEffect } from 'react';
+import React, { FC, ReactElement, Suspense, useEffect, useState } from 'react';
 import {
   RelayEnvironmentProvider,
+  fetchQuery,
   graphql,
-  preloadQuery,
-  usePreloadedQuery,
   useRelayEnvironment,
 } from 'react-relay/hooks';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
@@ -22,6 +21,7 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import SplashModule from './utils/splash';
 import { User } from 'types/graphql';
 import { initializeEThree } from './utils/virgil';
 
@@ -40,19 +40,8 @@ const meQuery = graphql`
 
 function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
-  const result = preloadQuery<AppUserQuery>(environment, meQuery, {});
-  const data = usePreloadedQuery<AppUserQuery>(meQuery, result);
 
-  useEffect(() => {
-    if (data.me) {
-      initUser(data.me);
-      return;
-    }
-
-    AsyncStorage.removeItem('token');
-    setDevice();
-  }, [data.me]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
 
@@ -65,7 +54,37 @@ function AppWithTheme(): ReactElement {
     if (!me) return;
     await initializeEThree(me.id);
     setUser(me as User);
+    setLoading(false);
+    SplashModule.hide(300);
   };
+
+  useEffect(() => {
+    fetchQuery<AppUserQuery>(
+      environment,
+      meQuery,
+      {},
+    )
+      .subscribe({
+        start: () => {
+          setLoading(true);
+        },
+        error: (error: any) => {
+          console.log('error', error);
+          setLoading(false);
+          SplashModule.hide(300);
+        },
+        next: (data) => {
+          if (data.me) {
+            initUser(data.me);
+            return;
+          }
+          AsyncStorage.removeItem('token');
+          setDevice();
+        },
+      });
+  }, []);
+
+  if (loading) return <LoadingIndicator/>;
 
   return <RootNavigator />;
 }
