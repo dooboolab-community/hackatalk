@@ -7,12 +7,11 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, Suspense, useEffect } from 'react';
+import React, { FC, ReactElement, Suspense, useEffect, useState } from 'react';
 import {
   RelayEnvironmentProvider,
+  fetchQuery,
   graphql,
-  preloadQuery,
-  usePreloadedQuery,
   useRelayEnvironment,
 } from 'react-relay/hooks';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
@@ -40,19 +39,8 @@ const meQuery = graphql`
 
 function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
-  const result = preloadQuery<AppUserQuery>(environment, meQuery, {});
-  const data = usePreloadedQuery<AppUserQuery>(meQuery, result);
 
-  useEffect(() => {
-    if (data.me) {
-      initUser(data.me);
-      return;
-    }
-
-    AsyncStorage.removeItem('token');
-    setDevice();
-  }, [data.me]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
 
@@ -65,7 +53,35 @@ function AppWithTheme(): ReactElement {
     if (!me) return;
     await initializeEThree(me.id);
     setUser(me as User);
+    setLoading(false);
   };
+
+  useEffect(() => {
+    fetchQuery<AppUserQuery>(
+      environment,
+      meQuery,
+      {},
+    )
+      .subscribe({
+        start: () => {
+          setLoading(true);
+        },
+        error: (error: any) => {
+          console.log('error', error);
+          setLoading(false);
+        },
+        next: (data) => {
+          if (data.me) {
+            initUser(data.me);
+            return;
+          }
+          AsyncStorage.removeItem('token');
+          setDevice();
+        },
+      });
+  }, []);
+
+  if (loading) return <LoadingIndicator/>;
 
   return <RootNavigator />;
 }
