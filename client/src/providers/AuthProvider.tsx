@@ -35,7 +35,7 @@ type Reducer = (state: State, action: Action) => State;
 const setUser = (dispatch: React.Dispatch<SetUserAction>) => (
   authUser: User,
 ): void => {
-  if (!authUser) Relay.init();
+  // if (!authUser) Relay.init();
   dispatch({
     type: ActionType.SetUser,
     payload: { user: authUser, relay: Relay.environment },
