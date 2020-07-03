@@ -1,9 +1,36 @@
+import { Context } from '../context';
 import bcrypt from 'bcrypt-nodejs';
+import path from 'path';
 import qs from 'querystring';
+import { verify } from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
-export const { JWT_SECRET = 'undefined' } = process.env;
+const env = process.env.NODE_ENV;
+const envPath = env === 'development'
+  ? path.resolve(__dirname, '../dotenv/dev.env')
+  : env === 'test'
+    ? path.resolve(__dirname, '../dotenv/test.env')
+    : path.resolve(__dirname, '../dotenv/.env');
+
+// eslint-disable-next-line
+require('dotenv').config({ path: envPath });
+
+const { JWT_SECRET = 'undefined' } = process.env;
+export const APP_SECRET = JWT_SECRET;
+
+interface Token {
+  userId: string;
+}
+
+export function getUserId(context: Context): string {
+  const Authorization = context.request.req.get('Authorization');
+  if (Authorization) {
+    const token = Authorization.replace('Bearer ', '');
+    const verifiedToken = verify(token, APP_SECRET) as Token;
+    return verifiedToken && verifiedToken.userId;
+  }
+}
 
 export const validateEmail = (email: string): boolean => {
   // eslint-disable-next-line max-len

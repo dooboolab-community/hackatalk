@@ -1,4 +1,12 @@
-import { APP_SECRET, getUserId } from '../../../utils';
+import {
+  APP_SECRET,
+  encryptCredential,
+  getEmailVerificationHTML,
+  getPasswordResetHTML,
+  getUserId,
+  validateCredential,
+  validateEmail,
+} from '../../../utils/auth';
 import {
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
@@ -9,13 +17,6 @@ import {
   USER_UPDATED,
 } from './subscription';
 import { compare, hash } from 'bcryptjs';
-import {
-  encryptCredential,
-  getEmailVerificationHTML,
-  getPasswordResetHTML,
-  validateCredential,
-  validateEmail,
-} from '../../../utils/auth';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import SendGridMail from '@sendgrid/mail';

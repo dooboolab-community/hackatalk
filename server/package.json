@@ -12,7 +12,7 @@
     "build": "npm -s run clean && npm -s run generate && tsc",
     "lint": "eslint src/**/**/*.ts && eslint tests/**/**/*.ts",
     "tsc": "tsc",
-    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit",
+    "test": "dotenv -e ./dotenv/test.env -- jest --runInBand --detectOpenHandles --forceExit",
     "generate:test": "npm -s run generate:prisma:test && npm -s run generate:nexus:test",
     "generate:prisma:test": "dotenv -e ./dotenv/test.env -- prisma generate",
     "generate:nexus:test": "dotenv -e ./dotenv/test.env  -- ts-node --transpile-only src/schema",

@@ -1,4 +1,4 @@
-import { getUserId } from '../../../utils';
+import { getUserId } from '../../../utils/auth';
 import { queryField } from '@nexus/schema';
 
 export const me = queryField('me', {

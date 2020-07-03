@@ -1,6 +1,6 @@
 import { intArg, mutationField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils';
+import { getUserId } from '../../../utils/auth';
 
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
