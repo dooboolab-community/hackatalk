@@ -24,6 +24,7 @@
     "listFiles":false,
     "skipLibCheck": true
   },
+  "files": ["environment.d.ts"],
   "include": [
     "src/**/*"
   ],
