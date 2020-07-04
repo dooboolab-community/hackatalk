@@ -264,70 +264,70 @@ exports[`[Setting] screen renders without crashing 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 180,
                     "methodName": "registerError",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 21,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 84,
                     "methodName": "errorImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 13,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
                     "methodName": "BufferedConsole.console.error",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 30,
                     "methodName": "printWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 51,
                     "methodName": "warning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 2,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Utilities/warnOnce.js",
                     "lineNumber": 29,
                     "methodName": "warnOnce",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/index.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/index.js",
                     "lineNumber": 290,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20470,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20473,
                     "methodName": "Object.<anonymous>",
                   },
@@ -458,11 +458,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Facebook",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -535,10 +531,6 @@ exports[`[Setting] screen renders without crashing 2`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#ffffff"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -552,7 +544,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
                 ]
               }
             >
-              Signed in with Facebook
+              Signed in with Email
             </Text>
             <Text />
           </View>
@@ -693,70 +685,70 @@ exports[`[Setting] screen renders without crashing 2`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 180,
                     "methodName": "registerError",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 21,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 84,
                     "methodName": "errorImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 13,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
                     "methodName": "BufferedConsole.console.error",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 30,
                     "methodName": "printWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 51,
                     "methodName": "warning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 2,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Utilities/warnOnce.js",
                     "lineNumber": 29,
                     "methodName": "warnOnce",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/index.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/index.js",
                     "lineNumber": 290,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20470,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20473,
                     "methodName": "Object.<anonymous>",
                   },
@@ -887,11 +879,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#ffffff"
-                    width={24}
-                  />,
-                  "label": "Signed in with Google",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -964,10 +952,6 @@ exports[`[Setting] screen renders without crashing 3`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#ffffff"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -981,7 +965,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
                 ]
               }
             >
-              Signed in with Google
+              Signed in with Email
             </Text>
             <Text />
           </View>
@@ -1122,70 +1106,70 @@ exports[`[Setting] screen renders without crashing 3`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 180,
                     "methodName": "registerError",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 21,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 84,
                     "methodName": "errorImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 13,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
                     "methodName": "BufferedConsole.console.error",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 30,
                     "methodName": "printWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 51,
                     "methodName": "warning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 2,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Utilities/warnOnce.js",
                     "lineNumber": 29,
                     "methodName": "warnOnce",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/index.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/index.js",
                     "lineNumber": 290,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20470,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20473,
                     "methodName": "Object.<anonymous>",
                   },
@@ -1316,11 +1300,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
             Object {
               "data": Array [
                 Object {
-                  "icon": <SvgMock
-                    fill="#151E22"
-                    width={24}
-                  />,
-                  "label": "Signed in with Apple",
+                  "label": "Signed in with Email",
                   "onPress": [Function],
                   "testID": "change-pw-item",
                 },
@@ -1393,10 +1373,6 @@ exports[`[Setting] screen renders without crashing 4`] = `
             }
             testID="change-pw-item"
           >
-            <SvgMock
-              fill="#151E22"
-              width={24}
-            />
             <Text
               style={
                 Array [
@@ -1410,7 +1386,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
                 ]
               }
             >
-              Signed in with Apple
+              Signed in with Email
             </Text>
             <Text />
           </View>
@@ -1551,70 +1527,70 @@ exports[`[Setting] screen renders without crashing 4`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 180,
                     "methodName": "registerError",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 21,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 84,
                     "methodName": "errorImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 13,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
                     "lineNumber": 63,
                     "methodName": "BufferedConsole.console.error",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 30,
                     "methodName": "printWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/fbjs/lib/warning.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/fbjs/lib/warning.js",
                     "lineNumber": 51,
                     "methodName": "warning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 2,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/Libraries/Utilities/warnOnce.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Utilities/warnOnce.js",
                     "lineNumber": 29,
                     "methodName": "warnOnce",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/react-native/index.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/react-native/index.js",
                     "lineNumber": 290,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20470,
                     "methodName": "Object.get AsyncStorage [as AsyncStorage]",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 32,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
+                    "file": "/Users/ethan/Workspace/dooboolab/hackatalk/client/node_modules/@virgilsecurity/e3kit-native/dist/e3kit-native.cjs.js",
                     "lineNumber": 20473,
                     "methodName": "Object.<anonymous>",
                   },

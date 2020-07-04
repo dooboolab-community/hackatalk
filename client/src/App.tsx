@@ -24,6 +24,7 @@ import RootNavigator from './components/navigation/RootStackNavigator';
 import SplashModule from './utils/splash';
 import { User } from 'types/graphql';
 import { initializeEThree } from './utils/virgil';
+import relayEnvironment from './relay';
 
 const meQuery = graphql`
   query AppUserQuery {
@@ -59,32 +60,27 @@ function AppWithTheme(): ReactElement {
   };
 
   useEffect(() => {
-    fetchQuery<AppUserQuery>(
-      environment,
-      meQuery,
-      {},
-    )
-      .subscribe({
-        start: () => {
-          setLoading(true);
-        },
-        error: (error: any) => {
-          console.log('error', error);
-          setLoading(false);
-          SplashModule.hide(300);
-        },
-        next: (data) => {
-          if (data.me) {
-            initUser(data.me);
-            return;
-          }
-          AsyncStorage.removeItem('token');
-          setDevice();
-        },
-      });
+    fetchQuery<AppUserQuery>(environment, meQuery, {}).subscribe({
+      start: () => {
+        setLoading(true);
+      },
+      error: (error: any) => {
+        console.log('error', error);
+        setLoading(false);
+        SplashModule.hide(300);
+      },
+      next: (data) => {
+        if (data.me) {
+          initUser(data.me);
+          return;
+        }
+        AsyncStorage.removeItem('token');
+        setDevice();
+      },
+    });
   }, []);
 
-  if (loading) return <LoadingIndicator/>;
+  if (loading) return <LoadingIndicator />;
 
   return <RootNavigator />;
 }
@@ -105,11 +101,8 @@ function App(): ReactElement {
 }
 
 const RelayProviderWrapper: FC = ({ children }) => {
-  const {
-    state: { relay },
-  } = useAuthContext();
   return (
-    <RelayEnvironmentProvider environment={relay}>
+    <RelayEnvironmentProvider environment={relayEnvironment}>
       <Suspense fallback={<LoadingIndicator />}>
         <ActionSheetProvider>{children}</ActionSheetProvider>
       </Suspense>

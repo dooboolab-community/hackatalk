@@ -1,7 +1,5 @@
 import React, { useReducer } from 'react';
 
-import Relay from '../relay';
-import { Environment as RelayEnvironment } from 'react-relay';
 import { User } from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
@@ -17,11 +15,10 @@ export enum ActionType {
 
 export interface State {
   user: User | undefined;
-  relay: RelayEnvironment;
 }
 type SetUserAction = {
   type: ActionType.SetUser;
-  payload: { user: User; relay: RelayEnvironment };
+  payload: { user: User };
 };
 type Action = SetUserAction;
 
@@ -35,16 +32,14 @@ type Reducer = (state: State, action: Action) => State;
 const setUser = (dispatch: React.Dispatch<SetUserAction>) => (
   authUser: User,
 ): void => {
-  // if (!authUser) Relay.init();
   dispatch({
     type: ActionType.SetUser,
-    payload: { user: authUser, relay: Relay.environment },
+    payload: { user: authUser },
   });
 };
 
 const initialState: State = {
   user: undefined,
-  relay: Relay.environment,
 };
 
 const reducer: Reducer = (state = initialState, action) => {
@@ -59,7 +54,6 @@ const reducer: Reducer = (state = initialState, action) => {
 function AuthProvider(props: Props): React.ReactElement {
   const initialAuthState = {
     user: props.initialAuthUser,
-    relay: Relay.environment,
   };
   const [state, dispatch] = useReducer<Reducer>(reducer, initialAuthState);
 
