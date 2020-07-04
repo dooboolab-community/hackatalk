@@ -9,7 +9,6 @@ import { DeviceProvider } from './DeviceProvider';
 import { Environment } from 'relay-runtime';
 import { LoadingIndicator } from 'dooboo-ui';
 import { ProfileModalProvider } from './ProfileModalProvider';
-import Relay from '../relay';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { User } from '../types/graphql';
 import { createMockEnvironment } from 'relay-test-utils';
