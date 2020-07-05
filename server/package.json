@@ -4,7 +4,7 @@
   "repository": "https://github.com/dooboolab/hackatalk/server",
   "license": "MIT",
   "scripts": {
-    "local": "NODE_ENV=local ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
+    "local": "dotenv -e ./dotenv/.env -- nodemon --exec ts-node src/server.ts",
     "dev": "NODE_ENV=development ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
     "start": "ts-node src/server.ts",
     "prod": "node dist/server",
@@ -79,6 +79,7 @@
     "graphql-tag": "^2.10.3",
     "jest": "26.1.0",
     "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.1",
     "ts-node": "8.10.2",
