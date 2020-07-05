@@ -25,6 +25,7 @@ export const permissions = shield({
     me: rules.isAuthenticatedUser,
   },
   Mutation: {
+    singleUpload: rules.isAuthenticatedUser,
     changeEmailPassword: rules.isAuthenticatedUser,
   },
 });

@@ -33,6 +33,7 @@ type Mutation {
   sendVerification(email: String!): Boolean!
   signInEmail(email: String!, password: String!): AuthPayload!
   signUp(user: UserCreateInput): User!
+  singleUpload(dir: String, file: Upload): String
   updateProfile(user: UserUpdateInput): User!
 }
 
