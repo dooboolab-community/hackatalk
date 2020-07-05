@@ -1,6 +1,6 @@
 # HackaTalk
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk)
@@ -41,6 +41,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/smallbee3"><img src="https://avatars1.githubusercontent.com/u/35122143?v=4" width="100px;" alt=""/><br /><sub><b>Clark</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=smallbee3" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=smallbee3" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://seonghyeonkimm.github.io/"><img src="https://avatars2.githubusercontent.com/u/13966404?v=4" width="100px;" alt=""/><br /><sub><b>Kim Seonghyeon</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/daadaadaah"><img src="https://avatars0.githubusercontent.com/u/60481383?v=4" width="100px;" alt=""/><br /><sub><b>daadaadaah</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=daadaadaah" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=daadaadaah" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
