@@ -1,4 +1,7 @@
 # HackaTalk
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk)
 [![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)
@@ -31,6 +34,18 @@
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://seonghyeonkimm.github.io/"><img src="https://avatars2.githubusercontent.com/u/13966404?v=4" width="100px;" alt=""/><br /><sub><b>Kim Seonghyeon</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
