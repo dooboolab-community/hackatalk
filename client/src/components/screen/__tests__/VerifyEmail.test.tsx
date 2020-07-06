@@ -65,18 +65,10 @@ describe('Interaction', () => {
   });
 
   it('should simulate email button press', async () => {
-    const btn = testingLib.queryByTestId('touch-email');
-    act(() => {
-      fireEvent.press(btn);
-    });
-    await act(() => wait());
-  });
-
-  it('should simulate next button press', () => {
     const btn = testingLib.queryByTestId('btn-next');
     act(() => {
       fireEvent.press(btn);
     });
-    expect(props.navigation.goBack).toHaveBeenCalled();
+    await act(() => wait());
   });
 });

@@ -6,7 +6,6 @@ import {
   graphql,
   preloadQuery,
   usePreloadedQuery,
-  useRelayEnvironment,
 } from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
@@ -16,6 +15,7 @@ import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
 import { encryptMessage } from '../../utils/virgil';
+import environment from '../../relay';
 import { getString } from '../../../STRINGS';
 import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
@@ -85,13 +85,13 @@ const meQuery = graphql`
   }
 `;
 
+const result = preloadQuery<ProfileUpdateMeQuery>(
+  environment,
+  meQuery,
+  {},
+);
+
 const Screen: FC<Props> = (props) => {
-  const environment = useRelayEnvironment();
-  const result = preloadQuery<ProfileUpdateMeQuery>(
-    environment,
-    meQuery,
-    {},
-  );
   const data = usePreloadedQuery<ProfileUpdateMeQuery>(meQuery, result);
 
   useEffect(() => {

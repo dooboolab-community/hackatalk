@@ -1,10 +1,10 @@
-import { Alert, TouchableOpacity } from 'react-native';
 import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
 import type { VerifyEmailMutation, VerifyEmailMutationResponse } from '../../__generated__/VerifyEmailMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 
+import { Alert } from 'react-native';
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
@@ -29,10 +29,6 @@ const StyledText = styled.Text`
 const StyledHighlightText = styled.Text`
   font-size: 24px;
   color: ${({ theme }): string => theme.primary};
-`;
-
-const StyledTextLine = styled(StyledText)`
-  text-decoration-line: underline;
 `;
 
 interface Props {
@@ -78,28 +74,15 @@ function Page(props: Props): ReactElement {
     }
   };
 
-  const pressNext = (): void => {
-    navigation.goBack();
-  };
-
   return (
     <Container>
       <StyledText style={{
         marginBottom: 24,
       }}>{getString('VERIFICATION_EMAIL_SENT')}</StyledText>
       <StyledHighlightText>{email}</StyledHighlightText>
-      <TouchableOpacity
-        testID="touch-email"
-        onPress={sendVerificationLink}
-        style={{
-          marginTop: 24,
-        }}
-      >
-        <StyledTextLine>{getString('RESEND_EMAIL')}</StyledTextLine>
-      </TouchableOpacity>
       <Button
         testID="btn-next"
-        onPress={pressNext}
+        onPress={sendVerificationLink}
         containerStyle={{
           width: '100%',
           paddingHorizontal: 20,
@@ -115,7 +98,7 @@ function Page(props: Props): ReactElement {
           color: theme.btnPrimaryFont,
           fontSize: 16,
         }}
-        text={getString('RETURN_TO_SIGNIN')}
+        text={getString('RESEND_EMAIL')}
         isLoading={isInFlight}
       />
       {
