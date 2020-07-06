@@ -154,7 +154,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-nickname"
               underlineColorAndroid="transparent"
-              value="<mock-value-for-field-\\"nickname\\">"
+              value=""
             />
             <View
               style={
@@ -226,7 +226,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-name"
               underlineColorAndroid="transparent"
-              value="<mock-value-for-field-\\"name\\">"
+              value=""
             />
             <View
               style={
@@ -298,7 +298,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-status"
               underlineColorAndroid="transparent"
-              value="<mock-value-for-field-\\"statusMessage\\">"
+              value=""
             />
             <View
               style={
