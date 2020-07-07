@@ -20,6 +20,7 @@ import { compare, hash } from 'bcryptjs';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import SendGridMail from '@sendgrid/mail';
+import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 
 export const UserInputType = inputObjectType({
@@ -174,11 +175,16 @@ export const findPassword = mutationField('findPassword', {
 
     const hashedEmail = await encryptCredential(email);
 
+    const password = generator.generate({
+      length: 10,
+      numbers: true,
+    });
+
     const msg = {
       to: email,
       from: 'noreply@hackatalk.dev',
       subject: '[HackaTalk] Reset your password!',
-      html: getPasswordResetHTML(email, hashedEmail),
+      html: getPasswordResetHTML(email, hashedEmail, password),
     };
     try {
       await SendGridMail.send(msg);

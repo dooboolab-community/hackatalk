@@ -1,10 +1,16 @@
 import { Context } from '../context';
 import bcrypt from 'bcrypt-nodejs';
+import ejs from 'ejs';
+import fs from 'fs';
+import i18next from 'i18next';
 import path from 'path';
 import qs from 'querystring';
 import { verify } from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
+
+const { REDIRECT_URL, JWT_SECRET = 'undefined' } = process.env;
+export const APP_SECRET = JWT_SECRET;
 
 const env = process.env.NODE_ENV;
 const envPath = env === 'development'
@@ -15,9 +21,6 @@ const envPath = env === 'development'
 
 // eslint-disable-next-line
 require('dotenv').config({ path: envPath });
-
-const { JWT_SECRET = 'undefined' } = process.env;
-export const APP_SECRET = JWT_SECRET;
 
 interface Token {
   userId: string;
@@ -70,15 +73,43 @@ export const validateCredential = async (
   });
 });
 
-export const getEmailVerificationHTML = (email: string, hashedEmail: string): string => `
-By visiting below url link, you are able to signin to <strong>HackaTalk</strong> 🙌.<br/><br/>
-${process.env.REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}
-`;
+export const getEmailVerificationHTML = (email: string, hashedEmail: string): string => {
+  const templateString = fs.readFileSync(
+    path.resolve(__dirname, '../../html/email_verification.html'),
+    'utf-8',
+  );
 
-export const getPasswordResetHTML = (email: string, hashedEmail: string): string => `
-By visiting below url link, your password will reset to <strong>dooboolab2017</strong>. <br/><br/>
-${process.env.REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}
-`;
+  const rendered = ejs.render(templateString, {
+    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}`,
+    WELCOME_SIGNUP: i18next.t('WELCOME_SIGNUP'),
+    WELCOME: i18next.t('WELCOME'),
+    VERIFY_EMAIL: i18next.t('VERIFY_EMAIL'),
+    MESSAGE_SENT_ONLY: i18next.t('MSG_SENT_ONLY'),
+    SERVICE_CENTER: i18next.t('SERVICE_CENTER'),
+  });
+
+  return rendered;
+};
+
+export const getPasswordResetHTML = (email: string, hashedEmail: string, password: string): string => {
+  const templateString = fs.readFileSync(
+    path.resolve(__dirname, '../../html/password_reset.html'),
+    'utf-8',
+  );
+
+  const rendered = ejs.render(templateString, {
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}/${qs.escape(password)}`,
+    HELLO: i18next.t('HELLO'),
+    CLICK_TO_RESET_PW: i18next.t('CLICK_TO_RESET_PW'),
+    PASSWORD: i18next.t('PASSWORD'),
+    CHANGE_PASSWORD: i18next.t('CHANGE_PASSWORD'),
+    MSG_SENT_ONLY: i18next.t('MSG_SENT_ONLY'),
+    SERVICE_CENTER: i18next.t('SERVICE_CENTER'),
+    randomPassword: password,
+  });
+
+  return rendered;
+};
 
 // eslint-disable-next-line
 export const getToken = (req: Request & any): string => {

@@ -19,7 +19,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     'no-console': 'error',
-    'max-len': ['error', { code: 100 }],
+    'max-len': ['error', { code: 120 }],
     'comma-dangle': ['error', 'always-multiline'],
     semi: [2, 'always'],
     'arrow-parens': ['error', 'always'],

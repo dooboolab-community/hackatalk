@@ -8,6 +8,7 @@ import { resetPassword, verifyEmail } from './types/models/User';
 import FilesystemBackend from 'i18next-node-fs-backend';
 import cors from 'cors';
 import createOrGetVirgilJwtGenerator from './utils/virgil';
+import ejs from 'ejs';
 import express from 'express';
 import fs from 'fs';
 import i18next from 'i18next';
@@ -23,6 +24,7 @@ require('dotenv').config();
 const {
   STORAGE_ENDPOINT,
   NODE_ENV,
+  REDIRECT_URL,
 } = process.env;
 
 i18next
@@ -44,28 +46,39 @@ i18next
 export const createApp = (): express.Application => {
   const app = express();
 
+  const filePath = path.join(__dirname, '../files');
+
   app.use(cors());
   app.use(middleware.handle(i18next));
+  app.use(express.static(filePath));
 
-  app.get('/reset_password/:email/:hashed', async (req, res) => {
+  app.set('views', path.join(__dirname, '../html'));
+  app.engine('html', ejs.renderFile);
+  app.set('view engine', 'html');
+
+  app.get('/reset_password/:email/:hashed/:password', async (req: ReqI18n, res) => {
     const email = qs.unescape(req.params.email);
     const hashed = qs.unescape(req.params.hashed);
+    const randomPassword = qs.unescape(req.params.password);
 
     try {
       const validated = await validateCredential(email, hashed);
       if (validated) {
-        const password = await encryptCredential('dooboolab2017');
+        const password = await encryptCredential(randomPassword);
         await resetPassword(email, password);
-        return res.send(
-          'Your password has successfully changed. Please sign in and change the password.',
-        );
+        return res.render('password_changed', {
+          title: req.t('PASSWORD_CHANGED'),
+          text1: req.t('PW_CHANGED_TITLE'),
+          text2: req.t('PW_CHANGED'),
+          SERVICE_CENTER: req.t('SERVICE_CENTER'),
+        });
       }
       res.send('Error occured. Plesae try again.');
     } catch (err) {
       res.send('Error occured. Plesae try again.');
     }
   });
-  app.get('/verify_email/:email/:hashed', async (req, res) => {
+  app.get('/verify_email/:email/:hashed', async (req: ReqI18n, res) => {
     const email = qs.unescape(req.params.email);
     const hashed = qs.unescape(req.params.hashed);
 
@@ -73,9 +86,13 @@ export const createApp = (): express.Application => {
       const validated = await validateCredential(email, hashed);
       if (validated) {
         await verifyEmail(email);
-        return res.send(
-          'Your email has been verified. Please continue with HackaTalk 👊',
-        );
+        return res.render('email_verified', {
+          REDIRECT_URL,
+          TITLE: req.t('EMAIL_VERIFIED_TITLE'),
+          TEXT: req.t('EMAIL_VERIFIED'),
+          SERVICE_CENTER: req.t('SERVICE_CENTER'),
+          GO_TO_SIGN_IN: req.t('GO_TO_SIGN_IN'),
+        });
       }
       res.send('Error occured. Plesae try again.');
     } catch (err) {
