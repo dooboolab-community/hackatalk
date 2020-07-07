@@ -4,7 +4,7 @@
   "repository": "https://github.com/dooboolab/hackatalk/server",
   "license": "MIT",
   "scripts": {
-    "local": "dotenv -e ./dotenv/.env -- nodemon --exec ts-node src/server.ts",
+    "local": "dotenv -e ./dotenv/.env -- nodemon --exec ts-node --files src/server.ts",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server.ts",
     "start": "ts-node src/server.ts",
     "prod": "node dist/server",
@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@nexus/schema": "^0.14.0",
-    "@prisma/client": "^2.1.3",
     "@sendgrid/mail": "^7.2.1",
     "apollo-server": "^2.15.1",
     "azure-storage": "^2.10.3",
@@ -54,7 +53,6 @@
     "virgil-sdk": "^6.1.2"
   },
   "devDependencies": {
-    "@prisma/cli": "2.1.3",
     "@types/bcrypt-nodejs": "^0.0.31",
     "@types/bcryptjs": "2.4.2",
     "@types/ejs": "^3.0.4",
