@@ -3,9 +3,8 @@ import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
 import React, { FC, useEffect, useState } from 'react';
 import {
+  fetchQuery,
   graphql,
-  preloadQuery,
-  usePreloadedQuery,
 } from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
@@ -85,24 +84,7 @@ const meQuery = graphql`
   }
 `;
 
-const result = preloadQuery<ProfileUpdateMeQuery>(
-  environment,
-  meQuery,
-  {},
-);
-
-const Screen: FC<Props> = (props) => {
-  const data = usePreloadedQuery<ProfileUpdateMeQuery>(meQuery, result);
-
-  useEffect(() => {
-    if (data.me) {
-      const { name, nickname, statusMessage } = data.me;
-      setName(name ?? '');
-      setNickname(nickname ?? '');
-      setstatusMessage(statusMessage ?? '');
-    }
-  }, [data.me]);
-
+const Screen: FC<Props> = () => {
   const { theme } = useThemeContext();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
@@ -110,8 +92,18 @@ const Screen: FC<Props> = (props) => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
 
-  // const updateProfile = async (): Promise<void> => {
-  // };
+  useEffect(() => {
+    fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
+      next: (data) => {
+        if (data.me) {
+          const { name, nickname, statusMessage } = data.me;
+          setName(name ?? '');
+          setNickname(nickname ?? '');
+          setstatusMessage(statusMessage ?? '');
+        }
+      },
+    });
+  }, []);
 
   const changeText = (type: string, text: string): void => {
     switch (type) {
