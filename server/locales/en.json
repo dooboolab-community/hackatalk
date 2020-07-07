@@ -1,5 +1,18 @@
 {
   "IT_WORKS": "It works",
   "PASSWORD_CHANGED": "Your password has successfully changed. Please sign in and change the password.",
-  "EMAIL_VERIFIED": "Your email has been verified. Please continue with HackaTalk 👊"
+  "EMAIL_VERIFIED_TITLE": "Email Authenticated",
+  "EMAIL_VERIFIED": "Your email has been verified. Please continue with HackaTalk 👊",
+  "VERIFY_EMAIL": "Verify email",
+  "GO_TO_SIGN_IN": "Go to signin",
+  "WELCOME": "Welcome",
+  "WELCOME_SIGNUP": "Thank you for applying for sign up for HackaTalk. Please click on the email verification button below to complete your membership. Thank you.",
+  "MSG_SENT_ONLY": "This message is sent only. Please contact us if you have any questions.",
+  "SERVICE_CENTER": "Service Center",
+  "HELLO": "Hello",
+  "CLICK_TO_RESET_PW": "Click the [Change Password] button to change the password as shown below.",
+  "PASSWORD": "Password",
+  "CHANGE_PASSWORD": "Change password",
+  "PW_CHANGED_TITLE": "Password has changed",
+  "PW_CHANGED": "The password for your account has changed."
 }

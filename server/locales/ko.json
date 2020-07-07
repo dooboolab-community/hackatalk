@@ -1,5 +1,18 @@
 {
   "IT_WORKS": "정상 동작합니다",
   "PASSWORD_CHANGED": "비밀번호가 변경되었습니다. 로그인해서 암호를 변경해주세요.",
-  "EMAIL_VERIFIED": "이메일이 인증되었습니다. HackaTalk에 로그인 후 다시 변경 해주세요 👊"
+  "EMAIL_VERIFIED_TITLE": "이메일 인증이 완료되었습니다.",
+  "EMAIL_VERIFIED": "이메일이 인증되었습니다. HackaTalk에 로그인 후 다시 변경 해주세요 👊",
+  "VERIFY_EMAIL": "이메일 인증",
+  "GO_TO_SIGN_IN": "로그인하러 가기",
+  "WELCOME": "환영합니다",
+  "WELCOME_SIGNUP": "HackaTalk 회원가입을 신청해 주셔서 감사합니다. 본인이 맞다면 아래 이메일 인증 버튼을 눌러 회원가입을 완료해 주세요. 감사합니다.",
+  "MSG_SENT_ONLY": "본 메일은 발신전용입니다. 문의사항이 있으시면 HackaTalk 고객센터로 연락바랍니다.",
+  "SERVICE_CENTER": "서비스 센터",
+  "HELLO": "안녕하세요",
+  "CLICK_TO_RESET_PW": "비밀번호 변경하기 버튼을 클릭하시면 비밀번호가 아래와같이 변경됩니다.",
+  "PASSWORD": "비밀번호",
+  "CHANGE_PASSWORD": "비밀번호 변경하기",
+  "PW_CHANGED_TITLE": "비밀번호 변경 완료",
+  "PW_CHANGED": "비밀번호가 변경되었습니다. 변경된 임시 비밀번호를 이용하여 로그인해주세요."
 }
