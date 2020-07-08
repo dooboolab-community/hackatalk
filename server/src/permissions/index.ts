@@ -28,4 +28,6 @@ export const permissions = shield({
     singleUpload: rules.isAuthenticatedUser,
     changeEmailPassword: rules.isAuthenticatedUser,
   },
+}, {
+  allowExternalErrors: process.env.NODE_ENV !== 'production',
 });
