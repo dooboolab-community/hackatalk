@@ -2,7 +2,6 @@ import { Context } from '../context';
 import bcrypt from 'bcrypt-nodejs';
 import ejs from 'ejs';
 import fs from 'fs';
-import i18next from 'i18next';
 import path from 'path';
 import qs from 'querystring';
 import { verify } from 'jsonwebtoken';
@@ -73,7 +72,11 @@ export const validateCredential = async (
   });
 });
 
-export const getEmailVerificationHTML = (email: string, hashedEmail: string): string => {
+export const getEmailVerificationHTML = (
+  email: string,
+  hashedEmail: string,
+  req: ReqI18n,
+): string => {
   const templateString = fs.readFileSync(
     path.resolve(__dirname, '../../html/email_verification.html'),
     'utf-8',
@@ -81,17 +84,22 @@ export const getEmailVerificationHTML = (email: string, hashedEmail: string): st
 
   const rendered = ejs.render(templateString, {
     REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}`,
-    WELCOME_SIGNUP: i18next.t('WELCOME_SIGNUP'),
-    WELCOME: i18next.t('WELCOME'),
-    VERIFY_EMAIL: i18next.t('VERIFY_EMAIL'),
-    MESSAGE_SENT_ONLY: i18next.t('MSG_SENT_ONLY'),
-    SERVICE_CENTER: i18next.t('SERVICE_CENTER'),
+    WELCOME_SIGNUP: req.t('WELCOME_SIGNUP'),
+    WELCOME: req.t('WELCOME'),
+    VERIFY_EMAIL: req.t('VERIFY_EMAIL'),
+    MESSAGE_SENT_ONLY: req.t('MSG_SENT_ONLY'),
+    SERVICE_CENTER: req.t('SERVICE_CENTER'),
   });
 
   return rendered;
 };
 
-export const getPasswordResetHTML = (email: string, hashedEmail: string, password: string): string => {
+export const getPasswordResetHTML = (
+  email: string,
+  hashedEmail: string,
+  password: string,
+  req: ReqI18n,
+): string => {
   const templateString = fs.readFileSync(
     path.resolve(__dirname, '../../html/password_reset.html'),
     'utf-8',
@@ -99,12 +107,12 @@ export const getPasswordResetHTML = (email: string, hashedEmail: string, passwor
 
   const rendered = ejs.render(templateString, {
     REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}/${qs.escape(password)}`,
-    HELLO: i18next.t('HELLO'),
-    CLICK_TO_RESET_PW: i18next.t('CLICK_TO_RESET_PW'),
-    PASSWORD: i18next.t('PASSWORD'),
-    CHANGE_PASSWORD: i18next.t('CHANGE_PASSWORD'),
-    MSG_SENT_ONLY: i18next.t('MSG_SENT_ONLY'),
-    SERVICE_CENTER: i18next.t('SERVICE_CENTER'),
+    HELLO: req.t('HELLO'),
+    CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
+    PASSWORD: req.t('PASSWORD'),
+    CHANGE_PASSWORD: req.t('CHANGE_PASSWORD'),
+    MSG_SENT_ONLY: req.t('MSG_SENT_ONLY'),
+    SERVICE_CENTER: req.t('SERVICE_CENTER'),
     randomPassword: password,
   });
 
