@@ -1,0 +1,23 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "birthday",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "birthDay"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Profile",
+      "field": "authType",
+      "arity": "Optional"
+    }
+  ]
+}

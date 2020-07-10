@@ -65,7 +65,7 @@ type Subscription {
 scalar Upload
 
 type User {
-  birthDay: DateTime
+  birthday: DateTime
   createdAt: DateTime
   deletedAt: DateTime
   email: String

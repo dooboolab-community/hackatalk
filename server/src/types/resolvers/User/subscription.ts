@@ -1,4 +1,5 @@
 import { stringArg, subscriptionField } from '@nexus/schema';
+
 import { withFilter } from 'apollo-server';
 
 export const USER_SIGNED_IN = 'USER_SIGNED_IN';
@@ -11,7 +12,7 @@ interface User {
   nickname: string;
   thumbURL: string;
   photoURL: string;
-  birthDay: string;
+  birthday: string;
   gender: string;
   phone: string;
   createdAt: Date;

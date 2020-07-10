@@ -19,7 +19,7 @@ export const User = objectType({
     t.model.nickname();
     t.model.thumbURL();
     t.model.photoURL();
-    t.model.birthDay();
+    t.model.birthday();
     t.model.gender();
     t.model.phone();
     t.model.statusMessage();
