@@ -67,9 +67,8 @@ export const createApp = (): express.Application => {
         const password = await encryptCredential(randomPassword);
         await resetPassword(email, password);
         return res.render('password_changed', {
-          title: req.t('PASSWORD_CHANGED'),
-          text1: req.t('PW_CHANGED_TITLE'),
-          text2: req.t('PW_CHANGED'),
+          title: req.t('PW_CHANGED_TITLE'),
+          text: req.t('PW_CHANGED'),
           SERVICE_CENTER: req.t('SERVICE_CENTER'),
         });
       }
