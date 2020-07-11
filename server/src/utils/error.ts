@@ -42,3 +42,10 @@ export const ErrorEmailNotValid =
     'EMAIL_VALIDATION', {
       parameter: 'email',
     });
+
+export const ErrorEmailForUserExists =
+  (message: string): ApolloError => new ApolloError(
+    message,
+    'EMAIL_FOR_USER_EXISTS', {
+      parameter: 'email',
+    });

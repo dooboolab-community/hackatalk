@@ -2,6 +2,8 @@
 ### Do not make changes to this file directly
 
 
+scalar Auth
+
 type AuthPayload {
   token: String!
   user: User!
@@ -32,6 +34,8 @@ type Mutation {
   findPassword(email: String!): Boolean!
   sendVerification(email: String!): Boolean!
   signInEmail(email: String!, password: String!): AuthPayload!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithGoogle(accessToken: String!): AuthPayload!
   signUp(user: UserCreateInput): User!
   singleUpload(dir: String, file: Upload): String
   updateProfile(user: UserUpdateInput): User!

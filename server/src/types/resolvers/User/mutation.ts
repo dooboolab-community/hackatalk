@@ -6,22 +6,106 @@ import {
   getUserId,
   validateCredential,
   validateEmail,
+  verifyFacebookId,
+  verifyGoogleId,
 } from '../../../utils/auth';
+import { AuthType, GenderType } from '../../models/Scalar';
 import {
+  ErrorEmailForUserExists,
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
+  ErrorString,
 } from '../../../utils/error';
 import {
   USER_SIGNED_IN,
   USER_UPDATED,
 } from './subscription';
-import { compare, hash } from 'bcryptjs';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
+import { Context } from '../../../context';
+import { NexusGenRootTypes } from '../../../generated/nexus';
 import SendGridMail from '@sendgrid/mail';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
+
+interface SocialUserInput {
+  socialId: string;
+  authType: AuthType;
+  name: string;
+  email: string;
+  birthday?: Date;
+  gender?: GenderType;
+  phone?: string;
+}
+
+export const signInWithSocialAccount = async (
+  socialUser: SocialUserInput,
+  ctx: Context,
+): Promise<NexusGenRootTypes['AuthPayload']> => {
+  if (socialUser.email) {
+    // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
+    const emailUser = await ctx.prisma.user.findMany({
+      where: {
+        email: socialUser.email,
+        profile: {
+          socialId: {
+            not: socialUser.socialId,
+          },
+        },
+      },
+    });
+    if (emailUser.length) {
+      throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
+    }
+  }
+
+  // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
+  let user: NexusGenRootTypes['User'];
+  const users = await ctx.prisma.user.findMany({
+    where: {
+      email: socialUser.email,
+      profile: {
+        socialId: socialUser.socialId,
+      },
+    },
+  });
+
+  if (!users.length) {
+    user = await ctx.prisma.user.create({
+      data: {
+        profile: {
+          create: {
+            socialId: socialUser.socialId,
+            authType: socialUser.authType,
+          },
+        },
+        email: socialUser.email,
+        name: socialUser.name,
+        birthday: socialUser.birthday,
+        gender: socialUser.gender,
+        phone: socialUser.phone,
+        verified: true,
+      },
+    });
+  } else {
+    user = users[0];
+  }
+
+  ctx.pubsub.publish(USER_SIGNED_IN, user);
+
+  const updatedUser = await ctx.prisma.user.update({
+    where: {
+      email: user.email,
+    },
+    data: { lastSignedIn: new Date() },
+  });
+
+  return {
+    token: sign({ userId: user.id }, ctx.appSecret),
+    user: updatedUser,
+  };
+};
 
 export const UserInputType = inputObjectType({
   name: 'UserCreateInput',
@@ -61,7 +145,7 @@ export const signUp = mutationField('signUp', {
   },
   resolve: async (_parent, { user }, ctx) => {
     const { name, email, password, gender } = user;
-    const hashedPassword = await hash(password, 10);
+    const hashedPassword = await encryptCredential(password);
     const created = await ctx.prisma.user.create({
       data: {
         name,
@@ -94,7 +178,7 @@ export const signInEmail = mutationField('signInEmail', {
       throw new Error(`No user found for email: ${email}`);
     }
 
-    const passwordValid = await compare(password, user.password);
+    const passwordValid = await validateCredential(password, user.password);
     if (!passwordValid) {
       throw new Error('Invalid password');
     }
@@ -112,6 +196,46 @@ export const signInEmail = mutationField('signInEmail', {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
     };
+  },
+});
+
+export const signInWithFacebook = mutationField('signInWithFacebook', {
+  type: 'AuthPayload',
+  args: {
+    accessToken: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { accessToken }, ctx) => {
+    const { id: facebookId, name, email } = await verifyFacebookId(accessToken);
+
+    return signInWithSocialAccount(
+      {
+        socialId: facebookId,
+        authType: AuthType.facebook,
+        name,
+        email: email || `${facebookId}@facebook.com`,
+      },
+      ctx,
+    );
+  },
+});
+
+export const signInWithGoogle = mutationField('signInWithGoogle', {
+  type: 'AuthPayload',
+  args: {
+    accessToken: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { accessToken }, ctx) => {
+    const { sub, email, name = '' } = await verifyGoogleId(accessToken);
+
+    return signInWithSocialAccount(
+      {
+        socialId: sub,
+        authType: AuthType.google,
+        name,
+        email,
+      },
+      ctx,
+    );
   },
 });
 

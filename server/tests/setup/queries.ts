@@ -11,7 +11,7 @@ export const signUpMutation = /* GraphQL */`
   }
 `;
 
-export const signInMutation = /* GraphQL */`
+export const signInEmailMutation = /* GraphQL */`
   mutation signInEmail($email: String! $password: String!) {
     signInEmail(email: $email password: $password) {
       token
@@ -21,6 +21,32 @@ export const signInMutation = /* GraphQL */`
         email
         gender
         createdAt
+      }
+    }
+  }
+`;
+
+export const signInWithGoogle = /* GraphQL */`
+  mutation signInWithGoogle($accessToken: String!) {
+    signInWithGoogle(accessToken: $accessToken) {
+      token
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+export const signInWithFacebook = /* GraphQL */`
+  mutation signInWithFacebook($accessToken: String!) {
+    signInWithFacebook(accessToken: $accessToken) {
+      token
+      user {
+        id
+        name
+        email
       }
     }
   }
