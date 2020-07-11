@@ -1,4 +1,5 @@
 import { Context } from '../context';
+import axios from 'axios';
 import bcrypt from 'bcrypt-nodejs';
 import ejs from 'ejs';
 import fs from 'fs';
@@ -38,6 +39,59 @@ export const validateEmail = (email: string): boolean => {
   // eslint-disable-next-line max-len
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
+};
+
+interface GoogleUser {
+  iss: string;
+  sub: string;
+  azp: string;
+  aud: string;
+  iat: number | string;
+  exp: number | string;
+
+  /* eslint-disable */
+  email?: string;
+  email_verified?: boolean | string;
+  name?: string;
+  picture?: string;
+  given_name?: string;
+  family_name?: string;
+  locale?: string;
+  /* eslint-enable */
+}
+
+/**
+ * Verify google token and return user
+ * @param token
+ * @returns GoogleUser
+ */
+
+export const verifyGoogleId = async (token: string): Promise<GoogleUser> => {
+  const { data } = await axios.get(
+      `https://oauth2.googleapis.com/tokeninfo?${token}`,
+  );
+
+  return data as GoogleUser;
+};
+
+interface FacebookUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export const verifyFacebookId = async (accessToken: string): Promise<FacebookUser> => {
+  const { data } = await axios.get(
+    'https://graph.facebook.com/v7.0/me',
+    {
+      params: {
+        access_token: accessToken,
+        fields: 'id,name,email',
+      },
+    },
+  );
+
+  return data as FacebookUser;
 };
 
 export const encryptCredential = async (password: string): Promise<string> =>

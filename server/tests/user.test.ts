@@ -1,8 +1,12 @@
+import * as AuthUtils from '../src/utils/auth';
+
 import { GraphQLClient, request } from 'graphql-request';
 import { apolloClient, testHost } from './setup/testSetup';
 import {
   meQuery,
-  signInMutation as signInEmailMutation,
+  signInEmailMutation,
+  signInWithFacebook,
+  signInWithGoogle,
   signUpMutation,
   updateProfileMutation,
   userSignedInSubscription,
@@ -56,6 +60,46 @@ describe('Resolver - User', () => {
 
     const promise = request(testHost, signInEmailMutation, variables);
     expect(promise).rejects.toThrow();
+  });
+
+  it('should signIn user wigh Google', async () => {
+    const variables = {
+      accessToken: 'google_user_token',
+    };
+
+    jest
+      .spyOn(AuthUtils, 'verifyGoogleId')
+      // @ts-ignore
+      .mockImplementation(() => Promise.resolve({
+        sub: 'google_user_token',
+        email: 'google@email.com',
+      }));
+
+    const response = await request(testHost, signInWithGoogle, variables);
+    expect(response).toHaveProperty('signInWithGoogle');
+    expect(response.signInWithGoogle).toHaveProperty('token');
+    expect(response.signInWithGoogle).toHaveProperty('user');
+    expect(response.signInWithGoogle.user.email).toEqual('google@email.com');
+  });
+
+  it('should signIn user wigh Google', async () => {
+    const variables = {
+      accessToken: 'google_user_token',
+    };
+
+    jest
+      .spyOn(AuthUtils, 'verifyFacebookId')
+      // @ts-ignore
+      .mockImplementation(() => Promise.resolve({
+        id: 'facebook_user_id',
+        email: 'facebook@email.com',
+      }));
+
+    const response = await request(testHost, signInWithFacebook, variables);
+    expect(response).toHaveProperty('signInWithFacebook');
+    expect(response.signInWithFacebook).toHaveProperty('token');
+    expect(response.signInWithFacebook).toHaveProperty('user');
+    expect(response.signInWithFacebook.user.email).toEqual('facebook@email.com');
   });
 
   it('should signIn user with email', async () => {
