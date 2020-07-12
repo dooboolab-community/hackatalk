@@ -8,8 +8,8 @@ jobs:
       - image: circleci/postgres:11
         environment:
           POSTGRES_DB: test
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test!
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: dooboolab0!
     working_directory: ~/dooboo
     steps:
       - checkout
