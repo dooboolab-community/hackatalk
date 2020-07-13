@@ -23,7 +23,7 @@
     "postinstall": "npm -s run generate",
     "migrate:init": "rm -rf prisma/migrations && prisma migrate save --name “init” --experimental",
     "migrate:save": "dotenv -e ./dotenv/.env -- prisma migrate save --experimental",
-    "migrate:up": "dotenv -e ./dotenv/.env -- prisma migrate up --experimental",
+    "migrate:up": "prisma migrate up --experimental",
     "migrate:down": "dotenv -e ./dotenv/.env -- prisma migrate down 1 --experimental",
     "migrate:dev": "dotenv -e ./dotenv/dev.env -- prisma migrate up --experimental",
     "migrate:prod": "dotenv -e ./dotenv/prod.env -- prisma migrate up --experimental",
