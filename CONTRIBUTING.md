@@ -94,8 +94,9 @@
       ```
       CREATE DATABASE hackatalk;
       CREATE ROLE postgres WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'dooboolab0!';
-      GRANT CONNECT ON DATABASE postgres TO hackatalk;
-      GRANT ALL PRIVILEGES ON DATABASE postgres TO hackatalk;
+      GRANT CONNECT ON DATABASE hackatalk TO postgres;
+      GRANT ALL PRIVILEGES ON DATABASE hackatalk TO postgres;
+
       ```
    4. Also change `dotenv` variables to use envrionment in previous step.
       - Copy `dotenv/.dev` to `dotenv/.env`.
@@ -106,11 +107,11 @@
    5. Please include `test` user locally to test queries in your database.
       ```
       CREATE DATABASE test;
-      CREATE ROLE test WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
-      GRANT CONNECT ON DATABASE postgres TO test;
-      GRANT ALL PRIVILEGES ON DATABASE postgres TO test;
-      // Inside `postgres` database create `test` schema.
-      CREATE SCHEMA test;
+      CREATE ROLE postgres WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
+      GRANT CONNECT ON DATABASE test TO postgres;
+      GRANT ALL PRIVILEGES ON DATABASE test TO postgres;
+      // Inside `test` database create `test1` schema.
+      CREATE SCHEMA test1;
       ```
       - Above should match `test.env`
         ```
