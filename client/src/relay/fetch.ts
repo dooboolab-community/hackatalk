@@ -1,5 +1,6 @@
+import * as Config from '../../config';
+
 import AsyncStorage from '@react-native-community/async-storage';
-import Config from 'react-native-config';
 import { FetchFunction } from 'relay-runtime';
 
 const { GRAPHQL_URL } = Config;

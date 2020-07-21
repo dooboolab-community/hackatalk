@@ -1,4 +1,4 @@
-import Config from 'react-native-config';
+import * as Config from '../../config';
 
 const { ROOT_URL } = Config;
 

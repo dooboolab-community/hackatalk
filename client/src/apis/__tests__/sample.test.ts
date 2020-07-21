@@ -1,4 +1,5 @@
-import Config from 'react-native-config';
+import * as Config from '../../../config';
+
 import { FetchMock } from 'jest-fetch-mock';
 import { sample } from '../sample';
 

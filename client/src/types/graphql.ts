@@ -32,9 +32,6 @@ export enum AuthType {
   Apple = 'apple'
 }
 
-
-
-
 export type Mutation = {
   __typename?: 'Mutation';
   signUp: User;
@@ -47,45 +44,37 @@ export type Mutation = {
   deleteNotification?: Maybe<Notification>;
 };
 
-
 export type MutationSignUpArgs = {
   user?: Maybe<UserCreateInput>;
 };
-
 
 export type MutationSignInEmailArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-
 export type MutationSendVerificationArgs = {
   email: Scalars['String'];
 };
-
 
 export type MutationUpdateProfileArgs = {
   user?: Maybe<UserUpdateInput>;
 };
 
-
 export type MutationFindPasswordArgs = {
   email: Scalars['String'];
 };
-
 
 export type MutationChangeEmailPasswordArgs = {
   password: Scalars['String'];
   newPassword: Scalars['String'];
 };
 
-
 export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
   device?: Maybe<Scalars['String']>;
   os?: Maybe<Scalars['String']>;
 };
-
 
 export type MutationDeleteNotificationArgs = {
   id: Scalars['Int'];
@@ -113,7 +102,6 @@ export type Query = {
   notifications?: Maybe<Array<Notification>>;
 };
 
-
 export type QueryNotificationsArgs = {
   userId?: Maybe<Scalars['String']>;
 };
@@ -124,16 +112,13 @@ export type Subscription = {
   userUpdated: User;
 };
 
-
 export type SubscriptionUserSignedInArgs = {
   userId: Scalars['String'];
 };
 
-
 export type SubscriptionUserUpdatedArgs = {
   userId: Scalars['String'];
 };
-
 
 export type User = {
   __typename?: 'User';

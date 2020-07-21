@@ -18,12 +18,14 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset';
 import AsyncStorage from '@react-native-community/async-storage';
+import Icons from './utils/Icons';
+import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import SplashModule from './utils/splash';
 import { User } from 'types/graphql';
-import { initializeEThree } from './utils/virgil';
 import relayEnvironment from './relay';
 
 const meQuery = graphql`
@@ -39,10 +41,26 @@ const meQuery = graphql`
   }
 `;
 
+function cacheImages(images: (number | string)[]): any[] {
+  return images.map((image) => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image);
+    } else {
+      return Asset.fromModule(image as number).downloadAsync();
+    }
+  });
+}
+
+const loadAssetsAsync = async (): Promise<void> => {
+  const imageAssets = cacheImages(Icons);
+  await Promise.all([...imageAssets]);
+};
+
 function AppWithTheme(): ReactElement {
   const environment = useRelayEnvironment();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [assetLoaded, setAssetLoaded] = useState<boolean>(false);
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
 
@@ -53,10 +71,8 @@ function AppWithTheme(): ReactElement {
 
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
-    await initializeEThree(me.id);
     setUser(me as User);
     setLoading(false);
-    SplashModule.hide(300);
   };
 
   useEffect(() => {
@@ -67,7 +83,6 @@ function AppWithTheme(): ReactElement {
       error: (error: any) => {
         console.log('error', error);
         setLoading(false);
-        SplashModule.hide(300);
       },
       next: (data) => {
         if (data.me) {
@@ -80,7 +95,17 @@ function AppWithTheme(): ReactElement {
     });
   }, []);
 
-  if (loading) return <LoadingIndicator />;
+  if (loading || !assetLoaded) {
+    return (
+      <AppLoading
+        startAsync={loadAssetsAsync}
+        onFinish={(): void => setAssetLoaded(true)}
+      // onError={console.warn}
+      />
+    );
+  }
+
+  // if (loading) return <LoadingIndicator />;
 
   return <RootNavigator />;
 }

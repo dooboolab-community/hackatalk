@@ -1,10 +1,13 @@
 {
-  "name": "HackaTalk",
-  "description": "Opensource chat app",
   "expo": {
     "name": "HackaTalk",
-    "slug": "HackaTalk",
+    "slug": "HackaTalk-Expo",
     "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -40,6 +43,12 @@
         "jsx",
         "ts",
         "tsx",
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "json",
+        "wasm",
         "svg"
       ]
     },

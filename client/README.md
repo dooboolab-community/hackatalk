@@ -205,4 +205,3 @@ export const getString = (param: string, mapObj?: Record<string, unknown>) => {
 ### Troubleshoot
 
 - Experiencing Localization.locale `undefined`? Setup your emulator once again as [decribed here](https://github.com/expo/expo/issues/5735#issuecomment-534063072).
-- Build failing with `virgil sdk`? [Here is workaround](https://github.com/dooboolab/hackatalk/pull/111#issuecomment-590284580).

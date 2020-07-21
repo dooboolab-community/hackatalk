@@ -121,7 +121,8 @@ const node: ConcreteRequest = (function () {
             "metadata": null,
             "name": "ProfileUpdateMeQuery",
             "selections": (v0 /*: any*/),
-            "type": "Query"
+            "type": "Query",
+            "abstractKey": null
         },
         "kind": "Request",
         "operation": {
@@ -131,6 +132,7 @@ const node: ConcreteRequest = (function () {
             "selections": (v0 /*: any*/)
         },
         "params": {
+            "cacheID": "d1997df29a2675627f365ee2d34de6e2",
             "id": null,
             "metadata": {},
             "name": "ProfileUpdateMeQuery",
