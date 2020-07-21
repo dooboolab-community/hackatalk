@@ -1,6 +1,6 @@
 import { AppRegistry, YellowBox } from 'react-native';
 
-import App from './src/App';
+import App from './App';
 
 /**
  * React Native 0.54 warning message ignore.

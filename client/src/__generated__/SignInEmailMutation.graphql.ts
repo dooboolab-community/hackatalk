@@ -48,14 +48,12 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "email",
-            "type": "String!"
+            "name": "email"
         } as any),
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "password",
-            "type": "String!"
+            "name": "password"
         } as any)
     ], v1 = [
         ({
@@ -141,7 +139,8 @@ const node: ConcreteRequest = (function () {
             "metadata": null,
             "name": "SignInEmailMutation",
             "selections": (v1 /*: any*/),
-            "type": "Mutation"
+            "type": "Mutation",
+            "abstractKey": null
         },
         "kind": "Request",
         "operation": {
@@ -151,6 +150,7 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
+            "cacheID": "0e4e51d056e95de0028eefb827e6bb45",
             "id": null,
             "metadata": {},
             "name": "SignInEmailMutation",

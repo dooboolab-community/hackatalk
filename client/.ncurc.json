@@ -2,6 +2,7 @@
   "reject": [
     "react",
     "react-dom",
-    "react-test-renderer"
+    "react-test-renderer",
+    "react-relay"
   ]
 }

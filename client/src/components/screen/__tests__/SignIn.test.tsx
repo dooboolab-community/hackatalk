@@ -99,7 +99,6 @@ describe('[SignIn] rendering test', () => {
     );
     testingLib = render(component);
 
-    // Remove snapshot testing for now for issue https://github.com/VirgilSecurity/virgil-e3kit-js/issues/82
     expect(testingLib.baseElement).toMatchSnapshot();
   });
 

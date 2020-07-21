@@ -1,4 +1,5 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Config from '../../../config';
 import * as Crypto from 'expo-crypto';
 
 import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
@@ -18,12 +19,10 @@ import { showAlertForError, validateEmail } from '../../utils/common';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import Config from 'react-native-config';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import { initializeEThree } from '../../utils/virgil';
 import styled from 'styled-components/native';
 import { useAuthContext } from '../../providers/AuthProvider';
 
@@ -141,7 +140,6 @@ function SignIn(props: Props): ReactElement {
 
       await AsyncStorage.setItem('token', token);
       await AsyncStorage.setItem('password', password);
-      initializeEThree(user.id);
       setUser(user);
     },
     onError: (error: any): void => {

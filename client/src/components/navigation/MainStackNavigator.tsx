@@ -20,7 +20,6 @@ import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
 import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
-import PinchZoomViewPager from '../screen/PinchZoomViewPager';
 import ProfileModal from '../shared/ProfileModal';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { RootStackNavigationProps } from './RootStackNavigator';
@@ -150,13 +149,6 @@ function MainStackNavigator(): ReactElement {
         name="ChannelCreate"
         component={ChannelCreate}
         options={getSimpleHeader(getString('NEW_CHAT'), theme)}
-      />
-      <Stack.Screen
-        name="PinchZoomViewPager"
-        component={PinchZoomViewPager}
-        options={{
-          headerShown: false,
-        }}
       />
     </Stack.Navigator>
   );

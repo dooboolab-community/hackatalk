@@ -28,8 +28,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "email",
-            "type": "String!"
+            "name": "email"
         } as any)
     ], v1 = [
         ({
@@ -53,7 +52,8 @@ const node: ConcreteRequest = (function () {
             "metadata": null,
             "name": "VerifyEmailMutation",
             "selections": (v1 /*: any*/),
-            "type": "Mutation"
+            "type": "Mutation",
+            "abstractKey": null
         },
         "kind": "Request",
         "operation": {
@@ -63,6 +63,7 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
+            "cacheID": "9fdbf96b198c492e8b7d287e695a0f2a",
             "id": null,
             "metadata": {},
             "name": "VerifyEmailMutation",

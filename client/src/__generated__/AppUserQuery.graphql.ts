@@ -94,7 +94,8 @@ const node: ConcreteRequest = (function () {
             "metadata": null,
             "name": "AppUserQuery",
             "selections": (v0 /*: any*/),
-            "type": "Query"
+            "type": "Query",
+            "abstractKey": null
         },
         "kind": "Request",
         "operation": {
@@ -104,6 +105,7 @@ const node: ConcreteRequest = (function () {
             "selections": (v0 /*: any*/)
         },
         "params": {
+            "cacheID": "5bad95919cfec5b3a48edb5d0ebfba84",
             "id": null,
             "metadata": {},
             "name": "AppUserQuery",
