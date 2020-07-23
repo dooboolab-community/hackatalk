@@ -99,9 +99,9 @@
 
       ```
    4. Also change `dotenv` variables to use envrionment in previous step.
-      - Copy `dotenv/.dev` to `dotenv/.env`.
+      - Copy `dotenv/dev.env` to `dotenv/.env`.
         ```
-        cp dotenv/.env.sample dotenv/.env
+        cp dotenv/dev.env dotenv/.env
         ```
       - Then run `yarn local`
    5. Please include `test` user locally to test queries in your database.
@@ -126,12 +126,21 @@
 5. Migration
 
    1. Change models in `schema.prisma`.
-   2. Run migration script.
+   2. Run migration script and type the migration name that you want.
       ```
       yarn migrate:save
+      ✔ Name of migration … [type the "migration_name"]
+      📼  migrate save --name migration_name
       ```
-      > Prisma lift will generate migration file for you.
-   3. Run migration.
+      - This [migration process](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-migrate#prisma-migrate) makes some files like
+         ```
+         migrations/
+         └─ 20200724010758-migration_name/
+            └─ steps.json
+            └─ schema.prisma
+            └─ README.md
+         ```
+   3. Run migration. this process will generate models that you've changed in actual postgre DB.
       ```
       yarn migrate:up
       ```

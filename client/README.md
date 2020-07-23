@@ -53,34 +53,36 @@ app/
 │     └─ shared
 │  └─ graphql
 │  └─ hooks
-│  └─ contexts
 │  └─ providers
+│  └─ relay
 │  └─ types
 │  └─ utils
 │  └─ App.tsx
+│  └─ index.js
 │  └─ styled.d.ts
 │  └─ theme.ts
 ├─ test/
-├─ .env.sample
+├─ web-build/
+├─ .eslintignore
 ├─ .eslintrc.js
-├─ .buckconfig
-├─ .gitattributes
 ├─ .gitignore
 ├─ .watchmanconfig
 ├─ app.json
+├─ App.tsx
 ├─ babel.config.js
-├─ CLA.md
-├─ CODE_OF_CONDUCT.md
-├─ CONTRIBUTING.md
+├─ codegen.yml
+├─ config.sample.ts
 ├─ environment.d.ts
-├─ index.js
 ├─ jest.config.js
 ├─ metro.config.js
 ├─ package.json
 ├─ README.md
+├─ relay.config.js
+├─ schema.graphql
 ├─ STRINGS.ts
-├─ tsconfig.jest.json
 ├─ tsconfig.json
+├─ tsconfig.jest.json
+├─ webpack.config.js
 └─ yarn.lock
 ```
 
