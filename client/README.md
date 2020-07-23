@@ -26,7 +26,6 @@
 5. Know how to write test code with `@testing-library/react-native`.
 6. Know how to `lint` your project with `eslint`.
 7. Know how to localize your project.
-8. Know the hack of e2e encryption chat app.
 ```
 
 ### INSTALL
@@ -89,7 +88,7 @@ app/
 
 Run below to make your own `app` variables.
 
-> `cp .env.sample .env`
+> `cp .config.sample.ts .config.ts`
 
 - `env` variables
 
