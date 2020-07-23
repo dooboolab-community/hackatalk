@@ -99,9 +99,9 @@
 
       ```
    4. Also change `dotenv` variables to use envrionment in previous step.
-      - Copy `dotenv/.dev` to `dotenv/.env`.
+      - Copy `dotenv/dev.env` to `dotenv/.env`.
         ```
-        cp dotenv/.env.sample dotenv/.env
+        cp dotenv/dev.env dotenv/.env
         ```
       - Then run `yarn local`
    5. Please include `test` user locally to test queries in your database.
