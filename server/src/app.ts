@@ -7,7 +7,6 @@ import { resetPassword, verifyEmail } from './types/models/User';
 
 import FilesystemBackend from 'i18next-node-fs-backend';
 import cors from 'cors';
-import createOrGetVirgilJwtGenerator from './utils/virgil';
 import ejs from 'ejs';
 import express from 'express';
 import fs from 'fs';
@@ -151,13 +150,6 @@ export const createApp = (): express.Application => {
       }
     },
   );
-
-  app.get('/virgil-jwt/:identity', async (req: express.Request, res) => {
-    const jwtGenerator = await createOrGetVirgilJwtGenerator();
-    // @ts-ignore
-    const jwt = jwtGenerator.generateToken(req.params.identity);
-    res.send(jwt.toString());
-  });
 
   app.get('/', (req, res) => {
     // @ts-ignore

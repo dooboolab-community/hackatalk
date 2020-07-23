@@ -23,7 +23,7 @@
     "postinstall": "npm -s run generate",
     "migrate:init": "rm -rf prisma/migrations && prisma migrate save --name “init” --experimental",
     "migrate:save": "dotenv -e ./dotenv/.env -- prisma migrate save --experimental",
-    "migrate:up": "prisma migrate up --experimental",
+    "migrate:up": "dotenv -e ./dotenv/.env -- prisma migrate up --experimental",
     "migrate:down": "dotenv -e ./dotenv/.env -- prisma migrate down 1 --experimental",
     "migrate:dev": "dotenv -e ./dotenv/dev.env -- prisma migrate up --experimental",
     "migrate:prod": "dotenv -e ./dotenv/prod.env -- prisma migrate up --experimental",
@@ -50,9 +50,7 @@
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "nexus": "^0.25.0",
-    "nexus-plugin-prisma": "^0.16.1",
-    "virgil-crypto": "^4.2.2",
-    "virgil-sdk": "^6.1.2"
+    "nexus-plugin-prisma": "^0.16.1"
   },
   "devDependencies": {
     "@types/bcrypt-nodejs": "^0.0.31",

@@ -1,4 +1,4 @@
-# HackaTalk (React Native)
+# HackaTalk (Expo)
 
 - [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#client)
 
@@ -6,11 +6,11 @@
 
 - [react-native](https://github.com/facebook/react-native)
 - [react-navigation](https://github.com/react-navigation/react-navigation)
-- [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
 - [typescript](https://github.com/Microsoft/TypeScript)
 - [localization](https://github.com/stefalda/ReactNativeLocalization)
 - [styled-components](https://github.com/styled-components/styled-components)
 - [ts-jest](https://github.com/kulshekhar/ts-jest)
+- [expo](https://expo.io)
 - [@testing-library/react-native](https://www.native-testing-library.com/docs/install)
 - [react-hook](https://reactjs.org/docs/hooks-intro.html)
 - [graphql](https://graphql.org)
@@ -95,7 +95,6 @@ Run below to make your own `app` variables.
 
   | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
-  | iOSClientId                  |                                      |     | CLIENT_ID in `GoogleService-Info.plist` `firebase` ios app project. |
   | GRAPHQL_URL                  | `https://hackatalkserver.azurewebsites.net/graphql` | yes |  |
   | ROOT_URL                     | `https://hackatalkserver.azurewebsites.net`         | yes |  |
   | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
@@ -187,20 +186,6 @@ export const getString = (param: string, mapObj?: Record<string, unknown>) => {
   return i18n.t(param);
 };
 ```
-
-#### Android
-
-1. Create new Android project
-2. Set package name com.dooboolab.hackatalk
-3. Set SHA1 or SHA256 hash keys from `expo fetch:android:hashes`
-4. Download `google-services.json` to hackatalk root folder
-
-#### iOS
-
-1. Create new iOS project
-2. Set bundleIdentifier com.dooboolab.hackatalk
-3. Download `GoogleService-Info.plist` to hackatalk root folder
-
 
 ### Troubleshoot
 
