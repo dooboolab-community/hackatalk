@@ -22,7 +22,7 @@
 
 1. [React Native](https://facebook.github.io/react-native)
    - [iOS / Android setup guide](https://facebook.github.io/react-native/docs/getting-started)
-2. [react-native-unimodules](https://github.com/unimodules/react-native-unimodules)
+2. [expo](https://expo.io)
 3. [Graphql](https://graphql.org)
 4. [Relay](https://relay.dev)
 
@@ -53,23 +53,20 @@
    - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
 
 2. Configure `environment` for project
-   - Copy `.env.sample` to `.env`.
+   - Copy `config.sample.ts` to `config.ts`.
      ```
-     cp .env.sample .env
+     cp config.sample.ts config.ts
      ```
 
 3. Run your project
    - Server
      - Run `yarn dev` or `yarn local` if you want to run your local server.
    - Client
-     - `ios`
-       - yarn `ios`
-     - `android`
-       - yarn `android`
-         > Note that you should open your emulator beforehand before running above command since the script won't automatically open emulator unlike `ios`.
+     - `yarn start` will open `expo` console.
 
 4. Configure linting in [vscode](https://code.visualstudio.com) correctly.
    - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
+   - Recommended [vscode extension list](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1#gistcomment-3019263)
 
 
 #### Installation - Server specific
