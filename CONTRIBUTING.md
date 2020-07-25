@@ -71,7 +71,7 @@
 
 #### Installation - Server specific
 
-1. Install your packages in `client` directory.
+1. Install your packages in `server` directory.
    ```
    yarn
    ```
