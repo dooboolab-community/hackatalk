@@ -101,25 +101,17 @@
         cp dotenv/dev.env dotenv/.env
         ```
       - Then run `yarn local`
-   5. Please include `test` user locally to test queries in your database.
+   5. Please include `test` environment locally to test queries in your database.
       ```
       $ psql postgres
-      postgres=# CREATE ROLE tester WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
-      postgres=# GRANT ALL PRIVILEGES ON DATABASE test TO tester;
-
-      postgres=# exit
-
-      // Connect psql with user newly created 'tester'
-      $ psql postgres -U tester
-      // create 'test' database to be owner
-      postgres=> CREATE DATABASE test;
-      // Connect Inside `test` database to create `test` schema.
-      postgres=> \connect test
+      postgres=> CREATE DATABASE postgres;
+      // Connect Inside `postgres` database to create `test` schema.
+      postgres=> \connect postgres
       test=> CREATE SCHEMA test;
       ```
       - Above should match `test.env`
         ```
-        DATABASE_URL="postgresql://tester:test!@localhost:5432/test?schema=test"
+        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
         ```
 
 4. Generate Prisma Client and Nexus
