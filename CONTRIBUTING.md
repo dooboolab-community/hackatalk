@@ -84,9 +84,9 @@
    1. cp `./prisma/.env.sample` `./prisma/.env`
    2. Include `DATABASE_URL`
       ```
-      DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/postgres?schema=<scheme>"
+      DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
       ```
-      > Note that you should change appropriate values in `user`, `password`, `url`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
+      > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
    3. If you want to use default server setting in when developing, create below database in your postgresql.
       ```
       CREATE DATABASE hackatalk;
@@ -101,18 +101,17 @@
         cp dotenv/dev.env dotenv/.env
         ```
       - Then run `yarn local`
-   5. Please include `test` user locally to test queries in your database.
+   5. Please include `test` environment locally to test queries in your database.
       ```
-      CREATE DATABASE test;
-      CREATE ROLE postgres WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'test!';
-      GRANT CONNECT ON DATABASE test TO postgres;
-      GRANT ALL PRIVILEGES ON DATABASE test TO postgres;
-      // Inside `test` database create `test1` schema.
-      CREATE SCHEMA test1;
+      $ psql postgres
+      postgres=> CREATE DATABASE postgres;
+      // Connect Inside `postgres` database to create `test` schema.
+      postgres=> \connect postgres
+      test=> CREATE SCHEMA test;
       ```
       - Above should match `test.env`
         ```
-        DATABASE_URL="postgresql://test:test!@localhost:5432/postgres?schema=test"
+        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
         ```
 
 4. Generate Prisma Client and Nexus
@@ -122,8 +121,8 @@
 
 5. Migration
 
-   1. Change models in `schema.prisma`.
-   2. Run migration script and type the migration name that you want.
+   1. Change models in `./prisma/schema.prisma`.
+   2. Run `migration:save` script and type the migration name that you want.
       ```
       yarn migrate:save
       ✔ Name of migration … [type the "migration_name"]
@@ -137,7 +136,7 @@
             └─ schema.prisma
             └─ README.md
          ```
-   3. Run migration. this process will generate models that you've changed in actual postgre DB.
+   3. Run `migration:up`. this process will generate models that you've changed in actual postgre DB.
       ```
       yarn migrate:up
       ```
