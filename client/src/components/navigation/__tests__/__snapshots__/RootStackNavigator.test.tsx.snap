@@ -626,6 +626,14 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "width": 320,
                                                         },
                                                         Object {
+                                                          "flex": 1,
+                                                          "flexDirection": "row",
+                                                          "height": 52,
+                                                          "justifyContent": "center",
+                                                        },
+                                                        undefined,
+                                                        undefined,
+                                                        Object {
                                                           "backgroundColor": "#ffffff",
                                                           "borderColor": "#1E6EFA",
                                                           "borderWidth": 1,
@@ -685,6 +693,16 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "justifyContent": "center",
                                                           "width": 320,
                                                         },
+                                                        Object {
+                                                          "backgroundColor": "#1E6EFA",
+                                                          "flex": 1,
+                                                          "flexDirection": "row",
+                                                          "height": 52,
+                                                          "justifyContent": "center",
+                                                        },
+                                                        undefined,
+                                                        undefined,
+                                                        undefined,
                                                       ]
                                                     }
                                                   >
@@ -761,6 +779,9 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "justifyContent": "center",
                                                           "width": 320,
                                                         },
+                                                        undefined,
+                                                        undefined,
+                                                        undefined,
                                                         Object {
                                                           "backgroundColor": "#ffffff",
                                                           "borderColor": "#151E22",
@@ -820,6 +841,9 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "justifyContent": "center",
                                                           "width": 320,
                                                         },
+                                                        undefined,
+                                                        undefined,
+                                                        undefined,
                                                         Object {
                                                           "backgroundColor": "#345997",
                                                           "borderColor": "#345997",
@@ -879,6 +903,9 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "justifyContent": "center",
                                                           "width": 320,
                                                         },
+                                                        undefined,
+                                                        undefined,
+                                                        undefined,
                                                         Object {
                                                           "backgroundColor": "#E04238",
                                                           "borderColor": "#E04238",

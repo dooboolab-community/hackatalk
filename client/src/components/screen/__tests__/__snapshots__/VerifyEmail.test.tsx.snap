@@ -89,6 +89,13 @@ exports[`Rendering renders without crashing 1`] = `
                 "width": 320,
               },
               Object {
+                "marginTop": 80,
+                "paddingHorizontal": 20,
+                "width": "100%",
+              },
+              undefined,
+              undefined,
+              Object {
                 "backgroundColor": "#1E6EFA",
                 "borderWidth": 0,
                 "height": 48,

@@ -358,6 +358,11 @@ exports[`rendering test renders as expected 1`] = `
                       "width": 320,
                     },
                     Object {
+                      "flex": 1,
+                    },
+                    undefined,
+                    undefined,
+                    Object {
                       "backgroundColor": "#1E6EFA",
                       "borderColor": "#1E6EFA",
                       "borderWidth": 1,

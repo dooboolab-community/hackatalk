@@ -155,6 +155,12 @@ exports[`[Setting] screen renders without crashing 1`] = `
                 "width": 320,
               },
               Object {
+                "paddingHorizontal": 20,
+                "paddingVertical": 20,
+              },
+              undefined,
+              undefined,
+              Object {
                 "backgroundColor": "#ffffff",
                 "borderColor": "#1E6EFA",
                 "borderWidth": 0.3,
@@ -342,6 +348,12 @@ exports[`[Setting] screen renders without crashing 2`] = `
                 "justifyContent": "center",
                 "width": 320,
               },
+              Object {
+                "paddingHorizontal": 20,
+                "paddingVertical": 20,
+              },
+              undefined,
+              undefined,
               Object {
                 "backgroundColor": "#ffffff",
                 "borderColor": "#1E6EFA",
@@ -531,6 +543,12 @@ exports[`[Setting] screen renders without crashing 3`] = `
                 "width": 320,
               },
               Object {
+                "paddingHorizontal": 20,
+                "paddingVertical": 20,
+              },
+              undefined,
+              undefined,
+              Object {
                 "backgroundColor": "#ffffff",
                 "borderColor": "#1E6EFA",
                 "borderWidth": 0.3,
@@ -718,6 +736,12 @@ exports[`[Setting] screen renders without crashing 4`] = `
                 "justifyContent": "center",
                 "width": 320,
               },
+              Object {
+                "paddingHorizontal": 20,
+                "paddingVertical": 20,
+              },
+              undefined,
+              undefined,
               Object {
                 "backgroundColor": "#ffffff",
                 "borderColor": "#1E6EFA",

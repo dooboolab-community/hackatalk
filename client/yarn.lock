@@ -3833,10 +3833,10 @@
     "@babel/runtime" "^7.5.4"
     "@types/testing-library__react-hooks" "^3.3.0"
 
-"@testing-library/react-native@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-6.0.0.tgz#195c3d6e093e248aa5b6949fe8ee7e86222b6b7f"
-  integrity sha512-jLdaEQAH3RC8OtSabrNbpb0qzBOIpKX9xNO0D+83ohfQjY7PZ/3/sX2hMtRB5T7pHChtCrlymYQ5tJcW8Ga1oQ==
+"@testing-library/react-native@^5":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-5.0.3.tgz#8821dcf7fe7364bc7f427d853cd96e4407d88a4f"
+  integrity sha512-lQH7vUgwESfagFw4BlKsfpX7Rv/m7h2NYfubY0aoQromSwI1slCxrhwZws8gABTXweob/DyLATsOamHsWdwDnA==
   dependencies:
     pretty-format "^24.9.0"
     wait-for-expect "^3.0.0"
@@ -4032,10 +4032,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@^0.63.2":
-  version "0.63.2"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.63.2.tgz#428a4d71351ccbc31ab170b5f32477c7ce78dfd7"
-  integrity sha512-oxbp084lUsZvwfdWmWxKjJAuqEraQDRf+cE/JgwmrHQMguSrmgIHZ3xkeoQ5FYnW5NHIPpHudB3BbjL1Zn3vnA==
+"@types/react-native@^0.62":
+  version "0.62.18"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.62.18.tgz#ad63691e7c44edef2beeb6af52b2eb942c3ed8a1"
+  integrity sha512-7QfU8EzIYxYqeXpPf8QNv2xi8hrePlgTbRATRo+plRSdVfJu7N6sAXqrFxKJp6bGLvp82GV1gczl93gqiAfXPA==
   dependencies:
     "@types/react" "*"
 
@@ -7339,10 +7339,10 @@ domutils@^2.0.0:
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
 
-dooboo-ui@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.10.tgz#e4d7819f157d9421f17505af70b39200315f952a"
-  integrity sha512-7vK2Y0FywrbShdgaHfAsOQqF6S2NynFETyG2ly17VOkGrYAOP4n+q+etdrO6fnns05r17qsW4NCWJHh7trJCKA==
+dooboo-ui@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.11.tgz#bb3757a56a2d3d735a814bb802ef1dd75edf15ec"
+  integrity sha512-KNVoO6QZxT1XE2+HdD94J0clzKzHM143vKGMVs1GbtrDv4aumU4J6hk3/zvTyf0A4Bubg6qrgcarbYNLV/Cniw==
   dependencies:
     dooboolab-welcome "^1.2.0"
 
