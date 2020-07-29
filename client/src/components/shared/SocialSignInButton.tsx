@@ -3,9 +3,19 @@ import * as AuthSession from 'expo-auth-session';
 import { Alert, Platform, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
 import React, { FC, ReactElement, useState } from 'react';
+import type {
+  SocialSignInButtonFacebookSignInMutation,
+  SocialSignInButtonFacebookSignInMutationResponse,
+} from '../../__generated__/SocialSignInButtonFacebookSignInMutation.graphql';
+import type {
+  SocialSignInButtonGoogleSignInMutation,
+  SocialSignInButtonGoogleSignInMutationResponse,
+} from '../../__generated__/SocialSignInButtonGoogleSignInMutation.graphql';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import { Button } from 'dooboo-ui';
 import { getString } from '../../../STRINGS';
+import { showAlertForError } from '../../utils/common';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 interface Props {
@@ -16,6 +26,32 @@ interface Props {
   onUserCreated?: (user?: User) => void;
 }
 
+const signInWithFacebook = graphql`
+  mutation SocialSignInButtonFacebookSignInMutation($token: String!) {
+    signInWithFacebook(accessToken: $token) {
+      token
+      user {
+        id
+        email
+        name
+        nickname
+        
+      }
+    }
+  }
+`;
+
+const signInWithGoogle = graphql`
+  mutation SocialSignInButtonGoogleSignInMutation($token: String!) {
+    signInWithGoogle(accessToken: $token) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
+
 const SocialSignInButton: FC<Props> = ({
   svgIcon,
   clientId,
@@ -23,6 +59,11 @@ const SocialSignInButton: FC<Props> = ({
   socialProvider,
   onUserCreated,
 }) => {
+  const [commitFacebook, isFacebookInFlight] =
+  useMutation<SocialSignInButtonFacebookSignInMutation>(signInWithFacebook);
+  const [commitGoogle, isGoogleInFlight] =
+  useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
+
   const { makeRedirectUri, useAuthRequest, ResponseType, Prompt, useAutoDiscovery, startAsync } = AuthSession;
   const { theme } = useThemeContext();
   const [signingIn, setSigningIn] = useState<boolean>(false);
@@ -30,19 +71,19 @@ const SocialSignInButton: FC<Props> = ({
   const discovery = socialProvider === AuthType.Google
     ? useAutoDiscovery('https://accounts.google.com')
     : {
-      authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
-      tokenEndpoint: 'https://graph.facebook.com/v6.0/oauth/access_token',
+      authorizationEndpoint: 'https://www.facebook.com/v7.0/dialog/oauth',
+      tokenEndpoint: 'https://graph.facebook.com/v7.0/oauth/access_token',
     };
 
   const useProxy = Platform.select({ web: false, default: true });
   const redirectUri = makeRedirectUri(
     socialProvider === AuthType.Google
       ? {
-        native: 'com.dooboolab.hackatalk',
+        native: 'hackatalk.dev',
         useProxy,
       }
       : {
-        native: 'com.dooboolab.hackatalk',
+        native: 'hackatalk.dev',
         useProxy,
       },
   );
@@ -89,22 +130,40 @@ const SocialSignInButton: FC<Props> = ({
       if (result.type === 'success') {
         if (socialProvider === AuthType.Google) {
           const accessToken = result.params.access_token;
-          // const credential = firebase.auth.GoogleAuthProvider.credential(null, accessToken);
-          // const authResult = await firebase.auth().signInWithCredential(credential);
+          const mutationConfig = {
+            variables: { token: accessToken },
+            onCompleted: async (response: SocialSignInButtonGoogleSignInMutationResponse): Promise<void> => {
+              if (response.signInWithGoogle) {
+                if (onUserCreated) onUserCreated(response.signInWithGoogle.user);
+                return;
+              }
+              Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
+            },
+            onError: (error: any): void => {
+              showAlertForError(error);
+            },
+          };
 
-          // const user = await createUser(authResult);
-
-          // if (onUserCreated) onUserCreated(user);
+          commitGoogle(mutationConfig);
           return;
         }
 
         const accessToken = result.params.access_token;
-        // const credential = firebase.auth.FacebookAuthProvider.credential(accessToken);
-        // const authResult = await firebase.auth().signInWithCredential(credential);
+        const mutationConfig = {
+          variables: { token: accessToken },
+          onCompleted: async (response: SocialSignInButtonFacebookSignInMutationResponse): Promise<void> => {
+            if (response.signInWithFacebook) {
+              if (onUserCreated) onUserCreated(response.signInWithFacebook.user);
+              return;
+            }
+            Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
+          },
+          onError: (error: any): void => {
+            showAlertForError(error);
+          },
+        };
 
-        // const user = await createUser(authResult);
-
-        // if (onUserCreated) onUserCreated(user);
+        commitFacebook(mutationConfig);
       } else if (result.type === 'error') {
         throw new Error(result?.error?.message || '');
       }

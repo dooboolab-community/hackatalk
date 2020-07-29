@@ -68,7 +68,7 @@ interface GoogleUser {
 
 export const verifyGoogleId = async (token: string): Promise<GoogleUser> => {
   const { data } = await axios.get(
-      `https://oauth2.googleapis.com/tokeninfo?${token}`,
+     `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`,
   );
 
   return data as GoogleUser;
