@@ -1,6 +1,6 @@
 import * as AuthSession from 'expo-auth-session';
 
-import { Alert, Platform, View } from 'react-native';
+import { Alert, AsyncStorage, Platform, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
 import React, { FC, ReactElement, useState } from 'react';
 import type {
@@ -134,7 +134,10 @@ const SocialSignInButton: FC<Props> = ({
             variables: { token: accessToken },
             onCompleted: async (response: SocialSignInButtonGoogleSignInMutationResponse): Promise<void> => {
               if (response.signInWithGoogle) {
-                if (onUserCreated) onUserCreated(response.signInWithGoogle.user);
+                const { user, token } = response.signInWithGoogle;
+                await AsyncStorage.setItem('token', token);
+
+                if (onUserCreated) onUserCreated(user);
                 return;
               }
               Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
@@ -153,7 +156,10 @@ const SocialSignInButton: FC<Props> = ({
           variables: { token: accessToken },
           onCompleted: async (response: SocialSignInButtonFacebookSignInMutationResponse): Promise<void> => {
             if (response.signInWithFacebook) {
-              if (onUserCreated) onUserCreated(response.signInWithFacebook.user);
+              const { user, token } = response.signInWithFacebook;
+              await AsyncStorage.setItem('token', token);
+
+              if (onUserCreated) onUserCreated(user);
               return;
             }
             Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
@@ -215,7 +221,7 @@ const SocialSignInButton: FC<Props> = ({
     leftElement={
       <View style={{ marginRight: 6 }}>{svgIcon}</View>
     }
-    isLoading={signingIn}
+    isLoading={isFacebookInFlight || isGoogleInFlight || signingIn}
     indicatorColor={theme.primary}
     onPress={signIn}
     text={getString('SIGN_IN_WITH_FACEBOOK')}

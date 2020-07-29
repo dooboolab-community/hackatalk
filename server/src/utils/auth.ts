@@ -1,4 +1,5 @@
 import { Context } from '../context';
+import NodeRSA from 'node-rsa';
 import axios from 'axios';
 import bcrypt from 'bcrypt-nodejs';
 import ejs from 'ejs';
@@ -92,6 +93,62 @@ export const verifyFacebookId = async (accessToken: string): Promise<FacebookUse
   );
 
   return data as FacebookUser;
+};
+
+const getApplePublicKey = async () => {
+  const { data } = await axios.get(
+    'https://appleid.apple.com/auth/keys',
+  );
+
+  const key = JSON.parse(data).keys[0];
+
+  const pubKey = new NodeRSA();
+  pubKey.importKey({ n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64') }, 'components-public');
+  return pubKey.exportKey('public');
+};
+
+interface AppleUser {
+  iss: string;
+  sub: string;
+  aud: string;
+  iat: number | string;
+  exp: number | string;
+
+  nonce: string;
+
+  /* eslint-disable */
+  nonce_supported: boolean;
+  email: string;
+  email_verified: boolean | string;
+  is_private_email: boolean;
+  real_user_status: number;
+  /* eslint-enable */
+}
+
+/**
+ * Verify apple token and return user
+ * @param token
+ * @returns AppleUser
+ */
+
+export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
+  const clientID = 'dev.hackatalk';
+  const TOKEN_ISSUER = 'https://appleid.apple.com';
+
+  const applePublicKey = await getApplePublicKey();
+  const appleUser = verify(idToken, applePublicKey, { algorithms: ['RS256'] }) as AppleUser;
+
+  if (appleUser.iss !== TOKEN_ISSUER) {
+    throw new Error(
+      `id token is not issued by: ${TOKEN_ISSUER} | from: + ${appleUser.iss}`);
+  }
+  if (clientID !== undefined && appleUser.aud !== clientID) {
+    throw new Error(
+      `parameter does not include: ${appleUser.aud} | expected: ${clientID}`);
+  }
+  if (appleUser.exp < (Date.now() / 1000)) throw new Error('id token has expired');
+
+  return appleUser;
 };
 
 export const encryptCredential = async (password: string): Promise<string> =>

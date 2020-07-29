@@ -27,6 +27,7 @@ type Mutation {
   signUp(user: UserCreateInput): User!
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithApple(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
   updateProfile(user: UserUpdateInput): User!

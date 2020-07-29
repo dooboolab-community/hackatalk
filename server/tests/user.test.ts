@@ -5,6 +5,7 @@ import { apolloClient, testHost } from './setup/testSetup';
 import {
   meQuery,
   signInEmailMutation,
+  signInWithApple,
   signInWithFacebook,
   signInWithGoogle,
   signUpMutation,
@@ -100,6 +101,26 @@ describe('Resolver - User', () => {
     expect(response.signInWithFacebook).toHaveProperty('token');
     expect(response.signInWithFacebook).toHaveProperty('user');
     expect(response.signInWithFacebook.user.email).toEqual('facebook@email.com');
+  });
+
+  it('should signIn user wigh Apple', async () => {
+    const variables = {
+      accessToken: 'apple_user_token',
+    };
+
+    jest
+      .spyOn(AuthUtils, 'verifyAppleId')
+      // @ts-ignore
+      .mockImplementation(() => Promise.resolve({
+        sub: 'apple_user_token',
+        email: 'apple@email.com',
+      }));
+
+    const response = await request(testHost, signInWithApple, variables);
+    expect(response).toHaveProperty('signInWithApple');
+    expect(response.signInWithApple).toHaveProperty('token');
+    expect(response.signInWithApple).toHaveProperty('user');
+    expect(response.signInWithApple.user.email).toEqual('apple@email.com');
   });
 
   it('should signIn user with email', async () => {
