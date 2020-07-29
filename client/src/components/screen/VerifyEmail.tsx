@@ -59,7 +59,7 @@ function Page(props: Props): ReactElement {
       Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
     },
     onError: (error: any): void => {
-      showAlertForError(error?.graphQLErrors);
+      showAlertForError(error);
     },
   };
 

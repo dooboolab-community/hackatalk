@@ -7,6 +7,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Auth: any;
   /**
    * A date string, such as 2007-12-03, compliant with the `full-date` format
    * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -18,6 +19,7 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
+
 
 export type AuthPayload = {
   __typename?: 'AuthPayload';
@@ -32,43 +34,66 @@ export enum AuthType {
   Apple = 'apple'
 }
 
+
+
+
 export type Mutation = {
   __typename?: 'Mutation';
   signUp: User;
   signInEmail: AuthPayload;
+  signInWithFacebook: AuthPayload;
+  signInWithGoogle: AuthPayload;
   sendVerification: Scalars['Boolean'];
   updateProfile: User;
   findPassword: Scalars['Boolean'];
   changeEmailPassword: Scalars['Boolean'];
   createNotification: Notification;
   deleteNotification?: Maybe<Notification>;
+  singleUpload?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationSignUpArgs = {
   user?: Maybe<UserCreateInput>;
 };
+
 
 export type MutationSignInEmailArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
+
+export type MutationSignInWithFacebookArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationSignInWithGoogleArgs = {
+  accessToken: Scalars['String'];
+};
+
+
 export type MutationSendVerificationArgs = {
   email: Scalars['String'];
 };
+
 
 export type MutationUpdateProfileArgs = {
   user?: Maybe<UserUpdateInput>;
 };
 
+
 export type MutationFindPasswordArgs = {
   email: Scalars['String'];
 };
+
 
 export type MutationChangeEmailPasswordArgs = {
   password: Scalars['String'];
   newPassword: Scalars['String'];
 };
+
 
 export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
@@ -76,8 +101,15 @@ export type MutationCreateNotificationArgs = {
   os?: Maybe<Scalars['String']>;
 };
 
+
 export type MutationDeleteNotificationArgs = {
   id: Scalars['Int'];
+};
+
+
+export type MutationSingleUploadArgs = {
+  file?: Maybe<Scalars['Upload']>;
+  dir?: Maybe<Scalars['String']>;
 };
 
 export type Notification = {
@@ -102,6 +134,7 @@ export type Query = {
   notifications?: Maybe<Array<Notification>>;
 };
 
+
 export type QueryNotificationsArgs = {
   userId?: Maybe<Scalars['String']>;
 };
@@ -112,13 +145,16 @@ export type Subscription = {
   userUpdated: User;
 };
 
+
 export type SubscriptionUserSignedInArgs = {
   userId: Scalars['String'];
 };
 
+
 export type SubscriptionUserUpdatedArgs = {
   userId: Scalars['String'];
 };
+
 
 export type User = {
   __typename?: 'User';
@@ -128,7 +164,7 @@ export type User = {
   nickname?: Maybe<Scalars['String']>;
   thumbURL?: Maybe<Scalars['String']>;
   photoURL?: Maybe<Scalars['String']>;
-  birthDay?: Maybe<Scalars['DateTime']>;
+  birthday?: Maybe<Scalars['DateTime']>;
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;

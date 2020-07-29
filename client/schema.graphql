@@ -1,3 +1,5 @@
+scalar Auth
+
 type AuthPayload {
   token: String!
   user: User!
@@ -24,12 +26,15 @@ scalar Gender
 type Mutation {
   signUp(user: UserCreateInput): User!
   signInEmail(email: String!, password: String!): AuthPayload!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
   updateProfile(user: UserUpdateInput): User!
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
   deleteNotification(id: Int!): Notification
+  singleUpload(file: Upload, dir: String): String
 }
 
 type Notification {
@@ -66,7 +71,7 @@ type User {
   nickname: String
   thumbURL: String
   photoURL: String
-  birthDay: DateTime
+  birthday: DateTime
   gender: Gender
   phone: String
   statusMessage: String
