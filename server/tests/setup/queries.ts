@@ -52,6 +52,19 @@ export const signInWithFacebook = /* GraphQL */`
   }
 `;
 
+export const signInWithApple = /* GraphQL */`
+  mutation signInWithApple($accessToken: String!) {
+    signInWithApple(accessToken: $accessToken) {
+      token
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
 export const updateProfileMutation = /* GraphQL */`
   mutation updateProfile($user: UserUpdateInput) {
     updateProfile(user: $user) {

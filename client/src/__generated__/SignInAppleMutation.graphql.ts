@@ -2,38 +2,32 @@
 /* eslint-disable */
 
 import { ConcreteRequest } from "relay-runtime";
-export type SocialSignInButtonFacebookSignInMutationVariables = {
-    token: string;
+export type SignInAppleMutationVariables = {
+    idToken: string;
 };
-export type SocialSignInButtonFacebookSignInMutationResponse = {
-    readonly signInWithFacebook: {
+export type SignInAppleMutationResponse = {
+    readonly signInWithApple: {
         readonly token: string;
         readonly user: {
             readonly id: string;
-            readonly email: string | null;
-            readonly name: string | null;
-            readonly nickname: string | null;
         };
     };
 };
-export type SocialSignInButtonFacebookSignInMutation = {
-    readonly response: SocialSignInButtonFacebookSignInMutationResponse;
-    readonly variables: SocialSignInButtonFacebookSignInMutationVariables;
+export type SignInAppleMutation = {
+    readonly response: SignInAppleMutationResponse;
+    readonly variables: SignInAppleMutationVariables;
 };
 
 
 
 /*
-mutation SocialSignInButtonFacebookSignInMutation(
-  $token: String!
+mutation SignInAppleMutation(
+  $idToken: String!
 ) {
-  signInWithFacebook(accessToken: $token) {
+  signInWithApple(accessToken: $idToken) {
     token
     user {
       id
-      email
-      name
-      nickname
     }
   }
 }
@@ -44,7 +38,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "token"
+            "name": "idToken"
         } as any)
     ], v1 = [
         ({
@@ -53,12 +47,12 @@ const node: ConcreteRequest = (function () {
                 {
                     "kind": "Variable",
                     "name": "accessToken",
-                    "variableName": "token"
+                    "variableName": "idToken"
                 }
             ],
             "concreteType": "AuthPayload",
             "kind": "LinkedField",
-            "name": "signInWithFacebook",
+            "name": "signInWithApple",
             "plural": false,
             "selections": [
                 {
@@ -82,27 +76,6 @@ const node: ConcreteRequest = (function () {
                             "kind": "ScalarField",
                             "name": "id",
                             "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "email",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "name",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "nickname",
-                            "storageKey": null
                         }
                     ],
                     "storageKey": null
@@ -116,7 +89,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "SocialSignInButtonFacebookSignInMutation",
+            "name": "SignInAppleMutation",
             "selections": (v1 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -125,18 +98,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "SocialSignInButtonFacebookSignInMutation",
+            "name": "SignInAppleMutation",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "cecbee289e8cf5a4a313c95ffe414a4c",
+            "cacheID": "35c138f5251cbee5640bf254e09d3be9",
             "id": null,
             "metadata": {},
-            "name": "SocialSignInButtonFacebookSignInMutation",
+            "name": "SignInAppleMutation",
             "operationKind": "mutation",
-            "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $token: String!\n) {\n  signInWithFacebook(accessToken: $token) {\n    token\n    user {\n      id\n      email\n      name\n      nickname\n    }\n  }\n}\n"
+            "text": "mutation SignInAppleMutation(\n  $idToken: String!\n) {\n  signInWithApple(accessToken: $idToken) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '4136b1130e4314532ce436342c61b6f9';
+(node as any).hash = 'e99bef1cc310ea16a7901ce9d8cc07ef';
 export default node;

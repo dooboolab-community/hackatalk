@@ -8231,7 +8231,7 @@ expo-updates@~0.2.12:
     fbemitter "^2.1.1"
     uuid "^3.4.0"
 
-expo-web-browser@^8.3.1:
+expo-web-browser@^8.3.1, expo-web-browser@~8.3.1:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-8.3.1.tgz#c88cc349dfa1db31cfdbe365753b6840054d0152"
   integrity sha512-mDxSNpc/Ww/RX6MhmPRUWo2xNi8HGZ1TDMqIjTvUzrL7pGG9VerX0EDMhfLgo6c7KVOY1ngbTyybApZTXgPCOQ==

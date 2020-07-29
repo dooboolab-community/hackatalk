@@ -1112,6 +1112,13 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
+"@types/node-rsa@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/node-rsa/-/node-rsa-1.0.0.tgz#4432df6227c5de734f5f0fbea2420ffb51c51e44"
+  integrity sha512-9hTSXhGDKotpq5XCm+r7wMgt5gl6bGH6VS/sV9bsKda4JmJYyOCdTenSkTUh7zsOihm2oCm5o2ZdfpUIGYKLzQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/node@*":
   version "13.13.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.4.tgz#1581d6c16e3d4803eb079c87d4ac893ee7501c2c"
@@ -1846,7 +1853,7 @@ arrify@^2.0.1:
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-2.0.1.tgz#c9655e9331e0abcd588d2a7cad7e9956f66701fa"
   integrity sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==
 
-asn1@~0.2.3:
+asn1@^0.2.4, asn1@~0.2.3:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.4.tgz#8d2475dfab553bb33e77b54e59e880bb8ce23136"
   integrity sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==
@@ -5860,6 +5867,13 @@ node-pre-gyp@^0.13.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+node-rsa@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/node-rsa/-/node-rsa-1.1.1.tgz#efd9ad382097782f506153398496f79e4464434d"
+  integrity sha512-Jd4cvbJMryN21r5HgxQOpMEqv+ooke/korixNNK3mGqfGJmy0M77WDDzo/05969+OkMy3XW1UuZsSmW9KQm7Fw==
+  dependencies:
+    asn1 "^0.2.4"
 
 nodemon@^2.0.4:
   version "2.0.4"

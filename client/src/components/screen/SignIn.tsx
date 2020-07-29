@@ -1,6 +1,7 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Config from '../../../config';
 import * as Crypto from 'expo-crypto';
+import * as WebBrowser from 'expo-web-browser';
 
 import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
@@ -8,6 +9,10 @@ import { AuthType, User } from '../../types/graphql';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
+import type {
+  SignInAppleMutation,
+  SignInAppleMutationResponse,
+} from '../../__generated__/SignInAppleMutation.graphql';
 import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
@@ -90,7 +95,7 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
-const { iOSClientId, facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
+const { facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
@@ -111,6 +116,17 @@ const signInEmail = graphql`
   }
 `;
 
+const signInWithApple = graphql`
+  mutation SignInAppleMutation($idToken: String!) {
+    signInWithApple(accessToken: $idToken) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
+
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
@@ -123,29 +139,9 @@ function SignIn(props: Props): ReactElement {
   const [errorPassword, setErrorPassword] = useState<string>('');
 
   const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
+  const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
 
-  const mutationConfig = {
-    variables: {
-      email,
-      password,
-    },
-    onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
-      const { token, user } = response.signInEmail;
-
-      if (user && !user.verified) {
-        return navigation.navigate('VerifyEmail', {
-          email,
-        });
-      }
-
-      await AsyncStorage.setItem('token', token);
-      await AsyncStorage.setItem('password', password);
-      setUser(user);
-    },
-    onError: (error: any): void => {
-      showAlertForError(error);
-    },
-  };
+  WebBrowser.maybeCompleteAuthSession();
 
   const goToSignUp = (): void => {
     navigation.navigate('SignUp');
@@ -165,6 +161,29 @@ function SignIn(props: Props): ReactElement {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
       return;
     }
+
+    const mutationConfig = {
+      variables: {
+        email,
+        password,
+      },
+      onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
+        const { token, user } = response.signInEmail;
+
+        if (user && !user.verified) {
+          return navigation.navigate('VerifyEmail', {
+            email,
+          });
+        }
+
+        await AsyncStorage.setItem('token', token);
+        await AsyncStorage.setItem('password', password);
+        setUser(user);
+      },
+      onError: (error: any): void => {
+        showAlertForError(error);
+      },
+    };
 
     commitEmail(mutationConfig);
   };
@@ -188,7 +207,26 @@ function SignIn(props: Props): ReactElement {
         state: csrf,
         nonce: hashedNonce,
       });
-      const { identityToken, email, state } = appleCredential;
+      const { identityToken } = appleCredential;
+
+      if (identityToken) {
+        const mutationConfig = {
+          variables: {
+            idToken: identityToken,
+          },
+          onCompleted: async (response: SignInAppleMutationResponse): Promise<void> => {
+            const { token, user } = response.signInWithApple;
+
+            await AsyncStorage.setItem('token', token);
+            setUser(user);
+          },
+          onError: (error: any): void => {
+            showAlertForError(error);
+          },
+        };
+
+        commitApple(mutationConfig);
+      }
     } catch (e) {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow

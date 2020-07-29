@@ -6,6 +6,7 @@ import {
   getUserId,
   validateCredential,
   validateEmail,
+  verifyAppleId,
   verifyFacebookId,
   verifyGoogleId,
 } from '../../../utils/auth';
@@ -213,6 +214,26 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
         authType: AuthType.facebook,
         name,
         email: email || `${facebookId}@facebook.com`,
+      },
+      ctx,
+    );
+  },
+});
+
+export const signInWithApple = mutationField('signInWithApple', {
+  type: 'AuthPayload',
+  args: {
+    accessToken: stringArg({ nullable: false }),
+  },
+  resolve: async (_parent, { accessToken }, ctx) => {
+    const { sub, email } = await verifyAppleId(accessToken);
+
+    return signInWithSocialAccount(
+      {
+        socialId: sub,
+        authType: AuthType.apple,
+        name: '',
+        email: email,
       },
       ctx,
     );
