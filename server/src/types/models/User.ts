@@ -26,11 +26,12 @@ export const User = objectType({
     t.model.verified();
     t.model.lastSignedIn();
     t.model.isOnline();
+    t.model.profile();
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.model.profile();
     t.list.field('notifications', { type: 'Notification', nullable: true });
+    t.list.field('friends', { type: 'Friend', nullable: true });
   },
 });
 

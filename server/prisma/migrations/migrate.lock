@@ -1,6 +1,3 @@
 # Prisma Migrate lockfile v1
 
-20200628200026-init
-20200630202419-user-optional-fields
-20200630221739-user-types
-20200710220222-birthday
+20200730204657-init-database-proposal

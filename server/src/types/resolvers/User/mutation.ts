@@ -10,7 +10,7 @@ import {
   verifyFacebookId,
   verifyGoogleId,
 } from '../../../utils/auth';
-import { AuthType, GenderType } from '../../models/Scalar';
+import { AuthType, Gender } from '../../models/Scalar';
 import {
   ErrorEmailForUserExists,
   ErrorEmailNotValid,
@@ -36,7 +36,7 @@ interface SocialUserInput {
   name: string;
   email: string;
   birthday?: Date;
-  gender?: GenderType;
+  gender?: Gender;
   phone?: string;
 }
 
