@@ -239,6 +239,13 @@
     {
       "tag": "CreateField",
       "model": "User",
+      "field": "lastSignedIn",
+      "type": "DateTime",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
       "field": "isOnline",
       "type": "Boolean",
       "arity": "Optional"
@@ -267,13 +274,6 @@
       },
       "argument": "",
       "value": "false"
-    },
-    {
-      "tag": "CreateField",
-      "model": "User",
-      "field": "lastSignedIn",
-      "type": "DateTime",
-      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -937,11 +937,11 @@
     },
     {
       "tag": "CreateModel",
-      "model": "MemberShip"
+      "model": "Membership"
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "alertMode",
       "type": "AlertMode",
       "arity": "Optional"
@@ -951,7 +951,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "alertMode"
         },
         "directive": "default"
@@ -963,7 +963,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "alertMode"
         },
         "directive": "default"
@@ -973,8 +973,8 @@
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
-      "field": "type",
+      "model": "Membership",
+      "field": "membershipType",
       "type": "MembershipType",
       "arity": "Required"
     },
@@ -983,8 +983,8 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
-          "field": "type"
+          "model": "Membership",
+          "field": "membershipType"
         },
         "directive": "default"
       }
@@ -995,8 +995,8 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
-          "field": "type"
+          "model": "Membership",
+          "field": "membershipType"
         },
         "directive": "default"
       },
@@ -1005,7 +1005,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Optional"
@@ -1015,7 +1015,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "createdAt"
         },
         "directive": "default"
@@ -1027,7 +1027,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "createdAt"
         },
         "directive": "default"
@@ -1037,7 +1037,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "updatedAt",
       "type": "DateTime",
       "arity": "Optional"
@@ -1047,7 +1047,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "updatedAt"
         },
         "directive": "default"
@@ -1059,7 +1059,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "updatedAt"
         },
         "directive": "default"
@@ -1072,7 +1072,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "updatedAt"
         },
         "directive": "updatedAt"
@@ -1080,14 +1080,14 @@
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "userId",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "user",
       "type": "User",
       "arity": "Required"
@@ -1097,7 +1097,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "user"
         },
         "directive": "relation"
@@ -1109,7 +1109,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "user"
         },
         "directive": "relation"
@@ -1123,7 +1123,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "user"
         },
         "directive": "relation"
@@ -1133,14 +1133,14 @@
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "channelId",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "MemberShip",
+      "model": "Membership",
       "field": "channel",
       "type": "Channel",
       "arity": "Required"
@@ -1150,7 +1150,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "channel"
         },
         "directive": "relation"
@@ -1162,7 +1162,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "channel"
         },
         "directive": "relation"
@@ -1176,7 +1176,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "MemberShip",
+          "model": "Membership",
           "field": "channel"
         },
         "directive": "relation"
@@ -1189,7 +1189,7 @@
       "location": {
         "path": {
           "tag": "Model",
-          "model": "MemberShip"
+          "model": "Membership"
         },
         "directive": "id"
       }
@@ -1200,7 +1200,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Model",
-          "model": "MemberShip"
+          "model": "Membership"
         },
         "directive": "id"
       },
@@ -1257,7 +1257,7 @@
     {
       "tag": "CreateField",
       "model": "Channel",
-      "field": "type",
+      "field": "channelType",
       "type": "ChannelType",
       "arity": "Required"
     },
@@ -1304,7 +1304,7 @@
       "tag": "CreateField",
       "model": "Channel",
       "field": "membership",
-      "type": "MemberShip",
+      "type": "Membership",
       "arity": "Required"
     },
     {
@@ -1391,113 +1391,6 @@
     },
     {
       "tag": "CreateModel",
-      "model": "Reaction"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Reaction",
-      "field": "id",
-      "type": "Int",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "id"
-        },
-        "directive": "default"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "id"
-        },
-        "directive": "default"
-      },
-      "argument": "",
-      "value": "autoincrement()"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "id"
-        },
-        "directive": "id"
-      }
-    },
-    {
-      "tag": "CreateField",
-      "model": "Reaction",
-      "field": "type",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Reaction",
-      "field": "userId",
-      "type": "String",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateField",
-      "model": "Reaction",
-      "field": "user",
-      "type": "User",
-      "arity": "Required"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "user"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "user"
-        },
-        "directive": "relation"
-      },
-      "argument": "fields",
-      "value": "[userId]"
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Reaction",
-          "field": "user"
-        },
-        "directive": "relation"
-      },
-      "argument": "references",
-      "value": "[id]"
-    },
-    {
-      "tag": "CreateModel",
       "model": "Message"
     },
     {
@@ -1546,7 +1439,7 @@
     {
       "tag": "CreateField",
       "model": "Message",
-      "field": "type",
+      "field": "messageType",
       "type": "MessageType",
       "arity": "Required"
     },
@@ -1556,7 +1449,7 @@
         "path": {
           "tag": "Field",
           "model": "Message",
-          "field": "type"
+          "field": "messageType"
         },
         "directive": "default"
       }
@@ -1568,7 +1461,7 @@
         "path": {
           "tag": "Field",
           "model": "Message",
-          "field": "type"
+          "field": "messageType"
         },
         "directive": "default"
       },
@@ -1602,31 +1495,6 @@
       "field": "reactions",
       "type": "Reaction",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Message",
-          "field": "reactions"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Message",
-          "field": "reactions"
-        },
-        "directive": "relation"
-      },
-      "argument": "",
-      "value": "\"Reaction\""
     },
     {
       "tag": "CreateField",
@@ -1898,7 +1766,7 @@
     {
       "tag": "CreateField",
       "model": "Reply",
-      "field": "type",
+      "field": "messageType",
       "type": "MessageType",
       "arity": "Required"
     },
@@ -1908,7 +1776,7 @@
         "path": {
           "tag": "Field",
           "model": "Reply",
-          "field": "type"
+          "field": "messageType"
         },
         "directive": "default"
       }
@@ -1920,7 +1788,7 @@
         "path": {
           "tag": "Field",
           "model": "Reply",
-          "field": "type"
+          "field": "messageType"
         },
         "directive": "default"
       },
@@ -1954,31 +1822,6 @@
       "field": "reactions",
       "type": "Reaction",
       "arity": "List"
-    },
-    {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Field",
-          "model": "Reply",
-          "field": "reactions"
-        },
-        "directive": "relation"
-      }
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Directive",
-        "path": {
-          "tag": "Field",
-          "model": "Reply",
-          "field": "reactions"
-        },
-        "directive": "relation"
-      },
-      "argument": "",
-      "value": "\"Reaction\""
     },
     {
       "tag": "CreateField",
@@ -2162,6 +2005,219 @@
           "tag": "Field",
           "model": "Reply",
           "field": "message"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateModel",
+      "model": "Reaction"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "id",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "id"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "id"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "autoincrement()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "id"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "value",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "userId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "user",
+      "type": "User",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "user"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[userId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "user"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "messageId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "message",
+      "type": "Message",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "message"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "message"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[messageId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "message"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "replyId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reaction",
+      "field": "reply",
+      "type": "Reply",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "reply"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "reply"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[replyId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Reaction",
+          "field": "reply"
         },
         "directive": "relation"
       },

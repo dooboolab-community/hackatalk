@@ -32,8 +32,8 @@ model User {
   phone                  String?
   statusMessage          String?
   verified               Boolean?                @default(false)
-  isOnline               Boolean?                @default(false)
   lastSignedIn           DateTime?
+  isOnline               Boolean?                @default(false)
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
   deletedAt              DateTime?
@@ -48,7 +48,6 @@ model Notification {
   token                  String
   device                 String?
   os                     String?
-
   userId                 String
   user                   User                    @relation(fields: [userId], references: [id])
   createdAt              DateTime?               @default(now())
@@ -88,9 +87,9 @@ enum AlertMode {
   silent
 }
 
-model MemberShip {
+model Membership {
   alertMode              AlertMode?              @default(sound)
-  type                   MembershipType          @default(member)
+  membershipType         MembershipType          @default(member)
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
 
@@ -109,20 +108,13 @@ enum ChannelType {
 
 model Channel {
   id                     String                  @default(cuid()) @id
-  type                   ChannelType
+  channelType            ChannelType
   name                   String?
   messages               Message[]               @relation("Message")
-  membership             MemberShip
+  membership             Membership
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
   deletedAt              DateTime?
-}
-
-model Reaction {
-  id                     Int                     @default(autoincrement()) @id
-  type                   String
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
 }
 
 enum MessageType {
@@ -133,11 +125,11 @@ enum MessageType {
 
 model Message {
   id                     Int                     @default(autoincrement()) @id
-  type                   MessageType             @default(text)
+  messageType            MessageType             @default(text)
   text                   String?
   imageUrls              String[]
   fileUrls               String[]
-  reactions              Reaction[]              @relation("Reaction")
+  reactions              Reaction[]
   replies                Reply[]                 @relation("Reply")
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
@@ -151,11 +143,11 @@ model Message {
 
 model Reply {
   id                     Int                     @default(autoincrement()) @id
-  type                   MessageType             @default(text)
+  messageType            MessageType             @default(text)
   text                   String?
   imageUrls              String[]
   fileUrls               String[]
-  reactions              Reaction[]              @relation("Reaction")
+  reactions              Reaction[]
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
   deletedAt              DateTime?
@@ -164,4 +156,15 @@ model Reply {
   sender                 User                    @relation(fields: [senderId], references: [id])
   messageId              Int
   message                Message                 @relation(fields: [messageId], references: [id])
+}
+
+model Reaction {
+  id                     Int                     @default(autoincrement()) @id
+  value                  String
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  messageId              Int
+  message                Message                 @relation(fields: [messageId], references: [id])
+  replyId                Int
+  reply                  Reply                   @relation(fields: [replyId], references: [id])
 }
