@@ -1,6 +1,6 @@
 import * as AuthSession from 'expo-auth-session';
 
-import { Alert, AsyncStorage, Platform, View } from 'react-native';
+import { Alert, Platform, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
 import React, { FC, ReactElement, useState } from 'react';
 import type {
@@ -13,6 +13,7 @@ import type {
 } from '../../__generated__/SocialSignInButtonGoogleSignInMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import { Button } from 'dooboo-ui';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
