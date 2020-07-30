@@ -7364,10 +7364,10 @@ domutils@^2.0.0:
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
 
-dooboo-ui@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.11.tgz#bb3757a56a2d3d735a814bb802ef1dd75edf15ec"
-  integrity sha512-KNVoO6QZxT1XE2+HdD94J0clzKzHM143vKGMVs1GbtrDv4aumU4J6hk3/zvTyf0A4Bubg6qrgcarbYNLV/Cniw==
+dooboo-ui@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.0.15.tgz#e7bb4eb2f2bfdf215a82d6c46656735354ae8345"
+  integrity sha512-TbSgalzf/MczAfdcSXmDpb9BiU5VW6FlXGWz2vKvanQoHy3nI0bXvjhhc9/h1/wYSlIVmV5IqpOTMP9X65l1Lw==
   dependencies:
     dooboolab-welcome "^1.2.0"
 

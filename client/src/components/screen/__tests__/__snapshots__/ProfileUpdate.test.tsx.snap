@@ -126,7 +126,7 @@ exports[`rendering test renders as expected 1`] = `
                     "marginBottom": 5,
                   },
                   undefined,
-                  null,
+                  false,
                 ]
               }
             >
@@ -169,7 +169,7 @@ exports[`rendering test renders as expected 1`] = `
                     "borderBottomWidth": 0.6,
                     "borderColor": "#2E2E2E",
                   },
-                  null,
+                  false,
                 ]
               }
             />
@@ -198,7 +198,7 @@ exports[`rendering test renders as expected 1`] = `
                     "marginBottom": 5,
                   },
                   undefined,
-                  null,
+                  false,
                 ]
               }
             >
@@ -241,7 +241,7 @@ exports[`rendering test renders as expected 1`] = `
                     "borderBottomWidth": 0.6,
                     "borderColor": "#2E2E2E",
                   },
-                  null,
+                  false,
                 ]
               }
             />
@@ -270,7 +270,7 @@ exports[`rendering test renders as expected 1`] = `
                     "marginBottom": 5,
                   },
                   undefined,
-                  null,
+                  false,
                 ]
               }
             >
@@ -313,7 +313,7 @@ exports[`rendering test renders as expected 1`] = `
                     "borderBottomWidth": 0.6,
                     "borderColor": "#2E2E2E",
                   },
-                  null,
+                  false,
                 ]
               }
             />

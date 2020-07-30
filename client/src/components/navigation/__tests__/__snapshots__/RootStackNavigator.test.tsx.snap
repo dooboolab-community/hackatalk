@@ -450,7 +450,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                         "borderColor": "#2E2E2E",
                                                       },
                                                       undefined,
-                                                      null,
+                                                      false,
+                                                      undefined,
                                                     ]
                                                   }
                                                 >
@@ -463,7 +464,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "fontWeight": "bold",
                                                         },
                                                         undefined,
-                                                        null,
+                                                        false,
                                                         Object {
                                                           "width": 110,
                                                         },
@@ -533,7 +534,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                         "borderColor": "#2E2E2E",
                                                       },
                                                       undefined,
-                                                      null,
+                                                      false,
+                                                      undefined,
                                                     ]
                                                   }
                                                 >
@@ -546,7 +548,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                                           "fontWeight": "bold",
                                                         },
                                                         undefined,
-                                                        null,
+                                                        false,
                                                         Object {
                                                           "width": 110,
                                                         },

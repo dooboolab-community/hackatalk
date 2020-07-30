@@ -40,18 +40,18 @@ describe('Interaction', () => {
     expect(searchInput.props.value).toEqual('test search');
   });
 
-  it('should press userListItem and then remove friend', async () => {
-    const userListItem0 = testingLib.getByTestId('user-list-item0');
-    act(() => {
-      fireEvent.press(userListItem0);
-    });
+  // it('should press userListItem and then remove friend', async () => {
+  //   const userListItem0 = testingLib.getByTestId('user-list-item0');
+  //   act(() => {
+  //     fireEvent.press(userListItem0);
+  //   });
 
-    const removeItem0 = testingLib.getByTestId('remove-0');
-    await waitForElement(() => removeItem0);
-    act(() => {
-      fireEvent.press(removeItem0);
-    });
-  });
+  //   const removeItem0 = testingLib.getByTestId('remove-0');
+  //   await waitForElement(() => removeItem0);
+  //   act(() => {
+  //     fireEvent.press(removeItem0);
+  //   });
+  // });
 
   // it('should press done button', () => {
   //   const touchDone = testingLib.getByTestId('touch-done');

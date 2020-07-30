@@ -66,7 +66,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
                   "marginBottom": 5,
                 },
                 undefined,
-                null,
+                false,
               ]
             }
           >
@@ -109,7 +109,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
                   "borderBottomWidth": 0.6,
                   "borderColor": "#2E2E2E",
                 },
-                null,
+                false,
               ]
             }
           />
