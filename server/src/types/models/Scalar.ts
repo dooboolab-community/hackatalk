@@ -27,6 +27,7 @@ export enum GenderType {
   male = 'male',
   female = 'female',
 }
+
 export const Gender = scalarType({
   name: 'Gender',
   asNexusMethod: 'gender',

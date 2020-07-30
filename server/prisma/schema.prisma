@@ -20,41 +20,148 @@ enum AuthType {
 }
 
 model User {
-  id               String      @default(cuid()) @id
-  email            String?     @unique
-  password         String?
-  name             String?
-  nickname         String?
-  thumbURL         String?
-  photoURL         String?
-  birthday         DateTime?
-  gender           Gender?
-  phone            String?
-  statusMessage    String?
-  verified         Boolean?    @default(false)
-  isOnline         Boolean?    @default(false)
-  lastSignedIn     DateTime?
-  notifications    Notification[]
-  profile          Profile?
-  createdAt        DateTime?   @default(now())
-  updatedAt        DateTime?   @default(now()) @updatedAt
-  deletedAt        DateTime?
+  id                     String                  @default(cuid()) @id
+  email                  String?                 @unique
+  password               String?
+  name                   String?
+  nickname               String?
+  thumbURL               String?
+  photoURL               String[]
+  birthday               DateTime?
+  gender                 Gender?
+  phone                  String?
+  statusMessage          String?
+  verified               Boolean?                @default(false)
+  isOnline               Boolean?                @default(false)
+  lastSignedIn           DateTime?
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  profile                Profile?
+  notifications          Notification[]          @relation("Notification")
+  friends                Friend[]                @relation("Friend")
 }
 
 model Notification {
-  id          Int         @default(autoincrement()) @id
-  token       String
-  device      String?
-  os          String?
-  userId      String
-  user        User        @relation(fields: [userId], references: [id])
-  createdAt   DateTime?   @default(now())
+  id                     Int                     @default(autoincrement()) @id
+  token                  String
+  device                 String?
+  os                     String?
+
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  createdAt              DateTime?               @default(now())
 }
 
 model Profile {
-  id          String      @default(cuid()) @id
-  socialId    String?
-  authType    AuthType?
-  userId      String      @unique
-  User        User        @relation(fields: [userId], references: [id])
+  id                     Int                     @default(autoincrement()) @id
+  socialId               String?
+  authType               AuthType?
+
+  userId                 String                  @unique
+  User                   User                    @relation(fields: [userId], references: [id])
+}
+
+model Friend {
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  friendId               String
+  friend                 User                    @relation(name: "Friend", fields: [friendId], references: [id])
+
+  @@id([userId, friendId])
+}
+
+enum MembershipType {
+  owner
+  admin
+  member
+}
+
+enum AlertMode {
+  sound
+  vibrate
+  silent
+}
+
+model MemberShip {
+  alertMode              AlertMode?              @default(sound)
+  type                   MembershipType          @default(member)
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  channelId              String
+  channel                Channel                 @relation(fields: [channelId], references: [id])
+
+  @@id([userId, channelId])
+}
+
+enum ChannelType {
+  private
+  public
+}
+
+model Channel {
+  id                     String                  @default(cuid()) @id
+  type                   ChannelType
+  name                   String?
+  messages               Message[]               @relation("Message")
+  membership             MemberShip
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+}
+
+model Reaction {
+  id                     Int                     @default(autoincrement()) @id
+  type                   String
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+}
+
+enum MessageType {
+  text
+  photo
+  file
+}
+
+model Message {
+  id                     Int                     @default(autoincrement()) @id
+  type                   MessageType             @default(text)
+  text                   String?
+  imageUrls              String[]
+  fileUrls               String[]
+  reactions              Reaction[]              @relation("Reaction")
+  replies                Reply[]                 @relation("Reply")
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  channelId              String
+  channel                Channel                 @relation(fields: [channelId], references: [id])
+  senderId               String
+  sender                 User                    @relation(fields: [senderId], references: [id])
+}
+
+model Reply {
+  id                     Int                     @default(autoincrement()) @id
+  type                   MessageType             @default(text)
+  text                   String?
+  imageUrls              String[]
+  fileUrls               String[]
+  reactions              Reaction[]              @relation("Reaction")
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  senderId               String
+  sender                 User                    @relation(fields: [senderId], references: [id])
+  messageId              Int
+  message                Message                 @relation(fields: [messageId], references: [id])
 }

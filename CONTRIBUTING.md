@@ -204,9 +204,12 @@ array.forEach((e) => {
 - testID should be written in `kebab-case`
   `testID = "my-test-id"`
 - Class name should be a `PascalCase`
+- Enum type should be a `PascalCase`
 - Constants should be written in `UPPER_SNAKE_CASE`
+   * Note that this is for `number`, `string` and constant `array`.
+   * Unformed data type like object or class variable should be written in `camelCase`.
 - Variables and functions should be written in `camelCase`
-- Constant string variables should be written in `LOWER_SNAKE_CASE`
+- Assets name should be written in `lower_snake_case`
   `const imgUrl = 'assets/icons/icon_add.png'`
 
 - **If you find code that does not fit in the coding convention, do not ever try to fix code that is not related to your purpose.**
