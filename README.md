@@ -10,8 +10,8 @@
 ## Contributing to `HackaTalk`
 
 - See also
-  - dooboolab's [vision-and-mission](https://github.com/dooboolab/dooboolab.com/blob/master/vision-and-mission.md)
-  - dooboolab's [code of conduct](https://github.com/dooboolab/dooboolab.com/blob/master/code-of-conduct.md)
+  - dooboolab's [vision-and-mission](https://dooboolab.com/vision)
+  - dooboolab's [code of conduct](https://dooboolab.com/codeofconduct)
 - [Contributing](CONTRIBUTING.md)
 
 
@@ -20,6 +20,9 @@
 - [Client](client) :iphone:
 
 - [Server](server) :computer:
+
+  * Test Web
+    [api](https://hackatalk.dev)
 
   * Test Apis
     [api](https://hackatalkserver.azurewebsites.net)

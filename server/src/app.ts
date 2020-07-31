@@ -22,8 +22,6 @@ require('dotenv').config();
 
 const {
   STORAGE_ENDPOINT,
-  NODE_ENV,
-  REDIRECT_URL,
 } = process.env;
 
 i18next
@@ -66,6 +64,7 @@ export const createApp = (): express.Application => {
         const password = await encryptCredential(randomPassword);
         await resetPassword(email, password);
         return res.render('password_changed', {
+          REDIRECT_URL: 'https://hackatalk.dev',
           title: req.t('PW_CHANGED_TITLE'),
           text: req.t('PW_CHANGED'),
           SERVICE_CENTER: req.t('SERVICE_CENTER'),
@@ -85,7 +84,7 @@ export const createApp = (): express.Application => {
       if (validated) {
         await verifyEmail(email);
         return res.render('email_verified', {
-          REDIRECT_URL,
+          REDIRECT_URL: 'https://hackatalk.dev',
           TITLE: req.t('EMAIL_VERIFIED_TITLE'),
           TEXT: req.t('EMAIL_VERIFIED'),
           SERVICE_CENTER: req.t('SERVICE_CENTER'),
