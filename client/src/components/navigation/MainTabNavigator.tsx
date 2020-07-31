@@ -39,11 +39,11 @@ const CustomHeader = (): ReactElement => {
       style={{
         paddingTop: Platform.select({
           ios: Constants.statusBarHeight,
-          android: 0,
+          default: 0,
         }),
         height: Platform.select({
           ios: 44 + Constants.statusBarHeight,
-          android: 56,
+          default: 56,
         }),
         alignSelf: 'stretch',
         alignItems: 'center',

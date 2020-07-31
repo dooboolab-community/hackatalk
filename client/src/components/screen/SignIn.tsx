@@ -181,7 +181,7 @@ function SignIn(props: Props): ReactElement {
         setUser(user);
       },
       onError: (error: any): void => {
-        showAlertForError(error);
+        setErrorPassword(error.message);
       },
     };
 

@@ -1,4 +1,5 @@
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
+
 import { getString } from '../../STRINGS';
 
 export const validateEmail = (email: string): boolean => {
@@ -13,5 +14,9 @@ export const validatePassword = (password: string): boolean => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const showAlertForError = (error: any): void => {
-  Alert.alert(getString('ERROR'), error.message || '');
+  Platform.select({
+    web: Alert.alert(getString('ERROR'), error.message || ''),
+    // @ts-ignore
+    default: alert(error.message || ''),
+  });
 };
