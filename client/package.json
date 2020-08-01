@@ -99,6 +99,7 @@
     "@graphql-codegen/cli": "^1.17.6",
     "@graphql-codegen/core": "^1.17.6",
     "@graphql-codegen/typescript": "^1.17.6",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.1",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/jest-native": "^3.3.0",
     "@testing-library/react-hooks": "^3.4.1",
@@ -139,7 +140,8 @@
     "relay-test-utils": "^10.0.1",
     "sharp-cli": "^1.14.1",
     "ts-jest": "^26.1.4",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "importSort": {
     ".js, .jsx": {

@@ -290,7 +290,6 @@ function SignIn(props: Props): ReactElement {
   return (
     <Container>
       <StatusBar />
-
       <ScrollView style={{ alignSelf: 'stretch' }}>
         <AnimatedTouchableOpacity
           testID="theme-test"
@@ -322,7 +321,6 @@ function SignIn(props: Props): ReactElement {
               color: theme.fontColor,
             }}
             style={{ marginBottom: 20 }}
-            isRow={true}
             label={getString('EMAIL')}
             borderColor={theme.font}
             focusColor={theme.focused}
@@ -344,7 +342,6 @@ function SignIn(props: Props): ReactElement {
               color: theme.fontColor,
             }}
             style={{ marginBottom: 20 }}
-            isRow={true}
             label={getString('PASSWORD')}
             borderColor={theme.font}
             focusColor={theme.focused}
@@ -424,7 +421,7 @@ function SignIn(props: Props): ReactElement {
                       <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
-                  isLoading={signingInApple}
+                  isLoading={signingInApple || isAppleInFlight}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
