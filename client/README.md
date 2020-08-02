@@ -96,8 +96,8 @@ Run below to make your own `app` variables.
 
   | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
-  | GRAPHQL_URL                  | `https://hackatalkserver.azurewebsites.net/graphql` | yes |  |
-  | ROOT_URL                     | `https://hackatalkserver.azurewebsites.net`         | yes |  |
+  | GRAPHQL_URL                  | `https://hackatalk.azurewebsites.net/graphql` | yes |  |
+  | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
   | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
   | MYAPP_RELEASE_KEY_ALIAS      |                                      |     |  |
   | MYAPP_RELEASE_STORE_PASSWORD |                                      |     |  |

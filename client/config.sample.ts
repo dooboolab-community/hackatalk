@@ -1,5 +1,5 @@
-export const GRAPHQL_URL = 'https://hackatalkserver.azurewebsites.net/graphql';
-export const ROOT_URL = 'https://hackatalkserver.azurewebsites.net';
+export const GRAPHQL_URL = 'https://hackatalk.azurewebsites.net/graphql';
+export const ROOT_URL = 'https://hackatalk.azurewebsites.net';
 
 export const facebookAppId = '';
 export const facebookSecret = '';

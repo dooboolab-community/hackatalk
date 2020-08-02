@@ -25,10 +25,10 @@
     [hackatalk.dev](https://hackatalk.dev)
 
   * Test Apis
-    [api](https://hackatalkserver.azurewebsites.net)
+    [api](https://hackatalk.azurewebsites.net)
 
   * Test Graphql queries
-    [graphql](https://hackatalkserver.azurewebsites.net/graphql)
+    [graphql](https://hackatalk.azurewebsites.net/graphql)
 
 
 ## Contributors ✨

@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - hackatalkserver
+name: Build and deploy Node.js app to Azure Web App - hackatalk server
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
       with:
-        app-name: 'hackatalkserver'
+        app-name: 'hackatalk'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5b693f51c7f24d7eacd53ae7c7fcee7f }}
         package: ./server
