@@ -22,6 +22,7 @@ require('dotenv').config();
 
 const {
   STORAGE_ENDPOINT,
+  NODE_ENV,
 } = process.env;
 
 i18next
