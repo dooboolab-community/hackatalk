@@ -17,7 +17,7 @@
     "upgrade": "react-native-git-upgrade && npm install --save react-native",
     "upgrade:major": "react-native upgrade",
     "test": "jest",
-    "web": "expo start --web",
+    "web": "EXPO_WEBPACK_FAST_REFRESH=1 expo web",
     "start:packager": "node_modules/react-native/packager/packager.sh",
     "start:reset": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",

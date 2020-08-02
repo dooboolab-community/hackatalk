@@ -81,27 +81,19 @@
 2. Configure [postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) database.
 
 3. Setup environment
-   1. cp `./prisma/.env.sample` `./prisma/.env`
-   2. Include `DATABASE_URL`
-      ```
-      DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
-      ```
-      > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
-   3. If you want to use default server setting in when developing, create below database in your postgresql.
-      ```
-      CREATE DATABASE hackatalk;
-      CREATE ROLE postgres WITH LOGIN NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION PASSWORD 'dooboolab0!';
-      GRANT CONNECT ON DATABASE hackatalk TO postgres;
-      GRANT ALL PRIVILEGES ON DATABASE hackatalk TO postgres;
-
-      ```
-   4. Also change `dotenv` variables to use envrionment in previous step.
+   1. You can use our default `environment` which is configured in `dotenv/dev.env`. However, this may not be sufficient when developing so you can also set them up locally.
+   2. Setting up own `environment` locally.
       - Copy `dotenv/dev.env` to `dotenv/.env`.
         ```
         cp dotenv/dev.env dotenv/.env
         ```
-      - Then run `yarn local`
-   5. Please include `test` environment locally to test queries in your database.
+      - Include `DATABASE_URL` (* necessary field)
+         ```
+         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
+         ```
+         > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
+      - Then run `yarn local` to start server with your local environment.
+   3. Please include `test` environment locally to test queries in your database.
       ```
       $ psql postgres
       postgres=> CREATE DATABASE postgres;
@@ -114,13 +106,18 @@
         DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
         ```
 
-4. Generate Prisma Client and Nexus
+4. Sync your local database with `Prisma`.
+   ```
+   yarn migrate:up
+   ```
+   - Above command will follow `dotenv/.env` environment.
+
+5. Generate Prisma Client and Nexus
    ```
    yarn generate
    ```
 
-5. Migration
-
+6. Migration
    1. Change models in `./prisma/schema.prisma`.
    2. Run `migration:save` script and type the migration name that you want.
       ```

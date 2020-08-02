@@ -22,7 +22,7 @@
 - [Server](server) :computer:
 
   * Test Web
-    [api](https://hackatalk.dev)
+    [hackatalk.dev](https://hackatalk.dev)
 
   * Test Apis
     [api](https://hackatalkserver.azurewebsites.net)
