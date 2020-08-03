@@ -92,7 +92,7 @@ describe('[FindPw] interaction', () => {
       await wait(() => expect(textInput).toBeTruthy());
 
       act(() => {
-        fireEvent.changeText(textInput, 'example@example');
+        fireEvent.changeText(textInput, 'example');
       });
 
       const btnFindPw = testingLib.getByTestId('btn-find-pw');
