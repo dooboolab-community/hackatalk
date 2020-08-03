@@ -11,11 +11,19 @@ export const usersQueryField = queryField((t) => {
       name: stringArg(),
     },
     async resolve(_, args, ctx) {
+      const { first, email, name } = args;
       const users = await ctx.prisma.user.findMany({
+        take: first,
         where: {
-          email: args.email,
-          name: args.name,
+          email: {
+            contains: email,
+          },
+          name: {
+            contains: name,
+          },
+          deletedAt: null,
         },
+        orderBy: { id: 'asc' },
       });
       return connectionFromArray(
         users,
