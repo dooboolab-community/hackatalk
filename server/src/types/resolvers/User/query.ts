@@ -1,7 +1,7 @@
 import { queryField, stringArg } from '@nexus/schema';
 
-import { connectionFromArray } from 'graphql-relay';
 import { getUserId } from '../../../utils/auth';
+import { relayToPrismaPagination } from '../../../utils/pagination';
 
 export const usersQueryField = queryField((t) => {
   t.connectionField('users', {
@@ -10,25 +10,15 @@ export const usersQueryField = queryField((t) => {
       email: stringArg(),
       name: stringArg(),
     },
-    async resolve(_, args, ctx) {
-      const { first, email, name } = args;
-      const users = await ctx.prisma.user.findMany({
-        take: first,
-        where: {
-          email: {
-            contains: email,
-          },
-          name: {
-            contains: name,
-          },
-          deletedAt: null,
-        },
-        orderBy: { id: 'asc' },
+    async nodes(_, args, ctx) {
+      const { after, before, email, first, last, name } = args;
+      return ctx.prisma.user.findMany({
+        ...relayToPrismaPagination({
+          after, before, first, last,
+        }),
+        where: { email, name },
+        orderBy: { id: 'desc' },
       });
-      return connectionFromArray(
-        users,
-        args,
-      );
     },
   });
 });

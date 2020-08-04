@@ -9,7 +9,11 @@ export const schema = makeSchema({
   types,
   plugins: [
     nexusSchemaPrisma(),
-    connectionPlugin(),
+    connectionPlugin({
+      cursorFromNode(node) {
+        return node.id;
+      },
+    }),
   ],
   outputs: {
     schema: path.join(__dirname, './generated/schema.graphql'),
