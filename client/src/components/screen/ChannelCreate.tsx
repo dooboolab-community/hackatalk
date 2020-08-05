@@ -269,11 +269,11 @@ function Page(props: Props): ReactElement {
         contentContainerStyle={
           friends.length === 0
             ? {
-                flex: 1,
-                alignSelf: 'stretch',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }
+              flex: 1,
+              alignSelf: 'stretch',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
             : null
         }
         keyExtractor={(_, index): string => index.toString()}
