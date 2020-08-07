@@ -1,5 +1,11 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
+import { SignUpMutation, SignUpMutationResponse, UserCreateInput } from '../../__generated__/SignUpMutation.graphql';
+import {
+  SignUpSendVerificationMutation,
+  SignUpSendVerificationMutationResponse,
+} from '../../__generated__/SignUpSendVerificationMutation.graphql';
+import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
@@ -28,6 +34,24 @@ interface Props {
   navigation: AuthStackNavigationProps<'SignUp'>;
 }
 
+const signUp = graphql`
+  mutation SignUpMutation($user: UserCreateInput) {
+    signUp(user: $user) {
+      id
+      email
+      name
+      photoURL
+      verified
+    }
+  }
+`;
+
+const sendVerification = graphql`
+  mutation SignUpSendVerificationMutation($email: String!) {
+    sendVerification(email: $email)
+  }
+`;
+
 function Page(props: Props): ReactElement {
   const { navigation } = props;
   const [email, setEmail] = useState<string>('');
@@ -40,7 +64,10 @@ function Page(props: Props): ReactElement {
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
-  const [signingUp, setSigningUp] = useState<boolean>(false);
+
+  const [commitSignUp, isInFlight] = useMutation<SignUpMutation>(signUp);
+  const [commitSendVerification, isVerificationInFlight] =
+    useMutation<SignUpSendVerificationMutation>(sendVerification);
 
   const { theme } = useThemeContext();
   // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
@@ -61,42 +88,33 @@ function Page(props: Props): ReactElement {
       if (password !== confirmPassword) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
       }
-
       return;
     }
 
-    setSigningUp(true);
-    const variables = {
-      user: {
-        email,
-        name,
-        password,
-        statusMessage,
+    const mutationConfig = {
+      variables: {
+        user: {
+          email,
+          password,
+          name,
+          statusMessage,
+        },
+      },
+      onCompleted: async (response: SignUpMutationResponse): Promise<void> => {
+        const sendVerificationMutationConfig = {
+          variables: {
+            email,
+          },
+        };
+        commitSendVerification(sendVerificationMutationConfig);
+        return navigation.navigate('VerifyEmail', { email });
+      },
+      onError: (error: any): void => {
+        showAlertForError(error);
       },
     };
 
-    try {
-      // const { data } = await signUp({ variables });
-      // const { data: emailVerificationData } = await sendVerification({
-      //   variables: {
-      //     email,
-      //   },
-      // });
-      // if (emailVerificationData?.sendVerification) {
-      //   // email sent
-      // }
-      // const user = data?.signUp.user;
-
-      // if (user) {
-      //   navigation.replace('VerifyEmail', {
-      //     email,
-      //   });
-      // }
-    } catch ({ graphQLErrors }) {
-      showAlertForError(graphQLErrors);
-    } finally {
-      setSigningUp(false);
-    }
+    commitSignUp(mutationConfig);
   };
 
   return (
@@ -206,7 +224,7 @@ function Page(props: Props): ReactElement {
           <ButtonWrapper>
             <Button
               testID="btn-sign-up"
-              isLoading={signingUp}
+              isLoading={isInFlight}
               onPress={requestSignUp}
               containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
               textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
