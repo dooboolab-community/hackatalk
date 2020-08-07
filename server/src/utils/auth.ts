@@ -205,8 +205,7 @@ export const getEmailVerificationHTML = (
 };
 
 export const getPasswordResetHTML = (
-  email: string,
-  hashedEmail: string,
+  token: string,
   password: string,
   req: ReqI18n,
 ): string => {
@@ -216,7 +215,7 @@ export const getPasswordResetHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}/${qs.escape(password)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(token)}/${qs.escape(password)}`,
     HELLO: req.t('HELLO'),
     CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
     PASSWORD: req.t('PASSWORD'),

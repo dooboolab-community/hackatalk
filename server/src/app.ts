@@ -65,16 +65,15 @@ export const createApp = (): express.Application => {
   app.engine('html', ejs.renderFile);
   app.set('view engine', 'html');
 
-  app.get('/reset_password/:email/:hashed/:password', async (req: ReqI18n, res) => {
-    const email = qs.unescape(req.params.email);
-    const hashed = qs.unescape(req.params.hashed);
+  app.get('/reset_password/:token/:password', async (req: ReqI18n, res) => {
+    const token = qs.unescape(req.params.token);
     const randomPassword = qs.unescape(req.params.password);
 
     try {
-      const validated = await validateCredential(email, hashed);
-      if (validated) {
+      const validated = verify(token, req.appSecret) as VerificationToken;
+      if (validated && validated.email && validated.type === 'findPassword') {
         const password = await encryptCredential(randomPassword);
-        await resetPassword(email, password);
+        await resetPassword(validated.email, password);
         return res.render('password_changed', {
           REDIRECT_URL: 'https://hackatalk.dev',
           title: req.t('PW_CHANGED_TITLE'),
