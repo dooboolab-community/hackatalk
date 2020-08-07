@@ -39,7 +39,7 @@ beforeAll(async (done) => {
 });
 
 afterAll(async () => {
-  await prisma.executeRaw('DROP schema test CASCADE');
+  await prisma.$executeRaw('DROP schema test CASCADE');
   networkInterface.close();
   server.close();
 });
