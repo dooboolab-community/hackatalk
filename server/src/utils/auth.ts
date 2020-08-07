@@ -184,8 +184,7 @@ export const validateCredential = async (
 });
 
 export const getEmailVerificationHTML = (
-  email: string,
-  hashedEmail: string,
+  verificationToken: string,
   req: ReqI18n,
 ): string => {
   const templateString = fs.readFileSync(
@@ -194,7 +193,7 @@ export const getEmailVerificationHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(verificationToken)}`,
     WELCOME_SIGNUP: req.t('WELCOME_SIGNUP'),
     WELCOME: req.t('WELCOME'),
     VERIFY_EMAIL: req.t('VERIFY_EMAIL'),

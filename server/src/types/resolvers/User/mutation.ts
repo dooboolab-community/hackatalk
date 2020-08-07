@@ -273,8 +273,8 @@ export const sendVerification = mutationField('sendVerification', {
     });
 
     if (user) {
-      const hashedEmail = await encryptCredential(email);
-      const html = getEmailVerificationHTML(email, hashedEmail, ctx.request.req);
+      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecret, { expiresIn: '10m' });
+      const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
       const msg = {
         to: email,
         from: 'noreply@hackatalk.dev',

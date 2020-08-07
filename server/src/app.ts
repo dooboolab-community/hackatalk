@@ -16,9 +16,15 @@ import multer from 'multer';
 import path from 'path';
 import qs from 'querystring';
 import { uploadFileToAzureBlobFromFile } from './utils/azure';
+import { verify } from 'jsonwebtoken';
 
 // eslint-disable-next-line
 require('dotenv').config();
+
+interface VerificationToken {
+  email: string;
+  type: 'verifyEmail' | 'findPassword';
+}
 
 const {
   STORAGE_ENDPOINT,
@@ -49,6 +55,11 @@ export const createApp = (): express.Application => {
   app.use(cors());
   app.use(middleware.handle(i18next));
   app.use(express.static(filePath));
+  app.use((req: ReqI18n, res, next) => {
+    const { JWT_SECRET } = process.env;
+    req.appSecret = JWT_SECRET;
+    next();
+  });
 
   app.set('views', path.join(__dirname, '../html'));
   app.engine('html', ejs.renderFile);
@@ -76,14 +87,13 @@ export const createApp = (): express.Application => {
       res.send('Error occured. Plesae try again.');
     }
   });
-  app.get('/verify_email/:email/:hashed', async (req: ReqI18n, res) => {
-    const email = qs.unescape(req.params.email);
-    const hashed = qs.unescape(req.params.hashed);
+  app.get('/verify_email/:token', async (req: ReqI18n, res) => {
+    const token = qs.unescape(req.params.token);
 
     try {
-      const validated = await validateCredential(email, hashed);
-      if (validated) {
-        await verifyEmail(email);
+      const validated = verify(token, req.appSecret) as VerificationToken;
+      if (validated && validated.email && validated.type === 'verifyEmail') {
+        await verifyEmail(validated.email);
         return res.render('email_verified', {
           REDIRECT_URL: 'https://hackatalk.dev',
           TITLE: req.t('EMAIL_VERIFIED_TITLE'),
