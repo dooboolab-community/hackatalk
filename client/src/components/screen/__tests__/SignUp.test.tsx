@@ -11,7 +11,9 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import { MockPayloadGenerator } from 'relay-test-utils';
 import SignUp from '../SignUp';
+import { environment } from '../../../providers';
 
 // eslint-disable-next-line
 let props: any;
@@ -332,6 +334,12 @@ describe('[SignUp] interaction', () => {
     });
 
     await act(() => wait());
+
+    const operation = environment.mock.getMostRecentOperation();
+    environment.mock.resolve(
+      operation,
+      MockPayloadGenerator.generate(operation),
+    );
     // expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
   });
 

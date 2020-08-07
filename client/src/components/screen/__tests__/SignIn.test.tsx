@@ -1,5 +1,4 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
-import * as Device from 'expo-device';
 
 import React, { ReactElement } from 'react';
 import {
@@ -13,7 +12,6 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
@@ -30,55 +28,6 @@ fetchMock.mockResponse(JSON.stringify({ id: 1 }));
 let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
-
-// const mockSignInEmail = [
-//   {
-//     request: {
-//       query: MUTATION_SIGN_IN,
-//       variables: {
-//         email: 'test@email.com',
-//         password: 'password',
-//       },
-//     },
-//     newData: jest.fn()
-//       .mockReturnValueOnce({
-//         data: {
-//           signInEmail: {
-//             token: 'access token',
-//             user: {
-//               id: 'userId',
-//               authType: 'email',
-//               email: 'test@email.com',
-//               nickname: 'nickname',
-//               statusMessage: 'status',
-//               verified: true,
-//             },
-//           },
-//         },
-//       })
-//       .mockReturnValueOnce({
-//         data: {
-//           signInEmail: undefined,
-//         },
-//       })
-//       .mockReturnValueOnce({
-//         data: {
-//           signInEmail: {
-//             token: 'access token',
-//             user: {
-//               id: 'userId',
-//               authType: 'email',
-//               email: 'test@email.com',
-//               nickname: 'nickname',
-//               statusMessage: 'status',
-//               verified: false,
-//             },
-//           },
-//         },
-//       })
-//     ,
-//   },
-// ];
 
 jest.mock('expo-constants', () => ({
   ...jest.requireActual('expo-constants'),
