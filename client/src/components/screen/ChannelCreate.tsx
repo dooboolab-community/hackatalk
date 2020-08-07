@@ -224,7 +224,9 @@ function Page(props: Props): ReactElement {
                 width: 60,
                 height: 60,
               }}
-              source={friend.thumbURL ? { uri: friend.thumbURL } : IC_NO_IMAGE}
+              source={friend.thumbURL
+                ? { uri: friend.thumbURL }
+                : IC_NO_IMAGE}
             />
           </TouchableOpacity>
           <Text
