@@ -55,6 +55,7 @@ export const signInWithSocialAccount = async (
           },
         },
       },
+      take: 1,
     });
     if (emailUser.length) {
       throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
@@ -70,6 +71,7 @@ export const signInWithSocialAccount = async (
         socialId: socialUser.socialId,
       },
     },
+    take: 1,
   });
 
   if (!users.length) {
