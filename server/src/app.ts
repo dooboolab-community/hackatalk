@@ -51,6 +51,9 @@ export const createApp = (): express.Application => {
   const app = express();
 
   const filePath = path.join(__dirname, '../files');
+  const verifyEmailToken = (token: string, appSecret: string)
+    : VerificationToken =>
+    verify(token, appSecret) as VerificationToken;
 
   app.use(cors());
   app.use(middleware.handle(i18next));
@@ -70,7 +73,7 @@ export const createApp = (): express.Application => {
     const randomPassword = qs.unescape(req.params.password);
 
     try {
-      const validated = verify(token, req.appSecret) as VerificationToken;
+      const validated = verifyEmailToken(token, req.appSecret);
       if (validated?.email && validated.type === 'findPassword') {
         const password = await encryptCredential(randomPassword);
         await resetPassword(validated.email, password);
@@ -90,7 +93,7 @@ export const createApp = (): express.Application => {
     const token = qs.unescape(req.params.token);
 
     try {
-      const validated = verify(token, req.appSecret) as VerificationToken;
+      const validated = verifyEmailToken(token, req.appSecret);
       if (validated?.email && validated.type === 'verifyEmail') {
         await verifyEmail(validated.email);
         return res.render('email_verified', {
