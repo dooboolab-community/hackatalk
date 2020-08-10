@@ -71,7 +71,7 @@ export const createApp = (): express.Application => {
 
     try {
       const validated = verify(token, req.appSecret) as VerificationToken;
-      if (validated && validated.email && validated.type === 'findPassword') {
+      if (validated?.email && validated.type === 'findPassword') {
         const password = await encryptCredential(randomPassword);
         await resetPassword(validated.email, password);
         return res.render('password_changed', {
@@ -91,7 +91,7 @@ export const createApp = (): express.Application => {
 
     try {
       const validated = verify(token, req.appSecret) as VerificationToken;
-      if (validated && validated.email && validated.type === 'verifyEmail') {
+      if (validated?.email && validated.type === 'verifyEmail') {
         await verifyEmail(validated.email);
         return res.render('email_verified', {
           REDIRECT_URL: 'https://hackatalk.dev',
