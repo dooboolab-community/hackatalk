@@ -1,7 +1,7 @@
-import * as AuthUtils from '../src/utils/auth';
+import * as AuthUtils from '../../src/utils/auth';
 
 import { GraphQLClient, request } from 'graphql-request';
-import { apolloClient, testHost } from './setup/testSetup';
+import { apolloClient, testHost } from '../setup/testSetup';
 import {
   meQuery,
   signInEmailMutation,
@@ -12,7 +12,7 @@ import {
   updateProfileMutation,
   userSignedInSubscription,
   userUpdatedSubscription,
-} from './setup/queries';
+} from '../setup/queries';
 
 let client: GraphQLClient;
 
