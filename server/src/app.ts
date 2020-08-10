@@ -17,6 +17,7 @@ import path from 'path';
 import qs from 'querystring';
 import { uploadFileToAzureBlobFromFile } from './utils/azure';
 import { verify } from 'jsonwebtoken';
+import { prisma } from './context';
 
 // eslint-disable-next-line
 require('dotenv').config();
@@ -94,8 +95,21 @@ export const createApp = (): express.Application => {
 
     try {
       const validated = verifyEmailToken(token, req.appSecret);
-      if (validated?.email && validated.type === 'verifyEmail') {
+      if (validated.email && validated.type === 'verifyEmail') {
+        const user = await prisma.user.findOne({
+          where: {
+            email: validated.email,
+          },
+        });
+        const alreadyVerified = user && user.verified;
+
+        if (alreadyVerified) {
+          res.sendStatus(404);
+          return;
+        }
+
         await verifyEmail(validated.email);
+
         return res.render('email_verified', {
           REDIRECT_URL: 'https://hackatalk.dev',
           TITLE: req.t('EMAIL_VERIFIED_TITLE'),
