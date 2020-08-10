@@ -75,6 +75,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://seonghyeonkimm.github.io/"><img src="https://avatars2.githubusercontent.com/u/13966404?v=4" width="60px;" alt=""/><br /><sub><b>Kim Seonghyeon</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=seonghyeonkimm" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/daadaadaah"><img src="https://avatars0.githubusercontent.com/u/60481383?v=4" width="60px;" alt=""/><br /><sub><b>daadaadaah</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=daadaadaah" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=daadaadaah" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/qpfmtlcp"><img src="https://avatars0.githubusercontent.com/u/18386669?v=4" width="60px;" alt=""/><br /><sub><b>Youngjeon Kim</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=qpfmtlcp" title="Code">💻</a></td>
+    <td align="center"><a href="https://litehell.info"><img src="https://avatars0.githubusercontent.com/u/12497886?v=4" width="60px;" alt=""/><br /><sub><b>Yeonjin Shin</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=LiteHell" title="Code">💻</a></td>
   </tr>
 </table>
 
