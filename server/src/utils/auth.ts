@@ -184,8 +184,7 @@ export const validateCredential = async (
 });
 
 export const getEmailVerificationHTML = (
-  email: string,
-  hashedEmail: string,
+  verificationToken: string,
   req: ReqI18n,
 ): string => {
   const templateString = fs.readFileSync(
@@ -194,7 +193,7 @@ export const getEmailVerificationHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(verificationToken)}`,
     WELCOME_SIGNUP: req.t('WELCOME_SIGNUP'),
     WELCOME: req.t('WELCOME'),
     VERIFY_EMAIL: req.t('VERIFY_EMAIL'),
@@ -206,8 +205,7 @@ export const getEmailVerificationHTML = (
 };
 
 export const getPasswordResetHTML = (
-  email: string,
-  hashedEmail: string,
+  token: string,
   password: string,
   req: ReqI18n,
 ): string => {
@@ -217,7 +215,7 @@ export const getPasswordResetHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}/${qs.escape(password)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(token)}/${qs.escape(password)}`,
     HELLO: req.t('HELLO'),
     CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
     PASSWORD: req.t('PASSWORD'),

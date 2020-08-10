@@ -16,9 +16,15 @@ import multer from 'multer';
 import path from 'path';
 import qs from 'querystring';
 import { uploadFileToAzureBlobFromFile } from './utils/azure';
+import { verify } from 'jsonwebtoken';
 
 // eslint-disable-next-line
 require('dotenv').config();
+
+interface VerificationToken {
+  email: string;
+  type: 'verifyEmail' | 'findPassword';
+}
 
 const {
   STORAGE_ENDPOINT,
@@ -45,25 +51,32 @@ export const createApp = (): express.Application => {
   const app = express();
 
   const filePath = path.join(__dirname, '../files');
+  const verifyEmailToken = (token: string, appSecret: string)
+    : VerificationToken =>
+    verify(token, appSecret) as VerificationToken;
 
   app.use(cors());
   app.use(middleware.handle(i18next));
   app.use(express.static(filePath));
+  app.use((req: ReqI18n, res, next) => {
+    const { JWT_SECRET_ETC } = process.env;
+    req.appSecret = JWT_SECRET_ETC;
+    next();
+  });
 
   app.set('views', path.join(__dirname, '../html'));
   app.engine('html', ejs.renderFile);
   app.set('view engine', 'html');
 
-  app.get('/reset_password/:email/:hashed/:password', async (req: ReqI18n, res) => {
-    const email = qs.unescape(req.params.email);
-    const hashed = qs.unescape(req.params.hashed);
+  app.get('/reset_password/:token/:password', async (req: ReqI18n, res) => {
+    const token = qs.unescape(req.params.token);
     const randomPassword = qs.unescape(req.params.password);
 
     try {
-      const validated = await validateCredential(email, hashed);
-      if (validated) {
+      const validated = verifyEmailToken(token, req.appSecret);
+      if (validated?.email && validated.type === 'findPassword') {
         const password = await encryptCredential(randomPassword);
-        await resetPassword(email, password);
+        await resetPassword(validated.email, password);
         return res.render('password_changed', {
           REDIRECT_URL: 'https://hackatalk.dev',
           title: req.t('PW_CHANGED_TITLE'),
@@ -76,14 +89,13 @@ export const createApp = (): express.Application => {
       res.send('Error occured. Plesae try again.');
     }
   });
-  app.get('/verify_email/:email/:hashed', async (req: ReqI18n, res) => {
-    const email = qs.unescape(req.params.email);
-    const hashed = qs.unescape(req.params.hashed);
+  app.get('/verify_email/:token', async (req: ReqI18n, res) => {
+    const token = qs.unescape(req.params.token);
 
     try {
-      const validated = await validateCredential(email, hashed);
-      if (validated) {
-        await verifyEmail(email);
+      const validated = verifyEmailToken(token, req.appSecret);
+      if (validated?.email && validated.type === 'verifyEmail') {
+        await verifyEmail(validated.email);
         return res.render('email_verified', {
           REDIRECT_URL: 'https://hackatalk.dev',
           TITLE: req.t('EMAIL_VERIFIED_TITLE'),

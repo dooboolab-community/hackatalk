@@ -275,8 +275,8 @@ export const sendVerification = mutationField('sendVerification', {
     });
 
     if (user) {
-      const hashedEmail = await encryptCredential(email);
-      const html = getEmailVerificationHTML(email, hashedEmail, ctx.request.req);
+      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecret, { expiresIn: '10m' });
+      const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
       const msg = {
         to: email,
         from: 'noreply@hackatalk.dev',
@@ -320,7 +320,7 @@ export const findPassword = mutationField('findPassword', {
       throw ErrorEmailNotValid('Email is not valid');
     }
 
-    const hashedEmail = await encryptCredential(email);
+    const verificationToken = sign({ email, type: 'findPassword' }, ctx.appSecret, { expiresIn: '10m' });
 
     const password = generator.generate({
       length: 10,
@@ -331,7 +331,7 @@ export const findPassword = mutationField('findPassword', {
       to: email,
       from: 'noreply@hackatalk.dev',
       subject: '[HackaTalk] Reset your password!',
-      html: getPasswordResetHTML(email, hashedEmail, password, ctx.request.req),
+      html: getPasswordResetHTML(verificationToken, password, ctx.request.req),
     };
     try {
       await SendGridMail.send(msg);
