@@ -9,6 +9,7 @@ import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
+import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
@@ -20,7 +21,11 @@ const Container = styled.SafeAreaView`
   background: ${({ theme }): string => theme.background};
 `;
 
-const Wrapper = styled.View`
+const Wrapper = styled.KeyboardAvoidingView`
+  flex: 1;
+`;
+
+const ContentsWrapper = styled.View`
   margin: 44px;
 `;
 
@@ -120,119 +125,127 @@ function Page(props: Props): ReactElement {
   return (
     <Container>
       <StatusBar />
-      <ScrollView style={{ alignSelf: 'stretch' }}>
-        <Wrapper>
-          <EditText
-            testID="input-email"
-            errorTestID="error-email"
-            textStyle={{
-              color: theme.fontColor,
-            }}
-            borderColor={theme.font}
-            focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
-            label={getString('EMAIL')}
-            placeholder="hello@example.com"
-            value={email}
-            onChangeText={(text: string): void => {
-              setEmail(text);
-              setErrorEmail('');
-            }}
-            errorText={errorEmail}
-            onSubmitEditing={requestSignUp}
-          />
-          <EditText
-            testID="input-password"
-            errorTestID="error-password"
-            textStyle={{
-              color: theme.fontColor,
-            }}
-            borderColor={theme.font}
-            focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
-            placeholder="********"
-            label={getString('PASSWORD')}
-            value={password}
-            onChangeText={(text: string): void => {
-              setPassword(text);
-              setErrorPassword('');
-            }}
-            style={{ marginTop: 32 }}
-            errorText={errorPassword}
-            onSubmitEditing={requestSignUp}
-            secureTextEntry={true}
-          />
-          <EditText
-            testID="input-confirm-password"
-            errorTestID="error-confirm-password"
-            textStyle={{
-              color: theme.fontColor,
-            }}
-            placeholder="********"
-            label={getString('CONFIRM_PASSWORD')}
-            value={confirmPassword}
-            onChangeText={(text: string): void => {
-              setConfirmPassword(text);
-              setErrorConfirmPassword('');
-            }}
-            style={{ marginTop: 32 }}
-            borderColor={theme.font}
-            focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
-            errorText={errorConfirmPassword}
-            onSubmitEditing={requestSignUp}
-            secureTextEntry={true}
-          />
-          <EditText
-            testID="input-name"
-            errorTestID="error-name"
-            textStyle={{
-              color: theme.fontColor,
-            }}
-            label={getString('NAME')}
-            placeholder={getString('NAME_HINT')}
-            borderColor={theme.font}
-            focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
-            value={name}
-            onChangeText={(text: string): void => {
-              setName(text);
-              setErrorName('');
-            }}
-            style={{ marginTop: 32 }}
-            errorText={errorName}
-            onSubmitEditing={requestSignUp}
-          />
-          <EditText
-            testID="input-status"
-            errorTestID="error-status"
-            textStyle={{
-              color: theme.fontColor,
-            }}
-            borderColor={theme.font}
-            focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
-            label={getString('STATUS')}
-            placeholder={getString('STATUS_MSG_HINT')}
-            value={statusMessage}
-            onChangeText={(text: string): void => {
-              setStatusMessage(text);
-            }}
-            style={{ marginTop: 32 }}
-            onSubmitEditing={requestSignUp}
-          />
-          <ButtonWrapper>
-            <Button
-              testID="btn-sign-up"
-              isLoading={isInFlight}
-              onPress={requestSignUp}
-              containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
-              textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
-              text={getString('SIGN_UP')}
+      <Wrapper
+        behavior={Platform.select({
+          ios: 'padding',
+          android: 'height',
+        })}
+        keyboardVerticalOffset={100}
+      >
+        <ScrollView style={{ alignSelf: 'stretch' }}>
+          <ContentsWrapper>
+            <EditText
+              testID="input-email"
+              errorTestID="error-email"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              borderColor={theme.font}
+              focusColor={theme.focused}
+              placeholderTextColor={theme.placeholder}
+              label={getString('EMAIL')}
+              placeholder="hello@example.com"
+              value={email}
+              onChangeText={(text: string): void => {
+                setEmail(text);
+                setErrorEmail('');
+              }}
+              errorText={errorEmail}
+              onSubmitEditing={requestSignUp}
             />
-          </ButtonWrapper>
-        </Wrapper>
-      </ScrollView>
+            <EditText
+              testID="input-password"
+              errorTestID="error-password"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              borderColor={theme.font}
+              focusColor={theme.focused}
+              placeholderTextColor={theme.placeholder}
+              placeholder="********"
+              label={getString('PASSWORD')}
+              value={password}
+              onChangeText={(text: string): void => {
+                setPassword(text);
+                setErrorPassword('');
+              }}
+              style={{ marginTop: 32 }}
+              errorText={errorPassword}
+              onSubmitEditing={requestSignUp}
+              secureTextEntry={true}
+            />
+            <EditText
+              testID="input-confirm-password"
+              errorTestID="error-confirm-password"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              placeholder="********"
+              label={getString('CONFIRM_PASSWORD')}
+              value={confirmPassword}
+              onChangeText={(text: string): void => {
+                setConfirmPassword(text);
+                setErrorConfirmPassword('');
+              }}
+              style={{ marginTop: 32 }}
+              borderColor={theme.font}
+              focusColor={theme.focused}
+              placeholderTextColor={theme.placeholder}
+              errorText={errorConfirmPassword}
+              onSubmitEditing={requestSignUp}
+              secureTextEntry={true}
+            />
+            <EditText
+              testID="input-name"
+              errorTestID="error-name"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              label={getString('NAME')}
+              placeholder={getString('NAME_HINT')}
+              borderColor={theme.font}
+              focusColor={theme.focused}
+              placeholderTextColor={theme.placeholder}
+              value={name}
+              onChangeText={(text: string): void => {
+                setName(text);
+                setErrorName('');
+              }}
+              style={{ marginTop: 32 }}
+              errorText={errorName}
+              onSubmitEditing={requestSignUp}
+            />
+            <EditText
+              testID="input-status"
+              errorTestID="error-status"
+              textStyle={{
+                color: theme.fontColor,
+              }}
+              borderColor={theme.font}
+              focusColor={theme.focused}
+              placeholderTextColor={theme.placeholder}
+              label={getString('STATUS')}
+              placeholder={getString('STATUS_MSG_HINT')}
+              value={statusMessage}
+              onChangeText={(text: string): void => {
+                setStatusMessage(text);
+              }}
+              style={{ marginTop: 32 }}
+              onSubmitEditing={requestSignUp}
+            />
+            <ButtonWrapper>
+              <Button
+                testID="btn-sign-up"
+                isLoading={isInFlight}
+                onPress={requestSignUp}
+                containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
+                textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
+                text={getString('SIGN_UP')}
+              />
+            </ButtonWrapper>
+          </ContentsWrapper>
+        </ScrollView>
+      </Wrapper>
     </Container>
   );
 }
