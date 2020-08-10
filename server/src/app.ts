@@ -59,8 +59,8 @@ export const createApp = (): express.Application => {
   app.use(middleware.handle(i18next));
   app.use(express.static(filePath));
   app.use((req: ReqI18n, res, next) => {
-    const { JWT_SECRET2 } = process.env;
-    req.appSecret = JWT_SECRET2;
+    const { JWT_SECRET_ETC } = process.env;
+    req.appSecret = JWT_SECRET_ETC;
     next();
   });
 
