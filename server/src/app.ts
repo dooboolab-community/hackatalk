@@ -14,10 +14,10 @@ import i18next from 'i18next';
 import middleware from 'i18next-express-middleware';
 import multer from 'multer';
 import path from 'path';
+import { prisma } from './context';
 import qs from 'querystring';
 import { uploadFileToAzureBlobFromFile } from './utils/azure';
 import { verify } from 'jsonwebtoken';
-import { prisma } from './context';
 
 // eslint-disable-next-line
 require('dotenv').config();
@@ -52,16 +52,18 @@ export const createApp = (): express.Application => {
   const app = express();
 
   const filePath = path.join(__dirname, '../files');
-  const verifyEmailToken = (token: string, appSecret: string)
+  const verifyEmailToken = (token: string, appSecretEtc: string)
     : VerificationToken =>
-    verify(token, appSecret) as VerificationToken;
+    verify(token, appSecretEtc) as VerificationToken;
 
   app.use(cors());
   app.use(middleware.handle(i18next));
   app.use(express.static(filePath));
   app.use((req: ReqI18n, res, next) => {
-    const { JWT_SECRET_ETC } = process.env;
-    req.appSecret = JWT_SECRET_ETC;
+    const {
+      JWT_SECRET_ETC,
+    } = process.env;
+    req.appSecretEtc = JWT_SECRET_ETC;
     next();
   });
 
@@ -70,12 +72,12 @@ export const createApp = (): express.Application => {
   app.set('view engine', 'html');
 
   app.get('/reset_password/:token/:password', async (req: ReqI18n, res) => {
-    const token = qs.unescape(req.params.token);
+    const token = req.params.token;
     const randomPassword = qs.unescape(req.params.password);
 
     try {
-      const validated = verifyEmailToken(token, req.appSecret);
-      if (validated?.email && validated.type === 'findPassword') {
+      const validated = verifyEmailToken(token, req.appSecretEtc);
+      if (validated.email && validated.type === 'findPassword') {
         const password = await encryptCredential(randomPassword);
         await resetPassword(validated.email, password);
         return res.render('password_changed', {
@@ -91,10 +93,10 @@ export const createApp = (): express.Application => {
     }
   });
   app.get('/verify_email/:token', async (req: ReqI18n, res) => {
-    const token = qs.unescape(req.params.token);
+    const token = req.params.token;
 
     try {
-      const validated = verifyEmailToken(token, req.appSecret);
+      const validated = verifyEmailToken(token, req.appSecretEtc);
       if (validated.email && validated.type === 'verifyEmail') {
         const user = await prisma.user.findOne({
           where: {
