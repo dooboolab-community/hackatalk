@@ -20,3 +20,5 @@ config.ts
 
 firebase-debug*.*
 .firebase
+
+.idea
