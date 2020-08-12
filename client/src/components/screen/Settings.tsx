@@ -75,7 +75,9 @@ function Settings(props: Props): React.ReactElement {
   const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const { state: { user } } = useAuthContext();
+  const {
+    state: { user },
+  } = useAuthContext();
 
   let signInInfoOption: SettingsOption;
 
@@ -89,7 +91,7 @@ function Settings(props: Props): React.ReactElement {
   switch (user?.profile?.authType) {
     case AuthType.Google:
       signInInfoOption = {
-        icon: <SvgGoogle width={24} fill={theme.googleIcon}/>,
+        icon: <SvgGoogle width={24} fill={theme.googleIcon} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -99,7 +101,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Facebook:
       signInInfoOption = {
-        icon: <SvgFacebook width={24} fill={theme.facebookIcon}/>,
+        icon: <SvgFacebook width={24} fill={theme.facebookIcon} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -109,7 +111,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Apple:
       signInInfoOption = {
-        icon: <SvgApple width={24} fill={theme.appleIcon}/>,
+        icon: <SvgApple width={24} fill={theme.appleIcon} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -153,7 +155,7 @@ function Settings(props: Props): React.ReactElement {
         testID="button-logout"
         containerStyle={{
           paddingHorizontal: 20,
-          paddingVertical: 20,
+          paddingVertical: 10,
         }}
         style={{
           width: '100%',
