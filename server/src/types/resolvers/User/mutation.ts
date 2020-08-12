@@ -280,7 +280,7 @@ export const sendVerification = mutationField('sendVerification', {
       const msg = {
         to: email,
         from: 'noreply@hackatalk.dev',
-        subject: '[HackaTalk] Verify your email address!',
+        subject: ctx.request.req.t('VERIFICATION_EMAIL_SUBJECT'),
         html,
       };
       await SendGridMail.send(msg);
@@ -330,7 +330,7 @@ export const findPassword = mutationField('findPassword', {
     const msg = {
       to: email,
       from: 'noreply@hackatalk.dev',
-      subject: '[HackaTalk] Reset your password!',
+      subject: ctx.request.req.t('PASSWORD_RESET_EMAIL_SUBJECT'),
       html: getPasswordResetHTML(verificationToken, password, ctx.request.req),
     };
     try {
