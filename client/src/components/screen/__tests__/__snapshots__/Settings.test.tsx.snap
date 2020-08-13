@@ -137,7 +137,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
         style={
           Object {
             "paddingHorizontal": 20,
-            "paddingVertical": 20,
+            "paddingVertical": 10,
           }
         }
         testID="button-logout"
@@ -156,7 +156,7 @@ exports[`[Setting] screen renders without crashing 1`] = `
               },
               Object {
                 "paddingHorizontal": 20,
-                "paddingVertical": 20,
+                "paddingVertical": 10,
               },
               undefined,
               undefined,
@@ -331,7 +331,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
         style={
           Object {
             "paddingHorizontal": 20,
-            "paddingVertical": 20,
+            "paddingVertical": 10,
           }
         }
         testID="button-logout"
@@ -350,7 +350,7 @@ exports[`[Setting] screen renders without crashing 2`] = `
               },
               Object {
                 "paddingHorizontal": 20,
-                "paddingVertical": 20,
+                "paddingVertical": 10,
               },
               undefined,
               undefined,
@@ -525,7 +525,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
         style={
           Object {
             "paddingHorizontal": 20,
-            "paddingVertical": 20,
+            "paddingVertical": 10,
           }
         }
         testID="button-logout"
@@ -544,7 +544,7 @@ exports[`[Setting] screen renders without crashing 3`] = `
               },
               Object {
                 "paddingHorizontal": 20,
-                "paddingVertical": 20,
+                "paddingVertical": 10,
               },
               undefined,
               undefined,
@@ -719,7 +719,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
         style={
           Object {
             "paddingHorizontal": 20,
-            "paddingVertical": 20,
+            "paddingVertical": 10,
           }
         }
         testID="button-logout"
@@ -738,7 +738,7 @@ exports[`[Setting] screen renders without crashing 4`] = `
               },
               Object {
                 "paddingHorizontal": 20,
-                "paddingVertical": 20,
+                "paddingVertical": 10,
               },
               undefined,
               undefined,

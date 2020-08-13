@@ -13,5 +13,7 @@
   "PASSWORD": "Password",
   "CHANGE_PASSWORD": "Change password",
   "PW_CHANGED_TITLE": "Password has changed",
-  "PW_CHANGED": "The password for your account has changed."
+  "PW_CHANGED": "The password for your account has changed.",
+  "VERIFICATION_EMAIL_SUBJECT": "[HackaTalk] Verify your email address!",
+  "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] Reset your password!"
 }

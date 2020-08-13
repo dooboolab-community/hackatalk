@@ -11,3 +11,4 @@ dotenv/.env
 prisma/.env
 src/generated
 
+.idea

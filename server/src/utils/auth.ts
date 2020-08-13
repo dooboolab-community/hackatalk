@@ -10,8 +10,9 @@ import { verify } from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
-const { REDIRECT_URL, JWT_SECRET = 'undefined' } = process.env;
+const { REDIRECT_URL, JWT_SECRET = 'undefined', JWT_SECRET_ETC = 'etc' } = process.env;
 export const APP_SECRET = JWT_SECRET;
+export const APP_SECRET_ETC = JWT_SECRET_ETC;
 
 const env = process.env.NODE_ENV;
 const envPath = env === 'development'
@@ -193,7 +194,7 @@ export const getEmailVerificationHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(verificationToken)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${verificationToken}`,
     WELCOME_SIGNUP: req.t('WELCOME_SIGNUP'),
     WELCOME: req.t('WELCOME'),
     VERIFY_EMAIL: req.t('VERIFY_EMAIL'),
@@ -215,7 +216,7 @@ export const getPasswordResetHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(token)}/${qs.escape(password)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${token}/${qs.escape(password)}`,
     HELLO: req.t('HELLO'),
     CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
     PASSWORD: req.t('PASSWORD'),
