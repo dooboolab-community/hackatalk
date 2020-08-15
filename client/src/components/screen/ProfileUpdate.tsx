@@ -216,7 +216,7 @@ const Screen: FC<Props> = () => {
                 width: 90,
                 height: 90,
               }}>
-                <Image width={80} height={80} source={IC_PROFILE} />
+                <Image style={{ height: 80, width: 80 }} source={IC_PROFILE} />
                 <Image style={{
                   position: 'absolute',
                   bottom: 0,
