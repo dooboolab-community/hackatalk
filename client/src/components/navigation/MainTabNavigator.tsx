@@ -61,7 +61,7 @@ const CustomHeader = (): ReactElement => {
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('ProfileUpdate')}
         >
-          <Image width={24} height={24} source={IC_PROFILE_W}/>
+          <Image style={{ height: 24, width: 24 }} source={IC_PROFILE_W}/>
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={(): void => changeThemeType()}>
@@ -82,7 +82,7 @@ const CustomHeader = (): ReactElement => {
           onPress={(): void => navigation.navigate('SearchUser')}
         >
           {/* <Ionicons name="ios-search" size={24} color="white" /> */}
-          <Image width={24} height={24} source={IC_SEARCH_W}/>
+          <Image style={{ height: 24, width: 24 }} source={IC_SEARCH_W}/>
         </TouchableOpacity>
       </View>
     </LinearGradient>
