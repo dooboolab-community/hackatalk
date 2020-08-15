@@ -80,6 +80,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/donggyushin"><img src="https://avatars3.githubusercontent.com/u/34573243?v=4" width="60px;" alt=""/><br /><sub><b>donggyu</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=donggyushin" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/0916dhkim"><img src="https://avatars2.githubusercontent.com/u/8978815?v=4" width="60px;" alt=""/><br /><sub><b>Donghyeon Kim</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=0916dhkim" title="Code">💻</a></td>
   </tr>
 </table>
 
