@@ -30,6 +30,8 @@ import SendGridMail from '@sendgrid/mail';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 
+const { SENDGRID_EMAIL } = process.env;
+
 interface SocialUserInput {
   socialId: string;
   authType: AuthType;
@@ -279,7 +281,7 @@ export const sendVerification = mutationField('sendVerification', {
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
       const msg = {
         to: email,
-        from: 'noreply@hackatalk.dev',
+        from: SENDGRID_EMAIL,
         subject: ctx.request.req.t('VERIFICATION_EMAIL_SUBJECT'),
         html,
       };
