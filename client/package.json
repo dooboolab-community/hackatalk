@@ -52,7 +52,6 @@
     "expo-constants": "^9.1.1",
     "expo-crypto": "~8.2.1",
     "expo-device": "^2.2.1",
-    "expo-font": "^8.2.2",
     "expo-image-manipulator": "^8.2.1",
     "expo-image-picker": "~8.3.0",
     "expo-linear-gradient": "~8.2.1",
