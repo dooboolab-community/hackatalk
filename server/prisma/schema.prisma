@@ -125,7 +125,7 @@ enum MessageType {
 }
 
 model Message {
-  id                     Int                     @default(autoincrement()) @id
+  id                     String                  @default(cuid()) @id
   messageType            MessageType             @default(text)
   text                   String?
   imageUrls              String[]
@@ -155,7 +155,7 @@ model Reply {
 
   senderId               String
   sender                 User                    @relation(fields: [senderId], references: [id])
-  messageId              Int
+  messageId              String
   message                Message                 @relation(fields: [messageId], references: [id])
 }
 
@@ -164,7 +164,7 @@ model Reaction {
   value                  String
   userId                 String
   user                   User                    @relation(fields: [userId], references: [id])
-  messageId              Int
+  messageId              String
   message                Message                 @relation(fields: [messageId], references: [id])
   replyId                Int
   reply                  Reply                   @relation(fields: [replyId], references: [id])
