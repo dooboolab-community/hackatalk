@@ -1,7 +1,7 @@
 import { Context } from '../context';
 import NodeRSA from 'node-rsa';
 import axios from 'axios';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
@@ -152,21 +152,12 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
   return appleUser;
 };
 
-export const encryptCredential = async (password: string): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const SALT = bcrypt.genSaltSync(SALT_ROUND);
-
-    bcrypt.hash(password, SALT, null, (err, hash) => {
-      if (err) {
-        return reject(err);
-      }
-      // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
-      hash = hash.replace(/\//g, 'slash');
-      hash = hash.replace(/\.$/g, 'dot');
-
-      resolve(hash);
-    });
-  });
+export const encryptCredential = async (password: string): Promise<string> => {
+  const SALT = await bcrypt.genSalt(SALT_ROUND);
+  const hash = await bcrypt.hash(password, SALT);
+  // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
+  return hash.replace(/\//g, 'slash').replace(/\.$/g, 'dot');
+};
 
 export const validateCredential = async (
   value: string,
