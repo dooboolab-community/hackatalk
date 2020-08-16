@@ -1,0 +1,43 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "memberships",
+      "type": "Membership",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "memberships"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "memberships"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"Membership\""
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Channel",
+      "field": "membership",
+      "arity": "List"
+    }
+  ]
+}
