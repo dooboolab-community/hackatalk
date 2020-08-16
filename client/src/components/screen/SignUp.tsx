@@ -122,6 +122,44 @@ function Page(props: Props): ReactElement {
     commitSignUp(mutationConfig);
   };
 
+  const inputChangeHandlers: Record<string, (value: string) => void> = {
+    emailInput: (email: string): void => {
+      setEmail(email);
+      if (!validateEmail(email)) {
+        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      } else {
+        setErrorEmail('');
+      }
+    },
+    passwordInput: (password: string): void => {
+      setPassword(password);
+      if (!validatePassword(password)) {
+        setErrorPassword(getString('PASSWORD_MIN'));
+      } else if (confirmPassword && password !== confirmPassword) {
+        setErrorPassword('');
+        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+      } else {
+        setErrorPassword('');
+      }
+    },
+    confirmPasswordInput: (confirmPassword: string): void => {
+      setConfirmPassword(confirmPassword);
+      if (password !== confirmPassword) {
+        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+      } else {
+        setErrorConfirmPassword('');
+      }
+    },
+    nameInput: (name: string): void => {
+      setName(name);
+      if (name.length < 2) {
+        setErrorName(getString('NAME_MIN'));
+      } else {
+        setErrorName('');
+      }
+    },
+  };
+
   return (
     <Container>
       <StatusBar />
@@ -146,10 +184,7 @@ function Page(props: Props): ReactElement {
               label={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
-              onChangeText={(text: string): void => {
-                setEmail(text);
-                setErrorEmail('');
-              }}
+              onChangeText={inputChangeHandlers.emailInput}
               errorText={errorEmail}
               onSubmitEditing={requestSignUp}
             />
@@ -165,10 +200,7 @@ function Page(props: Props): ReactElement {
               placeholder="********"
               label={getString('PASSWORD')}
               value={password}
-              onChangeText={(text: string): void => {
-                setPassword(text);
-                setErrorPassword('');
-              }}
+              onChangeText={inputChangeHandlers.passwordInput}
               style={{ marginTop: 32 }}
               errorText={errorPassword}
               onSubmitEditing={requestSignUp}
@@ -183,10 +215,7 @@ function Page(props: Props): ReactElement {
               placeholder="********"
               label={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
-              onChangeText={(text: string): void => {
-                setConfirmPassword(text);
-                setErrorConfirmPassword('');
-              }}
+              onChangeText={inputChangeHandlers.confirmPasswordInput}
               style={{ marginTop: 32 }}
               borderColor={theme.font}
               focusColor={theme.focused}
@@ -207,10 +236,7 @@ function Page(props: Props): ReactElement {
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               value={name}
-              onChangeText={(text: string): void => {
-                setName(text);
-                setErrorName('');
-              }}
+              onChangeText={inputChangeHandlers.nameInput}
               style={{ marginTop: 32 }}
               errorText={errorName}
               onSubmitEditing={requestSignUp}
