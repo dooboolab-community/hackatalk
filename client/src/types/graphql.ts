@@ -1,5 +1,5 @@
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -7,7 +7,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  AlertMode: any;
   Auth: any;
+  ChannelType: any;
   /**
    * A date string, such as 2007-12-03, compliant with the `full-date` format
    * outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -16,9 +18,12 @@ export type Scalars = {
   Date: any;
   DateTime: any;
   Gender: any;
+  MembershipType: any;
+  MessageType: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
 };
+
 
 
 export type AuthPayload = {
@@ -34,7 +39,57 @@ export enum AuthType {
   Apple = 'apple'
 }
 
+export type Channel = {
+  __typename?: 'Channel';
+  id: Scalars['String'];
+  channelType: Scalars['ChannelType'];
+  name?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  messages?: Maybe<Array<Message>>;
+  membership?: Maybe<Membership>;
+};
 
+
+
+
+export type Friend = {
+  __typename?: 'Friend';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<User>;
+  friend?: Maybe<User>;
+};
+
+
+export type Membership = {
+  __typename?: 'Membership';
+  alertMode?: Maybe<Scalars['AlertMode']>;
+  membershipType: Scalars['MembershipType'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<Array<User>>;
+  channel?: Maybe<Array<Channel>>;
+};
+
+
+export type Message = {
+  __typename?: 'Message';
+  id: Scalars['Int'];
+  messageType: Scalars['MessageType'];
+  text?: Maybe<Scalars['String']>;
+  imageUrls: Array<Scalars['String']>;
+  fileUrls: Array<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  channel?: Maybe<Channel>;
+  sender?: Maybe<User>;
+  replies?: Maybe<Array<Reply>>;
+  reactions?: Maybe<Array<Reaction>>;
+};
 
 
 export type Mutation = {
@@ -42,6 +97,7 @@ export type Mutation = {
   signUp: User;
   signInEmail: AuthPayload;
   signInWithFacebook: AuthPayload;
+  signInWithApple: AuthPayload;
   signInWithGoogle: AuthPayload;
   sendVerification: Scalars['Boolean'];
   updateProfile: User;
@@ -50,6 +106,8 @@ export type Mutation = {
   createNotification: Notification;
   deleteNotification?: Maybe<Notification>;
   singleUpload?: Maybe<Scalars['String']>;
+  addFriend: Friend;
+  deleteFriend: Friend;
 };
 
 
@@ -65,6 +123,11 @@ export type MutationSignInEmailArgs = {
 
 
 export type MutationSignInWithFacebookArgs = {
+  accessToken: Scalars['String'];
+};
+
+
+export type MutationSignInWithAppleArgs = {
   accessToken: Scalars['String'];
 };
 
@@ -112,6 +175,16 @@ export type MutationSingleUploadArgs = {
   dir?: Maybe<Scalars['String']>;
 };
 
+
+export type MutationAddFriendArgs = {
+  friendId: Scalars['String'];
+};
+
+
+export type MutationDeleteFriendArgs = {
+  friendId: Scalars['String'];
+};
+
 export type Notification = {
   __typename?: 'Notification';
   id: Scalars['Int'];
@@ -122,6 +195,19 @@ export type Notification = {
   createdAt?: Maybe<Scalars['DateTime']>;
 };
 
+/** PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  /** Used to indicate whether more edges exist following the set defined by the clients arguments. */
+  hasNextPage: Scalars['Boolean'];
+  /** Used to indicate whether more edges exist prior to the set defined by the clients arguments. */
+  hasPreviousPage: Scalars['Boolean'];
+  /** The cursor corresponding to the first nodes in edges. Null if the connection is empty. */
+  startCursor?: Maybe<Scalars['String']>;
+  /** The cursor corresponding to the last nodes in edges. Null if the connection is empty. */
+  endCursor?: Maybe<Scalars['String']>;
+};
+
 export type Profile = {
   __typename?: 'Profile';
   socialId?: Maybe<Scalars['String']>;
@@ -130,13 +216,43 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  users: UserConnection;
   me: User;
   notifications?: Maybe<Array<Notification>>;
 };
 
 
+export type QueryUsersArgs = {
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryNotificationsArgs = {
   userId?: Maybe<Scalars['String']>;
+};
+
+export type Reaction = {
+  __typename?: 'Reaction';
+  id: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+export type Reply = {
+  __typename?: 'Reply';
+  id: Scalars['Int'];
+  messageType: Scalars['MessageType'];
+  text?: Maybe<Scalars['String']>;
+  imageUrls: Array<Scalars['String']>;
+  fileUrls: Array<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  sender?: Maybe<User>;
 };
 
 export type Subscription = {
@@ -171,11 +287,20 @@ export type User = {
   verified?: Maybe<Scalars['Boolean']>;
   lastSignedIn?: Maybe<Scalars['DateTime']>;
   isOnline?: Maybe<Scalars['Boolean']>;
+  profile?: Maybe<Profile>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
-  profile?: Maybe<Profile>;
   notifications?: Maybe<Array<Notification>>;
+  friends?: Maybe<Array<User>>;
+};
+
+export type UserConnection = {
+  __typename?: 'UserConnection';
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types */
+  edges?: Maybe<Array<Maybe<UserEdge>>>;
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
+  pageInfo: PageInfo;
 };
 
 export type UserCreateInput = {
@@ -187,6 +312,14 @@ export type UserCreateInput = {
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;
+};
+
+export type UserEdge = {
+  __typename?: 'UserEdge';
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
+  cursor: Scalars['String'];
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
+  node: User;
 };
 
 export type UserUpdateInput = {

@@ -1,3 +1,5 @@
+scalar AlertMode
+
 scalar Auth
 
 type AuthPayload {
@@ -12,6 +14,19 @@ enum AuthType {
   apple
 }
 
+type Channel {
+  id: String!
+  channelType: ChannelType!
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  messages: [Message!]
+  membership: Membership
+}
+
+scalar ChannelType
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -21,7 +36,43 @@ scalar Date
 
 scalar DateTime
 
+type Friend {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  friend: User
+}
+
 scalar Gender
+
+type Membership {
+  alertMode: AlertMode
+  membershipType: MembershipType!
+  createdAt: DateTime
+  updatedAt: DateTime
+  user: [User!]
+  channel: [Channel!]
+}
+
+scalar MembershipType
+
+type Message {
+  id: Int!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String!]!
+  fileUrls: [String!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  channel: Channel
+  sender: User
+  replies: [Reply!]
+  reactions: [Reaction!]
+}
+
+scalar MessageType
 
 type Mutation {
   signUp(user: UserCreateInput): User!
@@ -36,6 +87,8 @@ type Mutation {
   createNotification(token: String!, device: String, os: String): Notification!
   deleteNotification(id: Int!): Notification
   singleUpload(file: Upload, dir: String): String
+  addFriend(friendId: String!): Friend!
+  deleteFriend(friendId: String!): Friend!
 }
 
 type Notification {
@@ -47,14 +100,72 @@ type Notification {
   createdAt: DateTime
 }
 
+"""
+PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+"""
+type PageInfo {
+  """
+  Used to indicate whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Used to indicate whether more edges exist prior to the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor corresponding to the first nodes in edges. Null if the connection is empty.
+  """
+  startCursor: String
+
+  """
+  The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+  """
+  endCursor: String
+}
+
 type Profile {
   socialId: String
   authType: AuthType
 }
 
 type Query {
+  users(
+    email: String
+    name: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): UserConnection!
   me: User!
   notifications(userId: String): [Notification!]
+}
+
+type Reaction {
+  id: Int!
+  value: String!
+}
+
+type Reply {
+  id: Int!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String!]!
+  fileUrls: [String!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  sender: User
 }
 
 type Subscription {
@@ -79,11 +190,24 @@ type User {
   verified: Boolean
   lastSignedIn: DateTime
   isOnline: Boolean
+  profile: Profile
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  profile: Profile
   notifications: [Notification!]
+  friends: [User!]
+}
+
+type UserConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [UserEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
 }
 
 input UserCreateInput {
@@ -95,6 +219,14 @@ input UserCreateInput {
   gender: Gender
   phone: String
   statusMessage: String
+}
+
+type UserEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: User!
 }
 
 input UserUpdateInput {
