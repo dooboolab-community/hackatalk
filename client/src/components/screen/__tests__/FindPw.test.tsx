@@ -100,8 +100,8 @@ describe('[FindPw] interaction', () => {
       act(() => {
         fireEvent.press(btnFindPw);
       });
-      const errorText = testingLib.getByTestId('error-email');
       await act(() => wait());
+      const errorText = testingLib.getByTestId('error-email');
       expect(errorText).toBeTruthy();
     });
 
