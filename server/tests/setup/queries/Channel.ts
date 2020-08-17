@@ -51,3 +51,16 @@ export const myChannelsQuery = /* GraphQL */`
     }
   }
 `;
+
+export const leaveChannel = /* GraphQL */`
+  mutation leaveChannel($channelId: String!) {
+    leaveChannel(channelId: $channelId) {
+      user {
+        email
+      }
+      channel {
+        id
+      }
+    }
+  }
+`;

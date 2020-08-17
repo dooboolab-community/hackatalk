@@ -2,6 +2,7 @@ import { GraphQLClient, request } from 'graphql-request';
 import {
   channelQuery,
   createChannel,
+  leaveChannel,
   myChannelsQuery,
   signInEmailMutation,
   signUpMutation,
@@ -107,7 +108,7 @@ describe('Resolver - Channel', () => {
 
     createdChannelId = response.createChannel.id;
 
-    // Add to myChannels which will be tested at the end of insertion.
+    // Add 1st to myChannels which will be tested at the end of insertion.
     myChannels.push(createdChannelId);
   });
 
@@ -142,7 +143,7 @@ describe('Resolver - Channel', () => {
     expect(response.createChannel).toHaveProperty('id');
     expect(response.createChannel.id).not.toEqual(createdChannelId);
 
-    // Add to myChannels which will be tested at the end of insertion.
+    // Add 2nd to myChannels which will be tested at the end of insertion.
     myChannels.push(response.createChannel.id);
   });
 
@@ -180,7 +181,7 @@ describe('Resolver - Channel', () => {
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
 
-    // Add to myChannels which will be tested at the end of insertion.
+    // Add 3rd to myChannels which will be tested at the end of insertion.
     myChannels.push(response.createChannel.id);
   });
 
@@ -202,5 +203,33 @@ describe('Resolver - Channel', () => {
 
     const response = await authClient.request(channelQuery, variables);
     expect(response).toHaveProperty('channel');
+  });
+
+  it('should let user leave [public] channel and remove membership', async () => {
+    const variables = {
+      channelId: myChannels[2],
+    };
+
+    const response = await authClient.request(leaveChannel, variables);
+    expect(response).toHaveProperty('leaveChannel');
+
+    const responseMyChannel = await authClient.request(myChannelsQuery);
+    expect(responseMyChannel).toHaveProperty('myChannels');
+    // The deletion should happen in `myChannels` query
+    expect(responseMyChannel.myChannels).toHaveLength(myChannels.length - 1);
+  });
+
+  it('should update visibility on [private] channel and remain membership', async () => {
+    const variables = {
+      channelId: myChannels[0],
+    };
+
+    const response = await authClient.request(leaveChannel, variables);
+    expect(response).toHaveProperty('leaveChannel');
+
+    const responseMyChannel = await authClient.request(myChannelsQuery);
+    expect(responseMyChannel).toHaveProperty('myChannels');
+    // The deletion should happen in `myChannels` query
+    expect(responseMyChannel.myChannels).toHaveLength(myChannels.length - 2);
   });
 });

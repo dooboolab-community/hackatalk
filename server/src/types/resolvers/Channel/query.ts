@@ -28,6 +28,7 @@ export const myChannels = queryField('myChannels', {
         membership: {
           some: {
             user: { id: userId },
+            isVisible: true,
           },
         },
       },

@@ -5,6 +5,7 @@ export const Membership = objectType({
   definition(t) {
     t.model.alertMode();
     t.field('membershipType', { type: 'MembershipType', nullable: true });
+    t.model.isVisible();
     t.model.createdAt();
     t.model.updatedAt();
 

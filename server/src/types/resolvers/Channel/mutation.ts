@@ -1,5 +1,5 @@
 import { Channel, ChannelType, MembershipType, MessageType } from '@prisma/client';
-import { inputObjectType, mutationField } from '@nexus/schema';
+import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
 
@@ -148,7 +148,22 @@ export const createChannel = mutationField('createChannel', {
       };
 
       const existingChannel = await findChannelWithUserIds();
+
       if (existingChannel) {
+        const changeVisibilityWhenInvisible = () => ctx.prisma.membership.update({
+          data: {
+            isVisible: true,
+          },
+          where: {
+            userId_channelId: {
+              userId,
+              channelId: existingChannel.id,
+            },
+          },
+        });
+
+        changeVisibilityWhenInvisible();
+
         message && await createMessage(message, existingChannel.id);
         return existingChannel;
       }
@@ -166,5 +181,51 @@ export const createChannel = mutationField('createChannel', {
     });
 
     return getChannel(id);
+  },
+});
+
+export const leaveChannel = mutationField('leaveChannel', {
+  type: 'Membership',
+  args: { channelId: stringArg({ nullable: false }) },
+
+  description: `User leaves [public] channel.
+  Users cannot leave the [private] channel
+  and rather this is going to be invisible in [Membership].
+  This will reset to true when new [Message] is created to channel.
+  User will leave the [public] channel and membership will be removed.
+  `,
+
+  resolve: async (parent, { channelId }, ctx) => {
+    const userId = getUserId(ctx);
+
+    const channels = await ctx.prisma.channel.findMany({
+      where: { id: channelId, deletedAt: null },
+      take: 1,
+    });
+
+    const channel = channels[0];
+
+    if (channel.channelType === 'public') {
+      return ctx.prisma.membership.delete({
+        where: {
+          userId_channelId: {
+            userId,
+            channelId,
+          },
+        },
+      });
+    }
+
+    return ctx.prisma.membership.update({
+      where: {
+        userId_channelId: {
+          channelId,
+          userId,
+        },
+      },
+      data: {
+        isVisible: false,
+      },
+    });
   },
 });
