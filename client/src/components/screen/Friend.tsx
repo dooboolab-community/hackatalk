@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import ErrorView from '../shared/ErrorView';
 import { FlatList } from 'react-native';
-import { LoadingIndicator } from 'dooboo-ui';
+import { FriendFriendsQuery } from '../../__generated__/FriendFriendsQuery.graphql';
 import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -18,11 +18,44 @@ const Container = styled.View`
   justify-content: center;
 `;
 
+const friendsQuery = graphql`
+  query FriendFriendsQuery {
+    me {
+      friends {
+        id
+        email
+        name
+        nickname
+        thumbURL
+        photoURL
+        birthday
+        gender
+        phone
+        statusMessage
+        verified
+        lastSignedIn
+        isOnline
+        createdAt
+        updatedAt
+        deletedAt
+      }
+    }
+  }
+`;
+
 export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
+  const [friends, setFriends] = useState<readonly User[]>([]);
+  const environment = useRelayEnvironment();
 
-  // TODO: get data from fragment
-  const data: any = {};
+  useEffect(() => {
+    const subscription = fetchQuery<FriendFriendsQuery>(environment, friendsQuery, {}).subscribe({
+      next: (data) => setFriends(data.me.friends || []),
+    });
+
+    // Clean up.
+    return (): void => subscription.unsubscribe();
+  }, []);
 
   const userListOnPress = (user: User): void => {
     if (state.modal) {
@@ -50,17 +83,6 @@ export default function Screen(): ReactElement {
     );
   };
 
-  // if (loading) {
-  //   return (<Container><LoadingIndicator /></Container>);
-  // }
-
-  // if (error) {
-  //   return <ErrorView
-  //     body={error.message}
-  //     onButtonPressed={(): Promise<ApolloQueryResult<{ friends: User[] }>> => refetch()}
-  //   />;
-  // }
-
   return (
     <Container>
       <FlatList
@@ -69,7 +91,7 @@ export default function Screen(): ReactElement {
           alignSelf: 'stretch',
         }}
         contentContainerStyle={
-          (data?.friends || []).length === 0
+          friends.length === 0
             ? {
               flex: 1,
               alignItems: 'center',
@@ -78,7 +100,7 @@ export default function Screen(): ReactElement {
             : undefined
         }
         keyExtractor={(item, index): string => index.toString()}
-        data={data?.friends}
+        data={friends}
         renderItem={renderItem}
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
