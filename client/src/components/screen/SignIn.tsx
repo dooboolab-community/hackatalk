@@ -334,7 +334,13 @@ function SignIn(props: Props): ReactElement {
     <Container>
       <StatusBar />
 
-      <ScrollView style={{ alignSelf: 'stretch' }}>
+      <ScrollView
+        style={{
+          alignSelf: 'center',
+          width: '100%',
+          maxWidth: 800,
+        }}
+      >
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
