@@ -1,10 +1,10 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import { SignUpMutation, SignUpMutationResponse, UserCreateInput } from '../../__generated__/SignUpMutation.graphql';
+import { SignUpMutation, SignUpMutationResponse, UserCreateInput } from '../../generated/SignUpMutation.graphql';
 import {
   SignUpSendVerificationMutation,
   SignUpSendVerificationMutationResponse,
-} from '../../__generated__/SignUpSendVerificationMutation.graphql';
+} from '../../generated/SignUpSendVerificationMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
 
