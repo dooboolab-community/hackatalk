@@ -259,20 +259,22 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       take: 1,
     });
     const membership = memberships[0];
+    const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
 
-    if (membership.membershipType !== 'admin' && membership.membershipType !== 'owner') {
+    if (hasAdminPermission) {
       throw new Error('You should have admin or owner membership to add some users to the channel.');
     }
 
     for (const userId of userIds) {
-      const membership = await ctx.prisma.membership.findMany({
+      const memberships = await ctx.prisma.membership.findMany({
         where: {
           channelId,
           userId,
         },
         take: 1,
       });
-      if (!membership) {
+
+      if (!memberships) {
         await ctx.prisma.membership.create({
           data: {
             user: {
@@ -305,6 +307,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
       where: { id: channelId, deletedAt: null },
       take: 1,
     });
+
     const channel = channels[0];
 
     if (channel.channelType === 'private') {
@@ -318,9 +321,11 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
       },
       take: 1,
     });
-    const membership = memberships[0];
 
-    if (membership.membershipType !== 'admin' && membership.membershipType !== 'owner') {
+    const membership = memberships[0];
+    const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
+
+    if (hasAdminPermission) {
       throw new Error('You should have admin or owner membership to add some users to the channel.');
     }
 
