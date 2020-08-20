@@ -1,10 +1,13 @@
 // import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import React, { ReactElement } from 'react';
-import { act, cleanup, render, wait } from '@testing-library/react-native';
+import { cleanup, render, wait } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Friend from '../Friend';
+import { MockPayloadGenerator } from 'relay-test-utils';
+import React from 'react';
+import { User } from '../../../types/graphql';
+import { environment } from '../../../providers';
 
 // const mocks = [
 //   {
@@ -94,5 +97,22 @@ describe('[Friend] rendering test', () => {
     testingLib.rerender(component);
     expect(testingLib.asJSON()).toBeTruthy();
     expect(testingLib.asJSON()).toMatchSnapshot();
+  });
+
+  it('renders a friend', async () => {
+    environment.mock.queueOperationResolver((operation) => {
+      return MockPayloadGenerator.generate(operation, {
+        User: (_, generateId): User => ({
+          id: `user-${generateId()}`,
+          name: 'John Doe',
+          nickname: 'jdoe1234',
+        }),
+      });
+    });
+    const component = createTestElement(<Friend />);
+    const { getByText } = render(component);
+
+    // There should be an element with the text 'John Doe'.
+    return wait(() => expect(getByText('John Doe')).toBeTruthy());
   });
 });
