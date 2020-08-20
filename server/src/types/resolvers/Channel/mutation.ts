@@ -274,7 +274,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
         take: 1,
       });
 
-      if (!memberships) {
+      if (memberships.length === 0) {
         await ctx.prisma.membership.create({
           data: {
             user: {
@@ -286,9 +286,9 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
           },
         });
       }
-
-      return channel;
     }
+
+    return channel;
   },
 });
 
