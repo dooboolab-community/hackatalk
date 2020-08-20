@@ -2,6 +2,8 @@ import { GraphQLClient, request } from 'graphql-request';
 import {
   channelQuery,
   createChannel,
+  inviteToChannel,
+  kickFromChannel,
   leaveChannel,
   myChannelsQuery,
   signInEmailMutation,
@@ -203,6 +205,50 @@ describe('Resolver - Channel', () => {
 
     const response = await authClient.request(channelQuery, variables);
     expect(response).toHaveProperty('channel');
+  });
+
+  it('should invite users to [public] channel', async () => {
+    const usersToInvite = friendsId;
+    const variables = {
+      channelId: myChannels[2],
+      userIds: usersToInvite,
+    };
+
+    const response = await authClient.request(inviteToChannel, variables);
+    expect(response).toHaveProperty('inviteUsersToChannel');
+    expect(response.inviteUsersToChannel).toHaveProperty('memberships');
+    const inviteResponse = response.inviteUsersToChannel;
+
+    expect(Array.isArray(inviteResponse.memberships)).toBe(true);
+    for (let i = 0; i < inviteResponse.memberships.length; i++) {
+      expect(inviteResponse.memberships[i]).toHaveProperty('user');
+      expect(inviteResponse.memberships[i].user).toHaveProperty('id');
+    }
+
+    const userIdsInChannel = inviteResponse.memberships.map((i) => i.user.id);
+    for (const i of usersToInvite) { expect(userIdsInChannel).toContain(i); }
+  });
+
+  it('should kick users from [public] channel', async () => {
+    const usersToKick = friendsId;
+    const variables = {
+      channelId: myChannels[2],
+      userIds: usersToKick,
+    };
+
+    const response = await authClient.request(kickFromChannel, variables);
+    expect(response).toHaveProperty('kickUsersFromChannel');
+    const kickResponse = response.kickUsersFromChannel;
+
+    expect(kickResponse).toHaveProperty('memberships');
+    expect(Array.isArray(kickResponse.memberships)).toBe(true);
+    for (let i = 0; i < kickResponse.memberships.length; i++) {
+      expect(kickResponse.memberships[i]).toHaveProperty('user');
+      expect(kickResponse.memberships[i].user).toHaveProperty('id');
+    }
+
+    const userIdsInChannel = kickResponse.memberships.map((i) => i.user.id);
+    for (const i of usersToKick) { expect(userIdsInChannel).not.toContain(i); }
   });
 
   it('should let user leave [public] channel and remove membership', async () => {
