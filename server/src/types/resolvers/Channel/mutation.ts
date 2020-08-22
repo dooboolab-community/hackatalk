@@ -245,6 +245,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       where: { id: channelId, deletedAt: null },
       take: 1,
     });
+
     const channel = channels[0];
 
     if (channel.channelType === 'private') {
@@ -258,6 +259,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       },
       take: 1,
     });
+
     const membership = memberships[0];
     const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
 
