@@ -297,7 +297,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
 
   args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
 
-  description: `Removes some users into [public] channel.
+  description: `Removes some users from [public] channel.
   `,
 
   resolve: async (_, { channelId, userIds }, ctx) => {
@@ -311,7 +311,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
     const channel = channels[0];
 
     if (channel.channelType === 'private') {
-      throw new Error("You can't remove some users from private channel.");
+      throw new Error('Removing users from the private channels is not allowed.');
     }
 
     const memberships = await ctx.prisma.membership.findMany({
