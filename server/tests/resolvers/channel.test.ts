@@ -215,11 +215,13 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(inviteToChannel, variables);
+
     expect(response).toHaveProperty('inviteUsersToChannel');
     expect(response.inviteUsersToChannel).toHaveProperty('memberships');
-    const inviteResponse = response.inviteUsersToChannel;
 
+    const inviteResponse = response.inviteUsersToChannel;
     expect(Array.isArray(inviteResponse.memberships)).toBe(true);
+
     for (let i = 0; i < inviteResponse.memberships.length; i++) {
       expect(inviteResponse.memberships[i]).toHaveProperty('user');
       expect(inviteResponse.memberships[i].user).toHaveProperty('id');
@@ -252,10 +254,11 @@ describe('Resolver - Channel', () => {
 
     const response = await authClient.request(kickFromChannel, variables);
     expect(response).toHaveProperty('kickUsersFromChannel');
-    const kickResponse = response.kickUsersFromChannel;
 
+    const kickResponse = response.kickUsersFromChannel;
     expect(kickResponse).toHaveProperty('memberships');
     expect(Array.isArray(kickResponse.memberships)).toBe(true);
+
     for (let i = 0; i < kickResponse.memberships.length; i++) {
       expect(kickResponse.memberships[i]).toHaveProperty('user');
       expect(kickResponse.memberships[i].user).toHaveProperty('id');
