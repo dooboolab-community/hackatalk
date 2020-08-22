@@ -58,6 +58,7 @@ describe('[Friend] rendering test', () => {
   let props: any;
   beforeEach(() => {
     props = createTestProps();
+    environment.mockClear();
   });
 
   afterEach(cleanup);
@@ -114,5 +115,43 @@ describe('[Friend] rendering test', () => {
 
     // There should be an element with the text 'John Doe'.
     return wait(() => expect(getByText('John Doe')).toBeTruthy());
+  });
+
+  it('re-renders upon friend update', async () => {
+    // Make a mock friend resolver with the given name.
+    const makeFriendResolver = (
+      name: string,
+    ): MockPayloadGenerator.MockResolvers => ({
+      User: (_, generateId): User => ({
+        id: `user-${generateId()}`,
+        name,
+      }),
+    });
+
+    // Render.
+    const component = createTestElement(<Friend />);
+    const { getByText } = render(component);
+
+    // First data : John Doe
+    const operation = environment.mock.getMostRecentOperation();
+    environment.mock.nextValue(
+      operation,
+      MockPayloadGenerator.generate(
+        operation,
+        makeFriendResolver('John Doe'),
+      ),
+    );
+    expect(getByText('John Doe')).toBeTruthy();
+
+    // Updated data : Sarah Doe
+    environment.mock.nextValue(
+      operation,
+      MockPayloadGenerator.generate(
+        operation,
+        makeFriendResolver('Sarah Doe'),
+      ),
+    );
+    expect(getByText('Sarah Doe')).toBeTruthy();
+    expect(() => getByText('John Doe')).toThrow();
   });
 });
