@@ -226,7 +226,7 @@ describe('Resolver - Channel', () => {
     }
 
     const userIdsInChannel = inviteResponse.memberships.map((i) => i.user.id);
-    for (const i of usersToInvite) { expect(userIdsInChannel).toContain(i); }
+    for (const userId of usersToInvite) { expect(userIdsInChannel).toContain(userId); }
   });
 
   it('should kick users from [public] channel', async () => {
