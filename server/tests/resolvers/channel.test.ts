@@ -226,11 +226,13 @@ describe('Resolver - Channel', () => {
     }
 
     const userIdsInChannel = inviteResponse.memberships.map((i) => i.user.id);
+
     for (const userId of usersToInvite) { expect(userIdsInChannel).toContain(userId); }
   });
 
   it('should throw when trying to invite users to [private] channel', async () => {
     const usersToInvite = friendsId.slice(0, 1);
+
     const variables = {
       channelId: myChannels[0],
       userIds: usersToInvite,
@@ -242,6 +244,7 @@ describe('Resolver - Channel', () => {
 
   it('should kick users from [public] channel', async () => {
     const usersToKick = friendsId;
+
     const variables = {
       channelId: myChannels[2],
       userIds: usersToKick,
@@ -259,11 +262,13 @@ describe('Resolver - Channel', () => {
     }
 
     const userIdsInChannel = kickResponse.memberships.map((i) => i.user.id);
+
     for (const i of usersToKick) { expect(userIdsInChannel).not.toContain(i); }
   });
 
   it('should throw when trying to kick users from [private] channel', async () => {
     const usersToKick = friendsId.slice(0, 1);
+
     const variables = {
       channelId: myChannels[0],
       userIds: usersToKick,
