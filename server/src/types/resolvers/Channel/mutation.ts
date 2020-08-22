@@ -229,3 +229,117 @@ export const leaveChannel = mutationField('leaveChannel', {
     });
   },
 });
+
+export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
+  type: 'Channel',
+
+  args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
+
+  description: `Adds some users into [public] channel.
+  `,
+
+  resolve: async (_, { channelId, userIds }, ctx) => {
+    const userId = getUserId(ctx);
+
+    const channels = await ctx.prisma.channel.findMany({
+      where: { id: channelId, deletedAt: null },
+      take: 1,
+    });
+
+    const channel = channels[0];
+
+    if (channel.channelType === 'private') {
+      throw new Error("You can't add some users to private channel.");
+    }
+
+    const memberships = await ctx.prisma.membership.findMany({
+      where: {
+        userId,
+        channelId: channel.id,
+      },
+      take: 1,
+    });
+
+    const membership = memberships[0];
+    const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
+
+    if (hasAdminPermission) {
+      throw new Error('You should have admin or owner membership to add some users to the channel.');
+    }
+
+    for (const userId of userIds) {
+      const memberships = await ctx.prisma.membership.findMany({
+        where: {
+          channelId,
+          userId,
+        },
+        take: 1,
+      });
+
+      if (memberships.length === 0) {
+        await ctx.prisma.membership.create({
+          data: {
+            user: {
+              connect: { id: userId },
+            },
+            channel: {
+              connect: { id: channelId },
+            },
+          },
+        });
+      }
+    }
+
+    return channel;
+  },
+});
+
+export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
+  type: 'Channel',
+
+  args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
+
+  description: `Removes some users from [public] channel.
+  `,
+
+  resolve: async (_, { channelId, userIds }, ctx) => {
+    const userId = getUserId(ctx);
+
+    const channels = await ctx.prisma.channel.findMany({
+      where: { id: channelId, deletedAt: null },
+      take: 1,
+    });
+
+    const channel = channels[0];
+
+    if (channel.channelType === 'private') {
+      throw new Error('Removing users from the private channels is not allowed.');
+    }
+
+    const memberships = await ctx.prisma.membership.findMany({
+      where: {
+        userId,
+        channelId: channel.id,
+      },
+      take: 1,
+    });
+
+    const membership = memberships[0];
+    const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
+
+    if (hasAdminPermission) {
+      throw new Error('You should have admin or owner membership to add some users to the channel.');
+    }
+
+    await ctx.prisma.membership.deleteMany({
+      where: {
+        channelId,
+        userId: {
+          in: userIds,
+        },
+      },
+    });
+
+    return channel;
+  },
+});
