@@ -15,8 +15,8 @@ export const validatePassword = (password: string): boolean => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const showAlertForError = (error: any): void => {
   Platform.select({
-    web: Alert.alert(getString('ERROR'), error.message || ''),
     // @ts-ignore
-    default: alert(error.message || ''),
+    web: alert(error || ''),
+    default: Alert.alert(getString('ERROR'), error || ''),
   });
 };
