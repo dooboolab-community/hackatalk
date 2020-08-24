@@ -35,7 +35,6 @@ export const createChannel = mutationField('createChannel', {
   the public channel can be created by each request.
   The public channel is something like an open chat while
   private channel is all kinds of direct messages.
-
   The [Membership] of private channel will be identical to all users which is (member).
   
   <Optional> The channel can be created with message of [MessageType].
@@ -63,12 +62,9 @@ export const createChannel = mutationField('createChannel', {
         },
       });
 
-    const createMemberships = async (channelId: string, userIds: string[]) => {
-      const promises = [];
-
-      for (const userId of userIds) {
-        const batch = ctx.prisma.membership.create({
-          data: {
+    const createMemberships = async (channelId: string, userIds: readonly string[]) => {
+       const promises: any[] = userIds.map((userId) => ctx.prisma.membership.create({
+        data: {
             user: {
               connect: { id: userId },
             },
@@ -76,10 +72,7 @@ export const createChannel = mutationField('createChannel', {
               connect: { id: channelId },
             },
           },
-        });
-
-        promises.push(batch);
-      }
+       }))
 
       await Promise.all(promises);
     };
@@ -105,16 +98,7 @@ export const createChannel = mutationField('createChannel', {
       },
     });
 
-    const isPrivateChannel = channelType === ChannelType.private;
-
-    if (isPrivateChannel) {
-      const hasNoMembersToChat = userIds.length === 0;
-
-      if (hasNoMembersToChat) {
-        throw new Error('User has no members to chat with in private channel.');
-      }
-
-      const findChannelWithUserIds = async () => {
+    const findChannelWithUserIds = async (userId, userIds) => {
         const channels = await ctx.prisma.channel.findMany({
           include: {
             membership: {
@@ -135,35 +119,34 @@ export const createChannel = mutationField('createChannel', {
 
         const totalUsers = userIds.length + 1; // +1 for auth user
 
-        let existingChannel: Channel;
+        return channels.find(channel => channel.membership.length === totalUsers)
+    };
 
-        for (const channel of channels) {
-          if (totalUsers === channel.membership.length) {
-            existingChannel = channel;
-            break;
-          }
-        }
+    const changeVisibilityWhenInvisible = (userId, existingChannel) => ctx.prisma.membership.update({
+        data: {
+          isVisible: true,
+        },
+        where: {
+          userId_channelId: {
+            userId,
+            channelId: existingChannel.id,
+          },
+        },
+    });
 
-        return existingChannel;
-      };
+    const isPrivateChannel = channelType === ChannelType.private;
 
-      const existingChannel = await findChannelWithUserIds();
+    if (isPrivateChannel) {
+      const hasNoMembersToChat = userIds.length === 0;
+
+      if (hasNoMembersToChat) {
+        throw new Error('User has no members to chat with in private channel.');
+      }
+
+      const existingChannel = await findChannelWithUserIds(userId, userIds);
 
       if (existingChannel) {
-        const changeVisibilityWhenInvisible = () => ctx.prisma.membership.update({
-          data: {
-            isVisible: true,
-          },
-          where: {
-            userId_channelId: {
-              userId,
-              channelId: existingChannel.id,
-            },
-          },
-        });
-
-        changeVisibilityWhenInvisible();
-
+        changeVisibilityWhenInvisible(userId, existingChannel);
         message && await createMessage(message, existingChannel.id);
         return existingChannel;
       }
