@@ -64,3 +64,27 @@ export const leaveChannel = /* GraphQL */`
     }
   }
 `;
+
+export const inviteToChannel = /* GraphQL */`
+  mutation inviteToChannel($channelId: String!, $userIds: [String!]!) {
+    inviteUsersToChannel(channelId: $channelId, userIds: $userIds) {
+      memberships {
+        user {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const kickFromChannel = /* GraphQL */`
+  mutation kickFromChannel($channelId: String!, $userIds: [String!]!) {
+    kickUsersFromChannel(channelId: $channelId, userIds: $userIds) {
+      memberships {
+        user {
+          id
+        }
+      }
+    }
+  }
+`;

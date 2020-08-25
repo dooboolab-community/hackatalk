@@ -12,11 +12,11 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import type {
   SignInAppleMutation,
   SignInAppleMutationResponse,
-} from '../../generated/SignInAppleMutation.graphql';
+} from '../../__generated__/SignInAppleMutation.graphql';
 import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
-} from '../../generated/SignInEmailMutation.graphql';
+} from '../../__generated__/SignInEmailMutation.graphql';
 import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';

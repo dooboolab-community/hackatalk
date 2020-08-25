@@ -55,7 +55,7 @@ function Message(): React.ReactElement {
       id: '',
       messageType: MessageType.Message,
       message:
-        'Hello2. This is long message. This is long message.This is long message.' +
+        'Hello2. This is long message. This is long message. This is long message.' +
         'This is long message. This is long message. This is long message.' +
         'This is long message. This is long message.' +
         'This is long message. This is long message. This is long message.',

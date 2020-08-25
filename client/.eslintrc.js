@@ -4,5 +4,11 @@ module.exports = {
   rules: {
     'react/display-name': 0,
     '@typescript-eslint/ban-ts-comment': 0,
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowExpressions: true,
+      },
+    ],
   },
 };
