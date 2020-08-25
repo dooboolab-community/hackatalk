@@ -50,7 +50,7 @@ export default function Screen(): ReactElement {
 
   useEffect(() => {
     const subscription = fetchQuery<FriendFriendsQuery>(environment, friendsQuery, {}).subscribe({
-      next: (data) => setFriends(data.me.friends || []),
+      next: (data) => setFriends(data?.me?.friends || []),
     });
 
     // Clean up.
