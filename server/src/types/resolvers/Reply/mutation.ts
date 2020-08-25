@@ -4,7 +4,7 @@ import { NEW_REPLY } from './subscription';
 import { getUserId } from '../../../utils/auth';
 
 export const sendReply = mutationField('sendReply', {
-  type: 'Message',
+  type: 'Reply',
   nullable: true,
   args: {
     messageId: stringArg(),
