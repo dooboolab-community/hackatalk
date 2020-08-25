@@ -1,4 +1,4 @@
-import { Channel, ChannelType, MembershipType, MessageType } from '@prisma/client';
+import { Channel, Membership, ChannelType, MembershipType, MessageType } from '@prisma/client';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
@@ -63,7 +63,7 @@ export const createChannel = mutationField('createChannel', {
       });
 
     const createMemberships = async (channelId: string, userIds: readonly string[]) => {
-       const promises: any[] = userIds.map((userId) => ctx.prisma.membership.create({
+       const promises: Promise<Membership>[] = userIds.map((userId) => ctx.prisma.membership.create({
         data: {
             user: {
               connect: { id: userId },
