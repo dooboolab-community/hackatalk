@@ -1,6 +1,6 @@
+import { NEW_MESSAGE, NEW_REPLY } from './subscription';
 import { mutationField, stringArg } from '@nexus/schema';
 import { MessageCreateInput } from '../Channel/mutation';
-import { NEW_MESSAGE, NEW_REPLY } from './subscription';
 import { getUserId } from '../../../utils/auth';
 
 export const sendMessage = mutationField('sendMessage', {
