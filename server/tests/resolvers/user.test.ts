@@ -38,26 +38,6 @@ describe('Resolver - User', () => {
     expect(response.signUp.email).toEqual(userVariables.user.email);
   });
 
-  it('should throw error when user does not exists', async () => {
-    const variables = {
-      email: 'testtest@test.com',
-      password: 'password',
-    };
-
-    const promise = request(testHost, signInEmailMutation, variables);
-    expect(promise).rejects.toThrow();
-  });
-
-  it('should throw error when password is invalid', () => {
-    const variables = {
-      email: 'dooboo@dooboolab.com',
-      password: 'invalid',
-    };
-
-    const promise = request(testHost, signInEmailMutation, variables);
-    expect(promise).rejects.toThrow();
-  });
-
   it('should signIn user with email', async () => {
     const variables = {
       email: 'dooboo@dooboolab.com',
