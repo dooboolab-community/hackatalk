@@ -10,7 +10,7 @@ import {
   verifyFacebookId,
   verifyGoogleId,
 } from '../../../utils/auth';
-import { AuthType, Gender } from '../../models/Scalar';
+import { AuthType } from '../../models/Scalar';
 import {
   ErrorEmailForUserExists,
   ErrorEmailNotValid,
@@ -30,17 +30,9 @@ import SendGridMail from '@sendgrid/mail';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 
-const { SENDGRID_EMAIL } = process.env;
+import { UserService, SocialUserInput } from '../../../services/UserService';
 
-interface SocialUserInput {
-  socialId: string;
-  authType: AuthType;
-  name: string;
-  email: string;
-  birthday?: Date;
-  gender?: Gender;
-  phone?: string;
-}
+const { SENDGRID_EMAIL } = process.env;
 
 export const signInWithSocialAccount = async (
   socialUser: SocialUserInput,
@@ -64,38 +56,7 @@ export const signInWithSocialAccount = async (
     }
   }
 
-  // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
-  let user: NexusGenRootTypes['User'];
-  const users = await ctx.prisma.user.findMany({
-    where: {
-      email: socialUser.email,
-      profile: {
-        socialId: socialUser.socialId,
-      },
-    },
-    take: 1,
-  });
-
-  if (!users.length) {
-    user = await ctx.prisma.user.create({
-      data: {
-        profile: {
-          create: {
-            socialId: socialUser.socialId,
-            authType: socialUser.authType,
-          },
-        },
-        email: socialUser.email,
-        name: socialUser.name,
-        birthday: socialUser.birthday,
-        gender: socialUser.gender,
-        phone: socialUser.phone,
-        verified: true,
-      },
-    });
-  } else {
-    user = users[0];
-  }
+  const user = await UserService.createOrGetUserBySocialUserInput(socialUser, ctx);
 
   ctx.pubsub.publish(USER_SIGNED_IN, user);
 
