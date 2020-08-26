@@ -7,7 +7,7 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
 import {
   RelayEnvironmentProvider,
   fetchQuery,
@@ -111,7 +111,7 @@ function App(): ReactElement {
   return <RootNavigator />;
 }
 
-function HackatalkThemeProvider(props: { children: ReactElement }): ReactElement {
+const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
   return (
     <ThemeProvider
@@ -120,10 +120,10 @@ function HackatalkThemeProvider(props: { children: ReactElement }): ReactElement
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
     >
-      {props.children}
+      {children}
     </ThemeProvider>
   );
-}
+};
 
 function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactElement {
   return (
