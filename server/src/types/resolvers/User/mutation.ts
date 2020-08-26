@@ -38,23 +38,7 @@ export const signInWithSocialAccount = async (
   socialUser: SocialUserInput,
   ctx: Context,
 ): Promise<NexusGenRootTypes['AuthPayload']> => {
-  if (socialUser.email) {
-    // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
-    const emailUser = await ctx.prisma.user.findMany({
-      where: {
-        email: socialUser.email,
-        profile: {
-          socialId: {
-            not: socialUser.socialId,
-          },
-        },
-      },
-      take: 1,
-    });
-    if (emailUser.length) {
-      throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
-    }
-  }
+  await UserService.validateSocialUser(socialUser, ctx);
 
   const user = await UserService.createOrGetUserBySocialUserInput(socialUser, ctx);
 
