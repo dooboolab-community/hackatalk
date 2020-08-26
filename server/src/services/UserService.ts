@@ -1,7 +1,9 @@
+import { sign } from 'jsonwebtoken';
 import { Context } from '../context';
 import { NexusGenRootTypes } from '../generated/nexus';
-import { AuthType, Gender } from '../types/models';
 import { ErrorEmailForUserExists, ErrorString } from '../utils/error';
+import { AuthType, Gender } from '../types/models';
+import { USER_SIGNED_IN } from '../types/resolvers';
 
 export interface SocialUserInput {
   socialId: string;
@@ -14,7 +16,30 @@ export interface SocialUserInput {
 }
 
 export class UserService {
-  static async validateSocialUser(socialUser: SocialUserInput, ctx: Context) {
+  static async signInWithSocialAccount(
+    socialUser: SocialUserInput,
+    ctx: Context,
+  ): Promise<NexusGenRootTypes['AuthPayload']> {
+    await UserService.validateSocialUser(socialUser, ctx);
+
+    const user = await UserService.createOrGetUserBySocialUserInput(socialUser, ctx);
+
+    ctx.pubsub.publish(USER_SIGNED_IN, user);
+
+    const updatedUser = await ctx.prisma.user.update({
+      where: {
+        email: user.email,
+      },
+      data: { lastSignedIn: new Date() },
+    });
+
+    return {
+      token: sign({ userId: user.id }, ctx.appSecret),
+      user: updatedUser,
+    };
+  };
+
+  private static async validateSocialUser(socialUser: SocialUserInput, ctx: Context) {
     if (socialUser.email) {
       // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
       const emailUser = await ctx.prisma.user.findMany({
@@ -33,7 +58,8 @@ export class UserService {
       }
     }
   }
-  static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context): Promise<NexusGenRootTypes['User']> {
+
+  private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context): Promise<NexusGenRootTypes['User']> {
     // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
     const users = await ctx.prisma.user.findMany({
       where: {
