@@ -33,7 +33,9 @@
   "dependencies": {
     "@nexus/schema": "^0.15.0",
     "@sendgrid/mail": "^7.2.3",
+    "apollo-datasource-rest": "^0.9.3",
     "apollo-server": "^2.16.1",
+    "apollo-server-testing": "2.16.1",
     "axios": "^0.19.2",
     "azure-storage": "^2.10.3",
     "bcrypt": "^5.0.0",
