@@ -1,6 +1,6 @@
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import { Http2Server } from 'http2';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
 import { PrismaClient } from '@prisma/client';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 const port = 4000;
 let server: Http2Server;
 let networkInterface;
-export let apolloClient;
+export let apolloClient: ApolloClient<NormalizedCacheObject>;
 export const testHost = `http://localhost:${port}/graphql`;
 const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
