@@ -34,9 +34,13 @@ export const sendMessage = mutationField('sendMessage', {
     if (!hasMembership) { throw new Error('Prohibited to send a message to channel not entered'); }
 
     const messageCreated = await ctx.prisma.message.create({
+      include: {
+        channel: true,
+        sender: true,
+      },
       data: {
-        fileUrls: { set: message.fileUrls },
-        imageUrls: { set: message.imageUrls },
+        fileUrls: { set: message.fileUrls || [] },
+        imageUrls: { set: message.imageUrls || [] },
         messageType: message.messageType,
         text: message.text,
         channel: {
@@ -53,7 +57,7 @@ export const sendMessage = mutationField('sendMessage', {
     });
 
     if (messageCreated) {
-      ctx.pubsub.publish(NEW_MESSAGE, {
+      await ctx.pubsub.publish(NEW_MESSAGE, {
         ids: channel.membership.map((membership) => membership.userId),
         message,
       });
