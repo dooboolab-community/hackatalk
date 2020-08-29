@@ -21,8 +21,31 @@ type Channel {
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  messages: [Message!]
-  membership: Membership
+
+  """Get latest message sent to the channel."""
+  lastMessage: Message
+  messages(
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): MessageConnection!
+
+  """Get memberships assigned to channel."""
+  memberships: [Membership!]
+}
+
+input ChannelCreateInput {
+  channelType: ChannelType
+  name: String
+  userIds: [String!]
 }
 
 scalar ChannelType
@@ -48,17 +71,18 @@ scalar Gender
 
 type Membership {
   alertMode: AlertMode
-  membershipType: MembershipType!
+  membershipType: MembershipType
+  isVisible: Boolean!
   createdAt: DateTime
   updatedAt: DateTime
-  user: [User!]
-  channel: [Channel!]
+  user: User
+  channel: Channel
 }
 
 scalar MembershipType
 
 type Message {
-  id: Int!
+  id: String!
   messageType: MessageType!
   text: String
   imageUrls: [String!]!
@@ -70,6 +94,33 @@ type Message {
   sender: User
   replies: [Reply!]
   reactions: [Reaction!]
+}
+
+type MessageConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [MessageEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+input MessageCreateInput {
+  messageType: MessageType
+  text: String
+  imageUrls: [String!]
+  fileUrls: [String!]
+}
+
+type MessageEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: Message!
 }
 
 scalar MessageType
@@ -85,10 +136,48 @@ type Mutation {
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(id: Int!): Notification
+  deleteNotification(token: String!): Notification
   singleUpload(file: Upload, dir: String): String
   addFriend(friendId: String!): Friend!
   deleteFriend(friendId: String!): Friend!
+
+  """
+  Creates channel of [ChannelType].
+    The private channel is unique by the unique members while
+    the public channel can be created by each request.
+    The public channel is something like an open chat while
+    private channel is all kinds of direct messages.
+  
+    The [Membership] of private channel will be identical to all users which is (member).
+    
+    <Optional> The channel can be created with message of [MessageType].
+    Please becareful when creating message and provide proper [MessageType].
+    This query will return [Channel] with [Membership] without [Message] that has just created.
+    
+  """
+  createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
+
+  """
+  User leaves [public] channel.
+    Users cannot leave the [private] channel
+    and rather this is going to be invisible in [Membership].
+    This will reset to true when new [Message] is created to channel.
+    User will leave the [public] channel and membership will be removed.
+    
+  """
+  leaveChannel(channelId: String!): Membership!
+
+  """
+  Adds some users into [public] channel.
+    
+  """
+  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel!
+
+  """
+  Removes some users from [public] channel.
+    
+  """
+  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
 }
 
 type Notification {
@@ -149,6 +238,12 @@ type Query {
   ): UserConnection!
   me: User!
   notifications(userId: String): [Notification!]
+
+  """Get single channel"""
+  channel(channelId: String): Channel!
+
+  """Get all channels which auth user has joined"""
+  myChannels: [Channel!]
 }
 
 type Reaction {
