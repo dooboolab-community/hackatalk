@@ -1,4 +1,5 @@
 import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 
 import type {
   AppUserQuery,
@@ -27,7 +28,16 @@ import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
+import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 const meQuery = graphql`
   query AppUserQuery {
@@ -81,7 +91,7 @@ function App(): ReactElement {
       start: () => {
         setLoading(true);
       },
-      error: (error: any) => {
+      error: (error: Error) => {
         console.log('error', error);
         setLoading(false);
       },
@@ -94,6 +104,10 @@ function App(): ReactElement {
         setDevice();
       },
     });
+
+    registerForPushNotificationsAsync().then((token) => {
+      if (token) { AsyncStorage.setItem('push_token', token); }
+    });
   }, []);
 
   if (loading || !assetLoaded) {
@@ -105,8 +119,6 @@ function App(): ReactElement {
       />
     );
   }
-
-  // if (loading) return <LoadingIndicator />;
 
   return <RootNavigator />;
 }

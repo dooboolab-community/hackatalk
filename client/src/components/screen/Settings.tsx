@@ -1,6 +1,11 @@
 import React, { ReactElement } from 'react';
 import { SectionList, SectionListData } from 'react-native';
+import type {
+  SettingsDeleteNotificationMutation,
+  SettingsDeleteNotificationMutationResponse,
+} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
 import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import { graphql, useMutation } from 'react-relay/hooks';
 import styled, { DefaultTheme } from 'styled-components/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -71,19 +76,43 @@ export interface Props {
   navigation: MainStackNavigationProps;
 }
 
+const deleteNotification = graphql`
+  mutation SettingsDeleteNotificationMutation($token: String!) {
+    deleteNotification(token: $token) {
+      id
+      token
+      device
+      createdAt
+    }
+  }
+`;
+
 function Settings(props: Props): React.ReactElement {
+  let signInInfoOption: SettingsOption;
+
   const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const {
-    state: { user },
-  } = useAuthContext();
+  const { state: { user } } = useAuthContext();
 
-  let signInInfoOption: SettingsOption;
+  const [commitNotification, isNotificationInFlight] =
+    useMutation<SettingsDeleteNotificationMutation>(deleteNotification);
 
-  const logout = (): void => {
+  const logout = async (): Promise<void> => {
     if (navigation) {
       AsyncStorage.removeItem('token');
+      const pushToken = await AsyncStorage.getItem('push_token');
+
+      if (pushToken) {
+        const deleteNotificationMutationConfig = {
+          variables: {
+            token: pushToken,
+          },
+        };
+
+        commitNotification(deleteNotificationMutationConfig);
+      }
+
       setUser(undefined);
     }
   };

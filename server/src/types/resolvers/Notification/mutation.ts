@@ -1,4 +1,4 @@
-import { intArg, mutationField, stringArg } from '@nexus/schema';
+import { mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
 
