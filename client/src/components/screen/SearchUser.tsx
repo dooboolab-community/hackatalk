@@ -1,11 +1,22 @@
 import { Animated, FlatList } from 'react-native';
-import React, { useMemo, useState } from 'react';
+import React, { FC, Suspense, useState } from 'react';
+import type {
+  SearchUsersPaginationQuery,
+  SearchUsersPaginationQueryResponse,
+} from '../../__generated__/SearchUsersPaginationQuery.graphql';
+import {
+  graphql,
+  useLazyLoadQuery,
+  usePaginationFragment,
+  useRelayEnvironment,
+} from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import ErrorView from '../shared/ErrorView';
 import { LoadingIndicator } from 'dooboo-ui';
-import { Ref as ProfileModalRef } from '../shared/ProfileModal';
 import SearchTextInput from '../shared/SearchTextInput';
+import type {
+  SearchUserComponent_user$key,
+} from '../../__generated__/SearchUserComponent_user.graphql';
 import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -31,87 +42,139 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
   height: 100%;
 `;
 
-type Modal = React.MutableRefObject<ProfileModalRef | null | undefined>;
-interface UserEdges {
-  node: User;
-  cursor: string;
-}
-interface QueryUsersData {
-  users: {
-    __typename: string;
-    totalCount: number;
-    edges: UserEdges[];
-    pageInfo: {
-      startCursor: string;
-      endCursor: string;
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-    };
-  };
-}
-interface QueryFriendsData {
-  friends: User[];
+const usersQuery = graphql`
+  query SearchUsersPaginationQuery($first: Int! $after: String) {
+    ...SearchUserComponent_user @arguments(first: $first, after: $after)
+  }
+`;
+
+const usersFragment = graphql`
+  fragment SearchUserComponent_user on Query
+    @argumentDefinitions(
+      first: {type: "Int"}
+      after: {type: "String"}
+    )
+    @refetchable(queryName: "SearchUsersQuery") {
+    users(first: $first, after: $after) @connection(key: "SearchUserComponent_users") {
+      edges {
+        cursor
+        node {
+          id
+          email
+          name
+          nickname
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+    }
+`;
+
+type UserProps = {
+  scrollY: Animated.Value,
+  user: SearchUserComponent_user$key,
 }
 
-const Screen = (): React.ReactElement => {
-  const PAGE_CNT = 20;
+const UsersFragment: FC<UserProps> = ({
+  scrollY,
+  user,
+}) => {
+  const {
+    data,
+    loadNext,
+    loadPrevious,
+    hasNext,
+    hasPrevious,
+    isLoadingNext,
+    isLoadingPrevious,
+    refetch,
+  } = usePaginationFragment<SearchUsersPaginationQuery, SearchUserComponent_user$key>(
+    usersFragment,
+    user,
+  );
+
   const { state, showModal } = useProfileContext();
 
+  const onEndReached = (): void => {
+    loadNext(10);
+  };
+
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: { node: User, cursor: string };
+    index: number;
+  }): React.ReactElement => {
+    const itemTestID = `user-list-item${index}`;
+
+    const pressUserItem = (): void => {
+      showModal({
+        user: item?.node,
+        deleteMode: false,
+      });
+    };
+
+    return (
+      <UserListItem
+        testID={itemTestID}
+        user={item?.node}
+        onPress={pressUserItem}
+      />
+    );
+  };
+
+  return (
+    <StyledAnimatedFlatList
+      testID="animated-flatlist"
+      style={{
+        transform: [
+          {
+            translateY: scrollY.interpolate({
+              inputRange: [0, 50, 100],
+              outputRange: [0, 25, 0],
+            }),
+          },
+        ],
+      }}
+      contentContainerStyle={
+        (data?.users?.edges || []).length === 0
+          ? {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }
+          : undefined
+      }
+      keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
+      data={data?.users?.edges || []}
+      renderItem={renderItem}
+      ListEmptyComponent={
+        <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+      }
+      onEndReachedThreshold={0.1}
+      onEndReached={onEndReached}
+      scrollEventThrottle={500}
+    />
+  );
+};
+
+const ContentContainer: FC = () => {
+  const { state, showModal } = useProfileContext();
+  const [searchText, setSearchText] = useState<string>('');
+  const debouncedText = useDebounce(searchText, 30);
+  const environment = useRelayEnvironment();
   const scrollY = new Animated.Value(0);
 
-  const [searchText, setSearchText] = useState<string>('');
-  const debouncedText = useDebounce(searchText, 500);
-
-  // TODO: Get fragment data
-  const users: any = [];
-
-  // const {
-  //   loading: loadingUsers,
-  //   data: usersData,
-  //   error: usersQueryError,
-  //   refetch: refetchUsers,
-  //   fetchMore: fetchMoreUsers,
-  // } = useQuery<QueryUsersData, QueryUsersInput>(QUERY_USERS, {
-  //   fetchPolicy: 'network-only',
-  //   variables:
-  //     debouncedText === ''
-  //       ? { first: PAGE_CNT }
-  //       : {
-  //         first: PAGE_CNT,
-  //         filter: true,
-  //         user: {
-  //           email: debouncedText,
-  //           name: debouncedText,
-  //           nickname: debouncedText,
-  //         },
-  //       },
-  // });
-
-  // const users = useMemo(() => {
-  //   return usersData?.users?.edges?.map((edge: UserEdges) => edge?.node) || [];
-  // }, [usersData]);
-
-  // if (usersQueryError) {
-  //   return (
-  //     <ErrorView
-  //       body={usersQueryError.message}
-  //       onButtonPressed={(): Promise<ApolloQueryResult<QueryUsersData>> =>
-  //         refetchUsers({ first: PAGE_CNT })
-  //       }
-  //     />
-  //   );
-  // }
-
-  // if (friendsQueryError) {
-  //   return (
-  //     <ErrorView
-  //       body={friendsQueryError.message}
-  //       onButtonPressed={(): Promise<ApolloQueryResult<QueryFriendsData>> =>
-  //         refetchFreinds()
-  //       }
-  //     />
-  //   );
-  // }
+  const data: SearchUsersPaginationQueryResponse =
+    useLazyLoadQuery<SearchUsersPaginationQuery>(
+      usersQuery,
+      { first: 10 },
+      { fetchPolicy: 'store-or-network' },
+    );
 
   const onChangeText = (text: string): void => {
     setSearchText(text);
@@ -123,129 +186,26 @@ const Screen = (): React.ReactElement => {
     }).start();
   };
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: User;
-    index: number;
-  }): React.ReactElement => {
-    const itemTestID = `user-list-item${index}`;
-    // const userListOnPressInlineFn = (): void => {
-    //   const deleteMode = !friendsData
-    //     ? false
-    //     : !friendsData.friends
-    //       ? false
-    //       : friendsData.friends.findIndex((friend) => friend.id === item.id) > -1;
-    //   showModal({
-    //     user: item,
-    //     deleteMode,
-    //   });
-    // };
-    return (
-      <UserListItem
-        testID={itemTestID}
-        user={item}
-        // onPress={userListOnPressInlineFn}
-      />
-    );
-  };
+  return <Container>
+    <SearchTextInput
+      testID="text-input"
+      containerStyle={{ marginTop: 12 }}
+      onChangeText={onChangeText}
+      value={searchText}
+    />
+    <UsersFragment
+      scrollY={scrollY}
+      user={data}
+    />
+  </Container>;
+};
 
-  const renderUsers = (): React.ReactElement => {
-    // if (loadingUsers || loadingFriends) {
-    //   return (
-    //     <Container>
-    //       <LoadingIndicator />
-    //     </Container>
-    //   );
-    // }
-
-    const onEndReached = (): void => {
-      // const { endCursor } = usersData?.users?.pageInfo || {};
-
-      // const variables =
-      //   debouncedText === ''
-      //     ? {
-      //       first: PAGE_CNT,
-      //       after: endCursor,
-      //     }
-      //     : {
-      //       first: PAGE_CNT,
-      //       after: endCursor,
-      //       filter: true,
-      //       user: {
-      //         email: debouncedText,
-      //         name: debouncedText,
-      //         nickname: debouncedText,
-      //       },
-      //     };
-
-      // const updateQuery = (
-      //   previousResult: QueryUsersData,
-      //   { fetchMoreResult }: OperationVariables,
-      // ): QueryUsersData => {
-      //   const { edges: prevEdges, __typename } = previousResult.users;
-      //   const { edges: newEdges, pageInfo, totalCount } = fetchMoreResult.users;
-      //   return newEdges.length
-      //     ? {
-      //       users: {
-      //         __typename,
-      //         totalCount,
-      //         edges: [...prevEdges, ...newEdges],
-      //         pageInfo,
-      //       },
-      //     }
-      //     : previousResult;
-      // };
-
-      // fetchMoreUsers({ variables, updateQuery });
-    };
-    return (
-      <StyledAnimatedFlatList
-        testID="animated-flatlist"
-        style={{
-          transform: [
-            {
-              translateY: scrollY.interpolate({
-                inputRange: [0, 50, 100],
-                outputRange: [0, 25, 0],
-              }),
-            },
-          ],
-        }}
-        contentContainerStyle={
-          (users || []).length === 0
-            ? {
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-            : undefined
-        }
-        keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
-        data={users}
-        renderItem={renderItem}
-        ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
-        }
-        onEndReachedThreshold={0.1}
-        onEndReached={onEndReached}
-        scrollEventThrottle={500}
-      />
-    );
-  };
-
+const Screen: FC = () => {
   return (
     <StyledSafeAreaView>
-      <Container>
-        <SearchTextInput
-          testID="text-input"
-          containerStyle={{ marginTop: 12 }}
-          onChangeText={onChangeText}
-          value={searchText}
-        />
-        {renderUsers()}
-      </Container>
+      <Suspense fallback={<LoadingIndicator/>}>
+        <ContentContainer/>
+      </Suspense>
     </StyledSafeAreaView>
   );
 };
