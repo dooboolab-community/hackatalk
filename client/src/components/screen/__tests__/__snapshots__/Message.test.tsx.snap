@@ -95,7 +95,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
               Object {
                 "created": "2020-01-01 11:23",
                 "id": "",
-                "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
+                "message": "Hello2. This is long message. This is long message. This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
                 "messageType": 0,
                 "sender": Object {
                   "id": "2",
@@ -326,7 +326,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                     ]
                   }
                 >
-                  Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
+                  Hello2. This is long message. This is long message. This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
                 </Text>
               </View>
               <Text

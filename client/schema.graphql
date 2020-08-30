@@ -136,7 +136,7 @@ type Mutation {
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(id: Int!): Notification
+  deleteNotification(token: String!): Notification
   singleUpload(file: Upload, dir: String): String
   addFriend(friendId: String!): Friend!
   deleteFriend(friendId: String!): Friend!
@@ -166,6 +166,18 @@ type Mutation {
     
   """
   leaveChannel(channelId: String!): Membership!
+
+  """
+  Adds some users into [public] channel.
+    
+  """
+  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel!
+
+  """
+  Removes some users from [public] channel.
+    
+  """
+  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
 }
 
 type Notification {
@@ -321,4 +333,3 @@ input UserUpdateInput {
   statusMessage: String
   gender: Gender
 }
-

@@ -171,6 +171,13 @@ export type Mutation = {
    *   User will leave the [public] channel and membership will be removed.
    */
   leaveChannel: Membership;
+<<<<<<< HEAD
+=======
+  /** Adds some users into [public] channel. */
+  inviteUsersToChannel: Channel;
+  /** Removes some users from [public] channel. */
+  kickUsersFromChannel: Channel;
+>>>>>>> upstream/master
 };
 
 
@@ -259,6 +266,21 @@ export type MutationLeaveChannelArgs = {
   channelId: Scalars['String'];
 };
 
+<<<<<<< HEAD
+=======
+
+export type MutationInviteUsersToChannelArgs = {
+  channelId: Scalars['String'];
+  userIds: Array<Scalars['String']>;
+};
+
+
+export type MutationKickUsersFromChannelArgs = {
+  channelId: Scalars['String'];
+  userIds: Array<Scalars['String']>;
+};
+
+>>>>>>> upstream/master
 export type Notification = {
   __typename?: 'Notification';
   id: Scalars['Int'];

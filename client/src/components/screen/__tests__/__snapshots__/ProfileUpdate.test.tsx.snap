@@ -72,7 +72,6 @@ exports[`rendering test renders as expected 1`] = `
               }
             >
               <Image
-                height={80}
                 source={
                   Object {
                     "canInstrument": true,
@@ -81,7 +80,12 @@ exports[`rendering test renders as expected 1`] = `
                     "process": [Function],
                   }
                 }
-                width={80}
+                style={
+                  Object {
+                    "height": 80,
+                    "width": 80,
+                  }
+                }
               />
               <Image
                 source={
@@ -136,7 +140,7 @@ exports[`rendering test renders as expected 1`] = `
               allowFontScaling={true}
               autoCapitalize="none"
               multiline={false}
-              placeholder="Nickname can help others to find you"
+              placeholder="A Nickname can help others find you"
               placeholderTextColor="#676c7a"
               rejectResponderTermination={true}
               style={
@@ -154,7 +158,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-nickname"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"nickname\\">"
             />
             <View
               style={
@@ -226,7 +230,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-name"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"name\\">"
             />
             <View
               style={
@@ -298,7 +302,7 @@ exports[`rendering test renders as expected 1`] = `
               }
               testID="input-status"
               underlineColorAndroid="transparent"
-              value=""
+              value="<mock-value-for-field-\\"statusMessage\\">"
             />
             <View
               style={
