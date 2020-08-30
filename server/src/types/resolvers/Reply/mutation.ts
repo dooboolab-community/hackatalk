@@ -42,9 +42,12 @@ export const sendReply = mutationField('sendReply', {
     if (!hasMembership) { throw new Error('Prohibited to send a message to channel not entered'); }
 
     const reply = await ctx.prisma.reply.create({
+      include: {
+        sender: true,
+      },
       data: {
-        fileUrls: { set: message.fileUrls },
-        imageUrls: { set: message.imageUrls },
+        fileUrls: { set: message.fileUrls || [] },
+        imageUrls: { set: message.imageUrls || [] },
         messageType: message.messageType,
         text: message.text,
         message: {
