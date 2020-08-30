@@ -36,6 +36,7 @@ import { getString } from '../../../STRINGS';
 import { registerForPushNotificationsAsync } from '../../utils/noti';
 import styled from 'styled-components/native';
 import { useAuthContext } from '../../providers/AuthProvider';
+import useResponsiveDesign from '../../hooks/useResponsiveDesign';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -148,6 +149,7 @@ function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
   const { theme, changeThemeType, themeType } = useThemeContext();
+  const sizeCategory = useResponsiveDesign();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -337,8 +339,7 @@ function SignIn(props: Props): ReactElement {
       <ScrollView
         style={{
           alignSelf: 'center',
-          width: '100%',
-          maxWidth: 800,
+          width: sizeCategory === 'large' ? 800 : '100%',
         }}
       >
         <AnimatedTouchableOpacity
