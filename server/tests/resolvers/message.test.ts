@@ -8,7 +8,7 @@ import {
 } from '../setup/queries';
 import { testHost } from '../setup/testSetup';
 
-describe('Resolver - Channel', () => {
+describe('Resolver - Message', () => {
   const authClients: GraphQLClient[] = [];
   const userIds: string[] = [];
 
