@@ -240,20 +240,18 @@ function MessageListItem(props: Props): React.ReactElement {
   }
   // messages that I sent
   if (!otherUser(senderId) && photoMessage(imageUrls)) {
-    imageUrls.forEach((image) => {
-      return (
-        <WrapperMy>
-          <PhotoMessage
-            source ={{ uri: image }}
-          />
-          <StyledTextDate>
-            {created
-              ? `${moment(created).hour()} : ${moment(created).minutes()}`
-              : '0 : 0'}
-          </StyledTextDate>
-        </WrapperMy>
-      );
-    });
+    return (
+      <WrapperMy>
+        <PhotoMessage
+          source ={{ uri: imageUrls[0] }}
+        />
+        <StyledTextDate>
+          {created
+            ? `${moment(created).hour()} : ${moment(created).minutes()}`
+            : '0 : 0'}
+        </StyledTextDate>
+      </WrapperMy>
+    );
   }
   return (
     <WrapperMy>
