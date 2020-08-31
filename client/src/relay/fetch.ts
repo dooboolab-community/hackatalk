@@ -5,27 +5,51 @@ import { FetchFunction } from 'relay-runtime';
 
 const { GRAPHQL_URL } = Config;
 
-const fetchGraphQL: FetchFunction = async (request, variables) => {
-  console.log(
-    `fetching query ${request.name} with ${JSON.stringify(variables)}`,
-  );
-  const authorization = (await AsyncStorage.getItem('token')) || '';
-  const config = {
+type RequestProps = {
+  method: string;
+  headers: Record<string, string>;
+  body: string | FormData | null;
+};
+
+const fetchGraphQL: FetchFunction = async (
+  request,
+  variables,
+  cacheConfig,
+  uploadables,
+) => {
+  console.log(`fetching ${request.name} with ${JSON.stringify(variables)}`);
+
+  const config: RequestProps = {
     method: 'POST',
     headers: {
-      authorization,
-      'Content-Type': 'application/json',
+      Authorization:
+        (await AsyncStorage.getItem('token')) || '',
     },
-    body: JSON.stringify({
+    body: '',
+  };
+
+  if (uploadables) {
+    const requestText = JSON.stringify(request?.text?.replace(/\n/g, ''));
+    const { file, dir } = variables;
+
+    const formData = new FormData();
+    formData.append(
+      'operations',
+      `{"query": ${requestText}, "variables": {"file": ${file}, "dir": ${JSON.stringify(dir)}} }`,
+    );
+    formData.append('map', '{ "0": ["variables.file"] }');
+    formData.append('0', uploadables.file);
+
+    config.body = formData;
+  } else {
+    config.headers['Content-Type'] = 'application/json';
+    config.body = JSON.stringify({
       query: request.text,
       variables,
-    }),
-  };
-  return fetch(GRAPHQL_URL, config)
-    .then((response) => response.json())
-    .catch((err) => {
-      throw new Error(err);
     });
+  }
+  return fetch(GRAPHQL_URL, config)
+    .then((response) => response.json());
 };
 
 export default fetchGraphQL;
