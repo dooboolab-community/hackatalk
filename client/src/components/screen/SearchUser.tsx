@@ -3,6 +3,7 @@ import React, { FC, Suspense, useState } from 'react';
 import type {
   SearchUsersPaginationQuery,
   SearchUsersPaginationQueryResponse,
+  SearchUsersPaginationQueryVariables,
 } from '../../__generated__/SearchUsersPaginationQuery.graphql';
 import {
   graphql,
@@ -55,41 +56,39 @@ const usersFragment = graphql`
       after: {type: "String"}
     )
     @refetchable(queryName: "SearchUsersQuery") {
-    users(first: $first, after: $after) @connection(key: "SearchUserComponent_users") {
-      edges {
-        cursor
-        node {
-          id
-          email
-          name
-          nickname
+      users(first: $first, after: $after) @connection(key: "SearchUserComponent_users") {
+        edges {
+          cursor
+          node {
+            id
+            email
+            name
+            nickname
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
         }
       }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
     }
 `;
 
 type UserProps = {
   scrollY: Animated.Value,
   user: SearchUserComponent_user$key,
+  searchArgs: SearchUsersPaginationQueryVariables;
 }
 
 const UsersFragment: FC<UserProps> = ({
   scrollY,
   user,
+  searchArgs,
 }) => {
   const {
     data,
     loadNext,
-    loadPrevious,
-    hasNext,
-    hasPrevious,
     isLoadingNext,
-    isLoadingPrevious,
     refetch,
   } = usePaginationFragment<SearchUsersPaginationQuery, SearchUserComponent_user$key>(
     usersFragment,
@@ -155,6 +154,10 @@ const UsersFragment: FC<UserProps> = ({
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
       }
+      refreshing={isLoadingNext}
+      onRefresh={() => {
+        refetch(searchArgs, { fetchPolicy: 'network-only' });
+      }}
       onEndReachedThreshold={0.1}
       onEndReached={onEndReached}
       scrollEventThrottle={500}
@@ -163,16 +166,19 @@ const UsersFragment: FC<UserProps> = ({
 };
 
 const ContentContainer: FC = () => {
-  const { state, showModal } = useProfileContext();
   const [searchText, setSearchText] = useState<string>('');
   const debouncedText = useDebounce(searchText, 30);
   const environment = useRelayEnvironment();
   const scrollY = new Animated.Value(0);
 
+  const searchArgs: SearchUsersPaginationQueryVariables = {
+    first: 10,
+  };
+
   const data: SearchUsersPaginationQueryResponse =
     useLazyLoadQuery<SearchUsersPaginationQuery>(
       usersQuery,
-      { first: 10 },
+      searchArgs,
       { fetchPolicy: 'store-or-network' },
     );
 
@@ -196,6 +202,7 @@ const ContentContainer: FC = () => {
     <UsersFragment
       scrollY={scrollY}
       user={data}
+      searchArgs={searchArgs}
     />
   </Container>;
 };

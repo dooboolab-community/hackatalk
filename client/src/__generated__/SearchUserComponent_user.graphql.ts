@@ -11,6 +11,7 @@ export type SearchUserComponent_user = {
             readonly node: {
                 readonly id: string;
                 readonly email: string | null;
+                readonly name: string | null;
                 readonly nickname: string | null;
             };
         } | null> | null;
@@ -120,6 +121,13 @@ const node: ReaderFragment = (function () {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
+                                        "name": "name",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
                                         "name": "nickname",
                                         "storageKey": null
                                     },
@@ -169,5 +177,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '24bed16f28102de41b21a67f13663680';
+(node as any).hash = '1bbcbccd97d9215b403f3274ce352022';
 export default node;

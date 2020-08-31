@@ -33,6 +33,7 @@ fragment SearchUserComponent_user_2HEEH6 on Query {
       node {
         id
         email
+        name
         nickname
         __typename
       }
@@ -140,6 +141,13 @@ const node: ConcreteRequest = (function () {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
+                                            "name": "name",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
                                             "name": "nickname",
                                             "storageKey": null
                                         },
@@ -196,14 +204,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "b25e56b2d562f86fe388bf4ae4dcb8a9",
+            "cacheID": "e89fd7a19d80887a34404427c567c9b5",
             "id": null,
             "metadata": {},
             "name": "SearchUsersQuery",
             "operationKind": "query",
-            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '24bed16f28102de41b21a67f13663680';
+(node as any).hash = '1bbcbccd97d9215b403f3274ce352022';
 export default node;

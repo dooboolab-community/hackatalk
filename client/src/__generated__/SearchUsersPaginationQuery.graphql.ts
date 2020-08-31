@@ -33,6 +33,7 @@ fragment SearchUserComponent_user_2HEEH6 on Query {
       node {
         id
         email
+        name
         nickname
         __typename
       }
@@ -143,6 +144,13 @@ const node: ConcreteRequest = (function () {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
+                                            "name": "name",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
                                             "name": "nickname",
                                             "storageKey": null
                                         },
@@ -199,12 +207,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "acd65c826b9cf6586392142633b6ab60",
+            "cacheID": "947932f9038ce313e8c76478e5c7c491",
             "id": null,
             "metadata": {},
             "name": "SearchUsersPaginationQuery",
             "operationKind": "query",
-            "text": "query SearchUsersPaginationQuery(\n  $first: Int!\n  $after: String\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query SearchUsersPaginationQuery(\n  $first: Int!\n  $after: String\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
