@@ -7,6 +7,7 @@ import { FragmentRefs } from "relay-runtime";
 export type SearchUsersPaginationQueryVariables = {
     first: number;
     after?: string | null;
+    searchText?: string | null;
 };
 export type SearchUsersPaginationQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
@@ -22,12 +23,13 @@ export type SearchUsersPaginationQuery = {
 query SearchUsersPaginationQuery(
   $first: Int!
   $after: String
+  $searchText: String
 ) {
-  ...SearchUserComponent_user_2HEEH6
+  ...SearchUserComponent_user_2yyznZ
 }
 
-fragment SearchUserComponent_user_2HEEH6 on Query {
-  users(first: $first, after: $after) {
+fragment SearchUserComponent_user_2yyznZ on Query {
+  users(first: $first, after: $after, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -55,7 +57,11 @@ const node: ConcreteRequest = (function () {
         "defaultValue": null,
         "kind": "LocalArgument",
         "name": "first"
-    } as any), v2 = [
+    } as any), v2 = ({
+        "defaultValue": null,
+        "kind": "LocalArgument",
+        "name": "searchText"
+    } as any), v3 = [
         ({
             "kind": "Variable",
             "name": "after",
@@ -65,20 +71,26 @@ const node: ConcreteRequest = (function () {
             "kind": "Variable",
             "name": "first",
             "variableName": "first"
+        } as any),
+        ({
+            "kind": "Variable",
+            "name": "searchText",
+            "variableName": "searchText"
         } as any)
     ];
     return {
         "fragment": {
             "argumentDefinitions": [
                 (v0 /*: any*/),
-                (v1 /*: any*/)
+                (v1 /*: any*/),
+                (v2 /*: any*/)
             ],
             "kind": "Fragment",
             "metadata": null,
             "name": "SearchUsersPaginationQuery",
             "selections": [
                 {
-                    "args": (v2 /*: any*/),
+                    "args": (v3 /*: any*/),
                     "kind": "FragmentSpread",
                     "name": "SearchUserComponent_user"
                 }
@@ -90,14 +102,15 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [
                 (v1 /*: any*/),
-                (v0 /*: any*/)
+                (v0 /*: any*/),
+                (v2 /*: any*/)
             ],
             "kind": "Operation",
             "name": "SearchUsersPaginationQuery",
             "selections": [
                 {
                     "alias": null,
-                    "args": (v2 /*: any*/),
+                    "args": (v3 /*: any*/),
                     "concreteType": "UserConnection",
                     "kind": "LinkedField",
                     "name": "users",
@@ -197,8 +210,10 @@ const node: ConcreteRequest = (function () {
                 },
                 {
                     "alias": null,
-                    "args": (v2 /*: any*/),
-                    "filters": null,
+                    "args": (v3 /*: any*/),
+                    "filters": [
+                        "searchText"
+                    ],
                     "handle": "connection",
                     "key": "SearchUserComponent_users",
                     "kind": "LinkedHandle",
@@ -207,14 +222,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "947932f9038ce313e8c76478e5c7c491",
+            "cacheID": "a9475c3c096d79b04c382826a1bf66c6",
             "id": null,
             "metadata": {},
             "name": "SearchUsersPaginationQuery",
             "operationKind": "query",
-            "text": "query SearchUsersPaginationQuery(\n  $first: Int!\n  $after: String\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query SearchUsersPaginationQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '80162028d7a368db9709a7599952d7f1';
+(node as any).hash = '7b94ab6686806e71ed4cdd82cacc3c66';
 export default node;

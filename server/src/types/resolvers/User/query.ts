@@ -18,8 +18,10 @@ export const usersQueryField = queryField((t) => {
           after, before, first, last,
         }),
         where: {
-          name: { contains: searchText },
-          email: { contains: searchText },
+          OR: [
+            { name: { contains: searchText } },
+            { email: { contains: searchText } },
+          ],
           verified: true,
           deletedAt: null,
         },

@@ -45,6 +45,11 @@ const node: ReaderFragment = (function () {
                 "defaultValue": null,
                 "kind": "LocalArgument",
                 "name": "first"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
+                "name": "searchText"
             }
         ],
         "kind": "Fragment",
@@ -74,7 +79,13 @@ const node: ReaderFragment = (function () {
         "selections": [
             {
                 "alias": "users",
-                "args": null,
+                "args": [
+                    {
+                        "kind": "Variable",
+                        "name": "searchText",
+                        "variableName": "searchText"
+                    }
+                ],
                 "concreteType": "UserConnection",
                 "kind": "LinkedField",
                 "name": "__SearchUserComponent_users_connection",
@@ -177,5 +188,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '1bbcbccd97d9215b403f3274ce352022';
+(node as any).hash = '333aa95686b149c6754061e2f3db02b1';
 export default node;
