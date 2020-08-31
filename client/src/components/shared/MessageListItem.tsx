@@ -28,6 +28,12 @@ const StyledImageSender = styled.Image`
   height: 32px;
 `;
 
+const PhotoMessage = styled.Image`
+  width: 300px;
+  height: 300px;
+  background-color: white;
+`;
+
 const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
   background-color: ${({ theme }): string => theme.peerMessageBackground};
@@ -146,6 +152,7 @@ function MessageListItem(props: Props): React.ReactElement {
       messageType,
       // @ts-ignore
       message,
+      photo,
       created,
     },
     prevItem,
@@ -155,7 +162,49 @@ function MessageListItem(props: Props): React.ReactElement {
   } = props;
   const isSamePeerMsg = prevItem && prevItem.sender.id === senderId;
   const showDate = shouldShowDate(created, nextItem?.created);
-  if (senderId !== myFakeId) {
+  const otherUser = (senderId: string): boolean => {
+    return senderId !== myFakeId;
+  };
+  const photoMessage = (photo: string): boolean => {
+    return photo !== undefined;
+  };
+
+  if (otherUser(senderId)) {
+    if (photoMessage(photo)) {
+      return (
+        <WrapperPeer isSame={!!isSamePeerMsg}>
+          <View style={{ marginRight: 8, width: 40 }}>
+            <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
+              <ImageSenderComp
+                thumbURL={thumbURL}
+                isSamePeerMsg={!!isSamePeerMsg}
+                fontColor={theme.fontColor}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: 'column', maxWidth: '90%' }}>
+            {isSamePeerMsg ? (
+              <View />
+            ) : (
+              <StyledTextPeerName>{nickname}</StyledTextPeerName>
+            )}
+            <PhotoMessage
+              resizeMode= "contain"
+              source ={{ uri: photo }}
+            />
+            {
+              !showDate
+                ? <StyledTextPeerDate>
+                  {created
+                    ? `${moment(created).hour()} : ${moment(created).minutes()}`
+                    : '0 : 0'}
+                </StyledTextPeerDate>
+                : null
+            }
+          </View>
+        </WrapperPeer>
+      );
+    }
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
@@ -187,6 +236,21 @@ function MessageListItem(props: Props): React.ReactElement {
           }
         </View>
       </WrapperPeer>
+    );
+  }
+  // messages that I sent
+  if (!otherUser(senderId) && photoMessage(photo)) {
+    return (
+      <WrapperMy>
+        <PhotoMessage
+          source ={{ uri: photo }}
+        />
+        <StyledTextDate>
+          {created
+            ? `${moment(created).hour()} : ${moment(created).minutes()}`
+            : '0 : 0'}
+        </StyledTextDate>
+      </WrapperMy>
     );
   }
   return (

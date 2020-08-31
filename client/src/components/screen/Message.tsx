@@ -91,7 +91,7 @@ function Message(): React.ReactElement {
     {
       id: '',
       messageType: MessageType.Photo,
-      photo: 'http://photo.png',
+      photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png',
       sender: {
         id: '0',
         nickname: 'sender111',
@@ -137,6 +137,7 @@ function Message(): React.ReactElement {
           item: MessageProps;
           index: number;
         }): React.ReactElement => {
+          console.log ('check item :', item);
           return (
             <MessageListItem
               testID={`message-list-item${index}`}
