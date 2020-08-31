@@ -137,7 +137,6 @@ function Message(): React.ReactElement {
           item: MessageProps;
           index: number;
         }): React.ReactElement => {
-          console.log ('check item :', item);
           return (
             <MessageListItem
               testID={`message-list-item${index}`}
