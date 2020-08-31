@@ -168,42 +168,47 @@ function MessageListItem(props: Props): React.ReactElement {
   const photoMessage = (imageUrls: string[]): boolean => {
     return imageUrls !== undefined;
   };
+  const oneImage = (imageUrls: string[]): boolean => {
+    return imageUrls.length === 1;
+  };
 
   if (otherUser(senderId)) {
     if (photoMessage(imageUrls)) {
-      return (
-        <WrapperPeer isSame={!!isSamePeerMsg}>
-          <View style={{ marginRight: 8, width: 40 }}>
-            <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
-              <ImageSenderComp
-                thumbURL={thumbURL}
-                isSamePeerMsg={!!isSamePeerMsg}
-                fontColor={theme.fontColor}
+      if (oneImage(imageUrls)) {
+        return (
+          <WrapperPeer isSame={!!isSamePeerMsg}>
+            <View style={{ marginRight: 8, width: 40 }}>
+              <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
+                <ImageSenderComp
+                  thumbURL={thumbURL}
+                  isSamePeerMsg={!!isSamePeerMsg}
+                  fontColor={theme.fontColor}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'column', maxWidth: '90%' }}>
+              {isSamePeerMsg ? (
+                <View />
+              ) : (
+                <StyledTextPeerName>{nickname}</StyledTextPeerName>
+              )}
+              <PhotoMessage
+                resizeMode= "contain"
+                source ={{ uri: imageUrls[0] }}
               />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'column', maxWidth: '90%' }}>
-            {isSamePeerMsg ? (
-              <View />
-            ) : (
-              <StyledTextPeerName>{nickname}</StyledTextPeerName>
-            )}
-            <PhotoMessage
-              resizeMode= "contain"
-              source ={{ uri: imageUrls[0] }}
-            />
-            {
-              !showDate
-                ? <StyledTextPeerDate>
-                  {created
-                    ? `${moment(created).hour()} : ${moment(created).minutes()}`
-                    : '0 : 0'}
-                </StyledTextPeerDate>
-                : null
-            }
-          </View>
-        </WrapperPeer>
-      );
+              {
+                !showDate
+                  ? <StyledTextPeerDate>
+                    {created
+                      ? `${moment(created).hour()} : ${moment(created).minutes()}`
+                      : '0 : 0'}
+                  </StyledTextPeerDate>
+                  : null
+              }
+            </View>
+          </WrapperPeer>
+        );
+      }
     }
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
