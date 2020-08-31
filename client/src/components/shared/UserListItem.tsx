@@ -63,9 +63,10 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', name, statusMessage },
+  user: { photoURL = '', email, nickname, name, statusMessage },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
+
   const photoURLObj: ImageSourcePropType | null =
     typeof photoURL === 'string'
       ? { uri: photoURL }
@@ -91,14 +92,10 @@ function Shared({
                   justifyContent: 'center',
                 }}
               >
-                <StyledImage
-                  source={IC_NO_IMAGE}
-                />
+                <StyledImage source={IC_NO_IMAGE} />
               </View>
           }
-          <StyledText
-            numberOfLines={1}
-          >{name}</StyledText>
+          <StyledText numberOfLines={1}>{name || nickname}</StyledText>
           {
             showCheckBox
               ? <CheckBox

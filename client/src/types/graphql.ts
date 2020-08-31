@@ -155,7 +155,6 @@ export type Mutation = {
    *   the public channel can be created by each request.
    *   The public channel is something like an open chat while
    *   private channel is all kinds of direct messages.
-   * 
    *   The [Membership] of private channel will be identical to all users which is (member).
    *   
    *   <Optional> The channel can be created with message of [MessageType].
@@ -175,6 +174,8 @@ export type Mutation = {
   inviteUsersToChannel: Channel;
   /** Removes some users from [public] channel. */
   kickUsersFromChannel: Channel;
+  createMessage: Message;
+  deleteMessage?: Maybe<Message>;
 };
 
 
@@ -233,7 +234,7 @@ export type MutationCreateNotificationArgs = {
 
 
 export type MutationDeleteNotificationArgs = {
-  id: Scalars['Int'];
+  token: Scalars['String'];
 };
 
 
@@ -273,6 +274,17 @@ export type MutationInviteUsersToChannelArgs = {
 export type MutationKickUsersFromChannelArgs = {
   channelId: Scalars['String'];
   userIds: Array<Scalars['String']>;
+};
+
+
+export type MutationCreateMessageArgs = {
+  channelId: Scalars['String'];
+  message: MessageCreateInput;
+};
+
+
+export type MutationDeleteMessageArgs = {
+  id: Scalars['String'];
 };
 
 export type Notification = {

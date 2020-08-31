@@ -10,5 +10,6 @@ module.exports = {
         allowExpressions: true,
       },
     ],
+    camelcase: 0,
   },
 };

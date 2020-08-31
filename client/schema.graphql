@@ -147,7 +147,6 @@ type Mutation {
     the public channel can be created by each request.
     The public channel is something like an open chat while
     private channel is all kinds of direct messages.
-  
     The [Membership] of private channel will be identical to all users which is (member).
     
     <Optional> The channel can be created with message of [MessageType].
@@ -178,6 +177,8 @@ type Mutation {
     
   """
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
+  createMessage(channelId: String!, message: MessageCreateInput!): Message!
+  deleteMessage(id: String!): Message
 }
 
 type Notification {
