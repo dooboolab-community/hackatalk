@@ -141,6 +141,7 @@ export type Mutation = {
   signInWithApple: AuthPayload;
   signInWithGoogle: AuthPayload;
   sendVerification: Scalars['Boolean'];
+  /** Update user profile. Becareful that nullable fields will be updated either. */
   updateProfile: User;
   findPassword: Scalars['Boolean'];
   changeEmailPassword: Scalars['Boolean'];
@@ -319,6 +320,7 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   users: UserConnection;
+  /** Fetch current user profile when authenticated. */
   me: User;
   notifications?: Maybe<Array<Notification>>;
   /** Get single channel */
@@ -329,8 +331,7 @@ export type Query = {
 
 
 export type QueryUsersArgs = {
-  email?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
@@ -419,6 +420,8 @@ export type UserCreateInput = {
   password: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
+  thumbURL?: Maybe<Scalars['String']>;
+  photoURL?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
@@ -437,6 +440,8 @@ export type UserUpdateInput = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
+  thumbURL?: Maybe<Scalars['String']>;
+  photoURL?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;

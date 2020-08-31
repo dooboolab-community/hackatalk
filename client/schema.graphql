@@ -132,6 +132,10 @@ type Mutation {
   signInWithApple(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
+
+  """
+  Update user profile. Becareful that nullable fields will be updated either.
+  """
   updateProfile(user: UserUpdateInput): User!
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
@@ -222,8 +226,7 @@ type Profile {
 
 type Query {
   users(
-    email: String
-    name: String
+    searchText: String
 
     """Returns the first n elements from the list."""
     first: Int
@@ -237,6 +240,8 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): UserConnection!
+
+  """Fetch current user profile when authenticated."""
   me: User!
   notifications(userId: String): [Notification!]
 
@@ -311,6 +316,8 @@ input UserCreateInput {
   password: String!
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   gender: Gender
   phone: String
@@ -329,6 +336,8 @@ input UserUpdateInput {
   email: String
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   phone: String
   statusMessage: String

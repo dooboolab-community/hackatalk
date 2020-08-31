@@ -34,8 +34,6 @@ const Container = styled.View`
   flex: 1;
   background-color: transparent;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 const StyledAnimatedFlatList = styled(AnimatedFlatList)`
@@ -44,8 +42,8 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
 `;
 
 const usersQuery = graphql`
-  query SearchUsersPaginationQuery($first: Int! $after: String) {
-    ...SearchUserComponent_user @arguments(first: $first, after: $after)
+  query SearchUsersPaginationQuery($first: Int! $after: String $searchText: String) {
+    ...SearchUserComponent_user @arguments(first: $first, after: $after, searchText: $searchText)
   }
 `;
 
@@ -54,9 +52,11 @@ const usersFragment = graphql`
     @argumentDefinitions(
       first: {type: "Int"}
       after: {type: "String"}
+      searchText: {type: "String"}
     )
     @refetchable(queryName: "SearchUsersQuery") {
-      users(first: $first, after: $after) @connection(key: "SearchUserComponent_users") {
+      users(first: $first after: $after searchText: $searchText)
+      @connection(key: "SearchUserComponent_users") {
         edges {
           cursor
           node {
@@ -165,7 +165,30 @@ const UsersFragment: FC<UserProps> = ({
   );
 };
 
-const ContentContainer: FC = () => {
+interface ContentProps {
+  scrollY: Animated.Value,
+  searchArgs: SearchUsersPaginationQueryVariables;
+}
+
+const ContentContainer: FC<ContentProps> = ({
+  searchArgs,
+  scrollY,
+}) => {
+  const data: SearchUsersPaginationQueryResponse =
+    useLazyLoadQuery<SearchUsersPaginationQuery>(
+      usersQuery,
+      searchArgs,
+      { fetchPolicy: 'store-or-network' },
+    );
+
+  return <UsersFragment
+    scrollY={scrollY}
+    user={data}
+    searchArgs={searchArgs}
+  />;
+};
+
+const Screen: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
   const debouncedText = useDebounce(searchText, 30);
   const environment = useRelayEnvironment();
@@ -173,14 +196,8 @@ const ContentContainer: FC = () => {
 
   const searchArgs: SearchUsersPaginationQueryVariables = {
     first: 10,
+    searchText: debouncedText,
   };
-
-  const data: SearchUsersPaginationQueryResponse =
-    useLazyLoadQuery<SearchUsersPaginationQuery>(
-      usersQuery,
-      searchArgs,
-      { fetchPolicy: 'store-or-network' },
-    );
 
   const onChangeText = (text: string): void => {
     setSearchText(text);
@@ -192,27 +209,19 @@ const ContentContainer: FC = () => {
     }).start();
   };
 
-  return <Container>
-    <SearchTextInput
-      testID="text-input"
-      containerStyle={{ marginTop: 12 }}
-      onChangeText={onChangeText}
-      value={searchText}
-    />
-    <UsersFragment
-      scrollY={scrollY}
-      user={data}
-      searchArgs={searchArgs}
-    />
-  </Container>;
-};
-
-const Screen: FC = () => {
   return (
     <StyledSafeAreaView>
-      <Suspense fallback={<LoadingIndicator/>}>
-        <ContentContainer/>
-      </Suspense>
+      <Container>
+        <SearchTextInput
+          testID="text-input"
+          containerStyle={{ marginTop: 12 }}
+          onChangeText={onChangeText}
+          value={searchText}
+        />
+        <Suspense fallback={<LoadingIndicator/>}>
+          <ContentContainer scrollY={scrollY} searchArgs={searchArgs}/>
+        </Suspense>
+      </Container>
     </StyledSafeAreaView>
   );
 };

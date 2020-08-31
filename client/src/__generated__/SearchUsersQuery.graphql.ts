@@ -7,6 +7,7 @@ import { FragmentRefs } from "relay-runtime";
 export type SearchUsersQueryVariables = {
     after?: string | null;
     first?: number | null;
+    searchText?: string | null;
 };
 export type SearchUsersQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
@@ -22,12 +23,13 @@ export type SearchUsersQuery = {
 query SearchUsersQuery(
   $after: String
   $first: Int
+  $searchText: String
 ) {
-  ...SearchUserComponent_user_2HEEH6
+  ...SearchUserComponent_user_2yyznZ
 }
 
-fragment SearchUserComponent_user_2HEEH6 on Query {
-  users(first: $first, after: $after) {
+fragment SearchUserComponent_user_2yyznZ on Query {
+  users(first: $first, after: $after, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -57,6 +59,11 @@ const node: ConcreteRequest = (function () {
             "defaultValue": null,
             "kind": "LocalArgument",
             "name": "first"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "searchText"
         } as any)
     ], v1 = [
         ({
@@ -68,6 +75,11 @@ const node: ConcreteRequest = (function () {
             "kind": "Variable",
             "name": "first",
             "variableName": "first"
+        } as any),
+        ({
+            "kind": "Variable",
+            "name": "searchText",
+            "variableName": "searchText"
         } as any)
     ];
     return {
@@ -195,7 +207,9 @@ const node: ConcreteRequest = (function () {
                 {
                     "alias": null,
                     "args": (v1 /*: any*/),
-                    "filters": null,
+                    "filters": [
+                        "searchText"
+                    ],
                     "handle": "connection",
                     "key": "SearchUserComponent_users",
                     "kind": "LinkedHandle",
@@ -204,14 +218,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "e89fd7a19d80887a34404427c567c9b5",
+            "cacheID": "28b83e6473fd7f1205e06d0d5d9d4503",
             "id": null,
             "metadata": {},
             "name": "SearchUsersQuery",
             "operationKind": "query",
-            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n) {\n  ...SearchUserComponent_user_2HEEH6\n}\n\nfragment SearchUserComponent_user_2HEEH6 on Query {\n  users(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '1bbcbccd97d9215b403f3274ce352022';
+(node as any).hash = '333aa95686b149c6754061e2f3db02b1';
 export default node;
