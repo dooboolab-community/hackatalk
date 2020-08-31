@@ -1,17 +1,19 @@
-import * as Config from '../../../config';
-
-import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
+import { Image, TouchableOpacity, View } from 'react-native';
+import type {
+  ProfileUpdateSingleUploadMutation,
+  ProfileUpdateSingleUploadMutationResponse,
+} from '../../__generated__/ProfileUpdateSingleUploadMutation.graphql';
 import React, { FC, useEffect, useState } from 'react';
 import {
   fetchQuery,
   graphql,
+  useMutation,
   useRelayEnvironment,
 } from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
@@ -22,7 +24,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
-const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
 const DEFAULT = {
   PROFILEIMAGE_WIDTH: 300,
@@ -64,6 +66,13 @@ const ProfileImage = styled.Image`
   border-radius: 45px;
 `;
 
+declare let Blob: {
+  prototype: Blob;
+  new (): Blob;
+  new (blobParts: Array<string>, options: Record<string, string>): Blob;
+  name: string;
+};
+
 interface Props {
   navigation: MainStackNavigationProps<'ProfileUpdate'>;
 }
@@ -84,6 +93,12 @@ const meQuery = graphql`
   }
 `;
 
+const fileUpload = graphql`
+    mutation ProfileUpdateSingleUploadMutation($file: Upload, $dir: String) {
+    singleUpload(file: $file dir: $dir)
+  }
+`;
+
 const Screen: FC<Props> = () => {
   const { theme } = useThemeContext();
   const [name, setName] = useState('');
@@ -92,6 +107,7 @@ const Screen: FC<Props> = () => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
+  const [commitFileUpload, isInFlight] = useMutation<ProfileUpdateSingleUploadMutation>(fileUpload);
 
   useEffect(() => {
     fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
@@ -121,42 +137,48 @@ const Screen: FC<Props> = () => {
     }
   };
 
-  const uploadImage = async (uri: string): Promise<string> => {
+  const uploadImage = (uri: string): void => {
     const fileName = uri.split('/').pop() || '';
     const fileTypeMatch = /\.(\w+)$/.exec(fileName);
     const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
-    const data: FormData = new FormData();
-    const token = await AsyncStorage.getItem('token');
-    data.append('profile', {
-      uri: uri,
+    const file = new Blob([uri], {
       type: fileType,
-      name: fileName,
+      endings: 'native',
     });
+    // TODO: on web env there is an issue on setting the blob filename
+    // @ts-ignore
+    file.name = fileName;
 
-    const fetchInitOption = {
-      method: 'POST',
-      body: {
-        inputFile: data,
-        dir: 'profiles',
-      },
-      headers: new Headers({
-        Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
-      }),
-    };
+    if (file) {
+      try {
+        const mutationConfig = {
+          variables: {
+            file: null,
+            dir: 'profiles',
+          },
+          uploadables: { file: file },
+          onCompleted: (
+            response: ProfileUpdateSingleUploadMutationResponse,
+          ) => {
+            console.log('SUCCESS FILE UPLOAD', response);
+            if (response.singleUpload) { setProfilePath(uri); }
+          },
+          onError: (error: Error) => {
+            console.log('FAIL UPLOAD', error);
+          },
+        };
 
-    return fetch(`${Config.ROOT_URL}/upload_single`, fetchInitOption)
-      .then((res: Response) => res.url)
-      .catch(() => {
-        Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
-        return '';
-      });
+        commitFileUpload(mutationConfig);
+      } catch (e) {
+        throw Error(e);
+      }
+    }
   };
 
   const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
-      getString('SELSCT_FROM_ALBUM'),
+      getString('SELECT_FROM_ALBUM'),
       getString('CANCEL'),
     ];
 
@@ -174,14 +196,12 @@ const Screen: FC<Props> = () => {
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
-            const imageURL = await uploadImage(resizedImage.uri);
-
-            setProfilePath(imageURL);
+            uploadImage(resizedImage.uri);
           }
           return;
         }
 
-        if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY) {
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchImageLibraryAsync();
           if (image && !image.cancelled) {
             const resizedImage = await resizeImage({
@@ -189,9 +209,7 @@ const Screen: FC<Props> = () => {
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
-            const imageURL = await uploadImage(resizedImage.uri);
-
-            setProfilePath(imageURL);
+            uploadImage(resizedImage.uri);
           }
         }
       },
