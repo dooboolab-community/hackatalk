@@ -1,5 +1,5 @@
 import { User } from '../types';
-import UserAPI from '../UserAPI';
+import UserAPI from '../userAPI';
 import gql from 'graphql-tag';
 import testServer from '../testUtils/testServer';
 import { userSample } from '../testUtils/userSample';
