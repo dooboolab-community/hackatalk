@@ -91,7 +91,7 @@ function Message(): React.ReactElement {
     {
       id: '',
       messageType: MessageType.Photo,
-      photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png',
+      imageUrls: ['https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png'],
       sender: {
         id: '0',
         nickname: 'sender111',

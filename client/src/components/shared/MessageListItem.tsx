@@ -152,7 +152,7 @@ function MessageListItem(props: Props): React.ReactElement {
       messageType,
       // @ts-ignore
       message,
-      photo,
+      imageUrls,
       created,
     },
     prevItem,
@@ -165,12 +165,12 @@ function MessageListItem(props: Props): React.ReactElement {
   const otherUser = (senderId: string): boolean => {
     return senderId !== myFakeId;
   };
-  const photoMessage = (photo: string): boolean => {
-    return photo !== undefined;
+  const photoMessage = (imageUrls: string[]): boolean => {
+    return imageUrls !== undefined;
   };
 
   if (otherUser(senderId)) {
-    if (photoMessage(photo)) {
+    if (photoMessage(imageUrls)) {
       return (
         <WrapperPeer isSame={!!isSamePeerMsg}>
           <View style={{ marginRight: 8, width: 40 }}>
@@ -190,7 +190,7 @@ function MessageListItem(props: Props): React.ReactElement {
             )}
             <PhotoMessage
               resizeMode= "contain"
-              source ={{ uri: photo }}
+              source ={{ uri: imageUrls[0] }}
             />
             {
               !showDate
@@ -239,19 +239,21 @@ function MessageListItem(props: Props): React.ReactElement {
     );
   }
   // messages that I sent
-  if (!otherUser(senderId) && photoMessage(photo)) {
-    return (
-      <WrapperMy>
-        <PhotoMessage
-          source ={{ uri: photo }}
-        />
-        <StyledTextDate>
-          {created
-            ? `${moment(created).hour()} : ${moment(created).minutes()}`
-            : '0 : 0'}
-        </StyledTextDate>
-      </WrapperMy>
-    );
+  if (!otherUser(senderId) && photoMessage(imageUrls)) {
+    imageUrls.forEach((image) => {
+      return (
+        <WrapperMy>
+          <PhotoMessage
+            source ={{ uri: image }}
+          />
+          <StyledTextDate>
+            {created
+              ? `${moment(created).hour()} : ${moment(created).minutes()}`
+              : '0 : 0'}
+          </StyledTextDate>
+        </WrapperMy>
+      );
+    });
   }
   return (
     <WrapperMy>

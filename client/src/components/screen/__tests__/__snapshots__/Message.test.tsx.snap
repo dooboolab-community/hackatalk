@@ -128,8 +128,10 @@ exports[`[Message] rendering test renders as expected 1`] = `
               Object {
                 "created": "2020-01-01 11:26",
                 "id": "",
+                "imageUrls": Array [
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png",
+                ],
                 "messageType": 1,
-                "photo": "http://photo.png",
                 "sender": Object {
                   "id": "0",
                   "nickname": "sender111",
@@ -600,32 +602,23 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 }
               >
                 <View />
-                <View
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png",
+                    }
+                  }
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#e2f2ff",
-                        "marginRight": 8,
-                        "paddingBottom": 12,
-                        "paddingLeft": 12,
-                        "paddingRight": 12,
-                        "paddingTop": 12,
-                        "width": "100%",
+                        "backgroundColor": "white",
+                        "height": 300,
+                        "width": 300,
                       },
                     ]
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                        },
-                      ]
-                    }
-                  />
-                </View>
+                />
                 <Text
                   style={
                     Array [
