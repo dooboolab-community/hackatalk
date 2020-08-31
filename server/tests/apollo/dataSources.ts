@@ -1,4 +1,4 @@
-import UserAPI from './UserAPI';
+import UserAPI from './userAPI';
 
 const dataSources = ():any => ({
   userAPI: new UserAPI(),
