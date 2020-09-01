@@ -86,6 +86,7 @@ const StyledMyMessage = styled.View`
   margin-left: 28px;
   padding: 12px;
   border-radius: 3px;
+  width: 50%;
 `;
 
 interface Props {

@@ -32,7 +32,7 @@ interface Props {
 }
 
 function Message(): React.ReactElement {
-  const { theme } = useThemeContext();
+  const { theme, changeThemeType } = useThemeContext();
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [textToSend, setTextToSend] = useState<string>('');
