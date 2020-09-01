@@ -4,9 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/native';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
-  flex: 1;
   justify-content: center;
-  align-self: stretch;
   flex-direction: column;
   align-items: center;
 `;
@@ -26,19 +24,14 @@ const StyledViewChat = styled.View`
 `;
 
 const StyledInputChat = styled.TextInput`
-  width: 80%;
   font-size: 14px;
-  margin-right: 20px;
-  margin-left: 20px;
   padding: 10px;
   color: black;
 `;
 
 const StyledTouchMenu = styled.TouchableOpacity`
-  position: absolute;
   left: 10px;
   height: 100%;
-  min-width: 20px;
   justify-content: center;
 `;
 
@@ -169,24 +162,34 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             >
               {optionView}
             </StyledTouchMenu>
-            <StyledInputChat
-              testID="input-chat"
+            <View
               style={{
-                color: fontColor,
-                backgroundColor: backgroundColor,
+                width: '60%',
               }}
-              // @ts-ignore
-              ref={input1}
-              onFocus={(): void => setShowMenu(false)}
-              multiline={true}
-              placeholder={placeholder}
-              placeholderTextColor={placeholderTextColor}
-              value={message}
-              defaultValue={message}
-              onChangeText={onChangeMessage}
-            />
+            >
+              <StyledInputChat
+                testID="input-chat"
+                style={{
+                  color: fontColor,
+                  backgroundColor: backgroundColor,
+                }}
+                // @ts-ignore
+                ref={input1}
+                onFocus={(): void => setShowMenu(false)}
+                multiline={true}
+                placeholder={placeholder}
+                placeholderTextColor={placeholderTextColor}
+                value={message}
+                defaultValue={message}
+                onChangeText={onChangeMessage}
+              />
+            </View>
             {emojiView}
-            <View>
+            <View
+              style={{
+                width: '10 %',
+              }}
+            >
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
@@ -206,22 +209,32 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             >
               {optionCloseView}
             </StyledTouchMenu>
-            <StyledInputChat
-              // @ts-ignore
-              ref={input2}
-              onFocus={(): void => setShowMenu(false)}
+            <View
               style={{
-                color: fontColor,
-                backgroundColor: backgroundColor,
+                width: '60%',
               }}
-              multiline={true}
-              placeholder={placeholder}
-              placeholderTextColor={placeholderTextColor}
-              value={message}
-              defaultValue={message}
-            />
+            >
+              <StyledInputChat
+                // @ts-ignore
+                ref={input2}
+                onFocus={(): void => setShowMenu(false)}
+                style={{
+                  color: fontColor,
+                  backgroundColor: backgroundColor,
+                }}
+                multiline={true}
+                placeholder={placeholder}
+                placeholderTextColor={placeholderTextColor}
+                value={message}
+                defaultValue={message}
+              />
+            </View>
             {emojiView}
-            <View>
+            <View
+              style={{
+                width: '10 %',
+              }}
+            >
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>

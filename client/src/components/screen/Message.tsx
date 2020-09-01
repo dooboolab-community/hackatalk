@@ -152,40 +152,47 @@ function Message(): React.ReactElement {
           );
         }}
         optionView={
-          <View>
+          <View
+            style={{
+              width: '7 %',
+            }}
+          >
             <Image
               style={{
                 width: 17,
                 height: 10,
                 marginTop: 8,
-                marginRight: 10,
-                marginLeft: 10,
               }}
               source={IC_OPEN}
             />
           </View>
         }
         optionCloseView={
-          <View>
+          <View
+            style={{
+              width: '7 %',
+            }}
+          >
             <Image
               style={{
                 width: 17,
                 height: 10,
                 marginTop: 8,
-                marginRight: 10,
-                marginLeft: 10,
               }}
               source={IC_CLOSE}
             />
           </View>
         }
         emojiView={
-          <View>
+          <View
+            style={{
+              width: '7 %',
+            }}
+          >
             <Image
               style={{
                 width: 28,
                 height: 28,
-                marginLeft: 10,
               }}
               source={IC_SMILE}
             />
@@ -244,6 +251,8 @@ function Message(): React.ReactElement {
               backgroundColor: theme.btnPrimary,
               width: 60,
               height: 40,
+              marginLeft: 10,
+              marginRight: 10,
             }}
             textStyle={{
               color: theme.btnPrimaryFont,
