@@ -2,6 +2,7 @@ import { Channel, Membership, ChannelType, MembershipType, MessageType } from '@
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
+import { findExistingChannel } from '../../../services/ChannelService'
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',
@@ -180,13 +181,7 @@ export const leaveChannel = mutationField('leaveChannel', {
 
   resolve: async (parent, { channelId }, ctx) => {
     const userId = getUserId(ctx);
-
-    const channels = await ctx.prisma.channel.findMany({
-      where: { id: channelId, deletedAt: null },
-      take: 1,
-    });
-
-    const channel = channels[0];
+    const channel = await findExistingChannel(channelId);
 
     if (channel.channelType === 'public') {
       return ctx.prisma.membership.delete({
@@ -223,13 +218,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
   resolve: async (_, { channelId, userIds }, ctx) => {
     const userId = getUserId(ctx);
-
-    const channels = await ctx.prisma.channel.findMany({
-      where: { id: channelId, deletedAt: null },
-      take: 1,
-    });
-
-    const channel = channels[0];
+    const channel = await findExistingChannel(channelId);
 
     if (channel.channelType === 'private') {
       throw new Error("You can't add some users to private channel.");
@@ -287,13 +276,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
 
   resolve: async (_, { channelId, userIds }, ctx) => {
     const userId = getUserId(ctx);
-
-    const channels = await ctx.prisma.channel.findMany({
-      where: { id: channelId, deletedAt: null },
-      take: 1,
-    });
-
-    const channel = channels[0];
+    const channel = await findExistingChannel(channelId);
 
     if (channel.channelType === 'private') {
       throw new Error('Removing users from the private channels is not allowed.');
