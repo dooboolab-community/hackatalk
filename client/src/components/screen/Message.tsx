@@ -1,3 +1,4 @@
+import { IC_CLOSE, IC_OPEN, IC_SMILE } from '../../utils/Icons';
 import { Image, Platform, TouchableOpacity, View } from 'react-native';
 import { MessageProps, MessageType } from '../../types';
 import React, { useState } from 'react';
@@ -10,7 +11,6 @@ import { Button } from 'dooboo-ui';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
-import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import MessageListItem from '../shared/MessageListItem';
@@ -152,13 +152,44 @@ function Message(): React.ReactElement {
           );
         }}
         optionView={
-          <Image
-            style={{
-              width: 24,
-              height: 24,
-            }}
-            source={IC_SMILE}
-          />
+          <View>
+            <Image
+              style={{
+                width: 17,
+                height: 10,
+                marginTop: 8,
+                marginRight: 10,
+                marginLeft: 10,
+              }}
+              source={IC_OPEN}
+            />
+          </View>
+        }
+        optionCloseView={
+          <View>
+            <Image
+              style={{
+                width: 17,
+                height: 10,
+                marginTop: 8,
+                marginRight: 10,
+                marginLeft: 10,
+              }}
+              source={IC_CLOSE}
+            />
+          </View>
+        }
+        emojiView={
+          <View>
+            <Image
+              style={{
+                width: 28,
+                height: 28,
+                marginLeft: 10,
+              }}
+              source={IC_SMILE}
+            />
+          </View>
         }
         emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
         renderViewMenu={(): React.ReactElement => (

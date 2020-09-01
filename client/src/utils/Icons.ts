@@ -2,11 +2,13 @@ import icAddW from '../../assets/icons/btnAdd.png';
 import icBack from '../../assets/icons/btnBack.png';
 import icCamera from '../../assets/icons/camera.png';
 import icCircleX from '../../assets/icons/x_circle.png';
+import icClose from '../../assets/icons/close.png';
 import icError from '../../assets/icons/error.png';
 import icIcon from '../../assets/icons/icon.png';
 import icLogoD from '../../assets/icons/logo_d.png';
 import icLogoW from '../../assets/icons/logo_w.png';
 import icNoImage from '../../assets/icons/no_image.png';
+import icOpen from '../../assets/icons/open.png';
 import icPic from '../../assets/icons/pictoGallery.png';
 import icProfile from '../../assets/icons/profile.png';
 import icProfileW from '../../assets/icons/profile_w.png';
@@ -21,6 +23,8 @@ import svgGoogle from '../../assets/icons/google.svg';
 import svgPlus from '../../assets/icons/plus.svg';
 
 export const IC_ADD_W = icAddW;
+export const IC_OPEN = icOpen;
+export const IC_CLOSE = icClose;
 export const IC_ICON = icIcon;
 export const IC_CAMERA = icCamera;
 export const IC_CIRCLE_X = icCircleX;
@@ -55,10 +59,12 @@ export default [
   IC_ICON,
   IC_CAMERA,
   IC_CIRCLE_X,
+  IC_CLOSE,
   IC_ERROR,
   IC_PROFILE,
   IC_BACK,
   IC_PIC,
+  IC_OPEN,
   IC_SEARCH,
   IC_SMILE,
   IC_LOGO_D,

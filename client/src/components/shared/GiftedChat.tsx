@@ -20,7 +20,7 @@ const StyledViewChat = styled.View`
   padding-right: 8px;
   padding-left: 8px;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex: 1;
 `;
@@ -29,8 +29,8 @@ const StyledInputChat = styled.TextInput`
   width: 80%;
   font-size: 14px;
   margin-right: 20px;
-  padding-left: 48px;
-  padding-bottom: 4px;
+  margin-left: 20px;
+  padding: 10px;
   color: black;
 `;
 
@@ -62,6 +62,8 @@ interface Props<T> {
   keyboardOffset?: number;
   renderItem: ListRenderItem<T>;
   optionView?: React.ReactElement;
+  optionCloseView?: React.ReactElement;
+  emojiView?: React.ReactElement;
   emptyItem?: React.ReactElement;
   renderViewMenu?: () => React.ReactElement;
   message?: string;
@@ -87,6 +89,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     emptyItem,
     renderViewMenu,
     optionView,
+    optionCloseView,
+    emojiView,
     message,
     onChangeMessage,
     placeholder,
@@ -153,6 +157,18 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
+            <StyledTouchMenu
+              testID="touch-menu"
+              onPress={(): void => {
+                Keyboard.dismiss();
+                const timeout = setTimeout(() => {
+                  setShowMenu(true);
+                  clearTimeout(timeout);
+                }, 100);
+              }}
+            >
+              {optionView}
+            </StyledTouchMenu>
             <StyledInputChat
               testID="input-chat"
               style={{
@@ -169,24 +185,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               defaultValue={message}
               onChangeText={onChangeMessage}
             />
-            <StyledTouchMenu
-              testID="touch-menu"
-              onPress={(): void => {
-                Keyboard.dismiss();
-                const timeout = setTimeout(() => {
-                  setShowMenu(true);
-                  clearTimeout(timeout);
-                }, 100);
-              }}
-            >
-              {optionView}
-            </StyledTouchMenu>
-            <View
-              style={{
-                flex: 1,
-                marginVertical: 8,
-              }}
-            >
+            {emojiView}
+            <View>
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
@@ -200,6 +200,12 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
+            <StyledTouchMenu
+              testID="touch-menu"
+              onPress={(): void => setShowMenu(false)}
+            >
+              {optionCloseView}
+            </StyledTouchMenu>
             <StyledInputChat
               // @ts-ignore
               ref={input2}
@@ -214,18 +220,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               value={message}
               defaultValue={message}
             />
-            <StyledTouchMenu
-              testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}
-            >
-              {optionView}
-            </StyledTouchMenu>
-            <View
-              style={{
-                flex: 1,
-                marginVertical: 8,
-              }}
-            >
+            {emojiView}
+            <View>
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
@@ -249,6 +245,8 @@ Shared.defaultProps = {
   chats: [],
   keyboardOffset: 0,
   optionView: <View />,
+  optionCloseView: <View />,
+  emojiView: <View />,
   emptyItem: <View />,
   renderItem: (): React.ReactElement => <View />,
   renderViewMenu: (): React.ReactElement => <View />,
