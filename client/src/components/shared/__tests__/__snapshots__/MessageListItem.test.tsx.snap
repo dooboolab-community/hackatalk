@@ -63,34 +63,23 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
         }
       >
         <View />
-        <View
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
           style={
             Array [
               Object {
-                "backgroundColor": "#e2f2ff",
-                "marginRight": 8,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "width": "100%",
+                "backgroundColor": "white",
+                "height": 300,
+                "width": 300,
               },
             ]
           }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#151A25",
-                  "fontSize": 14,
-                },
-              ]
-            }
-          >
-            hello1
-          </Text>
-        </View>
+        />
         <Text
           style={
             Array [
@@ -174,34 +163,23 @@ exports[`[MessageListItem] rendering test renders [peerMessage] with URL as expe
         }
       >
         <View />
-        <View
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
           style={
             Array [
               Object {
-                "backgroundColor": "#e2f2ff",
-                "marginRight": 8,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "width": "100%",
+                "backgroundColor": "white",
+                "height": 300,
+                "width": 300,
               },
             ]
           }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#151A25",
-                  "fontSize": 14,
-                },
-              ]
-            }
-          >
-            hello1
-          </Text>
-        </View>
+        />
         <Text
           style={
             Array [

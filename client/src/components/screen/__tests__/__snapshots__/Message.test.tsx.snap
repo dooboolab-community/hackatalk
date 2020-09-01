@@ -240,34 +240,23 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 >
                   sender111
                 </Text>
-                <View
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": undefined,
+                    }
+                  }
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#e2f2ff",
-                        "marginRight": 8,
-                        "paddingBottom": 12,
-                        "paddingLeft": 12,
-                        "paddingRight": 12,
-                        "paddingTop": 12,
-                        "width": "100%",
+                        "backgroundColor": "white",
+                        "height": 300,
+                        "width": 300,
                       },
                     ]
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                        },
-                      ]
-                    }
-                  >
-                    hello1
-                  </Text>
-                </View>
+                />
                 <Text
                   style={
                     Array [
@@ -302,35 +291,22 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              <View
+              <Image
+                source={
+                  Object {
+                    "uri": undefined,
+                  }
+                }
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "#8bc9ff",
-                      "borderRadius": 3,
-                      "marginLeft": 28,
-                      "marginRight": 20,
-                      "paddingBottom": 12,
-                      "paddingLeft": 12,
-                      "paddingRight": 12,
-                      "paddingTop": 12,
+                      "backgroundColor": "white",
+                      "height": 300,
+                      "width": 300,
                     },
                   ]
                 }
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "color": "#151A25",
-                        "fontSize": 14,
-                      },
-                    ]
-                  }
-                >
-                  Hello2. This is long message. This is long message. This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
-                </Text>
-              </View>
+              />
               <Text
                 style={
                   Array [
@@ -430,34 +406,23 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 >
                   sender111
                 </Text>
-                <View
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": undefined,
+                    }
+                  }
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#e2f2ff",
-                        "marginRight": 8,
-                        "paddingBottom": 12,
-                        "paddingLeft": 12,
-                        "paddingRight": 12,
-                        "paddingTop": 12,
-                        "width": "100%",
+                        "backgroundColor": "white",
+                        "height": 300,
+                        "width": 300,
                       },
                     ]
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                        },
-                      ]
-                    }
-                  >
-                    hello
-                  </Text>
-                </View>
+                />
                 <Text
                   style={
                     Array [
@@ -523,34 +488,23 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 }
               >
                 <View />
-                <View
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": undefined,
+                    }
+                  }
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "#e2f2ff",
-                        "marginRight": 8,
-                        "paddingBottom": 12,
-                        "paddingLeft": 12,
-                        "paddingRight": 12,
-                        "paddingTop": 12,
-                        "width": "100%",
+                        "backgroundColor": "white",
+                        "height": 300,
+                        "width": 300,
                       },
                     ]
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#151A25",
-                          "fontSize": 14,
-                        },
-                      ]
-                    }
-                  >
-                    hello2
-                  </Text>
-                </View>
+                />
               </View>
             </View>
           </View>

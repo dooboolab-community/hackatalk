@@ -121,7 +121,6 @@ function shouldShowDate(
 const ImageSenderComp: SFC<ImageSenderProps> = ({
   thumbURL,
   isSamePeerMsg,
-  fontColor,
 }) => {
   if (isSamePeerMsg) {
     return <View style={{ width: 40 }} />;
@@ -149,10 +148,9 @@ function MessageListItem(props: Props): React.ReactElement {
   const {
     item: {
       sender: { id: senderId, nickname, photoURL: thumbURL },
-      messageType,
       // @ts-ignore
       message,
-      imageUrls,
+      imageUrls = [],
       created,
     },
     prevItem,
@@ -166,7 +164,7 @@ function MessageListItem(props: Props): React.ReactElement {
     return senderId !== myFakeId;
   };
   const photoMessage = (imageUrls: string[]): boolean => {
-    return imageUrls !== undefined;
+    return imageUrls !== [];
   };
 
   if (otherUser(senderId)) {
@@ -277,6 +275,7 @@ MessageListItem.defaultProps = {
       photoURL: '',
       statusMessage: '',
     },
+    imageUrls: [],
     message: 'hello1',
     created: '2020-01-01 12:00',
     updated: '2020-01-01 12:00',

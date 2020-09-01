@@ -19,6 +19,7 @@ export interface MessageCommon<T extends MessageType = MessageType.Message> {
   sender: User;
   messageType?: T;
   created?: string;
+  imageUrls?: string[];
   updated?: string;
 }
 
