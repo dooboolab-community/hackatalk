@@ -132,6 +132,10 @@ type Mutation {
   signInWithApple(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
+
+  """
+  Update user profile. Becareful that nullable fields will be updated either.
+  """
   updateProfile(user: UserUpdateInput): User!
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
@@ -147,7 +151,6 @@ type Mutation {
     the public channel can be created by each request.
     The public channel is something like an open chat while
     private channel is all kinds of direct messages.
-  
     The [Membership] of private channel will be identical to all users which is (member).
     
     <Optional> The channel can be created with message of [MessageType].
@@ -178,6 +181,8 @@ type Mutation {
     
   """
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
+  createMessage(channelId: String!, message: MessageCreateInput!): Message!
+  deleteMessage(id: String!): Message
 }
 
 type Notification {
@@ -221,8 +226,7 @@ type Profile {
 
 type Query {
   users(
-    email: String
-    name: String
+    searchText: String
 
     """Returns the first n elements from the list."""
     first: Int
@@ -236,6 +240,8 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): UserConnection!
+
+  """Fetch current user profile when authenticated."""
   me: User!
   notifications(userId: String): [Notification!]
 
@@ -310,6 +316,8 @@ input UserCreateInput {
   password: String!
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   gender: Gender
   phone: String
@@ -328,6 +336,8 @@ input UserUpdateInput {
   email: String
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   phone: String
   statusMessage: String
