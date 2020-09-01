@@ -164,7 +164,7 @@ function MessageListItem(props: Props): React.ReactElement {
     return senderId !== myFakeId;
   };
   const photoMessage = (imageUrls: string[]): boolean => {
-    return imageUrls !== [];
+    return imageUrls === [] || imageUrls.length > 0;
   };
 
   if (otherUser(senderId)) {
