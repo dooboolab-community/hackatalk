@@ -1,5 +1,5 @@
 import { ChannelType, MessageType } from '../../types';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
 import ChannelListItem from '../shared/ChannelListItem';
