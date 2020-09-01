@@ -141,6 +141,7 @@ export type Mutation = {
   signInWithApple: AuthPayload;
   signInWithGoogle: AuthPayload;
   sendVerification: Scalars['Boolean'];
+  /** Update user profile. Becareful that nullable fields will be updated either. */
   updateProfile: User;
   findPassword: Scalars['Boolean'];
   changeEmailPassword: Scalars['Boolean'];
@@ -155,7 +156,6 @@ export type Mutation = {
    *   the public channel can be created by each request.
    *   The public channel is something like an open chat while
    *   private channel is all kinds of direct messages.
-   * 
    *   The [Membership] of private channel will be identical to all users which is (member).
    *   
    *   <Optional> The channel can be created with message of [MessageType].
@@ -175,6 +175,8 @@ export type Mutation = {
   inviteUsersToChannel: Channel;
   /** Removes some users from [public] channel. */
   kickUsersFromChannel: Channel;
+  createMessage: Message;
+  deleteMessage?: Maybe<Message>;
 };
 
 
@@ -233,7 +235,7 @@ export type MutationCreateNotificationArgs = {
 
 
 export type MutationDeleteNotificationArgs = {
-  id: Scalars['Int'];
+  token: Scalars['String'];
 };
 
 
@@ -275,6 +277,17 @@ export type MutationKickUsersFromChannelArgs = {
   userIds: Array<Scalars['String']>;
 };
 
+
+export type MutationCreateMessageArgs = {
+  channelId: Scalars['String'];
+  message: MessageCreateInput;
+};
+
+
+export type MutationDeleteMessageArgs = {
+  id: Scalars['String'];
+};
+
 export type Notification = {
   __typename?: 'Notification';
   id: Scalars['Int'];
@@ -307,6 +320,7 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   users: UserConnection;
+  /** Fetch current user profile when authenticated. */
   me: User;
   notifications?: Maybe<Array<Notification>>;
   /** Get single channel */
@@ -317,8 +331,7 @@ export type Query = {
 
 
 export type QueryUsersArgs = {
-  email?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
@@ -407,6 +420,8 @@ export type UserCreateInput = {
   password: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
+  thumbURL?: Maybe<Scalars['String']>;
+  photoURL?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;
@@ -425,6 +440,8 @@ export type UserUpdateInput = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
+  thumbURL?: Maybe<Scalars['String']>;
+  photoURL?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
   phone?: Maybe<Scalars['String']>;
   statusMessage?: Maybe<Scalars['String']>;

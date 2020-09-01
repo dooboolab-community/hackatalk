@@ -27,7 +27,7 @@ interface Message extends MessageCommon<MessageType.Message> {
 }
 
 interface Photo extends MessageCommon<MessageType.Photo> {
-  photo: string;
+  imageUrls: string[];
 }
 
 interface File extends MessageCommon<MessageType.File> {
