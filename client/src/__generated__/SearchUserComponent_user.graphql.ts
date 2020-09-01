@@ -45,14 +45,11 @@ const node: ReaderFragment = (function () {
                 "defaultValue": null,
                 "kind": "LocalArgument",
                 "name": "first"
-<<<<<<< HEAD
             },
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
                 "name": "searchText"
-=======
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
             }
         ],
         "kind": "Fragment",
@@ -82,7 +79,6 @@ const node: ReaderFragment = (function () {
         "selections": [
             {
                 "alias": "users",
-<<<<<<< HEAD
                 "args": [
                     {
                         "kind": "Variable",
@@ -90,9 +86,6 @@ const node: ReaderFragment = (function () {
                         "variableName": "searchText"
                     }
                 ],
-=======
-                "args": null,
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                 "concreteType": "UserConnection",
                 "kind": "LinkedField",
                 "name": "__SearchUserComponent_users_connection",
@@ -195,9 +188,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-<<<<<<< HEAD
 (node as any).hash = '333aa95686b149c6754061e2f3db02b1';
-=======
-(node as any).hash = '1bbcbccd97d9215b403f3274ce352022';
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
 export default node;

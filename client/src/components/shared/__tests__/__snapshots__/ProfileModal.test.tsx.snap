@@ -99,110 +99,70 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 156,
                     "methodName": "registerWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 88,
                     "methodName": "warnImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 66,
                     "methodName": "BufferedConsole.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 14,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedEvent.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedEvent.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 98,
                     "methodName": "new AnimatedEvent",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 24,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedImplementation.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedImplementation.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 526,
                     "methodName": "Object.event",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 29,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native-modalbox/index.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native-modalbox/index.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 366,
                     "methodName": "ModalBox.createPanResponder",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 16,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native-modalbox/index.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native-modalbox/index.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 118,
                     "methodName": "new ModalBox",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 3629,
                     "methodName": "constructClassInstance",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 7558,
                     "methodName": "updateClassComponent",
                   },
@@ -222,110 +182,70 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
                   Object {
                     "arguments": Array [],
                     "column": 29,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 58,
                     "methodName": "Function.parse",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 56,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 156,
                     "methodName": "registerWarning",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 23,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 88,
                     "methodName": "warnImpl",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 12,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 66,
                     "methodName": "BufferedConsole.warn",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 14,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedEvent.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedEvent.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 98,
                     "methodName": "new AnimatedEvent",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 24,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedImplementation.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/Animated/src/AnimatedImplementation.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 526,
                     "methodName": "Object.event",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 29,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native-modalbox/index.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native-modalbox/index.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 366,
                     "methodName": "ModalBox.createPanResponder",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 16,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-native-modalbox/index.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-native-modalbox/index.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 118,
                     "methodName": "new ModalBox",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 17,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 3629,
                     "methodName": "constructClassInstance",
                   },
                   Object {
                     "arguments": Array [],
                     "column": 4,
-<<<<<<< HEAD
-                    "file": "/Users/seongheelee/Desktop/Tasks/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-=======
                     "file": "/home/hyo/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
->>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
                     "lineNumber": 7558,
                     "methodName": "updateClassComponent",
                   },
