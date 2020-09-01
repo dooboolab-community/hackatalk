@@ -27,7 +27,8 @@ const fetchGraphQL: FetchFunction = async (
     },
     body: '',
   };
-
+  // When the `uploadables` are provided the [formData] is builded following the GraphQL multipart request specification.
+  // https://github.com/jaydenseric/graphql-multipart-request-spec
   if (uploadables) {
     const requestText = JSON.stringify(request?.text?.replace(/\n/g, ''));
     const { file, dir } = variables;

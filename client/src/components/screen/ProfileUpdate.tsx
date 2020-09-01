@@ -141,6 +141,8 @@ const Screen: FC<Props> = () => {
     const fileName = uri.split('/').pop() || '';
     const fileTypeMatch = /\.(\w+)$/.exec(fileName);
     const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+    // [file] created from the `uri` as a Blob object
+    // https://github.com/jaydenseric/apollo-upload-client/#Blob
     const file = new Blob([uri], {
       type: fileType,
       endings: 'native',
