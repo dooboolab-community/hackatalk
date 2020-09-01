@@ -174,7 +174,7 @@
       "model": "User",
       "field": "photoURL",
       "type": "String",
-      "arity": "List"
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
@@ -427,6 +427,38 @@
       },
       "argument": "",
       "value": "\"Friend\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "memberships",
+      "type": "Membership",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "memberships"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "User",
+          "field": "memberships"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"Membership\""
     },
     {
       "tag": "CreateModel",
@@ -1305,7 +1337,7 @@
       "model": "Channel",
       "field": "membership",
       "type": "Membership",
-      "arity": "Required"
+      "arity": "List"
     },
     {
       "tag": "CreateField",
@@ -1397,7 +1429,7 @@
       "tag": "CreateField",
       "model": "Message",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1423,7 +1455,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "cuid()"
     },
     {
       "tag": "CreateDirective",
@@ -1962,7 +1994,7 @@
       "tag": "CreateField",
       "model": "Reply",
       "field": "messageId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -2122,7 +2154,7 @@
       "tag": "CreateField",
       "model": "Reaction",
       "field": "messageId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {

@@ -1,4 +1,5 @@
 import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 
 import type {
   AppUserQuery,
@@ -7,7 +8,7 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, Suspense, useEffect, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
 import {
   RelayEnvironmentProvider,
   fetchQuery,
@@ -21,12 +22,22 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import AsyncStorage from '@react-native-community/async-storage';
+import ComponentWrapper from './utils/ComponentWrapper';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
+import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 const meQuery = graphql`
   query AppUserQuery {
@@ -56,7 +67,7 @@ const loadAssetsAsync = async (): Promise<void> => {
   await Promise.all([...imageAssets]);
 };
 
-function AppWithTheme(): ReactElement {
+function App(): ReactElement {
   const environment = useRelayEnvironment();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,7 +91,7 @@ function AppWithTheme(): ReactElement {
       start: () => {
         setLoading(true);
       },
-      error: (error: any) => {
+      error: (error: Error) => {
         console.log('error', error);
         setLoading(false);
       },
@@ -92,6 +103,10 @@ function AppWithTheme(): ReactElement {
         AsyncStorage.removeItem('token');
         setDevice();
       },
+    });
+
+    registerForPushNotificationsAsync().then((token) => {
+      if (token) { AsyncStorage.setItem('push_token', token); }
     });
   }, []);
 
@@ -105,14 +120,11 @@ function AppWithTheme(): ReactElement {
     );
   }
 
-  // if (loading) return <LoadingIndicator />;
-
   return <RootNavigator />;
 }
 
-function App(): ReactElement {
+const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
-
   return (
     <ThemeProvider
       customTheme={{ light, dark }}
@@ -120,33 +132,28 @@ function App(): ReactElement {
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
     >
-      <AppWithTheme />
+      {children}
     </ThemeProvider>
-  );
-}
-
-const RelayProviderWrapper: FC = ({ children }) => {
-  return (
-    <RelayEnvironmentProvider environment={relayEnvironment}>
-      <Suspense fallback={<LoadingIndicator />}>
-        <ActionSheetProvider>{children}</ActionSheetProvider>
-      </Suspense>
-    </RelayEnvironmentProvider>
   );
 };
 
-function ProviderWrapper(): ReactElement {
+function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactElement {
   return (
-    <AppearanceProvider>
-      <DeviceProvider>
-        <AuthProvider>
-          <RelayProviderWrapper>
-            <App />
-          </RelayProviderWrapper>
-        </AuthProvider>
-      </DeviceProvider>
-    </AppearanceProvider>
+    <ActionSheetProvider>
+      {props.children}
+    </ActionSheetProvider>
   );
 }
 
-export default ProviderWrapper;
+// Add all required providers for App.
+const WrappedApp = new ComponentWrapper(App)
+  .wrap(HackatalkThemeProvider, {})
+  .wrap(ActionSheetProviderWithChildren, {})
+  .wrap(Suspense, { fallback: <LoadingIndicator /> })
+  .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
+  .wrap(AuthProvider, {})
+  .wrap(DeviceProvider, {})
+  .wrap(AppearanceProvider, {})
+  .build();
+
+export default WrappedApp;

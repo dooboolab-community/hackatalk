@@ -1,3 +1,5 @@
+scalar AlertMode
+
 scalar Auth
 
 type AuthPayload {
@@ -12,6 +14,42 @@ enum AuthType {
   apple
 }
 
+type Channel {
+  id: String!
+  channelType: ChannelType!
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+
+  """Get latest message sent to the channel."""
+  lastMessage: Message
+  messages(
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): MessageConnection!
+
+  """Get memberships assigned to channel."""
+  memberships: [Membership!]
+}
+
+input ChannelCreateInput {
+  channelType: ChannelType
+  name: String
+  userIds: [String!]
+}
+
+scalar ChannelType
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -21,7 +59,71 @@ scalar Date
 
 scalar DateTime
 
+type Friend {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  friend: User
+}
+
 scalar Gender
+
+type Membership {
+  alertMode: AlertMode
+  membershipType: MembershipType
+  isVisible: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
+  user: User
+  channel: Channel
+}
+
+scalar MembershipType
+
+type Message {
+  id: String!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String!]!
+  fileUrls: [String!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  channel: Channel
+  sender: User
+  replies: [Reply!]
+  reactions: [Reaction!]
+}
+
+type MessageConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [MessageEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+input MessageCreateInput {
+  messageType: MessageType
+  text: String
+  imageUrls: [String!]
+  fileUrls: [String!]
+}
+
+type MessageEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: Message!
+}
+
+scalar MessageType
 
 type Mutation {
   signUp(user: UserCreateInput): User!
@@ -30,12 +132,57 @@ type Mutation {
   signInWithApple(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean!
+
+  """
+  Update user profile. Becareful that nullable fields will be updated either.
+  """
   updateProfile(user: UserUpdateInput): User!
   findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(id: Int!): Notification
+  deleteNotification(token: String!): Notification
   singleUpload(file: Upload, dir: String): String
+  addFriend(friendId: String!): Friend!
+  deleteFriend(friendId: String!): Friend!
+
+  """
+  Creates channel of [ChannelType].
+    The private channel is unique by the unique members while
+    the public channel can be created by each request.
+    The public channel is something like an open chat while
+    private channel is all kinds of direct messages.
+    The [Membership] of private channel will be identical to all users which is (member).
+    
+    <Optional> The channel can be created with message of [MessageType].
+    Please becareful when creating message and provide proper [MessageType].
+    This query will return [Channel] with [Membership] without [Message] that has just created.
+    
+  """
+  createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
+
+  """
+  User leaves [public] channel.
+    Users cannot leave the [private] channel
+    and rather this is going to be invisible in [Membership].
+    This will reset to true when new [Message] is created to channel.
+    User will leave the [public] channel and membership will be removed.
+    
+  """
+  leaveChannel(channelId: String!): Membership!
+
+  """
+  Adds some users into [public] channel.
+    
+  """
+  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel!
+
+  """
+  Removes some users from [public] channel.
+    
+  """
+  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
+  createMessage(channelId: String!, message: MessageCreateInput!): Message!
+  deleteMessage(id: String!): Message
 }
 
 type Notification {
@@ -47,14 +194,79 @@ type Notification {
   createdAt: DateTime
 }
 
+"""
+PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+"""
+type PageInfo {
+  """
+  Used to indicate whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Used to indicate whether more edges exist prior to the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor corresponding to the first nodes in edges. Null if the connection is empty.
+  """
+  startCursor: String
+
+  """
+  The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+  """
+  endCursor: String
+}
+
 type Profile {
   socialId: String
   authType: AuthType
 }
 
 type Query {
+  users(
+    searchText: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): UserConnection!
+
+  """Fetch current user profile when authenticated."""
   me: User!
   notifications(userId: String): [Notification!]
+
+  """Get single channel"""
+  channel(channelId: String): Channel!
+
+  """Get all channels which auth user has joined"""
+  myChannels: [Channel!]
+}
+
+type Reaction {
+  id: Int!
+  value: String!
+}
+
+type Reply {
+  id: Int!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String!]!
+  fileUrls: [String!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  sender: User
 }
 
 type Subscription {
@@ -79,11 +291,24 @@ type User {
   verified: Boolean
   lastSignedIn: DateTime
   isOnline: Boolean
+  profile: Profile
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  profile: Profile
   notifications: [Notification!]
+  friends: [User!]
+}
+
+type UserConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [UserEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
 }
 
 input UserCreateInput {
@@ -91,16 +316,28 @@ input UserCreateInput {
   password: String!
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   gender: Gender
   phone: String
   statusMessage: String
 }
 
+type UserEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: User!
+}
+
 input UserUpdateInput {
   email: String
   name: String
   nickname: String
+  thumbURL: String
+  photoURL: String
   birthday: Date
   phone: String
   statusMessage: String

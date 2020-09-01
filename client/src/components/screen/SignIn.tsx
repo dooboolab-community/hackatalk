@@ -1,6 +1,7 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Config from '../../../config';
 import * as Crypto from 'expo-crypto';
+import * as Device from 'expo-device';
 import * as WebBrowser from 'expo-web-browser';
 
 import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
@@ -13,6 +14,10 @@ import type {
   SignInAppleMutation,
   SignInAppleMutationResponse,
 } from '../../__generated__/SignInAppleMutation.graphql';
+import type {
+  SignInCreateNotificationMutation,
+  SignInCreateNotificationMutationResponse,
+} from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
@@ -127,6 +132,17 @@ const signInWithApple = graphql`
   }
 `;
 
+const createNotification = graphql`
+  mutation SignInCreateNotificationMutation($token: String! $device: String $os: String) {
+    createNotification(token: $token, device: $device, os: $os) {
+      id
+      token
+      device
+      createdAt
+    }
+  }
+`;
+
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
@@ -137,9 +153,10 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-
   const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
   const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
+  const [commitNotification, isNotificationInFlight] =
+    useMutation<SignInCreateNotificationMutation>(createNotification);
 
   WebBrowser.maybeCompleteAuthSession();
 
@@ -167,6 +184,7 @@ function SignIn(props: Props): ReactElement {
         email,
         password,
       },
+
       onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
         const { token, user } = response.signInEmail;
 
@@ -177,9 +195,23 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
-        await AsyncStorage.setItem('password', password);
+        const pushToken = await AsyncStorage.getItem('push_token');
+
+        if (pushToken) {
+          const createNotificationMutationConfig = {
+            variables: {
+              token: pushToken,
+              device: Device.modelName,
+              os: Device.osName,
+            },
+          };
+
+          commitNotification(createNotificationMutationConfig);
+        }
+
         setUser(user);
       },
+
       onError: (error: any): void => {
         //setErrorPassword(error.message);
         setErrorPassword(getString('PASSWORD_INCORRECT'));
@@ -198,8 +230,10 @@ function SignIn(props: Props): ReactElement {
     try {
       const csrf = Math.random().toString(36).substring(2, 15);
       const nonce = Math.random().toString(36).substring(2, 10);
+
       const hashedNonce = await Crypto.digestStringAsync(
         Crypto.CryptoDigestAlgorithm.SHA256, nonce);
+
       const appleCredential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -208,6 +242,7 @@ function SignIn(props: Props): ReactElement {
         state: csrf,
         nonce: hashedNonce,
       });
+
       const { identityToken } = appleCredential;
 
       if (identityToken) {
@@ -248,25 +283,29 @@ function SignIn(props: Props): ReactElement {
   }, []);
 
   const logoSize = 80;
+  const logoTransformAnimValue = useValue(0);
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
   const logoInitialPosition = {
     x: (screenWidth - logoSize) * 0.5,
     y: screenHeight * 0.5 - logoSize,
   };
+
   const logoFinalPosition = {
     x: 30,
     y: 80,
   };
 
-  const logoTransformAnimValue = useValue(0);
   const logoScale = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [2, 1],
   });
+
   const logoPositionX = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [logoInitialPosition.x, logoFinalPosition.x],
   });
+
   const logoPositionY = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [logoInitialPosition.y, logoFinalPosition.y],

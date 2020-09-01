@@ -102,7 +102,7 @@ exports[`Rendering renders without crashing 1`] = `
       <ScrollView
         ListEmptyComponent={
           <ErrorView
-            body="You currently do not have any friend. Please search for users and then add to your friend list."
+            body="You currently do not have any friends. Please search for users to add to your friend list."
             buttonText="Go back"
             onButtonPressed={[Function]}
             testID="btn-error"
@@ -123,7 +123,7 @@ exports[`Rendering renders without crashing 1`] = `
             Object {
               "id": "2",
               "isOnline": false,
-              "name": "geoseong-hello-hello-hello-hello-hello-hello-hello-hello",
+              "name": "geoseong",
               "photoURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
               "statusMessage": "hi I am fine",
               "thumbURL": "https://avatars2.githubusercontent.com/u/19166187?s=460&v=4",
@@ -236,7 +236,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item0"
+              testID="userlist_0"
             >
               <View
                 style={
@@ -372,7 +372,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item1"
+              testID="userlist_1"
             >
               <View
                 style={
@@ -423,7 +423,7 @@ exports[`Rendering renders without crashing 1`] = `
                     ]
                   }
                 >
-                  geoseong-hello-hello-hello-hello-hello-hello-hello-hello
+                  geoseong
                 </Text>
                 <View
                   style={
@@ -508,7 +508,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item2"
+              testID="userlist_2"
             >
               <View
                 style={
@@ -644,7 +644,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item3"
+              testID="userlist_3"
             >
               <View
                 style={
@@ -780,7 +780,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item4"
+              testID="userlist_4"
             >
               <View
                 style={
@@ -916,7 +916,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item5"
+              testID="userlist_5"
             >
               <View
                 style={
@@ -1052,7 +1052,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item6"
+              testID="userlist_6"
             >
               <View
                 style={
@@ -1188,7 +1188,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item7"
+              testID="userlist_7"
             >
               <View
                 style={
@@ -1324,7 +1324,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item8"
+              testID="userlist_8"
             >
               <View
                 style={
@@ -1460,7 +1460,7 @@ exports[`Rendering renders without crashing 1`] = `
           >
             <View
               activeOpacity={0.5}
-              testID="user-list-item9"
+              testID="userlist_9"
             >
               <View
                 style={

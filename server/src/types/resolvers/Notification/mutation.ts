@@ -1,4 +1,4 @@
-import { intArg, mutationField, stringArg } from '@nexus/schema';
+import { mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
 
@@ -26,11 +26,11 @@ export const createNotification = mutationField('createNotification', {
 export const deleteNotification = mutationField('deleteNotification', {
   type: 'Notification',
   nullable: true,
-  args: { id: intArg({ nullable: false }) },
-  resolve: (parent, { id }, ctx) => {
+  args: { token: stringArg({ nullable: false }) },
+  resolve: (parent, { token }, ctx) => {
     return ctx.prisma.notification.delete({
       where: {
-        id,
+        token,
       },
     });
   },
