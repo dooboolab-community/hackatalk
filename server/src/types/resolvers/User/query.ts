@@ -18,10 +18,15 @@ export const usersQueryField = queryField((t) => {
           after, before, first, last,
         }),
         where: {
+<<<<<<< HEAD
           OR: [
             { name: { contains: searchText } },
             { email: { contains: searchText } },
           ],
+=======
+          name: { contains: searchText },
+          email: { contains: searchText },
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
           verified: true,
           deletedAt: null,
         },

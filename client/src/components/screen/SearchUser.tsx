@@ -42,8 +42,13 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
 `;
 
 const usersQuery = graphql`
+<<<<<<< HEAD
   query SearchUsersPaginationQuery($first: Int! $after: String $searchText: String) {
     ...SearchUserComponent_user @arguments(first: $first, after: $after, searchText: $searchText)
+=======
+  query SearchUsersPaginationQuery($first: Int! $after: String) {
+    ...SearchUserComponent_user @arguments(first: $first, after: $after)
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
   }
 `;
 
@@ -52,11 +57,17 @@ const usersFragment = graphql`
     @argumentDefinitions(
       first: {type: "Int"}
       after: {type: "String"}
+<<<<<<< HEAD
       searchText: {type: "String"}
     )
     @refetchable(queryName: "SearchUsersQuery") {
       users(first: $first after: $after searchText: $searchText)
       @connection(key: "SearchUserComponent_users") {
+=======
+    )
+    @refetchable(queryName: "SearchUsersQuery") {
+      users(first: $first, after: $after) @connection(key: "SearchUserComponent_users") {
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
         edges {
           cursor
           node {
@@ -165,6 +176,7 @@ const UsersFragment: FC<UserProps> = ({
   );
 };
 
+<<<<<<< HEAD
 interface ContentProps {
   scrollY: Animated.Value,
   searchArgs: SearchUsersPaginationQueryVariables;
@@ -174,6 +186,18 @@ const ContentContainer: FC<ContentProps> = ({
   searchArgs,
   scrollY,
 }) => {
+=======
+const ContentContainer: FC = () => {
+  const [searchText, setSearchText] = useState<string>('');
+  const debouncedText = useDebounce(searchText, 30);
+  const environment = useRelayEnvironment();
+  const scrollY = new Animated.Value(0);
+
+  const searchArgs: SearchUsersPaginationQueryVariables = {
+    first: 10,
+  };
+
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
   const data: SearchUsersPaginationQueryResponse =
     useLazyLoadQuery<SearchUsersPaginationQuery>(
       usersQuery,
@@ -181,6 +205,7 @@ const ContentContainer: FC<ContentProps> = ({
       { fetchPolicy: 'store-or-network' },
     );
 
+<<<<<<< HEAD
   return <UsersFragment
     scrollY={scrollY}
     user={data}
@@ -199,6 +224,8 @@ const Screen: FC = () => {
     searchText: debouncedText,
   };
 
+=======
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
   const onChangeText = (text: string): void => {
     setSearchText(text);
     scrollY.setValue(0);
@@ -209,8 +236,25 @@ const Screen: FC = () => {
     }).start();
   };
 
+  return <Container>
+    <SearchTextInput
+      testID="text-input"
+      containerStyle={{ marginTop: 12 }}
+      onChangeText={onChangeText}
+      value={searchText}
+    />
+    <UsersFragment
+      scrollY={scrollY}
+      user={data}
+      searchArgs={searchArgs}
+    />
+  </Container>;
+};
+
+const Screen: FC = () => {
   return (
     <StyledSafeAreaView>
+<<<<<<< HEAD
       <Container>
         <SearchTextInput
           testID="text-input"
@@ -222,6 +266,11 @@ const Screen: FC = () => {
           <ContentContainer scrollY={scrollY} searchArgs={searchArgs}/>
         </Suspense>
       </Container>
+=======
+      <Suspense fallback={<LoadingIndicator/>}>
+        <ContentContainer/>
+      </Suspense>
+>>>>>>> eb5d5f2... Applied relay cursor pagination in [SearchUser] (#228)
     </StyledSafeAreaView>
   );
 };
