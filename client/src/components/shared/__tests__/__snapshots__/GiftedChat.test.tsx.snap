@@ -24,7 +24,6 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           Array [
             Object {
               "alignItems": "center",
-              "alignSelf": "stretch",
               "flexBasis": 0,
               "flexDirection": "column",
               "flexGrow": 1,
@@ -110,53 +109,90 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           ]
         }
       >
-        <TextInput
-          allowFontScaling={true}
-          defaultValue=""
-          multiline={true}
-          placeholder=""
-          rejectResponderTermination={true}
-          style={
-            Array [
-              Object {
-                "color": "black",
-                "fontSize": 14,
-                "marginRight": 20,
-                "paddingBottom": 4,
-                "paddingLeft": 48,
-                "width": "80%",
-              },
-              Object {
-                "backgroundColor": undefined,
-                "color": undefined,
-              },
-            ]
-          }
-          testID="input-chat"
-          underlineColorAndroid="transparent"
-          value=""
-        />
         <View
           style={
-            Array [
-              Object {
-                "height": "100%",
-                "justifyContent": "center",
-                "left": 10,
-                "minWidth": 20,
-                "position": "absolute",
-              },
-            ]
+            Object {
+              "width": 30,
+            }
           }
-          testID="touch-menu"
         >
-          <View />
+          <View
+            style={
+              Array [
+                Object {
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "left": 10,
+                },
+              ]
+            }
+            testID="touch-menu"
+          >
+            <View />
+          </View>
         </View>
         <View
           style={
             Object {
               "flex": 1,
-              "marginVertical": 8,
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            defaultValue=""
+            multiline={true}
+            placeholder=""
+            rejectResponderTermination={true}
+            style={
+              Array [
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "paddingBottom": 10,
+                  "paddingLeft": 10,
+                  "paddingRight": 10,
+                  "paddingTop": 10,
+                },
+                Object {
+                  "backgroundColor": undefined,
+                  "color": undefined,
+                  "flex": 1,
+                  "paddingTop": 10,
+                },
+              ]
+            }
+            testID="input-chat"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "width": 30,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "left": 10,
+                },
+              ]
+            }
+            testID="touch-menu"
+          >
+            <View />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "paddingLeft": 15,
             }
           }
         >

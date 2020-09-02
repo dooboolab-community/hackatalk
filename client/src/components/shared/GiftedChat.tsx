@@ -100,6 +100,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [emojiMenu, setEmojiMenu] = useState<boolean>(false);
 
   useEffect(() => {
     if (showMenu) {
@@ -239,12 +240,12 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 width: 30,
               }}
             >
-              <StyledTouchMenu
+              <StyledEmojiMenu
                 testID="touch-menu"
-                onPress={(): void => setShowMenu(false)}
+                onPress={(): void => setEmojiMenu(false)}
               >
                 {optionCloseView}
-              </StyledTouchMenu>
+              </StyledEmojiMenu>
             </View>
             <View
               style={{
@@ -273,12 +274,12 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 width: 30,
               }}
             >
-              <StyledTouchMenu
-                testID="touch-menu"
-                onPress={(): void => setShowMenu(false)}
+              <StyledEmojiMenu
+                testID="emoji-menu"
+                onPress={(): void => setEmojiMenu(false)}
               >
                 {emojiView}
-              </StyledTouchMenu>
+              </StyledEmojiMenu>
             </View>
             <View
               style={{

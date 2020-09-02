@@ -38,7 +38,6 @@ exports[`[Message] rendering test renders as expected 1`] = `
             Array [
               Object {
                 "alignItems": "center",
-                "alignSelf": "stretch",
                 "flexBasis": 0,
                 "flexDirection": "column",
                 "flexGrow": 1,
@@ -240,23 +239,34 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 >
                   sender111
                 </Text>
-                <Image
-                  resizeMode="contain"
-                  source={
-                    Object {
-                      "uri": undefined,
-                    }
-                  }
+                <View
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "white",
-                        "height": 300,
-                        "width": 300,
+                        "backgroundColor": "#e2f2ff",
+                        "marginRight": 8,
+                        "paddingBottom": 12,
+                        "paddingLeft": 12,
+                        "paddingRight": 12,
+                        "paddingTop": 12,
+                        "width": "100%",
                       },
                     ]
                   }
-                />
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#151A25",
+                          "fontSize": 14,
+                        },
+                      ]
+                    }
+                  >
+                    hello1
+                  </Text>
+                </View>
                 <Text
                   style={
                     Array [
@@ -291,22 +301,36 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              <Image
-                source={
-                  Object {
-                    "uri": undefined,
-                  }
-                }
+              <View
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "white",
-                      "height": 300,
-                      "width": 300,
+                      "backgroundColor": "#8bc9ff",
+                      "borderRadius": 3,
+                      "marginLeft": 28,
+                      "marginRight": 20,
+                      "paddingBottom": 12,
+                      "paddingLeft": 12,
+                      "paddingRight": 12,
+                      "paddingTop": 12,
+                      "width": "50%",
                     },
                   ]
                 }
-              />
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#151A25",
+                        "fontSize": 14,
+                      },
+                    ]
+                  }
+                >
+                  Hello2. This is long message. This is long message. This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.
+                </Text>
+              </View>
               <Text
                 style={
                   Array [
@@ -406,23 +430,34 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 >
                   sender111
                 </Text>
-                <Image
-                  resizeMode="contain"
-                  source={
-                    Object {
-                      "uri": undefined,
-                    }
-                  }
+                <View
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "white",
-                        "height": 300,
-                        "width": 300,
+                        "backgroundColor": "#e2f2ff",
+                        "marginRight": 8,
+                        "paddingBottom": 12,
+                        "paddingLeft": 12,
+                        "paddingRight": 12,
+                        "paddingTop": 12,
+                        "width": "100%",
                       },
                     ]
                   }
-                />
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#151A25",
+                          "fontSize": 14,
+                        },
+                      ]
+                    }
+                  >
+                    hello
+                  </Text>
+                </View>
                 <Text
                   style={
                     Array [
@@ -488,23 +523,34 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 }
               >
                 <View />
-                <Image
-                  resizeMode="contain"
-                  source={
-                    Object {
-                      "uri": undefined,
-                    }
-                  }
+                <View
                   style={
                     Array [
                       Object {
-                        "backgroundColor": "white",
-                        "height": 300,
-                        "width": 300,
+                        "backgroundColor": "#e2f2ff",
+                        "marginRight": 8,
+                        "paddingBottom": 12,
+                        "paddingLeft": 12,
+                        "paddingRight": 12,
+                        "paddingTop": 12,
+                        "width": "100%",
                       },
                     ]
                   }
-                />
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#151A25",
+                          "fontSize": 14,
+                        },
+                      ]
+                    }
+                  >
+                    hello2
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -625,69 +671,127 @@ exports[`[Message] rendering test renders as expected 1`] = `
             ]
           }
         >
-          <TextInput
-            allowFontScaling={true}
-            defaultValue=""
-            multiline={true}
-            placeholder="Write message..."
-            placeholderTextColor="#676c7a"
-            rejectResponderTermination={true}
-            style={
-              Array [
-                Object {
-                  "color": "black",
-                  "fontSize": 14,
-                  "marginRight": 20,
-                  "paddingBottom": 4,
-                  "paddingLeft": 48,
-                  "width": "80%",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "color": "#151A25",
-                },
-              ]
-            }
-            testID="input-chat"
-            underlineColorAndroid="transparent"
-            value=""
-          />
           <View
             style={
-              Array [
-                Object {
-                  "height": "100%",
-                  "justifyContent": "center",
-                  "left": 10,
-                  "minWidth": 20,
-                  "position": "absolute",
-                },
-              ]
+              Object {
+                "width": 30,
+              }
             }
-            testID="touch-menu"
           >
-            <Image
-              source={
-                Object {
-                  "canInstrument": true,
-                  "createTransformer": [Function],
-                  "getCacheKey": [Function],
-                  "process": [Function],
-                }
-              }
+            <View
               style={
-                Object {
-                  "height": 24,
-                  "width": 24,
-                }
+                Array [
+                  Object {
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "left": 10,
+                  },
+                ]
               }
-            />
+              testID="touch-menu"
+            >
+              <View>
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 10,
+                      "justifyContent": "center",
+                      "width": 17,
+                    }
+                  }
+                />
+              </View>
+            </View>
           </View>
           <View
             style={
               Object {
                 "flex": 1,
-                "marginVertical": 8,
+              }
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              defaultValue=""
+              multiline={true}
+              placeholder="Write message..."
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "color": "black",
+                    "fontSize": 14,
+                    "paddingBottom": 10,
+                    "paddingLeft": 10,
+                    "paddingRight": 10,
+                    "paddingTop": 10,
+                  },
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "color": "#151A25",
+                    "flex": 1,
+                    "paddingTop": 10,
+                  },
+                ]
+              }
+              testID="input-chat"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "width": 30,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "left": 10,
+                  },
+                ]
+              }
+              testID="touch-menu"
+            >
+              <View>
+                <Image
+                  source={
+                    Object {
+                      "canInstrument": true,
+                      "createTransformer": [Function],
+                      "getCacheKey": [Function],
+                      "process": [Function],
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 28,
+                      "justifyContent": "center",
+                      "width": 28,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "paddingLeft": 15,
               }
             }
           >
@@ -713,6 +817,8 @@ exports[`[Message] rendering test renders as expected 1`] = `
                     Object {
                       "backgroundColor": "#1E6EFA",
                       "height": 40,
+                      "marginLeft": 10,
+                      "marginRight": 10,
                       "width": 60,
                     },
                   ]
