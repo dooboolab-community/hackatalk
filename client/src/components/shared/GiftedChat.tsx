@@ -36,6 +36,12 @@ const StyledTouchMenu = styled.TouchableOpacity`
   justify-content: center;
 `;
 
+const StyledEmojiMenu = styled.TouchableOpacity`
+  left: 10px;
+  height: 100%;
+  justify-content: center;
+`;
+
 const StyledViewBottom = styled.View`
   position: absolute;
   bottom: 0px;
@@ -192,8 +198,29 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 onChangeText={onChangeMessage}
               />
             </View>
-            {emojiView}
-            <View>
+            <View
+              style={{
+                width: 30,
+              }}
+            >
+              <StyledTouchMenu
+                testID="touch-menu"
+                onPress={(): void => {
+                  Keyboard.dismiss();
+                  const timeout = setTimeout(() => {
+                    setShowMenu(true);
+                    clearTimeout(timeout);
+                  }, 100);
+                }}
+              >
+                {emojiView}
+              </StyledTouchMenu>
+            </View>
+            <View
+              style={{
+                paddingLeft: 15,
+              }}
+            >
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
@@ -241,8 +268,23 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 defaultValue={message}
               />
             </View>
-            {emojiView}
-            <View>
+            <View
+              style={{
+                width: 30,
+              }}
+            >
+              <StyledTouchMenu
+                testID="touch-menu"
+                onPress={(): void => setShowMenu(false)}
+              >
+                {emojiView}
+              </StyledTouchMenu>
+            </View>
+            <View
+              style={{
+                paddingLeft: 15,
+              }}
+            >
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
