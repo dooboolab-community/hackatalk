@@ -7,6 +7,7 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  flex: 1;
 `;
 
 const StyledViewChat = styled.View`
@@ -18,8 +19,8 @@ const StyledViewChat = styled.View`
   padding-right: 8px;
   padding-left: 8px;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-between;
   flex: 1;
 `;
 
@@ -150,28 +151,35 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
-            <StyledTouchMenu
-              testID="touch-menu"
-              onPress={(): void => {
-                Keyboard.dismiss();
-                const timeout = setTimeout(() => {
-                  setShowMenu(true);
-                  clearTimeout(timeout);
-                }, 100);
+            <View
+              style = {{
+                width: 30,
               }}
             >
-              {optionView}
-            </StyledTouchMenu>
+              <StyledTouchMenu
+                testID="touch-menu"
+                onPress={(): void => {
+                  Keyboard.dismiss();
+                  const timeout = setTimeout(() => {
+                    setShowMenu(true);
+                    clearTimeout(timeout);
+                  }, 100);
+                }}
+              >
+                {optionView}
+              </StyledTouchMenu>
+            </View>
             <View
               style={{
-                width: '60%',
-              }}
-            >
+                flex: 1,
+              }}>
               <StyledInputChat
                 testID="input-chat"
                 style={{
                   color: fontColor,
                   backgroundColor: backgroundColor,
+                  flex: 1,
+                  paddingTop: 10,
                 }}
                 // @ts-ignore
                 ref={input1}
@@ -185,11 +193,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               />
             </View>
             {emojiView}
-            <View
-              style={{
-                width: '10 %',
-              }}
-            >
+            <View>
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>
@@ -203,15 +207,21 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
-            <StyledTouchMenu
-              testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}
+            <View
+              style = {{
+                width: 30,
+              }}
             >
-              {optionCloseView}
-            </StyledTouchMenu>
+              <StyledTouchMenu
+                testID="touch-menu"
+                onPress={(): void => setShowMenu(false)}
+              >
+                {optionCloseView}
+              </StyledTouchMenu>
+            </View>
             <View
               style={{
-                width: '60%',
+                flex: 1,
               }}
             >
               <StyledInputChat
@@ -221,6 +231,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 style={{
                   color: fontColor,
                   backgroundColor: backgroundColor,
+                  flex: 1,
+                  paddingTop: 10,
                 }}
                 multiline={true}
                 placeholder={placeholder}
@@ -230,11 +242,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               />
             </View>
             {emojiView}
-            <View
-              style={{
-                width: '10 %',
-              }}
-            >
+            <View>
               {renderSendButton ? renderSendButton() : null}
             </View>
           </StyledViewChat>

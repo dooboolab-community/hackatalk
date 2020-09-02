@@ -152,16 +152,12 @@ function Message(): React.ReactElement {
           );
         }}
         optionView={
-          <View
-            style={{
-              width: '7 %',
-            }}
-          >
+          <View>
             <Image
               style={{
                 width: 17,
                 height: 10,
-                marginTop: 8,
+                justifyContent: 'center',
               }}
               source={IC_OPEN}
             />
@@ -170,29 +166,25 @@ function Message(): React.ReactElement {
         optionCloseView={
           <View
             style={{
-              width: '7 %',
-            }}
-          >
+              width: 20,
+            }}>
             <Image
               style={{
                 width: 17,
                 height: 10,
-                marginTop: 8,
+                justifyContent: 'center',
               }}
               source={IC_CLOSE}
             />
           </View>
         }
         emojiView={
-          <View
-            style={{
-              width: '7 %',
-            }}
-          >
+          <View>
             <Image
               style={{
                 width: 28,
                 height: 28,
+                justifyContent: 'center',
               }}
               source={IC_SMILE}
             />
