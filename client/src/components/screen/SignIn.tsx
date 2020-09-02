@@ -4,7 +4,7 @@ import * as Crypto from 'expo-crypto';
 import * as Device from 'expo-device';
 import * as WebBrowser from 'expo-web-browser';
 
-import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Image, Platform, TouchableOpacity, View } from 'react-native';
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
 import { AuthType, User } from '../../types/graphql';
 import { Button, EditText } from 'dooboo-ui';
@@ -15,10 +15,6 @@ import type {
   SignInAppleMutationResponse,
 } from '../../__generated__/SignInAppleMutation.graphql';
 import type {
-  SignInCreateNotificationMutation,
-  SignInCreateNotificationMutationResponse,
-} from '../../__generated__/SignInCreateNotificationMutation.graphql';
-import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
 } from '../../__generated__/SignInEmailMutation.graphql';
@@ -26,17 +22,20 @@ import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
+import styled, { css } from 'styled-components/native';
+import useResponsiveDesign, { Media } from '../../hooks/useResponsiveDesign';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { EditTextInputType } from 'dooboo-ui/EditText';
+import type {
+  SignInCreateNotificationMutation,
+} from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { registerForPushNotificationsAsync } from '../../utils/noti';
-import styled from 'styled-components/native';
 import { useAuthContext } from '../../providers/AuthProvider';
-import useResponsiveDesign from '../../hooks/useResponsiveDesign';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -102,6 +101,18 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
+const StyledScrollView = styled.ScrollView<{ media: Media }>`
+  alignSelf: center;
+  width: 100%;
+  ${({ media }) => media === 'tablet' && css`
+    width: 75%;
+  `}
+  ${({ media }) => media === 'desktop' && css`
+    width: 50%;
+    max-width: 800;
+  `}
+`;
+
 const { facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
 
 interface Props {
@@ -149,7 +160,7 @@ function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
   const { theme, changeThemeType, themeType } = useThemeContext();
-  const sizeCategory = useResponsiveDesign();
+  const media = useResponsiveDesign();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -336,12 +347,7 @@ function SignIn(props: Props): ReactElement {
     <Container>
       <StatusBar />
 
-      <ScrollView
-        style={{
-          alignSelf: 'center',
-          width: sizeCategory === 'large' ? 800 : '100%',
-        }}
-      >
+      <StyledScrollView media={media}>
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
@@ -519,7 +525,7 @@ function SignIn(props: Props): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
           </StyledAgreementTextWrapper>
         </Wrapper>
-      </ScrollView>
+      </StyledScrollView>
     </Container>
   );
 }
