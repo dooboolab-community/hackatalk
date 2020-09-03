@@ -196,8 +196,8 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
-        registerForPushNotificationsAsync().then((token) => {
-          if (token) { AsyncStorage.setItem('push_token', token); }
+        registerForPushNotificationsAsync().then((pushToken) => {
+          if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
         });
         const pushToken = await AsyncStorage.getItem('push_token');
 
