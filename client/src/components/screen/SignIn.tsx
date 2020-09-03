@@ -33,6 +33,7 @@ import { EditTextInputType } from 'dooboo-ui/EditText';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
+import { registerForPushNotificationsAsync } from '../../utils/noti';
 import styled from 'styled-components/native';
 import { useAuthContext } from '../../providers/AuthProvider';
 
@@ -195,6 +196,9 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
+        registerForPushNotificationsAsync().then((token) => {
+          if (token) { AsyncStorage.setItem('push_token', token); }
+        });
         const pushToken = await AsyncStorage.getItem('push_token');
 
         if (pushToken) {

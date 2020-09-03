@@ -28,7 +28,6 @@ import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
-import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
 
 Notifications.setNotificationHandler({
@@ -103,10 +102,6 @@ function App(): ReactElement {
         AsyncStorage.removeItem('token');
         setDevice();
       },
-    });
-
-    registerForPushNotificationsAsync().then((token) => {
-      if (token) { AsyncStorage.setItem('push_token', token); }
     });
   }, []);
 

@@ -7,7 +7,7 @@ import { getString } from '../../STRINGS';
 import { showAlertForError } from './common';
 
 export const registerForPushNotificationsAsync = async (): Promise<string | undefined> => {
-  let token;
+  let token: string | undefined;
 
   if (Constants.isDevice) {
     const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
@@ -19,7 +19,6 @@ export const registerForPushNotificationsAsync = async (): Promise<string | unde
     }
 
     if (finalStatus !== 'granted') {
-      showAlertForError(getString('FAILED_GET_PUSH_NOTI'));
       return;
     }
 
