@@ -38,6 +38,7 @@
     "axios": "^0.20.0",
     "azure-storage": "^2.10.3",
     "bcrypt": "^5.0.0",
+    "casual": "^1.6.2",
     "ejs": "^3.1.5",
     "generate-password": "^1.5.1",
     "graphql-import": "^1.0.2",
