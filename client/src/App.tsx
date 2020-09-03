@@ -28,6 +28,7 @@ import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
+import { getMediaQuery } from './utils/media';
 import relayEnvironment from './relay';
 
 Notifications.setNotificationHandler({
@@ -120,9 +121,20 @@ function App(): ReactElement {
 
 const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
+  const mediaQuery = getMediaQuery();
+
   return (
     <ThemeProvider
-      customTheme={{ light, dark }}
+      customTheme={{
+        light: {
+          ...light,
+          ...mediaQuery,
+        },
+        dark: {
+          ...light,
+          ...mediaQuery,
+        },
+      }}
       initialThemeType={
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }

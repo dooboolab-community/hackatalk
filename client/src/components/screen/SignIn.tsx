@@ -23,7 +23,6 @@ import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
 import styled, { css } from 'styled-components/native';
-import useResponsiveDesign, { Media } from '../../hooks/useResponsiveDesign';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
@@ -101,15 +100,19 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
-const StyledScrollView = styled.ScrollView<{ media: Media }>`
-  alignSelf: center;
+const StyledScrollView = styled.ScrollView`
+  align-self: center;
   width: 100%;
-  ${({ media }) => media === 'tablet' && css`
+
+  ${({ theme: { mobile } }) => mobile && css`
     width: 75%;
+    background-color: red;
   `}
-  ${({ media }) => media === 'desktop' && css`
+
+  ${({ theme: { desktop } }) => desktop && css`
     width: 50%;
     max-width: 800;
+    background-color: blue;
   `}
 `;
 
@@ -160,7 +163,6 @@ function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
   const { theme, changeThemeType, themeType } = useThemeContext();
-  const media = useResponsiveDesign();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -347,7 +349,7 @@ function SignIn(props: Props): ReactElement {
     <Container>
       <StatusBar />
 
-      <StyledScrollView media={media}>
+      <StyledScrollView>
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
