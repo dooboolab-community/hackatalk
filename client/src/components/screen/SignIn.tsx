@@ -102,17 +102,14 @@ const StyledAgreementLinedText = styled.Text`
 
 const StyledScrollView = styled.ScrollView`
   align-self: center;
-  width: 100%;
 
   ${({ theme: { mobile } }) => mobile && css`
-    width: 75%;
-    background-color: red;
+    width: 100%;
   `}
 
   ${({ theme: { desktop } }) => desktop && css`
     width: 50%;
     max-width: 800;
-    background-color: blue;
   `}
 `;
 
