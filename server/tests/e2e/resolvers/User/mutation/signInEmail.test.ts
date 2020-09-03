@@ -1,5 +1,6 @@
-import { request } from 'graphql-request';
 import { signInEmailMutation, signUpMutation } from '../../../setup/queries';
+
+import { request } from 'graphql-request';
 import { testHost } from '../../../setup/testSetup';
 
 describe('signInEmail', () => {

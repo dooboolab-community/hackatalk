@@ -1,4 +1,5 @@
 import { NexusGenRootTypes } from '../../../src/generated/nexus';
+import casual from 'casual';
 
 export function user(): NexusGenRootTypes['User'] {
   return {
@@ -7,16 +8,16 @@ export function user(): NexusGenRootTypes['User'] {
     name: 'jerry',
     thumbURL: '',
     photoURL: '',
-    birthday: 'DataTime',
     nickname: '',
     gender: 'Gender',
     phone: '',
     statusMessage: '',
     verified: false,
-    lastSignedIn: 'DataTime',
-    createdAt: 'DateTime',
-    updatedAt: 'DateTime',
-    deletedAt: 'DateTime',
+    birthday: casual.date,
+    lastSignedIn: casual.date,
+    createdAt: casual.date,
+    updatedAt: casual.date,
+    deletedAt: casual.date,
   };
 }
 
@@ -29,16 +30,16 @@ export function authPayload(): NexusGenRootTypes['AuthPayload'] {
       name: 'jerry',
       thumbURL: '',
       photoURL: '',
-      birthday: 'DataTime',
       nickname: '',
       gender: 'Gender',
       phone: '',
       statusMessage: '',
       verified: false,
-      lastSignedIn: 'DataTime',
-      createdAt: 'DateTime',
-      updatedAt: 'DateTime',
-      deletedAt: 'DateTime',
+      birthday: casual.date,
+      lastSignedIn: casual.date,
+      createdAt: casual.date,
+      updatedAt: casual.date,
+      deletedAt: casual.date,
     },
   };
 }

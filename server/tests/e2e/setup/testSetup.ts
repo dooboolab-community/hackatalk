@@ -5,10 +5,10 @@ import NodeWebSocket from 'ws';
 import { PrismaClient } from '@prisma/client';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { WebSocketLink } from 'apollo-link-ws';
-import { createApp } from '../../src/app';
+import { createApp } from '../../../src/app';
 import { exec } from 'child_process';
 import express from 'express';
-import { startServer } from '../../src/server';
+import { startServer } from '../../../src/server';
 
 const prisma = new PrismaClient();
 const port = 4000;

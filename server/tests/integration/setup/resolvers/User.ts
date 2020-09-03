@@ -6,15 +6,17 @@ import { IResolvers } from 'apollo-server';
 export const userResolvers: IResolvers = {
   Query: {
     me: (
-      _: void,
+      _: 'User',
       __: void,
       { dataSources }: Context,
-    ): Promise<NexusGenRootTypes['User']> =>
-      dataSources.userAPI.me(),
+    ): Promise<NexusGenRootTypes['User']> => {
+      const user = dataSources.userAPI.me();
+      return user;
+    },
   },
   Mutation: {
     signUp: (
-      _: void,
+      _: 'User',
       signUpUser: NexusGenInputs['UserCreateInput'],
       { dataSources }: Context,
     ): Promise<NexusGenRootTypes['User']> => {
@@ -24,7 +26,7 @@ export const userResolvers: IResolvers = {
       return user;
     },
     signInEmail: (
-      _:void,
+      _: 'AuthPayload',
       args: NexusGenArgTypes['Mutation']['signInEmail'],
       { dataSources }: Context,
     ): Promise<NexusGenRootTypes['AuthPayload']> => {

@@ -1,8 +1,8 @@
-import * as azureUtils from '../../src/utils/azure';
+import * as azureUtils from '../../../src/utils/azure';
 
 import FormData from 'form-data';
 import fetch from 'node-fetch';
-import { testHost } from '../setup/testSetup';
+import { testHost } from './../setup/testSetup';
 
 describe('Resolver - File', () => {
   beforeAll(async () => {
