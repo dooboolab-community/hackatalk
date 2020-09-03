@@ -16,10 +16,11 @@ export const uploadFileToAzureBlobFromStream = (
   stream: stream.Readable,
   destFile: string,
   destDir: string,
+  container: string,
 ): Promise<BlobService.BlobResult> => {
   return new Promise(function(resolve, reject) {
     stream.pipe(
-      blobService.createWriteStreamToBlockBlob(destDir, destFile, function(
+      blobService.createWriteStreamToBlockBlob(container, `${destDir}${destFile}`, function(
         error,
         resultUpload,
       ) {

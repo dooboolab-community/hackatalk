@@ -141,6 +141,10 @@ type Mutation {
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
   deleteNotification(token: String!): Notification
+
+  """
+  Provide `dir` optionally, Upload single file to the server with graphql-upload
+  """
   singleUpload(file: Upload, dir: String): String
   addFriend(friendId: String!): Friend!
   deleteFriend(friendId: String!): Friend!

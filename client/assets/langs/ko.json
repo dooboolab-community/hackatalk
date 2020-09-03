@@ -47,7 +47,7 @@
   "PASSWORD_MUST_MATCH": "비밀번호가 일치하지 않습니다.",
   "PASSWORD_RESET": "비밀번호 재설정",
   "TAKE_A_PICTURE": "촬영하기",
-  "SELSCT_FROM_ALBUM": "앨범에서 선택하기",
+  "SELECT_FROM_ALBUM": "앨범에서 선택하기",
   "CANCEL": "취소",
   "PASSWORD_CHANGE": "비밀번호 변경하기",
   "PASSWORD_CURRENT": "기존 비밀번호",

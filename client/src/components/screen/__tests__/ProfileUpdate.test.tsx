@@ -26,7 +26,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): Record<string, unknown> => {
     const userPressLaunchCamera = true;
     const BUTTON_INDEX_LAUNCH_CAMERA = 0;
-    const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+    const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
     return {
       showActionSheetWithOptions: (
         options: Record<string, unknown>,
@@ -35,7 +35,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
         if (userPressLaunchCamera) {
           callback(BUTTON_INDEX_LAUNCH_CAMERA);
         }
-        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY);
+        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY);
       },
     };
   },
@@ -65,7 +65,7 @@ describe('rendering test', () => {
       }),
     };
 
-    environment.mock.queuePendingOperation(ProfileUpdateMeQuery, {});
+    // environment.mock.queuePendingOperation(ProfileUpdateMeQuery, {});
     environment.mock.queueOperationResolver(
       (operation) => MockPayloadGenerator.generate(operation, mockResolver),
     );

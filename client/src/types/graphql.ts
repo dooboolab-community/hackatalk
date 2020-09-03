@@ -24,8 +24,6 @@ export type Scalars = {
   Upload: any;
 };
 
-
-
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   token: Scalars['String'];
@@ -54,7 +52,6 @@ export type Channel = {
   memberships?: Maybe<Array<Membership>>;
 };
 
-
 export type ChannelMessagesArgs = {
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
@@ -68,9 +65,6 @@ export type ChannelCreateInput = {
   userIds?: Maybe<Array<Scalars['String']>>;
 };
 
-
-
-
 export type Friend = {
   __typename?: 'Friend';
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -79,7 +73,6 @@ export type Friend = {
   user?: Maybe<User>;
   friend?: Maybe<User>;
 };
-
 
 export type Membership = {
   __typename?: 'Membership';
@@ -91,7 +84,6 @@ export type Membership = {
   user?: Maybe<User>;
   channel?: Maybe<Channel>;
 };
-
 
 export type Message = {
   __typename?: 'Message';
@@ -132,7 +124,6 @@ export type MessageEdge = {
   node: Message;
 };
 
-
 export type Mutation = {
   __typename?: 'Mutation';
   signUp: User;
@@ -147,6 +138,7 @@ export type Mutation = {
   changeEmailPassword: Scalars['Boolean'];
   createNotification: Notification;
   deleteNotification?: Maybe<Notification>;
+  /** Provide `dir` optionally, Upload single file to the server with graphql-upload */
   singleUpload?: Maybe<Scalars['String']>;
   addFriend: Friend;
   deleteFriend: Friend;
@@ -157,7 +149,7 @@ export type Mutation = {
    *   The public channel is something like an open chat while
    *   private channel is all kinds of direct messages.
    *   The [Membership] of private channel will be identical to all users which is (member).
-   *   
+   *
    *   <Optional> The channel can be created with message of [MessageType].
    *   Please becareful when creating message and provide proper [MessageType].
    *   This query will return [Channel] with [Membership] without [Message] that has just created.
@@ -179,53 +171,43 @@ export type Mutation = {
   deleteMessage?: Maybe<Message>;
 };
 
-
 export type MutationSignUpArgs = {
   user?: Maybe<UserCreateInput>;
 };
-
 
 export type MutationSignInEmailArgs = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
 
-
 export type MutationSignInWithFacebookArgs = {
   accessToken: Scalars['String'];
 };
-
 
 export type MutationSignInWithAppleArgs = {
   accessToken: Scalars['String'];
 };
 
-
 export type MutationSignInWithGoogleArgs = {
   accessToken: Scalars['String'];
 };
-
 
 export type MutationSendVerificationArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationUpdateProfileArgs = {
   user?: Maybe<UserUpdateInput>;
 };
-
 
 export type MutationFindPasswordArgs = {
   email: Scalars['String'];
 };
 
-
 export type MutationChangeEmailPasswordArgs = {
   password: Scalars['String'];
   newPassword: Scalars['String'];
 };
-
 
 export type MutationCreateNotificationArgs = {
   token: Scalars['String'];
@@ -233,56 +215,46 @@ export type MutationCreateNotificationArgs = {
   os?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationDeleteNotificationArgs = {
   token: Scalars['String'];
 };
-
 
 export type MutationSingleUploadArgs = {
   file?: Maybe<Scalars['Upload']>;
   dir?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationAddFriendArgs = {
   friendId: Scalars['String'];
 };
 
-
 export type MutationDeleteFriendArgs = {
   friendId: Scalars['String'];
 };
-
 
 export type MutationCreateChannelArgs = {
   channel?: Maybe<ChannelCreateInput>;
   message?: Maybe<MessageCreateInput>;
 };
 
-
 export type MutationLeaveChannelArgs = {
   channelId: Scalars['String'];
 };
-
 
 export type MutationInviteUsersToChannelArgs = {
   channelId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 };
 
-
 export type MutationKickUsersFromChannelArgs = {
   channelId: Scalars['String'];
   userIds: Array<Scalars['String']>;
 };
 
-
 export type MutationCreateMessageArgs = {
   channelId: Scalars['String'];
   message: MessageCreateInput;
 };
-
 
 export type MutationDeleteMessageArgs = {
   id: Scalars['String'];
@@ -329,7 +301,6 @@ export type Query = {
   myChannels?: Maybe<Array<Channel>>;
 };
 
-
 export type QueryUsersArgs = {
   searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
@@ -338,11 +309,9 @@ export type QueryUsersArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryNotificationsArgs = {
   userId?: Maybe<Scalars['String']>;
 };
-
 
 export type QueryChannelArgs = {
   channelId?: Maybe<Scalars['String']>;
@@ -373,16 +342,13 @@ export type Subscription = {
   userUpdated: User;
 };
 
-
 export type SubscriptionUserSignedInArgs = {
   userId: Scalars['String'];
 };
 
-
 export type SubscriptionUserUpdatedArgs = {
   userId: Scalars['String'];
 };
-
 
 export type User = {
   __typename?: 'User';
