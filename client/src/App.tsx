@@ -131,7 +131,7 @@ const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) =>
           ...mediaQuery,
         },
         dark: {
-          ...light,
+          ...dark,
           ...mediaQuery,
         },
       }}
