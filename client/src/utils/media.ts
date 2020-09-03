@@ -13,14 +13,21 @@ export type MediaQueryType = {
   mobile: boolean,
 }
 
-const isDesktop = (): boolean => useMediaQuery({ minWidth: 1224 });
-const isTablet = (): boolean => useMediaQuery({ minWidth: 768 });
-const isMobile = (): boolean => useMediaQuery({ minWidth: 0 });
-
-export const getMediaQuery = (): MediaQueryType => {
+export const useMedia = (): MediaQueryType => {
+  const isDesktop = useMediaQuery({
+    minWidth: 1224
+  });
+  const isTablet = useMediaQuery({
+    minWidth: 768,
+    maxWidth: 1223,
+  });
+  const isMobile = useMediaQuery({
+    minWidth: 0,
+    maxWidth: 767,
+  });
   return {
-    desktop: isDesktop(),
-    tablet: isTablet(),
-    mobile: isMobile(),
+    desktop: isDesktop,
+    tablet: isTablet,
+    mobile: isMobile,
   };
 };
