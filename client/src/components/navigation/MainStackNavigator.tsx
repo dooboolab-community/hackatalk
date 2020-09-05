@@ -99,7 +99,7 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen
         name="ProfileUpdate"
         component={ProfileUpdate}
-        options={(props: Props): StackNavigationOptions => {
+        options={(props): StackNavigationOptions => {
           const { navigation } = props;
           const settingButton = (): ReactElement => {
             return (
