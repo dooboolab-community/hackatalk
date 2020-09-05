@@ -65,7 +65,7 @@
     "i18n-js": "^3.7.1",
     "immer": "^7.0.8",
     "moment": "^2.27.0",
-    "react": "^0.0.0-experimental-94c0244ba",
+    "react": "^0.14.0",
     "react-dom": "^0.0.0-experimental-94c0244ba",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.0.tar.gz",
     "react-native-appearance": "~0.3.4",
