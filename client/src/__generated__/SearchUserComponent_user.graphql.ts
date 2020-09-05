@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { FragmentRefs } from "relay-runtime";
 import { ReaderFragment } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
 export type SearchUserComponent_user = {
     readonly users: {
         readonly edges: ReadonlyArray<{
