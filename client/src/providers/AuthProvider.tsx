@@ -3,6 +3,10 @@ import React, { useReducer } from 'react';
 import { User } from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
+export interface State {
+  user: User | undefined;
+}
+
 interface Context {
   state: State;
   setUser(user: User | undefined): void;
@@ -13,9 +17,6 @@ export enum ActionType {
   SetUser = 'set-user',
 }
 
-export interface State {
-  user: User | undefined;
-}
 type SetUserAction = {
   type: ActionType.SetUser;
   payload: { user: User };

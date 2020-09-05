@@ -103,7 +103,7 @@ export const signInWithSocialAccount = async (
     where: {
       email: user.email,
     },
-    data: { lastSignedIn: new Date() },
+    data: { lastSignedIn: new Date().toISOString() },
   });
 
   return {
@@ -200,7 +200,7 @@ export const signInEmail = mutationField('signInEmail', {
       where: {
         email,
       },
-      data: { lastSignedIn: new Date() },
+      data: { lastSignedIn: new Date().toISOString() },
     });
 
     return {

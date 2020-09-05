@@ -63,7 +63,7 @@ export const deleteMessage = mutationField('deleteMessage', {
 
   resolve: (parent, { id }, ctx) => {
     return ctx.prisma.message.update({
-      data: { deletedAt: new Date() },
+      data: { deletedAt: new Date().toISOString() },
       where: { id },
     });
   },
