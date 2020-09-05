@@ -13,6 +13,7 @@ export const usersQueryField = queryField((t) => {
 
     async nodes(_, args, ctx) {
       const { after, before, first, last, searchText } = args;
+
       return ctx.prisma.user.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,

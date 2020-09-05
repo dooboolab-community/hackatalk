@@ -1,8 +1,18 @@
-import { Channel, Membership, ChannelType, MembershipType, MessageType } from '@prisma/client';
+import {
+  ChannelType,
+  MessageType,
+} from '@prisma/client';
+import {
+  changeVisibilityWhenInvisible,
+  createMemberships,
+  createNewChannel,
+  findChannelWithUserIds,
+  findExistingChannel,
+  findPrivateChannelWithUserIds,
+} from '../../../services/ChannelService';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
-import { findExistingChannel } from '../../../services/ChannelService'
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',
@@ -47,37 +57,6 @@ export const createChannel = mutationField('createChannel', {
     const userId = getUserId(ctx);
     const { channelType = ChannelType.private, userIds = [], name } = channel;
 
-    const createChannel = async (isPrivate: boolean) =>
-      ctx.prisma.channel.create({
-        data: {
-          channelType,
-          name,
-          membership: {
-            create: {
-              membershipType: !isPrivate
-                ? MembershipType.owner
-                : MembershipType.member,
-              user: { connect: { id: userId } },
-            },
-          },
-        },
-      });
-
-    const createMemberships = async (channelId: string, userIds: readonly string[]) => {
-       const promises: Promise<Membership>[] = userIds.map((userId) => ctx.prisma.membership.create({
-        data: {
-            user: {
-              connect: { id: userId },
-            },
-            channel: {
-              connect: { id: channelId },
-            },
-          },
-       }))
-
-      await Promise.all(promises);
-    };
-
     interface Message {
       text?: string;
       messageType?: MessageType,
@@ -99,52 +78,16 @@ export const createChannel = mutationField('createChannel', {
       },
     });
 
-    const findChannelWithUserIds = async (userId, userIds) => {
-        const channels = await ctx.prisma.channel.findMany({
-          include: {
-            membership: {
-              select: {
-                userId: true,
-                membershipType: true,
-              },
-            },
-          },
-          where: {
-            membership: {
-              every: {
-                userId: { in: [userId, ...userIds] },
-              },
-            },
-          },
-        });
-
-        const totalUsers = userIds.length + 1; // +1 for auth user
-
-        return channels.find(channel => channel.membership.length === totalUsers)
-    };
-
-    const changeVisibilityWhenInvisible = (userId, existingChannel) => ctx.prisma.membership.update({
-        data: {
-          isVisible: true,
-        },
-        where: {
-          userId_channelId: {
-            userId,
-            channelId: existingChannel.id,
-          },
-        },
-    });
-
     const isPrivateChannel = channelType === ChannelType.private;
 
     if (isPrivateChannel) {
       const hasNoMembersToChat = userIds.length === 0;
 
       if (hasNoMembersToChat) {
-        throw new Error('User has no members to chat with in private channel.');
+        throw new Error('User has no members to chat within private channel.');
       }
 
-      const existingChannel = await findChannelWithUserIds(userId, userIds);
+      const existingChannel = await findChannelWithUserIds([userId, ...userIds]);
 
       if (existingChannel) {
         changeVisibilityWhenInvisible(userId, existingChannel);
@@ -153,7 +96,7 @@ export const createChannel = mutationField('createChannel', {
       }
     }
 
-    const { id } = await createChannel(isPrivateChannel);
+    const { id } = await createNewChannel(isPrivateChannel, userId, name);
     await createMemberships(id, userIds);
     message && await createMessage(message, id);
 
@@ -165,6 +108,26 @@ export const createChannel = mutationField('createChannel', {
     });
 
     return getChannel(id);
+  },
+});
+
+export const findOrCreatePrivateChannelId = mutationField('findOrCreatePrivateChannelId', {
+  type: 'String',
+  args: { peerUserId: stringArg({ nullable: false }) },
+
+  description: 'Find or create channel associated to peer user id.',
+
+  resolve: async (parent, { peerUserId }, ctx) => {
+    const userId = getUserId(ctx);
+    const existingChannel = await findPrivateChannelWithUserIds([userId, peerUserId]);
+
+    if (existingChannel) {
+      changeVisibilityWhenInvisible(userId, existingChannel);
+      return existingChannel.id;
+    }
+
+    const channel = await createNewChannel(true, peerUserId);
+    return channel.id;
   },
 });
 

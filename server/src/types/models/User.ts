@@ -31,6 +31,7 @@ export const User = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });
+
     t.list.field('friends', {
       type: 'User',
       nullable: true,
