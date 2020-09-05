@@ -209,21 +209,6 @@ const Screen: FC = () => {
     }).start();
   };
 
-  return <Container>
-    <SearchTextInput
-      testID="text-input"
-      containerStyle={{ marginTop: 12 }}
-      onChangeText={onChangeText}
-      value={searchText}
-    />
-    <UsersFragment
-      scrollY={scrollY}
-      user={data}
-    />
-  </Container>;
-};
-
-const Screen: FC = () => {
   return (
     <StyledSafeAreaView>
       <Container>
