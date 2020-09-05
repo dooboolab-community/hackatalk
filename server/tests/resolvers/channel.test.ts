@@ -12,9 +12,9 @@ import {
 
 import { testHost } from '../setup/testSetup';
 
-describe('Resolver - Channel', () => {
-  let authClient: GraphQLClient;
+let authClient: GraphQLClient;
 
+describe('Resolver - Channel', () => {
   beforeAll(async () => {
     const signUpVar = {
       user: {
