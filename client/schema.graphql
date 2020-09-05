@@ -164,6 +164,9 @@ type Mutation {
   """
   createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
 
+  """Find or create channel associated to peer user id."""
+  findOrCreatePrivateChannelId(peerUserId: String!): String!
+
   """
   User leaves [public] channel.
     Users cannot leave the [private] channel

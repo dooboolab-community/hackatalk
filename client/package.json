@@ -78,7 +78,7 @@
     "react-native-svg": "12.1.0",
     "react-native-tab-view": "^2.15.1",
     "react-native-web": "^0.13.9",
-    "react-native-webview": "9.4.0",
+    "react-native-webview": "^10.8.3",
     "react-navigation-stack": "^2.8.2",
     "react-relay": "^0.0.0-experimental-183bdd28",
     "react-responsive": "^8.1.0",

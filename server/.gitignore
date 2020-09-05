@@ -12,3 +12,4 @@ prisma/.env
 src/generated
 
 .idea
+.gitmessage.txt
