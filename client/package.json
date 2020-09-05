@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@dooboo-ui/theme": "^0.0.3",
+    "@expo/match-media": "^0.0.0-beta.2",
     "@expo/react-native-action-sheet": "^3.8.0",
     "@expo/vector-icons": "^10.2.1",
     "@expo/webpack-config": "^0.12.28",
@@ -80,6 +81,7 @@
     "react-native-webview": "9.4.0",
     "react-navigation-stack": "^2.8.2",
     "react-relay": "^0.0.0-experimental-183bdd28",
+    "react-responsive": "^8.1.0",
     "sentry-expo": "^2.1.2",
     "styled-components": "^5.2.0",
     "subscriptions-transport-ws": "^0.9.18"
@@ -110,6 +112,7 @@
     "@types/react-native": "^0.62",
     "@types/react-native-modalbox": "^1.4.8",
     "@types/react-relay": "^7.0.9",
+    "@types/react-responsive": "^8.0.2",
     "@types/react-test-renderer": "^16.9",
     "@types/relay-test-utils": "^6.0.2",
     "@types/styled-components": "^5.1.3",

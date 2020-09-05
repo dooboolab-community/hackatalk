@@ -29,6 +29,7 @@ import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
 import relayEnvironment from './relay';
+import { useMedia } from './utils/media';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -120,9 +121,20 @@ function App(): ReactElement {
 
 const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
+  const mediaQuery = useMedia();
+
   return (
     <ThemeProvider
-      customTheme={{ light, dark }}
+      customTheme={{
+        light: {
+          ...light,
+          ...mediaQuery,
+        },
+        dark: {
+          ...dark,
+          ...mediaQuery,
+        },
+      }}
       initialThemeType={
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
       }
