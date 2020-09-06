@@ -127,6 +127,7 @@ describe('Resolver - User', () => {
       expect(response2.signInEmail.user.gender).toEqual(subscriptionValue.gender);
       expect(response2.signInEmail.user.createdAt).toEqual(subscriptionValue.createdAt);
     });
+
     it("should subscribe 'userUpdated' after 'updateProfile' mutation", async () => {
       let subscriptionValue;
       const variables = {

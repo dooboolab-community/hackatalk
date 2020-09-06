@@ -88,3 +88,11 @@ export const kickFromChannel = /* GraphQL */`
     }
   }
 `;
+
+export const findOrCreatePrivateChannel = /* GraphQL */`
+  mutation findOrCreatePrivateChannel($peerUserId: String!) {
+    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+      id
+    }
+  }
+`;

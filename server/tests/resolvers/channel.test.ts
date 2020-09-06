@@ -2,6 +2,7 @@ import { GraphQLClient, request } from 'graphql-request';
 import {
   channelQuery,
   createChannel,
+  findOrCreatePrivateChannel,
   inviteToChannel,
   kickFromChannel,
   leaveChannel,
@@ -307,5 +308,30 @@ describe('Resolver - Channel', () => {
     expect(responseMyChannel).toHaveProperty('myChannels');
     // The deletion should happen in `myChannels` query
     expect(responseMyChannel.myChannels).toHaveLength(myChannels.length - 2);
+  });
+
+  let newChannelId: string;
+
+  it('should create private channel if does not exists', async () => {
+    const variables = {
+      peerUserId: friendsId[0],
+    };
+
+    const response = await authClient.request(findOrCreatePrivateChannel, variables);
+    expect(response).toHaveProperty('findOrCreatePrivateChannel');
+    expect(response.findOrCreatePrivateChannel).toHaveProperty('id');
+
+    newChannelId = response.findOrCreatePrivateChannel.id;
+  });
+
+  it('should return private channel it exists', async () => {
+    const variables = {
+      peerUserId: friendsId[0],
+    };
+
+    const response = await authClient.request(findOrCreatePrivateChannel, variables);
+    expect(response).toHaveProperty('findOrCreatePrivateChannel');
+    expect(response.findOrCreatePrivateChannel).toHaveProperty('id');
+    expect(response.findOrCreatePrivateChannel.id).toEqual(newChannelId);
   });
 });
