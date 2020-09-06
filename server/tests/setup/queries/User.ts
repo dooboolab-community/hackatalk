@@ -80,6 +80,12 @@ export const meQuery = /* GraphQL */`
       id
       email
       name
+      friends {
+        id
+      }
+      channels {
+        id
+      }
     }
   }
 `;
