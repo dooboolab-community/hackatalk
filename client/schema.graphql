@@ -1,3 +1,9 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
 scalar AlertMode
 
 scalar Auth
@@ -164,6 +170,9 @@ type Mutation {
   """
   createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
 
+  """Find or create channel associated to peer user id."""
+  findOrCreatePrivateChannel(peerUserId: String!): Channel!
+
   """
   User leaves [public] channel.
     Users cannot leave the [private] channel
@@ -300,6 +309,7 @@ type User {
   updatedAt: DateTime
   deletedAt: DateTime
   notifications: [Notification!]
+  channels: [Channel!]
   friends: [User!]
 }
 

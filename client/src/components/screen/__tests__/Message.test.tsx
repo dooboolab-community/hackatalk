@@ -12,7 +12,10 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
+import { Channel } from '../../../types/graphql';
 import Message from '../Message';
+import { MockPayloadGenerator } from 'relay-test-utils';
+import { environment } from '../../../providers';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -31,11 +34,33 @@ describe('[Message] rendering test', () => {
   jest.useFakeTimers();
 
   beforeEach(() => {
-    props = createTestProps();
+    props = createTestProps({
+      route: {
+        params: {
+          user: {
+            name: '',
+          },
+          channel: {
+            id: '',
+            name: '',
+          },
+        },
+      },
+    });
     component = createTestElement(<Message {...props} />);
+    environment.mockClear();
   });
 
   it('renders as expected', () => {
+    environment.mock.queueOperationResolver((operation) => {
+      return MockPayloadGenerator.generate(operation, {
+        Channel: (_, generateId): Partial<Channel> => ({
+          id: `channel-${generateId()}`,
+          name: 'John Doe',
+        }),
+      });
+    });
+
     const { baseElement } = render(component);
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();

@@ -1,8 +1,13 @@
+import { Channel, User } from '../../types/graphql';
 import {
   CompositeNavigationProp,
   useNavigation,
 } from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
+import type {
+  MainStackNavigatorFindOrCreatePrivateChannelMutation,
+  MainStackNavigatorFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/MainStackNavigatorFindOrCreatePrivateChannelMutation.graphql';
 import {
   ProfileModalProvider,
   useProfileContext,
@@ -14,6 +19,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
@@ -35,7 +41,10 @@ export type MainStackParamList = {
   MainTab: undefined;
   ProfileUpdate: undefined;
   SearchUser: undefined;
-  Message: { channelId: string };
+  Message: {
+    channel: Channel;
+    user?: User;
+  };
   Settings: undefined;
   ChangePw: undefined;
   ChannelCreate: undefined;
@@ -55,10 +64,6 @@ export type MainStackNavigationProps<
 
 const Stack = createStackNavigator<MainStackParamList>();
 
-interface SettingButtonProps {
-  tintColor?: string;
-}
-
 function getSimpleHeader(
   title: string,
   theme: DefaultTheme,
@@ -74,6 +79,15 @@ function getSimpleHeader(
     },
   };
 }
+
+const findOrCreatePrivateChannel = graphql`
+  mutation MainStackNavigatorFindOrCreatePrivateChannelMutation($peerUserId: String!) {
+    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+      id
+      name
+    }
+  }
+`;
 
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
@@ -114,7 +128,6 @@ function MainStackNavigator(): ReactElement {
                   navigation.navigate('Settings');
                 }}
               >
-                {/* <Ionicons name="md-settings" size={24} color={tintColor} /> */}
                 <Image style={{ height: 24, width: 24 }} source={IC_SETTING_W} />
               </TouchableOpacity>
             );
@@ -154,15 +167,15 @@ function MainStackNavigator(): ReactElement {
   );
 }
 
-interface Props {
-  navigation: MainStackNavigationProps;
-}
-
 function RootNavigator(): ReactElement {
   const navigation = useNavigation();
   const { state } = useProfileContext();
   const modalEl = useRef(null);
   state.modal = modalEl;
+
+  const [commitChannel, isChannelInFlight] =
+    useMutation<MainStackNavigatorFindOrCreatePrivateChannelMutation>(findOrCreatePrivateChannel);
+
   return (
     <View
       style={{
@@ -175,11 +188,32 @@ function RootNavigator(): ReactElement {
       <ProfileModal
         testID="modal"
         ref={state.modal}
+        isChatLoading={isChannelInFlight}
         onChatPressed={(): void => {
-          if (state.modal && state.modal.current) {
-            state.modal.current.close();
-          }
-          navigation.navigate('Message');
+          const mutationConfig = {
+            variables: {
+              peerUserId: state.user.id,
+            },
+            onCompleted: (
+              response: MainStackNavigatorFindOrCreatePrivateChannelMutationResponse,
+            ): void => {
+              const channel = response.findOrCreatePrivateChannel;
+
+              if (state.modal && state.modal.current) {
+                state.modal.current.close();
+              }
+
+              navigation.navigate('Message', {
+                user: state.user,
+                channel,
+              });
+            },
+            onError: (error: Error): void => {
+              console.log('error', error);
+            },
+          };
+
+          commitChannel(mutationConfig);
         }}
       />
     </View>
