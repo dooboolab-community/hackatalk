@@ -4,11 +4,12 @@ export const Membership = objectType({
   name: 'Membership',
   definition(t) {
     t.model.alertMode();
-    t.model.membershipType();
+    t.field('membershipType', { type: 'MembershipType', nullable: true });
+    t.model.isVisible();
     t.model.createdAt();
     t.model.updatedAt();
 
-    t.list.field('user', { type: 'User', nullable: true });
-    t.list.field('channel', { type: 'Channel', nullable: true });
+    t.field('user', { type: 'User', nullable: true });
+    t.field('channel', { type: 'Channel', nullable: true });
   },
 });

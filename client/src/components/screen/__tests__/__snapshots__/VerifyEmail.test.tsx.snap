@@ -51,7 +51,7 @@ exports[`Rendering renders without crashing 1`] = `
           ]
         }
       >
-        Verification link has been sent. Please check your email. If you have not received your email please check out spam inbox.
+        Verification link has been sent. Please check your email. If you have not received an email please check out your spam inbox.
       </Text>
       <Text
         style={

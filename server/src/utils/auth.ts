@@ -1,7 +1,7 @@
 import { Context } from '../context';
 import NodeRSA from 'node-rsa';
 import axios from 'axios';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
@@ -10,8 +10,9 @@ import { verify } from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
-const { REDIRECT_URL, JWT_SECRET = 'undefined' } = process.env;
+const { REDIRECT_URL, JWT_SECRET = 'undefined', JWT_SECRET_ETC = 'etc' } = process.env;
 export const APP_SECRET = JWT_SECRET;
+export const APP_SECRET_ETC = JWT_SECRET_ETC;
 
 const env = process.env.NODE_ENV;
 const envPath = env === 'development'
@@ -151,21 +152,12 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
   return appleUser;
 };
 
-export const encryptCredential = async (password: string): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const SALT = bcrypt.genSaltSync(SALT_ROUND);
-
-    bcrypt.hash(password, SALT, null, (err, hash) => {
-      if (err) {
-        return reject(err);
-      }
-      // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
-      hash = hash.replace(/\//g, 'slash');
-      hash = hash.replace(/\.$/g, 'dot');
-
-      resolve(hash);
-    });
-  });
+export const encryptCredential = async (password: string): Promise<string> => {
+  const SALT = await bcrypt.genSalt(SALT_ROUND);
+  const hash = await bcrypt.hash(password, SALT);
+  // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
+  return hash.replace(/\//g, 'slash').replace(/\.$/g, 'dot');
+};
 
 export const validateCredential = async (
   value: string,
@@ -184,8 +176,7 @@ export const validateCredential = async (
 });
 
 export const getEmailVerificationHTML = (
-  email: string,
-  hashedEmail: string,
+  verificationToken: string,
   req: ReqI18n,
 ): string => {
   const templateString = fs.readFileSync(
@@ -194,7 +185,7 @@ export const getEmailVerificationHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${qs.escape(email)}/${qs.escape(hashedEmail)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/verify_email/${verificationToken}`,
     WELCOME_SIGNUP: req.t('WELCOME_SIGNUP'),
     WELCOME: req.t('WELCOME'),
     VERIFY_EMAIL: req.t('VERIFY_EMAIL'),
@@ -206,8 +197,7 @@ export const getEmailVerificationHTML = (
 };
 
 export const getPasswordResetHTML = (
-  email: string,
-  hashedEmail: string,
+  token: string,
   password: string,
   req: ReqI18n,
 ): string => {
@@ -217,7 +207,7 @@ export const getPasswordResetHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${qs.escape(email)}/${qs.escape(hashedEmail)}/${qs.escape(password)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${token}/${qs.escape(password)}`,
     HELLO: req.t('HELLO'),
     CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
     PASSWORD: req.t('PASSWORD'),

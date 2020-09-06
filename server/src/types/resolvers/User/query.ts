@@ -6,17 +6,25 @@ import { relayToPrismaPagination } from '../../../utils/pagination';
 export const usersQueryField = queryField((t) => {
   t.connectionField('users', {
     type: 'User',
+
     additionalArgs: {
-      email: stringArg(),
-      name: stringArg(),
+      searchText: stringArg(),
     },
+
     async nodes(_, args, ctx) {
-      const { after, before, email, first, last, name } = args;
+      const { after, before, first, last, searchText } = args;
       return ctx.prisma.user.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
         }),
-        where: { email, name },
+        where: {
+          OR: [
+            { name: { contains: searchText } },
+            { email: { contains: searchText } },
+          ],
+          verified: true,
+          deletedAt: null,
+        },
         orderBy: { id: 'desc' },
       });
     },
@@ -25,6 +33,8 @@ export const usersQueryField = queryField((t) => {
 
 export const me = queryField('me', {
   type: 'User',
+  description: 'Fetch current user profile when authenticated.',
+
   resolve: (parent, args, ctx) => {
     const userId = getUserId(ctx);
 

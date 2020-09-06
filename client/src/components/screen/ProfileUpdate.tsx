@@ -7,6 +7,7 @@ import React, { FC, useEffect, useState } from 'react';
 import {
   fetchQuery,
   graphql,
+  useRelayEnvironment,
 } from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
@@ -14,7 +15,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
-import environment from '../../relay';
 import { getString } from '../../../STRINGS';
 import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
@@ -91,6 +91,7 @@ const Screen: FC<Props> = () => {
   const [statusMessage, setstatusMessage] = useState('');
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
+  const environment = useRelayEnvironment();
 
   useEffect(() => {
     fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
@@ -216,7 +217,7 @@ const Screen: FC<Props> = () => {
                 width: 90,
                 height: 90,
               }}>
-                <Image width={80} height={80} source={IC_PROFILE} />
+                <Image style={{ height: 80, width: 80 }} source={IC_PROFILE} />
                 <Image style={{
                   position: 'absolute',
                   bottom: 0,

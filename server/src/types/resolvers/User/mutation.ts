@@ -30,6 +30,8 @@ import SendGridMail from '@sendgrid/mail';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 
+const { SENDGRID_EMAIL } = process.env;
+
 interface SocialUserInput {
   socialId: string;
   authType: AuthType;
@@ -55,6 +57,7 @@ export const signInWithSocialAccount = async (
           },
         },
       },
+      take: 1,
     });
     if (emailUser.length) {
       throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
@@ -70,6 +73,7 @@ export const signInWithSocialAccount = async (
         socialId: socialUser.socialId,
       },
     },
+    take: 1,
   });
 
   if (!users.length) {
@@ -119,6 +123,8 @@ export const UserInputType = inputObjectType({
     });
     t.string('name');
     t.string('nickname');
+    t.string('thumbURL');
+    t.string('photoURL');
     t.date('birthday');
     t.gender('gender');
     t.string('phone');
@@ -132,6 +138,8 @@ export const UserUpdateInputType = inputObjectType({
     t.string('email');
     t.string('name');
     t.string('nickname');
+    t.string('thumbURL');
+    t.string('photoURL');
     t.date('birthday');
     t.string('phone');
     t.string('statusMessage');
@@ -145,7 +153,7 @@ export const signUp = mutationField('signUp', {
     user: 'UserCreateInput',
   },
   resolve: async (_parent, { user }, ctx) => {
-    const { name, email, password, gender } = user;
+    const { name, email, password, gender, photoURL, thumbURL } = user;
     const hashedPassword = await encryptCredential(password);
     const created = await ctx.prisma.user.create({
       data: {
@@ -153,6 +161,8 @@ export const signUp = mutationField('signUp', {
         email,
         password: hashedPassword,
         gender,
+        photoURL,
+        thumbURL,
       },
     });
 
@@ -273,12 +283,12 @@ export const sendVerification = mutationField('sendVerification', {
     });
 
     if (user) {
-      const hashedEmail = await encryptCredential(email);
-      const html = getEmailVerificationHTML(email, hashedEmail, ctx.request.req);
+      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc, { expiresIn: '10m' });
+      const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
       const msg = {
         to: email,
-        from: 'noreply@hackatalk.dev',
-        subject: '[HackaTalk] Verify your email address!',
+        from: SENDGRID_EMAIL,
+        subject: ctx.request.req.t('VERIFICATION_EMAIL_SUBJECT'),
         html,
       };
       await SendGridMail.send(msg);
@@ -290,9 +300,9 @@ export const sendVerification = mutationField('sendVerification', {
 
 export const updateProfile = mutationField('updateProfile', {
   type: 'User',
-  args: {
-    user: 'UserUpdateInput',
-  },
+  args: { user: 'UserUpdateInput' },
+  description: 'Update user profile. Becareful that nullable fields will be updated either.',
+
   resolve: async (_parent, { user }, ctx) => {
     const { pubsub } = ctx;
 
@@ -318,7 +328,7 @@ export const findPassword = mutationField('findPassword', {
       throw ErrorEmailNotValid('Email is not valid');
     }
 
-    const hashedEmail = await encryptCredential(email);
+    const verificationToken = sign({ email, type: 'findPassword' }, ctx.appSecretEtc, { expiresIn: '10m' });
 
     const password = generator.generate({
       length: 10,
@@ -328,8 +338,8 @@ export const findPassword = mutationField('findPassword', {
     const msg = {
       to: email,
       from: 'noreply@hackatalk.dev',
-      subject: '[HackaTalk] Reset your password!',
-      html: getPasswordResetHTML(email, hashedEmail, password, ctx.request.req),
+      subject: ctx.request.req.t('PASSWORD_RESET_EMAIL_SUBJECT'),
+      html: getPasswordResetHTML(verificationToken, password, ctx.request.req),
     };
     try {
       await SendGridMail.send(msg);

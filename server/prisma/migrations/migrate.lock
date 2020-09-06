@@ -1,3 +1,5 @@
 # Prisma Migrate lockfile v1
 
-20200730204657-init-database-proposal
+20200816135927-init
+20200817055843-membership-visible
+20200823053755-token-unique

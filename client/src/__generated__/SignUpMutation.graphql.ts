@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
 export type UserCreateInput = {
@@ -7,6 +8,8 @@ export type UserCreateInput = {
     password: string;
     name?: string | null;
     nickname?: string | null;
+    thumbURL?: string | null;
+    photoURL?: string | null;
     birthday?: unknown | null;
     gender?: unknown | null;
     phone?: string | null;

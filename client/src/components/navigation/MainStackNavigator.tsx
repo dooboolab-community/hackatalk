@@ -115,7 +115,7 @@ function MainStackNavigator(): ReactElement {
                 }}
               >
                 {/* <Ionicons name="md-settings" size={24} color={tintColor} /> */}
-                <Image width={24} height={24} source={IC_SETTING_W} />
+                <Image style={{ height: 24, width: 24 }} source={IC_SETTING_W} />
               </TouchableOpacity>
             );
           };
