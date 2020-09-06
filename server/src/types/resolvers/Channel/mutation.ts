@@ -111,7 +111,7 @@ export const createChannel = mutationField('createChannel', {
   },
 });
 
-export const findOrCreatePrivateChannelId = mutationField('findOrCreatePrivateChannelId', {
+export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChannel', {
   type: 'Channel',
   args: { peerUserId: stringArg({ nullable: false }) },
 
