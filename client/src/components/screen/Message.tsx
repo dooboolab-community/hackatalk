@@ -1,6 +1,12 @@
-import { Image, Platform, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import {
+  MainStackNavigationProps,
+  MainStackParamList,
+} from '../navigation/MainStackNavigator';
+import { Message, User } from '../../types/graphql';
 import { MessageProps, MessageType } from '../../types';
-import React, { useState } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
+import { RouteProp, useNavigation } from '@react-navigation/core';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
@@ -12,7 +18,6 @@ import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
@@ -29,10 +34,32 @@ const Container = styled.SafeAreaView`
 
 interface Props {
   navigation: MainStackNavigationProps<'Message'>;
+  route: RouteProp<MainStackParamList, 'Message'>;
 }
 
-function Message(): React.ReactElement {
+const MessageScreen: FC<Props> = (props) => {
   const { theme } = useThemeContext();
+  const { route: { params: { user, channel } } } = props;
+  const navigation = useNavigation();
+
+  navigation.setOptions({
+    headerTitle: (): ReactElement => {
+      let title = channel.name;
+
+      // Note that if the user exists, this is direct message which title should appear as user name or nickname
+      if (user) {
+        title = user.nickname || user.name || '';
+      }
+
+      return <Text style={{
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '500',
+      }}>{title}</Text>;
+    },
+  });
+
+  // Note that if the user exists, this is direct message which title should appear as user name or nickname
 
   const [isSending, setIsSending] = useState<boolean>(false);
   const [textToSend, setTextToSend] = useState<string>('');
@@ -225,6 +252,6 @@ function Message(): React.ReactElement {
       />
     </Container>
   );
-}
+};
 
-export default Message;
+export default MessageScreen;

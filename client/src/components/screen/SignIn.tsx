@@ -225,7 +225,7 @@ function SignIn(props: Props): ReactElement {
         setUser(user);
       },
 
-      onError: (error: any): void => {
+      onError: (error: Error): void => {
         setErrorPassword(error.message);
         setErrorPassword(getString('PASSWORD_INCORRECT'));
       },
