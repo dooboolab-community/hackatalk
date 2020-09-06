@@ -112,7 +112,7 @@ export const createChannel = mutationField('createChannel', {
 });
 
 export const findOrCreatePrivateChannelId = mutationField('findOrCreatePrivateChannelId', {
-  type: 'String',
+  type: 'Channel',
   args: { peerUserId: stringArg({ nullable: false }) },
 
   description: 'Find or create channel associated to peer user id.',
@@ -123,11 +123,11 @@ export const findOrCreatePrivateChannelId = mutationField('findOrCreatePrivateCh
 
     if (existingChannel) {
       changeVisibilityWhenInvisible(userId, existingChannel);
-      return existingChannel.id;
+      return existingChannel;
     }
 
     const channel = await createNewChannel(true, peerUserId);
-    return channel.id;
+    return channel;
   },
 });
 
