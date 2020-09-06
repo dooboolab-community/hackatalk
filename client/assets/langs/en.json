@@ -41,6 +41,7 @@
   "EMAIL_FORMAT_NOT_VALID": "Email format is not valid.",
   "EMAIL_REQUIRED": "Email is required.",
   "PASSWORD_REQUIRED": "Password is required.",
+  "PASSWORD_INCORRECT": "Incorrect Password",
   "PASSWORD_MIN": "Password must be 6~15 charaters, including Upper/Lowercase, Number,and Special Characters",
   "NAME_REQUIRED": "Name is required.",
   "NAME_MIN": "Name must be at least 3 characters.",

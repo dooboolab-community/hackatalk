@@ -41,6 +41,7 @@
   "EMAIL_FORMAT_NOT_VALID": "이메일 형식이 올바르지 않습니다.",
   "EMAIL_REQUIRED": "이메일 주소는 필수 항목입니다.",
   "PASSWORD_REQUIRED": "비밀번호는 필수 항목입니다.",
+  "PASSWORD_INCORRECT": "비밀번호를 다시 확인해주세요.",
   "PASSWORD_MIN": "비밀번호는 6~15자의 영문 대소문자, 숫자, 특수문자 2개 이상입니다.",
   "NAME_REQUIRED": "이름은 필수 항목입니다.",
   "NAME_MIN": "이름은 3글자 이상이어야 합니다.",
