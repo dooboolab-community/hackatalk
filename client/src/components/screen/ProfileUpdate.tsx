@@ -17,8 +17,10 @@ import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePic
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
+import type { ProfileUpdateMutation } from '../../__generated__/ProfileUpdateMutation.graphql';
 import { getString } from '../../../STRINGS';
 import { resizeImage } from '../../utils/image';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -93,6 +95,16 @@ const meQuery = graphql`
   }
 `;
 
+const profileUpdate = graphql`
+  mutation ProfileUpdateMutation($user: UserUpdateInput) {
+    updateProfile(user: $user) {
+      name
+      nickname
+      statusMessage
+    }
+  }
+`;
+
 const fileUpload = graphql`
     mutation ProfileUpdateSingleUploadMutation($file: Upload, $dir: String) {
     singleUpload(file: $file dir: $dir)
@@ -108,6 +120,7 @@ const Screen: FC<Props> = () => {
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const [commitFileUpload, isInFlight] = useMutation<ProfileUpdateSingleUploadMutation>(fileUpload);
+  const [commitProfileUpdate, isUpdating] = useMutation<ProfileUpdateMutation>(profileUpdate);
 
   useEffect(() => {
     fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
@@ -218,6 +231,23 @@ const Screen: FC<Props> = () => {
     );
   };
 
+  const updateProfile = async (): Promise<void> => {
+    const mutationConfig = {
+      variables: {
+        user: {
+          name,
+          nickname,
+          statusMessage,
+        },
+      },
+      onError: (error: any): void => {
+        showAlertForError(error);
+      },
+    };
+
+    commitProfileUpdate(mutationConfig);
+  };
+
   return (
     <Container>
       <StyledScrollView
@@ -309,8 +339,8 @@ const Screen: FC<Props> = () => {
                 fontSize: 14,
                 fontWeight: 'bold',
               }}
-              // loading={isUpdating}
-              // onPress={updateProfile}
+              loading={isUpdating}
+              onPress={updateProfile}
               text={getString('UPDATE')}
             />
           </StyledButtonWrapper>
