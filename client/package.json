@@ -118,6 +118,7 @@
     "@types/styled-components": "^5.1.3",
     "abort-controller": "^3.0.0",
     "babel-jest": "^26.3.0",
+    "babel-plugin-inline-dotenv": "^1.6.0",
     "babel-plugin-relay": "^10.0.1",
     "babel-plugin-styled-components": "^1.11.1",
     "babel-preset-expo": "^8.2.3",

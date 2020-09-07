@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export default {
   expo: {
     name: 'HackaTalk',
@@ -53,9 +55,8 @@ export default {
       ],
     },
     extra: {
-      GRAPHQL_FETCH_URL: process.env.GRAPHQL_FETCH_URL,
-      GRAPHQL_SUBSCRIBE_URL: process.env.GRAPHQL_SUBSCRIBE_URL,
-      REST_API_URL: process.env.REST_API_URL,
+      GRAPHQL_URL: process.env.GRAPHQL_URL,
+      ROOT_URL: process.env.ROOT_URL,
       facebookAppId: process.env.facebookAppId,
       facebookSecret: process.env.facebookSecret,
       googleClientId: process.env.googleClientId,

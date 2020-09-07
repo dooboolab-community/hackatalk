@@ -1,21 +1,11 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: [
-      'babel-preset-expo',
-      '@babel/preset-typescript',
-    ],
-    sourceMaps: 'inline',
+    presets: ['babel-preset-expo', '@babel/preset-typescript'],
     plugins: [
       ['relay', { artifactDirectory: './src/__generated__' }],
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: true,
-          regenerator: false,
-        },
-      ],
-      '@babel/proposal-object-rest-spread',
+      'macros',
+      'inline-dotenv',
       ['babel-plugin-styled-components'],
     ],
   };
