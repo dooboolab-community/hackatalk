@@ -34,7 +34,7 @@ jobs:
 
     - name: Deploy to Firebase
       uses: w9jds/firebase-action@master
-      working-directory: ./client
+      PROJECT_PATH: ./client
       with:
         args: deploy --only hosting
       env:
