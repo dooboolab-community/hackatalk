@@ -17,3 +17,18 @@ jest.mock('@react-navigation/core', () => {
     }),
   };
 });
+
+jest.mock('expo-constants', () => {
+  return ({
+    manifest: {
+      extra: {
+        GRAPHQL_URL: process.env.GRAPHQL_URL,
+        ROOT_URL: process.env.ROOT_URL,
+        facebookAppId: process.env.facebookAppId,
+        facebookSecret: process.env.facebookSecret,
+        googleClientId: process.env.googleClientId,
+        googleSecret: process.env.googleSecret,
+      },
+    },
+  });
+});
