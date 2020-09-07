@@ -53,9 +53,9 @@
    - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
 
 2. Configure `environment` for project
-   - Copy `config.sample.ts` to `config.ts`.
+   - Copy `.env.sample` to `.env`.
      ```
-     cp config.sample.ts config.ts
+     cp .env.sample .env
      ```
 
 3. Run your project
