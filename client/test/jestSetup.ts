@@ -4,7 +4,7 @@ import mockAsyncStorage from '@react-native-community/async-storage/jest/async-s
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
-const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock;
+const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock & typeof globalThis;
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
@@ -17,3 +17,19 @@ jest.mock('@react-navigation/core', () => {
     }),
   };
 });
+
+jest.mock('expo-constants', () => ({
+  appOwnership: 'expo',
+  manifest: {
+    extra: {
+      GRAPHQL_URL: process.env.GRAPHQL_URL,
+      ROOT_URL: process.env.ROOT_URL,
+      facebookAppId: process.env.facebookAppId,
+      facebookSecret: process.env.facebookSecret,
+      googleClientId: process.env.googleClientId,
+      googleSecret: process.env.googleSecret,
+    },
+  },
+}));
+
+jest.mock('src/components/shared/SocialSignInButton', () => 'test');
