@@ -1,6 +1,7 @@
 import { NexusGenRootTypes } from '../../generated/nexus';
 import { objectType } from '@nexus/schema';
 import { prisma } from '../../context';
+import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -32,34 +33,46 @@ export const User = objectType({
     t.model.deletedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });
 
-    t.list.field('channels', {
+    t.connectionField('channels', {
       type: 'Channel',
-      nullable: true,
-      resolve: async (user, args, { prisma }) => {
-        return prisma.channel.findMany({
+
+      async nodes(_, args, ctx) {
+        const { after, before, first, last } = args;
+
+        return ctx.prisma.channel.findMany({
+          ...relayToPrismaPagination({
+            after, before, first, last,
+          }),
           where: {
             membership: {
               some: {
-                userId: user.id,
+                userId: _.id,
               },
             },
           },
+          orderBy: { id: 'desc' },
         });
       },
     });
 
-    t.list.field('friends', {
+    t.connectionField('friends', {
       type: 'User',
-      nullable: true,
-      resolve: async (user, args, { prisma }) => {
-        return prisma.user.findMany({
+
+      async nodes(_, args, ctx) {
+        const { after, before, first, last } = args;
+
+        return ctx.prisma.user.findMany({
+          ...relayToPrismaPagination({
+            after, before, first, last,
+          }),
           where: {
             friends: {
               some: {
-                userId: user.id,
+                userId: _.id,
               },
             },
           },
+          orderBy: { id: 'desc' },
         });
       },
     });
