@@ -252,7 +252,6 @@ const Screen: FC<Props> = () => {
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
-            type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
             textStyle={{ color: theme.fontColor }}
             label={getString('NICKNAME')}
@@ -267,7 +266,6 @@ const Screen: FC<Props> = () => {
           />
           <EditText
             testID="input-name"
-            type={EditTextInputType.DEFAULT}
             style={{ marginTop: 32 }}
             textStyle={{ color: theme.fontColor }}
             label={getString('NAME')}
@@ -281,7 +279,6 @@ const Screen: FC<Props> = () => {
             }
           />
           <EditText
-            type={EditTextInputType.DEFAULT}
             testID="input-status"
             style={{ marginTop: 24 }}
             textStyle={{
