@@ -7,6 +7,7 @@ import {
   fireEvent,
   render,
   wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -68,8 +69,7 @@ describe('[FindPw] interaction', () => {
   });
 
   it('should invoke changeText event handler when email changed', async () => {
-    const textInput = testingLib.getByTestId('input-email');
-    await wait(() => expect(textInput).toBeTruthy());
+    const textInput = await waitForElement(() => testingLib.getByTestId('input-email'));
 
     act(() => {
       fireEvent.changeText(textInput, 'email@email.com');
@@ -88,8 +88,7 @@ describe('[FindPw] interaction', () => {
     });
 
     it('should show error text when the email is not validated', async () => {
-      const textInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(textInput).toBeTruthy());
+      const textInput = await waitForElement(() => testingLib.getByTestId('input-email'));
 
       act(() => {
         fireEvent.changeText(textInput, 'example');
