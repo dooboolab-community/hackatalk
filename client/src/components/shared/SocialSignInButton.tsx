@@ -65,18 +65,26 @@ const SocialSignInButton: FC<Props> = ({
   const [commitGoogle, isGoogleInFlight] =
   useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
-  const { makeRedirectUri, useAuthRequest, ResponseType, Prompt, useAutoDiscovery, startAsync } = AuthSession;
+  const {
+    makeRedirectUri,
+    useAuthRequest,
+    ResponseType,
+    Prompt,
+    useAutoDiscovery,
+    startAsync,
+  } = AuthSession;
+
   const { theme } = useThemeContext();
+  const useProxy = Platform.select({ web: false, default: true });
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
   const discovery = socialProvider === AuthType.Google
     ? useAutoDiscovery('https://accounts.google.com')
     : {
-      authorizationEndpoint: 'https://www.facebook.com/v7.0/dialog/oauth',
-      tokenEndpoint: 'https://graph.facebook.com/v7.0/oauth/access_token',
+      authorizationEndpoint: 'https://www.facebook.com/v8.0/dialog/oauth',
+      tokenEndpoint: 'https://graph.facebook.com/v8.0/oauth/access_token',
     };
 
-  const useProxy = Platform.select({ web: false, default: true });
   const redirectUri = makeRedirectUri(
     socialProvider === AuthType.Google
       ? {

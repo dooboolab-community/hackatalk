@@ -495,7 +495,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={facebookSecret}
               svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
               onUserCreated={(user?: User): void => {
-                if (user) setUser(user);
+                setUser?.(user);
               }}
               socialProvider={AuthType.Facebook}
             />
@@ -504,7 +504,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={googleSecret}
               svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
               onUserCreated={(user?: User): void => {
-                if (user) setUser(user);
+                setUser?.(user);
               }}
               socialProvider={AuthType.Google}
             />
