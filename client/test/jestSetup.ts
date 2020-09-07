@@ -31,3 +31,5 @@ jest.mock('expo-constants', () => ({
     },
   },
 }));
+
+jest.mock('src/components/shared/SocialSignInButton', () => 'test');
