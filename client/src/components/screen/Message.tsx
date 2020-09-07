@@ -44,7 +44,7 @@ const MessageScreen: FC<Props> = (props) => {
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {
-      let title = channel.name;
+      let title = channel?.name || '';
 
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
       if (user) {
@@ -244,7 +244,7 @@ const MessageScreen: FC<Props> = (props) => {
             textStyle={{
               color: theme.btnPrimaryFont,
             }}
-            isLoading={isSending}
+            loading={isSending}
             onPress={onSubmit}
             text={getString('SEND')}
           />

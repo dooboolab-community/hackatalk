@@ -309,7 +309,7 @@ const Screen: FC<Props> = () => {
                 fontSize: 14,
                 fontWeight: 'bold',
               }}
-              // isLoading={isUpdating}
+              // loading={isUpdating}
               // onPress={updateProfile}
               text={getString('UPDATE')}
             />

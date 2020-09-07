@@ -438,7 +438,7 @@ function SignIn(props: Props): ReactElement {
             <View style={{ width: 20 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isInFlight}
+              loading={isInFlight}
               onPress={signIn}
               containerStyle={{
                 flex: 1,
@@ -477,7 +477,7 @@ function SignIn(props: Props): ReactElement {
                       <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
-                  isLoading={signingInApple}
+                  loading={signingInApple}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}

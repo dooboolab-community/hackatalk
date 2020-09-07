@@ -201,7 +201,7 @@ const SocialSignInButton: FC<Props> = ({
       leftElement={
         <View style={{ marginRight: 6 }}>{svgIcon}</View>
       }
-      isLoading={signingIn}
+      loading={signingIn}
       indicatorColor={theme.primary}
       onPress={signIn}
       text={getString('SIGN_IN_WITH_GOOGLE')}
@@ -222,7 +222,7 @@ const SocialSignInButton: FC<Props> = ({
     leftElement={
       <View style={{ marginRight: 6 }}>{svgIcon}</View>
     }
-    isLoading={isFacebookInFlight || isGoogleInFlight || signingIn}
+    loading={isFacebookInFlight || isGoogleInFlight || signingIn}
     indicatorColor={theme.primary}
     onPress={signIn}
     text={getString('SIGN_IN_WITH_FACEBOOK')}
