@@ -427,6 +427,7 @@ function SignIn(props: Props): ReactElement {
                 backgroundColor: theme.btnPrimaryLight,
                 borderColor: theme.btnPrimary,
                 borderWidth: 1,
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimary,
@@ -435,7 +436,7 @@ function SignIn(props: Props): ReactElement {
               }}
               text={getString('SIGN_UP')}
             />
-            <View style={{ width: 20 }} />
+            <View style={{ width: 12 }} />
             <Button
               testID="btn-sign-in"
               loading={isInFlight}
@@ -445,7 +446,11 @@ function SignIn(props: Props): ReactElement {
                 flexDirection: 'row',
                 height: 52,
                 justifyContent: 'center',
+              }}
+              style={{
                 backgroundColor: theme.btnPrimary,
+                width: '100%',
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimaryFont,
