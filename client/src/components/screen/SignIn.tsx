@@ -427,6 +427,7 @@ function SignIn(props: Props): ReactElement {
                 backgroundColor: theme.btnPrimaryLight,
                 borderColor: theme.btnPrimary,
                 borderWidth: 1,
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimary,
@@ -435,17 +436,21 @@ function SignIn(props: Props): ReactElement {
               }}
               text={getString('SIGN_UP')}
             />
-            <View style={{ width: 20 }} />
+            <View style={{ width: 12 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isInFlight}
+              loading={isInFlight}
               onPress={signIn}
               containerStyle={{
                 flex: 1,
                 flexDirection: 'row',
                 height: 52,
                 justifyContent: 'center',
+              }}
+              style={{
                 backgroundColor: theme.btnPrimary,
+                width: '100%',
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimaryFont,
@@ -477,7 +482,7 @@ function SignIn(props: Props): ReactElement {
                       <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
-                  isLoading={signingInApple}
+                  loading={signingInApple}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}

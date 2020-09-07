@@ -99,7 +99,7 @@ function Page(props: Props): ReactElement {
           fontSize: 16,
         }}
         text={getString('RESEND_EMAIL')}
-        isLoading={isInFlight}
+        loading={isInFlight}
       />
       {
         loading
