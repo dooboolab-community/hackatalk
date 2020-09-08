@@ -62,14 +62,14 @@ describe('[FindPw] rendering test', () => {
 describe('[FindPw] interaction', () => {
   let testingLib: RenderResult;
 
-  beforeAll(() => {
+  beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<FindPw {...props} />);
     testingLib = render(component);
   });
 
-  it('should invoke changeText event handler when email changed', async () => {
-    const textInput = await waitForElement(() => testingLib.getByTestId('input-email'));
+  it('should invoke changeText event handler when email changed', () => {
+    const textInput = testingLib.getByTestId('input-email');
 
     act(() => {
       fireEvent.changeText(textInput, 'email@email.com');
@@ -87,24 +87,22 @@ describe('[FindPw] interaction', () => {
       testingLib = render(component);
     });
 
-    it('should show error text when the email is not validated', async () => {
-      const textInput = await waitForElement(() => testingLib.getByTestId('input-email'));
+    it('should show error text when the email is not validated', () => {
+      const textInput = testingLib.getByTestId('input-email');
 
       act(() => {
         fireEvent.changeText(textInput, 'example');
       });
 
       const btnFindPw = testingLib.getByTestId('btn-find-pw');
-      await wait(() => expect(btnFindPw).toBeTruthy());
       act(() => {
         fireEvent.press(btnFindPw);
       });
-      await act(() => wait());
       // const errorText = testingLib.getByTestId('error-email');
       // expect(errorText).toBeTruthy();
     });
 
-    it('should call FindPw when button has clicked and navigate to SignIn', async () => {
+    it('should call FindPw when button has clicked and navigate to SignIn', () => {
       const textInput = testingLib.getByTestId('input-email');
 
       act(() => {
@@ -112,19 +110,16 @@ describe('[FindPw] interaction', () => {
       });
 
       const btnFindPw = testingLib.getByTestId('btn-find-pw');
-      await wait(() => expect(btnFindPw).toBeTruthy());
 
-      jest.useFakeTimers();
       act(() => {
         fireEvent.press(btnFindPw);
-        jest.runAllTimers();
       });
 
       // await wait(() => expect(mockAlert.alert).toHaveBeenCalled());
       // expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('PASSWORD_RESET_EMAIL_SENT'));
     });
 
-    it('should do nothing when navigation is not defined.', async () => {
+    it('should do nothing when navigation is not defined.', () => {
       props = createTestProps({
         navigation: null,
       });
@@ -132,22 +127,17 @@ describe('[FindPw] interaction', () => {
       testingLib = render(component);
 
       const textInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(textInput).toBeTruthy());
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
       const btnFindPw = testingLib.getByTestId('btn-find-pw');
-      await wait(() => expect(btnFindPw).toBeTruthy());
 
-      jest.useFakeTimers();
       act(() => {
         fireEvent.press(btnFindPw);
-        jest.runAllTimers();
       });
 
-      await act(() => wait());
       expect(props.navigation).toBeNull();
     });
   });
