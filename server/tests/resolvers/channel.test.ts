@@ -1,12 +1,12 @@
 import { GraphQLClient, request } from 'graphql-request';
 import {
   channelQuery,
+  channelsQuery,
   createChannel,
   findOrCreatePrivateChannel,
   inviteToChannel,
   kickFromChannel,
   leaveChannel,
-  myChannelsQuery,
   signInEmailMutation,
   signUpMutation,
 } from '../setup/queries';
@@ -89,7 +89,7 @@ describe('Resolver - Channel', () => {
   });
 
   let createdChannelId: string;
-  const myChannels = [];
+  const channels = [];
 
   it('should create [private] channel with message', async () => {
     const variables = {
@@ -111,8 +111,8 @@ describe('Resolver - Channel', () => {
 
     createdChannelId = response.createChannel.id;
 
-    // Add 1st to myChannels which will be tested at the end of insertion.
-    myChannels.push(createdChannelId);
+    // Add 1st to channels which will be tested at the end of insertion.
+    channels.push(createdChannelId);
   });
 
   it('should not create [private] channel again of same user group', async () => {
@@ -146,8 +146,8 @@ describe('Resolver - Channel', () => {
     expect(response.createChannel).toHaveProperty('id');
     expect(response.createChannel.id).not.toEqual(createdChannelId);
 
-    // Add 2nd to myChannels which will be tested at the end of insertion.
-    myChannels.push(response.createChannel.id);
+    // Add 2nd to channels which will be tested at the end of insertion.
+    channels.push(response.createChannel.id);
   });
 
   it('should throw when user has no members to chat with in private channel', async () => {
@@ -184,24 +184,24 @@ describe('Resolver - Channel', () => {
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
 
-    // Add 3rd to myChannels which will be tested at the end of insertion.
-    myChannels.push(response.createChannel.id);
+    // Add 3rd to channels which will be tested at the end of insertion.
+    channels.push(response.createChannel.id);
   });
 
   it('should query my channels which are newly inserted in above tests === 3', async () => {
-    const response = await authClient.request(myChannelsQuery);
-    expect(response).toHaveProperty('myChannels');
-    expect(response.myChannels).toHaveLength(3);
-    expect(myChannels.length).toEqual(response.myChannels.length);
+    const response = await authClient.request(channelsQuery);
+    expect(response).toHaveProperty('channels');
+    expect(response.channels.edges).toHaveLength(3);
+    expect(channels.length).toEqual(response.channels.edges.length);
 
-    response.myChannels.forEach((channel) => {
-      expect(myChannels).toContain(channel.id);
+    response.channels.edges.forEach((channelEdge) => {
+      expect(channels).toContain(channelEdge.node.id);
     });
   });
 
   it('should query single channel with channelId', async () => {
     const variables = {
-      channelId: myChannels[0],
+      channelId: channels[0],
     };
 
     const response = await authClient.request(channelQuery, variables);
@@ -211,7 +211,7 @@ describe('Resolver - Channel', () => {
   it('should invite users to [public] channel', async () => {
     const usersToInvite = friendsId;
     const variables = {
-      channelId: myChannels[2],
+      channelId: channels[2],
       userIds: usersToInvite,
     };
 
@@ -237,7 +237,7 @@ describe('Resolver - Channel', () => {
     const usersToInvite = friendsId.slice(0, 1);
 
     const variables = {
-      channelId: myChannels[0],
+      channelId: channels[0],
       userIds: usersToInvite,
     };
 
@@ -249,7 +249,7 @@ describe('Resolver - Channel', () => {
     const usersToKick = friendsId;
 
     const variables = {
-      channelId: myChannels[2],
+      channelId: channels[2],
       userIds: usersToKick,
     };
 
@@ -274,7 +274,7 @@ describe('Resolver - Channel', () => {
     const usersToKick = friendsId.slice(0, 1);
 
     const variables = {
-      channelId: myChannels[0],
+      channelId: channels[0],
       userIds: usersToKick,
     };
 
@@ -284,30 +284,30 @@ describe('Resolver - Channel', () => {
 
   it('should let user leave [public] channel and remove membership', async () => {
     const variables = {
-      channelId: myChannels[2],
+      channelId: channels[2],
     };
 
     const response = await authClient.request(leaveChannel, variables);
     expect(response).toHaveProperty('leaveChannel');
 
-    const responseMyChannel = await authClient.request(myChannelsQuery);
-    expect(responseMyChannel).toHaveProperty('myChannels');
-    // The deletion should happen in `myChannels` query
-    expect(responseMyChannel.myChannels).toHaveLength(myChannels.length - 1);
+    const responseMyChannel = await authClient.request(channelsQuery);
+    expect(responseMyChannel).toHaveProperty('channels');
+    // The deletion should happen in `channels` query
+    expect(responseMyChannel.channels.edges).toHaveLength(channels.length - 1);
   });
 
   it('should update visibility on [private] channel and remain membership', async () => {
     const variables = {
-      channelId: myChannels[0],
+      channelId: channels[0],
     };
 
     const response = await authClient.request(leaveChannel, variables);
     expect(response).toHaveProperty('leaveChannel');
 
-    const responseMyChannel = await authClient.request(myChannelsQuery);
-    expect(responseMyChannel).toHaveProperty('myChannels');
-    // The deletion should happen in `myChannels` query
-    expect(responseMyChannel.myChannels).toHaveLength(myChannels.length - 2);
+    const responseMyChannel = await authClient.request(channelsQuery);
+    expect(responseMyChannel).toHaveProperty('channels');
+    // The deletion should happen in `channels` query
+    expect(responseMyChannel.channels.edges).toHaveLength(channels.length - 2);
   });
 
   let newChannelId: string;

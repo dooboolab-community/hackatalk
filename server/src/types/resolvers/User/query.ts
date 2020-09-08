@@ -32,6 +32,35 @@ export const usersQueryField = queryField((t) => {
   });
 });
 
+export const friends = queryField((t) => {
+  t.connectionField('friends', {
+    type: 'User',
+
+    additionalArgs: {
+      searchText: stringArg(),
+    },
+
+    async nodes(_, args, ctx) {
+      const userId = getUserId(ctx);
+      const { after, before, first, last } = args;
+
+      return ctx.prisma.user.findMany({
+        ...relayToPrismaPagination({
+          after, before, first, last,
+        }),
+        where: {
+          friends: {
+            some: {
+              userId,
+            },
+          },
+        },
+        orderBy: { id: 'desc' },
+      });
+    },
+  });
+});
+
 export const me = queryField('me', {
   type: 'User',
   description: 'Fetch current user profile when authenticated.',
