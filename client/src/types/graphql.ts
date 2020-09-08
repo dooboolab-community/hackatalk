@@ -62,10 +62,26 @@ export type ChannelMessagesArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
+export type ChannelConnection = {
+  __typename?: 'ChannelConnection';
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types */
+  edges?: Maybe<Array<Maybe<ChannelEdge>>>;
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo */
+  pageInfo: PageInfo;
+};
+
 export type ChannelCreateInput = {
   channelType?: Maybe<Scalars['ChannelType']>;
   name?: Maybe<Scalars['String']>;
   userIds?: Maybe<Array<Scalars['String']>>;
+};
+
+export type ChannelEdge = {
+  __typename?: 'ChannelEdge';
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
+  cursor: Scalars['String'];
+  /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
+  node: Channel;
 };
 
 
@@ -328,17 +344,26 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   users: UserConnection;
+  friends: UserConnection;
   /** Fetch current user profile when authenticated. */
   me: User;
   notifications?: Maybe<Array<Notification>>;
   /** Get single channel */
   channel: Channel;
-  /** Get all channels which auth user has joined */
-  myChannels?: Maybe<Array<Channel>>;
+  channels: ChannelConnection;
 };
 
 
 export type QueryUsersArgs = {
+  searchText?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryFriendsArgs = {
   searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
@@ -354,6 +379,14 @@ export type QueryNotificationsArgs = {
 
 export type QueryChannelArgs = {
   channelId?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryChannelsArgs = {
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
 };
 
 export type Reaction = {
@@ -412,8 +445,6 @@ export type User = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   notifications?: Maybe<Array<Notification>>;
-  channels?: Maybe<Array<Channel>>;
-  friends?: Maybe<Array<User>>;
 };
 
 export type UserConnection = {

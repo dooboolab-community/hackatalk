@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import { User, UserEdge } from '../../types/graphql';
 import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
 import { FriendFriendsQuery } from '../../__generated__/FriendFriendsQuery.graphql';
-import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -21,23 +21,27 @@ const Container = styled.View`
 const friendsQuery = graphql`
   query FriendFriendsQuery {
     me {
-      friends {
-        id
-        email
-        name
-        nickname
-        thumbURL
-        photoURL
-        birthday
-        gender
-        phone
-        statusMessage
-        verified
-        lastSignedIn
-        isOnline
-        createdAt
-        updatedAt
-        deletedAt
+      friends(first: 10) {
+        edges {
+          node {
+            id
+            email
+            name
+            nickname
+            thumbURL
+            photoURL
+            birthday
+            gender
+            phone
+            statusMessage
+            verified
+            lastSignedIn
+            isOnline
+            createdAt
+            updatedAt
+            deletedAt
+          }
+        }
       }
     }
   }
@@ -45,12 +49,12 @@ const friendsQuery = graphql`
 
 export default function Screen(): ReactElement {
   const { state, showModal } = useProfileContext();
-  const [friends, setFriends] = useState<readonly User[]>([]);
+  const [friends, setFriends] = useState<any>([]);
   const environment = useRelayEnvironment();
 
   useEffect(() => {
     const subscription = fetchQuery<FriendFriendsQuery>(environment, friendsQuery, {}).subscribe({
-      next: (data) => setFriends(data?.me?.friends || []),
+      next: (data) => setFriends(data?.me?.friends?.edges || []),
     });
 
     // Clean up.
@@ -65,19 +69,20 @@ export default function Screen(): ReactElement {
       });
     }
   };
+
   const renderItem = ({
     item,
     index,
   }: {
-    item: User;
+    item: UserEdge;
     index: number;
   }): ReactElement => {
     const testID = `user-id-${index}`;
-    const userListOnPressInlineFn = (): void => userListOnPress(item);
+    const userListOnPressInlineFn = (): void => userListOnPress(item.node);
     return (
       <UserListItem
         testID={testID}
-        user={item}
+        user={item.node}
         onPress={userListOnPressInlineFn}
       />
     );

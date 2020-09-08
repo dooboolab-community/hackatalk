@@ -80,20 +80,6 @@ export const meQuery = /* GraphQL */`
       id
       email
       name
-      friends(first: 10) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-      channels(first: 10) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
     }
   }
 `;
@@ -118,5 +104,4 @@ subscription userSignedIn($userId: String!) {
     gender
     createdAt
   }
-}
-`;
+}`;

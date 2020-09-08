@@ -42,12 +42,16 @@ export const channelQuery = /* GraphQL */`
   }
 `;
 
-export const myChannelsQuery = /* GraphQL */`
-  query myChannels {
-    myChannels {
-      channelType
-      name
-      id
+export const channelsQuery = /* GraphQL */`
+  query channels {
+    channels(first: 5) {
+      edges {
+        node {
+          channelType
+          name
+          id
+        }
+      }
     }
   }
 `;

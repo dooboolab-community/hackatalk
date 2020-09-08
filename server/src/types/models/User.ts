@@ -32,50 +32,6 @@ export const User = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });
-
-    t.connectionField('channels', {
-      type: 'Channel',
-
-      async nodes(_, args, ctx) {
-        const { after, before, first, last } = args;
-
-        return ctx.prisma.channel.findMany({
-          ...relayToPrismaPagination({
-            after, before, first, last,
-          }),
-          where: {
-            membership: {
-              some: {
-                userId: _.id,
-              },
-            },
-          },
-          orderBy: { id: 'desc' },
-        });
-      },
-    });
-
-    t.connectionField('friends', {
-      type: 'User',
-
-      async nodes(_, args, ctx) {
-        const { after, before, first, last } = args;
-
-        return ctx.prisma.user.findMany({
-          ...relayToPrismaPagination({
-            after, before, first, last,
-          }),
-          where: {
-            friends: {
-              some: {
-                userId: _.id,
-              },
-            },
-          },
-          orderBy: { id: 'desc' },
-        });
-      },
-    });
   },
 });
 
