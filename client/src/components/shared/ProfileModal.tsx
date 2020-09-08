@@ -1,10 +1,14 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
+import {
+  ProfileModalAddFriendMutation,
+} from '../../__generated__/ProfileModalAddFriendMutation.graphql';
 import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
@@ -114,6 +118,17 @@ const styles: Styles = {
   },
 };
 
+const addFriendMutation = graphql`
+  mutation ProfileModalAddFriendMutation($friendId: String!) {
+    addFriend(friendId: $friendId) {
+      friend {
+        name
+      }
+      createdAt
+    }
+  }
+`;
+
 const Shared = forwardRef<Ref, Props>((props, ref) => {
   let modal: Modal | null;
 
@@ -121,7 +136,6 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     testID,
     onChatPressed,
     isChatLoading,
-    onAddFriend,
     onDeleteFriend,
   } = props;
 
@@ -132,14 +146,9 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   //   refetchQueries: [{ query: QUERY_FRIENDS }],
   // });
 
-  // const [addFriendMutation] = useMutation<{ addFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_ADD_FRIEND, {
-  //   refetchQueries: () => [{ query: QUERY_FRIENDS }],
-  // });
-
   const [hasFriendBeenAdded, setHasFriendBeenAdded] = useState<boolean>(false);
   const [showAddBtn, setShowAddBtn] = useState<boolean>(true);
   const [isFriendAdded, setIsFriendAdded] = useState<boolean>(false);
-
   const [user, setUser] = useState<User>({
     nickname: '',
     id: '',
@@ -148,6 +157,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     statusMessage: '',
     isOnline: false,
   });
+  const [commitAddFriend, isAddFriendInFlight] = useMutation<ProfileModalAddFriendMutation>(addFriendMutation);
 
   const open = (): void => {
     setIsFriendAdded(false);
@@ -164,24 +174,20 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   };
 
   const addFriend = async (): Promise<void> => {
-    onAddFriend?.();
+    const mutationConfig = {
+      variables: {
+        friendId: user.id,
+      },
+      onCompleted: (): void => {
+        setIsFriendAdded(true);
+      },
+      onError: (error: any): void => {
+        setHasFriendBeenAdded(true);
+        showAlertForError(error);
+      },
+    };
 
-    if (modal) {
-      modal.close();
-    }
-
-    try {
-      // const result = await addFriendMutation({
-      //   variables: {
-      //     friendId: user.id,
-      //   },
-      //   // refetchQueries: [QUERY_FRIENDS],
-      // });
-
-      // setHasFriendBeenAdded(result.data?.addFriend.added || false);
-    } catch ({ graphQLErrors }) {
-      showAlertForError(graphQLErrors);
-    }
+    commitAddFriend(mutationConfig);
   };
 
   const deleteFriend = async (): Promise<void> => {

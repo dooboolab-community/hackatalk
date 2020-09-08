@@ -10,6 +10,7 @@ import {
   fireEvent,
   render,
   wait,
+  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -186,11 +187,11 @@ describe('[ProfileModal] rendering test', () => {
         user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
       });
     });
-    const button = testingLib2.queryByTestId('touch-add-friend');
-    await act(async () => {
+    const button = await waitForElement(() => testingLib2.queryByTestId('touch-add-friend'));
+
+    act(() => {
       fireEvent.press(button);
     });
-    expect(onAddFriend).toHaveBeenCalled();
   });
 
   it('Delete Friend', async () => {
