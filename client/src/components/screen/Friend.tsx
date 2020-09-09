@@ -20,27 +20,25 @@ const Container = styled.View`
 
 const friendsQuery = graphql`
   query FriendFriendsQuery {
-    me {
-      friends(first: 10) {
-        edges {
-          node {
-            id
-            email
-            name
-            nickname
-            thumbURL
-            photoURL
-            birthday
-            gender
-            phone
-            statusMessage
-            verified
-            lastSignedIn
-            isOnline
-            createdAt
-            updatedAt
-            deletedAt
-          }
+    friends(first: 10) {
+      edges {
+        node {
+          id
+          email
+          name
+          nickname
+          thumbURL
+          photoURL
+          birthday
+          gender
+          phone
+          statusMessage
+          verified
+          lastSignedIn
+          isOnline
+          createdAt
+          updatedAt
+          deletedAt
         }
       }
     }
@@ -54,7 +52,7 @@ export default function Screen(): ReactElement {
 
   useEffect(() => {
     const subscription = fetchQuery<FriendFriendsQuery>(environment, friendsQuery, {}).subscribe({
-      next: (data) => setFriends(data?.me?.friends?.edges || []),
+      next: (data) => setFriends(data?.friends?.edges || []),
     });
 
     // Clean up.
