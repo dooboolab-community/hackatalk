@@ -41,6 +41,8 @@ const StyledAnimatedFlatList = styled(AnimatedFlatList)`
   height: 100%;
 `;
 
+const ITEM_CNT = 10;
+
 const usersQuery = graphql`
   query SearchUsersPaginationQuery($first: Int! $after: String $searchText: String) {
     ...SearchUserComponent_user @arguments(first: $first, after: $after, searchText: $searchText)
@@ -98,7 +100,7 @@ const UsersFragment: FC<UserProps> = ({
   const { state, showModal } = useProfileContext();
 
   const onEndReached = (): void => {
-    loadNext(10);
+    loadNext(ITEM_CNT);
   };
 
   const renderItem = ({
@@ -126,6 +128,8 @@ const UsersFragment: FC<UserProps> = ({
     );
   };
 
+  const users = data?.users?.edges || [];
+
   return (
     <StyledAnimatedFlatList
       testID="animated-flatlist"
@@ -140,7 +144,7 @@ const UsersFragment: FC<UserProps> = ({
         ],
       }}
       contentContainerStyle={
-        (data?.users?.edges || []).length === 0
+        users.length === 0
           ? {
             flex: 1,
             alignItems: 'center',
@@ -149,7 +153,7 @@ const UsersFragment: FC<UserProps> = ({
           : undefined
       }
       keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
-      data={data?.users?.edges || []}
+      data={users}
       renderItem={renderItem}
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
@@ -195,7 +199,7 @@ const Screen: FC = () => {
   const scrollY = new Animated.Value(0);
 
   const searchArgs: SearchUsersPaginationQueryVariables = {
-    first: 10,
+    first: ITEM_CNT,
     searchText: debouncedText,
   };
 
