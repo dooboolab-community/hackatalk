@@ -15,6 +15,7 @@ export const Channel = objectType({
       type: 'Message',
       nullable: true,
       description: 'Get latest message sent to the channel.',
+
       resolve: async ({ id }, args, ctx) => {
         const messages = await ctx.prisma.message.findMany({
           where: {
@@ -48,6 +49,7 @@ export const Channel = objectType({
       list: true,
       nullable: true,
       description: 'Get memberships assigned to channel.',
+
       resolve: ({ id }, args, ctx) => ctx.prisma.membership.findMany({
         where: { channel: { id } },
         include: { user: true },

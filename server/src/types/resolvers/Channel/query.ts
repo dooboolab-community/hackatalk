@@ -1,4 +1,4 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { booleanArg, queryField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
 import { relayToPrismaPagination } from '../../../utils/pagination';
@@ -20,9 +20,21 @@ export const channels = queryField((t) => {
   t.connectionField('channels', {
     type: 'Channel',
 
+    additionalArgs: {
+      withMessage: booleanArg(),
+    },
+
     async nodes(_, args, ctx) {
       const userId = getUserId(ctx);
-      const { after, before, first, last } = args;
+      const { after, before, first, last, withMessage } = args;
+
+      const checkMessage = withMessage && {
+        messages: {
+          some: {
+            deletedAt: null,
+          },
+        },
+      };
 
       return ctx.prisma.channel.findMany({
         ...relayToPrismaPagination({
@@ -35,6 +47,7 @@ export const channels = queryField((t) => {
               isVisible: true,
             },
           },
+          ...checkMessage,
         },
         orderBy: { id: 'desc' },
       });

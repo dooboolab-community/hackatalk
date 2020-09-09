@@ -47,9 +47,13 @@ export const channelsQuery = /* GraphQL */`
     channels(first: 5) {
       edges {
         node {
-          channelType
-          name
           id
+          lastMessage {
+            messageType
+            text
+            imageUrls
+            fileUrls
+          }
         }
       }
     }
