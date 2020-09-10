@@ -101,16 +101,22 @@ export const createMemberships = async (
   channelId: string,
   userIds: readonly string[],
 ): Promise<void> => {
-  const promises: Promise<Membership>[] = userIds.map((userId) => prisma.membership.create({
-    data: {
-      user: {
-        connect: { id: userId },
-      },
-      channel: {
-        connect: { id: channelId },
-      },
-    },
-  }));
+  const membershipCnt = await prisma.membership.count({
+    where: { channelId },
+  });
 
-  await Promise.all(promises);
+  if (membershipCnt < 2) {
+    const promises: Promise<Membership>[] = userIds.map((userId) => prisma.membership.create({
+      data: {
+        user: {
+          connect: { id: userId },
+        },
+        channel: {
+          connect: { id: channelId },
+        },
+      },
+    }));
+
+    await Promise.all(promises);
+  }
 };
