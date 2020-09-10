@@ -91,6 +91,7 @@ export const createChannel = mutationField('createChannel', {
 
       if (existingChannel) {
         changeVisibilityWhenInvisible(userId, existingChannel);
+        await createMemberships(existingChannel.id, userIds);
         message && await createMessage(message, existingChannel.id);
         return existingChannel;
       }
