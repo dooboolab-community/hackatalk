@@ -33,6 +33,7 @@ export const createMessage = mutationField('createMessage', {
       },
       include: {
         sender: true,
+        channel: true,
       },
     });
 
