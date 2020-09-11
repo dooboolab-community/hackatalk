@@ -189,7 +189,7 @@ const MessageScreen: FC<Props> = (props) => {
             'ChannelComponent_channels',
             {
               first: 10,
-              after: 'Y2tleTdrZWM2MDMyNzJtYTh6OTFscDFlcg==',
+              after: '',
               withMessage: true,
             },
           );
