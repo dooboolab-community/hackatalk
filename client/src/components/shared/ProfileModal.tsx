@@ -3,6 +3,7 @@ import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
+import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
 import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
@@ -73,6 +74,7 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 interface Props {
   testID?: string;
   ref?: React.MutableRefObject<Modal | null>;
+  isChatLoading?: boolean;
   onChatPressed?: () => void;
   onAddFriend?: () => void;
   onDeleteFriend?: () => void;
@@ -118,6 +120,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   const {
     testID,
     onChatPressed,
+    isChatLoading,
     onAddFriend,
     onDeleteFriend,
   } = props;
@@ -161,7 +164,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   };
 
   const addFriend = async (): Promise<void> => {
-    if (onAddFriend) { onAddFriend(); }
+    onAddFriend?.();
 
     if (modal) {
       modal.close();
@@ -182,7 +185,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   };
 
   const deleteFriend = async (): Promise<void> => {
-    if (props.onDeleteFriend) { props.onDeleteFriend(); }
+    onDeleteFriend?.();
 
     if (modal) {
       modal.close();
@@ -293,14 +296,18 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <TouchableOpacity
             testID="btn-chat"
             activeOpacity={0.5}
-            onPress={props.onChatPressed}
+            onPress={onChatPressed}
             style={styles.viewBtn}
           >
-            <View style={styles.viewBtn}>
-              <StyledText style={{
-                color: modalBtnPrimaryFont,
-              }}>{getString('CHAT')}</StyledText>
-            </View>
+            {
+              isChatLoading
+                ? <LoadingIndicator size="small"/>
+                : <View style={styles.viewBtn}>
+                  <StyledText style={{
+                    color: modalBtnPrimaryFont,
+                  }}>{getString('CHAT')}</StyledText>
+                </View>
+            }
           </TouchableOpacity>
         </StyledViewBtns>
       </View>

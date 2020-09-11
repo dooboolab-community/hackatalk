@@ -29,11 +29,6 @@ let props: any;
 let component: ReactElement;
 let testingLib: RenderResult;
 
-jest.mock('expo-constants', () => ({
-  ...jest.requireActual('expo-constants'),
-  appOwnership: 'expo',
-}));
-
 describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();

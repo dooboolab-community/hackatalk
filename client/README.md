@@ -63,6 +63,7 @@ app/
 │  └─ theme.ts
 ├─ test/
 ├─ web-build/
+├─ .env
 ├─ .eslintignore
 ├─ .eslintrc.js
 ├─ .gitignore
@@ -71,7 +72,7 @@ app/
 ├─ App.tsx
 ├─ babel.config.js
 ├─ codegen.yml
-├─ config.sample.ts
+├─ config.ts
 ├─ environment.d.ts
 ├─ jest.config.js
 ├─ metro.config.js
@@ -90,7 +91,7 @@ app/
 
 Run below to make your own `app` variables.
 
-> `cp .config.sample.ts .config.ts`
+> `cp .env.sample .env`
 
 - `env` variables
 
@@ -98,10 +99,10 @@ Run below to make your own `app` variables.
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
   | GRAPHQL_URL                  | `https://hackatalk.azurewebsites.net/graphql` | yes |  |
   | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
-  | MYAPP_RELEASE_STORE_FILE     |                                      |     |  |
-  | MYAPP_RELEASE_KEY_ALIAS      |                                      |     |  |
-  | MYAPP_RELEASE_STORE_PASSWORD |                                      |     |  |
-  | MYAPP_RELEASE_KEY_PASSWORD   |                                      |     |  |
+  | facebookAppId                |                                      |     |  |
+  | facebookSecret               |                                      |     |  |
+  | googleClientId               |                                      |     |  |
+  | googleSecret                 |                                      |     |  |
 
 ### Running the project
 

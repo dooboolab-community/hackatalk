@@ -260,6 +260,78 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "qpfmtlcp",
+      "name": "Youngjeon Kim",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/18386669?v=4",
+      "profile": "https://github.com/qpfmtlcp",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LiteHell",
+      "name": "Yeonjin Shin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12497886?v=4",
+      "profile": "https://litehell.info",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "neverlish",
+      "name": "Jinho Hyeon",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/11086561?v=4",
+      "profile": "https://github.com/neverlish",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "donggyushin",
+      "name": "donggyu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/34573243?v=4",
+      "profile": "https://github.com/donggyushin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "0916dhkim",
+      "name": "Donghyeon Kim",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/8978815?v=4",
+      "profile": "https://github.com/0916dhkim",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shljessie",
+      "name": "Jessie Lee",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/59305253?v=4",
+      "profile": "https://github.com/shljessie",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "winz87",
+      "name": "winz87",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/49703731?v=4",
+      "profile": "https://github.com/winz87",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "JaeeunAhn",
+      "name": "Jaeeun Ahn",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/49272528?v=4",
+      "profile": "https://github.com/JaeeunAhn",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

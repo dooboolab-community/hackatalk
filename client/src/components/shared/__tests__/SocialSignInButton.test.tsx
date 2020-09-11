@@ -17,7 +17,13 @@ let testingLib: RenderResult;
 
 describe('Rendering', () => {
   beforeEach(() => {
-    props = createTestProps();
+    props = createTestProps({
+      svgIcon: jest.mock,
+      clientId: jest.mock,
+      clientSecret: jest.mock,
+      socialProvider: jest.mock,
+      onUserCreated: jest.fn(),
+    });
     component = createTestElement(<Shared {...props} />);
     testingLib = render(component);
   });

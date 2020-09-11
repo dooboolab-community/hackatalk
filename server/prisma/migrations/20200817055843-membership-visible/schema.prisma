@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum AuthType {
+  email
+  facebook
+  google
+  apple
+}
+
+model User {
+  id                     String                  @default(cuid()) @id
+  email                  String?                 @unique
+  password               String?
+  name                   String?
+  nickname               String?
+  thumbURL               String?
+  photoURL               String?
+  birthday               DateTime?
+  gender                 Gender?
+  phone                  String?
+  statusMessage          String?
+  verified               Boolean?                @default(false)
+  lastSignedIn           DateTime?
+  isOnline               Boolean?                @default(false)
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  profile                Profile?
+  notifications          Notification[]          @relation("Notification")
+  friends                Friend[]                @relation("Friend")
+  memberships            Membership[]            @relation("Membership")
+}
+
+model Notification {
+  id                     Int                     @default(autoincrement()) @id
+  token                  String
+  device                 String?
+  os                     String?
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  createdAt              DateTime?               @default(now())
+}
+
+model Profile {
+  id                     Int                     @default(autoincrement()) @id
+  socialId               String?
+  authType               AuthType?
+
+  userId                 String                  @unique
+  User                   User                    @relation(fields: [userId], references: [id])
+}
+
+model Friend {
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  friendId               String
+  friend                 User                    @relation(name: "Friend", fields: [friendId], references: [id])
+
+  @@id([userId, friendId])
+}
+
+enum MembershipType {
+  owner
+  admin
+  member
+}
+
+enum AlertMode {
+  sound
+  vibrate
+  silent
+}
+
+model Membership {
+  alertMode              AlertMode?              @default(sound)
+  membershipType         MembershipType          @default(member)
+  isVisible              Boolean                 @default(true)
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  channelId              String
+  channel                Channel                 @relation(fields: [channelId], references: [id])
+
+  @@id([userId, channelId])
+}
+
+enum ChannelType {
+  private
+  public
+}
+
+model Channel {
+  id                     String                  @default(cuid()) @id
+  channelType            ChannelType
+  name                   String?
+  messages               Message[]               @relation("Message")
+  membership             Membership[]
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+}
+
+enum MessageType {
+  text
+  photo
+  file
+}
+
+model Message {
+  id                     String                  @default(cuid()) @id
+  messageType            MessageType             @default(text)
+  text                   String?
+  imageUrls              String[]
+  fileUrls               String[]
+  reactions              Reaction[]
+  replies                Reply[]                 @relation("Reply")
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  channelId              String
+  channel                Channel                 @relation(fields: [channelId], references: [id])
+  senderId               String
+  sender                 User                    @relation(fields: [senderId], references: [id])
+}
+
+model Reply {
+  id                     Int                     @default(autoincrement()) @id
+  messageType            MessageType             @default(text)
+  text                   String?
+  imageUrls              String[]
+  fileUrls               String[]
+  reactions              Reaction[]
+  createdAt              DateTime?               @default(now())
+  updatedAt              DateTime?               @default(now()) @updatedAt
+  deletedAt              DateTime?
+
+  senderId               String
+  sender                 User                    @relation(fields: [senderId], references: [id])
+  messageId              String
+  message                Message                 @relation(fields: [messageId], references: [id])
+}
+
+model Reaction {
+  id                     Int                     @default(autoincrement()) @id
+  value                  String
+  userId                 String
+  user                   User                    @relation(fields: [userId], references: [id])
+  messageId              String
+  message                Message                 @relation(fields: [messageId], references: [id])
+  replyId                Int
+  reply                  Reply                   @relation(fields: [replyId], references: [id])
+}

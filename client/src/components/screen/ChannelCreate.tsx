@@ -33,7 +33,7 @@ export const fakeFriends: User[] = [
   },
   {
     id: '2',
-    name: 'geoseong-hello-hello-hello-hello-hello-hello-hello-hello',
+    name: 'geoseong',
     thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
     statusMessage: 'hi I am fine',
@@ -168,6 +168,12 @@ function Page(props: Props): ReactElement {
   });
 
   const onChangeText = (text: string): void => {
+    if (!text) {
+      setFriends(fakeFriends);
+    } else {
+      const filtered = friends.filter((v) => (v.name?.includes(searchText)));
+      setFriends(filtered);
+    }
     setSearchText(text);
   };
 
@@ -177,11 +183,10 @@ function Page(props: Props): ReactElement {
   }: {
     item: Friend;
     index: number;
-  }): React.ReactElement => {
-    const itemTestID = `user-list-item${index}`;
+  }): ReactElement => {
     return (
       <UserListItem
-        testID={itemTestID}
+        testID={`userlist_${index}`}
         showCheckBox
         checked={item.checked}
         user={item}

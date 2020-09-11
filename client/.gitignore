@@ -16,7 +16,9 @@ web-report/
 package-lock.json
 yarn-error*
 
-config.ts
-
 firebase-debug*.*
 .firebase
+
+.idea
+.gitmessage.txt
+.env

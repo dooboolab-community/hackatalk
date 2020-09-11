@@ -6,6 +6,9 @@ import { RenderResult, act, cleanup, fireEvent, render } from '@testing-library/
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Channel from '../Channel';
+import { Channel as ChannelType } from '../../../types/graphql';
+import { MockPayloadGenerator } from 'relay-test-utils';
+import { environment } from '../../../providers';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -28,9 +31,27 @@ describe('[Channel] screen', () => {
     component = createTestElement(
       <Channel {...props} />,
     );
+    environment.mockClear();
   });
 
   it('renders without crashing', () => {
+    environment.mock.queueOperationResolver((operation) => {
+      return MockPayloadGenerator.generate(operation, {
+        Channel: (_, generateId): ChannelType => ({
+          id: `user-${generateId()}`,
+          name: 'HackaTalk',
+          channelType: 'private',
+          messages: {
+            edges: [],
+            pageInfo: {
+              hasNextPage: false,
+              hasPreviousPage: false,
+            },
+          },
+        }),
+      });
+    });
+
     testingLib = render(component);
     expect(testingLib.baseElement).toBeTruthy();
     expect(testingLib.baseElement).toMatchSnapshot();
@@ -38,6 +59,23 @@ describe('[Channel] screen', () => {
 
   describe('interactions', () => {
     beforeEach(() => {
+      environment.mock.queueOperationResolver((operation) => {
+        return MockPayloadGenerator.generate(operation, {
+          Channel: (_, generateId): ChannelType => ({
+            id: `user-${generateId()}`,
+            name: 'HackaTalk',
+            channelType: 'private',
+            messages: {
+              edges: [],
+              pageInfo: {
+                hasNextPage: false,
+                hasPreviousPage: false,
+              },
+            },
+          }),
+        });
+      });
+
       testingLib = render(component);
     });
 

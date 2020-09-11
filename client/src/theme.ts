@@ -1,3 +1,5 @@
+import { MediaQueryType } from './utils/media';
+
 /* eslint-disable */
 export const colors = {
   light: '#ffffff',
@@ -73,7 +75,9 @@ export const light = {
   errorBody: colors.gray_50,
   fab: colors.blue_70,
 };
-export type Theme = typeof light;
+
+export type Theme = typeof light & MediaQueryType;
+
 export const dark = {
   background: colors.deepDark,
   backgroundDark: colors.deepDark,

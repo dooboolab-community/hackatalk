@@ -26,6 +26,7 @@
   "NO_FRIENDLIST": "추가된 친구 목록이 없습니다.",
   "NO_CHANNELLIST": "대화를 시작해 보세요.",
   "NO_RECENT_SEARCH": "최근 검색 내역이 없습니다",
+  "NO_NAME": "이름없음",
   "ADD_FRIEND": "친구추가",
   "DELETE_FRIEND": "친구삭제",
   "SEARCH_USER": "사용자 검색",
@@ -44,13 +45,14 @@
   "EMAIL_FORMAT_NOT_VALID": "이메일 형식이 올바르지 않습니다.",
   "EMAIL_REQUIRED": "이메일 주소는 필수 항목입니다.",
   "PASSWORD_REQUIRED": "비밀번호는 필수 항목입니다.",
+  "PASSWORD_INCORRECT": "비밀번호를 다시 확인해주세요.",
   "PASSWORD_MIN": "비밀번호는 6~15자의 영문 대소문자, 숫자, 특수문자 2개 이상입니다.",
   "NAME_REQUIRED": "이름은 필수 항목입니다.",
   "NAME_MIN": "이름은 3글자 이상이어야 합니다.",
   "PASSWORD_MUST_MATCH": "비밀번호가 일치하지 않습니다.",
   "PASSWORD_RESET": "비밀번호 재설정",
   "TAKE_A_PICTURE": "촬영하기",
-  "SELSCT_FROM_ALBUM": "앨범에서 선택하기",
+  "SELECT_FROM_ALBUM": "앨범에서 선택하기",
   "CANCEL": "취소",
   "PASSWORD_CHANGE": "비밀번호 변경하기",
   "PASSWORD_CURRENT": "기존 비밀번호",
@@ -85,5 +87,7 @@
   "NEW_CHAT": "새 채팅",
   "DONE": "완료",
   "NO_FRIEND": "친구 없음",
-  "NO_FRIEND_BODY": "친구가 없습니다. 사용자를 검색 후 친구 리스트에 추가한 후 다시 이용해주세요."
+  "NO_FRIEND_BODY": "친구가 없습니다. 사용자를 검색 후 친구 리스트에 추가한 후 다시 이용해주세요.",
+  "MUST_USE_PHYSICAL_DEVICE": "물리적인 장비를 이용해주셔야 합니다.",
+  "FAILED_GET_PUSH_NOTI": "해커톡의 알림을 허용하지 않으셨습니다. 채팅 메시지를 바로 받아보시려면 알림을 허용해주셔야 합니다."
 }

@@ -11,6 +11,12 @@ interface ShowModalParams {
   onAddFriend?: () => void;
 }
 
+export interface State {
+  user: User;
+  deleteMode: boolean;
+  modal?: React.MutableRefObject<ProfileModalRef | null>;
+}
+
 interface Context {
   state: State;
   showModal: (showModalParams: ShowModalParams) => void;
@@ -24,12 +30,6 @@ const [useCtx, Provider] = createCtx<Context>();
 
 export enum ActionType {
   ShowModal = 'show-modal',
-}
-
-export interface State {
-  user: User;
-  deleteMode: boolean;
-  modal?: React.MutableRefObject<ProfileModalRef | null>;
 }
 
 export interface Payload extends State {
