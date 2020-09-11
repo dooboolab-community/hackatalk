@@ -1,9 +1,3 @@
-"""Exposes a URL that specifies the behaviour of this scalar."""
-directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
-  url: String!
-) on SCALAR
-
 scalar AlertMode
 
 scalar Auth
@@ -44,8 +38,10 @@ type Channel {
     before: String
   ): MessageConnection!
 
-  """Get memberships assigned to channel."""
-  memberships: [Membership!]
+  """
+  Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.
+  """
+  memberships(excludeMe: Boolean): [Membership!]
 }
 
 type ChannelConnection {

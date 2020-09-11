@@ -51,9 +51,7 @@ export const Channel = objectType({
       list: true,
       nullable: true,
       description: 'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
-      args: {
-        excludeMe: booleanArg(),
-      },
+      args: { excludeMe: booleanArg() },
 
       resolve: ({ id }, { excludeMe }, ctx) => {
         const userId = getUserId(ctx);

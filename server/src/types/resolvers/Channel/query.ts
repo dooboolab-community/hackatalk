@@ -1,4 +1,4 @@
-import { booleanArg, queryField, stringArg } from '@nexus/schema';
+import { booleanArg, connectionPlugin, queryField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
 import { relayToPrismaPagination } from '../../../utils/pagination';
@@ -40,6 +40,7 @@ export const channels = queryField((t) => {
         ...relayToPrismaPagination({
           after, before, first, last,
         }),
+
         where: {
           membership: {
             some: {
@@ -49,6 +50,7 @@ export const channels = queryField((t) => {
           },
           ...checkMessage,
         },
+
         orderBy: { id: 'desc' },
       });
     },

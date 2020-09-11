@@ -50,7 +50,7 @@ export type Channel = {
   /** Get latest message sent to the channel. */
   lastMessage?: Maybe<Message>;
   messages: MessageConnection;
-  /** Get memberships assigned to channel. */
+  /** Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user. */
   memberships?: Maybe<Array<Membership>>;
 };
 
@@ -60,6 +60,11 @@ export type ChannelMessagesArgs = {
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['String']>;
+};
+
+
+export type ChannelMembershipsArgs = {
+  excludeMe?: Maybe<Scalars['Boolean']>;
 };
 
 export type ChannelConnection = {
