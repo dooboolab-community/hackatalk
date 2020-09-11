@@ -383,6 +383,7 @@ export type QueryChannelArgs = {
 
 
 export type QueryChannelsArgs = {
+  withMessage?: Maybe<Scalars['Boolean']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
