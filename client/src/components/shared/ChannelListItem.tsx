@@ -162,7 +162,7 @@ function ChannelListItem(props: Props): React.ReactElement {
             <StyledViewContent>
               <StyledViewTop>
                 <StyledTextDisplayName>
-                  {user?.nickname || user?.name || getString('NONAME')}
+                  {user?.nickname || user?.name || getString('NO_NAME')}
                 </StyledTextDisplayName>
                 {(lastMessageCnt) !== 0
                   ? <StyledTextWrapper>

@@ -1,9 +1,9 @@
-import { Animated, FlatList, TouchableOpacity } from 'react-native';
 import {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 import React, { FC, Suspense, useState } from 'react';
 import {
   graphql,
@@ -49,27 +49,27 @@ const ITEM_CNT = 10;
 
 const channelsQuery = graphql`
   query ChannelsQuery($first: Int! $after: String $withMessage: Boolean) {
-    ...ChannelComponent_channel @arguments(first: $first, after: $after, withMessage: $withMessage)
+    ...ChannelComponent_channel @arguments(first: $first, after: $after withMessage: $withMessage)
   }
 `;
 
 const channelsFragment = graphql`
   fragment ChannelComponent_channel on Query
     @argumentDefinitions(
-      first: {type: "Int"}
+      first: {type: "Int!"}
       after: {type: "String"}
       withMessage: {type: "Boolean"}
     )
     @refetchable(queryName: "Channels") {
       channels(first: $first after: $after withMessage: $withMessage)
-      @connection(key: "ChannelComponent_channels") {
+      @connection(key: "ChannelComponent_channels" filters: ["first", "after", "withMessage"]) {
         edges {
           cursor
           node {
             id
             channelType
             name
-            memberships {
+            memberships(excludeMe: true) {
               user {
                 name
                 nickname
@@ -159,6 +159,9 @@ const ChannelsFragment: FC<ChannelProps> = ({
     renderItem={renderItem}
     ListEmptyComponent={
       <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+    }
+    ListFooterComponent={
+      <View style={{ height: 60 }} />
     }
     refreshing={isLoadingNext}
     onRefresh={() => {

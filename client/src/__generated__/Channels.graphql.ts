@@ -6,7 +6,7 @@ import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type ChannelsVariables = {
     after?: string | null;
-    first?: number | null;
+    first: number;
     withMessage?: boolean | null;
 };
 export type ChannelsResponse = {
@@ -22,7 +22,7 @@ export type Channels = {
 /*
 query Channels(
   $after: String
-  $first: Int
+  $first: Int!
   $withMessage: Boolean
 ) {
   ...ChannelComponent_channel_4q1LXA
@@ -36,7 +36,7 @@ fragment ChannelComponent_channel_4q1LXA on Query {
         id
         channelType
         name
-        memberships {
+        memberships(excludeMe: true) {
           user {
             name
             nickname
@@ -172,7 +172,13 @@ const node: ConcreteRequest = (function () {
                                         (v2 /*: any*/),
                                         {
                                             "alias": null,
-                                            "args": null,
+                                            "args": [
+                                                {
+                                                    "kind": "Literal",
+                                                    "name": "excludeMe",
+                                                    "value": true
+                                                }
+                                            ],
                                             "concreteType": "Membership",
                                             "kind": "LinkedField",
                                             "name": "memberships",
@@ -212,7 +218,7 @@ const node: ConcreteRequest = (function () {
                                                     "storageKey": null
                                                 }
                                             ],
-                                            "storageKey": null
+                                            "storageKey": "memberships(excludeMe:true)"
                                         },
                                         {
                                             "alias": null,
@@ -305,6 +311,8 @@ const node: ConcreteRequest = (function () {
                     "alias": null,
                     "args": (v1 /*: any*/),
                     "filters": [
+                        "first",
+                        "after",
                         "withMessage"
                     ],
                     "handle": "connection",
@@ -315,14 +323,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "a7eb7c0a25eba8ca6fe9821fe2d7fef9",
+            "cacheID": "5a661029422ad764f15b8da610282743",
             "id": null,
             "metadata": {},
             "name": "Channels",
             "operationKind": "query",
-            "text": "query Channels(\n  $after: String\n  $first: Int\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_4q1LXA\n}\n\nfragment ChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query Channels(\n  $after: String\n  $first: Int!\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_4q1LXA\n}\n\nfragment ChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '851a5316094cf3b1480e9d8a0b356c75';
+(node as any).hash = '2554a6d009fad77e71d04679a029f9a5';
 export default node;
