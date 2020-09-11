@@ -226,7 +226,7 @@ const Screen = (): React.ReactElement => {
         data={users}
         renderItem={renderItem}
         ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+          <EmptyListItem>{getString('NO_RECENT_SEARCH')}</EmptyListItem>
         }
         onEndReachedThreshold={0.1}
         onEndReached={onEndReached}

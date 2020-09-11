@@ -81,7 +81,7 @@ export default function Screen(): ReactElement {
         data={data?.friends}
         renderItem={renderItem}
         ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+          <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
         }
       />
     </Container>

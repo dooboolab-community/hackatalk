@@ -113,7 +113,7 @@ function Channel(): React.ReactElement {
           renderItem(item, index)
         }
         ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+          <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
         }
       />
       <TouchableOpacity
