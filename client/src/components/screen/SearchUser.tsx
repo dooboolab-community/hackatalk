@@ -156,7 +156,7 @@ const UsersFragment: FC<UserProps> = ({
       data={users}
       renderItem={renderItem}
       ListEmptyComponent={
-        <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+        <EmptyListItem>{getString('NO_RECENT_SEARCH')}</EmptyListItem>
       }
       refreshing={isLoadingNext}
       onRefresh={() => {

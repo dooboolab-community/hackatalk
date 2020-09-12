@@ -158,7 +158,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
     data={channels}
     renderItem={renderItem}
     ListEmptyComponent={
-      <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
+      <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
     }
     refreshing={isLoadingNext}
     onRefresh={() => {
