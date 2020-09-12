@@ -41,6 +41,8 @@ export const UserInputType = inputObjectType({
     });
     t.string('name');
     t.string('nickname');
+    t.string('thumbURL');
+    t.string('photoURL');
     t.date('birthday');
     t.gender('gender');
     t.string('phone');
@@ -54,6 +56,8 @@ export const UserUpdateInputType = inputObjectType({
     t.string('email');
     t.string('name');
     t.string('nickname');
+    t.string('thumbURL');
+    t.string('photoURL');
     t.date('birthday');
     t.string('phone');
     t.string('statusMessage');
@@ -67,7 +71,7 @@ export const signUp = mutationField('signUp', {
     user: 'UserCreateInput',
   },
   resolve: async (_parent, { user }, ctx) => {
-    const { name, email, password, gender } = user;
+    const { name, email, password, gender, photoURL, thumbURL } = user;
     const hashedPassword = await encryptCredential(password);
     const created = await ctx.prisma.user.create({
       data: {
@@ -75,6 +79,8 @@ export const signUp = mutationField('signUp', {
         email,
         password: hashedPassword,
         gender,
+        photoURL,
+        thumbURL,
       },
     });
 
@@ -112,7 +118,7 @@ export const signInEmail = mutationField('signInEmail', {
       where: {
         email,
       },
-      data: { lastSignedIn: new Date() },
+      data: { lastSignedIn: new Date().toISOString() },
     });
 
     return {
@@ -212,9 +218,9 @@ export const sendVerification = mutationField('sendVerification', {
 
 export const updateProfile = mutationField('updateProfile', {
   type: 'User',
-  args: {
-    user: 'UserUpdateInput',
-  },
+  args: { user: 'UserUpdateInput' },
+  description: 'Update user profile. Becareful that nullable fields will be updated either.',
+
   resolve: async (_parent, { user }, ctx) => {
     const { pubsub } = ctx;
 

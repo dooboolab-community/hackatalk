@@ -86,7 +86,7 @@ function Page({ navigation }: Props): ReactElement {
         <ButtonWrapper>
           <Button
             testID="btn-find-pw"
-            isLoading={findingPw}
+            loading={findingPw}
             onPress={onFindPw}
             containerStyle={{ height: 52, backgroundColor: theme.btnPrimary }}
             textStyle={{ color: theme.btnPrimaryFont }}

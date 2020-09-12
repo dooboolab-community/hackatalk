@@ -9,9 +9,8 @@ import {
 import { testHost } from '../setup/testSetup';
 
 describe('Resolver - Friend', () => {
-  let authClient: GraphQLClient;
-
-  beforeAll(async () => {
+  it('scenario test', async () => {
+    // signUp
     const signUpVar = {
       user: {
         name: 'unique_tester',
@@ -21,16 +20,17 @@ describe('Resolver - Friend', () => {
       },
     };
 
-    const signInVar = {
-      email: 'tester@dooboolab.com',
-      password: 'password',
-    };
-
     const signUpResponse = await request(testHost, signUpMutation, signUpVar);
 
     expect(signUpResponse).toHaveProperty('signUp');
     expect(signUpResponse.signUp).toHaveProperty('email');
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
+
+    // signIn
+    const signInVar = {
+      email: 'tester@dooboolab.com',
+      password: 'password',
+    };
 
     const signInResponse = await request(testHost, signInEmailMutation, signInVar);
     expect(signInResponse).toHaveProperty('signInEmail');
@@ -38,17 +38,14 @@ describe('Resolver - Friend', () => {
     expect(signInResponse.signInEmail).toHaveProperty('user');
     expect(signInResponse.signInEmail.user.email).toEqual(signInVar.email);
 
-    authClient = new GraphQLClient(testHost, {
+    const authClient = new GraphQLClient(testHost, {
       headers: {
         authorization: signInResponse.signInEmail.token,
       },
     });
-  });
 
-  let friendId;
-
-  it('should add more users', async () => {
-    const signUpVar = {
+    // signUp - friend
+    const signUpFriendVar = {
       user: {
         name: 'another_tester',
         email: 'another1@dooboolab.com',
@@ -57,34 +54,24 @@ describe('Resolver - Friend', () => {
       },
     };
 
-    const signUpResponse = await request(testHost, signUpMutation, signUpVar);
+    const signUpFriendResponse = await request(testHost, signUpMutation, signUpFriendVar);
 
-    expect(signUpResponse).toHaveProperty('signUp');
-    expect(signUpResponse.signUp).toHaveProperty('email');
-    expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
+    expect(signUpFriendResponse).toHaveProperty('signUp');
+    expect(signUpFriendResponse.signUp).toHaveProperty('email');
+    expect(signUpFriendResponse.signUp.email).toEqual(signUpFriendVar.user.email);
 
-    friendId = signUpResponse.signUp.id;
-  });
+    const friendId = signUpFriendResponse.signUp.id;
 
-  it('should add friend', async () => {
-    const variables = {
-      friendId,
-    };
+    // should add friend
+    const addFriendResponse = await authClient.request(addFriendMutation, { friendId });
+    expect(addFriendResponse).toHaveProperty('addFriend');
+    expect(addFriendResponse.addFriend).toHaveProperty('user');
+    expect(addFriendResponse.addFriend).toHaveProperty('friend');
 
-    const response = await authClient.request(addFriendMutation, variables);
-    expect(response).toHaveProperty('addFriend');
-    expect(response.addFriend).toHaveProperty('user');
-    expect(response.addFriend).toHaveProperty('friend');
-  });
-
-  it('should delete friend', async () => {
-    const variables = {
-      friendId,
-    };
-
-    const response = await authClient.request(deleteFriendMutation, variables);
-    expect(response).toHaveProperty('deleteFriend');
-    expect(response.deleteFriend).toHaveProperty('user');
-    expect(response.deleteFriend).toHaveProperty('friend');
+    // should delete friend
+    const deleteFriendResponse = await authClient.request(deleteFriendMutation, { friendId });
+    expect(deleteFriendResponse).toHaveProperty('deleteFriend');
+    expect(deleteFriendResponse.deleteFriend).toHaveProperty('user');
+    expect(deleteFriendResponse.deleteFriend).toHaveProperty('friend');
   });
 });

@@ -1,6 +1,7 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { booleanArg, queryField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../../utils/auth';
+import { relayToPrismaPagination } from '../../../utils/pagination';
 
 export const channel = queryField('channel', {
   type: 'Channel',
@@ -15,23 +16,41 @@ export const channel = queryField('channel', {
   }),
 });
 
-export const myChannels = queryField('myChannels', {
-  type: 'Channel',
-  description: 'Get all channels which auth user has joined',
-  list: true,
-  nullable: true,
-  resolve: (parent, arg, ctx) => {
-    const userId = getUserId(ctx);
+export const channels = queryField((t) => {
+  t.connectionField('channels', {
+    type: 'Channel',
 
-    return ctx.prisma.channel.findMany({
-      where: {
-        membership: {
+    additionalArgs: {
+      withMessage: booleanArg(),
+    },
+
+    async nodes(_, args, ctx) {
+      const userId = getUserId(ctx);
+      const { after, before, first, last, withMessage } = args;
+
+      const checkMessage = withMessage && {
+        messages: {
           some: {
-            user: { id: userId },
-            isVisible: true,
+            deletedAt: null,
           },
         },
-      },
-    });
-  },
+      };
+
+      return ctx.prisma.channel.findMany({
+        ...relayToPrismaPagination({
+          after, before, first, last,
+        }),
+        where: {
+          membership: {
+            some: {
+              userId,
+              isVisible: true,
+            },
+          },
+          ...checkMessage,
+        },
+        orderBy: { id: 'desc' },
+      });
+    },
+  });
 });

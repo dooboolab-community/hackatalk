@@ -30,7 +30,7 @@ export class UserService {
       where: {
         email: user.email,
       },
-      data: { lastSignedIn: new Date() },
+      data: { lastSignedIn: new Date().toISOString() },
     });
 
     return {

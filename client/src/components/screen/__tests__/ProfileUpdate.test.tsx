@@ -21,12 +21,13 @@ import { environment } from '../../../providers';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
+let testingLib: RenderResult;
 
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): Record<string, unknown> => {
     const userPressLaunchCamera = true;
     const BUTTON_INDEX_LAUNCH_CAMERA = 0;
-    const BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY = 1;
+    const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
     return {
       showActionSheetWithOptions: (
         options: Record<string, unknown>,
@@ -35,7 +36,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
         if (userPressLaunchCamera) {
           callback(BUTTON_INDEX_LAUNCH_CAMERA);
         }
-        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBLARY);
+        callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY);
       },
     };
   },
@@ -65,7 +66,7 @@ describe('rendering test', () => {
       }),
     };
 
-    environment.mock.queuePendingOperation(ProfileUpdateMeQuery, {});
+    // environment.mock.queuePendingOperation(ProfileUpdateMeQuery, {});
     environment.mock.queueOperationResolver(
       (operation) => MockPayloadGenerator.generate(operation, mockResolver),
     );
@@ -79,77 +80,89 @@ describe('rendering test', () => {
   });
 });
 
-// describe('interaction', () => {
-//   let props;
-//   let component: React.ReactElement;
-//   let testingLib: RenderResult;
-//   // jest.useFakeTimers();
-//   // jest.setTimeout(30000);
+describe('[ProfileUpdate] interaction', () => {
+  beforeAll(() => {
+    props = createTestProps();
+    component = createTestElement(
+      <ProfileUpdate {...props} />,
+    );
+    testingLib = render(component);
+  });
 
-//   beforeEach(() => {
-//     props = createTestProps();
-//     component = createTestElement(<ProfileUpdate {...props} />);
-//     testingLib = render(component);
-//   });
+  it('should change nickname', async () => {
+    const inputStatus = testingLib.getByTestId('input-nickname');
+    await wait(() => expect(inputStatus).toBeTruthy());
 
-//   it('should fireEvent when update button pressed', () => {
-//     act(() => {
-//       fireEvent.press(testingLib.getByTestId('button-update'));
-//     });
-//   });
+    act(() => {
+      fireEvent.changeText(inputStatus, 'nickname');
+    });
+    expect(inputStatus.props.value).toEqual('nickname');
+  });
 
-//   it('should change nickname', async () => {
-//     const inputStatus = testingLib.getByTestId('input-nickname');
-//     await wait(() => expect(inputStatus).toBeTruthy());
-//     act(() => {
-//       fireEvent.changeText(inputStatus, 'nickname');
-//     });
-//     expect(inputStatus.props.value).toEqual('nickname');
-//   });
+  it('should change name', async () => {
+    const inputName = testingLib.getByTestId('input-name');
+    await wait(() => expect(inputName).toBeTruthy());
 
-//   it('should change name', async () => {
-//     const inputName = testingLib.getByTestId('input-name');
-//     await wait(() => expect(inputName).toBeTruthy());
+    act(() => {
+      fireEvent.changeText(inputName, 'name');
+    });
+    expect(inputName.props.value).toEqual('name');
+  });
 
-//     act(() => {
-//       fireEvent.changeText(inputName, 'name');
-//     });
-//     expect(inputName.props.value).toEqual('name');
-//   });
+  it('should change status text', async () => {
+    const inputStatus = testingLib.getByTestId('input-status');
+    await wait(() => expect(inputStatus).toBeTruthy());
 
-//   it('should change status text', async () => {
-//     const inputStatus = testingLib.getByTestId('input-status');
-//     await wait(() => expect(inputStatus).toBeTruthy());
-//     act(() => {
-//       fireEvent.changeText(inputStatus, 'status');
-//     });
-//     expect(inputStatus.props.value).toEqual('status');
-//   });
+    act(() => {
+      fireEvent.changeText(inputStatus, 'status');
+    });
+    expect(inputStatus.props.value).toEqual('status');
+  });
 
-//   // it('should launch camera when user select "Take a picture"', async () => {
-//   //   // userPressLaunchCamera = true;
-//   //   const profileBtn = await waitForElement(() =>
-//   //     testingLib.queryByTestId('button-user-icon'),
-//   //   );
-//   //   await act(() => {
-//   //     fireEvent.press(profileBtn);
-//   //     // jest.runAllTimers();
-//   //   });
-//   //   await wait();
-//   // });
+  it('should call updateProfile when update button pressed', async () => {
+    const updateButton = testingLib.getByTestId('button-update');
+    await wait(() => expect(updateButton).toBeTruthy());
 
-//   // it('should open album when user select "Select from Album"', async () => {
-//   //   // userPressLaunchCamera = false;
-//   //   const profileBtn = await waitForElement(() =>
-//   //     testingLib.queryByTestId('button-user-icon'),
-//   //   );
-//   //   await wait(() => expect(profileBtn).toBeTruthy());
-//   //   act(() => {
-//   //     fireEvent.press(profileBtn);
-//   //     // jest.runAllTimers();
-//   //   });
-//   //   await wait();
-//   // });
+    act(() => {
+      fireEvent.press(updateButton);
+    });
 
-//   afterAll(cleanup);
-// });
+    await act(() => wait());
+
+    const operation = environment.mock.getMostRecentOperation();
+    environment.mock.resolve(
+      operation,
+      MockPayloadGenerator.generate(operation),
+    );
+  });
+
+  // it('should launch camera when user select "Take a picture"', async () => {
+  //   // userPressLaunchCamera = true;
+  //   const profileBtn = await waitForElement(() =>
+  //     testingLib.queryByTestId('button-user-icon'),
+  //   );
+  //   await act(() => {
+  //     fireEvent.press(profileBtn);
+  //     // jest.runAllTimers();
+  //   });
+  //   await wait();
+  // });
+
+  // it('should open album when user select "Select from Album"', async () => {
+  //   // userPressLaunchCamera = false;
+  //   const profileBtn = await waitForElement(() =>
+  //     testingLib.queryByTestId('button-user-icon'),
+  //   );
+  //   await wait(() => expect(profileBtn).toBeTruthy());
+  //   act(() => {
+  //     fireEvent.press(profileBtn);
+  //     // jest.runAllTimers();
+  //   });
+  //   await wait();
+  // });
+
+  afterAll((done) => {
+    cleanup();
+    done();
+  });
+});

@@ -1,9 +1,10 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Config from '../../../config';
 import * as Crypto from 'expo-crypto';
+import * as Device from 'expo-device';
 import * as WebBrowser from 'expo-web-browser';
 
-import { Alert, Dimensions, Image, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, Dimensions, Image, Platform, TouchableOpacity, View } from 'react-native';
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
 import { AuthType, User } from '../../types/graphql';
 import { Button, EditText } from 'dooboo-ui';
@@ -21,14 +22,18 @@ import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
+import styled, { css } from 'styled-components/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { EditTextInputType } from 'dooboo-ui/EditText';
+import type {
+  SignInCreateNotificationMutation,
+} from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import styled from 'styled-components/native';
+import { registerForPushNotificationsAsync } from '../../utils/noti';
 import { useAuthContext } from '../../providers/AuthProvider';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
@@ -95,6 +100,16 @@ const StyledAgreementLinedText = styled.Text`
   text-decoration-line: underline;
 `;
 
+const StyledScrollView = styled.ScrollView`
+  align-self: center;
+  width: 100%;
+
+  ${({ theme: { desktop } }) => desktop && css`
+    width: 50%;
+    max-width: 800;
+  `}
+`;
+
 const { facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
 
 interface Props {
@@ -127,6 +142,17 @@ const signInWithApple = graphql`
   }
 `;
 
+const createNotification = graphql`
+  mutation SignInCreateNotificationMutation($token: String! $device: String $os: String) {
+    createNotification(token: $token, device: $device, os: $os) {
+      id
+      token
+      device
+      createdAt
+    }
+  }
+`;
+
 function SignIn(props: Props): ReactElement {
   const { navigation } = props;
   const { setUser } = useAuthContext();
@@ -137,9 +163,10 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-
   const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
   const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
+  const [commitNotification, isNotificationInFlight] =
+    useMutation<SignInCreateNotificationMutation>(createNotification);
 
   WebBrowser.maybeCompleteAuthSession();
 
@@ -167,6 +194,7 @@ function SignIn(props: Props): ReactElement {
         email,
         password,
       },
+
       onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
         const { token, user } = response.signInEmail;
 
@@ -177,11 +205,29 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
-        await AsyncStorage.setItem('password', password);
+        registerForPushNotificationsAsync().then((pushToken) => {
+          if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
+        });
+        const pushToken = await AsyncStorage.getItem('push_token');
+
+        if (pushToken) {
+          const createNotificationMutationConfig = {
+            variables: {
+              token: pushToken,
+              device: Device.modelName,
+              os: Device.osName,
+            },
+          };
+
+          commitNotification(createNotificationMutationConfig);
+        }
+
         setUser(user);
       },
-      onError: (error: any): void => {
+
+      onError: (error: Error): void => {
         setErrorPassword(error.message);
+        setErrorPassword(getString('PASSWORD_INCORRECT'));
       },
     };
 
@@ -197,8 +243,10 @@ function SignIn(props: Props): ReactElement {
     try {
       const csrf = Math.random().toString(36).substring(2, 15);
       const nonce = Math.random().toString(36).substring(2, 10);
+
       const hashedNonce = await Crypto.digestStringAsync(
         Crypto.CryptoDigestAlgorithm.SHA256, nonce);
+
       const appleCredential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -207,6 +255,7 @@ function SignIn(props: Props): ReactElement {
         state: csrf,
         nonce: hashedNonce,
       });
+
       const { identityToken } = appleCredential;
 
       if (identityToken) {
@@ -247,25 +296,29 @@ function SignIn(props: Props): ReactElement {
   }, []);
 
   const logoSize = 80;
+  const logoTransformAnimValue = useValue(0);
   const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
   const logoInitialPosition = {
     x: (screenWidth - logoSize) * 0.5,
     y: screenHeight * 0.5 - logoSize,
   };
+
   const logoFinalPosition = {
     x: 30,
     y: 80,
   };
 
-  const logoTransformAnimValue = useValue(0);
   const logoScale = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [2, 1],
   });
+
   const logoPositionX = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [logoInitialPosition.x, logoFinalPosition.x],
   });
+
   const logoPositionY = logoTransformAnimValue.interpolate({
     inputRange: [0, 1],
     outputRange: [logoInitialPosition.y, logoFinalPosition.y],
@@ -291,7 +344,7 @@ function SignIn(props: Props): ReactElement {
     <Container>
       <StatusBar />
 
-      <ScrollView style={{ alignSelf: 'stretch' }}>
+      <StyledScrollView>
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
@@ -374,6 +427,7 @@ function SignIn(props: Props): ReactElement {
                 backgroundColor: theme.btnPrimaryLight,
                 borderColor: theme.btnPrimary,
                 borderWidth: 1,
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimary,
@@ -382,17 +436,21 @@ function SignIn(props: Props): ReactElement {
               }}
               text={getString('SIGN_UP')}
             />
-            <View style={{ width: 20 }} />
+            <View style={{ width: 12 }} />
             <Button
               testID="btn-sign-in"
-              isLoading={isInFlight}
+              loading={isInFlight}
               onPress={signIn}
               containerStyle={{
                 flex: 1,
                 flexDirection: 'row',
                 height: 52,
                 justifyContent: 'center',
+              }}
+              style={{
                 backgroundColor: theme.btnPrimary,
+                width: '100%',
+                borderRadius: 0,
               }}
               textStyle={{
                 color: theme.btnPrimaryFont,
@@ -424,7 +482,7 @@ function SignIn(props: Props): ReactElement {
                       <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
-                  isLoading={signingInApple}
+                  loading={signingInApple}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
@@ -437,7 +495,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={facebookSecret}
               svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
               onUserCreated={(user?: User): void => {
-                if (user) setUser(user);
+                setUser?.(user);
               }}
               socialProvider={AuthType.Facebook}
             />
@@ -446,7 +504,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={googleSecret}
               svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
               onUserCreated={(user?: User): void => {
-                if (user) setUser(user);
+                setUser?.(user);
               }}
               socialProvider={AuthType.Google}
             />
@@ -469,7 +527,7 @@ function SignIn(props: Props): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
           </StyledAgreementTextWrapper>
         </Wrapper>
-      </ScrollView>
+      </StyledScrollView>
     </Container>
   );
 }

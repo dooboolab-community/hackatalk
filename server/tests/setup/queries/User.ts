@@ -104,5 +104,4 @@ subscription userSignedIn($userId: String!) {
     gender
     createdAt
   }
-}
-`;
+}`;

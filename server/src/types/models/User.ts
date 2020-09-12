@@ -1,6 +1,7 @@
 import { NexusGenRootTypes } from '../../generated/nexus';
 import { objectType } from '@nexus/schema';
 import { prisma } from '../../context';
+import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -31,21 +32,6 @@ export const User = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });
-    t.list.field('friends', {
-      type: 'User',
-      nullable: true,
-      resolve: async (user, args, { prisma }) => {
-        return prisma.user.findMany({
-          where: {
-            friends: {
-              some: {
-                userId: user.id,
-              },
-            },
-          },
-        });
-      },
-    });
   },
 });
 

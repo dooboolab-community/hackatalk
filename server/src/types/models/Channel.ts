@@ -1,4 +1,6 @@
-import { objectType } from '@nexus/schema';
+import { booleanArg, objectType } from '@nexus/schema';
+
+import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const Channel = objectType({
@@ -15,6 +17,7 @@ export const Channel = objectType({
       type: 'Message',
       nullable: true,
       description: 'Get latest message sent to the channel.',
+
       resolve: async ({ id }, args, ctx) => {
         const messages = await ctx.prisma.message.findMany({
           where: {
@@ -47,11 +50,31 @@ export const Channel = objectType({
       type: 'Membership',
       list: true,
       nullable: true,
-      description: 'Get memberships assigned to channel.',
-      resolve: ({ id }, args, ctx) => ctx.prisma.membership.findMany({
-        where: { channel: { id } },
-        include: { user: true },
-      }),
+      description: 'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
+      args: {
+        excludeMe: booleanArg(),
+      },
+
+      resolve: ({ id }, { excludeMe }, ctx) => {
+        const userId = getUserId(ctx);
+
+        if (excludeMe) {
+          return ctx.prisma.membership.findMany({
+            where: {
+              channel: { id },
+              user: {
+                id: { not: userId },
+              },
+            },
+            include: { user: true },
+          });
+        }
+
+        return ctx.prisma.membership.findMany({
+          where: { channel: { id } },
+          include: { user: true },
+        });
+      },
     });
   },
 });

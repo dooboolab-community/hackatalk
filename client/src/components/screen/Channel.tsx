@@ -1,9 +1,26 @@
-import { ChannelType, MessageType } from '../../types';
-import { FlatList, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import { Animated, FlatList, TouchableOpacity } from 'react-native';
+import {
+  ChannelsQuery,
+  ChannelsQueryResponse,
+  ChannelsQueryVariables,
+} from '../../__generated__/ChannelsQuery.graphql';
+import React, { FC, Suspense, useState } from 'react';
+import {
+  graphql,
+  useLazyLoadQuery,
+  usePaginationFragment,
+  useRelayEnvironment,
+} from 'react-relay/hooks';
 
+import { Channel } from '../../types/graphql';
+import type {
+  ChannelComponent_channel$key,
+} from '../../__generated__/ChannelComponent_channel.graphql';
 import ChannelListItem from '../shared/ChannelListItem';
 import EmptyListItem from '../shared/EmptyListItem';
+import {
+  LoadingIndicator,
+} from 'dooboo-ui';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { SvgPlus } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
@@ -28,94 +45,168 @@ const Fab = styled.View`
   background: ${({ theme }): string => theme.fab};
 `;
 
+const ITEM_CNT = 10;
+
+const channelsQuery = graphql`
+  query ChannelsQuery($first: Int! $after: String $withMessage: Boolean) {
+    ...ChannelComponent_channel @arguments(first: $first, after: $after, withMessage: $withMessage)
+  }
+`;
+
+const channelsFragment = graphql`
+  fragment ChannelComponent_channel on Query
+    @argumentDefinitions(
+      first: {type: "Int"}
+      after: {type: "String"}
+      withMessage: {type: "Boolean"}
+    )
+    @refetchable(queryName: "Channels") {
+      channels(first: $first after: $after withMessage: $withMessage)
+      @connection(key: "ChannelComponent_channels") {
+        edges {
+          cursor
+          node {
+            id
+            channelType
+            name
+            memberships {
+              user {
+                name
+                nickname
+                thumbURL
+                photoURL
+              }
+            }
+            lastMessage {
+              messageType
+              text
+              imageUrls
+              fileUrls
+              createdAt
+            }
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+`;
+
+interface ChannelProps {
+  channel: ChannelComponent_channel$key;
+  searchArgs: ChannelsQueryVariables;
+}
+
+const ChannelsFragment: FC<ChannelProps> = ({
+  channel,
+  searchArgs,
+}) => {
+  const navigation = useNavigation();
+
+  const {
+    data,
+    loadNext,
+    isLoadingNext,
+    refetch,
+  } = usePaginationFragment<ChannelsQuery, ChannelComponent_channel$key>(
+    channelsFragment,
+    channel,
+  );
+
+  const onEndReached = (): void => {
+    loadNext(ITEM_CNT);
+  };
+
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: { node: Channel, cursor: string };
+    index: number;
+  }): React.ReactElement => {
+    return (
+      <ChannelListItem
+        testID={`list-item-${index}`}
+        item={item.node}
+        onPress={(): void => {
+          navigation.navigate('Message', { messageId: item.node.id });
+        }}
+      />
+    );
+  };
+
+  const channels = data?.channels?.edges || [];
+
+  return <FlatList
+    style={{
+      alignSelf: 'stretch',
+    }}
+    contentContainerStyle={
+      channels.length === 0
+        ? {
+          flex: 1,
+          alignSelf: 'stretch',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }
+        : null
+    }
+    keyExtractor={(_, index): string => index.toString()}
+    // @ts-ignore
+    data={channels}
+    renderItem={renderItem}
+    ListEmptyComponent={
+      <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
+    }
+    refreshing={isLoadingNext}
+    onRefresh={() => {
+      refetch(searchArgs, { fetchPolicy: 'network-only' });
+    }}
+    onEndReachedThreshold={0.1}
+    onEndReached={onEndReached}
+  />;
+};
+
+interface ContentProps {
+  searchArgs: ChannelsQueryVariables;
+}
+
+const ContentContainer: FC<ContentProps> = ({
+  searchArgs,
+}) => {
+  const data: ChannelsQueryResponse =
+  useLazyLoadQuery<ChannelsQuery>(
+    channelsQuery,
+    searchArgs,
+    { fetchPolicy: 'store-or-network' },
+  );
+
+  return <ChannelsFragment
+    channel={data}
+    searchArgs={searchArgs}
+  />;
+};
+
 interface Props {
   navigation: MainStackNavigationProps<'Message'>;
 }
 
-const initialChannels: ChannelType[] = [
-  {
-    id: 'room1',
-    lastMessage: {
-      id: 'id_3',
-      sender: {
-        id: 'uid_3',
-        nickname: 'displayName3',
-        thumbURL: '',
-        photoURL: '',
-        statusMessage: '',
-        isOnline: false,
-      },
-      messageType: MessageType.Message,
-      message: 'How are you doing?',
-      created: '2020-01-01 12:00',
-      updated: '2020-01-01 12:00',
-    },
-    lastMessageCnt: 3,
-  },
-  {
-    id: 'room2',
-    lastMessage: {
-      id: 'id_3',
-      sender: {
-        id: 'uid_3',
-        nickname: 'Byun8585',
-        thumbURL: '',
-        photoURL: '',
-        statusMessage: '',
-        isOnline: false,
-      },
-      messageType: MessageType.Message,
-      message: 'Hi. This is student from react-native-seoul. Nice to meet you.',
-      created: '2020-01-01 12:00',
-      updated: '2020-01-01 12:00',
-    },
-    lastMessageCnt: 0,
-  },
-];
-
-function Channel(): React.ReactElement {
-  const [channels] = useState(initialChannels);
+const Screen: FC<Props> = () => {
   const { theme } = useThemeContext();
   const navigation = useNavigation();
 
-  const onItemClick = (itemId: string): void => {
-    navigation.navigate('Message', { messageId: itemId });
+  const searchArgs: ChannelsQueryVariables = {
+    first: ITEM_CNT,
+    withMessage: true,
   };
 
-  const renderItem = (item: ChannelType, index: number): React.ReactElement => {
-    return (
-      <ChannelListItem
-        testID={`list-item-${index}`}
-        item={item}
-        onPress={(): void => onItemClick(item.id)}
-      />
-    );
-  };
   return (
     <Container>
-      <FlatList
-        style={{
-          alignSelf: 'stretch',
-        }}
-        contentContainerStyle={
-          channels.length === 0
-            ? {
-              flex: 1,
-              alignSelf: 'stretch',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-            : null
-        }
-        keyExtractor={(_, index): string => index.toString()}
-        data={channels}
-        renderItem={({ item, index }): React.ReactElement =>
-          renderItem(item, index)
-        }
-        ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>
-        }
-      />
+      <Suspense fallback={<LoadingIndicator/>}>
+        <ContentContainer searchArgs={searchArgs}/>
+      </Suspense>
       <TouchableOpacity
         activeOpacity={0.65}
         style={{
@@ -131,5 +222,6 @@ function Channel(): React.ReactElement {
       </TouchableOpacity>
     </Container>
   );
-}
-export default Channel;
+};
+
+export default Screen;

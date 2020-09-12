@@ -42,12 +42,20 @@ export const channelQuery = /* GraphQL */`
   }
 `;
 
-export const myChannelsQuery = /* GraphQL */`
-  query myChannels {
-    myChannels {
-      channelType
-      name
-      id
+export const channelsQuery = /* GraphQL */`
+  query channels {
+    channels(first: 5) {
+      edges {
+        node {
+          id
+          lastMessage {
+            messageType
+            text
+            imageUrls
+            fileUrls
+          }
+        }
+      }
     }
   }
 `;
@@ -85,6 +93,14 @@ export const kickFromChannel = /* GraphQL */`
           id
         }
       }
+    }
+  }
+`;
+
+export const findOrCreatePrivateChannel = /* GraphQL */`
+  mutation findOrCreatePrivateChannel($peerUserId: String!) {
+    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+      id
     }
   }
 `;
