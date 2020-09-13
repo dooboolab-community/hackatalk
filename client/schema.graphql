@@ -44,30 +44,10 @@ type Channel {
   memberships(excludeMe: Boolean): [Membership!]
 }
 
-type ChannelConnection {
-  """
-  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
-  """
-  edges: [ChannelEdge]
-
-  """
-  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
-  """
-  pageInfo: PageInfo!
-}
-
 input ChannelCreateInput {
   channelType: ChannelType
   name: String
   userIds: [String!]
-}
-
-type ChannelEdge {
-  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
-  cursor: String!
-
-  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
-  node: Channel!
 }
 
 scalar ChannelType
@@ -163,10 +143,6 @@ type Mutation {
   changeEmailPassword(password: String!, newPassword: String!): Boolean!
   createNotification(token: String!, device: String, os: String): Notification!
   deleteNotification(token: String!): Notification
-
-  """
-  Provide `dir` optionally, Upload single file to the server with graphql-upload
-  """
   singleUpload(file: Upload, dir: String): String
   addFriend(friendId: String!): Friend!
   deleteFriend(friendId: String!): Friend!
@@ -185,9 +161,6 @@ type Mutation {
     
   """
   createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
-
-  """Find or create channel associated to peer user id."""
-  findOrCreatePrivateChannel(peerUserId: String!): Channel!
 
   """
   User leaves [public] channel.
@@ -269,21 +242,6 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): UserConnection!
-  friends(
-    searchText: String
-
-    """Returns the first n elements from the list."""
-    first: Int
-
-    """Returns the elements in the list that come after the specified cursor"""
-    after: String
-
-    """Returns the last n elements from the list."""
-    last: Int
-
-    """Returns the elements in the list that come before the specified cursor"""
-    before: String
-  ): UserConnection!
 
   """Fetch current user profile when authenticated."""
   me: User!
@@ -300,12 +258,8 @@ type Query {
     """Returns the elements in the list that come after the specified cursor"""
     after: String
 
-    """Returns the last n elements from the list."""
-    last: Int
-
-    """Returns the elements in the list that come before the specified cursor"""
-    before: String
-  ): ChannelConnection!
+  """Get all channels which auth user has joined"""
+  myChannels: [Channel!]
 }
 
 type Reaction {
@@ -352,6 +306,7 @@ type User {
   updatedAt: DateTime
   deletedAt: DateTime
   notifications: [Notification!]
+  friends: [User!]
 }
 
 type UserConnection {
@@ -398,4 +353,3 @@ input UserUpdateInput {
   statusMessage: String
   gender: Gender
 }
-

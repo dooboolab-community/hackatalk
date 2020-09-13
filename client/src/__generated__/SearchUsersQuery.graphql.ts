@@ -1,3 +1,4 @@
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
@@ -27,7 +28,6 @@ query SearchUsersQuery(
 ) {
   ...SearchUserComponent_user_2yyznZ
 }
-
 fragment SearchUserComponent_user_2yyznZ on Query {
   users(first: $first, after: $after, searchText: $searchText) {
     edges {
