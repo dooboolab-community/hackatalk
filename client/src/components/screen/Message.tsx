@@ -170,38 +170,46 @@ const MessageScreen: FC<Props> = (props) => {
       variables: {
         channelId: channel.id,
         message: {
+          // TODO: Use actual message as a variable.
           text: 'Hi this is Hyo111',
         },
       },
-      // optimisticUpdater: (proxyStore) => {
-      //   proxyStore.create(message);
-      // },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        // const channelProxy = proxyStore.get(channel.id);
-        const channelProxy = proxyStore.get(ROOT_ID);
-        const payload = proxyStore.getRootField('createMessage');
+        // Get connection.
+        const channelProxy = proxyStore.get(channel.id);
+        const root = proxyStore.getRoot();
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'ChannelComponent_channels',
+          {
+            withMessage: true,
+          },
+        );
 
-        if (payload && channelProxy) {
-          const newEdge = payload.getLinkedRecord('channel');
+        // Get existing edges.
+        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
 
-          const conn = ConnectionHandler.getConnection(
+        // Check if the message is created inside a new channel.
+        let isNewChannel = true;
+        for (const edge of prevEdges) {
+          const node = edge.getLinkedRecord('node');
+          if (node?.getDataID() === channel.id) {
+            isNewChannel = false;
+            break;
+          }
+        }
+
+        // If a new channel is created,
+        // update relay store.
+        if (isNewChannel) {
+          const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
+            proxyStore,
+            connectionRecord,
             channelProxy,
-            'ChannelComponent_channels',
-            {
-              first: 10,
-              after: '',
-              withMessage: true,
-            },
+            'Channel',
           );
-
-          if (conn && newEdge) {
-            const prevEdges = conn.getLinkedRecords('edges');
-            if (prevEdges) {
-              const nextEdges = [newEdge, ...prevEdges];
-              conn.setLinkedRecords(nextEdges, 'edges');
-              return;
-            }
-            ConnectionHandler.insertEdgeBefore(conn, newEdge);
+          if (connectionRecord && newEdge) {
+            ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
           }
         }
       },

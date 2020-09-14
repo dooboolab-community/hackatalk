@@ -311,8 +311,6 @@ const node: ConcreteRequest = (function () {
                     "alias": null,
                     "args": (v1 /*: any*/),
                     "filters": [
-                        "first",
-                        "after",
                         "withMessage"
                     ],
                     "handle": "connection",
@@ -332,5 +330,5 @@ const node: ConcreteRequest = (function () {
         }
     } as any;
 })();
-(node as any).hash = '2554a6d009fad77e71d04679a029f9a5';
+(node as any).hash = '3a6105e67244c05d4a1697cc4947c07e';
 export default node;
