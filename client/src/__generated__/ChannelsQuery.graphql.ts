@@ -315,8 +315,6 @@ const node: ConcreteRequest = (function () {
                     "alias": null,
                     "args": (v3 /*: any*/),
                     "filters": [
-                        "first",
-                        "after",
                         "withMessage"
                     ],
                     "handle": "connection",

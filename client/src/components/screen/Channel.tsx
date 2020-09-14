@@ -62,7 +62,7 @@ const channelsFragment = graphql`
     )
     @refetchable(queryName: "Channels") {
       channels(first: $first after: $after withMessage: $withMessage)
-      @connection(key: "ChannelComponent_channels" filters: ["first", "after", "withMessage"]) {
+      @connection(key: "ChannelComponent_channels" filters: ["withMessage"]) {
         edges {
           cursor
           node {
