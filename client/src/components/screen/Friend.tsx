@@ -80,6 +80,7 @@ export default function Screen(): ReactElement {
     return (
       <UserListItem
         testID={testID}
+        showStatus
         user={item.node}
         onPress={userListOnPressInlineFn}
       />
