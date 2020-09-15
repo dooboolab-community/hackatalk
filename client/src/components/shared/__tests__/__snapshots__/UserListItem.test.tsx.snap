@@ -52,12 +52,14 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
         >
           <View
             style={
-              Object {
-                "alignItems": "center",
-                "height": 40,
-                "justifyContent": "center",
-                "width": 40,
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "height": 40,
+                  "justifyContent": "center",
+                  "width": 40,
+                },
+              ]
             }
           >
             <Image
