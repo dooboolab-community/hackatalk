@@ -44,8 +44,8 @@ const StatusTag = styled.View`
   position: absolute;
   top: 0;
   right: 0;
-  width: 12;
-  height: 12;
+  width: 12px;
+  height: 12px;
   border-radius: 25px;
 `;
 
