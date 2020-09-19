@@ -80,7 +80,7 @@
     "graphql-request": "^3.0.0",
     "graphql-tag": "^2.11.0",
     "jest": "26.4.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1",
     "ts-jest": "^26.3.0",
