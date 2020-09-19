@@ -129,9 +129,9 @@ function ChannelListItem(props: Props): React.ReactElement {
   } = lastMessage as Message;
 
   if (channelType === 'private') {
-    const user = memberships?.[0].user;
-    const photoURL = memberships?.[0].user?.thumbURL || memberships?.[0].user?.photoURL;
-    const isOnline = memberships?.[0].user?.isOnline;
+    const user = memberships?.[0]?.user;
+    const photoURL = memberships?.[0]?.user?.thumbURL || memberships?.[0]?.user?.photoURL;
+    const isOnline = memberships?.[0]?.user?.isOnline;
 
     return (
       <View style={{ width: '100%' }}>
