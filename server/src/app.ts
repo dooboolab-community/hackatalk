@@ -92,6 +92,7 @@ export const createApp = (): express.Application => {
       res.send('Error occured. Plesae try again.');
     }
   });
+
   app.get('/verify_email/:token', async (req: ReqI18n, res) => {
     const token = req.params.token;
 
@@ -103,6 +104,7 @@ export const createApp = (): express.Application => {
             email: validated.email,
           },
         });
+
         const alreadyVerified = user && user.verified;
 
         if (alreadyVerified) {
@@ -120,6 +122,7 @@ export const createApp = (): express.Application => {
           GO_TO_SIGN_IN: req.t('GO_TO_SIGN_IN'),
         });
       }
+
       res.send('Error occured. Plesae try again.');
     } catch (err) {
       res.send('Error occured. Plesae try again.');
@@ -129,6 +132,7 @@ export const createApp = (): express.Application => {
   app.post(
     '/upload_single',
     multer({ dest: './files' }).single('inputFile'),
+
     async (req, res) => {
       interface Result {
         message: string | unknown;
@@ -156,6 +160,7 @@ export const createApp = (): express.Application => {
       }
 
       const dir: string = req.body.dir ? req.body.dir : 'defaults';
+
       try {
         const resultUpload = await uploadFileToAzureBlobFromFile(
           `./files/${req.file.filename}`,

@@ -1,12 +1,19 @@
+import { ConnectionHandler, ROOT_ID, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigation/MainStackNavigator';
 import { Message, User } from '../../types/graphql';
+import type {
+  MessageCreateMutation,
+  MessageCreateMutationResponse,
+  MessageCreateMutationVariables,
+} from '../../__generated__/MessageCreateMutation.graphql';
 import { MessageProps, MessageType } from '../../types';
 import React, { FC, ReactElement, useState } from 'react';
 import { RouteProp, useNavigation } from '@react-navigation/core';
+import { graphql, useMutation } from 'react-relay/hooks';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
@@ -37,10 +44,41 @@ interface Props {
   route: RouteProp<MainStackParamList, 'Message'>;
 }
 
+const createMessage = graphql`
+  mutation MessageCreateMutation($channelId: String! $message: MessageCreateInput!) {
+    createMessage(channelId: $channelId, message: $message) {
+      id
+      text
+      messageType
+      channel {
+        id
+        channelType
+        name
+        memberships(excludeMe: true) {
+          user {
+            name
+            nickname
+            thumbURL
+            photoURL
+          }
+        }
+        lastMessage {
+          messageType
+          text
+          imageUrls
+          fileUrls
+          createdAt
+        }
+      }
+    }
+  }
+`;
+
 const MessageScreen: FC<Props> = (props) => {
   const { theme } = useThemeContext();
   const { route: { params: { user, channel } } } = props;
   const navigation = useNavigation();
+  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {
@@ -61,7 +99,6 @@ const MessageScreen: FC<Props> = (props) => {
 
   // Note that if the user exists, this is direct message which title should appear as user name or nickname
 
-  const [isSending, setIsSending] = useState<boolean>(false);
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
 
@@ -129,7 +166,63 @@ const MessageScreen: FC<Props> = (props) => {
   ]);
 
   const onSubmit = (): void => {
-    setIsSending(true);
+    const mutationConfig = {
+      variables: {
+        channelId: channel.id,
+        message: {
+          // TODO: Use actual message as a variable.
+          text: 'Hi this is Hyo111',
+        },
+      },
+      updater: (proxyStore: RecordSourceSelectorProxy) => {
+        // Get connection.
+        const channelProxy = proxyStore.get(channel.id);
+        const root = proxyStore.getRoot();
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'ChannelComponent_channels',
+          {
+            withMessage: true,
+          },
+        );
+
+        // Get existing edges.
+        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
+
+        // Check if the message is created inside a new channel.
+        let isNewChannel = true;
+        for (const edge of prevEdges) {
+          const node = edge.getLinkedRecord('node');
+          if (node?.getDataID() === channel.id) {
+            isNewChannel = false;
+            break;
+          }
+        }
+
+        // If a new channel is created,
+        // update relay store.
+        if (isNewChannel) {
+          const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
+            proxyStore,
+            connectionRecord,
+            channelProxy,
+            'Channel',
+          );
+          if (connectionRecord && newEdge) {
+            ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+          }
+        }
+      },
+      onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
+        const { text } = response.createMessage;
+        console.log('createMessage', text);
+      },
+      onError: (error: Error): void => {
+        console.log('error', error);
+      },
+    };
+
+    commitMessage(mutationConfig);
   };
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
@@ -244,7 +337,7 @@ const MessageScreen: FC<Props> = (props) => {
             textStyle={{
               color: theme.btnPrimaryFont,
             }}
-            loading={isSending}
+            loading={isMessageInFlight}
             onPress={onSubmit}
             text={getString('SEND')}
           />

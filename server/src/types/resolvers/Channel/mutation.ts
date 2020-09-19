@@ -91,6 +91,7 @@ export const createChannel = mutationField('createChannel', {
 
       if (existingChannel) {
         changeVisibilityWhenInvisible(userId, existingChannel);
+        await createMemberships(existingChannel.id, userIds);
         message && await createMessage(message, existingChannel.id);
         return existingChannel;
       }
@@ -122,11 +123,12 @@ export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChan
     const existingChannel = await findPrivateChannelWithUserIds([userId, peerUserId]);
 
     if (existingChannel) {
-      changeVisibilityWhenInvisible(userId, existingChannel);
+      changeVisibilityWhenInvisible(peerUserId, existingChannel);
       return existingChannel;
     }
 
-    const channel = await createNewChannel(true, peerUserId);
+    const channel = await createNewChannel(true, userId);
+    await createMemberships(channel.id, [peerUserId]);
     return channel;
   },
 });

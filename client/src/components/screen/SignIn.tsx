@@ -205,9 +205,11 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
+
         registerForPushNotificationsAsync().then((pushToken) => {
           if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
         });
+
         const pushToken = await AsyncStorage.getItem('push_token');
 
         if (pushToken) {
@@ -240,6 +242,7 @@ function SignIn(props: Props): ReactElement {
 
   const appleLogin = async (): Promise<void> => {
     setSigningInApple(true);
+
     try {
       const csrf = Math.random().toString(36).substring(2, 15);
       const nonce = Math.random().toString(36).substring(2, 10);
