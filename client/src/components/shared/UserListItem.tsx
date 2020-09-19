@@ -14,6 +14,7 @@ interface Props {
   onPress?: () => void;
   onLongPress?: () => void;
   showCheckBox?: boolean;
+  showStatus?: boolean;
   checked?: boolean;
 }
 
@@ -30,6 +31,22 @@ const Wrapper = styled.View`
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
+`;
+
+const ImageWrapper = styled.View`
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StatusTag = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 25px;
 `;
 
 const StyledImage = styled.Image`
@@ -59,11 +76,12 @@ const StyledRightText = styled.Text`
 
 function Shared({
   showCheckBox = false,
+  showStatus = false,
   checked = false,
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', email, nickname, name, statusMessage },
+  user: { photoURL = '', email, nickname, name, statusMessage, isOnline },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
 
@@ -81,20 +99,20 @@ function Shared({
         onLongPress={onLongPress}
       >
         <Wrapper>
-          {
-            photoURL && photoURLObj
-              ? <StyledImage source={photoURLObj} />
-              : <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <StyledImage source={IC_NO_IMAGE} />
-              </View>
-          }
+          <ImageWrapper>
+            <StyledImage
+              source={
+                photoURL && photoURLObj
+                  ? photoURLObj
+                  : IC_NO_IMAGE
+              }
+            />
+            {
+              showStatus
+                ? <StatusTag style={{ backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3' }} />
+                : null
+            }
+          </ImageWrapper>
           <StyledText numberOfLines={1}>{name || nickname}</StyledText>
           {
             showCheckBox
