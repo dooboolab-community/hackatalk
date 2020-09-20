@@ -10,13 +10,11 @@ import {
   verifyFacebookId,
   verifyGoogleId,
 } from '../../../utils/auth';
-import { AuthType, Gender } from '../../models/Scalar';
+import { AuthType } from '../../models/Scalar';
 import {
-  ErrorEmailForUserExists,
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
-  ErrorString,
 } from '../../../utils/error';
 import {
   USER_SIGNED_IN,
@@ -24,93 +22,13 @@ import {
 } from './subscription';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
-import { Context } from '../../../context';
-import { NexusGenRootTypes } from '../../../generated/nexus';
 import SendGridMail from '@sendgrid/mail';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 
+import { UserService } from '../../../services/UserService';
+
 const { SENDGRID_EMAIL } = process.env;
-
-interface SocialUserInput {
-  socialId: string;
-  authType: AuthType;
-  name: string;
-  email: string;
-  birthday?: Date;
-  gender?: Gender;
-  phone?: string;
-}
-
-export const signInWithSocialAccount = async (
-  socialUser: SocialUserInput,
-  ctx: Context,
-): Promise<NexusGenRootTypes['AuthPayload']> => {
-  if (socialUser.email) {
-    // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
-    const emailUser = await ctx.prisma.user.findMany({
-      where: {
-        email: socialUser.email,
-        profile: {
-          socialId: {
-            not: socialUser.socialId,
-          },
-        },
-      },
-      take: 1,
-    });
-    if (emailUser.length) {
-      throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
-    }
-  }
-
-  // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
-  let user: NexusGenRootTypes['User'];
-  const users = await ctx.prisma.user.findMany({
-    where: {
-      email: socialUser.email,
-      profile: {
-        socialId: socialUser.socialId,
-      },
-    },
-    take: 1,
-  });
-
-  if (!users.length) {
-    user = await ctx.prisma.user.create({
-      data: {
-        profile: {
-          create: {
-            socialId: socialUser.socialId,
-            authType: socialUser.authType,
-          },
-        },
-        email: socialUser.email,
-        name: socialUser.name,
-        birthday: socialUser.birthday,
-        gender: socialUser.gender,
-        phone: socialUser.phone,
-        verified: true,
-      },
-    });
-  } else {
-    user = users[0];
-  }
-
-  ctx.pubsub.publish(USER_SIGNED_IN, user);
-
-  const updatedUser = await ctx.prisma.user.update({
-    where: {
-      email: user.email,
-    },
-    data: { lastSignedIn: new Date().toISOString() },
-  });
-
-  return {
-    token: sign({ userId: user.id }, ctx.appSecret),
-    user: updatedUser,
-  };
-};
 
 export const UserInputType = inputObjectType({
   name: 'UserCreateInput',
@@ -218,7 +136,7 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
   resolve: async (_parent, { accessToken }, ctx) => {
     const { id: facebookId, name, email } = await verifyFacebookId(accessToken);
 
-    return signInWithSocialAccount(
+    return UserService.signInWithSocialAccount(
       {
         socialId: facebookId,
         authType: AuthType.facebook,
@@ -238,7 +156,7 @@ export const signInWithApple = mutationField('signInWithApple', {
   resolve: async (_parent, { accessToken }, ctx) => {
     const { sub, email } = await verifyAppleId(accessToken);
 
-    return signInWithSocialAccount(
+    return UserService.signInWithSocialAccount(
       {
         socialId: sub,
         authType: AuthType.apple,
@@ -258,7 +176,7 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
   resolve: async (_parent, { accessToken }, ctx) => {
     const { sub, email, name = '' } = await verifyGoogleId(accessToken);
 
-    return signInWithSocialAccount(
+    return UserService.signInWithSocialAccount(
       {
         socialId: sub,
         authType: AuthType.google,
