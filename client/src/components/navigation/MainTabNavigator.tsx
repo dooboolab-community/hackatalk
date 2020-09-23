@@ -35,6 +35,7 @@ const CustomHeader = (): ReactElement => {
   const navigation = useNavigation();
 
   return (
+    // @ts-ignore
     <LinearGradient
       style={{
         paddingTop: Platform.select({

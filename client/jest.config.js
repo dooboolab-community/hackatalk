@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const expoPreset = require('jest-expo/jest-preset');
-const jestPreset = require('@testing-library/react-native/jest-preset');
+// const jestPreset = require('@testing-library/react-native/jest-preset');
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {

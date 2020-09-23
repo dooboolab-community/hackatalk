@@ -131,6 +131,7 @@ const UsersFragment: FC<UserProps> = ({
   const users = data?.users?.edges || [];
 
   return (
+    // @ts-ignore
     <StyledAnimatedFlatList
       testID="animated-flatlist"
       style={{
