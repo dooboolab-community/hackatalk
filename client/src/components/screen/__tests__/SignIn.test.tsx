@@ -2,13 +2,12 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 
 import React, { ReactElement } from 'react';
 import {
-  RenderResult,
+  RenderAPI,
   act,
   cleanup,
   fireEvent,
   render,
-  wait,
-  waitForElement,
+  waitFor,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -27,11 +26,12 @@ fetchMock.mockResponse(JSON.stringify({ id: 1 }));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
-let testingLib: RenderResult;
+let testingLib: RenderAPI;
 
 describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
+
     component = createTestElement(
       <SignIn {...props}/>,
     );
@@ -41,9 +41,12 @@ describe('[SignIn] rendering test', () => {
     component = createTestElement(
       <SignIn {...props}/>,
     );
+
     testingLib = render(component);
 
-    expect(testingLib.baseElement).toMatchSnapshot();
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
   it('should render [Dark] mode without crashing', () => {
@@ -51,25 +54,31 @@ describe('[SignIn] rendering test', () => {
       <SignIn {...props}/>,
       ThemeType.DARK,
     );
+
     testingLib = render(component);
-    expect(testingLib.baseElement).toBeTruthy();
-    // expect(testingLib.baseElement).toMatchSnapshot();
+
+    const json = testingLib.toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[SignIn] interaction', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     props = createTestProps();
+
     component = createTestElement(
       <SignIn {...props}/>,
     );
+
     testingLib = render(component);
   });
 
   it('should change theme when icon is pressed', async () => {
     const themeTouch = testingLib.getByTestId('theme-test');
 
-    await waitForElement(() => themeTouch);
+    await waitFor(() => themeTouch);
 
     act(() => {
       fireEvent.press(themeTouch);
@@ -78,7 +87,8 @@ describe('[SignIn] interaction', () => {
 
   it('should invoke changeText event handler when email changed ', async () => {
     const textInput = testingLib.getByTestId('input-email');
-    await waitForElement(() => textInput);
+
+    await waitFor(() => textInput);
 
     act(() => {
       fireEvent.changeText(textInput, 'email@email.com');
@@ -89,89 +99,110 @@ describe('[SignIn] interaction', () => {
 
   it('should invoke changeText event handler when password changed ', async () => {
     testingLib = render(component);
+
     const textInput = testingLib.getByTestId('input-password');
-    await waitForElement(() => textInput);
+
+    await waitFor(() => textInput);
 
     act(() => {
       fireEvent.changeText(textInput, 'pw test');
     });
+
     expect(textInput.props.value).toEqual('pw test');
   });
 
   it('should simulate signUp button has clicked', async () => {
     const btnSignUp = testingLib.getByTestId('btn-sign-up');
-    await waitForElement(() => btnSignUp);
+
+    await waitFor(() => btnSignUp);
+
     act(() => {
       fireEvent.press(btnSignUp);
     });
+
     expect(props.navigation.navigate).toHaveBeenCalledWith('SignUp');
   });
 
   it('should navigate to [FindPw] when button has pressed', async () => {
     const findPwBtn = testingLib.getByTestId('btn-find-pw');
-    await waitForElement(() => findPwBtn);
+
+    await waitFor(() => findPwBtn);
+
     act(() => {
       fireEvent.press(findPwBtn);
     });
+
     expect(props.navigation.navigate).toHaveBeenCalledWith('FindPw');
   });
 
   it('should navigate to [WebView] when terms has been pressed', async () => {
     const btnTerms = testingLib.getByTestId('btn-terms');
-    await waitForElement(() => btnTerms);
+
+    await waitFor(() => btnTerms);
+
     act(() => {
       fireEvent.press(btnTerms);
     });
+
     expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/termsofservice' });
   });
 
   it('should navigate to [WebView] when terms has been pressed', async () => {
     const btnPrivary = testingLib.getByTestId('btn-privacy');
-    await waitForElement(() => btnPrivary);
+
+    await waitFor(() => btnPrivary);
+
     act(() => {
       fireEvent.press(btnPrivary);
     });
+
     expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/privacyandpolicy' });
   });
 
   describe('onSignIn', () => {
-    beforeAll(() => {
+    beforeEach(() => {
       testingLib = render(component);
     });
 
     it('should call signIn when button has clicked and ask to validate email', async () => {
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await waitForElement(() => btnSignIn);
+
+      await waitFor(() => btnSignIn);
 
       act(() => {
         fireEvent.press(btnSignIn);
       });
 
       const errorText = testingLib.getByTestId('error-email');
-      await act(() => wait());
+
       expect(errorText).toBeTruthy();
     });
 
     it('should call signIn when button has clicked and ask to validate password', async () => {
       const textInput = testingLib.getByTestId('input-email');
-      await waitForElement(() => textInput);
+
+      await waitFor(() => textInput);
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await waitForElement(() => btnSignIn);
+
+      await waitFor(() => btnSignIn);
+
       act(() => {
         fireEvent.press(btnSignIn);
       });
+
       const errorText = testingLib.getByTestId('error-password');
-      await act(() => wait());
+
       expect(errorText).toBeTruthy();
     });
 
     it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+
       jest
         .spyOn(AuthContext, 'useAuthContext')
         .mockImplementation(() => ({
@@ -187,27 +218,31 @@ describe('[SignIn] interaction', () => {
         }));
 
       const textInput = testingLib.getByTestId('input-email');
-      await waitForElement(() => textInput);
+
+      await waitFor(() => textInput);
 
       act(() => {
         fireEvent.changeText(textInput, 'test@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
-      await waitForElement(() => passwordInput);
+
+      await waitFor(() => passwordInput);
 
       act(() => {
         fireEvent.changeText(passwordInput, 'password');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await waitForElement(() => btnSignIn);
+
+      await waitFor(() => btnSignIn);
 
       act(() => {
         fireEvent.press(btnSignIn);
       });
 
       const operation = environment.mock.getMostRecentOperation();
+
       environment.mock.resolve(
         operation,
         MockPayloadGenerator.generate(operation),
@@ -218,27 +253,32 @@ describe('[SignIn] interaction', () => {
       props = createTestProps({
         navigation: null,
       });
+
       component = createTestElement(
         <SignIn {...props}/>,
       );
+
       testingLib = render(component);
 
       const textInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(textInput).toBeTruthy());
+
+      await waitFor(() => expect(textInput).toBeTruthy());
 
       act(() => {
         fireEvent.changeText(textInput, 'invalid@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(passwordInput).toBeTruthy());
+
+      await waitFor(() => expect(passwordInput).toBeTruthy());
 
       act(() => {
         fireEvent.changeText(passwordInput, 'password');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await wait(() => expect(btnSignIn).toBeTruthy());
+
+      await waitFor(() => expect(btnSignIn).toBeTruthy());
 
       act(() => {
         fireEvent.press(btnSignIn);
@@ -249,6 +289,7 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn with and get `!user.verified`', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+
       jest
         .spyOn(AuthContext, 'useAuthContext')
         .mockImplementation(() => ({
@@ -264,21 +305,24 @@ describe('[SignIn] interaction', () => {
         }));
 
       const textInput = testingLib.getByTestId('input-email');
-      await waitForElement(() => textInput);
+
+      await waitFor(() => textInput);
 
       act(() => {
         fireEvent.changeText(textInput, 'test@email.com');
       });
 
       const passwordInput = testingLib.getByTestId('input-password');
-      await waitForElement(() => passwordInput);
+
+      await waitFor(() => passwordInput);
 
       act(() => {
         fireEvent.changeText(passwordInput, 'password');
       });
 
       const btnSignIn = testingLib.getByTestId('btn-sign-in');
-      await waitForElement(() => btnSignIn);
+
+      await waitFor(() => btnSignIn);
 
       act(() => {
         fireEvent.press(btnSignIn);
@@ -293,7 +337,7 @@ describe('[SignIn] interaction', () => {
     const btnApple = testingLib.getByTestId('btn-apple');
 
     await act(async () => {
-      await wait(() => expect(btnApple).toBeTruthy());
+      await waitFor(() => expect(btnApple).toBeTruthy());
       fireEvent.press(btnApple);
     });
   });
@@ -305,13 +349,15 @@ describe('[SignIn] interaction', () => {
 });
 
 describe('Apple SignIn', () => {
-  let testingLib: RenderResult;
+  let testingLib: RenderAPI;
 
   beforeAll(() => {
     props = createTestProps();
+
     component = createTestElement(
       <SignIn {...props}/>,
     );
+
     testingLib = render(component);
   });
 
@@ -328,6 +374,7 @@ describe('Apple SignIn', () => {
     jest.spyOn(AppleAuthentication, 'isAvailableAsync').mockImplementation(
       () => Promise.resolve(false),
     );
+
     return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeFalsy();
   });
 
@@ -335,7 +382,8 @@ describe('Apple SignIn', () => {
     testingLib = render(component);
 
     const btnApple = testingLib.queryByTestId('btn-apple');
-    await wait(() => expect(btnApple).toBeTruthy());
+
+    await waitFor(() => expect(btnApple).toBeTruthy());
 
     act(() => {
       fireEvent.press(btnApple);

@@ -33,7 +33,6 @@ module.exports = {
   },
   setupFiles: [
     ...expoPreset.setupFiles,
-    '<rootDir>/test/jestSetup.js',
     '<rootDir>/test/jestSetup.ts',
   ],
   setupFilesAfterEnv: [
