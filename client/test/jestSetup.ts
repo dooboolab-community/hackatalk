@@ -5,6 +5,7 @@ import mockAsyncStorage from '@react-native-community/async-storage/jest/async-s
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
 const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock & typeof globalThis;
+
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
@@ -16,6 +17,14 @@ jest.mock('@react-navigation/core', () => {
       setOptions: jest.fn(),
     }),
   };
+});
+
+jest.mock('react-native-reanimated', () => {
+  const Reanimated = jest.requireActual('react-native-reanimated');
+
+  Reanimated.default.call = () => {};
+
+  return Reanimated;
 });
 
 jest.mock('expo-constants', () => ({
