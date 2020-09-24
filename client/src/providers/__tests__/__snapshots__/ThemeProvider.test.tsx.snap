@@ -7,10 +7,34 @@ exports[`[ThemeProvider] rendering test component and snapshot matches 1`] = `
   >
     "LIGHT"
   </Text>
-  <Button
+  <View
+    accessibilityRole="button"
+    accessibilityState={Object {}}
     onPress={[Function]}
     testID="test-button"
-    title="Button"
-  />
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Button
+      </Text>
+    </View>
+  </View>
 </View>
 `;
