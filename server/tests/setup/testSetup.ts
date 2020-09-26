@@ -9,6 +9,10 @@ import { createApp } from '../../src/app';
 import { exec } from 'child_process';
 import express from 'express';
 import { startServer } from '../../src/server';
+import { Headers } from 'cross-fetch';
+
+// @ts-ignore
+global.Headers = global.Headers || Headers;
 
 const prisma = new PrismaClient();
 const port = 4000;
