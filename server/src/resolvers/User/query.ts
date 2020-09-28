@@ -3,7 +3,24 @@ import { queryField, stringArg } from '@nexus/schema';
 import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
-export const usersQueryField = queryField((t) => {
+export const user = queryField('user', {
+  type: 'User',
+  args: { id: stringArg() },
+  description: 'Fetch user profile',
+
+  resolve: (parent, args, ctx) => {
+    const { id } = args;
+
+    return ctx.prisma.user.findOne({
+      where: { id },
+      include: {
+        profile: true,
+      },
+    });
+  },
+});
+
+export const userConnection = queryField((t) => {
   t.connectionField('users', {
     type: 'User',
 
