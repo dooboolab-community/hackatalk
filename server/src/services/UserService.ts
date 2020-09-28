@@ -1,9 +1,10 @@
-import { sign } from 'jsonwebtoken';
+import { AuthType, Gender } from '../models';
+import { ErrorEmailForUserExists, ErrorString } from '../utils/error';
+
 import { Context } from '../context';
 import { NexusGenRootTypes } from '../generated/nexus';
-import { ErrorEmailForUserExists, ErrorString } from '../utils/error';
-import { AuthType, Gender } from '../types/models';
-import { USER_SIGNED_IN } from '../types/resolvers';
+import { USER_SIGNED_IN } from '../resolvers';
+import { sign } from 'jsonwebtoken';
 
 export interface SocialUserInput {
   socialId: string;
@@ -37,7 +38,7 @@ export class UserService {
       token: sign({ userId: user.id }, ctx.appSecret),
       user: updatedUser,
     };
-  };
+  }
 
   private static async validateSocialUser(socialUser: SocialUserInput, ctx: Context) {
     if (socialUser.email) {
@@ -59,7 +60,8 @@ export class UserService {
     }
   }
 
-  private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context): Promise<NexusGenRootTypes['User']> {
+  private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context)
+  : Promise<NexusGenRootTypes['User']> {
     // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
     const users = await ctx.prisma.user.findMany({
       where: {
