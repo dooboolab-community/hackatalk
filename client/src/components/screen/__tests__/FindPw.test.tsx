@@ -2,12 +2,10 @@ import 'react-native';
 
 import React, { ReactElement } from 'react';
 import {
-  RenderResult,
+  RenderAPI,
   act,
   fireEvent,
   render,
-  wait,
-  waitForElement,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -40,9 +38,11 @@ const mockAlert = {
 
 jest.mock('react-native', () => {
   const ReactNative = jest.requireActual('react-native');
+
   Object.defineProperty(ReactNative, 'Alert', {
     get: () => mockAlert,
   });
+
   return ReactNative;
 });
 
@@ -53,23 +53,22 @@ describe('[FindPw] rendering test', () => {
   });
 
   it('should renders as expected', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[FindPw] interaction', () => {
-  let testingLib: RenderResult;
-
   beforeEach(() => {
     props = createTestProps();
     component = createTestElement(<FindPw {...props} />);
-    testingLib = render(component);
   });
 
   it('should invoke changeText event handler when email changed', () => {
-    const textInput = testingLib.getByTestId('input-email');
+    const { getByTestId } = render(component);
+    const textInput = getByTestId('input-email');
 
     act(() => {
       fireEvent.changeText(textInput, 'email@email.com');
@@ -81,20 +80,22 @@ describe('[FindPw] interaction', () => {
   describe('onFindPw', () => {
     beforeAll(() => {
       props = createTestProps();
+
       component = createTestElement(
         <FindPw {...props} />,
       );
-      testingLib = render(component);
     });
 
     it('should show error text when the email is not validated', () => {
-      const textInput = testingLib.getByTestId('input-email');
+      const { getByTestId } = render(component);
+      const textInput = getByTestId('input-email');
 
       act(() => {
         fireEvent.changeText(textInput, 'example');
       });
 
-      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      const btnFindPw = getByTestId('btn-find-pw');
+
       act(() => {
         fireEvent.press(btnFindPw);
       });
@@ -103,13 +104,14 @@ describe('[FindPw] interaction', () => {
     });
 
     it('should call FindPw when button has clicked and navigate to SignIn', () => {
-      const textInput = testingLib.getByTestId('input-email');
+      const { getByTestId } = render(component);
+      const textInput = getByTestId('input-email');
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
-      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      const btnFindPw = getByTestId('btn-find-pw');
 
       act(() => {
         fireEvent.press(btnFindPw);
@@ -123,16 +125,18 @@ describe('[FindPw] interaction', () => {
       props = createTestProps({
         navigation: null,
       });
-      component = createTestElement(<FindPw {...props} />);
-      testingLib = render(component);
 
-      const textInput = testingLib.getByTestId('input-email');
+      component = createTestElement(<FindPw {...props} />);
+
+      const { getByTestId } = render(component);
+
+      const textInput = getByTestId('input-email');
 
       act(() => {
         fireEvent.changeText(textInput, 'email@email.com');
       });
 
-      const btnFindPw = testingLib.getByTestId('btn-find-pw');
+      const btnFindPw = getByTestId('btn-find-pw');
 
       act(() => {
         fireEvent.press(btnFindPw);
