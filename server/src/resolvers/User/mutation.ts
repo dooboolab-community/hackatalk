@@ -9,24 +9,23 @@ import {
   verifyAppleId,
   verifyFacebookId,
   verifyGoogleId,
-} from '../../../utils/auth';
-import { AuthType } from '../../models/Scalar';
+} from '../../utils/auth';
 import {
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
-} from '../../../utils/error';
+} from '../../utils/error';
 import {
   USER_SIGNED_IN,
   USER_UPDATED,
 } from './subscription';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
+import { AuthType } from '../../models/Scalar';
 import SendGridMail from '@sendgrid/mail';
+import { UserService } from '../../services/UserService';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
-
-import { UserService } from '../../../services/UserService';
 
 const { SENDGRID_EMAIL } = process.env;
 

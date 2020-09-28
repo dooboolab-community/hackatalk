@@ -9,10 +9,10 @@ import {
   findChannelWithUserIds,
   findExistingChannel,
   findPrivateChannelWithUserIds,
-} from '../../../services/ChannelService';
+} from '../../services/ChannelService';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils/auth';
+import { getUserId } from '../../utils/auth';
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',

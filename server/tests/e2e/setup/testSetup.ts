@@ -1,15 +1,15 @@
 import ApolloClient from 'apollo-client';
+import { Headers } from 'cross-fetch';
 import { Http2Server } from 'http2';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
 import { PrismaClient } from '@prisma/client';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { WebSocketLink } from 'apollo-link-ws';
-import { createApp } from '../../src/app';
+import { createApp } from '../../../src/app';
 import { exec } from 'child_process';
 import express from 'express';
-import { startServer } from '../../src/server';
-import { Headers } from 'cross-fetch';
+import { startServer } from '../../../src/server';
 
 // @ts-ignore
 global.Headers = global.Headers || Headers;

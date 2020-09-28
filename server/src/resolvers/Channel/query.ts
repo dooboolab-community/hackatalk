@@ -1,7 +1,7 @@
 import { booleanArg, connectionPlugin, queryField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils/auth';
-import { relayToPrismaPagination } from '../../../utils/pagination';
+import { getUserId } from '../../utils/auth';
+import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const channel = queryField('channel', {
   type: 'Channel',

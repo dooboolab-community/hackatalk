@@ -1,5 +1,6 @@
+import * as AuthUtils from '../../../../../src/utils/auth';
+
 import { request } from 'graphql-request';
-import * as AuthUtils from '../../../../src/utils/auth';
 import { signInWithApple } from '../../../setup/queries';
 import { testHost } from '../../../setup/testSetup';
 
@@ -23,5 +24,4 @@ describe('signInWithApple', () => {
     expect(response.signInWithApple).toHaveProperty('user');
     expect(response.signInWithApple.user.email).toEqual('apple@email.com');
   });
-
 });

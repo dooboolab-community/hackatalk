@@ -1,7 +1,7 @@
 import { queryField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils/auth';
-import { relayToPrismaPagination } from '../../../utils/pagination';
+import { getUserId } from '../../utils/auth';
+import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const usersQueryField = queryField((t) => {
   t.connectionField('users', {

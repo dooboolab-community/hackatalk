@@ -1,7 +1,7 @@
-import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../../services/NotificationService';
+import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../services/NotificationService';
 import { arg, mutationField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils/auth';
+import { getUserId } from '../../utils/auth';
 
 export const createMessage = mutationField('createMessage', {
   type: 'Message',

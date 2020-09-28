@@ -1,7 +1,7 @@
 import { booleanArg, objectType } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
-import { relayToPrismaPagination } from '../../utils/pagination';
+import { getUserId } from '../utils/auth';
+import { relayToPrismaPagination } from '../utils/pagination';
 
 export const Channel = objectType({
   name: 'Channel',

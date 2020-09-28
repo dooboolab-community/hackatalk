@@ -1,5 +1,6 @@
+import * as AuthUtils from '../../../../../src/utils/auth';
+
 import { request } from 'graphql-request';
-import * as AuthUtils from '../../../../src/utils/auth';
 import { signInWithGoogle } from '../../../setup/queries';
 import { testHost } from '../../../setup/testSetup';
 

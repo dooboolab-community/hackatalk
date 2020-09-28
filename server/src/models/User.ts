@@ -1,7 +1,7 @@
-import { NexusGenRootTypes } from '../../generated/nexus';
+import { NexusGenRootTypes } from '../generated/nexus';
 import { objectType } from '@nexus/schema';
-import { prisma } from '../../context';
-import { relayToPrismaPagination } from '../../utils/pagination';
+import { prisma } from '../context';
+import { relayToPrismaPagination } from '../utils/pagination';
 
 export const Profile = objectType({
   name: 'Profile',

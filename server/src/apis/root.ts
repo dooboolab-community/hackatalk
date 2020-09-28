@@ -2,7 +2,7 @@ import {
   encryptCredential,
   getToken,
 } from '../utils/auth';
-import { resetPassword, verifyEmail } from '../types/models/User';
+import { resetPassword, verifyEmail } from '../models/User';
 
 import { Router } from 'express';
 import fs from 'fs';

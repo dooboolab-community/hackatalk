@@ -1,6 +1,6 @@
 import { mutationField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../../utils/auth';
+import { getUserId } from '../../utils/auth';
 
 export const addFriend = mutationField('addFriend', {
   type: 'Friend',

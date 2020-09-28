@@ -1,6 +1,6 @@
 import { mutationField, stringArg } from '@nexus/schema';
 
-import { uploadFileToAzureBlobFromStream } from '../../../utils/azure';
+import { uploadFileToAzureBlobFromStream } from '../../utils/azure';
 
 export const singleUpload = mutationField('singleUpload', {
   type: 'String',
