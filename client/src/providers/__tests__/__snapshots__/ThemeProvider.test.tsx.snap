@@ -10,7 +10,20 @@ exports[`[ThemeProvider] rendering test component and snapshot matches 1`] = `
   <View
     accessibilityRole="button"
     accessibilityState={Object {}}
-    onPress={[Function]}
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
     testID="test-button"
   >
     <View
