@@ -2,19 +2,295 @@
 
 exports[`[Channel] screen renders without crashing 1`] = `
 <View
-  pointerEvents="box-none"
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
   }
 >
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
+  <RCTScrollView
+    ListEmptyComponent={
+      <Shared
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "flex": 1,
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        Start a Chat
+      </Shared>
+    }
+    ListFooterComponent={
+      <View
+        style={
+          Object {
+            "height": 60,
+          }
+        }
+      />
+    }
+    contentContainerStyle={null}
+    data={
+      Array [
+        Object {
+          "cursor": "<mock-value-for-field-\\"cursor\\">",
+          "node": Object {
+            "__typename": "Channel",
+            "channelType": "private",
+            "id": "user-1",
+            "lastMessage": Object {
+              "createdAt": "<mock-value-for-field-\\"createdAt\\">",
+              "fileUrls": "<mock-value-for-field-\\"fileUrls\\">",
+              "imageUrls": "<mock-value-for-field-\\"imageUrls\\">",
+              "messageType": "<mock-value-for-field-\\"messageType\\">",
+              "text": "<mock-value-for-field-\\"text\\">",
+            },
+            "memberships": Array [
+              Object {
+                "user": Object {
+                  "name": "<mock-value-for-field-\\"name\\">",
+                  "nickname": "<mock-value-for-field-\\"nickname\\">",
+                  "photoURL": "<mock-value-for-field-\\"photoURL\\">",
+                  "thumbURL": "<mock-value-for-field-\\"thumbURL\\">",
+                },
+              },
+            ],
+            "name": "HackaTalk",
+          },
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={0.1}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
     style={
       Object {
-        "flex": 1,
+        "alignSelf": "stretch",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="list-item-0"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#ffffff",
+                    "borderBottomWidth": 1,
+                    "borderColor": "rgb(229, 229, 229)",
+                    "flexDirection": "row",
+                    "height": 92,
+                    "justifyContent": "space-between",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 20,
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "<mock-value-for-field-\\"thumbURL\\">",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "borderRadius": 20,
+                        "height": 40,
+                        "width": 40,
+                      },
+                    ]
+                  }
+                />
+                <View />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexDirection": "column",
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "paddingRight": 20,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#151A25",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                        },
+                      ]
+                    }
+                  >
+                    &lt;mock-value-for-field-"nickname"&gt;
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "marginTop": 8,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    lastMessageCnt={0}
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#151A25",
+                          "fontSize": 12,
+                          "maxWidth": 150,
+                        },
+                      ]
+                    }
+                  >
+                    &lt;mock-value-for-field-"text"&gt;
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "#1E6EFA",
+                          "fontSize": 12,
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                  >
+                    Invalid date
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "bottom": 44,
+        "opacity": 1,
+        "position": "absolute",
+        "right": 20,
       }
     }
   >
@@ -23,455 +299,18 @@ exports[`[Channel] screen renders without crashing 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexDirection": "column",
-            "flexGrow": 1,
-            "flexShrink": 1,
+            "backgroundColor": "#1E6EFA",
+            "borderRadius": 28,
+            "height": 56,
             "justifyContent": "center",
+            "width": 56,
           },
         ]
       }
     >
-      <ScrollView
-        ListEmptyComponent={
-          <Shared
-            style={
-              Object {
-                "alignItems": "center",
-                "alignSelf": "stretch",
-                "flex": 1,
-                "justifyContent": "center",
-                "width": "100%",
-              }
-            }
-          >
-            No content
-          </Shared>
-        }
-        contentContainerStyle={null}
-        data={
-          Array [
-            Object {
-              "id": "room1",
-              "lastMessage": Object {
-                "created": "2020-01-01 12:00",
-                "id": "id_3",
-                "message": "How are you doing?",
-                "messageType": 0,
-                "sender": Object {
-                  "id": "uid_3",
-                  "isOnline": false,
-                  "nickname": "displayName3",
-                  "photoURL": "",
-                  "statusMessage": "",
-                  "thumbURL": "",
-                },
-                "updated": "2020-01-01 12:00",
-              },
-              "lastMessageCnt": 3,
-            },
-            Object {
-              "id": "room2",
-              "lastMessage": Object {
-                "created": "2020-01-01 12:00",
-                "id": "id_3",
-                "message": "Hi. This is student from react-native-seoul. Nice to meet you.",
-                "messageType": 0,
-                "sender": Object {
-                  "id": "uid_3",
-                  "isOnline": false,
-                  "nickname": "Byun8585",
-                  "photoURL": "",
-                  "statusMessage": "",
-                  "thumbURL": "",
-                },
-                "updated": "2020-01-01 12:00",
-              },
-              "lastMessageCnt": 0,
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        onEndReachedThreshold={2}
-        removeClippedSubviews={false}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={Array []}
-        style={
-          Object {
-            "alignSelf": "stretch",
-          }
-        }
-        updateCellsBatchingPeriod={50}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <View
-              activeOpacity={0.5}
-              testID="list-item-0"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "rgb(229, 229, 229)",
-                      "flexDirection": "row",
-                      "height": 92,
-                      "justifyContent": "space-between",
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "marginHorizontal": 20,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 40,
-                        "justifyContent": "center",
-                        "width": 40,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "canInstrument": true,
-                          "createTransformer": [Function],
-                          "getCacheKey": [Function],
-                          "process": [Function],
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 20,
-                            "height": 40,
-                            "width": 40,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flexBasis": 0,
-                        "flexDirection": "column",
-                        "flexGrow": 1,
-                        "flexShrink": 1,
-                        "paddingRight": 20,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "space-between",
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#151A25",
-                            "fontSize": 14,
-                            "fontWeight": "bold",
-                          },
-                        ]
-                      }
-                    >
-                      displayName3
-                    </Text>
-                    <View
-                      style={
-                        Array [
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "#00D4AB",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "width": 16,
-                          },
-                        ]
-                      }
-                    >
-                      <Text
-                        style={
-                          Array [
-                            Object {
-                              "color": "#1E6EFA",
-                              "fontSize": 10,
-                            },
-                          ]
-                        }
-                      >
-                        3
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "space-between",
-                          "marginTop": 8,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      lastMessageCnt={3}
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#151A25",
-                            "fontSize": 12,
-                            "fontWeight": "bold",
-                            "maxWidth": 150,
-                          },
-                        ]
-                      }
-                    >
-                      How are you doing?
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#1E6EFA",
-                            "fontSize": 12,
-                            "textAlign": "right",
-                          },
-                        ]
-                      }
-                    >
-                      8 months ago
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <View
-              activeOpacity={0.5}
-              testID="list-item-1"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#ffffff",
-                      "borderBottomWidth": 1,
-                      "borderColor": "rgb(229, 229, 229)",
-                      "flexDirection": "row",
-                      "height": 92,
-                      "justifyContent": "space-between",
-                    },
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "marginHorizontal": 20,
-                    }
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "height": 40,
-                        "justifyContent": "center",
-                        "width": 40,
-                      }
-                    }
-                  >
-                    <Image
-                      source={
-                        Object {
-                          "canInstrument": true,
-                          "createTransformer": [Function],
-                          "getCacheKey": [Function],
-                          "process": [Function],
-                        }
-                      }
-                      style={
-                        Array [
-                          Object {
-                            "borderRadius": 20,
-                            "height": 40,
-                            "width": 40,
-                          },
-                        ]
-                      }
-                    />
-                  </View>
-                  <View />
-                </View>
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flexBasis": 0,
-                        "flexDirection": "column",
-                        "flexGrow": 1,
-                        "flexShrink": 1,
-                        "paddingRight": 20,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "space-between",
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#151A25",
-                            "fontSize": 14,
-                            "fontWeight": "bold",
-                          },
-                        ]
-                      }
-                    >
-                      Byun8585
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "space-between",
-                          "marginTop": 8,
-                        },
-                      ]
-                    }
-                  >
-                    <Text
-                      lastMessageCnt={0}
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#151A25",
-                            "fontSize": 12,
-                            "maxWidth": 150,
-                          },
-                        ]
-                      }
-                    >
-                      Hi. This is student from react-native-seoul. Nice to meet you.
-                    </Text>
-                    <Text
-                      style={
-                        Array [
-                          Object {
-                            "color": "#1E6EFA",
-                            "fontSize": 12,
-                            "textAlign": "right",
-                          },
-                        ]
-                      }
-                    >
-                      8 months ago
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
-      <View
-        activeOpacity={0.65}
-        style={
-          Object {
-            "bottom": 44,
-            "position": "absolute",
-            "right": 20,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#1E6EFA",
-                "borderRadius": 28,
-                "height": 56,
-                "justifyContent": "center",
-                "width": 56,
-              },
-            ]
-          }
-        >
-          <SvgMock
-            fill="#ffffff"
-          />
-        </View>
-      </View>
+      <SvgMock
+        fill="#ffffff"
+      />
     </View>
   </View>
 </View>
