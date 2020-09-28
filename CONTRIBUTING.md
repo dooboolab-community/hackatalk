@@ -1,8 +1,5 @@
 ## Contribution Guide (@copyright by dooboolab)
 
-> Followed by `dooboolab.com`'s [CONTRIBUTING GUILDE](https://github.com/dooboolab/dooboolab.com/edit/master/contributing.md)
-> @copyright by dooboolab
-
 **We prefer you to use [vscode](https://code.visualstudio.com)**
 
 ## Server
