@@ -3,7 +3,6 @@ import 'react-native';
 import * as React from 'react';
 
 import {
-  RenderResult,
   cleanup,
   fireEvent,
   render,
@@ -38,6 +37,7 @@ let props = {
   onPressPeerImage: jest.fn(),
   testID: 'chat-list-item0',
 };
+
 let component: React.ReactElement;
 
 describe('[MessageListItem] rendering test', () => {
@@ -49,32 +49,35 @@ describe('[MessageListItem] rendering test', () => {
   afterAll(() => cleanup());
 
   it('renders [peerMessage] as expected', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = render(component);
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 
   it('renders [peerMessage] with URL as expected', () => {
     props.item.sender.photoURL = 'https://';
     component = createTestElement(<MessageListItem {...props} />);
-    const { baseElement } = render(component);
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[MessageListItem] interaction', () => {
-  let testingLib: RenderResult;
   let component;
 
   beforeEach(() => {
     props = createTestProps(props);
     component = createTestElement(<MessageListItem {...props} />);
-    testingLib = render(component);
   });
 
   it('should fireEvent when peer image is pressed', () => {
-    const touchPeerImage = testingLib.getByTestId(props.testID);
+    const { getByTestId } = render(component);
+    const touchPeerImage = getByTestId(props.testID);
+
     fireEvent.press(touchPeerImage);
     expect(props.onPressPeerImage).toHaveBeenCalledTimes(1);
   });
