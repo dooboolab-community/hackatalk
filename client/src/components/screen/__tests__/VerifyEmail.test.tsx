@@ -1,17 +1,33 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
-import { RenderResult, act, fireEvent, render, wait } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { MockPayloadGenerator, createMockEnvironment } from 'relay-test-utils';
+import { act, fireEvent, render } from '@testing-library/react-native';
+import { dark, light } from '../../../theme';
 
-import { MockPayloadGenerator } from 'relay-test-utils';
-import Screen from '../VerifyEmail';
-import { environment } from '../../../providers';
+import React from 'react';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { ThemeProvider } from '@dooboo-ui/theme';
+import VerifyEmail from '../VerifyEmail';
+import { createTestProps } from '../../../../test/testUtils';
+
+const environment = createMockEnvironment();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-let testingLib: RenderResult;
+const props = createTestProps({
+  route: {
+    params: {
+      email: 'test@email.com',
+    },
+  },
+});
+
+const component = (
+  <RelayEnvironmentProvider environment={environment}>
+    <ThemeProvider customTheme={{ light, dark }}>
+      <VerifyEmail {...props} />
+    </ThemeProvider>
+  </RelayEnvironmentProvider>
+);
 
 // const mockSendVerification = [
 //   {
@@ -30,50 +46,27 @@ let testingLib: RenderResult;
 // ];
 
 describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          email: 'test@email.com',
-        },
-      },
-    });
-    component = createTestElement(
-      <Screen {...props} />,
-    );
-    testingLib = render(component);
-  });
-
   it('renders without crashing', () => {
-    const { baseElement } = testingLib;
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('Interaction', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          email: 'test@email.com',
-        },
-      },
-    });
-    component = createTestElement(
-      <Screen {...props} />,
-    );
-    testingLib = render(component);
-  });
-
   it('should simulate email button press', async () => {
-    const btn = testingLib.queryByTestId('btn-next');
-    act(() => {
+    const { getByTestId } = render(component);
+    const btn = getByTestId('btn-next');
+
+    await act(() => {
       fireEvent.press(btn);
     });
-    await act(() => wait());
 
     const operation = environment.mock.getMostRecentOperation();
+
+    expect(operation).toBeTruthy();
+
     environment.mock.resolve(
       operation,
       MockPayloadGenerator.generate(operation),
