@@ -4,7 +4,7 @@ import cors from 'cors';
 import ejs from 'ejs';
 import express from 'express';
 import i18next from 'i18next';
-import middleware from 'i18next-express-middleware';
+import middleware from 'i18next-http-middleware';
 import path from 'path';
 
 // eslint-disable-next-line
