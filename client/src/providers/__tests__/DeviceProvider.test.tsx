@@ -3,10 +3,11 @@ import * as React from 'react';
 
 import { Button, View } from 'react-native';
 import { DeviceProvider, useDeviceContext } from '../DeviceProvider';
-import { RenderResult, act, fireEvent, render } from '@testing-library/react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 
 const FakeChild = (): React.ReactElement => {
   const { setDeviceType } = useDeviceContext();
+
   return (
     <View>
       <Button
@@ -26,12 +27,12 @@ describe('Rendering', () => {
       <FakeChild />
     </DeviceProvider>
   );
-  const testingLib: RenderResult = render(component);
 
   it('component and snapshot matches', () => {
-    const { baseElement } = testingLib;
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
@@ -42,8 +43,11 @@ describe('Interactions', () => {
         <FakeChild />
       </DeviceProvider>,
     );
+
     act(() => {
       fireEvent.press(getByTestId('BUTTON'));
     });
+
+    // TODO: Check the result of press event.
   });
 });
