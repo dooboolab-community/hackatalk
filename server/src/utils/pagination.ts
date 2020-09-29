@@ -75,6 +75,7 @@ function resolveTake(
     if (first < 0) {
       throw new Error('first can\'t be negative');
     }
+
     return first;
   }
 

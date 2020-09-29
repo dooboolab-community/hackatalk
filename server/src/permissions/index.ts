@@ -5,10 +5,12 @@ import { getUserId } from '../utils/auth';
 const rules = {
   isAuthenticatedUser: rule()((parent, args, context) => {
     const userId = getUserId(context);
+
     return Boolean(userId);
   }),
   isNotificationUser: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context);
+
     const author = await context.prisma.notification
       .findOne({
         where: {
@@ -16,6 +18,7 @@ const rules = {
         },
       })
       .notification();
+
     return userId === author.id;
   }),
 };

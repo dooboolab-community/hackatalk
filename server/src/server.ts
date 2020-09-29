@@ -45,7 +45,9 @@ const initializeApolloServer = (apollo: ApolloServer, app: express.Application):
 export const startServer = async (app: express.Application): Promise<Http2Server> => {
   const httpServer = createHttpServer(app);
   const apollo = createApolloServer();
+
   apollo.installSubscriptionHandlers(httpServer);
+
   const handleApolloServerInitilized = initializeApolloServer(apollo, app);
 
   return httpServer.listen({ port: PORT }, () => {
@@ -55,5 +57,6 @@ export const startServer = async (app: express.Application): Promise<Http2Server
 
 if (process.env.NODE_ENV !== 'test') {
   const app = createApp();
+
   startServer(app);
 }

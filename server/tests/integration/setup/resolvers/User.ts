@@ -33,6 +33,7 @@ export const userResolvers: IResolvers = {
       const user = dataSources.userAPI.signUp(
         signUpUser,
       );
+
       return user;
     },
     signInEmail: (
@@ -43,6 +44,7 @@ export const userResolvers: IResolvers = {
       const signInUser = dataSources.userAPI.signInEmail(
         args,
       );
+
       return signInUser;
     },
 

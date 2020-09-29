@@ -34,10 +34,12 @@ export const createApp = (): express.Application => {
   app.use(cors());
   app.use(middleware.handle(i18next));
   app.use(express.static(filePath));
+
   app.use((req: ReqI18n, res, next) => {
     const {
       JWT_SECRET_ETC,
     } = process.env;
+
     req.appSecretEtc = JWT_SECRET_ETC;
     next();
   });
