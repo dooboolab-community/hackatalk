@@ -34,9 +34,12 @@ const onResetPassword = async (req: ReqI18n, res) => {
 
   try {
     const validated = verifyEmailToken(token, req.appSecretEtc);
+
     if (validated.email && validated.type === 'findPassword') {
       const password = await encryptCredential(randomPassword);
+
       await resetPassword(validated.email, password);
+
       return res.render('password_changed', {
         REDIRECT_URL: 'https://hackatalk.dev',
         title: req.t('PW_CHANGED_TITLE'),
@@ -44,6 +47,7 @@ const onResetPassword = async (req: ReqI18n, res) => {
         SERVICE_CENTER: req.t('SERVICE_CENTER'),
       });
     }
+
     res.send('Error occured. Plesae try again.');
   } catch (err) {
     res.send('Error occured. Plesae try again.');
@@ -55,6 +59,7 @@ const onVerifyEmail = async (req: ReqI18n, res) => {
 
   try {
     const validated = verifyEmailToken(token, req.appSecretEtc);
+
     if (validated.email && validated.type === 'verifyEmail') {
       const user = await prisma.user.findOne({
         where: {
@@ -66,6 +71,7 @@ const onVerifyEmail = async (req: ReqI18n, res) => {
 
       if (alreadyVerified) {
         res.sendStatus(404);
+
         return;
       }
 
@@ -103,12 +109,14 @@ const onUploadSingle = async (req: ReqI18n, res) => {
   if (!token) {
     result.message = 'User has not signed in.';
     result.status = 401;
+
     return res.json(result);
   }
 
   if (!req.file) {
     result.message = 'File is missing.';
     result.status = 400;
+
     return res.json(result);
   }
 
@@ -120,6 +128,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
       req.file.filename,
       dir,
     );
+
     result.status = 200;
     result.message = resultUpload;
     result.url = `${STORAGE_ENDPOINT}/${dir}/${req.file.filename}`;
