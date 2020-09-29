@@ -1,5 +1,5 @@
 import React, { ComponentType, ReactElement } from 'react';
-import { getByTestId, render } from '@testing-library/react-native';
+import { render, within } from '@testing-library/react-native';
 
 import ComponentWrapper from '../ComponentWrapper';
 import { View } from 'react-native';
@@ -17,6 +17,7 @@ describe('ComponentWrapper', () => {
     const Source = createTestView('source');
     const Wrapped = new ComponentWrapper(Source).build();
     const { getByTestId } = render(<Wrapped />);
+
     expect(getByTestId('source')).toBeTruthy();
   });
 
@@ -24,14 +25,17 @@ describe('ComponentWrapper', () => {
     const Innermost = createTestView('innermost');
     const Middle = createTestView('middle');
     const Outermost = createTestView('outermost');
+
     const Wrapped = new ComponentWrapper(Innermost)
       .wrap(Middle, {})
       .wrap(Outermost, {})
       .build();
-    const { container } = render(<Wrapped />);
-    const actualOutermost = getByTestId(container, 'outermost');
-    const actualMiddle = getByTestId(actualOutermost, 'middle');
-    const actualInnermost = getByTestId(actualMiddle, 'innermost');
+
+    const { getByTestId } = render(<Wrapped />);
+    const actualOutermost = getByTestId('outermost');
+    const actualMiddle = within(actualOutermost).getByTestId('middle');
+    const actualInnermost = within(actualMiddle).getByTestId('innermost');
+
     expect(actualOutermost).toBeTruthy();
     expect(actualMiddle).toBeTruthy();
     expect(actualInnermost).toBeTruthy();

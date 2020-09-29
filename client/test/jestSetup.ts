@@ -5,18 +5,17 @@ import mockAsyncStorage from '@react-native-community/async-storage/jest/async-s
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 
 const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock & typeof globalThis;
+
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
-jest.mock('@react-navigation/core', () => {
-  return {
-    ...jest.requireActual('@react-navigation/core'),
-    useNavigation: () => ({
-      navigate: jest.fn(),
-      setOptions: jest.fn(),
-    }),
-  };
-});
+// Mock react-native-reanimated because it depends on native modules
+// which is not available inside testing environment.
+jest.mock('react-native-reanimated', () => jest.requireActual(
+  'react-native-reanimated/mock',
+));
+
+jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 jest.mock('expo-constants', () => ({
   appOwnership: 'expo',
@@ -33,3 +32,24 @@ jest.mock('expo-constants', () => ({
 }));
 
 jest.mock('src/components/shared/SocialSignInButton', () => 'test');
+
+// Mock dooboo-ui because it is causing cyclic reference issue that
+// breaks jest snapshot serializer.
+jest.mock('dooboo-ui', () => {
+  const DoobooUI = jest.requireActual('dooboo-ui');
+  const React = jest.requireActual('react');
+  const ReactNative = jest.requireActual('react-native');
+
+  DoobooUI.Button = jest.fn().mockImplementation(() => 'dooboo-ui-button');
+
+  const ret = {
+    ...DoobooUI,
+    get Button() {
+      return jest.fn().mockImplementation((props) =>
+        React.createElement(ReactNative.TouchableOpacity, props),
+      );
+    },
+  };
+
+  return ret;
+});

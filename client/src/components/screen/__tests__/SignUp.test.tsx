@@ -2,12 +2,10 @@ import 'react-native';
 
 import React, { ReactElement } from 'react';
 import {
-  RenderResult,
-  act,
   cleanup,
   fireEvent,
   render,
-  wait,
+  waitFor,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
@@ -15,9 +13,9 @@ import { MockPayloadGenerator } from 'relay-test-utils';
 import SignUp from '../SignUp';
 import { environment } from '../../../providers';
 
-// eslint-disable-next-line
-let props: any;
-let component: ReactElement;
+const component = createTestElement(
+  <SignUp {...createTestProps()} />,
+);
 
 // const mockSignUpMutation = [
 //   {
@@ -50,292 +48,264 @@ let component: ReactElement;
 // ];
 
 describe('[SignUp] rendering test', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(
-      <SignUp {...props} />,
-    );
-  });
-
   it('renders as expected', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[SignUp] interaction', () => {
-  let testingLib: RenderResult;
-
-  beforeAll(() => {
-    props = createTestProps();
-    component = createTestElement(
-      <SignUp {...props} />,
-    );
-    testingLib = render(component);
-  });
-
   it('should invoke changeText event handler when email changed', async () => {
-    const textInput = testingLib.getByTestId('input-email');
-    await wait(() => expect(textInput).toBeTruthy());
+    const { getByTestId } = render(component);
+    const textInput = getByTestId('input-email');
 
-    act(() => {
-      fireEvent.changeText(textInput, 'email@email.com');
-    });
+    await waitFor(() => expect(textInput).toBeTruthy());
+
+    fireEvent.changeText(textInput, 'email@email.com');
 
     expect(textInput.props.value).toEqual('email@email.com');
   });
 
   it('should invoke changeText event handler when password changed', async () => {
-    testingLib = render(component);
-    const textInput = testingLib.getByTestId('input-password');
-    await wait(() => expect(textInput).toBeTruthy());
+    const { getByTestId } = render(component);
 
-    act(() => {
-      fireEvent.changeText(textInput, 'pw test');
-    });
+    const textInput = getByTestId('input-password');
+
+    await waitFor(() => expect(textInput).toBeTruthy());
+
+    fireEvent.changeText(textInput, 'pw test');
+
     expect(textInput.props.value).toEqual('pw test');
   });
 
   it('should confirm password', async () => {
-    testingLib = render(component);
-    const textInput = testingLib.getByTestId('input-confirm-password');
-    await wait(() => expect(textInput).toBeTruthy());
+    const { getByTestId } = render(component);
 
-    act(() => {
-      fireEvent.changeText(textInput, 'pw test');
-    });
+    const textInput = getByTestId('input-confirm-password');
+
+    await waitFor(() => expect(textInput).toBeTruthy());
+
+    fireEvent.changeText(textInput, 'pw test');
+
     expect(textInput.props.value).toEqual('pw test');
   });
 
   it('should invoke changeText event when name changed', async () => {
-    const textInput = testingLib.getByTestId('input-name');
-    await wait(() => expect(textInput).toBeTruthy());
+    const { getByTestId } = render(component);
+    const textInput = getByTestId('input-name');
 
-    act(() => {
-      fireEvent.changeText(textInput, 'dooboo');
-    });
+    await waitFor(() => expect(textInput).toBeTruthy());
+
+    fireEvent.changeText(textInput, 'dooboo');
 
     expect(textInput.props.value).toEqual('dooboo');
   });
 
   it('should invoke changeText event when status changed', async () => {
-    const textInput = testingLib.getByTestId('input-status');
-    await wait(() => expect(textInput).toBeTruthy());
+    const { getByTestId } = render(component);
+    const textInput = getByTestId('input-status');
 
-    act(() => {
-      fireEvent.changeText(textInput, 'I am good');
-    });
+    await waitFor(() => expect(textInput).toBeTruthy());
+
+    fireEvent.changeText(textInput, 'I am good');
 
     expect(textInput.props.value).toEqual('I am good');
   });
 
   describe('onSignUp', () => {
-    beforeAll(() => {
-      props = createTestProps();
-      component = createTestElement(
-        <SignUp {...props} />,
-      );
-      testingLib = render(component);
-    });
-
     describe('check validation', () => {
-      beforeAll(() => {
-        props = createTestProps();
-        component = createTestElement(
-          <SignUp {...props} />,
-        );
-        testingLib = render(component);
-      });
-
       it('should show error text when the email is not validated', async () => {
-        const emailInput = testingLib.getByTestId('input-email');
-        await wait(() => expect(emailInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(emailInput, 'email@email');
-        });
+        const { getByTestId } = render(component);
+        const emailInput = getByTestId('input-email');
 
-        const passwordInput = testingLib.getByTestId('input-password');
-        await wait(() => expect(emailInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(passwordInput, 'Abc123##');
-        });
+        await waitFor(() => expect(emailInput).toBeTruthy());
 
-        const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-        await wait(() => expect(confirmPasswordInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(confirmPasswordInput, 'Abc123##');
-        });
+        fireEvent.changeText(emailInput, 'email@email');
 
-        const nameInput = testingLib.getByTestId('input-name');
-        await wait(() => expect(nameInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(nameInput, 'dooboo');
-        });
+        const passwordInput = getByTestId('input-password');
 
-        const btnSignUp = testingLib.getByTestId('btn-sign-up');
-        await wait(() => expect(btnSignUp).toBeTruthy());
-        act(() => {
-          fireEvent.press(btnSignUp);
-        });
+        await waitFor(() => expect(emailInput).toBeTruthy());
 
-        const errorText = testingLib.getByTestId('error-email');
-        await wait(() => expect(errorText).toBeTruthy());
+        fireEvent.changeText(passwordInput, 'Abc123##');
+
+        const confirmPasswordInput = getByTestId('input-confirm-password');
+
+        await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+
+        fireEvent.changeText(confirmPasswordInput, 'Abc123##');
+
+        const nameInput = getByTestId('input-name');
+
+        await waitFor(() => expect(nameInput).toBeTruthy());
+
+        fireEvent.changeText(nameInput, 'dooboo');
+
+        const btnSignUp = getByTestId('btn-sign-up');
+
+        await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+        fireEvent.press(btnSignUp);
+
+        const errorText = getByTestId('error-email');
+
+        await waitFor(() => expect(errorText).toBeTruthy());
       });
 
       it('should show error text when the password is not validated', async () => {
-        const emailInput = testingLib.getByTestId('input-email');
-        await wait(() => expect(emailInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(emailInput, 'email@email.com');
-        });
+        const { getByTestId } = render(component);
+        const emailInput = getByTestId('input-email');
 
-        const passwordInput = testingLib.getByTestId('input-password');
-        await wait(() => expect(emailInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(passwordInput, 'Abc');
-        });
+        await waitFor(() => expect(emailInput).toBeTruthy());
 
-        const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-        await wait(() => expect(confirmPasswordInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(confirmPasswordInput, 'Abc');
-        });
+        fireEvent.changeText(emailInput, 'email@email.com');
 
-        const nameInput = testingLib.getByTestId('input-name');
-        await wait(() => expect(nameInput).toBeTruthy());
-        act(() => {
-          fireEvent.changeText(nameInput, 'dooboo');
-        });
+        const passwordInput = getByTestId('input-password');
 
-        const btnSignUp = testingLib.getByTestId('btn-sign-up');
-        await wait(() => expect(btnSignUp).toBeTruthy());
-        act(() => {
-          fireEvent.press(btnSignUp);
-        });
+        await waitFor(() => expect(emailInput).toBeTruthy());
 
-        const errorText = testingLib.getByTestId('error-password');
-        await wait(() => expect(errorText).toBeTruthy());
+        fireEvent.changeText(passwordInput, 'Abc');
+
+        const confirmPasswordInput = getByTestId('input-confirm-password');
+
+        await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+
+        fireEvent.changeText(confirmPasswordInput, 'Abc');
+
+        const nameInput = getByTestId('input-name');
+
+        await waitFor(() => expect(nameInput).toBeTruthy());
+
+        fireEvent.changeText(nameInput, 'dooboo');
+
+        const btnSignUp = getByTestId('btn-sign-up');
+
+        await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+        fireEvent.press(btnSignUp);
+
+        const errorText = getByTestId('error-password');
+
+        await waitFor(() => expect(errorText).toBeTruthy());
       });
     });
 
     it('should show error text when the name is not validated', async () => {
-      const emailInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(emailInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(emailInput, 'email@email.com');
-      });
+      const { getByTestId } = render(component);
+      const emailInput = getByTestId('input-email');
 
-      const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(emailInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(passwordInput, 'Abc123##');
-      });
+      await waitFor(() => expect(emailInput).toBeTruthy());
 
-      const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-      await wait(() => expect(confirmPasswordInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(confirmPasswordInput, 'Abc123##');
-      });
+      fireEvent.changeText(emailInput, 'email@email.com');
 
-      const nameInput = testingLib.getByTestId('input-name');
-      await wait(() => expect(nameInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(nameInput, '');
-      });
+      const passwordInput = getByTestId('input-password');
 
-      const btnSignUp = testingLib.getByTestId('btn-sign-up');
-      await wait(() => expect(btnSignUp).toBeTruthy());
-      act(() => {
-        fireEvent.press(btnSignUp);
-      });
+      await waitFor(() => expect(emailInput).toBeTruthy());
 
-      const errorText = testingLib.getByTestId('error-name');
-      await wait(() => expect(errorText).toBeTruthy());
+      fireEvent.changeText(passwordInput, 'Abc123##');
+
+      const confirmPasswordInput = getByTestId('input-confirm-password');
+
+      await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+
+      fireEvent.changeText(confirmPasswordInput, 'Abc123##');
+
+      const nameInput = getByTestId('input-name');
+
+      await waitFor(() => expect(nameInput).toBeTruthy());
+
+      fireEvent.changeText(nameInput, '');
+
+      const btnSignUp = getByTestId('btn-sign-up');
+
+      await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+      fireEvent.press(btnSignUp);
+
+      const errorText = getByTestId('error-name');
+
+      await waitFor(() => expect(errorText).toBeTruthy());
     });
 
     it('should show error text when the password is not confirmed', async () => {
-      const emailInput = testingLib.getByTestId('input-email');
-      await wait(() => expect(emailInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(emailInput, 'email@email.com');
-      });
+      const { getByTestId } = render(component);
+      const emailInput = getByTestId('input-email');
 
-      const passwordInput = testingLib.getByTestId('input-password');
-      await wait(() => expect(emailInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(passwordInput, 'Abc123##');
-      });
+      await waitFor(() => expect(emailInput).toBeTruthy());
 
-      const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-      await wait(() => expect(confirmPasswordInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(confirmPasswordInput, 'Adjdj123??');
-      });
+      fireEvent.changeText(emailInput, 'email@email.com');
 
-      const nameInput = testingLib.getByTestId('input-name');
-      await wait(() => expect(nameInput).toBeTruthy());
-      act(() => {
-        fireEvent.changeText(nameInput, 'dooboo');
-      });
+      const passwordInput = getByTestId('input-password');
 
-      const btnSignUp = testingLib.getByTestId('btn-sign-up');
-      await wait(() => expect(btnSignUp).toBeTruthy());
-      act(() => {
-        fireEvent.press(btnSignUp);
-      });
+      await waitFor(() => expect(emailInput).toBeTruthy());
 
-      const errorText = testingLib.getByTestId('error-confirm-password');
-      await wait(() => expect(errorText).toBeTruthy());
+      fireEvent.changeText(passwordInput, 'Abc123##');
+
+      const confirmPasswordInput = getByTestId('input-confirm-password');
+
+      await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+
+      fireEvent.changeText(confirmPasswordInput, 'Adjdj123??');
+
+      const nameInput = getByTestId('input-name');
+
+      await waitFor(() => expect(nameInput).toBeTruthy());
+
+      fireEvent.changeText(nameInput, 'dooboo');
+
+      const btnSignUp = getByTestId('btn-sign-up');
+
+      await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+      fireEvent.press(btnSignUp);
+
+      const errorText = getByTestId('error-confirm-password');
+
+      await waitFor(() => expect(errorText).toBeTruthy());
     });
   });
 
   it('should call signUp when button has clicked and navigate to MainStack', async () => {
-    const emailInput = testingLib.getByTestId('input-email');
-    await wait(() => expect(emailInput).toBeTruthy());
+    const { getByTestId } = render(component);
+    const emailInput = getByTestId('input-email');
 
-    act(() => {
-      fireEvent.changeText(emailInput, 'test@email.com');
-    });
+    await waitFor(() => expect(emailInput).toBeTruthy());
 
-    const passwordInput = testingLib.getByTestId('input-password');
-    await wait(() => expect(passwordInput).toBeTruthy());
+    fireEvent.changeText(emailInput, 'test@email.com');
 
-    act(() => {
-      fireEvent.changeText(passwordInput, 'testpass12!');
-    });
+    const passwordInput = getByTestId('input-password');
 
-    const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-    await wait(() => expect(confirmPasswordInput).toBeTruthy());
+    await waitFor(() => expect(passwordInput).toBeTruthy());
 
-    act(() => {
-      fireEvent.changeText(confirmPasswordInput, 'testpass12!');
-    });
+    fireEvent.changeText(passwordInput, 'testpass12!');
 
-    const nameInput = testingLib.getByTestId('input-name');
-    await wait(() => expect(nameInput).toBeTruthy());
+    const confirmPasswordInput = getByTestId('input-confirm-password');
 
-    act(() => {
-      fireEvent.changeText(nameInput, 'name');
-    });
+    await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
 
-    const statusInput = testingLib.getByTestId('input-status');
-    await wait(() => expect(nameInput).toBeTruthy());
+    fireEvent.changeText(confirmPasswordInput, 'testpass12!');
 
-    act(() => {
-      fireEvent.changeText(statusInput, 'status');
-    });
+    const nameInput = getByTestId('input-name');
 
-    const btnSignUp = testingLib.getByTestId('btn-sign-up');
-    await wait(() => expect(btnSignUp).toBeTruthy());
+    await waitFor(() => expect(nameInput).toBeTruthy());
 
-    act(() => {
-      fireEvent.press(btnSignUp);
-    });
+    fireEvent.changeText(nameInput, 'name');
 
-    await act(() => wait());
+    const statusInput = getByTestId('input-status');
+
+    await waitFor(() => expect(nameInput).toBeTruthy());
+
+    fireEvent.changeText(statusInput, 'status');
+
+    const btnSignUp = getByTestId('btn-sign-up');
+
+    await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+    fireEvent.press(btnSignUp);
 
     const operation = environment.mock.getMostRecentOperation();
+
     environment.mock.resolve(
       operation,
       MockPayloadGenerator.generate(operation),
@@ -344,51 +314,43 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should call signUp when the button has clicked and check whether it catches error', async () => {
-    props = createTestProps({
-      navigation: null,
-    });
-    component = createTestElement(
-      <SignUp {...props} />,
+    const component = createTestElement(
+      <SignUp {...createTestProps({
+        navigation: null,
+      })} />,
     );
-    testingLib = render(component);
 
-    const emailInput = testingLib.getByTestId('input-email');
-    await wait(() => expect(emailInput).toBeTruthy());
+    const { getByTestId } = render(component);
 
-    act(() => {
-      fireEvent.changeText(emailInput, 'email@email.com');
-    });
+    const emailInput = getByTestId('input-email');
 
-    const passwordInput = testingLib.getByTestId('input-password');
-    await wait(() => expect(passwordInput).toBeTruthy());
+    await waitFor(() => expect(emailInput).toBeTruthy());
 
-    act(() => {
-      fireEvent.changeText(passwordInput, 'Abc123##');
-    });
+    fireEvent.changeText(emailInput, 'email@email.com');
 
-    const confirmPasswordInput = testingLib.getByTestId('input-confirm-password');
-    await wait(() => expect(confirmPasswordInput).toBeTruthy());
+    const passwordInput = getByTestId('input-password');
 
-    act(() => {
-      fireEvent.changeText(confirmPasswordInput, 'Abc123##');
-    });
+    await waitFor(() => expect(passwordInput).toBeTruthy());
 
-    const nameInput = testingLib.getByTestId('input-name');
-    await wait(() => expect(nameInput).toBeTruthy());
+    fireEvent.changeText(passwordInput, 'Abc123##');
 
-    act(() => {
-      fireEvent.changeText(nameInput, 'dooboo');
-    });
+    const confirmPasswordInput = getByTestId('input-confirm-password');
 
-    const btnSignUp = testingLib.getByTestId('btn-sign-up');
-    await wait(() => expect(btnSignUp).toBeTruthy());
+    await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
 
-    act(() => {
-      fireEvent.press(btnSignUp);
-    });
+    fireEvent.changeText(confirmPasswordInput, 'Abc123##');
 
-    await act(() => wait());
-    expect(props.navigation).toBeNull();
+    const nameInput = getByTestId('input-name');
+
+    await waitFor(() => expect(nameInput).toBeTruthy());
+
+    fireEvent.changeText(nameInput, 'dooboo');
+
+    const btnSignUp = getByTestId('btn-sign-up');
+
+    await waitFor(() => expect(btnSignUp).toBeTruthy());
+
+    fireEvent.press(btnSignUp);
   });
 
   afterAll((done) => {

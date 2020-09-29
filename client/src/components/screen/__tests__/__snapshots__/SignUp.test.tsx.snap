@@ -1,498 +1,470 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[SignUp] rendering test renders as expected 1`] = `
-<View
-  pointerEvents="box-none"
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+    ]
   }
 >
   <View
-    collapsable={true}
-    pointerEvents="box-none"
+    onLayout={[Function]}
     style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
+      Array [
         Array [
           Object {
-            "backgroundColor": "#ffffff",
             "flexBasis": 0,
             "flexGrow": 1,
             "flexShrink": 1,
           },
-        ]
+        ],
+        Object {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <RCTScrollView
+      collapsable={false}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
       }
     >
-      <View
-        style={
-          Array [
+      <View>
+        <View
+          style={
             Array [
               Object {
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
+                "marginBottom": 44,
+                "marginLeft": 44,
+                "marginRight": 44,
+                "marginTop": 44,
               },
-            ],
-            Object {
-              "paddingBottom": 0,
-            },
-          ]
-        }
-      >
-        <ScrollView
-          collapsable={false}
-          style={
-            Object {
-              "alignSelf": "stretch",
-            }
+            ]
           }
         >
           <View
             style={
               Array [
                 Object {
-                  "marginBottom": 44,
-                  "marginLeft": 44,
-                  "marginRight": 44,
-                  "marginTop": 44,
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              Email
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              multiline={false}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="hello@example.com"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "minHeight": 44,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                  Object {
+                    "color": "#151A25",
+                  },
+                ]
+              }
+              testID="input-email"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "width": "100%",
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  false,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              Password
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              multiline={false}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="********"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              secureTextEntry={true}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "minHeight": 44,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                  Object {
+                    "color": "#151A25",
+                  },
+                ]
+              }
+              testID="input-password"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "width": "100%",
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  false,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              Confirm password
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              multiline={false}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="********"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              secureTextEntry={true}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "minHeight": 44,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                  Object {
+                    "color": "#151A25",
+                  },
+                ]
+              }
+              testID="input-confirm-password"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "width": "100%",
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  false,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              Name
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              multiline={false}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="Please write your name"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "minHeight": 44,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                  Object {
+                    "color": "#151A25",
+                  },
+                ]
+              }
+              testID="input-name"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "width": "100%",
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  false,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#b9b9c4",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "marginBottom": 5,
+                  },
+                  undefined,
+                  false,
+                ]
+              }
+            >
+              Status
+            </Text>
+            <TextInput
+              allowFontScaling={true}
+              autoCapitalize="none"
+              multiline={false}
+              onBlur={[Function]}
+              onChangeText={[Function]}
+              onFocus={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="Please write your status message"
+              placeholderTextColor="#676c7a"
+              rejectResponderTermination={true}
+              style={
+                Array [
+                  Object {
+                    "fontSize": 15,
+                    "fontWeight": "500",
+                    "minHeight": 44,
+                    "paddingBottom": 15,
+                    "paddingTop": 15,
+                  },
+                  Object {
+                    "color": "#151A25",
+                  },
+                ]
+              }
+              testID="input-status"
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "width": "100%",
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomWidth": 0.6,
+                    "borderColor": "#2E2E2E",
+                  },
+                  false,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row-reverse",
+                  "marginTop": 32,
+                  "width": "100%",
                 },
               ]
             }
           >
             <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "display": "flex",
-                    "flexDirection": "column",
-                  },
-                ]
+                Object {
+                  "opacity": 1,
+                }
               }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#b9b9c4",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                      "marginBottom": 5,
-                    },
-                    undefined,
-                    false,
-                  ]
-                }
-              >
-                Email
-              </Text>
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                multiline={false}
-                placeholder="hello@example.com"
-                placeholderTextColor="#676c7a"
-                rejectResponderTermination={true}
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 15,
-                      "fontWeight": "500",
-                      "paddingBottom": 15,
-                      "paddingTop": 15,
-                    },
-                    Object {
-                      "color": "#151A25",
-                    },
-                  ]
-                }
-                testID="input-email"
-                underlineColorAndroid="transparent"
-                value=""
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "width": "100%",
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomWidth": 0.6,
-                      "borderColor": "#2E2E2E",
-                    },
-                    false,
-                  ]
-                }
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "display": "flex",
-                    "flexDirection": "column",
-                  },
-                  Object {
-                    "marginTop": 32,
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#b9b9c4",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                      "marginBottom": 5,
-                    },
-                    undefined,
-                    false,
-                  ]
-                }
-              >
-                Password
-              </Text>
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                multiline={false}
-                placeholder="********"
-                placeholderTextColor="#676c7a"
-                rejectResponderTermination={true}
-                secureTextEntry={true}
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 15,
-                      "fontWeight": "500",
-                      "paddingBottom": 15,
-                      "paddingTop": 15,
-                    },
-                    Object {
-                      "color": "#151A25",
-                    },
-                  ]
-                }
-                testID="input-password"
-                underlineColorAndroid="transparent"
-                value=""
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "width": "100%",
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomWidth": 0.6,
-                      "borderColor": "#2E2E2E",
-                    },
-                    false,
-                  ]
-                }
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "display": "flex",
-                    "flexDirection": "column",
-                  },
-                  Object {
-                    "marginTop": 32,
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#b9b9c4",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                      "marginBottom": 5,
-                    },
-                    undefined,
-                    false,
-                  ]
-                }
-              >
-                Confirm password
-              </Text>
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                multiline={false}
-                placeholder="********"
-                placeholderTextColor="#676c7a"
-                rejectResponderTermination={true}
-                secureTextEntry={true}
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 15,
-                      "fontWeight": "500",
-                      "paddingBottom": 15,
-                      "paddingTop": 15,
-                    },
-                    Object {
-                      "color": "#151A25",
-                    },
-                  ]
-                }
-                testID="input-confirm-password"
-                underlineColorAndroid="transparent"
-                value=""
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "width": "100%",
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomWidth": 0.6,
-                      "borderColor": "#2E2E2E",
-                    },
-                    false,
-                  ]
-                }
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "display": "flex",
-                    "flexDirection": "column",
-                  },
-                  Object {
-                    "marginTop": 32,
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#b9b9c4",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                      "marginBottom": 5,
-                    },
-                    undefined,
-                    false,
-                  ]
-                }
-              >
-                Name
-              </Text>
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                multiline={false}
-                placeholder="Please write your name"
-                placeholderTextColor="#676c7a"
-                rejectResponderTermination={true}
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 15,
-                      "fontWeight": "500",
-                      "paddingBottom": 15,
-                      "paddingTop": 15,
-                    },
-                    Object {
-                      "color": "#151A25",
-                    },
-                  ]
-                }
-                testID="input-name"
-                underlineColorAndroid="transparent"
-                value=""
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "width": "100%",
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomWidth": 0.6,
-                      "borderColor": "#2E2E2E",
-                    },
-                    false,
-                  ]
-                }
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "stretch",
-                    "display": "flex",
-                    "flexDirection": "column",
-                  },
-                  Object {
-                    "marginTop": 32,
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#b9b9c4",
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                      "marginBottom": 5,
-                    },
-                    undefined,
-                    false,
-                  ]
-                }
-              >
-                Status
-              </Text>
-              <TextInput
-                allowFontScaling={true}
-                autoCapitalize="none"
-                multiline={false}
-                placeholder="Please write your status message"
-                placeholderTextColor="#676c7a"
-                rejectResponderTermination={true}
-                style={
-                  Array [
-                    Object {
-                      "fontSize": 15,
-                      "fontWeight": "500",
-                      "paddingBottom": 15,
-                      "paddingTop": 15,
-                    },
-                    Object {
-                      "color": "#151A25",
-                    },
-                  ]
-                }
-                testID="input-status"
-                underlineColorAndroid="transparent"
-                value=""
-              />
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "width": "100%",
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomWidth": 0.6,
-                      "borderColor": "#2E2E2E",
-                    },
-                    false,
-                  ]
-                }
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexDirection": "row-reverse",
-                    "marginTop": 32,
-                    "width": "100%",
-                  },
-                ]
-              }
-            >
-              <View
-                delayPressIn={30}
-                style={
-                  Object {
-                    "backgroundColor": "#1E6EFA",
-                    "height": 52,
-                    "width": "50%",
-                  }
-                }
-                testID="btn-sign-up"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "alignSelf": "center",
-                        "borderColor": "blue",
-                        "flexDirection": "row",
-                        "height": 52,
-                        "justifyContent": "center",
-                        "width": 320,
-                      },
-                      Object {
-                        "backgroundColor": "#1E6EFA",
-                        "height": 52,
-                        "width": "50%",
-                      },
-                      undefined,
-                      undefined,
-                      undefined,
-                    ]
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#069ccd",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "color": "#ffffff",
-                          "fontSize": 16,
-                        },
-                      ]
-                    }
-                  >
-                    Sign Up
-                  </Text>
-                </View>
-              </View>
-            </View>
+              testID="btn-sign-up"
+            />
           </View>
-        </ScrollView>
+        </View>
       </View>
-    </SafeAreaView>
+    </RCTScrollView>
   </View>
-</View>
+</RCTSafeAreaView>
 `;

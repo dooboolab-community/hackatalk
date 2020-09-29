@@ -2,222 +2,212 @@
 
 exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] = `
 <View
-  pointerEvents="box-none"
+  isSame={true}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "flex-start",
+        "marginLeft": 20,
+        "marginRight": 8,
+        "marginTop": 8,
+        "minHeight": 48,
+      },
+    ]
   }
 >
   <View
-    collapsable={true}
-    pointerEvents="box-none"
     style={
       Object {
-        "flex": 1,
+        "marginRight": 8,
+        "width": 40,
       }
     }
   >
     <View
-      isSame={true}
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "flex-start",
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-            "marginLeft": 20,
-            "marginRight": 8,
-            "marginTop": 8,
-            "minHeight": 48,
-          },
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="chat-list-item0"
     >
       <View
         style={
           Object {
-            "marginRight": 8,
             "width": 40,
           }
         }
-      >
-        <View
-          testID="chat-list-item0"
-        >
-          <View
-            style={
-              Object {
-                "width": 40,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "maxWidth": "90%",
+      }
+    }
+  >
+    <View />
+    <View
+      style={
+        Array [
           Object {
-            "flexDirection": "column",
-            "maxWidth": "90%",
-          }
+            "backgroundColor": "#e2f2ff",
+            "marginRight": 8,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#151A25",
+              "fontSize": 14,
+            },
+          ]
         }
       >
-        <View />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#e2f2ff",
-                "marginRight": 8,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#151A25",
-                  "fontSize": 14,
-                },
-              ]
-            }
-          >
-            hello1
-          </Text>
-        </View>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "fontSize": 12,
-                "marginRight": 20,
-                "marginTop": 4,
-              },
-            ]
-          }
-        >
-          0 : 0
-        </Text>
-      </View>
+        hello1
+      </Text>
     </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#151A25",
+            "fontSize": 12,
+            "marginRight": 20,
+            "marginTop": 4,
+          },
+        ]
+      }
+    >
+      0 : 0
+    </Text>
   </View>
 </View>
 `;
 
 exports[`[MessageListItem] rendering test renders [peerMessage] with URL as expected 1`] = `
 <View
-  pointerEvents="box-none"
+  isSame={true}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "flex-start",
+        "marginLeft": 20,
+        "marginRight": 8,
+        "marginTop": 8,
+        "minHeight": 48,
+      },
+    ]
   }
 >
   <View
-    collapsable={true}
-    pointerEvents="box-none"
     style={
       Object {
-        "flex": 1,
+        "marginRight": 8,
+        "width": 40,
       }
     }
   >
     <View
-      isSame={true}
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "flex-start",
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-            "marginLeft": 20,
-            "marginRight": 8,
-            "marginTop": 8,
-            "minHeight": 48,
-          },
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="chat-list-item0"
     >
       <View
         style={
           Object {
-            "marginRight": 8,
             "width": 40,
           }
         }
-      >
-        <View
-          testID="chat-list-item0"
-        >
-          <View
-            style={
-              Object {
-                "width": 40,
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "column",
+        "maxWidth": "90%",
+      }
+    }
+  >
+    <View />
+    <View
+      style={
+        Array [
           Object {
-            "flexDirection": "column",
-            "maxWidth": "90%",
-          }
+            "backgroundColor": "#e2f2ff",
+            "marginRight": 8,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12,
+            "paddingTop": 12,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#151A25",
+              "fontSize": 14,
+            },
+          ]
         }
       >
-        <View />
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#e2f2ff",
-                "marginRight": 8,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#151A25",
-                  "fontSize": 14,
-                },
-              ]
-            }
-          >
-            hello1
-          </Text>
-        </View>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#151A25",
-                "fontSize": 12,
-                "marginRight": 20,
-                "marginTop": 4,
-              },
-            ]
-          }
-        >
-          0 : 0
-        </Text>
-      </View>
+        hello1
+      </Text>
     </View>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#151A25",
+            "fontSize": 12,
+            "marginRight": 20,
+            "marginTop": 4,
+          },
+        ]
+      }
+    >
+      0 : 0
+    </Text>
   </View>
 </View>
 `;
