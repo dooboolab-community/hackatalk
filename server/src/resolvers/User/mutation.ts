@@ -35,9 +35,11 @@ export const UserInputType = inputObjectType({
     t.string('email', {
       required: true,
     });
+
     t.string('password', {
       required: true,
     });
+
     t.string('name');
     t.string('nickname');
     t.string('thumbURL');
@@ -72,6 +74,7 @@ export const signUp = mutationField('signUp', {
   resolve: async (_parent, { user }, ctx) => {
     const { name, email, password, gender, photoURL, thumbURL } = user;
     const hashedPassword = await encryptCredential(password);
+
     const created = await ctx.prisma.user.create({
       data: {
         name,
@@ -107,6 +110,7 @@ export const signInEmail = mutationField('signInEmail', {
     }
 
     const passwordValid = await validateCredential(password, user.password);
+
     if (!passwordValid) {
       throw new Error('Invalid password');
     }
@@ -202,15 +206,19 @@ export const sendVerification = mutationField('sendVerification', {
     if (user) {
       const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc, { expiresIn: '10m' });
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
+
       const msg = {
         to: email,
         from: SENDGRID_EMAIL,
         subject: ctx.request.req.t('VERIFICATION_EMAIL_SUBJECT'),
         html,
       };
+
       await SendGridMail.send(msg);
+
       return true;
     }
+
     return false;
   },
 });
@@ -231,6 +239,7 @@ export const updateProfile = mutationField('updateProfile', {
     });
 
     pubsub.publish(USER_UPDATED, updated);
+
     return updated;
   },
 });
@@ -258,8 +267,10 @@ export const findPassword = mutationField('findPassword', {
       subject: ctx.request.req.t('PASSWORD_RESET_EMAIL_SUBJECT'),
       html: getPasswordResetHTML(verificationToken, password, ctx.request.req),
     };
+
     try {
       await SendGridMail.send(msg);
+
       return true;
     } catch (err) {
       throw ErrorEmailSentFailed(err.message);
@@ -275,6 +286,7 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
   },
   resolve: async (_parent, { password, newPassword }, ctx) => {
     const userId = getUserId(ctx);
+
     try {
       const user = await ctx.prisma.user.findOne({
         where: {

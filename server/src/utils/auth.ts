@@ -15,6 +15,7 @@ export const APP_SECRET = JWT_SECRET;
 export const APP_SECRET_ETC = JWT_SECRET_ETC;
 
 const env = process.env.NODE_ENV;
+
 const envPath = env === 'development'
   ? path.resolve(__dirname, '../dotenv/dev.env')
   : env === 'test'
@@ -30,9 +31,11 @@ interface Token {
 
 export function getUserId(context: Context): string {
   const Authorization = context.request.req.get('Authorization');
+
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
     const verifiedToken = verify(token, APP_SECRET) as Token;
+
     return verifiedToken && verifiedToken.userId;
   }
 }
@@ -40,6 +43,7 @@ export function getUserId(context: Context): string {
 export const validateEmail = (email: string): boolean => {
   // eslint-disable-next-line max-len
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   return re.test(email);
 };
 
@@ -104,7 +108,9 @@ const getApplePublicKey = async () => {
   const key = JSON.parse(data).keys[0];
 
   const pubKey = new NodeRSA();
+
   pubKey.importKey({ n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64') }, 'components-public');
+
   return pubKey.exportKey('public');
 };
 
@@ -143,10 +149,12 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
     throw new Error(
       `id token is not issued by: ${TOKEN_ISSUER} | from: + ${appleUser.iss}`);
   }
+
   if (clientID !== undefined && appleUser.aud !== clientID) {
     throw new Error(
       `parameter does not include: ${appleUser.aud} | expected: ${clientID}`);
   }
+
   if (appleUser.exp < (Date.now() / 1000)) throw new Error('id token has expired');
 
   return appleUser;
@@ -155,6 +163,7 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
 export const encryptCredential = async (password: string): Promise<string> => {
   const SALT = await bcrypt.genSalt(SALT_ROUND);
   const hash = await bcrypt.hash(password, SALT);
+
   // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
   return hash.replace(/\//g, 'slash').replace(/\.$/g, 'dot');
 };
@@ -171,6 +180,7 @@ export const validateCredential = async (
     if (err) {
       return reject(err);
     }
+
     resolve(res);
   });
 });

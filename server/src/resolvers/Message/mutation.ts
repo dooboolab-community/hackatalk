@@ -50,6 +50,7 @@ export const createMessage = mutationField('createMessage', {
             ? 'file'
             : created.text,
       };
+
       sendPushNotification(message);
     });
 

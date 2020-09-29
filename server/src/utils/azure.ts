@@ -26,8 +26,10 @@ export const uploadFileToAzureBlobFromStream = (
       ) {
         if (!error) {
           resolve(resultUpload);
+
           return;
         }
+
         reject(error);
       }),
     );
@@ -46,8 +48,10 @@ export const uploadFileToAzureBlobFromFile = (
     ) {
       if (!error) {
         resolve(resultUpload);
+
         return;
       }
+
       reject(error);
     });
   });
@@ -64,8 +68,10 @@ export const deleteFileFromAzureBlob = (
     ) {
       if (!error) {
         resolve(resultUpload);
+
         return;
       }
+
       reject(error);
     });
   });
