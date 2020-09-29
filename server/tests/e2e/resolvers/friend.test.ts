@@ -33,6 +33,7 @@ describe('Resolver - Friend', () => {
     };
 
     const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
     expect(signInResponse.signInEmail).toHaveProperty('user');
@@ -64,12 +65,14 @@ describe('Resolver - Friend', () => {
 
     // should add friend
     const addFriendResponse = await authClient.request(addFriendMutation, { friendId });
+
     expect(addFriendResponse).toHaveProperty('addFriend');
     expect(addFriendResponse.addFriend).toHaveProperty('user');
     expect(addFriendResponse.addFriend).toHaveProperty('friend');
 
     // should delete friend
     const deleteFriendResponse = await authClient.request(deleteFriendMutation, { friendId });
+
     expect(deleteFriendResponse).toHaveProperty('deleteFriend');
     expect(deleteFriendResponse.deleteFriend).toHaveProperty('user');
     expect(deleteFriendResponse.deleteFriend).toHaveProperty('friend');

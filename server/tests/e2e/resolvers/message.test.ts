@@ -33,6 +33,7 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
 
     const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
     expect(signInResponse.signInEmail).toHaveProperty('user');
@@ -93,6 +94,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
 
@@ -108,6 +110,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createMessage, variables);
+
     expect(response).toHaveProperty('createMessage');
     expect(response.createMessage).toHaveProperty('id');
     expect(response.createMessage).toHaveProperty('text');
