@@ -45,6 +45,7 @@ describe('Resolver - User', () => {
     };
 
     const response = await request(testHost, signInEmailMutation, variables);
+
     expect(response).toHaveProperty('signInEmail');
     expect(response.signInEmail).toHaveProperty('token');
     expect(response.signInEmail).toHaveProperty('user');
@@ -68,6 +69,7 @@ describe('Resolver - User', () => {
 
     it('should update user profile', async () => {
       const response = await client.request(updateProfileMutation, variables);
+
       expect(response).toHaveProperty('updateProfile');
       expect(response.updateProfile).toHaveProperty('name');
       expect(response.updateProfile).toHaveProperty('gender');
@@ -101,6 +103,7 @@ describe('Resolver - User', () => {
       let subscriptionValue;
       const response1 = await request(testHost, signUpMutation, userVariables2);
       const userId = response1.signUp.id;
+
       expect(response1.signUp.name).toEqual(userVariables2.user.name);
       expect(response1.signUp.gender).toEqual(userVariables2.user.gender);
 
@@ -117,7 +120,9 @@ describe('Resolver - User', () => {
         email: 'clark@dooboolab.com',
         password: 'password',
       };
+
       const response2 = await request(testHost, signInEmailMutation, variables);
+
       expect(response2).toHaveProperty('signInEmail');
       expect(response2.signInEmail).toHaveProperty('token');
       expect(response2.signInEmail).toHaveProperty('user');
@@ -130,12 +135,16 @@ describe('Resolver - User', () => {
 
     it("should subscribe 'userUpdated' after 'updateProfile' mutation", async () => {
       let subscriptionValue;
+
       const variables = {
         email: 'clark@dooboolab.com',
         password: 'password',
       };
+
       const response = await request(testHost, signInEmailMutation, variables);
+
       expect(response.signInEmail).toHaveProperty('user');
+
       const userId = response.signInEmail.user.id;
 
       apolloClient.subscribe({
@@ -159,7 +168,9 @@ describe('Resolver - User', () => {
           gender: 'female',
         },
       };
+
       const response2 = await client.request(updateProfileMutation, variables2);
+
       expect(response2).toHaveProperty('updateProfile');
       expect(response2.updateProfile).toHaveProperty('name');
       expect(response2.updateProfile).toHaveProperty('gender');

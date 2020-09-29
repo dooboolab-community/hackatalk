@@ -13,6 +13,7 @@ describe('user resolvers', () => {
 
     const setUser = (): Promise<NexusGenRootTypes['User']> =>
       Promise.resolve(user());
+
     userAPI.get = jest.fn(setUser);
 
     const { query } = testServer(() => ({ userAPI }), userResolvers);
@@ -27,6 +28,7 @@ describe('user resolvers', () => {
     `;
 
     const res = await query({ query: meQuery });
+
     expect(res.errors).toBe(undefined);
     expect(res.data).toHaveProperty('me');
     expect(res.data.me.id).toEqual('cuid1');
@@ -37,6 +39,7 @@ describe('user resolvers', () => {
 
     const setUser = (): Promise<NexusGenRootTypes['User']> =>
       Promise.resolve(user());
+
     userAPI.get = jest.fn(setUser);
 
     const { query } = testServer(() => ({ userAPI }), userResolvers);
@@ -70,6 +73,7 @@ describe('user resolvers', () => {
 
     const setUsers = (): Promise<NexusGenRootTypes['UserConnection']> =>
       Promise.resolve(userConnection(2));
+
     userAPI.get = jest.fn(setUsers);
 
     const { query } = testServer(() => ({ userAPI }), userResolvers);
@@ -150,6 +154,7 @@ describe('user resolvers', () => {
 
     const setAuthPayload = (): Promise<NexusGenRootTypes['AuthPayload']> =>
       Promise.resolve(authPayload());
+
     userAPI.post = jest.fn(setAuthPayload);
 
     const { mutate } = testServer(() => ({ userAPI }), userResolvers);

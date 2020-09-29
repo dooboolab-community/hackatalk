@@ -24,6 +24,7 @@ const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
 beforeAll(async (done) => {
   const app: express.Application = createApp();
+
   server = await startServer(app);
 
   networkInterface = new SubscriptionClient(
@@ -31,6 +32,7 @@ beforeAll(async (done) => {
     { reconnect: true },
     NodeWebSocket,
   );
+
   apolloClient = new ApolloClient({
     link: new WebSocketLink(networkInterface),
     cache: new InMemoryCache(),
@@ -40,6 +42,7 @@ beforeAll(async (done) => {
 
   exec('yarn migrate:test', (err): void => {
     if (err) throw new Error(err.message);
+
     done();
   });
 });

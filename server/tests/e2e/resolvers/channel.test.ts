@@ -38,6 +38,7 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
 
     const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
     expect(signInResponse.signInEmail).toHaveProperty('user');
@@ -102,6 +103,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('name');
     expect(response.createChannel).toHaveProperty('id');
@@ -117,6 +119,7 @@ describe('Resolver - Channel', () => {
 
   it('should not create [private] channel again of same user group', async () => {
     const messageTobeSent = 'This will not create channelId but create another message.';
+
     const variables = {
       channel: {
         userIds: [friendsId[0]],
@@ -127,6 +130,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
     expect(response.createChannel.lastMessage).toHaveProperty('text');
@@ -142,6 +146,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
     expect(response.createChannel.id).not.toEqual(createdChannelId);
@@ -158,6 +163,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = authClient.request(createChannel, variables);
+
     expect(response).rejects.toThrow();
   });
 
@@ -169,6 +175,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
   });
@@ -181,6 +188,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(createChannel, variables);
+
     expect(response).toHaveProperty('createChannel');
     expect(response.createChannel).toHaveProperty('id');
 
@@ -190,6 +198,7 @@ describe('Resolver - Channel', () => {
 
   it('should query my channels which are newly inserted in above tests === 3', async () => {
     const response = await authClient.request(channelsQuery);
+
     expect(response).toHaveProperty('channels');
     expect(response.channels.edges).toHaveLength(3);
     expect(channels.length).toEqual(response.channels.edges.length);
@@ -205,11 +214,13 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(channelQuery, variables);
+
     expect(response).toHaveProperty('channel');
   });
 
   it('should invite users to [public] channel', async () => {
     const usersToInvite = friendsId;
+
     const variables = {
       channelId: channels[2],
       userIds: usersToInvite,
@@ -221,6 +232,7 @@ describe('Resolver - Channel', () => {
     expect(response.inviteUsersToChannel).toHaveProperty('memberships');
 
     const inviteResponse = response.inviteUsersToChannel;
+
     expect(Array.isArray(inviteResponse.memberships)).toBe(true);
 
     for (let i = 0; i < inviteResponse.memberships.length; i++) {
@@ -242,6 +254,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = authClient.request(createChannel, variables);
+
     expect(response).rejects.toThrow();
   });
 
@@ -254,9 +267,11 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(kickFromChannel, variables);
+
     expect(response).toHaveProperty('kickUsersFromChannel');
 
     const kickResponse = response.kickUsersFromChannel;
+
     expect(kickResponse).toHaveProperty('memberships');
     expect(Array.isArray(kickResponse.memberships)).toBe(true);
 
@@ -279,6 +294,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = authClient.request(kickFromChannel, variables);
+
     expect(response).rejects.toThrow();
   });
 
@@ -288,9 +304,11 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(leaveChannel, variables);
+
     expect(response).toHaveProperty('leaveChannel');
 
     const responseMyChannel = await authClient.request(channelsQuery);
+
     expect(responseMyChannel).toHaveProperty('channels');
     // The deletion should happen in `channels` query
     expect(responseMyChannel.channels.edges).toHaveLength(channels.length - 1);
@@ -302,9 +320,11 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(leaveChannel, variables);
+
     expect(response).toHaveProperty('leaveChannel');
 
     const responseMyChannel = await authClient.request(channelsQuery);
+
     expect(responseMyChannel).toHaveProperty('channels');
     // The deletion should happen in `channels` query
     expect(responseMyChannel.channels.edges).toHaveLength(channels.length - 2);
@@ -318,6 +338,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(findOrCreatePrivateChannel, variables);
+
     expect(response).toHaveProperty('findOrCreatePrivateChannel');
     expect(response.findOrCreatePrivateChannel).toHaveProperty('id');
 
@@ -330,6 +351,7 @@ describe('Resolver - Channel', () => {
     };
 
     const response = await authClient.request(findOrCreatePrivateChannel, variables);
+
     expect(response).toHaveProperty('findOrCreatePrivateChannel');
     expect(response.findOrCreatePrivateChannel).toHaveProperty('id');
     expect(response.findOrCreatePrivateChannel.id).toEqual(newChannelId);

@@ -13,6 +13,7 @@ describe('Resolver - File', () => {
 
   it('should return a file path after uploading one', async () => {
     const body = new FormData();
+
     body.append(
       'operations',
       JSON.stringify({
@@ -32,6 +33,7 @@ describe('Resolver - File', () => {
 
     const response = await fetch(testHost, { method: 'POST', body });
     const jsonResult = await response.json();
+
     expect(jsonResult.data.singleUpload).toBe('/hackatalk/a.txt');
   });
 });
