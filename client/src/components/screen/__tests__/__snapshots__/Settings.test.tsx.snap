@@ -1,5 +1,333 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`[Setting] screen interactions should fireEvent when logout button pressed 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen interactions should simulate onPress login state item 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
 exports[`[Setting] screen renders without crashing 1`] = `
 <View
   pointerEvents="box-none"
@@ -774,4 +1102,988 @@ exports[`[Setting] screen renders without crashing 4`] = `
     </SafeAreaView>
   </View>
 </View>
+`;
+
+exports[`[Setting] screen renders without crashing with Facebook auth type 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen renders without crashing with Facebook auth type 2`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen should render without crashing with Apple auth type 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen should render without crashing with Apple auth type 2`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen should renders without crashing with Google auth type 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
+`;
+
+exports[`[Setting] screen should renders without crashing with Google auth type 2`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "paddingTop": 10,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "label": "Signed in with Email",
+              "onPress": [Function],
+              "testID": "change-pw-item",
+            },
+          ],
+          "title": "Login information",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    testID="test-section-list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ffffff",
+                "borderBottomColor": "#d3d8e8",
+                "borderBottomWidth": 1,
+                "height": 40,
+                "justifyContent": "center",
+                "marginLeft": 12,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1E6EFA",
+                  "marginLeft": 2,
+                },
+              ]
+            }
+          >
+            Login information
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 52,
+              "opacity": 1,
+              "paddingLeft": 15,
+              "paddingRight": 15,
+              "width": "100%",
+            }
+          }
+          testID="change-pw-item"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#151A25",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "fontSize": 16,
+                },
+              ]
+            }
+          >
+            Signed in with Email
+          </Text>
+          <Text />
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1E6EFA",
+        "borderWidth": 0.3,
+        "height": 48,
+        "opacity": 1,
+        "width": "100%",
+      }
+    }
+    testID="button-logout"
+  />
+</RCTSafeAreaView>
 `;

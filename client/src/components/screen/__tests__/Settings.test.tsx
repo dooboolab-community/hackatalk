@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AuthType, User } from '../../../types/graphql';
 import {
-  RenderResult,
+  RenderAPI,
   act,
   cleanup,
   fireEvent,
@@ -24,8 +24,6 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
     thumbURL: '',
     photoURL: '',
     statusMessage: '',
-    authType: signInType,
-    socialId: '',
   };
 }
 
@@ -36,7 +34,7 @@ function SettingTest(): React.ReactElement {
 }
 
 describe('[Setting] screen', () => {
-  let testingLib: RenderResult;
+  let testingLib: RenderAPI;
 
   beforeEach(() => {
     component = createTestElement(
@@ -47,14 +45,13 @@ describe('[Setting] screen', () => {
     );
 
     testingLib = render(component);
+
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
-  it('renders without crashing', () => {
-    const { baseElement } = render(component);
-
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
-
+  it('renders without crashing with Facebook auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
@@ -62,11 +59,14 @@ describe('[Setting] screen', () => {
       getEmptyAuthUserWithSignInType(AuthType.Facebook),
     );
 
-    const { baseElement: baseElement2 } = render(component);
+    testingLib = render(component);
 
-    expect(baseElement2).toBeTruthy();
-    expect(baseElement2).toMatchSnapshot();
+    const json = testingLib.toJSON();
 
+    expect(json).toMatchSnapshot();
+  });
+
+  it('should renders without crashing with Google auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
@@ -74,11 +74,14 @@ describe('[Setting] screen', () => {
       getEmptyAuthUserWithSignInType(AuthType.Google),
     );
 
-    const { baseElement: baseElement3 } = render(component);
+    testingLib = render(component);
 
-    expect(baseElement3).toBeTruthy();
-    expect(baseElement3).toMatchSnapshot();
+    const json = testingLib.toJSON();
 
+    expect(json).toMatchSnapshot();
+  });
+
+  it('should render without crashing with Apple auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
@@ -86,10 +89,11 @@ describe('[Setting] screen', () => {
       getEmptyAuthUserWithSignInType(AuthType.Apple),
     );
 
-    const { baseElement: baseElement4 } = render(component);
+    testingLib = render(component);
 
-    expect(baseElement4).toBeTruthy();
-    expect(baseElement4).toMatchSnapshot();
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
