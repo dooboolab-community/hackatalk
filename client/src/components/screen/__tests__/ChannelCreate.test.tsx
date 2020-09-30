@@ -1,7 +1,7 @@
 import 'react-native';
 
 import React, { ReactElement } from 'react';
-import { RenderResult, act, fireEvent, render, waitForElement } from '@testing-library/react-native';
+import { RenderAPI, act, fireEvent, render, waitFor } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Screen from '../ChannelCreate';
@@ -9,7 +9,7 @@ import Screen from '../ChannelCreate';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: ReactElement;
-let testingLib: RenderResult;
+let testingLib: RenderAPI;
 
 describe('Rendering', () => {
   beforeEach(() => {
@@ -19,10 +19,11 @@ describe('Rendering', () => {
   });
 
   it('renders without crashing', () => {
-    const { baseElement } = testingLib;
+    testingLib = render(component);
 
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 });
 
