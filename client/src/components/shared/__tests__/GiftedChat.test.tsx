@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderResult, fireEvent, render } from '@testing-library/react-native';
+import { RenderAPI, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import GiftedChatInput from '../GiftedChat';
@@ -10,6 +10,7 @@ import GiftedChatInput from '../GiftedChat';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
+let testingLib: RenderAPI;
 
 jest.useFakeTimers();
 
@@ -61,15 +62,14 @@ describe('[GiftedChatInput] render', () => {
   });
 
   it('renders without crashing', () => {
-    const { baseElement } = render(component);
+    testingLib = render(component);
 
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
-    let testingLib: RenderResult;
-
     beforeEach(() => {
       testingLib = render(component);
     });
@@ -98,7 +98,6 @@ describe('[GiftedChatInput] render', () => {
     it('should invoke changeText event handler when message changed', () => {
       const textInput = testingLib.getByTestId('input-chat');
 
-      jest.useFakeTimers();
       jest.runAllTimers();
       fireEvent.changeText(textInput, 'chat test');
       // TODO: expect should pass
