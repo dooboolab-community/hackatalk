@@ -20,6 +20,7 @@ describe('Rendering', () => {
 
   it('renders without crashing', () => {
     const { baseElement } = testingLib;
+
     expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
   });
@@ -34,9 +35,11 @@ describe('Interaction', () => {
 
   it('should change search text', () => {
     const searchInput = testingLib.getByTestId('text-input');
+
     act(() => {
       fireEvent.changeText(searchInput, 'test search');
     });
+
     expect(searchInput.props.value).toEqual('test search');
   });
 

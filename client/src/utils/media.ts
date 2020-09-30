@@ -10,6 +10,7 @@ export type MediaQueryType = {
 export const useMedia = (): MediaQueryType => {
   const isTablet = useMediaQuery({ minWidth: 768 });
   const isDesktop = useMediaQuery({ minWidth: 1224 });
+
   return {
     tablet: isTablet,
     desktop: isDesktop,

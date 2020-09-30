@@ -64,6 +64,7 @@ function cacheImages(images: (number | string)[]): any[] {
 
 const loadAssetsAsync = async (): Promise<void> => {
   const imageAssets = cacheImages(Icons);
+
   await Promise.all([...imageAssets]);
 };
 
@@ -77,11 +78,13 @@ function App(): ReactElement {
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
+
     setDeviceType(deviceType);
   };
 
   const initUser = async (me: AppUserQueryResponse['me']): Promise<void> => {
     if (!me) return;
+
     setUser(me as User);
     setLoading(false);
   };
@@ -98,8 +101,10 @@ function App(): ReactElement {
       next: (data) => {
         if (data.me) {
           initUser(data.me);
+
           return;
         }
+
         AsyncStorage.removeItem('token');
         setDevice();
       },

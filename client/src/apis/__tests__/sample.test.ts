@@ -14,10 +14,12 @@ describe('testing sample api', () => {
 
   it('should fetch sample and returns data to me', (): Promise<Response | void> => {
     const mockedResult = JSON.stringify({ data: '12345' });
+
     fetchMock.mockResponseOnce(mockedResult);
 
     return sample({ zoyi: 'zoyi' }).then(async (res) => {
       const result = await res.text();
+
       expect(result).toEqual(mockedResult);
 
       expect(fetchMock.mock.calls.length).toEqual(1);
@@ -40,6 +42,7 @@ describe('testing sample api', () => {
 
   it('throws an error if error occurs', () => {
     fetchMock.mockRejectedValue(new Error('error'));
+
     // fetchMock.mockResponseOnce(() =>
     //   sample(null).then(() => Promise.reject(new Error())),
     // );

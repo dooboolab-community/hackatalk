@@ -71,6 +71,7 @@ function Page(props: Props): ReactElement {
   const [errorName, setErrorName] = useState<string>('');
 
   const [commitSignUp, isInFlight] = useMutation<SignUpMutation>(signUp);
+
   const [commitSendVerification, isVerificationInFlight] =
     useMutation<SignUpSendVerificationMutation>(sendVerification);
 
@@ -84,15 +85,19 @@ function Page(props: Props): ReactElement {
       if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       }
+
       if (!validatePassword(password)) {
         setErrorPassword(getString('PASSWORD_MIN'));
       }
+
       if (name.length < 2) {
         setErrorName(getString('NAME_MIN'));
       }
+
       if (password !== confirmPassword) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
       }
+
       return;
     }
 
@@ -111,7 +116,9 @@ function Page(props: Props): ReactElement {
             email,
           },
         };
+
         commitSendVerification(sendVerificationMutationConfig);
+
         return navigation.navigate('VerifyEmail', { email });
       },
       onError: (error: any): void => {
@@ -125,6 +132,7 @@ function Page(props: Props): ReactElement {
   const inputChangeHandlers: Record<string, (value: string) => void> = {
     emailInput: (email: string): void => {
       setEmail(email);
+
       if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       } else {
@@ -133,6 +141,7 @@ function Page(props: Props): ReactElement {
     },
     passwordInput: (password: string): void => {
       setPassword(password);
+
       if (!validatePassword(password)) {
         setErrorPassword(getString('PASSWORD_MIN'));
       } else if (confirmPassword && password !== confirmPassword) {
@@ -144,6 +153,7 @@ function Page(props: Props): ReactElement {
     },
     confirmPasswordInput: (confirmPassword: string): void => {
       setConfirmPassword(confirmPassword);
+
       if (password !== confirmPassword) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
       } else {
@@ -152,6 +162,7 @@ function Page(props: Props): ReactElement {
     },
     nameInput: (name: string): void => {
       setName(name);
+
       if (name.length < 2) {
         setErrorName(getString('NAME_MIN'));
       } else {

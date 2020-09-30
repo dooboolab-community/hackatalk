@@ -11,6 +11,7 @@ interface Context {
   state: State;
   setUser(user: User | undefined): void;
 }
+
 const [useCtx, Provider] = createCtx<Context>();
 
 export enum ActionType {
@@ -56,6 +57,7 @@ function AuthProvider(props: Props): React.ReactElement {
   const initialAuthState = {
     user: props.initialAuthUser,
   };
+
   const [state, dispatch] = useReducer<Reducer>(reducer, initialAuthState);
 
   const actions = {

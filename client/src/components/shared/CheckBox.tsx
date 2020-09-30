@@ -59,6 +59,7 @@ function Shared(props: Props): ReactElement {
     onToggle,
     testID,
   } = props;
+
   return (
     <Container style={containerStyle}>
       <TouchableOpacity

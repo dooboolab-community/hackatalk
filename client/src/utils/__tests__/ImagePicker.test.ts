@@ -21,7 +21,9 @@ describe('ImagePicker interaction', () => {
     askAsync.mockReturnValueOnce({
       status: 'granted',
     });
+
     const result = await ImagePicker.launchCameraAsync();
+
     expect(result).toBe('photo info');
   });
 
@@ -30,7 +32,9 @@ describe('ImagePicker interaction', () => {
     askAsync.mockReturnValueOnce({
       status: 'granted',
     });
+
     const result = await ImagePicker.launchImageLibraryAsync();
+
     expect(result).toBe('photo info');
   });
 
@@ -39,7 +43,9 @@ describe('ImagePicker interaction', () => {
     askAsync.mockReturnValueOnce({
       status: 'denied',
     });
+
     const result = await ImagePicker.launchCameraAsync();
+
     expect(result).toBe(null);
   });
 
@@ -48,7 +54,9 @@ describe('ImagePicker interaction', () => {
     askAsync.mockReturnValueOnce({
       status: 'denied',
     });
+
     const result = await ImagePicker.launchImageLibraryAsync();
+
     expect(result).toBe(null);
   });
 });

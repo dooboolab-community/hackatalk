@@ -16,6 +16,7 @@ import AuthContext from '../../../providers/AuthProvider';
 import Settings from '../Settings';
 
 let component: React.ReactElement;
+
 function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
   return {
     id: '',
@@ -30,6 +31,7 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
 
 function SettingTest(): React.ReactElement {
   const settingProps = createTestProps();
+
   return <Settings {...settingProps} />;
 }
 
@@ -43,11 +45,13 @@ describe('[Setting] screen', () => {
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Email),
     );
+
     testingLib = render(component);
   });
 
   it('renders without crashing', () => {
     const { baseElement } = render(component);
+
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
 
@@ -57,7 +61,9 @@ describe('[Setting] screen', () => {
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Facebook),
     );
+
     const { baseElement: baseElement2 } = render(component);
+
     expect(baseElement2).toBeTruthy();
     expect(baseElement2).toMatchSnapshot();
 
@@ -67,7 +73,9 @@ describe('[Setting] screen', () => {
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Google),
     );
+
     const { baseElement: baseElement3 } = render(component);
+
     expect(baseElement3).toBeTruthy();
     expect(baseElement3).toMatchSnapshot();
 
@@ -77,7 +85,9 @@ describe('[Setting] screen', () => {
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Apple),
     );
+
     const { baseElement: baseElement4 } = render(component);
+
     expect(baseElement4).toBeTruthy();
     expect(baseElement4).toMatchSnapshot();
   });
@@ -89,6 +99,7 @@ describe('[Setting] screen', () => {
 
     it('should simulate onPress login state item', async () => {
       const btn = testingLib.getByTestId('change-pw-item');
+
       fireEvent.press(btn);
     });
 

@@ -44,6 +44,7 @@ function ChangePw(props: Props): ReactElement {
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
       Alert.alert(getString('ERROR'), getString('PASSWORD_MUST_MATCH'));
+
       return;
     }
 
@@ -88,6 +89,7 @@ function ChangePw(props: Props): ReactElement {
       keyboardDidHideListener.current && keyboardDidHideListener.current.remove();
     };
   }, []);
+
   return (
     <SafeAreaView
       style={{

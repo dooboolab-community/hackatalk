@@ -122,6 +122,7 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
   } else if (thumbURL) {
     return <StyledImageSender source={{ uri: thumbURL }} />;
   }
+
   return (
     <View
       style={{
@@ -140,6 +141,7 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
 
 function MessageListItem(props: Props): React.ReactElement {
   const { theme } = useThemeContext();
+
   const {
     item: {
       sender: { id: senderId, nickname, photoURL: thumbURL },
@@ -153,8 +155,10 @@ function MessageListItem(props: Props): React.ReactElement {
     onPressPeerImage,
     testID,
   } = props;
+
   const isSamePeerMsg = prevItem && prevItem.sender.id === senderId;
   const showDate = shouldShowDate(created, nextItem?.created);
+
   if (senderId !== myFakeId) {
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
@@ -189,6 +193,7 @@ function MessageListItem(props: Props): React.ReactElement {
       </WrapperPeer>
     );
   }
+
   return (
     <WrapperMy>
       <StyledMyMessage>

@@ -62,6 +62,7 @@ const ErrorView: FC<Props> = (props) => {
     hideButton,
     testID,
   } = props;
+
   const { theme } = useThemeContext();
 
   return <Container>

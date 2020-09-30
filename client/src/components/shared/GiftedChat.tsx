@@ -111,6 +111,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     keyboardShowListener = Keyboard.addListener('keyboardDidShow', (e) => {
       setKeyboardHeight(e.endCoordinates.height);
     });
+
     return (): void => {
       if (keyboardShowListener) {
         keyboardShowListener.remove();
@@ -173,6 +174,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               testID="touch-menu"
               onPress={(): void => {
                 Keyboard.dismiss();
+
                 const timeout = setTimeout(() => {
                   setShowMenu(true);
                   clearTimeout(timeout);

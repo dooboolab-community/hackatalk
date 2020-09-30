@@ -101,6 +101,7 @@ function Settings(props: Props): React.ReactElement {
   const logout = async (): Promise<void> => {
     if (navigation) {
       AsyncStorage.removeItem('token');
+
       const pushToken = await AsyncStorage.getItem('push_token');
 
       if (pushToken) {
@@ -127,6 +128,7 @@ function Settings(props: Props): React.ReactElement {
         },
         testID: 'change-pw-item',
       };
+
       break;
     case AuthType.Facebook:
       signInInfoOption = {
@@ -137,6 +139,7 @@ function Settings(props: Props): React.ReactElement {
         },
         testID: 'change-pw-item',
       };
+
       break;
     case AuthType.Apple:
       signInInfoOption = {
@@ -147,6 +150,7 @@ function Settings(props: Props): React.ReactElement {
         },
         testID: 'change-pw-item',
       };
+
       break;
     case AuthType.Email:
     default:
@@ -157,6 +161,7 @@ function Settings(props: Props): React.ReactElement {
         },
         testID: 'change-pw-item',
       };
+
       break;
   }
 

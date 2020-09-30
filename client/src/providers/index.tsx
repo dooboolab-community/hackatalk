@@ -36,6 +36,7 @@ const RelayProviderWrapper = ({
     </RelayEnvironmentProvider>
   );
 };
+
 export const AllProviders = ({
   initialThemeType,
   initialAuthUser,

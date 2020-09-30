@@ -152,6 +152,7 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
   const open = (): void => {
     setIsFriendAdded(false);
     setHasFriendBeenAdded(false);
+
     if (modal) {
       modal.open();
     }
@@ -314,4 +315,5 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
     </Modal>
   );
 });
+
 export default Shared;

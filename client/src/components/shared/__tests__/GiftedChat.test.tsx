@@ -10,6 +10,7 @@ import GiftedChatInput from '../GiftedChat';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
 let component: React.ReactElement;
+
 jest.useFakeTimers();
 
 describe('[GiftedChatInput] render', () => {
@@ -55,11 +56,13 @@ describe('[GiftedChatInput] render', () => {
         },
       ],
     });
+
     component = createTestElement(<GiftedChatInput {...props} />);
   });
 
   it('renders without crashing', () => {
     const { baseElement } = render(component);
+
     expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
   });
@@ -73,11 +76,13 @@ describe('[GiftedChatInput] render', () => {
 
     it('should call [setShowMenu] when focused', () => {
       const textInput = testingLib.getByTestId('input-chat');
+
       textInput.props.onFocus();
     });
 
     it('should [showMenu] when touch pressed', () => {
       let touchMenu = testingLib.getByTestId('touch-menu');
+
       fireEvent.press(touchMenu);
 
       touchMenu = testingLib.getByTestId('touch-menu');
@@ -86,11 +91,13 @@ describe('[GiftedChatInput] render', () => {
 
     it('should call [setShowMenu] when focused', () => {
       const touchMenu = testingLib.getByTestId('touch-menu');
+
       fireEvent.press(touchMenu);
     });
 
     it('should invoke changeText event handler when message changed', () => {
       const textInput = testingLib.getByTestId('input-chat');
+
       jest.useFakeTimers();
       jest.runAllTimers();
       fireEvent.changeText(textInput, 'chat test');

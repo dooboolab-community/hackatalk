@@ -92,6 +92,7 @@ const CustomHeader = (): ReactElement => {
 
 function TabNavigator(): ReactElement {
   const { theme } = useThemeContext();
+
   return (
     <Tab.Navigator
       swipeEnabled={true}

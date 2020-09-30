@@ -27,15 +27,19 @@ interface Props {
   onAddFriend?: () => void;
   onDeleteFriend?: () => void;
 }
+
 // interface Props {}
 const FakeProfileModal = forwardRef<Ref, Props>((props, ref) => {
   const { state, showModal } = useProfileContext();
   const modalEl = React.useRef(null);
+
   state.modal = modalEl;
+
   useImperativeHandle(ref, () => ({
     showModal,
     // modalEl,
   }));
+
   return (
     <Shared
       ref={modalEl}
@@ -44,6 +48,7 @@ const FakeProfileModal = forwardRef<Ref, Props>((props, ref) => {
     />
   );
 });
+
 describe('[ProfileModal] rendering test', () => {
   let props: any;
   let component: React.ReactElement;
@@ -114,11 +119,14 @@ describe('[ProfileModal] rendering test', () => {
 
   beforeEach(() => {
     props = createTestProps();
+
     component = createTestElement(
       <Shared ref={ref} {...props} />,
     );
+
     testingLib = render(component);
     fakeProfileModalRef = createRef<Ref>();
+
     component2 = createTestElement(
       <FakeProfileModal
         ref={fakeProfileModalRef}
@@ -126,11 +134,13 @@ describe('[ProfileModal] rendering test', () => {
         onDeleteFriend={onDeleteFriend}
       />,
     );
+
     testingLib2 = render(component2);
   });
 
   it('Render without crashing', async () => {
     const { baseElement } = testingLib;
+
     await wait(() => {
       expect(baseElement).toMatchSnapshot();
       expect(baseElement).toBeTruthy();
@@ -139,44 +149,57 @@ describe('[ProfileModal] rendering test', () => {
 
   it('Should be opened', async () => {
     const { current } = ref;
+
     // Open modal by using it's state.
     await act(async () => {
       current.open();
     });
+
     const button = testingLib.queryByTestId('touch-add-friend');
+
     expect(button).not.toBeNull();
   });
 
   it('Check "Added to your friend." button', async () => {
     const { current } = ref;
+
     await act(async () => {
       current.open();
       current.setIsFriendAdded(true);
     });
+
     const button = testingLib.queryByTestId('added-message');
+
     expect(button).not.toBeNull();
   });
 
   it('Should be closed', async () => {
     const { current } = ref;
+
     // Cloase modal by using it's state.
     await act(async () => {
       current.close();
     });
+
     const button = testingLib.queryByTestId('touch-add-friend');
+
     expect(button).toBeNull();
   });
 
   it('delete', async () => {
     const { current } = ref;
+
     await act(async () => {
       current.showAddBtn(false);
       current.open();
     });
+
     const button = testingLib.queryByTestId('touch-add-friend');
+
     await act(async () => {
       fireEvent.press(button);
     });
+
     expect(current.modal).toBeTruthy();
   });
 
@@ -186,10 +209,13 @@ describe('[ProfileModal] rendering test', () => {
         user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
       });
     });
+
     const button = testingLib2.queryByTestId('touch-add-friend');
+
     await act(async () => {
       fireEvent.press(button);
     });
+
     expect(onAddFriend).toHaveBeenCalled();
   });
 
@@ -200,10 +226,13 @@ describe('[ProfileModal] rendering test', () => {
         deleteMode: true,
       });
     });
+
     const button = testingLib2.queryByTestId('touch-add-friend');
+
     await act(async () => {
       fireEvent.press(button);
     });
+
     expect(onDeleteFriend).toHaveBeenCalled();
   });
 });

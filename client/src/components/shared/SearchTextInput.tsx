@@ -12,6 +12,7 @@ const StyledTextInputWrapper = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
+
 const StyledTextInput = styled.TextInput`
   width: 100%;
   padding: 12px 0;
@@ -21,6 +22,7 @@ const StyledTextInput = styled.TextInput`
   padding-left: 40px;
   padding-right: 10px;
 `;
+
 const StyledSearchImage = styled.Image`
   width: 20px;
   height: 20px;
