@@ -109,7 +109,7 @@ export const signInEmail = mutationField('signInEmail', {
       data: { lastSignedIn: new Date().toISOString() },
     });
 
-    return await pipe(
+    return pipe(
       findUserWithEmail,
       andThen(
         (user) => pipe(
