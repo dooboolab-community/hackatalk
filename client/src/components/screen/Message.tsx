@@ -175,47 +175,46 @@ const MessageScreen: FC<Props> = (props) => {
         },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        // Get connection.
+        /** start: ==> Update [Channel] list */
         const channelProxy = proxyStore.get(channel.id);
         const root = proxyStore.getRoot();
 
         const connectionRecord = root && ConnectionHandler.getConnection(
           root,
           'ChannelComponent_channels',
-          {
-            withMessage: true,
-          },
+          { withMessage: true },
         );
 
         // Get existing edges.
         const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
 
         // Check if the message is created inside a new channel.
-        let isNewChannel = true;
+        let existingNode;
 
         for (const edge of prevEdges) {
           const node = edge.getLinkedRecord('node');
 
           if (node?.getDataID() === channel.id) {
-            isNewChannel = false;
+            existingNode = node;
             break;
           }
         }
 
-        // If a new channel is created,
-        // update relay store.
-        if (isNewChannel) {
-          const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
-            proxyStore,
-            connectionRecord,
-            channelProxy,
-            'Channel',
-          );
+        const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          connectionRecord,
+          channelProxy,
+          'Channel',
+        );
 
-          if (connectionRecord && newEdge) {
-            ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-          }
+        if (connectionRecord && newEdge) {
+          ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
         }
+
+        if (existingNode && channelProxy) {
+          ConnectionHandler.deleteNode(channelProxy, existingNode?.getDataID());
+        }
+        /** end: ==> Update [Channel] list */
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
