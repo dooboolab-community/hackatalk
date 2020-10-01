@@ -119,13 +119,13 @@ export type Message = {
   id: Scalars['String'];
   messageType: Scalars['MessageType'];
   text?: Maybe<Scalars['String']>;
-  imageUrls: Array<Scalars['String']>;
-  fileUrls: Array<Scalars['String']>;
+  imageUrls?: Maybe<Array<Scalars['String']>>;
+  fileUrls?: Maybe<Array<Scalars['String']>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   channel?: Maybe<Channel>;
-  sender?: Maybe<User>;
+  sender: User;
   replies?: Maybe<Array<Reply>>;
   reactions?: Maybe<Array<Reaction>>;
 };
@@ -348,6 +348,8 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Fetch user profile */
+  user: User;
   users: UserConnection;
   friends: UserConnection;
   /** Fetch current user profile when authenticated. */
@@ -356,6 +358,11 @@ export type Query = {
   /** Get single channel */
   channel: Channel;
   channels: ChannelConnection;
+};
+
+
+export type QueryUserArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
 

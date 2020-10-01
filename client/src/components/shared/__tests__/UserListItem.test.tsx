@@ -30,8 +30,8 @@ const propsObj = {
     photoURL: null,
     statusMessage: '',
     isOnline: false,
-    created: undefined,
-    updated: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
   },
   onPress,
 };

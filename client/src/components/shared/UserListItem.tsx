@@ -147,8 +147,8 @@ Shared.defaultProps = {
     isOnline: false,
     friends: [],
     channels: [],
-    created: undefined,
-    updated: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
   },
 };
 

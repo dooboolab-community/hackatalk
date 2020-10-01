@@ -23,6 +23,9 @@ export const Channel = objectType({
           where: {
             channel: { id },
           },
+          include: {
+            sender: true,
+          },
           orderBy: { createdAt: 'desc' },
           take: 1,
         });
@@ -42,6 +45,9 @@ export const Channel = objectType({
             after, before, first, last,
           }),
           where: { channel: { id } },
+          include: {
+            sender: true,
+          },
         });
       },
     });

@@ -107,13 +107,13 @@ type Message {
   id: String!
   messageType: MessageType!
   text: String
-  imageUrls: [String!]!
-  fileUrls: [String!]!
+  imageUrls: [String!]
+  fileUrls: [String!]
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   channel: Channel
-  sender: User
+  sender: User!
   replies: [Reply!]
   reactions: [Reaction!]
 }
@@ -254,6 +254,8 @@ type Profile {
 }
 
 type Query {
+  """Fetch user profile"""
+  user(id: String): User!
   users(
     searchText: String
 
