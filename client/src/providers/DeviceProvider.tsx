@@ -8,6 +8,7 @@ interface Context {
   deviceType: Device.DeviceType;
   setDeviceType: React.Dispatch<React.SetStateAction<Device.DeviceType>>;
 }
+
 const [useCtx, Provider] = createCtx<Context>();
 
 interface Props {

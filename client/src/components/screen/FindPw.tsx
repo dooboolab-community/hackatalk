@@ -39,6 +39,7 @@ function Page({ navigation }: Props): ReactElement {
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+
       return;
     }
 

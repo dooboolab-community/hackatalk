@@ -28,6 +28,7 @@ import { useThemeContext } from '@dooboo-ui/theme';
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
+
 const DEFAULT = {
   PROFILEIMAGE_WIDTH: 300,
   PROFILEIMAGE_HEIGHT: 300,
@@ -127,6 +128,7 @@ const Screen: FC<Props> = () => {
       next: (data) => {
         if (data.me) {
           const { name, nickname, statusMessage } = data.me;
+
           setName(name ?? '');
           setNickname(nickname ?? '');
           setstatusMessage(statusMessage ?? '');
@@ -154,12 +156,14 @@ const Screen: FC<Props> = () => {
     const fileName = uri.split('/').pop() || '';
     const fileTypeMatch = /\.(\w+)$/.exec(fileName);
     const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+
     // [file] created from the `uri` as a Blob object
     // https://github.com/jaydenseric/apollo-upload-client/#Blob
     const file = new Blob([uri], {
       type: fileType,
       endings: 'native',
     });
+
     // TODO: on web env there is an issue on setting the blob filename
     // @ts-ignore
     file.name = fileName;
@@ -176,6 +180,7 @@ const Screen: FC<Props> = () => {
             response: ProfileUpdateSingleUploadMutationResponse,
           ) => {
             console.log('SUCCESS FILE UPLOAD', response);
+
             if (response.singleUpload) { setProfilePath(uri); }
           },
           onError: (error: Error) => {
@@ -205,25 +210,30 @@ const Screen: FC<Props> = () => {
       async (buttonIndex: number) => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
+
           if (image && !image.cancelled) {
             const resizedImage = await resizeImage({
               imageUri: image.uri,
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
+
             uploadImage(resizedImage.uri);
           }
+
           return;
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchImageLibraryAsync();
+
           if (image && !image.cancelled) {
             const resizedImage = await resizeImage({
               imageUri: image.uri,
               maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
+
             uploadImage(resizedImage.uri);
           }
         }

@@ -22,12 +22,15 @@ class ComponentWrapper {
     props: P,
   ): ComponentWrapper {
     const Inner = this.intermediate;
+
     const Next = (): ReactElement => (
       <WrapperComponent {...props}>
         <Inner />
       </WrapperComponent>
     );
+
     this.intermediate = Next;
+
     return this;
   }
 

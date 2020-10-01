@@ -26,10 +26,12 @@ import useDebounce from '../../hooks/useDebounce';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
   background: ${({ theme }): string => theme.background};
 `;
+
 const Container = styled.View`
   flex: 1;
   background-color: transparent;
@@ -131,6 +133,7 @@ const UsersFragment: FC<UserProps> = ({
   const users = data?.users?.edges || [];
 
   return (
+    // @ts-ignore
     <StyledAnimatedFlatList
       testID="animated-flatlist"
       style={{
@@ -206,6 +209,7 @@ const Screen: FC = () => {
   const onChangeText = (text: string): void => {
     setSearchText(text);
     scrollY.setValue(0);
+
     Animated.timing(scrollY, {
       useNativeDriver: true,
       toValue: 100,

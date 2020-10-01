@@ -76,6 +76,7 @@ const showModal = (dispatch: React.Dispatch<Action>) => ({
 const reducer: Reducer = (state = initialState, action) => {
   const { type, payload } = action;
   const { modal } = state;
+
   switch (type) {
     case ActionType.ShowModal:
       if (modal && modal.current) {
@@ -83,6 +84,7 @@ const reducer: Reducer = (state = initialState, action) => {
         modal.current.showAddBtn(!payload.deleteMode);
         modal.current.open();
       }
+
       return {
         ...state,
         user: payload.user,

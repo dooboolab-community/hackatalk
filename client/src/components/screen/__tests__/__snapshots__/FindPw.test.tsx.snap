@@ -2,519 +2,133 @@
 
 exports[`[FindPw] rendering test should renders as expected 1`] = `
 <View
-  pointerEvents="box-none"
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#ffffff",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+    ]
   }
 >
   <View
-    collapsable={true}
-    pointerEvents="box-none"
     style={
-      Object {
-        "flex": 1,
-      }
+      Array [
+        Object {
+          "marginBottom": 44,
+          "marginLeft": 44,
+          "marginRight": 44,
+          "marginTop": 44,
+        },
+      ]
     }
   >
     <View
       style={
         Array [
           Object {
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexGrow": 1,
-            "flexShrink": 1,
+            "alignSelf": "stretch",
+            "flexDirection": "column",
+          },
+          Object {
+            "marginTop": 20,
           },
         ]
       }
     >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#b9b9c4",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "marginBottom": 5,
+            },
+            undefined,
+            false,
+          ]
+        }
+      >
+        Email
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        multiline={false}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        onSubmitEditing={[Function]}
+        placeholder="hello@example.com"
+        placeholderTextColor="#676c7a"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "fontSize": 15,
+              "fontWeight": "500",
+              "minHeight": 44,
+              "paddingBottom": 15,
+              "paddingTop": 15,
+            },
+            Object {
+              "color": "#151A25",
+            },
+          ]
+        }
+        testID="input-email"
+        underlineColorAndroid="transparent"
+        value=""
+      />
       <View
         style={
           Array [
             Object {
-              "marginBottom": 44,
-              "marginLeft": 44,
-              "marginRight": 44,
-              "marginTop": 44,
+              "alignItems": "center",
+              "flexDirection": "row",
+              "width": "100%",
             },
+            undefined,
+            Object {
+              "borderBottomWidth": 0.6,
+              "borderColor": "#2E2E2E",
+            },
+            false,
           ]
         }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignSelf": "stretch",
-                "flexDirection": "column",
-              },
-              Object {
-                "marginTop": 20,
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#b9b9c4",
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "marginBottom": 5,
-                },
-                undefined,
-                false,
-              ]
-            }
-          >
-            Email
-          </Text>
-          <TextInput
-            allowFontScaling={true}
-            autoCapitalize="none"
-            multiline={false}
-            placeholder="hello@example.com"
-            placeholderTextColor="#676c7a"
-            rejectResponderTermination={true}
-            style={
-              Array [
-                Object {
-                  "fontSize": 15,
-                  "fontWeight": "500",
-                  "minHeight": 44,
-                  "paddingBottom": 15,
-                  "paddingTop": 15,
-                },
-                Object {
-                  "color": "#151A25",
-                },
-              ]
-            }
-            testID="input-email"
-            underlineColorAndroid="transparent"
-            value=""
-          />
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "width": "100%",
-                },
-                undefined,
-                Object {
-                  "borderBottomWidth": 0.6,
-                  "borderColor": "#2E2E2E",
-                },
-                false,
-              ]
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "marginTop": 20,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "backgroundColor": "#1E6EFA",
-                  "height": 52,
-                },
-              ]
-            }
-          >
-            <View
-              activeOpacity={0.7}
-              delayPressIn={30}
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "alignSelf": "center",
-                    "borderColor": "blue",
-                    "borderRadius": 6,
-                    "flexDirection": "row",
-                    "height": 52,
-                    "justifyContent": "center",
-                    "paddingLeft": 16,
-                    "paddingRight": 16,
-                    "width": 320,
-                  },
-                  undefined,
-                  false,
-                ]
-              }
-              testID="btn-find-pw"
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#069ccd",
-                      "fontSize": 14,
-                    },
-                    Object {
-                      "color": "#ffffff",
-                    },
-                  ]
-                }
-              >
-                Find Password
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
+      />
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "bottom": 0,
-        "position": "absolute",
-        "width": "100%",
-      }
-    }
-  >
     <View
-      pointerEvents="box-none"
       style={
-        Object {
-          "bottom": "100%",
-          "flexDirection": "row",
-          "justifyContent": "flex-end",
-          "paddingBottom": 4,
-          "paddingEnd": 4,
-          "position": "absolute",
-          "width": "100%",
-        }
-      }
-    >
-      <TouchableWithoutFeedback
-        hitSlop={
-          Object {
-            "bottom": 4,
-            "left": 4,
-            "right": 4,
-            "top": 4,
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(250, 186, 48, 0.95)",
-              },
-              Object {
-                "borderRadius": 14,
-                "height": 28,
-                "justifyContent": "center",
-                "paddingHorizontal": 12,
-              },
-            ]
-          }
-        >
-          <Text
-            numberOfLines={1}
-            style={
-              Object {
-                "color": "rgba(255, 255, 255, 1)",
-                "fontSize": 12,
-                "includeFontPadding": false,
-                "lineHeight": 16,
-              }
-            }
-          >
-            Dismiss All
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
-    <ScrollView
-      data={
         Array [
           Object {
-            "category": "Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?﻿%s﻿%s",
-            "warnings": Array [
-              YellowBoxWarning {
-                "message": Object {
-                  "content": "Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
-
-Check the render method of \`Context.Consumer\`.
-    in TouchableOpacity (created by Context.Consumer)
-    in StyledNativeComponent (created by Button__StyledButton)
-    in Button__StyledButton (created by Button)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by Button__Container)
-    in Button__Container (created by Button)
-    in Button (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__ButtonWrapper)
-    in FindPw__ButtonWrapper (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__Wrapper)
-    in FindPw__Wrapper (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__Container)
-    in FindPw__Container (created by Page)
-    in Page
-    in ProfileModalProvider (created by RelayProviderWrapper)
-    in Suspense (created by RelayProviderWrapper)
-    in RelayEnvironmentProvider (created by RelayProviderWrapper)
-    in RelayProviderWrapper (created by AllProviders)
-    in AuthProvider (created by AllProviders)
-    in ThemeProvider (created by ThemeProvider)
-    in ThemeProvider (created by AllProviders)
-    in DeviceProvider (created by AllProviders)
-    in AllProviders
-    in View (created by View)
-    in View (created by AppContainer)
-    in View (created by View)
-    in View (created by AppContainer)
-    in AppContainer (at src/index.js:26)",
-                  "substitutions": Array [
-                    Object {
-                      "length": 48,
-                      "offset": 120,
-                    },
-                    Object {
-                      "length": 1533,
-                      "offset": 168,
-                    },
-                  ],
-                },
-                "stack": Array [
-                  Object {
-                    "arguments": Array [],
-                    "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/Data/YellowBoxWarning.js",
-                    "lineNumber": 58,
-                    "methodName": "Function.parse",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 56,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-                    "lineNumber": 180,
-                    "methodName": "registerError",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 21,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-                    "lineNumber": 84,
-                    "methodName": "errorImpl",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 13,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-native/Libraries/YellowBox/YellowBox.js",
-                    "lineNumber": 63,
-                    "methodName": "CustomConsole.console.error",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 29,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 120,
-                    "methodName": "printWarning",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 4,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 92,
-                    "methodName": "error",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 8,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 8004,
-                    "methodName": "validateFunctionComponentInDev",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 6,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 7971,
-                    "methodName": "mountIndeterminateComponent",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 15,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 9019,
-                    "methodName": "beginWork",
-                  },
-                  Object {
-                    "arguments": Array [],
-                    "column": 11,
-                    "file": "/Users/dooboolab/Github/dooboolab/hackatalk/client/node_modules/react-test-renderer/cjs/react-test-renderer.development.js",
-                    "lineNumber": 12649,
-                    "methodName": "performUnitOfWork",
-                  },
-                ],
-                "symbolicated": Object {
-                  "error": null,
-                  "stack": null,
-                  "status": "NONE",
-                },
-              },
-            ],
+            "marginTop": 20,
+            "width": "100%",
           },
         ]
       }
-      disableVirtualization={false}
-      horizontal={false}
-      initialNumToRender={10}
-      maxToRenderPerBatch={10}
-      onEndReachedThreshold={2}
-      removeClippedSubviews={false}
-      scrollEnabled={false}
-      scrollEventThrottle={50}
-      scrollsToTop={false}
-      stickyHeaderIndices={Array []}
-      style={
-        Object {
-          "height": 48.5,
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
     >
       <View
-        style={null}
-      >
-        <TouchableWithoutFeedback>
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "rgba(250, 186, 48, 0.95)",
-                },
-                Object {
-                  "height": 48,
-                  "justifyContent": "center",
-                  "marginTop": 0.5,
-                  "paddingHorizontal": 12,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "flex-start",
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <Text
-                numberOfLines={2}
-                style={
-                  Object {
-                    "color": "rgba(255, 255, 255, 1)",
-                    "flex": 1,
-                    "fontSize": 14,
-                    "includeFontPadding": false,
-                    "lineHeight": 18,
-                  }
-                }
-              >
-                <Text>
-                  Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
-                </Text>
-                <Text
-                  style={
-                    Object {
-                      "color": "rgba(255, 255, 255, 0.6)",
-                    }
-                  }
-                >
-                  
-
-Check the render method of \`Context.Consumer\`.
-                </Text>
-                <Text
-                  style={
-                    Object {
-                      "color": "rgba(255, 255, 255, 0.6)",
-                    }
-                  }
-                >
-                  
-    in TouchableOpacity (created by Context.Consumer)
-    in StyledNativeComponent (created by Button__StyledButton)
-    in Button__StyledButton (created by Button)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by Button__Container)
-    in Button__Container (created by Button)
-    in Button (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__ButtonWrapper)
-    in FindPw__ButtonWrapper (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__Wrapper)
-    in FindPw__Wrapper (created by Page)
-    in View (created by View)
-    in View (created by Context.Consumer)
-    in StyledNativeComponent (created by FindPw__Container)
-    in FindPw__Container (created by Page)
-    in Page
-    in ProfileModalProvider (created by RelayProviderWrapper)
-    in Suspense (created by RelayProviderWrapper)
-    in RelayEnvironmentProvider (created by RelayProviderWrapper)
-    in RelayProviderWrapper (created by AllProviders)
-    in AuthProvider (created by AllProviders)
-    in ThemeProvider (created by ThemeProvider)
-    in ThemeProvider (created by AllProviders)
-    in DeviceProvider (created by AllProviders)
-    in AllProviders
-    in View (created by View)
-    in View (created by AppContainer)
-    in View (created by View)
-    in View (created by AppContainer)
-    in AppContainer (at src/index.js:26)
-                </Text>
-              </Text>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    </ScrollView>
-    <SafeAreaView
-      style={
-        Object {
-          "backgroundColor": "rgba(250, 186, 48, 0.95)",
-          "marginTop": 0.5,
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
         }
-      }
-    />
+        testID="btn-find-pw"
+      />
+    </View>
   </View>
 </View>
 `;

@@ -77,6 +77,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
         <StyledLabelText focused={focused}>{props.txtLabel}</StyledLabelText>
       );
     }
+
     return null;
   };
 

@@ -9,9 +9,6 @@ import {
 } from '@dooboo-ui/theme';
 import { act, fireEvent, render } from '@testing-library/react-native';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
-
 const FakeChild = (): React.ReactElement => {
   const { themeType, changeThemeType } = useThemeContext();
 
@@ -30,7 +27,6 @@ const FakeChild = (): React.ReactElement => {
 };
 
 describe('[ThemeProvider] rendering test', () => {
-  let json: renderer.ReactTestRendererJSON;
   const component = (
     <ThemeProvider>
       <FakeChild />
@@ -38,7 +34,8 @@ describe('[ThemeProvider] rendering test', () => {
   );
 
   it('component and snapshot matches', () => {
-    json = renderer.create(component).toJSON();
+    const json = render(component).toJSON();
+
     expect(json).toMatchSnapshot();
     expect(json).toBeTruthy();
   });
@@ -51,7 +48,9 @@ describe('[ThemeProvider] interactions', () => {
         <FakeChild />
       </ThemeProvider>,
     );
+
     const text = getByTestId('test-text');
+
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       defaultThemeType,
     );
@@ -63,10 +62,13 @@ describe('[ThemeProvider] interactions', () => {
         <FakeChild />
       </ThemeProvider>,
     );
+
     const text = getByTestId('test-text');
+
     act(() => {
       fireEvent.press(getByTestId('test-button'));
     });
+
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.DARK,
     );
@@ -74,6 +76,7 @@ describe('[ThemeProvider] interactions', () => {
 
   it('set initial theme by props()', async () => {
     const type = ThemeType.DARK;
+
     const ComponentWithProps = (
       <ThemeProvider initialThemeType={type}>
         <FakeChild />
@@ -82,6 +85,7 @@ describe('[ThemeProvider] interactions', () => {
 
     const { getByTestId } = render(ComponentWithProps);
     const text = getByTestId('test-text');
+
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.DARK,
     );
@@ -89,6 +93,7 @@ describe('[ThemeProvider] interactions', () => {
 
   it('changeTheme() after setting initial theme by props()', async () => {
     const type = ThemeType.DARK;
+
     const ComponentWithProps = (
       <ThemeProvider initialThemeType={type}>
         <FakeChild />
@@ -97,9 +102,11 @@ describe('[ThemeProvider] interactions', () => {
 
     const { getByTestId } = render(ComponentWithProps);
     const text = getByTestId('test-text');
+
     act(() => {
       fireEvent.press(getByTestId('test-button'));
     });
+
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
       ThemeType.LIGHT,
     );

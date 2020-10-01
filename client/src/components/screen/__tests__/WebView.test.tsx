@@ -2,35 +2,48 @@ import 'react-native';
 
 import * as React from 'react';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { ThemeProvider } from '@dooboo-ui/theme';
+import WebView from '../WebView';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
-  RenderResult,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import WebView from '../WebView';
+type ParamList = {
+  WebView: {
+    uri: string,
+  }
+}
 
-jest.useFakeTimers();
+const Stack = createStackNavigator<ParamList>();
 
-// eslint-disable-next-line
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderResult;
+const Container: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+
+        >
+          <Stack.Screen
+            name="WebView"
+            component={WebView}
+            initialParams={{
+              uri: '',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+};
+
+const component = <Container />;
 
 describe('[WebView] screen', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          uri: 'https://dooboolab.com',
-        },
-      },
-    });
-    component = createTestElement(<WebView {...props} />);
-    testingLib = render(component);
-  });
-
   it('renders without crashing', () => {
-    expect(testingLib.baseElement).toMatchSnapshot();
+    const json = render(component).toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 });

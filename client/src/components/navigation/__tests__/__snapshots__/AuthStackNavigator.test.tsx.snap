@@ -2,39 +2,62 @@
 
 exports[`[Stack] navigator should renders without crashing 1`] = `
 <View
-  collapsable={true}
-  pointerEvents="box-none"
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <View
+  <RNCSafeAreaProvider
+    onInsetsChange={[Function]}
     style={
-      Object {
-        "flex": 1,
-      }
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
     }
   >
-    <RNCSafeAreaProvider
+    <View
+      onLayout={[Function]}
       style={
-        Array [
-          Object {
-            "flex": 1,
-          },
-          undefined,
-        ]
+        Object {
+          "flex": 1,
+        }
       }
     >
       <View
+        pointerEvents="box-none"
         style={
           Object {
-            "flex": 1,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
       >
         <View
+          collapsable={false}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        />
+        <View
+          accessibilityElementsHidden={false}
+          closing={false}
+          gestureVelocityImpact={0.3}
+          importantForAccessibility="auto"
+          onClose={[Function]}
+          onGestureBegin={[Function]}
+          onGestureCanceled={[Function]}
+          onGestureEnd={[Function]}
+          onOpen={[Function]}
+          onTransitionStart={[Function]}
           pointerEvents="box-none"
           style={
             Object {
@@ -45,162 +68,162 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
               "top": 0,
             }
           }
+          transitionSpec={
+            Object {
+              "close": Object {
+                "animation": "spring",
+                "config": Object {
+                  "damping": 500,
+                  "mass": 3,
+                  "overshootClamping": true,
+                  "restDisplacementThreshold": 10,
+                  "restSpeedThreshold": 10,
+                  "stiffness": 1000,
+                },
+              },
+              "open": Object {
+                "animation": "spring",
+                "config": Object {
+                  "damping": 500,
+                  "mass": 3,
+                  "overshootClamping": true,
+                  "restDisplacementThreshold": 10,
+                  "restSpeedThreshold": 10,
+                  "stiffness": 1000,
+                },
+              },
+            }
+          }
         >
           <View
-            collapsable={false}
-            style={
-              Object {
-                "opacity": 1,
-              }
-            }
-          />
-          <View
-            accessibilityElementsHidden={false}
-            closing={false}
-            gestureVelocityImpact={0.3}
-            importantForAccessibility="auto"
             pointerEvents="box-none"
             style={
               Object {
-                "bottom": 0,
-                "left": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              }
-            }
-            transitionSpec={
-              Object {
-                "close": Object {
-                  "animation": "spring",
-                  "config": Object {
-                    "damping": 500,
-                    "mass": 3,
-                    "overshootClamping": true,
-                    "restDisplacementThreshold": 10,
-                    "restSpeedThreshold": 10,
-                    "stiffness": 1000,
-                  },
-                },
-                "open": Object {
-                  "animation": "spring",
-                  "config": Object {
-                    "damping": 500,
-                    "mass": 3,
-                    "overshootClamping": true,
-                    "restDisplacementThreshold": 10,
-                    "restSpeedThreshold": 10,
-                    "stiffness": 1000,
-                  },
-                },
+                "flex": 1,
+                "marginTop": 0,
               }
             }
           >
             <View
-              pointerEvents="box-none"
+              collapsable={false}
+              forwardedRef={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
               style={
                 Object {
                   "flex": 1,
-                  "marginTop": 0,
+                  "transform": Array [
+                    Object {
+                      "translateX": 0,
+                    },
+                    Object {
+                      "translateX": 0,
+                    },
+                  ],
                 }
               }
             >
               <View
-                collapsable={false}
+                pointerEvents="none"
                 style={
                   Object {
-                    "flex": 1,
-                    "transform": Array [
-                      Object {
-                        "translateX": 0,
-                      },
-                      Object {
-                        "translateX": 0,
-                      },
-                    ],
+                    "backgroundColor": "rgb(242, 242, 242)",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "shadowColor": "#000",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": -1,
+                    },
+                    "shadowOpacity": 0.3,
+                    "shadowRadius": 5,
+                    "top": 0,
+                    "width": 3,
                   }
+                }
+              />
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    Array [
+                      Object {
+                        "backgroundColor": "rgb(242, 242, 242)",
+                      },
+                      undefined,
+                    ],
+                  ]
                 }
               >
                 <View
-                  pointerEvents="none"
                   style={
                     Object {
-                      "backgroundColor": "rgb(242, 242, 242)",
-                      "bottom": 0,
-                      "left": 0,
-                      "position": "absolute",
-                      "shadowColor": "#000",
-                      "shadowOffset": Object {
-                        "height": 1,
-                        "width": -1,
-                      },
-                      "shadowOpacity": 0.3,
-                      "shadowRadius": 5,
-                      "top": 0,
-                      "width": 3,
+                      "flex": 1,
+                      "flexDirection": "column-reverse",
                     }
-                  }
-                />
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "flex": 1,
-                        "overflow": "hidden",
-                      },
-                      Array [
-                        Object {
-                          "backgroundColor": "rgb(242, 242, 242)",
-                        },
-                        undefined,
-                      ],
-                    ]
                   }
                 >
                   <View
                     style={
                       Object {
                         "flex": 1,
-                        "flexDirection": "column-reverse",
                       }
                     }
                   >
-                    <View
+                    <RCTSafeAreaView
+                      emulateUnlessSupported={true}
                       style={
-                        Object {
-                          "flex": 1,
-                        }
+                        Array [
+                          Object {
+                            "backgroundColor": "#ffffff",
+                            "flexBasis": 0,
+                            "flexGrow": 1,
+                            "flexShrink": 1,
+                            "justifyContent": "center",
+                          },
+                        ]
                       }
                     >
-                      <SafeAreaView
+                      <RCTScrollView
                         style={
                           Array [
                             Object {
-                              "backgroundColor": "#ffffff",
-                              "flexBasis": 0,
-                              "flexGrow": 1,
-                              "flexShrink": 1,
-                              "justifyContent": "center",
+                              "alignSelf": "center",
+                              "width": "100%",
                             },
                           ]
                         }
                       >
-                        <ScrollView
-                          style={
-                            Object {
-                              "alignSelf": "stretch",
-                            }
-                          }
-                        >
+                        <View>
                           <View
+                            accessible={true}
+                            focusable={true}
+                            onClick={[Function]}
+                            onResponderGrant={[Function]}
+                            onResponderMove={[Function]}
+                            onResponderRelease={[Function]}
+                            onResponderTerminate={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
                             style={
                               Object {
-                                "left": true,
+                                "left": Object {
+                                  " __value": 0,
+                                },
+                                "opacity": 1,
                                 "position": "absolute",
-                                "top": true,
+                                "top": Object {
+                                  " __value": 0,
+                                },
                                 "transform": Array [
                                   Object {
-                                    "scale": true,
+                                    "scale": AnimatedValue {
+                                      " __value": 0,
+                                    },
                                   },
                                 ],
                                 "zIndex": 15,
@@ -325,6 +348,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                   allowFontScaling={true}
                                   autoCapitalize="none"
                                   multiline={false}
+                                  onBlur={[Function]}
+                                  onChangeText={[Function]}
+                                  onFocus={[Function]}
+                                  onSubmitEditing={[Function]}
                                   placeholder="hello@example.com"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
@@ -409,6 +436,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                   allowFontScaling={true}
                                   autoCapitalize="none"
                                   multiline={false}
+                                  onBlur={[Function]}
+                                  onChangeText={[Function]}
+                                  onFocus={[Function]}
+                                  onSubmitEditing={[Function]}
                                   placeholder="******"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
@@ -452,142 +483,75 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                               }
                             >
                               <View
-                                delayPressIn={30}
+                                accessible={true}
+                                focusable={true}
+                                onClick={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
-                                    "flex": 1,
-                                    "flexDirection": "row",
-                                    "height": 52,
-                                    "justifyContent": "center",
+                                    "backgroundColor": "#ffffff",
+                                    "borderColor": "#1E6EFA",
+                                    "borderRadius": 0,
+                                    "borderWidth": 1,
+                                    "opacity": 1,
+                                    "width": "100%",
                                   }
                                 }
                                 testID="btn-sign-up"
-                              >
-                                <View
-                                  style={
-                                    Array [
-                                      Object {
-                                        "alignItems": "center",
-                                        "alignSelf": "center",
-                                        "borderColor": "blue",
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                        "width": 320,
-                                      },
-                                      Object {
-                                        "flex": 1,
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                      },
-                                      undefined,
-                                      undefined,
-                                      Object {
-                                        "backgroundColor": "#ffffff",
-                                        "borderColor": "#1E6EFA",
-                                        "borderWidth": 1,
-                                        "width": "100%",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#069ccd",
-                                          "fontSize": 16,
-                                        },
-                                        Object {
-                                          "color": "#1E6EFA",
-                                          "fontSize": 14,
-                                          "fontWeight": "bold",
-                                        },
-                                      ]
-                                    }
-                                  >
-                                    Sign Up
-                                  </Text>
-                                </View>
-                              </View>
+                              />
                               <View
                                 style={
                                   Object {
-                                    "width": 20,
+                                    "width": 12,
                                   }
                                 }
                               />
                               <View
-                                delayPressIn={30}
+                                accessible={true}
+                                focusable={true}
+                                onClick={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
                                     "backgroundColor": "#1E6EFA",
-                                    "flex": 1,
-                                    "flexDirection": "row",
-                                    "height": 52,
-                                    "justifyContent": "center",
+                                    "borderRadius": 0,
+                                    "opacity": 1,
+                                    "width": "100%",
                                   }
                                 }
                                 testID="btn-sign-in"
-                              >
-                                <View
-                                  style={
-                                    Array [
-                                      Object {
-                                        "alignItems": "center",
-                                        "alignSelf": "center",
-                                        "borderColor": "blue",
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                        "width": 320,
-                                      },
-                                      Object {
-                                        "backgroundColor": "#1E6EFA",
-                                        "flex": 1,
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                      },
-                                      undefined,
-                                      undefined,
-                                      undefined,
-                                    ]
-                                  }
-                                >
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#069ccd",
-                                          "fontSize": 16,
-                                        },
-                                        Object {
-                                          "color": "#ffffff",
-                                          "fontSize": 14,
-                                          "fontWeight": "bold",
-                                        },
-                                      ]
-                                    }
-                                  >
-                                    Login
-                                  </Text>
-                                </View>
-                              </View>
+                              />
                             </View>
                             <View
+                              accessible={true}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
                               style={
-                                Array [
-                                  Object {
-                                    "alignSelf": "center",
-                                    "marginBottom": 44,
-                                    "paddingBottom": 20,
-                                    "paddingLeft": 20,
-                                    "paddingRight": 20,
-                                    "paddingTop": 20,
-                                  },
-                                ]
+                                Object {
+                                  "alignSelf": "center",
+                                  "marginBottom": 44,
+                                  "opacity": 1,
+                                  "paddingBottom": 20,
+                                  "paddingLeft": 20,
+                                  "paddingRight": 20,
+                                  "paddingTop": 20,
+                                }
                               }
                               testID="btn-find-pw"
                             >
@@ -614,191 +578,55 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                               }
                             >
                               <View
-                                delayPressIn={30}
+                                accessible={true}
+                                focusable={true}
+                                onClick={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  Object {
+                                    "backgroundColor": "#ffffff",
+                                    "borderColor": "#151E22",
+                                    "borderRadius": 100,
+                                    "borderWidth": 1,
+                                    "height": 48,
+                                    "marginBottom": 12,
+                                    "opacity": 1,
+                                    "width": "100%",
+                                  }
+                                }
                                 testID="btn-apple"
-                              >
-                                <View
-                                  style={
-                                    Array [
-                                      Object {
-                                        "alignItems": "center",
-                                        "alignSelf": "center",
-                                        "borderColor": "blue",
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                        "width": 320,
-                                      },
-                                      undefined,
-                                      undefined,
-                                      undefined,
-                                      Object {
-                                        "backgroundColor": "#ffffff",
-                                        "borderColor": "#151E22",
-                                        "borderRadius": 100,
-                                        "borderWidth": 1,
-                                        "height": 48,
-                                        "marginBottom": 12,
-                                        "width": "100%",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  <View
-                                    style={
-                                      Object {
-                                        "marginRight": 6,
-                                      }
-                                    }
-                                  >
-                                    <SvgMock
-                                      fill="#151E22"
-                                      height={18}
-                                      width={18}
-                                    />
-                                  </View>
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#069ccd",
-                                          "fontSize": 16,
-                                        },
-                                        Object {
-                                          "color": "#151E22",
-                                          "fontWeight": "700",
-                                        },
-                                      ]
-                                    }
-                                  >
-                                    Sign in with Apple
-                                  </Text>
-                                </View>
-                              </View>
-                              <View
-                                delayPressIn={30}
-                                testID="btn-facebook"
-                              >
-                                <View
-                                  style={
-                                    Array [
-                                      Object {
-                                        "alignItems": "center",
-                                        "alignSelf": "center",
-                                        "borderColor": "blue",
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                        "width": 320,
-                                      },
-                                      undefined,
-                                      undefined,
-                                      undefined,
-                                      Object {
-                                        "backgroundColor": "#345997",
-                                        "borderColor": "#345997",
-                                        "borderRadius": 100,
-                                        "borderWidth": 1,
-                                        "height": 48,
-                                        "marginBottom": 12,
-                                        "width": "100%",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  <View
-                                    style={
-                                      Object {
-                                        "marginRight": 6,
-                                      }
-                                    }
-                                  >
-                                    <SvgMock
-                                      fill="#ffffff"
-                                      height={18}
-                                      width={18}
-                                    />
-                                  </View>
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#069ccd",
-                                          "fontSize": 16,
-                                        },
-                                        Object {
-                                          "color": "#ffffff",
-                                          "fontWeight": "700",
-                                        },
-                                      ]
-                                    }
-                                  >
-                                    Sign in with Facebook
-                                  </Text>
-                                </View>
-                              </View>
-                              <View
-                                delayPressIn={30}
-                                testID="btn-google"
-                              >
-                                <View
-                                  style={
-                                    Array [
-                                      Object {
-                                        "alignItems": "center",
-                                        "alignSelf": "center",
-                                        "borderColor": "blue",
-                                        "flexDirection": "row",
-                                        "height": 52,
-                                        "justifyContent": "center",
-                                        "width": 320,
-                                      },
-                                      undefined,
-                                      undefined,
-                                      undefined,
-                                      Object {
-                                        "backgroundColor": "#E04238",
-                                        "borderColor": "#E04238",
-                                        "borderRadius": 100,
-                                        "borderWidth": 1,
-                                        "height": 48,
-                                        "marginBottom": 12,
-                                        "width": "100%",
-                                      },
-                                    ]
-                                  }
-                                >
-                                  <View
-                                    style={
-                                      Object {
-                                        "marginRight": 6,
-                                      }
-                                    }
-                                  >
-                                    <SvgMock
-                                      fill="#ffffff"
-                                      height={20}
-                                      width={20}
-                                    />
-                                  </View>
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#069ccd",
-                                          "fontSize": 16,
-                                        },
-                                        Object {
-                                          "color": "#ffffff",
-                                          "fontWeight": "700",
-                                        },
-                                      ]
-                                    }
-                                  >
-                                    Sign in with Google
-                                  </Text>
-                                </View>
-                              </View>
+                              />
+                              <test
+                                clientId="xxxx"
+                                clientSecret="xxxx"
+                                onUserCreated={[Function]}
+                                socialProvider="facebook"
+                                svgIcon={
+                                  <SvgMock
+                                    fill="#ffffff"
+                                    height={18}
+                                    width={18}
+                                  />
+                                }
+                              />
+                              <test
+                                clientId="xxxx"
+                                clientSecret="xxxx"
+                                onUserCreated={[Function]}
+                                socialProvider="google"
+                                svgIcon={
+                                  <SvgMock
+                                    fill="#ffffff"
+                                    height={20}
+                                    width={20}
+                                  />
+                                }
+                              />
                             </View>
                             <View
                               style={
@@ -828,6 +656,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 We consider that you agree with 
                               </Text>
                               <Text
+                                onPress={[Function]}
                                 style={
                                   Array [
                                     Object {
@@ -854,6 +683,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                  and 
                               </Text>
                               <Text
+                                onPress={[Function]}
                                 style={
                                   Array [
                                     Object {
@@ -881,9 +711,9 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                               </Text>
                             </View>
                           </View>
-                        </ScrollView>
-                      </SafeAreaView>
-                    </View>
+                        </View>
+                      </RCTScrollView>
+                    </RCTSafeAreaView>
                   </View>
                 </View>
               </View>
@@ -891,23 +721,23 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
           </View>
         </View>
       </View>
-      <View
-        pointerEvents="box-none"
-        style={
-          Array [
-            Object {
-              "zIndex": 1,
-            },
-            Object {
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            },
-          ]
-        }
-      />
-    </RNCSafeAreaProvider>
-  </View>
+    </View>
+    <View
+      pointerEvents="box-none"
+      style={
+        Array [
+          Object {
+            "zIndex": 1,
+          },
+          Object {
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+        ]
+      }
+    />
+  </RNCSafeAreaProvider>
 </View>
 `;

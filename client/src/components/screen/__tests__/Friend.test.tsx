@@ -1,23 +1,38 @@
 // import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import { act, cleanup, render, wait } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { MockPayloadGenerator, createMockEnvironment } from 'relay-test-utils';
+import React, { Suspense } from 'react';
+import { dark, light } from '../../../theme';
+import { render, waitFor } from '@testing-library/react-native';
 
 import Friend from '../Friend';
-import { MockPayloadGenerator } from 'relay-test-utils';
-import React from 'react';
+import { LoadingIndicator } from 'dooboo-ui';
+import { ProfileModalProvider } from '../../../providers/ProfileModalProvider';
+import { RelayEnvironmentProvider } from 'react-relay/hooks';
+import { ThemeProvider } from '@dooboo-ui/theme';
 import { User } from '../../../types/graphql';
-import { environment } from '../../../providers';
+
+const environment = createMockEnvironment();
+
+const component = (
+  <ThemeProvider customTheme={{ light, dark }}>
+    <RelayEnvironmentProvider environment={environment}>
+      <Suspense fallback={<LoadingIndicator />}>
+        <ProfileModalProvider>
+          <Friend />
+        </ProfileModalProvider>
+      </Suspense>
+    </RelayEnvironmentProvider>
+  </ThemeProvider>
+);
 
 describe('[Friend] rendering test', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let props: any;
-  beforeEach(() => {
-    props = createTestProps();
-    environment.mockClear();
-  });
+  it('should render without crashing', async () => {
+    const json = render(component).toJSON();
 
-  // afterEach(cleanup);
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
+  });
 
   it('renders a friend', async () => {
     environment.mock.queueOperationResolver((operation) => {
@@ -30,10 +45,9 @@ describe('[Friend] rendering test', () => {
       });
     });
 
-    const component = createTestElement(<Friend {...props} />);
     const { getByText } = render(component);
 
-    return wait(() => expect(getByText('John Doe')).toBeTruthy());
+    return waitFor(() => expect(getByText('John Doe')).toBeTruthy());
   });
 
   it('re-renders upon friend update', async () => {
@@ -46,11 +60,10 @@ describe('[Friend] rendering test', () => {
       }),
     });
 
-    const component = createTestElement(<Friend {...props}/>);
-
     const { getByText } = render(component);
 
-    const operation = environment.mock.getMostRecentOperation();
+    const operation = await waitFor(() => environment.mock.getMostRecentOperation());
+
     environment.mock.nextValue(
       operation,
       MockPayloadGenerator.generate(
@@ -59,7 +72,7 @@ describe('[Friend] rendering test', () => {
       ),
     );
 
-    wait(() => expect(getByText('John Doe')).toBeTruthy());
+    await waitFor(() => expect(getByText('John Doe')).toBeTruthy());
 
     environment.mock.nextValue(
       operation,
@@ -69,6 +82,6 @@ describe('[Friend] rendering test', () => {
       ),
     );
 
-    wait(() => expect(getByText('Sarah Doe')).toBeTruthy());
+    await waitFor(() => expect(getByText('Sarah Doe')).toBeTruthy());
   });
 });

@@ -31,6 +31,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
+
   const {
     state: { user },
   } = useAuthContext();

@@ -8,20 +8,16 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import TextInput from '../TextInput';
 import { render } from '@testing-library/react-native';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: React.ReactElement;
+const component = createTestElement(
+  <TextInput {...createTestProps()} />,
+);
 
 describe('[TextInput] render', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<TextInput {...props} />);
-  });
-
   it('should renders without crashing', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 
   // describe('interactions', () => {

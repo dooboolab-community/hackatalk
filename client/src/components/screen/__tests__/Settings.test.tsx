@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { AuthType, User } from '../../../types/graphql';
 import {
-  RenderResult,
+  RenderAPI,
   act,
   cleanup,
   fireEvent,
@@ -16,6 +16,7 @@ import AuthContext from '../../../providers/AuthProvider';
 import Settings from '../Settings';
 
 let component: React.ReactElement;
+
 function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
   return {
     id: '',
@@ -23,18 +24,17 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
     thumbURL: '',
     photoURL: '',
     statusMessage: '',
-    authType: signInType,
-    socialId: '',
   };
 }
 
 function SettingTest(): React.ReactElement {
   const settingProps = createTestProps();
+
   return <Settings {...settingProps} />;
 }
 
 describe('[Setting] screen', () => {
-  let testingLib: RenderResult;
+  let testingLib: RenderAPI;
 
   beforeEach(() => {
     component = createTestElement(
@@ -43,43 +43,57 @@ describe('[Setting] screen', () => {
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Email),
     );
+
     testingLib = render(component);
+
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
-  it('renders without crashing', () => {
-    const { baseElement } = render(component);
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
-
+  it('renders without crashing with Facebook auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Facebook),
     );
-    const { baseElement: baseElement2 } = render(component);
-    expect(baseElement2).toBeTruthy();
-    expect(baseElement2).toMatchSnapshot();
 
+    testingLib = render(component);
+
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
+  });
+
+  it('should renders without crashing with Google auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Google),
     );
-    const { baseElement: baseElement3 } = render(component);
-    expect(baseElement3).toBeTruthy();
-    expect(baseElement3).toMatchSnapshot();
 
+    testingLib = render(component);
+
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
+  });
+
+  it('should render without crashing with Apple auth type', () => {
     component = createTestElement(
       <SettingTest />,
       undefined,
       undefined,
       getEmptyAuthUserWithSignInType(AuthType.Apple),
     );
-    const { baseElement: baseElement4 } = render(component);
-    expect(baseElement4).toBeTruthy();
-    expect(baseElement4).toMatchSnapshot();
+
+    testingLib = render(component);
+
+    const json = testingLib.toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
@@ -89,6 +103,7 @@ describe('[Setting] screen', () => {
 
     it('should simulate onPress login state item', async () => {
       const btn = testingLib.getByTestId('change-pw-item');
+
       fireEvent.press(btn);
     });
 

@@ -35,6 +35,7 @@ const CustomHeader = (): ReactElement => {
   const navigation = useNavigation();
 
   return (
+    // @ts-ignore
     <LinearGradient
       style={{
         paddingTop: Platform.select({
@@ -91,6 +92,7 @@ const CustomHeader = (): ReactElement => {
 
 function TabNavigator(): ReactElement {
   const { theme } = useThemeContext();
+
   return (
     <Tab.Navigator
       swipeEnabled={true}

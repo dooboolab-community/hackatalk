@@ -115,6 +115,7 @@ function MainStackNavigator(): ReactElement {
         component={ProfileUpdate}
         options={(props): StackNavigationOptions => {
           const { navigation } = props;
+
           const settingButton = (): ReactElement => {
             return (
               <TouchableOpacity
@@ -132,6 +133,7 @@ function MainStackNavigator(): ReactElement {
               </TouchableOpacity>
             );
           };
+
           return {
             ...getSimpleHeader(getString('MY_PROFILE'), theme),
             headerRight: settingButton,
@@ -171,6 +173,7 @@ function RootNavigator(): ReactElement {
   const navigation = useNavigation();
   const { state } = useProfileContext();
   const modalEl = useRef(null);
+
   state.modal = modalEl;
 
   const [commitChannel, isChannelInFlight] =

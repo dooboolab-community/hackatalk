@@ -27,6 +27,7 @@ const fetchGraphQL: FetchFunction = async (
     },
     body: '',
   };
+
   // When the `uploadables` are provided the [formData] is builded following the GraphQL multipart request specification.
   // https://github.com/jaydenseric/graphql-multipart-request-spec
   if (uploadables) {
@@ -34,21 +35,25 @@ const fetchGraphQL: FetchFunction = async (
     const { file, dir } = variables;
 
     const formData = new FormData();
+
     formData.append(
       'operations',
       `{"query": ${requestText}, "variables": {"file": ${file}, "dir": ${JSON.stringify(dir)}} }`,
     );
+
     formData.append('map', '{ "0": ["variables.file"] }');
     formData.append('0', uploadables.file);
 
     config.body = formData;
   } else {
     config.headers['Content-Type'] = 'application/json';
+
     config.body = JSON.stringify({
       query: request.text,
       variables,
     });
   }
+
   return fetch(GRAPHQL_URL, config)
     .then((response) => response.json());
 };

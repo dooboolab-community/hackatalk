@@ -144,6 +144,7 @@ function Page(props: Props): ReactElement {
 
   const pressDone = (): void => {
     const filtered = friends.filter((v) => (v.checked === true));
+
     console.log('filtered', filtered);
   };
 
@@ -172,8 +173,10 @@ function Page(props: Props): ReactElement {
       setFriends(fakeFriends);
     } else {
       const filtered = friends.filter((v) => (v.name?.includes(searchText)));
+
       setFriends(filtered);
     }
+
     setSearchText(text);
   };
 
@@ -194,6 +197,7 @@ function Page(props: Props): ReactElement {
           const nextState = produce(friends, (draftState) => {
             draftState[index].checked = !item.checked;
           });
+
           setFriends(nextState);
         }}
       />
@@ -203,8 +207,10 @@ function Page(props: Props): ReactElement {
   const removeFriend = (friend: Friend): void => {
     const nextState = produce(friends, (draftState) => {
       const index = friends.findIndex((v) => v.id === friend.id);
+
       draftState[index].checked = !friend.checked;
     });
+
     setFriends(nextState);
   };
 
@@ -281,6 +287,7 @@ function Page(props: Props): ReactElement {
         renderItem={renderFriends}
         ListHeaderComponent={(): ReactElement => {
           const filtered = friends.filter((v) => (v.checked === true));
+
           return <ScrollView
             style={{ paddingHorizontal: 24, marginBottom: 12 }}
             horizontal

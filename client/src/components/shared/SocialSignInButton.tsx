@@ -62,6 +62,7 @@ const SocialSignInButton: FC<Props> = ({
 }) => {
   const [commitFacebook, isFacebookInFlight] =
   useMutation<SocialSignInButtonFacebookSignInMutation>(signInWithFacebook);
+
   const [commitGoogle, isGoogleInFlight] =
   useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
@@ -139,16 +140,20 @@ const SocialSignInButton: FC<Props> = ({
       if (result.type === 'success') {
         if (socialProvider === AuthType.Google) {
           const accessToken = result.params.access_token;
+
           const mutationConfig = {
             variables: { token: accessToken },
             onCompleted: async (response: SocialSignInButtonGoogleSignInMutationResponse): Promise<void> => {
               if (response.signInWithGoogle) {
                 const { user, token } = response.signInWithGoogle;
+
                 await AsyncStorage.setItem('token', token);
 
                 if (onUserCreated) onUserCreated(user);
+
                 return;
               }
+
               Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
             },
             onError: (error: any): void => {
@@ -157,20 +162,25 @@ const SocialSignInButton: FC<Props> = ({
           };
 
           commitGoogle(mutationConfig);
+
           return;
         }
 
         const accessToken = result.params.access_token;
+
         const mutationConfig = {
           variables: { token: accessToken },
           onCompleted: async (response: SocialSignInButtonFacebookSignInMutationResponse): Promise<void> => {
             if (response.signInWithFacebook) {
               const { user, token } = response.signInWithFacebook;
+
               await AsyncStorage.setItem('token', token);
 
               if (onUserCreated) onUserCreated(user);
+
               return;
             }
+
             Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
           },
           onError: (error: any): void => {
@@ -186,8 +196,10 @@ const SocialSignInButton: FC<Props> = ({
       if (Platform.OS === 'web') {
         // @ts-ignore
         alert(`Login Error: ${err.message}`);
+
         return;
       }
+
       Alert.alert(`Login Error: ${err.message}`);
     } finally {
       setSigningIn(false);
@@ -216,6 +228,7 @@ const SocialSignInButton: FC<Props> = ({
       textStyle={{ fontWeight: '700', color: theme.googleText }}
     />;
   }
+
   return <Button
     testID="btn-facebook"
     style={{

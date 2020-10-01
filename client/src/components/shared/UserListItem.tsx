@@ -151,4 +151,5 @@ Shared.defaultProps = {
     updated: undefined,
   },
 };
+
 export default Shared;

@@ -11,6 +11,7 @@ function useResponsiveDesign(): Media {
   const isMobile = useMediaQuery({
     maxWidth: 480,
   });
+
   const isTablet = useMediaQuery({
     maxWidth: 768,
   });
@@ -18,9 +19,11 @@ function useResponsiveDesign(): Media {
   if (isMobile) {
     return 'mobile';
   }
+
   if (isTablet) {
     return 'tablet';
   }
+
   return 'desktop';
 }
 

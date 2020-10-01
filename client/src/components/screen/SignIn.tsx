@@ -165,6 +165,7 @@ function SignIn(props: Props): ReactElement {
   const [errorPassword, setErrorPassword] = useState<string>('');
   const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
   const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
+
   const [commitNotification, isNotificationInFlight] =
     useMutation<SignInCreateNotificationMutation>(createNotification);
 
@@ -181,11 +182,13 @@ function SignIn(props: Props): ReactElement {
   const signIn = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+
       return;
     }
 
     if (!password) {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
+
       return;
     }
 

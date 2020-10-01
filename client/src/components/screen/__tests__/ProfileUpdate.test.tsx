@@ -2,13 +2,10 @@ import 'react-native';
 
 import React, { ReactElement } from 'react';
 import {
-  RenderResult,
-  act,
   cleanup,
   fireEvent,
   render,
-  wait,
-  waitForElement,
+  waitFor,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import { preloadQuery, useRelayEnvironment } from 'react-relay/hooks';
@@ -18,16 +15,16 @@ import ProfileUpdate from '../ProfileUpdate';
 import ProfileUpdateMeQuery from '../../../__generated__/ProfileUpdateMeQuery.graphql';
 import { environment } from '../../../providers';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-let testingLib: RenderResult;
+const component = createTestElement(
+  <ProfileUpdate {...createTestProps()} />,
+);
 
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): Record<string, unknown> => {
     const userPressLaunchCamera = true;
     const BUTTON_INDEX_LAUNCH_CAMERA = 0;
     const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
+
     return {
       showActionSheetWithOptions: (
         options: Record<string, unknown>,
@@ -36,6 +33,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
         if (userPressLaunchCamera) {
           callback(BUTTON_INDEX_LAUNCH_CAMERA);
         }
+
         callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY);
       },
     };
@@ -56,7 +54,7 @@ jest.mock('expo-image-picker', () => ({
 describe('rendering test', () => {
   it('renders as expected', () => {
     const mockResolver = {
-      Profile: (): any => ({
+      Profile: () => ({
         id: 'id',
         email: 'email',
         name: 'name',
@@ -66,70 +64,61 @@ describe('rendering test', () => {
       }),
     };
 
-    // environment.mock.queuePendingOperation(ProfileUpdateMeQuery, {});
     environment.mock.queueOperationResolver(
       (operation) => MockPayloadGenerator.generate(operation, mockResolver),
     );
 
-    props = createTestProps();
-    component = createTestElement(<ProfileUpdate {...props} />);
-    const { baseElement } = render(component);
+    const json = render(component).toJSON();
 
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[ProfileUpdate] interaction', () => {
-  beforeAll(() => {
-    props = createTestProps();
-    component = createTestElement(
-      <ProfileUpdate {...props} />,
-    );
-    testingLib = render(component);
-  });
-
   it('should change nickname', async () => {
-    const inputStatus = testingLib.getByTestId('input-nickname');
-    await wait(() => expect(inputStatus).toBeTruthy());
+    const { getByTestId } = render(component);
+    const inputStatus = getByTestId('input-nickname');
 
-    act(() => {
-      fireEvent.changeText(inputStatus, 'nickname');
-    });
+    await waitFor(() => expect(inputStatus).toBeTruthy());
+
+    fireEvent.changeText(inputStatus, 'nickname');
+
     expect(inputStatus.props.value).toEqual('nickname');
   });
 
   it('should change name', async () => {
-    const inputName = testingLib.getByTestId('input-name');
-    await wait(() => expect(inputName).toBeTruthy());
+    const { getByTestId } = render(component);
+    const inputName = getByTestId('input-name');
 
-    act(() => {
-      fireEvent.changeText(inputName, 'name');
-    });
+    await waitFor(() => expect(inputName).toBeTruthy());
+
+    fireEvent.changeText(inputName, 'name');
+
     expect(inputName.props.value).toEqual('name');
   });
 
   it('should change status text', async () => {
-    const inputStatus = testingLib.getByTestId('input-status');
-    await wait(() => expect(inputStatus).toBeTruthy());
+    const { getByTestId } = render(component);
+    const inputStatus = getByTestId('input-status');
 
-    act(() => {
-      fireEvent.changeText(inputStatus, 'status');
-    });
+    await waitFor(() => expect(inputStatus).toBeTruthy());
+
+    fireEvent.changeText(inputStatus, 'status');
+
     expect(inputStatus.props.value).toEqual('status');
   });
 
   it('should call updateProfile when update button pressed', async () => {
-    const updateButton = testingLib.getByTestId('button-update');
-    await wait(() => expect(updateButton).toBeTruthy());
+    const { getByTestId } = render(component);
+    const updateButton = getByTestId('button-update');
 
-    act(() => {
-      fireEvent.press(updateButton);
-    });
+    await waitFor(() => expect(updateButton).toBeTruthy());
 
-    await act(() => wait());
+    fireEvent.press(updateButton);
 
-    const operation = environment.mock.getMostRecentOperation();
+    const operation = await waitFor(() => environment.mock.getMostRecentOperation());
+
     environment.mock.resolve(
       operation,
       MockPayloadGenerator.generate(operation),
@@ -160,9 +149,4 @@ describe('[ProfileUpdate] interaction', () => {
   //   });
   //   await wait();
   // });
-
-  afterAll((done) => {
-    cleanup();
-    done();
-  });
 });

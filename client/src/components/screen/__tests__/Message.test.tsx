@@ -2,24 +2,46 @@ import 'react-native';
 
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import React, { ReactElement } from 'react';
+import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import {
-  RenderResult,
-  act,
-  cleanup,
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { Channel } from '../../../types/graphql';
 import Message from '../Message';
 import { MockPayloadGenerator } from 'relay-test-utils';
+import React from 'react';
 import { environment } from '../../../providers';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
+jest.mock('@react-navigation/core', () => {
+  const Original = jest.requireActual('@react-navigation/core');
+
+  return {
+    ...Original,
+    get useNavigation() {
+      return jest.fn().mockImplementation(() => ({
+        setOptions: jest.fn(),
+      }));
+    },
+  };
+});
+
+const component = createTestElement(
+  <Message {...createTestProps({
+    route: {
+      params: {
+        user: {
+          name: '',
+        },
+        channel: {
+          id: '',
+          name: '',
+        },
+      },
+    },
+  })} />,
+);
 
 jest.mock('expo-permissions', () => ({
   askAsync: (): string => 'granted',
@@ -34,20 +56,6 @@ describe('[Message] rendering test', () => {
   jest.useFakeTimers();
 
   beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          user: {
-            name: '',
-          },
-          channel: {
-            id: '',
-            name: '',
-          },
-        },
-      },
-    });
-    component = createTestElement(<Message {...props} />);
     environment.mockClear();
   });
 
@@ -61,86 +69,83 @@ describe('[Message] rendering test', () => {
       });
     });
 
-    const { baseElement } = render(component);
-    expect(baseElement).toBeTruthy();
-    expect(baseElement).toMatchSnapshot();
+    const json = render(component).toJSON();
+
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });
 
 describe('[Message] interaction', () => {
   jest.useFakeTimers();
-  let testingLib: RenderResult;
-
-  beforeAll(() => {
-    testingLib = render(component);
-  });
-
-  afterAll(() => {
-    cleanup();
-  });
 
   it('should [sendMessage] when pressing button', () => {
-    let MessageBtn = testingLib.getByTestId('btn-message');
-    MessageBtn = testingLib.getByTestId('btn-message');
+    const { getByTestId } = render(component);
+    const MessageBtn = getByTestId('btn-message');
+
     fireEvent.press(MessageBtn);
   });
 
   describe('dispatch showModal', () => {
     it('should dispatch [show-modal] when peerImage is pressed', () => {
+      const { getByTestId } = render(component);
+
       jest
         .spyOn(ProfileContext, 'useProfileContext')
         .mockImplementation(() => ({
           showModal: jest.fn(),
-          state: null,
+          state: {
+            deleteMode: false,
+            user: {
+              id: '',
+            },
+          },
         }));
-      const MessageListItem = testingLib.queryByTestId('message-list-item0');
-      act(() => {
-        fireEvent.press(MessageListItem);
-      });
+
+      const MessageListItem = getByTestId('message-list-item0');
+
+      fireEvent.press(MessageListItem);
     });
 
     it('should call [show-modal] when modal is available', () => {
-      const mockedData = {
-        showModal: jest.fn(),
-        state: {
-          user: null,
-          deleteMode: true,
-          modal: jest.mock,
-        },
-      };
-      jest
-        .spyOn(ProfileContext, 'useProfileContext')
-        // @ts-ignore
-        .mockImplementation(() => mockedData);
-      const MessageListItem = testingLib.queryByTestId('message-list-item0');
-      testingLib.rerender(component);
-      act(() => {
-        fireEvent.press(MessageListItem);
-      });
-      expect(mockedData.showModal).toHaveBeenCalledTimes(1);
+      const { getByTestId, rerender } = render(component);
+
+      const showModalMock = jest.spyOn(ProfileContext, 'useProfileContext');
+
+      const MessageListItem = getByTestId('message-list-item0');
+
+      rerender(component);
+
+      fireEvent.press(MessageListItem);
+
+      expect(showModalMock).toHaveBeenCalledTimes(1);
     });
   });
 
   it('should open image library when pressing photo icon button', () => {
-    const touchMenu = testingLib.getByTestId('touch-menu');
-    act(() => {
-      fireEvent.press(touchMenu);
+    const { getByTestId } = render(component);
+    const touchMenu = getByTestId('touch-menu');
 
-      jest.runAllTimers();
+    fireEvent.press(touchMenu);
 
-      const photoBtn = testingLib.getByTestId('icon-photo');
+    jest.runAllTimers();
 
-      act(() => {
-        fireEvent.press(photoBtn);
-      });
-    });
+    const photoBtn = getByTestId('icon-photo');
+
+    fireEvent.press(photoBtn);
   });
 
-  it('should open camera when pressing camera icon button', () => {
-    const cameraBtn = testingLib.getByTestId('icon-camera');
-    act(() => {
-      fireEvent.press(cameraBtn);
-    });
+  it('should open camera when pressing camera icon button', async () => {
+    const { getByTestId } = render(component);
+    const touchMenu = getByTestId('touch-menu');
+
+    fireEvent.press(touchMenu);
+
+    jest.runAllTimers();
+
+    const cameraBtn = getByTestId('icon-camera');
+
+    fireEvent.press(cameraBtn);
 
     jest.runAllTimers();
   });

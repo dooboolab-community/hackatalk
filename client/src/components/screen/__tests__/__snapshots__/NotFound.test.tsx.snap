@@ -2,51 +2,32 @@
 
 exports[`[NotFound] screen renders without crashing 1`] = `
 <View
-  pointerEvents="box-none"
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
   }
 >
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
+  <Text
     style={
-      Object {
-        "flex": 1,
-      }
+      Array [
+        Object {
+          "color": "blue",
+          "fontSize": 16,
+        },
+      ]
     }
+    testID="my-text"
   >
-    <View
-      style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "transparent",
-            "flexBasis": 0,
-            "flexDirection": "row",
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "justifyContent": "center",
-          },
-        ]
-      }
-    >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "blue",
-              "fontSize": 16,
-            },
-          ]
-        }
-        testID="my-text"
-      >
-        dooboolab
-      </Text>
-    </View>
-  </View>
+    dooboolab
+  </Text>
 </View>
 `;

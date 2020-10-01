@@ -178,6 +178,7 @@ const MessageScreen: FC<Props> = (props) => {
         // Get connection.
         const channelProxy = proxyStore.get(channel.id);
         const root = proxyStore.getRoot();
+
         const connectionRecord = root && ConnectionHandler.getConnection(
           root,
           'ChannelComponent_channels',
@@ -191,8 +192,10 @@ const MessageScreen: FC<Props> = (props) => {
 
         // Check if the message is created inside a new channel.
         let isNewChannel = true;
+
         for (const edge of prevEdges) {
           const node = edge.getLinkedRecord('node');
+
           if (node?.getDataID() === channel.id) {
             isNewChannel = false;
             break;
@@ -208,6 +211,7 @@ const MessageScreen: FC<Props> = (props) => {
             channelProxy,
             'Channel',
           );
+
           if (connectionRecord && newEdge) {
             ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
           }
@@ -215,6 +219,7 @@ const MessageScreen: FC<Props> = (props) => {
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
+
         console.log('createMessage', text);
       },
       onError: (error: Error): void => {
@@ -228,8 +233,10 @@ const MessageScreen: FC<Props> = (props) => {
   const onRequestImagePicker = async (type: string): Promise<void> => {
     if (type === 'photo') {
       const result = await launchImageLibraryAsync();
+
       return;
     }
+
     const result = await launchCameraAsync();
   };
 
