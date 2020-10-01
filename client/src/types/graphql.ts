@@ -358,6 +358,9 @@ export type Query = {
   /** Get single channel */
   channel: Channel;
   channels: ChannelConnection;
+  /** Get single message */
+  message: Message;
+  messages: MessageConnection;
 };
 
 
@@ -396,6 +399,20 @@ export type QueryChannelArgs = {
 
 export type QueryChannelsArgs = {
   withMessage?: Maybe<Scalars['Boolean']>;
+  first?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryMessageArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryMessagesArgs = {
+  searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;

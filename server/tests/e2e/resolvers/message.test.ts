@@ -2,6 +2,8 @@ import { GraphQLClient, request } from 'graphql-request';
 import {
   createChannel,
   createMessage,
+  messageQuery,
+  messagesQuery,
   signInEmailMutation,
   signUpMutation,
 } from '../setup/queries';
@@ -101,6 +103,8 @@ describe('Resolver - Channel', () => {
     createdChannelId = response.createChannel.id;
   });
 
+  let messageId;
+
   it('should createMessage in channel', async () => {
     const variables = {
       channelId: createdChannelId,
@@ -114,5 +118,30 @@ describe('Resolver - Channel', () => {
     expect(response).toHaveProperty('createMessage');
     expect(response.createMessage).toHaveProperty('id');
     expect(response.createMessage).toHaveProperty('text');
+
+    messageId = response.createMessage.id;
+  });
+
+  it('should query messages in channel', async () => {
+    const variables = {
+      first: 10,
+      channelId: createdChannelId,
+    };
+
+    const response = await authClient.request(messagesQuery, variables);
+
+    expect(response).toHaveProperty('messages');
+    expect(response.messages).toHaveProperty('edges');
+  });
+
+  it('should query message itself', async () => {
+    const variables = {
+      id: messageId,
+    };
+
+    const response = await authClient.request(messageQuery, variables);
+
+    expect(response).toHaveProperty('message');
+    expect(response.message).toHaveProperty('id');
   });
 });

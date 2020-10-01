@@ -17,11 +17,12 @@ export const messages = queryField((t) => {
     type: 'Message',
 
     additionalArgs: {
+      channelId: stringArg({ nullable: false }),
       searchText: stringArg({ nullable: true }),
     },
 
     async nodes(_, args, ctx) {
-      const { after, before, first, last, searchText } = args;
+      const { after, before, first, last, searchText, channelId } = args;
 
       return ctx.prisma.message.findMany({
         ...relayToPrismaPagination({
@@ -29,6 +30,7 @@ export const messages = queryField((t) => {
         }),
 
         where: {
+          channelId,
           OR: [
             { text: { contains: searchText } },
           ],
@@ -36,7 +38,6 @@ export const messages = queryField((t) => {
         },
 
         include: { sender: true },
-
         orderBy: { createdAt: 'desc' },
       });
     },
