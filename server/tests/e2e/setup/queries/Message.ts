@@ -12,3 +12,40 @@ export const createMessage = /* GraphQL */`
     }
   }
 `;
+
+export const messageQuery = /* GraphQL */`
+  query message($id: String!) {
+    message(id: $id) {
+      id
+      messageType
+      text
+      sender {
+        id
+        nickname
+        thumbURL
+      }
+      createdAt
+    }
+  }
+`;
+
+export const messagesQuery = /* GraphQL */`
+  query messages($first: Int! $channelId: String!) {
+    messages(channelId: $channelId first: $first) {
+      edges {
+        cursor
+        node {
+          id
+          messageType
+          text
+          sender {
+            id
+            nickname
+            thumbURL
+          }
+          createdAt
+        }
+      }
+    }
+  }
+`;

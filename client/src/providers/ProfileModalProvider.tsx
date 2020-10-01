@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useReducer } from 'react';
+import React, { useReducer } from 'react';
 
 import { Ref as ProfileModalRef } from '../components/shared/ProfileModal';
 import { User } from '../types/graphql';

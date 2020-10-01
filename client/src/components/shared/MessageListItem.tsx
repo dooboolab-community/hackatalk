@@ -2,7 +2,7 @@ import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
-import { MessageProps } from '../../types';
+import { Message } from '../../types/graphql';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -83,9 +83,9 @@ const StyledMyMessage = styled.View`
 `;
 
 interface Props {
-  item: MessageProps;
-  prevItem?: MessageProps;
-  nextItem?: MessageProps;
+  item: Message;
+  prevItem?: Message;
+  nextItem?: Message;
   onPressPeerImage?: () => void;
   testID?: string;
 }
@@ -144,11 +144,11 @@ function MessageListItem(props: Props): React.ReactElement {
 
   const {
     item: {
-      sender: { id: senderId, nickname, photoURL: thumbURL },
+      sender: { id: senderId, nickname, thumbURL },
       messageType,
       // @ts-ignore
-      message,
-      created,
+      text,
+      createdAt,
     },
     prevItem,
     nextItem,
@@ -156,8 +156,8 @@ function MessageListItem(props: Props): React.ReactElement {
     testID,
   } = props;
 
-  const isSamePeerMsg = prevItem && prevItem.sender.id === senderId;
-  const showDate = shouldShowDate(created, nextItem?.created);
+  const isSamePeerMsg = prevItem?.sender?.id === senderId;
+  const showDate = shouldShowDate(createdAt, nextItem?.createdAt);
 
   if (senderId !== myFakeId) {
     return (
@@ -178,13 +178,13 @@ function MessageListItem(props: Props): React.ReactElement {
             <StyledTextPeerName>{nickname}</StyledTextPeerName>
           )}
           <StyledTextPeerMessageContainer>
-            <StyledPeerTextMessage>{message}</StyledPeerTextMessage>
+            <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
           </StyledTextPeerMessageContainer>
           {
             !showDate
               ? <StyledTextPeerDate>
-                {created
-                  ? `${moment(created).hour()} : ${moment(created).minutes()}`
+                {createdAt
+                  ? `${moment(createdAt).hour()} : ${moment(createdAt).minutes()}`
                   : '0 : 0'}
               </StyledTextPeerDate>
               : null
@@ -197,11 +197,11 @@ function MessageListItem(props: Props): React.ReactElement {
   return (
     <WrapperMy>
       <StyledMyMessage>
-        <StyledMyTextMessage>{message}</StyledMyTextMessage>
+        <StyledMyTextMessage>{text}</StyledMyTextMessage>
       </StyledMyMessage>
       <StyledTextDate>
-        {created
-          ? `${moment(created).hour()} : ${moment(created).minutes()}`
+        {createdAt
+          ? `${moment(createdAt).hour()} : ${moment(createdAt).minutes()}`
           : '0 : 0'}
       </StyledTextDate>
     </WrapperMy>
@@ -219,8 +219,8 @@ MessageListItem.defaultProps = {
       statusMessage: '',
     },
     message: 'hello1',
-    created: '2020-01-01 12:00',
-    updated: '2020-01-01 12:00',
+    createdAt: '2020-01-01 12:00:00',
+    updatedAt: '2020-01-01 12:00:00',
   },
 };
 

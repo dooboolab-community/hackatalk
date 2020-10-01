@@ -1,4 +1,4 @@
-import { ConnectionHandler, ROOT_ID, RecordSourceSelectorProxy } from 'relay-runtime';
+import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
@@ -10,7 +10,6 @@ import type {
   MessageCreateMutationResponse,
   MessageCreateMutationVariables,
 } from '../../__generated__/MessageCreateMutation.graphql';
-import { MessageProps, MessageType } from '../../types';
 import React, { FC, ReactElement, useState } from 'react';
 import { RouteProp, useNavigation } from '@react-navigation/core';
 import { graphql, useMutation } from 'react-relay/hooks';
@@ -26,6 +25,7 @@ import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import MessageListItem from '../shared/MessageListItem';
+import { MessageType } from '../../types';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
@@ -102,10 +102,11 @@ const MessageScreen: FC<Props> = (props) => {
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
 
-  const [messages] = useState<MessageProps[]>([
+  const [messages] = useState<Message[]>([
     {
       id: '',
-      message: 'hello1',
+      text: 'hello1',
+      messageType: MessageType.Message,
       sender: {
         id: '0',
         nickname: 'sender111',
@@ -113,12 +114,12 @@ const MessageScreen: FC<Props> = (props) => {
         photoURL: '',
         statusMessage: '',
       },
-      created: '2020-01-01 11:22',
+      createdAt: '2020-01-01 11:22:00',
     },
     {
       id: '',
       messageType: MessageType.Message,
-      message:
+      text:
         'Hello2. This is long message. This is long message. This is long message.' +
         'This is long message. This is long message. This is long message.' +
         'This is long message. This is long message.' +
@@ -128,40 +129,39 @@ const MessageScreen: FC<Props> = (props) => {
         nickname: 'sender111',
         thumbURL: '',
       },
-      created: '2020-01-01 11:23',
+      createdAt: '2020-01-01 11:23:00',
     },
     {
       id: '',
       messageType: MessageType.Message,
-      message: 'hello',
+      text: 'hello',
       sender: {
         id: '0',
         nickname: 'sender111',
         thumbURL: '',
       },
-      created: '2020-01-01 11:23',
+      createdAt: '2020-01-01 11:23:00',
     },
     {
       id: '',
       messageType: MessageType.Message,
-      message: 'hello2',
+      text: 'hello2',
       sender: {
         id: '0',
         nickname: 'sender111',
         thumbURL: '',
       },
-      created: '2020-01-01 11:26',
+      createdAt: '2020-01-01 11:26:00',
     },
     {
       id: '',
       messageType: MessageType.Photo,
-      photo: 'http://photo.png',
       sender: {
         id: '0',
         nickname: 'sender111',
         thumbURL: '',
       },
-      created: '2020-01-01 11:26',
+      createdAt: '2020-01-01 11:26:00',
     },
   ]);
 
@@ -175,47 +175,49 @@ const MessageScreen: FC<Props> = (props) => {
         },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        // Get connection.
+        /** start: ==> Update [Channel] list */
         const channelProxy = proxyStore.get(channel.id);
         const root = proxyStore.getRoot();
 
         const connectionRecord = root && ConnectionHandler.getConnection(
           root,
           'ChannelComponent_channels',
-          {
-            withMessage: true,
-          },
+          { withMessage: true },
         );
 
         // Get existing edges.
         const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
 
         // Check if the message is created inside a new channel.
-        let isNewChannel = true;
+        let existingNode;
 
         for (const edge of prevEdges) {
           const node = edge.getLinkedRecord('node');
 
           if (node?.getDataID() === channel.id) {
-            isNewChannel = false;
+            existingNode = node;
             break;
           }
         }
 
-        // If a new channel is created,
-        // update relay store.
-        if (isNewChannel) {
-          const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
-            proxyStore,
-            connectionRecord,
-            channelProxy,
-            'Channel',
-          );
+        const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          connectionRecord,
+          channelProxy,
+          'Channel',
+        );
 
-          if (connectionRecord && newEdge) {
-            ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-          }
+        if (connectionRecord && newEdge) {
+          ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
         }
+
+        if (existingNode && channelProxy) {
+          ConnectionHandler.deleteNode(channelProxy, existingNode?.getDataID());
+        }
+        /** end: ==> Update [Channel] list */
+
+        /** start: ==> Create [Message] list */
+        /** end: ==> Create [Message] list */
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
@@ -261,7 +263,7 @@ const MessageScreen: FC<Props> = (props) => {
           item,
           index,
         }: {
-          item: MessageProps;
+          item: Message;
           index: number;
         }): React.ReactElement => {
           return (
@@ -272,7 +274,7 @@ const MessageScreen: FC<Props> = (props) => {
               nextItem={messages[index + 1]}
               onPressPeerImage={(): void => {
                 if (state.modal) {
-                  showModal({ user: item, deleteMode: true });
+                  showModal({ user: item.sender, deleteMode: true });
                 }
               }}
             />
