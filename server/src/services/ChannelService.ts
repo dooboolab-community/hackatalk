@@ -1,4 +1,5 @@
 import { Channel, Membership, MembershipType } from '@prisma/client';
+import { T, always, andThen, cond, gt, lt, map, pipe, when } from 'ramda';
 
 import { prisma } from '../context';
 
@@ -101,22 +102,30 @@ export const createMemberships = async (
   channelId: string,
   userIds: readonly string[],
 ): Promise<void> => {
-  const membershipCnt = await prisma.membership.count({
+  const countMemberships = () => prisma.membership.count({
     where: { channelId },
   });
 
-  if (membershipCnt < 2) {
-    const promises: Promise<Membership>[] = userIds.map((userId) => prisma.membership.create({
-      data: {
-        user: {
-          connect: { id: userId },
-        },
-        channel: {
-          connect: { id: channelId },
-        },
+  const createMembership = (userId: string) => prisma.membership.create({
+    data: {
+      user: {
+        connect: { id: userId },
       },
-    }));
+      channel: {
+        connect: { id: channelId },
+      },
+    },
+  });
 
-    await Promise.all(promises);
-  }
+  await pipe(
+    countMemberships,
+    andThen(
+      cond([
+        [
+          (x) => x < 2,
+          () => Promise.all(userIds.map(createMembership)),
+        ],
+      ]),
+    ),
+  )();
 };

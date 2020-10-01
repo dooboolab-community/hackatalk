@@ -19,6 +19,7 @@ import {
   USER_SIGNED_IN,
   USER_UPDATED,
 } from './subscription';
+import { andThen, pipe } from 'ramda';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { AuthType } from '../../models/Scalar';
@@ -97,37 +98,35 @@ export const signInEmail = mutationField('signInEmail', {
     password: stringArg({ nullable: false }),
   },
   resolve: async (_parent, { email, password }, ctx) => {
-    const { pubsub } = ctx;
+    const { pubsub, prisma } = ctx;
 
-    const user = await ctx.prisma.user.findOne({
-      where: {
-        email,
-      },
+    const findUserWithEmail = async () => prisma.user.findOne({
+      where: { email },
     });
 
-    if (!user) {
-      throw new Error(`No user found for email: ${email}`);
-    }
-
-    const passwordValid = await validateCredential(password, user.password);
-
-    if (!passwordValid) {
-      throw new Error('Invalid password');
-    }
-
-    pubsub.publish(USER_SIGNED_IN, user);
-
-    ctx.prisma.user.update({
-      where: {
-        email,
-      },
+    const updateLastSignedIn = () => prisma.user.update({
+      where: { email },
       data: { lastSignedIn: new Date().toISOString() },
     });
 
-    return {
-      token: sign({ userId: user.id }, APP_SECRET),
-      user,
-    };
+    return pipe(
+      findUserWithEmail,
+      andThen(
+        (user) => pipe(
+          async () => {
+            if (!await validateCredential(password, user.password)) {
+              throw new Error('Invalid password');
+            }
+          },
+          andThen(() => pubsub.publish(USER_SIGNED_IN, user)),
+          andThen(updateLastSignedIn),
+          andThen(() => ({
+            token: sign({ userId: user.id }, APP_SECRET),
+            user,
+          })),
+        )(),
+      ),
+    )();
   },
 });
 
