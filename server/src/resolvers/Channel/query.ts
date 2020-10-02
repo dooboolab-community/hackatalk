@@ -51,7 +51,7 @@ export const channels = queryField((t) => {
           ...checkMessage,
         },
 
-        orderBy: { createdAt: 'desc' },
+        orderBy: { updatedAt: 'desc' },
       });
     },
   });

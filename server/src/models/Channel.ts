@@ -9,6 +9,7 @@ export const Channel = objectType({
     t.model.id();
     t.model.channelType();
     t.model.name();
+    t.model.lastMessageId();
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();

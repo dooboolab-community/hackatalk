@@ -1,4 +1,4 @@
-import {
+import type {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
@@ -18,9 +18,7 @@ import type {
 } from '../../__generated__/ChannelComponent_channel.graphql';
 import ChannelListItem from '../shared/ChannelListItem';
 import EmptyListItem from '../shared/EmptyListItem';
-import {
-  LoadingIndicator,
-} from 'dooboo-ui';
+import { LoadingIndicator } from 'dooboo-ui';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { SvgPlus } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
@@ -45,11 +43,11 @@ const Fab = styled.View`
   background: ${({ theme }): string => theme.fab};
 `;
 
-const ITEM_CNT = 10;
+const ITEM_CNT = 20;
 
 const channelsQuery = graphql`
   query ChannelsQuery($first: Int! $after: String $withMessage: Boolean) {
-    ...ChannelComponent_channel @arguments(first: $first, after: $after withMessage: $withMessage)
+    ...ChannelComponent_channel @arguments(first: $first after: $after withMessage: $withMessage)
   }
 `;
 
@@ -131,7 +129,10 @@ const ChannelsFragment: FC<ChannelProps> = ({
         testID={`list-item-${index}`}
         item={item.node}
         onPress={(): void => {
-          navigation.navigate('Message', { messageId: item.node.id });
+          navigation.navigate('Message', {
+            channel: item.node,
+            user: item.node?.memberships?.[0].user,
+          });
         }}
       />
     );

@@ -44,6 +44,7 @@ export type Channel = {
   id: Scalars['String'];
   channelType: Scalars['ChannelType'];
   name?: Maybe<Scalars['String']>;
+  lastMessageId?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
@@ -412,6 +413,7 @@ export type QueryMessageArgs = {
 
 
 export type QueryMessagesArgs = {
+  channelId: Scalars['String'];
   searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;

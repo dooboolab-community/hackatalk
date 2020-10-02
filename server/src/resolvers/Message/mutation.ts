@@ -37,6 +37,15 @@ export const createMessage = mutationField('createMessage', {
       },
     });
 
+    await ctx.prisma.channel.update({
+      data: {
+        lastMessageId: created.id,
+      },
+      where: {
+        id: channelId,
+      },
+    });
+
     const tokens = await getReceiversPushTokens(channelId, userId);
 
     tokens.forEach((token) => {

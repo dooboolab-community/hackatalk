@@ -1,3 +1,4 @@
+import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
@@ -10,27 +11,36 @@ import type {
   MessageCreateMutationResponse,
   MessageCreateMutationVariables,
 } from '../../__generated__/MessageCreateMutation.graphql';
-import React, { FC, ReactElement, useState } from 'react';
+import {
+  MessagesQuery,
+  MessagesQueryResponse,
+  MessagesQueryVariables,
+} from '../../__generated__/MessagesQuery.graphql';
+import React, { FC, ReactElement, Suspense, useState } from 'react';
 import { RouteProp, useNavigation } from '@react-navigation/core';
-import { graphql, useMutation } from 'react-relay/hooks';
+import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import { Button } from 'dooboo-ui';
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
+import type {
+  MessageComponent_message$key,
+} from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
-import { MessageType } from '../../types';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import styled from 'styled-components/native';
+import { useAuthContext } from '../../providers/AuthProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
+
+const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -38,11 +48,6 @@ const Container = styled.SafeAreaView`
   flex-direction: column;
   align-items: center;
 `;
-
-interface Props {
-  navigation: MainStackNavigationProps<'Message'>;
-  route: RouteProp<MainStackParamList, 'Message'>;
-}
 
 const createMessage = graphql`
   mutation MessageCreateMutation($channelId: String! $message: MessageCreateInput!) {
@@ -74,111 +79,121 @@ const createMessage = graphql`
   }
 `;
 
-const MessageScreen: FC<Props> = (props) => {
-  const { theme } = useThemeContext();
-  const { route: { params: { user, channel } } } = props;
-  const navigation = useNavigation();
-  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
+const messagesQuery = graphql`
+  query MessagesQuery($first: Int! $after: String $channelId: String! $searchText: String) {
+    ...MessageComponent_message @arguments(first: $first after: $after channelId: $channelId searchText: $searchText)
+  }
+`;
 
-  navigation.setOptions({
-    headerTitle: (): ReactElement => {
-      let title = channel?.name || '';
-
-      // Note that if the user exists, this is direct message which title should appear as user name or nickname
-      if (user) {
-        title = user.nickname || user.name || '';
+const messagesFragment = graphql`
+  fragment MessageComponent_message on Query
+    @argumentDefinitions(
+      first: {type: "Int!"}
+      after: {type: "String"}
+      channelId: {type: "String!"}
+      searchText: {type: "String"}
+    )
+    @refetchable(queryName: "Messages") {
+      messages(first: $first after: $after channelId: $channelId searchText: $searchText)
+      @connection(key: "MessageComponent_messages" filters: ["channelId", "searchText"]) {
+        edges {
+          cursor
+          node {
+            messageType
+            text
+            imageUrls
+            fileUrls
+            sender {
+              id
+              name
+              nickname
+              thumbURL
+              photoURL
+            }
+            createdAt
+            updatedAt
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
       }
+    }
+`;
 
-      return <Text style={{
-        color: 'white',
-        fontSize: 18,
-        fontWeight: '500',
-      }}>{title}</Text>;
-    },
-  });
+interface MessageProp {
+  channelId: string;
+  messages: MessageComponent_message$key;
+  searchArgs: MessagesQueryVariables;
+}
 
-  // Note that if the user exists, this is direct message which title should appear as user name or nickname
+const MessagesFragment: FC<MessageProp> = ({
+  channelId,
+  messages,
+  searchArgs,
+}) => {
+  const { theme } = useThemeContext();
+
+  const {
+    data,
+    loadNext,
+    isLoadingNext,
+  } = usePaginationFragment<MessagesQuery, MessageComponent_message$key>(
+    messagesFragment,
+    messages,
+  );
+
+  const edges = data?.messages?.edges || [];
+
+  const nodes = edges
+    // @ts-ignore
+    .reduce((arr, item) => arr.concat(item?.node), []);
+
+  const onEndReached = (): void => {
+    loadNext(ITEM_CNT);
+  };
 
   const [textToSend, setTextToSend] = useState<string>('');
   const { state, showModal } = useProfileContext();
 
-  const [messages] = useState<Message[]>([
-    {
-      id: '',
-      text: 'hello1',
-      messageType: MessageType.Message,
-      sender: {
-        id: '0',
-        nickname: 'sender111',
-        thumbURL: '',
-        photoURL: '',
-        statusMessage: '',
-      },
-      createdAt: '2020-01-01 11:22:00',
-    },
-    {
-      id: '',
-      messageType: MessageType.Message,
-      text:
-        'Hello2. This is long message. This is long message. This is long message.' +
-        'This is long message. This is long message. This is long message.' +
-        'This is long message. This is long message.' +
-        'This is long message. This is long message. This is long message.',
-      sender: {
-        id: '2',
-        nickname: 'sender111',
-        thumbURL: '',
-      },
-      createdAt: '2020-01-01 11:23:00',
-    },
-    {
-      id: '',
-      messageType: MessageType.Message,
-      text: 'hello',
-      sender: {
-        id: '0',
-        nickname: 'sender111',
-        thumbURL: '',
-      },
-      createdAt: '2020-01-01 11:23:00',
-    },
-    {
-      id: '',
-      messageType: MessageType.Message,
-      text: 'hello2',
-      sender: {
-        id: '0',
-        nickname: 'sender111',
-        thumbURL: '',
-      },
-      createdAt: '2020-01-01 11:26:00',
-    },
-    {
-      id: '',
-      messageType: MessageType.Photo,
-      sender: {
-        id: '0',
-        nickname: 'sender111',
-        thumbURL: '',
-      },
-      createdAt: '2020-01-01 11:26:00',
-    },
-  ]);
+  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
 
   const onSubmit = (): void => {
+    if (!textToSend) return;
+
     const mutationConfig = {
       variables: {
-        channelId: channel.id,
-        message: {
-          // TODO: Use actual message as a variable.
-          text: 'Hi this is Hyo111',
-        },
+        channelId,
+        message: { text: textToSend },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        /** start: ==> Update [Channel] list */
-        const channelProxy = proxyStore.get(channel.id);
         const root = proxyStore.getRoot();
+        const channelProxy = proxyStore.get(channelId);
 
+        /** start: ==> Create [Message] list */
+        const messagesConnectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'MessageComponent_messages',
+          {
+            channelId,
+            searchText: null,
+          },
+        );
+
+        const newMessageEdge = messagesConnectionRecord && channelProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          messagesConnectionRecord,
+          channelProxy,
+          'Message',
+        );
+
+        if (messagesConnectionRecord && newMessageEdge) {
+          ConnectionHandler.insertEdgeBefore(messagesConnectionRecord, newMessageEdge);
+        }
+        /** end: ==> Create [Message] list */
+
+        /** start: ==> Update [Channel] list */
         const connectionRecord = root && ConnectionHandler.getConnection(
           root,
           'ChannelComponent_channels',
@@ -194,7 +209,7 @@ const MessageScreen: FC<Props> = (props) => {
         for (const edge of prevEdges) {
           const node = edge.getLinkedRecord('node');
 
-          if (node?.getDataID() === channel.id) {
+          if (node?.getDataID() === channelId) {
             existingNode = node;
             break;
           }
@@ -212,12 +227,9 @@ const MessageScreen: FC<Props> = (props) => {
         }
 
         if (existingNode && channelProxy) {
-          ConnectionHandler.deleteNode(channelProxy, existingNode?.getDataID());
+          ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
         }
         /** end: ==> Update [Channel] list */
-
-        /** start: ==> Create [Message] list */
-        /** end: ==> Create [Message] list */
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
@@ -242,116 +254,185 @@ const MessageScreen: FC<Props> = (props) => {
     const result = await launchCameraAsync();
   };
 
+  const { state: { user } } = useAuthContext();
+
+  return <GiftedChat
+    // @ts-ignore
+    chats={nodes}
+    borderColor={theme.lineColor}
+    onEndReached={onEndReached}
+    backgroundColor={theme.background}
+    fontColor={theme.fontColor}
+    keyboardOffset={Platform.select({
+      ios: isIPhoneX()
+        ? Constants.statusBarHeight + 40
+        : Constants.statusBarHeight,
+      android: Constants.statusBarHeight + 52,
+    })}
+    message={textToSend}
+    placeholder={getString('WRITE_MESSAGE')}
+    placeholderTextColor={theme.placeholder}
+    onChangeMessage={(text: string): void => setTextToSend(text)}
+    renderItem={({
+      item,
+      index,
+    }: {
+      item: Message;
+      index: number;
+    }): React.ReactElement => {
+      return (
+        <MessageListItem
+          userId={user?.id}
+          testID={`message-list-item${index}`}
+          // @ts-ignore
+          prevItem={messages[index - 1]}
+          // @ts-ignore
+          nextItem={messages[index + 1]}
+          item={item}
+          onPressPeerImage={(): void => {
+            if (state.modal) {
+              showModal({ user: item?.sender, deleteMode: true });
+            }
+          }}
+        />
+      );
+    }}
+    optionView={
+      <Image
+        style={{
+          width: 24,
+          height: 24,
+        }}
+        source={IC_SMILE}
+      />
+    }
+    emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
+    renderViewMenu={(): React.ReactElement => (
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: 10,
+        }}
+      >
+        <TouchableOpacity
+          testID="icon-camera"
+          onPress={(): Promise<void> => onRequestImagePicker('camera')}
+          style={{
+            marginLeft: 16,
+            marginTop: 2,
+            width: 60,
+            height: 60,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Ionicons
+            name="ios-camera"
+            size={36}
+            color={theme ? theme.fontColor : '#3d3d3d'}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="icon-photo"
+          onPress={(): Promise<void> => onRequestImagePicker('photo')}
+          style={{
+            marginLeft: 16,
+            marginTop: 4,
+            width: 60,
+            height: 60,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Ionicons
+            name="md-images"
+            size={36}
+            color={theme ? theme.fontColor : '#3d3d3d'}
+          />
+        </TouchableOpacity>
+      </View>
+    )}
+    renderSendButton={(): React.ReactElement => (
+      <Button
+        testID="btn-message"
+        style={{
+          backgroundColor: theme.btnPrimary,
+          width: 68,
+          height: 40,
+        }}
+        textStyle={{
+          color: theme.btnPrimaryFont,
+        }}
+        loading={isMessageInFlight}
+        onPress={onSubmit}
+        text={getString('SEND')}
+      />
+    )}
+  />;
+};
+
+interface ContentProps {
+  channelId: string;
+  searchArgs: MessagesQueryVariables;
+}
+
+const ContentContainer: FC<ContentProps> = ({
+  searchArgs,
+  channelId,
+}) => {
+  const data: MessagesQueryResponse =
+  useLazyLoadQuery<MessagesQuery>(
+    messagesQuery,
+    searchArgs,
+    { fetchPolicy: 'store-or-network' },
+  );
+
+  return <MessagesFragment
+    channelId={channelId}
+    messages={data}
+    searchArgs={searchArgs}
+  />;
+};
+
+interface Props {
+  navigation: MainStackNavigationProps<'Message'>;
+  route: RouteProp<MainStackParamList, 'Message'>;
+}
+
+const MessageScreen: FC<Props> = (props) => {
+  const { route: { params: { user, channel } } } = props;
+  const navigation = useNavigation();
+
+  navigation.setOptions({
+    headerTitle: (): ReactElement => {
+      let title = channel?.name || '';
+
+      // Note that if the user exists, this is direct message which title should appear as user name or nickname
+      if (user) {
+        title = user.nickname || user.name || '';
+      }
+
+      return <Text style={{
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '500',
+      }}>{title}</Text>;
+    },
+  });
+
+  const searchArgs: MessagesQueryVariables = {
+    first: ITEM_CNT,
+    channelId: channel.id,
+  };
+
   return (
     <Container>
-      <GiftedChat
-        chats={messages}
-        borderColor={theme.lineColor}
-        backgroundColor={theme.background}
-        fontColor={theme.fontColor}
-        keyboardOffset={Platform.select({
-          ios: isIPhoneX()
-            ? Constants.statusBarHeight + 40
-            : Constants.statusBarHeight,
-          android: Constants.statusBarHeight + 52,
-        })}
-        message={textToSend}
-        placeholder={getString('WRITE_MESSAGE')}
-        placeholderTextColor={theme.placeholder}
-        onChangeMessage={(text: string): void => setTextToSend(text)}
-        renderItem={({
-          item,
-          index,
-        }: {
-          item: Message;
-          index: number;
-        }): React.ReactElement => {
-          return (
-            <MessageListItem
-              testID={`message-list-item${index}`}
-              prevItem={messages[index - 1]}
-              item={item}
-              nextItem={messages[index + 1]}
-              onPressPeerImage={(): void => {
-                if (state.modal) {
-                  showModal({ user: item.sender, deleteMode: true });
-                }
-              }}
-            />
-          );
-        }}
-        optionView={
-          <Image
-            style={{
-              width: 24,
-              height: 24,
-            }}
-            source={IC_SMILE}
-          />
-        }
-        emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
-        renderViewMenu={(): React.ReactElement => (
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 10,
-            }}
-          >
-            <TouchableOpacity
-              testID="icon-camera"
-              onPress={(): Promise<void> => onRequestImagePicker('camera')}
-              style={{
-                marginLeft: 16,
-                marginTop: 2,
-                width: 60,
-                height: 60,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Ionicons
-                name="ios-camera"
-                size={36}
-                color={theme ? theme.fontColor : '#3d3d3d'}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              testID="icon-photo"
-              onPress={(): Promise<void> => onRequestImagePicker('photo')}
-              style={{
-                marginLeft: 16,
-                marginTop: 4,
-                width: 60,
-                height: 60,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Ionicons
-                name="md-images"
-                size={36}
-                color={theme ? theme.fontColor : '#3d3d3d'}
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-        renderSendButton={(): React.ReactElement => (
-          <Button
-            testID="btn-message"
-            style={{
-              backgroundColor: theme.btnPrimary,
-              width: 60,
-              height: 40,
-            }}
-            textStyle={{
-              color: theme.btnPrimaryFont,
-            }}
-            loading={isMessageInFlight}
-            onPress={onSubmit}
-            text={getString('SEND')}
-          />
-        )}
-      />
+      <Suspense fallback={<LoadingIndicator/>}>
+        <ContentContainer
+          searchArgs={searchArgs}
+          channelId={channel.id}
+        />
+      </Suspense>
     </Container>
   );
 };
