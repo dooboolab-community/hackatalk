@@ -4,29 +4,24 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ChannelComponent_channel = {
-    readonly channels: {
+export type MessageComponent_message = {
+    readonly messages: {
         readonly edges: ReadonlyArray<{
             readonly cursor: string;
             readonly node: {
-                readonly id: string;
-                readonly channelType: unknown;
-                readonly name: string | null;
-                readonly memberships: ReadonlyArray<{
-                    readonly user: {
-                        readonly name: string | null;
-                        readonly nickname: string | null;
-                        readonly thumbURL: string | null;
-                        readonly photoURL: string | null;
-                    } | null;
-                }> | null;
-                readonly lastMessage: {
-                    readonly messageType: unknown;
-                    readonly text: string | null;
-                    readonly imageUrls: ReadonlyArray<string> | null;
-                    readonly fileUrls: ReadonlyArray<string> | null;
-                    readonly createdAt: unknown | null;
-                } | null;
+                readonly messageType: unknown;
+                readonly text: string | null;
+                readonly imageUrls: ReadonlyArray<string> | null;
+                readonly fileUrls: ReadonlyArray<string> | null;
+                readonly sender: {
+                    readonly id: string;
+                    readonly name: string | null;
+                    readonly nickname: string | null;
+                    readonly thumbURL: string | null;
+                    readonly photoURL: string | null;
+                };
+                readonly createdAt: unknown | null;
+                readonly updatedAt: unknown | null;
             };
         } | null> | null;
         readonly pageInfo: {
@@ -34,26 +29,20 @@ export type ChannelComponent_channel = {
             readonly endCursor: string | null;
         };
     };
-    readonly " $refType": "ChannelComponent_channel";
+    readonly " $refType": "MessageComponent_message";
 };
-export type ChannelComponent_channel$data = ChannelComponent_channel;
-export type ChannelComponent_channel$key = {
-    readonly " $data"?: ChannelComponent_channel$data;
-    readonly " $fragmentRefs": FragmentRefs<"ChannelComponent_channel">;
+export type MessageComponent_message$data = MessageComponent_message;
+export type MessageComponent_message$key = {
+    readonly " $data"?: MessageComponent_message$data;
+    readonly " $fragmentRefs": FragmentRefs<"MessageComponent_message">;
 };
 
 
 
 const node: ReaderFragment = (function () {
     var v0 = [
-        "channels"
-    ], v1 = ({
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "name",
-        "storageKey": null
-    } as any);
+        "messages"
+    ];
     return {
         "argumentDefinitions": [
             {
@@ -64,12 +53,17 @@ const node: ReaderFragment = (function () {
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
+                "name": "channelId"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
                 "name": "first"
             },
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
-                "name": "withMessage"
+                "name": "searchText"
             }
         ],
         "kind": "Fragment",
@@ -92,29 +86,34 @@ const node: ReaderFragment = (function () {
                     "path": (v0 /*: any*/)
                 },
                 "fragmentPathInResult": [],
-                "operation": require('./Channels.graphql.ts')
+                "operation": require('./Messages.graphql.ts')
             }
         },
-        "name": "ChannelComponent_channel",
+        "name": "MessageComponent_message",
         "selections": [
             {
-                "alias": "channels",
+                "alias": "messages",
                 "args": [
                     {
                         "kind": "Variable",
-                        "name": "withMessage",
-                        "variableName": "withMessage"
+                        "name": "channelId",
+                        "variableName": "channelId"
+                    },
+                    {
+                        "kind": "Variable",
+                        "name": "searchText",
+                        "variableName": "searchText"
                     }
                 ],
-                "concreteType": "ChannelConnection",
+                "concreteType": "MessageConnection",
                 "kind": "LinkedField",
-                "name": "__ChannelComponent_channels_connection",
+                "name": "__MessageComponent_messages_connection",
                 "plural": false,
                 "selections": [
                     {
                         "alias": null,
                         "args": null,
-                        "concreteType": "ChannelEdge",
+                        "concreteType": "MessageEdge",
                         "kind": "LinkedField",
                         "name": "edges",
                         "plural": true,
@@ -129,7 +128,7 @@ const node: ReaderFragment = (function () {
                             {
                                 "alias": null,
                                 "args": null,
-                                "concreteType": "Channel",
+                                "concreteType": "Message",
                                 "kind": "LinkedField",
                                 "name": "node",
                                 "plural": false,
@@ -138,111 +137,88 @@ const node: ReaderFragment = (function () {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
-                                        "name": "id",
+                                        "name": "messageType",
                                         "storageKey": null
                                     },
                                     {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
-                                        "name": "channelType",
+                                        "name": "text",
                                         "storageKey": null
-                                    },
-                                    (v1 /*: any*/),
-                                    {
-                                        "alias": null,
-                                        "args": [
-                                            {
-                                                "kind": "Literal",
-                                                "name": "excludeMe",
-                                                "value": true
-                                            }
-                                        ],
-                                        "concreteType": "Membership",
-                                        "kind": "LinkedField",
-                                        "name": "memberships",
-                                        "plural": true,
-                                        "selections": [
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "concreteType": "User",
-                                                "kind": "LinkedField",
-                                                "name": "user",
-                                                "plural": false,
-                                                "selections": [
-                                                    (v1 /*: any*/),
-                                                    {
-                                                        "alias": null,
-                                                        "args": null,
-                                                        "kind": "ScalarField",
-                                                        "name": "nickname",
-                                                        "storageKey": null
-                                                    },
-                                                    {
-                                                        "alias": null,
-                                                        "args": null,
-                                                        "kind": "ScalarField",
-                                                        "name": "thumbURL",
-                                                        "storageKey": null
-                                                    },
-                                                    {
-                                                        "alias": null,
-                                                        "args": null,
-                                                        "kind": "ScalarField",
-                                                        "name": "photoURL",
-                                                        "storageKey": null
-                                                    }
-                                                ],
-                                                "storageKey": null
-                                            }
-                                        ],
-                                        "storageKey": "memberships(excludeMe:true)"
                                     },
                                     {
                                         "alias": null,
                                         "args": null,
-                                        "concreteType": "Message",
+                                        "kind": "ScalarField",
+                                        "name": "imageUrls",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "fileUrls",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "concreteType": "User",
                                         "kind": "LinkedField",
-                                        "name": "lastMessage",
+                                        "name": "sender",
                                         "plural": false,
                                         "selections": [
                                             {
                                                 "alias": null,
                                                 "args": null,
                                                 "kind": "ScalarField",
-                                                "name": "messageType",
+                                                "name": "id",
                                                 "storageKey": null
                                             },
                                             {
                                                 "alias": null,
                                                 "args": null,
                                                 "kind": "ScalarField",
-                                                "name": "text",
+                                                "name": "name",
                                                 "storageKey": null
                                             },
                                             {
                                                 "alias": null,
                                                 "args": null,
                                                 "kind": "ScalarField",
-                                                "name": "imageUrls",
+                                                "name": "nickname",
                                                 "storageKey": null
                                             },
                                             {
                                                 "alias": null,
                                                 "args": null,
                                                 "kind": "ScalarField",
-                                                "name": "fileUrls",
+                                                "name": "thumbURL",
                                                 "storageKey": null
                                             },
                                             {
                                                 "alias": null,
                                                 "args": null,
                                                 "kind": "ScalarField",
-                                                "name": "createdAt",
+                                                "name": "photoURL",
                                                 "storageKey": null
                                             }
                                         ],
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "createdAt",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "updatedAt",
                                         "storageKey": null
                                     },
                                     {
@@ -291,5 +267,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '3a6105e67244c05d4a1697cc4947c07e';
+(node as any).hash = 'e8c38e5e374ed2aecb055d597d405ec9';
 export default node;

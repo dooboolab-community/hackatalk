@@ -33,8 +33,8 @@ export type MessageCreateMutationResponse = {
             readonly lastMessage: {
                 readonly messageType: unknown;
                 readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string>;
-                readonly fileUrls: ReadonlyArray<string>;
+                readonly imageUrls: ReadonlyArray<string> | null;
+                readonly fileUrls: ReadonlyArray<string> | null;
                 readonly createdAt: unknown | null;
             } | null;
         } | null;

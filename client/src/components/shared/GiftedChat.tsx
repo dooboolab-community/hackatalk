@@ -59,6 +59,7 @@ interface Props<T> {
   borderColor?: string;
   backgroundColor?: string;
   fontColor?: string;
+  onEndReached?: () => void;
   keyboardOffset?: number;
   renderItem: ListRenderItem<T>;
   optionView?: React.ReactElement;
@@ -92,6 +93,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     placeholder,
     placeholderTextColor,
     renderSendButton,
+    onEndReached,
   } = props;
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
@@ -139,12 +141,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               }
               : null
           }
+          inverted
           keyExtractor={(item, index): string => index.toString()}
           data={chats}
           renderItem={renderItem}
+          onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
-          ListFooterComponent={
-            <View style={{ height: showMenu ? keyboardHeight + 60 : 60 }} />
+          ListHeaderComponent={
+            <View style={{ height: showMenu ? keyboardHeight + 40 : 28 }} />
           }
         />
         {!showMenu ? (

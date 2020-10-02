@@ -82,10 +82,11 @@ const StyledMyMessage = styled.View`
   border-radius: 3px;
 `;
 
-interface Props {
-  item: Message;
-  prevItem?: Message;
-  nextItem?: Message;
+interface Props<T> {
+  userId?: string;
+  item: T;
+  prevItem?: T;
+  nextItem?: T;
   onPressPeerImage?: () => void;
   testID?: string;
 }
@@ -95,8 +96,6 @@ interface ImageSenderProps {
   isSamePeerMsg: boolean;
   fontColor: string;
 }
-
-const myFakeId = '2'; // TODO: temporary
 
 function shouldShowDate(
   currentDate: string | undefined,
@@ -139,14 +138,13 @@ const ImageSenderComp: SFC<ImageSenderProps> = ({
   );
 };
 
-function MessageListItem(props: Props): React.ReactElement {
+function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   const { theme } = useThemeContext();
 
   const {
     item: {
-      sender: { id: senderId, nickname, thumbURL },
+      sender,
       messageType,
-      // @ts-ignore
       text,
       createdAt,
     },
@@ -154,18 +152,19 @@ function MessageListItem(props: Props): React.ReactElement {
     nextItem,
     onPressPeerImage,
     testID,
+    userId,
   } = props;
 
-  const isSamePeerMsg = prevItem?.sender?.id === senderId;
+  const isSamePeerMsg = prevItem?.sender?.id === sender?.id;
   const showDate = shouldShowDate(createdAt, nextItem?.createdAt);
 
-  if (senderId !== myFakeId) {
+  if (sender?.id !== userId) {
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
           <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
             <ImageSenderComp
-              thumbURL={thumbURL}
+              thumbURL={sender?.thumbURL}
               isSamePeerMsg={!!isSamePeerMsg}
               fontColor={theme.fontColor}
             />
@@ -175,7 +174,7 @@ function MessageListItem(props: Props): React.ReactElement {
           {isSamePeerMsg ? (
             <View />
           ) : (
-            <StyledTextPeerName>{nickname}</StyledTextPeerName>
+            <StyledTextPeerName>{sender?.nickname}</StyledTextPeerName>
           )}
           <StyledTextPeerMessageContainer>
             <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
@@ -184,7 +183,7 @@ function MessageListItem(props: Props): React.ReactElement {
             !showDate
               ? <StyledTextPeerDate>
                 {createdAt
-                  ? `${moment(createdAt).hour()} : ${moment(createdAt).minutes()}`
+                  ? `${moment(createdAt).fromNow()}`
                   : '0 : 0'}
               </StyledTextPeerDate>
               : null
@@ -201,7 +200,7 @@ function MessageListItem(props: Props): React.ReactElement {
       </StyledMyMessage>
       <StyledTextDate>
         {createdAt
-          ? `${moment(createdAt).hour()} : ${moment(createdAt).minutes()}`
+          ? `${moment(createdAt).fromNow()}`
           : '0 : 0'}
       </StyledTextDate>
     </WrapperMy>

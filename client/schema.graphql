@@ -18,6 +18,7 @@ type Channel {
   id: String!
   channelType: ChannelType!
   name: String
+  lastMessageId: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -312,6 +313,7 @@ type Query {
   """Get single message"""
   message(id: String): Message!
   messages(
+    channelId: String!
     searchText: String
 
     """Returns the first n elements from the list."""
