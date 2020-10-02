@@ -422,23 +422,25 @@ function SignIn(props: Props): ReactElement {
             <Button
               testID="btn-sign-up"
               onPress={goToSignUp}
-              containerStyle={{
-                flex: 1,
-                flexDirection: 'row',
-                height: 52,
-                justifyContent: 'center',
-              }}
               style={{
-                width: '100%',
-                backgroundColor: theme.btnPrimaryLight,
-                borderColor: theme.btnPrimary,
-                borderWidth: 1,
-                borderRadius: 0,
-              }}
-              textStyle={{
-                color: theme.btnPrimary,
-                fontSize: 14,
-                fontWeight: 'bold',
+                root: {
+                  flex: 1,
+                  flexDirection: 'row',
+                  height: 52,
+                  justifyContent: 'center',
+                },
+                button: {
+                  width: '100%',
+                  backgroundColor: theme.btnPrimaryLight,
+                  borderColor: theme.btnPrimary,
+                  borderWidth: 1,
+                  borderRadius: 0,
+                },
+                text: {
+                  color: theme.btnPrimary,
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                },
               }}
               text={getString('SIGN_UP')}
             />
@@ -447,21 +449,23 @@ function SignIn(props: Props): ReactElement {
               testID="btn-sign-in"
               loading={isInFlight}
               onPress={signIn}
-              containerStyle={{
-                flex: 1,
-                flexDirection: 'row',
-                height: 52,
-                justifyContent: 'center',
-              }}
               style={{
-                backgroundColor: theme.btnPrimary,
-                width: '100%',
-                borderRadius: 0,
-              }}
-              textStyle={{
-                color: theme.btnPrimaryFont,
-                fontSize: 14,
-                fontWeight: 'bold',
+                root: {
+                  flex: 1,
+                  flexDirection: 'row',
+                  height: 52,
+                  justifyContent: 'center',
+                },
+                button: {
+                  backgroundColor: theme.btnPrimary,
+                  width: '100%',
+                  borderRadius: 0,
+                },
+                text: {
+                  color: theme.btnPrimaryFont,
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                },
               }}
               text={getString('LOGIN')}
             />
@@ -475,13 +479,18 @@ function SignIn(props: Props): ReactElement {
                 ios: <Button
                   testID="btn-apple"
                   style={{
-                    backgroundColor: theme.appleBackground,
-                    borderColor: theme.appleText,
-                    width: '100%',
-                    height: 48,
-                    borderWidth: 1,
-                    marginBottom: 12,
-                    borderRadius: 100,
+                    button: {
+                      backgroundColor: theme.appleBackground,
+                      borderColor: theme.appleText,
+                      width: '100%',
+                      height: 48,
+                      borderWidth: 1,
+                      marginBottom: 12,
+                      borderRadius: 100,
+                    },
+                    text: {
+                      fontWeight: '700', color: theme.appleText,
+                    },
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
@@ -492,7 +501,6 @@ function SignIn(props: Props): ReactElement {
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
-                  textStyle={{ fontWeight: '700', color: theme.appleText }}
                 />,
               })
             }

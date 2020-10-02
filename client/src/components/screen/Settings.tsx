@@ -187,21 +187,23 @@ function Settings(props: Props): React.ReactElement {
       />
       <Button
         testID="button-logout"
-        containerStyle={{
-          paddingHorizontal: 20,
-          paddingVertical: 10,
-        }}
         style={{
-          width: '100%',
-          height: 48,
-          backgroundColor: theme.btnPrimaryLight,
-          borderColor: theme.btnPrimary,
-          borderWidth: 0.3,
-        }}
-        textStyle={{
-          color: theme.btnPrimary,
-          fontSize: 14,
-          fontWeight: 'bold',
+          root: {
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+          },
+          button: {
+            width: '100%',
+            height: 48,
+            backgroundColor: theme.btnPrimaryLight,
+            borderColor: theme.btnPrimary,
+            borderWidth: 0.3,
+          },
+          text: {
+            color: theme.btnPrimary,
+            fontSize: 14,
+            fontWeight: 'bold',
+          },
         }}
         onPress={logout}
         text={getString('LOGOUT')}

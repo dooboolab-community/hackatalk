@@ -75,22 +75,24 @@ const ErrorView: FC<Props> = (props) => {
           testID={testID}
           onPress={onButtonPressed}
           text={buttonText}
-          containerStyle={{
-            flexDirection: 'row',
-            marginTop: 44,
-            height: 52,
-            justifyContent: 'center',
-            backgroundColor: theme.btnPrimary,
-          }}
           style={{
-            width: 156,
-            height: 48,
-            backgroundColor: theme.btnPrimary,
-          }}
-          textStyle={{
-            color: theme.btnPrimaryLight,
-            fontSize: 14,
-            fontWeight: 'bold',
+            root: {
+              flexDirection: 'row',
+              marginTop: 44,
+              height: 52,
+              justifyContent: 'center',
+              backgroundColor: theme.btnPrimary,
+            },
+            button: {
+              width: 156,
+              height: 48,
+              backgroundColor: theme.btnPrimary,
+            },
+            text: {
+              color: theme.btnPrimaryLight,
+              fontSize: 14,
+              fontWeight: 'bold',
+            },
           }}
         />
         : null

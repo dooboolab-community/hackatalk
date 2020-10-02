@@ -150,19 +150,21 @@ function ChangePw(props: Props): ReactElement {
         <Button
           testID="close-current-pw-btn"
           onPress={handleChangePasswordPress}
-          containerStyle={{
-            width: '100%',
-            paddingHorizontal: 20,
-          }}
           style={{
-            backgroundColor: theme.btnPrimary,
-            borderWidth: 0,
-            height: 48,
-            width: '100%',
-          }}
-          textStyle={{
-            color: theme.btnPrimaryFont,
-            fontSize: 16,
+            root: {
+              width: '100%',
+              paddingHorizontal: 20,
+            },
+            button: {
+              backgroundColor: theme.btnPrimary,
+              borderWidth: 0,
+              height: 48,
+              width: '100%',
+            },
+            text: {
+              color: theme.btnPrimaryFont,
+              fontSize: 16,
+            },
           }}
           text={getString('UPDATE')}
         />

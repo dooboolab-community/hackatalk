@@ -89,8 +89,14 @@ function Page({ navigation }: Props): ReactElement {
             testID="btn-find-pw"
             loading={findingPw}
             onPress={onFindPw}
-            containerStyle={{ height: 52, backgroundColor: theme.btnPrimary }}
-            textStyle={{ color: theme.btnPrimaryFont }}
+            style={{
+              root: {
+                height: 52, backgroundColor: theme.btnPrimary,
+              },
+              text: {
+                color: theme.btnPrimaryFont,
+              },
+            }}
             text={getString('FIND_PW')}
           />
         </ButtonWrapper>

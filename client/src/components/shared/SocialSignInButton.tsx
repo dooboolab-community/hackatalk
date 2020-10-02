@@ -210,13 +210,18 @@ const SocialSignInButton: FC<Props> = ({
     return <Button
       testID="btn-google"
       style={{
-        backgroundColor: theme.googleBackground,
-        borderColor: theme.googleBackground,
-        borderWidth: 1,
-        width: '100%',
-        height: 48,
-        marginBottom: 12,
-        borderRadius: 100,
+        button: {
+          backgroundColor: theme.googleBackground,
+          borderColor: theme.googleBackground,
+          borderWidth: 1,
+          width: '100%',
+          height: 48,
+          marginBottom: 12,
+          borderRadius: 100,
+        },
+        text: {
+          fontWeight: '700', color: theme.googleText,
+        },
       }}
       leftElement={
         <View style={{ marginRight: 6 }}>{svgIcon}</View>
@@ -225,20 +230,22 @@ const SocialSignInButton: FC<Props> = ({
       indicatorColor={theme.primary}
       onPress={signIn}
       text={getString('SIGN_IN_WITH_GOOGLE')}
-      textStyle={{ fontWeight: '700', color: theme.googleText }}
     />;
   }
 
   return <Button
     testID="btn-facebook"
     style={{
-      backgroundColor: theme.facebookBackground,
-      borderColor: theme.facebookBackground,
-      borderWidth: 1,
-      width: '100%',
-      height: 48,
-      marginBottom: 12,
-      borderRadius: 100,
+      button: {
+        backgroundColor: theme.facebookBackground,
+        borderColor: theme.facebookBackground,
+        borderWidth: 1,
+        width: '100%',
+        height: 48,
+        marginBottom: 12,
+        borderRadius: 100,
+      },
+      text: { fontWeight: '700', color: theme.facebookText },
     }}
     leftElement={
       <View style={{ marginRight: 6 }}>{svgIcon}</View>
@@ -247,7 +254,6 @@ const SocialSignInButton: FC<Props> = ({
     indicatorColor={theme.primary}
     onPress={signIn}
     text={getString('SIGN_IN_WITH_FACEBOOK')}
-    textStyle={{ fontWeight: '700', color: theme.facebookText }}
   />;
 };
 

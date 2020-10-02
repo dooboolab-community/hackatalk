@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { RenderResult, act, cleanup, fireEvent, render, wait, waitForElement } from '@testing-library/react-native';
+import { RenderAPI, act, cleanup, fireEvent, render, wait, waitForElement } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import SearchUser from '../SearchUser';

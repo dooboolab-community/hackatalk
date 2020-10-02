@@ -356,12 +356,14 @@ const MessagesFragment: FC<MessageProp> = ({
       <Button
         testID="btn-message"
         style={{
-          backgroundColor: theme.btnPrimary,
-          width: 68,
-          height: 40,
-        }}
-        textStyle={{
-          color: theme.btnPrimaryFont,
+          button: {
+            backgroundColor: theme.btnPrimary,
+            width: 68,
+            height: 40,
+          },
+          text: {
+            color: theme.btnPrimaryFont,
+          },
         }}
         loading={isMessageInFlight}
         onPress={onSubmit}

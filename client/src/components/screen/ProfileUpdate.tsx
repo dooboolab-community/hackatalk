@@ -337,17 +337,19 @@ const Screen: FC<Props> = () => {
           <StyledButtonWrapper>
             <Button
               testID="button-update"
-              containerStyle={{ flex: 1 }}
               style={{
-                width: '100%',
-                backgroundColor: theme.btnPrimary,
-                borderColor: theme.btnPrimary,
-                borderWidth: 1,
-              }}
-              textStyle={{
-                color: theme.btnPrimaryFont,
-                fontSize: 14,
-                fontWeight: 'bold',
+                root: { flex: 1 },
+                button: {
+                  width: '100%',
+                  backgroundColor: theme.btnPrimary,
+                  borderColor: theme.btnPrimary,
+                  borderWidth: 1,
+                },
+                text: {
+                  color: theme.btnPrimaryFont,
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                },
               }}
               loading={isUpdating}
               onPress={updateProfile}

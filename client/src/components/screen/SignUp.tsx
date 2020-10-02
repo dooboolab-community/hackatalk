@@ -275,8 +275,14 @@ function Page(props: Props): ReactElement {
                 testID="btn-sign-up"
                 loading={isInFlight}
                 onPress={requestSignUp}
-                containerStyle={{ height: 52, width: '50%', backgroundColor: theme.btnPrimary }}
-                textStyle={{ color: theme.btnPrimaryFont, fontSize: 16 }}
+                style={{
+                  root: {
+                    height: 52, width: '50%', backgroundColor: theme.btnPrimary,
+                  },
+                  text: {
+                    color: theme.btnPrimaryFont, fontSize: 16,
+                  },
+                }}
                 text={getString('SIGN_UP')}
               />
             </ButtonWrapper>
