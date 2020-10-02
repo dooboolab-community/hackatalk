@@ -95,7 +95,7 @@ const messagesFragment = graphql`
     )
     @refetchable(queryName: "Messages") {
       messages(first: $first after: $after channelId: $channelId searchText: $searchText)
-      @connection(key: "MessageComponent_messages") {
+      @connection(key: "MessageComponent_messages" filters: ["channelId", "searchText"]) {
         edges {
           cursor
           node {
@@ -160,16 +160,40 @@ const MessagesFragment: FC<MessageProp> = ({
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
 
   const onSubmit = (): void => {
+    if (!textToSend) return;
+
     const mutationConfig = {
       variables: {
         channelId,
-        message: { text: 'Hi this is Hyo111' },
+        message: { text: textToSend },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        /** start: ==> Update [Channel] list */
-        const channelProxy = proxyStore.get(channelId);
         const root = proxyStore.getRoot();
+        const channelProxy = proxyStore.get(channelId);
 
+        /** start: ==> Create [Message] list */
+        const messagesConnectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'MessageComponent_messages',
+          {
+            channelId,
+            searchText: null,
+          },
+        );
+
+        const newMessageEdge = messagesConnectionRecord && channelProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          messagesConnectionRecord,
+          channelProxy,
+          'Message',
+        );
+
+        if (messagesConnectionRecord && newMessageEdge) {
+          ConnectionHandler.insertEdgeBefore(messagesConnectionRecord, newMessageEdge);
+        }
+        /** end: ==> Create [Message] list */
+
+        /** start: ==> Update [Channel] list */
         const connectionRecord = root && ConnectionHandler.getConnection(
           root,
           'ChannelComponent_channels',
@@ -203,12 +227,9 @@ const MessagesFragment: FC<MessageProp> = ({
         }
 
         if (existingNode && channelProxy) {
-          ConnectionHandler.deleteNode(channelProxy, existingNode?.getDataID());
+          ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
         }
         /** end: ==> Update [Channel] list */
-
-        /** start: ==> Create [Message] list */
-        /** end: ==> Create [Message] list */
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
