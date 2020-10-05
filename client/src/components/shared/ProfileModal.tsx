@@ -1,14 +1,19 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
+import {
+  ProfileModalFindOrCreatePrivateChannelMutation,
+  ProfileModalFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
+import React, { FC, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
-import { User } from '../../types/graphql';
 import { getString } from '../../../STRINGS';
-import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledView = styled.View`
@@ -71,25 +76,14 @@ const StyledTextFriendAlreadyAdded = styled.Text`
   padding: 4px;
 `;
 
-interface Props {
-  testID?: string;
-  ref?: React.MutableRefObject<Modal | null>;
-  isChatLoading?: boolean;
-  onChatPressed?: () => void;
-  onAddFriend?: () => void;
-  onDeleteFriend?: () => void;
-}
-
-export interface Ref {
-  open: () => void;
-  close: () => void;
-  setUser: (user: User) => void;
-  showAddBtn: (show: boolean) => void;
-  setIsFriendAdded: (isFriendAdded: boolean) => void;
-  deleteFriend: () => Promise<void>;
-  addFriend: () => void;
-  modal: Modal | null;
-}
+const findOrCreatePrivateChannel = graphql`
+  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserId: String!) {
+    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+      id
+      name
+    }
+  }
+`;
 
 interface Styles {
   wrapper: ViewStyle;
@@ -114,120 +108,74 @@ const styles: Styles = {
   },
 };
 
-const Shared = forwardRef<Ref, Props>((props, ref) => {
-  let modal: Modal | null;
+type ModalContentProps = {
+  isVisible: true,
+} & ProfileModalContext;
 
-  const {
-    testID,
-    onChatPressed,
-    isChatLoading,
+const ModalContent: FC<ModalContentProps> = ({
+  modalState: {
+    user,
+    isFriend,
     onAddFriend,
     onDeleteFriend,
-  } = props;
+  },
+  hideModal,
+}: ModalContentProps) => {
+  const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(false);
+  const navigation = useNavigation();
 
-  // const [
-  //   deleteFriendMutation,
-  //   { error: deleteFriendError, loading: deleteFriendLoading },
-  // ] = useMutation<{ deleteFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_DELETE_FRIEND, {
-  //   refetchQueries: [{ query: QUERY_FRIENDS }],
-  // });
-
-  // const [addFriendMutation] = useMutation<{ addFriend: FriendPayload }, AddOrDeleteFriendInput>(MUTATION_ADD_FRIEND, {
-  //   refetchQueries: () => [{ query: QUERY_FRIENDS }],
-  // });
-
-  const [hasFriendBeenAdded, setHasFriendBeenAdded] = useState<boolean>(false);
-  const [showAddBtn, setShowAddBtn] = useState<boolean>(true);
-  const [isFriendAdded, setIsFriendAdded] = useState<boolean>(false);
-
-  const [user, setUser] = useState<User>({
-    nickname: '',
-    id: '',
-    thumbURL: '',
-    photoURL: '',
-    statusMessage: '',
-    isOnline: false,
-  });
-
-  const open = (): void => {
-    setIsFriendAdded(false);
-    setHasFriendBeenAdded(false);
-
-    if (modal) {
-      modal.open();
-    }
-  };
-
-  const close = (): void => {
-    if (modal) {
-      modal.close();
-    }
-  };
+  const [commitChannel, isChannelInFlight] = useMutation<
+    ProfileModalFindOrCreatePrivateChannelMutation
+  >(findOrCreatePrivateChannel);
 
   const addFriend = async (): Promise<void> => {
-    onAddFriend?.();
-
-    if (modal) {
-      modal.close();
+    if (onAddFriend) {
+      onAddFriend();
     }
 
-    try {
-      // const result = await addFriendMutation({
-      //   variables: {
-      //     friendId: user.id,
-      //   },
-      //   // refetchQueries: [QUERY_FRIENDS],
-      // });
-
-      // setHasFriendBeenAdded(result.data?.addFriend.added || false);
-    } catch ({ graphQLErrors }) {
-      showAlertForError(graphQLErrors);
-    }
+    setShowFriendAddedMessage(true);
+    hideModal();
   };
 
   const deleteFriend = async (): Promise<void> => {
-    onDeleteFriend?.();
-
-    if (modal) {
-      modal.close();
+    if (onDeleteFriend) {
+      onDeleteFriend();
     }
 
-    const variables = {
-      friendId: user.id,
-    };
-
-    try {
-      // await deleteFriendMutation({ variables });
-    } catch ({ graphQLErrors }) {
-      showAlertForError(graphQLErrors);
-    }
+    hideModal();
   };
 
-  useImperativeHandle(ref, () => ({
-    open,
-    close,
-    setUser,
-    showAddBtn: (flag: boolean): void => {
-      setShowAddBtn(flag);
-    },
-    setIsFriendAdded,
-    deleteFriend,
-    addFriend,
-    modal,
-  }));
+  const startChat = (): void => {
+    const mutationConfig = {
+      variables: {
+        peerUserId: user.id,
+      },
+      onCompleted: (
+        response: ProfileModalFindOrCreatePrivateChannelMutationResponse,
+      ): void => {
+        const channel = response.findOrCreatePrivateChannel;
+
+        hideModal();
+
+        navigation.navigate('Message', {
+          user,
+          channel,
+        });
+      },
+      onError: (error: Error): void => {
+        console.log('error', error);
+      },
+    };
+
+    commitChannel(mutationConfig);
+  };
 
   const { photoURL = '', nickname, name, statusMessage } = user;
   const { theme: { primary, modalBtnPrimaryFont } } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
 
   return (
-    <Modal
-      ref={(v): Modal | null => (modal = v)}
-      backdropOpacity={0.075}
-      entry={'top'}
-      position={'center'}
-      style={styles.wrapper}
-    >
+    <>
       <View
         style={{
           height: 300,
@@ -266,29 +214,29 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
         </StyledView>
         {
-          isFriendAdded
-            ? <StyledTextFriendAdded testID="added-message">
-              {getString('FRIEND_ADDED')}
-            </StyledTextFriendAdded>
-            : hasFriendBeenAdded
+          showFriendAddedMessage
+            ? isFriend
               ? <StyledTextFriendAlreadyAdded testID="already-added-message">
                 {getString('FRIEND_ALREADY_ADDED')}
               </StyledTextFriendAlreadyAdded>
-              : null
+              : <StyledTextFriendAdded testID="added-message">
+                {getString('FRIEND_ADDED')}
+              </StyledTextFriendAdded>
+            : null
         }
         <StyledViewBtns>
           <TouchableOpacity
             testID="touch-add-friend"
             activeOpacity={0.5}
-            onPress={showAddBtn ? addFriend : deleteFriend}
+            onPress={isFriend ? deleteFriend : addFriend}
             style={styles.viewBtn}
           >
             <View style={styles.viewBtn}>
               <StyledText testID="text-add-title">
                 {
-                  showAddBtn
-                    ? getString('ADD_FRIEND')
-                    : getString('DELETE_FRIEND')
+                  isFriend
+                    ? getString('DELETE_FRIEND')
+                    : getString('ADD_FRIEND')
                 }
               </StyledText>
             </View>
@@ -297,11 +245,11 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           <TouchableOpacity
             testID="btn-chat"
             activeOpacity={0.5}
-            onPress={onChatPressed}
+            onPress={startChat}
             style={styles.viewBtn}
           >
             {
-              isChatLoading
+              isChannelInFlight
                 ? <LoadingIndicator size="small"/>
                 : <View style={styles.viewBtn}>
                   <StyledText style={{
@@ -312,8 +260,41 @@ const Shared = forwardRef<Ref, Props>((props, ref) => {
           </TouchableOpacity>
         </StyledViewBtns>
       </View>
+    </>
+  );
+};
+
+interface Props {
+  testID: string
+}
+
+const ProfileModal: FC<Props> = () => {
+  const profileContext = useProfileContext();
+  const { isVisible, hideModal } = profileContext;
+
+  return (
+    <Modal
+      isOpen={isVisible}
+      backdropOpacity={0.075}
+      entry={'top'}
+      position={'center'}
+      /*
+       * `hideModal` should be called on closed event,
+       * because `Modal` cannot update its props by itself.
+       * If `hideModal` is not called on closed event,
+       * `Modal` gets into an illegal state where `isOpen`
+       * props is true while the internal state is closed.
+       */
+      onClosed={hideModal}
+      style={styles.wrapper}
+    >
+      {
+        profileContext.isVisible
+          ? <ModalContent {...profileContext} />
+          : null
+      }
     </Modal>
   );
-});
+};
 
-export default Shared;
+export default ProfileModal;

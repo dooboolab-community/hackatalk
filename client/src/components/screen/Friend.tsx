@@ -46,7 +46,7 @@ const friendsQuery = graphql`
 `;
 
 export default function Screen(): ReactElement {
-  const { state, showModal } = useProfileContext();
+  const { showModal } = useProfileContext();
   const [friends, setFriends] = useState<any>([]);
   const environment = useRelayEnvironment();
 
@@ -60,12 +60,10 @@ export default function Screen(): ReactElement {
   }, []);
 
   const userListOnPress = (user: User): void => {
-    if (state.modal) {
-      showModal({
-        user,
-        deleteMode: true,
-      });
-    }
+    showModal({
+      user,
+      isFriend: true,
+    });
   };
 
   const renderItem = ({

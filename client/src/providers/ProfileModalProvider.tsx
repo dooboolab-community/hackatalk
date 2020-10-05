@@ -1,114 +1,76 @@
-import React, { useReducer } from 'react';
+import React, { FC, createContext, useContext, useState } from 'react';
 
-import { Ref as ProfileModalRef } from '../components/shared/ProfileModal';
 import { User } from '../types/graphql';
-import createCtx from '../utils/createCtx';
 
-interface ShowModalParams {
+export interface ModalState {
+  /** Which user the profile modal describes */
   user: User;
-  deleteMode: boolean;
+  /** Is the profile user a friend of the current user? */
+  isFriend: boolean;
+  /** Callback function for delete button */
   onDeleteFriend?: () => void;
+  /** Callback function for add friend button */
   onAddFriend?: () => void;
 }
 
-export interface State {
-  user: User;
-  deleteMode: boolean;
-  modal?: React.MutableRefObject<ProfileModalRef | null>;
+export type ProfileModalContext = {
+  /** Modal box visibility */
+  isVisible: true,
+  /** State of the modal */
+  modalState: ModalState,
+  /** Allow context consumers to make the modal visible with a new state. */
+  showModal: (next: ModalState) => void,
+  /** Allow context consumers to hide the modal. */
+  hideModal: () => void,
+} | {
+  isVisible: false,
+  modalState: null,
+  showModal: (next: ModalState) => void,
+  hideModal: () => void,
 }
 
-interface Context {
-  state: State;
-  showModal: (showModalParams: ShowModalParams) => void;
-  // setUser: (user: User) => void;
-  // setShowAddBtn: (deleteMode: boolean) => void;
-  // setScreen: (screen: string) => void;
-  // open: () => void;
+const ProfileModalContext = createContext<ProfileModalContext>({
+  isVisible: false,
+  modalState: null,
+  showModal: () => {},
+  hideModal: () => {},
+});
+
+type ContextState = {
+  isVisible: true;
+  modalState: ModalState;
+} | {
+  isVisible: false;
+  modalState: null;
 }
 
-const [useCtx, Provider] = createCtx<Context>();
-
-export enum ActionType {
-  ShowModal = 'show-modal',
-}
-
-export interface Payload extends State {
-  onDeleteFriend?: () => void;
-  onAddFriend?: () => void;
-}
-
-const initialState: State = {
-  user: {
-    id: '',
-    nickname: '',
-    photoURL: '',
-    statusMessage: '',
-  },
-  deleteMode: false,
-  modal: undefined,
-};
-
-type Action = { type: ActionType.ShowModal; payload: Payload };
-
-interface Props {
-  children?: React.ReactElement;
-}
-
-type Reducer = (state: State, action: Action) => State;
-
-const showModal = (dispatch: React.Dispatch<Action>) => ({
-  user,
-  deleteMode,
-  onDeleteFriend,
-  onAddFriend,
-}: ShowModalParams): void => {
-  dispatch({
-    type: ActionType.ShowModal,
-    payload: {
-      user,
-      deleteMode,
-      onDeleteFriend,
-      onAddFriend,
-    },
+export const ProfileModalProvider: FC = (props) => {
+  const [state, setState] = useState<ContextState>({
+    isVisible: false,
+    modalState: null,
   });
-};
 
-const reducer: Reducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  const { modal } = state;
+  const showModal = (next: ModalState): void => setState({
+    isVisible: true,
+    modalState: next,
+  });
 
-  switch (type) {
-    case ActionType.ShowModal:
-      if (modal && modal.current) {
-        modal.current.setUser(payload.user);
-        modal.current.showAddBtn(!payload.deleteMode);
-        modal.current.open();
-      }
+  const hideModal = (): void => setState({
+    isVisible: false,
+    modalState: null,
+  });
 
-      return {
+  return (
+    <ProfileModalContext.Provider
+      value={{
         ...state,
-        user: payload.user,
-        deleteMode: !payload.deleteMode,
-      };
-    default:
-      return state;
-  }
+        showModal,
+        hideModal,
+      }}
+    >
+      {props.children}
+    </ProfileModalContext.Provider>
+  );
 };
 
-function ProfileModalProvider(props: Props): React.ReactElement {
-  const [state, dispatch] = useReducer<Reducer>(reducer, initialState);
-
-  const actions = {
-    showModal: showModal(dispatch),
-  };
-
-  return <Provider value={{ state, ...actions }}>{props.children}</Provider>;
-}
-
-const ProfileContext = {
-  useProfileContext: useCtx,
-  ProfileModalProvider,
-};
-
-export { useCtx as useProfileContext, ProfileModalProvider };
-export default ProfileContext;
+export const useProfileContext = (): ProfileModalContext => useContext(ProfileModalContext);

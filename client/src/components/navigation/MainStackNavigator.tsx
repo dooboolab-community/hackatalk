@@ -1,32 +1,25 @@
 import { Channel, User } from '../../types/graphql';
-import {
-  CompositeNavigationProp,
-  useNavigation,
-} from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
-import type {
-  MainStackNavigatorFindOrCreatePrivateChannelMutation,
-  MainStackNavigatorFindOrCreatePrivateChannelMutationResponse,
-} from '../../__generated__/MainStackNavigatorFindOrCreatePrivateChannelMutation.graphql';
-import {
-  ProfileModalProvider,
-  useProfileContext,
-} from '../../providers/ProfileModalProvider';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { graphql, useMutation } from 'react-relay/hooks';
 
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
+import {
+  CompositeNavigationProp,
+} from '@react-navigation/native';
 import { DefaultTheme } from 'styled-components';
 import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
 import ProfileModal from '../shared/ProfileModal';
+import {
+  ProfileModalProvider,
+} from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import { RootStackNavigationProps } from './RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
@@ -79,15 +72,6 @@ function getSimpleHeader(
     },
   };
 }
-
-const findOrCreatePrivateChannel = graphql`
-  mutation MainStackNavigatorFindOrCreatePrivateChannelMutation($peerUserId: String!) {
-    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
-      id
-      name
-    }
-  }
-`;
 
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
@@ -170,15 +154,6 @@ function MainStackNavigator(): ReactElement {
 }
 
 function RootNavigator(): ReactElement {
-  const navigation = useNavigation();
-  const { state } = useProfileContext();
-  const modalEl = useRef(null);
-
-  state.modal = modalEl;
-
-  const [commitChannel, isChannelInFlight] =
-    useMutation<MainStackNavigatorFindOrCreatePrivateChannelMutation>(findOrCreatePrivateChannel);
-
   return (
     <View
       style={{
@@ -188,37 +163,7 @@ function RootNavigator(): ReactElement {
     >
       <StatusBar />
       <MainStackNavigator />
-      <ProfileModal
-        testID="modal"
-        ref={state.modal}
-        isChatLoading={isChannelInFlight}
-        onChatPressed={(): void => {
-          const mutationConfig = {
-            variables: {
-              peerUserId: state.user.id,
-            },
-            onCompleted: (
-              response: MainStackNavigatorFindOrCreatePrivateChannelMutationResponse,
-            ): void => {
-              const channel = response.findOrCreatePrivateChannel;
-
-              if (state.modal && state.modal.current) {
-                state.modal.current.close();
-              }
-
-              navigation.navigate('Message', {
-                user: state.user,
-                channel,
-              });
-            },
-            onError: (error: Error): void => {
-              console.log('error', error);
-            },
-          };
-
-          commitChannel(mutationConfig);
-        }}
-      />
+      <ProfileModal testID="modal"/>
     </View>
   );
 }
