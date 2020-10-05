@@ -134,15 +134,12 @@ const ModalContent: FC<ModalContentProps> = ({
     }
 
     setShowFriendAddedMessage(true);
-    hideModal();
   };
 
   const deleteFriend = async (): Promise<void> => {
     if (onDeleteFriend) {
       onDeleteFriend();
     }
-
-    hideModal();
   };
 
   const startChat = (): void => {
@@ -175,97 +172,95 @@ const ModalContent: FC<ModalContentProps> = ({
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
 
   return (
-    <>
-      <View
-        style={{
-          height: 300,
-          marginHorizontal: 20,
-          alignSelf: 'stretch',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          backgroundColor: primary,
-        }}
-      >
-        <StyledView>
-          <TouchableOpacity activeOpacity={0.5}>
-            {
-              photoURL
-                ? <StyledImage style={{ alignSelf: 'center' }} source={
-                  imageURL
-                    ? { uri: imageURL }
-                    : IC_NO_IMAGE
-                } />
-                : <View
-                  style={{
-                    width: 80,
-                    height: 80,
-                    alignSelf: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Ionicons name="ios-person" size={80} color="white" />
-                </View>
-            }
-          </TouchableOpacity>
-          <StyledTextDisplayName numberOfLines={1}>
-            {nickname || name}
-          </StyledTextDisplayName>
-          <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
-        </StyledView>
-        {
-          showFriendAddedMessage
-            ? isFriend
-              ? <StyledTextFriendAlreadyAdded testID="already-added-message">
-                {getString('FRIEND_ALREADY_ADDED')}
-              </StyledTextFriendAlreadyAdded>
-              : <StyledTextFriendAdded testID="added-message">
-                {getString('FRIEND_ADDED')}
-              </StyledTextFriendAdded>
-            : null
-        }
-        <StyledViewBtns>
-          <TouchableOpacity
-            testID="touch-add-friend"
-            activeOpacity={0.5}
-            onPress={isFriend ? deleteFriend : addFriend}
-            style={styles.viewBtn}
-          >
-            <View style={styles.viewBtn}>
-              <StyledText testID="text-add-title">
-                {
-                  isFriend
-                    ? getString('DELETE_FRIEND')
-                    : getString('ADD_FRIEND')
-                }
-              </StyledText>
-            </View>
-          </TouchableOpacity>
-          <StyledViewBtnDivider />
-          <TouchableOpacity
-            testID="btn-chat"
-            activeOpacity={0.5}
-            onPress={startChat}
-            style={styles.viewBtn}
-          >
-            {
-              isChannelInFlight
-                ? <LoadingIndicator size="small"/>
-                : <View style={styles.viewBtn}>
-                  <StyledText style={{
-                    color: modalBtnPrimaryFont,
-                  }}>{getString('CHAT')}</StyledText>
-                </View>
-            }
-          </TouchableOpacity>
-        </StyledViewBtns>
-      </View>
-    </>
+    <View
+      style={{
+        height: 300,
+        marginHorizontal: 20,
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: primary,
+      }}
+    >
+      <StyledView>
+        <TouchableOpacity activeOpacity={0.5}>
+          {
+            photoURL
+              ? <StyledImage style={{ alignSelf: 'center' }} source={
+                imageURL
+                  ? { uri: imageURL }
+                  : IC_NO_IMAGE
+              } />
+              : <View
+                style={{
+                  width: 80,
+                  height: 80,
+                  alignSelf: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="ios-person" size={80} color="white" />
+              </View>
+          }
+        </TouchableOpacity>
+        <StyledTextDisplayName numberOfLines={1}>
+          {nickname || name}
+        </StyledTextDisplayName>
+        <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
+      </StyledView>
+      {
+        showFriendAddedMessage
+          ? isFriend
+            ? <StyledTextFriendAlreadyAdded testID="already-added-message">
+              {getString('FRIEND_ALREADY_ADDED')}
+            </StyledTextFriendAlreadyAdded>
+            : <StyledTextFriendAdded testID="added-message">
+              {getString('FRIEND_ADDED')}
+            </StyledTextFriendAdded>
+          : null
+      }
+      <StyledViewBtns>
+        <TouchableOpacity
+          testID="touch-add-friend"
+          activeOpacity={0.5}
+          onPress={isFriend ? deleteFriend : addFriend}
+          style={styles.viewBtn}
+        >
+          <View style={styles.viewBtn}>
+            <StyledText testID="text-add-title">
+              {
+                isFriend
+                  ? getString('DELETE_FRIEND')
+                  : getString('ADD_FRIEND')
+              }
+            </StyledText>
+          </View>
+        </TouchableOpacity>
+        <StyledViewBtnDivider />
+        <TouchableOpacity
+          testID="btn-chat"
+          activeOpacity={0.5}
+          onPress={startChat}
+          style={styles.viewBtn}
+        >
+          {
+            isChannelInFlight
+              ? <LoadingIndicator size="small"/>
+              : <View style={styles.viewBtn}>
+                <StyledText style={{
+                  color: modalBtnPrimaryFont,
+                }}>{getString('CHAT')}</StyledText>
+              </View>
+          }
+        </TouchableOpacity>
+      </StyledViewBtns>
+    </View>
   );
 };
 
 interface Props {
-  testID: string
+  testID?: string
 }
 
 const ProfileModal: FC<Props> = () => {

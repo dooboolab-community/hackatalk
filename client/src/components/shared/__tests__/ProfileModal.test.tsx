@@ -1,8 +1,11 @@
+import { ProfileModalContext, ProfileModalProvider, useProfileContext } from '../../../providers/ProfileModalProvider';
 import React, {
+  FC,
   ForwardRefExoticComponent,
   RefAttributes,
   createRef,
   forwardRef,
+  useEffect,
   useImperativeHandle,
 } from 'react';
 import {
@@ -14,138 +17,111 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import Shared from '../ProfileModal';
-import { useProfileContext } from '../../../providers/ProfileModalProvider';
+import { NavigationContainer } from '@react-navigation/native';
+import ProfileModal from '../ProfileModal';
+import { View } from 'react-native';
 
-type Handle<T> = T extends ForwardRefExoticComponent<RefAttributes<infer T2>>
-  ? T2
-  : never;
-interface Ref {
-  showModal: (showModalParams: any) => void;
-}
-interface Props {
-  onAddFriend?: () => void;
-  onDeleteFriend?: () => void;
-}
-
-// interface Props {}
-const FakeProfileModal = forwardRef<Ref, Props>((props, ref) => {
-  const { state, showModal } = useProfileContext();
-  const modalEl = React.useRef(null);
-
-  state.modal = modalEl;
-
-  useImperativeHandle(ref, () => ({
-    showModal,
-    // modalEl,
-  }));
-
-  return (
-    <Shared
-      ref={modalEl}
-      onAddFriend={props.onAddFriend}
-      onDeleteFriend={props.onDeleteFriend}
-    />
-  );
+jest.mock('@react-navigation/core', () => {
+  return {
+    useNavigation: (): Record<string, unknown> => {
+      return {
+        navigate: jest.fn(),
+      };
+    },
+  };
 });
 
+type ConsumerRef = {
+  showModal: ProfileModalContext['showModal'],
+  hideModal: ProfileModalContext['hideModal'],
+};
+
+const ProfileConsumer = forwardRef<ConsumerRef>((props, ref) => {
+  const { showModal, hideModal } = useProfileContext();
+
+  useImperativeHandle(ref, () => ({ showModal, hideModal }));
+
+  return null;
+});
+
+const ref = createRef<ConsumerRef>();
+
+const component = createTestElement(
+  <View>
+    <ProfileConsumer ref={ref} />
+    <ProfileModal />
+  </View>,
+);
+
 describe('[ProfileModal] rendering test', () => {
-  let props: any;
-  let component: React.ReactElement;
-  let testingLib: RenderAPI;
-  let fakeProfileModalRef;
-  let testingLib2;
-  let component2;
-
-  const ref = createRef<Handle<typeof Shared>>();
-  const onAddFriend = jest.fn();
-  const onDeleteFriend = jest.fn();
-
-  beforeEach(() => {
-    props = createTestProps();
-
-    component = createTestElement(
-      <Shared ref={ref} {...props} />,
-    );
-
-    testingLib = render(component);
-    fakeProfileModalRef = createRef<Ref>();
-
-    component2 = createTestElement(
-      <FakeProfileModal
-        ref={fakeProfileModalRef}
-        onAddFriend={onAddFriend}
-        onDeleteFriend={onDeleteFriend}
-      />,
-    );
-
-    testingLib2 = render(component2);
-  });
-
   it('Render without crashing', async () => {
-    testingLib = render(component);
+    const { toJSON } = render(component);
 
-    await waitFor(() => {
-      const json = testingLib.toJSON();
+    await act(() => ref.current.showModal({
+      user: { id: '' },
+      isFriend: false,
+    }));
 
-      expect(json).toMatchSnapshot();
-    });
+    const json = toJSON();
+
+    expect(json).toMatchSnapshot();
   });
 
   it('Should be opened', async () => {
-    const { current } = ref;
+    const { queryByTestId } = render(component);
 
-    // Open modal by using it's state.
-    await act(async () => {
-      current?.open();
-    });
+    await act(() => ref.current.showModal({
+      user: { id: '' },
+      isFriend: false,
+    }));
 
-    const button = testingLib.queryByTestId('touch-add-friend');
+    const button = queryByTestId('touch-add-friend');
 
     expect(button).not.toBeNull();
   });
 
   it('Check "Added to your friend." button', async () => {
-    const { current } = ref;
+    const { getByTestId, queryByTestId } = render(component);
 
-    await act(async () => {
-      current?.open();
-      current?.setIsFriendAdded(true);
-    });
+    await act(() => ref.current.showModal({
+      user: { id: '' },
+      isFriend: false,
+    }));
 
-    const button = testingLib.queryByTestId('added-message');
+    const button = getByTestId('touch-add-friend');
 
-    expect(button).not.toBeNull();
+    fireEvent.press(button);
+
+    const message = queryByTestId('added-message');
+
+    expect(message).not.toBeNull();
   });
 
   it('Should be closed', async () => {
-    const { current } = ref;
+    const { queryByTestId } = render(component);
 
-    // Cloase modal by using it's state.
-    await act(async () => {
-      current?.close();
-    });
+    await act(() => ref.current.hideModal());
 
-    const button = testingLib.queryByTestId('touch-add-friend');
+    const button = queryByTestId('touch-add-friend');
 
     expect(button).toBeNull();
   });
 
   it('delete', async () => {
-    const { current } = ref;
+    const { queryByTestId, toJSON } = render(component);
 
-    await act(async () => {
-      current?.showAddBtn(false);
-      current?.open();
-    });
+    await act(() => ref.current.showModal({
+      user: { id: '' },
+      isFriend: true,
+    }));
 
-    const button = testingLib.queryByTestId('touch-add-friend');
+    const button = queryByTestId('touch-add-friend');
 
-    await act(async () => {
-      fireEvent.press(button);
-    });
+    fireEvent.press(button);
 
-    expect(current?.modal).toBeTruthy();
+    const json = toJSON();
+
+    expect(json).toBeTruthy();
   });
 
   // it('Add Friend', async () => {
