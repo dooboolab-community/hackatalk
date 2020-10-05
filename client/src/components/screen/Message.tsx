@@ -35,6 +35,7 @@ import type {
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
+import moment from 'moment';
 import styled from 'styled-components/native';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
@@ -122,6 +123,99 @@ const messagesFragment = graphql`
     }
 `;
 
+function updateMessageOnSubmit(
+  proxyStore: RecordSourceSelectorProxy,
+  currentChannelId: string,
+  currentUserId: string,
+): void {
+  const root = proxyStore.getRoot();
+
+  const connectionRecord = root && ConnectionHandler.getConnection(
+    root,
+    'MessageComponent_messages',
+    {
+      channelId: currentChannelId,
+      searchText: null,
+    },
+  );
+
+  const payload = proxyStore.getRootField('createMessage');
+  const userProxy = proxyStore.get(currentUserId);
+  const now = moment().toString();
+
+  if (userProxy && payload) {
+    payload.setLinkedRecord(
+      userProxy,
+      'sender',
+    );
+
+    payload.setValue(
+      now,
+      'createdAt',
+    );
+
+    payload.setValue(
+      now,
+      'updatedAt',
+    );
+  }
+
+  const newEdge = connectionRecord && payload && ConnectionHandler.createEdge(
+    proxyStore,
+    connectionRecord,
+    payload,
+    'Message',
+  );
+
+  if (connectionRecord && newEdge) {
+    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+  }
+}
+
+function updateChannelsOnSubmit(
+  proxyStore: RecordSourceSelectorProxy,
+  currentChannelId: string,
+): void {
+  const root = proxyStore.getRoot();
+  const channelProxy = proxyStore.get(currentChannelId);
+
+  const connectionRecord = root && ConnectionHandler.getConnection(
+    root,
+    'ChannelComponent_channels',
+    { withMessage: true },
+  );
+
+  // Get existing edges.
+  const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
+
+  // Check if the message is created inside a new channel.
+  let existingNode;
+
+  for (const edge of prevEdges) {
+    const node = edge.getLinkedRecord('node');
+
+    if (node?.getDataID() === currentChannelId) {
+      existingNode = node;
+      break;
+    }
+  }
+
+  const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
+    proxyStore,
+    connectionRecord,
+    channelProxy,
+    'Channel',
+  );
+
+  if (connectionRecord && newEdge) {
+    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+  }
+
+  if (existingNode && channelProxy) {
+    ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
+  }
+}
+
 interface MessageProp {
   channelId: string;
   messages: MessageComponent_message$key;
@@ -159,6 +253,8 @@ const MessagesFragment: FC<MessageProp> = ({
 
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
 
+  const { state: { user } } = useAuthContext();
+
   const onSubmit = (): void => {
     if (!textToSend) return;
 
@@ -168,68 +264,11 @@ const MessagesFragment: FC<MessageProp> = ({
         message: { text: textToSend },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        const root = proxyStore.getRoot();
-        const channelProxy = proxyStore.get(channelId);
-
-        /** start: ==> Create [Message] list */
-        const messagesConnectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'MessageComponent_messages',
-          {
-            channelId,
-            searchText: null,
-          },
-        );
-
-        const newMessageEdge = messagesConnectionRecord && channelProxy && ConnectionHandler.createEdge(
-          proxyStore,
-          messagesConnectionRecord,
-          channelProxy,
-          'Message',
-        );
-
-        if (messagesConnectionRecord && newMessageEdge) {
-          ConnectionHandler.insertEdgeBefore(messagesConnectionRecord, newMessageEdge);
-        }
-        /** end: ==> Create [Message] list */
-
-        /** start: ==> Update [Channel] list */
-        const connectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'ChannelComponent_channels',
-          { withMessage: true },
-        );
-
-        // Get existing edges.
-        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
-
-        // Check if the message is created inside a new channel.
-        let existingNode;
-
-        for (const edge of prevEdges) {
-          const node = edge.getLinkedRecord('node');
-
-          if (node?.getDataID() === channelId) {
-            existingNode = node;
-            break;
-          }
+        if (user) {
+          updateMessageOnSubmit(proxyStore, channelId, user.id);
         }
 
-        const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
-          proxyStore,
-          connectionRecord,
-          channelProxy,
-          'Channel',
-        );
-
-        if (connectionRecord && newEdge) {
-          ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-        }
-
-        if (existingNode && channelProxy) {
-          ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
-        }
-        /** end: ==> Update [Channel] list */
+        updateChannelsOnSubmit(proxyStore, channelId);
       },
       onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
         const { text } = response.createMessage;
@@ -253,8 +292,6 @@ const MessagesFragment: FC<MessageProp> = ({
 
     const result = await launchCameraAsync();
   };
-
-  const { state: { user } } = useAuthContext();
 
   return <GiftedChat
     // @ts-ignore
