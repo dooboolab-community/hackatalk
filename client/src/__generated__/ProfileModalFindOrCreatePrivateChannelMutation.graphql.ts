@@ -3,24 +3,24 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type MainStackNavigatorFindOrCreatePrivateChannelMutationVariables = {
+export type ProfileModalFindOrCreatePrivateChannelMutationVariables = {
     peerUserId: string;
 };
-export type MainStackNavigatorFindOrCreatePrivateChannelMutationResponse = {
+export type ProfileModalFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
     };
 };
-export type MainStackNavigatorFindOrCreatePrivateChannelMutation = {
-    readonly response: MainStackNavigatorFindOrCreatePrivateChannelMutationResponse;
-    readonly variables: MainStackNavigatorFindOrCreatePrivateChannelMutationVariables;
+export type ProfileModalFindOrCreatePrivateChannelMutation = {
+    readonly response: ProfileModalFindOrCreatePrivateChannelMutationResponse;
+    readonly variables: ProfileModalFindOrCreatePrivateChannelMutationVariables;
 };
 
 
 
 /*
-mutation MainStackNavigatorFindOrCreatePrivateChannelMutation(
+mutation ProfileModalFindOrCreatePrivateChannelMutation(
   $peerUserId: String!
 ) {
   findOrCreatePrivateChannel(peerUserId: $peerUserId) {
@@ -75,7 +75,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "MainStackNavigatorFindOrCreatePrivateChannelMutation",
+            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
             "selections": (v1 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -84,18 +84,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "MainStackNavigatorFindOrCreatePrivateChannelMutation",
+            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "ecff917854f09eed34602ddf2f794f8b",
+            "cacheID": "bb3817a5b3188142225aeec376b02285",
             "id": null,
             "metadata": {},
-            "name": "MainStackNavigatorFindOrCreatePrivateChannelMutation",
+            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
             "operationKind": "mutation",
-            "text": "mutation MainStackNavigatorFindOrCreatePrivateChannelMutation(\n  $peerUserId: String!\n) {\n  findOrCreatePrivateChannel(peerUserId: $peerUserId) {\n    id\n    name\n  }\n}\n"
+            "text": "mutation ProfileModalFindOrCreatePrivateChannelMutation(\n  $peerUserId: String!\n) {\n  findOrCreatePrivateChannel(peerUserId: $peerUserId) {\n    id\n    name\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '606f28da88de79b9fc7bd61e0a1f26dc';
+(node as any).hash = '8f6f8c601dd5d032985f8f5107351824';
 export default node;

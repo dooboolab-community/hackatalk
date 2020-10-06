@@ -249,7 +249,7 @@ const MessagesFragment: FC<MessageProp> = ({
   };
 
   const [textToSend, setTextToSend] = useState<string>('');
-  const { state, showModal } = useProfileContext();
+  const { showModal } = useProfileContext();
 
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
 
@@ -327,9 +327,7 @@ const MessagesFragment: FC<MessageProp> = ({
           nextItem={messages[index + 1]}
           item={item}
           onPressPeerImage={(): void => {
-            if (state.modal) {
-              showModal({ user: item?.sender, deleteMode: true });
-            }
+            showModal({ user: item?.sender, isFriend: true });
           }}
         />
       );

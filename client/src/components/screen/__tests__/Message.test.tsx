@@ -6,6 +6,7 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import {
   fireEvent,
   render,
+  waitFor,
 } from '@testing-library/react-native';
 
 import { Channel } from '../../../types/graphql';
@@ -87,38 +88,27 @@ describe('[Message] interaction', () => {
   });
 
   describe('dispatch showModal', () => {
-    it('should dispatch [show-modal] when peerImage is pressed', () => {
-      const { getByTestId } = render(component);
+    it('should dispatch [show-modal] when peerImage is pressed', async () => {
+      const mockShowModal = jest.fn();
 
       jest
         .spyOn(ProfileContext, 'useProfileContext')
         .mockImplementation(() => ({
-          showModal: jest.fn(),
-          state: {
-            deleteMode: false,
-            user: {
-              id: '',
-            },
-          },
+          showModal: mockShowModal,
+          hideModal: jest.fn(),
+          isVisible: false,
+          modalState: null,
         }));
 
-      const MessageListItem = getByTestId('message-list-item0');
+      const { getByTestId } = render(component);
 
-      fireEvent.press(MessageListItem);
-    });
+      environment.mock.queueOperationResolver((op) => MockPayloadGenerator.generate(op));
 
-    it('should call [show-modal] when modal is available', () => {
-      const { getByTestId, rerender } = render(component);
+      const messageListItem = getByTestId('message-list-item0');
 
-      const showModalMock = jest.spyOn(ProfileContext, 'useProfileContext');
+      fireEvent.press(messageListItem);
 
-      const MessageListItem = getByTestId('message-list-item0');
-
-      rerender(component);
-
-      fireEvent.press(MessageListItem);
-
-      expect(showModalMock).toHaveBeenCalledTimes(1);
+      expect(mockShowModal).toBeCalledTimes(1);
     });
   });
 

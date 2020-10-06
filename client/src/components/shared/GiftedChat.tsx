@@ -178,11 +178,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               testID="touch-menu"
               onPress={(): void => {
                 Keyboard.dismiss();
-
-                const timeout = setTimeout(() => {
-                  setShowMenu(true);
-                  clearTimeout(timeout);
-                }, 100);
+                setShowMenu(true);
               }}
             >
               {optionView}

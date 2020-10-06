@@ -99,7 +99,7 @@ const UsersFragment: FC<UserProps> = ({
     user,
   );
 
-  const { state, showModal } = useProfileContext();
+  const { showModal } = useProfileContext();
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
@@ -116,8 +116,8 @@ const UsersFragment: FC<UserProps> = ({
 
     const pressUserItem = (): void => {
       showModal({
-        user: item?.node,
-        deleteMode: false,
+        user: item.node,
+        isFriend: false,
       });
     };
 
