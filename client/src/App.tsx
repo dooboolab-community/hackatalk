@@ -1,6 +1,3 @@
-import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
-
 import type {
   AppUserQuery,
   AppUserQueryResponse,
@@ -8,7 +5,7 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useRef, useState } from 'react';
 import {
   RelayEnvironmentProvider,
   fetchQuery,
@@ -23,11 +20,14 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import AsyncStorage from '@react-native-community/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
+import Device from 'expo-device';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
+import Notifications from 'expo-notifications';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
+import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
 import { useMedia } from './utils/media';
 
@@ -76,6 +76,8 @@ function App(): ReactElement {
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
 
+  const responseListener = useRef<any>();
+
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
 
@@ -109,6 +111,19 @@ function App(): ReactElement {
         setDevice();
       },
     });
+
+    registerForPushNotificationsAsync().then((pushToken) => {
+      if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log(response);
+    });
+
+    return () => {
+      // @ts-ignore
+      Notifications.removeNotificationSubscription(responseListener);
+    };
   }, []);
 
   if (loading || !assetLoaded) {

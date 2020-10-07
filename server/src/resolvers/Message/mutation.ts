@@ -58,6 +58,9 @@ export const createMessage = mutationField('createMessage', {
           : created.messageType === 'file'
             ? 'file'
             : created.text,
+        data: {
+          data: created.id,
+        },
       };
 
       sendPushNotification(message);
