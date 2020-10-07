@@ -28,6 +28,7 @@ import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
+import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
 import { useMedia } from './utils/media';
 
@@ -76,6 +77,8 @@ function App(): ReactElement {
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
 
+  const responseListener = useRef();
+
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
 
@@ -90,6 +93,18 @@ function App(): ReactElement {
   };
 
   useEffect(() => {
+    registerForPushNotificationsAsync().then((pushToken) => {
+      if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+
     fetchQuery<AppUserQuery>(environment, meQuery, {}).subscribe({
       start: () => {
         setLoading(true);

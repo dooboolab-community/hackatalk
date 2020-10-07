@@ -33,7 +33,6 @@ import type {
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import { registerForPushNotificationsAsync } from '../../utils/noti';
 import { useAuthContext } from '../../providers/AuthProvider';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
@@ -208,10 +207,6 @@ function SignIn(props: Props): ReactElement {
         }
 
         await AsyncStorage.setItem('token', token);
-
-        registerForPushNotificationsAsync().then((pushToken) => {
-          if (pushToken) { AsyncStorage.setItem('push_token', pushToken); }
-        });
 
         const pushToken = await AsyncStorage.getItem('push_token');
 
