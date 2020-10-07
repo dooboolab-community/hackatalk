@@ -8,7 +8,7 @@ import type {
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
+import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useRef, useState } from 'react';
 import {
   RelayEnvironmentProvider,
   fetchQuery,
