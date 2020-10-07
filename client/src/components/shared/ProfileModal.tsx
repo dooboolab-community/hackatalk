@@ -7,10 +7,13 @@ import React, { FC, useState } from 'react';
 import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import { graphql, useMutation } from 'react-relay/hooks';
 
+import { ConnectionHandler } from 'relay-runtime';
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
+import { ProfileModalAddFriendMutation } from '../../__generated__/ProfileModalAddFriendMutation.graphql';
+import { ProfileModalDeleteFriendMutation } from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/core';
@@ -85,6 +88,26 @@ const findOrCreatePrivateChannel = graphql`
   }
 `;
 
+const addFriendMutation = graphql`
+  mutation ProfileModalAddFriendMutation($friendId: String!) {
+    addFriend(friendId: $friendId) {
+      friend {
+        id
+      }
+    }
+  }
+`;
+
+const deleteFriendMutation = graphql`
+  mutation ProfileModalDeleteFriendMutation($friendId: String!) {
+    deleteFriend(friendId: $friendId) {
+      friend {
+        id
+      }
+    }
+  }
+`;
+
 interface Styles {
   wrapper: ViewStyle;
   viewBtn: ViewStyle;
@@ -128,7 +151,40 @@ const ModalContent: FC<ModalContentProps> = ({
     ProfileModalFindOrCreatePrivateChannelMutation
   >(findOrCreatePrivateChannel);
 
+  const [commitAddFriend, addFriendInFlight] = useMutation<
+    ProfileModalAddFriendMutation
+  >(addFriendMutation);
+
+  const [commitDeleteFriend, deleteFriendInFlight] = useMutation<
+    ProfileModalDeleteFriendMutation
+  >(deleteFriendMutation);
+
   const addFriend = async (): Promise<void> => {
+    commitAddFriend({
+      variables: { friendId: user.id },
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
+
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'Friend_friends',
+        );
+
+        const userProxy = proxyStore.get(user.id);
+
+        const newEdge = connectionRecord && userProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          connectionRecord,
+          userProxy,
+          'User',
+        );
+
+        if (connectionRecord && newEdge) {
+          ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
+        }
+      },
+    });
+
     if (onAddFriend) {
       onAddFriend();
     }
@@ -137,9 +193,27 @@ const ModalContent: FC<ModalContentProps> = ({
   };
 
   const deleteFriend = async (): Promise<void> => {
+    commitDeleteFriend({
+      variables: { friendId: user.id },
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
+
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'Friend_friends',
+        );
+
+        if (connectionRecord) {
+          ConnectionHandler.deleteNode(connectionRecord, user.id);
+        }
+      },
+    });
+
     if (onDeleteFriend) {
       onDeleteFriend();
     }
+
+    hideModal();
   };
 
   const startChat = (): void => {
@@ -211,32 +285,38 @@ const ModalContent: FC<ModalContentProps> = ({
       </StyledView>
       {
         showFriendAddedMessage
-          ? isFriend
-            ? <StyledTextFriendAlreadyAdded testID="already-added-message">
-              {getString('FRIEND_ALREADY_ADDED')}
-            </StyledTextFriendAlreadyAdded>
-            : <StyledTextFriendAdded testID="added-message">
-              {getString('FRIEND_ADDED')}
-            </StyledTextFriendAdded>
+          ? addFriendInFlight
+            ? <LoadingIndicator size="small" />
+            : isFriend
+              ? <StyledTextFriendAlreadyAdded testID="already-added-message">
+                {getString('FRIEND_ALREADY_ADDED')}
+              </StyledTextFriendAlreadyAdded>
+              : <StyledTextFriendAdded testID="added-message">
+                {getString('FRIEND_ADDED')}
+              </StyledTextFriendAdded>
           : null
       }
       <StyledViewBtns>
-        <TouchableOpacity
-          testID="touch-add-friend"
-          activeOpacity={0.5}
-          onPress={isFriend ? deleteFriend : addFriend}
-          style={styles.viewBtn}
-        >
-          <View style={styles.viewBtn}>
-            <StyledText testID="text-add-title">
-              {
-                isFriend
-                  ? getString('DELETE_FRIEND')
-                  : getString('ADD_FRIEND')
-              }
-            </StyledText>
-          </View>
-        </TouchableOpacity>
+        {
+          deleteFriendInFlight
+            ? <LoadingIndicator size="small" />
+            : <TouchableOpacity
+              testID="touch-add-friend"
+              activeOpacity={0.5}
+              onPress={isFriend ? deleteFriend : addFriend}
+              style={styles.viewBtn}
+            >
+              <View style={styles.viewBtn}>
+                <StyledText testID="text-add-title">
+                  {
+                    isFriend
+                      ? getString('DELETE_FRIEND')
+                      : getString('ADD_FRIEND')
+                  }
+                </StyledText>
+              </View>
+            </TouchableOpacity>
+        }
         <StyledViewBtnDivider />
         <TouchableOpacity
           testID="btn-chat"
