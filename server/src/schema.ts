@@ -8,7 +8,7 @@ import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema';
 export const schema = makeSchema({
   types,
   plugins: [
-    nexusSchemaPrisma(),
+    nexusSchemaPrisma({ outputs: { typegen: __dirname + '/generated/typegen-nexus-plugin-prisma.d.ts' } }),
     connectionPlugin({
       cursorFromNode(node) {
         return node.id;
