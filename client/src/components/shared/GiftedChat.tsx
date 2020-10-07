@@ -13,6 +13,7 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
 
 const StyledViewChat = styled.View`
   width: 100%;
+  max-width: 100%;
   border-top-width: 0.3px;
   border-color: ${({ theme }): string => theme.lineColor};
   min-height: 56px;
@@ -26,9 +27,7 @@ const StyledViewChat = styled.View`
 `;
 
 const StyledInputChat = styled.TextInput`
-  width: 80%;
   font-size: 14px;
-  margin-right: 20px;
   padding-left: 48px;
   padding-bottom: 4px;
   color: black;
@@ -161,6 +160,11 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <StyledInputChat
               testID="input-chat"
               style={{
+                flexGrow: 1,
+                flexShrink: 1,
+                paddingTop: 5,
+                paddingBottom: 5,
+                marginRight: 10,
                 color: fontColor,
                 backgroundColor: backgroundColor,
               }}
@@ -185,7 +189,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             </StyledTouchMenu>
             <View
               style={{
-                flex: 1,
+                flexGrow: 0,
+                flexShrink: 0,
                 marginVertical: 8,
               }}
             >
