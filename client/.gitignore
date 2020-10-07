@@ -22,3 +22,8 @@ firebase-debug*.*
 .idea
 .gitmessage.txt
 .env
+
+# IDE & Text Editor
+.vscode
+!.vscode/launch.json
+!.vscode/settings.json
