@@ -1,25 +1,20 @@
-import { ProfileModalContext, ProfileModalProvider, useProfileContext } from '../../../providers/ProfileModalProvider';
+import { ProfileModalContext, useProfileContext } from '../../../providers/ProfileModalProvider';
 import React, {
-  FC,
-  ForwardRefExoticComponent,
-  RefAttributes,
   createRef,
   forwardRef,
-  useEffect,
   useImperativeHandle,
 } from 'react';
 import {
-  RenderAPI,
   act,
   fireEvent,
   render,
-  waitFor,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { MockPayloadGenerator } from 'relay-test-utils';
 import ProfileModal from '../ProfileModal';
 import { View } from 'react-native';
+import { environment } from '../../../providers';
 
 jest.mock('@react-navigation/core', () => {
   return {
@@ -91,6 +86,8 @@ describe('[ProfileModal] rendering test', () => {
     const button = getByTestId('touch-add-friend');
 
     fireEvent.press(button);
+
+    environment.mock.resolveMostRecentOperation((op) => MockPayloadGenerator.generate(op));
 
     const message = queryByTestId('added-message');
 
