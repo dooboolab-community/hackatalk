@@ -4,24 +4,24 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type FriendFriendsQueryVariables = {
-    first: number;
+export type FriendFriendsPaginationQueryVariables = {
     after?: string | null;
+    first: number;
 };
-export type FriendFriendsQueryResponse = {
+export type FriendFriendsPaginationQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"Friend_friends">;
 };
-export type FriendFriendsQuery = {
-    readonly response: FriendFriendsQueryResponse;
-    readonly variables: FriendFriendsQueryVariables;
+export type FriendFriendsPaginationQuery = {
+    readonly response: FriendFriendsPaginationQueryResponse;
+    readonly variables: FriendFriendsPaginationQueryVariables;
 };
 
 
 
 /*
-query FriendFriendsQuery(
-  $first: Int!
+query FriendFriendsPaginationQuery(
   $after: String
+  $first: Int!
 ) {
   ...Friend_friends_2HEEH6
 }
@@ -59,15 +59,18 @@ fragment Friend_friends_2HEEH6 on Query {
 */
 
 const node: ConcreteRequest = (function () {
-    var v0 = ({
-        "defaultValue": null,
-        "kind": "LocalArgument",
-        "name": "after"
-    } as any), v1 = ({
-        "defaultValue": null,
-        "kind": "LocalArgument",
-        "name": "first"
-    } as any), v2 = [
+    var v0 = [
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "after"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "first"
+        } as any)
+    ], v1 = [
         ({
             "kind": "Variable",
             "name": "after",
@@ -81,16 +84,13 @@ const node: ConcreteRequest = (function () {
     ];
     return {
         "fragment": {
-            "argumentDefinitions": [
-                (v0 /*: any*/),
-                (v1 /*: any*/)
-            ],
+            "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "FriendFriendsQuery",
+            "name": "FriendFriendsPaginationQuery",
             "selections": [
                 {
-                    "args": (v2 /*: any*/),
+                    "args": (v1 /*: any*/),
                     "kind": "FragmentSpread",
                     "name": "Friend_friends"
                 }
@@ -100,16 +100,13 @@ const node: ConcreteRequest = (function () {
         },
         "kind": "Request",
         "operation": {
-            "argumentDefinitions": [
-                (v1 /*: any*/),
-                (v0 /*: any*/)
-            ],
+            "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "FriendFriendsQuery",
+            "name": "FriendFriendsPaginationQuery",
             "selections": [
                 {
                     "alias": null,
-                    "args": (v2 /*: any*/),
+                    "args": (v1 /*: any*/),
                     "concreteType": "UserConnection",
                     "kind": "LinkedField",
                     "name": "friends",
@@ -293,7 +290,7 @@ const node: ConcreteRequest = (function () {
                 },
                 {
                     "alias": null,
-                    "args": (v2 /*: any*/),
+                    "args": (v1 /*: any*/),
                     "filters": [],
                     "handle": "connection",
                     "key": "Friend_friends",
@@ -303,14 +300,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "39cc7171cb036dd32147757a8760d86e",
+            "cacheID": "2bcf66b0a9e322aae35f0fe246a74c2d",
             "id": null,
             "metadata": {},
-            "name": "FriendFriendsQuery",
+            "name": "FriendFriendsPaginationQuery",
             "operationKind": "query",
-            "text": "query FriendFriendsQuery(\n  $first: Int!\n  $after: String\n) {\n  ...Friend_friends_2HEEH6\n}\n\nfragment Friend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n) {\n  ...Friend_friends_2HEEH6\n}\n\nfragment Friend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'e64a1228bc404df8a1731f94fa4c520a';
+(node as any).hash = '9a5e97e353fcb1d6acc21e133da629a8';
 export default node;

@@ -1,5 +1,3 @@
-// import * as ProfileContext from '../../../providers/ProfileModalProvider';
-
 import { MockPayloadGenerator, createMockEnvironment } from 'relay-test-utils';
 import React, { Suspense } from 'react';
 import { dark, light } from '../../../theme';
@@ -27,61 +25,25 @@ const component = (
 );
 
 describe('[Friend] rendering test', () => {
-  it('should render without crashing', async () => {
-    const json = render(component).toJSON();
-
-    expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
-  });
-
   it('renders a friend', async () => {
-    environment.mock.queueOperationResolver((operation) => {
+    const { getByText, toJSON } = render(component);
+
+    environment.mock.resolveMostRecentOperation((operation) => {
       return MockPayloadGenerator.generate(operation, {
         User: (_, generateId): User => ({
           id: `user-${generateId()}`,
           name: 'John Doe',
           nickname: 'jdoe1234',
         }),
+        PageInfo: () => ({ has_next_page: false }),
       });
     });
 
-    const { getByText } = render(component);
-
-    return waitFor(() => expect(getByText('John Doe')).toBeTruthy());
-  });
-
-  it('re-renders upon friend update', async () => {
-    const makeFriendResolver = (
-      name: string,
-    ): MockPayloadGenerator.MockResolvers => ({
-      User: (_, generateId): User => ({
-        id: `user-${generateId()}`,
-        name,
-      }),
-    });
-
-    const { getByText } = render(component);
-
-    const operation = await waitFor(() => environment.mock.getMostRecentOperation());
-
-    environment.mock.nextValue(
-      operation,
-      MockPayloadGenerator.generate(
-        operation,
-        makeFriendResolver('John Doe'),
-      ),
-    );
-
     await waitFor(() => expect(getByText('John Doe')).toBeTruthy());
 
-    environment.mock.nextValue(
-      operation,
-      MockPayloadGenerator.generate(
-        operation,
-        makeFriendResolver('Sarah Doe'),
-      ),
-    );
+    const json = toJSON();
 
-    await waitFor(() => expect(getByText('Sarah Doe')).toBeTruthy());
+    expect(json).toBeTruthy();
+    expect(json).toMatchSnapshot();
   });
 });

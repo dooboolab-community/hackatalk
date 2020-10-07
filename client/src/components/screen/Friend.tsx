@@ -1,14 +1,18 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { User, UserEdge } from '../../types/graphql';
-import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks';
+import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
 import { FlatList } from 'react-native';
+import { FriendFriendsPaginationQuery } from '../../__generated__/FriendFriendsPaginationQuery.graphql';
 import { FriendFriendsQuery } from '../../__generated__/FriendFriendsQuery.graphql';
+import { Friend_friends$key } from '../../__generated__/Friend_friends.graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
+
+const ITEM_CNT = 20;
 
 const Container = styled.View`
   flex: 1;
@@ -19,45 +23,67 @@ const Container = styled.View`
 `;
 
 const friendsQuery = graphql`
-  query FriendFriendsQuery {
-    friends(first: 10) {
-      edges {
-        node {
-          id
-          email
-          name
-          nickname
-          thumbURL
-          photoURL
-          birthday
-          gender
-          phone
-          statusMessage
-          verified
-          lastSignedIn
-          isOnline
-          createdAt
-          updatedAt
-          deletedAt
-        }
-      }
-    }
+  query FriendFriendsQuery($first: Int!, $after: String) {
+    ...Friend_friends @arguments(first: $first, after: $after)
   }
 `;
 
-export default function Screen(): ReactElement {
+const friendsFragment = graphql`
+  fragment Friend_friends on Query
+    @argumentDefinitions(
+      first: {type: "Int!"}
+      after: {type: "String"}
+    )
+    @refetchable(queryName: "FriendFriendsPaginationQuery") {
+      friends(first: $first, after: $after)
+      @connection(key: "Friend_friends", filters: []) {
+        edges {
+          cursor
+          node {
+            id
+            email
+            name
+            nickname
+            thumbURL
+            photoURL
+            birthday
+            gender
+            phone
+            statusMessage
+            verified
+            lastSignedIn
+            isOnline
+            createdAt
+            updatedAt
+            deletedAt
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+`;
+
+type FriendsFragmentProps = {
+  friendsKey: Friend_friends$key
+};
+
+const FriendsFragment: FC<FriendsFragmentProps> = ({
+  friendsKey,
+}) => {
   const { showModal } = useProfileContext();
-  const [friends, setFriends] = useState<any>([]);
-  const environment = useRelayEnvironment();
 
-  useEffect(() => {
-    const subscription = fetchQuery<FriendFriendsQuery>(environment, friendsQuery, {}).subscribe({
-      next: (data) => setFriends(data?.friends?.edges || []),
-    });
-
-    // Clean up.
-    return (): void => subscription.unsubscribe();
-  }, []);
+  const {
+    data,
+    loadNext,
+    isLoadingNext,
+    refetch,
+  } = usePaginationFragment<FriendFriendsPaginationQuery, Friend_friends$key>(
+    friendsFragment,
+    friendsKey,
+  );
 
   const userListOnPress = (user: User): void => {
     showModal({
@@ -65,6 +91,10 @@ export default function Screen(): ReactElement {
       isFriend: true,
     });
   };
+
+  const friends = data.friends.edges?.filter(
+    (x): x is NonNullable<typeof x> => x !== null,
+  ) || [];
 
   const renderItem = ({
     item,
@@ -108,7 +138,28 @@ export default function Screen(): ReactElement {
         ListEmptyComponent={
           <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
         }
+        refreshing={isLoadingNext}
+        onRefresh={() => {
+          refetch(
+            { first: ITEM_CNT },
+            { fetchPolicy: 'network-only' },
+          );
+        }}
+        onEndReachedThreshold={0.1}
+        onEndReached={() => loadNext(ITEM_CNT)}
       />
     </Container>
   );
-}
+};
+
+const Friend: FC = () => {
+  const queryResponse = useLazyLoadQuery<FriendFriendsQuery>(
+    friendsQuery,
+    { first: ITEM_CNT },
+    { fetchPolicy: 'store-or-network' },
+  );
+
+  return <FriendsFragment friendsKey={queryResponse} />;
+};
+
+export default Friend;
