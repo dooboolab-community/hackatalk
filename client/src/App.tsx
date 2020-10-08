@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 import type {
   AppUserQuery,
   AppUserQueryResponse,
@@ -24,7 +26,6 @@ import Device from 'expo-device';
 import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
-import Notifications from 'expo-notifications';
 import RootNavigator from './components/navigation/RootStackNavigator';
 import { User } from 'types/graphql';
 import { registerForPushNotificationsAsync } from './utils/noti';
