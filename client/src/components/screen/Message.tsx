@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
@@ -9,14 +11,13 @@ import { Message, User } from '../../types/graphql';
 import type {
   MessageCreateMutation,
   MessageCreateMutationResponse,
-  MessageCreateMutationVariables,
 } from '../../__generated__/MessageCreateMutation.graphql';
 import {
   MessagesQuery,
   MessagesQueryResponse,
   MessagesQueryVariables,
 } from '../../__generated__/MessagesQuery.graphql';
-import React, { FC, ReactElement, Suspense, useState } from 'react';
+import React, { FC, ReactElement, Suspense, useEffect, useMemo, useState } from 'react';
 import { RouteProp, useNavigation } from '@react-navigation/core';
 import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
 import {
@@ -81,21 +82,44 @@ const createMessage = graphql`
 `;
 
 const messagesQuery = graphql`
-  query MessagesQuery($first: Int! $after: String $channelId: String! $searchText: String) {
-    ...MessageComponent_message @arguments(first: $first after: $after channelId: $channelId searchText: $searchText)
+  query MessagesQuery(
+    $first: Int
+    $last: Int
+    $before: String
+    $after: String
+    $channelId: String!
+    $searchText: String
+  ) {
+    ...MessageComponent_message @arguments(
+      first: $first
+      last: $last
+      before: $before
+      after: $after
+      channelId: $channelId
+      searchText: $searchText
+    )
   }
 `;
 
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
     @argumentDefinitions(
-      first: {type: "Int!"}
+      first: {type: "Int"}
+      last: {type: "Int"}
+      before: {type: "String"}
       after: {type: "String"}
       channelId: {type: "String!"}
       searchText: {type: "String"}
     )
-    @refetchable(queryName: "Messages") {
-      messages(first: $first after: $after channelId: $channelId searchText: $searchText)
+    @refetchable(queryName: "MessagePaginationQuery") {
+      messages(
+        first: $first
+        last: $last
+        before: $before
+        after: $after
+        channelId: $channelId
+        searchText: $searchText
+      )
       @connection(key: "MessageComponent_messages" filters: ["channelId", "searchText"]) {
         edges {
           cursor
@@ -117,6 +141,8 @@ const messagesFragment = graphql`
         }
         pageInfo {
           hasNextPage
+          hasPreviousPage
+          startCursor
           endCursor
         }
       }
@@ -232,21 +258,37 @@ const MessagesFragment: FC<MessageProp> = ({
   const {
     data,
     loadNext,
+    loadPrevious,
     isLoadingNext,
   } = usePaginationFragment<MessagesQuery, MessageComponent_message$key>(
     messagesFragment,
     messages,
   );
 
-  const edges = data?.messages?.edges || [];
-
-  const nodes = edges
-    // @ts-ignore
-    .reduce((arr, item) => arr.concat(item?.node), []);
+  const nodes = useMemo(
+    () => {
+      return data.messages.edges?.filter(
+        (x): x is NonNullable<typeof x> => x !== null,
+      ).map(
+        (x) => x.node,
+      ) || [];
+    },
+    [data],
+  );
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
   };
+
+  useEffect(() => {
+    // Add notification handler.
+    const responseListener = Notifications.addNotificationReceivedListener((event) => {
+      loadPrevious(ITEM_CNT);
+    });
+
+    // Clean up : remove notification handler.
+    return () => Notifications.removeNotificationSubscription(responseListener);
+  }, [data]);
 
   const [textToSend, setTextToSend] = useState<string>('');
   const { showModal } = useProfileContext();

@@ -37,6 +37,7 @@ export default {
     },
     android: {
       package: 'com.dooboolab.hackatalk',
+      useNextNotificationsApi: true,
     },
     packagerOpts: {
       config: './metro.config.js',

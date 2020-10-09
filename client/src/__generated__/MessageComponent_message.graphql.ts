@@ -26,6 +26,8 @@ export type MessageComponent_message = {
         } | null> | null;
         readonly pageInfo: {
             readonly hasNextPage: boolean;
+            readonly hasPreviousPage: boolean;
+            readonly startCursor: string | null;
             readonly endCursor: string | null;
         };
     };
@@ -53,12 +55,22 @@ const node: ReaderFragment = (function () {
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
+                "name": "before"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
                 "name": "channelId"
             },
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
                 "name": "first"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
+                "name": "last"
             },
             {
                 "defaultValue": null,
@@ -70,9 +82,9 @@ const node: ReaderFragment = (function () {
         "metadata": {
             "connection": [
                 {
-                    "count": "first",
-                    "cursor": "after",
-                    "direction": "forward",
+                    "count": null,
+                    "cursor": null,
+                    "direction": "bidirectional",
                     "path": (v0 /*: any*/)
                 }
             ],
@@ -82,11 +94,14 @@ const node: ReaderFragment = (function () {
                         "count": "first",
                         "cursor": "after"
                     },
-                    "backward": null,
+                    "backward": {
+                        "count": "last",
+                        "cursor": "before"
+                    },
                     "path": (v0 /*: any*/)
                 },
                 "fragmentPathInResult": [],
-                "operation": require('./Messages.graphql.ts')
+                "operation": require('./MessagePaginationQuery.graphql.ts')
             }
         },
         "name": "MessageComponent_message",
@@ -253,6 +268,20 @@ const node: ReaderFragment = (function () {
                                 "alias": null,
                                 "args": null,
                                 "kind": "ScalarField",
+                                "name": "hasPreviousPage",
+                                "storageKey": null
+                            },
+                            {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "startCursor",
+                                "storageKey": null
+                            },
+                            {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
                                 "name": "endCursor",
                                 "storageKey": null
                             }
@@ -267,5 +296,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '88a86178fb5462d83f0c764acb58caa2';
+(node as any).hash = '3e53938ab9703c64388f4b86046ba329';
 export default node;
