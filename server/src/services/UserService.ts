@@ -43,7 +43,7 @@ export class UserService {
   private static async validateSocialUser(socialUser: SocialUserInput, ctx: Context) {
     if (socialUser.email) {
       // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
-      const emailUser = await ctx.prisma.user.findMany({
+      const emailUser = await ctx.prisma.user.findFirst({
         where: {
           email: socialUser.email,
           profile: {
@@ -52,9 +52,9 @@ export class UserService {
             },
           },
         },
-        take: 1,
       });
-      if (emailUser.length) {
+
+      if (emailUser) {
         throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
       }
     }
@@ -63,17 +63,16 @@ export class UserService {
   private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context)
   : Promise<NexusGenRootTypes['User']> {
     // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
-    const users = await ctx.prisma.user.findMany({
+    const user = await ctx.prisma.user.findFirst({
       where: {
         email: socialUser.email,
         profile: {
           socialId: socialUser.socialId,
         },
       },
-      take: 1,
     });
 
-    if (!users.length) {
+    if (!user) {
       return await ctx.prisma.user.create({
         data: {
           profile: {
@@ -91,7 +90,7 @@ export class UserService {
         },
       });
     } else {
-      return users[0];
+      return user;
     }
   }
 }

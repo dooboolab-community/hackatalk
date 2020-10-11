@@ -4,12 +4,11 @@ import { T, always, andThen, cond, gt, lt, map, pipe, when } from 'ramda';
 import { prisma } from '../context';
 
 export const findExistingChannel = async (channelId: string): Promise<Channel> => {
-  const channels = await prisma.channel.findMany({
+  const channel = await prisma.channel.findFirst({
     where: { id: channelId, deletedAt: null },
-    take: 1,
   });
 
-  return channels[0];
+  return channel;
 };
 
 export const findChannelWithUserIds = async (
