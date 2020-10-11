@@ -194,15 +194,13 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       throw new Error("You can't add some users to private channel.");
     }
 
-    const memberships = await ctx.prisma.membership.findMany({
+    const membership = await ctx.prisma.membership.findFirst({
       where: {
         userId,
         channelId: channel.id,
       },
-      take: 1,
     });
 
-    const membership = memberships[0];
     const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
 
     if (hasAdminPermission) {
@@ -210,15 +208,14 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
     }
 
     for (const userId of userIds) {
-      const memberships = await ctx.prisma.membership.findMany({
+      const membership = await ctx.prisma.membership.findFirst({
         where: {
           channelId,
           userId,
         },
-        take: 1,
       });
 
-      if (memberships.length === 0) {
+      if (!membership) {
         await ctx.prisma.membership.create({
           data: {
             user: {
@@ -252,15 +249,13 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
       throw new Error('Removing users from the private channels is not allowed.');
     }
 
-    const memberships = await ctx.prisma.membership.findMany({
+    const membership = await ctx.prisma.membership.findFirst({
       where: {
         userId,
         channelId: channel.id,
       },
-      take: 1,
     });
 
-    const membership = memberships[0];
     const hasAdminPermission = membership.membershipType !== 'admin' && membership.membershipType !== 'owner';
 
     if (hasAdminPermission) {

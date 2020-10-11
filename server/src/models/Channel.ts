@@ -20,7 +20,7 @@ export const Channel = objectType({
       description: 'Get latest message sent to the channel.',
 
       resolve: async ({ id }, args, ctx) => {
-        const messages = await ctx.prisma.message.findMany({
+        const message = await ctx.prisma.message.findFirst({
           where: {
             channel: { id },
           },
@@ -28,10 +28,9 @@ export const Channel = objectType({
             sender: true,
           },
           orderBy: { createdAt: 'desc' },
-          take: 1,
         });
 
-        return messages[0];
+        return message;
       },
     });
 
