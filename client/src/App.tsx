@@ -9,13 +9,11 @@ import {
   RelayEnvironmentProvider,
   graphql,
   useLazyLoadQuery,
-  useMutation,
 } from 'react-relay/hooks';
 import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { AppCreateNotificationMutation } from './__generated__/AppCreateNotificationMutation.graphql';
 import { AppLoading } from 'expo';
 import type {
   AppUserQuery,
@@ -52,21 +50,6 @@ const meQuery = graphql`
   }
 `;
 
-const createNotificationMutation = graphql`
-  mutation AppCreateNotificationMutation($token: String!, $device: String, $os: String) {
-    createNotification(
-      token: $token
-      device: $device
-      os: $os
-    ) {
-      id
-      token
-      device
-      os
-    }
-  }
-`;
-
 function cacheImages(images: (number | string)[]): any[] {
   return images.map((image) => {
     if (typeof image === 'string') {
@@ -87,10 +70,6 @@ function App(): ReactElement {
   const [assetLoaded, setAssetLoaded] = useState<boolean>(false);
   const { setDeviceType } = useDeviceContext();
   const { setUser } = useAuthContext();
-
-  const [commitNotification, notificationInFlight] = useMutation<
-    AppCreateNotificationMutation
-  >(createNotificationMutation);
 
   const setDevice = async (): Promise<void> => {
     const deviceType = await Device.getDeviceTypeAsync();
@@ -115,10 +94,6 @@ function App(): ReactElement {
     registerForPushNotificationsAsync().then((pushToken) => {
       if (pushToken) {
         AsyncStorage.setItem('push_token', pushToken);
-
-        commitNotification({
-          variables: { token: pushToken },
-        });
       }
     });
   }, [me]);
