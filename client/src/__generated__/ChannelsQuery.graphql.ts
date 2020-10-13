@@ -5,7 +5,9 @@
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type ChannelsQueryVariables = {
-    first: number;
+    first?: number | null;
+    last?: number | null;
+    before?: string | null;
     after?: string | null;
     withMessage?: boolean | null;
 };
@@ -21,15 +23,17 @@ export type ChannelsQuery = {
 
 /*
 query ChannelsQuery(
-  $first: Int!
+  $first: Int
+  $last: Int
+  $before: String
   $after: String
   $withMessage: Boolean
 ) {
-  ...ChannelComponent_channel_4q1LXA
+  ...ChannelComponent_channel_2EXBWN
 }
 
-fragment ChannelComponent_channel_4q1LXA on Query {
-  channels(first: $first, after: $after, withMessage: $withMessage) {
+fragment ChannelComponent_channel_2EXBWN on Query {
+  channels(first: $first, last: $last, before: $before, after: $after, withMessage: $withMessage) {
     edges {
       cursor
       node {
@@ -45,6 +49,7 @@ fragment ChannelComponent_channel_4q1LXA on Query {
           }
         }
         lastMessage {
+          id
           messageType
           text
           imageUrls
@@ -57,6 +62,8 @@ fragment ChannelComponent_channel_4q1LXA on Query {
     pageInfo {
       hasNextPage
       endCursor
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -70,16 +77,29 @@ const node: ConcreteRequest = (function () {
     } as any), v1 = ({
         "defaultValue": null,
         "kind": "LocalArgument",
-        "name": "first"
+        "name": "before"
     } as any), v2 = ({
         "defaultValue": null,
         "kind": "LocalArgument",
+        "name": "first"
+    } as any), v3 = ({
+        "defaultValue": null,
+        "kind": "LocalArgument",
+        "name": "last"
+    } as any), v4 = ({
+        "defaultValue": null,
+        "kind": "LocalArgument",
         "name": "withMessage"
-    } as any), v3 = [
+    } as any), v5 = [
         ({
             "kind": "Variable",
             "name": "after",
             "variableName": "after"
+        } as any),
+        ({
+            "kind": "Variable",
+            "name": "before",
+            "variableName": "before"
         } as any),
         ({
             "kind": "Variable",
@@ -88,10 +108,21 @@ const node: ConcreteRequest = (function () {
         } as any),
         ({
             "kind": "Variable",
+            "name": "last",
+            "variableName": "last"
+        } as any),
+        ({
+            "kind": "Variable",
             "name": "withMessage",
             "variableName": "withMessage"
         } as any)
-    ], v4 = ({
+    ], v6 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any), v7 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
@@ -103,14 +134,16 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [
                 (v0 /*: any*/),
                 (v1 /*: any*/),
-                (v2 /*: any*/)
+                (v2 /*: any*/),
+                (v3 /*: any*/),
+                (v4 /*: any*/)
             ],
             "kind": "Fragment",
             "metadata": null,
             "name": "ChannelsQuery",
             "selections": [
                 {
-                    "args": (v3 /*: any*/),
+                    "args": (v5 /*: any*/),
                     "kind": "FragmentSpread",
                     "name": "ChannelComponent_channel"
                 }
@@ -121,16 +154,18 @@ const node: ConcreteRequest = (function () {
         "kind": "Request",
         "operation": {
             "argumentDefinitions": [
+                (v2 /*: any*/),
+                (v3 /*: any*/),
                 (v1 /*: any*/),
                 (v0 /*: any*/),
-                (v2 /*: any*/)
+                (v4 /*: any*/)
             ],
             "kind": "Operation",
             "name": "ChannelsQuery",
             "selections": [
                 {
                     "alias": null,
-                    "args": (v3 /*: any*/),
+                    "args": (v5 /*: any*/),
                     "concreteType": "ChannelConnection",
                     "kind": "LinkedField",
                     "name": "channels",
@@ -159,13 +194,7 @@ const node: ConcreteRequest = (function () {
                                     "name": "node",
                                     "plural": false,
                                     "selections": [
-                                        {
-                                            "alias": null,
-                                            "args": null,
-                                            "kind": "ScalarField",
-                                            "name": "id",
-                                            "storageKey": null
-                                        },
+                                        (v6 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": null,
@@ -173,7 +202,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "channelType",
                                             "storageKey": null
                                         },
-                                        (v4 /*: any*/),
+                                        (v7 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": [
@@ -196,7 +225,7 @@ const node: ConcreteRequest = (function () {
                                                     "name": "user",
                                                     "plural": false,
                                                     "selections": [
-                                                        (v4 /*: any*/),
+                                                        (v7 /*: any*/),
                                                         {
                                                             "alias": null,
                                                             "args": null,
@@ -232,6 +261,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "lastMessage",
                                             "plural": false,
                                             "selections": [
+                                                (v6 /*: any*/),
                                                 {
                                                     "alias": null,
                                                     "args": null,
@@ -304,6 +334,20 @@ const node: ConcreteRequest = (function () {
                                     "kind": "ScalarField",
                                     "name": "endCursor",
                                     "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "hasPreviousPage",
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "startCursor",
+                                    "storageKey": null
                                 }
                             ],
                             "storageKey": null
@@ -313,7 +357,7 @@ const node: ConcreteRequest = (function () {
                 },
                 {
                     "alias": null,
-                    "args": (v3 /*: any*/),
+                    "args": (v5 /*: any*/),
                     "filters": [
                         "withMessage"
                     ],
@@ -325,14 +369,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "91c609e7ab723d76a2d5a785ba9e6959",
+            "cacheID": "99e376b085668ca84e825b599c0e2472",
             "id": null,
             "metadata": {},
             "name": "ChannelsQuery",
             "operationKind": "query",
-            "text": "query ChannelsQuery(\n  $first: Int!\n  $after: String\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_4q1LXA\n}\n\nfragment ChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query ChannelsQuery(\n  $first: Int\n  $last: Int\n  $before: String\n  $after: String\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_2EXBWN\n}\n\nfragment ChannelComponent_channel_2EXBWN on Query {\n  channels(first: $first, last: $last, before: $before, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'cfd723363244f4f6fb9ddb0b8a57319f';
+(node as any).hash = '111bbf3383323feed25379687c5f552a';
 export default node;

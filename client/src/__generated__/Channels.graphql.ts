@@ -6,7 +6,9 @@ import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type ChannelsVariables = {
     after?: string | null;
-    first: number;
+    before?: string | null;
+    first?: number | null;
+    last?: number | null;
     withMessage?: boolean | null;
 };
 export type ChannelsResponse = {
@@ -22,14 +24,16 @@ export type Channels = {
 /*
 query Channels(
   $after: String
-  $first: Int!
+  $before: String
+  $first: Int
+  $last: Int
   $withMessage: Boolean
 ) {
-  ...ChannelComponent_channel_4q1LXA
+  ...ChannelComponent_channel_2EXBWN
 }
 
-fragment ChannelComponent_channel_4q1LXA on Query {
-  channels(first: $first, after: $after, withMessage: $withMessage) {
+fragment ChannelComponent_channel_2EXBWN on Query {
+  channels(first: $first, last: $last, before: $before, after: $after, withMessage: $withMessage) {
     edges {
       cursor
       node {
@@ -45,6 +49,7 @@ fragment ChannelComponent_channel_4q1LXA on Query {
           }
         }
         lastMessage {
+          id
           messageType
           text
           imageUrls
@@ -57,6 +62,8 @@ fragment ChannelComponent_channel_4q1LXA on Query {
     pageInfo {
       hasNextPage
       endCursor
+      hasPreviousPage
+      startCursor
     }
   }
 }
@@ -72,7 +79,17 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
+            "name": "before"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
             "name": "first"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "last"
         } as any),
         ({
             "defaultValue": null,
@@ -87,8 +104,18 @@ const node: ConcreteRequest = (function () {
         } as any),
         ({
             "kind": "Variable",
+            "name": "before",
+            "variableName": "before"
+        } as any),
+        ({
+            "kind": "Variable",
             "name": "first",
             "variableName": "first"
+        } as any),
+        ({
+            "kind": "Variable",
+            "name": "last",
+            "variableName": "last"
         } as any),
         ({
             "kind": "Variable",
@@ -96,6 +123,12 @@ const node: ConcreteRequest = (function () {
             "variableName": "withMessage"
         } as any)
     ], v2 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any), v3 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
@@ -155,13 +188,7 @@ const node: ConcreteRequest = (function () {
                                     "name": "node",
                                     "plural": false,
                                     "selections": [
-                                        {
-                                            "alias": null,
-                                            "args": null,
-                                            "kind": "ScalarField",
-                                            "name": "id",
-                                            "storageKey": null
-                                        },
+                                        (v2 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": null,
@@ -169,7 +196,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "channelType",
                                             "storageKey": null
                                         },
-                                        (v2 /*: any*/),
+                                        (v3 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": [
@@ -192,7 +219,7 @@ const node: ConcreteRequest = (function () {
                                                     "name": "user",
                                                     "plural": false,
                                                     "selections": [
-                                                        (v2 /*: any*/),
+                                                        (v3 /*: any*/),
                                                         {
                                                             "alias": null,
                                                             "args": null,
@@ -228,6 +255,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "lastMessage",
                                             "plural": false,
                                             "selections": [
+                                                (v2 /*: any*/),
                                                 {
                                                     "alias": null,
                                                     "args": null,
@@ -300,6 +328,20 @@ const node: ConcreteRequest = (function () {
                                     "kind": "ScalarField",
                                     "name": "endCursor",
                                     "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "hasPreviousPage",
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "startCursor",
+                                    "storageKey": null
                                 }
                             ],
                             "storageKey": null
@@ -321,14 +363,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "5a661029422ad764f15b8da610282743",
+            "cacheID": "4e03539b8697b16e30bc17f229ba4aec",
             "id": null,
             "metadata": {},
             "name": "Channels",
             "operationKind": "query",
-            "text": "query Channels(\n  $after: String\n  $first: Int!\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_4q1LXA\n}\n\nfragment ChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query Channels(\n  $after: String\n  $before: String\n  $first: Int\n  $last: Int\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_2EXBWN\n}\n\nfragment ChannelComponent_channel_2EXBWN on Query {\n  channels(first: $first, last: $last, before: $before, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '3a6105e67244c05d4a1697cc4947c07e';
+(node as any).hash = '59aa0720fa9d4eb1cac2bd7a39f64ce9';
 export default node;
