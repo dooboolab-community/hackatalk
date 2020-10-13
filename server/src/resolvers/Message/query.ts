@@ -8,7 +8,10 @@ export const message = queryField('message', {
   description: 'Get single message',
   resolve: (_, { id }, ctx) => ctx.prisma.message.findOne({
     where: { id },
-    include: { sender: true },
+    include: {
+      sender: true,
+      channel: true,
+    },
   }),
 });
 
