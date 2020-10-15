@@ -21,6 +21,7 @@ export type ChannelComponent_channel = {
                     } | null;
                 }> | null;
                 readonly lastMessage: {
+                    readonly id: string;
                     readonly messageType: unknown;
                     readonly text: string | null;
                     readonly imageUrls: ReadonlyArray<string> | null;
@@ -51,6 +52,12 @@ const node: ReaderFragment = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any), v2 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
         "name": "name",
         "storageKey": null
     } as any);
@@ -64,7 +71,17 @@ const node: ReaderFragment = (function () {
             {
                 "defaultValue": null,
                 "kind": "LocalArgument",
+                "name": "before"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
                 "name": "first"
+            },
+            {
+                "defaultValue": null,
+                "kind": "LocalArgument",
+                "name": "last"
             },
             {
                 "defaultValue": null,
@@ -76,9 +93,9 @@ const node: ReaderFragment = (function () {
         "metadata": {
             "connection": [
                 {
-                    "count": "first",
-                    "cursor": "after",
-                    "direction": "forward",
+                    "count": null,
+                    "cursor": null,
+                    "direction": "bidirectional",
                     "path": (v0 /*: any*/)
                 }
             ],
@@ -88,7 +105,10 @@ const node: ReaderFragment = (function () {
                         "count": "first",
                         "cursor": "after"
                     },
-                    "backward": null,
+                    "backward": {
+                        "count": "last",
+                        "cursor": "before"
+                    },
                     "path": (v0 /*: any*/)
                 },
                 "fragmentPathInResult": [],
@@ -134,13 +154,7 @@ const node: ReaderFragment = (function () {
                                 "name": "node",
                                 "plural": false,
                                 "selections": [
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "id",
-                                        "storageKey": null
-                                    },
+                                    (v1 /*: any*/),
                                     {
                                         "alias": null,
                                         "args": null,
@@ -148,7 +162,7 @@ const node: ReaderFragment = (function () {
                                         "name": "channelType",
                                         "storageKey": null
                                     },
-                                    (v1 /*: any*/),
+                                    (v2 /*: any*/),
                                     {
                                         "alias": null,
                                         "args": [
@@ -171,7 +185,7 @@ const node: ReaderFragment = (function () {
                                                 "name": "user",
                                                 "plural": false,
                                                 "selections": [
-                                                    (v1 /*: any*/),
+                                                    (v2 /*: any*/),
                                                     {
                                                         "alias": null,
                                                         "args": null,
@@ -207,6 +221,7 @@ const node: ReaderFragment = (function () {
                                         "name": "lastMessage",
                                         "plural": false,
                                         "selections": [
+                                            (v1 /*: any*/),
                                             {
                                                 "alias": null,
                                                 "args": null,
@@ -279,6 +294,20 @@ const node: ReaderFragment = (function () {
                                 "kind": "ScalarField",
                                 "name": "endCursor",
                                 "storageKey": null
+                            },
+                            {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "hasPreviousPage",
+                                "storageKey": null
+                            },
+                            {
+                                "alias": null,
+                                "args": null,
+                                "kind": "ScalarField",
+                                "name": "startCursor",
+                                "storageKey": null
                             }
                         ],
                         "storageKey": null
@@ -291,5 +320,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '3a6105e67244c05d4a1697cc4947c07e';
+(node as any).hash = '59aa0720fa9d4eb1cac2bd7a39f64ce9';
 export default node;

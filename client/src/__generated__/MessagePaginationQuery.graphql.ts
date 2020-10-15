@@ -4,34 +4,38 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type MessagesVariables = {
+export type MessagePaginationQueryVariables = {
     after?: string | null;
+    before?: string | null;
     channelId: string;
-    first: number;
+    first?: number | null;
+    last?: number | null;
     searchText?: string | null;
 };
-export type MessagesResponse = {
+export type MessagePaginationQueryResponse = {
     readonly " $fragmentRefs": FragmentRefs<"MessageComponent_message">;
 };
-export type Messages = {
-    readonly response: MessagesResponse;
-    readonly variables: MessagesVariables;
+export type MessagePaginationQuery = {
+    readonly response: MessagePaginationQueryResponse;
+    readonly variables: MessagePaginationQueryVariables;
 };
 
 
 
 /*
-query Messages(
+query MessagePaginationQuery(
   $after: String
+  $before: String
   $channelId: String!
-  $first: Int!
+  $first: Int
+  $last: Int
   $searchText: String
 ) {
-  ...MessageComponent_message_WlZsr
+  ...MessageComponent_message_3bSSw6
 }
 
-fragment MessageComponent_message_WlZsr on Query {
-  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {
+fragment MessageComponent_message_3bSSw6 on Query {
+  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -53,6 +57,8 @@ fragment MessageComponent_message_WlZsr on Query {
     }
     pageInfo {
       hasNextPage
+      hasPreviousPage
+      startCursor
       endCursor
     }
   }
@@ -69,12 +75,22 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
+            "name": "before"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
             "name": "channelId"
         } as any),
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
             "name": "first"
+        } as any),
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "last"
         } as any),
         ({
             "defaultValue": null,
@@ -89,6 +105,11 @@ const node: ConcreteRequest = (function () {
         } as any),
         ({
             "kind": "Variable",
+            "name": "before",
+            "variableName": "before"
+        } as any),
+        ({
+            "kind": "Variable",
             "name": "channelId",
             "variableName": "channelId"
         } as any),
@@ -96,6 +117,11 @@ const node: ConcreteRequest = (function () {
             "kind": "Variable",
             "name": "first",
             "variableName": "first"
+        } as any),
+        ({
+            "kind": "Variable",
+            "name": "last",
+            "variableName": "last"
         } as any),
         ({
             "kind": "Variable",
@@ -108,7 +134,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "Messages",
+            "name": "MessagePaginationQuery",
             "selections": [
                 {
                     "args": (v1 /*: any*/),
@@ -123,7 +149,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "Messages",
+            "name": "MessagePaginationQuery",
             "selections": [
                 {
                     "alias": null,
@@ -276,6 +302,20 @@ const node: ConcreteRequest = (function () {
                                     "alias": null,
                                     "args": null,
                                     "kind": "ScalarField",
+                                    "name": "hasPreviousPage",
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "startCursor",
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
                                     "name": "endCursor",
                                     "storageKey": null
                                 }
@@ -300,14 +340,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "9863c762e8113024cc0a8956791ebf3b",
+            "cacheID": "78b5601ba300b51cf2040292e5b394e8",
             "id": null,
             "metadata": {},
-            "name": "Messages",
+            "name": "MessagePaginationQuery",
             "operationKind": "query",
-            "text": "query Messages(\n  $after: String\n  $channelId: String!\n  $first: Int!\n  $searchText: String\n) {\n  ...MessageComponent_message_WlZsr\n}\n\nfragment MessageComponent_message_WlZsr on Query {\n  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query MessagePaginationQuery(\n  $after: String\n  $before: String\n  $channelId: String!\n  $first: Int\n  $last: Int\n  $searchText: String\n) {\n  ...MessageComponent_message_3bSSw6\n}\n\nfragment MessageComponent_message_3bSSw6 on Query {\n  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '88a86178fb5462d83f0c764acb58caa2';
+(node as any).hash = '3e53938ab9703c64388f4b86046ba329';
 export default node;

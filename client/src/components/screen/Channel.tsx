@@ -1,21 +1,24 @@
+import * as Notifications from 'expo-notifications';
+
 import type {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
 import { FlatList, TouchableOpacity, View } from 'react-native';
-import React, { FC, Suspense, useState } from 'react';
+import React, { FC, Suspense, useEffect, useMemo } from 'react';
 import {
   graphql,
   useLazyLoadQuery,
   usePaginationFragment,
-  useRelayEnvironment,
+  useQueryLoader,
 } from 'react-relay/hooks';
 
 import { Channel } from '../../types/graphql';
 import type {
   ChannelComponent_channel$key,
 } from '../../__generated__/ChannelComponent_channel.graphql';
+import { ChannelLastMessageQuery } from '../../__generated__/ChannelLastMessageQuery.graphql';
 import ChannelListItem from '../shared/ChannelListItem';
 import EmptyListItem from '../shared/EmptyListItem';
 import { LoadingIndicator } from 'dooboo-ui';
@@ -46,20 +49,40 @@ const Fab = styled.View`
 const ITEM_CNT = 20;
 
 const channelsQuery = graphql`
-  query ChannelsQuery($first: Int! $after: String $withMessage: Boolean) {
-    ...ChannelComponent_channel @arguments(first: $first after: $after withMessage: $withMessage)
+  query ChannelsQuery(
+    $first: Int
+    $last: Int
+    $before: String
+    $after: String
+    $withMessage: Boolean
+  ) {
+    ...ChannelComponent_channel @arguments(
+      first: $first
+      last: $last
+      before: $before
+      after: $after
+      withMessage: $withMessage
+    )
   }
 `;
 
-const channelsFragment = graphql`
+const channelsPaginationFragment = graphql`
   fragment ChannelComponent_channel on Query
     @argumentDefinitions(
-      first: {type: "Int!"}
+      first: {type: "Int"}
+      last: {type: "Int"}
+      before: {type: "String"}
       after: {type: "String"}
       withMessage: {type: "Boolean"}
     )
     @refetchable(queryName: "Channels") {
-      channels(first: $first after: $after withMessage: $withMessage)
+      channels(
+        first: $first
+        last: $last
+        before: $before
+        after: $after
+        withMessage: $withMessage
+      )
       @connection(key: "ChannelComponent_channels" filters: ["withMessage"]) {
         edges {
           cursor
@@ -76,6 +99,7 @@ const channelsFragment = graphql`
               }
             }
             lastMessage {
+              id
               messageType
               text
               imageUrls
@@ -90,6 +114,28 @@ const channelsFragment = graphql`
         }
       }
     }
+`;
+
+const lastMessageQuery = graphql`
+  query ChannelLastMessageQuery($messageId: String!) {
+    message(id: $messageId) {
+      id
+      messageType
+      text
+      imageUrls
+      fileUrls
+      createdAt
+      sender {
+        id
+      }
+      channel {
+        id
+        lastMessage {
+          id
+        }
+      }
+    }
+  }
 `;
 
 interface ChannelProps {
@@ -109,9 +155,25 @@ const ChannelsFragment: FC<ChannelProps> = ({
     isLoadingNext,
     refetch,
   } = usePaginationFragment<ChannelsQuery, ChannelComponent_channel$key>(
-    channelsFragment,
+    channelsPaginationFragment,
     channel,
   );
+
+  const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
+
+  useEffect(() => {
+    // Add notification handler.
+    const responseListener = Notifications.addNotificationReceivedListener((event) => {
+      const messageId = event.request.content.data.data;
+
+      if (typeof messageId === 'string') {
+        loadLastMessage({ messageId });
+      }
+    });
+
+    // Clean up : remove notification handler.
+    return () => Notifications.removeNotificationSubscription(responseListener);
+  }, []);
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
@@ -138,7 +200,9 @@ const ChannelsFragment: FC<ChannelProps> = ({
     );
   };
 
-  const channels = data?.channels?.edges || [];
+  const channels = useMemo(() => {
+    return data?.channels?.edges ?? [];
+  }, [data?.channels?.edges]);
 
   return <FlatList
     style={{

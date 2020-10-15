@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type AppUserQueryVariables = {};
 export type AppUserQueryResponse = {
     readonly me: {
@@ -11,7 +10,7 @@ export type AppUserQueryResponse = {
         readonly email: string | null;
         readonly verified: boolean | null;
         readonly profile: {
-            readonly authType: AuthType | null;
+            readonly socialId: string | null;
         } | null;
     };
 };
@@ -29,7 +28,7 @@ query AppUserQuery {
     email
     verified
     profile {
-      authType
+      socialId
     }
   }
 }
@@ -78,7 +77,7 @@ const node: ConcreteRequest = (function () {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "authType",
+                            "name": "socialId",
                             "storageKey": null
                         }
                     ],
@@ -106,14 +105,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "5bad95919cfec5b3a48edb5d0ebfba84",
+            "cacheID": "868a52517ce22d40e00bf2b2cd734b22",
             "id": null,
             "metadata": {},
             "name": "AppUserQuery",
             "operationKind": "query",
-            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      authType\n    }\n  }\n}\n"
+            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      socialId\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '741765a762e78c334bb1f46e7d73852e';
+(node as any).hash = '6f86d2027fbb0f5e01e1d3337c02f1e6';
 export default node;
