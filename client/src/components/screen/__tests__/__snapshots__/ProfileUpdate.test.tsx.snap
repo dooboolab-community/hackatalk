@@ -358,11 +358,21 @@ exports[`rendering test renders as expected 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#1E6EFA",
-                "borderColor": "#1E6EFA",
-                "borderWidth": 1,
+                "button": Object {
+                  "backgroundColor": "#1E6EFA",
+                  "borderColor": "#1E6EFA",
+                  "borderWidth": 1,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "root": Object {
+                  "flex": 1,
+                },
+                "text": Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
               }
             }
             testID="button-update"

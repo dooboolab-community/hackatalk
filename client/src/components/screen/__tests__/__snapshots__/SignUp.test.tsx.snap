@@ -457,6 +457,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               style={
                 Object {
                   "opacity": 1,
+                  "root": Object {
+                    "backgroundColor": "#1E6EFA",
+                    "height": 52,
+                    "width": "50%",
+                  },
+                  "text": Object {
+                    "color": "#ffffff",
+                    "fontSize": 16,
+                  },
                 }
               }
               testID="btn-sign-up"

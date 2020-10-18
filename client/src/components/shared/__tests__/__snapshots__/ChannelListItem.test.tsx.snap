@@ -154,7 +154,7 @@ exports[`[ChannelListItem] rendering test renders as expected 1`] = `
               ]
             }
           >
-            9 months ago
+            10 months ago
           </Text>
         </View>
       </View>

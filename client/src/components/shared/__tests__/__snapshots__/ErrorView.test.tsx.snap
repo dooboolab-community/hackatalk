@@ -86,10 +86,24 @@ exports[`Rendering renders without crashing 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#1E6EFA",
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#1E6EFA",
+          "height": 48,
+          "width": 156,
+        },
         "opacity": 1,
-        "width": 156,
+        "root": Object {
+          "backgroundColor": "#1E6EFA",
+          "flexDirection": "row",
+          "height": 52,
+          "justifyContent": "center",
+          "marginTop": 44,
+        },
+        "text": Object {
+          "color": "#ffffff",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
   />
