@@ -10,3 +10,6 @@
 * [apollo-server](https://www.apollographql.com/docs/apollo-server)
 * [jest](https://jestjs.io)
 
+
+## Diagram
+<img src="https://user-images.githubusercontent.com/60481383/96114278-5c7d0780-0f20-11eb-8189-edbaa2b9860e.png" width="70%">
