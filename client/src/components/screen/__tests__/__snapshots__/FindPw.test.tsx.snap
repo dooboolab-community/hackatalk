@@ -124,6 +124,13 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
         style={
           Object {
             "opacity": 1,
+            "root": Object {
+              "backgroundColor": "#1E6EFA",
+              "height": 52,
+            },
+            "text": Object {
+              "color": "#ffffff",
+            },
           }
         }
         testID="btn-find-pw"

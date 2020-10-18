@@ -84,9 +84,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
             },
           ]
         }
-      >
-        hello1
-      </Text>
+      />
     </View>
     <Text
       style={
@@ -190,9 +188,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] with URL as expe
             },
           ]
         }
-      >
-        hello1
-      </Text>
+      />
     </View>
     <Text
       style={

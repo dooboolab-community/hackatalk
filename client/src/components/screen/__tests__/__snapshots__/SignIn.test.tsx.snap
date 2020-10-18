@@ -321,12 +321,25 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#151A25",
-                "borderColor": "#8bc9ff",
-                "borderRadius": 0,
-                "borderWidth": 1,
+                "button": Object {
+                  "backgroundColor": "#151A25",
+                  "borderColor": "#8bc9ff",
+                  "borderRadius": 0,
+                  "borderWidth": 1,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "root": Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                "text": Object {
+                  "color": "#8bc9ff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
               }
             }
             testID="btn-sign-up"
@@ -350,10 +363,23 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#8bc9ff",
-                "borderRadius": 0,
+                "button": Object {
+                  "backgroundColor": "#8bc9ff",
+                  "borderRadius": 0,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "root": Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                "text": Object {
+                  "color": "#000000",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
               }
             }
             testID="btn-sign-in"
@@ -416,21 +442,27 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#151E22",
-                "borderRadius": 100,
-                "borderWidth": 1,
-                "height": 48,
-                "marginBottom": 12,
+                "button": Object {
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "#151E22",
+                  "borderRadius": 100,
+                  "borderWidth": 1,
+                  "height": 48,
+                  "marginBottom": 12,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "text": Object {
+                  "color": "#151E22",
+                  "fontWeight": "700",
+                },
               }
             }
             testID="btn-apple"
           />
           <test
-            clientId="xxxx"
-            clientSecret="xxxx"
+            clientId="476130476434051"
+            clientSecret="8d66d95a7014e2fdd23f746c0ddb48e4"
             onUserCreated={[Function]}
             socialProvider="facebook"
             svgIcon={
@@ -442,8 +474,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             }
           />
           <test
-            clientId="xxxx"
-            clientSecret="xxxx"
+            clientId="841669004924-hnlgvgfvm347jpge2ojum8udf1ecph9q.apps.googleusercontent.com"
+            clientSecret="74OOcKEtWA2wePxL7Bvww_sN"
             onUserCreated={[Function]}
             socialProvider="google"
             svgIcon={
@@ -864,12 +896,25 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderRadius": 0,
-                "borderWidth": 1,
+                "button": Object {
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "#1E6EFA",
+                  "borderRadius": 0,
+                  "borderWidth": 1,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "root": Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                "text": Object {
+                  "color": "#1E6EFA",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
               }
             }
             testID="btn-sign-up"
@@ -893,10 +938,23 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#1E6EFA",
-                "borderRadius": 0,
+                "button": Object {
+                  "backgroundColor": "#1E6EFA",
+                  "borderRadius": 0,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "root": Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "height": 52,
+                  "justifyContent": "center",
+                },
+                "text": Object {
+                  "color": "#ffffff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
               }
             }
             testID="btn-sign-in"
@@ -959,21 +1017,27 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
             onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#151E22",
-                "borderRadius": 100,
-                "borderWidth": 1,
-                "height": 48,
-                "marginBottom": 12,
+                "button": Object {
+                  "backgroundColor": "#ffffff",
+                  "borderColor": "#151E22",
+                  "borderRadius": 100,
+                  "borderWidth": 1,
+                  "height": 48,
+                  "marginBottom": 12,
+                  "width": "100%",
+                },
                 "opacity": 1,
-                "width": "100%",
+                "text": Object {
+                  "color": "#151E22",
+                  "fontWeight": "700",
+                },
               }
             }
             testID="btn-apple"
           />
           <test
-            clientId="xxxx"
-            clientSecret="xxxx"
+            clientId="476130476434051"
+            clientSecret="8d66d95a7014e2fdd23f746c0ddb48e4"
             onUserCreated={[Function]}
             socialProvider="facebook"
             svgIcon={
@@ -985,8 +1049,8 @@ exports[`[SignIn] rendering test should render without crashing 1`] = `
             }
           />
           <test
-            clientId="xxxx"
-            clientSecret="xxxx"
+            clientId="841669004924-hnlgvgfvm347jpge2ojum8udf1ecph9q.apps.googleusercontent.com"
+            clientSecret="74OOcKEtWA2wePxL7Bvww_sN"
             onUserCreated={[Function]}
             socialProvider="google"
             svgIcon={

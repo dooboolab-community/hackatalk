@@ -53,6 +53,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
             "lastMessage": Object {
               "createdAt": "<mock-value-for-field-\\"createdAt\\">",
               "fileUrls": "<mock-value-for-field-\\"fileUrls\\">",
+              "id": "<Message-mock-id-2>",
               "imageUrls": "<mock-value-for-field-\\"imageUrls\\">",
               "messageType": "<mock-value-for-field-\\"messageType\\">",
               "text": "<mock-value-for-field-\\"text\\">",

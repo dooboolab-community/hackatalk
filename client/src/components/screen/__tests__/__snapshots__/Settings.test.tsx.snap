@@ -151,12 +151,23 @@ exports[`[Setting] screen interactions should fireEvent when logout button press
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -315,793 +326,28 @@ exports[`[Setting] screen interactions should simulate onPress login state item 
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
   />
 </RCTSafeAreaView>
-`;
-
-exports[`[Setting] screen renders without crashing 1`] = `
-<View
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      <ScrollView
-        data={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        onEndReachedThreshold={2}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={
-          Array [
-            0,
-          ]
-        }
-        testID="test-section-list"
-        updateCellsBatchingPeriod={50}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderBottomColor": "#d3d8e8",
-                  "borderBottomWidth": 1,
-                  "height": 40,
-                  "justifyContent": "center",
-                  "marginLeft": 12,
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#1E6EFA",
-                    "marginLeft": 2,
-                  },
-                ]
-              }
-            >
-              Login information
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="change-pw-item"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#151A25",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 16,
-                  },
-                ]
-              }
-            >
-              Signed in with Email
-            </Text>
-            <Text />
-          </View>
-        </View>
-        <View
-          style={null}
-        />
-      </ScrollView>
-      <View
-        delayPressIn={30}
-        style={
-          Object {
-            "paddingHorizontal": 20,
-            "paddingVertical": 10,
-          }
-        }
-        testID="button-logout"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "borderColor": "blue",
-                "flexDirection": "row",
-                "height": 52,
-                "justifyContent": "center",
-                "width": 320,
-              },
-              Object {
-                "paddingHorizontal": 20,
-                "paddingVertical": 10,
-              },
-              undefined,
-              undefined,
-              Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderWidth": 0.3,
-                "height": 48,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#069ccd",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#1E6EFA",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Logout
-          </Text>
-        </View>
-      </View>
-    </SafeAreaView>
-  </View>
-</View>
-`;
-
-exports[`[Setting] screen renders without crashing 2`] = `
-<View
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      <ScrollView
-        data={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        onEndReachedThreshold={2}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={
-          Array [
-            0,
-          ]
-        }
-        testID="test-section-list"
-        updateCellsBatchingPeriod={50}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderBottomColor": "#d3d8e8",
-                  "borderBottomWidth": 1,
-                  "height": 40,
-                  "justifyContent": "center",
-                  "marginLeft": 12,
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#1E6EFA",
-                    "marginLeft": 2,
-                  },
-                ]
-              }
-            >
-              Login information
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="change-pw-item"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#151A25",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 16,
-                  },
-                ]
-              }
-            >
-              Signed in with Email
-            </Text>
-            <Text />
-          </View>
-        </View>
-        <View
-          style={null}
-        />
-      </ScrollView>
-      <View
-        delayPressIn={30}
-        style={
-          Object {
-            "paddingHorizontal": 20,
-            "paddingVertical": 10,
-          }
-        }
-        testID="button-logout"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "borderColor": "blue",
-                "flexDirection": "row",
-                "height": 52,
-                "justifyContent": "center",
-                "width": 320,
-              },
-              Object {
-                "paddingHorizontal": 20,
-                "paddingVertical": 10,
-              },
-              undefined,
-              undefined,
-              Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderWidth": 0.3,
-                "height": 48,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#069ccd",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#1E6EFA",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Logout
-          </Text>
-        </View>
-      </View>
-    </SafeAreaView>
-  </View>
-</View>
-`;
-
-exports[`[Setting] screen renders without crashing 3`] = `
-<View
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      <ScrollView
-        data={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        onEndReachedThreshold={2}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={
-          Array [
-            0,
-          ]
-        }
-        testID="test-section-list"
-        updateCellsBatchingPeriod={50}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderBottomColor": "#d3d8e8",
-                  "borderBottomWidth": 1,
-                  "height": 40,
-                  "justifyContent": "center",
-                  "marginLeft": 12,
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#1E6EFA",
-                    "marginLeft": 2,
-                  },
-                ]
-              }
-            >
-              Login information
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="change-pw-item"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#151A25",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 16,
-                  },
-                ]
-              }
-            >
-              Signed in with Email
-            </Text>
-            <Text />
-          </View>
-        </View>
-        <View
-          style={null}
-        />
-      </ScrollView>
-      <View
-        delayPressIn={30}
-        style={
-          Object {
-            "paddingHorizontal": 20,
-            "paddingVertical": 10,
-          }
-        }
-        testID="button-logout"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "borderColor": "blue",
-                "flexDirection": "row",
-                "height": 52,
-                "justifyContent": "center",
-                "width": 320,
-              },
-              Object {
-                "paddingHorizontal": 20,
-                "paddingVertical": 10,
-              },
-              undefined,
-              undefined,
-              Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderWidth": 0.3,
-                "height": 48,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#069ccd",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#1E6EFA",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Logout
-          </Text>
-        </View>
-      </View>
-    </SafeAreaView>
-  </View>
-</View>
-`;
-
-exports[`[Setting] screen renders without crashing 4`] = `
-<View
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    collapsable={true}
-    pointerEvents="box-none"
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <SafeAreaView
-      style={
-        Array [
-          Object {
-            "backgroundColor": "#ffffff",
-            "flexBasis": 0,
-            "flexGrow": 1,
-            "flexShrink": 1,
-            "paddingTop": 10,
-          },
-        ]
-      }
-    >
-      <ScrollView
-        data={
-          Array [
-            Object {
-              "data": Array [
-                Object {
-                  "label": "Signed in with Email",
-                  "onPress": [Function],
-                  "testID": "change-pw-item",
-                },
-              ],
-              "title": "Login information",
-            },
-          ]
-        }
-        disableVirtualization={false}
-        horizontal={false}
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        onEndReachedThreshold={2}
-        scrollEventThrottle={50}
-        stickyHeaderIndices={
-          Array [
-            0,
-          ]
-        }
-        testID="test-section-list"
-        updateCellsBatchingPeriod={50}
-        windowSize={21}
-      >
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "#ffffff",
-                  "borderBottomColor": "#d3d8e8",
-                  "borderBottomWidth": 1,
-                  "height": 40,
-                  "justifyContent": "center",
-                  "marginLeft": 12,
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#1E6EFA",
-                    "marginLeft": 2,
-                  },
-                ]
-              }
-            >
-              Login information
-            </Text>
-          </View>
-        </View>
-        <View
-          style={null}
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "height": 52,
-                  "paddingLeft": 15,
-                  "paddingRight": 15,
-                  "width": "100%",
-                },
-              ]
-            }
-            testID="change-pw-item"
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#151A25",
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "flexShrink": 1,
-                    "fontSize": 16,
-                  },
-                ]
-              }
-            >
-              Signed in with Email
-            </Text>
-            <Text />
-          </View>
-        </View>
-        <View
-          style={null}
-        />
-      </ScrollView>
-      <View
-        delayPressIn={30}
-        style={
-          Object {
-            "paddingHorizontal": 20,
-            "paddingVertical": 10,
-          }
-        }
-        testID="button-logout"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "alignSelf": "center",
-                "borderColor": "blue",
-                "flexDirection": "row",
-                "height": 52,
-                "justifyContent": "center",
-                "width": 320,
-              },
-              Object {
-                "paddingHorizontal": 20,
-                "paddingVertical": 10,
-              },
-              undefined,
-              undefined,
-              Object {
-                "backgroundColor": "#ffffff",
-                "borderColor": "#1E6EFA",
-                "borderWidth": 0.3,
-                "height": 48,
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#069ccd",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#1E6EFA",
-                  "fontSize": 14,
-                  "fontWeight": "bold",
-                },
-              ]
-            }
-          >
-            Logout
-          </Text>
-        </View>
-      </View>
-    </SafeAreaView>
-  </View>
-</View>
 `;
 
 exports[`[Setting] screen renders without crashing with Facebook auth type 1`] = `
@@ -1255,12 +501,23 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -1419,12 +676,23 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 2`] =
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -1583,12 +851,23 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -1747,12 +1026,23 @@ exports[`[Setting] screen should render without crashing with Apple auth type 2`
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -1911,12 +1201,23 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
@@ -2075,12 +1376,23 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "#ffffff",
-        "borderColor": "#1E6EFA",
-        "borderWidth": 0.3,
-        "height": 48,
+        "button": Object {
+          "backgroundColor": "#ffffff",
+          "borderColor": "#1E6EFA",
+          "borderWidth": 0.3,
+          "height": 48,
+          "width": "100%",
+        },
         "opacity": 1,
-        "width": "100%",
+        "root": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "text": Object {
+          "color": "#1E6EFA",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        },
       }
     }
     testID="button-logout"
