@@ -27,3 +27,5 @@ firebase-debug*.*
 .vscode
 !.vscode/launch.json
 !.vscode/settings.json
+
+__snapshots__
