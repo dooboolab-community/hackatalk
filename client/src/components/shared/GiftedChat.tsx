@@ -101,10 +101,6 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   useEffect(() => {
     if (showMenu) {
       Keyboard.dismiss();
-    } else {
-      if (input1 && input1.current) {
-        input1.current.focus();
-      }
     }
   }, [showMenu]);
 
