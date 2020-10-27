@@ -435,7 +435,7 @@ const MessagesFragment: FC<MessageProp> = ({
         style={{
           button: {
             backgroundColor: theme.btnPrimary,
-            width: 68,
+            width: 80,
             height: 40,
           },
           text: {
@@ -445,6 +445,9 @@ const MessagesFragment: FC<MessageProp> = ({
         loading={isMessageInFlight}
         onPress={onSubmit}
         text={getString('SEND')}
+        textProps={{
+          numberOfLines: 1,
+        }}
       />
     )}
   />;
