@@ -210,6 +210,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               style={{
                 color: fontColor,
                 backgroundColor: backgroundColor,
+                flexGrow: 1,
+                flexShrink: 1,
               }}
               multiline={true}
               placeholder={placeholder}
