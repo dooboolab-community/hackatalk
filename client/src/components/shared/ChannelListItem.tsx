@@ -192,22 +192,4 @@ function ChannelListItem(props: Props): React.ReactElement {
   return <View/>;
 }
 
-ChannelListItem.defaultProps = {
-  item: {
-    id: 'room1',
-    lastMessage: {
-      id: 'id_3',
-      sender: {
-        id: 'uid_3',
-        nickname: 'displayName3',
-        thumbURL: '',
-      },
-      message: 'How are you doing?',
-      createdAt: '2020-01-01 12:00',
-      updatedAt: '2020-01-01 12:00',
-    },
-    lastMessageCnt: 3,
-  },
-};
-
 export default ChannelListItem;

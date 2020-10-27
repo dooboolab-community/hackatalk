@@ -101,10 +101,6 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   useEffect(() => {
     if (showMenu) {
       Keyboard.dismiss();
-    } else {
-      if (input1 && input1.current) {
-        input1.current.focus();
-      }
     }
   }, [showMenu]);
 
@@ -214,6 +210,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               style={{
                 color: fontColor,
                 backgroundColor: backgroundColor,
+                flexGrow: 1,
+                flexShrink: 1,
               }}
               multiline={true}
               placeholder={placeholder}

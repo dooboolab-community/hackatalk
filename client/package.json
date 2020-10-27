@@ -44,7 +44,7 @@
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
     "date-fns": "^2.16.1",
-    "dooboo-ui": "^0.0.23",
+    "dooboo-ui": "^0.0.24",
     "expo": "^39.0.3",
     "expo-apple-authentication": "~2.2.1",
     "expo-asset": "~8.2.0",
