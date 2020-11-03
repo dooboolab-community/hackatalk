@@ -11,6 +11,7 @@ import { importSchema } from 'graphql-import';
 
 // import { resolvers } from './resolvers';
 
+// eslint-disable-next-line
 const regExp = new RegExp('scalar Upload', 'gm');
 const typeDefs = importSchema(path.join(__dirname, '../../../src/generated/schema.graphql')).replace(regExp, '').trim();
 
