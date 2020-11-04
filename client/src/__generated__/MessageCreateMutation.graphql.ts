@@ -18,6 +18,8 @@ export type MessageCreateMutationResponse = {
         readonly id: string;
         readonly text: string | null;
         readonly messageType: unknown;
+        readonly imageUrls: ReadonlyArray<string> | null;
+        readonly fileUrls: ReadonlyArray<string> | null;
         readonly channel: {
             readonly id: string;
             readonly channelType: unknown;
@@ -56,6 +58,8 @@ mutation MessageCreateMutation(
     id
     text
     messageType
+    imageUrls
+    fileUrls
     channel {
       id
       channelType
@@ -114,9 +118,21 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
+        "name": "imageUrls",
+        "storageKey": null
+    } as any), v5 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "fileUrls",
+        "storageKey": null
+    } as any), v6 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
         "name": "name",
         "storageKey": null
-    } as any), v5 = [
+    } as any), v7 = [
         ({
             "alias": null,
             "args": [
@@ -139,6 +155,8 @@ const node: ConcreteRequest = (function () {
                 (v1 /*: any*/),
                 (v2 /*: any*/),
                 (v3 /*: any*/),
+                (v4 /*: any*/),
+                (v5 /*: any*/),
                 {
                     "alias": null,
                     "args": null,
@@ -155,7 +173,7 @@ const node: ConcreteRequest = (function () {
                             "name": "channelType",
                             "storageKey": null
                         },
-                        (v4 /*: any*/),
+                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": [
@@ -178,7 +196,7 @@ const node: ConcreteRequest = (function () {
                                     "name": "user",
                                     "plural": false,
                                     "selections": [
-                                        (v4 /*: any*/),
+                                        (v6 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": null,
@@ -216,20 +234,8 @@ const node: ConcreteRequest = (function () {
                             "selections": [
                                 (v3 /*: any*/),
                                 (v2 /*: any*/),
-                                {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "imageUrls",
-                                    "storageKey": null
-                                },
-                                {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "fileUrls",
-                                    "storageKey": null
-                                },
+                                (v4 /*: any*/),
+                                (v5 /*: any*/),
                                 {
                                     "alias": null,
                                     "args": null,
@@ -253,7 +259,7 @@ const node: ConcreteRequest = (function () {
             "kind": "Fragment",
             "metadata": null,
             "name": "MessageCreateMutation",
-            "selections": (v5 /*: any*/),
+            "selections": (v7 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
         },
@@ -262,17 +268,17 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
             "name": "MessageCreateMutation",
-            "selections": (v5 /*: any*/)
+            "selections": (v7 /*: any*/)
         },
         "params": {
-            "cacheID": "fc852c7521e214e0b45b3d3bdeee9c9b",
+            "cacheID": "217c329100860d8d34dcdf75f3e2572d",
             "id": null,
             "metadata": {},
             "name": "MessageCreateMutation",
             "operationKind": "mutation",
-            "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n) {\n  createMessage(channelId: $channelId, message: $message) {\n    id\n    text\n    messageType\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
+            "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n) {\n  createMessage(channelId: $channelId, message: $message) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '969c9d2478384ba63b7d4323857734ad';
+(node as any).hash = '26de6e96cce7cf7d9acbd1c945f1ba45';
 export default node;

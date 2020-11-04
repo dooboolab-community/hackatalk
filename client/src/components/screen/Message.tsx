@@ -1,5 +1,3 @@
-import * as Notifications from 'expo-notifications';
-
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
@@ -38,6 +36,7 @@ import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import moment from 'moment';
 import styled from 'styled-components/native';
+import { uploadImageAsync } from '../../apis/upload';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -57,6 +56,8 @@ const createMessage = graphql`
       id
       text
       messageType
+      imageUrls
+      fileUrls
       channel {
         id
         channelType
@@ -280,16 +281,6 @@ const MessagesFragment: FC<MessageProp> = ({
     loadNext(ITEM_CNT);
   };
 
-  useEffect(() => {
-    // Add notification handler.
-    const responseListener = Notifications.addNotificationReceivedListener((event) => {
-      loadPrevious(ITEM_CNT);
-    });
-
-    // Clean up : remove notification handler.
-    return () => Notifications.removeNotificationSubscription(responseListener);
-  }, [data]);
-
   const [textToSend, setTextToSend] = useState<string>('');
   const { showModal } = useProfileContext();
 
@@ -326,13 +317,47 @@ const MessagesFragment: FC<MessageProp> = ({
   };
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
-    if (type === 'photo') {
-      const result = await launchImageLibraryAsync();
+    let image;
 
-      return;
+    if (type === 'photo') {
+      image = await launchImageLibraryAsync();
+    } else {
+      image = await launchCameraAsync();
     }
 
-    const result = await launchCameraAsync();
+    if (image && !image.cancelled) {
+      const response = await uploadImageAsync(image.uri, 'messages');
+      const { url } = JSON.parse(await response.text());
+
+      const mutationConfig = {
+        variables: {
+          channelId,
+          message: {
+            messageType: 'photo',
+            imageUrls: [
+              url,
+            ],
+          },
+        },
+        updater: (proxyStore: RecordSourceSelectorProxy) => {
+          if (user) {
+            updateMessageOnSubmit(proxyStore, channelId, user.id);
+          }
+
+          updateChannelsOnSubmit(proxyStore, channelId);
+        },
+        onCompleted: (response: MessageCreateMutationResponse) => {
+          const { imageUrls } = response.createMessage;
+
+          console.log('createMessage', imageUrls);
+        },
+        onError: (error: Error): void => {
+          console.log('error', error);
+        },
+      };
+
+      commitMessage(mutationConfig);
+    }
   };
 
   return <GiftedChat
