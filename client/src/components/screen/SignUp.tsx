@@ -110,7 +110,7 @@ function Page(props: Props): ReactElement {
           statusMessage,
         },
       },
-      onCompleted: async (response: SignUpMutationResponse): Promise<void> => {
+      onCompleted: (response: SignUpMutationResponse) => {
         const sendVerificationMutationConfig = {
           variables: {
             email,

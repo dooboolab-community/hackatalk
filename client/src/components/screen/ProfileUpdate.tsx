@@ -1,6 +1,6 @@
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, TouchableOpacity, View } from 'react-native';
 import type {
   ProfileUpdateSingleUploadMutation,
   ProfileUpdateSingleUploadMutationResponse,
@@ -19,9 +19,11 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
 import type { ProfileUpdateMutation } from '../../__generated__/ProfileUpdateMutation.graphql';
 import { getString } from '../../../STRINGS';
+import mime from 'mime';
 import { resizeImage } from '../../utils/image';
 import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
+import { uploadProfileImage } from '../../apis/upload';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -89,6 +91,8 @@ const meQuery = graphql`
       nickname
       statusMessage
       verified
+      photoURL
+      thumbURL
       profile {
         authType
       }
@@ -107,7 +111,7 @@ const profileUpdate = graphql`
 `;
 
 const fileUpload = graphql`
-    mutation ProfileUpdateSingleUploadMutation($file: Upload, $dir: String) {
+  mutation ProfileUpdateSingleUploadMutation($file: Upload, $dir: String) {
     singleUpload(file: $file dir: $dir)
   }
 `;
@@ -127,11 +131,12 @@ const Screen: FC<Props> = () => {
     fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
       next: (data) => {
         if (data.me) {
-          const { name, nickname, statusMessage } = data.me;
+          const { name, nickname, statusMessage, photoURL, thumbURL } = data.me;
 
           setName(name ?? '');
           setNickname(nickname ?? '');
           setstatusMessage(statusMessage ?? '');
+          setProfilePath(photoURL ?? thumbURL ?? '');
         }
       },
     });
@@ -153,9 +158,13 @@ const Screen: FC<Props> = () => {
   };
 
   const uploadImage = (uri: string): void => {
-    const fileName = uri.split('/').pop() || '';
-    const fileTypeMatch = /\.(\w+)$/.exec(fileName);
-    const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+    if (Platform.OS === 'android') {
+      uri = 'file:///' + uri.split('file:/').join('');
+    }
+
+    const fileName = uri.split('/').pop();
+
+    const fileType = mime.getType(uri) as string;
 
     // [file] created from the `uri` as a Blob object
     // https://github.com/jaydenseric/apollo-upload-client/#Blob
@@ -175,7 +184,7 @@ const Screen: FC<Props> = () => {
             file: null,
             dir: 'profiles',
           },
-          uploadables: { file: file },
+          uploadables: { file },
           onCompleted: (
             response: ProfileUpdateSingleUploadMutationResponse,
           ) => {
@@ -218,7 +227,12 @@ const Screen: FC<Props> = () => {
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
 
-            uploadImage(resizedImage.uri);
+            // uploadImage(resizedImage.uri);
+            const response = await uploadProfileImage(resizedImage.uri);
+
+            const result = await response.text();
+
+            console.log('camera result', JSON.stringify(result));
           }
 
           return;
@@ -234,7 +248,12 @@ const Screen: FC<Props> = () => {
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
 
-            uploadImage(resizedImage.uri);
+            // uploadImage(resizedImage.uri);
+            const response = await uploadProfileImage(resizedImage.uri);
+            const result = JSON.parse(await response.text());
+
+            setProfilePath(result.url);
+            console.log('gallery result', result.url);
           }
         }
       },
@@ -248,6 +267,8 @@ const Screen: FC<Props> = () => {
           name,
           nickname,
           statusMessage,
+          thumbURL: profilePath,
+          photoURL: profilePath,
         },
       },
       onError: (error: any): void => {
@@ -277,7 +298,10 @@ const Screen: FC<Props> = () => {
                 width: 90,
                 height: 90,
               }}>
-                <Image style={{ height: 80, width: 80 }} source={IC_PROFILE} />
+                <Image
+                  style={{ height: 80, width: 80 }}
+                  source={IC_PROFILE}
+                />
                 <Image style={{
                   position: 'absolute',
                   bottom: 0,

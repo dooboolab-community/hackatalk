@@ -15,7 +15,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       babelConfig: true,
-      tsConfig: {
+      tsconfig: {
         jsx: 'react',
       },
       diagnostics: false,

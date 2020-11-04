@@ -52,7 +52,7 @@ function Page(props: Props): ReactElement {
     variables: {
       email,
     },
-    onCompleted: async (response: VerifyEmailMutationResponse): Promise<void> => {
+    onCompleted: (response: VerifyEmailMutationResponse) => {
       if (response.sendVerification) {
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
       }

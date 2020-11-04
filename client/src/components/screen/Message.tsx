@@ -312,7 +312,7 @@ const MessagesFragment: FC<MessageProp> = ({
 
         updateChannelsOnSubmit(proxyStore, channelId);
       },
-      onCompleted: async (response: MessageCreateMutationResponse): Promise<void> => {
+      onCompleted: (response: MessageCreateMutationResponse) => {
         const { text } = response.createMessage;
 
         console.log('createMessage', text);
