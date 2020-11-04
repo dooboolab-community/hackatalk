@@ -120,7 +120,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
     return res.json(result);
   }
 
-  const dir: string = req.body.dir ? req.body.dir : 'defaults';
+  const dir: string = req.body.dir ? `${req.body.dir}/` : '';
 
   try {
     const resultUpload = await uploadFileToAzureBlobFromFile(
