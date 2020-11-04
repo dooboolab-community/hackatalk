@@ -106,13 +106,13 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     index: number;
   }): ReactElement => {
     const testID = `user-id-${index}`;
-    const userListOnPressInlineFn = (): void => userListOnPress(item.node);
+    const userListOnPressInlineFn = (): void => userListOnPress(item.node as User);
 
     return (
       <UserListItem
         testID={testID}
         showStatus
-        user={item.node}
+        user={item.node as User}
         onPress={userListOnPressInlineFn}
       />
     );

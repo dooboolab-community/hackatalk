@@ -143,13 +143,13 @@ const SocialSignInButton: FC<Props> = ({
 
           const mutationConfig = {
             variables: { token: accessToken },
-            onCompleted: async (response: SocialSignInButtonGoogleSignInMutationResponse): Promise<void> => {
+            onCompleted: (response: SocialSignInButtonGoogleSignInMutationResponse) => {
               if (response.signInWithGoogle) {
                 const { user, token } = response.signInWithGoogle;
 
-                await AsyncStorage.setItem('token', token);
+                AsyncStorage.setItem('token', token as string);
 
-                if (onUserCreated) onUserCreated(user);
+                if (onUserCreated) onUserCreated(user as User);
 
                 return;
               }
@@ -170,13 +170,13 @@ const SocialSignInButton: FC<Props> = ({
 
         const mutationConfig = {
           variables: { token: accessToken },
-          onCompleted: async (response: SocialSignInButtonFacebookSignInMutationResponse): Promise<void> => {
+          onCompleted: (response: SocialSignInButtonFacebookSignInMutationResponse) => {
             if (response.signInWithFacebook) {
               const { user, token } = response.signInWithFacebook;
 
-              await AsyncStorage.setItem('token', token);
+              AsyncStorage.setItem('token', token as string);
 
-              if (onUserCreated) onUserCreated(user);
+              if (onUserCreated) onUserCreated(user as User);
 
               return;
             }

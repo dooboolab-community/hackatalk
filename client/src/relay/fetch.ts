@@ -12,26 +12,26 @@ type RequestProps = {
 };
 
 const fetchGraphQL: FetchFunction = async (
-  request,
+  operation,
   variables,
   cacheConfig,
   uploadables,
 ) => {
-  console.log(`fetching ${request.name} with ${JSON.stringify(variables)}`);
-
   const config: RequestProps = {
     method: 'POST',
     headers: {
       Authorization:
         (await AsyncStorage.getItem('token')) || '',
+      Accept: 'application/json',
     },
     body: '',
   };
 
-  // When the `uploadables` are provided the [formData] is builded following the GraphQL multipart request specification.
+  // When the `uploadables` are provided the [formData] is built following the GraphQL multipart request specification.
   // https://github.com/jaydenseric/graphql-multipart-request-spec
+
   if (uploadables) {
-    const requestText = JSON.stringify(request?.text?.replace(/\n/g, ''));
+    const requestText = JSON.stringify(operation?.text?.replace(/\n/g, ''));
     const { file, dir } = variables;
 
     const formData = new FormData();
@@ -49,7 +49,7 @@ const fetchGraphQL: FetchFunction = async (
     config.headers['Content-Type'] = 'application/json';
 
     config.body = JSON.stringify({
-      query: request.text,
+      query: operation.text,
       variables,
     });
   }

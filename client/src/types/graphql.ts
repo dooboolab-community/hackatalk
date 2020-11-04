@@ -28,8 +28,8 @@ export type Scalars = {
 
 export type AuthPayload = {
   __typename?: 'AuthPayload';
-  token: Scalars['String'];
-  user: User;
+  token?: Maybe<Scalars['String']>;
+  user?: Maybe<User>;
 };
 
 export enum AuthType {
@@ -50,9 +50,9 @@ export type Channel = {
   deletedAt?: Maybe<Scalars['DateTime']>;
   /** Get latest message sent to the channel. */
   lastMessage?: Maybe<Message>;
-  messages: MessageConnection;
+  messages?: Maybe<MessageConnection>;
   /** Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user. */
-  memberships?: Maybe<Array<Membership>>;
+  memberships?: Maybe<Array<Maybe<Membership>>>;
 };
 
 
@@ -79,7 +79,7 @@ export type ChannelConnection = {
 export type ChannelCreateInput = {
   channelType?: Maybe<Scalars['ChannelType']>;
   name?: Maybe<Scalars['String']>;
-  userIds?: Maybe<Array<Scalars['String']>>;
+  userIds?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type ChannelEdge = {
@@ -87,7 +87,7 @@ export type ChannelEdge = {
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
   cursor: Scalars['String'];
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
-  node: Channel;
+  node?: Maybe<Channel>;
 };
 
 
@@ -120,15 +120,15 @@ export type Message = {
   id: Scalars['String'];
   messageType: Scalars['MessageType'];
   text?: Maybe<Scalars['String']>;
-  imageUrls?: Maybe<Array<Scalars['String']>>;
-  fileUrls?: Maybe<Array<Scalars['String']>>;
+  imageUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
+  fileUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   channel?: Maybe<Channel>;
   sender: User;
-  replies?: Maybe<Array<Reply>>;
-  reactions?: Maybe<Array<Reaction>>;
+  replies?: Maybe<Array<Maybe<Reply>>>;
+  reactions?: Maybe<Array<Maybe<Reaction>>>;
 };
 
 export type MessageConnection = {
@@ -142,8 +142,8 @@ export type MessageConnection = {
 export type MessageCreateInput = {
   messageType?: Maybe<Scalars['MessageType']>;
   text?: Maybe<Scalars['String']>;
-  imageUrls?: Maybe<Array<Scalars['String']>>;
-  fileUrls?: Maybe<Array<Scalars['String']>>;
+  imageUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
+  fileUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type MessageEdge = {
@@ -151,28 +151,28 @@ export type MessageEdge = {
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
   cursor: Scalars['String'];
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
-  node: Message;
+  node?: Maybe<Message>;
 };
 
 
 export type Mutation = {
   __typename?: 'Mutation';
-  signUp: User;
-  signInEmail: AuthPayload;
-  signInWithFacebook: AuthPayload;
-  signInWithApple: AuthPayload;
-  signInWithGoogle: AuthPayload;
-  sendVerification: Scalars['Boolean'];
+  signUp?: Maybe<User>;
+  signInEmail?: Maybe<AuthPayload>;
+  signInWithFacebook?: Maybe<AuthPayload>;
+  signInWithApple?: Maybe<AuthPayload>;
+  signInWithGoogle?: Maybe<AuthPayload>;
+  sendVerification?: Maybe<Scalars['Boolean']>;
   /** Update user profile. Becareful that nullable fields will be updated either. */
-  updateProfile: User;
-  findPassword: Scalars['Boolean'];
-  changeEmailPassword: Scalars['Boolean'];
-  createNotification: Notification;
+  updateProfile?: Maybe<User>;
+  findPassword?: Maybe<Scalars['Boolean']>;
+  changeEmailPassword?: Maybe<Scalars['Boolean']>;
+  createNotification?: Maybe<Notification>;
   deleteNotification?: Maybe<Notification>;
   /** Provide `dir` optionally, Upload single file to the server with graphql-upload */
   singleUpload?: Maybe<Scalars['String']>;
-  addFriend: Friend;
-  deleteFriend: Friend;
+  addFriend?: Maybe<Friend>;
+  deleteFriend?: Maybe<Friend>;
   /**
    * Creates channel of [ChannelType].
    *   The private channel is unique by the unique members while
@@ -185,9 +185,9 @@ export type Mutation = {
    *   Please becareful when creating message and provide proper [MessageType].
    *   This query will return [Channel] with [Membership] without [Message] that has just created.
    */
-  createChannel: Channel;
+  createChannel?: Maybe<Channel>;
   /** Find or create channel associated to peer user id. */
-  findOrCreatePrivateChannel: Channel;
+  findOrCreatePrivateChannel?: Maybe<Channel>;
   /**
    * User leaves [public] channel.
    *   Users cannot leave the [private] channel
@@ -195,12 +195,12 @@ export type Mutation = {
    *   This will reset to true when new [Message] is created to channel.
    *   User will leave the [public] channel and membership will be removed.
    */
-  leaveChannel: Membership;
+  leaveChannel?: Maybe<Membership>;
   /** Adds some users into [public] channel. */
-  inviteUsersToChannel: Channel;
+  inviteUsersToChannel?: Maybe<Channel>;
   /** Removes some users from [public] channel. */
-  kickUsersFromChannel: Channel;
-  createMessage: Message;
+  kickUsersFromChannel?: Maybe<Channel>;
+  createMessage?: Maybe<Message>;
   deleteMessage?: Maybe<Message>;
 };
 
@@ -298,13 +298,13 @@ export type MutationLeaveChannelArgs = {
 
 export type MutationInviteUsersToChannelArgs = {
   channelId: Scalars['String'];
-  userIds: Array<Scalars['String']>;
+  userIds: Array<Maybe<Scalars['String']>>;
 };
 
 
 export type MutationKickUsersFromChannelArgs = {
   channelId: Scalars['String'];
-  userIds: Array<Scalars['String']>;
+  userIds: Array<Maybe<Scalars['String']>>;
 };
 
 
@@ -350,18 +350,18 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   /** Fetch user profile */
-  user: User;
-  users: UserConnection;
-  friends: UserConnection;
+  user?: Maybe<User>;
+  users?: Maybe<UserConnection>;
+  friends?: Maybe<UserConnection>;
   /** Fetch current user profile when authenticated. */
-  me: User;
-  notifications?: Maybe<Array<Notification>>;
+  me?: Maybe<User>;
+  notifications?: Maybe<Array<Maybe<Notification>>>;
   /** Get single channel */
-  channel: Channel;
-  channels: ChannelConnection;
+  channel?: Maybe<Channel>;
+  channels?: Maybe<ChannelConnection>;
   /** Get single message */
-  message: Message;
-  messages: MessageConnection;
+  message?: Maybe<Message>;
+  messages?: Maybe<MessageConnection>;
 };
 
 
@@ -442,8 +442,8 @@ export type Reply = {
 
 export type Subscription = {
   __typename?: 'Subscription';
-  userSignedIn: User;
-  userUpdated: User;
+  userSignedIn?: Maybe<User>;
+  userUpdated?: Maybe<User>;
 };
 
 
@@ -476,7 +476,7 @@ export type User = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
-  notifications?: Maybe<Array<Notification>>;
+  notifications?: Maybe<Array<Maybe<Notification>>>;
 };
 
 export type UserConnection = {
@@ -505,7 +505,7 @@ export type UserEdge = {
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor */
   cursor: Scalars['String'];
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
-  node: User;
+  node?: Maybe<User>;
 };
 
 export type UserUpdateInput = {

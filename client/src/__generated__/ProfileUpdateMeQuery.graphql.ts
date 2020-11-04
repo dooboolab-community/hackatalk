@@ -13,6 +13,8 @@ export type ProfileUpdateMeQueryResponse = {
         readonly nickname: string | null;
         readonly statusMessage: string | null;
         readonly verified: boolean | null;
+        readonly photoURL: string | null;
+        readonly thumbURL: string | null;
         readonly profile: {
             readonly authType: AuthType | null;
         } | null;
@@ -34,6 +36,8 @@ query ProfileUpdateMeQuery {
     nickname
     statusMessage
     verified
+    photoURL
+    thumbURL
     profile {
       authType
     }
@@ -96,6 +100,20 @@ const node: ConcreteRequest = (function () {
                 {
                     "alias": null,
                     "args": null,
+                    "kind": "ScalarField",
+                    "name": "photoURL",
+                    "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "thumbURL",
+                    "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
                     "concreteType": "Profile",
                     "kind": "LinkedField",
                     "name": "profile",
@@ -133,14 +151,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "d1997df29a2675627f365ee2d34de6e2",
+            "cacheID": "f71da5b3e1367fc5bd7964b5e6b7caf8",
             "id": null,
             "metadata": {},
             "name": "ProfileUpdateMeQuery",
             "operationKind": "query",
-            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    profile {\n      authType\n    }\n  }\n}\n"
+            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'a90bc09d8e46e51e5b05576eb2e83ff2';
+(node as any).hash = 'c57ad9efd9805fc9946d1a4897b43b11';
 export default node;

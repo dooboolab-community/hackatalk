@@ -197,7 +197,7 @@ function SignIn(props: Props): ReactElement {
         password,
       },
 
-      onCompleted: async (response: SignInEmailMutationResponse): Promise<void> => {
+      onCompleted: async (response: SignInEmailMutationResponse) => {
         const { token, user } = response.signInEmail;
 
         if (user && !user.verified) {
@@ -231,6 +231,7 @@ function SignIn(props: Props): ReactElement {
       },
     };
 
+    // @ts-ignore
     commitEmail(mutationConfig);
   };
 
@@ -264,10 +265,10 @@ function SignIn(props: Props): ReactElement {
           variables: {
             idToken: identityToken,
           },
-          onCompleted: async (response: SignInAppleMutationResponse): Promise<void> => {
+          onCompleted: (response: SignInAppleMutationResponse) => {
             const { token, user } = response.signInWithApple;
 
-            await AsyncStorage.setItem('token', token);
+            AsyncStorage.setItem('token', token);
             setUser(user);
           },
           onError: (error: any): void => {
