@@ -124,6 +124,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
 
   try {
     const resultUpload = await uploadFileToAzureBlobFromFile(
+      'hackatalk',
       `./files/${req.file.filename}`,
       req.file.filename,
       dir,

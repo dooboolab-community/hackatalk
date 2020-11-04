@@ -37,12 +37,13 @@ export const uploadFileToAzureBlobFromStream = (
 };
 
 export const uploadFileToAzureBlobFromFile = (
+  container: string,
   file: string,
   destFile: string,
   destDir: string,
 ): Promise<BlobService.BlobResult> => {
   return new Promise(function(resolve, reject) {
-    blobService.createBlockBlobFromLocalFile(destDir, destFile, file, function(
+    blobService.createBlockBlobFromLocalFile(container, `${destDir}${destFile}`, file, function(
       error,
       resultUpload,
     ) {
