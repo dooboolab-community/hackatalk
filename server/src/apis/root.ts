@@ -132,7 +132,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
 
     result.status = 200;
     result.message = resultUpload;
-    result.url = `${STORAGE_ENDPOINT}/${dir}/${req.file.filename}`;
+    result.url = `${STORAGE_ENDPOINT}/${dir}${req.file.filename}`;
     res.json(result);
   } catch (err) {
     result.message = err;
