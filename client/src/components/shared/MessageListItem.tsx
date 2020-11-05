@@ -40,6 +40,16 @@ const StyledPeerTextMessage = styled.Text`
   color: ${({ theme }): string => theme.peerMessageText};
 `;
 
+const StyledPhotoContainer = styled.View`
+  border-color: ${({ theme }): string => theme.border};
+  border-width: 1px;
+`;
+
+const StyledPhotoMessage = styled.Image`
+  width: 200px;
+  height: 200px;
+`;
+
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
   color: ${({ theme }): string => theme.fontColor};
@@ -183,7 +193,15 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             justifyContent: 'flex-start',
           }}>
             <StyledTextPeerMessageContainer>
-              <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
+              {
+                imageUrls && imageUrls.length > 0
+                  ? <StyledPhotoContainer>
+                    <StyledPhotoMessage source={{
+                      uri: imageUrls[0] as string,
+                    }} />
+                  </StyledPhotoContainer>
+                  : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
+              }
             </StyledTextPeerMessageContainer>
           </View>
           {
@@ -203,7 +221,15 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   return (
     <WrapperMy>
       <StyledMyMessage>
-        <StyledMyTextMessage>{text}</StyledMyTextMessage>
+        {
+          imageUrls && imageUrls.length > 0
+            ? <StyledPhotoContainer>
+              <StyledPhotoMessage source={{
+                uri: imageUrls[0] as string,
+              }} />
+            </StyledPhotoContainer>
+            : <StyledMyTextMessage>{text}</StyledMyTextMessage>
+        }
       </StyledMyMessage>
       <StyledTextDate>
         {createdAt

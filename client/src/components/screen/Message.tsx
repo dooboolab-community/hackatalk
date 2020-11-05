@@ -326,7 +326,12 @@ const MessagesFragment: FC<MessageProp> = ({
     }
 
     if (image && !image.cancelled) {
-      const response = await uploadImageAsync(image.uri, 'messages');
+      const response = await uploadImageAsync(
+        image.uri,
+        'messages',
+        `_${channelId}_${new Date().toISOString()}`,
+      );
+
       const { url } = JSON.parse(await response.text());
 
       const mutationConfig = {

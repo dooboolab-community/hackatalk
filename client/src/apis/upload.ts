@@ -3,7 +3,11 @@ import * as Config from '../../config';
 import AsyncStorage from '@react-native-community/async-storage';
 import mime from 'mime';
 
-export const uploadImageAsync = async (uri: string, dir:string): Promise<Response> => {
+export const uploadImageAsync = async (
+  uri: string,
+  dir:string,
+  fileNamePrefix?: string,
+): Promise<Response> => {
   const fileName = uri.split('/').pop();
   const fileType = mime.getType(uri) as string;
   const data: FormData = new FormData();
@@ -12,7 +16,7 @@ export const uploadImageAsync = async (uri: string, dir:string): Promise<Respons
   data.append('inputFile', {
     uri: uri,
     type: fileType,
-    name: fileName,
+    name: `${fileName}${fileNamePrefix}`,
   });
 
   data.append('dir', dir);

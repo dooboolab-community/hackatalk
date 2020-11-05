@@ -163,7 +163,6 @@ const Screen: FC<Props> = () => {
     }
 
     const fileName = uri.split('/').pop();
-
     const fileType = mime.getType(uri) as string;
 
     // [file] created from the `uri` as a Blob object
