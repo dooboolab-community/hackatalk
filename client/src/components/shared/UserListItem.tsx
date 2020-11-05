@@ -20,6 +20,7 @@ interface Props {
 
 const Container = styled.View`
   width: 100%;
+  background-color: blue;
 `;
 
 const Wrapper = styled.View`

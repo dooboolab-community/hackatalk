@@ -197,7 +197,7 @@ const ContentContainer: FC<ContentProps> = ({
 
 const Screen: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
-  const debouncedText = useDebounce(searchText, 30);
+  const debouncedText = useDebounce(searchText, 500);
   const environment = useRelayEnvironment();
   const scrollY = new Animated.Value(0);
 
