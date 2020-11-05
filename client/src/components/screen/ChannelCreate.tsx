@@ -101,12 +101,16 @@ type FriendsFragmentProps = {
   friend: ChannelCreate_friends$key,
   scrollY: Animated.Value,
   searchArgs: ChannelCreateFriendsPaginationQueryVariables,
+  selectedUsers: User[],
+  setSelectedUsers: (users: User[]) => void,
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({
   scrollY,
   friend,
   searchArgs,
+  selectedUsers,
+  setSelectedUsers,
 }) => {
   const {
     data,
@@ -129,49 +133,60 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 
   const navigation = useNavigation();
 
-  // const renderFriendThumbnail = (friend: Friend, index: number): ReactElement => {
-  //   return <FriendThumbView key={friend.id}>
-  //     <View
-  //       style={{
-  //         marginTop: 12,
-  //         marginRight: 16,
-  //         marginBottom: 6,
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <Image
-  //         style={{
-  //           width: 60,
-  //           height: 60,
-  //         }}
-  //         source={
-  //           friend.thumbURL
-  //             ? { uri: friend.thumbURL }
-  //             : IC_NO_IMAGE
-  //         }
-  //       />
-  //       <Text
-  //         numberOfLines={1}
-  //         style={{
-  //           fontSize: 12,
-  //           color: theme.fontColor,
-  //         }}
-  //       >{friend.nickname}</Text>
-  //     </View>
-  //     <TouchableOpacity
-  //       testID={`remove-${index}`}
-  //       style={{
-  //         position: 'absolute',
-  //         top: 0,
-  //         right: 0,
-  //       }}
-  //       onPress={(): void => removeFriend(friend)}
-  //     >
-  //       <Image source={IC_CIRCLE_X} style={{ width: 32, height: 32 }}/>
-  //     </TouchableOpacity>
-  //   </FriendThumbView>;
-  // };
+  const removeFriend = (friend: User): void => {
+    const nextState = produce(selectedUsers, (draftState) => {
+      const index = selectedUsers.findIndex((v) => v.id === friend.id);
+
+      draftState.splice(index, 1);
+    });
+
+    setSelectedUsers(nextState);
+  };
+
+  const renderFriendThumbnail = (friend: User, index: number): ReactElement => {
+    return <FriendThumbView key={friend.id}>
+      <View
+        style={{
+          marginTop: 12,
+          marginRight: 16,
+          marginBottom: 6,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Image
+          style={{
+            width: 60,
+            height: 60,
+          }}
+          source={
+            friend.thumbURL
+              ? { uri: friend.thumbURL }
+              : IC_NO_IMAGE
+          }
+        />
+        <Text
+          numberOfLines={1}
+          style={{
+            fontSize: 12,
+            marginTop: 4,
+            color: theme.fontColor,
+          }}
+        >{friend.nickname ?? friend.name}</Text>
+      </View>
+      <TouchableOpacity
+        testID={`remove-${index}`}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+        }}
+        onPress={(): void => removeFriend(friend)}
+      >
+        <Image source={IC_CIRCLE_X} style={{ width: 32, height: 32 }}/>
+      </TouchableOpacity>
+    </FriendThumbView>;
+  };
 
   const renderItem = ({
     item,
@@ -180,22 +195,31 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     item: UserEdge;
     index: number;
   }): ReactElement => {
-    // const testID = `user-id-${index}`;
-    // const userListOnPressInlineFn = (): void => userListOnPress(item.node as User);
-
     return (
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
-        // checked={item.checked}
+        checked={selectedUsers.includes(item?.node as User)}
         // @ts-ignore
         user={item.node}
         onPress={(): void => {
-          // const nextState = produce(friends, (draftState) => {
-          //   draftState[index].checked = !item.checked;
-          // });
+          if (selectedUsers.includes(item?.node as User)) {
+            const nextState = produce(selectedUsers, (draftState) => {
+              const index = selectedUsers.findIndex((v) => v.id === item?.node?.id);
 
-          // setFriends(nextState);
+              draftState.splice(index, 1);
+            });
+
+            setSelectedUsers(nextState);
+
+            return;
+          }
+
+          const nextState = produce(selectedUsers, (draftState) => {
+            draftState.push(item.node as User);
+          });
+
+          setSelectedUsers(nextState);
         }}
       />
     );
@@ -218,16 +242,14 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         keyExtractor={(_, index): string => index.toString()}
         data={friends}
         renderItem={renderItem}
-        // ListHeaderComponent={(): ReactElement => {
-        //   const filtered = friends.filter((v) => (v.checked === true));
-
-        //   return <ScrollView
-        //     style={{ paddingHorizontal: 24, marginBottom: 12 }}
-        //     horizontal
-        //   >
-        //     {filtered.map((friend, i) => renderFriendThumbnail(friend, i))}
-        //   </ScrollView>;
-        // }}
+        ListHeaderComponent={(): ReactElement => {
+          return <ScrollView
+            style={{ paddingHorizontal: 24, marginBottom: 12 }}
+            horizontal
+          >
+            {selectedUsers.map((friend, i) => renderFriendThumbnail(friend, i))}
+          </ScrollView>;
+        }}
         ListEmptyComponent={
           <ErroView
             testID="btn-error"
@@ -245,11 +267,15 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 interface ContentProps {
   scrollY: Animated.Value,
   searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  selectedUsers: User[],
+  setSelectedUsers: (users: User[]) => void,
 }
 
 const ContentContainer: FC<ContentProps> = ({
   searchArgs,
   scrollY,
+  selectedUsers,
+  setSelectedUsers,
 }) => {
   const queryResponse = useLazyLoadQuery<ChannelCreateFriendsQuery>(
     friendsQuery,
@@ -261,6 +287,8 @@ const ContentContainer: FC<ContentProps> = ({
     friend={queryResponse}
     scrollY={scrollY}
     searchArgs={searchArgs}
+    selectedUsers={selectedUsers}
+    setSelectedUsers={setSelectedUsers}
   />;
 };
 
@@ -271,6 +299,7 @@ interface ChannelCreateProps {
 const ChannelCreate: FC<ChannelCreateProps> = (props) => {
   const { navigation } = props;
   const [searchText, setSearchText] = useState<string>('');
+  const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
@@ -289,28 +318,6 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
       duration: 500,
     }).start();
   };
-
-  // const onChangeText = (text: string): void => {
-  //   if (!text) {
-  //     setFriends(fakeFriends);
-  //   } else {
-  //     const filtered = friends.filter((v) => (v.name?.includes(searchText)));
-
-  //     setFriends(filtered);
-  //   }
-
-  //   setSearchText(text);
-  // };
-
-  // const removeFriend = (friend: Friend): void => {
-  //   const nextState = produce(friends, (draftState) => {
-  //     const index = friends.findIndex((v) => v.id === friend.id);
-
-  //     draftState[index].checked = !friend.checked;
-  //   });
-
-  //   setFriends(nextState);
-  // };
 
   // const pressDone = (): void => {
   //   const filtered = friends.filter((v) => (v.checked === true));
@@ -349,7 +356,12 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
         value={searchText}
       />
       <Suspense fallback={<LoadingIndicator/>}>
-        <ContentContainer scrollY={scrollY} searchArgs={searchArgs}/>
+        <ContentContainer
+          scrollY={scrollY}
+          searchArgs={searchArgs}
+          selectedUsers={selectedUsers}
+          setSelectedUsers={setSelectedUsers}
+        />
       </Suspense>
     </Container>
   );
