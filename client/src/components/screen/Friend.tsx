@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, useMemo } from 'react';
+import React, { FC, ReactElement, Suspense, useMemo } from 'react';
 import { User, UserEdge } from '../../types/graphql';
 import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay/hooks';
 
@@ -7,6 +7,7 @@ import { FlatList } from 'react-native';
 import { FriendFriendsPaginationQuery } from '../../__generated__/FriendFriendsPaginationQuery.graphql';
 import { FriendFriendsQuery } from '../../__generated__/FriendFriendsQuery.graphql';
 import { Friend_friends$key } from '../../__generated__/Friend_friends.graphql';
+import { LoadingIndicator } from 'dooboo-ui';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -119,38 +120,36 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   };
 
   return (
-    <Container>
-      <FlatList
-        testID="friend-list"
-        style={{
-          alignSelf: 'stretch',
-        }}
-        contentContainerStyle={
-          friends.length === 0
-            ? {
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-            : undefined
-        }
-        keyExtractor={(item, index): string => index.toString()}
-        data={friends}
-        renderItem={renderItem}
-        ListEmptyComponent={
-          <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
-        }
-        refreshing={isLoadingNext}
-        onRefresh={() => {
-          refetch(
-            { first: ITEM_CNT },
-            { fetchPolicy: 'network-only' },
-          );
-        }}
-        onEndReachedThreshold={0.1}
-        onEndReached={() => loadNext(ITEM_CNT)}
-      />
-    </Container>
+    <FlatList
+      testID="friend-list"
+      style={{
+        alignSelf: 'stretch',
+      }}
+      contentContainerStyle={
+        friends.length === 0
+          ? {
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }
+          : undefined
+      }
+      keyExtractor={(item, index): string => index.toString()}
+      data={friends}
+      renderItem={renderItem}
+      ListEmptyComponent={
+        <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
+      }
+      refreshing={isLoadingNext}
+      onRefresh={() => {
+        refetch(
+          { first: ITEM_CNT },
+          { fetchPolicy: 'network-only' },
+        );
+      }}
+      onEndReachedThreshold={0.1}
+      onEndReached={() => loadNext(ITEM_CNT)}
+    />
   );
 };
 
@@ -164,4 +163,12 @@ const Friend: FC = () => {
   return <FriendsFragment friendsKey={queryResponse} />;
 };
 
-export default Friend;
+const Screen: FC = () => {
+  return <Container>
+    <Suspense fallback={<LoadingIndicator/>}>
+      <Friend/>
+    </Suspense>
+  </Container>;
+};
+
+export default Screen;
