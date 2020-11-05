@@ -1,11 +1,11 @@
 import * as Config from '../../config';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import mime from 'mime';
 
 export const uploadImageAsync = async (uri: string, dir:string): Promise<Response> => {
-  const fileName = uri.split('/').pop() || '';
-  const fileTypeMatch = /\.(\w+)$/.exec(fileName);
-  const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+  const fileName = uri.split('/').pop();
+  const fileType = mime.getType(uri) as string;
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 
