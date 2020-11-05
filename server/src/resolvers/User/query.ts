@@ -31,46 +31,22 @@ export const userConnection = queryField((t) => {
     async nodes(_, args, ctx) {
       const { after, before, first, last, searchText } = args;
 
+      const filter = searchText && {
+        OR: [
+          { name: { contains: searchText } },
+          { nickname: { contains: searchText } },
+          { email: { contains: searchText } },
+        ],
+      };
+
       return ctx.prisma.user.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
         }),
         where: {
-          OR: [
-            { name: { contains: searchText } },
-            { email: { contains: searchText } },
-          ],
+          ...filter,
           verified: true,
           deletedAt: null,
-        },
-        orderBy: { id: 'desc' },
-      });
-    },
-  });
-});
-
-export const friends = queryField((t) => {
-  t.connectionField('friends', {
-    type: 'User',
-
-    additionalArgs: {
-      searchText: stringArg(),
-    },
-
-    async nodes(_, args, ctx) {
-      const userId = getUserId(ctx);
-      const { after, before, first, last } = args;
-
-      return ctx.prisma.user.findMany({
-        ...relayToPrismaPagination({
-          after, before, first, last,
-        }),
-        where: {
-          friends: {
-            some: {
-              userId,
-            },
-          },
         },
         orderBy: { id: 'desc' },
       });
