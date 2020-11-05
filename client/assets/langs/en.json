@@ -89,5 +89,6 @@
   "NO_FRIEND": "No friends",
   "NO_FRIEND_BODY": "You currently do not have any friends. Please search for users to add to your friend list.",
   "MUST_USE_PHYSICAL_DEVICE": "Must use physical device for push notification.",
-  "FAILED_GET_PUSH_NOTI": "You have blocked the alert for HackaTalk. Please allow it to receive chattings immediately."
+  "FAILED_GET_PUSH_NOTI": "You have blocked the alert for HackaTalk. Please allow it to receive chattings immediately.",
+  "PHOTO": "Photo"
 }

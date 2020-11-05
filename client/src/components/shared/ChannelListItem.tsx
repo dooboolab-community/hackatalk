@@ -176,7 +176,11 @@ function ChannelListItem(props: Props): React.ReactElement {
                   numberOfLines={2}
                   lastMessageCnt={lastMessageCnt}
                 >
-                  {text}
+                  {
+                    imageUrls && imageUrls.length > 0
+                      ? getString('PHOTO')
+                      : text
+                  }
                 </StyledTextMessage>
                 <StyledTextDate>
                   {createdAt ? moment(createdAt).fromNow() : 'nan'}
