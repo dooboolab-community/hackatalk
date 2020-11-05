@@ -104,7 +104,9 @@ type FriendsFragmentProps = {
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({
+  scrollY,
   friend,
+  searchArgs,
 }) => {
   const {
     data,
@@ -251,7 +253,7 @@ const ContentContainer: FC<ContentProps> = ({
 }) => {
   const queryResponse = useLazyLoadQuery<ChannelCreateFriendsQuery>(
     friendsQuery,
-    { first: ITEM_CNT },
+    searchArgs,
     { fetchPolicy: 'store-or-network' },
   );
 
