@@ -1,21 +1,25 @@
 import * as Config from '../../config';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import mime from 'mime';
 
-export const uploadProfileImage = async (uri: string): Promise<Response> => {
-  const fileName = uri.split('/').pop() || '';
-  const fileTypeMatch = /\.(\w+)$/.exec(fileName);
-  const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+export const uploadImageAsync = async (
+  uri: string,
+  dir:string,
+  fileNamePrefix?: string,
+): Promise<Response> => {
+  const fileName = uri.split('/').pop();
+  const fileType = mime.getType(uri) as string;
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 
   data.append('inputFile', {
     uri: uri,
     type: fileType,
-    name: fileName,
+    name: `${fileName}${fileNamePrefix}`,
   });
 
-  data.append('dir', 'profiles');
+  data.append('dir', dir);
 
   const fetchOption: RequestInit = {
     method: 'POST',

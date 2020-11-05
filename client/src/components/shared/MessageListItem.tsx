@@ -15,6 +15,7 @@ const WrapperPeer = styled.View<{ isSame: boolean }>`
   margin-left: 20px;
   margin-right: 8px;
   margin-top: ${({ isSame }): number => (isSame ? 8 : 20)}px;
+  width: 100%;
 `;
 
 const StyledImage = styled.Image`
@@ -32,12 +33,21 @@ const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
   background-color: ${({ theme }): string => theme.peerMessageBackground};
   padding: 12px;
-  width: 100%;
 `;
 
 const StyledPeerTextMessage = styled.Text`
   font-size: 14px;
   color: ${({ theme }): string => theme.peerMessageText};
+`;
+
+const StyledPhotoContainer = styled.View`
+  border-color: ${({ theme }): string => theme.border};
+  border-width: 1px;
+`;
+
+const StyledPhotoMessage = styled.Image`
+  width: 200px;
+  height: 200px;
 `;
 
 const StyledTextPeerName = styled.Text`
@@ -147,6 +157,8 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
       messageType,
       text,
       createdAt,
+      imageUrls,
+      fileUrls,
     },
     prevItem,
     nextItem,
@@ -170,15 +182,28 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'column', maxWidth: '90%' }}>
+        <View style={{ flexDirection: 'column', maxWidth: '80%' }}>
           {isSamePeerMsg ? (
             <View />
           ) : (
-            <StyledTextPeerName>{sender?.nickname}</StyledTextPeerName>
+            <StyledTextPeerName>{sender?.nickname ?? sender?.name}</StyledTextPeerName>
           )}
-          <StyledTextPeerMessageContainer>
-            <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
-          </StyledTextPeerMessageContainer>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+          }}>
+            <StyledTextPeerMessageContainer>
+              {
+                imageUrls && imageUrls.length > 0
+                  ? <StyledPhotoContainer>
+                    <StyledPhotoMessage source={{
+                      uri: imageUrls[0] as string,
+                    }} />
+                  </StyledPhotoContainer>
+                  : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
+              }
+            </StyledTextPeerMessageContainer>
+          </View>
           {
             !showDate
               ? <StyledTextPeerDate>
@@ -196,7 +221,15 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   return (
     <WrapperMy>
       <StyledMyMessage>
-        <StyledMyTextMessage>{text}</StyledMyTextMessage>
+        {
+          imageUrls && imageUrls.length > 0
+            ? <StyledPhotoContainer>
+              <StyledPhotoMessage source={{
+                uri: imageUrls[0] as string,
+              }} />
+            </StyledPhotoContainer>
+            : <StyledMyTextMessage>{text}</StyledMyTextMessage>
+        }
       </StyledMyMessage>
       <StyledTextDate>
         {createdAt
@@ -206,21 +239,5 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
     </WrapperMy>
   );
 }
-
-MessageListItem.defaultProps = {
-  item: {
-    id: '',
-    sender: {
-      id: '0',
-      nickname: 'sender111',
-      thumbURL: '',
-      photoURL: '',
-      statusMessage: '',
-    },
-    message: 'hello1',
-    createdAt: '2020-01-01 12:00:00',
-    updatedAt: '2020-01-01 12:00:00',
-  },
-};
 
 export default MessageListItem;

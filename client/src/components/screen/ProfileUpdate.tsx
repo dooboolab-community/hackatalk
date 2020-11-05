@@ -23,7 +23,7 @@ import mime from 'mime';
 import { resizeImage } from '../../utils/image';
 import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
-import { uploadProfileImage } from '../../apis/upload';
+import { uploadImageAsync } from '../../apis/upload';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -163,7 +163,6 @@ const Screen: FC<Props> = () => {
     }
 
     const fileName = uri.split('/').pop();
-
     const fileType = mime.getType(uri) as string;
 
     // [file] created from the `uri` as a Blob object
@@ -228,11 +227,10 @@ const Screen: FC<Props> = () => {
             });
 
             // uploadImage(resizedImage.uri);
-            const response = await uploadProfileImage(resizedImage.uri);
+            const response = await uploadImageAsync(resizedImage.uri, 'profiles');
+            const result = JSON.parse(await response.text());
 
-            const result = await response.text();
-
-            console.log('camera result', JSON.stringify(result));
+            setProfilePath(result.url);
           }
 
           return;
@@ -249,11 +247,10 @@ const Screen: FC<Props> = () => {
             });
 
             // uploadImage(resizedImage.uri);
-            const response = await uploadProfileImage(resizedImage.uri);
+            const response = await uploadImageAsync(resizedImage.uri, 'profiles');
             const result = JSON.parse(await response.text());
 
             setProfilePath(result.url);
-            console.log('gallery result', result.url);
           }
         }
       },

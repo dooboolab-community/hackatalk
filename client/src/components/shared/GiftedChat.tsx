@@ -143,7 +143,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
           ListHeaderComponent={
-            <View style={{ height: showMenu ? keyboardHeight + 40 : 28 }} />
+            <View style={{ height: showMenu ? keyboardHeight + 80 : 28 }} />
           }
         />
         {!showMenu ? (
