@@ -37,7 +37,19 @@ function RootNavigator(): React.ReactElement {
   } = useAuthContext();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: theme.background,
+          border: theme.border,
+          card: theme.itemBackground,
+          primary: theme.primary,
+          notification: theme.tintColor,
+          text: theme.text,
+        },
+        dark: true,
+      }}
+    >
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
