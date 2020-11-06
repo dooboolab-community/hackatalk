@@ -349,7 +349,7 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
       ): void => {
         const channel = response.findOrCreatePrivateChannel;
 
-        navigation.navigate('Message', {
+        navigation.replace('Message', {
           users: selectedUsers,
           channel,
         });
@@ -400,6 +400,11 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
           setSelectedUsers={setSelectedUsers}
         />
       </Suspense>
+      {
+        isChannelInFlight
+          ? <LoadingIndicator/>
+          : null
+      }
     </Container>
   );
 };
