@@ -2,6 +2,7 @@ import React, { SFC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
+import Image from 'react-native-scalable-image';
 import { Message } from '../../types/graphql';
 import moment from 'moment';
 import styled from 'styled-components/native';
@@ -196,9 +197,10 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
               {
                 imageUrls && imageUrls.length > 0
                   ? <StyledPhotoContainer>
-                    <StyledPhotoMessage source={{
-                      uri: imageUrls[0] as string,
-                    }} />
+                    <Image
+                      width={240}
+                      source={{ uri: imageUrls[0] as string }}
+                    />
                   </StyledPhotoContainer>
                   : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
               }
@@ -224,9 +226,10 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         {
           imageUrls && imageUrls.length > 0
             ? <StyledPhotoContainer>
-              <StyledPhotoMessage source={{
-                uri: imageUrls[0] as string,
-              }} />
+              <Image
+                width={240}
+                source={{ uri: imageUrls[0] as string }}
+              />
             </StyledPhotoContainer>
             : <StyledMyTextMessage>{text}</StyledMyTextMessage>
         }

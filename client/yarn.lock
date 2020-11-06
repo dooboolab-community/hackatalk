@@ -13524,6 +13524,11 @@ react-native-safe-area-context@3.1.4:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.4.tgz#9b7f883a5ae8da6218d17467a350434005893602"
   integrity sha512-bXx3hqz4LovFoMnJIRGIWL2oJ/PHadXviBKvgZV9yNErtURQLJSn0yfQytVtiqslhaBMZOJwH4R6HiClyofvBg==
 
+react-native-scalable-image@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-scalable-image/-/react-native-scalable-image-1.0.0.tgz#2751a02c2610b4266eb06ce0d466fb1eff266127"
+  integrity sha512-Hcizro1eh7GhelTIjpAYi6WR8ybHNFkMMPSpEeMNI6u1Lxt7b6o97MM9r7+g8hlUjKUlNPQvwaqcf+rW75sSfg==
+
 react-native-screens@~2.10.1:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.10.1.tgz#06d22fae87ef0ce51c616c34a199726db1403b95"

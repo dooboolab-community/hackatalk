@@ -294,6 +294,7 @@ const MessagesFragment: FC<MessageProp> = ({
   };
 
   const [textToSend, setTextToSend] = useState<string>('');
+  const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const { showModal } = useProfileContext();
 
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
@@ -330,6 +331,8 @@ const MessagesFragment: FC<MessageProp> = ({
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
     let image;
+
+    setIsImageUploading(true);
 
     if (type === 'photo') {
       image = await launchImageLibraryAsync();
@@ -370,11 +373,14 @@ const MessagesFragment: FC<MessageProp> = ({
         },
         onError: (error: Error): void => {
           console.log('error', error);
+          setIsImageUploading(false);
         },
       };
 
       commitMessage(mutationConfig);
     }
+
+    setIsImageUploading(false);
   };
 
   return <GiftedChat
@@ -484,7 +490,7 @@ const MessagesFragment: FC<MessageProp> = ({
             color: theme.btnPrimaryFont,
           },
         }}
-        loading={isMessageInFlight}
+        loading={isMessageInFlight || isImageUploading}
         onPress={onSubmit}
         text={getString('SEND')}
         textProps={{
