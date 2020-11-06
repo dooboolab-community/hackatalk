@@ -1,4 +1,14 @@
-import { EmitterSubscription, FlatList, Keyboard, ListRenderItem, Platform, TextInput, View } from 'react-native';
+import {
+  BackHandler,
+  EmitterSubscription,
+  FlatList,
+  Keyboard,
+  ListRenderItem,
+  NativeEventSubscription,
+  Platform,
+  TextInput,
+  View,
+} from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components/native';
@@ -73,6 +83,8 @@ interface Props<T> {
 
 function Shared<T>(props: Props<T>): React.ReactElement {
   let keyboardShowListener: EmitterSubscription;
+  let backHandlerListner: NativeEventSubscription;
+
   // NOTE: typings are not working well with useRef
   const input1 = useRef<TextInput>();
   const input2 = useRef<TextInput>();
@@ -105,6 +117,16 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   }, [showMenu]);
 
   useEffect(() => {
+    backHandlerListner = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (showMenu) {
+        setShowMenu(false);
+
+        return true;
+      }
+
+      return false;
+    });
+
     keyboardShowListener = Keyboard.addListener('keyboardDidShow', (e) => {
       setKeyboardHeight(e.endCoordinates.height);
     });
@@ -112,6 +134,10 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     return (): void => {
       if (keyboardShowListener) {
         keyboardShowListener.remove();
+      }
+
+      if (backHandlerListner) {
+        backHandlerListner.remove();
       }
     };
   }, []);
