@@ -347,7 +347,7 @@ describe('Resolver - Channel', () => {
 
   it('should return private channel it exists', async () => {
     const variables = {
-      peerUserId: friendsId[0],
+      peerUserIds: [friendsId[0]],
     };
 
     const response = await authClient.request(findOrCreatePrivateChannel, variables);
