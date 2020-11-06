@@ -1,8 +1,8 @@
 import { Channel, Message } from '../../types/graphql';
 import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
+import React, { ReactElement } from 'react';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
-import React from 'react';
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
@@ -10,7 +10,8 @@ import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({ theme }): string => theme.itemBackground};
-  height: 92px;
+  min-height: 92px;
+  padding: 8px 0;
   border-bottom-width: 1px;
   border-color: ${({ theme }): string => theme.underline};
   flex-direction: row;
@@ -72,7 +73,7 @@ const StyledViewBottom = styled.View`
 const StyledTextMessage = styled.Text<{ lastMessageCnt: number }>`
   font-size: 12px;
   color: ${({ theme }): string => theme.fontColor};
-  max-width: 150px;
+  max-width: 200px;
   ${({ lastMessageCnt }): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
@@ -86,6 +87,14 @@ const StyledImage = styled.Image`
   width: 40px;
   height: 40px;
   border-radius: 20px;
+`;
+
+const StyledImageSmall = styled.Image`
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 2px;
+  margin-bottom: 2px;
 `;
 
 interface Props {
@@ -129,9 +138,48 @@ function ChannelListItem(props: Props): React.ReactElement {
   } = lastMessage as Message;
 
   if (channelType === 'private') {
-    const user = memberships?.[0]?.user;
-    const photoURL = memberships?.[0]?.user?.thumbURL || memberships?.[0]?.user?.photoURL;
+    const users = memberships?.map((membership) => membership?.user);
+
+    const photoURLs = memberships?.map((membership) => membership?.user?.thumbURL || membership?.user?.photoURL);
     const isOnline = memberships?.[0]?.user?.isOnline;
+
+    const renderSingleImage = (photoURL: string | null | undefined): ReactElement => {
+      if (photoURL) {
+        return <StyledImage source={{ uri: photoURL }} />;
+      }
+
+      return <View
+        style={{
+          width: 40,
+          height: 40,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StyledImage source={IC_NO_IMAGE} />
+      </View>;
+    };
+
+    const renderMultiImages = (photoURLs: (string | null | undefined)[] | undefined): ReactElement => {
+      return <View
+        style={{
+          width: 44,
+          height: 44,
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+        }}
+      >
+        {photoURLs?.map((photo, i) => {
+          if (i > 3) return;
+
+          if (!photo) {
+            return <StyledImageSmall source={IC_NO_IMAGE} />;
+          }
+
+          return <StyledImageSmall key={i} source={{ uri: photo }} />;
+        })}
+      </View>;
+    };
 
     return (
       <View style={{ width: '100%' }}>
@@ -141,28 +189,19 @@ function ChannelListItem(props: Props): React.ReactElement {
         >
           <StyledViewChatRoomListItem>
             <View style={{ marginHorizontal: 20 }}>
-              {photoURL ? (
-                <StyledImage source={{ uri: photoURL }} />
-              ) : (
-                <View
-                  style={{
-                    width: 40,
-                    height: 40,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <StyledImage
-                    source={IC_NO_IMAGE}
-                  />
-                </View>
-              )}
+              {
+                !users || users.length === 1
+                  ? renderSingleImage(photoURLs?.[0])
+                  : renderMultiImages(photoURLs)
+              }
               {isOnline ? <StyledStatus /> : <View />}
             </View>
             <StyledViewContent>
               <StyledViewTop>
-                <StyledTextDisplayName>
-                  {user?.nickname || user?.name || getString('NO_NAME')}
+                <StyledTextDisplayName
+                  numberOfLines={2}
+                >
+                  {users?.map((v) => v?.nickname ?? v?.name ?? getString('NO_NAME')).join(', ')}
                 </StyledTextDisplayName>
                 {(lastMessageCnt) !== 0
                   ? <StyledTextWrapper>

@@ -3,29 +3,31 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ProfileModalFindOrCreatePrivateChannelMutationVariables = {
+export type ChannelCreateFindOrCreatePrivateChannelMutationVariables = {
     peerUserIds: Array<string | null>;
 };
-export type ProfileModalFindOrCreatePrivateChannelMutationResponse = {
+export type ChannelCreateFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
+        readonly channelType: unknown;
     };
 };
-export type ProfileModalFindOrCreatePrivateChannelMutation = {
-    readonly response: ProfileModalFindOrCreatePrivateChannelMutationResponse;
-    readonly variables: ProfileModalFindOrCreatePrivateChannelMutationVariables;
+export type ChannelCreateFindOrCreatePrivateChannelMutation = {
+    readonly response: ChannelCreateFindOrCreatePrivateChannelMutationResponse;
+    readonly variables: ChannelCreateFindOrCreatePrivateChannelMutationVariables;
 };
 
 
 
 /*
-mutation ProfileModalFindOrCreatePrivateChannelMutation(
+mutation ChannelCreateFindOrCreatePrivateChannelMutation(
   $peerUserIds: [String]!
 ) {
   findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
     id
     name
+    channelType
   }
 }
 */
@@ -65,6 +67,13 @@ const node: ConcreteRequest = (function () {
                     "kind": "ScalarField",
                     "name": "name",
                     "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "channelType",
+                    "storageKey": null
                 }
             ],
             "storageKey": null
@@ -75,7 +84,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
+            "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
             "selections": (v1 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -84,18 +93,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
+            "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "522ef9824dfeb93998a3042377af0f7a",
+            "cacheID": "7775e86d79b319dfd656de8e6e9e9ac4",
             "id": null,
             "metadata": {},
-            "name": "ProfileModalFindOrCreatePrivateChannelMutation",
+            "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
             "operationKind": "mutation",
-            "text": "mutation ProfileModalFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n  }\n}\n"
+            "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '34a5a6c57027450dadb72178060e8651';
+(node as any).hash = '7c01e2d7590e8ddad00c80134f31ec8d';
 export default node;

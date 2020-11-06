@@ -80,8 +80,8 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 `;
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserId: String!) {
-    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+    findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name
     }
@@ -229,7 +229,7 @@ const ModalContent: FC<ModalContentProps> = ({
         hideModal();
 
         navigation.navigate('Message', {
-          user,
+          users: [user],
           channel,
         });
       },

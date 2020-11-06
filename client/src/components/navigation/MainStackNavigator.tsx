@@ -36,7 +36,7 @@ export type MainStackParamList = {
   SearchUser: undefined;
   Message: {
     channel: Channel;
-    user?: User;
+    users?: User[];
   };
   Settings: undefined;
   ChangePw: undefined;

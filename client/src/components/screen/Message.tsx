@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
@@ -266,6 +268,16 @@ const MessagesFragment: FC<MessageProp> = ({
     messages,
   );
 
+  useEffect(() => {
+    // Add notification handler.
+    const responseListener = Notifications.addNotificationReceivedListener((event) => {
+      loadPrevious(ITEM_CNT);
+    });
+
+    // Clean up : remove notification handler.
+    return () => Notifications.removeNotificationSubscription(responseListener);
+  }, [data]);
+
   const nodes = useMemo(
     () => {
       return data.messages.edges?.filter(
@@ -282,6 +294,7 @@ const MessagesFragment: FC<MessageProp> = ({
   };
 
   const [textToSend, setTextToSend] = useState<string>('');
+  const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const { showModal } = useProfileContext();
 
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
@@ -306,6 +319,8 @@ const MessagesFragment: FC<MessageProp> = ({
       onCompleted: (response: MessageCreateMutationResponse) => {
         const { text } = response.createMessage;
 
+        setTextToSend('');
+
         console.log('createMessage', text);
       },
       onError: (error: Error): void => {
@@ -318,6 +333,8 @@ const MessagesFragment: FC<MessageProp> = ({
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
     let image;
+
+    setIsImageUploading(true);
 
     if (type === 'photo') {
       image = await launchImageLibraryAsync();
@@ -358,11 +375,14 @@ const MessagesFragment: FC<MessageProp> = ({
         },
         onError: (error: Error): void => {
           console.log('error', error);
+          setIsImageUploading(false);
         },
       };
 
       commitMessage(mutationConfig);
     }
+
+    setIsImageUploading(false);
   };
 
   return <GiftedChat
@@ -472,7 +492,7 @@ const MessagesFragment: FC<MessageProp> = ({
             color: theme.btnPrimaryFont,
           },
         }}
-        loading={isMessageInFlight}
+        loading={isMessageInFlight || isImageUploading}
         onPress={onSubmit}
         text={getString('SEND')}
         textProps={{
@@ -512,7 +532,7 @@ interface Props {
 }
 
 const MessageScreen: FC<Props> = (props) => {
-  const { route: { params: { user, channel } } } = props;
+  const { route: { params: { users, channel } } } = props;
   const navigation = useNavigation();
 
   navigation.setOptions({
@@ -520,15 +540,24 @@ const MessageScreen: FC<Props> = (props) => {
       let title = channel?.name || '';
 
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
-      if (user) {
-        title = user.nickname || user.name || '';
+      if (users) {
+        if (users.length === 1) {
+          title = users[0].nickname || users[0].name || '';
+        } else {
+          const userNames = users.map((v) => v.nickname ?? v.name);
+
+          title = userNames.join(', ');
+        }
       }
 
-      return <Text style={{
-        color: 'white',
-        fontSize: 18,
-        fontWeight: '500',
-      }}>{title}</Text>;
+      return <Text
+        style={{
+          color: 'white',
+          fontSize: 18,
+          fontWeight: '500',
+        }}
+        numberOfLines={2}
+      >{title}</Text>;
     },
   });
 

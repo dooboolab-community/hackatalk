@@ -1,4 +1,5 @@
 import {
+  Animated,
   FlatList,
   Image,
   ScrollView,
@@ -7,118 +8,41 @@ import {
   View,
 } from 'react-native';
 import {
+  ChannelCreateFindOrCreatePrivateChannelMutation,
+  ChannelCreateFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/ChannelCreateFindOrCreatePrivateChannelMutation.graphql';
+import {
+  ChannelCreateFriendsPaginationQuery,
+  ChannelCreateFriendsPaginationQueryVariables,
+} from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
+import {
   IC_CIRCLE_X,
   IC_NO_IMAGE,
 } from '../../utils/Icons';
-import React, { ReactElement, useState } from 'react';
+import React, { FC, ReactElement, Suspense, useMemo, useState } from 'react';
+import { User, UserEdge } from '../../types/graphql';
+import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
 
+import { ChannelCreateFriendsQuery } from '../../__generated__/ChannelCreateFriendsQuery.graphql';
+import { ChannelCreate_friends$key } from '../../__generated__/ChannelCreate_friends.graphql';
 import ErroView from '../shared/ErrorView';
-import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
+import { LoadingIndicator } from 'dooboo-ui';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import SearchTextInput from '../shared/SearchTextInput';
-import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import produce from 'immer';
 import styled from 'styled-components/native';
+import useDebounce from '../../hooks/useDebounce';
+import { useNavigation } from '@react-navigation/native';
 import { useThemeContext } from '@dooboo-ui/theme';
 
-export const fakeFriends: User[] = [
-  {
-    id: '1',
-    name: 'admin',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/45788556?s=200&v=4',
-    statusMessage: 'this is my status message......',
-    isOnline: true,
-  },
-  {
-    id: '2',
-    name: 'geoseong',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/19166187?s=460&v=4',
-    statusMessage: 'hi I am fine',
-    isOnline: false,
-  },
-  {
-    id: '3',
-    name: 'hyochan',
-    thumbURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    photoURL: 'https://avatars2.githubusercontent.com/u/27461460?s=460&v=4',
-    statusMessage: 'hello',
-    isOnline: false,
-  },
-  {
-    id: '4',
-    name: 'mars',
-    thumbURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
-    photoURL: 'https://avatars0.githubusercontent.com/u/6101260?s=460&v=4',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '5',
-    name: 'gordon',
-    thumbURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
-    photoURL: 'https://avatars0.githubusercontent.com/u/10363850?s=460&v=4',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '6',
-    name: 'admin2',
-    thumbURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    photoURL: 'https://avatars3.githubusercontent.com/u/31645570?s=200&v=4',
-    statusMessage: 'how are you',
-    isOnline: true,
-  },
-  {
-    id: '7',
-    name: 'geoseong2',
-    thumbURL:
-      'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
-    photoURL:
-      'https://blogpfthumb-phinf.pstatic.net/20151226_89/imf4_1451062410452TqxER_JPEG/20120428000007_1.jpg',
-    statusMessage: 'offline',
-    isOnline: false,
-  },
-  {
-    id: '8',
-    name: 'hyochan2',
-    thumbURL:
-      'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
-    photoURL:
-      'https://i.ytimg.com/vi/NgKSEvqzYvo/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAWBWqCeP5oTwaB6XMRGXEhvbIiIA',
-    statusMessage: 'offline',
-    isOnline: false,
-  },
-  {
-    id: '9',
-    name: 'mars2',
-    thumbURL:
-      'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
-    photoURL:
-      'https://github.com/marsinearth/violin-mockup/blob/master/static/favicons/android-chrome-192x192.png?raw=true',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-  {
-    id: '10',
-    name: 'gordon2',
-    thumbURL:
-      'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
-    photoURL:
-      'https://miro.medium.com/fit/c/256/256/2*rbUkfoA5vfuphYYULjIG_Q.png',
-    statusMessage: 'offline',
-    isOnline: true,
-  },
-];
+const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({ theme }): string => theme.backgroundDark};
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 `;
 
 const FriendThumbView = styled.View`
@@ -128,93 +52,112 @@ const FriendThumbView = styled.View`
   width: 70px;
 `;
 
-interface Props {
-  navigation: RootStackNavigationProps<'default'>;
-}
-
-interface Friend extends User {
+interface ChannelCreate extends User {
   checked?: boolean;
 }
 
-function Page(props: Props): ReactElement {
-  const { navigation } = props;
-  const { theme } = useThemeContext();
-  const [searchText, setSearchText] = useState<string>('');
-  const [friends, setFriends] = useState<Friend[]>(fakeFriends);
-
-  const pressDone = (): void => {
-    const filtered = friends.filter((v) => (v.checked === true));
-
-    console.log('filtered', filtered);
-  };
-
-  navigation.setOptions({
-    headerRight: (): ReactElement => (
-      <TouchableOpacity
-        testID="touch-done"
-        onPress={pressDone}
-      >
-        <View style={{
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-        }}>
-          <Text style={{
-            color: 'white',
-            fontSize: 14,
-            fontWeight: 'bold',
-          }}>{getString('DONE')}</Text>
-        </View>
-      </TouchableOpacity>
-    ),
-  });
-
-  const onChangeText = (text: string): void => {
-    if (!text) {
-      setFriends(fakeFriends);
-    } else {
-      const filtered = friends.filter((v) => (v.name?.includes(searchText)));
-
-      setFriends(filtered);
+const findOrCreatePrivateChannel = graphql`
+  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+    findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
+      id
+      name
+      channelType
     }
+  }
+`;
 
-    setSearchText(text);
-  };
+const friendsQuery = graphql`
+  query ChannelCreateFriendsQuery($first: Int!, $after: String, $searchText: String) {
+    ...ChannelCreate_friends @arguments(first: $first, after: $after, searchText: $searchText)
+  }
+`;
 
-  const renderFriends = ({
-    item,
-    index,
-  }: {
-    item: Friend;
-    index: number;
-  }): ReactElement => {
-    return (
-      <UserListItem
-        testID={`userlist_${index}`}
-        showCheckBox
-        checked={item.checked}
-        user={item}
-        onPress={(): void => {
-          const nextState = produce(friends, (draftState) => {
-            draftState[index].checked = !item.checked;
-          });
+const friendsFragment = graphql`
+  fragment ChannelCreate_friends on Query
+    @argumentDefinitions(
+      first: {type: "Int!"}
+      after: {type: "String"}
+      searchText: {type: "String"}
+    )
+    @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
+      friends(first: $first, after: $after searchText: $searchText)
+      @connection(key: "ChannelCreate_friends") {
+        edges {
+          cursor
+          node {
+            id
+            email
+            name
+            nickname
+            thumbURL
+            photoURL
+            birthday
+            gender
+            phone
+            statusMessage
+            verified
+            lastSignedIn
+            isOnline
+            createdAt
+            updatedAt
+            deletedAt
+          }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+`;
 
-          setFriends(nextState);
-        }}
-      />
-    );
-  };
+type FriendsFragmentProps = {
+  friend: ChannelCreate_friends$key,
+  scrollY: Animated.Value,
+  searchArgs: ChannelCreateFriendsPaginationQueryVariables,
+  selectedUsers: User[],
+  setSelectedUsers: (users: User[]) => void,
+};
 
-  const removeFriend = (friend: Friend): void => {
-    const nextState = produce(friends, (draftState) => {
-      const index = friends.findIndex((v) => v.id === friend.id);
+const FriendsFragment: FC<FriendsFragmentProps> = ({
+  scrollY,
+  friend,
+  searchArgs,
+  selectedUsers,
+  setSelectedUsers,
+}) => {
+  const {
+    data,
+    loadNext,
+    isLoadingNext,
+    refetch,
+  } = usePaginationFragment<ChannelCreateFriendsPaginationQuery, ChannelCreate_friends$key>(
+    friendsFragment,
+    friend,
+  );
 
-      draftState[index].checked = !friend.checked;
+  const friends = useMemo(() => {
+    return data.friends.edges?.filter(
+      (x): x is NonNullable<typeof x> => x !== null,
+    ) || [];
+  }, [data]);
+
+  const { theme } = useThemeContext();
+  // const [friends, setFriends] = useState<Friend[]>(fakeFriends);
+
+  const navigation = useNavigation();
+
+  const removeFriend = (friend: User): void => {
+    const nextState = produce(selectedUsers, (draftState) => {
+      const index = selectedUsers.findIndex((v) => v.id === friend.id);
+
+      draftState.splice(index, 1);
     });
 
-    setFriends(nextState);
+    setSelectedUsers(nextState);
   };
 
-  const renderFriendThumbnail = (friend: Friend, index: number): ReactElement => {
+  const renderFriendThumbnail = (friend: User, index: number): ReactElement => {
     return <FriendThumbView key={friend.id}>
       <View
         style={{
@@ -240,9 +183,10 @@ function Page(props: Props): ReactElement {
           numberOfLines={1}
           style={{
             fontSize: 12,
+            marginTop: 4,
             color: theme.fontColor,
           }}
-        >{friend.nickname}</Text>
+        >{friend.nickname ?? friend.name}</Text>
       </View>
       <TouchableOpacity
         testID={`remove-${index}`}
@@ -258,20 +202,47 @@ function Page(props: Props): ReactElement {
     </FriendThumbView>;
   };
 
+  const renderItem = ({
+    item,
+    index,
+  }: {
+    item: UserEdge;
+    index: number;
+  }): ReactElement => {
+    return (
+      <UserListItem
+        testID={`userlist_${index}`}
+        showCheckBox
+        checked={selectedUsers.includes(item?.node as User)}
+        // @ts-ignore
+        user={item.node}
+        onPress={(): void => {
+          if (selectedUsers.includes(item?.node as User)) {
+            const nextState = produce(selectedUsers, (draftState) => {
+              const index = selectedUsers.findIndex((v) => v.id === item?.node?.id);
+
+              draftState.splice(index, 1);
+            });
+
+            setSelectedUsers(nextState);
+
+            return;
+          }
+
+          const nextState = produce(selectedUsers, (draftState) => {
+            draftState.push(item.node as User);
+          });
+
+          setSelectedUsers(nextState);
+        }}
+      />
+    );
+  };
+
   return (
     <Container>
-      <SearchTextInput
-        testID="text-input"
-        onChangeText={onChangeText}
-        containerStyle={{
-          marginTop: 12,
-        }}
-        value={searchText}
-      />
       <FlatList
-        style={{
-          alignSelf: 'stretch',
-        }}
+        style={{ alignSelf: 'stretch' }}
         contentContainerStyle={
           friends.length === 0
             ? {
@@ -284,15 +255,13 @@ function Page(props: Props): ReactElement {
         }
         keyExtractor={(_, index): string => index.toString()}
         data={friends}
-        renderItem={renderFriends}
+        renderItem={renderItem}
         ListHeaderComponent={(): ReactElement => {
-          const filtered = friends.filter((v) => (v.checked === true));
-
           return <ScrollView
             style={{ paddingHorizontal: 24, marginBottom: 12 }}
             horizontal
           >
-            {filtered.map((friend, i) => renderFriendThumbnail(friend, i))}
+            {selectedUsers.map((friend, i) => renderFriendThumbnail(friend, i))}
           </ScrollView>;
         }}
         ListEmptyComponent={
@@ -307,6 +276,137 @@ function Page(props: Props): ReactElement {
       />
     </Container>
   );
+};
+
+interface ContentProps {
+  scrollY: Animated.Value,
+  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  selectedUsers: User[],
+  setSelectedUsers: (users: User[]) => void,
 }
 
-export default Page;
+const ContentContainer: FC<ContentProps> = ({
+  searchArgs,
+  scrollY,
+  selectedUsers,
+  setSelectedUsers,
+}) => {
+  const queryResponse = useLazyLoadQuery<ChannelCreateFriendsQuery>(
+    friendsQuery,
+    searchArgs,
+    { fetchPolicy: 'store-or-network' },
+  );
+
+  return <FriendsFragment
+    friend={queryResponse}
+    scrollY={scrollY}
+    searchArgs={searchArgs}
+    selectedUsers={selectedUsers}
+    setSelectedUsers={setSelectedUsers}
+  />;
+};
+
+interface ChannelCreateProps {
+  navigation: MainStackNavigationProps<'ChannelCreate'>;
+}
+
+const ChannelCreate: FC<ChannelCreateProps> = (props) => {
+  const { navigation } = props;
+  const [searchText, setSearchText] = useState<string>('');
+  const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const debouncedText = useDebounce(searchText, 500);
+  const scrollY = new Animated.Value(0);
+
+  const [commitChannel, isChannelInFlight] = useMutation<
+    ChannelCreateFindOrCreatePrivateChannelMutation
+  >(findOrCreatePrivateChannel);
+
+  const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
+    first: ITEM_CNT,
+    searchText: debouncedText,
+  };
+
+  const onChangeText = (text: string): void => {
+    setSearchText(text);
+    scrollY.setValue(0);
+
+    Animated.timing(scrollY, {
+      useNativeDriver: true,
+      toValue: 100,
+      duration: 500,
+    }).start();
+  };
+
+  const pressDone = (): void => {
+    const userIds = selectedUsers.map((v) => v.id);
+
+    const mutationConfig = {
+      variables: {
+        peerUserIds: userIds,
+      },
+      onCompleted: (
+        response: ChannelCreateFindOrCreatePrivateChannelMutationResponse,
+      ): void => {
+        const channel = response.findOrCreatePrivateChannel;
+
+        navigation.replace('Message', {
+          users: selectedUsers,
+          channel,
+        });
+      },
+      onError: (error: Error): void => {
+        console.log('error', error);
+      },
+    };
+
+    commitChannel(mutationConfig);
+  };
+
+  navigation.setOptions({
+    headerRight: (): ReactElement => (
+      <TouchableOpacity
+        testID="touch-done"
+        onPress={pressDone}
+      >
+        <View style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+        }}>
+          <Text style={{
+            color: 'white',
+            fontSize: 14,
+            fontWeight: 'bold',
+          }}>{getString('DONE')}</Text>
+        </View>
+      </TouchableOpacity>
+    ),
+  });
+
+  return (
+    <Container>
+      <SearchTextInput
+        testID="text-input"
+        onChangeText={onChangeText}
+        containerStyle={{
+          marginVertical: 12,
+        }}
+        value={searchText}
+      />
+      <Suspense fallback={<LoadingIndicator/>}>
+        <ContentContainer
+          scrollY={scrollY}
+          searchArgs={searchArgs}
+          selectedUsers={selectedUsers}
+          setSelectedUsers={setSelectedUsers}
+        />
+      </Suspense>
+      {
+        isChannelInFlight
+          ? <LoadingIndicator/>
+          : null
+      }
+    </Container>
+  );
+};
+
+export default ChannelCreate;
