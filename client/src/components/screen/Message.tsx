@@ -319,6 +319,8 @@ const MessagesFragment: FC<MessageProp> = ({
       onCompleted: (response: MessageCreateMutationResponse) => {
         const { text } = response.createMessage;
 
+        setTextToSend('');
+
         console.log('createMessage', text);
       },
       onError: (error: Error): void => {
@@ -548,11 +550,14 @@ const MessageScreen: FC<Props> = (props) => {
         }
       }
 
-      return <Text style={{
-        color: 'white',
-        fontSize: 18,
-        fontWeight: '500',
-      }}>{title}</Text>;
+      return <Text
+        style={{
+          color: 'white',
+          fontSize: 18,
+          fontWeight: '500',
+        }}
+        numberOfLines={2}
+      >{title}</Text>;
     },
   });
 
