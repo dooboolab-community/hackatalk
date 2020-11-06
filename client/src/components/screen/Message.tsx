@@ -524,7 +524,7 @@ interface Props {
 }
 
 const MessageScreen: FC<Props> = (props) => {
-  const { route: { params: { user, channel } } } = props;
+  const { route: { params: { users, channel } } } = props;
   const navigation = useNavigation();
 
   navigation.setOptions({
@@ -532,8 +532,14 @@ const MessageScreen: FC<Props> = (props) => {
       let title = channel?.name || '';
 
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
-      if (user) {
-        title = user.nickname || user.name || '';
+      if (users) {
+        if (users.length === 1) {
+          title = users[0].nickname || users[0].name || '';
+        } else {
+          const userNames = users.map((v) => v.nickname ?? v.name);
+
+          title = userNames.join(', ');
+        }
       }
 
       return <Text style={{

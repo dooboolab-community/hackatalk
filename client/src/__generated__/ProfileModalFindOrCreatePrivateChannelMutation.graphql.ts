@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type ProfileModalFindOrCreatePrivateChannelMutationVariables = {
-    peerUserId: string;
+    peerUserIds: Array<string | null>;
 };
 export type ProfileModalFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
@@ -21,9 +21,9 @@ export type ProfileModalFindOrCreatePrivateChannelMutation = {
 
 /*
 mutation ProfileModalFindOrCreatePrivateChannelMutation(
-  $peerUserId: String!
+  $peerUserIds: [String]!
 ) {
-  findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
     id
     name
   }
@@ -35,7 +35,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "peerUserId"
+            "name": "peerUserIds"
         } as any)
     ], v1 = [
         ({
@@ -43,8 +43,8 @@ const node: ConcreteRequest = (function () {
             "args": [
                 {
                     "kind": "Variable",
-                    "name": "peerUserId",
-                    "variableName": "peerUserId"
+                    "name": "peerUserIds",
+                    "variableName": "peerUserIds"
                 }
             ],
             "concreteType": "Channel",
@@ -88,14 +88,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "bb3817a5b3188142225aeec376b02285",
+            "cacheID": "522ef9824dfeb93998a3042377af0f7a",
             "id": null,
             "metadata": {},
             "name": "ProfileModalFindOrCreatePrivateChannelMutation",
             "operationKind": "mutation",
-            "text": "mutation ProfileModalFindOrCreatePrivateChannelMutation(\n  $peerUserId: String!\n) {\n  findOrCreatePrivateChannel(peerUserId: $peerUserId) {\n    id\n    name\n  }\n}\n"
+            "text": "mutation ProfileModalFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '8f6f8c601dd5d032985f8f5107351824';
+(node as any).hash = '34a5a6c57027450dadb72178060e8651';
 export default node;

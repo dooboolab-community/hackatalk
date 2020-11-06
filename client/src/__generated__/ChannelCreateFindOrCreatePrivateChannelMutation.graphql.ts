@@ -4,12 +4,13 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type ChannelCreateFindOrCreatePrivateChannelMutationVariables = {
-    peerUserId: string;
+    peerUserIds: Array<string | null>;
 };
 export type ChannelCreateFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
+        readonly channelType: unknown;
     };
 };
 export type ChannelCreateFindOrCreatePrivateChannelMutation = {
@@ -21,11 +22,12 @@ export type ChannelCreateFindOrCreatePrivateChannelMutation = {
 
 /*
 mutation ChannelCreateFindOrCreatePrivateChannelMutation(
-  $peerUserId: String!
+  $peerUserIds: [String]!
 ) {
-  findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
     id
     name
+    channelType
   }
 }
 */
@@ -35,7 +37,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "peerUserId"
+            "name": "peerUserIds"
         } as any)
     ], v1 = [
         ({
@@ -43,8 +45,8 @@ const node: ConcreteRequest = (function () {
             "args": [
                 {
                     "kind": "Variable",
-                    "name": "peerUserId",
-                    "variableName": "peerUserId"
+                    "name": "peerUserIds",
+                    "variableName": "peerUserIds"
                 }
             ],
             "concreteType": "Channel",
@@ -64,6 +66,13 @@ const node: ConcreteRequest = (function () {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "name",
+                    "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "channelType",
                     "storageKey": null
                 }
             ],
@@ -88,14 +97,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "1d0a8cc48aa29922537b5cd4920e1201",
+            "cacheID": "7775e86d79b319dfd656de8e6e9e9ac4",
             "id": null,
             "metadata": {},
             "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
             "operationKind": "mutation",
-            "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserId: String!\n) {\n  findOrCreatePrivateChannel(peerUserId: $peerUserId) {\n    id\n    name\n  }\n}\n"
+            "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '0c05e3fecb2f638e6839d1a9d5bdab30';
+(node as any).hash = '7c01e2d7590e8ddad00c80134f31ec8d';
 export default node;

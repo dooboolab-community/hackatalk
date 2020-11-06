@@ -27,7 +27,7 @@ import { ChannelCreateFriendsQuery } from '../../__generated__/ChannelCreateFrie
 import { ChannelCreate_friends$key } from '../../__generated__/ChannelCreate_friends.graphql';
 import ErroView from '../shared/ErrorView';
 import { LoadingIndicator } from 'dooboo-ui';
-import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
+import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import SearchTextInput from '../shared/SearchTextInput';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -57,10 +57,11 @@ interface ChannelCreate extends User {
 }
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserId: String!) {
-    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+    findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name
+      channelType
     }
   }
 `;
@@ -306,7 +307,7 @@ const ContentContainer: FC<ContentProps> = ({
 };
 
 interface ChannelCreateProps {
-  navigation: RootStackNavigationProps<'default'>;
+  navigation: MainStackNavigationProps<'ChannelCreate'>;
 }
 
 const ChannelCreate: FC<ChannelCreateProps> = (props) => {
@@ -337,19 +338,19 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
   };
 
   const pressDone = (): void => {
+    const userIds = selectedUsers.map((v) => v.id);
+
     const mutationConfig = {
       variables: {
-        peerUserId: user.id,
+        peerUserIds: userIds,
       },
       onCompleted: (
         response: ChannelCreateFindOrCreatePrivateChannelMutationResponse,
       ): void => {
         const channel = response.findOrCreatePrivateChannel;
 
-        hideModal();
-
         navigation.navigate('Message', {
-          user,
+          users: selectedUsers,
           channel,
         });
       },

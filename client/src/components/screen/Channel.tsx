@@ -195,7 +195,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
         onPress={(): void => {
           navigation.navigate('Message', {
             channel: item.node,
-            user: item.node?.memberships?.[0]?.user,
+            users: [item.node?.memberships?.[0]?.user],
           });
         }}
       />
