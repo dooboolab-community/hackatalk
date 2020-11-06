@@ -8,6 +8,10 @@ import {
   View,
 } from 'react-native';
 import {
+  ChannelCreateFindOrCreatePrivateChannelMutation,
+  ChannelCreateFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/ChannelCreateFindOrCreatePrivateChannelMutation.graphql';
+import {
   ChannelCreateFriendsPaginationQuery,
   ChannelCreateFriendsPaginationQueryVariables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
@@ -17,7 +21,7 @@ import {
 } from '../../utils/Icons';
 import React, { FC, ReactElement, Suspense, useMemo, useState } from 'react';
 import { User, UserEdge } from '../../types/graphql';
-import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay/hooks';
+import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
 
 import { ChannelCreateFriendsQuery } from '../../__generated__/ChannelCreateFriendsQuery.graphql';
 import { ChannelCreate_friends$key } from '../../__generated__/ChannelCreate_friends.graphql';
@@ -51,6 +55,15 @@ const FriendThumbView = styled.View`
 interface ChannelCreate extends User {
   checked?: boolean;
 }
+
+const findOrCreatePrivateChannel = graphql`
+  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserId: String!) {
+    findOrCreatePrivateChannel(peerUserId: $peerUserId) {
+      id
+      name
+    }
+  }
+`;
 
 const friendsQuery = graphql`
   query ChannelCreateFriendsQuery($first: Int!, $after: String, $searchText: String) {
@@ -303,6 +316,10 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
+  const [commitChannel, isChannelInFlight] = useMutation<
+    ChannelCreateFindOrCreatePrivateChannelMutation
+  >(findOrCreatePrivateChannel);
+
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
@@ -319,17 +336,36 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
     }).start();
   };
 
-  // const pressDone = (): void => {
-  //   const filtered = friends.filter((v) => (v.checked === true));
+  const pressDone = (): void => {
+    const mutationConfig = {
+      variables: {
+        peerUserId: user.id,
+      },
+      onCompleted: (
+        response: ChannelCreateFindOrCreatePrivateChannelMutationResponse,
+      ): void => {
+        const channel = response.findOrCreatePrivateChannel;
 
-  //   console.log('filtered', filtered);
-  // };
+        hideModal();
+
+        navigation.navigate('Message', {
+          user,
+          channel,
+        });
+      },
+      onError: (error: Error): void => {
+        console.log('error', error);
+      },
+    };
+
+    commitChannel(mutationConfig);
+  };
 
   navigation.setOptions({
     headerRight: (): ReactElement => (
       <TouchableOpacity
         testID="touch-done"
-        // onPress={pressDone}
+        onPress={pressDone}
       >
         <View style={{
           paddingHorizontal: 16,
