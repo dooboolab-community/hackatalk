@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
@@ -265,6 +267,16 @@ const MessagesFragment: FC<MessageProp> = ({
     messagesFragment,
     messages,
   );
+
+  useEffect(() => {
+    // Add notification handler.
+    const responseListener = Notifications.addNotificationReceivedListener((event) => {
+      loadPrevious(ITEM_CNT);
+    });
+
+    // Clean up : remove notification handler.
+    return () => Notifications.removeNotificationSubscription(responseListener);
+  }, [data]);
 
   const nodes = useMemo(
     () => {
