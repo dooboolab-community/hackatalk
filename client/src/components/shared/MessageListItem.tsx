@@ -46,11 +46,6 @@ const StyledPhotoContainer = styled.View`
   border-width: 1px;
 `;
 
-const StyledPhotoMessage = styled.Image`
-  width: 200px;
-  height: 200px;
-`;
-
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
   color: ${({ theme }): string => theme.fontColor};
