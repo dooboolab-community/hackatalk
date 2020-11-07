@@ -17,7 +17,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { graphql, useLazyLoadQuery, useMutation } from 'react-relay/hooks';
+import { fetchQuery, graphql, useMutation, useRelayEnvironment } from 'react-relay/hooks';
 
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
@@ -105,31 +105,30 @@ function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   const currentAppState = useAppState();
   const navigation = useNavigation();
-  const [commitChannel, isChannelInFlight] = useMutation<MainStackNavigatorChannelQuery>(channelQuery);
+  const environment = useRelayEnvironment();
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
-      // const url = response.notification.request.content.data.url as string;
-      // Linking.openURL(url);
+      const channelId = JSON.parse(response.notification.request.content.data.data as string).channelId;
 
-      // const data: MainStackNavigatorChannelQueryResponse =
-      // useLazyLoadQuery<MainStackNavigatorChannelQuery>(
-      //   channelQuery,
-      //   { fetchPolicy: 'store-or-network' },
-      // );
-
-      // navigation.navigate('Message', {
-      //   channel: data.channel,
-      //   users: data.channel?.memberships?.map((membership) => membership?.user),
-      // });
+      fetchQuery<MainStackNavigatorChannelQuery>(environment, channelQuery, { channelId }).subscribe({
+        next: (data) => {
+          if (data.channel) {
+            navigation.navigate('Message', {
+              channel: data.channel,
+              users: data.channel?.memberships?.map((membership) => membership?.user),
+            });
+          }
+        },
+      });
     });
-
-    useEffect(() => {
-      console.log('currentAppState', currentAppState);
-    }, [currentAppState]);
 
     return () => subscription.remove();
   }, []);
+
+  useEffect(() => {
+    console.log('currentAppState', currentAppState);
+  }, [currentAppState]);
 
   return (
     <Stack.Navigator
