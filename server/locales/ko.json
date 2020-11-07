@@ -15,5 +15,7 @@
   "PW_CHANGED_TITLE": "비밀번호 변경 완료",
   "PW_CHANGED": "비밀번호가 변경되었습니다. 변경된 임시 비밀번호를 이용하여 로그인해주세요.",
   "VERIFICATION_EMAIL_SUBJECT": "[HackaTalk] 이메일 주소를 인증해주세요!",
-  "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] 비밀번호를 재설정하세요!"
+  "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] 비밀번호를 재설정하세요!",
+  "PHOTO": "사진",
+  "FILE": "파일"
 }

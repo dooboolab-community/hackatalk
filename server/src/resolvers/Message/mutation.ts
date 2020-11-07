@@ -54,12 +54,15 @@ export const createMessage = mutationField('createMessage', {
         sound: 'default',
         title: created.sender.name,
         body: created.messageType === 'photo'
-          ? 'photo'
+          ? ctx.request.req.t('PHOTO')
           : created.messageType === 'file'
-            ? 'file'
+            ? ctx.request.req.t('FILE')
             : created.text,
         data: {
-          data: created.id,
+          data: JSON.stringify({
+            messageId: created.id,
+            channelId,
+          }),
         },
       };
 

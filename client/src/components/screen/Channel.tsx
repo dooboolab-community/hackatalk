@@ -164,7 +164,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
   useEffect(() => {
     // Add notification handler.
     const responseListener = Notifications.addNotificationReceivedListener((event) => {
-      const messageId = event.request.content.data.data;
+      const messageId = JSON.parse(event.request.content.data.data as string).messageId;
 
       if (typeof messageId === 'string') {
         loadLastMessage({ messageId });
