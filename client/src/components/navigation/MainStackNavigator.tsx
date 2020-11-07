@@ -1,5 +1,15 @@
+import * as Notifications from 'expo-notifications';
+
 import { Channel, User } from '../../types/graphql';
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
+import type {
+  MainStackNavigatorChannelQuery,
+  MainStackNavigatorChannelQueryResponse,
+} from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import React, { ReactElement, useEffect } from 'react';
 import {
   StackNavigationOptions,
@@ -7,12 +17,10 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
+import { fetchQuery, graphql, useMutation, useRelayEnvironment } from 'react-relay/hooks';
 
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
-import {
-  CompositeNavigationProp,
-} from '@react-navigation/native';
 import { DefaultTheme } from 'styled-components';
 import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
@@ -73,9 +81,50 @@ function getSimpleHeader(
   };
 }
 
+const channelQuery = graphql`
+  query MainStackNavigatorChannelQuery(
+    $channelId: String!
+  ) {
+    channel(channelId: $channelId) {
+      id
+      channelType
+      name
+      memberships(excludeMe: true) {
+        user {
+          name
+          nickname
+          thumbURL
+          photoURL
+        }
+      }
+    }
+  }
+`;
+
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   const currentAppState = useAppState();
+  const navigation = useNavigation();
+  const environment = useRelayEnvironment();
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
+      const channelId = JSON.parse(response.notification.request.content.data.data as string).channelId;
+
+      fetchQuery<MainStackNavigatorChannelQuery>(environment, channelQuery, { channelId }).subscribe({
+        next: (data) => {
+          if (data.channel) {
+            navigation.navigate('Message', {
+              channel: data.channel,
+              users: data.channel?.memberships?.map((membership) => membership?.user),
+            });
+          }
+        },
+      });
+    });
+
+    return () => subscription.remove();
+  }, []);
 
   useEffect(() => {
     console.log('currentAppState', currentAppState);

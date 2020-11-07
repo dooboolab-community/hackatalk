@@ -34,10 +34,12 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
+      buildNumber: '1.0.0',
     },
     android: {
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
+      versionCode: 1,
     },
     packagerOpts: {
       config: './metro.config.js',
