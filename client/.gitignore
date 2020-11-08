@@ -29,3 +29,8 @@ firebase-debug*.*
 !.vscode/settings.json
 
 __snapshots__
+
+# fbt
+.enum_manifest.json
+.source_strings.json
+.src_manifest.json

@@ -32,7 +32,7 @@ import type {
 } from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
-import { getString } from '../../../STRINGS';
+import { fbt } from 'fbt';
 import { useAuthContext } from '../../providers/AuthProvider';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
@@ -180,13 +180,13 @@ function SignIn(props: Props): ReactElement {
 
   const signIn = async (): Promise<void> => {
     if (!validateEmail(email)) {
-      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      setErrorEmail(fbt('Email is not a valid format.', 'not a valid email'));
 
       return;
     }
 
     if (!password) {
-      setErrorPassword(getString('PASSWORD_REQUIRED'));
+      setErrorPassword(fbt('Password is required.', 'password is required'));
 
       return;
     }
@@ -227,7 +227,7 @@ function SignIn(props: Props): ReactElement {
 
       onError: (error: Error): void => {
         setErrorPassword(error.message);
-        setErrorPassword(getString('PASSWORD_INCORRECT'));
+        setErrorPassword(fbt('Incorrect password', 'incorrect password'));
       },
     };
 
@@ -367,7 +367,7 @@ function SignIn(props: Props): ReactElement {
         <Wrapper>
           <LogoWrapper>
             <View style={{ height: 12 + 60 }} />
-            <StyledLogoText>{getString('HELLO')}</StyledLogoText>
+            <StyledLogoText>{fbt('Hello', 'hello')}</StyledLogoText>
           </LogoWrapper>
           <EditText
             testID="input-email"
@@ -378,7 +378,7 @@ function SignIn(props: Props): ReactElement {
             }}
             style={{ marginBottom: 20 }}
             isRow={true}
-            label={getString('EMAIL')}
+            label={fbt('Email', 'email')}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -400,7 +400,7 @@ function SignIn(props: Props): ReactElement {
             }}
             style={{ marginBottom: 20 }}
             isRow={true}
-            label={getString('PASSWORD')}
+            label={fbt('Password', 'password')}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholder="******"
@@ -438,7 +438,7 @@ function SignIn(props: Props): ReactElement {
                   fontWeight: 'bold',
                 },
               }}
-              text={getString('SIGN_UP')}
+              text={fbt('Sign Up', 'sign up')}
             />
             <View style={{ width: 12 }} />
             <Button
@@ -463,11 +463,11 @@ function SignIn(props: Props): ReactElement {
                   fontWeight: 'bold',
                 },
               }}
-              text={getString('LOGIN')}
+              text={fbt('Sign In', 'sign in')}
             />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <FindPwText>{getString('FORGOT_PW')}</FindPwText>
+            <FindPwText>{fbt('Forgot your password?', 'forgot your password')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
             {
@@ -496,7 +496,7 @@ function SignIn(props: Props): ReactElement {
                   loading={signingInApple}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
-                  text={getString('SIGN_IN_WITH_APPLE')}
+                  text={fbt('Sign in with Apple', 'sign in with apple')}
                 />,
               })
             }
@@ -520,21 +520,21 @@ function SignIn(props: Props): ReactElement {
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
-            <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
+            <StyledAgreementText>{fbt('We consider that you agree with ', 'AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
               onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
             >
-              {getString('AGREEMENT2')}
+              {fbt('Terms for Agreement', 'AGREEMENT2')}
             </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
+            <StyledAgreementText>{fbt('and ', 'AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
               onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
             >
-              {getString('AGREEMENT4')}
+              {fbt('Privacy Policy', 'AGREEMENT4')}
             </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
+            <StyledAgreementText>{fbt(' by going onto next step.', 'AGREEMENT5')}</StyledAgreementText>
           </StyledAgreementTextWrapper>
         </Wrapper>
       </StyledScrollView>

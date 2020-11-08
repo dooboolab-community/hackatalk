@@ -25,9 +25,12 @@ import Icons from './utils/Icons';
 import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import { initFbt } from './utils/fbt';
 import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
 import { useMedia } from './utils/media';
+
+initFbt();
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

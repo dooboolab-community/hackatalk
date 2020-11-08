@@ -1,0 +1,175 @@
+{
+  "fb-locale": "ko",
+  "translations": {
+    "DI1XDPLFe2uClhl7OpUgmw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "회원 가입",
+          "variations": {}
+        }
+      ]
+    },
+    "r2+my787kDiy1FaCiASL0Q==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호 찾기",
+          "variations": {}
+        }
+      ]
+    },
+    "TB6UTE1WuWYoj9NCRlfLkw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "이메일 인증하기",
+          "variations": {}
+        }
+      ]
+    },
+    "wFm5QrRZg2+e+5/XLFDFhA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "이메일 형식이 올바르지 않습니다.",
+          "variations": {}
+        }
+      ]
+    },
+    "Pf7IbPZMN1Q3RzNCzEqOFw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호는 필수 항목입니다.",
+          "variations": {}
+        }
+      ]
+    },
+    "wut8XF6/NgD/z7t5bvfUwQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호를 다시 확인해주세요.",
+          "variations": {}
+        }
+      ]
+    },
+    "KabAxUuxU7w6ynuPNV/4kw==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "안녕하세요",
+          "variations": {}
+        }
+      ]
+    },
+    "wna0FUk7gWFKmLBh9RHo/w==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "이메일",
+          "variations": {}
+        }
+      ]
+    },
+    "ycfrVe6Dn5vAzdhOAkVt9Q==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호",
+          "variations": {}
+        }
+      ]
+    },
+    "OuK0B3eFPD+L53gMQ+E+oA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "로그인",
+          "variations": {}
+        }
+      ]
+    },
+    "AX5xnNZw3LubrMK/Sk6U8A==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호를 잊어버리셨나요?",
+          "variations": {}
+        }
+      ]
+    },
+    "V/h6VWgSJc/zra7eGsLteQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "애플로 로그인하기",
+          "variations": {}
+        }
+      ]
+    },
+    "IwwpeGUFSG2I2jtHTB/cog==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "다음 단계로 진행함과 동시에 ",
+          "variations": {}
+        }
+      ]
+    },
+    "50qekglMTyKGa/BJpvm2rA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "이용약관",
+          "variations": {}
+        }
+      ]
+    },
+    "xQjbh7o1UKaj9GiCJYnPvg==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": " 및 ",
+          "variations": {}
+        }
+      ]
+    },
+    "TwlaQk7JhvQ8koSky3E9jA==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "개인정보취급방침",
+          "variations": {}
+        }
+      ]
+    },
+    "S7+xtdEtcZMf7WivHR+aZQ==": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "에 동의하는 것으로 간주합니다.",
+          "variations": {}
+        }
+      ]
+    }
+  }
+}

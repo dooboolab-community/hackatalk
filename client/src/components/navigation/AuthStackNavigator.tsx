@@ -7,7 +7,7 @@ import { RootStackNavigationProps } from './RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
 import VerifyEmail from '../screen/VerifyEmail';
-import { getString } from '../../../STRINGS';
+import { fbt } from 'fbt';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type AuthStackParamList = {
@@ -52,20 +52,20 @@ function AuthNavigator(): ReactElement {
         headerShown: false,
       }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{
-        title: getString('SIGN_UP'),
+        title: fbt('Sign Up', 'sign up'),
       }} />
       <Stack.Screen
         name="FindPw"
         component={FindPw}
         options={{
-          title: getString('FIND_PW'),
+          title: fbt('Find Password', 'find password'),
         }}
       />
       <Stack.Screen
         name="VerifyEmail"
         component={VerifyEmail}
         options={{
-          title: getString('VERIFY_EMAIL'),
+          title: fbt('Verify Email', 'verify email'),
         }}
       />
     </Stack.Navigator>
