@@ -191,6 +191,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
     return (
       <ChannelListItem
         testID={`list-item-${index}`}
+        key={index}
         item={item.node}
         onPress={(): void => {
           navigation.navigate('Message', {
