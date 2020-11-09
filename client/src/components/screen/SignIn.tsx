@@ -34,6 +34,7 @@ import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
+import { useNavigation } from '@react-navigation/native';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -205,6 +206,12 @@ function SignIn(props: Props): ReactElement {
       setErrorPassword(getString('PASSWORD_REQUIRED'));
 
       return;
+    }
+
+    const licenseAgreed = JSON.parse(await AsyncStorage.getItem('license_agreed') as string);
+
+    if (!licenseAgreed) {
+      return navigation.navigate('LicenseAgreement');
     }
 
     const mutationConfig = {
