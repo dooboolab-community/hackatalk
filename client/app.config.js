@@ -34,7 +34,16 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.0.0',
+      buildNumber: '1.0.1',
+      usesAppleSignIn: true,
+      infoPlist: {
+        NSCameraUsageDescription:
+          'HackaTalk would like to take your picture and share your photo with users in HackaTalk.',
+        NSPhotoLibraryAddUsageDescription:
+          'HackaTalk would like to save photos that you have selected to your photo gallery',
+        NSPhotoLibraryUsageDescription:
+          'HackaTalk would like to access your gallery for you to pick one and share with others.',
+      },
     },
     android: {
       package: 'com.dooboolab.hackatalk',
