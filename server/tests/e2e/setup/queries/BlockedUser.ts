@@ -1,6 +1,6 @@
 export const addBlockedUserMutation = /* GraphQL */`
   mutation addBlockedUser($blockedUserId: String!) {
-    addBlcokedUser(blockedUserId: $blockedUserId) {
+    addBlockedUser(blockedUserId: $blockedUserId) {
       user {
         email
       }
