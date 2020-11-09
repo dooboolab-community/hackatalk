@@ -5,3 +5,4 @@ export * from './Friend';
 export * from './Channel';
 export * from './Message';
 export * from './BlockedUser';
+export * from './Report';

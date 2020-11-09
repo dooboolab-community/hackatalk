@@ -5,10 +5,16 @@ import {
   signUpMutation,
 } from '../setup/queries';
 
+import sgMail from '@sendgrid/mail';
 import { testHost } from '../setup/testSetup';
 
 describe('Resolver - Report', () => {
   it('scenario test', async () => {
+    jest
+      .spyOn(sgMail, 'send')
+      // @ts-ignore
+      .mockImplementation(() => Promise.resolve(true));
+
     // signUp
     const signUpVar = {
       user: {
@@ -67,7 +73,7 @@ describe('Resolver - Report', () => {
       createReportMutation, { reportedUserId, report: 'I want to report him' });
 
     expect(createReportResponse).toHaveProperty('createReport');
-    expect(createReportResponse.addFriend).toHaveProperty('user');
-    expect(createReportResponse.addFriend).toHaveProperty('reportedUser');
+    expect(createReportResponse.createReport).toHaveProperty('user');
+    expect(createReportResponse.createReport).toHaveProperty('reportedUser');
   });
 });

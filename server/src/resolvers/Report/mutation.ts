@@ -1,4 +1,4 @@
-import { MailDataRequired, send } from '@sendgrid/mail';
+import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
 import { mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
@@ -21,7 +21,7 @@ export const createReport = mutationField('createReport', {
       text: `The user (${userId}) have been reported.\n\nmessage: ${report}`,
     };
 
-    await send(msg);
+    await SendGridMail.send(msg);
 
     return ctx.prisma.report.create({
       data: {
