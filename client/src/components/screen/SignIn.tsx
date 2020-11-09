@@ -170,6 +170,22 @@ function SignIn(props: Props): ReactElement {
 
   WebBrowser.maybeCompleteAuthSession();
 
+  const createNotificationIfPushTokenExists = async (): Promise<void> => {
+    const pushToken = await AsyncStorage.getItem('push_token');
+
+    if (pushToken) {
+      const createNotificationMutationConfig = {
+        variables: {
+          token: pushToken,
+          device: Device.modelName,
+          os: Device.osName,
+        },
+      };
+
+      commitNotification(createNotificationMutationConfig);
+    }
+  };
+
   const goToSignUp = (): void => {
     navigation.navigate('SignUp');
   };
@@ -197,7 +213,7 @@ function SignIn(props: Props): ReactElement {
         password,
       },
 
-      onCompleted: async (response: SignInEmailMutationResponse) => {
+      onCompleted: (response: SignInEmailMutationResponse) => {
         const { token, user } = response.signInEmail;
 
         if (user && !user.verified) {
@@ -206,21 +222,9 @@ function SignIn(props: Props): ReactElement {
           });
         }
 
-        await AsyncStorage.setItem('token', token);
+        AsyncStorage.setItem('token', token);
 
-        const pushToken = await AsyncStorage.getItem('push_token');
-
-        if (pushToken) {
-          const createNotificationMutationConfig = {
-            variables: {
-              token: pushToken,
-              device: Device.modelName,
-              os: Device.osName,
-            },
-          };
-
-          commitNotification(createNotificationMutationConfig);
-        }
+        createNotificationIfPushTokenExists();
 
         setUser(user);
       },
@@ -231,7 +235,6 @@ function SignIn(props: Props): ReactElement {
       },
     };
 
-    // @ts-ignore
     commitEmail(mutationConfig);
   };
 
@@ -263,12 +266,15 @@ function SignIn(props: Props): ReactElement {
       if (identityToken) {
         const mutationConfig = {
           variables: {
-            idToken: identityToken,
+            accessToken: identityToken,
           },
           onCompleted: (response: SignInAppleMutationResponse) => {
             const { token, user } = response.signInWithApple;
 
             AsyncStorage.setItem('token', token);
+
+            createNotificationIfPushTokenExists();
+
             setUser(user);
           },
           onError: (error: any): void => {
@@ -505,6 +511,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={facebookSecret}
               svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
               onUserCreated={(user?: User): void => {
+                createNotificationIfPushTokenExists();
                 setUser?.(user);
               }}
               socialProvider={AuthType.Facebook}
@@ -514,6 +521,7 @@ function SignIn(props: Props): ReactElement {
               clientSecret={googleSecret}
               svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
               onUserCreated={(user?: User): void => {
+                createNotificationIfPushTokenExists();
                 setUser?.(user);
               }}
               socialProvider={AuthType.Google}
