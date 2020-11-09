@@ -2,6 +2,7 @@ import * as Notifications from 'expo-notifications';
 
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
@@ -29,7 +30,6 @@ import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
 import type {
   MessageComponent_message$key,
 } from '../../__generated__/MessageComponent_message.graphql';
@@ -559,6 +559,38 @@ const MessageScreen: FC<Props> = (props) => {
         numberOfLines={2}
       >{title}</Text>;
     },
+    headerRight: (): ReactElement => (
+      <View
+        style={{
+          flexDirection: 'row',
+        }}
+      >
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={() => {}}
+        >
+          <View style={{
+            paddingRight: 12,
+            paddingLeft: 8,
+            paddingVertical: 8,
+          }}>
+            <FontAwesome name="exclamation-circle" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={() => {}}
+        >
+          <View style={{
+            paddingRight: 16,
+            paddingLeft: 8,
+            paddingVertical: 8,
+          }}>
+            <FontAwesome name="ban" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
+    ),
   });
 
   const searchArgs: MessagesQueryVariables = {
