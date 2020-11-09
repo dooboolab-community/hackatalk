@@ -35,12 +35,10 @@ export const messages = queryField((t) => {
         ],
       };
 
-      const blockedUsers = await ctx.prisma.blockedUser.findMany({
+      const blockedUsersIds = (await ctx.prisma.blockedUser.findMany({
         select: { blockedUserId: true },
         where: { userId },
-      });
-
-      const blockedUsersInArray = blockedUsers.map((user) => user.blockedUserId);
+      })).map((user) => user.blockedUserId);
 
       return ctx.prisma.message.findMany({
         ...relayToPrismaPagination({
@@ -49,7 +47,7 @@ export const messages = queryField((t) => {
 
         where: {
           channelId,
-          senderId: { notIn: blockedUsersInArray },
+          senderId: { notIn: blockedUsersIds },
           ...filter,
           deletedAt: null,
         },

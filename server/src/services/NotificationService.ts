@@ -43,8 +43,22 @@ export const getReceiversPushTokens = async (channelId: string, userId: string):
 
   const users = memberships.map((membership) => membership.userId);
 
+  const receiversWhoBlockedUser = (await prisma.blockedUser.findMany({
+    select: { userId: true },
+    where: {
+      AND: [
+        { blockedUserId: userId },
+        { userId: { in: users } },
+      ],
+    },
+  })).map((user) => user.userId);
+
+  const receivers = users.filter((user) => !receiversWhoBlockedUser.includes(user));
+
   const notifications = await prisma.notification.findMany({
-    where: { userId: { in: users } },
+    where: {
+      userId: { in: receivers },
+    },
   });
 
   const tokens = notifications.map((notification) => notification.token);
