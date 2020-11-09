@@ -8,3 +8,4 @@ export * from './Message';
 export * from './Reaction';
 export * from './Reply';
 export * from './User';
+export * from './BlockedUser';
