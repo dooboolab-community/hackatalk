@@ -219,7 +219,7 @@ const ModalContent: FC<ModalContentProps> = ({
   const startChat = (): void => {
     const mutationConfig = {
       variables: {
-        peerUserId: user.id,
+        peerUserIds: [user.id],
       },
       onCompleted: (
         response: ProfileModalFindOrCreatePrivateChannelMutationResponse,
