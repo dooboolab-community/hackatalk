@@ -1,5 +1,6 @@
 import { queryField, stringArg } from '@nexus/schema';
 
+import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const message = queryField('message', {
@@ -25,6 +26,7 @@ export const messages = queryField((t) => {
     },
 
     async nodes(_, args, ctx) {
+      const userId = getUserId(ctx);
       const { after, before, first, last, searchText, channelId } = args;
 
       const filter = searchText && {
@@ -33,6 +35,11 @@ export const messages = queryField((t) => {
         ],
       };
 
+      const blockedUsersIds = (await ctx.prisma.blockedUser.findMany({
+        select: { blockedUserId: true },
+        where: { userId },
+      })).map((user) => user.blockedUserId);
+
       return ctx.prisma.message.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
@@ -40,6 +47,7 @@ export const messages = queryField((t) => {
 
         where: {
           channelId,
+          senderId: { notIn: blockedUsersIds },
           ...filter,
           deletedAt: null,
         },

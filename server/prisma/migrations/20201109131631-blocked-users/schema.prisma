@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 enum Gender {
@@ -43,7 +43,6 @@ model User {
   friends                Friend[]                @relation("Friend")
   memberships            Membership[]            @relation("Membership")
   blockedUsers           BlockedUser[]           @relation("BlockedUser")
-  reports                Report[]                @relation("Report")
 }
 
 model Notification {
@@ -89,20 +88,6 @@ model BlockedUser {
   blockedUser            User                    @relation(name: "BlockedUser", fields: [blockedUserId], references: [id])
 
   @@id([userId, blockedUserId])
-}
-
-model Report {
-  report                 String
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
-
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  reportedUserId         String
-  reportedUser           User                    @relation(name: "Report", fields: [reportedUserId], references: [id])
-
-  @@id([userId, reportedUserId])
 }
 
 enum MembershipType {
