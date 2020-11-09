@@ -38,16 +38,27 @@ export const Channel = objectType({
       type: 'Message',
 
       nodes: async ({ id }, args, ctx) => {
+        const userId = getUserId(ctx);
         const { after, before, first, last } = args;
+
+        const blockedUsers = await ctx.prisma.blockedUser.findMany({
+          select: { blockedUserId: true },
+          where: { userId },
+        });
+
+        const blockedUsersInArray = blockedUsers.map((user) => user.blockedUserId);
 
         return ctx.prisma.message.findMany({
           ...relayToPrismaPagination({
             after, before, first, last,
           }),
-          where: { channel: { id } },
-          include: {
-            sender: true,
+          where: {
+            channel: { id },
+            senderId: {
+              notIn: blockedUsersInArray,
+            },
           },
+          include: { sender: true },
         });
       },
     });
