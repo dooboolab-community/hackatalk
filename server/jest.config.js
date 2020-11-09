@@ -4,7 +4,7 @@ const { defaults: tsjPreset } = require('ts-jest/presets');
 module.exports = {
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json',
       diagnostics: false,
     },
     fetch: require('node-fetch'),

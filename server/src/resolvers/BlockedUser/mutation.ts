@@ -2,7 +2,7 @@ import { mutationField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
-export const addBlockedUser = mutationField('addBlockedUser', {
+export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
   args: {
     blockedUserId: stringArg({ required: true }),

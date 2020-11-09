@@ -7,6 +7,6 @@ export const BlockedUser = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
     t.field('user', { type: 'User', nullable: true });
-    t.field('blockedUsers', { type: 'User', nullable: true });
+    t.field('blockedUser', { type: 'User', nullable: true });
   },
 });

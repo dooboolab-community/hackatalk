@@ -1,6 +1,6 @@
 import { GraphQLClient, request } from 'graphql-request';
 import {
-  addBlockedUserMutation,
+  createBlockedUserMutation,
   deleteBlockedUserMutation,
   signInEmailMutation,
   signUpMutation,
@@ -64,17 +64,17 @@ describe('Resolver - BlockedUser', () => {
     const blockedUserId = signUpFriendResponse.signUp.id;
 
     // should add blockedUser
-    const addBlockedUserResponse = await authClient.request(addBlockedUserMutation, { blockedUserId });
+    const createBlockedUserResponse = await authClient.request(createBlockedUserMutation, { blockedUserId });
 
-    expect(addBlockedUserResponse).toHaveProperty('addBlockedUser');
-    expect(addBlockedUserResponse.addFriend).toHaveProperty('user');
-    expect(addBlockedUserResponse.addFriend).toHaveProperty('blockedUser');
+    expect(createBlockedUserResponse).toHaveProperty('createBlockedUser');
+    expect(createBlockedUserResponse.createBlockedUser).toHaveProperty('user');
+    expect(createBlockedUserResponse.createBlockedUser).toHaveProperty('blockedUser');
 
     // should delete blockedUser
     const deleteBlockedUserResponse = await authClient.request(deleteBlockedUserMutation, { blockedUserId });
 
     expect(deleteBlockedUserResponse).toHaveProperty('deleteBlockedUser');
-    expect(deleteBlockedUserResponse.deleteFriend).toHaveProperty('user');
-    expect(deleteBlockedUserResponse.deleteFriend).toHaveProperty('blockedUser');
+    expect(deleteBlockedUserResponse.deleteBlockedUser).toHaveProperty('user');
+    expect(deleteBlockedUserResponse.deleteBlockedUser).toHaveProperty('blockedUser');
   });
 });
