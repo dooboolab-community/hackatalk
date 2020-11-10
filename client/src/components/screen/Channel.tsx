@@ -248,11 +248,11 @@ const ContentContainer: FC<ContentProps> = ({
   searchArgs,
 }) => {
   const data: ChannelsQueryResponse =
-  useLazyLoadQuery<ChannelsQuery>(
-    channelsQuery,
-    searchArgs,
-    { fetchPolicy: 'store-or-network' },
-  );
+    useLazyLoadQuery<ChannelsQuery>(
+      channelsQuery,
+      searchArgs,
+      { fetchPolicy: 'store-or-network' },
+    );
 
   return <ChannelsFragment
     channel={data}

@@ -372,7 +372,7 @@ const Screen: FC<Props> = () => {
                   fontWeight: 'bold',
                 },
               }}
-              loading={isUpdating}
+              loading={isInFlight || isUpdating}
               onPress={updateProfile}
               text={getString('UPDATE')}
             />

@@ -173,6 +173,7 @@ const ModalContent: FC<ModalContentProps> = ({
     isFriend,
     onAddFriend,
     onDeleteFriend,
+    hideButtons,
   },
   hideModal,
 }: ModalContentProps) => {
@@ -412,45 +413,49 @@ const ModalContent: FC<ModalContentProps> = ({
               </StyledTextFriendAdded>
           : null
       }
-      <StyledViewBtns>
-        {
-          deleteFriendInFlight
-            ? <LoadingIndicator size="small" />
-            : <TouchableOpacity
-              testID="touch-add-friend"
+      {
+        !hideButtons
+          ? <StyledViewBtns>
+            {
+              deleteFriendInFlight
+                ? <LoadingIndicator size="small" />
+                : <TouchableOpacity
+                  testID="touch-add-friend"
+                  activeOpacity={0.5}
+                  onPress={isFriend ? deleteFriend : addFriend}
+                  style={styles.viewBtn}
+                >
+                  <View style={styles.viewBtn}>
+                    <StyledText testID="text-add-title">
+                      {
+                        isFriend
+                          ? getString('DELETE_FRIEND')
+                          : getString('ADD_FRIEND')
+                      }
+                    </StyledText>
+                  </View>
+                </TouchableOpacity>
+            }
+            <StyledViewBtnDivider />
+            <TouchableOpacity
+              testID="btn-chat"
               activeOpacity={0.5}
-              onPress={isFriend ? deleteFriend : addFriend}
+              onPress={startChat}
               style={styles.viewBtn}
             >
-              <View style={styles.viewBtn}>
-                <StyledText testID="text-add-title">
-                  {
-                    isFriend
-                      ? getString('DELETE_FRIEND')
-                      : getString('ADD_FRIEND')
-                  }
-                </StyledText>
-              </View>
+              {
+                isChannelInFlight
+                  ? <LoadingIndicator size="small"/>
+                  : <View style={styles.viewBtn}>
+                    <StyledText style={{
+                      color: modalBtnPrimaryFont,
+                    }}>{getString('CHAT')}</StyledText>
+                  </View>
+              }
             </TouchableOpacity>
-        }
-        <StyledViewBtnDivider />
-        <TouchableOpacity
-          testID="btn-chat"
-          activeOpacity={0.5}
-          onPress={startChat}
-          style={styles.viewBtn}
-        >
-          {
-            isChannelInFlight
-              ? <LoadingIndicator size="small"/>
-              : <View style={styles.viewBtn}>
-                <StyledText style={{
-                  color: modalBtnPrimaryFont,
-                }}>{getString('CHAT')}</StyledText>
-              </View>
-          }
-        </TouchableOpacity>
-      </StyledViewBtns>
+          </StyledViewBtns>
+          : null
+      }
     </View>
   );
 };

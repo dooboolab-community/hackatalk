@@ -14,6 +14,9 @@ export type SearchUserComponent_user = {
                 readonly name: string | null;
                 readonly nickname: string | null;
                 readonly hasBlocked: boolean | null;
+                readonly photoURL: string | null;
+                readonly thumbURL: string | null;
+                readonly statusMessage: string | null;
             };
         } | null> | null;
         readonly pageInfo: {
@@ -154,6 +157,27 @@ const node: ReaderFragment = (function () {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
+                                        "name": "photoURL",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "thumbURL",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
+                                        "name": "statusMessage",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
                                         "name": "__typename",
                                         "storageKey": null
                                     }
@@ -196,5 +220,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '8ccdd92e43216ad8e6fa43a5a051d51a';
+(node as any).hash = '67b6bb26c754487ff04cacda759862d6';
 export default node;

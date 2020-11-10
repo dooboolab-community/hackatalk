@@ -513,11 +513,11 @@ const ContentContainer: FC<ContentProps> = ({
   channelId,
 }) => {
   const data: MessagesQueryResponse =
-  useLazyLoadQuery<MessagesQuery>(
-    messagesQuery,
-    searchArgs,
-    { fetchPolicy: 'store-or-network' },
-  );
+    useLazyLoadQuery<MessagesQuery>(
+      messagesQuery,
+      searchArgs,
+      { fetchPolicy: 'store-or-network' },
+    );
 
   return <MessagesFragment
     channelId={channelId}

@@ -11,6 +11,7 @@ export interface ModalState {
   onDeleteFriend?: () => void;
   /** Callback function for add friend button */
   onAddFriend?: () => void;
+  hideButtons?: boolean;
 }
 
 export type ProfileModalContext = {

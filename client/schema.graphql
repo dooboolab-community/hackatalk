@@ -347,7 +347,7 @@ type Query {
   ): MessageConnection!
 
   """Arguments are not needed. Only find blocked users of signed in user"""
-  blockedUsers: [BlockedUser!]
+  blockedUsers: [User!]
   reports(userId: String): [Report!]
 }
 

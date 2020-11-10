@@ -71,6 +71,9 @@ const usersFragment = graphql`
             name
             nickname
             hasBlocked
+            photoURL,
+            thumbURL,
+            statusMessage,
           }
         }
         pageInfo {
