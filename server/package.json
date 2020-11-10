@@ -28,7 +28,7 @@
     "migrate:dev": "dotenv -e ./dotenv/dev.env -- prisma migrate up --experimental",
     "migrate:prod": "dotenv -e ./dotenv/prod.env -- prisma migrate up --experimental",
     "migrate:test": "dotenv -e ./dotenv/test.env -- prisma migrate up --experimental",
-    "studio": "dotenv -e ./dotenv/.env -- prisma studio --experimental"
+    "studio": "dotenv -e ./dotenv/.env -- prisma studio"
   },
   "dependencies": {
     "@nexus/schema": "^0.17.0",
