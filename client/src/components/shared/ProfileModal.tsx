@@ -1,3 +1,4 @@
+import { Alert, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
 import {
@@ -5,7 +6,6 @@ import {
   ProfileModalFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
 import React, { FC, useState } from 'react';
-import { TouchableOpacity, View, ViewStyle } from 'react-native';
 import { graphql, useMutation } from 'react-relay/hooks';
 
 import { ConnectionHandler } from 'relay-runtime';
@@ -13,6 +13,10 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
 import { ProfileModalAddFriendMutation } from '../../__generated__/ProfileModalAddFriendMutation.graphql';
+import { ProfileModalCreateBlockedUserMutation } from
+  '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
+import { ProfileModalDeleteBlockedUserMutation } from
+  '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
 import { ProfileModalDeleteFriendMutation } from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -181,6 +185,14 @@ const ModalContent: FC<ModalContentProps> = ({
     ProfileModalDeleteFriendMutation
   >(deleteFriendMutation);
 
+  const [commitCreateBlockedUser, isCreateBlockedUserInFlight] = useMutation<
+    ProfileModalCreateBlockedUserMutation
+  >(createBlockedUserMutation);
+
+  const [commitDeleteBlockedUser, isDeleteBlockedUserInFlight] = useMutation<
+    ProfileModalDeleteBlockedUserMutation
+  >(deleteBlockedUserMutation);
+
   const addFriend = async (): Promise<void> => {
     commitAddFriend({
       variables: { friendId: user.id },
@@ -238,6 +250,83 @@ const ModalContent: FC<ModalContentProps> = ({
     hideModal();
   };
 
+  const createBlockedUser = (): void => {
+    commitCreateBlockedUser({
+      variables: { blockedUserId: user.id },
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
+        const userProxy = proxyStore.get(user.id);
+
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'SearchUserComponent_users',
+        );
+
+        // Get existing edges.
+        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
+
+        let existingNode;
+
+        for (const edge of prevEdges) {
+          const node = edge.getLinkedRecord('node');
+
+          if (node?.getDataID() === user.id) {
+            existingNode = node;
+            break;
+          }
+        }
+
+        if (existingNode && userProxy) {
+          ConnectionHandler.deleteNode(userProxy, existingNode.getDataID());
+        }
+
+        const newEdge = connectionRecord && userProxy && ConnectionHandler.createEdge(
+          proxyStore,
+          connectionRecord,
+          userProxy,
+          'User',
+        );
+
+        if (connectionRecord && newEdge) {
+          ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+        }
+      },
+    });
+  };
+
+  const deleteBlockedUser = (): void => {
+    commitDeleteBlockedUser({
+      variables: { blockedUserId: user.id },
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
+        const userProxy = proxyStore.get(user.id);
+
+        const connectionRecord = root && ConnectionHandler.getConnection(
+          root,
+          'SearchUserComponent_users',
+        );
+
+        // Get existing edges.
+        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
+
+        let existingNode;
+
+        for (const edge of prevEdges) {
+          const node = edge.getLinkedRecord('node');
+
+          if (node?.getDataID() === user.id) {
+            existingNode = node;
+            break;
+          }
+        }
+
+        if (existingNode && userProxy) {
+          ConnectionHandler.deleteNode(userProxy, existingNode.getDataID());
+        }
+      },
+    });
+  };
+
   const startChat = (): void => {
     const mutationConfig = {
       variables: {
@@ -263,7 +352,7 @@ const ModalContent: FC<ModalContentProps> = ({
     commitChannel(mutationConfig);
   };
 
-  const { photoURL = '', nickname, name, statusMessage } = user;
+  const { photoURL = '', nickname, name, statusMessage, hasBlocked } = user;
   const { theme: { primary, modalBtnPrimaryFont } } = useThemeContext();
   const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
 
@@ -298,18 +387,45 @@ const ModalContent: FC<ModalContentProps> = ({
             <FontAwesome name="exclamation-circle" size={24} color="white" />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          testID="touch-done"
-          onPress={() => {}}
-        >
-          <View style={{
-            paddingRight: 16,
-            paddingLeft: 8,
-            paddingVertical: 8,
-          }}>
-            <FontAwesome name="ban" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
+        {
+          isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight
+            ? <View style={{
+              paddingRight: 16,
+              paddingLeft: 8,
+              paddingVertical: 8,
+              justifyContent: 'center',
+            }}>
+              <LoadingIndicator size="small"/>
+            </View>
+            : <TouchableOpacity
+              testID="touch-done"
+              onPress={(): void => Alert.alert(
+                hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
+                hasBlocked ? getString('UNBAN_USER_TEXT') : getString('UNBAN_USER_TEXT'),
+                [
+                  {
+                    text: getString('NO'),
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {
+                    text: getString('YES'),
+                    onPress: hasBlocked ? deleteBlockedUser : createBlockedUser,
+                  },
+                ],
+                { cancelable: false },
+              )}
+            >
+              <View style={{
+                paddingRight: 16,
+                paddingLeft: 8,
+                paddingVertical: 8,
+              }}>
+
+                <FontAwesome name="ban" size={24} color={ hasBlocked ? 'red' : 'white' } />
+              </View>
+            </TouchableOpacity>
+        }
       </View>
       <StyledView>
         <TouchableOpacity activeOpacity={0.5}>
