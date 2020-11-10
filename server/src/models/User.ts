@@ -46,7 +46,9 @@ export const User = objectType({
           where: { userId, blockedUserId: id },
         });
 
-        return !!blockedUser;
+        if (blockedUser) return true;
+
+        return false;
       },
     });
   },
