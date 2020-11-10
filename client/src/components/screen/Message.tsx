@@ -559,38 +559,6 @@ const MessageScreen: FC<Props> = (props) => {
         numberOfLines={2}
       >{title}</Text>;
     },
-    headerRight: (): ReactElement => (
-      <View
-        style={{
-          flexDirection: 'row',
-        }}
-      >
-        <TouchableOpacity
-          testID="touch-done"
-          onPress={() => {}}
-        >
-          <View style={{
-            paddingRight: 12,
-            paddingLeft: 8,
-            paddingVertical: 8,
-          }}>
-            <FontAwesome name="exclamation-circle" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          testID="touch-done"
-          onPress={() => {}}
-        >
-          <View style={{
-            paddingRight: 16,
-            paddingLeft: 8,
-            paddingVertical: 8,
-          }}>
-            <FontAwesome name="ban" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
-      </View>
-    ),
   });
 
   const searchArgs: MessagesQueryVariables = {

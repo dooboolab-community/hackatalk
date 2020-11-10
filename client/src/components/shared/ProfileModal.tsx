@@ -1,3 +1,4 @@
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
 import {
   ProfileModalFindOrCreatePrivateChannelMutation,
@@ -9,7 +10,6 @@ import { graphql, useMutation } from 'react-relay/hooks';
 
 import { ConnectionHandler } from 'relay-runtime';
 import { IC_NO_IMAGE } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
 import { ProfileModalAddFriendMutation } from '../../__generated__/ProfileModalAddFriendMutation.graphql';
@@ -20,7 +20,7 @@ import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledView = styled.View`
-  margin-top: 40px;
+  margin-top: 64px;
 `;
 
 const StyledImage = styled.Image`
@@ -167,6 +167,8 @@ const ModalContent: FC<ModalContentProps> = ({
   const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(false);
   const navigation = useNavigation();
 
+  console.log('user', user);
+
   const [commitChannel, isChannelInFlight] = useMutation<
     ProfileModalFindOrCreatePrivateChannelMutation
   >(findOrCreatePrivateChannel);
@@ -276,6 +278,39 @@ const ModalContent: FC<ModalContentProps> = ({
         backgroundColor: primary,
       }}
     >
+      <View
+        style={{
+          position: 'absolute',
+          top: 4,
+          right: 8,
+          flexDirection: 'row',
+        }}
+      >
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={() => {}}
+        >
+          <View style={{
+            paddingRight: 12,
+            paddingLeft: 8,
+            paddingVertical: 8,
+          }}>
+            <FontAwesome name="exclamation-circle" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={() => {}}
+        >
+          <View style={{
+            paddingRight: 16,
+            paddingLeft: 8,
+            paddingVertical: 8,
+          }}>
+            <FontAwesome name="ban" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
       <StyledView>
         <TouchableOpacity activeOpacity={0.5}>
           {

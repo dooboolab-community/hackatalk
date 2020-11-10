@@ -22,6 +22,7 @@ export type Friend_friends = {
                 readonly verified: boolean | null;
                 readonly lastSignedIn: unknown | null;
                 readonly isOnline: boolean | null;
+                readonly hasBlocked: boolean | null;
                 readonly createdAt: unknown | null;
                 readonly updatedAt: unknown | null;
                 readonly deletedAt: unknown | null;
@@ -210,6 +211,13 @@ const node: ReaderFragment = (function () {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
+                                        "name": "hasBlocked",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
                                         "name": "createdAt",
                                         "storageKey": null
                                     },
@@ -273,5 +281,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = '9a5e97e353fcb1d6acc21e133da629a8';
+(node as any).hash = 'ccf6d0ce442aca2da0e065d948a57351';
 export default node;

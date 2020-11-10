@@ -22,6 +22,7 @@ export type ChannelCreate_friends = {
                 readonly verified: boolean | null;
                 readonly lastSignedIn: unknown | null;
                 readonly isOnline: boolean | null;
+                readonly hasBlocked: boolean | null;
                 readonly createdAt: unknown | null;
                 readonly updatedAt: unknown | null;
                 readonly deletedAt: unknown | null;
@@ -221,6 +222,13 @@ const node: ReaderFragment = (function () {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
+                                        "name": "hasBlocked",
+                                        "storageKey": null
+                                    },
+                                    {
+                                        "alias": null,
+                                        "args": null,
+                                        "kind": "ScalarField",
                                         "name": "createdAt",
                                         "storageKey": null
                                     },
@@ -284,5 +292,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = 'ea45366d850233ea9a81613dc0c54992';
+(node as any).hash = '522973ce95660f7c00f8dfb45d535b2c';
 export default node;

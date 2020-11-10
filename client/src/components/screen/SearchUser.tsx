@@ -68,6 +68,7 @@ const usersFragment = graphql`
             email
             name
             nickname
+            hasBlocked
           }
         }
         pageInfo {

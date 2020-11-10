@@ -98,6 +98,7 @@ const friendsFragment = graphql`
             verified
             lastSignedIn
             isOnline
+            hasBlocked
             createdAt
             updatedAt
             deletedAt
