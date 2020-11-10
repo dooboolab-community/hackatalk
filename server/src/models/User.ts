@@ -39,16 +39,14 @@ export const User = objectType({
       nullable: true,
       description: 'Check if the user is blocked by the user who have signed in.',
 
-      resolve: ({ id }, args, ctx) => {
+      resolve: async ({ id }, args, ctx) => {
         const userId = getUserId(ctx);
 
-        const blockedUser = ctx.prisma.blockedUser.findFirst({
+        const blockedUser = await ctx.prisma.blockedUser.findFirst({
           where: { userId, blockedUserId: id },
         });
 
-        if (blockedUser) return true;
-
-        return false;
+        return !!blockedUser;
       },
     });
   },
