@@ -28,6 +28,9 @@ export const userConnection = queryField((t) => {
       searchText: stringArg(),
     },
 
+    description:
+      'Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.',
+
     async nodes(_, args, ctx) {
       const { after, before, first, last, searchText } = args;
       const userId = getUserId(ctx);
@@ -51,7 +54,10 @@ export const userConnection = queryField((t) => {
         }),
         where: {
           ...filter,
-          id: { notIn: blockedUsersIds },
+          AND: [
+            { id: { notIn: blockedUsersIds } },
+            { id: { not: userId } },
+          ],
           verified: true,
           deletedAt: null,
         },
