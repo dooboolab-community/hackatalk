@@ -13,13 +13,22 @@ let testingLib: RenderAPI;
 
 describe('Rendering', () => {
   beforeEach(() => {
-    props = createTestProps();
+    props = createTestProps({
+      route: {
+        params: {
+          name: 'hello',
+          userId: 'my-user-id',
+        },
+      },
+    });
+
     component = createTestElement(<Screen {...props} />);
     testingLib = render(component);
   });
 
   it('renders without crashing', () => {
     const baseElement = testingLib.toJSON();
+
     expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
   });
@@ -27,7 +36,15 @@ describe('Rendering', () => {
 
 describe('Interaction', () => {
   beforeEach(() => {
-    props = createTestProps();
+    props = createTestProps({
+      route: {
+        params: {
+          name: 'hello',
+          userId: 'my-user-id',
+        },
+      },
+    });
+
     component = createTestElement(<Screen {...props} />);
     testingLib = render(component);
   });
