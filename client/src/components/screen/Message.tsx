@@ -2,6 +2,7 @@ import * as Notifications from 'expo-notifications';
 
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
@@ -29,7 +30,6 @@ import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
 import type {
   MessageComponent_message$key,
 } from '../../__generated__/MessageComponent_message.graphql';
@@ -236,12 +236,12 @@ function updateChannelsOnSubmit(
     'Channel',
   );
 
-  if (connectionRecord && newEdge) {
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+  if (existingNode && connectionRecord) {
+    ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
   }
 
-  if (existingNode && channelProxy) {
-    ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
+  if (connectionRecord && newEdge) {
+    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
   }
 }
 
@@ -513,11 +513,11 @@ const ContentContainer: FC<ContentProps> = ({
   channelId,
 }) => {
   const data: MessagesQueryResponse =
-  useLazyLoadQuery<MessagesQuery>(
-    messagesQuery,
-    searchArgs,
-    { fetchPolicy: 'store-or-network' },
-  );
+    useLazyLoadQuery<MessagesQuery>(
+      messagesQuery,
+      searchArgs,
+      { fetchPolicy: 'store-or-network' },
+    );
 
   return <MessagesFragment
     channelId={channelId}

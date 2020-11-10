@@ -34,7 +34,7 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.0.1',
+      buildNumber: '1.0.2',
       usesAppleSignIn: true,
       infoPlist: {
         NSCameraUsageDescription:

@@ -3,44 +3,37 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
-export type ProfileUpdateMeQueryVariables = {};
-export type ProfileUpdateMeQueryResponse = {
-    readonly me: {
+export type BlockedUsersQueryVariables = {};
+export type BlockedUsersQueryResponse = {
+    readonly blockedUsers: ReadonlyArray<{
         readonly id: string;
         readonly email: string | null;
         readonly name: string | null;
         readonly nickname: string | null;
-        readonly statusMessage: string | null;
-        readonly verified: boolean | null;
+        readonly hasBlocked: boolean | null;
         readonly photoURL: string | null;
         readonly thumbURL: string | null;
-        readonly profile: {
-            readonly authType: AuthType | null;
-        } | null;
-    } | null;
+        readonly statusMessage: string | null;
+    }> | null;
 };
-export type ProfileUpdateMeQuery = {
-    readonly response: ProfileUpdateMeQueryResponse;
-    readonly variables: ProfileUpdateMeQueryVariables;
+export type BlockedUsersQuery = {
+    readonly response: BlockedUsersQueryResponse;
+    readonly variables: BlockedUsersQueryVariables;
 };
 
 
 
 /*
-query ProfileUpdateMeQuery {
-  me {
+query BlockedUsersQuery {
+  blockedUsers {
     id
     email
     name
     nickname
-    statusMessage
-    verified
+    hasBlocked
     photoURL
     thumbURL
-    profile {
-      authType
-    }
+    statusMessage
   }
 }
 */
@@ -52,8 +45,8 @@ const node: ConcreteRequest = (function () {
             "args": null,
             "concreteType": "User",
             "kind": "LinkedField",
-            "name": "me",
-            "plural": false,
+            "name": "blockedUsers",
+            "plural": true,
             "selections": [
                 {
                     "alias": null,
@@ -87,14 +80,7 @@ const node: ConcreteRequest = (function () {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "statusMessage",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "verified",
+                    "name": "hasBlocked",
                     "storageKey": null
                 },
                 {
@@ -114,19 +100,8 @@ const node: ConcreteRequest = (function () {
                 {
                     "alias": null,
                     "args": null,
-                    "concreteType": "Profile",
-                    "kind": "LinkedField",
-                    "name": "profile",
-                    "plural": false,
-                    "selections": [
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "authType",
-                            "storageKey": null
-                        }
-                    ],
+                    "kind": "ScalarField",
+                    "name": "statusMessage",
                     "storageKey": null
                 }
             ],
@@ -138,7 +113,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "ProfileUpdateMeQuery",
+            "name": "BlockedUsersQuery",
             "selections": (v0 /*: any*/),
             "type": "Query",
             "abstractKey": null
@@ -147,18 +122,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "ProfileUpdateMeQuery",
+            "name": "BlockedUsersQuery",
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "f71da5b3e1367fc5bd7964b5e6b7caf8",
+            "cacheID": "b421043e86ab1fd2248fab232a235667",
             "id": null,
             "metadata": {},
-            "name": "ProfileUpdateMeQuery",
+            "name": "BlockedUsersQuery",
             "operationKind": "query",
-            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
+            "text": "query BlockedUsersQuery {\n  blockedUsers {\n    id\n    email\n    name\n    nickname\n    hasBlocked\n    photoURL\n    thumbURL\n    statusMessage\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'c57ad9efd9805fc9946d1a4897b43b11';
+(node as any).hash = '966c263da30910f84072c5f6550ce2f6';
 export default node;

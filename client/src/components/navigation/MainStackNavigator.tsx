@@ -19,6 +19,7 @@ import {
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import { fetchQuery, graphql, useMutation, useRelayEnvironment } from 'react-relay/hooks';
 
+import BlockedUser from '../screen/BlockedUser';
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
@@ -29,6 +30,7 @@ import {
   ProfileModalProvider,
 } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
+import Report from '../screen/Report';
 import { RootStackNavigationProps } from './RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
 import Settings from '../screen/Settings';
@@ -42,6 +44,11 @@ export type MainStackParamList = {
   MainTab: undefined;
   ProfileUpdate: undefined;
   SearchUser: undefined;
+  BlockedUser: undefined;
+  Report: {
+    name: string;
+    userId: string;
+  };
   Message: {
     channel: Channel;
     users?: User[];
@@ -177,6 +184,16 @@ function MainStackNavigator(): ReactElement {
         name="SearchUser"
         component={SearchUser}
         options={getSimpleHeader(getString('SEARCH_USER'), theme)}
+      />
+      <Stack.Screen
+        name="BlockedUser"
+        component={BlockedUser}
+        options={getSimpleHeader(getString('BLOCKED_USER'), theme)}
+      />
+      <Stack.Screen
+        name="Report"
+        component={Report}
+        options={getSimpleHeader(getString('REPORT'), theme)}
       />
       <Stack.Screen
         name="Message"

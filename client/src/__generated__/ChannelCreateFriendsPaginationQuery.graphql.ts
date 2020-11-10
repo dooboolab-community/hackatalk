@@ -46,6 +46,7 @@ fragment ChannelCreate_friends_2yyznZ on Query {
         verified
         lastSignedIn
         isOnline
+        hasBlocked
         createdAt
         updatedAt
         deletedAt
@@ -242,6 +243,13 @@ const node: ConcreteRequest = (function () {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
+                                            "name": "hasBlocked",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
                                             "name": "createdAt",
                                             "storageKey": null
                                         },
@@ -314,14 +322,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "67dd120ea3e06232d4cae4742c98db3d",
+            "cacheID": "e64da034d5c3783dc1900dead8c44425",
             "id": null,
             "metadata": {},
             "name": "ChannelCreateFriendsPaginationQuery",
             "operationKind": "query",
-            "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'ea45366d850233ea9a81613dc0c54992';
+(node as any).hash = '522973ce95660f7c00f8dfb45d535b2c';
 export default node;

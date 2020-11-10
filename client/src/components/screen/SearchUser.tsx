@@ -1,5 +1,6 @@
-import { Animated, FlatList } from 'react-native';
-import React, { FC, Suspense, useState } from 'react';
+import { Animated, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import React, { FC, ReactElement, Suspense, useState } from 'react';
 import type {
   SearchUsersPaginationQuery,
   SearchUsersPaginationQueryResponse,
@@ -23,6 +24,7 @@ import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
+import { useNavigation } from '@react-navigation/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -68,6 +70,10 @@ const usersFragment = graphql`
             email
             name
             nickname
+            hasBlocked
+            photoURL,
+            thumbURL,
+            statusMessage,
           }
         }
         pageInfo {
@@ -200,6 +206,22 @@ const Screen: FC = () => {
   const debouncedText = useDebounce(searchText, 500);
   const environment = useRelayEnvironment();
   const scrollY = new Animated.Value(0);
+  const navigation = useNavigation();
+
+  navigation.setOptions({
+    headerRight: (): ReactElement => (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('BlockedUser')}
+      >
+        <View style={{
+          paddingHorizontal: 16,
+          paddingVertical: 8,
+        }}>
+          <FontAwesome name="ban" size={24} color="white" />
+        </View>
+      </TouchableOpacity>
+    ),
+  });
 
   const searchArgs: SearchUsersPaginationQueryVariables = {
     first: ITEM_CNT,

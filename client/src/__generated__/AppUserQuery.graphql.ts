@@ -12,7 +12,7 @@ export type AppUserQueryResponse = {
         readonly profile: {
             readonly socialId: string | null;
         } | null;
-    };
+    } | null;
 };
 export type AppUserQuery = {
     readonly response: AppUserQueryResponse;

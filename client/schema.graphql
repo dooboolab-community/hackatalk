@@ -1,3 +1,9 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
 scalar AlertMode
 
 scalar Auth
@@ -12,6 +18,14 @@ enum AuthType {
   facebook
   google
   apple
+}
+
+type BlockedUser {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  blockedUser: User
 }
 
 type Channel {
@@ -213,6 +227,9 @@ type Mutation {
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
   createMessage(channelId: String!, message: MessageCreateInput!): Message!
   deleteMessage(id: String!): Message
+  createBlockedUser(blockedUserId: String!): BlockedUser!
+  deleteBlockedUser(blockedUserId: String!): BlockedUser!
+  createReport(reportedUserId: String!, report: String!): Report!
 }
 
 type Notification {
@@ -272,6 +289,10 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): UserConnection!
+
+  """Fetch current user profile when authenticated."""
+  me: User
+  notifications(userId: String): [Notification!]
   friends(
     searchText: String
 
@@ -287,10 +308,6 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): UserConnection!
-
-  """Fetch current user profile when authenticated."""
-  me: User!
-  notifications(userId: String): [Notification!]
 
   """Get single channel"""
   channel(channelId: String): Channel!
@@ -328,6 +345,10 @@ type Query {
     """Returns the elements in the list that come before the specified cursor"""
     before: String
   ): MessageConnection!
+
+  """Arguments are not needed. Only find blocked users of signed in user"""
+  blockedUsers: [User!]
+  reports(userId: String): [Report!]
 }
 
 type Reaction {
@@ -345,6 +366,15 @@ type Reply {
   updatedAt: DateTime
   deletedAt: DateTime
   sender: User
+}
+
+type Report {
+  report: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  reportedUser: User
 }
 
 type Subscription {
@@ -374,6 +404,9 @@ type User {
   updatedAt: DateTime
   deletedAt: DateTime
   notifications: [Notification!]
+
+  """Check if the user is blocked by the user who have signed in."""
+  hasBlocked: Boolean
 }
 
 type UserConnection {

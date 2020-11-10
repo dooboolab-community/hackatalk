@@ -202,6 +202,7 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
+      jest.spyOn(AsyncStorage, 'getItem').mockImplementation(jest.fn().mockResolvedValue(JSON.stringify(true)));
 
       jest
         .spyOn(AuthContext, 'useAuthContext')
@@ -239,6 +240,10 @@ describe('[SignIn] interaction', () => {
 
       act(() => {
         fireEvent.press(btnSignIn);
+      });
+
+      await waitFor(() => {
+        environment.mock.getMostRecentOperation();
       });
 
       const operation = environment.mock.getMostRecentOperation();

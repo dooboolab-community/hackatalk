@@ -142,7 +142,7 @@ const SocialSignInButton: FC<Props> = ({
           const accessToken = result.params.access_token;
 
           const mutationConfig = {
-            variables: { token: accessToken },
+            variables: { accessToken },
             onCompleted: (response: SocialSignInButtonGoogleSignInMutationResponse) => {
               if (response.signInWithGoogle) {
                 const { user, token } = response.signInWithGoogle;
@@ -169,7 +169,7 @@ const SocialSignInButton: FC<Props> = ({
         const accessToken = result.params.access_token;
 
         const mutationConfig = {
-          variables: { token: accessToken },
+          variables: { accessToken },
           onCompleted: (response: SocialSignInButtonFacebookSignInMutationResponse) => {
             if (response.signInWithFacebook) {
               const { user, token } = response.signInWithFacebook;
