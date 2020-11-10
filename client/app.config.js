@@ -18,6 +18,7 @@ export default {
       image: './assets/splash.png',
       tabletImage: './assets/splashTablet.png',
     },
+    userInterfaceStyle: 'automatic',
     scheme: 'hackatalk',
     updates: {
       fallbackToCacheTimeout: 0,
@@ -27,6 +28,7 @@ export default {
     ],
     facebookDisplayName: 'hackatalk',
     ios: {
+      userInterfaceStyle: 'light',
       supportsTablet: true,
       bundleIdentifier: 'com.dooboolab.hackatalk',
       splash: {
@@ -46,6 +48,7 @@ export default {
       },
     },
     android: {
+      userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
       versionCode: 1,

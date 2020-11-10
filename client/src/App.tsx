@@ -115,6 +115,8 @@ const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) =>
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
 
+  console.log('color', colorScheme);
+
   return (
     <ThemeProvider
       customTheme={{
