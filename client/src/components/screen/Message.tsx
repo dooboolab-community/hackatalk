@@ -236,12 +236,12 @@ function updateChannelsOnSubmit(
     'Channel',
   );
 
-  if (connectionRecord && newEdge) {
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
+  if (existingNode && connectionRecord) {
+    ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
   }
 
-  if (existingNode && channelProxy) {
-    ConnectionHandler.deleteNode(channelProxy, existingNode.getDataID());
+  if (connectionRecord && newEdge) {
+    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
   }
 }
 
