@@ -30,6 +30,12 @@ export const userConnection = queryField((t) => {
 
     async nodes(_, args, ctx) {
       const { after, before, first, last, searchText } = args;
+      const userId = getUserId(ctx);
+
+      const blockedUsersIds = (await ctx.prisma.blockedUser.findMany({
+        select: { blockedUserId: true },
+        where: { userId },
+      })).map((user) => user.blockedUserId);
 
       const filter = searchText && {
         OR: [
@@ -45,6 +51,7 @@ export const userConnection = queryField((t) => {
         }),
         where: {
           ...filter,
+          id: { notIn: blockedUsersIds },
           verified: true,
           deletedAt: null,
         },

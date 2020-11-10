@@ -1,4 +1,5 @@
 import { NexusGenRootTypes } from '../generated/nexus';
+import { getUserId } from '../utils/auth';
 import { objectType } from '@nexus/schema';
 import { prisma } from '../context';
 import { relayToPrismaPagination } from '../utils/pagination';
@@ -32,6 +33,22 @@ export const User = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
     t.list.field('notifications', { type: 'Notification', nullable: true });
+
+    t.field('hasBlocked', {
+      type: 'Boolean',
+      nullable: true,
+      description: 'Check if the user is blocked by the user who have signed in.',
+
+      resolve: ({ id }, args, ctx) => {
+        const userId = getUserId(ctx);
+
+        const blockedUser = ctx.prisma.blockedUser.findFirst({
+          where: { userId, blockedUserId: id },
+        });
+
+        return !!blockedUser;
+      },
+    });
   },
 });
 
