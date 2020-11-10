@@ -108,6 +108,26 @@ const deleteFriendMutation = graphql`
   }
 `;
 
+const createBlockedUserMutation = graphql`
+  mutation ProfileModalCreateBlockedUserMutation($userId: String!) {
+    createBlockedUser(blockedUserId: $userId) {
+      blockedUser {
+        id
+      }
+    }
+  }
+`;
+
+const deleteBlockedUserMutation = graphql`
+  mutation ProfileModalDeleteBlockedUserMutation($userId: String!) {
+    deleteBlockedUser(blockedUserId: $userId) {
+      blockedUser {
+        id
+      }
+    }
+  }
+`;
+
 interface Styles {
   wrapper: ViewStyle;
   viewBtn: ViewStyle;

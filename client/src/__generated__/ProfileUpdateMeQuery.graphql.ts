@@ -18,7 +18,7 @@ export type ProfileUpdateMeQueryResponse = {
         readonly profile: {
             readonly authType: AuthType | null;
         } | null;
-    };
+    } | null;
 };
 export type ProfileUpdateMeQuery = {
     readonly response: ProfileUpdateMeQueryResponse;

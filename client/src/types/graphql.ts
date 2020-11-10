@@ -39,6 +39,15 @@ export enum AuthType {
   Apple = 'apple'
 }
 
+export type BlockedUser = {
+  __typename?: 'BlockedUser';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<User>;
+  blockedUser?: Maybe<User>;
+};
+
 export type Channel = {
   __typename?: 'Channel';
   id: Scalars['String'];
@@ -202,6 +211,9 @@ export type Mutation = {
   kickUsersFromChannel?: Maybe<Channel>;
   createMessage?: Maybe<Message>;
   deleteMessage?: Maybe<Message>;
+  createBlockedUser?: Maybe<BlockedUser>;
+  deleteBlockedUser?: Maybe<BlockedUser>;
+  createReport?: Maybe<Report>;
 };
 
 
@@ -287,7 +299,7 @@ export type MutationCreateChannelArgs = {
 
 
 export type MutationFindOrCreatePrivateChannelArgs = {
-  peerUserId: Scalars['String'];
+  peerUserIds: Array<Maybe<Scalars['String']>>;
 };
 
 
@@ -316,6 +328,22 @@ export type MutationCreateMessageArgs = {
 
 export type MutationDeleteMessageArgs = {
   id: Scalars['String'];
+};
+
+
+export type MutationCreateBlockedUserArgs = {
+  blockedUserId: Scalars['String'];
+};
+
+
+export type MutationDeleteBlockedUserArgs = {
+  blockedUserId: Scalars['String'];
+};
+
+
+export type MutationCreateReportArgs = {
+  reportedUserId: Scalars['String'];
+  report: Scalars['String'];
 };
 
 export type Notification = {
@@ -352,16 +380,19 @@ export type Query = {
   /** Fetch user profile */
   user?: Maybe<User>;
   users?: Maybe<UserConnection>;
-  friends?: Maybe<UserConnection>;
   /** Fetch current user profile when authenticated. */
   me?: Maybe<User>;
   notifications?: Maybe<Array<Maybe<Notification>>>;
+  friends?: Maybe<UserConnection>;
   /** Get single channel */
   channel?: Maybe<Channel>;
   channels?: Maybe<ChannelConnection>;
   /** Get single message */
   message?: Maybe<Message>;
   messages?: Maybe<MessageConnection>;
+  /** Arguments are not needed. Only find blocked users of signed in user */
+  blockedUsers?: Maybe<Array<Maybe<BlockedUser>>>;
+  reports?: Maybe<Array<Maybe<Report>>>;
 };
 
 
@@ -379,17 +410,17 @@ export type QueryUsersArgs = {
 };
 
 
+export type QueryNotificationsArgs = {
+  userId?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryFriendsArgs = {
   searchText?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;
   before?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryNotificationsArgs = {
-  userId?: Maybe<Scalars['String']>;
 };
 
 
@@ -421,6 +452,11 @@ export type QueryMessagesArgs = {
   before?: Maybe<Scalars['String']>;
 };
 
+
+export type QueryReportsArgs = {
+  userId?: Maybe<Scalars['String']>;
+};
+
 export type Reaction = {
   __typename?: 'Reaction';
   id: Scalars['Int'];
@@ -438,6 +474,16 @@ export type Reply = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   sender?: Maybe<User>;
+};
+
+export type Report = {
+  __typename?: 'Report';
+  report: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  user?: Maybe<User>;
+  reportedUser?: Maybe<User>;
 };
 
 export type Subscription = {
@@ -477,6 +523,8 @@ export type User = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   notifications?: Maybe<Array<Maybe<Notification>>>;
+  /** Check if the user is blocked by the user who have signed in. */
+  hasBlocked?: Maybe<Scalars['Boolean']>;
 };
 
 export type UserConnection = {
