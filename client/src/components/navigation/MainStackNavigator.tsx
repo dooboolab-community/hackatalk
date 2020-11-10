@@ -19,6 +19,7 @@ import {
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
 import { fetchQuery, graphql, useMutation, useRelayEnvironment } from 'react-relay/hooks';
 
+import BlockedUser from '../screen/BlockedUser';
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
@@ -42,6 +43,7 @@ export type MainStackParamList = {
   MainTab: undefined;
   ProfileUpdate: undefined;
   SearchUser: undefined;
+  BlockedUser: undefined;
   Message: {
     channel: Channel;
     users?: User[];
@@ -177,6 +179,11 @@ function MainStackNavigator(): ReactElement {
         name="SearchUser"
         component={SearchUser}
         options={getSimpleHeader(getString('SEARCH_USER'), theme)}
+      />
+      <Stack.Screen
+        name="BlockedUser"
+        component={BlockedUser}
+        options={getSimpleHeader(getString('BLOCKED_USER'), theme)}
       />
       <Stack.Screen
         name="Message"
