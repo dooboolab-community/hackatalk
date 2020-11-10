@@ -4,12 +4,16 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type ProfileModalDeleteBlockedUserMutationVariables = {
-    userId: string;
+    blockedUserId: string;
 };
 export type ProfileModalDeleteBlockedUserMutationResponse = {
     readonly deleteBlockedUser: {
         readonly blockedUser: {
             readonly id: string;
+            readonly email: string | null;
+            readonly name: string | null;
+            readonly nickname: string | null;
+            readonly hasBlocked: boolean | null;
         } | null;
     };
 };
@@ -22,11 +26,15 @@ export type ProfileModalDeleteBlockedUserMutation = {
 
 /*
 mutation ProfileModalDeleteBlockedUserMutation(
-  $userId: String!
+  $blockedUserId: String!
 ) {
-  deleteBlockedUser(blockedUserId: $userId) {
+  deleteBlockedUser(blockedUserId: $blockedUserId) {
     blockedUser {
       id
+      email
+      name
+      nickname
+      hasBlocked
     }
   }
 }
@@ -37,7 +45,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "userId"
+            "name": "blockedUserId"
         } as any)
     ], v1 = [
         ({
@@ -46,7 +54,7 @@ const node: ConcreteRequest = (function () {
                 {
                     "kind": "Variable",
                     "name": "blockedUserId",
-                    "variableName": "userId"
+                    "variableName": "blockedUserId"
                 }
             ],
             "concreteType": "BlockedUser",
@@ -67,6 +75,34 @@ const node: ConcreteRequest = (function () {
                             "args": null,
                             "kind": "ScalarField",
                             "name": "id",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "email",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "name",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "nickname",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "hasBlocked",
                             "storageKey": null
                         }
                     ],
@@ -94,14 +130,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "3667288151b1c8228aeb8a245041084e",
+            "cacheID": "d7526ce8b862fbf9a42654617ef4dddf",
             "id": null,
             "metadata": {},
             "name": "ProfileModalDeleteBlockedUserMutation",
             "operationKind": "mutation",
-            "text": "mutation ProfileModalDeleteBlockedUserMutation(\n  $userId: String!\n) {\n  deleteBlockedUser(blockedUserId: $userId) {\n    blockedUser {\n      id\n    }\n  }\n}\n"
+            "text": "mutation ProfileModalDeleteBlockedUserMutation(\n  $blockedUserId: String!\n) {\n  deleteBlockedUser(blockedUserId: $blockedUserId) {\n    blockedUser {\n      id\n      email\n      name\n      nickname\n      hasBlocked\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '6bd760c1684e78620c4524d717c761a4';
+(node as any).hash = '7bb8e8ff9a32d1ff5cf84d4a5a002a9f';
 export default node;

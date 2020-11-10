@@ -113,20 +113,28 @@ const deleteFriendMutation = graphql`
 `;
 
 const createBlockedUserMutation = graphql`
-  mutation ProfileModalCreateBlockedUserMutation($userId: String!) {
-    createBlockedUser(blockedUserId: $userId) {
+  mutation ProfileModalCreateBlockedUserMutation($blockedUserId: String!) {
+    createBlockedUser(blockedUserId: $blockedUserId) {
       blockedUser {
         id
+        email
+        name
+        nickname
+        hasBlocked
       }
     }
   }
 `;
 
 const deleteBlockedUserMutation = graphql`
-  mutation ProfileModalDeleteBlockedUserMutation($userId: String!) {
-    deleteBlockedUser(blockedUserId: $userId) {
+  mutation ProfileModalDeleteBlockedUserMutation($blockedUserId: String!) {
+    deleteBlockedUser(blockedUserId: $blockedUserId) {
       blockedUser {
         id
+        email
+        name
+        nickname
+        hasBlocked
       }
     }
   }
@@ -170,8 +178,6 @@ const ModalContent: FC<ModalContentProps> = ({
 }: ModalContentProps) => {
   const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(false);
   const navigation = useNavigation();
-
-  console.log('user', user);
 
   const [commitChannel, isChannelInFlight] = useMutation<
     ProfileModalFindOrCreatePrivateChannelMutation
@@ -253,78 +259,17 @@ const ModalContent: FC<ModalContentProps> = ({
   const createBlockedUser = (): void => {
     commitCreateBlockedUser({
       variables: { blockedUserId: user.id },
-      updater: (proxyStore) => {
-        const root = proxyStore.getRoot();
-        const userProxy = proxyStore.get(user.id);
-
-        const connectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'SearchUserComponent_users',
-        );
-
-        // Get existing edges.
-        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
-
-        let existingNode;
-
-        for (const edge of prevEdges) {
-          const node = edge.getLinkedRecord('node');
-
-          if (node?.getDataID() === user.id) {
-            existingNode = node;
-            break;
-          }
-        }
-
-        if (existingNode && userProxy) {
-          ConnectionHandler.deleteNode(userProxy, existingNode.getDataID());
-        }
-
-        const newEdge = connectionRecord && userProxy && ConnectionHandler.createEdge(
-          proxyStore,
-          connectionRecord,
-          userProxy,
-          'User',
-        );
-
-        if (connectionRecord && newEdge) {
-          ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-        }
-      },
     });
+
+    hideModal();
   };
 
   const deleteBlockedUser = (): void => {
     commitDeleteBlockedUser({
       variables: { blockedUserId: user.id },
-      updater: (proxyStore) => {
-        const root = proxyStore.getRoot();
-        const userProxy = proxyStore.get(user.id);
-
-        const connectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'SearchUserComponent_users',
-        );
-
-        // Get existing edges.
-        const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
-
-        let existingNode;
-
-        for (const edge of prevEdges) {
-          const node = edge.getLinkedRecord('node');
-
-          if (node?.getDataID() === user.id) {
-            existingNode = node;
-            break;
-          }
-        }
-
-        if (existingNode && userProxy) {
-          ConnectionHandler.deleteNode(userProxy, existingNode.getDataID());
-        }
-      },
     });
+
+    hideModal();
   };
 
   const startChat = (): void => {
