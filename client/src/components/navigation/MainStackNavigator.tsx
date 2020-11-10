@@ -30,6 +30,7 @@ import {
   ProfileModalProvider,
 } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
+import Report from '../screen/Report';
 import { RootStackNavigationProps } from './RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
 import Settings from '../screen/Settings';
@@ -44,6 +45,10 @@ export type MainStackParamList = {
   ProfileUpdate: undefined;
   SearchUser: undefined;
   BlockedUser: undefined;
+  Report: {
+    name: string;
+    userId: string;
+  };
   Message: {
     channel: Channel;
     users?: User[];
@@ -184,6 +189,11 @@ function MainStackNavigator(): ReactElement {
         name="BlockedUser"
         component={BlockedUser}
         options={getSimpleHeader(getString('BLOCKED_USER'), theme)}
+      />
+      <Stack.Screen
+        name="Report"
+        component={Report}
+        options={getSimpleHeader(getString('REPORT'), theme)}
       />
       <Stack.Screen
         name="Message"

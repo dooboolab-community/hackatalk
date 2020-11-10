@@ -299,8 +299,9 @@ const ModalContent: FC<ModalContentProps> = ({
   };
 
   const { photoURL = '', nickname, name, statusMessage, hasBlocked } = user;
+
   const { theme: { primary, modalBtnPrimaryFont } } = useThemeContext();
-  const imageURL = typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
+  const imageURL = typeof photoURL === 'string' && photoURL !== 'null' ? { uri: photoURL } : photoURL;
 
   return (
     <View
@@ -323,7 +324,14 @@ const ModalContent: FC<ModalContentProps> = ({
       >
         <TouchableOpacity
           testID="touch-done"
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('Report', {
+              name: user.nickname ?? user.name ?? getString('NO_NAME'),
+              userId: user.id,
+            });
+
+            hideModal();
+          }}
         >
           <View style={{
             paddingRight: 12,

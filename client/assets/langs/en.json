@@ -101,5 +101,10 @@
   "UNBAN_USER": "Unban User",
   "UNBAN_USER_TEXT": "Do you wan to unban current user? If then, you will start to see and receive messages from the user.",
   "YES": "Yes",
-  "NO": "No"
+  "NO": "No",
+  "REPORT": "Report User",
+  "REPORT_DESCRIPTION": "Please give sepecific reason on why you want to ban the following user.",
+  "SUCCESS": "SUCCESS",
+  "FAILED": "FAILED",
+  "REPORT_SENT": "Report has been sent successfully. The support team will review your reports."
 }

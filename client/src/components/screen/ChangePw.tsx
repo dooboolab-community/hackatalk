@@ -1,16 +1,25 @@
 import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
+import type {
+  ChangePwChangeEmailPasswordMutation,
+  ChangePwChangeEmailPasswordMutationResponse,
+} from '../../__generated__/ChangePwChangeEmailPasswordMutation.graphql';
 import React, {
   ReactElement,
   useEffect,
   useRef,
   useState,
 } from 'react';
+import {
+  graphql,
+  useMutation,
+} from 'react-relay/hooks';
 
 import Constants from 'expo-constants';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -32,6 +41,15 @@ export interface Props {
   navigation: MainStackNavigationProps<'ChangePw'>;
 }
 
+const changeEmailPasswordMutation = graphql`
+  mutation ChangePwChangeEmailPasswordMutation($password: String! $newPassword: String!) {
+    changeEmailPassword(
+      password: $password
+      newPassword: $newPassword
+    )
+  }
+`;
+
 function ChangePw(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
@@ -39,7 +57,8 @@ function ChangePw(props: Props): ReactElement {
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
 
-  const navigateBack = (): void => navigation.goBack();
+  const [commitChangePassword, isInFlight] =
+  useMutation<ChangePwChangeEmailPasswordMutation>(changeEmailPasswordMutation);
 
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
@@ -48,30 +67,29 @@ function ChangePw(props: Props): ReactElement {
       return;
     }
 
-    const variables = {
-      currentPassword: currentPw,
-      newPassword: newPw,
+    const mutationConfig = {
+      variables: {
+        password: currentPw,
+        newPassword: newPw,
+      },
+      onError: (error: any): void => {
+        showAlertForError(error);
+      },
+      onCompleted: (response: ChangePwChangeEmailPasswordMutationResponse) => {
+        const resultBool = response.changeEmailPassword;
+
+        if (resultBool) {
+          Alert.alert(getString('SUCCESS'), getString('PASSWORD_IS_CHANGED'));
+          navigation.goBack();
+
+          return;
+        }
+
+        Alert.alert(getString('FAILED'), getString('CHANGE_PASSWORD_HAS_FAILED'));
+      },
     };
 
-    // try {
-    //   const result = await changePassword({ variables });
-    //   if (result.data?.changeEmailPassword) {
-    //     Keyboard.dismiss();
-    //     Alert.alert('', getString('PASSWORD_IS_CHANGED'), [
-    //       {
-    //         text: getString('OK'),
-    //         onPress: navigateBack,
-    //       },
-    //     ]);
-    //   }
-    // } catch (e) {
-    //   Alert.alert('', getString('CHANGE_PASSWORD_HAS_FAILED'), [
-    //     {
-    //       text: getString('OK'),
-    //       onPress: navigateBack,
-    //     },
-    //   ]);
-    // }
+    commitChangePassword(mutationConfig);
   };
 
   const [keyboardOffset, setKeyboardOffset] = useState(0);
@@ -166,6 +184,7 @@ function ChangePw(props: Props): ReactElement {
               fontSize: 16,
             },
           }}
+          loading={isInFlight}
           text={getString('UPDATE')}
         />
       </StyledKeyboardAvoidingView>
