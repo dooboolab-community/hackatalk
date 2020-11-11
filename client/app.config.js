@@ -36,7 +36,7 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.0.2',
+      buildNumber: '1.0.4',
       usesAppleSignIn: true,
       infoPlist: {
         NSCameraUsageDescription:
@@ -51,7 +51,7 @@ export default {
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
-      versionCode: 1,
+      versionCode: 2,
     },
     packagerOpts: {
       config: './metro.config.js',

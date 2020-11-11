@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type AppUserQueryVariables = {};
 export type AppUserQueryResponse = {
     readonly me: {
@@ -11,6 +12,7 @@ export type AppUserQueryResponse = {
         readonly verified: boolean | null;
         readonly profile: {
             readonly socialId: string | null;
+            readonly authType: AuthType | null;
         } | null;
     } | null;
 };
@@ -29,6 +31,7 @@ query AppUserQuery {
     verified
     profile {
       socialId
+      authType
     }
   }
 }
@@ -79,6 +82,13 @@ const node: ConcreteRequest = (function () {
                             "kind": "ScalarField",
                             "name": "socialId",
                             "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "authType",
+                            "storageKey": null
                         }
                     ],
                     "storageKey": null
@@ -105,14 +115,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "868a52517ce22d40e00bf2b2cd734b22",
+            "cacheID": "c7ac373f316ddaa2bcdad1f78395f167",
             "id": null,
             "metadata": {},
             "name": "AppUserQuery",
             "operationKind": "query",
-            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      socialId\n    }\n  }\n}\n"
+            "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      socialId\n      authType\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '6f86d2027fbb0f5e01e1d3337c02f1e6';
+(node as any).hash = '5899dec4c7af0421b48b8c44700ff68a';
 export default node;

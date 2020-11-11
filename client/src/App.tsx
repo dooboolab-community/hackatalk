@@ -45,6 +45,7 @@ const meQuery = graphql`
       verified
       profile {
         socialId
+        authType
       }
     }
   }
@@ -87,7 +88,7 @@ function App(): ReactElement {
       return;
     }
 
-    // Update auth context.
+    // @ts-ignore
     setUser(me);
 
     // Register notification token.

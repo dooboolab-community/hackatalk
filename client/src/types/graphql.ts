@@ -379,6 +379,7 @@ export type Query = {
   __typename?: 'Query';
   /** Fetch user profile */
   user?: Maybe<User>;
+  /** Query users with relay pagination. This is filterable but it will not return user itself and the blocked users. */
   users?: Maybe<UserConnection>;
   /** Fetch current user profile when authenticated. */
   me?: Maybe<User>;
@@ -391,7 +392,7 @@ export type Query = {
   message?: Maybe<Message>;
   messages?: Maybe<MessageConnection>;
   /** Arguments are not needed. Only find blocked users of signed in user */
-  blockedUsers?: Maybe<Array<Maybe<BlockedUser>>>;
+  blockedUsers?: Maybe<Array<Maybe<User>>>;
   reports?: Maybe<Array<Maybe<Report>>>;
 };
 
