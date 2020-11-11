@@ -48,6 +48,7 @@ const meQuery = graphql`
       verified
       profile {
         socialId
+        authType
       }
     }
   }
@@ -90,7 +91,7 @@ function App(): ReactElement {
       return;
     }
 
-    // Update auth context.
+    // @ts-ignore
     setUser(me);
 
     // Register notification token.
@@ -117,6 +118,8 @@ function App(): ReactElement {
 const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
+
+  console.log('color', colorScheme);
 
   return (
     <ThemeProvider

@@ -37,6 +37,10 @@ fragment SearchUserComponent_user_2yyznZ on Query {
         email
         name
         nickname
+        hasBlocked
+        photoURL
+        thumbURL
+        statusMessage
         __typename
       }
     }
@@ -167,6 +171,34 @@ const node: ConcreteRequest = (function () {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
+                                            "name": "hasBlocked",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
+                                            "name": "photoURL",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
+                                            "name": "thumbURL",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
+                                            "name": "statusMessage",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
                                             "name": "__typename",
                                             "storageKey": null
                                         }
@@ -218,14 +250,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "28b83e6473fd7f1205e06d0d5d9d4503",
+            "cacheID": "b15f92b6205396867b473700d9e54f71",
             "id": null,
             "metadata": {},
             "name": "SearchUsersQuery",
             "operationKind": "query",
-            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        hasBlocked\n        photoURL\n        thumbURL\n        statusMessage\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '333aa95686b149c6754061e2f3db02b1';
+(node as any).hash = '67b6bb26c754487ff04cacda759862d6';
 export default node;

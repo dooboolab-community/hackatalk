@@ -8,7 +8,6 @@ import {
   waitFor,
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { preloadQuery, useRelayEnvironment } from 'react-relay/hooks';
 
 import { MockPayloadGenerator } from 'relay-test-utils';
 import ProfileUpdate from '../ProfileUpdate';
@@ -117,7 +116,7 @@ describe('[ProfileUpdate] interaction', () => {
 
     fireEvent.press(updateButton);
 
-    const operation = await waitFor(() => environment.mock.getMostRecentOperation());
+    const operation = environment.mock.getMostRecentOperation();
 
     environment.mock.resolve(
       operation,

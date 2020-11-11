@@ -44,6 +44,7 @@ fragment Friend_friends_2HEEH6 on Query {
         verified
         lastSignedIn
         isOnline
+        hasBlocked
         createdAt
         updatedAt
         deletedAt
@@ -230,6 +231,13 @@ const node: ConcreteRequest = (function () {
                                             "alias": null,
                                             "args": null,
                                             "kind": "ScalarField",
+                                            "name": "hasBlocked",
+                                            "storageKey": null
+                                        },
+                                        {
+                                            "alias": null,
+                                            "args": null,
+                                            "kind": "ScalarField",
                                             "name": "createdAt",
                                             "storageKey": null
                                         },
@@ -300,14 +308,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "2bcf66b0a9e322aae35f0fe246a74c2d",
+            "cacheID": "fee6f67fa219f1e3486b9374b6af9195",
             "id": null,
             "metadata": {},
             "name": "FriendFriendsPaginationQuery",
             "operationKind": "query",
-            "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n) {\n  ...Friend_friends_2HEEH6\n}\n\nfragment Friend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+            "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n) {\n  ...Friend_friends_2HEEH6\n}\n\nfragment Friend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '9a5e97e353fcb1d6acc21e133da629a8';
+(node as any).hash = 'ccf6d0ce442aca2da0e065d948a57351';
 export default node;

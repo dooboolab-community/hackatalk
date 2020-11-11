@@ -1,10 +1,6 @@
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import { Image, Platform, TouchableOpacity, View } from 'react-native';
-import type {
-  ProfileUpdateSingleUploadMutation,
-  ProfileUpdateSingleUploadMutationResponse,
-} from '../../__generated__/ProfileUpdateSingleUploadMutation.graphql';
+import { Image, TouchableOpacity, View } from 'react-native';
 import React, { FC, useEffect, useState } from 'react';
 import {
   fetchQuery,
@@ -14,12 +10,10 @@ import {
 } from 'react-relay/hooks';
 import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
 
-import { EditTextInputType } from 'dooboo-ui/EditText';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
 import type { ProfileUpdateMutation } from '../../__generated__/ProfileUpdateMutation.graphql';
 import { getString } from '../../../STRINGS';
-import mime from 'mime';
 import { resizeImage } from '../../utils/image';
 import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
@@ -71,13 +65,6 @@ const ProfileImage = styled.Image`
   border-radius: 45px;
 `;
 
-declare let Blob: {
-  prototype: Blob;
-  new (): Blob;
-  new (blobParts: Array<string>, options: Record<string, string>): Blob;
-  name: string;
-};
-
 interface Props {
   navigation: MainStackNavigationProps<'ProfileUpdate'>;
 }
@@ -110,12 +97,6 @@ const profileUpdate = graphql`
   }
 `;
 
-const fileUpload = graphql`
-  mutation ProfileUpdateSingleUploadMutation($file: Upload, $dir: String) {
-    singleUpload(file: $file dir: $dir)
-  }
-`;
-
 const Screen: FC<Props> = () => {
   const { theme } = useThemeContext();
   const [name, setName] = useState('');
@@ -124,8 +105,8 @@ const Screen: FC<Props> = () => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
-  const [commitFileUpload, isInFlight] = useMutation<ProfileUpdateSingleUploadMutation>(fileUpload);
   const [commitProfileUpdate, isUpdating] = useMutation<ProfileUpdateMutation>(profileUpdate);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
@@ -157,52 +138,6 @@ const Screen: FC<Props> = () => {
     }
   };
 
-  const uploadImage = (uri: string): void => {
-    if (Platform.OS === 'android') {
-      uri = 'file:///' + uri.split('file:/').join('');
-    }
-
-    const fileName = uri.split('/').pop();
-    const fileType = mime.getType(uri) as string;
-
-    // [file] created from the `uri` as a Blob object
-    // https://github.com/jaydenseric/apollo-upload-client/#Blob
-    const file = new Blob([uri], {
-      type: fileType,
-      endings: 'native',
-    });
-
-    // TODO: on web env there is an issue on setting the blob filename
-    // @ts-ignore
-    file.name = fileName;
-
-    if (file) {
-      try {
-        const mutationConfig = {
-          variables: {
-            file: null,
-            dir: 'profiles',
-          },
-          uploadables: { file },
-          onCompleted: (
-            response: ProfileUpdateSingleUploadMutationResponse,
-          ) => {
-            console.log('SUCCESS FILE UPLOAD', response);
-
-            if (response.singleUpload) { setProfilePath(uri); }
-          },
-          onError: (error: Error) => {
-            console.log('FAIL UPLOAD', error);
-          },
-        };
-
-        commitFileUpload(mutationConfig);
-      } catch (e) {
-        throw Error(e);
-      }
-    }
-  };
-
   const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
@@ -219,6 +154,8 @@ const Screen: FC<Props> = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
 
+          setIsUploading(true);
+
           if (image && !image.cancelled) {
             const resizedImage = await resizeImage({
               imageUri: image.uri,
@@ -229,6 +166,8 @@ const Screen: FC<Props> = () => {
             // uploadImage(resizedImage.uri);
             const response = await uploadImageAsync(resizedImage.uri, 'profiles');
             const result = JSON.parse(await response.text());
+
+            setIsUploading(false);
 
             setProfilePath(result.url);
           }
@@ -372,7 +311,7 @@ const Screen: FC<Props> = () => {
                   fontWeight: 'bold',
                 },
               }}
-              loading={isUpdating}
+              loading={isUploading || isUpdating}
               onPress={updateProfile}
               text={getString('UPDATE')}
             />

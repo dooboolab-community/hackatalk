@@ -3,6 +3,7 @@ import { StackNavigationProp, createStackNavigator } from '@react-navigation/sta
 
 import { CompositeNavigationProp } from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
+import LicenseAgreement from '../screen/LicenseAgreement';
 import { RootStackNavigationProps } from './RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
@@ -18,6 +19,7 @@ export type AuthStackParamList = {
   VerifyEmail: {
     email: string;
   };
+  LicenseAgreement: undefined;
 };
 
 type NavigationProps<
@@ -66,6 +68,13 @@ function AuthNavigator(): ReactElement {
         component={VerifyEmail}
         options={{
           title: fbt('Verify Email', 'verify email'),
+        }}
+      />
+      <Stack.Screen
+        name="LicenseAgreement"
+        component={LicenseAgreement}
+        options={{
+          title: getString('LICENSE_AGREEMENT'),
         }}
       />
     </Stack.Navigator>

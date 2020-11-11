@@ -15,6 +15,7 @@ import {
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
 } from '../../utils/error';
+import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
 import {
   USER_SIGNED_IN,
   USER_UPDATED,
@@ -23,7 +24,6 @@ import { andThen, pipe } from 'ramda';
 import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
 
 import { AuthType } from '../../models/Scalar';
-import SendGridMail from '@sendgrid/mail';
 import { UserService } from '../../services/UserService';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
@@ -163,7 +163,7 @@ export const signInWithApple = mutationField('signInWithApple', {
         socialId: sub,
         authType: AuthType.apple,
         name: '',
-        email: email,
+        email,
       },
       ctx,
     );
@@ -206,7 +206,7 @@ export const sendVerification = mutationField('sendVerification', {
       const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc, { expiresIn: '10m' });
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
 
-      const msg = {
+      const msg: MailDataRequired = {
         to: email,
         from: SENDGRID_EMAIL,
         subject: ctx.request.req.t('VERIFICATION_EMAIL_SUBJECT'),

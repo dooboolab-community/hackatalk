@@ -99,6 +99,7 @@ const StyledImageSmall = styled.Image`
 
 interface Props {
   testID?: string;
+  key?: string;
   style?: ViewStyle;
   item: Channel;
   lastMessageCnt?: number;
@@ -113,6 +114,7 @@ function ChannelListItem(props: Props): React.ReactElement {
 
   const {
     testID,
+    key,
     item: {
       channelType = 'private',
       lastMessage,
@@ -182,7 +184,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     };
 
     return (
-      <View style={{ width: '100%' }}>
+      <View key={key} style={{ width: '100%' }}>
         <TouchableOpacity
           testID={testID}
           activeOpacity={0.5} onPress={onPress}

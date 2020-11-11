@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type SignInAppleMutationVariables = {
-    idToken: string;
+    accessToken: string;
 };
 export type SignInAppleMutationResponse = {
     readonly signInWithApple: {
@@ -23,9 +23,9 @@ export type SignInAppleMutation = {
 
 /*
 mutation SignInAppleMutation(
-  $idToken: String!
+  $accessToken: String!
 ) {
-  signInWithApple(accessToken: $idToken) {
+  signInWithApple(accessToken: $accessToken) {
     token
     user {
       id
@@ -39,7 +39,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "idToken"
+            "name": "accessToken"
         } as any)
     ], v1 = [
         ({
@@ -48,7 +48,7 @@ const node: ConcreteRequest = (function () {
                 {
                     "kind": "Variable",
                     "name": "accessToken",
-                    "variableName": "idToken"
+                    "variableName": "accessToken"
                 }
             ],
             "concreteType": "AuthPayload",
@@ -103,14 +103,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "35c138f5251cbee5640bf254e09d3be9",
+            "cacheID": "d501704c6043d66e2bf069e7c479cd73",
             "id": null,
             "metadata": {},
             "name": "SignInAppleMutation",
             "operationKind": "mutation",
-            "text": "mutation SignInAppleMutation(\n  $idToken: String!\n) {\n  signInWithApple(accessToken: $idToken) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
+            "text": "mutation SignInAppleMutation(\n  $accessToken: String!\n) {\n  signInWithApple(accessToken: $accessToken) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'e99bef1cc310ea16a7901ce9d8cc07ef';
+(node as any).hash = 'f585a2c83860c99764be69970f41eadd';
 export default node;

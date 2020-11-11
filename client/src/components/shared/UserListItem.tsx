@@ -1,3 +1,4 @@
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import CheckBox from './CheckBox';
@@ -81,7 +82,7 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', email, nickname, name, statusMessage, isOnline },
+  user: { photoURL = '', email, nickname, name, statusMessage, isOnline, hasBlocked },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
 
@@ -110,6 +111,17 @@ function Shared({
             {
               showStatus
                 ? <StatusTag style={{ backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3' }} />
+                : null
+            }
+            {
+              hasBlocked
+                ? <View style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                }}>
+                  <FontAwesome name="ban" size={16} color={ hasBlocked ? 'red' : 'white' } />
+                </View>
                 : null
             }
           </ImageWrapper>

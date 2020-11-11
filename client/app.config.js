@@ -18,6 +18,7 @@ export default {
       image: './assets/splash.png',
       tabletImage: './assets/splashTablet.png',
     },
+    userInterfaceStyle: 'automatic',
     scheme: 'hackatalk',
     updates: {
       fallbackToCacheTimeout: 0,
@@ -27,6 +28,7 @@ export default {
     ],
     facebookDisplayName: 'hackatalk',
     ios: {
+      userInterfaceStyle: 'light',
       supportsTablet: true,
       bundleIdentifier: 'com.dooboolab.hackatalk',
       splash: {
@@ -34,12 +36,22 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.0.0',
+      buildNumber: '1.0.4',
+      usesAppleSignIn: true,
+      infoPlist: {
+        NSCameraUsageDescription:
+          'HackaTalk would like to take your picture and share your photo with users in HackaTalk.',
+        NSPhotoLibraryAddUsageDescription:
+          'HackaTalk would like to save photos that you have selected to your photo gallery',
+        NSPhotoLibraryUsageDescription:
+          'HackaTalk would like to access your gallery for you to pick one and share with others.',
+      },
     },
     android: {
+      userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
-      versionCode: 1,
+      versionCode: 2,
     },
     packagerOpts: {
       config: './metro.config.js',
