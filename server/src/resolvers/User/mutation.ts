@@ -163,7 +163,7 @@ export const signInWithApple = mutationField('signInWithApple', {
         socialId: sub,
         authType: AuthType.apple,
         name: '',
-        email: email,
+        email,
       },
       ctx,
     );

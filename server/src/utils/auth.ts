@@ -105,7 +105,7 @@ const getApplePublicKey = async () => {
     'https://appleid.apple.com/auth/keys',
   );
 
-  const key = JSON.parse(data).keys[0];
+  const key = data.keys[0];
 
   const pubKey = new NodeRSA();
 
@@ -139,10 +139,11 @@ interface AppleUser {
  */
 
 export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
-  const clientID = 'dev.hackatalk';
+  const clientID = 'exp.host.Exponent';
   const TOKEN_ISSUER = 'https://appleid.apple.com';
 
   const applePublicKey = await getApplePublicKey();
+
   const appleUser = verify(idToken, applePublicKey, { algorithms: ['RS256'] }) as AppleUser;
 
   if (appleUser.iss !== TOKEN_ISSUER) {

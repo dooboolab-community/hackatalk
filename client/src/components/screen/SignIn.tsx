@@ -132,8 +132,8 @@ const signInEmail = graphql`
 `;
 
 const signInWithApple = graphql`
-  mutation SignInAppleMutation($idToken: String!) {
-    signInWithApple(accessToken: $idToken) {
+  mutation SignInAppleMutation($accessToken: String!) {
+    signInWithApple(accessToken: $accessToken) {
       token
       user {
         id
@@ -538,14 +538,14 @@ function SignIn(props: Props): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
-              onPress={(): void => goToWebView('https://dooboolab.com/termsofservice')}
+              onPress={(): void => goToWebView('https://legacy.dooboolab.com/termsofservice')}
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
-              onPress={(): void => goToWebView('https://dooboolab.com/privacyandpolicy')}
+              onPress={(): void => goToWebView('https://legacy.dooboolab.com/privacyandpolicy')}
             >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>

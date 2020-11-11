@@ -28,8 +28,8 @@ interface Props {
 }
 
 const signInWithFacebook = graphql`
-  mutation SocialSignInButtonFacebookSignInMutation($token: String!) {
-    signInWithFacebook(accessToken: $token) {
+  mutation SocialSignInButtonFacebookSignInMutation($accessToken: String!) {
+    signInWithFacebook(accessToken: $accessToken) {
       token
       user {
         id
@@ -43,8 +43,8 @@ const signInWithFacebook = graphql`
 `;
 
 const signInWithGoogle = graphql`
-  mutation SocialSignInButtonGoogleSignInMutation($token: String!) {
-    signInWithGoogle(accessToken: $token) {
+  mutation SocialSignInButtonGoogleSignInMutation($accessToken: String!) {
+    signInWithGoogle(accessToken: $accessToken) {
       token
       user {
         id

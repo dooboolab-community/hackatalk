@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type SocialSignInButtonGoogleSignInMutationVariables = {
-    token: string;
+    accessToken: string;
 };
 export type SocialSignInButtonGoogleSignInMutationResponse = {
     readonly signInWithGoogle: {
@@ -23,9 +23,9 @@ export type SocialSignInButtonGoogleSignInMutation = {
 
 /*
 mutation SocialSignInButtonGoogleSignInMutation(
-  $token: String!
+  $accessToken: String!
 ) {
-  signInWithGoogle(accessToken: $token) {
+  signInWithGoogle(accessToken: $accessToken) {
     token
     user {
       id
@@ -39,7 +39,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "token"
+            "name": "accessToken"
         } as any)
     ], v1 = [
         ({
@@ -48,7 +48,7 @@ const node: ConcreteRequest = (function () {
                 {
                     "kind": "Variable",
                     "name": "accessToken",
-                    "variableName": "token"
+                    "variableName": "accessToken"
                 }
             ],
             "concreteType": "AuthPayload",
@@ -103,14 +103,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "81b9a31bae5c1ceab9aa498c0e535143",
+            "cacheID": "df2ba06ae3ff50fb1830ffdd8839922c",
             "id": null,
             "metadata": {},
             "name": "SocialSignInButtonGoogleSignInMutation",
             "operationKind": "mutation",
-            "text": "mutation SocialSignInButtonGoogleSignInMutation(\n  $token: String!\n) {\n  signInWithGoogle(accessToken: $token) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
+            "text": "mutation SocialSignInButtonGoogleSignInMutation(\n  $accessToken: String!\n) {\n  signInWithGoogle(accessToken: $accessToken) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '55670a6ac6f2038ced30fbbc7d83aeb6';
+(node as any).hash = '8720da50c20025e15e124a2c1dbedd25';
 export default node;
