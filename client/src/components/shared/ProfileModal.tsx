@@ -355,7 +355,7 @@ const ModalContent: FC<ModalContentProps> = ({
               testID="touch-done"
               onPress={(): void => Alert.alert(
                 hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
-                hasBlocked ? getString('UNBAN_USER_TEXT') : getString('UNBAN_USER_TEXT'),
+                hasBlocked ? getString('UNBAN_USER_TEXT') : getString('BAN_USER_TEXT'),
                 [
                   {
                     text: getString('NO'),
