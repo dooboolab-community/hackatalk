@@ -132,8 +132,8 @@ const signInEmail = graphql`
 `;
 
 const signInWithApple = graphql`
-  mutation SignInAppleMutation($idToken: String!) {
-    signInWithApple(accessToken: $idToken) {
+  mutation SignInAppleMutation($accessToken: String!) {
+    signInWithApple(accessToken: $accessToken) {
       token
       user {
         id

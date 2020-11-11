@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type SocialSignInButtonFacebookSignInMutationVariables = {
-    token: string;
+    accessToken: string;
 };
 export type SocialSignInButtonFacebookSignInMutationResponse = {
     readonly signInWithFacebook: {
@@ -26,9 +26,9 @@ export type SocialSignInButtonFacebookSignInMutation = {
 
 /*
 mutation SocialSignInButtonFacebookSignInMutation(
-  $token: String!
+  $accessToken: String!
 ) {
-  signInWithFacebook(accessToken: $token) {
+  signInWithFacebook(accessToken: $accessToken) {
     token
     user {
       id
@@ -45,7 +45,7 @@ const node: ConcreteRequest = (function () {
         ({
             "defaultValue": null,
             "kind": "LocalArgument",
-            "name": "token"
+            "name": "accessToken"
         } as any)
     ], v1 = [
         ({
@@ -54,7 +54,7 @@ const node: ConcreteRequest = (function () {
                 {
                     "kind": "Variable",
                     "name": "accessToken",
-                    "variableName": "token"
+                    "variableName": "accessToken"
                 }
             ],
             "concreteType": "AuthPayload",
@@ -130,14 +130,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "cecbee289e8cf5a4a313c95ffe414a4c",
+            "cacheID": "943a15b42d8df25d0ba5dbc632c9626b",
             "id": null,
             "metadata": {},
             "name": "SocialSignInButtonFacebookSignInMutation",
             "operationKind": "mutation",
-            "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $token: String!\n) {\n  signInWithFacebook(accessToken: $token) {\n    token\n    user {\n      id\n      email\n      name\n      nickname\n    }\n  }\n}\n"
+            "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      nickname\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '4136b1130e4314532ce436342c61b6f9';
+(node as any).hash = '14cfa79e3da167b39bc38ee3879495b8';
 export default node;
