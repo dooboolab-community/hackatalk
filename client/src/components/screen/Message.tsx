@@ -393,9 +393,7 @@ const MessagesFragment: FC<MessageProp> = ({
     backgroundColor={theme.background}
     fontColor={theme.fontColor}
     keyboardOffset={Platform.select({
-      ios: isIPhoneX()
-        ? Constants.statusBarHeight + 40
-        : Constants.statusBarHeight,
+      ios: Constants.statusBarHeight + 40,
       android: Constants.statusBarHeight + 52,
     })}
     message={textToSend}

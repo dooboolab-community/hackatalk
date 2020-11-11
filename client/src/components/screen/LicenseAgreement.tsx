@@ -46,7 +46,7 @@ const Page: FC<Props> = ({
           paddingVertical: 8,
         }}>
           <Text style={{
-            color: theme.primary,
+            color: theme.font,
             fontSize: 14,
             fontWeight: 'bold',
           }}>{getString('AGREE')}</Text>
