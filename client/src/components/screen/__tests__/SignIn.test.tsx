@@ -144,7 +144,7 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(btnTerms);
     });
 
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/termsofservice' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://legacy.dooboolab.com/termsofservice' });
   });
 
   it('should navigate to [WebView] when terms has been pressed', async () => {
@@ -156,7 +156,7 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(btnPrivary);
     });
 
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://dooboolab.com/privacyandpolicy' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://legacy.dooboolab.com/privacyandpolicy' });
   });
 
   describe('onSignIn', () => {
