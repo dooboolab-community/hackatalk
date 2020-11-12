@@ -243,7 +243,7 @@ function SignIn(props: Props): ReactElement {
 
         createNotificationIfPushTokenExists();
 
-        setUser(user);
+        setUser(user as User);
       },
 
       onError: (error: Error): void => {
@@ -292,8 +292,7 @@ function SignIn(props: Props): ReactElement {
 
             createNotificationIfPushTokenExists();
 
-            // @ts-ignore
-            setUser(user);
+            setUser(user as User);
           },
           onError: (error: any): void => {
             showAlertForError(error);
