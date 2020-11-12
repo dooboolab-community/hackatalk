@@ -17,5 +17,6 @@
   "VERIFICATION_EMAIL_SUBJECT": "[HackaTalk] Verify your email address!",
   "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] Reset your password!",
   "PHOTO": "Photo",
-  "FILE": "File"
+  "FILE": "File",
+  "USER_REPORTED": "User has been reported"
 }

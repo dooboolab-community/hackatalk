@@ -17,5 +17,6 @@
   "VERIFICATION_EMAIL_SUBJECT": "[HackaTalk] 이메일 주소를 인증해주세요!",
   "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] 비밀번호를 재설정하세요!",
   "PHOTO": "사진",
-  "FILE": "파일"
+  "FILE": "파일",
+  "USER_REPORTED": "사용자 신고가 접수되었습니다."
 }
