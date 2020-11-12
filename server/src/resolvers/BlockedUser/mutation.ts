@@ -4,9 +4,12 @@ import { getUserId } from '../../utils/auth';
 
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
+  nullable: false,
+
   args: {
     blockedUserId: stringArg({ required: true }),
   },
+
   resolve: (_, { blockedUserId }, ctx) => {
     const userId = getUserId(ctx);
 
@@ -33,9 +36,13 @@ export const createBlockedUser = mutationField('createBlockedUser', {
 
 export const deleteBlockedUser = mutationField('deleteBlockedUser', {
   type: 'BlockedUser',
+
   args: {
     blockedUserId: stringArg({ required: true }),
   },
+
+  nullable: false,
+
   resolve: (_, { blockedUserId }, ctx) => {
     const userId = getUserId(ctx);
 

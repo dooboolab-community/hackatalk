@@ -23,6 +23,7 @@ export const user = queryField('user', {
 export const userConnection = queryField((t) => {
   t.connectionField('users', {
     type: 'User',
+    nullable: false,
 
     additionalArgs: {
       searchText: stringArg(),

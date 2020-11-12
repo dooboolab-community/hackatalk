@@ -4,9 +4,12 @@ import { getUserId } from '../../utils/auth';
 
 export const addFriend = mutationField('addFriend', {
   type: 'Friend',
+  nullable: false,
+
   args: {
     friendId: stringArg({ required: true }),
   },
+
   resolve: (_, { friendId }, ctx) => {
     const userId = getUserId(ctx);
 

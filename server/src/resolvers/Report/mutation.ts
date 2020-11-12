@@ -7,10 +7,13 @@ const { SENDGRID_EMAIL } = process.env;
 
 export const createReport = mutationField('createReport', {
   type: 'Report',
+  nullable: false,
+
   args: {
     reportedUserId: stringArg({ required: true }),
     report: stringArg({ nullable: false }),
   },
+
   resolve: async (_, { reportedUserId, report }, ctx) => {
     const userId = getUserId(ctx);
 

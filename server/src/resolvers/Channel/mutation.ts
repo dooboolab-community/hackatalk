@@ -41,6 +41,8 @@ export const createChannel = mutationField('createChannel', {
     message: MessageCreateInput,
   },
 
+  nullable: false,
+
   description: `Creates channel of [ChannelType].
   The private channel is unique by the unique members while
   the public channel can be created by each request.
@@ -117,6 +119,7 @@ export const createChannel = mutationField('createChannel', {
 export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChannel', {
   type: 'Channel',
   args: { peerUserIds: stringArg({ nullable: false, list: true }) },
+  nullable: false,
 
   description: 'Find or create channel associated to peer user id.',
 
@@ -141,6 +144,7 @@ export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChan
 export const leaveChannel = mutationField('leaveChannel', {
   type: 'Membership',
   args: { channelId: stringArg({ nullable: false }) },
+  nullable: false,
 
   description: `User leaves [public] channel.
   Users cannot leave the [private] channel
@@ -180,11 +184,9 @@ export const leaveChannel = mutationField('leaveChannel', {
 
 export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
   type: 'Channel',
-
+  nullable: false,
   args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
-
-  description: `Adds some users into [public] channel.
-  `,
+  description: 'Adds some users into [public] channel.',
 
   resolve: async (_, { channelId, userIds }, ctx) => {
     const userId = getUserId(ctx);
@@ -235,11 +237,9 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
 export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
   type: 'Channel',
-
+  nullable: false,
   args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
-
-  description: `Removes some users from [public] channel.
-  `,
+  description: 'Removes some users from [public] channel.',
 
   resolve: async (_, { channelId, userIds }, ctx) => {
     const userId = getUserId(ctx);

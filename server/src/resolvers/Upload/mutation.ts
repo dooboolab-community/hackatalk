@@ -4,7 +4,7 @@ import { uploadFileToAzureBlobFromStream } from '../../utils/azure';
 
 export const singleUpload = mutationField('singleUpload', {
   type: 'String',
-  nullable: true,
+  nullable: false,
 
   description:
     'Provide `dir` optionally, Upload single file to the server with graphql-upload',

@@ -4,11 +4,14 @@ import { getUserId } from '../../utils/auth';
 
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
+  nullable: false,
+
   args: {
     token: stringArg({ nullable: false }),
     device: stringArg(),
     os: stringArg(),
   },
+
   resolve: (parent, { token, device, os }, ctx) => {
     const userId = getUserId(ctx);
 
@@ -25,8 +28,9 @@ export const createNotification = mutationField('createNotification', {
 
 export const deleteNotification = mutationField('deleteNotification', {
   type: 'Notification',
-  nullable: true,
+  nullable: false,
   args: { token: stringArg({ nullable: false }) },
+
   resolve: (parent, { token }, ctx) => {
     return ctx.prisma.notification.delete({
       where: {

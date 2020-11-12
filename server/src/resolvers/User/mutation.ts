@@ -69,9 +69,12 @@ export const UserUpdateInputType = inputObjectType({
 
 export const signUp = mutationField('signUp', {
   type: 'User',
+  nullable: false,
+
   args: {
     user: 'UserCreateInput',
   },
+
   resolve: async (_parent, { user }, ctx) => {
     const { name, email, password, gender, photoURL, thumbURL } = user;
     const hashedPassword = await encryptCredential(password);
@@ -93,10 +96,13 @@ export const signUp = mutationField('signUp', {
 
 export const signInEmail = mutationField('signInEmail', {
   type: 'AuthPayload',
+  nullable: false,
+
   args: {
     email: stringArg({ nullable: false }),
     password: stringArg({ nullable: false }),
   },
+
   resolve: async (_parent, { email, password }, ctx) => {
     const { pubsub, prisma } = ctx;
 
@@ -132,9 +138,12 @@ export const signInEmail = mutationField('signInEmail', {
 
 export const signInWithFacebook = mutationField('signInWithFacebook', {
   type: 'AuthPayload',
+  nullable: false,
+
   args: {
     accessToken: stringArg({ nullable: false }),
   },
+
   resolve: async (_parent, { accessToken }, ctx) => {
     const { id: facebookId, name, email } = await verifyFacebookId(accessToken);
 
