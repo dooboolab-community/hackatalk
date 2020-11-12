@@ -24,6 +24,9 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
     thumbURL: '',
     photoURL: '',
     statusMessage: '',
+    profile: {
+      authType: AuthType.Email,
+    },
   };
 }
 
