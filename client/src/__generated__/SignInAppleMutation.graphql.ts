@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type SignInAppleMutationVariables = {
     accessToken: string;
 };
@@ -11,6 +12,13 @@ export type SignInAppleMutationResponse = {
         readonly token: string;
         readonly user: {
             readonly id: string;
+            readonly email: string | null;
+            readonly name: string | null;
+            readonly photoURL: string | null;
+            readonly verified: boolean | null;
+            readonly profile: {
+                readonly authType: AuthType | null;
+            } | null;
         };
     };
 };
@@ -29,6 +37,13 @@ mutation SignInAppleMutation(
     token
     user {
       id
+      email
+      name
+      photoURL
+      verified
+      profile {
+        authType
+      }
     }
   }
 }
@@ -77,6 +92,52 @@ const node: ConcreteRequest = (function () {
                             "kind": "ScalarField",
                             "name": "id",
                             "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "email",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "name",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "photoURL",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "verified",
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Profile",
+                            "kind": "LinkedField",
+                            "name": "profile",
+                            "plural": false,
+                            "selections": [
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "authType",
+                                    "storageKey": null
+                                }
+                            ],
+                            "storageKey": null
                         }
                     ],
                     "storageKey": null
@@ -103,14 +164,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "d501704c6043d66e2bf069e7c479cd73",
+            "cacheID": "8772fffb1661318a2c90c4141fa0b59b",
             "id": null,
             "metadata": {},
             "name": "SignInAppleMutation",
             "operationKind": "mutation",
-            "text": "mutation SignInAppleMutation(\n  $accessToken: String!\n) {\n  signInWithApple(accessToken: $accessToken) {\n    token\n    user {\n      id\n    }\n  }\n}\n"
+            "text": "mutation SignInAppleMutation(\n  $accessToken: String!\n) {\n  signInWithApple(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'f585a2c83860c99764be69970f41eadd';
+(node as any).hash = 'c2b69573f6e7755b516cad69ab5e4d3d';
 export default node;

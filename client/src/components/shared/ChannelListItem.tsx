@@ -234,7 +234,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     );
   }
 
-  return <View/>;
+  return <View key={key}/>;
 }
 
 export default ChannelListItem;

@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
 export type SignInEmailMutationVariables = {
     email: string;
     password: string;
@@ -16,6 +17,9 @@ export type SignInEmailMutationResponse = {
             readonly name: string | null;
             readonly photoURL: string | null;
             readonly verified: boolean | null;
+            readonly profile: {
+                readonly authType: AuthType | null;
+            } | null;
         };
     };
 };
@@ -39,6 +43,9 @@ mutation SignInEmailMutation(
       name
       photoURL
       verified
+      profile {
+        authType
+      }
     }
   }
 }
@@ -125,6 +132,24 @@ const node: ConcreteRequest = (function () {
                             "kind": "ScalarField",
                             "name": "verified",
                             "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Profile",
+                            "kind": "LinkedField",
+                            "name": "profile",
+                            "plural": false,
+                            "selections": [
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
+                                    "name": "authType",
+                                    "storageKey": null
+                                }
+                            ],
+                            "storageKey": null
                         }
                     ],
                     "storageKey": null
@@ -151,14 +176,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "0e4e51d056e95de0028eefb827e6bb45",
+            "cacheID": "2ff728a460fd9de16bf8d77b0c340c01",
             "id": null,
             "metadata": {},
             "name": "SignInEmailMutation",
             "operationKind": "mutation",
-            "text": "mutation SignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n    }\n  }\n}\n"
+            "text": "mutation SignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '6cbfdcad3d505598e6b091a886515aa2';
+(node as any).hash = 'd904abca767bd552a1894629fbcd7da1';
 export default node;

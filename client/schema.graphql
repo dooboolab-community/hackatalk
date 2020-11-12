@@ -274,6 +274,10 @@ type Profile {
 type Query {
   """Fetch user profile"""
   user(id: String): User!
+
+  """
+  Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.
+  """
   users(
     searchText: String
 

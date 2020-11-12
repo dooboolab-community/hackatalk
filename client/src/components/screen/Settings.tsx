@@ -52,26 +52,6 @@ const ItemLabel = styled.Text`
   flex: 1;
 `;
 
-interface SettingsOption {
-  label: string;
-  icon?: ReactElement;
-  onPress(): void;
-  testID: string;
-}
-
-function SectionItem(
-  option: SettingsOption,
-  theme: DefaultTheme,
-): React.ReactElement {
-  return (
-    <ItemContainer onPress={option.onPress} testID={option.testID}>
-      {option.icon || null}
-      <ItemLabel>{option.label}</ItemLabel>
-      <FontAwesome name="angle-right" size={24} color={theme.fontColor} />
-    </ItemContainer>
-  );
-}
-
 export interface Props {
   navigation: MainStackNavigationProps;
 }
@@ -87,6 +67,13 @@ const deleteNotification = graphql`
   }
 `;
 
+interface SettingsOption {
+  label: string;
+  icon?: ReactElement;
+  onPress(): void;
+  testID: string;
+}
+
 function Settings(props: Props): React.ReactElement {
   let signInInfoOption: SettingsOption;
 
@@ -97,6 +84,30 @@ function Settings(props: Props): React.ReactElement {
 
   const [commitNotification, isNotificationInFlight] =
     useMutation<SettingsDeleteNotificationMutation>(deleteNotification);
+
+  const renderSectionItem = (
+    option: SettingsOption,
+    theme: DefaultTheme,
+  ): React.ReactElement => {
+    const isEmailUser = user?.profile?.authType === AuthType.Email;
+
+    return (
+
+      <ItemContainer onPress={
+        isEmailUser
+          ? option.onPress
+          : undefined
+      } testID={option.testID}>
+        {option.icon || null}
+        <ItemLabel style={{ marginLeft: 8, marginTop: 2 }}>{option.label}</ItemLabel>
+        {
+          isEmailUser
+            ? <FontAwesome name="angle-right" size={24} color={theme.fontColor} />
+            : null
+        }
+      </ItemContainer>
+    );
+  };
 
   const logout = async (): Promise<void> => {
     if (navigation) {
@@ -121,7 +132,7 @@ function Settings(props: Props): React.ReactElement {
   switch (user?.profile?.authType) {
     case AuthType.Google:
       signInInfoOption = {
-        icon: <SvgGoogle width={24} fill={theme.googleIcon} />,
+        icon: <SvgGoogle width={24} fill={theme.font} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -132,7 +143,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Facebook:
       signInInfoOption = {
-        icon: <SvgFacebook width={24} fill={theme.facebookIcon} />,
+        icon: <SvgFacebook width={24} fill={theme.font} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -143,7 +154,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Apple:
       signInInfoOption = {
-        icon: <SvgApple width={24} fill={theme.appleIcon} />,
+        icon: <SvgApple width={24} fill={theme.font} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -177,7 +188,7 @@ function Settings(props: Props): React.ReactElement {
       <SectionList
         testID="test-section-list"
         sections={settings}
-        renderItem={({ item }): React.ReactElement => SectionItem(item, theme)}
+        renderItem={({ item }): React.ReactElement => renderSectionItem(item, theme)}
         keyExtractor={(item: SettingsOption): string => item.label}
         renderSectionHeader={({ section: { title } }): React.ReactElement => (
           <HeaderContainer>
@@ -190,7 +201,7 @@ function Settings(props: Props): React.ReactElement {
         style={{
           root: {
             paddingHorizontal: 20,
-            paddingVertical: 10,
+            paddingVertical: 20,
           },
           button: {
             width: '100%',
