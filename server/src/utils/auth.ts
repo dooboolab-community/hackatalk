@@ -10,7 +10,12 @@ import { verify } from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
-const { REDIRECT_URL, JWT_SECRET = 'undefined', JWT_SECRET_ETC = 'etc' } = process.env;
+const {
+  APPLE_CLIENT_ID,
+  REDIRECT_URL,
+  JWT_SECRET = 'undefined', JWT_SECRET_ETC = 'etc',
+} = process.env;
+
 export const APP_SECRET = JWT_SECRET;
 export const APP_SECRET_ETC = JWT_SECRET_ETC;
 
@@ -139,7 +144,7 @@ interface AppleUser {
  */
 
 export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
-  const clientID = 'exp.host.Exponent';
+  const clientID = APPLE_CLIENT_ID;
   const TOKEN_ISSUER = 'https://appleid.apple.com';
 
   const applePublicKey = await getApplePublicKey();

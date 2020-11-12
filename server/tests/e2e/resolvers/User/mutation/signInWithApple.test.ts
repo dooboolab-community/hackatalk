@@ -19,6 +19,7 @@ describe('signInWithApple', () => {
       }));
 
     const response = await request(testHost, signInWithApple, variables);
+
     expect(response).toHaveProperty('signInWithApple');
     expect(response.signInWithApple).toHaveProperty('token');
     expect(response.signInWithApple).toHaveProperty('user');

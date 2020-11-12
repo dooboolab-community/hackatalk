@@ -156,17 +156,21 @@ export const signInWithApple = mutationField('signInWithApple', {
     accessToken: stringArg({ nullable: false }),
   },
   resolve: async (_parent, { accessToken }, ctx) => {
-    const { sub, email } = await verifyAppleId(accessToken);
+    try {
+      const { sub, email } = await verifyAppleId(accessToken);
 
-    return UserService.signInWithSocialAccount(
-      {
-        socialId: sub,
-        authType: AuthType.apple,
-        name: '',
-        email,
-      },
-      ctx,
-    );
+      return UserService.signInWithSocialAccount(
+        {
+          socialId: sub,
+          authType: AuthType.apple,
+          name: '',
+          email,
+        },
+        ctx,
+      );
+    } catch (err) {
+      throw new Error(err);
+    }
   },
 });
 

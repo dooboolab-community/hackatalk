@@ -32,6 +32,9 @@ export class UserService {
         email: user.email,
       },
       data: { lastSignedIn: new Date().toISOString() },
+      include: {
+        profile: true,
+      },
     });
 
     return {
@@ -87,6 +90,9 @@ export class UserService {
           gender: socialUser.gender,
           phone: socialUser.phone,
           verified: true,
+        },
+        include: {
+          profile: true,
         },
       });
     } else {

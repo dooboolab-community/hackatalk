@@ -126,6 +126,9 @@ const signInEmail = graphql`
         name
         photoURL
         verified
+        profile {
+          authType
+        }
       }
     }
   }
@@ -137,6 +140,13 @@ const signInWithApple = graphql`
       token
       user {
         id
+        email
+        name
+        photoURL
+        verified
+        profile {
+          authType
+        }
       }
     }
   }
@@ -233,7 +243,7 @@ function SignIn(props: Props): ReactElement {
 
         createNotificationIfPushTokenExists();
 
-        setUser(user);
+        setUser(user as User);
       },
 
       onError: (error: Error): void => {
@@ -282,7 +292,7 @@ function SignIn(props: Props): ReactElement {
 
             createNotificationIfPushTokenExists();
 
-            setUser(user);
+            setUser(user as User);
           },
           onError: (error: any): void => {
             showAlertForError(error);
@@ -506,7 +516,7 @@ function SignIn(props: Props): ReactElement {
                       <SvgApple width={18} height={18} fill={theme.appleIcon}/>
                     </View>
                   }
-                  loading={signingInApple}
+                  loading={signingInApple || isAppleInFlight}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}

@@ -35,8 +35,11 @@ const signInWithFacebook = graphql`
         id
         email
         name
-        nickname
-        
+        photoURL
+        verified
+        profile {
+          authType
+        }
       }
     }
   }
@@ -48,6 +51,13 @@ const signInWithGoogle = graphql`
       token
       user {
         id
+        email
+        name
+        photoURL
+        verified
+        profile {
+          authType
+        }
       }
     }
   }
