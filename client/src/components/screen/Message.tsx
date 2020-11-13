@@ -35,7 +35,6 @@ import type {
 } from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
-import { isIPhoneX } from '../../utils/Styles';
 import moment from 'moment';
 import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
@@ -424,7 +423,7 @@ const MessagesFragment: FC<MessageProp> = ({
           nextItem={messages[index + 1]}
           item={item}
           onPressPeerImage={(): void => {
-            showModal({ user: item?.sender, isFriend: true });
+            showModal({ user: item?.sender, hideButtons: true });
           }}
         />
       );
