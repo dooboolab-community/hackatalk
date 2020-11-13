@@ -23,9 +23,7 @@ export const registerForPushNotificationsAsync = async (): Promise<string | unde
       return;
     }
 
-    if (Platform.OS !== 'web') {
-      token = (await Notifications.getExpoPushTokenAsync()).data;
-    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
   } else {
     showAlertForError(getString('MUST_USE_PHYSICAL_DEVICE'));
   }

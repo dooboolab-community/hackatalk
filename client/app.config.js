@@ -46,12 +46,23 @@ export default {
         NSPhotoLibraryUsageDescription:
           'HackaTalk would like to access your gallery for you to pick one and share with others.',
       },
+      appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
     },
     android: {
+      versionCode: 3,
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
-      versionCode: 2,
+      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk',
+      permissions: [
+        'CAMERA',
+        'CAMERA_ROLL',
+        'READ_EXTERNAL_STORAGE',
+        'USE_FINGERPRINT',
+        'WRITE_EXTERNAL_STORAGE',
+        'NOTIFICATIONS',
+        'USER_FACING_NOTIFICATIONS',
+      ],
     },
     packagerOpts: {
       config: './metro.config.js',

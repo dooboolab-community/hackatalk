@@ -82,15 +82,18 @@ function App(): ReactElement {
   const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then((pushToken) => {
-      if (pushToken) {
-        AsyncStorage.setItem('push_token', pushToken);
+    registerForPushNotificationsAsync()
+      .then((pushToken) => {
+        if (pushToken) {
+          AsyncStorage.setItem('push_token', pushToken);
 
-        return;
-      }
+          return;
+        }
 
-      Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
-    });
+        Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
+      }).catch((): void => {
+        Alert.alert(getString('ERROR'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
+      });
   }, []);
 
   useEffect(() => {
