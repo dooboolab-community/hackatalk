@@ -11,7 +11,7 @@ import {
   graphql,
   useLazyLoadQuery,
 } from 'react-relay/hooks';
-import { ThemeProvider, ThemeType, useThemeContext } from '@dooboo-ui/theme';
+import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
@@ -155,22 +155,16 @@ function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactE
 }
 
 // Add all required providers for App.
-const WrappedApp = (): React.ComponentType => {
-  const { theme } = useThemeContext();
-
-  return new ComponentWrapper(App)
-    .wrap(HackatalkThemeProvider, {})
-    .wrap(ActionSheetProviderWithChildren, {})
-    .wrap(Suspense, {
-      fallback: <LoadingIndicator containerStyle={{
-        backgroundColor: theme.background,
-      }} />,
-    })
-    .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
-    .wrap(AuthProvider, {})
-    .wrap(DeviceProvider, {})
-    .wrap(AppearanceProvider, {})
-    .build();
-};
+const WrappedApp = new ComponentWrapper(App)
+  .wrap(HackatalkThemeProvider, {})
+  .wrap(ActionSheetProviderWithChildren, {})
+  .wrap(Suspense, {
+    fallback: LoadingIndicator,
+  })
+  .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
+  .wrap(AuthProvider, {})
+  .wrap(DeviceProvider, {})
+  .wrap(AppearanceProvider, {})
+  .build();
 
 export default WrappedApp;
