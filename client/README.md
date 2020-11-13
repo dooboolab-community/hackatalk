@@ -101,8 +101,9 @@ Run below to make your own `app` variables.
   | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
   | facebookAppId                |                                      |     |  |
   | facebookSecret               |                                      |     |  |
-  | googleClientId               |                                      |     |  |
-  | googleSecret                 |                                      |     |  |
+  | googleWebClientId            |                                      |     |  |
+  | googleAndroidClientId        |                                      |     |  |
+  | googleIOSClientId            |                                      |     |  |
 
 ### Running the project
 

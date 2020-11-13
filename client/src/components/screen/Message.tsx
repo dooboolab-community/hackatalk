@@ -35,8 +35,8 @@ import type {
 } from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
-import { isIPhoneX } from '../../utils/Styles';
 import moment from 'moment';
+import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
 import { uploadImageAsync } from '../../apis/upload';
 import { useAuthContext } from '../../providers/AuthProvider';
@@ -343,8 +343,14 @@ const MessagesFragment: FC<MessageProp> = ({
     }
 
     if (image && !image.cancelled) {
+      const resizedImage = await resizeImage({
+        imageUri: image.uri,
+        maxWidth: 1920,
+        maxHeight: 1920,
+      });
+
       const response = await uploadImageAsync(
-        image.uri,
+        resizedImage.uri,
         'messages',
         `_${channelId}_${new Date().toISOString()}`,
       );
@@ -417,7 +423,7 @@ const MessagesFragment: FC<MessageProp> = ({
           nextItem={messages[index + 1]}
           item={item}
           onPressPeerImage={(): void => {
-            showModal({ user: item?.sender, isFriend: true });
+            showModal({ user: item?.sender, hideButtons: true });
           }}
         />
       );
@@ -428,6 +434,7 @@ const MessagesFragment: FC<MessageProp> = ({
           width: 24,
           height: 24,
         }}
+        resizeMethod="resize"
         source={IC_SMILE}
       />
     }

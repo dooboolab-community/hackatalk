@@ -249,8 +249,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             ? {
               flex: 1,
               alignSelf: 'stretch',
-              alignItems: 'center',
-              justifyContent: 'center',
+              flexDirection: 'column',
             }
             : null
         }

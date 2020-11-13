@@ -20,6 +20,7 @@ describe('Rendering', () => {
 
   it('renders without crashing', () => {
     const baseElement = testingLib.toJSON();
+
     expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
   });

@@ -386,9 +386,7 @@ const ModalContent: FC<ModalContentProps> = ({
           {
             photoURL
               ? <StyledImage style={{ alignSelf: 'center' }} source={
-                imageURL
-                  ? { uri: imageURL }
-                  : IC_NO_IMAGE
+                imageURL || IC_NO_IMAGE
               } />
               : <View
                 style={{
@@ -399,7 +397,8 @@ const ModalContent: FC<ModalContentProps> = ({
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="ios-person" size={80} color="white" />
+                {/* <Ionicons name="ios-person" size={80} color="white" /> */}
+                <StyledImage style={{ alignSelf: 'center' }} source={IC_NO_IMAGE}/>
               </View>
           }
         </TouchableOpacity>

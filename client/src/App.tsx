@@ -1,6 +1,7 @@
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 
+import { Alert, Image } from 'react-native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
@@ -22,9 +23,9 @@ import { Asset } from 'expo-asset';
 import AsyncStorage from '@react-native-community/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
 import Icons from './utils/Icons';
-import { Image } from 'react-native';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import { getString } from '../STRINGS';
 import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
 import { useMedia } from './utils/media';
@@ -81,6 +82,21 @@ function App(): ReactElement {
   const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
 
   useEffect(() => {
+    registerForPushNotificationsAsync()
+      .then((pushToken) => {
+        if (pushToken) {
+          AsyncStorage.setItem('push_token', pushToken);
+
+          return;
+        }
+
+        Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
+      }).catch((): void => {
+        Alert.alert(getString('ERROR'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
+      });
+  }, []);
+
+  useEffect(() => {
     if (me === null) {
       AsyncStorage.removeItem('token');
       setDevice();
@@ -90,13 +106,6 @@ function App(): ReactElement {
 
     // @ts-ignore
     setUser(me);
-
-    // Register notification token.
-    registerForPushNotificationsAsync().then((pushToken) => {
-      if (pushToken) {
-        AsyncStorage.setItem('push_token', pushToken);
-      }
-    });
   }, [me]);
 
   if (!assetLoaded) {
@@ -115,8 +124,6 @@ function App(): ReactElement {
 const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
-
-  console.log('color', colorScheme);
 
   return (
     <ThemeProvider
@@ -151,7 +158,9 @@ function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactE
 const WrappedApp = new ComponentWrapper(App)
   .wrap(HackatalkThemeProvider, {})
   .wrap(ActionSheetProviderWithChildren, {})
-  .wrap(Suspense, { fallback: <LoadingIndicator /> })
+  .wrap(Suspense, {
+    fallback: LoadingIndicator,
+  })
   .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
   .wrap(AuthProvider, {})
   .wrap(DeviceProvider, {})

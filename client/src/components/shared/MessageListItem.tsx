@@ -1,4 +1,4 @@
-import React, { SFC } from 'react';
+import React, { FC } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
@@ -117,7 +117,7 @@ function shouldShowDate(
   return diffNextSeconds < 60 && (nextMoment.minute === currentMoment.minute);
 }
 
-const ImageSenderComp: SFC<ImageSenderProps> = ({
+const ImageSenderComp: FC<ImageSenderProps> = ({
   thumbURL,
   isSamePeerMsg,
   fontColor,
@@ -194,7 +194,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
                   ? <StyledPhotoContainer>
                     <Image
                       width={240}
-                      source={{ uri: imageUrls[0] as string }}
+                      source={{ uri: `${imageUrls[0]}` }}
                     />
                   </StyledPhotoContainer>
                   : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
@@ -223,7 +223,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             ? <StyledPhotoContainer>
               <Image
                 width={240}
-                source={{ uri: imageUrls[0] as string }}
+                source={{ uri: `${imageUrls[0]}}` }}
               />
             </StyledPhotoContainer>
             : <StyledMyTextMessage>{text}</StyledMyTextMessage>

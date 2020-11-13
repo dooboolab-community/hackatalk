@@ -77,3 +77,11 @@ export const deleteFileFromAzureBlob = (
     });
   });
 };
+
+export const getURL = (
+  container: string,
+  blob?: string,
+  sasToken?: string,
+  primary?: boolean,
+  snapshotId?: string,
+): string => blobService.getUrl(container, blob, sasToken, primary, snapshotId);

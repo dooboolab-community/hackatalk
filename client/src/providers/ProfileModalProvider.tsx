@@ -6,7 +6,7 @@ export interface ModalState {
   /** Which user the profile modal describes */
   user: User;
   /** Is the profile user a friend of the current user? */
-  isFriend: boolean;
+  isFriend?: boolean;
   /** Callback function for delete button */
   onDeleteFriend?: () => void;
   /** Callback function for add friend button */

@@ -1,8 +1,12 @@
 import * as AuthSession from 'expo-auth-session';
+import * as Config from '../../../config';
+import * as Facebook from 'expo-auth-session/providers/facebook';
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
 
 import { Alert, Platform, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 import type {
   SocialSignInButtonFacebookSignInMutation,
   SocialSignInButtonFacebookSignInMutationResponse,
@@ -19,10 +23,12 @@ import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
 import { useThemeContext } from '@dooboo-ui/theme';
 
+const { facebookAppId, facebookSecret, googleAndroidClientId, googleIOSClientId, googleWebClientId } = Config;
+
+WebBrowser.maybeCompleteAuthSession();
+
 interface Props {
   svgIcon: ReactElement;
-  clientId: string;
-  clientSecret: string;
   socialProvider: AuthType;
   onUserCreated?: (user?: User) => void;
 }
@@ -65,8 +71,6 @@ const signInWithGoogle = graphql`
 
 const SocialSignInButton: FC<Props> = ({
   svgIcon,
-  clientId,
-  clientSecret,
   socialProvider,
   onUserCreated,
 }) => {
@@ -89,68 +93,52 @@ const SocialSignInButton: FC<Props> = ({
   const useProxy = Platform.select({ web: false, default: true });
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
-  const discovery = socialProvider === AuthType.Google
-    ? useAutoDiscovery('https://accounts.google.com')
-    : {
-      authorizationEndpoint: 'https://www.facebook.com/v8.0/dialog/oauth',
-      tokenEndpoint: 'https://graph.facebook.com/v8.0/oauth/access_token',
-    };
-
   const redirectUri = makeRedirectUri(
     socialProvider === AuthType.Google
       ? {
-        native: 'hackatalk.dev',
+        // native: 'hackatalk.dev',
         useProxy,
       }
       : {
-        native: 'hackatalk.dev',
+        native: `${facebookAppId}://authorize`,
         useProxy,
       },
   );
 
-  const [request, response, promptAsync] = useAuthRequest(
-    socialProvider === AuthType.Google
-      ? {
-        clientId,
-        redirectUri,
-        prompt: Prompt.SelectAccount,
-        scopes: ['openid', 'profile'],
-        responseType: ResponseType.Token,
-        usePKCE: false,
-      }
-      : {
-        clientId,
-        clientSecret,
-        scopes: ['public_profile, email'],
-        redirectUri,
-        prompt: Prompt.SelectAccount,
-        extraParams: {
-          display: Platform.select({ web: 'popup' }) as string,
-          // eslint-disable-next-line
+  const [request, response, promptAsync] = socialProvider === AuthType.Google
+    ? Google.useAuthRequest({
+      expoClientId: googleWebClientId,
+      iosClientId: googleIOSClientId,
+      androidClientId: googleAndroidClientId,
+      webClientId: googleWebClientId,
+      redirectUri,
+      prompt: Prompt.SelectAccount,
+      scopes: ['openid', 'profile'],
+      responseType: ResponseType.Token,
+      usePKCE: false,
+    })
+    : Facebook.useAuthRequest({
+      clientId: facebookAppId,
+      clientSecret: facebookSecret,
+      scopes: ['public_profile, email'],
+      redirectUri,
+      prompt: Prompt.SelectAccount,
+      extraParams: {
+        display: Platform.select({ web: 'popup' }) as string,
+        // eslint-disable-next-line
           auth_type: 'rerequest',
-        },
-        responseType: ResponseType.Token,
-      }
-    ,
-    discovery,
-  );
+      },
+      responseType: ResponseType.Token,
+    });
 
-  const signIn = async (): Promise<void> => {
-    setSigningIn(true);
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { authentication } = response;
 
-    try {
-      // @ts-ignore
-      const authUrl = await request?.makeAuthUrlAsync(discovery) as string;
+      const accessToken = authentication?.accessToken;
 
-      const result = await startAsync({
-        authUrl,
-        returnUrl: 'hackatalk://chat',
-      });
-
-      if (result.type === 'success') {
+      if (accessToken) {
         if (socialProvider === AuthType.Google) {
-          const accessToken = result.params.access_token;
-
           const mutationConfig = {
             variables: { accessToken },
             onCompleted: (response: SocialSignInButtonGoogleSignInMutationResponse) => {
@@ -176,8 +164,6 @@ const SocialSignInButton: FC<Props> = ({
           return;
         }
 
-        const accessToken = result.params.access_token;
-
         const mutationConfig = {
           variables: { accessToken },
           onCompleted: (response: SocialSignInButtonFacebookSignInMutationResponse) => {
@@ -199,18 +185,17 @@ const SocialSignInButton: FC<Props> = ({
         };
 
         commitFacebook(mutationConfig);
-      } else if (result.type === 'error') {
-        throw new Error(result?.error?.message || '');
       }
+    }
+  }, [response]);
+
+  const requestSignIn = async (): Promise<void> => {
+    setSigningIn(true);
+
+    try {
+      await promptAsync();
     } catch (err) {
-      if (Platform.OS === 'web') {
-        // @ts-ignore
-        alert(`Login Error: ${err.message}`);
-
-        return;
-      }
-
-      Alert.alert(`Login Error: ${err.message}`);
+      Alert.alert(getString('ERROR'), err);
     } finally {
       setSigningIn(false);
     }
@@ -219,6 +204,7 @@ const SocialSignInButton: FC<Props> = ({
   if (socialProvider === AuthType.Google) {
     return <Button
       testID="btn-google"
+      disabled={!request}
       style={{
         button: {
           backgroundColor: theme.googleBackground,
@@ -236,15 +222,16 @@ const SocialSignInButton: FC<Props> = ({
       leftElement={
         <View style={{ marginRight: 6 }}>{svgIcon}</View>
       }
-      loading={signingIn}
+      loading={isGoogleInFlight || signingIn}
       indicatorColor={theme.primary}
-      onPress={signIn}
+      onPress={requestSignIn}
       text={getString('SIGN_IN_WITH_GOOGLE')}
     />;
   }
 
   return <Button
     testID="btn-facebook"
+    disabled={!request}
     style={{
       button: {
         backgroundColor: theme.facebookBackground,
@@ -260,9 +247,9 @@ const SocialSignInButton: FC<Props> = ({
     leftElement={
       <View style={{ marginRight: 6 }}>{svgIcon}</View>
     }
-    loading={isFacebookInFlight || isGoogleInFlight || signingIn}
+    loading={isFacebookInFlight || signingIn}
     indicatorColor={theme.primary}
-    onPress={signIn}
+    onPress={requestSignIn}
     text={getString('SIGN_IN_WITH_FACEBOOK')}
   />;
 };

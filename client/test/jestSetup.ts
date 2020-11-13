@@ -25,8 +25,9 @@ jest.mock('expo-constants', () => ({
       ROOT_URL: process.env.ROOT_URL,
       facebookAppId: process.env.facebookAppId,
       facebookSecret: process.env.facebookSecret,
-      googleClientId: process.env.googleClientId,
-      googleSecret: process.env.googleSecret,
+      googleWebClientId: process.env.googleWebClientId,
+      googleAndroidClientId: process.env.googleAndroidClientId,
+      googleIOSClientId: process.env.googleIOSClientId,
     },
   },
 }));

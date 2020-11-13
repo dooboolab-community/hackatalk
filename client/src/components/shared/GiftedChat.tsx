@@ -109,10 +109,17 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
 
   useEffect(() => {
     if (showMenu) {
       Keyboard.dismiss();
+    } else {
+      if (!isFirstTime) {
+        input1?.current?.focus();
+      }
+
+      setIsFirstTime(false);
     }
   }, [showMenu]);
 
@@ -216,7 +223,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 marginVertical: 8,
               }}
             >
-              {renderSendButton ? renderSendButton() : null}
+              {renderSendButton?.()}
             </View>
           </StyledViewChat>
         ) : null}
@@ -253,11 +260,11 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             </StyledTouchMenu>
             <View
               style={{
-                flex: 1,
-                marginVertical: 8,
+                position: 'absolute',
+                right: 8,
               }}
             >
-              {renderSendButton ? renderSendButton() : null}
+              {renderSendButton?.()}
             </View>
           </StyledViewChat>
           <StyledViewMenu
@@ -267,7 +274,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               backgroundColor: backgroundColor,
             }}
           >
-            {renderViewMenu ? renderViewMenu() : null}
+            {renderViewMenu?.()}
           </StyledViewMenu>
         </StyledViewBottom>
       ) : null}

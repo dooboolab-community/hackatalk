@@ -104,13 +104,11 @@ const StyledScrollView = styled.ScrollView`
   align-self: center;
   width: 100%;
 
-  ${({ theme: { desktop } }) => desktop && css`
+  /* ${({ theme: { desktop } }) => desktop && css`
     width: 50%;
     max-width: 800;
-  `}
+  `} */
 `;
-
-const { facebookAppId, facebookSecret, googleClientId, googleSecret } = Config;
 
 interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
@@ -524,8 +522,6 @@ function SignIn(props: Props): ReactElement {
               })
             }
             <SocialSignInButton
-              clientId={facebookAppId}
-              clientSecret={facebookSecret}
               svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
               onUserCreated={(user?: User): void => {
                 createNotificationIfPushTokenExists();
@@ -534,8 +530,6 @@ function SignIn(props: Props): ReactElement {
               socialProvider={AuthType.Facebook}
             />
             <SocialSignInButton
-              clientId={googleClientId}
-              clientSecret={googleSecret}
               svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
               onUserCreated={(user?: User): void => {
                 createNotificationIfPushTokenExists();
