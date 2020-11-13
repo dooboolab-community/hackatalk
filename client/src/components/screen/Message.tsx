@@ -426,6 +426,7 @@ const MessagesFragment: FC<MessageProp> = ({
           onPressPeerImage={(): void => {
             showModal({ user: item?.sender, hideButtons: true });
           }}
+          onPressMessageImage={() => console.log("image pressed")}
         />
       );
     }}

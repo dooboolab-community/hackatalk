@@ -7,7 +7,7 @@ import AuthStack from './AuthStackNavigator';
 import MainStack from './MainStackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
-import { Platform } from 'react-native';
+import { ImageURISource, Platform } from 'react-native';
 import React from 'react';
 import WebView from '../screen/WebView';
 import { useAuthContext } from '../../providers/AuthProvider';
@@ -20,6 +20,10 @@ export type RootStackParamList = {
   WebView: {
     uri: string;
   };
+  ImageSliderModal: {
+    imageURIs: string[];
+    initialIndex: number;
+  }
   NotFound: undefined;
 };
 
@@ -88,6 +92,10 @@ function RootNavigator(): React.ReactElement {
             headerTitle: '',
             headerBackTitle: '',
           }}
+        />
+        <Stack.Screen
+          name="ImageSliderModal"
+          component={ImageSlider}
         />
         <Stack.Screen name="NotFound" component={NotFound} />
       </Stack.Navigator>
