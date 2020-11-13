@@ -39,6 +39,7 @@ fragment MessageComponent_message_3bSSw6 on Query {
     edges {
       cursor
       node {
+        id
         messageType
         text
         imageUrls
@@ -121,7 +122,13 @@ const node: ConcreteRequest = (function () {
             "name": "searchText",
             "variableName": "searchText"
         } as any)
-    ];
+    ], v7 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any);
     return {
         "fragment": {
             "argumentDefinitions": [
@@ -189,6 +196,7 @@ const node: ConcreteRequest = (function () {
                                     "name": "node",
                                     "plural": false,
                                     "selections": [
+                                        (v7 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": null,
@@ -225,13 +233,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "sender",
                                             "plural": false,
                                             "selections": [
-                                                {
-                                                    "alias": null,
-                                                    "args": null,
-                                                    "kind": "ScalarField",
-                                                    "name": "id",
-                                                    "storageKey": null
-                                                },
+                                                (v7 /*: any*/),
                                                 {
                                                     "alias": null,
                                                     "args": null,
@@ -347,12 +349,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "6157ecfee8c41577609c354d527874d5",
+            "cacheID": "24610e145fc3f7c7a78f7f0c69bb5895",
             "id": null,
             "metadata": {},
             "name": "MessagesQuery",
             "operationKind": "query",
-            "text": "query MessagesQuery(\n  $first: Int\n  $last: Int\n  $before: String\n  $after: String\n  $channelId: String!\n  $searchText: String\n) {\n  ...MessageComponent_message_3bSSw6\n}\n\nfragment MessageComponent_message_3bSSw6 on Query {\n  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n"
+            "text": "query MessagesQuery(\n  $first: Int\n  $last: Int\n  $before: String\n  $after: String\n  $channelId: String!\n  $searchText: String\n) {\n  ...MessageComponent_message_3bSSw6\n}\n\nfragment MessageComponent_message_3bSSw6 on Query {\n  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();

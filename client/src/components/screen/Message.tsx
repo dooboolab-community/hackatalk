@@ -127,6 +127,7 @@ const messagesFragment = graphql`
         edges {
           cursor
           node {
+            id
             messageType
             text
             imageUrls

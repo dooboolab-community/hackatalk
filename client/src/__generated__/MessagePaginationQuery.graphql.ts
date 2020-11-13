@@ -39,6 +39,7 @@ fragment MessageComponent_message_3bSSw6 on Query {
     edges {
       cursor
       node {
+        id
         messageType
         text
         imageUrls
@@ -128,7 +129,13 @@ const node: ConcreteRequest = (function () {
             "name": "searchText",
             "variableName": "searchText"
         } as any)
-    ];
+    ], v2 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any);
     return {
         "fragment": {
             "argumentDefinitions": (v0 /*: any*/),
@@ -182,6 +189,7 @@ const node: ConcreteRequest = (function () {
                                     "name": "node",
                                     "plural": false,
                                     "selections": [
+                                        (v2 /*: any*/),
                                         {
                                             "alias": null,
                                             "args": null,
@@ -218,13 +226,7 @@ const node: ConcreteRequest = (function () {
                                             "name": "sender",
                                             "plural": false,
                                             "selections": [
-                                                {
-                                                    "alias": null,
-                                                    "args": null,
-                                                    "kind": "ScalarField",
-                                                    "name": "id",
-                                                    "storageKey": null
-                                                },
+                                                (v2 /*: any*/),
                                                 {
                                                     "alias": null,
                                                     "args": null,
@@ -340,14 +342,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "78b5601ba300b51cf2040292e5b394e8",
+            "cacheID": "f9b1b0d5b7db7d62a4646af4c01b4fd0",
             "id": null,
             "metadata": {},
             "name": "MessagePaginationQuery",
             "operationKind": "query",
-            "text": "query MessagePaginationQuery(\n  $after: String\n  $before: String\n  $channelId: String!\n  $first: Int\n  $last: Int\n  $searchText: String\n) {\n  ...MessageComponent_message_3bSSw6\n}\n\nfragment MessageComponent_message_3bSSw6 on Query {\n  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n"
+            "text": "query MessagePaginationQuery(\n  $after: String\n  $before: String\n  $channelId: String!\n  $first: Int\n  $last: Int\n  $searchText: String\n) {\n  ...MessageComponent_message_3bSSw6\n}\n\nfragment MessageComponent_message_3bSSw6 on Query {\n  messages(first: $first, last: $last, before: $before, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        sender {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n        createdAt\n        updatedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'bb2273be074fa2508801fe21e6790a12';
+(node as any).hash = 'e1b999570136b75c08a1521d99641a4e';
 export default node;

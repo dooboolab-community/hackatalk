@@ -149,6 +149,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
 
   const {
     item: {
+      id,
       sender,
       messageType,
       text,
@@ -193,8 +194,9 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
                 imageUrls && imageUrls.length > 0
                   ? <StyledPhotoContainer>
                     <Image
+                      key={id}
                       width={240}
-                      source={{ uri: `${imageUrls[0]}` }}
+                      source={{ uri: `${imageUrls[0]}?id=${id}}` }}
                     />
                   </StyledPhotoContainer>
                   : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
@@ -222,8 +224,9 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           imageUrls && imageUrls.length > 0
             ? <StyledPhotoContainer>
               <Image
+                key={id}
                 width={240}
-                source={{ uri: `${imageUrls[0]}}` }}
+                source={{ uri: `${imageUrls[0]}?id=${id}}` }}
               />
             </StyledPhotoContainer>
             : <StyledMyTextMessage>{text}</StyledMyTextMessage>

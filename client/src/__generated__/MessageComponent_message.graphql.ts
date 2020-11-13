@@ -9,6 +9,7 @@ export type MessageComponent_message = {
         readonly edges: ReadonlyArray<{
             readonly cursor: string;
             readonly node: {
+                readonly id: string;
                 readonly messageType: unknown;
                 readonly text: string | null;
                 readonly imageUrls: ReadonlyArray<string> | null;
@@ -44,7 +45,13 @@ export type MessageComponent_message$key = {
 const node: ReaderFragment = (function () {
     var v0 = [
         "messages"
-    ];
+    ], v1 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+    } as any);
     return {
         "argumentDefinitions": [
             {
@@ -148,6 +155,7 @@ const node: ReaderFragment = (function () {
                                 "name": "node",
                                 "plural": false,
                                 "selections": [
+                                    (v1 /*: any*/),
                                     {
                                         "alias": null,
                                         "args": null,
@@ -184,13 +192,7 @@ const node: ReaderFragment = (function () {
                                         "name": "sender",
                                         "plural": false,
                                         "selections": [
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "id",
-                                                "storageKey": null
-                                            },
+                                            (v1 /*: any*/),
                                             {
                                                 "alias": null,
                                                 "args": null,
@@ -296,5 +298,5 @@ const node: ReaderFragment = (function () {
         "abstractKey": null
     } as any;
 })();
-(node as any).hash = 'bb2273be074fa2508801fe21e6790a12';
+(node as any).hash = 'e1b999570136b75c08a1521d99641a4e';
 export default node;
