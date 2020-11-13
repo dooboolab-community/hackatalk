@@ -35,6 +35,8 @@
   "SEND": "Send",
   "WRITE_MESSAGE": "Write message...",
   "ERROR": "Error",
+  "WARNING": "Warning",
+  "NOTIFICATION_TOKEN_NOT_VALID": "Your device does not support receiving push notification. You won't receive the new messages from other users.",
   "FRIEND_ADDED": "Added to your friend.",
   "FRIEND_ALREADY_ADDED": "Already your friend.",
   "SETTINGS": "Settings",
