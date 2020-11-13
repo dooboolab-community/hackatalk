@@ -194,7 +194,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
                   ? <StyledPhotoContainer>
                     <Image
                       width={240}
-                      source={{ uri: `${imageUrls[0]}?num=${new Date().getTime()}` }}
+                      source={{ uri: `${imageUrls[0]}` }}
                     />
                   </StyledPhotoContainer>
                   : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
@@ -223,7 +223,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             ? <StyledPhotoContainer>
               <Image
                 width={240}
-                source={{ uri: `${imageUrls[0]}?num=${new Date().getTime()}` }}
+                source={{ uri: `${imageUrls[0]}}` }}
               />
             </StyledPhotoContainer>
             : <StyledMyTextMessage>{text}</StyledMyTextMessage>
