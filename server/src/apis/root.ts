@@ -2,6 +2,7 @@ import {
   encryptCredential,
   getToken,
 } from '../utils/auth';
+import { getURL, uploadFileToAzureBlobFromFile } from '../utils/azure';
 import { resetPassword, verifyEmail } from '../models/User';
 
 import { Router } from 'express';
@@ -9,7 +10,6 @@ import fs from 'fs';
 import multer from 'multer';
 import { prisma } from '../context';
 import qs from 'querystring';
-import { uploadFileToAzureBlobFromFile } from '../utils/azure';
 import { verify } from 'jsonwebtoken';
 
 interface VerificationToken {
@@ -132,7 +132,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
 
     result.status = 200;
     result.message = resultUpload;
-    result.url = `${STORAGE_ENDPOINT}/hackatalk/${dir}${req.file.filename}`;
+    result.url = getURL('hackatalk', resultUpload.name);
     res.json(result);
   } catch (err) {
     result.message = err;
