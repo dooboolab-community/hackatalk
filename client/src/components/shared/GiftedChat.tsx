@@ -109,10 +109,17 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
 
   useEffect(() => {
     if (showMenu) {
       Keyboard.dismiss();
+    } else {
+      if (!isFirstTime) {
+        input1?.current?.focus();
+      }
+
+      setIsFirstTime(false);
     }
   }, [showMenu]);
 
