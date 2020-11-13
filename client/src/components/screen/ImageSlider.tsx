@@ -3,7 +3,7 @@ import PinchZoom, { PinchZoomRef } from '../shared/PinchZoom';
 import { RootStackNavigationProps, RootStackParamList } from '../navigation/RootStackNavigator';
 
 import React from 'react';
-import { RouteProp, useNavigation } from '@react-navigation/core';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
