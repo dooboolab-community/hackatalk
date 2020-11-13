@@ -27,6 +27,7 @@ export default {
       '**/*',
     ],
     facebookDisplayName: 'hackatalk',
+    facebookScheme: 'fb476130476434051',
     ios: {
       userInterfaceStyle: 'light',
       supportsTablet: true,
@@ -49,7 +50,7 @@ export default {
       appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
     },
     android: {
-      versionCode: 3,
+      versionCode: 4,
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
@@ -85,8 +86,9 @@ export default {
       ROOT_URL: process.env.ROOT_URL,
       facebookAppId: process.env.facebookAppId,
       facebookSecret: process.env.facebookSecret,
-      googleClientId: process.env.googleClientId,
-      googleSecret: process.env.googleSecret,
+      googleWebClientId: process.env.googleWebClientId,
+      googleAndroidClientId: process.env.googleAndroidClientId,
+      googleIOSClientId: process.env.googleAndroidIOSId,
     },
     description: 'Opensource chat app',
     githubUrl: 'https://github.com/dooboolab/hackatalk',
