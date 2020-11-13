@@ -37,6 +37,7 @@ import MessageListItem from '../shared/MessageListItem';
 import { getString } from '../../../STRINGS';
 import { isIPhoneX } from '../../utils/Styles';
 import moment from 'moment';
+import { resizeImage } from '../../utils/image';
 import styled from 'styled-components/native';
 import { uploadImageAsync } from '../../apis/upload';
 import { useAuthContext } from '../../providers/AuthProvider';
@@ -343,6 +344,12 @@ const MessagesFragment: FC<MessageProp> = ({
     }
 
     if (image && !image.cancelled) {
+      const resizedImage = await resizeImage({
+        imageUri: image.uri,
+        maxWidth: 1920,
+        maxHeight: 1920,
+      });
+
       const response = await uploadImageAsync(
         image.uri,
         'messages',
