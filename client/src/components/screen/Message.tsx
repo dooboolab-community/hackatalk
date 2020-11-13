@@ -351,7 +351,7 @@ const MessagesFragment: FC<MessageProp> = ({
       });
 
       const response = await uploadImageAsync(
-        image.uri,
+        resizedImage.uri,
         'messages',
         `_${channelId}_${new Date().toISOString()}`,
       );
@@ -435,6 +435,7 @@ const MessagesFragment: FC<MessageProp> = ({
           width: 24,
           height: 24,
         }}
+        resizeMethod="resize"
         source={IC_SMILE}
       />
     }
