@@ -7,11 +7,12 @@ import AuthStack from './AuthStackNavigator';
 import MainStack from './MainStackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
-import { ImageURISource, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import React from 'react';
 import WebView from '../screen/WebView';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
+import ImageSlider from '../screen/ImageSlider';
 
 export type RootStackParamList = {
   default: undefined;
@@ -21,7 +22,7 @@ export type RootStackParamList = {
     uri: string;
   };
   ImageSliderModal: {
-    imageURIs: string[];
+    images: { uri: string, sender: string, date: any }[];
     initialIndex: number;
   }
   NotFound: undefined;
@@ -60,6 +61,7 @@ function RootNavigator(): React.ReactElement {
           headerTintColor: theme.tintColor,
           headerShown: false,
         }}
+        mode="modal"
       >
         {!user || !user.verified ? (
           <Stack.Screen
@@ -96,6 +98,12 @@ function RootNavigator(): React.ReactElement {
         <Stack.Screen
           name="ImageSliderModal"
           component={ImageSlider}
+          options={({ route: { params: { images, initialIndex } } }) => ({
+            headerShown: true,
+            headerBackTitle: images[initialIndex].sender,
+            headerTitle: '',
+            headerTransparent: true,
+          })}
         />
         <Stack.Screen name="NotFound" component={NotFound} />
       </Stack.Navigator>

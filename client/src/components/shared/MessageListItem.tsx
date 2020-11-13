@@ -94,7 +94,7 @@ interface Props<T> {
   prevItem?: T;
   nextItem?: T;
   onPressPeerImage?: () => void;
-  onPressMessageImage?: () => void;
+  onPressMessageImage?: (index: number) => void;
   testID?: string;
 }
 
@@ -195,7 +195,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
               {
                 imageUrls && imageUrls.length > 0
                   ? <StyledPhotoContainer>
-                    <TouchableOpacity onPress={onPressMessageImage}>
+                    <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
                       <Image
                         key={id}
                         width={240}
@@ -227,7 +227,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         {
           imageUrls && imageUrls.length > 0
             ? <StyledPhotoContainer>
-              <TouchableOpacity onPress={onPressMessageImage}>
+              <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
               <Image
                 key={id}
                 width={240}
