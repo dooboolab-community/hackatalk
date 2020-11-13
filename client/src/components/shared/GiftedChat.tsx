@@ -124,7 +124,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   }, [showMenu]);
 
   useEffect(() => {
-    backHandlerListner = BackHandler.addEventListener('hardwareBackPress', () => {
+    backHandlerListner = BackHandler.addEventListener('hardwareBackPress', (): boolean => {
       if (showMenu) {
         setShowMenu(false);
 

@@ -185,7 +185,6 @@ const Screen: FC<Props> = () => {
               maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
             });
 
-            // uploadImage(resizedImage.uri);
             const response = await uploadImageAsync(resizedImage.uri, 'profiles');
             const result = JSON.parse(await response.text());
 

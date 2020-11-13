@@ -1,11 +1,11 @@
-import { Alert, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { Alert, BackHandler, NativeEventSubscription, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
 import {
   ProfileModalFindOrCreatePrivateChannelMutation,
   ProfileModalFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { graphql, useMutation } from 'react-relay/hooks';
 
 import { ConnectionHandler } from 'relay-runtime';
@@ -474,6 +474,26 @@ interface Props {
 const ProfileModal: FC<Props> = () => {
   const profileContext = useProfileContext();
   const { isVisible, hideModal } = profileContext;
+
+  let backHandlerListner: NativeEventSubscription;
+
+  useEffect(() => {
+    backHandlerListner = BackHandler.addEventListener('hardwareBackPress', (): boolean => {
+      if (isVisible) {
+        hideModal();
+
+        return true;
+      }
+
+      return false;
+    });
+
+    return (): void => {
+      if (backHandlerListner) {
+        backHandlerListner.remove();
+      }
+    };
+  }, []);
 
   return (
     <Modal
