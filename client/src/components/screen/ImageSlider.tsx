@@ -5,6 +5,7 @@ import { RouteProp, useNavigation } from '@react-navigation/native';
 
 import React from 'react';
 import styled from 'styled-components/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Container = styled.View`
   flex: 1;
@@ -27,8 +28,9 @@ interface Props {
 
 function ImageSlider({ route: { params: { images, initialIndex } } }: Props): React.ReactElement {
   const [currentIndex, setCurrentIndex] = React.useState<number>(initialIndex);
+  const insets = useSafeAreaInsets();
   const imageContainerWidth = Dimensions.get('screen').width;
-  const imageContainerHeight = Dimensions.get('screen').height;
+  const imageContainerHeight = Dimensions.get('screen').height - insets.top - insets.bottom;
   const imageStyle = { width: imageContainerWidth, bottom: 0, height: imageContainerHeight };
   const imageGap = 10;
 
@@ -50,7 +52,7 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
     animValues.prevTranslateX = (1 - animValues.scale) * imageContainerWidth / 2 + animValues.x;
     nextImageTranslateX.setValue(animValues.nextTranslateX);
     prevImageTranslateX.setValue(animValues.prevTranslateX);
-  }, []);
+  }, [imageContainerWidth]);
 
   const onRelease = React.useCallback(() => {
     const moveNext = animValues.nextTranslateX < -imageContainerWidth / 2;
@@ -100,7 +102,7 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
         });
       });
     }
-  }, [currentIndex]);
+  }, [currentIndex, imageContainerWidth]);
 
   React.useEffect(() => {
     navigation.setOptions({

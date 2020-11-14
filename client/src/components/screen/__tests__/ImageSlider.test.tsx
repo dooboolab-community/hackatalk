@@ -31,6 +31,12 @@ jest.mock('@react-navigation/native', () => {
   };
 });
 
+jest.mock('react-native-safe-area-context', () => {
+  return {
+    useSafeAreaInsets: () => ({ top: 30, bottom: 50, left: 0, right: 0 }),
+  };
+});
+
 describe('Rendering', () => {
   beforeEach(() => {
     props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
