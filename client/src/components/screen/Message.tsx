@@ -34,6 +34,7 @@ import type {
   MessageComponent_message$key,
 } from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
+import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import { resizeImage } from '../../utils/image';
@@ -42,7 +43,6 @@ import { uploadImageAsync } from '../../apis/upload';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
-import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 
 const ITEM_CNT = 20;
 
@@ -260,6 +260,7 @@ const MessagesFragment: FC<MessageProp> = ({
 }) => {
   const { theme } = useThemeContext();
   const navigation = useNavigation<RootStackNavigationProps>();
+
   const {
     data,
     loadNext,
@@ -429,16 +430,27 @@ const MessagesFragment: FC<MessageProp> = ({
           }}
           onPressMessageImage={(indexOfTheNode: number) => {
             let initialIndex = indexOfTheNode;
-            const imagesList =  nodes.filter(({ imageUrls }, nodeIndex) => {
+
+            const imagesList = nodes.filter(({ imageUrls }, nodeIndex) => {
               if (imageUrls && nodeIndex < index) {
                 initialIndex += imageUrls.length;
               }
+
               return imageUrls && imageUrls.length > 0;
-            }).map(({ imageUrls, sender, updatedAt }) => imageUrls?.map((uri) => ({ uri, sender: sender.nickname ?? sender.name!, date: updatedAt })));
+            }).map(
+              ({ imageUrls, sender, updatedAt }) => imageUrls?.map(
+                (uri) => ({ uri, sender: sender.nickname ?? sender.name!, date: updatedAt }),
+              ),
+            );
+
             const flattenImages = imagesList.reduce(
-              (prev, current) => current != null ? [...(prev || []), ...current] : (prev || []), []
+              (prev, current) => current != null ? [...(prev || []), ...current] : (prev || []), [],
             ) || [];
-            navigation.push('ImageSliderModal', { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex })
+
+            navigation.push(
+              'ImageSliderModal',
+              { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex },
+            );
           }}
         />
       );

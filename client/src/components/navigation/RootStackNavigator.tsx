@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/stack';
 
 import AuthStack from './AuthStackNavigator';
+import ImageSlider from '../screen/ImageSlider';
 import MainStack from './MainStackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
@@ -12,7 +13,6 @@ import React from 'react';
 import WebView from '../screen/WebView';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
-import ImageSlider from '../screen/ImageSlider';
 
 export type RootStackParamList = {
   default: undefined;

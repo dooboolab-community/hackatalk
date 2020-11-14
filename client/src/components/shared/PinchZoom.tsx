@@ -47,7 +47,10 @@ function getRelativeTouchesCenterPosition(
 }
 
 function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
-  const { style, children, onScaleChanged, onRelease, onTranslateChanged, allowEmpty, fixOverflowAfterRelease = true } = props;
+  const {
+    style, children, onScaleChanged, onRelease, onTranslateChanged, allowEmpty, fixOverflowAfterRelease = true,
+  } = props;
+
   const containerView = useRef<NativeMethods>();
   const scale = useRef(new Animated.Value(1)).current;
   const translate = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
@@ -226,7 +229,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
 
   return <Animated.View
     testID="PINCH_ZOOM_CONTAINER"
-    ref={(ref: NativeMethods) => { containerView.current = ref }}
+    ref={(ref: NativeMethods) => { containerView.current = ref; }}
     style={[style, style?.transform ? {} : {
       transform: [
         { translateX: translate.x },

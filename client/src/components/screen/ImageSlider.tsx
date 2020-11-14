@@ -1,9 +1,9 @@
 import { Animated, Dimensions, Image, StatusBar } from 'react-native';
 import PinchZoom, { PinchZoomRef } from '../shared/PinchZoom';
 import { RootStackNavigationProps, RootStackParamList } from '../navigation/RootStackNavigator';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 
 import React from 'react';
-import { RouteProp, useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -25,7 +25,7 @@ interface Props {
   route: RouteProp<RootStackParamList, 'ImageSliderModal'>;
 }
 
-function ImageSlider({ route: { params: { images, initialIndex }} }: Props): React.ReactElement {
+function ImageSlider({ route: { params: { images, initialIndex } } }: Props): React.ReactElement {
   const [currentIndex, setCurrentIndex] = React.useState<number>(initialIndex);
   const imageContainerWidth = Dimensions.get('screen').width;
   const imageContainerHeight = Dimensions.get('screen').height;
@@ -85,7 +85,9 @@ function ImageSlider({ route: { params: { images, initialIndex }} }: Props): Rea
         useNativeDriver: true,
         duration: 300,
       }).start(() => {
-        pinchZoom.current?.setValues({ translate: { x: (1 - animValues.scale) * imageContainerWidth / 2, y: animValues.y } });
+        pinchZoom.current?.setValues({
+          translate: { x: (1 - animValues.scale) * imageContainerWidth / 2, y: animValues.y },
+        });
       });
     } else if (animValues.prevTranslateX > 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
@@ -93,14 +95,16 @@ function ImageSlider({ route: { params: { images, initialIndex }} }: Props): Rea
         useNativeDriver: true,
         duration: 300,
       }).start(() => {
-        pinchZoom.current?.setValues({ translate: { x: (animValues.scale - 1) * imageContainerWidth / 2, y: animValues.y } });
+        pinchZoom.current?.setValues({
+          translate: { x: (animValues.scale - 1) * imageContainerWidth / 2, y: animValues.y },
+        });
       });
     }
   }, [currentIndex]);
 
   React.useEffect(() => {
     navigation.setOptions({
-      headerBackTitle: images[currentIndex].sender || "?",
+      headerBackTitle: images[currentIndex].sender || '?',
     });
   }, [currentIndex]);
 
@@ -122,7 +126,7 @@ function ImageSlider({ route: { params: { images, initialIndex }} }: Props): Rea
           }}
         >
           <Image
-            source={{ uri: images[currentIndex - 1]?.uri}}
+            source={{ uri: images[currentIndex - 1]?.uri }}
             style={imageStyle}
             resizeMode="contain"/>
         </PinchZoom>
@@ -167,7 +171,7 @@ function ImageSlider({ route: { params: { images, initialIndex }} }: Props): Rea
               transform: [{ translateX: nextImageTranslateX }],
             }}>
             <Image
-              source={{ uri: images[currentIndex + 1]?.uri}}
+              source={{ uri: images[currentIndex + 1]?.uri }}
               style={imageStyle}
               resizeMode="contain"/>
           </PinchZoom>
@@ -176,6 +180,5 @@ function ImageSlider({ route: { params: { images, initialIndex }} }: Props): Rea
     </ImageSliderContainer>
   </Container>;
 }
-
 
 export default ImageSlider;

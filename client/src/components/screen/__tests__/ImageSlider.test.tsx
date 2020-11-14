@@ -33,13 +33,14 @@ jest.mock('@react-navigation/native', () => {
 
 describe('Rendering', () => {
   beforeEach(() => {
-    props = createTestProps({ route: { params: { images, initialIndex: 1 }}});
+    props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
     component = createTestElement(<Screen {...props} />);
     testingLib = render(component);
   });
 
   it('renders without crashing', () => {
     const baseElement = testingLib.toJSON();
+
     expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
   });
@@ -47,7 +48,7 @@ describe('Rendering', () => {
 
 describe('Interaction', () => {
   beforeEach(() => {
-    props = createTestProps({ route: { params: { images, initialIndex: 1 }}});
+    props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
     component = createTestElement(<Screen {...props} />);
     testingLib = render(component);
   });
