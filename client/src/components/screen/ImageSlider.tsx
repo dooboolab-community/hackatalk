@@ -65,10 +65,7 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
         useNativeDriver: true,
         duration: 300,
       }).start(() => {
-        nextImageTranslateX.setValue(0);
-        prevImageTranslateX.setValue(0);
         setCurrentIndex(currentIndex + 1);
-        pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });
       });
     } else if (movePrev && currentIndex > 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
@@ -79,7 +76,6 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
         nextImageTranslateX.setValue(0);
         prevImageTranslateX.setValue(0);
         setCurrentIndex(currentIndex - 1);
-        pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });
       });
     } else if (animValues.nextTranslateX < 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
@@ -106,8 +102,11 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
 
   React.useEffect(() => {
     navigation.setOptions({
-      headerBackTitle: images[currentIndex].sender || '?',
+      headerBackTitle: images[currentIndex].sender || '???',
     });
+    pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });
+    nextImageTranslateX.setValue(0);
+    prevImageTranslateX.setValue(0);
   }, [currentIndex]);
 
   return <Container>
