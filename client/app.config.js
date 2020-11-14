@@ -10,7 +10,7 @@ export default {
       'android',
       'web',
     ],
-    version: '1.0.0',
+    version: '1.0.5',
     orientation: 'default',
     icon: './assets/icon.png',
     splash: {
@@ -50,7 +50,7 @@ export default {
       appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
     },
     android: {
-      versionCode: 4,
+      versionCode: 5,
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
@@ -64,6 +64,7 @@ export default {
         'NOTIFICATIONS',
         'USER_FACING_NOTIFICATIONS',
       ],
+      googleServicesFile: './google-services.json',
     },
     packagerOpts: {
       config: './metro.config.js',

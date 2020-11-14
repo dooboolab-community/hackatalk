@@ -105,6 +105,9 @@ Run below to make your own `app` variables.
   | googleAndroidClientId        |                                      |     |  |
   | googleIOSClientId            |                                      |     |  |
 
+### Adding FCM
+To use FCM in android, you need to download own `google-services.json` from [firebase](https://console.firebase.google.com) and put that in root folder.
+
 ### Running the project
 
 Running the project is as simple as running
