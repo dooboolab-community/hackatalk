@@ -94,6 +94,7 @@ interface Props<T> {
   prevItem?: T;
   nextItem?: T;
   onPressPeerImage?: () => void;
+  onPressMessageImage?: (index: number) => void;
   testID?: string;
 }
 
@@ -160,6 +161,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
     prevItem,
     nextItem,
     onPressPeerImage,
+    onPressMessageImage,
     testID,
     userId,
   } = props;
@@ -193,11 +195,13 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
               {
                 imageUrls && imageUrls.length > 0
                   ? <StyledPhotoContainer>
-                    <Image
-                      key={id}
-                      width={240}
-                      source={{ uri: `${imageUrls[0]}?id=${id}}` }}
-                    />
+                    <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+                      <Image
+                        key={id}
+                        width={240}
+                        source={{ uri: `${imageUrls[0]}?id=${id}}` }}
+                      />
+                    </TouchableOpacity>
                   </StyledPhotoContainer>
                   : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
               }
@@ -223,11 +227,13 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         {
           imageUrls && imageUrls.length > 0
             ? <StyledPhotoContainer>
-              <Image
-                key={id}
-                width={240}
-                source={{ uri: `${imageUrls[0]}?id=${id}}` }}
-              />
+              <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+                <Image
+                  key={id}
+                  width={240}
+                  source={{ uri: `${imageUrls[0]}?id=${id}}` }}
+                />
+              </TouchableOpacity>
             </StyledPhotoContainer>
             : <StyledMyTextMessage>{text}</StyledMyTextMessage>
         }

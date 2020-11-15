@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/stack';
 
 import AuthStack from './AuthStackNavigator';
+import ImageSlider from '../screen/ImageSlider';
 import MainStack from './MainStackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
@@ -20,6 +21,10 @@ export type RootStackParamList = {
   WebView: {
     uri: string;
   };
+  ImageSliderModal: {
+    images: { uri: string, sender: string, date: any }[];
+    initialIndex: number;
+  }
   NotFound: undefined;
 };
 
@@ -56,6 +61,7 @@ function RootNavigator(): React.ReactElement {
           headerTintColor: theme.tintColor,
           headerShown: false,
         }}
+        mode="modal"
       >
         {!user || !user.verified ? (
           <Stack.Screen
@@ -88,6 +94,16 @@ function RootNavigator(): React.ReactElement {
             headerTitle: '',
             headerBackTitle: '',
           }}
+        />
+        <Stack.Screen
+          name="ImageSliderModal"
+          component={ImageSlider}
+          options={({ route: { params: { images, initialIndex } } }) => ({
+            headerShown: true,
+            headerBackTitle: images[initialIndex].sender,
+            headerTitle: '',
+            headerTransparent: true,
+          })}
         />
         <Stack.Screen name="NotFound" component={NotFound} />
       </Stack.Navigator>

@@ -34,6 +34,7 @@ import type {
   MessageComponent_message$key,
 } from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
+import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import { resizeImage } from '../../utils/image';
@@ -258,6 +259,7 @@ const MessagesFragment: FC<MessageProp> = ({
   searchArgs,
 }) => {
   const { theme } = useThemeContext();
+  const navigation = useNavigation<RootStackNavigationProps>();
 
   const {
     data,
@@ -425,6 +427,30 @@ const MessagesFragment: FC<MessageProp> = ({
           item={item}
           onPressPeerImage={(): void => {
             showModal({ user: item?.sender, hideButtons: true });
+          }}
+          onPressMessageImage={(indexOfTheNode: number) => {
+            let initialIndex = indexOfTheNode;
+
+            const imagesList = nodes.filter(({ imageUrls }, nodeIndex) => {
+              if (imageUrls && nodeIndex < index) {
+                initialIndex += imageUrls.length;
+              }
+
+              return imageUrls && imageUrls.length > 0;
+            }).map(
+              ({ imageUrls, sender, updatedAt }) => imageUrls?.map(
+                (uri) => ({ uri, sender: sender.nickname ?? sender.name!, date: updatedAt }),
+              ),
+            );
+
+            const flattenImages = imagesList.reduce(
+              (prev, current) => current != null ? [...(prev || []), ...current] : (prev || []), [],
+            ) || [];
+
+            navigation.push(
+              'ImageSliderModal',
+              { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex },
+            );
           }}
         />
       );
