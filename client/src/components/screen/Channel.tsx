@@ -162,6 +162,14 @@ const ChannelsFragment: FC<ChannelProps> = ({
   const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
 
   useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
+      const messageId = JSON.parse(response.notification.request.content.data.data as string).messageId;
+
+      if (typeof messageId === 'string') {
+        loadLastMessage({ messageId });
+      }
+    });
+
     // Add notification handler.
     const responseListener = Notifications.addNotificationReceivedListener((event) => {
       const messageId = JSON.parse(event.request.content.data.data as string).messageId;
@@ -172,7 +180,10 @@ const ChannelsFragment: FC<ChannelProps> = ({
     });
 
     // Clean up : remove notification handler.
-    return () => Notifications.removeNotificationSubscription(responseListener);
+    return () => {
+      Notifications.removeNotificationSubscription(responseListener);
+      subscription.remove();
+    };
   }, []);
 
   const onEndReached = (): void => {
