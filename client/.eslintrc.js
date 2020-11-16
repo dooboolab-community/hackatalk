@@ -11,5 +11,6 @@ module.exports = {
       },
     ],
     camelcase: 0,
+    'default-param-last': ['warn'],
   },
 };

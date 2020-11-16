@@ -179,8 +179,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <View style={{ height: showMenu ? keyboardHeight + 80 : 28 }} />
           }
         />
-        {!showMenu ? (
-          <StyledViewChat
+        {!showMenu
+          ? <StyledViewChat
             style={{
               borderColor: borderColor,
               backgroundColor: backgroundColor,
@@ -226,58 +226,61 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
-        ) : null}
+          : null
+        }
       </StyledKeyboardAvoidingView>
-      {showMenu ? (
-        <StyledViewBottom>
-          <StyledViewChat
-            style={{
-              borderColor: borderColor,
-              backgroundColor: backgroundColor,
-            }}
-          >
-            <StyledInputChat
-              // @ts-ignore
-              ref={input2}
-              onFocus={(): void => setShowMenu(false)}
+      {
+        showMenu
+          ? <StyledViewBottom>
+            <StyledViewChat
               style={{
-                color: fontColor,
+                borderColor: borderColor,
                 backgroundColor: backgroundColor,
-                flexGrow: 1,
-                flexShrink: 1,
               }}
-              multiline={true}
-              placeholder={placeholder}
-              placeholderTextColor={placeholderTextColor}
-              value={message}
-              defaultValue={message}
-            />
-            <StyledTouchMenu
-              testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}
             >
-              {optionView}
-            </StyledTouchMenu>
-            <View
+              <StyledInputChat
+              // @ts-ignore
+                ref={input2}
+                onFocus={(): void => setShowMenu(false)}
+                style={{
+                  color: fontColor,
+                  backgroundColor: backgroundColor,
+                  flexGrow: 1,
+                  flexShrink: 1,
+                }}
+                multiline={true}
+                placeholder={placeholder}
+                placeholderTextColor={placeholderTextColor}
+                value={message}
+                defaultValue={message}
+              />
+              <StyledTouchMenu
+                testID="touch-menu"
+                onPress={(): void => setShowMenu(false)}
+              >
+                {optionView}
+              </StyledTouchMenu>
+              <View
+                style={{
+                  position: 'absolute',
+                  right: 8,
+                }}
+              >
+                {renderSendButton?.()}
+              </View>
+            </StyledViewChat>
+            <StyledViewMenu
+              testID="view-menu"
+              height={keyboardHeight}
               style={{
-                position: 'absolute',
-                right: 8,
+                backgroundColor: backgroundColor,
               }}
             >
-              {renderSendButton?.()}
-            </View>
-          </StyledViewChat>
-          <StyledViewMenu
-            testID="view-menu"
-            height={keyboardHeight}
-            style={{
-              backgroundColor: backgroundColor,
-            }}
-          >
-            {renderViewMenu?.()}
-          </StyledViewMenu>
-        </StyledViewBottom>
-      ) : null}
+              {renderViewMenu?.()}
+            </StyledViewMenu>
+          </StyledViewBottom>
+          : null
+      }
     </>
   );
 }

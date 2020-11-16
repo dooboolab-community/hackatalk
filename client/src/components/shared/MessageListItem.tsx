@@ -182,11 +182,11 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'column', maxWidth: '80%' }}>
-          {isSamePeerMsg ? (
-            <View />
-          ) : (
-            <StyledTextPeerName>{sender?.nickname ?? sender?.name}</StyledTextPeerName>
-          )}
+          {
+            isSamePeerMsg
+              ? <View />
+              : <StyledTextPeerName>{sender?.nickname ?? sender?.name}</StyledTextPeerName>
+          }
           <View style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',

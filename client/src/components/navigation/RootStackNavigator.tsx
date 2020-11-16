@@ -63,8 +63,8 @@ function RootNavigator(): React.ReactElement {
         }}
         mode="modal"
       >
-        {!user || !user.verified ? (
-          <Stack.Screen
+        {!user || !user.verified
+          ? <Stack.Screen
             name="AuthStack"
             component={AuthStack}
             options={{
@@ -74,8 +74,7 @@ function RootNavigator(): React.ReactElement {
               }),
             }}
           />
-        ) : (
-          <Stack.Screen
+          : <Stack.Screen
             name="MainStack"
             component={MainStack}
             options={{
@@ -85,7 +84,7 @@ function RootNavigator(): React.ReactElement {
               }),
             }}
           />
-        )}
+        }
         <Stack.Screen
           name="WebView"
           component={WebView}

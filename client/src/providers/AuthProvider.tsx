@@ -44,7 +44,10 @@ const initialState: State = {
   user: undefined,
 };
 
-const reducer: Reducer = (state = initialState, action) => {
+const reducer: Reducer = (
+  state = initialState,
+  action,
+) => {
   switch (action.type) {
     case ActionType.SetUser:
       return { ...action.payload };

@@ -172,7 +172,7 @@ function ChannelListItem(props: Props): React.ReactElement {
         }}
       >
         {photoURLs?.map((photo, i) => {
-          if (i > 3) return;
+          if (i > 3) return null;
 
           if (!photo) {
             return <StyledImageSmall source={IC_NO_IMAGE} />;

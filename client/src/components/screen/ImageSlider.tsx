@@ -104,6 +104,7 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
     navigation.setOptions({
       headerBackTitle: images[currentIndex].sender || '???',
     });
+
     pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });
     nextImageTranslateX.setValue(0);
     prevImageTranslateX.setValue(0);
