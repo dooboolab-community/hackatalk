@@ -29,7 +29,9 @@ jobs:
         ROOT_URL: ${{ secrets.ROOT_URL }}
         facebookAppId: ${{ secrets.facebookAppId }}
         facebookSecret: ${{ secrets.facebookSecret }}
-        googleClientId: ${{ secrets.googleClientId }}
+        googleWebClientId: ${{ secrets.googleWebClientId }}
+        googleAndroidClientId: ${{ secrets.googleAndroidClientId }}
+        googleIOSClientId: ${{ secrets.googleIOSClientId }}
         googleSecret: ${{ secrets.googleSecret }}
 
     - name: Deploy to Firebase

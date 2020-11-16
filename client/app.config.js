@@ -10,7 +10,7 @@ export default {
       'android',
       'web',
     ],
-    version: '1.0.5',
+    version: '1.1.1',
     orientation: 'default',
     icon: './assets/icon.png',
     splash: {
@@ -37,7 +37,7 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.0.5',
+      buildNumber: '1.1.1',
       usesAppleSignIn: true,
       infoPlist: {
         NSCameraUsageDescription:
