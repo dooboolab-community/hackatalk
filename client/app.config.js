@@ -94,4 +94,19 @@ export default {
     description: 'Opensource chat app',
     githubUrl: 'https://github.com/dooboolab/hackatalk',
   },
+  web: {
+    relatedApplications: [
+      {
+        platform: 'itunes',
+        url: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
+        id: 'com.dooboolab.hackatalk',
+      },
+      {
+        platform: 'play',
+        url: 'https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk',
+        id: 'com.dooboolab.hackatalk',
+      },
+    ],
+    preferRelatedApplications: true,
+  },
 };

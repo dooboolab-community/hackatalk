@@ -4,6 +4,7 @@ module.exports = async function(env, argv) {
   const config = await createExpoWebpackConfigAsync(
     {
       ...env,
+      offline: true,
       babel: {
         dangerouslyAddModulePathsToTranspile: [
           'dooboo-ui',
@@ -25,7 +26,9 @@ module.exports = async function(env, argv) {
         oneOf: rule.oneOf.map((oneOfRule) => {
           if (oneOfRule.test && oneOfRule.test.toString().includes('svg')) {
             hasModified = true;
+
             const test = oneOfRule.test.toString().replace('|svg', '');
+
             return { ...oneOfRule, test: new RegExp(test) };
           } else {
             return oneOfRule;

@@ -1,0 +1,21 @@
+{
+  "description": "Opensource chat app",
+  "display": "standalone",
+  "lang": "en",
+  "name": "HackaTalk",
+  "short_name": "HackaTalk",
+  "start_url": "/?utm_source=web_app_manifest",
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/hackatalk/id1479617602",
+      "id": "com.dooboolab.hackatalk"
+    },
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk",
+      "id": "com.dooboolab.hackatalk"
+    }
+  ],
+  "prefer_related_applications": true
+}
