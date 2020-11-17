@@ -111,22 +111,21 @@ function App(): ReactElement {
     if (me === null) {
       AsyncStorage.removeItem('token');
       setDevice();
+      SplashScreen.hideAsync();
 
       return;
     }
 
     // @ts-ignore
     setUser(me);
+    SplashScreen.hideAsync();
   }, [me]);
 
   if (!assetLoaded) {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={async (): Promise<void> => {
-          setAssetLoaded(true);
-          await SplashScreen.hideAsync();
-        }}
+        onFinish={() => setAssetLoaded(true)}
       // onError={console.warn}
       />
     );
