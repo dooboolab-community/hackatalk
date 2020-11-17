@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import * as SplashScreen from 'expo-splash-screen';
 
 import { Alert, Image } from 'react-native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
@@ -81,7 +82,17 @@ function App(): ReactElement {
 
   const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
 
+  const prepareAutoHide = async (): Promise<void> => {
+    try {
+      await SplashScreen.preventAutoHideAsync();
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
   useEffect(() => {
+    prepareAutoHide();
+
     registerForPushNotificationsAsync()
       .then((pushToken) => {
         if (pushToken) {
@@ -112,7 +123,10 @@ function App(): ReactElement {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
-        onFinish={(): void => setAssetLoaded(true)}
+        onFinish={async (): Promise<void> => {
+          setAssetLoaded(true);
+          await SplashScreen.hideAsync();
+        }}
       // onError={console.warn}
       />
     );
