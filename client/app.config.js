@@ -27,7 +27,7 @@ export default {
       '**/*',
     ],
     facebookDisplayName: 'hackatalk',
-    facebookScheme: process.env.facebookAppId,
+    facebookScheme: `fb${process.env.facebookAppId}`,
     ios: {
       userInterfaceStyle: 'light',
       supportsTablet: true,
