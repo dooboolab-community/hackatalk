@@ -108,6 +108,10 @@ function App(): ReactElement {
   }, []);
 
   useEffect(() => {
+    if (assetLoaded) SplashScreen.hideAsync();
+  }, [assetLoaded]);
+
+  useEffect(() => {
     if (me === null) {
       AsyncStorage.removeItem('token');
       setDevice();

@@ -40,10 +40,6 @@ const Stack = createStackNavigator<AuthStackParamList>();
 function AuthNavigator(): ReactElement {
   const { theme } = useThemeContext();
 
-  useEffect(() => {
-    SplashScreen.hideAsync();
-  }, []);
-
   return (
     <Stack.Navigator
       initialRouteName="SignIn"

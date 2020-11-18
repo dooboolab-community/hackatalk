@@ -197,12 +197,12 @@ const ChannelsFragment: FC<ChannelProps> = ({
     item: { node: Channel, cursor: string };
     index: number;
   }): React.ReactElement => {
-    if (!item.node?.memberships || !item.node?.memberships.length) return <View key={item.cursor}/>;
+    if (!item.node?.memberships || !item.node?.memberships.length) return <View key={index}/>;
 
     return (
       <ChannelListItem
         testID={`list-item-${index}`}
-        key={item.cursor}
+        key={index.toString()}
         item={item.node}
         onPress={(): void => {
           navigation.navigate('Message', {
