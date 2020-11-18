@@ -111,14 +111,12 @@ function App(): ReactElement {
     if (me === null) {
       AsyncStorage.removeItem('token');
       setDevice();
-      SplashScreen.hideAsync();
 
       return;
     }
 
     // @ts-ignore
     setUser(me);
-    SplashScreen.hideAsync();
   }, [me]);
 
   if (!assetLoaded) {

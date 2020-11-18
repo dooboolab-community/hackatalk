@@ -1,4 +1,5 @@
 import * as Notifications from 'expo-notifications';
+import * as SplashScreen from 'expo-splash-screen';
 
 import { Channel, User } from '../../types/graphql';
 import {
@@ -129,6 +130,8 @@ function MainStackNavigator(): ReactElement {
         },
       });
     });
+
+    SplashScreen.hideAsync();
 
     return () => subscription.remove();
   }, []);
