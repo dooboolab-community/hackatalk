@@ -108,23 +108,26 @@ function App(): ReactElement {
   }, []);
 
   useEffect(() => {
+    if (assetLoaded) SplashScreen.hideAsync();
+  }, [assetLoaded]);
+
+  useEffect(() => {
     if (me === null) {
       AsyncStorage.removeItem('token');
       setDevice();
-      SplashScreen.hideAsync();
 
       return;
     }
 
     // @ts-ignore
     setUser(me);
-    SplashScreen.hideAsync();
   }, [me]);
 
   if (!assetLoaded) {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
+        autoHideSplash={false}
         onFinish={() => setAssetLoaded(true)}
       // onError={console.warn}
       />

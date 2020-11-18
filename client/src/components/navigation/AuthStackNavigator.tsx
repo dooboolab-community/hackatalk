@@ -1,4 +1,6 @@
-import React, { ReactElement } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+
+import React, { ReactElement, useEffect } from 'react';
 import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
 
 import { CompositeNavigationProp } from '@react-navigation/native';

@@ -61,7 +61,6 @@ function RootNavigator(): React.ReactElement {
           headerTintColor: theme.tintColor,
           headerShown: false,
         }}
-        mode="modal"
       >
         {!user || !user.verified
           ? <Stack.Screen
