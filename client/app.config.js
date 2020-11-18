@@ -89,7 +89,7 @@ export default {
       facebookSecret: process.env.facebookSecret,
       googleWebClientId: process.env.googleWebClientId,
       googleAndroidClientId: process.env.googleAndroidClientId,
-      googleIOSClientId: process.env.googleAndroidIOSId,
+      googleIOSClientId: process.env.googleIOSClientId,
     },
     description: 'Opensource chat app',
     githubUrl: 'https://github.com/dooboolab/hackatalk',

@@ -127,6 +127,7 @@ function App(): ReactElement {
     return (
       <AppLoading
         startAsync={loadAssetsAsync}
+        autoHideSplash={false}
         onFinish={() => setAssetLoaded(true)}
       // onError={console.warn}
       />
