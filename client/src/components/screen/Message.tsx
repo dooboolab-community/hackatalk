@@ -426,7 +426,7 @@ const MessagesFragment: FC<MessageProp> = ({
           nextItem={messages[index + 1]}
           item={item}
           onPressPeerImage={(): void => {
-            showModal({ user: item?.sender, hideButtons: true });
+            showModal({ user: item?.sender });
           }}
           onPressMessageImage={(indexOfTheNode: number) => {
             let initialIndex = indexOfTheNode;
