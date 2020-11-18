@@ -85,7 +85,6 @@ const SocialSignInButton: FC<Props> = ({
     useAuthRequest,
     ResponseType,
     Prompt,
-    useAutoDiscovery,
     startAsync,
   } = AuthSession;
 
@@ -93,42 +92,19 @@ const SocialSignInButton: FC<Props> = ({
   const useProxy = Platform.select({ web: false, default: true });
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
-  const redirectUri = makeRedirectUri(
-    socialProvider === AuthType.Google
-      ? {
-        // native: 'hackatalk.dev',
-        useProxy,
-      }
-      : {
-        native: `${facebookAppId}://authorize`,
-        useProxy,
-      },
-  );
-
   const [request, response, promptAsync] = socialProvider === AuthType.Google
     ? Google.useAuthRequest({
       expoClientId: googleWebClientId,
       iosClientId: googleIOSClientId,
       androidClientId: googleAndroidClientId,
       webClientId: googleWebClientId,
-      redirectUri,
-      prompt: Prompt.SelectAccount,
       scopes: ['openid', 'profile'],
-      responseType: ResponseType.Token,
-      usePKCE: false,
     })
     : Facebook.useAuthRequest({
       clientId: facebookAppId,
       clientSecret: facebookSecret,
+      responseType: ResponseType.Code,
       scopes: ['public_profile, email'],
-      redirectUri,
-      prompt: Prompt.SelectAccount,
-      extraParams: {
-        display: Platform.select({ web: 'popup' }) as string,
-        // eslint-disable-next-line
-          auth_type: 'rerequest',
-      },
-      responseType: ResponseType.Token,
     });
 
   useEffect(() => {
