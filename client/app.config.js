@@ -10,7 +10,7 @@ export default {
       'android',
       'web',
     ],
-    version: '1.1.1',
+    version: process.env.appVersion,
     orientation: 'default',
     icon: './assets/icon.png',
     splash: {
@@ -27,7 +27,7 @@ export default {
       '**/*',
     ],
     facebookDisplayName: 'hackatalk',
-    facebookScheme: 'fb476130476434051',
+    facebookScheme: process.env.facebookAppId,
     ios: {
       userInterfaceStyle: 'light',
       supportsTablet: true,
@@ -37,7 +37,7 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: '1.1.1',
+      buildNumber: process.env.appVersion,
       usesAppleSignIn: true,
       infoPlist: {
         NSCameraUsageDescription:
@@ -50,7 +50,7 @@ export default {
       appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
     },
     android: {
-      versionCode: 5,
+      versionCode: parseInt(process.env.androidVersionCode),
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
@@ -108,5 +108,17 @@ export default {
       },
     ],
     preferRelatedApplications: true,
+  },
+  hooks: {
+    postPublish: [
+      {
+        file: 'sentry-expo/upload-sourcemaps',
+        config: {
+          organization: 'dooboolab',
+          project: 'hackatalk',
+          authToken: process.env.sentryAuthToken,
+        },
+      },
+    ],
   },
 };
