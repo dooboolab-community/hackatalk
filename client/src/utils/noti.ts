@@ -24,8 +24,6 @@ export const registerForPushNotificationsAsync = async (): Promise<string | unde
     }
 
     token = (await Notifications.getExpoPushTokenAsync()).data;
-  } else {
-    showAlertForError(getString('MUST_USE_PHYSICAL_DEVICE'));
   }
 
   if (Platform.OS === 'android') {

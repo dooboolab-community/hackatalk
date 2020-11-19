@@ -2,7 +2,7 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Alert, Image } from 'react-native';
+import { Alert, Image, InteractionManager, View } from 'react-native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
@@ -16,7 +16,6 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { AppLoading } from 'expo';
 import type {
   AppUserQuery,
 } from './__generated__/AppUserQuery.graphql';
@@ -63,10 +62,12 @@ function cacheImages(images: (number | string)[]): any[] {
   });
 }
 
-const loadAssetsAsync = async (): Promise<void> => {
-  const imageAssets = cacheImages(Icons);
-
-  await Promise.all([...imageAssets]);
+const prepareAutoHide = async (): Promise<void> => {
+  try {
+    await SplashScreen.preventAutoHideAsync();
+  } catch (e) {
+    console.warn(e);
+  }
 };
 
 function App(): ReactElement {
@@ -80,35 +81,38 @@ function App(): ReactElement {
     setDeviceType(deviceType);
   };
 
-  const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
+  const loadAssetsAsync = async (): Promise<void> => {
+    const imageAssets = cacheImages(Icons);
 
-  const prepareAutoHide = async (): Promise<void> => {
-    try {
-      await SplashScreen.preventAutoHideAsync();
-    } catch (e) {
-      console.warn(e);
-    }
+    await Promise.all([...imageAssets]);
+
+    setAssetLoaded(true);
   };
 
-  useEffect(() => {
-    prepareAutoHide();
+  const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
+
+  const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
+    await SplashScreen.hideAsync();
 
     registerForPushNotificationsAsync()
       .then((pushToken) => {
         if (pushToken) {
           AsyncStorage.setItem('push_token', pushToken);
-
-          return;
         }
 
         Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
       }).catch((): void => {
         Alert.alert(getString('ERROR'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
       });
-  }, []);
+  };
 
   useEffect(() => {
-    if (assetLoaded) SplashScreen.hideAsync();
+    if (!assetLoaded) {
+      SplashScreen.preventAutoHideAsync();
+      loadAssetsAsync();
+    } else {
+      hideSplashScreenThenRegisterNotification();
+    }
   }, [assetLoaded]);
 
   useEffect(() => {
@@ -124,14 +128,7 @@ function App(): ReactElement {
   }, [me]);
 
   if (!assetLoaded) {
-    return (
-      <AppLoading
-        startAsync={loadAssetsAsync}
-        autoHideSplash={false}
-        onFinish={() => setAssetLoaded(true)}
-      // onError={console.warn}
-      />
-    );
+    return <View/>;
   }
 
   return <RootNavigator />;
@@ -140,6 +137,10 @@ function App(): ReactElement {
 const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
+
+  useEffect(() => {
+    prepareAutoHide();
+  }, []);
 
   return (
     <ThemeProvider
@@ -172,14 +173,12 @@ function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactE
 
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(App)
-  .wrap(HackatalkThemeProvider, {})
   .wrap(ActionSheetProviderWithChildren, {})
-  .wrap(Suspense, {
-    fallback: LoadingIndicator,
-  })
+  .wrap(Suspense, { fallback: LoadingIndicator })
   .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
   .wrap(AuthProvider, {})
   .wrap(DeviceProvider, {})
+  .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})
   .build();
 
