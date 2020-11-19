@@ -98,6 +98,8 @@ function App(): ReactElement {
       .then((pushToken) => {
         if (pushToken) {
           AsyncStorage.setItem('push_token', pushToken);
+
+          return;
         }
 
         Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
