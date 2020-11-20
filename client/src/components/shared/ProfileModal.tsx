@@ -1,14 +1,14 @@
 import { Alert, TouchableOpacity, View, ViewStyle } from 'react-native';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
 import {
   ProfileModalFindOrCreatePrivateChannelMutation,
   ProfileModalFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { graphql, useMutation } from 'react-relay/hooks';
 
 import { ConnectionHandler } from 'relay-runtime';
+import { FontAwesome } from '@expo/vector-icons';
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
@@ -84,7 +84,7 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 `;
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String!]!) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name

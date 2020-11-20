@@ -3,8 +3,6 @@ import * as Permissions from 'expo-permissions';
 
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { getString } from '../../STRINGS';
-import { showAlertForError } from './common';
 
 export const registerForPushNotificationsAsync = async (): Promise<string | undefined> => {
   let token: string | undefined;

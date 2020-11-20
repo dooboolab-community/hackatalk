@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type ChannelCreateFindOrCreatePrivateChannelMutationVariables = {
-    peerUserIds: Array<string | null>;
+    peerUserIds: Array<string>;
 };
 export type ChannelCreateFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
@@ -22,7 +22,7 @@ export type ChannelCreateFindOrCreatePrivateChannelMutation = {
 
 /*
 mutation ChannelCreateFindOrCreatePrivateChannelMutation(
-  $peerUserIds: [String]!
+  $peerUserIds: [String!]!
 ) {
   findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
     id
@@ -97,14 +97,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "7775e86d79b319dfd656de8e6e9e9ac4",
+            "cacheID": "a8d3262106bfb28cbe87b4008c2d3356",
             "id": null,
             "metadata": {},
             "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
             "operationKind": "mutation",
-            "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
+            "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String!]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '7c01e2d7590e8ddad00c80134f31ec8d';
+(node as any).hash = 'a4ba54c3dd6f7d0debf4577aa3883071';
 export default node;

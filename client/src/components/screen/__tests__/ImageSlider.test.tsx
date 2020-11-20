@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { RenderAPI, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import Screen from '../ImageSlider';
+import ImageSlider from '../ImageSlider';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;
@@ -40,7 +40,7 @@ jest.mock('react-native-safe-area-context', () => {
 describe('Rendering', () => {
   beforeEach(() => {
     props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
-    component = createTestElement(<Screen {...props} />);
+    component = createTestElement(<ImageSlider {...props} />);
     testingLib = render(component);
   });
 
@@ -55,7 +55,7 @@ describe('Rendering', () => {
 describe('Interaction', () => {
   beforeEach(() => {
     props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
-    component = createTestElement(<Screen {...props} />);
+    component = createTestElement(<ImageSlider {...props} />);
     testingLib = render(component);
   });
 

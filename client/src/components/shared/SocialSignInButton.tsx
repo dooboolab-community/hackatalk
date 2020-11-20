@@ -4,7 +4,7 @@ import * as Facebook from 'expo-auth-session/providers/facebook';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 
-import { Alert, Platform, View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import type {
@@ -81,15 +81,10 @@ const SocialSignInButton: FC<Props> = ({
   useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
   const {
-    makeRedirectUri,
-    useAuthRequest,
     ResponseType,
-    Prompt,
-    startAsync,
   } = AuthSession;
 
   const { theme } = useThemeContext();
-  const useProxy = Platform.select({ web: false, default: true });
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
   const [request, response, promptAsync] = socialProvider === AuthType.Google
@@ -130,7 +125,7 @@ const SocialSignInButton: FC<Props> = ({
 
               Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
             },
-            onError: (error: any): void => {
+            onError: (error: Error): void => {
               showAlertForError(error);
             },
           };
@@ -155,7 +150,7 @@ const SocialSignInButton: FC<Props> = ({
 
             Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
           },
-          onError: (error: any): void => {
+          onError: (error: Error): void => {
             showAlertForError(error);
           },
         };

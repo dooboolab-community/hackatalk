@@ -1,16 +1,15 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import { SignUpMutation, SignUpMutationResponse, UserCreateInput } from '../../__generated__/SignUpMutation.graphql';
-import {
-  SignUpSendVerificationMutation,
-  SignUpSendVerificationMutationResponse,
-} from '../../__generated__/SignUpSendVerificationMutation.graphql';
+import { SignUpMutation, SignUpMutationResponse } from '../../__generated__/SignUpMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import {
+  SignUpSendVerificationMutation,
+} from '../../__generated__/SignUpSendVerificationMutation.graphql';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';

@@ -2,7 +2,6 @@ import * as Notifications from 'expo-notifications';
 
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
@@ -30,6 +29,7 @@ import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
+import { Ionicons } from '@expo/vector-icons';
 import type {
   MessageComponent_message$key,
 } from '../../__generated__/MessageComponent_message.graphql';
@@ -38,6 +38,7 @@ import { RootStackNavigationProps } from 'components/navigation/RootStackNavigat
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import { resizeImage } from '../../utils/image';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { uploadImageAsync } from '../../apis/upload';
 import { useAuthContext } from '../../providers/AuthProvider';
@@ -323,11 +324,9 @@ const MessagesFragment: FC<MessageProp> = ({
         const { text } = response.createMessage;
 
         setTextToSend('');
-
-        console.log('createMessage', text);
       },
       onError: (error: Error): void => {
-        console.log('error', error);
+        showAlertForError(error);
       },
     };
 
@@ -379,11 +378,9 @@ const MessagesFragment: FC<MessageProp> = ({
         },
         onCompleted: (response: MessageCreateMutationResponse) => {
           const { imageUrls } = response.createMessage;
-
-          console.log('createMessage', imageUrls);
         },
         onError: (error: Error): void => {
-          console.log('error', error);
+          showAlertForError(error);
           setIsImageUploading(false);
         },
       };
@@ -439,7 +436,7 @@ const MessagesFragment: FC<MessageProp> = ({
               return imageUrls && imageUrls.length > 0;
             }).map(
               ({ imageUrls, sender, updatedAt }) => imageUrls?.map(
-                (uri) => ({ uri, sender: sender.nickname ?? sender.name!, date: updatedAt }),
+                (uri) => ({ uri, sender: sender.nickname ?? sender.name, date: updatedAt }),
               ),
             );
 
@@ -448,7 +445,7 @@ const MessagesFragment: FC<MessageProp> = ({
             ) || [];
 
             navigation.push(
-              'ImageSliderModal',
+              'ImageSlider',
               { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex },
             );
           }}

@@ -57,7 +57,7 @@ interface ChannelCreate extends User {
 }
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserIds: [String!]!) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name

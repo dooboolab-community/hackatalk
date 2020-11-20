@@ -21,8 +21,8 @@ export type RootStackParamList = {
   WebView: {
     uri: string;
   };
-  ImageSliderModal: {
-    images: { uri: string, sender: string, date: any }[];
+  ImageSlider: {
+    images: { uri: string, sender: string | null, date: any }[];
     initialIndex: number;
   }
   NotFound: undefined;
@@ -94,11 +94,11 @@ function RootNavigator(): React.ReactElement {
           }}
         />
         <Stack.Screen
-          name="ImageSliderModal"
+          name="ImageSlider"
           component={ImageSlider}
           options={({ route: { params: { images, initialIndex } } }) => ({
             headerShown: true,
-            headerBackTitle: images[initialIndex].sender,
+            headerBackTitle: images[initialIndex].sender || '',
             headerTitle: '',
             headerTransparent: true,
           })}

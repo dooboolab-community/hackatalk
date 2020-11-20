@@ -1,8 +1,6 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
-import * as Config from '../../../config';
 import * as Crypto from 'expo-crypto';
 import * as Device from 'expo-device';
-import * as WebBrowser from 'expo-web-browser';
 
 import { Alert, Dimensions, Image, Platform, TouchableOpacity, View } from 'react-native';
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
@@ -34,7 +32,6 @@ import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
-import { useNavigation } from '@react-navigation/native';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -174,10 +171,8 @@ function SignIn(props: Props): ReactElement {
   const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
   const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
 
-  const [commitNotification, isNotificationInFlight] =
+  const [commitNotification] =
     useMutation<SignInCreateNotificationMutation>(createNotification);
-
-  WebBrowser.maybeCompleteAuthSession();
 
   const createNotificationIfPushTokenExists = async (): Promise<void> => {
     const pushToken = await AsyncStorage.getItem('push_token');
@@ -292,7 +287,7 @@ function SignIn(props: Props): ReactElement {
 
             setUser(user as User);
           },
-          onError: (error: any): void => {
+          onError: (error: Error): void => {
             showAlertForError(error);
           },
         };
