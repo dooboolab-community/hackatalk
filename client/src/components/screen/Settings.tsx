@@ -88,7 +88,7 @@ function Settings(props: Props): React.ReactElement {
     option: SettingsOption,
     theme: DefaultTheme,
   ): React.ReactElement => {
-    const isEmailUser = user?.profile?.authType === AuthType.Email;
+    const isEmailUser = (user?.profile?.authType ?? AuthType.Email) === AuthType.Email;
 
     return (
 

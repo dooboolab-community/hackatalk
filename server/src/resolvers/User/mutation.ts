@@ -108,6 +108,7 @@ export const signInEmail = mutationField('signInEmail', {
 
     const findUserWithEmail = async () => prisma.user.findOne({
       where: { email },
+      include: { profile: true },
     });
 
     const updateLastSignedIn = () => prisma.user.update({
