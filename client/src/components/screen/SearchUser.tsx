@@ -9,7 +9,6 @@ import {
   graphql,
   useLazyLoadQuery,
   usePaginationFragment,
-  useRelayEnvironment,
 } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';

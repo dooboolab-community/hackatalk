@@ -48,7 +48,7 @@
   "EMAIL_REQUIRED": "Email is required.",
   "PASSWORD_REQUIRED": "Password is required.",
   "PASSWORD_INCORRECT": "Incorrect Password",
-  "PASSWORD_MIN": "Password must be 6~15 charaters, including Upper/Lowercase, Number,and Special Characters",
+  "PASSWORD_MIN": "Password must be 6~15 charaters, number,and Special Characters",
   "NAME_REQUIRED": "Name is required.",
   "NAME_MIN": "Name must be at least 3 characters.",
   "PASSWORD_MUST_MATCH": "Passwords must match.",
@@ -107,5 +107,6 @@
   "REPORT_DESCRIPTION": "Please give sepecific reason on why you want to ban the following user.",
   "SUCCESS": "SUCCESS",
   "FAILED": "FAILED",
-  "REPORT_SENT": "Report has been sent successfully. The support team will review your reports."
+  "REPORT_SENT": "Report has been sent successfully. The support team will review your reports.",
+  "FAILED_LOAD_IMAGE" :"Failed loading image. Please try again."
 }

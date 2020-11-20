@@ -2,7 +2,6 @@ import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
 import { showAlertForError, validateEmail } from '../../utils/common';
 
-import { Alert } from 'react-native';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -33,8 +32,6 @@ function Page({ navigation }: Props): ReactElement {
 
   const { theme } = useThemeContext();
   // const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
-
-  const navigateToSignIn = (): void => navigation.navigate('SignIn');
 
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {

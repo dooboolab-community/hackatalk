@@ -1,9 +1,3 @@
-"""Exposes a URL that specifies the behaviour of this scalar."""
-directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
-  url: String!
-) on SCALAR
-
 scalar AlertMode
 
 scalar Auth
@@ -56,7 +50,7 @@ type Channel {
   """
   Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.
   """
-  memberships(excludeMe: Boolean): [Membership!]
+  memberships(excludeMe: Boolean): [Membership!]!
 }
 
 type ChannelConnection {
@@ -74,7 +68,7 @@ type ChannelConnection {
 input ChannelCreateInput {
   channelType: ChannelType
   name: String
-  userIds: [String!]
+  userIds: [String]
 }
 
 type ChannelEdge {
@@ -82,7 +76,7 @@ type ChannelEdge {
   cursor: String!
 
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
-  node: Channel!
+  node: Channel
 }
 
 scalar ChannelType
@@ -108,7 +102,7 @@ scalar Gender
 
 type Membership {
   alertMode: AlertMode
-  membershipType: MembershipType
+  membershipType: MembershipType!
   isVisible: Boolean!
   createdAt: DateTime
   updatedAt: DateTime
@@ -122,15 +116,15 @@ type Message {
   id: String!
   messageType: MessageType!
   text: String
-  imageUrls: [String!]
-  fileUrls: [String!]
+  imageUrls: [String!]!
+  fileUrls: [String!]!
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   channel: Channel
   sender: User!
-  replies: [Reply!]
-  reactions: [Reaction!]
+  replies: [Reply]
+  reactions: [Reaction]
 }
 
 type MessageConnection {
@@ -148,8 +142,8 @@ type MessageConnection {
 input MessageCreateInput {
   messageType: MessageType
   text: String
-  imageUrls: [String!]
-  fileUrls: [String!]
+  imageUrls: [String]
+  fileUrls: [String]
 }
 
 type MessageEdge {
@@ -157,7 +151,7 @@ type MessageEdge {
   cursor: String!
 
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
-  node: Message!
+  node: Message
 }
 
 scalar MessageType
@@ -167,24 +161,24 @@ type Mutation {
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!
-  signInWithGoogle(accessToken: String!): AuthPayload!
-  sendVerification(email: String!): Boolean!
+  signInWithGoogle(accessToken: String!): AuthPayload
+  sendVerification(email: String!): Boolean
 
   """
   Update user profile. Becareful that nullable fields will be updated either.
   """
-  updateProfile(user: UserUpdateInput): User!
-  findPassword(email: String!): Boolean!
-  changeEmailPassword(password: String!, newPassword: String!): Boolean!
+  updateProfile(user: UserUpdateInput): User
+  findPassword(email: String!): Boolean
+  changeEmailPassword(password: String!, newPassword: String!): Boolean
   createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(token: String!): Notification
+  deleteNotification(token: String!): Notification!
 
   """
   Provide `dir` optionally, Upload single file to the server with graphql-upload
   """
-  singleUpload(file: Upload, dir: String): String
+  singleUpload(file: Upload, dir: String): String!
   addFriend(friendId: String!): Friend!
-  deleteFriend(friendId: String!): Friend!
+  deleteFriend(friendId: String!): Friend
 
   """
   Creates channel of [ChannelType].
@@ -214,16 +208,10 @@ type Mutation {
   """
   leaveChannel(channelId: String!): Membership!
 
-  """
-  Adds some users into [public] channel.
-    
-  """
+  """Adds some users into [public] channel."""
   inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel!
 
-  """
-  Removes some users from [public] channel.
-    
-  """
+  """Removes some users from [public] channel."""
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
   createMessage(channelId: String!, message: MessageCreateInput!): Message!
   deleteMessage(id: String!): Message
@@ -273,7 +261,7 @@ type Profile {
 
 type Query {
   """Fetch user profile"""
-  user(id: String): User!
+  user(id: String): User
 
   """
   Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.
@@ -296,7 +284,7 @@ type Query {
 
   """Fetch current user profile when authenticated."""
   me: User
-  notifications(userId: String): [Notification!]
+  notifications(userId: String): [Notification!]!
   friends(
     searchText: String
 
@@ -332,7 +320,7 @@ type Query {
   ): ChannelConnection!
 
   """Get single message"""
-  message(id: String): Message!
+  message(id: String): Message
   messages(
     channelId: String!
     searchText: String
@@ -351,8 +339,8 @@ type Query {
   ): MessageConnection!
 
   """Arguments are not needed. Only find blocked users of signed in user"""
-  blockedUsers: [User!]
-  reports(userId: String): [Report!]
+  blockedUsers: [User!]!
+  reports(userId: String): [Report!]!
 }
 
 type Reaction {
@@ -369,7 +357,7 @@ type Reply {
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  sender: User
+  sender: User!
 }
 
 type Report {
@@ -407,7 +395,7 @@ type User {
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  notifications: [Notification!]
+  notifications: [Notification]
 
   """Check if the user is blocked by the user who have signed in."""
   hasBlocked: Boolean
@@ -443,7 +431,7 @@ type UserEdge {
   cursor: String!
 
   """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
-  node: User!
+  node: User
 }
 
 input UserUpdateInput {

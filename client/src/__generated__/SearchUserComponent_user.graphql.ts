@@ -17,7 +17,7 @@ export type SearchUserComponent_user = {
                 readonly photoURL: string | null;
                 readonly thumbURL: string | null;
                 readonly statusMessage: string | null;
-            };
+            } | null;
         } | null> | null;
         readonly pageInfo: {
             readonly hasNextPage: boolean;

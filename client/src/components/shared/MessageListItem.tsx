@@ -4,6 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import { Message } from '../../types/graphql';
+import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -184,7 +185,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           {
             isSamePeerMsg
               ? <View />
-              : <StyledTextPeerName>{sender?.nickname ?? sender?.name}</StyledTextPeerName>
+              : <StyledTextPeerName>{sender?.nickname ?? sender?.name ?? getString('NO_NAME')}</StyledTextPeerName>
           }
           <View style={{
             flexDirection: 'row',

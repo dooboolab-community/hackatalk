@@ -7,7 +7,7 @@ export type VerifyEmailMutationVariables = {
     email: string;
 };
 export type VerifyEmailMutationResponse = {
-    readonly sendVerification: boolean;
+    readonly sendVerification: boolean | null;
 };
 export type VerifyEmailMutation = {
     readonly response: VerifyEmailMutationResponse;

@@ -1,6 +1,6 @@
+import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import { Image, TouchableOpacity, View } from 'react-native';
 import React, { FC, useEffect, useState } from 'react';
 import {
   fetchQuery,
@@ -157,19 +157,22 @@ const Screen: FC<Props> = () => {
           setIsUploading(true);
 
           if (image && !image.cancelled) {
-            const resizedImage = await resizeImage({
-              imageUri: image.uri,
-              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
-              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
-            });
+            try {
+              const resizedImage = await resizeImage({
+                imageUri: image.uri,
+                maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
+                maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+              });
 
-            // uploadImage(resizedImage.uri);
-            const response = await uploadImageAsync(resizedImage.uri, 'profiles');
-            const result = JSON.parse(await response.text());
+              const response = await uploadImageAsync(resizedImage.uri, 'profiles');
+              const result = JSON.parse(await response.text());
 
-            setIsUploading(false);
+              setIsUploading(false);
 
-            setProfilePath(result.url);
+              setProfilePath(result.url);
+            } catch (err) {
+              Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+            }
           }
 
           return;

@@ -201,7 +201,11 @@ function ChannelListItem(props: Props): React.ReactElement {
                 <StyledTextDisplayName
                   numberOfLines={2}
                 >
-                  {users?.map((v) => v?.nickname || v?.name || getString('NO_NAME'))}
+                  {users?.map((v, i) => {
+                    if (i === users.length - 1) { return v?.nickname ?? v?.name ?? getString('NO_NAME'); }
+
+                    return (v?.nickname ?? v?.name ?? getString('NO_NAME')) + ', ';
+                  })}
                 </StyledTextDisplayName>
                 {(lastMessageCnt) !== 0
                   ? <StyledTextWrapper>

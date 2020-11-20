@@ -26,7 +26,7 @@ export type ChannelCreate_friends = {
                 readonly createdAt: unknown | null;
                 readonly updatedAt: unknown | null;
                 readonly deletedAt: unknown | null;
-            };
+            } | null;
         } | null> | null;
         readonly pageInfo: {
             readonly hasNextPage: boolean;

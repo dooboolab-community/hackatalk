@@ -11,8 +11,8 @@ export type ChannelLastMessageQueryResponse = {
         readonly id: string;
         readonly messageType: unknown;
         readonly text: string | null;
-        readonly imageUrls: ReadonlyArray<string> | null;
-        readonly fileUrls: ReadonlyArray<string> | null;
+        readonly imageUrls: ReadonlyArray<string>;
+        readonly fileUrls: ReadonlyArray<string>;
         readonly createdAt: unknown | null;
         readonly sender: {
             readonly id: string;
@@ -23,7 +23,7 @@ export type ChannelLastMessageQueryResponse = {
                 readonly id: string;
             } | null;
         } | null;
-    };
+    } | null;
 };
 export type ChannelLastMessageQuery = {
     readonly response: ChannelLastMessageQueryResponse;

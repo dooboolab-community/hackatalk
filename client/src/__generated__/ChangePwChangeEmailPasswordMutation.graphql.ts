@@ -8,7 +8,7 @@ export type ChangePwChangeEmailPasswordMutationVariables = {
     newPassword: string;
 };
 export type ChangePwChangeEmailPasswordMutationResponse = {
-    readonly changeEmailPassword: boolean;
+    readonly changeEmailPassword: boolean | null;
 };
 export type ChangePwChangeEmailPasswordMutation = {
     readonly response: ChangePwChangeEmailPasswordMutationResponse;
