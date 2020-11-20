@@ -1,10 +1,11 @@
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import CheckBox from './CheckBox';
+import { FontAwesome } from '@expo/vector-icons';
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import React from 'react';
 import { User } from '../../types/graphql';
+import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useThemeContext } from '@dooboo-ui/theme';
 
@@ -125,7 +126,7 @@ function Shared({
                 : null
             }
           </ImageWrapper>
-          <StyledText numberOfLines={1}>{name || nickname}</StyledText>
+          <StyledText numberOfLines={1}>{nickname ?? name ?? getString('NO_NAME')}</StyledText>
           {
             showCheckBox
               ? <CheckBox
