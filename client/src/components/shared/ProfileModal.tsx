@@ -84,7 +84,7 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 `;
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String]!) {
+  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String!]!) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name
