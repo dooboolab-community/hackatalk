@@ -94,7 +94,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     });
   };
 
-  const friends = useMemo(() => {
+  const friendEdges = useMemo(() => {
     return data.friends.edges?.filter(
       (x): x is NonNullable<typeof x> => x !== null,
     ) || [];
@@ -127,7 +127,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         alignSelf: 'stretch',
       }}
       contentContainerStyle={
-        friends.length === 0
+        friendEdges.length === 0
           ? {
             flex: 1,
             alignItems: 'center',
@@ -136,7 +136,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
           : undefined
       }
       keyExtractor={(item, index): string => index.toString()}
-      data={friends}
+      data={friendEdges as UserEdge[]}
       renderItem={renderItem}
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>

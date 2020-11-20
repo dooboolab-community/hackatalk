@@ -423,21 +423,27 @@ const MessagesFragment: FC<MessageProp> = ({
           nextItem={messages[index + 1]}
           item={item}
           onPressPeerImage={(): void => {
-            showModal({ user: item?.sender });
+            showModal({ user: item?.sender as User });
           }}
           onPressMessageImage={(indexOfTheNode: number) => {
             let initialIndex = indexOfTheNode;
 
-            const imagesList = nodes.filter(({ imageUrls }, nodeIndex) => {
+            const imagesList = nodes.filter((node, nodeIndex) => {
+              const { imageUrls } = node as Message;
+
               if (imageUrls && nodeIndex < index) {
                 initialIndex += imageUrls.length;
               }
 
               return imageUrls && imageUrls.length > 0;
             }).map(
-              ({ imageUrls, sender, updatedAt }) => imageUrls?.map(
-                (uri) => ({ uri, sender: sender.nickname ?? sender.name, date: updatedAt }),
-              ),
+              (message) => {
+                const { imageUrls, sender, updatedAt } = message as Message;
+
+                return imageUrls?.map(
+                  (uri) => ({ uri, sender: sender.nickname ?? sender.name, date: updatedAt }),
+                );
+              },
             );
 
             const flattenImages = imagesList.reduce(

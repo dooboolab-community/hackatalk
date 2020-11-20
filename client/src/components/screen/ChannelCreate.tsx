@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Channel, User, UserEdge } from '../../types/graphql';
 import {
   ChannelCreateFindOrCreatePrivateChannelMutation,
   ChannelCreateFindOrCreatePrivateChannelMutationResponse,
@@ -20,7 +21,6 @@ import {
   IC_NO_IMAGE,
 } from '../../utils/Icons';
 import React, { FC, ReactElement, Suspense, useMemo, useState } from 'react';
-import { User, UserEdge } from '../../types/graphql';
 import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
 
 import { ChannelCreateFriendsQuery } from '../../__generated__/ChannelCreateFriendsQuery.graphql';
@@ -32,6 +32,7 @@ import SearchTextInput from '../shared/SearchTextInput';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
 import produce from 'immer';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
 import { useNavigation } from '@react-navigation/native';
@@ -137,7 +138,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     friend,
   );
 
-  const friends = useMemo(() => {
+  const friendEdges = useMemo(() => {
     return data.friends.edges?.filter(
       (x): x is NonNullable<typeof x> => x !== null,
     ) || [];
@@ -245,7 +246,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
       <FlatList
         style={{ alignSelf: 'stretch' }}
         contentContainerStyle={
-          friends.length === 0
+          friendEdges.length === 0
             ? {
               flex: 1,
               alignSelf: 'stretch',
@@ -254,7 +255,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             : null
         }
         keyExtractor={(_, index): string => index.toString()}
-        data={friends}
+        data={friendEdges as UserEdge[]}
         renderItem={renderItem}
         ListHeaderComponent={(): ReactElement => {
           return <ScrollView
@@ -347,15 +348,15 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
       onCompleted: (
         response: ChannelCreateFindOrCreatePrivateChannelMutationResponse,
       ): void => {
-        const channel = response.findOrCreatePrivateChannel;
+        const channel = response.findOrCreatePrivateChannel as Channel;
 
         navigation.replace('Message', {
-          users: selectedUsers,
           channel,
+          users: selectedUsers,
         });
       },
       onError: (error: Error): void => {
-        console.log('error', error);
+        showAlertForError(error);
       },
     };
 
