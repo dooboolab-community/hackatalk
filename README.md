@@ -7,6 +7,23 @@
 
 ![aTmc5jrhbo](https://user-images.githubusercontent.com/27461460/65466719-a79e2580-de9a-11e9-965e-c4c28a98346e.gif)
 
+### Introduction
+
+`Hackatalk` was built to collaborate with many other developers around the world. We build and do an experiment on modern UX for today's chat app.
+
+### Universl app
+
+* App
+
+  <a href="https://apps.apple.com/us/app/hackatalk/id1479617602"><img src="https://user-images.githubusercontent.com/27461460/77502559-8c8a8d80-6e9e-11ea-9f8e-0f58c704eed6.png" width="200"/></a> <a href="https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk"><img src="https://user-images.githubusercontent.com/27461460/77502571-90b6ab00-6e9e-11ea-9e93-235a319ebb41.png" width="200"/></a>
+
+* Web
+
+  [https://hackatalk.dev](https://hackatalk.dev)
+  
+  - Note: Receiving instant chat messages isn't currently supported in `web`.
+
+
 ## Contributing to `HackaTalk`
 
 - See also

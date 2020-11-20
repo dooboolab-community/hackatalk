@@ -119,7 +119,7 @@ function Page(props: Props): ReactElement {
 
         commitSendVerification(sendVerificationMutationConfig);
 
-        return navigation.navigate('VerifyEmail', { email });
+        return navigation.replace('VerifyEmail', { email });
       },
       onError: (error: any): void => {
         showAlertForError(error);
