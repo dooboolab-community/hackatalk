@@ -98,7 +98,7 @@ export const kickFromChannel = /* GraphQL */`
 `;
 
 export const findOrCreatePrivateChannel = /* GraphQL */`
-  mutation findOrCreatePrivateChannel($peerUserIds: [String]!) {
+  mutation findOrCreatePrivateChannel($peerUserIds: [String!]!) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
     }
