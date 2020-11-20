@@ -1,8 +1,3 @@
 # Prisma Migrate lockfile v1
 
-20200816135927-init
-20200817055843-membership-visible
-20200823053755-token-unique
-20201002065104-channel-last-message-id
-20201109131631-blocked-users
-20201109174809-report
+20201120070839-init

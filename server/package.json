@@ -21,7 +21,7 @@
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
-    "migrate:init": "rm -rf prisma/migrations && prisma migrate save --name “init” --experimental",
+    "migrate:init": "rm -rf prisma/migrations && dotenv -e ./dotenv/.env -- prisma migrate save --name “init” --experimental",
     "migrate:save": "dotenv -e ./dotenv/.env -- prisma migrate save --experimental",
     "migrate:up": "dotenv -e ./dotenv/.env -- prisma migrate up --experimental",
     "migrate:down": "dotenv -e ./dotenv/.env -- prisma migrate down 1 --experimental",
