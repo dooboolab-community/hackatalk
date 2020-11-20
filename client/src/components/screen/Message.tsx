@@ -1,8 +1,8 @@
 import * as Notifications from 'expo-notifications';
 
+import { Alert, Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
-import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import {
   MainStackNavigationProps,
   MainStackParamList,
@@ -345,47 +345,51 @@ const MessagesFragment: FC<MessageProp> = ({
     }
 
     if (image && !image.cancelled) {
-      const resizedImage = await resizeImage({
-        imageUri: image.uri,
-        maxWidth: 1920,
-        maxHeight: 1920,
-      });
+      try {
+        const resizedImage = await resizeImage({
+          imageUri: image.uri,
+          maxWidth: 1920,
+          maxHeight: 1920,
+        });
 
-      const response = await uploadImageAsync(
-        resizedImage.uri,
-        'messages',
+        const response = await uploadImageAsync(
+          resizedImage.uri,
+          'messages',
         `_${channelId}_${new Date().toISOString()}`,
-      );
+        );
 
-      const { url } = JSON.parse(await response.text());
+        const { url } = JSON.parse(await response.text());
 
-      const mutationConfig = {
-        variables: {
-          channelId,
-          message: {
-            messageType: 'photo',
-            imageUrls: [
-              url,
-            ],
+        const mutationConfig = {
+          variables: {
+            channelId,
+            message: {
+              messageType: 'photo',
+              imageUrls: [
+                url,
+              ],
+            },
           },
-        },
-        updater: (proxyStore: RecordSourceSelectorProxy) => {
-          if (user) {
-            updateMessageOnSubmit(proxyStore, channelId, user.id);
-          }
+          updater: (proxyStore: RecordSourceSelectorProxy) => {
+            if (user) {
+              updateMessageOnSubmit(proxyStore, channelId, user.id);
+            }
 
-          updateChannelsOnSubmit(proxyStore, channelId);
-        },
-        onCompleted: (response: MessageCreateMutationResponse) => {
-          const { imageUrls } = response.createMessage;
-        },
-        onError: (error: Error): void => {
-          showAlertForError(error);
-          setIsImageUploading(false);
-        },
-      };
+            updateChannelsOnSubmit(proxyStore, channelId);
+          },
+          onCompleted: (response: MessageCreateMutationResponse) => {
+            const { imageUrls } = response.createMessage;
+          },
+          onError: (error: Error): void => {
+            showAlertForError(error);
+            setIsImageUploading(false);
+          },
+        };
 
-      commitMessage(mutationConfig);
+        commitMessage(mutationConfig);
+      } catch (err) {
+        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+      }
     }
 
     setIsImageUploading(false);

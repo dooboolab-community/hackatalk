@@ -107,5 +107,6 @@
   "REPORT_DESCRIPTION": "해당 유저를 신고하는 이유를 상세하게 알려주세요.",
   "SUCCESS": "성공",
   "FAILED": "실패",
-  "REPORT_SENT": "신고가 성공적으로 접수되었습니다."
+  "REPORT_SENT": "신고가 성공적으로 접수되었습니다.",
+  "FAILED_LOAD_IMAGE" :"이미지를 로딩하지 못했습니다. 다시 시도해주세요."
 }
