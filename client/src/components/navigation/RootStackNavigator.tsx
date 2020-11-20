@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/stack';
 
 import AuthStack from './AuthStackNavigator';
-import ImageSliderModal from '../shared/ImageSliderModal';
+import ImageSlider from '../screen/ImageSlider';
 import MainStack from './MainStackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
@@ -21,7 +21,7 @@ export type RootStackParamList = {
   WebView: {
     uri: string;
   };
-  ImageSliderModal: {
+  ImageSlider: {
     images: { uri: string, sender: string | null, date: any }[];
     initialIndex: number;
   }
@@ -94,8 +94,8 @@ function RootNavigator(): React.ReactElement {
           }}
         />
         <Stack.Screen
-          name="ImageSliderModal"
-          component={ImageSliderModal}
+          name="ImageSlider"
+          component={ImageSlider}
           options={({ route: { params: { images, initialIndex } } }) => ({
             headerShown: true,
             headerBackTitle: images[initialIndex].sender || '',

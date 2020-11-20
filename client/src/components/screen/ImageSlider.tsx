@@ -22,8 +22,8 @@ const ImageSliderContainer = styled.View`
 `;
 
 interface Props {
-  navigation: RootStackNavigationProps<'ImageSliderModal'>;
-  route: RouteProp<RootStackParamList, 'ImageSliderModal'>;
+  navigation: RootStackNavigationProps<'ImageSlider'>;
+  route: RouteProp<RootStackParamList, 'ImageSlider'>;
 }
 
 function ImageSlider({ route: { params: { images, initialIndex } } }: Props): React.ReactElement {

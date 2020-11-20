@@ -445,7 +445,7 @@ const MessagesFragment: FC<MessageProp> = ({
             ) || [];
 
             navigation.push(
-              'ImageSliderModal',
+              'ImageSlider',
               { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex },
             );
           }}
