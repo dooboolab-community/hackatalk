@@ -1,9 +1,5 @@
 import React, { ReactElement } from 'react';
 import { SectionList, SectionListData } from 'react-native';
-import type {
-  SettingsDeleteNotificationMutation,
-  SettingsDeleteNotificationMutationResponse,
-} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
 import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import { graphql, useMutation } from 'react-relay/hooks';
 import styled, { DefaultTheme } from 'styled-components/native';
@@ -13,6 +9,9 @@ import { AuthType } from '../../types/graphql';
 import { Button } from 'dooboo-ui';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
+import type {
+  SettingsDeleteNotificationMutation,
+} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -82,7 +81,7 @@ function Settings(props: Props): React.ReactElement {
   const { navigation } = props;
   const { state: { user } } = useAuthContext();
 
-  const [commitNotification, isNotificationInFlight] =
+  const [commitNotification] =
     useMutation<SettingsDeleteNotificationMutation>(deleteNotification);
 
   const renderSectionItem = (

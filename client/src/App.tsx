@@ -2,7 +2,7 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Alert, Image, InteractionManager, View } from 'react-native';
+import { Alert, Image, View } from 'react-native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
 import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';

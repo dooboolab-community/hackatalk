@@ -121,7 +121,6 @@ function shouldShowDate(
 const ImageSenderComp: FC<ImageSenderProps> = ({
   thumbURL,
   isSamePeerMsg,
-  fontColor,
 }) => {
   if (isSamePeerMsg) {
     return <View style={{ width: 40 }} />;

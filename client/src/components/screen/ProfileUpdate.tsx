@@ -206,7 +206,7 @@ const Screen: FC<Props> = () => {
           photoURL: profilePath,
         },
       },
-      onError: (error: any): void => {
+      onError: (error: Error): void => {
         showAlertForError(error);
       },
     };

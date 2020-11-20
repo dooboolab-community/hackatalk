@@ -1,5 +1,4 @@
-import { Animated, FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { Animated, FlatList, TouchableOpacity, View } from 'react-native';
 import React, { FC, ReactElement, Suspense, useState } from 'react';
 import type {
   SearchUsersPaginationQuery,
@@ -14,6 +13,7 @@ import {
 } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
+import { FontAwesome } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import SearchTextInput from '../shared/SearchTextInput';
 import type {
@@ -204,7 +204,6 @@ const ContentContainer: FC<ContentProps> = ({
 const Screen: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
   const debouncedText = useDebounce(searchText, 500);
-  const environment = useRelayEnvironment();
   const scrollY = new Animated.Value(0);
   const navigation = useNavigation();
 

@@ -72,7 +72,7 @@ function ChangePw(props: Props): ReactElement {
         password: currentPw,
         newPassword: newPw,
       },
-      onError: (error: any): void => {
+      onError: (error: Error): void => {
         showAlertForError(error);
       },
       onCompleted: (response: ChangePwChangeEmailPasswordMutationResponse) => {
