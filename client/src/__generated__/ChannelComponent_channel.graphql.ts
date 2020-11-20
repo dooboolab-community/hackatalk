@@ -19,16 +19,16 @@ export type ChannelComponent_channel = {
                         readonly thumbURL: string | null;
                         readonly photoURL: string | null;
                     } | null;
-                }> | null;
+                }>;
                 readonly lastMessage: {
                     readonly id: string;
                     readonly messageType: unknown;
                     readonly text: string | null;
-                    readonly imageUrls: ReadonlyArray<string> | null;
-                    readonly fileUrls: ReadonlyArray<string> | null;
+                    readonly imageUrls: ReadonlyArray<string>;
+                    readonly fileUrls: ReadonlyArray<string>;
                     readonly createdAt: unknown | null;
                 } | null;
-            };
+            } | null;
         } | null> | null;
         readonly pageInfo: {
             readonly hasNextPage: boolean;

@@ -20,7 +20,7 @@ export type SocialSignInButtonGoogleSignInMutationResponse = {
                 readonly authType: AuthType | null;
             } | null;
         };
-    };
+    } | null;
 };
 export type SocialSignInButtonGoogleSignInMutation = {
     readonly response: SocialSignInButtonGoogleSignInMutationResponse;

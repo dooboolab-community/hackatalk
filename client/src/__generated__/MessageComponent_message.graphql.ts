@@ -12,8 +12,8 @@ export type MessageComponent_message = {
                 readonly id: string;
                 readonly messageType: unknown;
                 readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string> | null;
-                readonly fileUrls: ReadonlyArray<string> | null;
+                readonly imageUrls: ReadonlyArray<string>;
+                readonly fileUrls: ReadonlyArray<string>;
                 readonly sender: {
                     readonly id: string;
                     readonly name: string | null;
@@ -23,7 +23,7 @@ export type MessageComponent_message = {
                 };
                 readonly createdAt: unknown | null;
                 readonly updatedAt: unknown | null;
-            };
+            } | null;
         } | null> | null;
         readonly pageInfo: {
             readonly hasNextPage: boolean;

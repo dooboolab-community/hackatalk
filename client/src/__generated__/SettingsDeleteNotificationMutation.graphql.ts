@@ -12,7 +12,7 @@ export type SettingsDeleteNotificationMutationResponse = {
         readonly token: string;
         readonly device: string | null;
         readonly createdAt: unknown | null;
-    } | null;
+    };
 };
 export type SettingsDeleteNotificationMutation = {
     readonly response: SettingsDeleteNotificationMutationResponse;

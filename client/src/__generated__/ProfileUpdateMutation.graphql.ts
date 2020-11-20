@@ -22,7 +22,7 @@ export type ProfileUpdateMutationResponse = {
         readonly name: string | null;
         readonly nickname: string | null;
         readonly statusMessage: string | null;
-    };
+    } | null;
 };
 export type ProfileUpdateMutation = {
     readonly response: ProfileUpdateMutationResponse;

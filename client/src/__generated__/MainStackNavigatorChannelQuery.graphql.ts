@@ -18,7 +18,7 @@ export type MainStackNavigatorChannelQueryResponse = {
                 readonly thumbURL: string | null;
                 readonly photoURL: string | null;
             } | null;
-        }> | null;
+        }>;
     };
 };
 export type MainStackNavigatorChannelQuery = {

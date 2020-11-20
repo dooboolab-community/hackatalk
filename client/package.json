@@ -103,6 +103,7 @@
     "@graphql-codegen/cli": "^1.19.1",
     "@graphql-codegen/core": "^1.17.8",
     "@graphql-codegen/typescript": "^1.17.11",
+    "@graphql-codegen/typescript-operations": "^1.17.10",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-native": "^3.4.3",
     "@testing-library/react-hooks": "^3.4.2",

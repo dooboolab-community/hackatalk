@@ -6,8 +6,8 @@ import { ConcreteRequest } from "relay-runtime";
 export type MessageCreateInput = {
     messageType?: unknown | null;
     text?: string | null;
-    imageUrls?: Array<string> | null;
-    fileUrls?: Array<string> | null;
+    imageUrls?: Array<string | null> | null;
+    fileUrls?: Array<string | null> | null;
 };
 export type MessageCreateMutationVariables = {
     channelId: string;
@@ -18,8 +18,8 @@ export type MessageCreateMutationResponse = {
         readonly id: string;
         readonly text: string | null;
         readonly messageType: unknown;
-        readonly imageUrls: ReadonlyArray<string> | null;
-        readonly fileUrls: ReadonlyArray<string> | null;
+        readonly imageUrls: ReadonlyArray<string>;
+        readonly fileUrls: ReadonlyArray<string>;
         readonly channel: {
             readonly id: string;
             readonly channelType: unknown;
@@ -31,12 +31,12 @@ export type MessageCreateMutationResponse = {
                     readonly thumbURL: string | null;
                     readonly photoURL: string | null;
                 } | null;
-            }> | null;
+            }>;
             readonly lastMessage: {
                 readonly messageType: unknown;
                 readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string> | null;
-                readonly fileUrls: ReadonlyArray<string> | null;
+                readonly imageUrls: ReadonlyArray<string>;
+                readonly fileUrls: ReadonlyArray<string>;
                 readonly createdAt: unknown | null;
             } | null;
         } | null;
