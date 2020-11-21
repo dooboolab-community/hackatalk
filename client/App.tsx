@@ -1,3 +1,5 @@
+import 'moment/locale/ko';
+
 import * as Sentry from 'sentry-expo';
 
 import App from './src/App';
