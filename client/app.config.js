@@ -48,6 +48,9 @@ export default {
           'HackaTalk would like to access your gallery for you to pick one and share with others.',
       },
       appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
+      config: {
+        googleMobileAdsAppId: 'ca-app-pub-7837089095803162~5303560311',
+      },
     },
     android: {
       versionCode: parseInt(process.env.androidVersionCode),
@@ -65,6 +68,9 @@ export default {
         'USER_FACING_NOTIFICATIONS',
       ],
       googleServicesFile: './google-services.json',
+      config: {
+        googleMobileAdsAppId: 'ca-app-pub-7837089095803162~5303560311',
+      },
     },
     packagerOpts: {
       config: './metro.config.js',

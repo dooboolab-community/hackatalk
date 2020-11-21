@@ -46,6 +46,7 @@
     "date-fns": "^2.16.1",
     "dooboo-ui": "^0.0.24",
     "expo": "^39.0.4",
+    "expo-ads-admob": "~8.3.0",
     "expo-apple-authentication": "~2.2.1",
     "expo-asset": "~8.2.0",
     "expo-auth-session": "~2.0.0",

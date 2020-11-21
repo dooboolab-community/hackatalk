@@ -7215,6 +7215,11 @@ expect@^26.6.2:
     jest-message-util "^26.6.2"
     jest-regex-util "^26.0.0"
 
+expo-ads-admob@~8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/expo-ads-admob/-/expo-ads-admob-8.3.0.tgz#d088b63f0c4b63e20dbddcff4a6e90d00a5e700e"
+  integrity sha512-iY2QzncsSnIxloZw7aLaRuSMwGE3fih06ha4AgqI2VUlLBwGLdGrcmt6VEKOm9aFGZo+hOYJJBfE8lvzc5P0rQ==
+
 expo-apple-authentication@~2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/expo-apple-authentication/-/expo-apple-authentication-2.2.1.tgz#4f515183a385bb2681d8f7bf1064251016d05b97"
