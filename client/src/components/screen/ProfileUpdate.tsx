@@ -14,7 +14,7 @@ import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
 import type { ProfileUpdateMutation } from '../../__generated__/ProfileUpdateMutation.graphql';
 import { getString } from '../../../STRINGS';
-import { resizeImage } from '../../utils/image';
+import { resizePhotoToMaxDimensionsAndCompressAsPNG } from '../../utils/image';
 import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { uploadImageAsync } from '../../apis/upload';
@@ -26,8 +26,8 @@ const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
 const BUTTON_INDEX_CANCEL = 2;
 
 const DEFAULT = {
-  PROFILEIMAGE_WIDTH: 300,
-  PROFILEIMAGE_HEIGHT: 300,
+  PROFILEIMAGE_WIDTH: 1280,
+  PROFILEIMAGE_HEIGHT: 1280,
 };
 
 const Container = styled.View`
@@ -158,10 +158,10 @@ const Screen: FC<Props> = () => {
 
           if (image && !image.cancelled) {
             try {
-              const resizedImage = await resizeImage({
-                imageUri: image.uri,
-                maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
-                maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
+              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+                uri: image.uri,
+                width: DEFAULT.PROFILEIMAGE_WIDTH,
+                height: DEFAULT.PROFILEIMAGE_HEIGHT,
               });
 
               const response = await uploadImageAsync(resizedImage.uri, 'profiles');
@@ -182,16 +182,20 @@ const Screen: FC<Props> = () => {
           const image = await launchImageLibraryAsync();
 
           if (image && !image.cancelled) {
-            const resizedImage = await resizeImage({
-              imageUri: image.uri,
-              maxWidth: DEFAULT.PROFILEIMAGE_WIDTH,
-              maxHeight: DEFAULT.PROFILEIMAGE_HEIGHT,
-            });
+            try {
+              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+                uri: image.uri,
+                width: DEFAULT.PROFILEIMAGE_WIDTH,
+                height: DEFAULT.PROFILEIMAGE_HEIGHT,
+              });
 
-            const response = await uploadImageAsync(resizedImage.uri, 'profiles');
-            const result = JSON.parse(await response.text());
+              const response = await uploadImageAsync(resizedImage.uri, 'profiles');
+              const result = JSON.parse(await response.text());
 
-            setProfilePath(result.url);
+              setProfilePath(result.url);
+            } catch (err) {
+              Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+            }
           }
         }
       },
@@ -248,7 +252,7 @@ const Screen: FC<Props> = () => {
               </View>
               : <ProfileImage
                 testID="profile-image"
-                resizeMode="contain"
+                resizeMode="cover"
                 source={{ uri: profilePath }}
               />
             }

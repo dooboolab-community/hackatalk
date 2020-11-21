@@ -108,5 +108,6 @@
   "SUCCESS": "SUCCESS",
   "FAILED": "FAILED",
   "REPORT_SENT": "Report has been sent successfully. The support team will review your reports.",
-  "FAILED_LOAD_IMAGE" :"Failed loading image. Please try again."
+  "FAILED_LOAD_IMAGE" :"Failed loading image. Please try again.",
+  "HACKATALK": "HackaTalk"
 }
