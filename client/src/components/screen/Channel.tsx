@@ -5,8 +5,8 @@ import type {
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import { FlatList, TouchableOpacity, View } from 'react-native';
-import React, { FC, Suspense, useEffect, useMemo } from 'react';
+import { FlatList, Platform, TouchableOpacity, View } from 'react-native';
+import React, { FC, Suspense, useEffect, useMemo, useState } from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -14,6 +14,7 @@ import {
   useQueryLoader,
 } from 'react-relay/hooks';
 
+import { AdMobBanner } from 'expo-ads-admob';
 import { Channel } from '../../types/graphql';
 import type {
   ChannelComponent_channel$key,
@@ -160,6 +161,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
   );
 
   const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
+  const [bannerError, setBannerError] = useState<boolean>(false);
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
@@ -236,6 +238,24 @@ const ChannelsFragment: FC<ChannelProps> = ({
     // @ts-ignore
     data={channels}
     renderItem={renderItem}
+    ListHeaderComponent={
+      !bannerError
+        ? Platform.select({
+          android: <AdMobBanner
+            bannerSize="fullBanner"
+            // adUnitID="ca-app-pub-3940256099942544/6300978111"
+            adUnitID="ca-app-pub-7837089095803162/8109702961"
+            onDidFailToReceiveAdWithError={() => setBannerError(true)}
+          />,
+          ios: <AdMobBanner
+            bannerSize="fullBanner"
+            // adUnitID="ca-app-pub-3940256099942544/2934735716"
+            adUnitID="ca-app-pub-7837089095803162/5084068464"
+            onDidFailToReceiveAdWithError={() => setBannerError(true)}
+          />,
+        })
+        : null
+    }
     ListEmptyComponent={
       <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
     }
