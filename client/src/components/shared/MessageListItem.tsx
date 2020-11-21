@@ -29,6 +29,7 @@ const StyledImage = styled.Image`
 const StyledImageSender = styled.Image`
   width: 32px;
   height: 32px;
+  border-radius: 16px;
 `;
 
 const StyledTextPeerMessageContainer = styled.View`
@@ -119,7 +120,7 @@ function shouldShowDate(
   return diffNextSeconds < 60 && (nextMoment.minute === currentMoment.minute);
 }
 
-const ImageSenderComp: FC<ImageSenderProps> = ({
+const ImageSender: FC<ImageSenderProps> = ({
   thumbURL,
   isSamePeerMsg,
 }) => {
@@ -174,7 +175,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
           <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
-            <ImageSenderComp
+            <ImageSender
               thumbURL={sender?.thumbURL}
               isSamePeerMsg={!!isSamePeerMsg}
               fontColor={theme.fontColor}

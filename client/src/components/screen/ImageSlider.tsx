@@ -26,7 +26,7 @@ interface Props {
   route: RouteProp<RootStackParamList, 'ImageSlider'>;
 }
 
-function ImageSlider({ route: { params: { images, initialIndex } } }: Props): React.ReactElement {
+function ImageSlider({ route: { params: { images, initialIndex = 0 } } }: Props): React.ReactElement {
   const [currentIndex, setCurrentIndex] = React.useState<number>(initialIndex);
   const insets = useSafeAreaInsets();
   const imageContainerWidth = Dimensions.get('screen').width;
@@ -102,7 +102,7 @@ function ImageSlider({ route: { params: { images, initialIndex } } }: Props): Re
 
   React.useEffect(() => {
     navigation.setOptions({
-      headerBackTitle: images[currentIndex].sender || '???',
+      headerBackTitle: images[currentIndex]?.sender || '',
     });
 
     pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });

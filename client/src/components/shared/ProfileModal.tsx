@@ -19,6 +19,7 @@ import { ProfileModalDeleteBlockedUserMutation } from
   '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
 import { ProfileModalDeleteFriendMutation } from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
 import { getString } from '../../../STRINGS';
+import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/core';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -273,7 +274,7 @@ const ModalContent: FC<ModalContentProps> = ({
     hideModal();
   };
 
-  const startChat = (): void => {
+  const startChatting = (): void => {
     const mutationConfig = {
       variables: {
         peerUserIds: [user.id],
@@ -291,7 +292,7 @@ const ModalContent: FC<ModalContentProps> = ({
         });
       },
       onError: (error: Error): void => {
-        console.log('error', error);
+        showAlertForError(error);
       },
     };
 
@@ -382,7 +383,16 @@ const ModalContent: FC<ModalContentProps> = ({
         }
       </View>
       <StyledView>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => {
+          if (photoURL) {
+            navigation.navigate(
+              'ImageSlider',
+              {
+                images: [{ uri: photoURL, sender: user }],
+              },
+            );
+          }
+        }}>
           {
             photoURL
               ? <StyledImage style={{ alignSelf: 'center' }} source={
@@ -397,7 +407,6 @@ const ModalContent: FC<ModalContentProps> = ({
                   justifyContent: 'center',
                 }}
               >
-                {/* <Ionicons name="ios-person" size={80} color="white" /> */}
                 <StyledImage style={{ alignSelf: 'center' }} source={IC_NO_IMAGE}/>
               </View>
           }
@@ -447,7 +456,7 @@ const ModalContent: FC<ModalContentProps> = ({
             <TouchableOpacity
               testID="btn-chat"
               activeOpacity={0.5}
-              onPress={startChat}
+              onPress={startChatting}
               style={styles.viewBtn}
             >
               {

@@ -22,8 +22,8 @@ export type RootStackParamList = {
     uri: string;
   };
   ImageSlider: {
-    images: { uri: string, sender: string | null, date: any }[];
-    initialIndex: number;
+    images: { uri: string, sender: string | null }[];
+    initialIndex?: number;
   }
   NotFound: undefined;
 };
@@ -96,9 +96,9 @@ function RootNavigator(): React.ReactElement {
         <Stack.Screen
           name="ImageSlider"
           component={ImageSlider}
-          options={({ route: { params: { images, initialIndex } } }) => ({
+          options={({ route: { params: { images, initialIndex = 0 } } }) => ({
             headerShown: true,
-            headerBackTitle: images[initialIndex].sender || '',
+            headerBackTitle: images[initialIndex]?.sender || '',
             headerTitle: '',
             headerTransparent: true,
           })}

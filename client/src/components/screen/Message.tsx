@@ -456,7 +456,10 @@ const MessagesFragment: FC<MessageProp> = ({
 
             navigation.push(
               'ImageSlider',
-              { images: flattenImages.reverse(), initialIndex: flattenImages.length - 1 - initialIndex },
+              {
+                images: flattenImages.reverse(),
+                initialIndex: flattenImages.length - 1 - initialIndex,
+              },
             );
           }}
         />
