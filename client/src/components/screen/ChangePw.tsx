@@ -178,6 +178,7 @@ function ChangePw(props: Props): ReactElement {
               borderWidth: 0,
               height: 48,
               width: '100%',
+              marginBottom: 24,
             },
             text: {
               color: theme.btnPrimaryFont,
