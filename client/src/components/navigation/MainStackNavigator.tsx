@@ -116,6 +116,8 @@ function MainStackNavigator(): ReactElement {
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
+      Notifications.setBadgeCountAsync(0);
+
       const channelId = JSON.parse(response.notification.request.content.data.data as string).channelId;
 
       fetchQuery<MainStackNavigatorChannelQuery>(environment, channelQuery, { channelId }).subscribe({
