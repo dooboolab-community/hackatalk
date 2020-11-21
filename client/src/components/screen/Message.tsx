@@ -37,7 +37,7 @@ import MessageListItem from '../shared/MessageListItem';
 import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
-import { resizeImage } from '../../utils/image';
+import { resizePhotoToMaxDimensionsAndCompressAsPNG } from '../../utils/image';
 import { showAlertForError } from '../../utils/common';
 import styled from 'styled-components/native';
 import { uploadImageAsync } from '../../apis/upload';
@@ -346,10 +346,10 @@ const MessagesFragment: FC<MessageProp> = ({
 
     if (image && !image.cancelled) {
       try {
-        const resizedImage = await resizeImage({
-          imageUri: image.uri,
-          maxWidth: 1920,
-          maxHeight: 1920,
+        const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+          uri: image.uri,
+          width: 1920,
+          height: 1920,
         });
 
         const response = await uploadImageAsync(
