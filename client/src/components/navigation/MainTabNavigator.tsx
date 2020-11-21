@@ -9,6 +9,7 @@ import Constants from 'expo-constants';
 import Friend from '../screen/Friend';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainStackNavigationProps } from './MainStackNavigator';
+import { getString } from '../../../STRINGS';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MaterialTopTabParamList = {
@@ -72,9 +73,7 @@ const CustomHeader = (): ReactElement => {
             fontWeight: '500',
             color: 'white',
           }}
-        >
-          HackaTalk
-        </Text>
+        >{getString('HACKATALK')}</Text>
       </TouchableOpacity>
       <View style={{ marginRight: 8 }}>
         <TouchableOpacity
@@ -110,8 +109,12 @@ function TabNavigator(): ReactElement {
         },
       }}
     >
-      <Tab.Screen name="Friend" component={Friend} />
-      <Tab.Screen name="Channel" component={Channel} />
+      <Tab.Screen name="Friend" component={Friend} options={{
+        title: getString('FRIEND'),
+      }}/>
+      <Tab.Screen name="Channel" component={Channel} options={{
+        title: getString('CHANNEL'),
+      }}/>
     </Tab.Navigator >
   );
 }
