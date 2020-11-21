@@ -176,6 +176,8 @@ const ChannelsFragment: FC<ChannelProps> = ({
     const responseListener = Notifications.addNotificationReceivedListener((event) => {
       const messageId = JSON.parse(event.request.content.data.data as string).messageId;
 
+      loadNext(ITEM_CNT);
+
       if (typeof messageId === 'string') {
         loadLastMessage({ messageId });
       }
