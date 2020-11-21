@@ -103,6 +103,7 @@ function Shared({
         <Wrapper>
           <ImageWrapper>
             <StyledImage
+              resizeMode="cover"
               source={
                 photoURL && photoURLObj
                   ? photoURLObj

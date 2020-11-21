@@ -248,7 +248,7 @@ const Screen: FC<Props> = () => {
               </View>
               : <ProfileImage
                 testID="profile-image"
-                resizeMode="contain"
+                resizeMode="cover"
                 source={{ uri: profilePath }}
               />
             }

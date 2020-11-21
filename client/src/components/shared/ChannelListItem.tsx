@@ -1,6 +1,6 @@
 import { Channel, Message } from '../../types/graphql';
-import { Image, TouchableOpacity, View, ViewStyle } from 'react-native';
 import React, { ReactElement } from 'react';
+import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { IC_NO_IMAGE } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
