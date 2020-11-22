@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
 import { Platform } from 'react-native';
 import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import WebView from '../screen/WebView';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -39,73 +40,75 @@ function RootNavigator(): React.ReactElement {
   const { state: { user } } = useAuthContext();
 
   return (
-    <NavigationContainer
-      theme={{
-        colors: {
-          background: theme.background,
-          border: theme.border,
-          card: theme.itemBackground,
-          primary: theme.primary,
-          notification: theme.tintColor,
-          text: theme.text,
-        },
-        dark: true,
-      }}
-    >
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.background,
+    <SafeAreaProvider>
+      <NavigationContainer
+        theme={{
+          colors: {
+            background: theme.background,
+            border: theme.border,
+            card: theme.itemBackground,
+            primary: theme.primary,
+            notification: theme.tintColor,
+            text: theme.text,
           },
-          headerTitleStyle: { color: theme.fontColor },
-          headerTintColor: theme.tintColor,
-          headerShown: false,
+          dark: true,
         }}
       >
-        {!user || !user.verified
-          ? <Stack.Screen
-            name="AuthStack"
-            component={AuthStack}
-            options={{
-              gestureDirection: Platform.select({
-                ios: !user ? 'horizontal-inverted' : 'horizontal',
-                default: !user ? 'vertical-inverted' : 'vertical',
-              }),
-            }}
-          />
-          : <Stack.Screen
-            name="MainStack"
-            component={MainStack}
-            options={{
-              gestureDirection: Platform.select({
-                ios: !user ? 'horizontal-inverted' : 'horizontal',
-                default: !user ? 'vertical-inverted' : 'vertical',
-              }),
-            }}
-          />
-        }
-        <Stack.Screen
-          name="WebView"
-          component={WebView}
-          options={{
-            headerShown: true,
-            headerTitle: '',
-            headerBackTitle: '',
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: theme.background,
+            },
+            headerTitleStyle: { color: theme.fontColor },
+            headerTintColor: theme.tintColor,
+            headerShown: false,
           }}
-        />
-        <Stack.Screen
-          name="ImageSlider"
-          component={ImageSlider}
-          options={({ route: { params: { images, initialIndex = 0 } } }) => ({
-            headerShown: true,
-            headerBackTitle: images[initialIndex]?.sender || '',
-            headerTitle: '',
-            headerTransparent: true,
-          })}
-        />
-        <Stack.Screen name="NotFound" component={NotFound} />
-      </Stack.Navigator>
-    </NavigationContainer>
+        >
+          {!user || !user.verified
+            ? <Stack.Screen
+              name="AuthStack"
+              component={AuthStack}
+              options={{
+                gestureDirection: Platform.select({
+                  ios: !user ? 'horizontal-inverted' : 'horizontal',
+                  default: !user ? 'vertical-inverted' : 'vertical',
+                }),
+              }}
+            />
+            : <Stack.Screen
+              name="MainStack"
+              component={MainStack}
+              options={{
+                gestureDirection: Platform.select({
+                  ios: !user ? 'horizontal-inverted' : 'horizontal',
+                  default: !user ? 'vertical-inverted' : 'vertical',
+                }),
+              }}
+            />
+          }
+          <Stack.Screen
+            name="WebView"
+            component={WebView}
+            options={{
+              headerShown: true,
+              headerTitle: '',
+              headerBackTitle: '',
+            }}
+          />
+          <Stack.Screen
+            name="ImageSlider"
+            component={ImageSlider}
+            options={({ route: { params: { images, initialIndex = 0 } } }) => ({
+              headerShown: true,
+              headerBackTitle: images[initialIndex]?.sender || '',
+              headerTitle: '',
+              headerTransparent: true,
+            })}
+          />
+          <Stack.Screen name="NotFound" component={NotFound} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

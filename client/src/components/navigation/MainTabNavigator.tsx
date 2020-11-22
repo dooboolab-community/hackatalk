@@ -1,6 +1,6 @@
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
-import { Image, Platform, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 
@@ -10,6 +10,7 @@ import Friend from '../screen/Friend';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainStackNavigationProps } from './MainStackNavigator';
 import { getString } from '../../../STRINGS';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MaterialTopTabParamList = {
@@ -91,38 +92,40 @@ const CustomHeader = (): ReactElement => {
 
 function TabNavigator(): ReactElement {
   const { theme } = useThemeContext();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={{
-      flex: 1,
-      backgroundColor: theme.background,
-      width: '100%',
-      height: '100%',
-    }}>
-      <Tab.Navigator
-        swipeEnabled={true}
-        tabBarOptions={{
-          activeTintColor: theme.indicatorColor,
-          inactiveTintColor: theme.inactiveColor,
-          indicatorStyle: {
-            backgroundColor: theme.indicatorColor,
-          },
-          tabStyle: {
-            backgroundColor: 'transparent',
-          },
-          style: {
-            backgroundColor: theme.background,
-          },
-        }}
-      >
-        <Tab.Screen name="Friend" component={Friend} options={{
-          title: getString('FRIEND'),
-        }}/>
-        <Tab.Screen name="Channel" component={Channel} options={{
-          title: getString('CHANNEL'),
-        }}/>
-      </Tab.Navigator >
-    </SafeAreaView>
+    <Tab.Navigator
+      swipeEnabled={true}
+      sceneContainerStyle={{
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+      }}
+      tabBarOptions={{
+        activeTintColor: theme.indicatorColor,
+        inactiveTintColor: theme.inactiveColor,
+        indicatorStyle: {
+          backgroundColor: theme.indicatorColor,
+        },
+        tabStyle: {
+          backgroundColor: 'transparent',
+        },
+        style: {
+          backgroundColor: theme.background,
+        },
+        indicatorContainerStyle: {
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      }}
+    >
+      <Tab.Screen name="Friend" component={Friend} options={{
+        title: getString('FRIEND'),
+      }}/>
+      <Tab.Screen name="Channel" component={Channel} options={{
+        title: getString('CHANNEL'),
+      }}/>
+    </Tab.Navigator >
   );
 }
 
