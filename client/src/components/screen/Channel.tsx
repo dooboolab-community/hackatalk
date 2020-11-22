@@ -5,7 +5,7 @@ import type {
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import { FlatList, Platform, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, Platform, TouchableOpacity, View } from 'react-native';
 import React, { FC, Suspense, useEffect, useMemo, useState } from 'react';
 import {
   graphql,
@@ -163,6 +163,8 @@ const ChannelsFragment: FC<ChannelProps> = ({
   const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
   const [bannerError, setBannerError] = useState<boolean>(false);
 
+  const isPortrait = Dimensions.get('window').width < Dimensions.get('window').height;
+
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
       const messageId = JSON.parse(response.notification.request.content.data.data as string).messageId;
@@ -244,13 +246,13 @@ const ChannelsFragment: FC<ChannelProps> = ({
       !bannerError
         ? Platform.select({
           android: <AdMobBanner
-            bannerSize="smartBannerPortrait"
+            bannerSize={ isPortrait ? 'smartBannerPortrait' : 'smartBannerLandscape' }
             // adUnitID="ca-app-pub-3940256099942544/6300978111"
             adUnitID="ca-app-pub-7837089095803162/8109702961"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
           />,
           ios: <AdMobBanner
-            bannerSize="smartBannerPortrait"
+            bannerSize={ isPortrait ? 'smartBannerPortrait' : 'smartBannerLandscape' }
             // adUnitID="ca-app-pub-3940256099942544/2934735716"
             adUnitID="ca-app-pub-7837089095803162/5084068464"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
