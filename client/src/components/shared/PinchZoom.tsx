@@ -36,13 +36,18 @@ function getDistanceFromTouches(
 }
 
 function getRelativeTouchesCenterPosition(
-  touches: NativeTouchEvent[], layout: {width: number, height: number, pageX: number, pageY: number},
+  touches: NativeTouchEvent[],
+  layout: { width: number, height: number, pageX: number, pageY: number },
+  transformCache: { scale: number, translateX: number, translateY: number },
 ): TouchePosition {
+  const pageX = (touches[0].pageX + touches[1].pageX) / 2 - layout.width / 2 - layout.pageX;
+  const pageY = (touches[0].pageY + touches[1].pageY) / 2 - layout.height / 2 - layout.pageY;
+
   return {
-    locationX: (touches[0].locationX + touches[1].locationX) / 2 - layout.width / 2,
-    locationY: (touches[0].locationY + touches[1].locationY) / 2 - layout.height / 2,
-    pageX: (touches[0].pageX + touches[1].pageX) / 2 - layout.width / 2 - layout.pageX,
-    pageY: (touches[0].pageY + touches[1].pageY) / 2 - layout.height / 2 - layout.pageY,
+    locationX: (pageX - transformCache.translateX) / transformCache.scale,
+    locationY: (pageY - transformCache.translateY) / transformCache.scale,
+    pageX,
+    pageY,
   };
 }
 
@@ -61,6 +66,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
   const layout = useRef<{width: number, height: number, pageX: number, pageY: number}>();
   const decayingTranslateAnimation = useRef<Animated.CompositeAnimation>();
   const isResponderActive = useRef(false);
+  const movingVelocity = useRef<{x: number, y: number}>();
 
   containerView.current?.measure((x, y, width, height, pageX, pageY) => {
     layout.current = { width, height, pageX, pageY };
@@ -117,11 +123,13 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
 
         initialDistance.current = undefined;
 
-        if (touches.length === 2 && layout.current != null) {
-          initialDistance.current = getDistanceFromTouches(touches);
-          initialTouchesCenter.current = getRelativeTouchesCenterPosition(touches, layout.current);
-        } else {
-          initialDistance.current = undefined;
+        if (layout.current != null) {
+          if (touches.length === 2) {
+            initialDistance.current = getDistanceFromTouches(touches);
+            initialTouchesCenter.current = getRelativeTouchesCenterPosition(touches, layout.current, transformCache);
+          } else {
+            initialDistance.current = undefined;
+          }
         }
       },
       onPanResponderMove: ({ nativeEvent }, gestureState) => {
@@ -131,6 +139,15 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
           return;
         }
 
+        if (movingVelocity.current) {
+          movingVelocity.current = {
+            x: (movingVelocity.current.x + gestureState.vx) / 2,
+            y: (movingVelocity.current.y + gestureState.vy) / 2,
+          };
+        } else {
+          movingVelocity.current = { x: gestureState.vx, y: gestureState.vy };
+        }
+
         if (touches.length === 2) {
           if (initialDistance.current && initialTouchesCenter.current && layout.current) {
             const newScale = Math.max(
@@ -138,7 +155,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
               getDistanceFromTouches(touches) / initialDistance.current * lastTransform.current.scale,
             );
 
-            const { pageX, pageY } = getRelativeTouchesCenterPosition(touches, layout.current);
+            const { pageX, pageY } = getRelativeTouchesCenterPosition(touches, layout.current, transformCache);
 
             scale.setValue(newScale);
 
@@ -157,9 +174,13 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
             });
           } else {
             initialDistance.current = getDistanceFromTouches(touches);
-            initialTouchesCenter.current = getRelativeTouchesCenterPosition(touches, layout.current);
+            initialTouchesCenter.current = getRelativeTouchesCenterPosition(touches, layout.current, transformCache);
           }
         } else if (touches.length === 1) {
+          if (initialDistance.current) {
+            return;
+          }
+
           const newTranslateX = lastTransform.current.translateX + gestureState.dx;
           const newTranslateY = lastTransform.current.translateY + gestureState.dy;
 
@@ -205,7 +226,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
           decayingTranslateAnimation.current = Animated.decay(
             translate,
             {
-              velocity: { x: gestureState.vx, y: gestureState.vy },
+              velocity: movingVelocity.current ?? { x: 0, y: 0 },
               useNativeDriver: true,
             },
           );
