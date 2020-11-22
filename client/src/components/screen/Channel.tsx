@@ -164,6 +164,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
   const [bannerError, setBannerError] = useState<boolean>(false);
 
   const isPortrait = Dimensions.get('window').width < Dimensions.get('window').height;
+  const [orientation, setOrientation] = useState<string>(isPortrait ? 'portrait' : 'landscape');
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
@@ -183,6 +184,12 @@ const ChannelsFragment: FC<ChannelProps> = ({
       if (typeof messageId === 'string') {
         loadLastMessage({ messageId });
       }
+    });
+
+    Dimensions.addEventListener('change', () => {
+      const isPortrait = Dimensions.get('window').width < Dimensions.get('window').height;
+
+      setOrientation(isPortrait ? 'portrait' : 'landscape');
     });
 
     // Clean up : remove notification handler.
@@ -246,13 +253,13 @@ const ChannelsFragment: FC<ChannelProps> = ({
       !bannerError
         ? Platform.select({
           android: <AdMobBanner
-            bannerSize={ isPortrait ? 'smartBannerPortrait' : 'smartBannerLandscape' }
+            bannerSize={ orientation === 'portrait' ? 'smartBannerPortrait' : 'smartBannerLandscape' }
             // adUnitID="ca-app-pub-3940256099942544/6300978111"
             adUnitID="ca-app-pub-7837089095803162/8109702961"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
           />,
           ios: <AdMobBanner
-            bannerSize={ isPortrait ? 'smartBannerPortrait' : 'smartBannerLandscape' }
+            bannerSize={ orientation === 'portrait' ? 'smartBannerPortrait' : 'smartBannerLandscape' }
             // adUnitID="ca-app-pub-3940256099942544/2934735716"
             adUnitID="ca-app-pub-7837089095803162/5084068464"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
