@@ -10,13 +10,13 @@ describe('signInWithApple', () => {
       accessToken: 'apple_user_token',
     };
 
-    jest
-      .spyOn(AuthUtils, 'verifyAppleId')
-      // @ts-ignore
-      .mockImplementation(() => Promise.resolve({
-        sub: 'apple_user_token',
-        email: 'apple@email.com',
-      }));
+    // jest
+    //   .spyOn(AuthUtils, 'verifyAppleId')
+    //   // @ts-ignore
+    //   .mockImplementation(() => Promise.resolve({
+    //     sub: 'apple_user_token',
+    //     email: 'apple@email.com',
+    //   }));
 
     const response = await request(testHost, signInWithApple, variables);
 
