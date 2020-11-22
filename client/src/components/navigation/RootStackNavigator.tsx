@@ -22,7 +22,7 @@ export type RootStackParamList = {
     uri: string;
   };
   ImageSlider: {
-    images: { uri: string, sender: string | null }[];
+    images: { uri: string | null, sender?: string | null }[];
     initialIndex?: number;
   }
   NotFound: undefined;

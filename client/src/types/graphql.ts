@@ -115,7 +115,7 @@ export type Friend = {
 export type Membership = {
   __typename?: 'Membership';
   alertMode: Maybe<Scalars['AlertMode']>;
-  membershipType: Scalars['MembershipType'];
+  membershipType: Maybe<Scalars['MembershipType']>;
   isVisible: Scalars['Boolean'];
   createdAt: Maybe<Scalars['DateTime']>;
   updatedAt: Maybe<Scalars['DateTime']>;
@@ -129,13 +129,13 @@ export type Message = {
   id: Scalars['String'];
   messageType: Scalars['MessageType'];
   text: Maybe<Scalars['String']>;
-  imageUrls: Array<Scalars['String']>;
-  fileUrls: Array<Scalars['String']>;
+  imageUrls: Maybe<Array<Maybe<Scalars['String']>>>;
+  fileUrls: Maybe<Array<Maybe<Scalars['String']>>>;
   createdAt: Maybe<Scalars['DateTime']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   deletedAt: Maybe<Scalars['DateTime']>;
   channel: Maybe<Channel>;
-  sender: User;
+  sender: Maybe<User>;
   replies: Maybe<Array<Maybe<Reply>>>;
   reactions: Maybe<Array<Maybe<Reaction>>>;
 };
@@ -170,7 +170,7 @@ export type Mutation = {
   signInEmail: AuthPayload;
   signInWithFacebook: AuthPayload;
   signInWithApple: AuthPayload;
-  signInWithGoogle: Maybe<AuthPayload>;
+  signInWithGoogle: AuthPayload;
   sendVerification: Maybe<Scalars['Boolean']>;
   /** Update user profile. Becareful that nullable fields will be updated either. */
   updateProfile: Maybe<User>;
@@ -209,7 +209,7 @@ export type Mutation = {
   inviteUsersToChannel: Channel;
   /** Removes some users from [public] channel. */
   kickUsersFromChannel: Channel;
-  createMessage: Message;
+  createMessage: Maybe<Message>;
   deleteMessage: Maybe<Message>;
   createBlockedUser: BlockedUser;
   deleteBlockedUser: BlockedUser;
@@ -390,7 +390,7 @@ export type Query = {
   channels: ChannelConnection;
   /** Get single message */
   message: Maybe<Message>;
-  messages: MessageConnection;
+  messages: Maybe<MessageConnection>;
   /** Arguments are not needed. Only find blocked users of signed in user */
   blockedUsers: Array<User>;
   reports: Array<Report>;
