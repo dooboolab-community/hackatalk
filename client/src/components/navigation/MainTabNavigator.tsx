@@ -1,6 +1,6 @@
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
-import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 
@@ -93,29 +93,36 @@ function TabNavigator(): ReactElement {
   const { theme } = useThemeContext();
 
   return (
-    <Tab.Navigator
-      swipeEnabled={true}
-      tabBarOptions={{
-        activeTintColor: theme.indicatorColor,
-        inactiveTintColor: theme.inactiveColor,
-        indicatorStyle: {
-          backgroundColor: theme.indicatorColor,
-        },
-        tabStyle: {
-          backgroundColor: 'transparent',
-        },
-        style: {
-          backgroundColor: theme.background,
-        },
-      }}
-    >
-      <Tab.Screen name="Friend" component={Friend} options={{
-        title: getString('FRIEND'),
-      }}/>
-      <Tab.Screen name="Channel" component={Channel} options={{
-        title: getString('CHANNEL'),
-      }}/>
-    </Tab.Navigator >
+    <SafeAreaView style={{
+      flex: 1,
+      backgroundColor: theme.background,
+      width: '100%',
+      height: '100%',
+    }}>
+      <Tab.Navigator
+        swipeEnabled={true}
+        tabBarOptions={{
+          activeTintColor: theme.indicatorColor,
+          inactiveTintColor: theme.inactiveColor,
+          indicatorStyle: {
+            backgroundColor: theme.indicatorColor,
+          },
+          tabStyle: {
+            backgroundColor: 'transparent',
+          },
+          style: {
+            backgroundColor: theme.background,
+          },
+        }}
+      >
+        <Tab.Screen name="Friend" component={Friend} options={{
+          title: getString('FRIEND'),
+        }}/>
+        <Tab.Screen name="Channel" component={Channel} options={{
+          title: getString('CHANNEL'),
+        }}/>
+      </Tab.Navigator >
+    </SafeAreaView>
   );
 }
 

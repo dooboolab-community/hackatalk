@@ -7383,6 +7383,13 @@ expo-screen-orientation@~1.1.1:
   dependencies:
     fbjs "1.0.0"
 
+expo-screen-orientation@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/expo-screen-orientation/-/expo-screen-orientation-2.0.0.tgz#3d73eb6de51c906d1c657d9ffdd5c06378f5b53d"
+  integrity sha512-pVjzNL3nQyr3iPzn34dOkNgBIwsdcLDshS+/J6otjKPswJxu34jnnFsYrB0tX/xTc0pYTHL5N+ycXIuk14ElYA==
+  dependencies:
+    fbjs "1.0.0"
+
 expo-splash-screen@~0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.6.2.tgz#2be7fc28ad62549e870c69f1fe133ebe756c524f"

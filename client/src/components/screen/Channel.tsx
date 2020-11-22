@@ -1,4 +1,5 @@
 import * as Notifications from 'expo-notifications';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import type {
   ChannelsQuery,
@@ -186,8 +187,10 @@ const ChannelsFragment: FC<ChannelProps> = ({
       }
     });
 
-    Dimensions.addEventListener('change', () => {
-      const isPortrait = Dimensions.get('window').width < Dimensions.get('window').height;
+    ScreenOrientation.addOrientationChangeListener(({ orientationInfo }) => {
+      const isPortrait =
+        orientationInfo.orientation === ScreenOrientation.Orientation.PORTRAIT_UP ||
+        orientationInfo.orientation === ScreenOrientation.Orientation.PORTRAIT_DOWN;
 
       setOrientation(isPortrait ? 'portrait' : 'landscape');
     });
@@ -196,6 +199,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
     return () => {
       Notifications.removeNotificationSubscription(responseListener);
       subscription.remove();
+      ScreenOrientation.removeOrientationChangeListeners();
     };
   }, []);
 
