@@ -244,13 +244,13 @@ const ChannelsFragment: FC<ChannelProps> = ({
       !bannerError
         ? Platform.select({
           android: <AdMobBanner
-            bannerSize="fullBanner"
+            bannerSize="smartBannerPortrait"
             // adUnitID="ca-app-pub-3940256099942544/6300978111"
             adUnitID="ca-app-pub-7837089095803162/8109702961"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
           />,
           ios: <AdMobBanner
-            bannerSize="fullBanner"
+            bannerSize="smartBannerPortrait"
             // adUnitID="ca-app-pub-3940256099942544/2934735716"
             adUnitID="ca-app-pub-7837089095803162/5084068464"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}

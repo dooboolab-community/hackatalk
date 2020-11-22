@@ -128,7 +128,7 @@ function ImageSlider({ route: { params: { images, initialIndex = 0 } } }: Props)
           }}
         >
           <Image
-            source={{ uri: images[currentIndex - 1]?.uri }}
+            source={{ uri: images[currentIndex - 1]?.uri as string }}
             style={imageStyle}
             resizeMode="contain"/>
         </PinchZoom>
@@ -154,7 +154,7 @@ function ImageSlider({ route: { params: { images, initialIndex = 0 } } }: Props)
           justifyContent: 'center',
         }}>
         <Image
-          source={{ uri: images[currentIndex]?.uri }}
+          source={{ uri: images[currentIndex]?.uri as string }}
           style={imageStyle}
           resizeMode="contain"/>
       </PinchZoom>
@@ -173,7 +173,7 @@ function ImageSlider({ route: { params: { images, initialIndex = 0 } } }: Props)
               transform: [{ translateX: nextImageTranslateX }],
             }}>
             <Image
-              source={{ uri: images[currentIndex + 1]?.uri }}
+              source={{ uri: images[currentIndex + 1]?.uri as string }}
               style={imageStyle}
               resizeMode="contain"/>
           </PinchZoom>

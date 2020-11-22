@@ -24,8 +24,8 @@ export type ChannelComponent_channel = {
                     readonly id: string;
                     readonly messageType: unknown;
                     readonly text: string | null;
-                    readonly imageUrls: ReadonlyArray<string>;
-                    readonly fileUrls: ReadonlyArray<string>;
+                    readonly imageUrls: ReadonlyArray<string | null> | null;
+                    readonly fileUrls: ReadonlyArray<string | null> | null;
                     readonly createdAt: unknown | null;
                 } | null;
             } | null;

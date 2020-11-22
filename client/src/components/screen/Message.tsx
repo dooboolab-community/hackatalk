@@ -284,7 +284,7 @@ const MessagesFragment: FC<MessageProp> = ({
 
   const nodes = useMemo(
     () => {
-      return data.messages.edges?.filter(
+      return data.messages?.edges?.filter(
         (x): x is NonNullable<typeof x> => x !== null,
       ).map(
         (x) => x.node,
@@ -321,7 +321,7 @@ const MessagesFragment: FC<MessageProp> = ({
         updateChannelsOnSubmit(proxyStore, channelId);
       },
       onCompleted: (response: MessageCreateMutationResponse) => {
-        const { text } = response.createMessage;
+        const { text } = response.createMessage as Message;
 
         setTextToSend('');
       },
@@ -378,7 +378,7 @@ const MessagesFragment: FC<MessageProp> = ({
             updateChannelsOnSubmit(proxyStore, channelId);
           },
           onCompleted: (response: MessageCreateMutationResponse) => {
-            const { imageUrls } = response.createMessage;
+            const { imageUrls } = response.createMessage as Message;
           },
           onError: (error: Error): void => {
             showAlertForError(error);
@@ -442,10 +442,10 @@ const MessagesFragment: FC<MessageProp> = ({
               return imageUrls && imageUrls.length > 0;
             }).map(
               (message) => {
-                const { imageUrls, sender, updatedAt } = message as Message;
+                const { imageUrls, sender } = message as Message;
 
                 return imageUrls?.map(
-                  (uri) => ({ uri, sender: sender.nickname ?? sender.name, date: updatedAt }),
+                  (uri) => ({ uri, sender: sender?.nickname ?? sender?.name }),
                 );
               },
             );

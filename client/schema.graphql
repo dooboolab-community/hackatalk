@@ -102,7 +102,7 @@ scalar Gender
 
 type Membership {
   alertMode: AlertMode
-  membershipType: MembershipType!
+  membershipType: MembershipType
   isVisible: Boolean!
   createdAt: DateTime
   updatedAt: DateTime
@@ -116,13 +116,13 @@ type Message {
   id: String!
   messageType: MessageType!
   text: String
-  imageUrls: [String!]!
-  fileUrls: [String!]!
+  imageUrls: [String]
+  fileUrls: [String]
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   channel: Channel
-  sender: User!
+  sender: User
   replies: [Reply]
   reactions: [Reaction]
 }
@@ -161,7 +161,7 @@ type Mutation {
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!
-  signInWithGoogle(accessToken: String!): AuthPayload
+  signInWithGoogle(accessToken: String!): AuthPayload!
   sendVerification(email: String!): Boolean
 
   """
@@ -213,7 +213,7 @@ type Mutation {
 
   """Removes some users from [public] channel."""
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
-  createMessage(channelId: String!, message: MessageCreateInput!): Message!
+  createMessage(channelId: String!, message: MessageCreateInput!): Message
   deleteMessage(id: String!): Message
   createBlockedUser(blockedUserId: String!): BlockedUser!
   deleteBlockedUser(blockedUserId: String!): BlockedUser!
@@ -336,7 +336,7 @@ type Query {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
-  ): MessageConnection!
+  ): MessageConnection
 
   """Arguments are not needed. Only find blocked users of signed in user"""
   blockedUsers: [User!]!

@@ -162,9 +162,9 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
 
 export const signInWithApple = mutationField('signInWithApple', {
   type: 'AuthPayload',
-  args: {
-    accessToken: stringArg({ nullable: false }),
-  },
+  nullable: false,
+  args: { accessToken: stringArg({ nullable: false }) },
+
   resolve: async (_parent, { accessToken }, ctx) => {
     try {
       const { sub, email } = await verifyAppleId(accessToken);
@@ -186,9 +186,9 @@ export const signInWithApple = mutationField('signInWithApple', {
 
 export const signInWithGoogle = mutationField('signInWithGoogle', {
   type: 'AuthPayload',
-  args: {
-    accessToken: stringArg({ nullable: false }),
-  },
+  nullable: false,
+  args: { accessToken: stringArg({ nullable: false }) },
+
   resolve: async (_parent, { accessToken }, ctx) => {
     const { sub, email, name = '' } = await verifyGoogleId(accessToken);
 

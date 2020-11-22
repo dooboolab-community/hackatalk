@@ -18,8 +18,8 @@ export type MessageCreateMutationResponse = {
         readonly id: string;
         readonly text: string | null;
         readonly messageType: unknown;
-        readonly imageUrls: ReadonlyArray<string>;
-        readonly fileUrls: ReadonlyArray<string>;
+        readonly imageUrls: ReadonlyArray<string | null> | null;
+        readonly fileUrls: ReadonlyArray<string | null> | null;
         readonly channel: {
             readonly id: string;
             readonly channelType: unknown;
@@ -35,12 +35,12 @@ export type MessageCreateMutationResponse = {
             readonly lastMessage: {
                 readonly messageType: unknown;
                 readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string>;
-                readonly fileUrls: ReadonlyArray<string>;
+                readonly imageUrls: ReadonlyArray<string | null> | null;
+                readonly fileUrls: ReadonlyArray<string | null> | null;
                 readonly createdAt: unknown | null;
             } | null;
         } | null;
-    };
+    } | null;
 };
 export type MessageCreateMutation = {
     readonly response: MessageCreateMutationResponse;

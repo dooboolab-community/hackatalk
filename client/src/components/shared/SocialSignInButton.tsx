@@ -4,7 +4,7 @@ import * as Facebook from 'expo-auth-session/providers/facebook';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 
-import { Alert, View } from 'react-native';
+import { Alert, Platform, View } from 'react-native';
 import { AuthType, User } from '../../types/graphql';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import type {
@@ -82,10 +82,13 @@ const SocialSignInButton: FC<Props> = ({
 
   const {
     ResponseType,
+    Prompt,
+    makeRedirectUri,
   } = AuthSession;
 
   const { theme } = useThemeContext();
   const [signingIn, setSigningIn] = useState<boolean>(false);
+  const useProxy = Platform.select({ web: false, default: true });
 
   const [request, response, promptAsync] = socialProvider === AuthType.Google
     ? Google.useAuthRequest({
@@ -97,9 +100,16 @@ const SocialSignInButton: FC<Props> = ({
     })
     : Facebook.useAuthRequest({
       clientId: facebookAppId,
-      clientSecret: facebookSecret,
-      responseType: ResponseType.Code,
-      scopes: ['public_profile, email'],
+      redirectUri: makeRedirectUri({
+        native: `fb${facebookAppId}://authorize`,
+      }),
+      responseType: ResponseType.Token,
+      prompt: Prompt.SelectAccount,
+      extraParams: {
+        display: Platform.select({ web: 'popup' }) as string,
+        // eslint-disable-next-line
+        auth_type: 'rerequest',
+      },
     });
 
   useEffect(() => {
@@ -119,11 +129,7 @@ const SocialSignInButton: FC<Props> = ({
                 AsyncStorage.setItem('token', token as string);
 
                 if (onUserCreated) onUserCreated(user as User);
-
-                return;
               }
-
-              Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
             },
             onError: (error: Error): void => {
               showAlertForError(error);
@@ -144,11 +150,7 @@ const SocialSignInButton: FC<Props> = ({
               AsyncStorage.setItem('token', token as string);
 
               if (onUserCreated) onUserCreated(user as User);
-
-              return;
             }
-
-            Alert.alert(getString('ERROR'), getString('ERROR_OCCURED'));
           },
           onError: (error: Error): void => {
             showAlertForError(error);
@@ -164,7 +166,7 @@ const SocialSignInButton: FC<Props> = ({
     setSigningIn(true);
 
     try {
-      await promptAsync();
+      await promptAsync({ useProxy });
     } catch (err) {
       Alert.alert(getString('ERROR'), err);
     } finally {

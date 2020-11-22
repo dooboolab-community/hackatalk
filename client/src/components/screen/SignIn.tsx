@@ -19,7 +19,6 @@ import type {
 import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
 import { delay, spring, useClock, useValue } from 'react-native-redash';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { showAlertForError, validateEmail } from '../../utils/common';
 import styled, { css } from 'styled-components/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -32,6 +31,7 @@ import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
+import { validateEmail } from '../../utils/common';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -286,9 +286,6 @@ function SignIn(props: Props): ReactElement {
             createNotificationIfPushTokenExists();
 
             setUser(user as User);
-          },
-          onError: (error: Error): void => {
-            showAlertForError(error);
           },
         };
 

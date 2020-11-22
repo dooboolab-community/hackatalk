@@ -12,15 +12,15 @@ export type MessageComponent_message = {
                 readonly id: string;
                 readonly messageType: unknown;
                 readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string>;
-                readonly fileUrls: ReadonlyArray<string>;
+                readonly imageUrls: ReadonlyArray<string | null> | null;
+                readonly fileUrls: ReadonlyArray<string | null> | null;
                 readonly sender: {
                     readonly id: string;
                     readonly name: string | null;
                     readonly nickname: string | null;
                     readonly thumbURL: string | null;
                     readonly photoURL: string | null;
-                };
+                } | null;
                 readonly createdAt: unknown | null;
                 readonly updatedAt: unknown | null;
             } | null;
@@ -31,7 +31,7 @@ export type MessageComponent_message = {
             readonly startCursor: string | null;
             readonly endCursor: string | null;
         };
-    };
+    } | null;
     readonly " $refType": "MessageComponent_message";
 };
 export type MessageComponent_message$data = MessageComponent_message;
