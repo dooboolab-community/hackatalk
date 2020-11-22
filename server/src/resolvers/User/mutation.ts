@@ -6,7 +6,6 @@ import {
   getUserId,
   validateCredential,
   validateEmail,
-  verifyAppleId,
   verifyFacebookId,
   verifyGoogleId,
 } from '../../utils/auth';
@@ -27,8 +26,9 @@ import { AuthType } from '../../models/Scalar';
 import { UserService } from '../../services/UserService';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
+import verifyAppleToken from 'verify-apple-id-token';
 
-const { SENDGRID_EMAIL } = process.env;
+const { SENDGRID_EMAIL, APPLE_CLIENT_ID } = process.env;
 
 export const UserInputType = inputObjectType({
   name: 'UserCreateInput',
@@ -167,7 +167,10 @@ export const signInWithApple = mutationField('signInWithApple', {
 
   resolve: async (_parent, { accessToken }, ctx) => {
     try {
-      const { sub, email } = await verifyAppleId(accessToken);
+      const { sub, email } = await verifyAppleToken({
+        idToken: accessToken,
+        clientId: APPLE_CLIENT_ID,
+      });
 
       return UserService.signInWithSocialAccount(
         {
@@ -178,9 +181,7 @@ export const signInWithApple = mutationField('signInWithApple', {
         },
         ctx,
       );
-    } catch (err) {
-      throw new Error(err);
-    }
+    } catch (err) { throw new Error(err); }
   },
 });
 

@@ -138,6 +138,9 @@ interface AppleUser {
 }
 
 /**
+ * @deprecated
+ * Switched to `verify-apple-id-token` library since this failed intermittently.
+ *
  * Verify apple token and return user
  * @param token
  * @returns AppleUser

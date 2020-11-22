@@ -65,7 +65,6 @@ export class UserService {
 
   private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context)
   : Promise<NexusGenRootTypes['User']> {
-    // TODO => 'findMany' & 'create' could be repalced with 'findOrCreate' if Prisma released it in the future
     const user = await ctx.prisma.user.findFirst({
       where: {
         email: socialUser.email,
@@ -73,10 +72,11 @@ export class UserService {
           socialId: socialUser.socialId,
         },
       },
+      include: { profile: true },
     });
 
     if (!user) {
-      return await ctx.prisma.user.create({
+      return ctx.prisma.user.create({
         data: {
           profile: {
             create: {
@@ -91,12 +91,10 @@ export class UserService {
           phone: socialUser.phone,
           verified: true,
         },
-        include: {
-          profile: true,
-        },
+        include: { profile: true },
       });
-    } else {
-      return user;
     }
+
+    return user;
   }
 }

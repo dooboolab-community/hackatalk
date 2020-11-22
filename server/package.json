@@ -53,7 +53,8 @@
     "nexus": "^0.26.1",
     "nexus-plugin-prisma": "^0.24.0",
     "node-rsa": "^1.1.1",
-    "ramda": "^0.27.1"
+    "ramda": "^0.27.1",
+    "verify-apple-id-token": "^2.0.0"
   },
   "devDependencies": {
     "@prisma/cli": "~2.11.0",

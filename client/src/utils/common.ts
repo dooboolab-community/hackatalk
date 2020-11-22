@@ -16,11 +16,10 @@ export const validatePassword = (password: string): boolean => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const showAlertForError = (error: Error | string): void => {
-  Platform.select({
-    // @ts-ignore
-    web: alert(error || ''),
-    default: Alert.alert(
-      getString('ERROR'),
-      typeof error === 'string' ? error : error?.message ?? ''),
-  });
+  // @ts-ignore
+  if (Platform.OS === 'web') return alert(error || '');
+
+  return Alert.alert(
+    getString('ERROR'),
+    typeof error === 'string' ? error : error?.message ?? '');
 };
