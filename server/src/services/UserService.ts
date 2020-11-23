@@ -27,19 +27,18 @@ export class UserService {
 
     ctx.pubsub.publish(USER_SIGNED_IN, user);
 
-    const updatedUser = await ctx.prisma.user.update({
+    await ctx.prisma.user.updateMany({
       where: {
-        email: user.email,
+        profile: {
+          socialId: socialUser.socialId,
+        },
       },
       data: { lastSignedIn: new Date().toISOString() },
-      include: {
-        profile: true,
-      },
     });
 
     return {
       token: sign({ userId: user.id }, ctx.appSecret),
-      user: updatedUser,
+      user,
     };
   }
 
@@ -67,7 +66,6 @@ export class UserService {
   : Promise<NexusGenRootTypes['User']> {
     const user = await ctx.prisma.user.findFirst({
       where: {
-        email: socialUser.email,
         profile: {
           socialId: socialUser.socialId,
         },
