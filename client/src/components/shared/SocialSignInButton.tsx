@@ -80,37 +80,60 @@ const SocialSignInButton: FC<Props> = ({
   const [commitGoogle, isGoogleInFlight] =
   useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
-  const {
-    ResponseType,
-    Prompt,
-    makeRedirectUri,
-  } = AuthSession;
-
   const { theme } = useThemeContext();
-  const [signingIn, setSigningIn] = useState<boolean>(false);
   const useProxy = Platform.select({ web: false, default: true });
 
-  const [request, response, promptAsync] = socialProvider === AuthType.Google
-    ? Google.useAuthRequest({
-      expoClientId: googleWebClientId,
-      iosClientId: googleIOSClientId,
-      androidClientId: googleAndroidClientId,
-      webClientId: googleWebClientId,
-      scopes: ['openid', 'profile'],
-    })
-    : Facebook.useAuthRequest({
-      clientId: facebookAppId,
-      redirectUri: makeRedirectUri({
+  const { makeRedirectUri, useAuthRequest, ResponseType, Prompt, useAutoDiscovery } = AuthSession;
+  const [signingIn, setSigningIn] = useState<boolean>(false);
+
+  const discovery = socialProvider === AuthType.Google
+    ? useAutoDiscovery('https://accounts.google.com')
+    : {
+      authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
+      tokenEndpoint: 'https://graph.facebook.com/v6.0/oauth/access_token',
+    };
+
+  const redirectUri = makeRedirectUri(
+    socialProvider === AuthType.Google
+      ? {
+        // native: 'com.dooboolab.hackatalk',
+        useProxy,
+      }
+      : {
         native: `fb${facebookAppId}://authorize`,
-      }),
-      responseType: ResponseType.Token,
-      prompt: Prompt.SelectAccount,
-      extraParams: {
-        display: Platform.select({ web: 'popup' }) as string,
-        // eslint-disable-next-line
-        auth_type: 'rerequest',
+        useProxy,
       },
-    });
+  );
+
+  const [request, response, promptAsync] = useAuthRequest(
+    socialProvider === AuthType.Google
+      ? {
+        clientId: googleWebClientId,
+        // iosClientId: googleIOSClientId,
+        // androidClientId: googleAndroidClientId,
+        // webClientId: googleWebClientId,
+        redirectUri,
+        prompt: Prompt.SelectAccount,
+        scopes: ['openid', 'profile'],
+        responseType: ResponseType.Token,
+        usePKCE: false,
+      }
+      : {
+        clientId: facebookAppId,
+        clientSecret: facebookSecret,
+        // scopes: ['public_profile, email'],
+        redirectUri,
+        prompt: Prompt.SelectAccount,
+        extraParams: {
+          display: Platform.select({ web: 'popup' }) as string,
+          // eslint-disable-next-line
+          auth_type: 'rerequest',
+        },
+        responseType: ResponseType.Token,
+      }
+    ,
+    discovery,
+  );
 
   useEffect(() => {
     if (response?.type === 'success') {
