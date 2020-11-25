@@ -1,5 +1,5 @@
 import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../services/NotificationService';
-import { arg, mutationField, stringArg } from '@nexus/schema';
+import { arg, mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
@@ -7,11 +7,10 @@ export const createMessage = mutationField('createMessage', {
   type: 'Message',
 
   args: {
-    channelId: stringArg({ nullable: false }),
-    message: arg({
+    channelId: nonNull(stringArg()),
+    message: nonNull(arg({
       type: 'MessageCreateInput',
-      nullable: false,
-    }),
+    })),
   },
 
   resolve: async (parent, { channelId, message }, ctx) => {
@@ -75,8 +74,7 @@ export const createMessage = mutationField('createMessage', {
 
 export const deleteMessage = mutationField('deleteMessage', {
   type: 'Message',
-  nullable: true,
-  args: { id: stringArg({ nullable: false }) },
+  args: { id: nonNull(stringArg()) },
 
   resolve: (parent, { id }, ctx) => {
     return ctx.prisma.message.update({

@@ -6,7 +6,6 @@ import { relayToPrismaPagination } from '../../utils/pagination';
 export const friends = queryField((t) => {
   t.connectionField('friends', {
     type: 'User',
-    nullable: false,
 
     additionalArgs: {
       searchText: stringArg(),

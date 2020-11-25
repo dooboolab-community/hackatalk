@@ -2,10 +2,8 @@ import { getUserId } from '../../utils/auth';
 import { queryField } from '@nexus/schema';
 
 export const blockedUsers = queryField('blockedUsers', {
-  type: 'User',
+  type: 'Upload',
   list: true,
-  nullable: false,
-
   description: 'Arguments are not needed. Only find blocked users of signed in user',
 
   resolve: async (_, __, ctx) => {

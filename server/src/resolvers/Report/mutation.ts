@@ -1,5 +1,5 @@
 import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
-import { mutationField, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
@@ -7,11 +7,10 @@ const { SENDGRID_EMAIL } = process.env;
 
 export const createReport = mutationField('createReport', {
   type: 'Report',
-  nullable: false,
 
   args: {
-    reportedUserId: stringArg({ required: true }),
-    report: stringArg({ nullable: false }),
+    reportedUserId: nonNull(stringArg()),
+    report: nonNull(stringArg()),
   },
 
   resolve: async (_, { reportedUserId, report }, ctx) => {

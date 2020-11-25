@@ -8,7 +8,7 @@ export const Report = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
 
-    t.field('user', { type: 'User', nullable: true });
-    t.field('reportedUser', { type: 'User', nullable: true });
+    t.field('user', { type: 'User' });
+    t.field('reportedUser', { type: 'User' });
   },
 });

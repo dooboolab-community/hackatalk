@@ -1,4 +1,4 @@
-import { stringArg, subscriptionField } from '@nexus/schema';
+import { nonNull, stringArg, subscriptionField } from '@nexus/schema';
 
 import { withFilter } from 'apollo-server';
 
@@ -7,10 +7,9 @@ export const USER_UPDATED = 'USER_UPDATED';
 
 export const userSignedIn = subscriptionField('userSignedIn', {
   type: 'User',
-  nullable: false,
 
   args: {
-    userId: stringArg({ nullable: false }),
+    userId: nonNull(stringArg()),
   },
 
   subscribe: withFilter(
@@ -30,10 +29,9 @@ export const userSignedIn = subscriptionField('userSignedIn', {
 
 export const userUpdated = subscriptionField('userUpdated', {
   type: 'User',
-  nullable: false,
 
   args: {
-    userId: stringArg({ nullable: false }),
+    userId: nonNull(stringArg()),
   },
 
   subscribe: withFilter(

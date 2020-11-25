@@ -12,7 +12,7 @@ const rules = {
     const userId = getUserId(context);
 
     const author = await context.prisma.notification
-      .findOne({
+      .findUnique({
         where: {
           id: Number(id),
         },

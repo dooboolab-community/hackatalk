@@ -16,7 +16,6 @@ export const Channel = objectType({
 
     t.field('lastMessage', {
       type: 'Message',
-      nullable: true,
       description: 'Get latest message sent to the channel.',
 
       resolve: async ({ id }, args, ctx) => {
@@ -36,7 +35,6 @@ export const Channel = objectType({
 
     t.connectionField('messages', {
       type: 'Message',
-      nullable: false,
 
       nodes: async ({ id }, args, ctx) => {
         const userId = getUserId(ctx);
@@ -64,10 +62,8 @@ export const Channel = objectType({
       },
     });
 
-    t.field('memberships', {
+    t.list.nonNull.field('memberships', {
       type: 'Membership',
-      list: true,
-      nullable: false,
       description: 'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
       args: { excludeMe: booleanArg() },
 

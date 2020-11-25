@@ -1,13 +1,12 @@
-import { mutationField, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
-  nullable: false,
 
   args: {
-    blockedUserId: stringArg({ required: true }),
+    blockedUserId: nonNull(stringArg()),
   },
 
   resolve: (_, { blockedUserId }, ctx) => {
@@ -38,10 +37,8 @@ export const deleteBlockedUser = mutationField('deleteBlockedUser', {
   type: 'BlockedUser',
 
   args: {
-    blockedUserId: stringArg({ required: true }),
+    blockedUserId: nonNull(stringArg()),
   },
-
-  nullable: false,
 
   resolve: (_, { blockedUserId }, ctx) => {
     const userId = getUserId(ctx);

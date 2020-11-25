@@ -1,4 +1,4 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { nonNull, queryField, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
@@ -7,7 +7,7 @@ export const message = queryField('message', {
   type: 'Message',
   args: { id: stringArg() },
   description: 'Get single message',
-  resolve: (_, { id }, ctx) => ctx.prisma.message.findOne({
+  resolve: (_, { id }, ctx) => ctx.prisma.message.findUnique({
     where: { id },
     include: {
       sender: true,
@@ -21,8 +21,8 @@ export const messages = queryField((t) => {
     type: 'Message',
 
     additionalArgs: {
-      channelId: stringArg({ nullable: false }),
-      searchText: stringArg({ nullable: true }),
+      channelId: nonNull(stringArg()),
+      searchText: stringArg(),
     },
 
     async nodes(_, args, ctx) {

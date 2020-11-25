@@ -13,8 +13,8 @@ export const Message = objectType({
     t.model.updatedAt();
     t.model.deletedAt();
 
-    t.field('channel', { type: 'Channel', nullable: true });
-    t.field('sender', { type: 'User', nullable: true });
+    t.field('channel', { type: 'Channel' });
+    t.field('sender', { type: 'User' });
     t.list.field('replies', { type: 'Reply' });
     t.list.field('reactions', { type: 'Reaction' });
   },
