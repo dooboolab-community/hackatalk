@@ -1,12 +1,11 @@
 import * as Notifications from 'expo-notifications';
-import * as ScreenOrientation from 'expo-screen-orientation';
 
 import type {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import { Dimensions, FlatList, Platform, TouchableOpacity, View } from 'react-native';
+import { FlatList, Platform, TouchableOpacity, View } from 'react-native';
 import React, { FC, Suspense, useEffect, useMemo, useState } from 'react';
 import {
   graphql,
@@ -14,6 +13,7 @@ import {
   usePaginationFragment,
   useQueryLoader,
 } from 'react-relay/hooks';
+import useOrientation, { Orientation } from '../../hooks/useOrientation';
 
 import { AdMobBanner } from 'expo-ads-admob';
 import { Channel } from '../../types/graphql';
@@ -29,6 +29,7 @@ import { SvgPlus } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import useResponsiveDesign from '../../hooks/useResponsiveDesign';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
@@ -163,9 +164,8 @@ const ChannelsFragment: FC<ChannelProps> = ({
 
   const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
   const [bannerError, setBannerError] = useState<boolean>(false);
-
-  const isPortrait = Dimensions.get('window').width < Dimensions.get('window').height;
-  const [orientation, setOrientation] = useState<string>(isPortrait ? 'portrait' : 'landscape');
+  const orientation = useOrientation();
+  const responsive = useResponsiveDesign();
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
@@ -187,19 +187,10 @@ const ChannelsFragment: FC<ChannelProps> = ({
       }
     });
 
-    ScreenOrientation.addOrientationChangeListener(({ orientationInfo }) => {
-      const isPortrait =
-        orientationInfo.orientation === ScreenOrientation.Orientation.PORTRAIT_UP ||
-        orientationInfo.orientation === ScreenOrientation.Orientation.PORTRAIT_DOWN;
-
-      setOrientation(isPortrait ? 'portrait' : 'landscape');
-    });
-
     // Clean up : remove notification handler.
     return () => {
       Notifications.removeNotificationSubscription(responseListener);
       subscription.remove();
-      ScreenOrientation.removeOrientationChangeListeners();
     };
   }, []);
 
@@ -254,7 +245,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
     data={channels}
     renderItem={renderItem}
     ListHeaderComponent={
-      !bannerError && orientation === 'portrait'
+      !bannerError && orientation === Orientation.PORTRAIT
         ? Platform.select({
           android: <AdMobBanner
             bannerSize={ 'smartBannerPortrait' }

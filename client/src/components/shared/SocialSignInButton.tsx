@@ -114,7 +114,7 @@ const SocialSignInButton: FC<Props> = ({
         // webClientId: googleWebClientId,
         redirectUri,
         prompt: Prompt.SelectAccount,
-        scopes: ['openid', 'profile'],
+        scopes: ['openid', 'profile', 'email'],
         responseType: ResponseType.Token,
         usePKCE: false,
       }
