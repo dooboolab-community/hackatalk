@@ -1,8 +1,7 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { list, queryField, stringArg } from '@nexus/schema';
 
 export const reports = queryField('reports', {
-  type: 'Report',
-  list: true,
+  type: list('Report'),
 
   args: {
     userId: stringArg(),

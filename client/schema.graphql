@@ -157,12 +157,12 @@ type MessageEdge {
 scalar MessageType
 
 type Mutation {
-  signUp(user: UserCreateInput): User
-  signInEmail(email: String!, password: String!): AuthPayload
-  signInWithFacebook(accessToken: String!): AuthPayload
-  signInWithApple(accessToken: String!): AuthPayload
-  signInWithGoogle(accessToken: String!): AuthPayload
-  sendVerification(email: String!): Boolean
+  signUp(user: UserCreateInput): User!
+  signInEmail(email: String!, password: String!): AuthPayload!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithApple(accessToken: String!): AuthPayload!
+  signInWithGoogle(accessToken: String!): AuthPayload!
+  sendVerification(email: String!): Boolean!
 
   """
   Update user profile. Becareful that nullable fields will be updated either.

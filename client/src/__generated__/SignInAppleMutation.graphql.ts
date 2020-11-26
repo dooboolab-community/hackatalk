@@ -20,7 +20,7 @@ export type SignInAppleMutationResponse = {
                 readonly authType: AuthType | null;
             } | null;
         };
-    } | null;
+    };
 };
 export type SignInAppleMutation = {
     readonly response: SignInAppleMutationResponse;

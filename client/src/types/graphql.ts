@@ -168,12 +168,12 @@ export type MessageEdge = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  signUp: Maybe<User>;
-  signInEmail: Maybe<AuthPayload>;
-  signInWithFacebook: Maybe<AuthPayload>;
-  signInWithApple: Maybe<AuthPayload>;
-  signInWithGoogle: Maybe<AuthPayload>;
-  sendVerification: Maybe<Scalars['Boolean']>;
+  signUp: User;
+  signInEmail: AuthPayload;
+  signInWithFacebook: AuthPayload;
+  signInWithApple: AuthPayload;
+  signInWithGoogle: AuthPayload;
+  sendVerification: Scalars['Boolean'];
   /** Update user profile. Becareful that nullable fields will be updated either. */
   updateProfile: Maybe<User>;
   findPassword: Maybe<Scalars['Boolean']>;

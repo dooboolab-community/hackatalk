@@ -1,8 +1,7 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { list, queryField, stringArg } from '@nexus/schema';
 
 export const notifications = queryField('notifications', {
-  type: 'Notification',
-  list: true,
+  type: list('Notification'),
   args: { userId: stringArg() },
 
   resolve: (parent, { userId }, ctx) => {
