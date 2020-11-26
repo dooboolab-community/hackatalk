@@ -3,7 +3,7 @@ import { T, always, andThen, cond, gt, lt, map, pipe, when } from 'ramda';
 
 import { prisma } from '../context';
 
-export const findExistingChannel = async (channelId: string): Promise<Prisma.Channel> => {
+export const findExistingChannel = async (channelId: string): Promise<Channel> => {
   const channel = await prisma.channel.findFirst({
     where: { id: channelId, deletedAt: null },
   });
