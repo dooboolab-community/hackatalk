@@ -32,7 +32,7 @@ export type Friend_friends = {
             readonly hasNextPage: boolean;
             readonly endCursor: string | null;
         };
-    };
+    } | null;
     readonly " $refType": "Friend_friends";
 };
 export type Friend_friends$data = Friend_friends;

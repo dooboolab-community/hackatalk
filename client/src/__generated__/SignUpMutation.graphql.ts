@@ -25,7 +25,7 @@ export type SignUpMutationResponse = {
         readonly name: string | null;
         readonly photoURL: string | null;
         readonly verified: boolean | null;
-    };
+    } | null;
 };
 export type SignUpMutation = {
     readonly response: SignUpMutationResponse;

@@ -21,7 +21,7 @@ export type SignInEmailMutationResponse = {
                 readonly authType: AuthType | null;
             } | null;
         };
-    };
+    } | null;
 };
 export type SignInEmailMutation = {
     readonly response: SignInEmailMutationResponse;

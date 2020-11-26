@@ -10,7 +10,7 @@ export type ReportCreateReportMutationVariables = {
 export type ReportCreateReportMutationResponse = {
     readonly createReport: {
         readonly report: string;
-    };
+    } | null;
 };
 export type ReportCreateReportMutation = {
     readonly response: ReportCreateReportMutationResponse;

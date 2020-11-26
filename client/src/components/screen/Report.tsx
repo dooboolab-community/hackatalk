@@ -17,6 +17,7 @@ import {
   useMutation,
 } from 'react-relay/hooks';
 
+import { Report } from '../../types/graphql';
 import { RouteProp } from '@react-navigation/core';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
@@ -71,7 +72,7 @@ function Report(props: Props): ReactElement {
         showAlertForError(error);
       },
       onCompleted: (response: ReportCreateReportMutationResponse) => {
-        const { report } = response.createReport;
+        const { report } = response.createReport as Report;
 
         setMessage('');
 
