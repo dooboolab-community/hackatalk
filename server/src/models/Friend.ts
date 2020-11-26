@@ -6,7 +6,7 @@ export const Friend = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.field('user', { type: 'User', nullable: true });
-    t.field('friend', { type: 'User', nullable: true });
+    t.field('user', { type: 'User' });
+    t.field('friend', { type: 'User' });
   },
 });

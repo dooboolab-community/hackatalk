@@ -2,7 +2,6 @@ import { NexusGenRootTypes } from '../generated/nexus';
 import { getUserId } from '../utils/auth';
 import { objectType } from '@nexus/schema';
 import { prisma } from '../context';
-import { relayToPrismaPagination } from '../utils/pagination';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -32,11 +31,9 @@ export const User = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.list.field('notifications', { type: 'Notification', nullable: true });
+    t.list.field('notifications', { type: 'Notification' });
 
-    t.field('hasBlocked', {
-      type: 'Boolean',
-      nullable: true,
+    t.boolean('hasBlocked', {
       description: 'Check if the user is blocked by the user who have signed in.',
 
       resolve: async ({ id }, args, ctx) => {

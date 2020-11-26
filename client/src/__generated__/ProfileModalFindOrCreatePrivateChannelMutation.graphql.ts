@@ -10,7 +10,7 @@ export type ProfileModalFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
-    };
+    } | null;
 };
 export type ProfileModalFindOrCreatePrivateChannelMutation = {
     readonly response: ProfileModalFindOrCreatePrivateChannelMutationResponse;

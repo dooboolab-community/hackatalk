@@ -45,12 +45,12 @@ type Channel {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
-  ): MessageConnection!
+  ): MessageConnection
 
   """
   Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.
   """
-  memberships(excludeMe: Boolean): [Membership!]!
+  memberships(excludeMe: Boolean): [Membership!]
 }
 
 type ChannelConnection {
@@ -162,7 +162,7 @@ type Mutation {
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!
   signInWithGoogle(accessToken: String!): AuthPayload!
-  sendVerification(email: String!): Boolean
+  sendVerification(email: String!): Boolean!
 
   """
   Update user profile. Becareful that nullable fields will be updated either.
@@ -170,14 +170,14 @@ type Mutation {
   updateProfile(user: UserUpdateInput): User
   findPassword(email: String!): Boolean
   changeEmailPassword(password: String!, newPassword: String!): Boolean
-  createNotification(token: String!, device: String, os: String): Notification!
-  deleteNotification(token: String!): Notification!
+  createNotification(token: String!, device: String, os: String): Notification
+  deleteNotification(token: String!): Notification
 
   """
   Provide `dir` optionally, Upload single file to the server with graphql-upload
   """
-  singleUpload(file: Upload, dir: String): String!
-  addFriend(friendId: String!): Friend!
+  singleUpload(file: Upload, dir: String): String
+  addFriend(friendId: String!): Friend
   deleteFriend(friendId: String!): Friend
 
   """
@@ -193,10 +193,10 @@ type Mutation {
     This query will return [Channel] with [Membership] without [Message] that has just created.
     
   """
-  createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel!
+  createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel
 
   """Find or create channel associated to peer user id."""
-  findOrCreatePrivateChannel(peerUserIds: [String!]!): Channel!
+  findOrCreatePrivateChannel(peerUserIds: [String]!): Channel
 
   """
   User leaves [public] channel.
@@ -206,18 +206,18 @@ type Mutation {
     User will leave the [public] channel and membership will be removed.
     
   """
-  leaveChannel(channelId: String!): Membership!
+  leaveChannel(channelId: String!): Membership
 
   """Adds some users into [public] channel."""
-  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel!
+  inviteUsersToChannel(channelId: String!, userIds: [String]!): Channel
 
   """Removes some users from [public] channel."""
-  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel!
+  kickUsersFromChannel(channelId: String!, userIds: [String]!): Channel
   createMessage(channelId: String!, message: MessageCreateInput!): Message
   deleteMessage(id: String!): Message
-  createBlockedUser(blockedUserId: String!): BlockedUser!
-  deleteBlockedUser(blockedUserId: String!): BlockedUser!
-  createReport(reportedUserId: String!, report: String!): Report!
+  createBlockedUser(blockedUserId: String!): BlockedUser
+  deleteBlockedUser(blockedUserId: String!): BlockedUser
+  createReport(reportedUserId: String!, report: String!): Report
 }
 
 type Notification {
@@ -280,11 +280,11 @@ type Query {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
-  ): UserConnection!
+  ): UserConnection
 
   """Fetch current user profile when authenticated."""
   me: User
-  notifications(userId: String): [Notification!]!
+  notifications(userId: String): [Notification]
   friends(
     searchText: String
 
@@ -299,10 +299,10 @@ type Query {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
-  ): UserConnection!
+  ): UserConnection
 
   """Get single channel"""
-  channel(channelId: String): Channel!
+  channel(channelId: String): Channel
   channels(
     withMessage: Boolean
 
@@ -317,7 +317,7 @@ type Query {
 
     """Returns the elements in the list that come before the specified cursor"""
     before: String
-  ): ChannelConnection!
+  ): ChannelConnection
 
   """Get single message"""
   message(id: String): Message
@@ -339,8 +339,8 @@ type Query {
   ): MessageConnection
 
   """Arguments are not needed. Only find blocked users of signed in user"""
-  blockedUsers: [User!]!
-  reports(userId: String): [Report!]!
+  blockedUsers: [User]
+  reports(userId: String): [Report]
 }
 
 type Reaction {
@@ -370,8 +370,8 @@ type Report {
 }
 
 type Subscription {
-  userSignedIn(userId: String!): User!
-  userUpdated(userId: String!): User!
+  userSignedIn(userId: String!): User
+  userUpdated(userId: String!): User
 }
 
 """The `Upload` scalar type represents a file upload."""

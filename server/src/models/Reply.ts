@@ -11,7 +11,7 @@ export const Reply = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.field('sender', { type: 'User', nullable: false });
-    // t.list.field('reactions', { type: 'Reaction', nullable: true });
+    t.nonNull.field('sender', { type: 'User' });
+    // t.list.field('reactions', { type: 'Reaction' });
   },
 });

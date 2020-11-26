@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Channel, User, UserEdge } from '../../types/graphql';
+import { Channel, User, UserConnection, UserEdge } from '../../types/graphql';
 import {
   ChannelCreateFindOrCreatePrivateChannelMutation,
   ChannelCreateFindOrCreatePrivateChannelMutationResponse,
@@ -139,7 +139,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   );
 
   const friendEdges = useMemo(() => {
-    return data.friends.edges?.filter(
+    return (data.friends as UserConnection).edges?.filter(
       (x): x is NonNullable<typeof x> => x !== null,
     ) || [];
   }, [data]);

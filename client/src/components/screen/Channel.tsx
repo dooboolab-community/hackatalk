@@ -29,7 +29,6 @@ import { SvgPlus } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
-import useResponsiveDesign from '../../hooks/useResponsiveDesign';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 const Container = styled.View`
@@ -165,7 +164,6 @@ const ChannelsFragment: FC<ChannelProps> = ({
   const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(lastMessageQuery);
   const [bannerError, setBannerError] = useState<boolean>(false);
   const orientation = useOrientation();
-  const responsive = useResponsiveDesign();
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {

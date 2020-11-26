@@ -1,13 +1,12 @@
-import { mutationField, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
-  nullable: false,
 
   args: {
-    token: stringArg({ nullable: false }),
+    token: nonNull(stringArg()),
     device: stringArg(),
     os: stringArg(),
   },
@@ -28,8 +27,7 @@ export const createNotification = mutationField('createNotification', {
 
 export const deleteNotification = mutationField('deleteNotification', {
   type: 'Notification',
-  nullable: false,
-  args: { token: stringArg({ nullable: false }) },
+  args: { token: nonNull(stringArg()) },
 
   resolve: (parent, { token }, ctx) => {
     return ctx.prisma.notification.delete({

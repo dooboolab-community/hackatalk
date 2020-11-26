@@ -10,7 +10,7 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
-import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
+import { inputObjectType, list, mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
@@ -19,8 +19,8 @@ export const MessageCreateInput = inputObjectType({
   definition(t) {
     t.messageType('messageType');
     t.string('text');
-    t.string('imageUrls', { list: true });
-    t.string('fileUrls', { list: true });
+    t.list.string('imageUrls');
+    t.list.string('fileUrls');
   },
 });
 
@@ -29,7 +29,7 @@ export const ChannelCreateInput = inputObjectType({
   definition(t) {
     t.channelType('channelType');
     t.string('name');
-    t.string('userIds', { list: true });
+    t.list.string('userIds');
   },
 });
 
@@ -40,8 +40,6 @@ export const createChannel = mutationField('createChannel', {
     channel: ChannelCreateInput,
     message: MessageCreateInput,
   },
-
-  nullable: false,
 
   description: `Creates channel of [ChannelType].
   The private channel is unique by the unique members while
@@ -94,7 +92,7 @@ export const createChannel = mutationField('createChannel', {
       if (existingChannel) {
         changeVisibilityWhenInvisible(userId, existingChannel);
         await createMemberships(existingChannel.id, userIds);
-        message && await createMessage(message, existingChannel.id);
+        message && (await createMessage(message, existingChannel.id));
 
         return existingChannel;
       }
@@ -103,9 +101,9 @@ export const createChannel = mutationField('createChannel', {
     const { id } = await createNewChannel(isPrivateChannel, userId, name);
 
     await createMemberships(id, userIds);
-    message && await createMessage(message, id);
+    message && (await createMessage(message, id));
 
-    const getChannel = (channelId: string) => ctx.prisma.channel.findOne({
+    const getChannel = (channelId: string) => ctx.prisma.channel.findUnique({
       where: { id: channelId },
       include: {
         membership: true,
@@ -118,9 +116,7 @@ export const createChannel = mutationField('createChannel', {
 
 export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChannel', {
   type: 'Channel',
-  args: { peerUserIds: stringArg({ nullable: false, list: true }) },
-  nullable: false,
-
+  args: { peerUserIds: nonNull(list(stringArg())) },
   description: 'Find or create channel associated to peer user id.',
 
   resolve: async (parent, { peerUserIds }, ctx) => {
@@ -143,8 +139,7 @@ export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChan
 
 export const leaveChannel = mutationField('leaveChannel', {
   type: 'Membership',
-  args: { channelId: stringArg({ nullable: false }) },
-  nullable: false,
+  args: { channelId: nonNull(stringArg()) },
 
   description: `User leaves [public] channel.
   Users cannot leave the [private] channel
@@ -184,8 +179,7 @@ export const leaveChannel = mutationField('leaveChannel', {
 
 export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
   type: 'Channel',
-  nullable: false,
-  args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
+  args: { channelId: nonNull(stringArg()), userIds: nonNull(list(stringArg())) },
   description: 'Adds some users into [public] channel.',
 
   resolve: async (_, { channelId, userIds }, ctx) => {
@@ -237,8 +231,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
 export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
   type: 'Channel',
-  nullable: false,
-  args: { channelId: stringArg({ nullable: false }), userIds: stringArg({ list: true, nullable: false }) },
+  args: { channelId: nonNull(stringArg()), userIds: nonNull(list(stringArg())) },
   description: 'Removes some users from [public] channel.',
 
   resolve: async (_, { channelId, userIds }, ctx) => {

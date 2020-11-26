@@ -14,7 +14,7 @@ export type SignInCreateNotificationMutationResponse = {
         readonly token: string;
         readonly device: string | null;
         readonly createdAt: unknown | null;
-    };
+    } | null;
 };
 export type SignInCreateNotificationMutation = {
     readonly response: SignInCreateNotificationMutationResponse;

@@ -19,7 +19,7 @@ export type ChannelComponent_channel = {
                         readonly thumbURL: string | null;
                         readonly photoURL: string | null;
                     } | null;
-                }>;
+                }> | null;
                 readonly lastMessage: {
                     readonly id: string;
                     readonly messageType: unknown;
@@ -34,7 +34,7 @@ export type ChannelComponent_channel = {
             readonly hasNextPage: boolean;
             readonly endCursor: string | null;
         };
-    };
+    } | null;
     readonly " $refType": "ChannelComponent_channel";
 };
 export type ChannelComponent_channel$data = ChannelComponent_channel;

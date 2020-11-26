@@ -31,7 +31,7 @@ export type MessageCreateMutationResponse = {
                     readonly thumbURL: string | null;
                     readonly photoURL: string | null;
                 } | null;
-            }>;
+            }> | null;
             readonly lastMessage: {
                 readonly messageType: unknown;
                 readonly text: string | null;

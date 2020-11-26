@@ -32,7 +32,7 @@ export type ChannelCreate_friends = {
             readonly hasNextPage: boolean;
             readonly endCursor: string | null;
         };
-    };
+    } | null;
     readonly " $refType": "ChannelCreate_friends";
 };
 export type ChannelCreate_friends$data = ChannelCreate_friends;

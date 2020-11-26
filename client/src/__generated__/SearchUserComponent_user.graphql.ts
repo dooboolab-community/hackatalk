@@ -23,7 +23,7 @@ export type SearchUserComponent_user = {
             readonly hasNextPage: boolean;
             readonly endCursor: string | null;
         };
-    };
+    } | null;
     readonly " $refType": "SearchUserComponent_user";
 };
 export type SearchUserComponent_user$data = SearchUserComponent_user;

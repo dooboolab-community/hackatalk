@@ -4,7 +4,7 @@ import * as Device from 'expo-device';
 
 import { Alert, Dimensions, Image, Platform, TouchableOpacity, View } from 'react-native';
 import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
-import { AuthType, User } from '../../types/graphql';
+import { AuthPayload, AuthType, User } from '../../types/graphql';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -224,7 +224,7 @@ function SignIn(props: Props): ReactElement {
       },
 
       onCompleted: (response: SignInEmailMutationResponse) => {
-        const { token, user } = response.signInEmail;
+        const { token, user } = response.signInEmail as AuthPayload;
 
         if (user && !user.verified) {
           return navigation.navigate('VerifyEmail', {
@@ -279,7 +279,7 @@ function SignIn(props: Props): ReactElement {
             accessToken: identityToken,
           },
           onCompleted: (response: SignInAppleMutationResponse) => {
-            const { token, user } = response.signInWithApple;
+            const { token, user } = response.signInWithApple as AuthPayload;
 
             AsyncStorage.setItem('token', token);
 

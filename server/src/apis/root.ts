@@ -61,7 +61,7 @@ const onVerifyEmail = async (req: ReqI18n, res) => {
     const validated = verifyEmailToken(token, req.appSecretEtc);
 
     if (validated.email && validated.type === 'verifyEmail') {
-      const user = await prisma.user.findOne({
+      const user = await prisma.user.findUnique({
         where: {
           email: validated.email,
         },

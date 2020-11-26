@@ -11,7 +11,7 @@ export const user = queryField('user', {
   resolve: (parent, args, ctx) => {
     const { id } = args;
 
-    return ctx.prisma.user.findOne({
+    return ctx.prisma.user.findUnique({
       where: { id },
       include: {
         profile: true,
@@ -23,7 +23,6 @@ export const user = queryField('user', {
 export const userConnection = queryField((t) => {
   t.connectionField('users', {
     type: 'User',
-    nullable: false,
 
     additionalArgs: {
       searchText: stringArg(),
@@ -69,7 +68,7 @@ export const me = queryField('me', {
   resolve: (parent, args, ctx) => {
     const userId = getUserId(ctx);
 
-    return ctx.prisma.user.findOne({
+    return ctx.prisma.user.findUnique({
       where: {
         id: userId,
       },

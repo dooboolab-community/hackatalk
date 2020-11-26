@@ -25,9 +25,7 @@ export const findChannelWithUserIds = async (
     },
     where: {
       membership: {
-        every: {
-          userId: { in: userIds },
-        },
+        every: { userId: { in: userIds } },
       },
     },
   });

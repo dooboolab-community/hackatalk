@@ -14,7 +14,7 @@ export type BlockedUsersQueryResponse = {
         readonly photoURL: string | null;
         readonly thumbURL: string | null;
         readonly statusMessage: string | null;
-    }>;
+    } | null> | null;
 };
 export type BlockedUsersQuery = {
     readonly response: BlockedUsersQueryResponse;

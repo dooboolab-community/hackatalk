@@ -1,13 +1,8 @@
-import { queryField, stringArg } from '@nexus/schema';
+import { list, queryField, stringArg } from '@nexus/schema';
 
 export const notifications = queryField('notifications', {
-  type: 'Notification',
-  nullable: false,
-  list: true,
-
-  args: {
-    userId: stringArg({ nullable: true }),
-  },
+  type: list('Notification'),
+  args: { userId: stringArg() },
 
   resolve: (parent, { userId }, ctx) => {
     return ctx.prisma.notification.findMany({

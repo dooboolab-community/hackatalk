@@ -1,13 +1,12 @@
-import { mutationField, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { getUserId } from '../../utils/auth';
 
 export const addFriend = mutationField('addFriend', {
   type: 'Friend',
-  nullable: false,
 
   args: {
-    friendId: stringArg({ required: true }),
+    friendId: nonNull(stringArg()),
   },
 
   resolve: (_, { friendId }, ctx) => {
@@ -37,7 +36,7 @@ export const addFriend = mutationField('addFriend', {
 export const deleteFriend = mutationField('deleteFriend', {
   type: 'Friend',
   args: {
-    friendId: stringArg({ required: true }),
+    friendId: nonNull(stringArg()),
   },
   resolve: (_, { friendId }, ctx) => {
     const userId = getUserId(ctx);

@@ -15,7 +15,7 @@ export type ProfileModalDeleteBlockedUserMutationResponse = {
             readonly nickname: string | null;
             readonly hasBlocked: boolean | null;
         } | null;
-    };
+    } | null;
 };
 export type ProfileModalDeleteBlockedUserMutation = {
     readonly response: ProfileModalDeleteBlockedUserMutationResponse;

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, Suspense, useMemo } from 'react';
-import { User, UserEdge } from '../../types/graphql';
+import { User, UserConnection, UserEdge } from '../../types/graphql';
 import { graphql, useLazyLoadQuery, usePaginationFragment } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
@@ -95,7 +95,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   };
 
   const friendEdges = useMemo(() => {
-    return data.friends.edges?.filter(
+    return (data.friends as UserConnection).edges?.filter(
       (x): x is NonNullable<typeof x> => x !== null,
     ) || [];
   }, [data]);

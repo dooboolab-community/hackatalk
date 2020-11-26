@@ -20,7 +20,7 @@ import {
   USER_UPDATED,
 } from './subscription';
 import { andThen, pipe } from 'ramda';
-import { inputObjectType, mutationField, stringArg } from '@nexus/schema';
+import { inputObjectType, mutationField, nonNull, stringArg } from '@nexus/schema';
 
 import { AuthType } from '../../models/Scalar';
 import { UserService } from '../../services/UserService';
@@ -33,13 +33,8 @@ const { SENDGRID_EMAIL, APPLE_CLIENT_ID } = process.env;
 export const UserInputType = inputObjectType({
   name: 'UserCreateInput',
   definition(t) {
-    t.string('email', {
-      required: true,
-    });
-
-    t.string('password', {
-      required: true,
-    });
+    t.nonNull.string('email');
+    t.nonNull.string('password');
 
     t.string('name');
     t.string('nickname');
@@ -68,45 +63,44 @@ export const UserUpdateInputType = inputObjectType({
 });
 
 export const signUp = mutationField('signUp', {
-  type: 'User',
-  nullable: false,
-
-  args: {
-    user: 'UserCreateInput',
-  },
+  type: nonNull('User'),
+  args: { user: 'UserCreateInput' },
 
   resolve: async (_parent, { user }, ctx) => {
     const { name, email, password, gender, photoURL, thumbURL } = user;
     const hashedPassword = await encryptCredential(password);
 
-    const created = await ctx.prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        gender,
-        photoURL,
-        thumbURL,
-      },
-    });
+    try {
+      const created = await ctx.prisma.user.create({
+        data: {
+          name,
+          email,
+          password: hashedPassword,
+          gender,
+          photoURL,
+          thumbURL,
+        },
+      });
 
-    return created;
+      return created;
+    } catch (err) {
+      throw new Error('Error while creating user. Please try again.');
+    }
   },
 });
 
 export const signInEmail = mutationField('signInEmail', {
-  type: 'AuthPayload',
-  nullable: false,
+  type: nonNull('AuthPayload'),
 
   args: {
-    email: stringArg({ nullable: false }),
-    password: stringArg({ nullable: false }),
+    email: nonNull(stringArg()),
+    password: nonNull(stringArg()),
   },
 
   resolve: async (_parent, { email, password }, ctx) => {
     const { pubsub, prisma } = ctx;
 
-    const findUserWithEmail = async () => prisma.user.findOne({
+    const findUserWithEmail = async () => prisma.user.findUnique({
       where: { email },
       include: { profile: true },
     });
@@ -121,7 +115,7 @@ export const signInEmail = mutationField('signInEmail', {
       andThen(
         (user) => pipe(
           async () => {
-            if (!await validateCredential(password, user.password)) {
+            if (!(await validateCredential(password, user.password))) {
               throw new Error('Invalid password');
             }
           },
@@ -138,12 +132,8 @@ export const signInEmail = mutationField('signInEmail', {
 });
 
 export const signInWithFacebook = mutationField('signInWithFacebook', {
-  type: 'AuthPayload',
-  nullable: false,
-
-  args: {
-    accessToken: stringArg({ nullable: false }),
-  },
+  type: nonNull('AuthPayload'),
+  args: { accessToken: nonNull(stringArg()) },
 
   resolve: async (_parent, { accessToken }, ctx) => {
     const { id: facebookId, name, email } = await verifyFacebookId(accessToken);
@@ -161,9 +151,8 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
 });
 
 export const signInWithApple = mutationField('signInWithApple', {
-  type: 'AuthPayload',
-  nullable: false,
-  args: { accessToken: stringArg({ nullable: false }) },
+  type: nonNull('AuthPayload'),
+  args: { accessToken: nonNull(stringArg()) },
 
   resolve: async (_parent, { accessToken }, ctx) => {
     try {
@@ -186,9 +175,8 @@ export const signInWithApple = mutationField('signInWithApple', {
 });
 
 export const signInWithGoogle = mutationField('signInWithGoogle', {
-  type: 'AuthPayload',
-  nullable: false,
-  args: { accessToken: stringArg({ nullable: false }) },
+  type: nonNull('AuthPayload'),
+  args: { accessToken: nonNull(stringArg()) },
 
   resolve: async (_parent, { accessToken }, ctx) => {
     const { sub, email, name = '' } = await verifyGoogleId(accessToken);
@@ -206,12 +194,11 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
 });
 
 export const sendVerification = mutationField('sendVerification', {
-  type: 'Boolean',
-  args: {
-    email: stringArg({ nullable: false }),
-  },
+  type: nonNull('Boolean'),
+  args: { email: nonNull(stringArg()) },
+
   resolve: async (_parent, { email }, ctx) => {
-    const user = await ctx.prisma.user.findOne({
+    const user = await ctx.prisma.user.findUnique({
       where: {
         email,
       },
@@ -260,9 +247,8 @@ export const updateProfile = mutationField('updateProfile', {
 
 export const findPassword = mutationField('findPassword', {
   type: 'Boolean',
-  args: {
-    email: stringArg({ nullable: false }),
-  },
+  args: { email: nonNull(stringArg()) },
+
   resolve: async (_parent, { email }, ctx) => {
     if (!email || !validateEmail(email)) {
       throw ErrorEmailNotValid('Email is not valid');
@@ -294,15 +280,17 @@ export const findPassword = mutationField('findPassword', {
 
 export const changeEmailPassword = mutationField('changeEmailPassword', {
   type: 'Boolean',
+
   args: {
-    password: stringArg({ nullable: false }),
-    newPassword: stringArg({ nullable: false }),
+    password: nonNull(stringArg()),
+    newPassword: nonNull(stringArg()),
   },
+
   resolve: async (_parent, { password, newPassword }, ctx) => {
     const userId = getUserId(ctx);
 
     try {
-      const user = await ctx.prisma.user.findOne({
+      const user = await ctx.prisma.user.findUnique({
         where: {
           id: userId,
         },

@@ -5,11 +5,10 @@ import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const channel = queryField('channel', {
   type: 'Channel',
-  nullable: false,
   args: { channelId: stringArg() },
   description: 'Get single channel',
 
-  resolve: (parent, { channelId }, ctx) => ctx.prisma.channel.findOne({
+  resolve: (parent, { channelId }, ctx) => ctx.prisma.channel.findUnique({
     where: {
       id: channelId,
     },
@@ -19,7 +18,6 @@ export const channel = queryField('channel', {
 export const channels = queryField((t) => {
   t.connectionField('channels', {
     type: 'Channel',
-    nullable: false,
 
     additionalArgs: {
       withMessage: booleanArg(),

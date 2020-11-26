@@ -11,7 +11,7 @@ export type ProfileModalAddFriendMutationResponse = {
         readonly friend: {
             readonly id: string;
         } | null;
-    };
+    } | null;
 };
 export type ProfileModalAddFriendMutation = {
     readonly response: ProfileModalAddFriendMutationResponse;
