@@ -54,7 +54,7 @@ export interface Props {
   route: RouteProp<MainStackParamList, 'Report'>;
 }
 
-function Report(props: Props): ReactElement {
+function ReportScreen(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
   const [message, setMessage] = useState('');
@@ -147,4 +147,4 @@ function Report(props: Props): ReactElement {
   );
 }
 
-export default Report;
+export default ReportScreen;
