@@ -26,8 +26,6 @@ import useDebounce from '../../hooks/useDebounce';
 import { useNavigation } from '@react-navigation/native';
 import { useProfileContext } from '../../providers/ProfileModalProvider';
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
   background: ${({ theme }): string => theme.background};
@@ -39,7 +37,7 @@ const Container = styled.View`
   flex-direction: column;
 `;
 
-const StyledAnimatedFlatList = styled(AnimatedFlatList)`
+const StyledFlatList = styled.FlatList`
   width: 100%;
   height: 100%;
 `;
@@ -138,19 +136,8 @@ const UsersFragment: FC<UserProps> = ({
   const users = data?.users?.edges || [];
 
   return (
-    // @ts-ignore
-    <StyledAnimatedFlatList
+    <StyledFlatList
       testID="animated-flatlist"
-      style={{
-        transform: [
-          {
-            translateY: scrollY.interpolate({
-              inputRange: [0, 50, 100],
-              outputRange: [0, 25, 0],
-            }),
-          },
-        ],
-      }}
       contentContainerStyle={
         users.length === 0
           ? {
@@ -160,8 +147,9 @@ const UsersFragment: FC<UserProps> = ({
           }
           : undefined
       }
-      keyExtractor={(item: Record<string, unknown>, index: number): string => index.toString()}
+      keyExtractor={(item, index): string => index.toString()}
       data={users}
+      // @ts-ignore
       renderItem={renderItem}
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_RECENT_SEARCH')}</EmptyListItem>

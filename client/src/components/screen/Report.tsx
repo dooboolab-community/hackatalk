@@ -68,7 +68,7 @@ function ReportScreen(props: Props): ReactElement {
         reportedUserId: userId,
         report: message,
       },
-      onError: (error: any): void => {
+      onError: (error: Error): void => {
         showAlertForError(error);
       },
       onCompleted: (response: ReportCreateReportMutationResponse) => {

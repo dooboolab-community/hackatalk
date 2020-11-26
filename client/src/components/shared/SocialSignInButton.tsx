@@ -100,7 +100,7 @@ const SocialSignInButton: FC<Props> = ({
         useProxy,
       }
       : {
-        native: `fb${facebookAppId}://authorize`,
+        // native: `fb${facebookAppId}://authorize`,
         useProxy,
       },
   );
