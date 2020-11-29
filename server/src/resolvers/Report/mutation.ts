@@ -20,7 +20,7 @@ export const createReport = mutationField('createReport', {
       to: 'hackatalk@gmail.com',
       from: SENDGRID_EMAIL,
       subject: `${ctx.request.req.t('USER_REPORTED')} - ${reportedUserId}`,
-      text: `The user (${userId}) have been reported.\n\nmessage: ${report}`,
+      text: `The user (${userId}) has reported ${reportedUserId}.\n\nmessage: ${report}.`,
     };
 
     await SendGridMail.send(msg);
