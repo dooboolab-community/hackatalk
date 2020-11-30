@@ -1,5 +1,5 @@
 import { GraphQLClient, request } from 'graphql-request';
-import { apolloClient, testHost } from '../setup/testSetup';
+import { apolloClient, testHost } from '../testSetup';
 import {
   meQuery,
   signInEmailMutation,
@@ -7,7 +7,7 @@ import {
   updateProfileMutation,
   userSignedInSubscription,
   userUpdatedSubscription,
-} from '../setup/queries';
+} from '../queries';
 
 let client: GraphQLClient;
 

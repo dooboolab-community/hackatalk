@@ -4,9 +4,9 @@ import {
   deleteBlockedUserMutation,
   signInEmailMutation,
   signUpMutation,
-} from '../setup/queries';
+} from '../queries';
 
-import { testHost } from '../setup/testSetup';
+import { testHost } from '../testSetup';
 
 describe('Resolver - BlockedUser', () => {
   it('scenario test', async () => {

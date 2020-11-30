@@ -1,6 +1,7 @@
+import { signInEmailMutation, signUpMutation } from '../../queries';
+
 import { request } from 'graphql-request';
-import { signInEmailMutation, signUpMutation } from '../../../setup/queries';
-import { testHost } from '../../../setup/testSetup';
+import { testHost } from '../../testSetup';
 
 describe('signInEmail', () => {
   it('should throw error when user does not exists', async () => {
@@ -10,6 +11,7 @@ describe('signInEmail', () => {
     };
 
     const promise = request(testHost, signInEmailMutation, variables);
+
     expect(promise).rejects.toThrow();
   });
 
@@ -31,6 +33,7 @@ describe('signInEmail', () => {
     };
 
     const promise = request(testHost, signInEmailMutation, variables);
+
     expect(promise).rejects.toThrow();
   });
 });
