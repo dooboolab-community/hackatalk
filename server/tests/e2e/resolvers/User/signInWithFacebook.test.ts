@@ -1,8 +1,8 @@
-import * as AuthUtils from '../../../../../src/utils/auth';
+import * as AuthUtils from '../../../../src/utils/auth';
 
 import { request } from 'graphql-request';
-import { signInWithFacebook } from '../../../queries';
-import { testHost } from '../../../testSetup';
+import { signInWithFacebook } from '../../queries';
+import { testHost } from '../../testSetup';
 
 describe('signInWithFacebook', () => {
   it('should signIn user wigh Facebook', async () => {
@@ -19,10 +19,10 @@ describe('signInWithFacebook', () => {
       }));
 
     const response = await request(testHost, signInWithFacebook, variables);
+
     expect(response).toHaveProperty('signInWithFacebook');
     expect(response.signInWithFacebook).toHaveProperty('token');
     expect(response.signInWithFacebook).toHaveProperty('user');
     expect(response.signInWithFacebook.user.email).toEqual('facebook@email.com');
   });
-
 });

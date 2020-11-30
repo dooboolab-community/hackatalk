@@ -1,8 +1,8 @@
-import * as AuthUtils from '../../../../../src/utils/auth';
+import * as AuthUtils from '../../../../src/utils/auth';
 
 import { request } from 'graphql-request';
-import { signInWithGoogle } from '../../../queries';
-import { testHost } from '../../../testSetup';
+import { signInWithGoogle } from '../../queries';
+import { testHost } from '../../testSetup';
 
 describe('signInWithGoogle', () => {
   it('should signIn user wigh Google', async () => {
@@ -19,9 +19,10 @@ describe('signInWithGoogle', () => {
       }));
 
     const response = await request(testHost, signInWithGoogle, variables);
+
     expect(response).toHaveProperty('signInWithGoogle');
     expect(response.signInWithGoogle).toHaveProperty('token');
     expect(response.signInWithGoogle).toHaveProperty('user');
     expect(response.signInWithGoogle.user.email).toEqual('google@email.com');
   });
-})
+});
