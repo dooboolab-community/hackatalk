@@ -1,8 +1,8 @@
 import * as AuthUtils from '../../../../../src/utils/auth';
 
 import { request } from 'graphql-request';
-import { signInWithApple } from '../../../setup/queries';
-import { testHost } from '../../../setup/testSetup';
+import { signInWithApple } from '../../../queries';
+import { testHost } from '../../../testSetup';
 
 describe('signInWithApple', () => {
   it('should signIn user wigh Apple', async () => {

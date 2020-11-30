@@ -9,9 +9,9 @@ import {
   leaveChannel,
   signInEmailMutation,
   signUpMutation,
-} from '../setup/queries';
+} from '../queries';
 
-import { testHost } from '../setup/testSetup';
+import { testHost } from '../testSetup';
 
 let authClient: GraphQLClient;
 

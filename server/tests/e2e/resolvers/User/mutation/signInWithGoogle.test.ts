@@ -1,8 +1,8 @@
 import * as AuthUtils from '../../../../../src/utils/auth';
 
 import { request } from 'graphql-request';
-import { signInWithGoogle } from '../../../setup/queries';
-import { testHost } from '../../../setup/testSetup';
+import { signInWithGoogle } from '../../../queries';
+import { testHost } from '../../../testSetup';
 
 describe('signInWithGoogle', () => {
   it('should signIn user wigh Google', async () => {

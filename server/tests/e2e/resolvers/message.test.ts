@@ -6,9 +6,9 @@ import {
   messagesQuery,
   signInEmailMutation,
   signUpMutation,
-} from '../setup/queries';
+} from '../queries';
 
-import { testHost } from '../setup/testSetup';
+import { testHost } from '../testSetup';
 
 describe('Resolver - Channel', () => {
   let authClient: GraphQLClient;

@@ -1,6 +1,6 @@
-import { NexusGenArgTypes, NexusGenInputs, NexusGenRootTypes } from '../../../../src/generated/nexus';
+import { NexusGenArgTypes, NexusGenInputs, NexusGenRootTypes } from '../../../src/generated/nexus';
 
-import { Context } from '../../apis/types';
+import { Context } from '../apis/types';
 import { IResolvers } from 'apollo-server';
 
 export const userResolvers: IResolvers = {

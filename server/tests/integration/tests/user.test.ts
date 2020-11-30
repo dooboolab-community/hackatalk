@@ -4,8 +4,8 @@ import { NexusGenRootTypes } from '../../../src/generated/nexus';
 import UserAPI from '../apis/UserAPI';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import gql from 'graphql-tag';
-import testServer from '../setup/testServer';
-import { userResolvers } from '../setup/resolvers';
+import testServer from '../testServer';
+import { userResolvers } from '../resolvers';
 
 describe('user resolvers', () => {
   it('me query', async () => {

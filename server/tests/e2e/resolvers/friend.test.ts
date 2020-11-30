@@ -4,9 +4,9 @@ import {
   deleteFriendMutation,
   signInEmailMutation,
   signUpMutation,
-} from '../setup/queries';
+} from '../queries';
 
-import { testHost } from '../setup/testSetup';
+import { testHost } from '../testSetup';
 
 describe('Resolver - Friend', () => {
   it('scenario test', async () => {

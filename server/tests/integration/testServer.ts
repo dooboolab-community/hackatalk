@@ -13,7 +13,7 @@ import { importSchema } from 'graphql-import';
 
 // eslint-disable-next-line
 const regExp = new RegExp('scalar Upload', 'gm');
-const typeDefs = importSchema(path.join(__dirname, '../../../src/generated/schema.graphql')).replace(regExp, '').trim();
+const typeDefs = importSchema(path.join(__dirname, '../../src/generated/schema.graphql')).replace(regExp, '').trim();
 
 export default function testServer(
   dataSources: any,

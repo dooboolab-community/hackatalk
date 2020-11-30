@@ -3,10 +3,10 @@ import {
   createReportMutation,
   signInEmailMutation,
   signUpMutation,
-} from '../setup/queries';
+} from '../queries';
 
 import sgMail from '@sendgrid/mail';
-import { testHost } from '../setup/testSetup';
+import { testHost } from '../testSetup';
 
 describe('Resolver - Report', () => {
   it('scenario test', async () => {
