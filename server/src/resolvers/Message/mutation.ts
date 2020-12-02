@@ -1,8 +1,6 @@
 import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../services/NotificationService';
 import { arg, mutationField, nonNull, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
-
 export const createMessage = mutationField('createMessage', {
   type: 'Message',
 
@@ -13,12 +11,10 @@ export const createMessage = mutationField('createMessage', {
     })),
   },
 
-  resolve: async (parent, { channelId, message }, ctx) => {
-    const userId = getUserId(ctx);
-
+  resolve: async (parent, { channelId, message }, { prisma, request, userId }) => {
     const { imageUrls, fileUrls, ...rest } = message;
 
-    const created = await ctx.prisma.message.create({
+    const created = await prisma.message.create({
       data: {
         ...rest,
         imageUrls: { set: imageUrls ?? [] },
@@ -36,7 +32,7 @@ export const createMessage = mutationField('createMessage', {
       },
     });
 
-    await ctx.prisma.channel.update({
+    await prisma.channel.update({
       data: {
         lastMessageId: created.id,
       },
@@ -53,9 +49,9 @@ export const createMessage = mutationField('createMessage', {
         sound: 'default',
         title: created.sender.name,
         body: created.messageType === 'photo'
-          ? ctx.request.req.t('PHOTO')
+          ? request.req.t('PHOTO')
           : created.messageType === 'file'
-            ? ctx.request.req.t('FILE')
+            ? request.req.t('FILE')
             : created.text,
         data: {
           data: JSON.stringify({

@@ -34,15 +34,15 @@ interface Token {
   userId: string;
 }
 
-export function getUserId(context: Context): string {
-  const Authorization = context.request.req.get('Authorization');
+export function getUserId({ req }: {req: ReqI18n}): string {
+  const Authorization = req?.get?.('Authorization');
 
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '');
-    const verifiedToken = verify(token, APP_SECRET) as Token;
+  if (!Authorization) return;
 
-    return verifiedToken && verifiedToken.userId;
-  }
+  const token = Authorization.replace('Bearer ', '');
+  const verifiedToken = verify(token, APP_SECRET) as Token;
+
+  return verifiedToken && verifiedToken.userId;
 }
 
 export const validateEmail = (email: string): boolean => {

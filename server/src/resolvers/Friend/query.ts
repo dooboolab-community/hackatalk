@@ -1,6 +1,5 @@
 import { queryField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const friends = queryField((t) => {
@@ -11,8 +10,7 @@ export const friends = queryField((t) => {
       searchText: stringArg(),
     },
 
-    async nodes(_, args, ctx) {
-      const userId = getUserId(ctx);
+    async nodes(_, args, { prisma, userId }) {
       const { after, before, first, last, searchText } = args;
 
       const filter = searchText && {
@@ -23,7 +21,7 @@ export const friends = queryField((t) => {
         ],
       };
 
-      return ctx.prisma.user.findMany({
+      return prisma.user.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
         }),

@@ -1,7 +1,5 @@
 import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
-
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
 
@@ -9,20 +7,17 @@ export const createBlockedUser = mutationField('createBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_, { blockedUserId }, ctx) => {
-    const userId = getUserId(ctx);
-
-    return ctx.prisma.blockedUser.create({
+  resolve: (_,
+    { blockedUserId },
+    { prisma, userId },
+  ) => {
+    return prisma.blockedUser.create({
       data: {
         user: {
-          connect: {
-            id: userId,
-          },
+          connect: { id: userId },
         },
         blockedUser: {
-          connect: {
-            id: blockedUserId,
-          },
+          connect: { id: blockedUserId },
         },
       },
       include: {
@@ -40,10 +35,11 @@ export const deleteBlockedUser = mutationField('deleteBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_, { blockedUserId }, ctx) => {
-    const userId = getUserId(ctx);
-
-    return ctx.prisma.blockedUser.delete({
+  resolve: (_,
+    { blockedUserId },
+    { prisma, userId },
+  ) => {
+    return prisma.blockedUser.delete({
       where: {
         userId_blockedUserId: {
           userId,

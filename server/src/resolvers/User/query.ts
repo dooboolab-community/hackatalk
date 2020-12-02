@@ -1,6 +1,5 @@
 import { queryField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const user = queryField('user', {
@@ -31,9 +30,8 @@ export const userConnection = queryField((t) => {
     description:
       'Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.',
 
-    async nodes(_, args, ctx) {
+    async nodes(_, args, { prisma, userId }) {
       const { after, before, first, last, searchText } = args;
-      const userId = getUserId(ctx);
 
       const filter = searchText && {
         OR: [
@@ -43,7 +41,7 @@ export const userConnection = queryField((t) => {
         ],
       };
 
-      return ctx.prisma.user.findMany({
+      return prisma.user.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
         }),
@@ -65,10 +63,8 @@ export const me = queryField('me', {
   type: 'User',
   description: 'Fetch current user profile when authenticated.',
 
-  resolve: (parent, args, ctx) => {
-    const userId = getUserId(ctx);
-
-    return ctx.prisma.user.findUnique({
+  resolve: (parent, args, { prisma, userId }) => {
+    return prisma.user.findUnique({
       where: {
         id: userId,
       },
