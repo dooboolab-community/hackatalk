@@ -1,7 +1,5 @@
 import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
-
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
 
@@ -11,10 +9,8 @@ export const createNotification = mutationField('createNotification', {
     os: stringArg(),
   },
 
-  resolve: (parent, { token, device, os }, ctx) => {
-    const userId = getUserId(ctx);
-
-    return ctx.prisma.notification.create({
+  resolve: (parent, { token, device, os }, { prisma, userId }) => {
+    return prisma.notification.create({
       data: {
         token,
         device,
@@ -29,8 +25,8 @@ export const deleteNotification = mutationField('deleteNotification', {
   type: 'Notification',
   args: { token: nonNull(stringArg()) },
 
-  resolve: (parent, { token }, ctx) => {
-    return ctx.prisma.notification.delete({
+  resolve: (parent, { token }, { prisma }) => {
+    return prisma.notification.delete({
       where: {
         token,
       },

@@ -1,6 +1,5 @@
 import { booleanArg, objectType } from '@nexus/schema';
 
-import { getUserId } from '../utils/auth';
 import { relayToPrismaPagination } from '../utils/pagination';
 
 export const Channel = objectType({
@@ -36,18 +35,17 @@ export const Channel = objectType({
     t.connectionField('messages', {
       type: 'Message',
 
-      nodes: async ({ id }, args, ctx) => {
-        const userId = getUserId(ctx);
+      nodes: async ({ id }, args, { request, prisma, userId }) => {
         const { after, before, first, last } = args;
 
-        const blockedUsers = await ctx.prisma.blockedUser.findMany({
+        const blockedUsers = await prisma.blockedUser.findMany({
           select: { blockedUserId: true },
           where: { userId },
         });
 
         const blockedUsersInArray = blockedUsers.map((user) => user.blockedUserId);
 
-        return ctx.prisma.message.findMany({
+        return prisma.message.findMany({
           ...relayToPrismaPagination({
             after, before, first, last,
           }),
@@ -67,11 +65,13 @@ export const Channel = objectType({
       description: 'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
       args: { excludeMe: booleanArg() },
 
-      resolve: ({ id }, { excludeMe }, ctx) => {
-        const userId = getUserId(ctx);
-
+      resolve: (
+        { id },
+        { excludeMe },
+        { prisma, userId },
+      ) => {
         if (excludeMe) {
-          return ctx.prisma.membership.findMany({
+          return prisma.membership.findMany({
             where: {
               channel: { id },
               user: {
@@ -82,7 +82,7 @@ export const Channel = objectType({
           });
         }
 
-        return ctx.prisma.membership.findMany({
+        return prisma.membership.findMany({
           where: { channel: { id } },
           include: { user: true },
         });

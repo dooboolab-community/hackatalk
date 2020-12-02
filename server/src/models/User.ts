@@ -1,5 +1,4 @@
 import { NexusGenRootTypes } from '../generated/nexus';
-import { getUserId } from '../utils/auth';
 import { objectType } from '@nexus/schema';
 import { prisma } from '../context';
 
@@ -36,10 +35,8 @@ export const User = objectType({
     t.boolean('hasBlocked', {
       description: 'Check if the user is blocked by the user who have signed in.',
 
-      resolve: async ({ id }, args, ctx) => {
-        const userId = getUserId(ctx);
-
-        const blockedUser = await ctx.prisma.blockedUser.findFirst({
+      resolve: async ({ id }, args, { prisma, userId }) => {
+        const blockedUser = await prisma.blockedUser.findFirst({
           where: { userId, blockedUserId: id },
         });
 

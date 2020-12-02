@@ -120,6 +120,13 @@ const onUploadSingle = async (req: ReqI18n, res) => {
     return res.json(result);
   }
 
+  if (req.file.size === 0) {
+    result.message = 'File size is zero.';
+    result.status = 400;
+
+    return res.json(result);
+  }
+
   const dir: string = req.body.dir ? `${req.body.dir}/` : '';
 
   try {
@@ -139,10 +146,12 @@ const onUploadSingle = async (req: ReqI18n, res) => {
     result.status = 400;
     res.json(result);
   } finally {
-    fs.unlink(`./files/${req.file.filename}`, () => {
+    if (req.file) {
+      fs.unlink(`./files/${req.file.filename}`, () => {
       // eslint-disable-next-line no-console
-      console.log(`Local temp file deleted: ${req.file.filename}`);
-    });
+        console.log(`Local temp file deleted: ${req.file.filename}`);
+      });
+    }
   }
 };
 
@@ -154,6 +163,9 @@ router.use((req: ReqI18n, res, next) => {
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
-  .post('/upload_single', multer({ dest: './files' }).single('inputFile'), onUploadSingle);
+  .post('/upload_single', multer({
+    dest: './files',
+    limits: { fileSize: 100000000 },
+  }).single('inputFile'), onUploadSingle);
 
 export default router;

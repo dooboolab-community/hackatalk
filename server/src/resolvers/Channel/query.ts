@@ -1,6 +1,5 @@
 import { booleanArg, queryField, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const channel = queryField('channel', {
@@ -23,8 +22,7 @@ export const channels = queryField((t) => {
       withMessage: booleanArg(),
     },
 
-    async nodes(_, args, ctx) {
-      const userId = getUserId(ctx);
+    async nodes(_, args, { prisma, userId }) {
       const { after, before, first, last, withMessage } = args;
 
       const checkMessage = withMessage && {
@@ -35,7 +33,7 @@ export const channels = queryField((t) => {
         },
       };
 
-      return ctx.prisma.channel.findMany({
+      return prisma.channel.findMany({
         ...relayToPrismaPagination({
           after, before, first, last,
         }),

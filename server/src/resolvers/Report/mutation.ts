@@ -1,8 +1,6 @@
 import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
 import { mutationField, nonNull, stringArg } from '@nexus/schema';
 
-import { getUserId } from '../../utils/auth';
-
 const { SENDGRID_EMAIL } = process.env;
 
 export const createReport = mutationField('createReport', {
@@ -13,19 +11,17 @@ export const createReport = mutationField('createReport', {
     report: nonNull(stringArg()),
   },
 
-  resolve: async (_, { reportedUserId, report }, ctx) => {
-    const userId = getUserId(ctx);
-
+  resolve: async (_, { reportedUserId, report }, { prisma, request, userId }) => {
     const msg: MailDataRequired = {
       to: 'hackatalk@gmail.com',
       from: SENDGRID_EMAIL,
-      subject: `${ctx.request.req.t('USER_REPORTED')} - ${reportedUserId}`,
+      subject: `${request.req.t('USER_REPORTED')} - ${reportedUserId}`,
       text: `The user (${userId}) has reported ${reportedUserId}.\n\nmessage: ${report}.`,
     };
 
     await SendGridMail.send(msg);
 
-    return ctx.prisma.report.create({
+    return prisma.report.create({
       data: {
         report,
         user: {

@@ -1,26 +1,28 @@
 import { PrismaClient } from '@prisma/client';
 import { PubSub } from 'graphql-subscriptions';
-import { Request } from 'apollo-server';
+import { getUserId } from './utils/auth';
 
 export const prisma = new PrismaClient();
 const { JWT_SECRET, JWT_SECRET_ETC } = process.env;
 
 export interface Context {
-  request: Request & any;
+  request: { req: ReqI18n };
   prisma: PrismaClient;
   pubsub: PubSub;
   appSecret: string;
   appSecretEtc: string;
+  userId: string;
 }
 
 const pubsub = new PubSub();
 
-export function createContext(request: Request): Context {
+export function createContext(request: { req: ReqI18n }): Context {
   return {
     request,
     prisma,
     pubsub,
     appSecret: JWT_SECRET,
     appSecretEtc: JWT_SECRET_ETC,
+    userId: getUserId(request),
   };
 }

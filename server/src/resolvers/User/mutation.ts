@@ -3,7 +3,6 @@ import {
   encryptCredential,
   getEmailVerificationHTML,
   getPasswordResetHTML,
-  getUserId,
   validateCredential,
   validateEmail,
   verifyFacebookId,
@@ -229,12 +228,8 @@ export const updateProfile = mutationField('updateProfile', {
   args: { user: 'UserUpdateInput' },
   description: 'Update user profile. Becareful that nullable fields will be updated either.',
 
-  resolve: async (_parent, { user }, ctx) => {
-    const { pubsub } = ctx;
-
-    const userId = getUserId(ctx);
-
-    const updated = await ctx.prisma.user.update({
+  resolve: async (_parent, { user }, { prisma, pubsub, userId }) => {
+    const updated = await prisma.user.update({
       where: { id: userId },
       data: user,
     });
@@ -286,14 +281,10 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
     newPassword: nonNull(stringArg()),
   },
 
-  resolve: async (_parent, { password, newPassword }, ctx) => {
-    const userId = getUserId(ctx);
-
+  resolve: async (_, { password, newPassword }, { prisma, userId }) => {
     try {
-      const user = await ctx.prisma.user.findUnique({
-        where: {
-          id: userId,
-        },
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
       });
 
       const validate = await validateCredential(password, user.password);
@@ -302,7 +293,7 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
 
       newPassword = await encryptCredential(newPassword);
 
-      await ctx.prisma.user.update({
+      await prisma.user.update({
         where: { id: userId },
         data: { password: newPassword },
       });
