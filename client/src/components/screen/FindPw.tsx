@@ -1,7 +1,16 @@
 import { Button, EditText } from 'dooboo-ui';
+import type {
+  FindPwMutation,
+  FindPwMutationResponse,
+} from '../../__generated__/FindPwMutation.graphql';
 import React, { ReactElement, useState } from 'react';
+import {
+  graphql,
+  useMutation,
+} from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
 
+import { Alert } from 'react-native';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -25,13 +34,22 @@ interface Props {
   navigation: AuthStackNavigationProps<'FindPw'>;
 }
 
+const findPasswordMutation = graphql`
+  mutation FindPwMutation($email: String!) {
+    findPassword(
+      email: $email
+    )
+  }
+`;
+
 function Page({ navigation }: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
-  const [findingPw, setFindingPw] = useState<boolean>(false);
+
+  const [commitFindPassword, isInFlight] =
+  useMutation<FindPwMutation>(findPasswordMutation);
 
   const { theme } = useThemeContext();
-  // const [findPassword] = useMutation<{ findPassword: boolean }, MutationFindPasswordInput>(MUTATION_FIND_PASSWORD);
 
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
@@ -40,22 +58,22 @@ function Page({ navigation }: Props): ReactElement {
       return;
     }
 
-    try {
-      setFindingPw(true);
-      // const result = await findPassword({ variables: { email } });
-      // if (result.data?.findPassword) {
-      //   Alert.alert('', getString('PASSWORD_RESET_EMAIL_SENT'), [
-      //     {
-      //       text: getString('OK'),
-      //       onPress: navigateToSignIn,
-      //     },
-      //   ]);
-      // }
-    } catch ({ graphQLErrors }) {
-      showAlertForError(graphQLErrors);
-    } finally {
-      setFindingPw(false);
-    }
+    const mutationConfig = {
+      variables: { email },
+      onError: (error: Error): void => {
+        showAlertForError(error);
+      },
+      onCompleted: (response: FindPwMutationResponse) => {
+        const result = response.findPassword;
+
+        if (result) {
+          Alert.alert(getString('SUCCESS'), getString('PASSWORD_RESET_EMAIL_SENT'));
+          navigation.goBack();
+        }
+      },
+    };
+
+    commitFindPassword(mutationConfig);
   };
 
   return (
@@ -84,7 +102,7 @@ function Page({ navigation }: Props): ReactElement {
         <ButtonWrapper>
           <Button
             testID="btn-find-pw"
-            loading={findingPw}
+            loading={isInFlight}
             onPress={onFindPw}
             style={{
               root: {
