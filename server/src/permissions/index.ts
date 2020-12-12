@@ -1,25 +1,16 @@
 import { rule, shield } from 'graphql-shield';
 
-import { getUserId } from '../utils/auth';
-
 const rules = {
-  isAuthenticatedUser: rule()((parent, args, context) => {
-    const userId = getUserId(context);
-
+  isAuthenticatedUser: rule()((_, args, { userId }) => {
     return Boolean(userId);
   }),
-  isNotificationUser: rule()(async (parent, { id }, context) => {
-    const userId = getUserId(context);
 
-    const author = await context.prisma.notification
-      .findUnique({
-        where: {
-          id: Number(id),
-        },
-      })
-      .notification();
+  isNotificationUser: rule()(async (_, { token }, { prisma, userId }) => {
+    const notification = await prisma.notification.findUnique({
+      where: { token },
+    });
 
-    return userId === author.id;
+    return userId === notification.userId;
   }),
 };
 
