@@ -127,7 +127,7 @@ function Shared({
                 : null
             }
           </ImageWrapper>
-          <StyledText numberOfLines={1}>{nickname ?? name ?? getString('NO_NAME')}</StyledText>
+          <StyledText numberOfLines={1}>{nickname || name || getString('NO_NAME')}</StyledText>
           {
             showCheckBox
               ? <CheckBox

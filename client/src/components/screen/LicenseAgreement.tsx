@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';

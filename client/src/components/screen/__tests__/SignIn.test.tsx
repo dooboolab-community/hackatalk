@@ -11,7 +11,7 @@ import {
 } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import { FetchMock } from 'jest-fetch-mock';
 import { MockPayloadGenerator } from 'relay-test-utils';

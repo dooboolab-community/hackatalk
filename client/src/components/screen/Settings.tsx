@@ -4,7 +4,7 @@ import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
 import { graphql, useMutation } from 'react-relay/hooks';
 import styled, { DefaultTheme } from 'styled-components/native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthType } from '../../types/graphql';
 import { Button } from 'dooboo-ui';
 import { FontAwesome } from '@expo/vector-icons';

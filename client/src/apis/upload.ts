@@ -1,6 +1,6 @@
 import * as Config from '../../config';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import mime from 'mime';
 
 export const uploadImageAsync = async (

@@ -22,7 +22,7 @@ import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
 import styled, { css } from 'styled-components/native';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { EditTextInputType } from 'dooboo-ui/EditText';
 import type {
