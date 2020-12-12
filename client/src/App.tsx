@@ -20,7 +20,7 @@ import type {
   AppUserQuery,
 } from './__generated__/AppUserQuery.graphql';
 import { Asset } from 'expo-asset';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
 import Icons from './utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';

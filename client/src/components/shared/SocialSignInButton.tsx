@@ -17,7 +17,7 @@ import type {
 } from '../../__generated__/SocialSignInButtonGoogleSignInMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button } from 'dooboo-ui';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
