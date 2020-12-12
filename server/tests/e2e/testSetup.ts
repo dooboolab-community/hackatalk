@@ -40,7 +40,7 @@ beforeAll(async (done) => {
 
   await prisma.$executeRaw('create schema test');
 
-  exec('yarn migrate:test', (err): void => {
+  exec('yarn db-push:test', (err): void => {
     if (err) throw new Error(err.message);
 
     done();
