@@ -1311,7 +1311,7 @@
     css-mediaquery "^0.1.2"
     expo-screen-orientation "~1.1.1"
 
-"@expo/metro-config@^0.1.16":
+"@expo/metro-config@^0.1.16", "@expo/metro-config@^0.1.46":
   version "0.1.46"
   resolved "https://registry.yarnpkg.com/@expo/metro-config/-/metro-config-0.1.46.tgz#00e98f29bede866f36daf233e3011f97aa129bb5"
   integrity sha512-MY/TYtV+BaCMzC5E4QQQX2ETYgbbdPl8ijuwBT6HpfCGQ5SDT+kGieqB6Ov/luRLuOa0+9YhXWhrSTRURKsixQ==
