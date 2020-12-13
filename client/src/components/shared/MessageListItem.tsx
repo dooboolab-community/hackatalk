@@ -186,7 +186,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           {
             isSamePeerMsg
               ? <View />
-              : <StyledTextPeerName>{sender?.nickname ?? sender?.name ?? getString('NO_NAME')}</StyledTextPeerName>
+              : <StyledTextPeerName>{sender?.nickname || sender?.name || getString('NO_NAME')}</StyledTextPeerName>
           }
           <View style={{
             flexDirection: 'row',

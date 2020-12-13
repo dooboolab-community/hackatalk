@@ -327,7 +327,7 @@ const ModalContent: FC<ModalContentProps> = ({
           testID="touch-done"
           onPress={() => {
             navigation.navigate('Report', {
-              name: user.nickname ?? user.name ?? getString('NO_NAME'),
+              name: user.nickname || user.name || getString('NO_NAME'),
               userId: user.id,
             });
 

@@ -188,7 +188,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             marginTop: 4,
             color: theme.fontColor,
           }}
-        >{friend.nickname ?? friend.name}</Text>
+        >{friend.nickname || friend.name}</Text>
       </View>
       <TouchableOpacity
         testID={`remove-${index}`}

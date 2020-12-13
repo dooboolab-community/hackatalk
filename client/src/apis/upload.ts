@@ -15,7 +15,7 @@ export const uploadImageAsync = async (
 
   data.append('inputFile', {
     uri: uri,
-    type: fileType ?? 'image/png',
+    type: fileType || 'image/png',
     name: `${fileName}${fileNamePrefix}`,
   });
 
