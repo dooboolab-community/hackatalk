@@ -13,14 +13,14 @@ export const uploadImageAsync = async (
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 
+  data.append('dir', dir);
+  data.append('name', `${fileName}${fileNamePrefix}`);
+
   data.append('inputFile', {
     uri: uri,
     type: fileType || 'image/png',
     name: `${fileName}${fileNamePrefix}`,
   });
-
-  data.append('dir', dir);
-  data.append('name', `${fileName}${fileNamePrefix}`);
 
   const fetchOption: RequestInit = {
     method: 'POST',

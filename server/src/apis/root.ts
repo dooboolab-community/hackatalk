@@ -29,10 +29,11 @@ const {
 const resolveBlobName = (req, file): Promise<string> => {
   return new Promise((resolve, reject) => {
     const dir: string = req.body.dir ? `${req.body.dir}/` : '';
-
     const blobName = `${dir}${nanoid()}_${new Date().getTime()}`;
 
-    resolve(blobName);
+    const name: string = req.body.name ? `${dir}${req.body.name}` : blobName;
+
+    resolve(name);
   });
 };
 
