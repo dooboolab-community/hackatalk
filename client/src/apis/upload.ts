@@ -27,6 +27,7 @@ export const uploadImageAsync = async (
     body: data,
     headers: new Headers({
       Accept: 'application/json',
+      'Content-Type': 'multipart/form-data',
       Authorization: `Bearer ${token}`,
     }),
   };
