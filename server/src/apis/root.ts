@@ -2,12 +2,12 @@ import {
   encryptCredential,
   getToken,
 } from '../utils/auth';
-import { getURL, uploadFileToAzureBlobFromFile } from '../utils/azure';
 import { resetPassword, verifyEmail } from '../models/User';
 
+import { MulterAzureStorage } from 'multer-azure-blob-storage';
 import { Router } from 'express';
-import fs from 'fs';
 import multer from 'multer';
+import { nanoid } from 'nanoid';
 import { prisma } from '../context';
 import qs from 'querystring';
 import { verify } from 'jsonwebtoken';
@@ -19,8 +19,44 @@ interface VerificationToken {
 
 const {
   STORAGE_ENDPOINT,
+  STORAGE_ACCOUNT,
+  STORAGE_KEY,
+  STORAGE_CONNECTION_STRING,
   JWT_SECRET,
 } = process.env;
+
+const resolveBlobName = (req, file): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const dir: string = req.body.dir ? `${req.body.dir}/` : '';
+
+    const blobName = `${dir}${nanoid()}_${new Date().getTime()}`;
+
+    resolve(blobName);
+  });
+};
+
+// const resolveMetadata = (req, file) => {
+//   return new Promise((resolve, reject) => {
+//     const metadata = yourCustomLogic(req, file);
+
+//     resolve(metadata);
+//   });
+// };
+
+const azureStorage = new MulterAzureStorage({
+  connectionString: STORAGE_CONNECTION_STRING,
+  accessKey: STORAGE_KEY,
+  accountName: STORAGE_ACCOUNT,
+  containerName: 'hackatalk',
+  blobName: resolveBlobName,
+  // metadata: resolveMetadata,
+  containerAccessLevel: 'blob',
+  urlExpirationTime: 60,
+});
+
+const upload = multer({
+  storage: azureStorage,
+});
 
 const router = Router();
 
@@ -127,32 +163,7 @@ const onUploadSingle = async (req: ReqI18n, res) => {
     return res.json(result);
   }
 
-  const dir: string = req.body.dir ? `${req.body.dir}/` : '';
-
-  try {
-    const resultUpload = await uploadFileToAzureBlobFromFile(
-      'hackatalk',
-      `./files/${req.file.filename}`,
-      req.file.filename,
-      dir,
-    );
-
-    result.status = 200;
-    result.message = resultUpload;
-    result.url = getURL('hackatalk', resultUpload.name);
-    res.json(result);
-  } catch (err) {
-    result.message = err;
-    result.status = 400;
-    res.json(result);
-  } finally {
-    if (req.file) {
-      fs.unlink(`./files/${req.file.filename}`, () => {
-      // eslint-disable-next-line no-console
-        console.log(`Local temp file deleted: ${req.file.filename}`);
-      });
-    }
-  }
+  res.status(200).json(req.file);
 };
 
 router.use((req: ReqI18n, res, next) => {
@@ -163,9 +174,6 @@ router.use((req: ReqI18n, res, next) => {
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
-  .post('/upload_single', multer({
-    dest: './files',
-    limits: { fileSize: 100000000 },
-  }).single('inputFile'), onUploadSingle);
+  .post('/upload_single', upload.single('inputFile'), onUploadSingle);
 
 export default router;
