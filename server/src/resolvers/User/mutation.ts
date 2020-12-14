@@ -204,7 +204,7 @@ export const sendVerification = mutationField('sendVerification', {
     });
 
     if (user) {
-      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc, { expiresIn: '10m' });
+      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc);
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
 
       const msg: MailDataRequired = {
@@ -249,7 +249,7 @@ export const findPassword = mutationField('findPassword', {
       throw ErrorEmailNotValid('Email is not valid');
     }
 
-    const verificationToken = sign({ email, type: 'findPassword' }, ctx.appSecretEtc, { expiresIn: '10m' });
+    const verificationToken = sign({ email, type: 'findPassword' }, ctx.appSecretEtc);
 
     const password = generator.generate({
       length: 10,
