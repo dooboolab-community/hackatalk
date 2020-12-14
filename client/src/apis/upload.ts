@@ -20,6 +20,7 @@ export const uploadImageAsync = async (
   });
 
   data.append('dir', dir);
+  data.append('name', `${fileName}${fileNamePrefix}`);
 
   const fetchOption: RequestInit = {
     method: 'POST',
