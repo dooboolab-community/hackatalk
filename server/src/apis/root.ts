@@ -6,6 +6,7 @@ import { resetPassword, verifyEmail } from '../models/User';
 
 import { MulterAzureStorage } from 'multer-azure-blob-storage';
 import { Router } from 'express';
+import { getURL } from '../utils/azure';
 import multer from 'multer';
 import { nanoid } from 'nanoid';
 import { prisma } from '../context';
@@ -162,6 +163,10 @@ const onUploadSingle = async (req: ReqI18n, res) => {
 
     return res.json(result);
   }
+
+  const actualURL = getURL('hackatalk', req.file.blobName, req.file.sasToken, true, req.file.snapshotId);
+
+  req.file.url = actualURL;
 
   res.status(200).json(req.file);
 };
