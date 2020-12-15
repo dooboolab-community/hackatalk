@@ -254,7 +254,7 @@ const ChannelsFragment: FC<ChannelProps> = ({
           ios: <AdMobBanner
             bannerSize={ 'smartBannerPortrait' }
             // adUnitID="ca-app-pub-3940256099942544/2934735716"
-            adUnitID="ca-app-pub-7837089095803162/5084068464"
+            adUnitID="ca-app-pub-7837089095803162/4326063134"
             onDidFailToReceiveAdWithError={() => setBannerError(true)}
           />,
         })

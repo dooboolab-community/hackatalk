@@ -181,6 +181,8 @@ function ChannelListItem(props: Props): React.ReactElement {
       </View>;
     };
 
+    const userNames = users?.map((v) => v?.nickname || v?.name || '');
+
     return (
       <View style={{ width: '100%' }}>
         <TouchableOpacity
@@ -201,11 +203,11 @@ function ChannelListItem(props: Props): React.ReactElement {
                 <StyledTextDisplayName
                   numberOfLines={2}
                 >
-                  {users?.map((v, i) => {
-                    if (i === users.length - 1) { return v?.nickname || v?.name || getString('NO_NAME'); }
-
-                    return (v?.nickname || v?.name || `${getString('NO_NAME')}, `);
-                  })}
+                  {
+                    users?.length === 1
+                      ? users?.[0]?.nickname || users?.[0]?.name || getString('NO_NAME')
+                      : userNames?.join(', ')
+                  }
                 </StyledTextDisplayName>
                 {(lastMessageCnt) !== 0
                   ? <StyledTextWrapper>

@@ -586,7 +586,7 @@ const MessageScreen: FC<Props> = (props) => {
         if (users.length === 1) {
           title = users[0].nickname || users[0].name || '';
         } else {
-          const userNames = users.map((v) => v.nickname || v.name);
+          const userNames = users.map((v) => v.nickname || v.name || '');
 
           title = userNames.join(', ');
         }
