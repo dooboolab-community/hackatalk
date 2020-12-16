@@ -1,5 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import { Http2Server } from 'http2';
+import { PrismaClient } from '@prisma/client';
 import SendGridMail from '@sendgrid/mail';
 import { applyMiddleware } from 'graphql-middleware';
 import { createApp } from './app';
@@ -9,7 +10,8 @@ import express from 'express';
 import { permissions } from './permissions';
 import { schema } from './schema';
 
-const { PORT = 4000, NODE_ENV, SENDGRID_API_KEY } = process.env;
+const { PORT, NODE_ENV, SENDGRID_API_KEY } = process.env;
+const prisma = new PrismaClient();
 
 const schemaWithMiddleware = NODE_ENV === 'test'
   ? schema
@@ -20,9 +22,11 @@ const schemaWithMiddleware = NODE_ENV === 'test'
 
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
-const createApolloServer = (): ApolloServer => new ApolloServer({
+export const createApolloServer = (
+  prismaClient: PrismaClient,
+): ApolloServer => new ApolloServer({
   schema: schemaWithMiddleware,
-  context: createContext,
+  context: createContext(prismaClient),
   // introspection: process.env.NODE_ENV !== 'production',
   // playground: process.env.NODE_ENV !== 'production',
   subscriptions: {
@@ -42,21 +46,25 @@ const initializeApolloServer = (apollo: ApolloServer, app: express.Application):
   };
 };
 
-export const startServer = async (app: express.Application): Promise<Http2Server> => {
+export const startServer = async (
+  app: express.Application,
+  apollo: ApolloServer,
+  port: string | number = 4000,
+): Promise<Http2Server> => {
   const httpServer = createHttpServer(app);
-  const apollo = createApolloServer();
 
   apollo.installSubscriptionHandlers(httpServer);
 
   const handleApolloServerInitilized = initializeApolloServer(apollo, app);
 
-  return httpServer.listen({ port: PORT }, () => {
+  return httpServer.listen({ port }, () => {
     handleApolloServerInitilized();
   });
 };
 
 if (process.env.NODE_ENV !== 'test') {
   const app = createApp();
+  const apollo = createApolloServer(prisma);
 
-  startServer(app);
+  startServer(app, apollo, PORT);
 }

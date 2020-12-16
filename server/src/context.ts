@@ -16,13 +16,13 @@ export interface Context {
 
 const pubsub = new PubSub();
 
-export function createContext(request: { req: ReqI18n }): Context {
-  return {
+export const createContext = (prisma: PrismaClient) => {
+  return (request: { req: ReqI18n }): Context => ({
     request,
     prisma,
     pubsub,
     appSecret: JWT_SECRET,
     appSecretEtc: JWT_SECRET_ETC,
     userId: getUserId(request),
-  };
-}
+  });
+};

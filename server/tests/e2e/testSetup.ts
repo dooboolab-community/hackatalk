@@ -1,3 +1,5 @@
+import { createApolloServer, startServer } from '../../src/server';
+
 import ApolloClient from 'apollo-client';
 import { Headers } from 'cross-fetch';
 import { Http2Server } from 'http2';
@@ -9,7 +11,6 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { createApp } from '../../src/app';
 import { exec } from 'child_process';
 import express from 'express';
-import { startServer } from '../../src/server';
 
 // @ts-ignore
 global.Headers = global.Headers || Headers;
@@ -24,8 +25,9 @@ const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
 beforeAll(async (done) => {
   const app: express.Application = createApp();
+  const apollo = createApolloServer(prisma);
 
-  server = await startServer(app);
+  server = await startServer(app, apollo);
 
   networkInterface = new SubscriptionClient(
     testSubscriptionHost,
