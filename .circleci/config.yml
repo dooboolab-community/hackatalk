@@ -4,12 +4,12 @@ orbs:
 jobs:
   server:
     docker:
-      - image: circleci/node:12.12.0
-      - image: circleci/postgres:11
-        environment:
-          POSTGRES_DB: test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: dooboolab0!
+    - image: circleci/node:14.9.0
+    - image: circleci/postgres:12.5
+      environment:
+        POSTGRES_DB: test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: dooboolab0!
     working_directory: ~/dooboo
     steps:
       - checkout
