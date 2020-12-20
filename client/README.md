@@ -82,7 +82,6 @@ app/
 ├─ schema.graphql
 ├─ STRINGS.ts
 ├─ tsconfig.json
-├─ tsconfig.jest.json
 ├─ webpack.config.js
 └─ yarn.lock
 ```
