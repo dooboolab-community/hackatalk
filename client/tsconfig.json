@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": false,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -26,7 +26,6 @@
     "globals": {
       "ts-jest": {
         "skipBabel": true
-        // "tsConfigFile": "my-tsconfig.json"
       }
     }
   }

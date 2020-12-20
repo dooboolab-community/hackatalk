@@ -12,5 +12,6 @@ export const getString = (param: string, mapObj?: Record<string, unknown>): stri
   if (mapObj) {
     return i18n.t(param, mapObj);
   }
+
   return i18n.t(param);
 };
