@@ -1,4 +1,4 @@
-import { list, queryField, stringArg } from '@nexus/schema';
+import { list, queryField, stringArg } from 'nexus';
 
 export const notifications = queryField('notifications', {
   type: list('Notification'),

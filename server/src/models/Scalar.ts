@@ -1,4 +1,4 @@
-import { asNexusMethod, scalarType } from '@nexus/schema';
+import { asNexusMethod, scalarType } from 'nexus';
 
 import { GraphQLDate } from 'graphql-iso-date';
 import { GraphQLUpload } from 'graphql-upload';

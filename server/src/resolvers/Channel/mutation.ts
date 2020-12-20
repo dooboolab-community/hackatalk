@@ -10,7 +10,7 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
-import { inputObjectType, list, mutationField, nonNull, stringArg } from '@nexus/schema';
+import { inputObjectType, list, mutationField, nonNull, stringArg } from 'nexus';
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',

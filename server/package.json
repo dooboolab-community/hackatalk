@@ -30,7 +30,6 @@
     "studio": "dotenv -e ./dotenv/.env -- prisma studio"
   },
   "dependencies": {
-    "@nexus/schema": "^0.19.2",
     "@prisma/client": "2.13.0",
     "@sendgrid/mail": "^7.4.0",
     "apollo-server": "^2.19.0",
@@ -51,8 +50,8 @@
     "multer": "^1.4.2",
     "multer-azure-blob-storage": "^1.0.2",
     "nanoid": "^3.1.20",
-    "nexus": "^0.26.1",
-    "nexus-plugin-prisma": "^0.26.0",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0",
     "node-rsa": "^1.1.1",
     "ramda": "^0.27.1",
     "verify-apple-id-token": "^2.0.1"

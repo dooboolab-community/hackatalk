@@ -1,4 +1,4 @@
-import { mutationField, nonNull, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from 'nexus';
 
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',

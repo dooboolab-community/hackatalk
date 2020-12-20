@@ -19,7 +19,7 @@ import {
   USER_UPDATED,
 } from './subscription';
 import { andThen, pipe } from 'ramda';
-import { inputObjectType, mutationField, nonNull, stringArg } from '@nexus/schema';
+import { inputObjectType, mutationField, nonNull, stringArg } from 'nexus';
 
 import { AuthType } from '../../models/Scalar';
 import { UserService } from '../../services/UserService';

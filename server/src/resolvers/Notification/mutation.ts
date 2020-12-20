@@ -1,4 +1,4 @@
-import { mutationField, nonNull, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from 'nexus';
 
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',

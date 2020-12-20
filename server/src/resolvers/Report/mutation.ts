@@ -1,5 +1,5 @@
 import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
-import { mutationField, nonNull, stringArg } from '@nexus/schema';
+import { mutationField, nonNull, stringArg } from 'nexus';
 
 const { SENDGRID_EMAIL } = process.env;
 

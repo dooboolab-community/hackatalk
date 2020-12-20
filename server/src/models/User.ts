@@ -1,5 +1,5 @@
 import { NexusGenRootTypes } from '../generated/nexus';
-import { objectType } from '@nexus/schema';
+import { objectType } from 'nexus';
 import { prisma } from '../context';
 
 export const Profile = objectType({
