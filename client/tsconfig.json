@@ -25,8 +25,8 @@
   "jest": {
     "globals": {
       "ts-jest": {
-        "skipBabel": true
-        // "tsConfigFile": "my-tsconfig.json"
+        "skipBabel": true,
+        "tsConfigFile": "tsconfig.jest.json"
       }
     }
   }
