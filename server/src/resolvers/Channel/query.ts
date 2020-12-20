@@ -1,4 +1,4 @@
-import { booleanArg, queryField, stringArg } from '@nexus/schema';
+import { booleanArg, queryField, stringArg } from 'nexus';
 
 import { relayToPrismaPagination } from '../../utils/pagination';
 

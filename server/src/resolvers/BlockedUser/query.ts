@@ -1,4 +1,4 @@
-import { list, queryField } from '@nexus/schema';
+import { list, queryField } from 'nexus';
 
 export const blockedUsers = queryField('blockedUsers', {
   type: list('User'),

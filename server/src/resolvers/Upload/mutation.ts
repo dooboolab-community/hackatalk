@@ -1,4 +1,4 @@
-import { mutationField, stringArg } from '@nexus/schema';
+import { mutationField, stringArg } from 'nexus';
 
 import { uploadFileToAzureBlobFromStream } from '../../utils/azure';
 
