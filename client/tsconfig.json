@@ -10,7 +10,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": true,
-    "noImplicitAny": false,
     "noUnusedLocals": false,
     "skipLibCheck": true,
     "sourceMap": true,
