@@ -28,8 +28,7 @@ export const sendPushNotification = async (
       },
     );
   } catch (e) {
-    console.warn(`Failed to send notification: ${e}`);
-    console.warn(e.response.data.errors);
+    throw new Error(`Failed to send notification: ${e}`);
   }
 };
 

@@ -1,10 +1,10 @@
-import { list, queryField, stringArg } from 'nexus';
+import { list, nonNull, queryField, stringArg } from 'nexus';
 
 export const reports = queryField('reports', {
   type: list('Report'),
 
   args: {
-    userId: stringArg(),
+    userId: nonNull(stringArg()),
   },
 
   resolve: (_, { userId }, ctx) => {

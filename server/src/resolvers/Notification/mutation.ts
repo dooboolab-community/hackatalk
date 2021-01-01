@@ -1,5 +1,7 @@
 import { mutationField, nonNull, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
+
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
 
@@ -10,6 +12,8 @@ export const createNotification = mutationField('createNotification', {
   },
 
   resolve: (parent, { token, device, os }, { prisma, userId }) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.notification.create({
       data: {
         token,

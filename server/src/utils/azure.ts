@@ -1,5 +1,6 @@
 import AzureStorage, { BlobService } from 'azure-storage';
 
+import { assert } from './assert';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import stream from 'stream';
 
@@ -8,7 +9,7 @@ require('dotenv').config();
 
 const { STORAGE_ACCOUNT, STORAGE_KEY } = process.env;
 
-const blobService = STORAGE_ACCOUNT
+const blobService = (STORAGE_ACCOUNT && STORAGE_KEY)
   ? AzureStorage.createBlobService(STORAGE_ACCOUNT, STORAGE_KEY)
   : undefined;
 
@@ -18,6 +19,8 @@ export const uploadFileToAzureBlobFromStream = (
   destDir: string,
   container: string,
 ): Promise<BlobService.BlobResult> => {
+  assert(blobService, 'Azure Storage is not initialized.');
+
   return new Promise(function(resolve, reject) {
     stream.pipe(
       blobService.createWriteStreamToBlockBlob(container, `${destDir}${destFile}`, function(
@@ -42,6 +45,8 @@ export const uploadFileToAzureBlobFromFile = (
   destFile: string,
   destDir: string,
 ): Promise<BlobService.BlobResult> => {
+  assert(blobService, 'Azure Storage is not initialized.');
+
   return new Promise(function(resolve, reject) {
     blobService.createBlockBlobFromLocalFile(container, `${destDir}${destFile}`, file, function(
       error,
@@ -62,6 +67,8 @@ export const deleteFileFromAzureBlob = (
   destFile: string,
   destDir: string,
 ): Promise<boolean> => {
+  assert(blobService, 'Azure Storage is not initialized.');
+
   return new Promise(function(resolve, reject) {
     blobService.deleteBlobIfExists(destDir, destFile, function(
       error,
@@ -84,4 +91,8 @@ export const getURL = (
   sasToken?: string,
   primary?: boolean,
   snapshotId?: string,
-): string => blobService.getUrl(container, blob, sasToken, primary, snapshotId);
+): string => {
+  assert(blobService, 'Azure Storage is not initialized.');
+
+  return blobService.getUrl(container, blob, sasToken, primary, snapshotId);
+};

@@ -1,5 +1,6 @@
 import { booleanArg, objectType } from 'nexus';
 
+import { assert } from '../utils/assert';
 import { relayToPrismaPagination } from '../utils/pagination';
 
 export const Channel = objectType({
@@ -35,7 +36,9 @@ export const Channel = objectType({
     t.connectionField('messages', {
       type: 'Message',
 
-      nodes: async ({ id }, args, { request, prisma, userId }) => {
+      nodes: async ({ id }, args, { prisma, userId }) => {
+        assert(userId, 'Not authorized.');
+
         const { after, before, first, last } = args;
 
         const blockedUsers = await prisma.blockedUser.findMany({
@@ -75,7 +78,7 @@ export const Channel = objectType({
             where: {
               channel: { id },
               user: {
-                id: { not: userId },
+                id: { not: userId ?? undefined },
               },
             },
             include: { user: true },

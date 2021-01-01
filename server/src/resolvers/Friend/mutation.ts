@@ -1,5 +1,7 @@
 import { mutationField, nonNull, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
+
 export const addFriend = mutationField('addFriend', {
   type: 'Friend',
 
@@ -8,6 +10,8 @@ export const addFriend = mutationField('addFriend', {
   },
 
   resolve: (_, { friendId }, { prisma, userId }) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.friend.create({
       data: {
         user: {
@@ -35,6 +39,8 @@ export const deleteFriend = mutationField('deleteFriend', {
     friendId: nonNull(stringArg()),
   },
   resolve: (_, { friendId }, { prisma, userId }) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.friend.delete({
       where: {
         userId_friendId: {
