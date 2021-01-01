@@ -1,4 +1,3 @@
-import { Context } from '../context';
 import NodeRSA from 'node-rsa';
 import axios from 'axios';
 import bcrypt from 'bcrypt';
@@ -34,10 +33,10 @@ interface Token {
   userId: string;
 }
 
-export function getUserId({ req }: {req: ReqI18n}): string {
+export function getUserId({ req }: {req: ReqI18n}): string | null {
   const Authorization = req?.get?.('Authorization');
 
-  if (!Authorization) return;
+  if (!Authorization) return null;
 
   const token = Authorization.replace('Bearer ', '');
   const verifiedToken = verify(token, APP_SECRET) as Token;
@@ -239,8 +238,8 @@ export const getPasswordResetHTML = (
   return rendered;
 };
 
-// eslint-disable-next-line
-export const getToken = (req: Request & any): string => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getToken = (req: Request & any): string | null => {
   const authHeader = req.get('Authorization');
 
   if (!authHeader) {

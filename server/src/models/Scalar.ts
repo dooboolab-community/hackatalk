@@ -13,7 +13,7 @@ export enum AuthType {
 export const Auth = scalarType({
   name: 'Auth',
   asNexusMethod: 'auth',
-  parseValue(value: AuthType): AuthType {
+  parseValue(value: AuthType): AuthType | undefined {
     if (AuthType[value]) {
       return value;
     }
@@ -31,7 +31,7 @@ export enum Gender {
 export const gender = scalarType({
   name: 'Gender',
   asNexusMethod: 'gender',
-  parseValue(value: Gender): Gender {
+  parseValue(value: Gender): Gender | undefined {
     if (Gender[value]) {
       return value;
     }
@@ -50,7 +50,7 @@ export enum MembershipType {
 export const membershipType = scalarType({
   name: 'MembershipType',
   asNexusMethod: 'membershipType',
-  parseValue(value: MembershipType): MembershipType {
+  parseValue(value: MembershipType): MembershipType | undefined {
     if (MembershipType[value]) {
       return value;
     }
@@ -69,7 +69,7 @@ export enum AlertMode {
 export const alertMode = scalarType({
   name: 'AlertMode',
   asNexusMethod: 'alertMode',
-  parseValue(value: AlertMode): AlertMode {
+  parseValue(value: AlertMode): AlertMode | undefined {
     if (AlertMode[value]) {
       return value;
     }
@@ -87,7 +87,7 @@ export enum ChannelType {
 export const channelType = scalarType({
   name: 'ChannelType',
   asNexusMethod: 'channelType',
-  parseValue(value: ChannelType): ChannelType {
+  parseValue(value: ChannelType): ChannelType | undefined {
     if (ChannelType[value]) {
       return value;
     }
@@ -106,7 +106,7 @@ export enum MessageType {
 export const messageType = scalarType({
   name: 'MessageType',
   asNexusMethod: 'messageType',
-  parseValue(value: MessageType): MessageType {
+  parseValue(value: MessageType): MessageType | undefined {
     if (MessageType[value]) {
       return value;
     }

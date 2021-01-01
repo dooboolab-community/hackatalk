@@ -1,6 +1,8 @@
 import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
 import { mutationField, nonNull, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
+
 const { SENDGRID_EMAIL } = process.env;
 
 export const createReport = mutationField('createReport', {
@@ -12,6 +14,9 @@ export const createReport = mutationField('createReport', {
   },
 
   resolve: async (_, { reportedUserId, report }, { prisma, request, userId }) => {
+    assert(userId, 'Not authorized.');
+    assert(SENDGRID_EMAIL, 'Missing sendgrid email address.');
+
     const msg: MailDataRequired = {
       to: 'hackatalk@gmail.com',
       from: SENDGRID_EMAIL,

@@ -1,10 +1,11 @@
-import { booleanArg, queryField, stringArg } from 'nexus';
+import { booleanArg, nonNull, queryField, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const channel = queryField('channel', {
   type: 'Channel',
-  args: { channelId: stringArg() },
+  args: { channelId: nonNull(stringArg()) },
   description: 'Get single channel',
 
   resolve: (parent, { channelId }, ctx) => ctx.prisma.channel.findUnique({
@@ -23,6 +24,8 @@ export const channels = queryField((t) => {
     },
 
     async nodes(_, args, { prisma, userId }) {
+      assert(userId, 'Not authorized.');
+
       const { after, before, first, last, withMessage } = args;
 
       const checkMessage = withMessage && {

@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { Http2Server } from 'http2';
 import SendGridMail from '@sendgrid/mail';
 import { applyMiddleware } from 'graphql-middleware';
+import { assert } from './utils/assert';
 import { createApp } from './app';
 import { createContext } from './context';
 import { createServer as createHttpServer } from 'http';
@@ -18,6 +19,7 @@ const schemaWithMiddleware = NODE_ENV === 'test'
     permissions,
   );
 
+assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
 const createApolloServer = (): ApolloServer => new ApolloServer({

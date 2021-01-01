@@ -1,10 +1,11 @@
 import { nonNull, queryField, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const message = queryField('message', {
   type: 'Message',
-  args: { id: stringArg() },
+  args: { id: nonNull(stringArg()) },
   description: 'Get single message',
   resolve: (_, { id }, ctx) => ctx.prisma.message.findUnique({
     where: { id },
@@ -25,6 +26,8 @@ export const messages = queryField((t) => {
     },
 
     async nodes(_, args, { prisma, userId }) {
+      assert(userId, 'Not authorized.');
+
       const { after, before, first, last, searchText, channelId } = args;
 
       const filter = searchText && {

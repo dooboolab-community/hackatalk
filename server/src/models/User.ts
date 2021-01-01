@@ -1,4 +1,5 @@
 import { NexusGenRootTypes } from '../generated/nexus';
+import { assert } from '../utils/assert';
 import { objectType } from 'nexus';
 import { prisma } from '../context';
 
@@ -36,6 +37,8 @@ export const User = objectType({
       description: 'Check if the user is blocked by the user who have signed in.',
 
       resolve: async ({ id }, args, { prisma, userId }) => {
+        assert(userId, 'Not authorized.');
+
         const blockedUser = await prisma.blockedUser.findFirst({
           where: { userId, blockedUserId: id },
         });

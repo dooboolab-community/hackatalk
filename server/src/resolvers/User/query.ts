@@ -1,10 +1,11 @@
-import { queryField, stringArg } from 'nexus';
+import { nonNull, queryField, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const user = queryField('user', {
   type: 'User',
-  args: { id: stringArg() },
+  args: { id: nonNull(stringArg()) },
   description: 'Fetch user profile',
 
   resolve: (parent, args, ctx) => {
@@ -48,7 +49,7 @@ export const userConnection = queryField((t) => {
         where: {
           ...filter,
           AND: [
-            { id: { not: userId } },
+            { id: { not: userId ?? undefined } },
           ],
           verified: true,
           deletedAt: null,
@@ -64,6 +65,8 @@ export const me = queryField('me', {
   description: 'Fetch current user profile when authenticated.',
 
   resolve: (parent, args, { prisma, userId }) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.user.findUnique({
       where: {
         id: userId,

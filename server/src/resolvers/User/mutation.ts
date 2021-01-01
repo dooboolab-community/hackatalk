@@ -23,6 +23,7 @@ import { inputObjectType, mutationField, nonNull, stringArg } from 'nexus';
 
 import { AuthType } from '../../models/Scalar';
 import { UserService } from '../../services/UserService';
+import { assert } from '../../utils/assert';
 import generator from 'generate-password';
 import { sign } from 'jsonwebtoken';
 import verifyAppleToken from 'verify-apple-id-token';
@@ -63,7 +64,7 @@ export const UserUpdateInputType = inputObjectType({
 
 export const signUp = mutationField('signUp', {
   type: nonNull('User'),
-  args: { user: 'UserCreateInput' },
+  args: { user: nonNull(UserInputType) },
 
   resolve: async (_parent, { user }, ctx) => {
     const { name, email, password, gender, photoURL, thumbURL } = user;
@@ -99,10 +100,16 @@ export const signInEmail = mutationField('signInEmail', {
   resolve: async (_parent, { email, password }, ctx) => {
     const { pubsub, prisma } = ctx;
 
-    const findUserWithEmail = async () => prisma.user.findUnique({
-      where: { email },
-      include: { profile: true },
-    });
+    const findUserWithEmail = async () => {
+      const user = await prisma.user.findUnique({
+        where: { email },
+        include: { profile: true },
+      });
+
+      assert(user, 'Could not find the current user in db.');
+
+      return user;
+    };
 
     const updateLastSignedIn = () => prisma.user.update({
       where: { email },
@@ -114,6 +121,8 @@ export const signInEmail = mutationField('signInEmail', {
       andThen(
         (user) => pipe(
           async () => {
+            assert(user.password, 'The user does not have a password.');
+
             if (!(await validateCredential(password, user.password))) {
               throw new Error('Invalid password');
             }
@@ -154,6 +163,8 @@ export const signInWithApple = mutationField('signInWithApple', {
   args: { accessToken: nonNull(stringArg()) },
 
   resolve: async (_parent, { accessToken }, ctx) => {
+    assert(APPLE_CLIENT_ID, 'Missing Apple Client ID.');
+
     try {
       const { sub, email } = await verifyAppleToken({
         idToken: accessToken,
@@ -179,6 +190,8 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
 
   resolve: async (_parent, { accessToken }, ctx) => {
     const { sub, email, name = '' } = await verifyGoogleId(accessToken);
+
+    assert(email, 'No email returned from Google.');
 
     return UserService.signInWithSocialAccount(
       {
@@ -207,6 +220,8 @@ export const sendVerification = mutationField('sendVerification', {
       const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc);
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
 
+      assert(SENDGRID_EMAIL, 'Missing sendgrid email address.');
+
       const msg: MailDataRequired = {
         to: email,
         from: SENDGRID_EMAIL,
@@ -225,10 +240,12 @@ export const sendVerification = mutationField('sendVerification', {
 
 export const updateProfile = mutationField('updateProfile', {
   type: 'User',
-  args: { user: 'UserUpdateInput' },
+  args: { user: nonNull(UserUpdateInputType) },
   description: 'Update user profile. Becareful that nullable fields will be updated either.',
 
   resolve: async (_parent, { user }, { prisma, pubsub, userId }) => {
+    assert(userId, 'Not authorized.');
+
     const updated = await prisma.user.update({
       where: { id: userId },
       data: user,
@@ -282,10 +299,15 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
   },
 
   resolve: async (_, { password, newPassword }, { prisma, userId }) => {
+    assert(userId, 'Not authorized.');
+
     try {
       const user = await prisma.user.findUnique({
         where: { id: userId },
       });
+
+      assert(user, 'Could not find current user in db.');
+      assert(user.password, 'The user does not have a password.');
 
       const validate = await validateCredential(password, user.password);
 

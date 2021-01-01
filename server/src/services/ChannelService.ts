@@ -1,6 +1,7 @@
 import { Channel, Membership, MembershipType } from '@prisma/client';
-import { T, always, andThen, cond, gt, lt, map, pipe, when } from 'ramda';
+import { andThen, cond, pipe } from 'ramda';
 
+import { assert } from '../utils/assert';
 import { prisma } from '../context';
 
 export const findExistingChannel = async (channelId: string): Promise<Channel> => {
@@ -8,12 +9,14 @@ export const findExistingChannel = async (channelId: string): Promise<Channel> =
     where: { id: channelId, deletedAt: null },
   });
 
+  assert(channel, 'Could not find the channel.');
+
   return channel;
 };
 
 export const findChannelWithUserIds = async (
   userIds: string[],
-): Promise<Channel> => {
+): Promise<Channel | undefined> => {
   const channels = await prisma.channel.findMany({
     include: {
       membership: {
@@ -37,7 +40,7 @@ export const findChannelWithUserIds = async (
 
 export const findPrivateChannelWithUserIds = async (
   userIds: string[],
-): Promise<Channel> => {
+): Promise<Channel | undefined> => {
   const channels = await prisma.channel.findMany({
     include: {
       membership: {

@@ -1,5 +1,7 @@
 import { mutationField, nonNull, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
+
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
 
@@ -11,6 +13,8 @@ export const createBlockedUser = mutationField('createBlockedUser', {
     { blockedUserId },
     { prisma, userId },
   ) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.blockedUser.create({
       data: {
         user: {
@@ -39,6 +43,8 @@ export const deleteBlockedUser = mutationField('deleteBlockedUser', {
     { blockedUserId },
     { prisma, userId },
   ) => {
+    assert(userId, 'Not authorized.');
+
     return prisma.blockedUser.delete({
       where: {
         userId_blockedUserId: {

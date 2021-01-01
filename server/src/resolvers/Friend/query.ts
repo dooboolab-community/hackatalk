@@ -1,5 +1,6 @@
 import { queryField, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
 import { relayToPrismaPagination } from '../../utils/pagination';
 
 export const friends = queryField((t) => {
@@ -11,6 +12,8 @@ export const friends = queryField((t) => {
     },
 
     async nodes(_, args, { prisma, userId }) {
+      assert(userId, 'Not authorized.');
+
       const { after, before, first, last, searchText } = args;
 
       const filter = searchText && {

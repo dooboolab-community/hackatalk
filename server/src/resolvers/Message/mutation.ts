@@ -1,6 +1,8 @@
 import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../services/NotificationService';
 import { arg, mutationField, nonNull, stringArg } from 'nexus';
 
+import { assert } from '../../utils/assert';
+
 export const createMessage = mutationField('createMessage', {
   type: 'Message',
 
@@ -12,6 +14,8 @@ export const createMessage = mutationField('createMessage', {
   },
 
   resolve: async (parent, { channelId, message }, { prisma, request, userId }) => {
+    assert(userId, 'Not authorized.');
+
     const { imageUrls, fileUrls, ...rest } = message;
 
     const created = await prisma.message.create({
@@ -47,7 +51,7 @@ export const createMessage = mutationField('createMessage', {
       const message: ExpoMessage = {
         to: token,
         sound: 'default',
-        title: created.sender.name,
+        title: created.sender.name ?? 'Anonymous',
         body: created.messageType === 'photo'
           ? request.req.t('PHOTO')
           : created.messageType === 'file'
