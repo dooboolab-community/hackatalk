@@ -1,6 +1,6 @@
 export const createChannel = /* GraphQL */`
   mutation createChannel(
-    $channel: ChannelCreateInput
+    $channel: ChannelCreateInput!
     $message: MessageCreateInput
   ) {
     createChannel(
@@ -24,7 +24,7 @@ export const createChannel = /* GraphQL */`
 `;
 
 export const channelQuery = /* GraphQL */`
-  query channel($channelId: String) {
+  query channel($channelId: String!) {
     channel(channelId: $channelId) {
       id
       channelType

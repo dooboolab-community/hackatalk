@@ -131,7 +131,7 @@ describe('user resolvers', () => {
     const { mutate } = testServer(() => ({ userAPI }), userResolvers);
 
     const SIGN_UP = gql`
-      mutation signUp($user: UserCreateInput) {
+      mutation signUp($user: UserCreateInput!) {
         signUp(user: $user) {
           id
           name
@@ -141,7 +141,7 @@ describe('user resolvers', () => {
 
     const res = await mutate({
       mutation: SIGN_UP,
-      variables: { newUser },
+      variables: { user: newUser },
     });
 
     expect(res.errors).toBe(undefined);
