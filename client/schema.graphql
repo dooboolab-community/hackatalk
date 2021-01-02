@@ -74,7 +74,7 @@ type ChannelConnection {
 input ChannelCreateInput {
   channelType: ChannelType
   name: String
-  userIds: [String]
+  userIds: [String!]
 }
 
 type ChannelEdge {
@@ -148,8 +148,8 @@ type MessageConnection {
 input MessageCreateInput {
   messageType: MessageType
   text: String
-  imageUrls: [String]
-  fileUrls: [String]
+  imageUrls: [String!]
+  fileUrls: [String!]
 }
 
 type MessageEdge {
@@ -163,7 +163,7 @@ type MessageEdge {
 scalar MessageType
 
 type Mutation {
-  signUp(user: UserCreateInput): User!
+  signUp(user: UserCreateInput!): User!
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!
@@ -173,7 +173,7 @@ type Mutation {
   """
   Update user profile. Becareful that nullable fields will be updated either.
   """
-  updateProfile(user: UserUpdateInput): User
+  updateProfile(user: UserUpdateInput!): User
   findPassword(email: String!): Boolean
   changeEmailPassword(password: String!, newPassword: String!): Boolean
   createNotification(token: String!, device: String, os: String): Notification
@@ -199,10 +199,10 @@ type Mutation {
     This query will return [Channel] with [Membership] without [Message] that has just created.
     
   """
-  createChannel(channel: ChannelCreateInput, message: MessageCreateInput): Channel
+  createChannel(channel: ChannelCreateInput!, message: MessageCreateInput): Channel
 
   """Find or create channel associated to peer user id."""
-  findOrCreatePrivateChannel(peerUserIds: [String]!): Channel
+  findOrCreatePrivateChannel(peerUserIds: [String!]!): Channel
 
   """
   User leaves [public] channel.
@@ -215,10 +215,10 @@ type Mutation {
   leaveChannel(channelId: String!): Membership
 
   """Adds some users into [public] channel."""
-  inviteUsersToChannel(channelId: String!, userIds: [String]!): Channel
+  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel
 
   """Removes some users from [public] channel."""
-  kickUsersFromChannel(channelId: String!, userIds: [String]!): Channel
+  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel
   createMessage(channelId: String!, message: MessageCreateInput!): Message
   deleteMessage(id: String!): Message
   createBlockedUser(blockedUserId: String!): BlockedUser
@@ -267,7 +267,7 @@ type Profile {
 
 type Query {
   """Fetch user profile"""
-  user(id: String): User
+  user(id: String!): User
 
   """
   Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.
@@ -290,7 +290,7 @@ type Query {
 
   """Fetch current user profile when authenticated."""
   me: User
-  notifications(userId: String): [Notification]
+  notifications(userId: String!): [Notification]
   friends(
     searchText: String
 
@@ -308,7 +308,7 @@ type Query {
   ): UserConnection
 
   """Get single channel"""
-  channel(channelId: String): Channel
+  channel(channelId: String!): Channel
   channels(
     withMessage: Boolean
 
@@ -326,7 +326,7 @@ type Query {
   ): ChannelConnection
 
   """Get single message"""
-  message(id: String): Message
+  message(id: String!): Message
   messages(
     channelId: String!
     searchText: String
@@ -346,7 +346,7 @@ type Query {
 
   """Arguments are not needed. Only find blocked users of signed in user"""
   blockedUsers: [User]
-  reports(userId: String): [Report]
+  reports(userId: String!): [Report]
 }
 
 type Reaction {

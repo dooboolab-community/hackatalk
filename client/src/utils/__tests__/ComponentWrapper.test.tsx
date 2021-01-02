@@ -4,11 +4,11 @@ import { render, within } from '@testing-library/react-native';
 import ComponentWrapper from '../ComponentWrapper';
 import { View } from 'react-native';
 
-function createTestView(testId: string): ComponentType<{ children: ReactElement }> {
+function createTestView(
+  testId: string,
+): ComponentType<{ children: ReactElement }> {
   return (props: { children?: ReactElement }): ReactElement => (
-    <View testID={testId}>
-      {props.children}
-    </View>
+    <View testID={testId}>{props.children}</View>
   );
 }
 

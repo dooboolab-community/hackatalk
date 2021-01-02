@@ -1,12 +1,18 @@
-import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { Alert, Image, View } from 'react-native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { AuthProvider, useAuthContext } from './providers/AuthProvider';
-import { DeviceProvider, useDeviceContext } from './providers/DeviceProvider';
-import React, { FC, ReactElement, ReactNode, Suspense, useEffect, useState } from 'react';
+import React, {
+  FC,
+  ReactElement,
+  ReactNode,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
   RelayEnvironmentProvider,
   graphql,
@@ -16,15 +22,15 @@ import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
 import { dark, light } from './theme';
 
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import type {
-  AppUserQuery,
-} from './__generated__/AppUserQuery.graphql';
+import type { AppUserQuery } from './__generated__/AppUserQuery.graphql';
 import { Asset } from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
+import { DeviceProvider } from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import { User } from './types/graphql';
 import { getString } from '../STRINGS';
 import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
@@ -72,14 +78,7 @@ const prepareAutoHide = async (): Promise<void> => {
 
 function App(): ReactElement {
   const [assetLoaded, setAssetLoaded] = useState<boolean>(false);
-  const { setDeviceType } = useDeviceContext();
-  const { setUser } = useAuthContext();
-
-  const setDevice = async (): Promise<void> => {
-    const deviceType = await Device.getDeviceTypeAsync();
-
-    setDeviceType(deviceType);
-  };
+  const authRef = useRef(useAuthContext());
 
   const loadAssetsAsync = async (): Promise<void> => {
     const imageAssets = cacheImages(Icons);
@@ -102,9 +101,16 @@ function App(): ReactElement {
           return;
         }
 
-        Alert.alert(getString('WARNING'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
-      }).catch((): void => {
-        Alert.alert(getString('ERROR'), getString('NOTIFICATION_TOKEN_NOT_VALID'));
+        Alert.alert(
+          getString('WARNING'),
+          getString('NOTIFICATION_TOKEN_NOT_VALID'),
+        );
+      })
+      .catch((): void => {
+        Alert.alert(
+          getString('ERROR'),
+          getString('NOTIFICATION_TOKEN_NOT_VALID'),
+        );
       });
   };
 
@@ -120,23 +126,23 @@ function App(): ReactElement {
   useEffect(() => {
     if (me === null) {
       AsyncStorage.removeItem('token');
-      setDevice();
 
       return;
     }
 
-    // @ts-ignore
-    setUser(me);
+    authRef.current.setUser(me as User);
   }, [me]);
 
   if (!assetLoaded) {
-    return <View/>;
+    return <View />;
   }
 
   return <RootNavigator />;
 }
 
-const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) => {
+const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({
+  children,
+}) => {
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
 
@@ -165,18 +171,16 @@ const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({ children }) =>
   );
 };
 
-function ActionSheetProviderWithChildren(props: { children: ReactNode }): ReactElement {
-  return (
-    <ActionSheetProvider>
-      {props.children}
-    </ActionSheetProvider>
-  );
+function ActionSheetProviderWithChildren(props: {
+  children: ReactNode;
+}): ReactElement {
+  return <ActionSheetProvider>{props.children}</ActionSheetProvider>;
 }
 
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(App)
   .wrap(ActionSheetProviderWithChildren, {})
-  .wrap(Suspense, { fallback: LoadingIndicator })
+  .wrap(Suspense, { fallback: <LoadingIndicator /> })
   .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
   .wrap(AuthProvider, {})
   .wrap(DeviceProvider, {})

@@ -20,8 +20,7 @@ const fetchGraphQL: FetchFunction = async (
   const config: RequestProps = {
     method: 'POST',
     headers: {
-      Authorization:
-        (await AsyncStorage.getItem('token')) || '',
+      Authorization: (await AsyncStorage.getItem('token')) || '',
       Accept: 'application/json',
     },
     body: '',
@@ -38,7 +37,9 @@ const fetchGraphQL: FetchFunction = async (
 
     formData.append(
       'operations',
-      `{"query": ${requestText}, "variables": {"file": ${file}, "dir": ${JSON.stringify(dir)}} }`,
+      `{"query": ${requestText}, "variables": {"file": ${file}, "dir": ${JSON.stringify(
+        dir,
+      )}} }`,
     );
 
     formData.append('map', '{ "0": ["variables.file"] }');
@@ -54,8 +55,7 @@ const fetchGraphQL: FetchFunction = async (
     });
   }
 
-  return fetch(GRAPHQL_URL, config)
-    .then((response) => response.json());
+  return fetch(GRAPHQL_URL, config).then((response) => response.json());
 };
 
 export default fetchGraphQL;

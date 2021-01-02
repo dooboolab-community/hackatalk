@@ -1,18 +1,11 @@
 import * as React from 'react';
 
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+import { act, cleanup, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
 
-const component = createTestElement(
-  <ChangePw {...createTestProps()} />,
-);
+const component = createTestElement(<ChangePw {...createTestProps()} />);
 
 describe('[ChangePw] screen', () => {
   beforeEach(() => {

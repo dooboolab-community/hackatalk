@@ -77,15 +77,9 @@ function Shared(props: Props): ReactElement {
             },
           ]}
         >
-          {
-            hasChecked
-              ? <SvgCheck
-                width={14}
-                height={14}
-                fill={checkColor}
-              />
-              : null
-          }
+          {hasChecked ? (
+            <SvgCheck width={14} height={14} fill={checkColor} />
+          ) : null}
         </StyledCheck>
       </TouchableOpacity>
       <TouchableWithoutFeedback testID={`${testID}-nofeed`} onPress={onToggle}>

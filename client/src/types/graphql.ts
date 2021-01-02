@@ -90,7 +90,7 @@ export type ChannelConnection = {
 export type ChannelCreateInput = {
   channelType: Maybe<Scalars['ChannelType']>;
   name: Maybe<Scalars['String']>;
-  userIds: Maybe<Array<Maybe<Scalars['String']>>>;
+  userIds: Maybe<Array<Scalars['String']>>;
 };
 
 export type ChannelEdge = {
@@ -153,8 +153,8 @@ export type MessageConnection = {
 export type MessageCreateInput = {
   messageType: Maybe<Scalars['MessageType']>;
   text: Maybe<Scalars['String']>;
-  imageUrls: Maybe<Array<Maybe<Scalars['String']>>>;
-  fileUrls: Maybe<Array<Maybe<Scalars['String']>>>;
+  imageUrls: Maybe<Array<Scalars['String']>>;
+  fileUrls: Maybe<Array<Scalars['String']>>;
 };
 
 export type MessageEdge = {
@@ -220,7 +220,7 @@ export type Mutation = {
 
 
 export type MutationSignUpArgs = {
-  user: Maybe<UserCreateInput>;
+  user: UserCreateInput;
 };
 
 
@@ -251,7 +251,7 @@ export type MutationSendVerificationArgs = {
 
 
 export type MutationUpdateProfileArgs = {
-  user: Maybe<UserUpdateInput>;
+  user: UserUpdateInput;
 };
 
 
@@ -295,13 +295,13 @@ export type MutationDeleteFriendArgs = {
 
 
 export type MutationCreateChannelArgs = {
-  channel: Maybe<ChannelCreateInput>;
+  channel: ChannelCreateInput;
   message: Maybe<MessageCreateInput>;
 };
 
 
 export type MutationFindOrCreatePrivateChannelArgs = {
-  peerUserIds: Array<Maybe<Scalars['String']>>;
+  peerUserIds: Array<Scalars['String']>;
 };
 
 
@@ -312,13 +312,13 @@ export type MutationLeaveChannelArgs = {
 
 export type MutationInviteUsersToChannelArgs = {
   channelId: Scalars['String'];
-  userIds: Array<Maybe<Scalars['String']>>;
+  userIds: Array<Scalars['String']>;
 };
 
 
 export type MutationKickUsersFromChannelArgs = {
   channelId: Scalars['String'];
-  userIds: Array<Maybe<Scalars['String']>>;
+  userIds: Array<Scalars['String']>;
 };
 
 
@@ -400,7 +400,7 @@ export type Query = {
 
 
 export type QueryUserArgs = {
-  id: Maybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 
@@ -414,7 +414,7 @@ export type QueryUsersArgs = {
 
 
 export type QueryNotificationsArgs = {
-  userId: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
 };
 
 
@@ -428,7 +428,7 @@ export type QueryFriendsArgs = {
 
 
 export type QueryChannelArgs = {
-  channelId: Maybe<Scalars['String']>;
+  channelId: Scalars['String'];
 };
 
 
@@ -442,7 +442,7 @@ export type QueryChannelsArgs = {
 
 
 export type QueryMessageArgs = {
-  id: Maybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 
@@ -457,7 +457,7 @@ export type QueryMessagesArgs = {
 
 
 export type QueryReportsArgs = {
-  userId: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
 };
 
 export type Reaction = {

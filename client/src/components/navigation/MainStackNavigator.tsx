@@ -10,14 +10,14 @@ import type {
   MainStackNavigatorChannelQuery,
   MainStackNavigatorChannelQueryResponse,
 } from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { fetchQuery, graphql, useMutation, useRelayEnvironment } from 'react-relay/hooks';
+import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks';
 
 import BlockedUser from '../screen/BlockedUser';
 import ChangePw from '../screen/ChangePw';
@@ -26,9 +26,7 @@ import { DefaultTheme } from 'styled-components';
 import { IC_SETTING_W } from '../../utils/Icons';
 import Message from '../screen/Message';
 import ProfileModal from '../shared/ProfileModal';
-import {
-  ProfileModalProvider,
-} from '../../providers/ProfileModalProvider';
+import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import Report from '../screen/Report';
 import { RootStackNavigationProps } from './RootStackNavigator';
@@ -40,7 +38,6 @@ import useAppState from '../../hooks/useAppState';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MainStackParamList = {
-  default: undefined;
   MainTab: undefined;
   ProfileUpdate: undefined;
   SearchUser: undefined;
@@ -59,12 +56,13 @@ export type MainStackParamList = {
   PinchZoomViewPager: undefined;
 };
 
-type NavigationProps<
-  T extends keyof MainStackParamList = 'default'
-> = StackNavigationProp<MainStackParamList, T>;
+type NavigationProps<T extends keyof MainStackParamList> = StackNavigationProp<
+  MainStackParamList,
+  T
+>;
 
 export type MainStackNavigationProps<
-  T extends keyof MainStackParamList = 'default'
+  T extends keyof MainStackParamList
 > = CompositeNavigationProp<
   NavigationProps<T>,
   RootStackNavigationProps<'MainStack'>
@@ -89,9 +87,7 @@ function getSimpleHeader(
 }
 
 const channelQuery = graphql`
-  query MainStackNavigatorChannelQuery(
-    $channelId: String!
-  ) {
+  query MainStackNavigatorChannelQuery($channelId: String!) {
     channel(channelId: $channelId) {
       id
       channelType
@@ -111,26 +107,41 @@ const channelQuery = graphql`
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
   const currentAppState = useAppState();
-  const navigation = useNavigation();
+  const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
   const environment = useRelayEnvironment();
 
+  const latestNavigation = useRef(navigation);
+  const latestEnvironment = useRef(environment);
+
   useEffect(() => {
-    const subscription = Notifications.addNotificationResponseReceivedListener(async (response) => {
-      Notifications.setBadgeCountAsync(0);
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      async (response) => {
+        Notifications.setBadgeCountAsync(0);
 
-      const channelId = JSON.parse(response.notification.request.content.data.data as string).channelId;
+        const channelId = JSON.parse(
+          response.notification.request.content.data.data as string,
+        ).channelId;
 
-      fetchQuery<MainStackNavigatorChannelQuery>(environment, channelQuery, { channelId }).subscribe({
-        next: (data) => {
-          if (data.channel) {
-            navigation.navigate('Message', {
-              channel: data.channel,
-              users: data.channel?.memberships?.map((membership) => membership?.user),
-            });
-          }
-        },
-      });
-    });
+        fetchQuery<MainStackNavigatorChannelQuery>(
+          latestEnvironment.current,
+          channelQuery,
+          {
+            channelId,
+          },
+        ).subscribe({
+          next: (data) => {
+            if (data.channel) {
+              latestNavigation.current.navigate('Message', {
+                channel: data.channel as Channel,
+                users: data.channel?.memberships?.map(
+                  (membership) => membership?.user as User,
+                ),
+              });
+            }
+          },
+        });
+      },
+    );
 
     return () => subscription.remove();
   }, []);
@@ -155,9 +166,7 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen
         name="ProfileUpdate"
         component={ProfileUpdate}
-        options={(props): StackNavigationOptions => {
-          const { navigation } = props;
-
+        options={(): StackNavigationOptions => {
           const settingButton = (): ReactElement => {
             return (
               <TouchableOpacity
@@ -171,7 +180,10 @@ function MainStackNavigator(): ReactElement {
                   navigation.navigate('Settings');
                 }}
               >
-                <Image style={{ height: 24, width: 24 }} source={IC_SETTING_W} />
+                <Image
+                  style={{ height: 24, width: 24 }}
+                  source={IC_SETTING_W}
+                />
               </TouchableOpacity>
             );
           };
@@ -231,7 +243,7 @@ function RootNavigator(): ReactElement {
     >
       <StatusBar />
       <MainStackNavigator />
-      <ProfileModal testID="modal"/>
+      <ProfileModal testID="modal" />
     </View>
   );
 }

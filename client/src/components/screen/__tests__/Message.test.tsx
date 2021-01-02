@@ -3,11 +3,7 @@ import 'react-native';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import {
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react-native';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { Channel } from '../../../types/graphql';
 import Message from '../Message';
@@ -29,19 +25,21 @@ jest.mock('@react-navigation/core', () => {
 });
 
 const component = createTestElement(
-  <Message {...createTestProps({
-    route: {
-      params: {
-        user: {
-          name: '',
-        },
-        channel: {
-          id: '',
-          name: '',
+  <Message
+    {...createTestProps({
+      route: {
+        params: {
+          user: {
+            name: '',
+          },
+          channel: {
+            id: '',
+            name: '',
+          },
         },
       },
-    },
-  })} />,
+    })}
+  />,
 );
 
 jest.mock('expo-permissions', () => ({
@@ -102,7 +100,9 @@ describe('[Message] interaction', () => {
 
       const { getByTestId } = render(component);
 
-      environment.mock.queueOperationResolver((op) => MockPayloadGenerator.generate(op));
+      environment.mock.queueOperationResolver((op) =>
+        MockPayloadGenerator.generate(op),
+      );
 
       const messageListItem = getByTestId('message-list-item0');
 

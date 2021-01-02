@@ -81,9 +81,7 @@ describe('[FindPw] interaction', () => {
     beforeAll(() => {
       props = createTestProps();
 
-      component = createTestElement(
-        <FindPw {...props} />,
-      );
+      component = createTestElement(<FindPw {...props} />);
     });
 
     it('should show error text when the email is not validated', () => {

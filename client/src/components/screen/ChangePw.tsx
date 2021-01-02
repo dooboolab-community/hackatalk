@@ -1,19 +1,18 @@
-import { Alert, EmitterSubscription, Keyboard, KeyboardEvent, Platform, SafeAreaView } from 'react-native';
+import {
+  Alert,
+  EmitterSubscription,
+  Keyboard,
+  KeyboardEvent,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
 import type {
   ChangePwChangeEmailPasswordMutation,
   ChangePwChangeEmailPasswordMutationResponse,
 } from '../../__generated__/ChangePwChangeEmailPasswordMutation.graphql';
-import React, {
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import {
-  graphql,
-  useMutation,
-} from 'react-relay/hooks';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import Constants from 'expo-constants';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
@@ -42,11 +41,11 @@ export interface Props {
 }
 
 const changeEmailPasswordMutation = graphql`
-  mutation ChangePwChangeEmailPasswordMutation($password: String! $newPassword: String!) {
-    changeEmailPassword(
-      password: $password
-      newPassword: $newPassword
-    )
+  mutation ChangePwChangeEmailPasswordMutation(
+    $password: String!
+    $newPassword: String!
+  ) {
+    changeEmailPassword(password: $password, newPassword: $newPassword)
   }
 `;
 
@@ -57,8 +56,12 @@ function ChangePw(props: Props): ReactElement {
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
 
-  const [commitChangePassword, isInFlight] =
-  useMutation<ChangePwChangeEmailPasswordMutation>(changeEmailPasswordMutation);
+  const [
+    commitChangePassword,
+    isInFlight,
+  ] = useMutation<ChangePwChangeEmailPasswordMutation>(
+    changeEmailPasswordMutation,
+  );
 
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
@@ -85,7 +88,10 @@ function ChangePw(props: Props): ReactElement {
           return;
         }
 
-        Alert.alert(getString('FAILED'), getString('CHANGE_PASSWORD_HAS_FAILED'));
+        Alert.alert(
+          getString('FAILED'),
+          getString('CHANGE_PASSWORD_HAS_FAILED'),
+        );
       },
     };
 
@@ -93,18 +99,31 @@ function ChangePw(props: Props): ReactElement {
   };
 
   const [keyboardOffset, setKeyboardOffset] = useState(0);
-  const onKeyboardShow = (event: KeyboardEvent): void => setKeyboardOffset(event.endCoordinates.height);
+
+  const onKeyboardShow = (event: KeyboardEvent): void =>
+    setKeyboardOffset(event.endCoordinates.height);
+
   const onKeyboardHide = (): void => setKeyboardOffset(0);
   const keyboardDidShowListener = useRef<EmitterSubscription>();
   const keyboardDidHideListener = useRef<EmitterSubscription>();
 
   useEffect(() => {
-    keyboardDidShowListener.current = Keyboard.addListener('keyboardWillShow', onKeyboardShow);
-    keyboardDidHideListener.current = Keyboard.addListener('keyboardWillHide', onKeyboardHide);
+    keyboardDidShowListener.current = Keyboard.addListener(
+      'keyboardWillShow',
+      onKeyboardShow,
+    );
+
+    keyboardDidHideListener.current = Keyboard.addListener(
+      'keyboardWillHide',
+      onKeyboardHide,
+    );
 
     return (): void => {
-      keyboardDidShowListener.current && keyboardDidShowListener.current.remove();
-      keyboardDidHideListener.current && keyboardDidHideListener.current.remove();
+      keyboardDidShowListener.current &&
+        keyboardDidShowListener.current.remove();
+
+      keyboardDidHideListener.current &&
+        keyboardDidHideListener.current.remove();
     };
   }, []);
 
@@ -114,11 +133,14 @@ function ChangePw(props: Props): ReactElement {
         flex: 1,
         backgroundColor: theme.background,
         paddingBottom: keyboardOffset,
-      }}>
+      }}
+    >
       <StyledKeyboardAvoidingView
-        keyboardVerticalOffset={isIPhoneX()
-          ? Constants.statusBarHeight + 52
-          : Constants.statusBarHeight}
+        keyboardVerticalOffset={
+          isIPhoneX()
+            ? Constants.statusBarHeight + 52
+            : Constants.statusBarHeight
+        }
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,

@@ -10,9 +10,7 @@ import { Channel as ChannelType } from '../../../types/graphql';
 import { MockPayloadGenerator } from 'relay-test-utils';
 import { environment } from '../../../providers';
 
-const component = createTestElement(
-  <Channel {...createTestProps()} />,
-);
+const component = createTestElement(<Channel {...createTestProps()} />);
 
 jest.mock('@react-navigation/native', () => {
   return {

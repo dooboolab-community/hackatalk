@@ -25,9 +25,7 @@ interface Props {
   navigation: RootStackNavigationProps<'default'>;
 }
 
-const Page: FC<Props> = ({
-  navigation,
-}) => {
+const Page: FC<Props> = ({ navigation }) => {
   const { theme } = useThemeContext();
 
   const pressAgree = async (): Promise<void> => {
@@ -37,19 +35,22 @@ const Page: FC<Props> = ({
 
   navigation.setOptions({
     headerRight: (): ReactElement => (
-      <TouchableOpacity
-        testID="touch-done"
-        onPress={pressAgree}
-      >
-        <View style={{
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-        }}>
-          <Text style={{
-            color: theme.font,
-            fontSize: 14,
-            fontWeight: 'bold',
-          }}>{getString('AGREE')}</Text>
+      <TouchableOpacity testID="touch-done" onPress={pressAgree}>
+        <View
+          style={{
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+          }}
+        >
+          <Text
+            style={{
+              color: theme.font,
+              fontSize: 14,
+              fontWeight: 'bold',
+            }}
+          >
+            {getString('AGREE')}
+          </Text>
         </View>
       </TouchableOpacity>
     ),

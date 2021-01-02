@@ -29,9 +29,13 @@ const StyledTextInputContainer = styled.View<{ isFocused?: boolean }>`
   margin-bottom: 8px;
 `;
 
-const StyledTextInput = styled.TextInput.attrs<{ focused: boolean }>(({ theme, focused }) => ({
-  placeholderTextColor: focused ? theme.placeholderFocused : theme.placeholder,
-}))<{ focused: boolean }>`
+const StyledTextInput = styled.TextInput.attrs<{ focused: boolean }>(
+  ({ theme, focused }) => ({
+    placeholderTextColor: focused
+      ? theme.placeholderFocused
+      : theme.placeholder,
+  }),
+)<{ focused: boolean }>`
   flex: 1;
   align-self: stretch;
   color: ${({ theme }): string => theme.fontColor};
@@ -67,7 +71,6 @@ interface Props {
   error?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   const [focused, setFocused] = useState(false);
 
@@ -103,7 +106,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
           secureTextEntry={props.isPassword}
           textContentType="none" // to disable autoifill on iOS
         />
-        {(!!props.txt && !props.error) && <StyledStatusMark />}
+        {!!props.txt && !props.error && <StyledStatusMark />}
       </StyledTextInputContainer>
     </WrapperView>
   );

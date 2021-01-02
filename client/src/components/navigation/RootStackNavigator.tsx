@@ -23,9 +23,9 @@ export type RootStackParamList = {
     uri: string;
   };
   ImageSlider: {
-    images: { uri: string | null, sender?: string | null }[];
+    images: { uri: string | null; sender?: string | null }[];
     initialIndex?: number;
-  }
+  };
   NotFound: undefined;
 };
 
@@ -37,7 +37,10 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
   const { theme } = useThemeContext();
-  const { state: { user } } = useAuthContext();
+
+  const {
+    state: { user },
+  } = useAuthContext();
 
   return (
     <SafeAreaProvider>
@@ -64,8 +67,8 @@ function RootNavigator(): React.ReactElement {
             headerShown: false,
           }}
         >
-          {!user || !user.verified
-            ? <Stack.Screen
+          {!user || !user.verified ? (
+            <Stack.Screen
               name="AuthStack"
               component={AuthStack}
               options={{
@@ -75,7 +78,8 @@ function RootNavigator(): React.ReactElement {
                 }),
               }}
             />
-            : <Stack.Screen
+          ) : (
+            <Stack.Screen
               name="MainStack"
               component={MainStack}
               options={{
@@ -85,7 +89,7 @@ function RootNavigator(): React.ReactElement {
                 }),
               }}
             />
-          }
+          )}
           <Stack.Screen
             name="WebView"
             component={WebView}
@@ -98,7 +102,11 @@ function RootNavigator(): React.ReactElement {
           <Stack.Screen
             name="ImageSlider"
             component={ImageSlider}
-            options={({ route: { params: { images, initialIndex = 0 } } }) => ({
+            options={({
+              route: {
+                params: { images, initialIndex = 0 },
+              },
+            }) => ({
               headerShown: true,
               headerBackTitle: images[initialIndex]?.sender || '',
               headerTitle: '',

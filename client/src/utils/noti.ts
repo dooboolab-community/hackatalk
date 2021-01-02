@@ -4,11 +4,16 @@ import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
-export const registerForPushNotificationsAsync = async (): Promise<string | undefined> => {
+export const registerForPushNotificationsAsync = async (): Promise<
+  string | undefined
+> => {
   let token: string | undefined;
 
   if (Constants.isDevice) {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS,
+    );
+
     let finalStatus = existingStatus;
 
     if (existingStatus !== 'granted') {

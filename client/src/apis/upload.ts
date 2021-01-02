@@ -5,7 +5,7 @@ import mime from 'mime';
 
 export const uploadImageAsync = async (
   uri: string,
-  dir:string,
+  dir: string,
   fileNamePrefix?: string,
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
@@ -33,7 +33,10 @@ export const uploadImageAsync = async (
   };
 
   try {
-    const res: Response = await fetch(`${Config.ROOT_URL}/upload_single`, fetchOption);
+    const res: Response = await fetch(
+      `${Config.ROOT_URL}/upload_single`,
+      fetchOption,
+    );
 
     return res;
   } catch (err) {

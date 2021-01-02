@@ -2,11 +2,31 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Crypto from 'expo-crypto';
 import * as Device from 'expo-device';
 
-import { Alert, Dimensions, Image, Platform, TouchableOpacity, View } from 'react-native';
-import Animated, { block, clockRunning, cond, not, set, useCode } from 'react-native-reanimated';
+import {
+  Alert,
+  Dimensions,
+  Image,
+  Platform,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Animated, {
+  block,
+  clockRunning,
+  cond,
+  not,
+  set,
+  useCode,
+} from 'react-native-reanimated';
 import { AuthPayload, AuthType, User } from '../../types/graphql';
 import { Button, EditText } from 'dooboo-ui';
-import { IC_LOGO_D, IC_LOGO_W, SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
+import {
+  IC_LOGO_D,
+  IC_LOGO_W,
+  SvgApple,
+  SvgFacebook,
+  SvgGoogle,
+} from '../../utils/Icons';
 import React, { ReactElement, useEffect, useState } from 'react';
 import type {
   SignInAppleMutation,
@@ -25,15 +45,15 @@ import styled, { css } from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { EditTextInputType } from 'dooboo-ui/EditText';
-import type {
-  SignInCreateNotificationMutation,
-} from '../../__generated__/SignInCreateNotificationMutation.graphql';
+import type { SignInCreateNotificationMutation } from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
 
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
+  TouchableOpacity,
+);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -101,10 +121,12 @@ const StyledScrollView = styled.ScrollView`
   align-self: center;
   width: 100%;
 
-  /* ${({ theme: { desktop } }) => desktop && css`
-    width: 50%;
-    max-width: 800;
-  `} */
+  /* ${({ theme: { desktop } }) =>
+    desktop &&
+    css`
+      width: 50%;
+      max-width: 800;
+    `} */
 `;
 
 interface Props {
@@ -148,7 +170,11 @@ const signInWithApple = graphql`
 `;
 
 const createNotification = graphql`
-  mutation SignInCreateNotificationMutation($token: String! $device: String $os: String) {
+  mutation SignInCreateNotificationMutation(
+    $token: String!
+    $device: String
+    $os: String
+  ) {
     createNotification(token: $token, device: $device, os: $os) {
       id
       token
@@ -168,11 +194,18 @@ function SignIn(props: Props): ReactElement {
   const [password, setPassword] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
-  const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(signInEmail);
-  const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(signInWithApple);
 
-  const [commitNotification] =
-    useMutation<SignInCreateNotificationMutation>(createNotification);
+  const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(
+    signInEmail,
+  );
+
+  const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(
+    signInWithApple,
+  );
+
+  const [commitNotification] = useMutation<SignInCreateNotificationMutation>(
+    createNotification,
+  );
 
   const createNotificationIfPushTokenExists = async (): Promise<void> => {
     const pushToken = await AsyncStorage.getItem('push_token');
@@ -211,7 +244,9 @@ function SignIn(props: Props): ReactElement {
       return;
     }
 
-    const licenseAgreed = JSON.parse(await AsyncStorage.getItem('license_agreed') as string);
+    const licenseAgreed = JSON.parse(
+      (await AsyncStorage.getItem('license_agreed')) as string,
+    );
 
     if (!licenseAgreed) {
       return navigation.navigate('LicenseAgreement');
@@ -260,7 +295,9 @@ function SignIn(props: Props): ReactElement {
       const nonce = Math.random().toString(36).substring(2, 10);
 
       const hashedNonce = await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.SHA256, nonce);
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        nonce,
+      );
 
       const appleCredential = await AppleAuthentication.signInAsync({
         requestedScopes: [
@@ -287,7 +324,9 @@ function SignIn(props: Props): ReactElement {
 
             setUser(user as User);
           },
-          onError: (err: Error) => { showAlertForError(err); },
+          onError: (err: Error) => {
+            showAlertForError(err);
+          },
         };
 
         commitApple(mutationConfig);
@@ -349,7 +388,15 @@ function SignIn(props: Props): ReactElement {
     () =>
       block([
         cond(animating, [
-          set(logoTransformAnimValue, spring({ clock, to: 1, from: 0, config: { mass: 1.5, stiffness: 36 } })),
+          set(
+            logoTransformAnimValue,
+            spring({
+              clock,
+              to: 1,
+              from: 0,
+              config: { mass: 1.5, stiffness: 36 },
+            }),
+          ),
         ]),
         cond(not(clockRunning(clock)), set(animating, 0)),
       ]),
@@ -484,9 +531,9 @@ function SignIn(props: Props): ReactElement {
             <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
-            {
-              Platform.select({
-                ios: <Button
+            {Platform.select({
+              ios: (
+                <Button
                   testID="btn-apple"
                   style={{
                     button: {
@@ -499,23 +546,26 @@ function SignIn(props: Props): ReactElement {
                       borderRadius: 100,
                     },
                     text: {
-                      fontWeight: '700', color: theme.appleText,
+                      fontWeight: '700',
+                      color: theme.appleText,
                     },
                   }}
                   leftElement={
                     <View style={{ marginRight: 6 }}>
-                      <SvgApple width={18} height={18} fill={theme.appleIcon}/>
+                      <SvgApple width={18} height={18} fill={theme.appleIcon} />
                     </View>
                   }
                   loading={signingInApple || isAppleInFlight}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
-                />,
-              })
-            }
+                />
+              ),
+            })}
             <SocialSignInButton
-              svgIcon={<SvgFacebook width={18} height={18} fill={theme.facebookIcon}/>}
+              svgIcon={
+                <SvgFacebook width={18} height={18} fill={theme.facebookIcon} />
+              }
               onUserCreated={(user?: User): void => {
                 createNotificationIfPushTokenExists();
                 setUser?.(user);
@@ -523,7 +573,9 @@ function SignIn(props: Props): ReactElement {
               socialProvider={AuthType.Facebook}
             />
             <SocialSignInButton
-              svgIcon={<SvgGoogle width={20} height={20} fill={theme.googleIcon}/>}
+              svgIcon={
+                <SvgGoogle width={20} height={20} fill={theme.googleIcon} />
+              }
               onUserCreated={(user?: User): void => {
                 createNotificationIfPushTokenExists();
                 setUser?.(user);
@@ -535,14 +587,18 @@ function SignIn(props: Props): ReactElement {
             <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
-              onPress={(): void => goToWebView('https://legacy.dooboolab.com/termsofservice')}
+              onPress={(): void =>
+                goToWebView('https://legacy.dooboolab.com/termsofservice')
+              }
             >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
-              onPress={(): void => goToWebView('https://legacy.dooboolab.com/privacyandpolicy')}
+              onPress={(): void =>
+                goToWebView('https://legacy.dooboolab.com/privacyandpolicy')
+              }
             >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>

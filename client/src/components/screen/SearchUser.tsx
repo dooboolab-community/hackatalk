@@ -15,9 +15,7 @@ import EmptyListItem from '../shared/EmptyListItem';
 import { FontAwesome } from '@expo/vector-icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import SearchTextInput from '../shared/SearchTextInput';
-import type {
-  SearchUserComponent_user$key,
-} from '../../__generated__/SearchUserComponent_user.graphql';
+import type { SearchUserComponent_user$key } from '../../__generated__/SearchUserComponent_user.graphql';
 import { User } from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
 import { getString } from '../../../STRINGS';
@@ -45,62 +43,58 @@ const StyledFlatList = styled.FlatList`
 const ITEM_CNT = 10;
 
 const usersQuery = graphql`
-  query SearchUsersPaginationQuery($first: Int! $after: String $searchText: String) {
-    ...SearchUserComponent_user @arguments(first: $first, after: $after, searchText: $searchText)
+  query SearchUsersPaginationQuery(
+    $first: Int!
+    $after: String
+    $searchText: String
+  ) {
+    ...SearchUserComponent_user
+      @arguments(first: $first, after: $after, searchText: $searchText)
   }
 `;
 
 const usersFragment = graphql`
   fragment SearchUserComponent_user on Query
-    @argumentDefinitions(
-      first: {type: "Int"}
-      after: {type: "String"}
-      searchText: {type: "String"}
-    )
-    @refetchable(queryName: "SearchUsersQuery") {
-      users(first: $first after: $after searchText: $searchText)
+  @argumentDefinitions(
+    first: { type: "Int" }
+    after: { type: "String" }
+    searchText: { type: "String" }
+  )
+  @refetchable(queryName: "SearchUsersQuery") {
+    users(first: $first, after: $after, searchText: $searchText)
       @connection(key: "SearchUserComponent_users") {
-        edges {
-          cursor
-          node {
-            id
-            email
-            name
-            nickname
-            hasBlocked
-            photoURL,
-            thumbURL,
-            statusMessage,
-          }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
+      edges {
+        cursor
+        node {
+          id
+          email
+          name
+          nickname
+          hasBlocked
+          photoURL
+          thumbURL
+          statusMessage
         }
       }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
     }
+  }
 `;
 
 type UserProps = {
-  scrollY: Animated.Value,
-  user: SearchUserComponent_user$key,
+  scrollY: Animated.Value;
+  user: SearchUserComponent_user$key;
   searchArgs: SearchUsersPaginationQueryVariables;
-}
+};
 
-const UsersFragment: FC<UserProps> = ({
-  scrollY,
-  user,
-  searchArgs,
-}) => {
-  const {
-    data,
-    loadNext,
-    isLoadingNext,
-    refetch,
-  } = usePaginationFragment<SearchUsersPaginationQuery, SearchUserComponent_user$key>(
-    usersFragment,
-    user,
-  );
+const UsersFragment: FC<UserProps> = ({ scrollY, user, searchArgs }) => {
+  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+    SearchUsersPaginationQuery,
+    SearchUserComponent_user$key
+  >(usersFragment, user);
 
   const { showModal } = useProfileContext();
 
@@ -112,7 +106,7 @@ const UsersFragment: FC<UserProps> = ({
     item,
     index,
   }: {
-    item: { node: User, cursor: string };
+    item: { node: User; cursor: string };
     index: number;
   }): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
@@ -141,10 +135,10 @@ const UsersFragment: FC<UserProps> = ({
       contentContainerStyle={
         users.length === 0
           ? {
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
           : undefined
       }
       keyExtractor={(item, index): string => index.toString()}
@@ -166,26 +160,20 @@ const UsersFragment: FC<UserProps> = ({
 };
 
 interface ContentProps {
-  scrollY: Animated.Value,
+  scrollY: Animated.Value;
   searchArgs: SearchUsersPaginationQueryVariables;
 }
 
-const ContentContainer: FC<ContentProps> = ({
-  searchArgs,
-  scrollY,
-}) => {
-  const data: SearchUsersPaginationQueryResponse =
-    useLazyLoadQuery<SearchUsersPaginationQuery>(
-      usersQuery,
-      searchArgs,
-      { fetchPolicy: 'store-or-network' },
-    );
+const ContentContainer: FC<ContentProps> = ({ searchArgs, scrollY }) => {
+  const data: SearchUsersPaginationQueryResponse = useLazyLoadQuery<SearchUsersPaginationQuery>(
+    usersQuery,
+    searchArgs,
+    { fetchPolicy: 'store-or-network' },
+  );
 
-  return <UsersFragment
-    scrollY={scrollY}
-    user={data}
-    searchArgs={searchArgs}
-  />;
+  return (
+    <UsersFragment scrollY={scrollY} user={data} searchArgs={searchArgs} />
+  );
 };
 
 const Screen: FC = () => {
@@ -196,13 +184,13 @@ const Screen: FC = () => {
 
   navigation.setOptions({
     headerRight: (): ReactElement => (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('BlockedUser')}
-      >
-        <View style={{
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-        }}>
+      <TouchableOpacity onPress={() => navigation.navigate('BlockedUser')}>
+        <View
+          style={{
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+          }}
+        >
           <FontAwesome name="ban" size={24} color="white" />
         </View>
       </TouchableOpacity>
@@ -234,8 +222,8 @@ const Screen: FC = () => {
           onChangeText={onChangeText}
           value={searchText}
         />
-        <Suspense fallback={<LoadingIndicator/>}>
-          <ContentContainer scrollY={scrollY} searchArgs={searchArgs}/>
+        <Suspense fallback={<LoadingIndicator />}>
+          <ContentContainer scrollY={scrollY} searchArgs={searchArgs} />
         </Suspense>
       </Container>
     </StyledSafeAreaView>

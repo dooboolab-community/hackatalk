@@ -1,7 +1,13 @@
-import { AuthStackNavigationProps, AuthStackParamList } from '../navigation/AuthStackNavigator';
+import {
+  AuthStackNavigationProps,
+  AuthStackParamList,
+} from '../navigation/AuthStackNavigator';
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import type { VerifyEmailMutation, VerifyEmailMutationResponse } from '../../__generated__/VerifyEmailMutation.graphql';
+import type {
+  VerifyEmailMutation,
+  VerifyEmailMutationResponse,
+} from '../../__generated__/VerifyEmailMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 
 import { Alert } from 'react-native';
@@ -45,9 +51,19 @@ const sendVerification = graphql`
 
 function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
-  const { navigation, route: { params: { email } } } = props;
+
+  const {
+    navigation,
+    route: {
+      params: { email },
+    },
+  } = props;
+
   const [loading, setLoading] = useState<boolean>(false);
-  const [commitEmail, isInFlight] = useMutation<VerifyEmailMutation>(sendVerification);
+
+  const [commitEmail, isInFlight] = useMutation<VerifyEmailMutation>(
+    sendVerification,
+  );
 
   const mutationConfig = {
     variables: {
@@ -58,7 +74,10 @@ function Page(props: Props): ReactElement {
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
       }
 
-      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+      Alert.alert(
+        getString('ERROR'),
+        getString('RESENT_VERIFICATION_EMAIL_FAILED'),
+      );
     },
     onError: (error: any): void => {
       showAlertForError(error);
@@ -70,7 +89,10 @@ function Page(props: Props): ReactElement {
       setLoading(true);
       commitEmail(mutationConfig);
     } catch (err) {
-      Alert.alert(getString('ERROR'), getString('RESENT_VERIFICATION_EMAIL_FAILED'));
+      Alert.alert(
+        getString('ERROR'),
+        getString('RESENT_VERIFICATION_EMAIL_FAILED'),
+      );
     } finally {
       setLoading(false);
     }
@@ -78,9 +100,13 @@ function Page(props: Props): ReactElement {
 
   return (
     <Container>
-      <StyledText style={{
-        marginBottom: 24,
-      }}>{getString('VERIFICATION_EMAIL_SENT')}</StyledText>
+      <StyledText
+        style={{
+          marginBottom: 24,
+        }}
+      >
+        {getString('VERIFICATION_EMAIL_SENT')}
+      </StyledText>
       <StyledHighlightText>{email}</StyledHighlightText>
       <Button
         testID="btn-next"
@@ -105,11 +131,7 @@ function Page(props: Props): ReactElement {
         text={getString('RESEND_EMAIL')}
         loading={isInFlight}
       />
-      {
-        loading
-          ? <LoadingIndicator/>
-          : null
-      }
+      {loading ? <LoadingIndicator /> : null}
     </Container>
   );
 }

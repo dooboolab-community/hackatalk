@@ -1,5 +1,8 @@
 import { Alert, TouchableOpacity, View, ViewStyle } from 'react-native';
-import { ProfileModalContext, useProfileContext } from '../../providers/ProfileModalProvider';
+import {
+  ProfileModalContext,
+  useProfileContext,
+} from '../../providers/ProfileModalProvider';
 import {
   ProfileModalFindOrCreatePrivateChannelMutation,
   ProfileModalFindOrCreatePrivateChannelMutationResponse,
@@ -13,10 +16,8 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
 import { ProfileModalAddFriendMutation } from '../../__generated__/ProfileModalAddFriendMutation.graphql';
-import { ProfileModalCreateBlockedUserMutation } from
-  '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
-import { ProfileModalDeleteBlockedUserMutation } from
-  '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
+import { ProfileModalCreateBlockedUserMutation } from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
+import { ProfileModalDeleteBlockedUserMutation } from '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
 import { ProfileModalDeleteFriendMutation } from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
 import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
@@ -85,7 +86,9 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 `;
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ProfileModalFindOrCreatePrivateChannelMutation($peerUserIds: [String!]!) {
+  mutation ProfileModalFindOrCreatePrivateChannelMutation(
+    $peerUserIds: [String!]!
+  ) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name
@@ -165,144 +168,188 @@ const styles: Styles = {
 };
 
 type ModalContentProps = {
-  isVisible: true,
+  isVisible: boolean;
 } & ProfileModalContext;
 
 const ModalContent: FC<ModalContentProps> = ({
-  modalState: {
-    user,
-    isFriend,
-    onAddFriend,
-    onDeleteFriend,
-    hideButtons,
-  },
+  modalState,
   hideModal,
 }: ModalContentProps) => {
-  const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(false);
+  const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(
+    false,
+  );
+
   const navigation = useNavigation();
 
-  const [commitChannel, isChannelInFlight] = useMutation<
-    ProfileModalFindOrCreatePrivateChannelMutation
-  >(findOrCreatePrivateChannel);
+  const [
+    commitChannel,
+    isChannelInFlight,
+  ] = useMutation<ProfileModalFindOrCreatePrivateChannelMutation>(
+    findOrCreatePrivateChannel,
+  );
 
-  const [commitAddFriend, addFriendInFlight] = useMutation<
-    ProfileModalAddFriendMutation
-  >(addFriendMutation);
+  const [
+    commitAddFriend,
+    addFriendInFlight,
+  ] = useMutation<ProfileModalAddFriendMutation>(addFriendMutation);
 
-  const [commitDeleteFriend, deleteFriendInFlight] = useMutation<
-    ProfileModalDeleteFriendMutation
-  >(deleteFriendMutation);
+  const [
+    commitDeleteFriend,
+    deleteFriendInFlight,
+  ] = useMutation<ProfileModalDeleteFriendMutation>(deleteFriendMutation);
 
-  const [commitCreateBlockedUser, isCreateBlockedUserInFlight] = useMutation<
-    ProfileModalCreateBlockedUserMutation
-  >(createBlockedUserMutation);
+  const [
+    commitCreateBlockedUser,
+    isCreateBlockedUserInFlight,
+  ] = useMutation<ProfileModalCreateBlockedUserMutation>(
+    createBlockedUserMutation,
+  );
 
-  const [commitDeleteBlockedUser, isDeleteBlockedUserInFlight] = useMutation<
-    ProfileModalDeleteBlockedUserMutation
-  >(deleteBlockedUserMutation);
+  const [
+    commitDeleteBlockedUser,
+    isDeleteBlockedUserInFlight,
+  ] = useMutation<ProfileModalDeleteBlockedUserMutation>(
+    deleteBlockedUserMutation,
+  );
 
   const addFriend = async (): Promise<void> => {
-    commitAddFriend({
-      variables: { friendId: user.id },
-      updater: (proxyStore) => {
-        const root = proxyStore.getRoot();
+    if (modalState) {
+      const {
+        user,
+        isFriend,
+        onAddFriend,
+        onDeleteFriend,
+        hideButtons,
+      } = modalState;
 
-        const connectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'Friend_friends',
-        );
+      commitAddFriend({
+        variables: { friendId: user.id },
+        updater: (proxyStore) => {
+          const root = proxyStore.getRoot();
 
-        const userProxy = proxyStore.get(user.id);
+          const connectionRecord =
+            root && ConnectionHandler.getConnection(root, 'Friend_friends');
 
-        const newEdge = connectionRecord && userProxy && ConnectionHandler.createEdge(
-          proxyStore,
-          connectionRecord,
-          userProxy,
-          'User',
-        );
+          const userProxy = proxyStore.get(user.id);
 
-        if (connectionRecord && newEdge) {
-          ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
-        }
-      },
-    });
+          const newEdge =
+            connectionRecord &&
+            userProxy &&
+            ConnectionHandler.createEdge(
+              proxyStore,
+              connectionRecord,
+              userProxy,
+              'User',
+            );
 
-    if (onAddFriend) {
-      onAddFriend();
+          if (connectionRecord && newEdge) {
+            ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
+          }
+        },
+      });
+
+      if (onAddFriend) {
+        onAddFriend();
+      }
+
+      setShowFriendAddedMessage(true);
     }
-
-    setShowFriendAddedMessage(true);
   };
 
   const deleteFriend = async (): Promise<void> => {
-    commitDeleteFriend({
-      variables: { friendId: user.id },
-      updater: (proxyStore) => {
-        const root = proxyStore.getRoot();
+    if (modalState) {
+      const {
+        user,
+        isFriend,
+        onAddFriend,
+        onDeleteFriend,
+        hideButtons,
+      } = modalState;
 
-        const connectionRecord = root && ConnectionHandler.getConnection(
-          root,
-          'Friend_friends',
-        );
+      commitDeleteFriend({
+        variables: { friendId: user.id },
+        updater: (proxyStore) => {
+          const root = proxyStore.getRoot();
 
-        if (connectionRecord) {
-          ConnectionHandler.deleteNode(connectionRecord, user.id);
-        }
-      },
-    });
+          const connectionRecord =
+            root && ConnectionHandler.getConnection(root, 'Friend_friends');
 
-    if (onDeleteFriend) {
-      onDeleteFriend();
+          if (connectionRecord) {
+            ConnectionHandler.deleteNode(connectionRecord, user.id);
+          }
+        },
+      });
+
+      if (onDeleteFriend) {
+        onDeleteFriend();
+      }
+
+      hideModal();
     }
-
-    hideModal();
   };
 
   const createBlockedUser = (): void => {
-    commitCreateBlockedUser({
-      variables: { blockedUserId: user.id },
-    });
+    const blockedUserId = modalState?.user?.id;
+
+    if (blockedUserId) {
+      commitCreateBlockedUser({
+        variables: { blockedUserId },
+      });
+    }
 
     hideModal();
   };
 
   const deleteBlockedUser = (): void => {
-    commitDeleteBlockedUser({
-      variables: { blockedUserId: user.id },
-    });
+    const blockedUserId = modalState?.user?.id;
+
+    if (blockedUserId) {
+      commitDeleteBlockedUser({
+        variables: { blockedUserId },
+      });
+    }
 
     hideModal();
   };
 
   const startChatting = (): void => {
-    const mutationConfig = {
-      variables: {
-        peerUserIds: [user.id],
-      },
-      onCompleted: (
-        response: ProfileModalFindOrCreatePrivateChannelMutationResponse,
-      ): void => {
-        const channel = response.findOrCreatePrivateChannel;
+    const user = modalState?.user;
 
-        hideModal();
+    if (user) {
+      const mutationConfig = {
+        variables: {
+          peerUserIds: [user.id],
+        },
+        onCompleted: (
+          response: ProfileModalFindOrCreatePrivateChannelMutationResponse,
+        ): void => {
+          const channel = response.findOrCreatePrivateChannel;
 
-        navigation.navigate('Message', {
-          users: [user],
-          channel,
-        });
-      },
-      onError: (error: Error): void => {
-        showAlertForError(error);
-      },
-    };
+          hideModal();
 
-    commitChannel(mutationConfig);
+          navigation.navigate('Message', {
+            users: [user],
+            channel,
+          });
+        },
+        onError: (error: Error): void => {
+          showAlertForError(error);
+        },
+      };
+
+      commitChannel(mutationConfig);
+    }
   };
 
-  const { photoURL = '', nickname, name, statusMessage, hasBlocked } = user;
+  const {
+    theme: { primary, modalBtnPrimaryFont },
+  } = useThemeContext();
 
-  const { theme: { primary, modalBtnPrimaryFont } } = useThemeContext();
-  const imageURL = typeof photoURL === 'string' && photoURL !== 'null' ? { uri: photoURL } : photoURL;
+  const imageURL =
+    typeof modalState?.user.photoURL === 'string' &&
+    modalState?.user.photoURL !== 'null'
+      ? { uri: modalState?.user.photoURL }
+      : modalState?.user.photoURL;
 
   return (
     <View
@@ -327,36 +374,48 @@ const ModalContent: FC<ModalContentProps> = ({
           testID="touch-done"
           onPress={() => {
             navigation.navigate('Report', {
-              name: user.nickname || user.name || getString('NO_NAME'),
-              userId: user.id,
+              name:
+                modalState?.user.nickname ||
+                modalState?.user.name ||
+                getString('NO_NAME'),
+              userId: modalState?.user.id,
             });
 
             hideModal();
           }}
         >
-          <View style={{
-            paddingRight: 12,
-            paddingLeft: 8,
-            paddingVertical: 8,
-          }}>
+          <View
+            style={{
+              paddingRight: 12,
+              paddingLeft: 8,
+              paddingVertical: 8,
+            }}
+          >
             <FontAwesome name="exclamation-circle" size={24} color="white" />
           </View>
         </TouchableOpacity>
-        {
-          isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight
-            ? <View style={{
+        {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
+          <View
+            style={{
               paddingRight: 16,
               paddingLeft: 8,
               paddingVertical: 8,
               justifyContent: 'center',
-            }}>
-              <LoadingIndicator size="small"/>
-            </View>
-            : <TouchableOpacity
-              testID="touch-done"
-              onPress={(): void => Alert.alert(
-                hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
-                hasBlocked ? getString('UNBAN_USER_TEXT') : getString('BAN_USER_TEXT'),
+            }}
+          >
+            <LoadingIndicator size="small" />
+          </View>
+        ) : (
+          <TouchableOpacity
+            testID="touch-done"
+            onPress={(): void =>
+              Alert.alert(
+                modalState?.user.hasBlocked
+                  ? getString('UNBAN_USER')
+                  : getString('BAN_USER'),
+                modalState?.user.hasBlocked
+                  ? getString('UNBAN_USER_TEXT')
+                  : getString('BAN_USER_TEXT'),
                 [
                   {
                     text: getString('NO'),
@@ -365,119 +424,137 @@ const ModalContent: FC<ModalContentProps> = ({
                   },
                   {
                     text: getString('YES'),
-                    onPress: hasBlocked ? deleteBlockedUser : createBlockedUser,
+                    onPress: modalState?.user.hasBlocked
+                      ? deleteBlockedUser
+                      : createBlockedUser,
                   },
                 ],
                 { cancelable: false },
-              )}
-            >
-              <View style={{
+              )
+            }
+          >
+            <View
+              style={{
                 paddingRight: 16,
                 paddingLeft: 8,
                 paddingVertical: 8,
-              }}>
-
-                <FontAwesome name="ban" size={24} color={ hasBlocked ? 'red' : 'white' } />
-              </View>
-            </TouchableOpacity>
-        }
+              }}
+            >
+              <FontAwesome
+                name="ban"
+                size={24}
+                color={modalState?.user.hasBlocked ? 'red' : 'white'}
+              />
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
       <StyledView>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => {
-          if (photoURL) {
-            navigation.navigate(
-              'ImageSlider',
-              {
-                images: [{ uri: photoURL, sender: user }],
-              },
-            );
-          }
-        }}>
-          {
-            photoURL
-              ? <StyledImage style={{ alignSelf: 'center' }} source={
-                imageURL || IC_NO_IMAGE
-              } />
-              : <View
-                style={{
-                  width: 80,
-                  height: 80,
-                  alignSelf: 'center',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <StyledImage style={{ alignSelf: 'center' }} source={IC_NO_IMAGE}/>
-              </View>
-          }
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() => {
+            const user = modalState?.user;
+
+            if (user) {
+              navigation.navigate('ImageSlider', {
+                images: [{ uri: user.photoURL, sender: user }],
+              });
+            }
+          }}
+        >
+          {modalState?.user.photoURL ? (
+            <StyledImage
+              style={{ alignSelf: 'center' }}
+              source={imageURL || IC_NO_IMAGE}
+            />
+          ) : (
+            <View
+              style={{
+                width: 80,
+                height: 80,
+                alignSelf: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <StyledImage
+                style={{ alignSelf: 'center' }}
+                source={IC_NO_IMAGE}
+              />
+            </View>
+          )}
         </TouchableOpacity>
         <StyledTextDisplayName numberOfLines={1}>
-          {nickname || name}
+          {modalState?.user.nickname ||
+            modalState?.user.name ||
+            getString('NO_NAME')}
         </StyledTextDisplayName>
-        <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
+        <StyledTextstatusMessage>
+          {modalState?.user.statusMessage}
+        </StyledTextstatusMessage>
       </StyledView>
-      {
-        showFriendAddedMessage
-          ? addFriendInFlight
-            ? <LoadingIndicator size="small" />
-            : isFriend
-              ? <StyledTextFriendAlreadyAdded testID="already-added-message">
-                {getString('FRIEND_ALREADY_ADDED')}
-              </StyledTextFriendAlreadyAdded>
-              : <StyledTextFriendAdded testID="added-message">
-                {getString('FRIEND_ADDED')}
-              </StyledTextFriendAdded>
-          : null
-      }
-      {
-        !hideButtons
-          ? <StyledViewBtns>
-            {
-              deleteFriendInFlight
-                ? <LoadingIndicator size="small" />
-                : <TouchableOpacity
-                  testID="touch-add-friend"
-                  activeOpacity={0.5}
-                  onPress={isFriend ? deleteFriend : addFriend}
-                  style={styles.viewBtn}
-                >
-                  <View style={styles.viewBtn}>
-                    <StyledText testID="text-add-title">
-                      {
-                        isFriend
-                          ? getString('DELETE_FRIEND')
-                          : getString('ADD_FRIEND')
-                      }
-                    </StyledText>
-                  </View>
-                </TouchableOpacity>
-            }
-            <StyledViewBtnDivider />
+      {showFriendAddedMessage ? (
+        addFriendInFlight ? (
+          <LoadingIndicator size="small" />
+        ) : modalState?.isFriend ? (
+          <StyledTextFriendAlreadyAdded testID="already-added-message">
+            {getString('FRIEND_ALREADY_ADDED')}
+          </StyledTextFriendAlreadyAdded>
+        ) : (
+          <StyledTextFriendAdded testID="added-message">
+            {getString('FRIEND_ADDED')}
+          </StyledTextFriendAdded>
+        )
+      ) : null}
+      {!modalState?.hideButtons ? (
+        <StyledViewBtns>
+          {deleteFriendInFlight ? (
+            <LoadingIndicator size="small" />
+          ) : (
             <TouchableOpacity
-              testID="btn-chat"
+              testID="touch-add-friend"
               activeOpacity={0.5}
-              onPress={startChatting}
+              onPress={modalState?.isFriend ? deleteFriend : addFriend}
               style={styles.viewBtn}
             >
-              {
-                isChannelInFlight
-                  ? <LoadingIndicator size="small"/>
-                  : <View style={styles.viewBtn}>
-                    <StyledText style={{
-                      color: modalBtnPrimaryFont,
-                    }}>{getString('CHAT')}</StyledText>
-                  </View>
-              }
+              <View style={styles.viewBtn}>
+                <StyledText testID="text-add-title">
+                  {modalState?.isFriend
+                    ? getString('DELETE_FRIEND')
+                    : getString('ADD_FRIEND')}
+                </StyledText>
+              </View>
             </TouchableOpacity>
-          </StyledViewBtns>
-          : null
-      }
+          )}
+          <StyledViewBtnDivider />
+          <TouchableOpacity
+            testID="btn-chat"
+            activeOpacity={0.5}
+            onPress={startChatting}
+            style={styles.viewBtn}
+          >
+            {isChannelInFlight ? (
+              <LoadingIndicator size="small" />
+            ) : (
+              <View style={styles.viewBtn}>
+                <StyledText
+                  style={{
+                    color: modalBtnPrimaryFont,
+                  }}
+                >
+                  {getString('CHAT')}
+                </StyledText>
+              </View>
+            )}
+          </TouchableOpacity>
+        </StyledViewBtns>
+      ) : null}
     </View>
   );
 };
 
 interface Props {
-  testID?: string
+  testID?: string;
 }
 
 const ProfileModal: FC<Props> = () => {
@@ -500,11 +577,7 @@ const ProfileModal: FC<Props> = () => {
       onClosed={hideModal}
       style={styles.wrapper}
     >
-      {
-        profileContext.isVisible
-          ? <ModalContent {...profileContext} />
-          : null
-      }
+      {profileContext.isVisible ? <ModalContent {...profileContext} /> : null}
     </Modal>
   );
 };

@@ -8,9 +8,7 @@ import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import StackNavigator from '../AuthStackNavigator';
 import { createMockEnvironment } from 'relay-test-utils';
-import {
-  render,
-} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 const component = (
   <AllProviders>

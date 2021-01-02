@@ -45,120 +45,120 @@ query ProfileUpdateMeQuery {
 }
 */
 
-const node: ConcreteRequest = (function () {
-    var v0 = [
-        ({
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "concreteType": "User",
+    "kind": "LinkedField",
+    "name": "me",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "email",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "name",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "nickname",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "statusMessage",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "verified",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "photoURL",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "thumbURL",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Profile",
+        "kind": "LinkedField",
+        "name": "profile",
+        "plural": false,
+        "selections": [
+          {
             "alias": null,
             "args": null,
-            "concreteType": "User",
-            "kind": "LinkedField",
-            "name": "me",
-            "plural": false,
-            "selections": [
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "id",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "email",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "name",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "nickname",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "statusMessage",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "verified",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "photoURL",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "thumbURL",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Profile",
-                    "kind": "LinkedField",
-                    "name": "profile",
-                    "plural": false,
-                    "selections": [
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "authType",
-                            "storageKey": null
-                        }
-                    ],
-                    "storageKey": null
-                }
-            ],
+            "kind": "ScalarField",
+            "name": "authType",
             "storageKey": null
-        } as any)
-    ];
-    return {
-        "fragment": {
-            "argumentDefinitions": [],
-            "kind": "Fragment",
-            "metadata": null,
-            "name": "ProfileUpdateMeQuery",
-            "selections": (v0 /*: any*/),
-            "type": "Query",
-            "abstractKey": null
-        },
-        "kind": "Request",
-        "operation": {
-            "argumentDefinitions": [],
-            "kind": "Operation",
-            "name": "ProfileUpdateMeQuery",
-            "selections": (v0 /*: any*/)
-        },
-        "params": {
-            "cacheID": "f71da5b3e1367fc5bd7964b5e6b7caf8",
-            "id": null,
-            "metadata": {},
-            "name": "ProfileUpdateMeQuery",
-            "operationKind": "query",
-            "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
-        }
-    } as any;
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
+return {
+  "fragment": {
+    "argumentDefinitions": [],
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "ProfileUpdateMeQuery",
+    "selections": (v0/*: any*/),
+    "type": "Query",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": [],
+    "kind": "Operation",
+    "name": "ProfileUpdateMeQuery",
+    "selections": (v0/*: any*/)
+  },
+  "params": {
+    "cacheID": "f71da5b3e1367fc5bd7964b5e6b7caf8",
+    "id": null,
+    "metadata": {},
+    "name": "ProfileUpdateMeQuery",
+    "operationKind": "query",
+    "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
+  }
+};
 })();
 (node as any).hash = 'c57ad9efd9805fc9946d1a4897b43b11';
 export default node;

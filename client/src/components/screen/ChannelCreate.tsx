@@ -16,12 +16,14 @@ import {
   ChannelCreateFriendsPaginationQuery,
   ChannelCreateFriendsPaginationQueryVariables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
-import {
-  IC_CIRCLE_X,
-  IC_NO_IMAGE,
-} from '../../utils/Icons';
+import { IC_CIRCLE_X, IC_NO_IMAGE } from '../../utils/Icons';
 import React, { FC, ReactElement, Suspense, useMemo, useState } from 'react';
-import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
+import {
+  graphql,
+  useLazyLoadQuery,
+  useMutation,
+  usePaginationFragment,
+} from 'react-relay/hooks';
 
 import { ChannelCreateFriendsQuery } from '../../__generated__/ChannelCreateFriendsQuery.graphql';
 import { ChannelCreate_friends$key } from '../../__generated__/ChannelCreate_friends.graphql';
@@ -58,7 +60,9 @@ interface ChannelCreate extends User {
 }
 
 const findOrCreatePrivateChannel = graphql`
-  mutation ChannelCreateFindOrCreatePrivateChannelMutation($peerUserIds: [String!]!) {
+  mutation ChannelCreateFindOrCreatePrivateChannelMutation(
+    $peerUserIds: [String!]!
+  ) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id
       name
@@ -68,57 +72,62 @@ const findOrCreatePrivateChannel = graphql`
 `;
 
 const friendsQuery = graphql`
-  query ChannelCreateFriendsQuery($first: Int!, $after: String, $searchText: String) {
-    ...ChannelCreate_friends @arguments(first: $first, after: $after, searchText: $searchText)
+  query ChannelCreateFriendsQuery(
+    $first: Int!
+    $after: String
+    $searchText: String
+  ) {
+    ...ChannelCreate_friends
+      @arguments(first: $first, after: $after, searchText: $searchText)
   }
 `;
 
 const friendsFragment = graphql`
   fragment ChannelCreate_friends on Query
-    @argumentDefinitions(
-      first: {type: "Int!"}
-      after: {type: "String"}
-      searchText: {type: "String"}
-    )
-    @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
-      friends(first: $first, after: $after searchText: $searchText)
+  @argumentDefinitions(
+    first: { type: "Int!" }
+    after: { type: "String" }
+    searchText: { type: "String" }
+  )
+  @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
+    friends(first: $first, after: $after, searchText: $searchText)
       @connection(key: "ChannelCreate_friends") {
-        edges {
-          cursor
-          node {
-            id
-            email
-            name
-            nickname
-            thumbURL
-            photoURL
-            birthday
-            gender
-            phone
-            statusMessage
-            verified
-            lastSignedIn
-            isOnline
-            hasBlocked
-            createdAt
-            updatedAt
-            deletedAt
-          }
-        }
-        pageInfo {
-          hasNextPage
-          endCursor
+      edges {
+        cursor
+        node {
+          id
+          email
+          name
+          nickname
+          thumbURL
+          photoURL
+          birthday
+          gender
+          phone
+          statusMessage
+          verified
+          lastSignedIn
+          isOnline
+          hasBlocked
+          createdAt
+          updatedAt
+          deletedAt
         }
       }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
     }
+  }
 `;
 
 type FriendsFragmentProps = {
-  friend: ChannelCreate_friends$key,
-  scrollY: Animated.Value,
-  searchArgs: ChannelCreateFriendsPaginationQueryVariables,
-  selectedUsers: User[],
-  setSelectedUsers: (users: User[]) => void,
+  friend: ChannelCreate_friends$key;
+  scrollY: Animated.Value;
+  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  selectedUsers: User[];
+  setSelectedUsers: (users: User[]) => void;
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({
@@ -128,20 +137,17 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   selectedUsers,
   setSelectedUsers,
 }) => {
-  const {
-    data,
-    loadNext,
-    isLoadingNext,
-    refetch,
-  } = usePaginationFragment<ChannelCreateFriendsPaginationQuery, ChannelCreate_friends$key>(
-    friendsFragment,
-    friend,
-  );
+  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+    ChannelCreateFriendsPaginationQuery,
+    ChannelCreate_friends$key
+  >(friendsFragment, friend);
 
   const friendEdges = useMemo(() => {
-    return (data.friends as UserConnection).edges?.filter(
-      (x): x is NonNullable<typeof x> => x !== null,
-    ) || [];
+    return (
+      (data.friends as UserConnection).edges?.filter(
+        (x): x is NonNullable<typeof x> => x !== null,
+      ) || []
+    );
   }, [data]);
 
   const { theme } = useThemeContext();
@@ -160,48 +166,48 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   };
 
   const renderFriendThumbnail = (friend: User, index: number): ReactElement => {
-    return <FriendThumbView key={friend.id}>
-      <View
-        style={{
-          marginTop: 12,
-          marginRight: 16,
-          marginBottom: 6,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Image
+    return (
+      <FriendThumbView key={friend.id}>
+        <View
           style={{
-            width: 60,
-            height: 60,
+            marginTop: 12,
+            marginRight: 16,
+            marginBottom: 6,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-          source={
-            friend.thumbURL
-              ? { uri: friend.thumbURL }
-              : IC_NO_IMAGE
-          }
-        />
-        <Text
-          numberOfLines={1}
+        >
+          <Image
+            style={{
+              width: 60,
+              height: 60,
+            }}
+            source={friend.thumbURL ? { uri: friend.thumbURL } : IC_NO_IMAGE}
+          />
+          <Text
+            numberOfLines={1}
+            style={{
+              fontSize: 12,
+              marginTop: 4,
+              color: theme.fontColor,
+            }}
+          >
+            {friend.nickname || friend.name}
+          </Text>
+        </View>
+        <TouchableOpacity
+          testID={`remove-${index}`}
           style={{
-            fontSize: 12,
-            marginTop: 4,
-            color: theme.fontColor,
+            position: 'absolute',
+            top: 0,
+            right: 0,
           }}
-        >{friend.nickname || friend.name}</Text>
-      </View>
-      <TouchableOpacity
-        testID={`remove-${index}`}
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-        }}
-        onPress={(): void => removeFriend(friend)}
-      >
-        <Image source={IC_CIRCLE_X} style={{ width: 32, height: 32 }}/>
-      </TouchableOpacity>
-    </FriendThumbView>;
+          onPress={(): void => removeFriend(friend)}
+        >
+          <Image source={IC_CIRCLE_X} style={{ width: 32, height: 32 }} />
+        </TouchableOpacity>
+      </FriendThumbView>
+    );
   };
 
   const renderItem = ({
@@ -221,9 +227,11 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         onPress={(): void => {
           if (selectedUsers.includes(item?.node as User)) {
             const nextState = produce(selectedUsers, (draftState) => {
-              const index = selectedUsers.findIndex((v) => v.id === item?.node?.id);
+              const selectedUserIndex = selectedUsers.findIndex(
+                (v) => v.id === item?.node?.id,
+              );
 
-              draftState.splice(index, 1);
+              draftState.splice(selectedUserIndex, 1);
             });
 
             setSelectedUsers(nextState);
@@ -248,22 +256,26 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         contentContainerStyle={
           friendEdges.length === 0
             ? {
-              flex: 1,
-              alignSelf: 'stretch',
-              flexDirection: 'column',
-            }
+                flex: 1,
+                alignSelf: 'stretch',
+                flexDirection: 'column',
+              }
             : null
         }
         keyExtractor={(_, index): string => index.toString()}
         data={friendEdges as UserEdge[]}
         renderItem={renderItem}
         ListHeaderComponent={(): ReactElement => {
-          return <ScrollView
-            style={{ paddingHorizontal: 24, marginBottom: 12 }}
-            horizontal
-          >
-            {selectedUsers.map((friend, i) => renderFriendThumbnail(friend, i))}
-          </ScrollView>;
+          return (
+            <ScrollView
+              style={{ paddingHorizontal: 24, marginBottom: 12 }}
+              horizontal
+            >
+              {selectedUsers.map((selectedUser, i) =>
+                renderFriendThumbnail(selectedUser, i),
+              )}
+            </ScrollView>
+          );
         }}
         ListEmptyComponent={
           <ErroView
@@ -280,10 +292,10 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 };
 
 interface ContentProps {
-  scrollY: Animated.Value,
+  scrollY: Animated.Value;
   searchArgs: ChannelCreateFriendsPaginationQueryVariables;
-  selectedUsers: User[],
-  setSelectedUsers: (users: User[]) => void,
+  selectedUsers: User[];
+  setSelectedUsers: (users: User[]) => void;
 }
 
 const ContentContainer: FC<ContentProps> = ({
@@ -298,13 +310,15 @@ const ContentContainer: FC<ContentProps> = ({
     { fetchPolicy: 'store-or-network' },
   );
 
-  return <FriendsFragment
-    friend={queryResponse}
-    scrollY={scrollY}
-    searchArgs={searchArgs}
-    selectedUsers={selectedUsers}
-    setSelectedUsers={setSelectedUsers}
-  />;
+  return (
+    <FriendsFragment
+      friend={queryResponse}
+      scrollY={scrollY}
+      searchArgs={searchArgs}
+      selectedUsers={selectedUsers}
+      setSelectedUsers={setSelectedUsers}
+    />
+  );
 };
 
 interface ChannelCreateProps {
@@ -318,9 +332,12 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
-  const [commitChannel, isChannelInFlight] = useMutation<
-    ChannelCreateFindOrCreatePrivateChannelMutation
-  >(findOrCreatePrivateChannel);
+  const [
+    commitChannel,
+    isChannelInFlight,
+  ] = useMutation<ChannelCreateFindOrCreatePrivateChannelMutation>(
+    findOrCreatePrivateChannel,
+  );
 
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
@@ -365,19 +382,22 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
 
   navigation.setOptions({
     headerRight: (): ReactElement => (
-      <TouchableOpacity
-        testID="touch-done"
-        onPress={pressDone}
-      >
-        <View style={{
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-        }}>
-          <Text style={{
-            color: 'white',
-            fontSize: 14,
-            fontWeight: 'bold',
-          }}>{getString('DONE')}</Text>
+      <TouchableOpacity testID="touch-done" onPress={pressDone}>
+        <View
+          style={{
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 14,
+              fontWeight: 'bold',
+            }}
+          >
+            {getString('DONE')}
+          </Text>
         </View>
       </TouchableOpacity>
     ),
@@ -393,7 +413,7 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
         }}
         value={searchText}
       />
-      <Suspense fallback={<LoadingIndicator/>}>
+      <Suspense fallback={<LoadingIndicator />}>
         <ContentContainer
           scrollY={scrollY}
           searchArgs={searchArgs}
@@ -401,11 +421,7 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
           setSelectedUsers={setSelectedUsers}
         />
       </Suspense>
-      {
-        isChannelInFlight
-          ? <LoadingIndicator/>
-          : null
-      }
+      {isChannelInFlight ? <LoadingIndicator /> : null}
     </Container>
   );
 };

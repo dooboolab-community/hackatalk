@@ -9,9 +9,7 @@ import { AuthType } from '../../types/graphql';
 import { Button } from 'dooboo-ui';
 import { FontAwesome } from '@expo/vector-icons';
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import type {
-  SettingsDeleteNotificationMutation,
-} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
+import type { SettingsDeleteNotificationMutation } from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
 import { getString } from '../../../STRINGS';
 import { useAuthContext } from '../../providers/AuthProvider';
 import { useThemeContext } from '@dooboo-ui/theme';
@@ -52,7 +50,7 @@ const ItemLabel = styled.Text`
 `;
 
 export interface Props {
-  navigation: MainStackNavigationProps;
+  navigation: MainStackNavigationProps<'Settings'>;
 }
 
 const deleteNotification = graphql`
@@ -79,31 +77,38 @@ function Settings(props: Props): React.ReactElement {
   const { setUser } = useAuthContext();
   const { theme } = useThemeContext();
   const { navigation } = props;
-  const { state: { user } } = useAuthContext();
 
-  const [commitNotification] =
-    useMutation<SettingsDeleteNotificationMutation>(deleteNotification);
+  const {
+    state: { user },
+  } = useAuthContext();
+
+  const [commitNotification] = useMutation<SettingsDeleteNotificationMutation>(
+    deleteNotification,
+  );
 
   const renderSectionItem = (
     option: SettingsOption,
-    theme: DefaultTheme,
+    themeProps: DefaultTheme,
   ): React.ReactElement => {
-    const isEmailUser = (user?.profile?.authType || AuthType.Email) === AuthType.Email;
+    const isEmailUser =
+      (user?.profile?.authType || AuthType.Email) === AuthType.Email;
 
     return (
-
-      <ItemContainer onPress={
-        isEmailUser
-          ? option.onPress
-          : undefined
-      } testID={option.testID}>
+      <ItemContainer
+        onPress={isEmailUser ? option.onPress : undefined}
+        testID={option.testID}
+      >
         {option.icon || null}
-        <ItemLabel style={{ marginLeft: 8, marginTop: 2 }}>{option.label}</ItemLabel>
-        {
-          isEmailUser
-            ? <FontAwesome name="angle-right" size={24} color={theme.fontColor} />
-            : null
-        }
+        <ItemLabel style={{ marginLeft: 8, marginTop: 2 }}>
+          {option.label}
+        </ItemLabel>
+        {isEmailUser ? (
+          <FontAwesome
+            name="angle-right"
+            size={24}
+            color={themeProps.fontColor}
+          />
+        ) : null}
       </ItemContainer>
     );
   };
@@ -187,7 +192,9 @@ function Settings(props: Props): React.ReactElement {
       <SectionList
         testID="test-section-list"
         sections={settings}
-        renderItem={({ item }): React.ReactElement => renderSectionItem(item, theme)}
+        renderItem={({ item }): React.ReactElement =>
+          renderSectionItem(item, theme)
+        }
         keyExtractor={(item: SettingsOption): string => item.label}
         renderSectionHeader={({ section: { title } }): React.ReactElement => (
           <HeaderContainer>

@@ -42,261 +42,249 @@ export type MessageComponent_message$key = {
 
 
 
-const node: ReaderFragment = (function () {
-    var v0 = [
-        "messages"
-    ], v1 = ({
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-    } as any);
-    return {
-        "argumentDefinitions": [
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "after"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "before"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "channelId"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "first"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "last"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "searchText"
-            }
-        ],
-        "kind": "Fragment",
-        "metadata": {
-            "connection": [
-                {
-                    "count": null,
-                    "cursor": null,
-                    "direction": "bidirectional",
-                    "path": (v0 /*: any*/)
-                }
-            ],
-            "refetch": {
-                "connection": {
-                    "forward": {
-                        "count": "first",
-                        "cursor": "after"
-                    },
-                    "backward": {
-                        "count": "last",
-                        "cursor": "before"
-                    },
-                    "path": (v0 /*: any*/)
-                },
-                "fragmentPathInResult": [],
-                "operation": require('./MessagePaginationQuery.graphql.ts')
-            }
+const node: ReaderFragment = (function(){
+var v0 = [
+  "messages"
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "after"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "channelId"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "first"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "searchText"
+    }
+  ],
+  "kind": "Fragment",
+  "metadata": {
+    "connection": [
+      {
+        "count": "first",
+        "cursor": "after",
+        "direction": "forward",
+        "path": (v0/*: any*/)
+      }
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "after"
         },
-        "name": "MessageComponent_message",
-        "selections": [
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [],
+      "operation": require('./MessagePaginationQuery.graphql.ts')
+    }
+  },
+  "name": "MessageComponent_message",
+  "selections": [
+    {
+      "alias": "messages",
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "channelId",
+          "variableName": "channelId"
+        },
+        {
+          "kind": "Variable",
+          "name": "searchText",
+          "variableName": "searchText"
+        }
+      ],
+      "concreteType": "MessageConnection",
+      "kind": "LinkedField",
+      "name": "__MessageComponent_messages_connection",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "MessageEdge",
+          "kind": "LinkedField",
+          "name": "edges",
+          "plural": true,
+          "selections": [
             {
-                "alias": "messages",
-                "args": [
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "Message",
+              "kind": "LinkedField",
+              "name": "node",
+              "plural": false,
+              "selections": [
+                (v1/*: any*/),
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "messageType",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "text",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "imageUrls",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "fileUrls",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "concreteType": "User",
+                  "kind": "LinkedField",
+                  "name": "sender",
+                  "plural": false,
+                  "selections": [
+                    (v1/*: any*/),
                     {
-                        "kind": "Variable",
-                        "name": "channelId",
-                        "variableName": "channelId"
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "name",
+                      "storageKey": null
                     },
                     {
-                        "kind": "Variable",
-                        "name": "searchText",
-                        "variableName": "searchText"
-                    }
-                ],
-                "concreteType": "MessageConnection",
-                "kind": "LinkedField",
-                "name": "__MessageComponent_messages_connection",
-                "plural": false,
-                "selections": [
-                    {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "MessageEdge",
-                        "kind": "LinkedField",
-                        "name": "edges",
-                        "plural": true,
-                        "selections": [
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "cursor",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "Message",
-                                "kind": "LinkedField",
-                                "name": "node",
-                                "plural": false,
-                                "selections": [
-                                    (v1 /*: any*/),
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "messageType",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "text",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "imageUrls",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "fileUrls",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "concreteType": "User",
-                                        "kind": "LinkedField",
-                                        "name": "sender",
-                                        "plural": false,
-                                        "selections": [
-                                            (v1 /*: any*/),
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "name",
-                                                "storageKey": null
-                                            },
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "nickname",
-                                                "storageKey": null
-                                            },
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "thumbURL",
-                                                "storageKey": null
-                                            },
-                                            {
-                                                "alias": null,
-                                                "args": null,
-                                                "kind": "ScalarField",
-                                                "name": "photoURL",
-                                                "storageKey": null
-                                            }
-                                        ],
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "createdAt",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "updatedAt",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "__typename",
-                                        "storageKey": null
-                                    }
-                                ],
-                                "storageKey": null
-                            }
-                        ],
-                        "storageKey": null
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "nickname",
+                      "storageKey": null
                     },
                     {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "PageInfo",
-                        "kind": "LinkedField",
-                        "name": "pageInfo",
-                        "plural": false,
-                        "selections": [
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "hasNextPage",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "hasPreviousPage",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "startCursor",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "endCursor",
-                                "storageKey": null
-                            }
-                        ],
-                        "storageKey": null
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "thumbURL",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "photoURL",
+                      "storageKey": null
                     }
-                ],
-                "storageKey": null
+                  ],
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "createdAt",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "updatedAt",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
             }
-        ],
-        "type": "Query",
-        "abstractKey": null
-    } as any;
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasPreviousPage",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "startCursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    }
+  ],
+  "type": "Query",
+  "abstractKey": null
+};
 })();
-(node as any).hash = 'e1b999570136b75c08a1521d99641a4e';
+(node as any).hash = '7d14441d374a003dcfe1bd5dd2e828b3';
 export default node;

@@ -1,5 +1,8 @@
 import React, { ReactElement } from 'react';
-import { RootStackNavigationProps, RootStackParamList } from '../navigation/RootStackNavigator';
+import {
+  RootStackNavigationProps,
+  RootStackParamList,
+} from '../navigation/RootStackNavigator';
 
 import { RouteProp } from '@react-navigation/core';
 import { WebView } from 'react-native-webview';
@@ -19,7 +22,11 @@ interface Props {
 }
 
 function Page(props: Props): ReactElement {
-  const { route: { params: { uri } } } = props;
+  const {
+    route: {
+      params: { uri },
+    },
+  } = props;
 
   return (
     <Container>

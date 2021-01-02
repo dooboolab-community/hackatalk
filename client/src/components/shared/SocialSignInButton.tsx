@@ -1,7 +1,5 @@
 import * as AuthSession from 'expo-auth-session';
 import * as Config from '../../../config';
-import * as Facebook from 'expo-auth-session/providers/facebook';
-import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 
 import { Alert, Platform, View } from 'react-native';
@@ -23,7 +21,7 @@ import { getString } from '../../../STRINGS';
 import { showAlertForError } from '../../utils/common';
 import { useThemeContext } from '@dooboo-ui/theme';
 
-const { facebookAppId, facebookSecret, googleAndroidClientId, googleIOSClientId, googleWebClientId } = Config;
+const { facebookAppId, facebookSecret, googleWebClientId } = Config;
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -74,64 +72,75 @@ const SocialSignInButton: FC<Props> = ({
   socialProvider,
   onUserCreated,
 }) => {
-  const [commitFacebook, isFacebookInFlight] =
-  useMutation<SocialSignInButtonFacebookSignInMutation>(signInWithFacebook);
+  const [
+    commitFacebook,
+    isFacebookInFlight,
+  ] = useMutation<SocialSignInButtonFacebookSignInMutation>(signInWithFacebook);
 
-  const [commitGoogle, isGoogleInFlight] =
-  useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
+  const [
+    commitGoogle,
+    isGoogleInFlight,
+  ] = useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
   const { theme } = useThemeContext();
   const useProxy = Platform.select({ web: false, default: true });
 
-  const { makeRedirectUri, useAuthRequest, ResponseType, Prompt, useAutoDiscovery } = AuthSession;
+  const {
+    makeRedirectUri,
+    useAuthRequest,
+    ResponseType,
+    Prompt,
+    useAutoDiscovery,
+  } = AuthSession;
+
+  const googleDiscovery = useAutoDiscovery('https://accounts.google.com');
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
-  const discovery = socialProvider === AuthType.Google
-    ? useAutoDiscovery('https://accounts.google.com')
-    : {
-      authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
-      tokenEndpoint: 'https://graph.facebook.com/v6.0/oauth/access_token',
-    };
+  const discovery =
+    socialProvider === AuthType.Google
+      ? googleDiscovery
+      : {
+          authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
+          tokenEndpoint: 'https://graph.facebook.com/v6.0/oauth/access_token',
+        };
 
   const redirectUri = makeRedirectUri(
     socialProvider === AuthType.Google
       ? {
-        // native: 'com.dooboolab.hackatalk',
-        useProxy,
-      }
+          // native: 'com.dooboolab.hackatalk',
+          useProxy,
+        }
       : {
-        // native: `fb${facebookAppId}://authorize`,
-        useProxy,
-      },
+          // native: `fb${facebookAppId}://authorize`,
+          useProxy,
+        },
   );
 
   const [request, response, promptAsync] = useAuthRequest(
     socialProvider === AuthType.Google
       ? {
-        clientId: googleWebClientId,
-        // iosClientId: googleIOSClientId,
-        // androidClientId: googleAndroidClientId,
-        // webClientId: googleWebClientId,
-        redirectUri,
-        prompt: Prompt.SelectAccount,
-        scopes: ['openid', 'profile', 'email'],
-        responseType: ResponseType.Token,
-        usePKCE: false,
-      }
+          clientId: googleWebClientId,
+          // iosClientId: googleIOSClientId,
+          // androidClientId: googleAndroidClientId,
+          // webClientId: googleWebClientId,
+          redirectUri,
+          prompt: Prompt.SelectAccount,
+          scopes: ['openid', 'profile', 'email'],
+          responseType: ResponseType.Token,
+          usePKCE: false,
+        }
       : {
-        clientId: facebookAppId,
-        clientSecret: facebookSecret,
-        // scopes: ['public_profile, email'],
-        redirectUri,
-        prompt: Prompt.SelectAccount,
-        extraParams: {
-          display: Platform.select({ web: 'popup' }) as string,
-          // eslint-disable-next-line
-          auth_type: 'rerequest',
+          clientId: facebookAppId,
+          clientSecret: facebookSecret,
+          // scopes: ['public_profile, email'],
+          redirectUri,
+          prompt: Prompt.SelectAccount,
+          extraParams: {
+            display: Platform.select({ web: 'popup' }) as string,
+            auth_type: 'rerequest',
+          },
+          responseType: ResponseType.Token,
         },
-        responseType: ResponseType.Token,
-      }
-    ,
     discovery,
   );
 
@@ -145,9 +154,11 @@ const SocialSignInButton: FC<Props> = ({
         if (socialProvider === AuthType.Google) {
           const mutationConfig = {
             variables: { accessToken },
-            onCompleted: (response: SocialSignInButtonGoogleSignInMutationResponse) => {
-              if (response.signInWithGoogle) {
-                const { user, token } = response.signInWithGoogle;
+            onCompleted: (
+              googleResponse: SocialSignInButtonGoogleSignInMutationResponse,
+            ) => {
+              if (googleResponse.signInWithGoogle) {
+                const { user, token } = googleResponse.signInWithGoogle;
 
                 AsyncStorage.setItem('token', token as string);
 
@@ -166,9 +177,11 @@ const SocialSignInButton: FC<Props> = ({
 
         const mutationConfig = {
           variables: { accessToken },
-          onCompleted: (response: SocialSignInButtonFacebookSignInMutationResponse) => {
-            if (response.signInWithFacebook) {
-              const { user, token } = response.signInWithFacebook;
+          onCompleted: (
+            fbResponse: SocialSignInButtonFacebookSignInMutationResponse,
+          ) => {
+            if (fbResponse.signInWithFacebook) {
+              const { user, token } = fbResponse.signInWithFacebook;
 
               AsyncStorage.setItem('token', token as string);
 
@@ -183,7 +196,7 @@ const SocialSignInButton: FC<Props> = ({
         commitFacebook(mutationConfig);
       }
     }
-  }, [response]);
+  }, [response, onUserCreated, commitFacebook, commitGoogle, socialProvider]);
 
   const requestSignIn = async (): Promise<void> => {
     setSigningIn(true);
@@ -198,56 +211,57 @@ const SocialSignInButton: FC<Props> = ({
   };
 
   if (socialProvider === AuthType.Google) {
-    return <Button
-      testID="btn-google"
+    return (
+      <Button
+        testID="btn-google"
+        disabled={!request}
+        style={{
+          button: {
+            backgroundColor: theme.googleBackground,
+            borderColor: theme.googleBackground,
+            borderWidth: 1,
+            width: '100%',
+            height: 48,
+            marginBottom: 12,
+            borderRadius: 100,
+          },
+          text: {
+            fontWeight: '700',
+            color: theme.googleText,
+          },
+        }}
+        leftElement={<View style={{ marginRight: 6 }}>{svgIcon}</View>}
+        loading={isGoogleInFlight || signingIn}
+        indicatorColor={theme.primary}
+        onPress={requestSignIn}
+        text={getString('SIGN_IN_WITH_GOOGLE')}
+      />
+    );
+  }
+
+  return (
+    <Button
+      testID="btn-facebook"
       disabled={!request}
       style={{
         button: {
-          backgroundColor: theme.googleBackground,
-          borderColor: theme.googleBackground,
+          backgroundColor: theme.facebookBackground,
+          borderColor: theme.facebookBackground,
           borderWidth: 1,
           width: '100%',
           height: 48,
           marginBottom: 12,
           borderRadius: 100,
         },
-        text: {
-          fontWeight: '700', color: theme.googleText,
-        },
+        text: { fontWeight: '700', color: theme.facebookText },
       }}
-      leftElement={
-        <View style={{ marginRight: 6 }}>{svgIcon}</View>
-      }
-      loading={isGoogleInFlight || signingIn}
+      leftElement={<View style={{ marginRight: 6 }}>{svgIcon}</View>}
+      loading={isFacebookInFlight || signingIn}
       indicatorColor={theme.primary}
       onPress={requestSignIn}
-      text={getString('SIGN_IN_WITH_GOOGLE')}
-    />;
-  }
-
-  return <Button
-    testID="btn-facebook"
-    disabled={!request}
-    style={{
-      button: {
-        backgroundColor: theme.facebookBackground,
-        borderColor: theme.facebookBackground,
-        borderWidth: 1,
-        width: '100%',
-        height: 48,
-        marginBottom: 12,
-        borderRadius: 100,
-      },
-      text: { fontWeight: '700', color: theme.facebookText },
-    }}
-    leftElement={
-      <View style={{ marginRight: 6 }}>{svgIcon}</View>
-    }
-    loading={isFacebookInFlight || signingIn}
-    indicatorColor={theme.primary}
-    onPress={requestSignIn}
-    text={getString('SIGN_IN_WITH_FACEBOOK')}
-  />;
+      text={getString('SIGN_IN_WITH_FACEBOOK')}
+    />
+  );
 };
 
 export default SocialSignInButton;
