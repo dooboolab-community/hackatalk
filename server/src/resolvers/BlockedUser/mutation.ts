@@ -9,10 +9,7 @@ export const createBlockedUser = mutationField('createBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_,
-    { blockedUserId },
-    { prisma, userId },
-  ) => {
+  resolve: (_, { blockedUserId }, { prisma, userId }) => {
     assert(userId, 'Not authorized.');
 
     return prisma.blockedUser.create({
@@ -39,10 +36,7 @@ export const deleteBlockedUser = mutationField('deleteBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_,
-    { blockedUserId },
-    { prisma, userId },
-  ) => {
+  resolve: (_, { blockedUserId }, { prisma, userId }) => {
     assert(userId, 'Not authorized.');
 
     return prisma.blockedUser.delete({

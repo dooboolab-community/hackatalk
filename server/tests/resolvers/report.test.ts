@@ -37,7 +37,11 @@ describe('Resolver - Report', () => {
       password: 'password',
     };
 
-    const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+    const signInResponse = await request(
+      testHost,
+      signInEmailMutation,
+      signInVar,
+    );
 
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
@@ -60,7 +64,11 @@ describe('Resolver - Report', () => {
       },
     };
 
-    const signUpUserResponse = await request(testHost, signUpMutation, signUpUserVar);
+    const signUpUserResponse = await request(
+      testHost,
+      signUpMutation,
+      signUpUserVar,
+    );
 
     expect(signUpUserResponse).toHaveProperty('signUp');
     expect(signUpUserResponse.signUp).toHaveProperty('email');
@@ -70,7 +78,9 @@ describe('Resolver - Report', () => {
 
     // should create report
     const createReportResponse = await authClient.request(
-      createReportMutation, { reportedUserId, report: 'I want to report him' });
+      createReportMutation,
+      { reportedUserId, report: 'I want to report him' },
+    );
 
     expect(createReportResponse).toHaveProperty('createReport');
     expect(createReportResponse.createReport).toHaveProperty('user');

@@ -57,6 +57,7 @@
     "verify-apple-id-token": "^2.0.1"
   },
   "devDependencies": {
+    "@dooboo/eslint-config": "^0.6.5",
     "@prisma/cli": "~2.13.1",
     "@types/bcrypt": "^3.0.0",
     "@types/ejs": "^3.0.5",
@@ -70,8 +71,6 @@
     "@types/node-rsa": "^1.0.0",
     "@types/ramda": "^0.27.34",
     "@types/ws": "7.4.0",
-    "@typescript-eslint/eslint-plugin": "^4.11.1",
-    "@typescript-eslint/parser": "^4.11.1",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-datasource-rest": "^0.9.6",
@@ -81,11 +80,6 @@
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.16.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.1.0",
     "graphql-import": "^1.0.2",
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.11.0",
@@ -95,7 +89,7 @@
     "ts-jest": "^26.4.4",
     "ts-node": "9.1.1",
     "ts-node-dev": "^1.1.1",
-    "typescript": "^4.1.3"
+    "typescript": "4.0.5"
   },
   "engines": {
     "node": ">=10.0.0"

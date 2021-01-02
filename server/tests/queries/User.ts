@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const signUpMutation = /* GraphQL */`
+export const signUpMutation = /* GraphQL */ `
   mutation signUp($user: UserCreateInput!) {
     signUp(user: $user) {
       id
@@ -11,9 +11,9 @@ export const signUpMutation = /* GraphQL */`
   }
 `;
 
-export const signInEmailMutation = /* GraphQL */`
-  mutation signInEmail($email: String! $password: String!) {
-    signInEmail(email: $email password: $password) {
+export const signInEmailMutation = /* GraphQL */ `
+  mutation signInEmail($email: String!, $password: String!) {
+    signInEmail(email: $email, password: $password) {
       token
       user {
         id
@@ -26,7 +26,7 @@ export const signInEmailMutation = /* GraphQL */`
   }
 `;
 
-export const signInWithGoogle = /* GraphQL */`
+export const signInWithGoogle = /* GraphQL */ `
   mutation signInWithGoogle($accessToken: String!) {
     signInWithGoogle(accessToken: $accessToken) {
       token
@@ -39,7 +39,7 @@ export const signInWithGoogle = /* GraphQL */`
   }
 `;
 
-export const signInWithFacebook = /* GraphQL */`
+export const signInWithFacebook = /* GraphQL */ `
   mutation signInWithFacebook($accessToken: String!) {
     signInWithFacebook(accessToken: $accessToken) {
       token
@@ -52,7 +52,7 @@ export const signInWithFacebook = /* GraphQL */`
   }
 `;
 
-export const signInWithApple = /* GraphQL */`
+export const signInWithApple = /* GraphQL */ `
   mutation signInWithApple($accessToken: String!) {
     signInWithApple(accessToken: $accessToken) {
       token
@@ -65,7 +65,7 @@ export const signInWithApple = /* GraphQL */`
   }
 `;
 
-export const updateProfileMutation = /* GraphQL */`
+export const updateProfileMutation = /* GraphQL */ `
   mutation updateProfile($user: UserUpdateInput!) {
     updateProfile(user: $user) {
       name
@@ -74,7 +74,7 @@ export const updateProfileMutation = /* GraphQL */`
   }
 `;
 
-export const meQuery = /* GraphQL */`
+export const meQuery = /* GraphQL */ `
   query me {
     me {
       id
@@ -85,23 +85,24 @@ export const meQuery = /* GraphQL */`
 `;
 
 export const userUpdatedSubscription = gql`
-subscription userUpdated($userId: String!) {
-  userUpdated(userId: $userId) {
-    id
-    email
-    name
-    gender
+  subscription userUpdated($userId: String!) {
+    userUpdated(userId: $userId) {
+      id
+      email
+      name
+      gender
+    }
   }
-}
 `;
 
 export const userSignedInSubscription = gql`
-subscription userSignedIn($userId: String!) {
-  userSignedIn(userId: $userId) {
-    id
-    email
-    name
-    gender
-    createdAt
+  subscription userSignedIn($userId: String!) {
+    userSignedIn(userId: $userId) {
+      id
+      email
+      name
+      gender
+      createdAt
+    }
   }
-}`;
+`;

@@ -1,4 +1,4 @@
-import * as AuthUtils from '../../../../src/utils/auth';
+import * as AuthUtils from '../../../src/utils/auth';
 
 import { request } from 'graphql-request';
 import { signInWithFacebook } from '../../queries';
@@ -10,19 +10,22 @@ describe('signInWithFacebook', () => {
       accessToken: 'google_user_token',
     };
 
-    jest
-      .spyOn(AuthUtils, 'verifyFacebookId')
+    jest.spyOn(AuthUtils, 'verifyFacebookId').mockImplementation(() =>
       // @ts-ignore
-      .mockImplementation(() => Promise.resolve({
+      Promise.resolve({
         id: 'facebook_user_id',
         email: 'facebook@email.com',
-      }));
+      } as AuthUtils.FacebookUser),
+    );
 
     const response = await request(testHost, signInWithFacebook, variables);
 
     expect(response).toHaveProperty('signInWithFacebook');
     expect(response.signInWithFacebook).toHaveProperty('token');
     expect(response.signInWithFacebook).toHaveProperty('user');
-    expect(response.signInWithFacebook.user.email).toEqual('facebook@email.com');
+
+    expect(response.signInWithFacebook.user.email).toEqual(
+      'facebook@email.com',
+    );
   });
 });

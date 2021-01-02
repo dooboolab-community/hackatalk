@@ -14,14 +14,17 @@ const rules = {
   }),
 };
 
-export const permissions = shield({
-  Query: {
-    me: rules.isAuthenticatedUser,
+export const permissions = shield(
+  {
+    Query: {
+      me: rules.isAuthenticatedUser,
+    },
+    Mutation: {
+      singleUpload: rules.isAuthenticatedUser,
+      changeEmailPassword: rules.isAuthenticatedUser,
+    },
   },
-  Mutation: {
-    singleUpload: rules.isAuthenticatedUser,
-    changeEmailPassword: rules.isAuthenticatedUser,
+  {
+    allowExternalErrors: process.env.NODE_ENV !== 'production',
   },
-}, {
-  allowExternalErrors: process.env.NODE_ENV !== 'production',
-});
+);

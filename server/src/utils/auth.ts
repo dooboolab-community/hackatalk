@@ -12,7 +12,8 @@ const SALT_ROUND = 10;
 const {
   APPLE_CLIENT_ID,
   REDIRECT_URL,
-  JWT_SECRET = 'undefined', JWT_SECRET_ETC = 'etc',
+  JWT_SECRET = 'undefined',
+  JWT_SECRET_ETC = 'etc',
 } = process.env;
 
 export const APP_SECRET = JWT_SECRET;
@@ -20,9 +21,10 @@ export const APP_SECRET_ETC = JWT_SECRET_ETC;
 
 const env = process.env.NODE_ENV;
 
-const envPath = env === 'development'
-  ? path.resolve(__dirname, '../dotenv/dev.env')
-  : env === 'test'
+const envPath =
+  env === 'development'
+    ? path.resolve(__dirname, '../dotenv/dev.env')
+    : env === 'test'
     ? path.resolve(__dirname, '../dotenv/test.env')
     : path.resolve(__dirname, '../dotenv/.env');
 
@@ -33,7 +35,7 @@ interface Token {
   userId: string;
 }
 
-export function getUserId({ req }: {req: ReqI18n}): string | null {
+export function getUserId({ req }: { req: ReqI18n }): string | null {
   const Authorization = req?.get?.('Authorization');
 
   if (!Authorization) return null;
@@ -51,7 +53,7 @@ export const validateEmail = (email: string): boolean => {
   return re.test(email);
 };
 
-interface GoogleUser {
+export interface GoogleUser {
   iss: string;
   sub: string;
   azp: string;
@@ -78,42 +80,42 @@ interface GoogleUser {
 
 export const verifyGoogleId = async (token: string): Promise<GoogleUser> => {
   const { data } = await axios.get(
-     `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`,
+    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`,
   );
 
   return data as GoogleUser;
 };
 
-interface FacebookUser {
+export interface FacebookUser {
   id: string;
   name: string;
   email: string;
 }
 
-export const verifyFacebookId = async (accessToken: string): Promise<FacebookUser> => {
-  const { data } = await axios.get(
-    'https://graph.facebook.com/v7.0/me',
-    {
-      params: {
-        access_token: accessToken,
-        fields: 'id,name,email',
-      },
+export const verifyFacebookId = async (
+  accessToken: string,
+): Promise<FacebookUser> => {
+  const { data } = await axios.get('https://graph.facebook.com/v7.0/me', {
+    params: {
+      access_token: accessToken,
+      fields: 'id,name,email',
     },
-  );
+  });
 
   return data as FacebookUser;
 };
 
-const getApplePublicKey = async () => {
-  const { data } = await axios.get(
-    'https://appleid.apple.com/auth/keys',
-  );
+const getApplePublicKey = async (): Promise<string> => {
+  const { data } = await axios.get('https://appleid.apple.com/auth/keys');
 
   const key = data.keys[0];
 
   const pubKey = new NodeRSA();
 
-  pubKey.importKey({ n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64') }, 'components-public');
+  pubKey.importKey(
+    { n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64') },
+    'components-public',
+  );
 
   return pubKey.exportKey('public');
 };
@@ -151,19 +153,22 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
 
   const applePublicKey = await getApplePublicKey();
 
-  const appleUser = verify(idToken, applePublicKey, { algorithms: ['RS256'] }) as AppleUser;
+  const appleUser = verify(idToken, applePublicKey, {
+    algorithms: ['RS256'],
+  }) as AppleUser;
 
-  if (appleUser.iss !== TOKEN_ISSUER) {
+  if (appleUser.iss !== TOKEN_ISSUER)
     throw new Error(
-      `id token is not issued by: ${TOKEN_ISSUER} | from: + ${appleUser.iss}`);
-  }
+      `id token is not issued by: ${TOKEN_ISSUER} | from: + ${appleUser.iss}`,
+    );
 
-  if (clientID !== undefined && appleUser.aud !== clientID) {
+  if (clientID !== undefined && appleUser.aud !== clientID)
     throw new Error(
-      `parameter does not include: ${appleUser.aud} | expected: ${clientID}`);
-  }
+      `parameter does not include: ${appleUser.aud} | expected: ${clientID}`,
+    );
 
-  if (appleUser.exp < (Date.now() / 1000)) throw new Error('id token has expired');
+  if (appleUser.exp < Date.now() / 1000)
+    throw new Error('id token has expired');
 
   return appleUser;
 };
@@ -179,19 +184,18 @@ export const encryptCredential = async (password: string): Promise<string> => {
 export const validateCredential = async (
   value: string,
   hashedValue: string,
-): Promise<boolean> => new Promise<boolean>((resolve, reject) => {
-  // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
-  hashedValue = hashedValue.replace(/slash/g, '/');
-  hashedValue = hashedValue.replace(/dot$/g, '.');
+): Promise<boolean> =>
+  new Promise<boolean>((resolve, reject) => {
+    // Fix the 404 ERROR that occurs when the hash contains 'slash' or 'dot' value
+    hashedValue = hashedValue.replace(/slash/g, '/');
+    hashedValue = hashedValue.replace(/dot$/g, '.');
 
-  bcrypt.compare(value, hashedValue, (err, res) => {
-    if (err) {
-      return reject(err);
-    }
+    bcrypt.compare(value, hashedValue, (err, res) => {
+      if (err) return reject(err);
 
-    resolve(res);
+      resolve(res);
+    });
   });
-});
 
 export const getEmailVerificationHTML = (
   verificationToken: string,
@@ -225,7 +229,9 @@ export const getPasswordResetHTML = (
   );
 
   const rendered = ejs.render(templateString, {
-    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${token}/${qs.escape(password)}`,
+    REDIRECT_URL: `${REDIRECT_URL}/reset_password/${token}/${qs.escape(
+      password,
+    )}`,
     HELLO: req.t('HELLO'),
     CLICK_TO_RESET_PW: req.t('CLICK_TO_RESET_PW'),
     PASSWORD: req.t('PASSWORD'),
@@ -242,9 +248,7 @@ export const getPasswordResetHTML = (
 export const getToken = (req: Request & any): string | null => {
   const authHeader = req.get('Authorization');
 
-  if (!authHeader) {
-    return null;
-  }
+  if (!authHeader) return null;
 
   return authHeader.replace('Bearer ', '');
 };

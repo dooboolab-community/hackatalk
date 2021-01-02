@@ -1,12 +1,9 @@
-export const createChannel = /* GraphQL */`
+export const createChannel = /* GraphQL */ `
   mutation createChannel(
     $channel: ChannelCreateInput!
     $message: MessageCreateInput
   ) {
-    createChannel(
-      channel: $channel
-      message: $message
-    ) {
+    createChannel(channel: $channel, message: $message) {
       id
       name
       lastMessage {
@@ -23,7 +20,7 @@ export const createChannel = /* GraphQL */`
   }
 `;
 
-export const channelQuery = /* GraphQL */`
+export const channelQuery = /* GraphQL */ `
   query channel($channelId: String!) {
     channel(channelId: $channelId) {
       id
@@ -42,7 +39,7 @@ export const channelQuery = /* GraphQL */`
   }
 `;
 
-export const channelsQuery = /* GraphQL */`
+export const channelsQuery = /* GraphQL */ `
   query channels {
     channels(first: 5) {
       edges {
@@ -60,7 +57,7 @@ export const channelsQuery = /* GraphQL */`
   }
 `;
 
-export const leaveChannel = /* GraphQL */`
+export const leaveChannel = /* GraphQL */ `
   mutation leaveChannel($channelId: String!) {
     leaveChannel(channelId: $channelId) {
       user {
@@ -73,7 +70,7 @@ export const leaveChannel = /* GraphQL */`
   }
 `;
 
-export const inviteToChannel = /* GraphQL */`
+export const inviteToChannel = /* GraphQL */ `
   mutation inviteToChannel($channelId: String!, $userIds: [String!]!) {
     inviteUsersToChannel(channelId: $channelId, userIds: $userIds) {
       memberships {
@@ -85,7 +82,7 @@ export const inviteToChannel = /* GraphQL */`
   }
 `;
 
-export const kickFromChannel = /* GraphQL */`
+export const kickFromChannel = /* GraphQL */ `
   mutation kickFromChannel($channelId: String!, $userIds: [String!]!) {
     kickUsersFromChannel(channelId: $channelId, userIds: $userIds) {
       memberships {
@@ -97,7 +94,7 @@ export const kickFromChannel = /* GraphQL */`
   }
 `;
 
-export const findOrCreatePrivateChannel = /* GraphQL */`
+export const findOrCreatePrivateChannel = /* GraphQL */ `
   mutation findOrCreatePrivateChannel($peerUserIds: [String!]!) {
     findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
       id

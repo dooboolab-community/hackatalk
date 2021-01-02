@@ -1,4 +1,4 @@
-import * as azureUtils from '../../../src/utils/azure';
+import * as azureUtils from '../../src/utils/azure';
 
 import FormData from 'form-data';
 import fetch from 'node-fetch';

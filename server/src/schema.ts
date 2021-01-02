@@ -10,7 +10,10 @@ export const schema = makeSchema({
   plugins: [
     nexusSchemaPrisma({
       outputs: {
-        typegen: path.join(__dirname, 'generated/typegen-nexus-plugin-prisma.d.ts'),
+        typegen: path.join(
+          __dirname,
+          'generated/typegen-nexus-plugin-prisma.d.ts',
+        ),
       },
     }),
     connectionPlugin({

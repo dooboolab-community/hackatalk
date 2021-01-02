@@ -12,29 +12,29 @@ import { schema } from './schema';
 
 const { PORT = 4000, NODE_ENV, SENDGRID_API_KEY } = process.env;
 
-const schemaWithMiddleware = NODE_ENV === 'test'
-  ? schema
-  : applyMiddleware(
-    schema,
-    permissions,
-  );
+const schemaWithMiddleware =
+  NODE_ENV === 'test' ? schema : applyMiddleware(schema, permissions);
 
 assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
-const createApolloServer = (): ApolloServer => new ApolloServer({
-  schema: schemaWithMiddleware,
-  context: createContext,
-  // introspection: process.env.NODE_ENV !== 'production',
-  // playground: process.env.NODE_ENV !== 'production',
-  subscriptions: {
-    onConnect: (): void => {
-      process.stdout.write('Connected to websocket\n');
+const createApolloServer = (): ApolloServer =>
+  new ApolloServer({
+    schema: schemaWithMiddleware,
+    context: createContext,
+    // introspection: process.env.NODE_ENV !== 'production',
+    // playground: process.env.NODE_ENV !== 'production',
+    subscriptions: {
+      onConnect: (): void => {
+        process.stdout.write('Connected to websocket\n');
+      },
     },
-  },
-});
+  });
 
-const initializeApolloServer = (apollo: ApolloServer, app: express.Application): () => void => {
+const initializeApolloServer = (
+  apollo: ApolloServer,
+  app: express.Application,
+): (() => void) => {
   apollo.applyMiddleware({ app });
 
   return (): void => {
@@ -44,7 +44,9 @@ const initializeApolloServer = (apollo: ApolloServer, app: express.Application):
   };
 };
 
-export const startServer = async (app: express.Application): Promise<Http2Server> => {
+export const startServer = async (
+  app: express.Application,
+): Promise<Http2Server> => {
   const httpServer = createHttpServer(app);
   const apollo = createApolloServer();
 

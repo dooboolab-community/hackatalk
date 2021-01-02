@@ -1,4 +1,4 @@
-export const createBlockedUserMutation = /* GraphQL */`
+export const createBlockedUserMutation = /* GraphQL */ `
   mutation createBlockedUser($blockedUserId: String!) {
     createBlockedUser(blockedUserId: $blockedUserId) {
       user {
@@ -11,7 +11,7 @@ export const createBlockedUserMutation = /* GraphQL */`
   }
 `;
 
-export const deleteBlockedUserMutation = /* GraphQL */`
+export const deleteBlockedUserMutation = /* GraphQL */ `
   mutation deleteBlockedUser($blockedUserId: String!) {
     deleteBlockedUser(blockedUserId: $blockedUserId) {
       user {

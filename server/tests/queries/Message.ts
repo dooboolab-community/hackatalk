@@ -1,19 +1,13 @@
-export const createMessage = /* GraphQL */`
-  mutation createMessage(
-    $channelId: String!
-    $message: MessageCreateInput!
-  ) {
-    createMessage(
-      channelId: $channelId
-      message: $message
-    ) {
+export const createMessage = /* GraphQL */ `
+  mutation createMessage($channelId: String!, $message: MessageCreateInput!) {
+    createMessage(channelId: $channelId, message: $message) {
       id
       text
     }
   }
 `;
 
-export const messageQuery = /* GraphQL */`
+export const messageQuery = /* GraphQL */ `
   query message($id: String!) {
     message(id: $id) {
       id
@@ -29,9 +23,9 @@ export const messageQuery = /* GraphQL */`
   }
 `;
 
-export const messagesQuery = /* GraphQL */`
-  query messages($first: Int! $channelId: String!) {
-    messages(channelId: $channelId first: $first) {
+export const messagesQuery = /* GraphQL */ `
+  query messages($first: Int!, $channelId: String!) {
+    messages(channelId: $channelId, first: $first) {
       edges {
         cursor
         node {
