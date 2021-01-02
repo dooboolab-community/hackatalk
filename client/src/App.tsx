@@ -30,6 +30,7 @@ import { DeviceProvider } from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import { LoadingIndicator } from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
+import { User } from './types/graphql';
 import { getString } from '../STRINGS';
 import { registerForPushNotificationsAsync } from './utils/noti';
 import relayEnvironment from './relay';
@@ -129,7 +130,7 @@ function App(): ReactElement {
       return;
     }
 
-    authRef.current.setUser(me);
+    authRef.current.setUser(me as User);
   }, [me]);
 
   if (!assetLoaded) {
