@@ -7,7 +7,7 @@
 - [react-native](https://github.com/facebook/react-native)
 - [react-navigation](https://github.com/react-navigation/react-navigation)
 - [typescript](https://github.com/Microsoft/TypeScript)
-- [localization](https://github.com/stefalda/ReactNativeLocalization)
+- [fbt](https://github.com/facebook/fbt)
 - [styled-components](https://github.com/styled-components/styled-components)
 - [ts-jest](https://github.com/kulshekhar/ts-jest)
 - [expo](https://expo.io)
@@ -22,10 +22,10 @@
 1. Sample of context-api with `react-hook` (`useContext`).
 2. Know how to structure react native app with typescript.
 3. Know how to navigate between screens with `react-navigation`.
-4. Know how to write `react-native` app with bare work flow from `expo` with `unimodules`.
+4. Know how to write `react-native` app with managed flow from `expo` with `unimodules`.
 5. Know how to write test code with `@testing-library/react-native`.
 6. Know how to `lint` your project with `eslint`.
-7. Know how to localize your project.
+7. Know how to localize your project with [facebook fbt](https://medium.com/dooboolab/localizing-react-app-with-fbt-instead-of-i18n-90822e0cb373).
 ```
 
 ### INSTALL
