@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { GraphQLClient, request } from 'graphql-request';
 import { apolloClient, testHost } from '../testSetup';
 import {
@@ -107,14 +108,16 @@ describe('Resolver - User', () => {
       expect(response1.signUp.name).toEqual(userVariables2.user.name);
       expect(response1.signUp.gender).toEqual(userVariables2.user.gender);
 
-      apolloClient.subscribe({
-        query: userSignedInSubscription,
-        variables: { userId: userId },
-      }).subscribe({
-        next: ({ data }) => {
-          return (subscriptionValue = data.userSignedIn);
-        },
-      });
+      apolloClient
+        .subscribe({
+          query: userSignedInSubscription,
+          variables: { userId: userId },
+        })
+        .subscribe({
+          next: ({ data }) => {
+            return (subscriptionValue = data.userSignedIn);
+          },
+        });
 
       const variables = {
         email: 'clark@dooboolab.com',
@@ -129,8 +132,14 @@ describe('Resolver - User', () => {
       expect(response2.signInEmail.user.id).toEqual(subscriptionValue.id);
       expect(response2.signInEmail.user.email).toEqual(subscriptionValue.email);
       expect(response2.signInEmail.user.name).toEqual(subscriptionValue.name);
-      expect(response2.signInEmail.user.gender).toEqual(subscriptionValue.gender);
-      expect(response2.signInEmail.user.createdAt).toEqual(subscriptionValue.createdAt);
+
+      expect(response2.signInEmail.user.gender).toEqual(
+        subscriptionValue.gender,
+      );
+
+      expect(response2.signInEmail.user.createdAt).toEqual(
+        subscriptionValue.createdAt,
+      );
     });
 
     it("should subscribe 'userUpdated' after 'updateProfile' mutation", async () => {
@@ -147,14 +156,16 @@ describe('Resolver - User', () => {
 
       const userId = response.signInEmail.user.id;
 
-      apolloClient.subscribe({
-        query: userUpdatedSubscription,
-        variables: { userId: userId },
-      }).subscribe({
-        next: ({ data }) => {
-          return (subscriptionValue = data.userUpdated);
-        },
-      });
+      apolloClient
+        .subscribe({
+          query: userUpdatedSubscription,
+          variables: { userId: userId },
+        })
+        .subscribe({
+          next: ({ data }) => {
+            return (subscriptionValue = data.userUpdated);
+          },
+        });
 
       client = new GraphQLClient(testHost, {
         headers: {

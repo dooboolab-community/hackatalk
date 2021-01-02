@@ -9,32 +9,34 @@ require('dotenv').config();
 
 const { STORAGE_ACCOUNT, STORAGE_KEY } = process.env;
 
-const blobService = (STORAGE_ACCOUNT && STORAGE_KEY)
-  ? AzureStorage.createBlobService(STORAGE_ACCOUNT, STORAGE_KEY)
-  : undefined;
+const blobService =
+  STORAGE_ACCOUNT && STORAGE_KEY
+    ? AzureStorage.createBlobService(STORAGE_ACCOUNT, STORAGE_KEY)
+    : undefined;
 
 export const uploadFileToAzureBlobFromStream = (
-  stream: stream.Readable,
+  inputStream: stream.Readable,
   destFile: string,
   destDir: string,
   container: string,
 ): Promise<BlobService.BlobResult> => {
   assert(blobService, 'Azure Storage is not initialized.');
 
-  return new Promise(function(resolve, reject) {
-    stream.pipe(
-      blobService.createWriteStreamToBlockBlob(container, `${destDir}${destFile}`, function(
-        error,
-        resultUpload,
-      ) {
-        if (!error) {
-          resolve(resultUpload);
+  return new Promise((resolve, reject) => {
+    inputStream.pipe(
+      blobService.createWriteStreamToBlockBlob(
+        container,
+        `${destDir}${destFile}`,
+        (error, resultUpload) => {
+          if (!error) {
+            resolve(resultUpload);
 
-          return;
-        }
+            return;
+          }
 
-        reject(error);
-      }),
+          reject(error);
+        },
+      ),
     );
   });
 };
@@ -47,19 +49,21 @@ export const uploadFileToAzureBlobFromFile = (
 ): Promise<BlobService.BlobResult> => {
   assert(blobService, 'Azure Storage is not initialized.');
 
-  return new Promise(function(resolve, reject) {
-    blobService.createBlockBlobFromLocalFile(container, `${destDir}${destFile}`, file, function(
-      error,
-      resultUpload,
-    ) {
-      if (!error) {
-        resolve(resultUpload);
+  return new Promise((resolve, reject) => {
+    blobService.createBlockBlobFromLocalFile(
+      container,
+      `${destDir}${destFile}`,
+      file,
+      (error, resultUpload) => {
+        if (!error) {
+          resolve(resultUpload);
 
-        return;
-      }
+          return;
+        }
 
-      reject(error);
-    });
+        reject(error);
+      },
+    );
   });
 };
 
@@ -69,11 +73,8 @@ export const deleteFileFromAzureBlob = (
 ): Promise<boolean> => {
   assert(blobService, 'Azure Storage is not initialized.');
 
-  return new Promise(function(resolve, reject) {
-    blobService.deleteBlobIfExists(destDir, destFile, function(
-      error,
-      resultUpload,
-    ) {
+  return new Promise((resolve, reject) => {
+    blobService.deleteBlobIfExists(destDir, destFile, (error, resultUpload) => {
       if (!error) {
         resolve(resultUpload);
 

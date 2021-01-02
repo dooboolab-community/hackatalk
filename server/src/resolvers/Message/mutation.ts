@@ -1,4 +1,8 @@
-import { ExpoMessage, getReceiversPushTokens, sendPushNotification } from '../../services/NotificationService';
+import {
+  ExpoMessage,
+  getReceiversPushTokens,
+  sendPushNotification,
+} from '../../services/NotificationService';
 import { arg, mutationField, nonNull, stringArg } from 'nexus';
 
 import { assert } from '../../utils/assert';
@@ -8,12 +12,18 @@ export const createMessage = mutationField('createMessage', {
 
   args: {
     channelId: nonNull(stringArg()),
-    message: nonNull(arg({
-      type: 'MessageCreateInput',
-    })),
+    message: nonNull(
+      arg({
+        type: 'MessageCreateInput',
+      }),
+    ),
   },
 
-  resolve: async (parent, { channelId, message }, { prisma, request, userId }) => {
+  resolve: async (
+    parent,
+    { channelId, message },
+    { prisma, request, userId },
+  ) => {
     assert(userId, 'Not authorized.');
 
     const { imageUrls, fileUrls, ...rest } = message;
@@ -48,13 +58,14 @@ export const createMessage = mutationField('createMessage', {
     const tokens = await getReceiversPushTokens(channelId, userId);
 
     tokens.forEach((token) => {
-      const message: ExpoMessage = {
+      const expoMessage: ExpoMessage = {
         to: token,
         sound: 'default',
         title: created.sender.name ?? 'Anonymous',
-        body: created.messageType === 'photo'
-          ? request.req.t('PHOTO')
-          : created.messageType === 'file'
+        body:
+          created.messageType === 'photo'
+            ? request.req.t('PHOTO')
+            : created.messageType === 'file'
             ? request.req.t('FILE')
             : created.text,
         data: {
@@ -65,7 +76,7 @@ export const createMessage = mutationField('createMessage', {
         },
       };
 
-      sendPushNotification(message);
+      sendPushNotification(expoMessage);
     });
 
     return created;

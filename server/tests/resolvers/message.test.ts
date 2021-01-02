@@ -34,7 +34,11 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse.signUp).toHaveProperty('email');
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
 
-    const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+    const signInResponse = await request(
+      testHost,
+      signInEmailMutation,
+      signInVar,
+    );
 
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');

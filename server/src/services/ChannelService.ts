@@ -4,7 +4,9 @@ import { andThen, cond, pipe } from 'ramda';
 import { assert } from '../utils/assert';
 import { prisma } from '../context';
 
-export const findExistingChannel = async (channelId: string): Promise<Channel> => {
+export const findExistingChannel = async (
+  channelId: string,
+): Promise<Channel> => {
   const channel = await prisma.channel.findFirst({
     where: { id: channelId, deletedAt: null },
   });
@@ -66,66 +68,66 @@ export const findPrivateChannelWithUserIds = async (
 };
 
 export const changeVisibilityWhenInvisible = (
-  userId: string, existingChannel: Channel,
-): Promise<Membership> => prisma.membership.update({
-  data: {
-    isVisible: true,
-  },
-  where: {
-    userId_channelId: {
-      userId,
-      channelId: existingChannel.id,
+  userId: string,
+  existingChannel: Channel,
+): Promise<Membership> =>
+  prisma.membership.update({
+    data: {
+      isVisible: true,
     },
-  },
-});
+    where: {
+      userId_channelId: {
+        userId,
+        channelId: existingChannel.id,
+      },
+    },
+  });
 
 export const createNewChannel = async (
   isPrivate: boolean,
   userId: string,
   name?: string,
-): Promise<Channel> => prisma.channel.create({
-  data: {
-    channelType: isPrivate ? 'private' : 'public',
-    name,
-    membership: {
-      create: {
-        membershipType: !isPrivate
-          ? MembershipType.owner
-          : MembershipType.member,
-        user: { connect: { id: userId } },
+): Promise<Channel> =>
+  prisma.channel.create({
+    data: {
+      channelType: isPrivate ? 'private' : 'public',
+      name,
+      membership: {
+        create: {
+          membershipType: !isPrivate
+            ? MembershipType.owner
+            : MembershipType.member,
+          user: { connect: { id: userId } },
+        },
       },
     },
-  },
-});
+  });
 
 export const createMemberships = async (
   channelId: string,
   userIds: readonly string[],
 ): Promise<void> => {
-  const countMemberships = () => prisma.membership.count({
-    where: { channelId },
-  });
+  const countMemberships = (): Promise<number> =>
+    prisma.membership.count({
+      where: { channelId },
+    });
 
-  const createMembership = (userId: string) => prisma.membership.create({
-    data: {
-      user: {
-        connect: { id: userId },
+  const createMembership = (userId: string): Promise<Membership> =>
+    prisma.membership.create({
+      data: {
+        user: {
+          connect: { id: userId },
+        },
+        channel: {
+          connect: { id: channelId },
+        },
       },
-      channel: {
-        connect: { id: channelId },
-      },
-    },
-  });
+    });
 
   await pipe(
     countMemberships,
     andThen(
-      cond([
-        [
-          (x) => x < 2,
-          () => Promise.all(userIds.map(createMembership)),
-        ],
-      ]),
+      cond([[(x) => x < 2, () => Promise.all(userIds.map(createMembership))]]),
     ),
   )();
 };

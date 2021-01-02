@@ -13,7 +13,11 @@ export const createReport = mutationField('createReport', {
     report: nonNull(stringArg()),
   },
 
-  resolve: async (_, { reportedUserId, report }, { prisma, request, userId }) => {
+  resolve: async (
+    _,
+    { reportedUserId, report },
+    { prisma, request, userId },
+  ) => {
     assert(userId, 'Not authorized.');
     assert(SENDGRID_EMAIL, 'Missing sendgrid email address.');
 

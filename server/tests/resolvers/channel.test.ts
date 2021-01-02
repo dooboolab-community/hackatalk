@@ -37,7 +37,11 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse.signUp).toHaveProperty('email');
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
 
-    const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+    const signInResponse = await request(
+      testHost,
+      signInEmailMutation,
+      signInVar,
+    );
 
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
@@ -118,7 +122,8 @@ describe('Resolver - Channel', () => {
   });
 
   it('should not create [private] channel again of same user group', async () => {
-    const messageTobeSent = 'This will not create channelId but create another message.';
+    const messageTobeSent =
+      'This will not create channelId but create another message.';
 
     const variables = {
       channel: {
@@ -242,7 +247,8 @@ describe('Resolver - Channel', () => {
 
     const userIdsInChannel = inviteResponse.memberships.map((i) => i.user.id);
 
-    for (const userId of usersToInvite) { expect(userIdsInChannel).toContain(userId); }
+    for (const userId of usersToInvite)
+      expect(userIdsInChannel).toContain(userId);
   });
 
   it('should throw when trying to invite users to [private] channel', async () => {
@@ -282,7 +288,7 @@ describe('Resolver - Channel', () => {
 
     const userIdsInChannel = kickResponse.memberships.map((i) => i.user.id);
 
-    for (const i of usersToKick) { expect(userIdsInChannel).not.toContain(i); }
+    for (const i of usersToKick) expect(userIdsInChannel).not.toContain(i);
   });
 
   it('should throw when trying to kick users from [private] channel', async () => {
@@ -337,7 +343,10 @@ describe('Resolver - Channel', () => {
       peerUserIds: [friendsId[0]],
     };
 
-    const response = await authClient.request(findOrCreatePrivateChannel, variables);
+    const response = await authClient.request(
+      findOrCreatePrivateChannel,
+      variables,
+    );
 
     expect(response).toHaveProperty('findOrCreatePrivateChannel');
     expect(response.findOrCreatePrivateChannel).toHaveProperty('id');
@@ -350,7 +359,10 @@ describe('Resolver - Channel', () => {
       peerUserIds: [friendsId[0]],
     };
 
-    const response = await authClient.request(findOrCreatePrivateChannel, variables);
+    const response = await authClient.request(
+      findOrCreatePrivateChannel,
+      variables,
+    );
 
     expect(response).toHaveProperty('findOrCreatePrivateChannel');
     expect(response.findOrCreatePrivateChannel).toHaveProperty('id');

@@ -1,7 +1,4 @@
-import {
-  encryptCredential,
-  getToken,
-} from '../utils/auth';
+import { encryptCredential, getToken } from '../utils/auth';
 import { resetPassword, verifyEmail } from '../models/User';
 
 import { MulterAzureStorage } from 'multer-azure-blob-storage';
@@ -62,11 +59,12 @@ const upload = multer({
 
 const router = Router();
 
-const verifyEmailToken = (token: string, appSecretEtc: string)
-    : VerificationToken =>
-    verify(token, appSecretEtc) as VerificationToken;
+const verifyEmailToken = (
+  token: string,
+  appSecretEtc: string,
+): VerificationToken => verify(token, appSecretEtc) as VerificationToken;
 
-const onResetPassword = async (req: ReqI18n, res) => {
+const onResetPassword = async (req: ReqI18n, res): Promise<void> => {
   const token = req.params.token;
   const randomPassword = qs.unescape(req.params.password);
 
@@ -92,7 +90,7 @@ const onResetPassword = async (req: ReqI18n, res) => {
   }
 };
 
-const onVerifyEmail = async (req: ReqI18n, res) => {
+const onVerifyEmail = async (req: ReqI18n, res): Promise<void> => {
   const token = req.params.token;
 
   try {
@@ -130,7 +128,7 @@ const onVerifyEmail = async (req: ReqI18n, res) => {
   }
 };
 
-const onUploadSingle = async (req: ReqI18n, res) => {
+const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
   interface Result {
     message: string | unknown;
     status: number;
@@ -165,7 +163,13 @@ const onUploadSingle = async (req: ReqI18n, res) => {
     return res.json(result);
   }
 
-  const actualURL = getURL('hackatalk', req.file.blobName, req.file.sasToken, true, req.file.snapshotId);
+  const actualURL = getURL(
+    'hackatalk',
+    req.file.blobName,
+    req.file.sasToken,
+    true,
+    req.file.snapshotId,
+  );
 
   req.file.url = actualURL;
 

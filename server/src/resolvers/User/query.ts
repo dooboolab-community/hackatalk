@@ -44,13 +44,14 @@ export const userConnection = queryField((t) => {
 
       return prisma.user.findMany({
         ...relayToPrismaPagination({
-          after, before, first, last,
+          after,
+          before,
+          first,
+          last,
         }),
         where: {
           ...filter,
-          AND: [
-            { id: { not: userId ?? undefined } },
-          ],
+          AND: [{ id: { not: userId ?? undefined } }],
           verified: true,
           deletedAt: null,
         },

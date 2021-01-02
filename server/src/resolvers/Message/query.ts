@@ -7,13 +7,14 @@ export const message = queryField('message', {
   type: 'Message',
   args: { id: nonNull(stringArg()) },
   description: 'Get single message',
-  resolve: (_, { id }, ctx) => ctx.prisma.message.findUnique({
-    where: { id },
-    include: {
-      sender: true,
-      channel: true,
-    },
-  }),
+  resolve: (_, { id }, ctx) =>
+    ctx.prisma.message.findUnique({
+      where: { id },
+      include: {
+        sender: true,
+        channel: true,
+      },
+    }),
 });
 
 export const messages = queryField((t) => {
@@ -31,19 +32,22 @@ export const messages = queryField((t) => {
       const { after, before, first, last, searchText, channelId } = args;
 
       const filter = searchText && {
-        OR: [
-          { text: { contains: searchText } },
-        ],
+        OR: [{ text: { contains: searchText } }],
       };
 
-      const blockedUsersIds = (await prisma.blockedUser.findMany({
-        select: { blockedUserId: true },
-        where: { userId },
-      })).map((user) => user.blockedUserId);
+      const blockedUsersIds = (
+        await prisma.blockedUser.findMany({
+          select: { blockedUserId: true },
+          where: { userId },
+        })
+      ).map((user) => user.blockedUserId);
 
       return prisma.message.findMany({
         ...relayToPrismaPagination({
-          after, before, first, last,
+          after,
+          before,
+          first,
+          last,
         }),
 
         where: {

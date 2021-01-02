@@ -1,14 +1,14 @@
 import { GraphQLClient, request } from 'graphql-request';
 import {
-  createBlockedUserMutation,
-  deleteBlockedUserMutation,
+  addFriendMutation,
+  deleteFriendMutation,
   signInEmailMutation,
   signUpMutation,
 } from '../queries';
 
 import { testHost } from '../testSetup';
 
-describe('Resolver - BlockedUser', () => {
+describe('Resolver - Friend', () => {
   it('scenario test', async () => {
     // signUp
     const signUpVar = {
@@ -32,7 +32,11 @@ describe('Resolver - BlockedUser', () => {
       password: 'password',
     };
 
-    const signInResponse = await request(testHost, signInEmailMutation, signInVar);
+    const signInResponse = await request(
+      testHost,
+      signInEmailMutation,
+      signInVar,
+    );
 
     expect(signInResponse).toHaveProperty('signInEmail');
     expect(signInResponse.signInEmail).toHaveProperty('token');
@@ -45,7 +49,7 @@ describe('Resolver - BlockedUser', () => {
       },
     });
 
-    // signUp - future blockedUser
+    // signUp - friend
     const signUpFriendVar = {
       user: {
         name: 'another_tester',
@@ -55,26 +59,38 @@ describe('Resolver - BlockedUser', () => {
       },
     };
 
-    const signUpFriendResponse = await request(testHost, signUpMutation, signUpFriendVar);
+    const signUpFriendResponse = await request(
+      testHost,
+      signUpMutation,
+      signUpFriendVar,
+    );
 
     expect(signUpFriendResponse).toHaveProperty('signUp');
     expect(signUpFriendResponse.signUp).toHaveProperty('email');
-    expect(signUpFriendResponse.signUp.email).toEqual(signUpFriendVar.user.email);
 
-    const blockedUserId = signUpFriendResponse.signUp.id;
+    expect(signUpFriendResponse.signUp.email).toEqual(
+      signUpFriendVar.user.email,
+    );
 
-    // should add blockedUser
-    const createBlockedUserResponse = await authClient.request(createBlockedUserMutation, { blockedUserId });
+    const friendId = signUpFriendResponse.signUp.id;
 
-    expect(createBlockedUserResponse).toHaveProperty('createBlockedUser');
-    expect(createBlockedUserResponse.createBlockedUser).toHaveProperty('user');
-    expect(createBlockedUserResponse.createBlockedUser).toHaveProperty('blockedUser');
+    // should add friend
+    const addFriendResponse = await authClient.request(addFriendMutation, {
+      friendId,
+    });
 
-    // should delete blockedUser
-    const deleteBlockedUserResponse = await authClient.request(deleteBlockedUserMutation, { blockedUserId });
+    expect(addFriendResponse).toHaveProperty('addFriend');
+    expect(addFriendResponse.addFriend).toHaveProperty('user');
+    expect(addFriendResponse.addFriend).toHaveProperty('friend');
 
-    expect(deleteBlockedUserResponse).toHaveProperty('deleteBlockedUser');
-    expect(deleteBlockedUserResponse.deleteBlockedUser).toHaveProperty('user');
-    expect(deleteBlockedUserResponse.deleteBlockedUser).toHaveProperty('blockedUser');
+    // should delete friend
+    const deleteFriendResponse = await authClient.request(
+      deleteFriendMutation,
+      { friendId },
+    );
+
+    expect(deleteFriendResponse).toHaveProperty('deleteFriend');
+    expect(deleteFriendResponse.deleteFriend).toHaveProperty('user');
+    expect(deleteFriendResponse.deleteFriend).toHaveProperty('friend');
   });
 });

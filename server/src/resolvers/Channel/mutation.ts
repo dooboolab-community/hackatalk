@@ -1,7 +1,4 @@
-import {
-  ChannelType,
-  MessageType,
-} from '@prisma/client';
+import { ChannelType, MessageType } from '@prisma/client';
 import {
   changeVisibilityWhenInvisible,
   createMemberships,
@@ -10,7 +7,13 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
-import { inputObjectType, list, mutationField, nonNull, stringArg } from 'nexus';
+import {
+  inputObjectType,
+  list,
+  mutationField,
+  nonNull,
+  stringArg,
+} from 'nexus';
 
 import { assert } from '../../utils/assert';
 import { filterNullProperties } from '../../utils/filterNullProperties';
@@ -57,44 +60,61 @@ export const createChannel = mutationField('createChannel', {
   resolve: async (_, { channel, message }, { prisma, userId }) => {
     assert(userId, 'Not authorized.');
 
-    const { channelType = ChannelType.private, userIds = [], name } = filterNullProperties(channel);
+    const {
+      channelType = ChannelType.private,
+      userIds = [],
+      name,
+    } = filterNullProperties(channel);
 
     interface Message {
       text?: string;
-      messageType?: MessageType,
-      fileUrls?: string[],
-      imageUrls?: string[],
+      messageType?: MessageType;
+      fileUrls?: string[];
+      imageUrls?: string[];
     }
 
-    const createMessage = (
-      { text, messageType = MessageType.text, fileUrls = [], imageUrls = [] } : Message,
-      channelId: string,
-    ) => prisma.message.create({
-      data: {
+    const createMessage = async (
+      {
         text,
-        messageType,
-        fileUrls: { set: fileUrls },
-        imageUrls: { set: imageUrls },
-        channel: { connect: { id: channelId } },
-        sender: { connect: { id: userId } },
-      },
-    });
+        messageType = MessageType.text,
+        fileUrls = [],
+        imageUrls = [],
+      }: Message,
+      channelId: string,
+    ): Promise<any> =>
+      prisma.message.create({
+        data: {
+          text,
+          messageType,
+          fileUrls: { set: fileUrls },
+          imageUrls: { set: imageUrls },
+          channel: { connect: { id: channelId } },
+          sender: { connect: { id: userId } },
+        },
+      });
 
     const isPrivateChannel = channelType === ChannelType.private;
 
     if (isPrivateChannel) {
       const hasNoMembersToChat = userIds.length === 0;
 
-      if (hasNoMembersToChat) {
+      if (hasNoMembersToChat)
         throw new Error('User has no members to chat within private channel.');
-      }
 
-      const existingChannel = await findChannelWithUserIds([userId, ...userIds]);
+      const existingChannel = await findChannelWithUserIds([
+        userId,
+        ...userIds,
+      ]);
 
       if (existingChannel) {
         changeVisibilityWhenInvisible(userId, existingChannel);
         await createMemberships(existingChannel.id, userIds);
-        message && (await createMessage(filterNullProperties(message), existingChannel.id));
+
+        message &&
+          (await createMessage(
+            filterNullProperties(message),
+            existingChannel.id,
+          ));
 
         return existingChannel;
       }
@@ -105,40 +125,49 @@ export const createChannel = mutationField('createChannel', {
     await createMemberships(id, userIds);
     message && (await createMessage(filterNullProperties(message), id));
 
-    const getChannel = (channelId: string) => prisma.channel.findUnique({
-      where: { id: channelId },
-      include: {
-        membership: true,
-      },
-    });
+    const getChannel = (channelId: string): Promise<any> =>
+      prisma.channel.findUnique({
+        where: { id: channelId },
+        include: {
+          membership: true,
+        },
+      });
 
     return getChannel(id);
   },
 });
 
-export const findOrCreatePrivateChannel = mutationField('findOrCreatePrivateChannel', {
-  type: 'Channel',
-  args: { peerUserIds: nonNull(list(nonNull(stringArg()))) },
-  description: 'Find or create channel associated to peer user id.',
+export const findOrCreatePrivateChannel = mutationField(
+  'findOrCreatePrivateChannel',
+  {
+    type: 'Channel',
+    args: { peerUserIds: nonNull(list(nonNull(stringArg()))) },
+    description: 'Find or create channel associated to peer user id.',
 
-  resolve: async (parent, { peerUserIds }, { userId }) => {
-    assert(userId, 'Not authorized.');
+    resolve: async (parent, { peerUserIds }, { userId }) => {
+      assert(userId, 'Not authorized.');
 
-    const existingChannel = await findPrivateChannelWithUserIds([userId, ...peerUserIds]);
+      const existingChannel = await findPrivateChannelWithUserIds([
+        userId,
+        ...peerUserIds,
+      ]);
 
-    if (existingChannel) {
-      peerUserIds.forEach((id: string) => changeVisibilityWhenInvisible(id, existingChannel));
+      if (existingChannel) {
+        peerUserIds.forEach((id: string) =>
+          changeVisibilityWhenInvisible(id, existingChannel),
+        );
 
-      return existingChannel;
-    }
+        return existingChannel;
+      }
 
-    const channel = await createNewChannel(true, userId);
+      const channel = await createNewChannel(true, userId);
 
-    await createMemberships(channel.id, peerUserIds);
+      await createMemberships(channel.id, peerUserIds);
 
-    return channel;
+      return channel;
+    },
   },
-});
+);
 
 export const leaveChannel = mutationField('leaveChannel', {
   type: 'Membership',
@@ -156,7 +185,7 @@ export const leaveChannel = mutationField('leaveChannel', {
 
     const channel = await findExistingChannel(channelId);
 
-    if (channel.channelType === 'public') {
+    if (channel.channelType === 'public')
       return prisma.membership.delete({
         where: {
           userId_channelId: {
@@ -165,7 +194,6 @@ export const leaveChannel = mutationField('leaveChannel', {
           },
         },
       });
-    }
 
     return prisma.membership.update({
       where: {
@@ -183,7 +211,10 @@ export const leaveChannel = mutationField('leaveChannel', {
 
 export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
   type: 'Channel',
-  args: { channelId: nonNull(stringArg()), userIds: nonNull(list(nonNull(stringArg()))) },
+  args: {
+    channelId: nonNull(stringArg()),
+    userIds: nonNull(list(nonNull(stringArg()))),
+  },
   description: 'Adds some users into [public] channel.',
 
   resolve: async (_, { channelId, userIds }, { prisma, userId }) => {
@@ -191,9 +222,8 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
     const channel = await findExistingChannel(channelId);
 
-    if (channel.channelType === 'private') {
+    if (channel.channelType === 'private')
       throw new Error("You can't add some users to private channel.");
-    }
 
     const membership = await prisma.membership.findFirst({
       where: {
@@ -202,34 +232,35 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       },
     });
 
-    const hasAdminPermission = !!membership &&
+    const hasAdminPermission =
+      !!membership &&
       membership.membershipType !== 'admin' &&
       membership.membershipType !== 'owner';
 
-    if (hasAdminPermission) {
-      throw new Error('You should have admin or owner membership to add some users to the channel.');
-    }
+    if (hasAdminPermission)
+      throw new Error(
+        'You should have admin or owner membership to add some users to the channel.',
+      );
 
-    for (const userId of userIds) {
-      const membership = await prisma.membership.findFirst({
+    for (const channelUserId of userIds) {
+      const channelMembership = await prisma.membership.findFirst({
         where: {
           channelId,
-          userId,
+          userId: channelUserId,
         },
       });
 
-      if (!membership) {
+      if (!channelMembership)
         await prisma.membership.create({
           data: {
             user: {
-              connect: { id: userId },
+              connect: { id: channelUserId },
             },
             channel: {
               connect: { id: channelId },
             },
           },
         });
-      }
     }
 
     return channel;
@@ -238,7 +269,10 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
 export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
   type: 'Channel',
-  args: { channelId: nonNull(stringArg()), userIds: nonNull(list(nonNull(stringArg()))) },
+  args: {
+    channelId: nonNull(stringArg()),
+    userIds: nonNull(list(nonNull(stringArg()))),
+  },
   description: 'Removes some users from [public] channel.',
 
   resolve: async (_, { channelId, userIds }, { prisma, userId }) => {
@@ -246,9 +280,10 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
 
     const channel = await findExistingChannel(channelId);
 
-    if (channel.channelType === 'private') {
-      throw new Error('Removing users from the private channels is not allowed.');
-    }
+    if (channel.channelType === 'private')
+      throw new Error(
+        'Removing users from the private channels is not allowed.',
+      );
 
     const membership = await prisma.membership.findFirst({
       where: {
@@ -257,13 +292,15 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
       },
     });
 
-    const hasAdminPermission = !!membership &&
+    const hasAdminPermission =
+      !!membership &&
       membership.membershipType !== 'admin' &&
       membership.membershipType !== 'owner';
 
-    if (hasAdminPermission) {
-      throw new Error('You should have admin or owner membership to add some users to the channel.');
-    }
+    if (hasAdminPermission)
+      throw new Error(
+        'You should have admin or owner membership to add some users to the channel.',
+      );
 
     await prisma.membership.deleteMany({
       where: {

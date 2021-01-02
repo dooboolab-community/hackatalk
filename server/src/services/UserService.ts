@@ -23,7 +23,10 @@ export class UserService {
   ): Promise<NexusGenRootTypes['AuthPayload']> {
     await UserService.validateSocialUser(socialUser, ctx);
 
-    const user = await UserService.createOrGetUserBySocialUserInput(socialUser, ctx);
+    const user = await UserService.createOrGetUserBySocialUserInput(
+      socialUser,
+      ctx,
+    );
 
     ctx.pubsub.publish(USER_SIGNED_IN, user);
 
@@ -42,7 +45,10 @@ export class UserService {
     };
   }
 
-  private static async validateSocialUser(socialUser: SocialUserInput, ctx: Context) {
+  private static async validateSocialUser(
+    socialUser: SocialUserInput,
+    ctx: Context,
+  ): Promise<void> {
     if (socialUser.email) {
       // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
       const emailUser = await ctx.prisma.user.findFirst({
@@ -56,14 +62,15 @@ export class UserService {
         },
       });
 
-      if (emailUser) {
+      if (emailUser)
         throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
-      }
     }
   }
 
-  private static async createOrGetUserBySocialUserInput(socialUser: SocialUserInput, ctx: Context)
-  : Promise<NexusGenRootTypes['User']> {
+  private static async createOrGetUserBySocialUserInput(
+    socialUser: SocialUserInput,
+    ctx: Context,
+  ): Promise<NexusGenRootTypes['User']> {
     const user = await ctx.prisma.user.findFirst({
       where: {
         profile: {
@@ -73,7 +80,7 @@ export class UserService {
       include: { profile: true },
     });
 
-    if (!user) {
+    if (!user)
       return ctx.prisma.user.create({
         data: {
           profile: {
@@ -91,7 +98,6 @@ export class UserService {
         },
         include: { profile: true },
       });
-    }
 
     return user;
   }

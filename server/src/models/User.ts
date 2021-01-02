@@ -34,9 +34,10 @@ export const User = objectType({
     t.list.field('notifications', { type: 'Notification' });
 
     t.boolean('hasBlocked', {
-      description: 'Check if the user is blocked by the user who have signed in.',
+      description:
+        'Check if the user is blocked by the user who have signed in.',
 
-      resolve: async ({ id }, args, { prisma, userId }) => {
+      resolve: async ({ id }, args, { userId }) => {
         assert(userId, 'Not authorized.');
 
         const blockedUser = await prisma.blockedUser.findFirst({
@@ -49,16 +50,19 @@ export const User = objectType({
   },
 });
 
-export const resetPassword = (email: string, password: string)
-: Promise<NexusGenRootTypes['User']> => {
+export const resetPassword = (
+  email: string,
+  password: string,
+): Promise<NexusGenRootTypes['User']> => {
   return prisma.user.update({
     where: { email },
     data: { password },
   });
 };
 
-export const verifyEmail = (email: string)
-: Promise<NexusGenRootTypes['User']> => {
+export const verifyEmail = (
+  email: string,
+): Promise<NexusGenRootTypes['User']> => {
   return prisma.user.update({
     where: { email },
     data: {

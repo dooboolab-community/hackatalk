@@ -8,11 +8,12 @@ export const channel = queryField('channel', {
   args: { channelId: nonNull(stringArg()) },
   description: 'Get single channel',
 
-  resolve: (parent, { channelId }, ctx) => ctx.prisma.channel.findUnique({
-    where: {
-      id: channelId,
-    },
-  }),
+  resolve: (parent, { channelId }, ctx) =>
+    ctx.prisma.channel.findUnique({
+      where: {
+        id: channelId,
+      },
+    }),
 });
 
 export const channels = queryField((t) => {
@@ -38,7 +39,10 @@ export const channels = queryField((t) => {
 
       return prisma.channel.findMany({
         ...relayToPrismaPagination({
-          after, before, first, last,
+          after,
+          before,
+          first,
+          last,
         }),
 
         where: {

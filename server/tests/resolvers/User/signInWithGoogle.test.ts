@@ -1,4 +1,4 @@
-import * as AuthUtils from '../../../../src/utils/auth';
+import * as AuthUtils from '../../../src/utils/auth';
 
 import { request } from 'graphql-request';
 import { signInWithGoogle } from '../../queries';
@@ -10,13 +10,13 @@ describe('signInWithGoogle', () => {
       accessToken: 'google_user_token',
     };
 
-    jest
-      .spyOn(AuthUtils, 'verifyGoogleId')
+    jest.spyOn(AuthUtils, 'verifyGoogleId').mockImplementation(() =>
       // @ts-ignore
-      .mockImplementation(() => Promise.resolve({
+      Promise.resolve({
         sub: 'google_user_token',
         email: 'google@email.com',
-      }));
+      } as AuthUtils.GoogleUser),
+    );
 
     const response = await request(testHost, signInWithGoogle, variables);
 

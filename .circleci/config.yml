@@ -46,7 +46,7 @@ jobs:
           name: Jest test
           working_directory: server
           command: |
-            yarn test --coverage --silent --detectOpenHandles
+            yarn test --coverage --silent
 
       - codecov/upload:
           file: ./server/coverage/lcov.info

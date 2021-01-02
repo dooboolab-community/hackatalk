@@ -26,7 +26,10 @@ export const friends = queryField((t) => {
 
       return prisma.user.findMany({
         ...relayToPrismaPagination({
-          after, before, first, last,
+          after,
+          before,
+          first,
+          last,
         }),
         where: {
           ...filter,

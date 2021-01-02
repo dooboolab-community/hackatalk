@@ -14,14 +14,12 @@ import {
   ErrorPasswordIncorrect,
 } from '../../utils/error';
 import SendGridMail, { MailDataRequired } from '@sendgrid/mail';
-import {
-  USER_SIGNED_IN,
-  USER_UPDATED,
-} from './subscription';
+import { USER_SIGNED_IN, USER_UPDATED } from './subscription';
 import { andThen, pipe } from 'ramda';
 import { inputObjectType, mutationField, nonNull, stringArg } from 'nexus';
 
 import { AuthType } from '../../models/Scalar';
+import { User } from '@prisma/client';
 import { UserService } from '../../services/UserService';
 import { assert } from '../../utils/assert';
 import generator from 'generate-password';
@@ -100,7 +98,7 @@ export const signInEmail = mutationField('signInEmail', {
   resolve: async (_parent, { email, password }, ctx) => {
     const { pubsub, prisma } = ctx;
 
-    const findUserWithEmail = async () => {
+    const findUserWithEmail = async (): Promise<User> => {
       const user = await prisma.user.findUnique({
         where: { email },
         include: { profile: true },
@@ -111,21 +109,21 @@ export const signInEmail = mutationField('signInEmail', {
       return user;
     };
 
-    const updateLastSignedIn = () => prisma.user.update({
-      where: { email },
-      data: { lastSignedIn: new Date().toISOString() },
-    });
+    const updateLastSignedIn = (): Promise<User> =>
+      prisma.user.update({
+        where: { email },
+        data: { lastSignedIn: new Date().toISOString() },
+      });
 
     return pipe(
       findUserWithEmail,
-      andThen(
-        (user) => pipe(
+      andThen((user) =>
+        pipe(
           async () => {
             assert(user.password, 'The user does not have a password.');
 
-            if (!(await validateCredential(password, user.password))) {
+            if (!(await validateCredential(password, user.password)))
               throw new Error('Invalid password');
-            }
           },
           andThen(() => pubsub.publish(USER_SIGNED_IN, user)),
           andThen(updateLastSignedIn),
@@ -180,7 +178,9 @@ export const signInWithApple = mutationField('signInWithApple', {
         },
         ctx,
       );
-    } catch (err) { throw new Error(err); }
+    } catch (err) {
+      throw new Error(err);
+    }
   },
 });
 
@@ -217,7 +217,11 @@ export const sendVerification = mutationField('sendVerification', {
     });
 
     if (user) {
-      const verificationToken = sign({ email, type: 'verifyEmail' }, ctx.appSecretEtc);
+      const verificationToken = sign(
+        { email, type: 'verifyEmail' },
+        ctx.appSecretEtc,
+      );
+
       const html = getEmailVerificationHTML(verificationToken, ctx.request.req);
 
       assert(SENDGRID_EMAIL, 'Missing sendgrid email address.');
@@ -241,7 +245,8 @@ export const sendVerification = mutationField('sendVerification', {
 export const updateProfile = mutationField('updateProfile', {
   type: 'User',
   args: { user: nonNull(UserUpdateInputType) },
-  description: 'Update user profile. Becareful that nullable fields will be updated either.',
+  description:
+    'Update user profile. Becareful that nullable fields will be updated either.',
 
   resolve: async (_parent, { user }, { prisma, pubsub, userId }) => {
     assert(userId, 'Not authorized.');
@@ -262,11 +267,13 @@ export const findPassword = mutationField('findPassword', {
   args: { email: nonNull(stringArg()) },
 
   resolve: async (_parent, { email }, ctx) => {
-    if (!email || !validateEmail(email)) {
+    if (!email || !validateEmail(email))
       throw ErrorEmailNotValid('Email is not valid');
-    }
 
-    const verificationToken = sign({ email, type: 'findPassword' }, ctx.appSecretEtc);
+    const verificationToken = sign(
+      { email, type: 'findPassword' },
+      ctx.appSecretEtc,
+    );
 
     const password = generator.generate({
       length: 10,
