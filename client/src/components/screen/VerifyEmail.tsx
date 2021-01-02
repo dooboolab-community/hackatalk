@@ -53,7 +53,6 @@ function Page(props: Props): ReactElement {
   const { theme } = useThemeContext();
 
   const {
-    navigation,
     route: {
       params: { email },
     },
@@ -70,9 +69,8 @@ function Page(props: Props): ReactElement {
       email,
     },
     onCompleted: (response: VerifyEmailMutationResponse) => {
-      if (response.sendVerification) {
+      if (response.sendVerification)
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
-      }
 
       Alert.alert(
         getString('ERROR'),

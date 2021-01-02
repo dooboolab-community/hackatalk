@@ -88,15 +88,7 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: {
-    photoURL = '',
-    email,
-    nickname,
-    name,
-    statusMessage,
-    isOnline,
-    hasBlocked,
-  },
+  user: { photoURL = '', nickname, name, statusMessage, isOnline, hasBlocked },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
 

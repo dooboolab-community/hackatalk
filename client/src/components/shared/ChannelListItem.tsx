@@ -6,7 +6,6 @@ import { IC_NO_IMAGE } from '../../utils/Icons';
 import { getString } from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({ theme }): string => theme.itemBackground};
@@ -109,10 +108,6 @@ interface Props {
 
 function ChannelListItem(props: Props): React.ReactElement {
   const {
-    theme: { fontColor },
-  } = useThemeContext();
-
-  const {
     testID,
     item: {
       channelType = 'private',
@@ -130,13 +125,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     onPress,
   } = props;
 
-  const {
-    messageType,
-    text,
-    imageUrls,
-    fileUrls,
-    createdAt,
-  } = lastMessage as Message;
+  const { text, imageUrls, createdAt } = lastMessage as Message;
 
   if (channelType === 'private') {
     const users = memberships?.map((membership) => membership?.user);
@@ -150,9 +139,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     const renderSingleImage = (
       photoURL: string | null | undefined,
     ): ReactElement => {
-      if (photoURL) {
-        return <StyledImage source={{ uri: photoURL }} />;
-      }
+      if (photoURL) return <StyledImage source={{ uri: photoURL }} />;
 
       return (
         <View
@@ -183,9 +170,8 @@ function ChannelListItem(props: Props): React.ReactElement {
           {photoStrs?.map((photo, i) => {
             if (i > 3) return null;
 
-            if (!photo) {
+            if (!photo)
               return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
-            }
 
             return <StyledImageSmall key={i} source={{ uri: photo }} />;
           })}

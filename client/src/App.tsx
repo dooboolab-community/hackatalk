@@ -60,11 +60,8 @@ const meQuery = graphql`
 
 function cacheImages(images: (number | string)[]): any[] {
   return images.map((image) => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.fromModule(image as number).downloadAsync();
-    }
+    if (typeof image === 'string') return Image.prefetch(image);
+    else return Asset.fromModule(image as number).downloadAsync();
   });
 }
 
@@ -118,9 +115,7 @@ function App(): ReactElement {
     if (!assetLoaded) {
       SplashScreen.preventAutoHideAsync();
       loadAssetsAsync();
-    } else {
-      hideSplashScreenThenRegisterNotification();
-    }
+    } else hideSplashScreenThenRegisterNotification();
   }, [assetLoaded]);
 
   useEffect(() => {
@@ -130,12 +125,10 @@ function App(): ReactElement {
       return;
     }
 
-    authRef.current.setUser(me as User);
+    authRef.current?.setUser(me as User);
   }, [me]);
 
-  if (!assetLoaded) {
-    return <View />;
-  }
+  if (!assetLoaded) return <View />;
 
   return <RootNavigator />;
 }

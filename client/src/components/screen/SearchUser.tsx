@@ -1,4 +1,4 @@
-import { Animated, FlatList, TouchableOpacity, View } from 'react-native';
+import { Animated, TouchableOpacity, View } from 'react-native';
 import React, { FC, ReactElement, Suspense, useState } from 'react';
 import type {
   SearchUsersPaginationQuery,
@@ -90,7 +90,7 @@ type UserProps = {
   searchArgs: SearchUsersPaginationQueryVariables;
 };
 
-const UsersFragment: FC<UserProps> = ({ scrollY, user, searchArgs }) => {
+const UsersFragment: FC<UserProps> = ({ user, searchArgs }) => {
   const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
     SearchUsersPaginationQuery,
     SearchUserComponent_user$key

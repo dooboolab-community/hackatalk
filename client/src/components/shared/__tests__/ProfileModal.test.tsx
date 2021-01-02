@@ -4,11 +4,11 @@ import {
 } from '../../../providers/ProfileModalProvider';
 import React, { createRef, forwardRef, useImperativeHandle } from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MockPayloadGenerator } from 'relay-test-utils';
 import ProfileModal from '../ProfileModal';
 import { View } from 'react-native';
+import { createTestElement } from '../../../../test/testUtils';
 import { environment } from '../../../providers';
 
 jest.mock('@react-navigation/core', () => {
@@ -48,8 +48,11 @@ describe('[ProfileModal] rendering test', () => {
     const { toJSON } = render(component);
 
     await act(() =>
-      ref.current.showModal({
-        user: { id: '' },
+      ref.current?.showModal({
+        // @ts-ignore
+        user: {
+          id: '',
+        },
         isFriend: false,
       }),
     );
@@ -63,7 +66,8 @@ describe('[ProfileModal] rendering test', () => {
     const { queryByTestId } = render(component);
 
     await act(() =>
-      ref.current.showModal({
+      ref.current?.showModal({
+        // @ts-ignore
         user: { id: '' },
         isFriend: false,
       }),
@@ -78,7 +82,8 @@ describe('[ProfileModal] rendering test', () => {
     const { getByTestId, queryByTestId } = render(component);
 
     await act(() =>
-      ref.current.showModal({
+      ref.current?.showModal({
+        // @ts-ignore
         user: { id: '' },
         isFriend: false,
       }),
@@ -100,7 +105,7 @@ describe('[ProfileModal] rendering test', () => {
   it('Should be closed', async () => {
     const { queryByTestId } = render(component);
 
-    await act(() => ref.current.hideModal());
+    await act(() => ref.current?.hideModal());
 
     const button = queryByTestId('touch-add-friend');
 
@@ -111,7 +116,8 @@ describe('[ProfileModal] rendering test', () => {
     const { queryByTestId, toJSON } = render(component);
 
     await act(() =>
-      ref.current.showModal({
+      ref.current?.showModal({
+        // @ts-ignore
         user: { id: '' },
         isFriend: true,
       }),

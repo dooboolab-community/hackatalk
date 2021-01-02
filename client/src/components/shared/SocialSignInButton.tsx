@@ -210,7 +210,7 @@ const SocialSignInButton: FC<Props> = ({
     }
   };
 
-  if (socialProvider === AuthType.Google) {
+  if (socialProvider === AuthType.Google)
     return (
       <Button
         testID="btn-google"
@@ -237,7 +237,6 @@ const SocialSignInButton: FC<Props> = ({
         text={getString('SIGN_IN_WITH_GOOGLE')}
       />
     );
-  }
 
   return (
     <Button

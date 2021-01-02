@@ -1,6 +1,5 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
 import {
   cleanup,
   fireEvent,
@@ -10,6 +9,7 @@ import {
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MockPayloadGenerator } from 'relay-test-utils';
+import React from 'react';
 import SignUp from '../SignUp';
 import { environment } from '../../../providers';
 
@@ -312,7 +312,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should call signUp when the button has clicked and check whether it catches error', async () => {
-    const component = createTestElement(
+    const anotherComponent = createTestElement(
       <SignUp
         {...createTestProps({
           navigation: null,
@@ -320,7 +320,7 @@ describe('[SignUp] interaction', () => {
       />,
     );
 
-    const { getByTestId } = render(component);
+    const { getByTestId } = render(anotherComponent);
 
     const emailInput = getByTestId('input-email');
 

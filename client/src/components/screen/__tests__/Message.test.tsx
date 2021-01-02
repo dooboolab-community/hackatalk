@@ -3,7 +3,7 @@ import 'react-native';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import { Channel } from '../../../types/graphql';
 import Message from '../Message';

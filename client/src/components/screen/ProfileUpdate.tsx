@@ -174,7 +174,7 @@ const Screen: FC<Props> = () => {
 
           setIsUploading(true);
 
-          if (image && !image.cancelled) {
+          if (image && !image.cancelled)
             try {
               const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
                 {
@@ -197,7 +197,6 @@ const Screen: FC<Props> = () => {
             } catch (err) {
               Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
             }
-          }
 
           return;
         }
@@ -205,7 +204,7 @@ const Screen: FC<Props> = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchImageLibraryAsync();
 
-          if (image && !image.cancelled) {
+          if (image && !image.cancelled)
             try {
               const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
                 {
@@ -226,7 +225,6 @@ const Screen: FC<Props> = () => {
             } catch (err) {
               Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
             }
-          }
         }
       },
     );

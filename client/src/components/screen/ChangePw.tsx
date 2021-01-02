@@ -108,12 +108,12 @@ function ChangePw(props: Props): ReactElement {
   const keyboardDidHideListener = useRef<EmitterSubscription>();
 
   useEffect(() => {
-    keyboardDidShowListener.current = Keyboard.addListener(
+    keyboardDidShowListener.current = Keyboard?.addListener(
       'keyboardWillShow',
       onKeyboardShow,
     );
 
-    keyboardDidHideListener.current = Keyboard.addListener(
+    keyboardDidHideListener.current = Keyboard?.addListener(
       'keyboardWillHide',
       onKeyboardHide,
     );

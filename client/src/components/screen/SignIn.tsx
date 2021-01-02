@@ -248,9 +248,7 @@ function SignIn(props: Props): ReactElement {
       (await AsyncStorage.getItem('license_agreed')) as string,
     );
 
-    if (!licenseAgreed) {
-      return navigation.navigate('LicenseAgreement');
-    }
+    if (!licenseAgreed) return navigation.navigate('LicenseAgreement');
 
     const mutationConfig = {
       variables: {
@@ -261,11 +259,10 @@ function SignIn(props: Props): ReactElement {
       onCompleted: (response: SignInEmailMutationResponse) => {
         const { token, user } = response.signInEmail as AuthPayload;
 
-        if (user && !user.verified) {
+        if (user && !user.verified)
           return navigation.navigate('VerifyEmail', {
             email,
           });
-        }
 
         AsyncStorage.setItem('token', token);
 
@@ -334,13 +331,13 @@ function SignIn(props: Props): ReactElement {
     } catch (e) {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow
-      } else {
+      } else
         Platform.select({
           // @ts-ignore
+          // eslint-disable-next-line no-alert
           web: alert(`Apple Login Error: ${e.code} - ${e.message}`),
           default: Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`),
         });
-      }
     } finally {
       setSigningInApple(false);
     }

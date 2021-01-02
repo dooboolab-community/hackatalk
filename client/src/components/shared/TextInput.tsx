@@ -75,11 +75,10 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   const [focused, setFocused] = useState(false);
 
   const renderTxtLabel = (): React.ReactElement | null => {
-    if (props.txtLabel) {
+    if (props.txtLabel)
       return (
         <StyledLabelText focused={focused}>{props.txtLabel}</StyledLabelText>
       );
-    }
 
     return null;
   };

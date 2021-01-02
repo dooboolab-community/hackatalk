@@ -1,17 +1,11 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import { MockPayloadGenerator } from 'relay-test-utils';
 import ProfileUpdate from '../ProfileUpdate';
-import ProfileUpdateMeQuery from '../../../__generated__/ProfileUpdateMeQuery.graphql';
+import React from 'react';
 import { environment } from '../../../providers';
 
 const component = createTestElement(<ProfileUpdate {...createTestProps()} />);
@@ -27,9 +21,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
         options: Record<string, unknown>,
         callback: (index: number) => void,
       ): void => {
-        if (userPressLaunchCamera) {
-          callback(BUTTON_INDEX_LAUNCH_CAMERA);
-        }
+        if (userPressLaunchCamera) callback(BUTTON_INDEX_LAUNCH_CAMERA);
 
         callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY);
       },

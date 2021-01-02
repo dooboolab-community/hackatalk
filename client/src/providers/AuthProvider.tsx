@@ -45,6 +45,7 @@ const initialState: State = {
   user: undefined,
 };
 
+// eslint-disable-next-line default-param-last
 const reducer: Reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SetUser:

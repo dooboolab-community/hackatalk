@@ -39,6 +39,7 @@ let component: React.ReactElement;
 describe('[MessageListItem] rendering test', () => {
   beforeEach(() => {
     props = createTestProps(props);
+    // @ts-ignore
     component = createTestElement(<MessageListItem {...props} />);
   });
 
@@ -53,6 +54,7 @@ describe('[MessageListItem] rendering test', () => {
 
   it('renders [peerMessage] with URL as expected', () => {
     props.item.sender.photoURL = 'https://';
+    // @ts-ignore
     component = createTestElement(<MessageListItem {...props} />);
 
     const json = render(component).toJSON();
@@ -63,10 +65,9 @@ describe('[MessageListItem] rendering test', () => {
 });
 
 describe('[MessageListItem] interaction', () => {
-  let component;
-
   beforeEach(() => {
     props = createTestProps(props);
+    // @ts-ignore
     component = createTestElement(<MessageListItem {...props} />);
   });
 

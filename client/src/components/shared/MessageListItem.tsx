@@ -121,11 +121,8 @@ function shouldShowDate(
 }
 
 const ImageSender: FC<ImageSenderProps> = ({ thumbURL, isSamePeerMsg }) => {
-  if (isSamePeerMsg) {
-    return <View style={{ width: 40 }} />;
-  } else if (thumbURL) {
-    return <StyledImageSender source={{ uri: thumbURL }} />;
-  }
+  if (isSamePeerMsg) return <View style={{ width: 40 }} />;
+  else if (thumbURL) return <StyledImageSender source={{ uri: thumbURL }} />;
 
   return (
     <View
@@ -145,7 +142,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   const { theme } = useThemeContext();
 
   const {
-    item: { id, sender, messageType, text, createdAt, imageUrls, fileUrls },
+    item: { id, sender, text, createdAt, imageUrls },
     prevItem,
     nextItem,
     onPressPeerImage,
@@ -157,7 +154,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   const isSamePeerMsg = prevItem?.sender?.id === sender?.id;
   const showDate = shouldShowDate(createdAt, nextItem?.createdAt);
 
-  if (sender?.id !== userId) {
+  if (sender?.id !== userId)
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{ marginRight: 8, width: 40 }}>
@@ -211,7 +208,6 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         </View>
       </WrapperPeer>
     );
-  }
 
   return (
     <WrapperMy>

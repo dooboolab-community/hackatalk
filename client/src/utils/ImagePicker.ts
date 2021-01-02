@@ -36,9 +36,8 @@ const requestPermissions = async (
 export const launchCameraAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
   const permissionStatus = await requestPermissions('camera');
 
-  if (permissionStatus === PermissionStatus.GRANTED) {
+  if (permissionStatus === PermissionStatus.GRANTED)
     return ImagePicker.launchCameraAsync(photoOptions);
-  }
 
   return null;
 };
@@ -46,9 +45,8 @@ export const launchCameraAsync = async (): Promise<ImagePicker.ImagePickerResult
 export const launchImageLibraryAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
   const permissionStatus = await requestPermissions('photo');
 
-  if (permissionStatus === PermissionStatus.GRANTED) {
+  if (permissionStatus === PermissionStatus.GRANTED)
     return ImagePicker.launchImageLibraryAsync(photoOptions);
-  }
 
   return null;
 };
