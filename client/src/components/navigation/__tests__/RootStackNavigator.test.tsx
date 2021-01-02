@@ -6,9 +6,7 @@ import React from 'react';
 import StackNavigator from '../RootStackNavigator';
 import { render } from '@testing-library/react-native';
 
-const component = createTestElement(
-  <StackNavigator {...createTestProps()} />,
-);
+const component = createTestElement(<StackNavigator {...createTestProps()} />);
 
 describe('[Stack] navigator', () => {
   it('should renders without crashing', async () => {

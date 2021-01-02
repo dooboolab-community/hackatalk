@@ -12,9 +12,7 @@ const FakeChild = (): React.ReactElement => {
     <View>
       <Button
         testID="BUTTON"
-        onPress={(): void =>
-          setDeviceType(Device.DeviceType.PHONE)
-        }
+        onPress={(): void => setDeviceType(Device.DeviceType.PHONE)}
         title="Button"
       />
     </View>

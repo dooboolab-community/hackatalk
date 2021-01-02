@@ -14,6 +14,7 @@ interface Context {
 
 const [useCtx, Provider] = createCtx<Context>();
 
+// eslint-disable-next-line no-shadow
 export enum ActionType {
   SetUser = 'set-user',
 }
@@ -44,10 +45,7 @@ const initialState: State = {
   user: undefined,
 };
 
-const reducer: Reducer = (
-  state = initialState,
-  action,
-) => {
+const reducer: Reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SetUser:
       return { ...action.payload };

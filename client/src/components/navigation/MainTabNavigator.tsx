@@ -1,7 +1,13 @@
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from '@react-navigation/native';
 import { IC_PROFILE_W, IC_SEARCH_W } from '../../utils/Icons';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
-import { MaterialTopTabNavigationProp, createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import {
+  MaterialTopTabNavigationProp,
+  createMaterialTopTabNavigator,
+} from '@react-navigation/material-top-tabs';
 import React, { ReactElement } from 'react';
 
 import Channel from '../screen/Channel';
@@ -14,27 +20,26 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MaterialTopTabParamList = {
-  default: undefined;
   Friend: undefined;
   Channel: undefined;
 };
 
 type NavigationProps<
-  T extends keyof MaterialTopTabParamList = 'default'
+  T extends keyof MaterialTopTabParamList
 > = MaterialTopTabNavigationProp<MaterialTopTabParamList, T>;
 
 export type MaterialTopTabNavigationProps<
-  T extends keyof MaterialTopTabParamList = 'default'
+  T extends keyof MaterialTopTabParamList
 > = CompositeNavigationProp<
-NavigationProps<T>,
-MainStackNavigationProps<'MainTab'>
+  NavigationProps<T>,
+  MainStackNavigationProps<'MainTab'>
 >;
 
 const Tab = createMaterialTopTabNavigator<MaterialTopTabParamList>();
 
 const CustomHeader = (): ReactElement => {
   const { theme, changeThemeType } = useThemeContext();
-  const navigation = useNavigation();
+  const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   return (
     // @ts-ignore
@@ -64,7 +69,7 @@ const CustomHeader = (): ReactElement => {
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('ProfileUpdate')}
         >
-          <Image style={{ height: 24, width: 24 }} source={IC_PROFILE_W}/>
+          <Image style={{ height: 24, width: 24 }} source={IC_PROFILE_W} />
         </TouchableOpacity>
       </View>
       <TouchableOpacity onPress={(): void => changeThemeType()}>
@@ -74,7 +79,9 @@ const CustomHeader = (): ReactElement => {
             fontWeight: '500',
             color: 'white',
           }}
-        >{getString('HACKATALK')}</Text>
+        >
+          {getString('HACKATALK')}
+        </Text>
       </TouchableOpacity>
       <View style={{ marginRight: 8 }}>
         <TouchableOpacity
@@ -83,7 +90,7 @@ const CustomHeader = (): ReactElement => {
           onPress={(): void => navigation.navigate('SearchUser')}
         >
           {/* <Ionicons name="ios-search" size={24} color="white" /> */}
-          <Image style={{ height: 24, width: 24 }} source={IC_SEARCH_W}/>
+          <Image style={{ height: 24, width: 24 }} source={IC_SEARCH_W} />
         </TouchableOpacity>
       </View>
     </LinearGradient>
@@ -119,13 +126,21 @@ function TabNavigator(): ReactElement {
         },
       }}
     >
-      <Tab.Screen name="Friend" component={Friend} options={{
-        title: getString('FRIEND'),
-      }}/>
-      <Tab.Screen name="Channel" component={Channel} options={{
-        title: getString('CHANNEL'),
-      }}/>
-    </Tab.Navigator >
+      <Tab.Screen
+        name="Friend"
+        component={Friend}
+        options={{
+          title: getString('FRIEND'),
+        }}
+      />
+      <Tab.Screen
+        name="Channel"
+        component={Channel}
+        options={{
+          title: getString('CHANNEL'),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 

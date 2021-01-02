@@ -5,13 +5,9 @@ import * as React from 'react';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import Shared from '../ErrorView';
-import {
-  render,
-} from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
-const component = createTestElement(
-  <Shared {...createTestProps()} />,
-);
+const component = createTestElement(<Shared {...createTestProps()} />);
 
 describe('Rendering', () => {
   it('renders without crashing', () => {

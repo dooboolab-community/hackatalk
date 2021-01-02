@@ -1,4 +1,9 @@
-import { ImageSourcePropType, TouchableOpacity, View, ViewStyle } from 'react-native';
+import {
+  ImageSourcePropType,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import CheckBox from './CheckBox';
 import { FontAwesome } from '@expo/vector-icons';
@@ -83,14 +88,20 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', email, nickname, name, statusMessage, isOnline, hasBlocked },
+  user: {
+    photoURL = '',
+    email,
+    nickname,
+    name,
+    statusMessage,
+    isOnline,
+    hasBlocked,
+  },
 }: Props): React.ReactElement {
   const { theme } = useThemeContext();
 
   const photoURLObj: ImageSourcePropType | null =
-    typeof photoURL === 'string'
-      ? { uri: photoURL }
-      : photoURL;
+    typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
 
   return (
     <Container>
@@ -104,48 +115,48 @@ function Shared({
           <ImageWrapper>
             <StyledImage
               resizeMode="cover"
-              source={
-                photoURL && photoURLObj
-                  ? photoURLObj
-                  : IC_NO_IMAGE
-              }
+              source={photoURL && photoURLObj ? photoURLObj : IC_NO_IMAGE}
             />
-            {
-              showStatus
-                ? <StatusTag style={{ backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3' }} />
-                : null
-            }
-            {
-              hasBlocked
-                ? <View style={{
+            {showStatus ? (
+              <StatusTag
+                style={{ backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3' }}
+              />
+            ) : null}
+            {hasBlocked ? (
+              <View
+                style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                }}>
-                  <FontAwesome name="ban" size={16} color={ hasBlocked ? 'red' : 'white' } />
-                </View>
-                : null
-            }
-          </ImageWrapper>
-          <StyledText numberOfLines={1}>{nickname || name || getString('NO_NAME')}</StyledText>
-          {
-            showCheckBox
-              ? <CheckBox
-                containerStyle={{
-                  position: 'absolute',
-                  right: 20,
                 }}
-                backgroundColor={theme.background}
-                checkColor={theme.font}
-                inActiveColor={theme.inactiveColor}
-                activeColor={theme.checkBackground}
-                hasChecked={checked}
-                onToggle={onPress}
-              />
-              : statusMessage
-                ? <StyledRightText>{statusMessage}</StyledRightText>
-                : null
-          }
+              >
+                <FontAwesome
+                  name="ban"
+                  size={16}
+                  color={hasBlocked ? 'red' : 'white'}
+                />
+              </View>
+            ) : null}
+          </ImageWrapper>
+          <StyledText numberOfLines={1}>
+            {nickname || name || getString('NO_NAME')}
+          </StyledText>
+          {showCheckBox ? (
+            <CheckBox
+              containerStyle={{
+                position: 'absolute',
+                right: 20,
+              }}
+              backgroundColor={theme.background}
+              checkColor={theme.font}
+              inActiveColor={theme.inactiveColor}
+              activeColor={theme.checkBackground}
+              hasChecked={checked}
+              onToggle={onPress}
+            />
+          ) : statusMessage ? (
+            <StyledRightText>{statusMessage}</StyledRightText>
+          ) : null}
         </Wrapper>
       </TouchableOpacity>
     </Container>

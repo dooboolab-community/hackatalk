@@ -4,10 +4,7 @@ import type {
   FindPwMutationResponse,
 } from '../../__generated__/FindPwMutation.graphql';
 import React, { ReactElement, useState } from 'react';
-import {
-  graphql,
-  useMutation,
-} from 'react-relay/hooks';
+import { graphql, useMutation } from 'react-relay/hooks';
 import { showAlertForError, validateEmail } from '../../utils/common';
 
 import { Alert } from 'react-native';
@@ -36,9 +33,7 @@ interface Props {
 
 const findPasswordMutation = graphql`
   mutation FindPwMutation($email: String!) {
-    findPassword(
-      email: $email
-    )
+    findPassword(email: $email)
   }
 `;
 
@@ -46,8 +41,9 @@ function Page({ navigation }: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
 
-  const [commitFindPassword, isInFlight] =
-  useMutation<FindPwMutation>(findPasswordMutation);
+  const [commitFindPassword, isInFlight] = useMutation<FindPwMutation>(
+    findPasswordMutation,
+  );
 
   const { theme } = useThemeContext();
 
@@ -67,7 +63,11 @@ function Page({ navigation }: Props): ReactElement {
         const result = response.findPassword;
 
         if (result) {
-          Alert.alert(getString('SUCCESS'), getString('PASSWORD_RESET_EMAIL_SENT'));
+          Alert.alert(
+            getString('SUCCESS'),
+            getString('PASSWORD_RESET_EMAIL_SENT'),
+          );
+
           navigation.goBack();
         }
       },
@@ -106,7 +106,8 @@ function Page({ navigation }: Props): ReactElement {
             onPress={onFindPw}
             style={{
               root: {
-                height: 52, backgroundColor: theme.btnPrimary,
+                height: 52,
+                backgroundColor: theme.btnPrimary,
               },
               text: {
                 color: theme.btnPrimaryFont,

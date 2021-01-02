@@ -8,9 +8,7 @@ import { createTestElement, createTestProps } from '../../../../test/testUtils';
 import TextInput from '../TextInput';
 import { render } from '@testing-library/react-native';
 
-const component = createTestElement(
-  <TextInput {...createTestProps()} />,
-);
+const component = createTestElement(<TextInput {...createTestProps()} />);
 
 describe('[TextInput] render', () => {
   it('should renders without crashing', () => {

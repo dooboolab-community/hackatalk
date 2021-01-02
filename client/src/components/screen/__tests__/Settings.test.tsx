@@ -111,19 +111,17 @@ describe('[Setting] screen', () => {
     });
 
     it('should fireEvent when logout button pressed', () => {
-      jest
-        .spyOn(AuthContext, 'useAuthContext')
-        .mockImplementation(() => ({
-          state: {
-            user: undefined,
-          },
-          setUser: jest.fn().mockReturnValue({
-            id: 'userId',
-            email: 'email@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
-          }),
-        }));
+      jest.spyOn(AuthContext, 'useAuthContext').mockImplementation(() => ({
+        state: {
+          user: undefined,
+        },
+        setUser: jest.fn().mockReturnValue({
+          id: 'userId',
+          email: 'email@email.com',
+          nickname: 'nickname',
+          statusMessage: 'status',
+        }),
+      }));
 
       act(() => {
         fireEvent.press(testingLib.getByTestId('button-logout'));

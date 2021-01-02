@@ -1,5 +1,8 @@
 import React, { ReactElement } from 'react';
-import { StackNavigationProp, createStackNavigator } from '@react-navigation/stack';
+import {
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
 
 import { CompositeNavigationProp } from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
@@ -29,8 +32,8 @@ type NavigationProps<
 export type AuthStackNavigationProps<
   T extends keyof AuthStackParamList = 'default'
 > = CompositeNavigationProp<
-NavigationProps<T>,
-RootStackNavigationProps<'AuthStack'>
+  NavigationProps<T>,
+  RootStackNavigationProps<'AuthStack'>
 >;
 
 const Stack = createStackNavigator<AuthStackParamList>();
@@ -50,12 +53,20 @@ function AuthNavigator(): ReactElement {
         headerTintColor: theme.fontColor,
       }}
     >
-      <Stack.Screen name="SignIn" component={SignIn} options={{
-        headerShown: false,
-      }} />
-      <Stack.Screen name="SignUp" component={SignUp} options={{
-        title: getString('SIGN_UP'),
-      }} />
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{
+          title: getString('SIGN_UP'),
+        }}
+      />
       <Stack.Screen
         name="FindPw"
         component={FindPw}

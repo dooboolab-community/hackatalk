@@ -2,11 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+import { cleanup, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import MessageListItem from '../MessageListItem';

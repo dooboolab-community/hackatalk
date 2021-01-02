@@ -13,9 +13,7 @@ import { MockPayloadGenerator } from 'relay-test-utils';
 import SignUp from '../SignUp';
 import { environment } from '../../../providers';
 
-const component = createTestElement(
-  <SignUp {...createTestProps()} />,
-);
+const component = createTestElement(<SignUp {...createTestProps()} />);
 
 // const mockSignUpMutation = [
 //   {
@@ -315,9 +313,11 @@ describe('[SignUp] interaction', () => {
 
   it('should call signUp when the button has clicked and check whether it catches error', async () => {
     const component = createTestElement(
-      <SignUp {...createTestProps({
-        navigation: null,
-      })} />,
+      <SignUp
+        {...createTestProps({
+          navigation: null,
+        })}
+      />,
     );
 
     const { getByTestId } = render(component);

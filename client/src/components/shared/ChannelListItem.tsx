@@ -74,7 +74,8 @@ const StyledTextMessage = styled.Text<{ lastMessageCnt: number }>`
   font-size: 12px;
   color: ${({ theme }): string => theme.fontColor};
   max-width: 200px;
-  ${({ lastMessageCnt }): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
+  ${({ lastMessageCnt }): string =>
+    lastMessageCnt ? 'font-weight: bold;' : ''}
 `;
 
 const StyledTextDate = styled.Text`
@@ -140,92 +141,93 @@ function ChannelListItem(props: Props): React.ReactElement {
   if (channelType === 'private') {
     const users = memberships?.map((membership) => membership?.user);
 
-    const photoURLs = memberships?.map((membership) => membership?.user?.thumbURL || membership?.user?.photoURL);
+    const photoURLs = memberships?.map(
+      (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
+    );
+
     const isOnline = memberships?.[0]?.user?.isOnline;
 
-    const renderSingleImage = (photoURL: string | null | undefined): ReactElement => {
+    const renderSingleImage = (
+      photoURL: string | null | undefined,
+    ): ReactElement => {
       if (photoURL) {
         return <StyledImage source={{ uri: photoURL }} />;
       }
 
-      return <View
-        style={{
-          width: 40,
-          height: 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <StyledImage source={IC_NO_IMAGE} />
-      </View>;
+      return (
+        <View
+          style={{
+            width: 40,
+            height: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <StyledImage source={IC_NO_IMAGE} />
+        </View>
+      );
     };
 
-    const renderMultiImages = (photoURLs: (string | null | undefined)[] | undefined): ReactElement => {
-      return <View
-        style={{
-          width: 44,
-          height: 44,
-          flexWrap: 'wrap',
-          flexDirection: 'row',
-        }}
-      >
-        {photoURLs?.map((photo, i) => {
-          if (i > 3) return null;
+    const renderMultiImages = (
+      photoStrs: (string | null | undefined)[] | undefined,
+    ): ReactElement => {
+      return (
+        <View
+          style={{
+            width: 44,
+            height: 44,
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+          }}
+        >
+          {photoStrs?.map((photo, i) => {
+            if (i > 3) return null;
 
-          if (!photo) {
-            return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
-          }
+            if (!photo) {
+              return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
+            }
 
-          return <StyledImageSmall key={i} source={{ uri: photo }} />;
-        })}
-      </View>;
+            return <StyledImageSmall key={i} source={{ uri: photo }} />;
+          })}
+        </View>
+      );
     };
 
     const userNames = users?.map((v) => v?.nickname || v?.name || '');
 
     return (
       <View style={{ width: '100%' }}>
-        <TouchableOpacity
-          testID={testID}
-          activeOpacity={0.5} onPress={onPress}
-        >
+        <TouchableOpacity testID={testID} activeOpacity={0.5} onPress={onPress}>
           <StyledViewChatRoomListItem>
             <View style={{ marginHorizontal: 20 }}>
-              {
-                !users || users.length === 1
-                  ? renderSingleImage(photoURLs?.[0])
-                  : renderMultiImages(photoURLs)
-              }
+              {!users || users.length === 1
+                ? renderSingleImage(photoURLs?.[0])
+                : renderMultiImages(photoURLs)}
               {isOnline ? <StyledStatus /> : <View />}
             </View>
             <StyledViewContent>
               <StyledViewTop>
-                <StyledTextDisplayName
-                  numberOfLines={2}
-                >
-                  {
-                    users?.length === 1
-                      ? users?.[0]?.nickname || users?.[0]?.name || getString('NO_NAME')
-                      : userNames?.join(', ')
-                  }
+                <StyledTextDisplayName numberOfLines={2}>
+                  {users?.length === 1
+                    ? users?.[0]?.nickname ||
+                      users?.[0]?.name ||
+                      getString('NO_NAME')
+                    : userNames?.join(', ')}
                 </StyledTextDisplayName>
-                {(lastMessageCnt) !== 0
-                  ? <StyledTextWrapper>
+                {lastMessageCnt !== 0 ? (
+                  <StyledTextWrapper>
                     <StyledTextCount>{lastMessageCnt}</StyledTextCount>
                   </StyledTextWrapper>
-                  : null
-                }
+                ) : null}
               </StyledViewTop>
               <StyledViewBottom>
                 <StyledTextMessage
                   numberOfLines={2}
                   lastMessageCnt={lastMessageCnt}
                 >
-                  {
-                    imageUrls && imageUrls.length > 0
-                      ? getString('PHOTO')
-                      : text
-                  }
+                  {imageUrls && imageUrls.length > 0
+                    ? getString('PHOTO')
+                    : text}
                 </StyledTextMessage>
                 <StyledTextDate>
                   {createdAt ? moment(createdAt).fromNow() : 'nan'}
@@ -238,7 +240,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     );
   }
 
-  return <View/>;
+  return <View />;
 }
 
 export default ChannelListItem;

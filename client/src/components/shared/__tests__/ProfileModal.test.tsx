@@ -1,14 +1,9 @@
-import { ProfileModalContext, useProfileContext } from '../../../providers/ProfileModalProvider';
-import React, {
-  createRef,
-  forwardRef,
-  useImperativeHandle,
-} from 'react';
 import {
-  act,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+  ProfileModalContext,
+  useProfileContext,
+} from '../../../providers/ProfileModalProvider';
+import React, { createRef, forwardRef, useImperativeHandle } from 'react';
+import { act, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import { MockPayloadGenerator } from 'relay-test-utils';
@@ -27,8 +22,8 @@ jest.mock('@react-navigation/core', () => {
 });
 
 type ConsumerRef = {
-  showModal: ProfileModalContext['showModal'],
-  hideModal: ProfileModalContext['hideModal'],
+  showModal: ProfileModalContext['showModal'];
+  hideModal: ProfileModalContext['hideModal'];
 };
 
 const ProfileConsumer = forwardRef<ConsumerRef>((props, ref) => {
@@ -52,10 +47,12 @@ describe('[ProfileModal] rendering test', () => {
   it('Render without crashing', async () => {
     const { toJSON } = render(component);
 
-    await act(() => ref.current.showModal({
-      user: { id: '' },
-      isFriend: false,
-    }));
+    await act(() =>
+      ref.current.showModal({
+        user: { id: '' },
+        isFriend: false,
+      }),
+    );
 
     const json = toJSON();
 
@@ -65,10 +62,12 @@ describe('[ProfileModal] rendering test', () => {
   it('Should be opened', async () => {
     const { queryByTestId } = render(component);
 
-    await act(() => ref.current.showModal({
-      user: { id: '' },
-      isFriend: false,
-    }));
+    await act(() =>
+      ref.current.showModal({
+        user: { id: '' },
+        isFriend: false,
+      }),
+    );
 
     const button = queryByTestId('touch-add-friend');
 
@@ -78,16 +77,20 @@ describe('[ProfileModal] rendering test', () => {
   it('Check "Added to your friend." button', async () => {
     const { getByTestId, queryByTestId } = render(component);
 
-    await act(() => ref.current.showModal({
-      user: { id: '' },
-      isFriend: false,
-    }));
+    await act(() =>
+      ref.current.showModal({
+        user: { id: '' },
+        isFriend: false,
+      }),
+    );
 
     const button = getByTestId('touch-add-friend');
 
     fireEvent.press(button);
 
-    environment.mock.resolveMostRecentOperation((op) => MockPayloadGenerator.generate(op));
+    environment.mock.resolveMostRecentOperation((op) =>
+      MockPayloadGenerator.generate(op),
+    );
 
     const message = queryByTestId('added-message');
 
@@ -107,10 +110,12 @@ describe('[ProfileModal] rendering test', () => {
   it('delete', async () => {
     const { queryByTestId, toJSON } = render(component);
 
-    await act(() => ref.current.showModal({
-      user: { id: '' },
-      isFriend: true,
-    }));
+    await act(() =>
+      ref.current.showModal({
+        user: { id: '' },
+        isFriend: true,
+      }),
+    );
 
     const button = queryByTestId('touch-add-friend');
 

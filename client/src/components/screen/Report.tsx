@@ -4,18 +4,12 @@ import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigation/MainStackNavigator';
-import React, {
-  ReactElement,
-  useState,
-} from 'react';
+import React, { ReactElement, useState } from 'react';
 import type {
   ReportCreateReportMutation,
   ReportCreateReportMutationResponse,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
-import {
-  graphql,
-  useMutation,
-} from 'react-relay/hooks';
+import { graphql, useMutation } from 'react-relay/hooks';
 
 import { Report } from '../../types/graphql';
 import { RouteProp } from '@react-navigation/core';
@@ -39,11 +33,11 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
 `;
 
 const createReport = graphql`
-  mutation ReportCreateReportMutation($reportedUserId: String! $report: String!) {
-    createReport(
-      reportedUserId: $reportedUserId
-      report: $report
-    ) {
+  mutation ReportCreateReportMutation(
+    $reportedUserId: String!
+    $report: String!
+  ) {
+    createReport(reportedUserId: $reportedUserId, report: $report) {
       report
     }
   }
@@ -58,9 +52,16 @@ function ReportScreen(props: Props): ReactElement {
   const { navigation } = props;
   const { theme } = useThemeContext();
   const [message, setMessage] = useState('');
-  const { route: { params: { name, userId } } } = props;
 
-  const [commitReport, isInFlight] = useMutation<ReportCreateReportMutation>(createReport);
+  const {
+    route: {
+      params: { name, userId },
+    },
+  } = props;
+
+  const [commitReport, isInFlight] = useMutation<ReportCreateReportMutation>(
+    createReport,
+  );
 
   const handleReport = (): void => {
     const mutationConfig = {

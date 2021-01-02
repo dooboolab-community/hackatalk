@@ -14,7 +14,6 @@ export function isIPhoneX(): boolean {
   return (
     // This has to be iOS
     Platform.OS === 'ios' &&
-
     // Check either, iPhone X or XR
     (isIPhoneXSize(dim) || isIPhoneXrSize(dim))
   );

@@ -43,25 +43,25 @@ function SearchTextInput(props: Props): ReactElement {
   const { testID, onChangeText, value, containerStyle, style } = props;
   const { themeType, theme } = useThemeContext();
 
-  return <StyledTextInputWrapper
-    style={containerStyle}
-  >
-    <StyledTextInput
-      testID={testID}
-      onChangeText={onChangeText}
-      style={style}
-      value={value}
-      underlineColorAndroid="transparent" // android fix
-      selectionColor={theme.fontColor}
-      autoCapitalize="none"
-      autoCorrect={false}
-      multiline={false}
-      defaultValue={''}
-    />
-    <StyledSearchImage source={
-      themeType === ThemeType.LIGHT ? IC_SEARCH : IC_SEARCH_W}
-    />
-  </StyledTextInputWrapper>;
+  return (
+    <StyledTextInputWrapper style={containerStyle}>
+      <StyledTextInput
+        testID={testID}
+        onChangeText={onChangeText}
+        style={style}
+        value={value}
+        underlineColorAndroid="transparent" // android fix
+        selectionColor={theme.fontColor}
+        autoCapitalize="none"
+        autoCorrect={false}
+        multiline={false}
+        defaultValue={''}
+      />
+      <StyledSearchImage
+        source={themeType === ThemeType.LIGHT ? IC_SEARCH : IC_SEARCH_W}
+      />
+    </StyledTextInputWrapper>
+  );
 }
 
 export default SearchTextInput;

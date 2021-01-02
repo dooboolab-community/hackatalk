@@ -66,13 +66,13 @@ const ErrorView: FC<Props> = (props) => {
 
   const { theme } = useThemeContext();
 
-  return <Container>
-    <StyledImage source={IC_ERROR}/>
-    <Title>{title}</Title>
-    <Body>{body}</Body>
-    {
-      !hideButton
-        ? <Button
+  return (
+    <Container>
+      <StyledImage source={IC_ERROR} />
+      <Title>{title}</Title>
+      <Body>{body}</Body>
+      {!hideButton ? (
+        <Button
           testID={testID}
           onPress={onButtonPressed}
           text={buttonText}
@@ -96,9 +96,9 @@ const ErrorView: FC<Props> = (props) => {
             },
           }}
         />
-        : null
-    }
-  </Container>;
+      ) : null}
+    </Container>
+  );
 };
 
 export default ErrorView;

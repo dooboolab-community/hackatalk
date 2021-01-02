@@ -15,20 +15,13 @@ export interface ModalState {
 }
 
 export type ProfileModalContext = {
-  /** Modal box visibility */
-  isVisible: true,
-  /** State of the modal */
-  modalState: ModalState,
+  modalState?: ModalState | null;
+  isVisible: boolean;
   /** Allow context consumers to make the modal visible with a new state. */
-  showModal: (next: ModalState) => void,
+  showModal: (next: ModalState) => void;
   /** Allow context consumers to hide the modal. */
-  hideModal: () => void,
-} | {
-  isVisible: false,
-  modalState: null,
-  showModal: (next: ModalState) => void,
-  hideModal: () => void,
-}
+  hideModal: () => void;
+};
 
 const ProfileModalContext = createContext<ProfileModalContext>({
   isVisible: false,
@@ -38,12 +31,9 @@ const ProfileModalContext = createContext<ProfileModalContext>({
 });
 
 type ContextState = {
-  isVisible: true;
-  modalState: ModalState;
-} | {
-  isVisible: false;
-  modalState: null;
-}
+  isVisible: boolean;
+  modalState?: ModalState | null;
+};
 
 export const ProfileModalProvider: FC = (props) => {
   const [state, setState] = useState<ContextState>({
@@ -51,15 +41,17 @@ export const ProfileModalProvider: FC = (props) => {
     modalState: null,
   });
 
-  const showModal = (next: ModalState): void => setState({
-    isVisible: true,
-    modalState: next,
-  });
+  const showModal = (next: ModalState): void =>
+    setState({
+      isVisible: true,
+      modalState: next,
+    });
 
-  const hideModal = (): void => setState({
-    isVisible: false,
-    modalState: null,
-  });
+  const hideModal = (): void =>
+    setState({
+      isVisible: false,
+      modalState: null,
+    });
 
   return (
     <ProfileModalContext.Provider
@@ -74,4 +66,5 @@ export const ProfileModalProvider: FC = (props) => {
   );
 };
 
-export const useProfileContext = (): ProfileModalContext => useContext(ProfileModalContext);
+export const useProfileContext = (): ProfileModalContext =>
+  useContext(ProfileModalContext);

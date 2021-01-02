@@ -117,13 +117,10 @@ function shouldShowDate(
 
   const diffNextSeconds = nextMoment.diff(currentMoment, 'seconds');
 
-  return diffNextSeconds < 60 && (nextMoment.minute === currentMoment.minute);
+  return diffNextSeconds < 60 && nextMoment.minute === currentMoment.minute;
 }
 
-const ImageSender: FC<ImageSenderProps> = ({
-  thumbURL,
-  isSamePeerMsg,
-}) => {
+const ImageSender: FC<ImageSenderProps> = ({ thumbURL, isSamePeerMsg }) => {
   if (isSamePeerMsg) {
     return <View style={{ width: 40 }} />;
   } else if (thumbURL) {
@@ -139,9 +136,7 @@ const ImageSender: FC<ImageSenderProps> = ({
         justifyContent: 'center',
       }}
     >
-      <StyledImage
-        source={IC_NO_IMAGE}
-      />
+      <StyledImage source={IC_NO_IMAGE} />
     </View>
   );
 };
@@ -150,15 +145,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   const { theme } = useThemeContext();
 
   const {
-    item: {
-      id,
-      sender,
-      messageType,
-      text,
-      createdAt,
-      imageUrls,
-      fileUrls,
-    },
+    item: { id, sender, messageType, text, createdAt, imageUrls, fileUrls },
     prevItem,
     nextItem,
     onPressPeerImage,
@@ -183,40 +170,44 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'column', maxWidth: '80%' }}>
-          {
-            isSamePeerMsg
-              ? <View />
-              : <StyledTextPeerName>{sender?.nickname || sender?.name || getString('NO_NAME')}</StyledTextPeerName>
-          }
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-          }}>
+          {isSamePeerMsg ? (
+            <View />
+          ) : (
+            <StyledTextPeerName>
+              {sender?.nickname || sender?.name || getString('NO_NAME')}
+            </StyledTextPeerName>
+          )}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+            }}
+          >
             <StyledTextPeerMessageContainer>
-              {
-                imageUrls && imageUrls.length > 0
-                  ? <StyledPhotoContainer>
-                    <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
-                      <Image
-                        key={id}
-                        width={240}
-                        source={{ uri: `${imageUrls[0]}?id=${id}}` }}
-                      />
-                    </TouchableOpacity>
-                  </StyledPhotoContainer>
-                  : <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
-              }
+              {imageUrls && imageUrls.length > 0 ? (
+                <StyledPhotoContainer>
+                  <TouchableOpacity
+                    onPress={() =>
+                      onPressMessageImage && onPressMessageImage(0)
+                    }
+                  >
+                    <Image
+                      key={id}
+                      width={240}
+                      source={{ uri: `${imageUrls[0]}?id=${id}` }}
+                    />
+                  </TouchableOpacity>
+                </StyledPhotoContainer>
+              ) : (
+                <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
+              )}
             </StyledTextPeerMessageContainer>
           </View>
-          {
-            !showDate
-              ? <StyledTextPeerDate>
-                {createdAt
-                  ? `${moment(createdAt).fromNow()}`
-                  : '0 : 0'}
-              </StyledTextPeerDate>
-              : null
-          }
+          {!showDate ? (
+            <StyledTextPeerDate>
+              {createdAt ? `${moment(createdAt).fromNow()}` : '0 : 0'}
+            </StyledTextPeerDate>
+          ) : null}
         </View>
       </WrapperPeer>
     );
@@ -225,24 +216,24 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   return (
     <WrapperMy>
       <StyledMyMessage>
-        {
-          imageUrls && imageUrls.length > 0
-            ? <StyledPhotoContainer>
-              <TouchableOpacity onPress={() => onPressMessageImage && onPressMessageImage(0)}>
-                <Image
-                  key={id}
-                  width={240}
-                  source={{ uri: `${imageUrls[0]}?id=${id}}` }}
-                />
-              </TouchableOpacity>
-            </StyledPhotoContainer>
-            : <StyledMyTextMessage>{text}</StyledMyTextMessage>
-        }
+        {imageUrls && imageUrls.length > 0 ? (
+          <StyledPhotoContainer>
+            <TouchableOpacity
+              onPress={() => onPressMessageImage && onPressMessageImage(0)}
+            >
+              <Image
+                key={id}
+                width={240}
+                source={{ uri: `${imageUrls[0]}?id=${id}` }}
+              />
+            </TouchableOpacity>
+          </StyledPhotoContainer>
+        ) : (
+          <StyledMyTextMessage>{text}</StyledMyTextMessage>
+        )}
       </StyledMyMessage>
       <StyledTextDate>
-        {createdAt
-          ? `${moment(createdAt).fromNow()}`
-          : '0 : 0'}
+        {createdAt ? `${moment(createdAt).fromNow()}` : '0 : 0'}
       </StyledTextDate>
     </WrapperMy>
   );

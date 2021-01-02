@@ -1,6 +1,13 @@
 import * as Notifications from 'expo-notifications';
 
-import { Alert, Image, Platform, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { Button, LoadingIndicator } from 'dooboo-ui';
 import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
 import {
@@ -17,9 +24,21 @@ import {
   MessagesQueryResponse,
   MessagesQueryVariables,
 } from '../../__generated__/MessagesQuery.graphql';
-import React, { FC, ReactElement, Suspense, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC,
+  ReactElement,
+  Suspense,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { RouteProp, useNavigation } from '@react-navigation/core';
-import { graphql, useLazyLoadQuery, useMutation, usePaginationFragment } from 'react-relay/hooks';
+import {
+  graphql,
+  useLazyLoadQuery,
+  useMutation,
+  usePaginationFragment,
+} from 'react-relay/hooks';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
@@ -30,9 +49,7 @@ import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
-import type {
-  MessageComponent_message$key,
-} from '../../__generated__/MessageComponent_message.graphql';
+import type { MessageComponent_message$key } from '../../__generated__/MessageComponent_message.graphql';
 import MessageListItem from '../shared/MessageListItem';
 import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
@@ -55,7 +72,10 @@ const Container = styled.SafeAreaView`
 `;
 
 const createMessage = graphql`
-  mutation MessageCreateMutation($channelId: String! $message: MessageCreateInput!) {
+  mutation MessageCreateMutation(
+    $channelId: String!
+    $message: MessageCreateInput!
+  ) {
     createMessage(channelId: $channelId, message: $message) {
       id
       text
@@ -88,71 +108,67 @@ const createMessage = graphql`
 
 const messagesQuery = graphql`
   query MessagesQuery(
-    $first: Int
-    $last: Int
-    $before: String
+    $first: Int!
     $after: String
     $channelId: String!
     $searchText: String
   ) {
-    ...MessageComponent_message @arguments(
-      first: $first
-      last: $last
-      before: $before
-      after: $after
-      channelId: $channelId
-      searchText: $searchText
-    )
+    ...MessageComponent_message
+      @arguments(
+        first: $first
+        after: $after
+        channelId: $channelId
+        searchText: $searchText
+      )
   }
 `;
 
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
-    @argumentDefinitions(
-      first: {type: "Int"}
-      last: {type: "Int"}
-      before: {type: "String"}
-      after: {type: "String"}
-      channelId: {type: "String!"}
-      searchText: {type: "String"}
+  @argumentDefinitions(
+    first: { type: "Int!" }
+    after: { type: "String" }
+    channelId: { type: "String!" }
+    searchText: { type: "String" }
+  )
+  @refetchable(queryName: "MessagePaginationQuery") {
+    messages(
+      first: $first
+      after: $after
+      channelId: $channelId
+      searchText: $searchText
     )
-    @refetchable(queryName: "MessagePaginationQuery") {
-      messages(
-        first: $first
-        last: $last
-        before: $before
-        after: $after
-        channelId: $channelId
-        searchText: $searchText
-      )
-      @connection(key: "MessageComponent_messages" filters: ["channelId", "searchText"]) {
-        edges {
-          cursor
-          node {
+      @connection(
+        key: "MessageComponent_messages"
+        filters: ["channelId", "searchText"]
+      ) {
+      edges {
+        cursor
+        node {
+          id
+          messageType
+          text
+          imageUrls
+          fileUrls
+          sender {
             id
-            messageType
-            text
-            imageUrls
-            fileUrls
-            sender {
-              id
-              name
-              nickname
-              thumbURL
-              photoURL
-            }
-            createdAt
-            updatedAt
+            name
+            nickname
+            thumbURL
+            photoURL
           }
-        }
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
+          createdAt
+          updatedAt
         }
       }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
     }
+  }
 `;
 
 function updateMessageOnSubmit(
@@ -162,42 +178,34 @@ function updateMessageOnSubmit(
 ): void {
   const root = proxyStore.getRoot();
 
-  const connectionRecord = root && ConnectionHandler.getConnection(
-    root,
-    'MessageComponent_messages',
-    {
+  const connectionRecord =
+    root &&
+    ConnectionHandler.getConnection(root, 'MessageComponent_messages', {
       channelId: currentChannelId,
       searchText: null,
-    },
-  );
+    });
 
   const payload = proxyStore.getRootField('createMessage');
   const userProxy = proxyStore.get(currentUserId);
   const now = moment().toString();
 
   if (userProxy && payload) {
-    payload.setLinkedRecord(
-      userProxy,
-      'sender',
-    );
+    payload.setLinkedRecord(userProxy, 'sender');
 
-    payload.setValue(
-      now,
-      'createdAt',
-    );
+    payload.setValue(now, 'createdAt');
 
-    payload.setValue(
-      now,
-      'updatedAt',
-    );
+    payload.setValue(now, 'updatedAt');
   }
 
-  const newEdge = connectionRecord && payload && ConnectionHandler.createEdge(
-    proxyStore,
-    connectionRecord,
-    payload,
-    'Message',
-  );
+  const newEdge =
+    connectionRecord &&
+    payload &&
+    ConnectionHandler.createEdge(
+      proxyStore,
+      connectionRecord,
+      payload,
+      'Message',
+    );
 
   if (connectionRecord && newEdge) {
     ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
@@ -211,11 +219,11 @@ function updateChannelsOnSubmit(
   const root = proxyStore.getRoot();
   const channelProxy = proxyStore.get(currentChannelId);
 
-  const connectionRecord = root && ConnectionHandler.getConnection(
-    root,
-    'ChannelComponent_channels',
-    { withMessage: true },
-  );
+  const connectionRecord =
+    root &&
+    ConnectionHandler.getConnection(root, 'ChannelComponent_channels', {
+      withMessage: true,
+    });
 
   // Get existing edges.
   const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
@@ -232,12 +240,15 @@ function updateChannelsOnSubmit(
     }
   }
 
-  const newEdge = connectionRecord && channelProxy && ConnectionHandler.createEdge(
-    proxyStore,
-    connectionRecord,
-    channelProxy,
-    'Channel',
-  );
+  const newEdge =
+    connectionRecord &&
+    channelProxy &&
+    ConnectionHandler.createEdge(
+      proxyStore,
+      connectionRecord,
+      channelProxy,
+      'Channel',
+    );
 
   if (existingNode && connectionRecord) {
     ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
@@ -262,36 +273,30 @@ const MessagesFragment: FC<MessageProp> = ({
   const { theme } = useThemeContext();
   const navigation = useNavigation<RootStackNavigationProps>();
 
-  const {
-    data,
-    loadNext,
-    loadPrevious,
-    isLoadingNext,
-  } = usePaginationFragment<MessagesQuery, MessageComponent_message$key>(
-    messagesFragment,
-    messages,
-  );
+  const { data, loadNext, loadPrevious, isLoadingNext } = usePaginationFragment<
+    MessagesQuery,
+    MessageComponent_message$key
+  >(messagesFragment, messages);
 
   useEffect(() => {
     // Add notification handler.
-    const responseListener = Notifications.addNotificationReceivedListener((event) => {
-      loadPrevious(ITEM_CNT);
-    });
+    const responseListener = Notifications.addNotificationReceivedListener(
+      (event) => {
+        loadPrevious(ITEM_CNT);
+      },
+    );
 
     // Clean up : remove notification handler.
     return () => Notifications.removeNotificationSubscription(responseListener);
-  }, [data]);
+  }, [data, loadPrevious]);
 
-  const nodes = useMemo(
-    () => {
-      return data.messages?.edges?.filter(
-        (x): x is NonNullable<typeof x> => x !== null,
-      ).map(
-        (x) => x.node,
-      ) || [];
-    },
-    [data],
-  );
+  const nodes = useMemo(() => {
+    return (
+      data.messages?.edges
+        ?.filter((x): x is NonNullable<typeof x> => x !== null)
+        .map((x) => x.node) || []
+    );
+  }, [data]);
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
@@ -301,9 +306,13 @@ const MessagesFragment: FC<MessageProp> = ({
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const { showModal } = useProfileContext();
 
-  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(createMessage);
+  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(
+    createMessage,
+  );
 
-  const { state: { user } } = useAuthContext();
+  const {
+    state: { user },
+  } = useAuthContext();
 
   const onSubmit = (): void => {
     if (!textToSend) return;
@@ -355,7 +364,7 @@ const MessagesFragment: FC<MessageProp> = ({
         const response = await uploadImageAsync(
           resizedImage.uri,
           'messages',
-        `_${channelId}_${new Date().toISOString()}`,
+          `_${channelId}_${new Date().toISOString()}`,
         );
 
         const { url } = JSON.parse(await response.text());
@@ -365,9 +374,7 @@ const MessagesFragment: FC<MessageProp> = ({
             channelId,
             message: {
               messageType: 'photo',
-              imageUrls: [
-                url,
-              ],
+              imageUrls: [url],
             },
           },
           updater: (proxyStore: RecordSourceSelectorProxy) => {
@@ -377,8 +384,8 @@ const MessagesFragment: FC<MessageProp> = ({
 
             updateChannelsOnSubmit(proxyStore, channelId);
           },
-          onCompleted: (response: MessageCreateMutationResponse) => {
-            const { imageUrls } = response.createMessage as Message;
+          onCompleted: (messageResponse: MessageCreateMutationResponse) => {
+            const { imageUrls } = messageResponse.createMessage as Message;
           },
           onError: (error: Error): void => {
             showAlertForError(error);
@@ -395,154 +402,159 @@ const MessagesFragment: FC<MessageProp> = ({
     setIsImageUploading(false);
   };
 
-  return <GiftedChat
-    // @ts-ignore
-    chats={nodes}
-    borderColor={theme.lineColor}
-    onEndReached={onEndReached}
-    backgroundColor={theme.background}
-    fontColor={theme.fontColor}
-    keyboardOffset={Platform.select({
-      ios: Constants.statusBarHeight + 40,
-      android: Constants.statusBarHeight + 52,
-    })}
-    message={textToSend}
-    placeholder={getString('WRITE_MESSAGE')}
-    placeholderTextColor={theme.placeholder}
-    onChangeMessage={(text: string): void => setTextToSend(text)}
-    renderItem={({
-      item,
-      index,
-    }: {
-      item: Message;
-      index: number;
-    }): React.ReactElement => {
-      return (
-        <MessageListItem
-          userId={user?.id}
-          testID={`message-list-item${index}`}
-          // @ts-ignore
-          prevItem={messages[index - 1]}
-          // @ts-ignore
-          nextItem={messages[index + 1]}
-          item={item}
-          onPressPeerImage={(): void => {
-            showModal({ user: item?.sender as User });
-          }}
-          onPressMessageImage={(indexOfTheNode: number) => {
-            let initialIndex = indexOfTheNode;
+  return (
+    <GiftedChat
+      // @ts-ignore
+      chats={nodes}
+      borderColor={theme.lineColor}
+      onEndReached={onEndReached}
+      backgroundColor={theme.background}
+      fontColor={theme.fontColor}
+      keyboardOffset={Platform.select({
+        ios: Constants.statusBarHeight + 40,
+        android: Constants.statusBarHeight + 52,
+      })}
+      message={textToSend}
+      placeholder={getString('WRITE_MESSAGE')}
+      placeholderTextColor={theme.placeholder}
+      onChangeMessage={(text: string): void => setTextToSend(text)}
+      renderItem={({
+        item,
+        index,
+      }: {
+        item: Message;
+        index: number;
+      }): React.ReactElement => {
+        return (
+          <MessageListItem
+            userId={user?.id}
+            testID={`message-list-item${index}`}
+            // @ts-ignore
+            prevItem={messages[index - 1]}
+            // @ts-ignore
+            nextItem={messages[index + 1]}
+            item={item}
+            onPressPeerImage={(): void => {
+              showModal({ user: item?.sender as User });
+            }}
+            onPressMessageImage={(indexOfTheNode: number) => {
+              let initialIndex = indexOfTheNode;
 
-            const imagesList = nodes.filter((node, nodeIndex) => {
-              const { imageUrls } = node as Message;
+              const imagesList = nodes
+                .filter((node, nodeIndex) => {
+                  const { imageUrls } = node as Message;
 
-              if (imageUrls && nodeIndex < index) {
-                initialIndex += imageUrls.length;
-              }
+                  if (imageUrls && nodeIndex < index) {
+                    initialIndex += imageUrls.length;
+                  }
 
-              return imageUrls && imageUrls.length > 0;
-            }).map(
-              (message) => {
-                const { imageUrls, sender } = message as Message;
+                  return imageUrls && imageUrls.length > 0;
+                })
+                .map((message) => {
+                  const { imageUrls, sender } = message as Message;
 
-                return imageUrls?.map(
-                  (uri) => ({ uri, sender: sender?.nickname || sender?.name }),
-                );
-              },
-            );
+                  return imageUrls?.map((uri) => ({
+                    uri,
+                    sender: sender?.nickname || sender?.name,
+                  }));
+                });
 
-            const flattenImages = imagesList.reduce(
-              (prev, current) => current != null ? [...(prev || []), ...current] : (prev || []), [],
-            ) || [];
+              const flattenImages =
+                imagesList.reduce(
+                  (prev, current) =>
+                    current != null
+                      ? [...(prev || []), ...current]
+                      : prev || [],
+                  [],
+                ) || [];
 
-            navigation.push(
-              'ImageSlider',
-              {
+              navigation.push('ImageSlider', {
                 images: flattenImages.reverse(),
                 initialIndex: flattenImages.length - 1 - initialIndex,
-              },
-            );
+              });
+            }}
+          />
+        );
+      }}
+      optionView={
+        <Image
+          style={{
+            width: 24,
+            height: 24,
+          }}
+          resizeMethod="resize"
+          source={IC_SMILE}
+        />
+      }
+      emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
+      renderViewMenu={(): React.ReactElement => (
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: 10,
+          }}
+        >
+          <TouchableOpacity
+            testID="icon-camera"
+            onPress={(): Promise<void> => onRequestImagePicker('camera')}
+            style={{
+              marginLeft: 16,
+              marginTop: 2,
+              width: 60,
+              height: 60,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Ionicons
+              name="ios-camera"
+              size={36}
+              color={theme ? theme.fontColor : '#3d3d3d'}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID="icon-photo"
+            onPress={(): Promise<void> => onRequestImagePicker('photo')}
+            style={{
+              marginLeft: 16,
+              marginTop: 4,
+              width: 60,
+              height: 60,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Ionicons
+              name="md-images"
+              size={36}
+              color={theme ? theme.fontColor : '#3d3d3d'}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+      renderSendButton={(): React.ReactElement => (
+        <Button
+          testID="btn-message"
+          style={{
+            button: {
+              backgroundColor: theme.btnPrimary,
+              width: 80,
+              height: 40,
+            },
+            text: {
+              color: theme.btnPrimaryFont,
+            },
+          }}
+          loading={isMessageInFlight || isImageUploading}
+          onPress={onSubmit}
+          text={getString('SEND')}
+          textProps={{
+            numberOfLines: 1,
           }}
         />
-      );
-    }}
-    optionView={
-      <Image
-        style={{
-          width: 24,
-          height: 24,
-        }}
-        resizeMethod="resize"
-        source={IC_SMILE}
-      />
-    }
-    emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
-    renderViewMenu={(): React.ReactElement => (
-      <View
-        style={{
-          flexDirection: 'row',
-          marginTop: 10,
-        }}
-      >
-        <TouchableOpacity
-          testID="icon-camera"
-          onPress={(): Promise<void> => onRequestImagePicker('camera')}
-          style={{
-            marginLeft: 16,
-            marginTop: 2,
-            width: 60,
-            height: 60,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Ionicons
-            name="ios-camera"
-            size={36}
-            color={theme ? theme.fontColor : '#3d3d3d'}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          testID="icon-photo"
-          onPress={(): Promise<void> => onRequestImagePicker('photo')}
-          style={{
-            marginLeft: 16,
-            marginTop: 4,
-            width: 60,
-            height: 60,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Ionicons
-            name="md-images"
-            size={36}
-            color={theme ? theme.fontColor : '#3d3d3d'}
-          />
-        </TouchableOpacity>
-      </View>
-    )}
-    renderSendButton={(): React.ReactElement => (
-      <Button
-        testID="btn-message"
-        style={{
-          button: {
-            backgroundColor: theme.btnPrimary,
-            width: 80,
-            height: 40,
-          },
-          text: {
-            color: theme.btnPrimaryFont,
-          },
-        }}
-        loading={isMessageInFlight || isImageUploading}
-        onPress={onSubmit}
-        text={getString('SEND')}
-        textProps={{
-          numberOfLines: 1,
-        }}
-      />
-    )}
-  />;
+      )}
+    />
+  );
 };
 
 interface ContentProps {
@@ -550,22 +562,20 @@ interface ContentProps {
   searchArgs: MessagesQueryVariables;
 }
 
-const ContentContainer: FC<ContentProps> = ({
-  searchArgs,
-  channelId,
-}) => {
-  const data: MessagesQueryResponse =
-    useLazyLoadQuery<MessagesQuery>(
-      messagesQuery,
-      searchArgs,
-      { fetchPolicy: 'store-or-network' },
-    );
+const ContentContainer: FC<ContentProps> = ({ searchArgs, channelId }) => {
+  const data: MessagesQueryResponse = useLazyLoadQuery<MessagesQuery>(
+    messagesQuery,
+    searchArgs,
+    { fetchPolicy: 'store-or-network' },
+  );
 
-  return <MessagesFragment
-    channelId={channelId}
-    messages={data}
-    searchArgs={searchArgs}
-  />;
+  return (
+    <MessagesFragment
+      channelId={channelId}
+      messages={data}
+      searchArgs={searchArgs}
+    />
+  );
 };
 
 interface Props {
@@ -574,8 +584,12 @@ interface Props {
 }
 
 const MessageScreen: FC<Props> = (props) => {
-  const { route: { params: { users, channel } } } = props;
-  const navigation = useNavigation();
+  const {
+    route: {
+      params: { users, channel },
+    },
+    navigation,
+  } = props;
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {
@@ -592,14 +606,18 @@ const MessageScreen: FC<Props> = (props) => {
         }
       }
 
-      return <Text
-        style={{
-          color: 'white',
-          fontSize: 18,
-          fontWeight: '500',
-        }}
-        numberOfLines={2}
-      >{title}</Text>;
+      return (
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 18,
+            fontWeight: '500',
+          }}
+          numberOfLines={2}
+        >
+          {title}
+        </Text>
+      );
     },
   });
 
@@ -610,11 +628,8 @@ const MessageScreen: FC<Props> = (props) => {
 
   return (
     <Container>
-      <Suspense fallback={<LoadingIndicator/>}>
-        <ContentContainer
-          searchArgs={searchArgs}
-          channelId={channel.id}
-        />
+      <Suspense fallback={<LoadingIndicator />}>
+        <ContentContainer searchArgs={searchArgs} channelId={channel.id} />
       </Suspense>
     </Container>
   );

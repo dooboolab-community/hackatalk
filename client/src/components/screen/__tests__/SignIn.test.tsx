@@ -32,15 +32,11 @@ describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();
 
-    component = createTestElement(
-      <SignIn {...props}/>,
-    );
+    component = createTestElement(<SignIn {...props} />);
   });
 
   it('should render without crashing', async () => {
-    component = createTestElement(
-      <SignIn {...props}/>,
-    );
+    component = createTestElement(<SignIn {...props} />);
 
     testingLib = render(component);
 
@@ -50,10 +46,7 @@ describe('[SignIn] rendering test', () => {
   });
 
   it('should render [Dark] mode without crashing', () => {
-    component = createTestElement(
-      <SignIn {...props}/>,
-      ThemeType.DARK,
-    );
+    component = createTestElement(<SignIn {...props} />, ThemeType.DARK);
 
     testingLib = render(component);
 
@@ -68,9 +61,7 @@ describe('[SignIn] interaction', () => {
   beforeEach(() => {
     props = createTestProps();
 
-    component = createTestElement(
-      <SignIn {...props}/>,
-    );
+    component = createTestElement(<SignIn {...props} />);
 
     testingLib = render(component);
   });
@@ -144,7 +135,9 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(btnTerms);
     });
 
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://legacy.dooboolab.com/termsofservice' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', {
+      uri: 'https://legacy.dooboolab.com/termsofservice',
+    });
   });
 
   it('should navigate to [WebView] when terms has been pressed', async () => {
@@ -156,7 +149,9 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(btnPrivary);
     });
 
-    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', { uri: 'https://legacy.dooboolab.com/privacyandpolicy' });
+    expect(props.navigation.navigate).toHaveBeenCalledWith('WebView', {
+      uri: 'https://legacy.dooboolab.com/privacyandpolicy',
+    });
   });
 
   describe('onSignIn', () => {
@@ -202,21 +197,22 @@ describe('[SignIn] interaction', () => {
 
     it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
-      jest.spyOn(AsyncStorage, 'getItem').mockImplementation(jest.fn().mockResolvedValue(JSON.stringify(true)));
 
       jest
-        .spyOn(AuthContext, 'useAuthContext')
-        .mockImplementation(() => ({
-          state: {
-            user: undefined,
-          },
-          setUser: jest.fn().mockReturnValue({
-            id: 'userId',
-            email: 'email@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
-          }),
-        }));
+        .spyOn(AsyncStorage, 'getItem')
+        .mockImplementation(jest.fn().mockResolvedValue(JSON.stringify(true)));
+
+      jest.spyOn(AuthContext, 'useAuthContext').mockImplementation(() => ({
+        state: {
+          user: undefined,
+        },
+        setUser: jest.fn().mockReturnValue({
+          id: 'userId',
+          email: 'email@email.com',
+          nickname: 'nickname',
+          statusMessage: 'status',
+        }),
+      }));
 
       const textInput = testingLib.getByTestId('input-email');
 
@@ -259,9 +255,7 @@ describe('[SignIn] interaction', () => {
         navigation: null,
       });
 
-      component = createTestElement(
-        <SignIn {...props}/>,
-      );
+      component = createTestElement(<SignIn {...props} />);
 
       testingLib = render(component);
 
@@ -295,19 +289,17 @@ describe('[SignIn] interaction', () => {
     it('should call signIn with and get `!user.verified`', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());
 
-      jest
-        .spyOn(AuthContext, 'useAuthContext')
-        .mockImplementation(() => ({
-          state: {
-            user: undefined,
-          },
-          setUser: jest.fn().mockReturnValue({
-            id: 'userId',
-            email: 'email@email.com',
-            nickname: 'nickname',
-            statusMessage: 'status',
-          }),
-        }));
+      jest.spyOn(AuthContext, 'useAuthContext').mockImplementation(() => ({
+        state: {
+          user: undefined,
+        },
+        setUser: jest.fn().mockReturnValue({
+          id: 'userId',
+          email: 'email@email.com',
+          nickname: 'nickname',
+          statusMessage: 'status',
+        }),
+      }));
 
       const textInput = testingLib.getByTestId('input-email');
 
@@ -359,9 +351,7 @@ describe('Apple SignIn', () => {
   beforeAll(() => {
     props = createTestProps();
 
-    component = createTestElement(
-      <SignIn {...props}/>,
-    );
+    component = createTestElement(<SignIn {...props} />);
 
     testingLib = render(component);
   });
@@ -376,9 +366,9 @@ describe('Apple SignIn', () => {
   });
 
   it('should Apple auth unavailable', async () => {
-    jest.spyOn(AppleAuthentication, 'isAvailableAsync').mockImplementation(
-      () => Promise.resolve(false),
-    );
+    jest
+      .spyOn(AppleAuthentication, 'isAvailableAsync')
+      .mockImplementation(() => Promise.resolve(false));
 
     return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeFalsy();
   });
@@ -394,18 +384,20 @@ describe('Apple SignIn', () => {
       fireEvent.press(btnApple);
     });
 
-    return expect(AppleAuthentication.signInAsync({
-      requestedScopes: [
-        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-      ],
-    })).resolves.toMatchObject<AppleAuthentication.AppleAuthenticationCredential>({
-      user: 'uniqueUserId',
-      identityToken: 'identityToken',
-      realUserStatus: 1,
-      authorizationCode: 'authorizationCode',
-      fullName:
-        {
+    return expect(
+      AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        ],
+      }),
+    ).resolves.toMatchObject<AppleAuthentication.AppleAuthenticationCredential>(
+      {
+        user: 'uniqueUserId',
+        identityToken: 'identityToken',
+        realUserStatus: 1,
+        authorizationCode: 'authorizationCode',
+        fullName: {
           namePrefix: null,
           givenName: 'GivenName',
           nameSuffix: null,
@@ -413,9 +405,10 @@ describe('Apple SignIn', () => {
           familyName: 'FamilyName',
           middleName: null,
         },
-      email: 'email@privaterelay.appleid.com',
-      state: null,
-    });
+        email: 'email@privaterelay.appleid.com',
+        state: null,
+      },
+    );
   });
 
   // it('should cancel signin with apple', async () => {

@@ -1,15 +1,20 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import { SignUpMutation, SignUpMutationResponse } from '../../__generated__/SignUpMutation.graphql';
+import {
+  SignUpMutation,
+  SignUpMutationResponse,
+} from '../../__generated__/SignUpMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { showAlertForError, validateEmail, validatePassword } from '../../utils/common';
+import {
+  showAlertForError,
+  validateEmail,
+  validatePassword,
+} from '../../utils/common';
 
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import {
-  SignUpSendVerificationMutation,
-} from '../../__generated__/SignUpSendVerificationMutation.graphql';
+import { SignUpSendVerificationMutation } from '../../__generated__/SignUpSendVerificationMutation.graphql';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -39,7 +44,7 @@ interface Props {
 }
 
 const signUp = graphql`
-  mutation SignUpMutation($user: UserCreateInput) {
+  mutation SignUpMutation($user: UserCreateInput!) {
     signUp(user: $user) {
       id
       email
@@ -71,8 +76,10 @@ function Page(props: Props): ReactElement {
 
   const [commitSignUp, isInFlight] = useMutation<SignUpMutation>(signUp);
 
-  const [commitSendVerification, isVerificationInFlight] =
-    useMutation<SignUpSendVerificationMutation>(sendVerification);
+  const [
+    commitSendVerification,
+    isVerificationInFlight,
+  ] = useMutation<SignUpSendVerificationMutation>(sendVerification);
 
   const { theme } = useThemeContext();
   // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
@@ -80,7 +87,12 @@ function Page(props: Props): ReactElement {
   //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
 
   const requestSignUp = async (): Promise<void> => {
-    if (!validateEmail(email) || !validatePassword(password) || name.length < 2 || password !== confirmPassword) {
+    if (
+      !validateEmail(email) ||
+      !validatePassword(password) ||
+      name.length < 2 ||
+      password !== confirmPassword
+    ) {
       if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
       }
@@ -276,10 +288,13 @@ function Page(props: Props): ReactElement {
                 onPress={requestSignUp}
                 style={{
                   root: {
-                    height: 52, width: '50%', backgroundColor: theme.btnPrimary,
+                    height: 52,
+                    width: '50%',
+                    backgroundColor: theme.btnPrimary,
                   },
                   text: {
-                    color: theme.btnPrimaryFont, fontSize: 16,
+                    color: theme.btnPrimaryFont,
+                    fontSize: 16,
                   },
                 }}
                 text={getString('SIGN_UP')}

@@ -14,9 +14,7 @@ import ProfileUpdate from '../ProfileUpdate';
 import ProfileUpdateMeQuery from '../../../__generated__/ProfileUpdateMeQuery.graphql';
 import { environment } from '../../../providers';
 
-const component = createTestElement(
-  <ProfileUpdate {...createTestProps()} />,
-);
+const component = createTestElement(<ProfileUpdate {...createTestProps()} />);
 
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): Record<string, unknown> => {
@@ -63,8 +61,8 @@ describe('rendering test', () => {
       }),
     };
 
-    environment.mock.queueOperationResolver(
-      (operation) => MockPayloadGenerator.generate(operation, mockResolver),
+    environment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, mockResolver),
     );
 
     const json = render(component).toJSON();

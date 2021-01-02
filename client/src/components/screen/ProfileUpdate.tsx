@@ -1,14 +1,17 @@
 import { Alert, Image, TouchableOpacity, View } from 'react-native';
 import { Button, EditText } from 'dooboo-ui';
 import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import {
   fetchQuery,
   graphql,
   useMutation,
   useRelayEnvironment,
 } from 'react-relay/hooks';
-import { launchCameraAsync, launchImageLibraryAsync } from '../../utils/ImagePicker';
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
 
 import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
 import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
@@ -88,7 +91,7 @@ const meQuery = graphql`
 `;
 
 const profileUpdate = graphql`
-  mutation ProfileUpdateMutation($user: UserUpdateInput) {
+  mutation ProfileUpdateMutation($user: UserUpdateInput!) {
     updateProfile(user: $user) {
       name
       nickname
@@ -105,18 +108,33 @@ const Screen: FC<Props> = () => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
-  const [commitProfileUpdate, isUpdating] = useMutation<ProfileUpdateMutation>(profileUpdate);
+  const envrionmentProps = useRef(environment);
+
+  const [commitProfileUpdate, isUpdating] = useMutation<ProfileUpdateMutation>(
+    profileUpdate,
+  );
+
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    fetchQuery<ProfileUpdateMeQuery>(environment, meQuery, {}).subscribe({
+    fetchQuery<ProfileUpdateMeQuery>(
+      envrionmentProps.current,
+      meQuery,
+      {},
+    ).subscribe({
       next: (data) => {
         if (data.me) {
-          const { name, nickname, statusMessage, photoURL, thumbURL } = data.me;
+          const {
+            name: myName,
+            nickname: nickName,
+            statusMessage: statusMsg,
+            photoURL,
+            thumbURL,
+          } = data.me;
 
-          setName(name ?? '');
-          setNickname(nickname ?? '');
-          setstatusMessage(statusMessage ?? '');
+          setName(myName ?? '');
+          setNickname(nickName ?? '');
+          setstatusMessage(statusMsg ?? '');
           setProfilePath(photoURL ?? thumbURL ?? '');
         }
       },
@@ -158,13 +176,19 @@ const Screen: FC<Props> = () => {
 
           if (image && !image.cancelled) {
             try {
-              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
-                uri: image.uri,
-                width: DEFAULT.PROFILEIMAGE_WIDTH,
-                height: DEFAULT.PROFILEIMAGE_HEIGHT,
-              });
+              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
+                {
+                  uri: image.uri,
+                  width: DEFAULT.PROFILEIMAGE_WIDTH,
+                  height: DEFAULT.PROFILEIMAGE_HEIGHT,
+                },
+              );
 
-              const response = await uploadImageAsync(resizedImage.uri, 'profiles');
+              const response = await uploadImageAsync(
+                resizedImage.uri,
+                'profiles',
+              );
+
               const result = JSON.parse(await response.text());
 
               setIsUploading(false);
@@ -183,13 +207,19 @@ const Screen: FC<Props> = () => {
 
           if (image && !image.cancelled) {
             try {
-              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
-                uri: image.uri,
-                width: DEFAULT.PROFILEIMAGE_WIDTH,
-                height: DEFAULT.PROFILEIMAGE_HEIGHT,
-              });
+              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
+                {
+                  uri: image.uri,
+                  width: DEFAULT.PROFILEIMAGE_WIDTH,
+                  height: DEFAULT.PROFILEIMAGE_HEIGHT,
+                },
+              );
 
-              const response = await uploadImageAsync(resizedImage.uri, 'profiles');
+              const response = await uploadImageAsync(
+                resizedImage.uri,
+                'profiles',
+              );
+
               const result = JSON.parse(await response.text());
 
               setProfilePath(result.url);
@@ -235,27 +265,30 @@ const Screen: FC<Props> = () => {
             activeOpacity={0.5}
             onPress={pressProfileImage}
           >
-            {!profilePath
-              ? <View style={{
-                width: 90,
-                height: 90,
-              }}>
+            {!profilePath ? (
+              <View
+                style={{
+                  width: 90,
+                  height: 90,
+                }}
+              >
+                <Image style={{ height: 80, width: 80 }} source={IC_PROFILE} />
                 <Image
-                  style={{ height: 80, width: 80 }}
-                  source={IC_PROFILE}
+                  style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    right: 0,
+                  }}
+                  source={IC_CAMERA}
                 />
-                <Image style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                }} source={IC_CAMERA}/>
               </View>
-              : <ProfileImage
+            ) : (
+              <ProfileImage
                 testID="profile-image"
                 resizeMode="cover"
                 source={{ uri: profilePath }}
               />
-            }
+            )}
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
@@ -267,9 +300,7 @@ const Screen: FC<Props> = () => {
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
-            onChangeText={(text: string): void =>
-              changeText('NICKNAME', text)
-            }
+            onChangeText={(text: string): void => changeText('NICKNAME', text)}
           />
           <EditText
             testID="input-name"
@@ -281,9 +312,7 @@ const Screen: FC<Props> = () => {
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
-            onChangeText={(text: string): void =>
-              changeText('NAME', text)
-            }
+            onChangeText={(text: string): void => changeText('NAME', text)}
           />
           <EditText
             testID="input-status"
