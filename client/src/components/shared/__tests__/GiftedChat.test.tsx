@@ -89,7 +89,7 @@ describe('[GiftedChatInput] render', () => {
       fireEvent.press(touchMenu);
     });
 
-    it('should call [setShowMenu] when focused', () => {
+    it('should call [setShowMenu] when focused again', () => {
       const touchMenu = testingLib.getByTestId('touch-menu');
 
       fireEvent.press(touchMenu);

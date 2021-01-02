@@ -15,10 +15,6 @@ import {
   MainStackParamList,
 } from '../navigation/MainStackNavigator';
 import { Message, User } from '../../types/graphql';
-import type {
-  MessageCreateMutation,
-  MessageCreateMutationResponse,
-} from '../../__generated__/MessageCreateMutation.graphql';
 import {
   MessagesQuery,
   MessagesQueryResponse,
@@ -50,6 +46,7 @@ import GiftedChat from '../shared/GiftedChat';
 import { IC_SMILE } from '../../utils/Icons';
 import { Ionicons } from '@expo/vector-icons';
 import type { MessageComponent_message$key } from '../../__generated__/MessageComponent_message.graphql';
+import type { MessageCreateMutation } from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../shared/MessageListItem';
 import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
 import { getString } from '../../../STRINGS';
@@ -207,9 +204,8 @@ function updateMessageOnSubmit(
       'Message',
     );
 
-  if (connectionRecord && newEdge) {
+  if (connectionRecord && newEdge)
     ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-  }
 }
 
 function updateChannelsOnSubmit(
@@ -250,13 +246,11 @@ function updateChannelsOnSubmit(
       'Channel',
     );
 
-  if (existingNode && connectionRecord) {
+  if (existingNode && connectionRecord)
     ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
-  }
 
-  if (connectionRecord && newEdge) {
+  if (connectionRecord && newEdge)
     ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-  }
 }
 
 interface MessageProp {
@@ -265,15 +259,11 @@ interface MessageProp {
   searchArgs: MessagesQueryVariables;
 }
 
-const MessagesFragment: FC<MessageProp> = ({
-  channelId,
-  messages,
-  searchArgs,
-}) => {
+const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
   const { theme } = useThemeContext();
   const navigation = useNavigation<RootStackNavigationProps>();
 
-  const { data, loadNext, loadPrevious, isLoadingNext } = usePaginationFragment<
+  const { data, loadNext, loadPrevious } = usePaginationFragment<
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
@@ -281,7 +271,7 @@ const MessagesFragment: FC<MessageProp> = ({
   useEffect(() => {
     // Add notification handler.
     const responseListener = Notifications.addNotificationReceivedListener(
-      (event) => {
+      () => {
         loadPrevious(ITEM_CNT);
       },
     );
@@ -323,15 +313,11 @@ const MessagesFragment: FC<MessageProp> = ({
         message: { text: textToSend },
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
-        if (user) {
-          updateMessageOnSubmit(proxyStore, channelId, user.id);
-        }
+        if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
 
         updateChannelsOnSubmit(proxyStore, channelId);
       },
-      onCompleted: (response: MessageCreateMutationResponse) => {
-        const { text } = response.createMessage as Message;
-
+      onCompleted: () => {
         setTextToSend('');
       },
       onError: (error: Error): void => {
@@ -347,13 +333,10 @@ const MessagesFragment: FC<MessageProp> = ({
 
     setIsImageUploading(true);
 
-    if (type === 'photo') {
-      image = await launchImageLibraryAsync();
-    } else {
-      image = await launchCameraAsync();
-    }
+    if (type === 'photo') image = await launchImageLibraryAsync();
+    else image = await launchCameraAsync();
 
-    if (image && !image.cancelled) {
+    if (image && !image.cancelled)
       try {
         const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
           uri: image.uri,
@@ -378,15 +361,11 @@ const MessagesFragment: FC<MessageProp> = ({
             },
           },
           updater: (proxyStore: RecordSourceSelectorProxy) => {
-            if (user) {
-              updateMessageOnSubmit(proxyStore, channelId, user.id);
-            }
+            if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
 
             updateChannelsOnSubmit(proxyStore, channelId);
           },
-          onCompleted: (messageResponse: MessageCreateMutationResponse) => {
-            const { imageUrls } = messageResponse.createMessage as Message;
-          },
+          onCompleted: () => {},
           onError: (error: Error): void => {
             showAlertForError(error);
             setIsImageUploading(false);
@@ -397,7 +376,6 @@ const MessagesFragment: FC<MessageProp> = ({
       } catch (err) {
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
-    }
 
     setIsImageUploading(false);
   };
@@ -444,9 +422,8 @@ const MessagesFragment: FC<MessageProp> = ({
                 .filter((node, nodeIndex) => {
                   const { imageUrls } = node as Message;
 
-                  if (imageUrls && nodeIndex < index) {
+                  if (imageUrls && nodeIndex < index)
                     initialIndex += imageUrls.length;
-                  }
 
                   return imageUrls && imageUrls.length > 0;
                 })
@@ -596,15 +573,14 @@ const MessageScreen: FC<Props> = (props) => {
       let title = channel?.name || '';
 
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
-      if (users) {
-        if (users.length === 1) {
+      if (users)
+        if (users.length === 1)
           title = users[0].nickname || users[0].name || '';
-        } else {
+        else {
           const userNames = users.map((v) => v.nickname || v.name || '');
 
           title = userNames.join(', ');
         }
-      }
 
       return (
         <Text

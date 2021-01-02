@@ -131,13 +131,11 @@ type FriendsFragmentProps = {
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({
-  scrollY,
   friend,
-  searchArgs,
   selectedUsers,
   setSelectedUsers,
 }) => {
-  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+  const { data } = usePaginationFragment<
     ChannelCreateFriendsPaginationQuery,
     ChannelCreate_friends$key
   >(friendsFragment, friend);
@@ -155,9 +153,9 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 
   const navigation = useNavigation();
 
-  const removeFriend = (friend: User): void => {
+  const removeFriend = (friendArg: User): void => {
     const nextState = produce(selectedUsers, (draftState) => {
-      const index = selectedUsers.findIndex((v) => v.id === friend.id);
+      const index = selectedUsers.findIndex((v) => v.id === friendArg.id);
 
       draftState.splice(index, 1);
     });
@@ -165,9 +163,12 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     setSelectedUsers(nextState);
   };
 
-  const renderFriendThumbnail = (friend: User, index: number): ReactElement => {
+  const renderFriendThumbnail = (
+    friendArg: User,
+    index: number,
+  ): ReactElement => {
     return (
-      <FriendThumbView key={friend.id}>
+      <FriendThumbView key={friendArg.id}>
         <View
           style={{
             marginTop: 12,
@@ -182,7 +183,9 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
               width: 60,
               height: 60,
             }}
-            source={friend.thumbURL ? { uri: friend.thumbURL } : IC_NO_IMAGE}
+            source={
+              friendArg.thumbURL ? { uri: friendArg.thumbURL } : IC_NO_IMAGE
+            }
           />
           <Text
             numberOfLines={1}
@@ -192,7 +195,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
               color: theme.fontColor,
             }}
           >
-            {friend.nickname || friend.name}
+            {friendArg.nickname || friendArg.name}
           </Text>
         </View>
         <TouchableOpacity
@@ -202,7 +205,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             top: 0,
             right: 0,
           }}
-          onPress={(): void => removeFriend(friend)}
+          onPress={(): void => removeFriend(friendArg)}
         >
           <Image source={IC_CIRCLE_X} style={{ width: 32, height: 32 }} />
         </TouchableOpacity>

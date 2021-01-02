@@ -1,7 +1,6 @@
 import type {
   BlockedUsersQuery,
   BlockedUsersQueryResponse,
-  BlockedUsersQueryVariables,
 } from '../../__generated__/BlockedUsersQuery.graphql';
 import { FlatList, View } from 'react-native';
 import React, { FC, Suspense } from 'react';

@@ -214,13 +214,7 @@ const ModalContent: FC<ModalContentProps> = ({
 
   const addFriend = async (): Promise<void> => {
     if (modalState) {
-      const {
-        user,
-        isFriend,
-        onAddFriend,
-        onDeleteFriend,
-        hideButtons,
-      } = modalState;
+      const { user, onAddFriend } = modalState;
 
       commitAddFriend({
         variables: { friendId: user.id },
@@ -242,15 +236,12 @@ const ModalContent: FC<ModalContentProps> = ({
               'User',
             );
 
-          if (connectionRecord && newEdge) {
+          if (connectionRecord && newEdge)
             ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
-          }
         },
       });
 
-      if (onAddFriend) {
-        onAddFriend();
-      }
+      if (onAddFriend) onAddFriend();
 
       setShowFriendAddedMessage(true);
     }
@@ -258,13 +249,7 @@ const ModalContent: FC<ModalContentProps> = ({
 
   const deleteFriend = async (): Promise<void> => {
     if (modalState) {
-      const {
-        user,
-        isFriend,
-        onAddFriend,
-        onDeleteFriend,
-        hideButtons,
-      } = modalState;
+      const { user, onDeleteFriend } = modalState;
 
       commitDeleteFriend({
         variables: { friendId: user.id },
@@ -274,15 +259,12 @@ const ModalContent: FC<ModalContentProps> = ({
           const connectionRecord =
             root && ConnectionHandler.getConnection(root, 'Friend_friends');
 
-          if (connectionRecord) {
+          if (connectionRecord)
             ConnectionHandler.deleteNode(connectionRecord, user.id);
-          }
         },
       });
 
-      if (onDeleteFriend) {
-        onDeleteFriend();
-      }
+      if (onDeleteFriend) onDeleteFriend();
 
       hideModal();
     }
@@ -291,11 +273,10 @@ const ModalContent: FC<ModalContentProps> = ({
   const createBlockedUser = (): void => {
     const blockedUserId = modalState?.user?.id;
 
-    if (blockedUserId) {
+    if (blockedUserId)
       commitCreateBlockedUser({
         variables: { blockedUserId },
       });
-    }
 
     hideModal();
   };
@@ -303,11 +284,10 @@ const ModalContent: FC<ModalContentProps> = ({
   const deleteBlockedUser = (): void => {
     const blockedUserId = modalState?.user?.id;
 
-    if (blockedUserId) {
+    if (blockedUserId)
       commitDeleteBlockedUser({
         variables: { blockedUserId },
       });
-    }
 
     hideModal();
   };
@@ -419,7 +399,7 @@ const ModalContent: FC<ModalContentProps> = ({
                 [
                   {
                     text: getString('NO'),
-                    onPress: () => console.log('Cancel Pressed'),
+                    onPress: () => {},
                     style: 'cancel',
                   },
                   {
@@ -455,11 +435,10 @@ const ModalContent: FC<ModalContentProps> = ({
           onPress={() => {
             const user = modalState?.user;
 
-            if (user) {
+            if (user)
               navigation.navigate('ImageSlider', {
                 images: [{ uri: user.photoURL, sender: user }],
               });
-            }
           }}
         >
           {modalState?.user.photoURL ? (

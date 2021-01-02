@@ -2,8 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import Channel from '../Channel';
 import { Channel as ChannelType } from '../../../types/graphql';
@@ -36,6 +36,7 @@ describe('[Channel] screen', () => {
           channelType: 'private',
           messages: {
             edges: [],
+            // @ts-ignore
             pageInfo: {
               hasNextPage: false,
               hasPreviousPage: false,
@@ -61,6 +62,7 @@ describe('[Channel] screen', () => {
             channelType: 'private',
             messages: {
               edges: [],
+              // @ts-ignore
               pageInfo: {
                 hasNextPage: false,
                 hasPreviousPage: false,

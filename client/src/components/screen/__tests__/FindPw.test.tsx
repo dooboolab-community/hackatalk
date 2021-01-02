@@ -1,16 +1,10 @@
 import 'react-native';
 
 import React, { ReactElement } from 'react';
-import {
-  RenderAPI,
-  act,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
+import { act, fireEvent, render } from '@testing-library/react-native';
 import { createTestElement, createTestProps } from '../../../../test/testUtils';
 
 import FindPw from '../FindPw';
-import { getString } from '../../../../STRINGS';
 
 // eslint-disable-next-line
 let props: any;

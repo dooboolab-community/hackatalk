@@ -145,9 +145,7 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
           response.notification.request.content.data.data as string,
         ).messageId;
 
-        if (typeof messageId === 'string') {
-          loadLastMessage({ messageId });
-        }
+        if (typeof messageId === 'string') loadLastMessage({ messageId });
       },
     );
 
@@ -159,9 +157,7 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
 
         loadNext(ITEM_CNT);
 
-        if (typeof messageId === 'string') {
-          loadLastMessage({ messageId });
-        }
+        if (typeof messageId === 'string') loadLastMessage({ messageId });
       },
     );
 
@@ -183,9 +179,8 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
     item: { node: Channel; cursor: string };
     index: number;
   }): React.ReactElement | null => {
-    if (!item.node?.memberships || !item.node?.memberships.length) {
+    if (!item.node?.memberships || !item.node?.memberships.length)
       return <View key={index} />;
-    }
 
     return (
       <ChannelListItem

@@ -6,10 +6,6 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { Image, TouchableOpacity, View } from 'react-native';
-import type {
-  MainStackNavigatorChannelQuery,
-  MainStackNavigatorChannelQueryResponse,
-} from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import React, { ReactElement, useEffect, useRef } from 'react';
 import {
   StackNavigationOptions,
@@ -24,6 +20,7 @@ import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
 import { DefaultTheme } from 'styled-components';
 import { IC_SETTING_W } from '../../utils/Icons';
+import type { MainStackNavigatorChannelQuery } from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import Message from '../screen/Message';
 import ProfileModal from '../shared/ProfileModal';
 import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
@@ -34,7 +31,7 @@ import SearchUser from '../screen/SearchUser';
 import Settings from '../screen/Settings';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
-import useAppState from '../../hooks/useAppState';
+// import useAppState from '../../hooks/useAppState';
 import { useThemeContext } from '@dooboo-ui/theme';
 
 export type MainStackParamList = {
@@ -106,7 +103,7 @@ const channelQuery = graphql`
 
 function MainStackNavigator(): ReactElement {
   const { theme } = useThemeContext();
-  const currentAppState = useAppState();
+  // const currentAppState = useAppState();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
   const environment = useRelayEnvironment();
 
@@ -130,14 +127,13 @@ function MainStackNavigator(): ReactElement {
           },
         ).subscribe({
           next: (data) => {
-            if (data.channel) {
+            if (data.channel)
               latestNavigation.current.navigate('Message', {
                 channel: data.channel as Channel,
                 users: data.channel?.memberships?.map(
                   (membership) => membership?.user as User,
                 ),
               });
-            }
           },
         });
       },
@@ -146,9 +142,9 @@ function MainStackNavigator(): ReactElement {
     return () => subscription.remove();
   }, []);
 
-  useEffect(() => {
-    console.log('currentAppState', currentAppState);
-  }, [currentAppState]);
+  // useEffect(() => {
+  //   console.log('currentAppState', currentAppState);
+  // }, [currentAppState]);
 
   return (
     <Stack.Navigator

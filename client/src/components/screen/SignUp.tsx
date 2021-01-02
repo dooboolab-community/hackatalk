@@ -1,9 +1,5 @@
 import { Button, EditText } from 'dooboo-ui';
 import React, { ReactElement, useState } from 'react';
-import {
-  SignUpMutation,
-  SignUpMutationResponse,
-} from '../../__generated__/SignUpMutation.graphql';
 import { graphql, useMutation } from 'react-relay/hooks';
 import {
   showAlertForError,
@@ -14,6 +10,7 @@ import {
 import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
 import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SignUpMutation } from '../../__generated__/SignUpMutation.graphql';
 import { SignUpSendVerificationMutation } from '../../__generated__/SignUpSendVerificationMutation.graphql';
 import StatusBar from '../shared/StatusBar';
 import { getString } from '../../../STRINGS';
@@ -76,10 +73,9 @@ function Page(props: Props): ReactElement {
 
   const [commitSignUp, isInFlight] = useMutation<SignUpMutation>(signUp);
 
-  const [
-    commitSendVerification,
-    isVerificationInFlight,
-  ] = useMutation<SignUpSendVerificationMutation>(sendVerification);
+  const [commitSendVerification] = useMutation<SignUpSendVerificationMutation>(
+    sendVerification,
+  );
 
   const { theme } = useThemeContext();
   // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
@@ -93,21 +89,16 @@ function Page(props: Props): ReactElement {
       name.length < 2 ||
       password !== confirmPassword
     ) {
-      if (!validateEmail(email)) {
+      if (!validateEmail(email))
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-      }
 
-      if (!validatePassword(password)) {
+      if (!validatePassword(password))
         setErrorPassword(getString('PASSWORD_MIN'));
-      }
 
-      if (name.length < 2) {
-        setErrorName(getString('NAME_MIN'));
-      }
+      if (name.length < 2) setErrorName(getString('NAME_MIN'));
 
-      if (password !== confirmPassword) {
+      if (password !== confirmPassword)
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      }
 
       return;
     }
@@ -121,7 +112,7 @@ function Page(props: Props): ReactElement {
           statusMessage,
         },
       },
-      onCompleted: (response: SignUpMutationResponse) => {
+      onCompleted: () => {
         const sendVerificationMutationConfig = {
           variables: {
             email,
@@ -141,44 +132,35 @@ function Page(props: Props): ReactElement {
   };
 
   const inputChangeHandlers: Record<string, (value: string) => void> = {
-    emailInput: (email: string): void => {
-      setEmail(email);
+    emailInput: (emailStr: string): void => {
+      setEmail(emailStr);
 
-      if (!validateEmail(email)) {
+      if (!validateEmail(emailStr))
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-      } else {
-        setErrorEmail('');
-      }
+      else setErrorEmail('');
     },
-    passwordInput: (password: string): void => {
-      setPassword(password);
+    passwordInput: (passwordStr: string): void => {
+      setPassword(passwordStr);
 
-      if (!validatePassword(password)) {
+      if (!validatePassword(passwordStr))
         setErrorPassword(getString('PASSWORD_MIN'));
-      } else if (confirmPassword && password !== confirmPassword) {
+      else if (confirmPassword && passwordStr !== confirmPassword) {
         setErrorPassword('');
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      } else {
-        setErrorPassword('');
-      }
+      } else setErrorPassword('');
     },
-    confirmPasswordInput: (confirmPassword: string): void => {
-      setConfirmPassword(confirmPassword);
+    confirmPasswordInput: (confirmPasswordStr: string): void => {
+      setConfirmPassword(confirmPasswordStr);
 
-      if (password !== confirmPassword) {
+      if (password !== confirmPasswordStr)
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      } else {
-        setErrorConfirmPassword('');
-      }
+      else setErrorConfirmPassword('');
     },
-    nameInput: (name: string): void => {
-      setName(name);
+    nameInput: (nameStr: string): void => {
+      setName(nameStr);
 
-      if (name.length < 2) {
-        setErrorName(getString('NAME_MIN'));
-      } else {
-        setErrorName('');
-      }
+      if (nameStr.length < 2) setErrorName(getString('NAME_MIN'));
+      else setErrorName('');
     },
   };
 

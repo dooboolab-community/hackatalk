@@ -140,7 +140,7 @@ describe('[SignIn] interaction', () => {
     });
   });
 
-  it('should navigate to [WebView] when terms has been pressed', async () => {
+  it('should navigate to [WebView] when terms has been pressed again', async () => {
     const btnPrivary = testingLib.getByTestId('btn-privacy');
 
     await waitFor(() => btnPrivary);
@@ -346,8 +346,6 @@ describe('[SignIn] interaction', () => {
 });
 
 describe('Apple SignIn', () => {
-  let testingLib: RenderAPI;
-
   beforeAll(() => {
     props = createTestProps();
 
@@ -376,7 +374,7 @@ describe('Apple SignIn', () => {
   it('should signin with Apple when [btn-apple] has pressed', async () => {
     testingLib = render(component);
 
-    const btnApple = testingLib.queryByTestId('btn-apple');
+    const btnApple = testingLib.getByTestId('btn-apple');
 
     await waitFor(() => expect(btnApple).toBeTruthy());
 

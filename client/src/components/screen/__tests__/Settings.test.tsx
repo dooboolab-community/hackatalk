@@ -17,7 +17,8 @@ import Settings from '../Settings';
 
 let component: React.ReactElement;
 
-function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
+function getEmptyAuthUserWithSignInType(authType: AuthType): User {
+  // @ts-ignore
   return {
     id: '',
     nickname: '',
@@ -25,7 +26,8 @@ function getEmptyAuthUserWithSignInType(signInType: AuthType): User {
     photoURL: '',
     statusMessage: '',
     profile: {
-      authType: AuthType.Email,
+      authType,
+      socialId: '',
     },
   };
 }

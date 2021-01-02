@@ -57,16 +57,21 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
           onGestureCanceled={[Function]}
           onGestureEnd={[Function]}
           onOpen={[Function]}
-          onTransitionStart={[Function]}
+          onTransition={[Function]}
           pointerEvents="box-none"
           style={
-            Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            }
+            Array [
+              Object {
+                "overflow": undefined,
+              },
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+            ]
           }
           transitionSpec={
             Object {
@@ -635,8 +640,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 testID="btn-apple"
                               />
                               <test
-                                clientId="476130476434051"
-                                clientSecret="8d66d95a7014e2fdd23f746c0ddb48e4"
                                 onUserCreated={[Function]}
                                 socialProvider="facebook"
                                 svgIcon={
@@ -648,8 +651,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 }
                               />
                               <test
-                                clientId="841669004924-hnlgvgfvm347jpge2ojum8udf1ecph9q.apps.googleusercontent.com"
-                                clientSecret="74OOcKEtWA2wePxL7Bvww_sN"
                                 onUserCreated={[Function]}
                                 socialProvider="google"
                                 svgIcon={
