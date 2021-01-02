@@ -108,7 +108,7 @@ jobs:
           working_directory: client
           command: |
             mkdir -p coverage
-            yarn test -u --coverage --max-workers=2 --silent
+            yarn test -u --coverage --silent
           environment:
             JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
 
