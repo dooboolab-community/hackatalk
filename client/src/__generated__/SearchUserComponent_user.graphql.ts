@@ -34,191 +34,191 @@ export type SearchUserComponent_user$key = {
 
 
 
-const node: ReaderFragment = (function () {
-    var v0 = [
-        "users"
-    ];
-    return {
-        "argumentDefinitions": [
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "after"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "first"
-            },
-            {
-                "defaultValue": null,
-                "kind": "LocalArgument",
-                "name": "searchText"
-            }
-        ],
-        "kind": "Fragment",
-        "metadata": {
-            "connection": [
-                {
-                    "count": "first",
-                    "cursor": "after",
-                    "direction": "forward",
-                    "path": (v0 /*: any*/)
-                }
-            ],
-            "refetch": {
-                "connection": {
-                    "forward": {
-                        "count": "first",
-                        "cursor": "after"
-                    },
-                    "backward": null,
-                    "path": (v0 /*: any*/)
-                },
-                "fragmentPathInResult": [],
-                "operation": require('./SearchUsersQuery.graphql.ts')
-            }
+const node: ReaderFragment = (function(){
+var v0 = [
+  "users"
+];
+return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "after"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "first"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "searchText"
+    }
+  ],
+  "kind": "Fragment",
+  "metadata": {
+    "connection": [
+      {
+        "count": "first",
+        "cursor": "after",
+        "direction": "forward",
+        "path": (v0/*: any*/)
+      }
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "first",
+          "cursor": "after"
         },
-        "name": "SearchUserComponent_user",
-        "selections": [
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [],
+      "operation": require('./SearchUsersQuery.graphql.ts')
+    }
+  },
+  "name": "SearchUserComponent_user",
+  "selections": [
+    {
+      "alias": "users",
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "searchText",
+          "variableName": "searchText"
+        }
+      ],
+      "concreteType": "UserConnection",
+      "kind": "LinkedField",
+      "name": "__SearchUserComponent_users_connection",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "UserEdge",
+          "kind": "LinkedField",
+          "name": "edges",
+          "plural": true,
+          "selections": [
             {
-                "alias": "users",
-                "args": [
-                    {
-                        "kind": "Variable",
-                        "name": "searchText",
-                        "variableName": "searchText"
-                    }
-                ],
-                "concreteType": "UserConnection",
-                "kind": "LinkedField",
-                "name": "__SearchUserComponent_users_connection",
-                "plural": false,
-                "selections": [
-                    {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "UserEdge",
-                        "kind": "LinkedField",
-                        "name": "edges",
-                        "plural": true,
-                        "selections": [
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "cursor",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "concreteType": "User",
-                                "kind": "LinkedField",
-                                "name": "node",
-                                "plural": false,
-                                "selections": [
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "id",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "email",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "name",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "nickname",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "hasBlocked",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "photoURL",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "thumbURL",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "statusMessage",
-                                        "storageKey": null
-                                    },
-                                    {
-                                        "alias": null,
-                                        "args": null,
-                                        "kind": "ScalarField",
-                                        "name": "__typename",
-                                        "storageKey": null
-                                    }
-                                ],
-                                "storageKey": null
-                            }
-                        ],
-                        "storageKey": null
-                    },
-                    {
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "PageInfo",
-                        "kind": "LinkedField",
-                        "name": "pageInfo",
-                        "plural": false,
-                        "selections": [
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "hasNextPage",
-                                "storageKey": null
-                            },
-                            {
-                                "alias": null,
-                                "args": null,
-                                "kind": "ScalarField",
-                                "name": "endCursor",
-                                "storageKey": null
-                            }
-                        ],
-                        "storageKey": null
-                    }
-                ],
-                "storageKey": null
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "User",
+              "kind": "LinkedField",
+              "name": "node",
+              "plural": false,
+              "selections": [
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "id",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "email",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "name",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "nickname",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "hasBlocked",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "photoURL",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "thumbURL",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "statusMessage",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
             }
-        ],
-        "type": "Query",
-        "abstractKey": null
-    } as any;
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    }
+  ],
+  "type": "Query",
+  "abstractKey": null
+};
 })();
 (node as any).hash = '67b6bb26c754487ff04cacda759862d6';
 export default node;

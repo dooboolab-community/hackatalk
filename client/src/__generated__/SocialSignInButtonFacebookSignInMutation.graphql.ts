@@ -49,129 +49,130 @@ mutation SocialSignInButtonFacebookSignInMutation(
 }
 */
 
-const node: ConcreteRequest = (function () {
-    var v0 = [
-        ({
-            "defaultValue": null,
-            "kind": "LocalArgument",
-            "name": "accessToken"
-        } as any)
-    ], v1 = [
-        ({
+const node: ConcreteRequest = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "accessToken"
+  }
+],
+v1 = [
+  {
+    "alias": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "accessToken",
+        "variableName": "accessToken"
+      }
+    ],
+    "concreteType": "AuthPayload",
+    "kind": "LinkedField",
+    "name": "signInWithFacebook",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "token",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "user",
+        "plural": false,
+        "selections": [
+          {
             "alias": null,
-            "args": [
-                {
-                    "kind": "Variable",
-                    "name": "accessToken",
-                    "variableName": "accessToken"
-                }
-            ],
-            "concreteType": "AuthPayload",
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "email",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "name",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "photoURL",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "verified",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "Profile",
             "kind": "LinkedField",
-            "name": "signInWithFacebook",
+            "name": "profile",
             "plural": false,
             "selections": [
-                {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "token",
-                    "storageKey": null
-                },
-                {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "User",
-                    "kind": "LinkedField",
-                    "name": "user",
-                    "plural": false,
-                    "selections": [
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "id",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "email",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "name",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "photoURL",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "kind": "ScalarField",
-                            "name": "verified",
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "Profile",
-                            "kind": "LinkedField",
-                            "name": "profile",
-                            "plural": false,
-                            "selections": [
-                                {
-                                    "alias": null,
-                                    "args": null,
-                                    "kind": "ScalarField",
-                                    "name": "authType",
-                                    "storageKey": null
-                                }
-                            ],
-                            "storageKey": null
-                        }
-                    ],
-                    "storageKey": null
-                }
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "authType",
+                "storageKey": null
+              }
             ],
             "storageKey": null
-        } as any)
-    ];
-    return {
-        "fragment": {
-            "argumentDefinitions": (v0 /*: any*/),
-            "kind": "Fragment",
-            "metadata": null,
-            "name": "SocialSignInButtonFacebookSignInMutation",
-            "selections": (v1 /*: any*/),
-            "type": "Mutation",
-            "abstractKey": null
-        },
-        "kind": "Request",
-        "operation": {
-            "argumentDefinitions": (v0 /*: any*/),
-            "kind": "Operation",
-            "name": "SocialSignInButtonFacebookSignInMutation",
-            "selections": (v1 /*: any*/)
-        },
-        "params": {
-            "cacheID": "168ad1c505c0cbe50ea3c2dc9cb2294e",
-            "id": null,
-            "metadata": {},
-            "name": "SocialSignInButtonFacebookSignInMutation",
-            "operationKind": "mutation",
-            "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
-        }
-    } as any;
+          }
+        ],
+        "storageKey": null
+      }
+    ],
+    "storageKey": null
+  }
+];
+return {
+  "fragment": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "SocialSignInButtonFacebookSignInMutation",
+    "selections": (v1/*: any*/),
+    "type": "Mutation",
+    "abstractKey": null
+  },
+  "kind": "Request",
+  "operation": {
+    "argumentDefinitions": (v0/*: any*/),
+    "kind": "Operation",
+    "name": "SocialSignInButtonFacebookSignInMutation",
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "cacheID": "168ad1c505c0cbe50ea3c2dc9cb2294e",
+    "id": null,
+    "metadata": {},
+    "name": "SocialSignInButtonFacebookSignInMutation",
+    "operationKind": "mutation",
+    "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+  }
+};
 })();
 (node as any).hash = '7963716f8f2c9a21116c08e8a6975d3f';
 export default node;
