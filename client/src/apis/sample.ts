@@ -6,7 +6,7 @@ export const sample = async (
   body?: Record<string, unknown>,
   // signal?: AbortController['signal'],
 ): Promise<Response> => {
-  const fetchOption: RequestInit = {
+  const fetchOption = {
     // signal,
     method: 'POST',
     headers: new Headers({
