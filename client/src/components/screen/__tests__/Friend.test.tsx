@@ -1,7 +1,6 @@
 import { MockPayloadGenerator, createMockEnvironment } from 'relay-test-utils';
 import React, { Suspense } from 'react';
 import { dark, light } from '../../../theme';
-import { render, waitFor } from '@testing-library/react-native';
 
 import Friend from '../Friend';
 import { LoadingIndicator } from 'dooboo-ui';
@@ -9,6 +8,7 @@ import { ProfileModalProvider } from '../../../providers/ProfileModalProvider';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { ThemeProvider } from '@dooboo-ui/theme';
 import { User } from '../../../types/graphql';
+import { render } from '@testing-library/react-native';
 
 const environment = createMockEnvironment();
 

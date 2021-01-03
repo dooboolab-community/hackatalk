@@ -22,7 +22,7 @@ export const uploadImageAsync = async (
     name: `${fileName}${fileNamePrefix}`,
   });
 
-  const fetchOption: RequestInit = {
+  const fetchOption = {
     method: 'POST',
     body: data,
     headers: new Headers({
