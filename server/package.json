@@ -10,7 +10,7 @@
     "prod": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
-    "lint": "eslint src/**/**/*.ts && eslint tests/**/**/*.ts",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx src tests",
     "tsc": "tsc",
     "test": "dotenv -e ./dotenv/test.env -- jest --runInBand --detectOpenHandles --forceExit",
     "generate:test": "npm -s run generate:prisma:test && npm -s run generate:nexus:test",
