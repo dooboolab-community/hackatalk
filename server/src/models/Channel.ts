@@ -46,11 +46,16 @@ export const Channel = objectType({
           where: { userId },
         });
 
-        const blockedUsersInArray = blockedUsers.map((user) => user.blockedUserId);
+        const blockedUsersInArray = blockedUsers.map(
+          (user) => user.blockedUserId,
+        );
 
         return prisma.message.findMany({
           ...relayToPrismaPagination({
-            after, before, first, last,
+            after,
+            before,
+            first,
+            last,
           }),
           where: {
             channel: { id },
@@ -65,15 +70,12 @@ export const Channel = objectType({
 
     t.list.nonNull.field('memberships', {
       type: 'Membership',
-      description: 'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
+      description:
+        'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
       args: { excludeMe: booleanArg() },
 
-      resolve: (
-        { id },
-        { excludeMe },
-        { prisma, userId },
-      ) => {
-        if (excludeMe) {
+      resolve: ({ id }, { excludeMe }, { prisma, userId }) => {
+        if (excludeMe)
           return prisma.membership.findMany({
             where: {
               channel: { id },
@@ -83,7 +85,6 @@ export const Channel = objectType({
             },
             include: { user: true },
           });
-        }
 
         return prisma.membership.findMany({
           where: { channel: { id } },

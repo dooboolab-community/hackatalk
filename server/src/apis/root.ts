@@ -16,15 +16,14 @@ interface VerificationToken {
 }
 
 const {
-  STORAGE_ENDPOINT,
   STORAGE_ACCOUNT,
   STORAGE_KEY,
   STORAGE_CONNECTION_STRING,
   JWT_SECRET,
 } = process.env;
 
-const resolveBlobName = (req, file): Promise<string> => {
-  return new Promise((resolve, reject) => {
+const resolveBlobName = (req): Promise<string> => {
+  return new Promise((resolve) => {
     const dir: string = req.body.dir ? `${req.body.dir}/` : '';
     const blobName = `${dir}${nanoid()}_${new Date().getTime()}`;
 
