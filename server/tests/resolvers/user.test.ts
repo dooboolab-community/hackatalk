@@ -79,7 +79,7 @@ describe('Resolver - User', () => {
     });
 
     it('should throw error when invalid gender value is given', async () => {
-      const variables = {
+      const invalidVars = {
         user: {
           name: 'HelloBro',
           gender: 'Woman',
@@ -87,7 +87,7 @@ describe('Resolver - User', () => {
       };
 
       expect(async () => {
-        await client.request(updateProfileMutation, variables);
+        await client.request(updateProfileMutation, invalidVars);
       }).rejects.toThrow();
     });
 
