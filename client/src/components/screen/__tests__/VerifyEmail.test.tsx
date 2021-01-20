@@ -1,14 +1,14 @@
 import 'react-native';
 
-import { MockPayloadGenerator, createMockEnvironment } from 'relay-test-utils';
-import { act, fireEvent, render } from '@testing-library/react-native';
-import { dark, light } from '../../../theme';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {act, fireEvent, render} from '@testing-library/react-native';
+import {dark, light} from '../../../theme';
 
 import React from 'react';
-import { RelayEnvironmentProvider } from 'react-relay/hooks';
-import { ThemeProvider } from '@dooboo-ui/theme';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import {ThemeProvider} from '@dooboo-ui/theme';
 import VerifyEmail from '../VerifyEmail';
-import { createTestProps } from '../../../../test/testUtils';
+import {createTestProps} from '../../../../test/testUtils';
 
 const environment = createMockEnvironment();
 
@@ -23,7 +23,7 @@ const props = createTestProps({
 
 const component = (
   <RelayEnvironmentProvider environment={environment}>
-    <ThemeProvider customTheme={{ light, dark }}>
+    <ThemeProvider customTheme={{light, dark}}>
       <VerifyEmail {...props} />
     </ThemeProvider>
   </RelayEnvironmentProvider>
@@ -56,7 +56,7 @@ describe('Rendering', () => {
 
 describe('Interaction', () => {
   it('should simulate email button press', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const btn = getByTestId('btn-next');
 
     await act(() => {

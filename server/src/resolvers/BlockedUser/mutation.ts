@@ -1,6 +1,6 @@
-import { mutationField, nonNull, stringArg } from 'nexus';
+import {mutationField, nonNull, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
+import {assert} from '../../utils/assert';
 
 export const createBlockedUser = mutationField('createBlockedUser', {
   type: 'BlockedUser',
@@ -9,16 +9,16 @@ export const createBlockedUser = mutationField('createBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_, { blockedUserId }, { prisma, userId }) => {
+  resolve: (_, {blockedUserId}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     return prisma.blockedUser.create({
       data: {
         user: {
-          connect: { id: userId },
+          connect: {id: userId},
         },
         blockedUser: {
-          connect: { id: blockedUserId },
+          connect: {id: blockedUserId},
         },
       },
       include: {
@@ -36,7 +36,7 @@ export const deleteBlockedUser = mutationField('deleteBlockedUser', {
     blockedUserId: nonNull(stringArg()),
   },
 
-  resolve: (_, { blockedUserId }, { prisma, userId }) => {
+  resolve: (_, {blockedUserId}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     return prisma.blockedUser.delete({

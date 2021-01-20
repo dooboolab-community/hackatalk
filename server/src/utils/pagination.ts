@@ -32,18 +32,18 @@ function resolveTake(
 function resolveCursor(
   before: string | null | undefined,
   after: string | null | undefined,
-): { id: string } | undefined {
+): {id: string} | undefined {
   if (before && after)
     throw new Error("before and after can't be set simultaneously");
 
-  if (before) return { id: before };
+  if (before) return {id: before};
 
-  if (after) return { id: after };
+  if (after) return {id: after};
 
   return undefined;
 }
 
-function resolveSkip(cursor: { id: string } | null | undefined): 1 | undefined {
+function resolveSkip(cursor: {id: string} | null | undefined): 1 | undefined {
   if (cursor) return 1;
 
   return undefined;
@@ -51,8 +51,8 @@ function resolveSkip(cursor: { id: string } | null | undefined): 1 | undefined {
 
 export function relayToPrismaPagination(
   args: PaginationArgs,
-): { cursor?: { id: string }; take?: number; skip?: number } {
-  const { first, last, before, after } = args;
+): {cursor?: {id: string}; take?: number; skip?: number} {
+  const {first, last, before, after} = args;
 
   // If no pagination set, don't touch the args
   if (!first && !last && !before && !after) return {};
@@ -84,7 +84,7 @@ export function relayToPrismaPagination(
   // Edge-case: simulates a single `before` with a hack
   if (before && !first && !last && !after)
     return {
-      cursor: { id: before },
+      cursor: {id: before},
       skip: 1,
       take: Number.MIN_SAFE_INTEGER,
     };

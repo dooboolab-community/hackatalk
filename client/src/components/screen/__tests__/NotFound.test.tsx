@@ -2,8 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { cleanup, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {cleanup, render} from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import NotFound from '../NotFound';
 

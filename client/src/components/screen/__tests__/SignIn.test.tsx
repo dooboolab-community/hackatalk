@@ -1,6 +1,6 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 import {
   RenderAPI,
   act,
@@ -9,19 +9,19 @@ import {
   render,
   waitFor,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
-import { FetchMock } from 'jest-fetch-mock';
-import { MockPayloadGenerator } from 'relay-test-utils';
+import {FetchMock} from 'jest-fetch-mock';
+import {MockPayloadGenerator} from 'relay-test-utils';
 import SignIn from '../SignIn';
-import { ThemeType } from '@dooboo-ui/theme';
-import { environment } from '../../../providers';
+import {ThemeType} from '@dooboo-ui/theme';
+import {environment} from '../../../providers';
 
 const fetchMock = fetch as FetchMock;
 
-fetchMock.mockResponse(JSON.stringify({ id: 1 }));
+fetchMock.mockResponse(JSON.stringify({id: 1}));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;

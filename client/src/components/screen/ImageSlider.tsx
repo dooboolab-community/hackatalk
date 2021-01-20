@@ -1,14 +1,14 @@
-import { Animated, Dimensions, Image, StatusBar } from 'react-native';
-import PinchZoom, { PinchZoomRef } from '../shared/PinchZoom';
+import {Animated, Dimensions, Image, StatusBar} from 'react-native';
+import PinchZoom, {PinchZoomRef} from '../shared/PinchZoom';
 import {
   RootStackNavigationProps,
   RootStackParamList,
 } from '../navigation/RootStackNavigator';
-import { RouteProp, useNavigation } from '@react-navigation/native';
+import {RouteProp, useNavigation} from '@react-navigation/native';
 
 import React from 'react';
 import styled from 'styled-components/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Container = styled.View`
   flex: 1;
@@ -31,7 +31,7 @@ interface Props {
 
 function ImageSlider({
   route: {
-    params: { images, initialIndex = 0 },
+    params: {images, initialIndex = 0},
   },
 }: Props): React.ReactElement {
   const [currentIndex, setCurrentIndex] = React.useState<number>(initialIndex);
@@ -156,7 +156,7 @@ function ImageSlider({
       headerBackTitle: images[currentIndex]?.sender || '',
     });
 
-    pinchZoom.current?.setValues({ scale: 1, translate: { x: 0, y: 0 } });
+    pinchZoom.current?.setValues({scale: 1, translate: {x: 0, y: 0}});
     nextImageTranslateX.setValue(0);
     prevImageTranslateX.setValue(0);
   }, [
@@ -182,11 +182,10 @@ function ImageSlider({
               bottom: 0,
               justifyContent: 'center',
               // @ts-ignore
-              transform: [{ translateX: prevImageTranslateX }],
-            }}
-          >
+              transform: [{translateX: prevImageTranslateX}],
+            }}>
             <Image
-              source={{ uri: images[currentIndex - 1]?.uri as string }}
+              source={{uri: images[currentIndex - 1]?.uri as string}}
               style={imageStyle}
               resizeMode="contain"
             />
@@ -205,15 +204,14 @@ function ImageSlider({
             translateOtherImages();
           }}
           onRelease={onRelease}
-          allowEmpty={{ x: true }}
+          allowEmpty={{x: true}}
           fixOverflowAfterRelease={false}
           style={{
             width: imageContainerWidth,
             justifyContent: 'center',
-          }}
-        >
+          }}>
           <Image
-            source={{ uri: images[currentIndex]?.uri as string }}
+            source={{uri: images[currentIndex]?.uri as string}}
             style={imageStyle}
             resizeMode="contain"
           />
@@ -229,11 +227,10 @@ function ImageSlider({
               justifyContent: 'center',
               left: imageContainerWidth + imageGap,
               // @ts-ignore
-              transform: [{ translateX: nextImageTranslateX }],
-            }}
-          >
+              transform: [{translateX: nextImageTranslateX}],
+            }}>
             <Image
-              source={{ uri: images[currentIndex + 1]?.uri as string }}
+              source={{uri: images[currentIndex + 1]?.uri as string}}
               style={imageStyle}
               resizeMode="contain"
             />

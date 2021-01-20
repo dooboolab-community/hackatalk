@@ -1,21 +1,21 @@
-import { Button, EditText } from 'dooboo-ui';
+import {Button, EditText} from 'dooboo-ui';
 import type {
   FindPwMutation,
   FindPwMutationResponse,
 } from '../../__generated__/FindPwMutation.graphql';
-import React, { ReactElement, useState } from 'react';
-import { graphql, useMutation } from 'react-relay/hooks';
-import { showAlertForError, validateEmail } from '../../utils/common';
+import React, {ReactElement, useState} from 'react';
+import {graphql, useMutation} from 'react-relay/hooks';
+import {showAlertForError, validateEmail} from '../../utils/common';
 
-import { Alert } from 'react-native';
-import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import { getString } from '../../../STRINGS';
+import {Alert} from 'react-native';
+import {AuthStackNavigationProps} from '../navigation/AuthStackNavigator';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
 `;
 
 const Wrapper = styled.View`
@@ -37,7 +37,7 @@ const findPasswordMutation = graphql`
   }
 `;
 
-function Page({ navigation }: Props): ReactElement {
+function Page({navigation}: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
 
@@ -45,7 +45,7 @@ function Page({ navigation }: Props): ReactElement {
     findPasswordMutation,
   );
 
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
@@ -55,7 +55,7 @@ function Page({ navigation }: Props): ReactElement {
     }
 
     const mutationConfig = {
-      variables: { email },
+      variables: {email},
       onError: (error: Error): void => {
         showAlertForError(error);
       },
@@ -95,7 +95,7 @@ function Page({ navigation }: Props): ReactElement {
             setEmail(text);
             setErrorEmail('');
           }}
-          style={{ marginTop: 20 }}
+          style={{marginTop: 20}}
           errorText={errorEmail}
           onSubmitEditing={onFindPw}
         />
@@ -104,8 +104,8 @@ function Page({ navigation }: Props): ReactElement {
             testID="btn-find-pw"
             loading={isInFlight}
             onPress={onFindPw}
-            style={{
-              root: {
+            styles={{
+              container: {
                 height: 52,
                 backgroundColor: theme.btnPrimary,
               },

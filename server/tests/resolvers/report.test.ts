@@ -1,4 +1,4 @@
-import { GraphQLClient, request } from 'graphql-request';
+import {GraphQLClient, request} from 'graphql-request';
 import {
   createReportMutation,
   signInEmailMutation,
@@ -6,7 +6,7 @@ import {
 } from '../queries';
 
 import sgMail from '@sendgrid/mail';
-import { testHost } from '../testSetup';
+import {testHost} from '../testSetup';
 
 describe('Resolver - Report', () => {
   it('scenario test', async () => {
@@ -79,7 +79,7 @@ describe('Resolver - Report', () => {
     // should create report
     const createReportResponse = await authClient.request(
       createReportMutation,
-      { reportedUserId, report: 'I want to report him' },
+      {reportedUserId, report: 'I want to report him'},
     );
 
     expect(createReportResponse).toHaveProperty('createReport');

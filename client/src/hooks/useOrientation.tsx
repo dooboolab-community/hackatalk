@@ -1,8 +1,8 @@
 import * as ScreenOrientation from 'expo-screen-orientation';
 
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
-import { Dimensions } from 'react-native';
+import {Dimensions} from 'react-native';
 
 export enum Orientation {
   PORTRAIT = 'portrait',
@@ -19,7 +19,7 @@ export default function useAppState(): Orientation {
 
   useEffect(() => {
     const subscription = ScreenOrientation.addOrientationChangeListener(
-      ({ orientationInfo }) => {
+      ({orientationInfo}) => {
         const isNewOrientationPortrait =
           orientationInfo.orientation ===
             ScreenOrientation.Orientation.PORTRAIT_UP ||

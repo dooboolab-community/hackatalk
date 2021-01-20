@@ -1,6 +1,6 @@
-import { mutationField, stringArg } from 'nexus';
+import {mutationField, stringArg} from 'nexus';
 
-import { uploadFileToAzureBlobFromStream } from '../../utils/azure';
+import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
 
 export const singleUpload = mutationField('singleUpload', {
   type: 'String',
@@ -14,12 +14,12 @@ export const singleUpload = mutationField('singleUpload', {
   },
 
   resolve: async (parent, args) => {
-    const { STORAGE_ENDPOINT } = process.env;
+    const {STORAGE_ENDPOINT} = process.env;
     const container = 'hackatalk';
     const dir = args.dir ? `${args.dir}/` : '';
 
     const file = await args.file;
-    const { filename } = file;
+    const {filename} = file;
 
     const stream = file.createReadStream();
 

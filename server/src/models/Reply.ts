@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import {objectType} from 'nexus';
 
 export const Reply = objectType({
   name: 'Reply',
@@ -11,7 +11,7 @@ export const Reply = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.nonNull.field('sender', { type: 'User' });
+    t.nonNull.field('sender', {type: 'User'});
     // t.list.field('reactions', { type: 'Reaction' });
   },
 });

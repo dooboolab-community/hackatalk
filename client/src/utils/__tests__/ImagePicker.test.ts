@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as ImagePicker from '../ImagePicker';
 
-import { askAsync } from 'expo-permissions';
+import {askAsync} from 'expo-permissions';
 
 jest.mock('expo-permissions', () => ({
   // @ts-ignore

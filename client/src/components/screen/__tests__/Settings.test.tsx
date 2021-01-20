@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { AuthType, User } from '../../../types/graphql';
+import {AuthType, User} from '../../../types/graphql';
 import {
   RenderAPI,
   act,
@@ -10,7 +10,7 @@ import {
   fireEvent,
   render,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import AuthContext from '../../../providers/AuthProvider';
 import Settings from '../Settings';

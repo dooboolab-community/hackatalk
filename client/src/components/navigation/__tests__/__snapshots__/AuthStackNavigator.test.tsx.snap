@@ -500,25 +500,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
-                                    "button": Object {
-                                      "backgroundColor": "#ffffff",
-                                      "borderColor": "#1E6EFA",
-                                      "borderRadius": 0,
-                                      "borderWidth": 1,
-                                      "width": "100%",
-                                    },
+                                    "flex": 1,
                                     "opacity": 1,
-                                    "root": Object {
-                                      "flex": 1,
-                                      "flexDirection": "row",
-                                      "height": 52,
-                                      "justifyContent": "center",
-                                    },
-                                    "text": Object {
-                                      "color": "#1E6EFA",
-                                      "fontSize": 14,
-                                      "fontWeight": "bold",
-                                    },
                                   }
                                 }
                                 testID="btn-sign-up"
@@ -542,23 +525,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
-                                    "button": Object {
-                                      "backgroundColor": "#1E6EFA",
-                                      "borderRadius": 0,
-                                      "width": "100%",
-                                    },
                                     "opacity": 1,
-                                    "root": Object {
-                                      "flex": 1,
-                                      "flexDirection": "row",
-                                      "height": 52,
-                                      "justifyContent": "center",
-                                    },
-                                    "text": Object {
-                                      "color": "#ffffff",
-                                      "fontSize": 14,
-                                      "fontWeight": "bold",
-                                    },
                                   }
                                 }
                                 testID="btn-sign-in"
@@ -621,20 +588,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
-                                    "button": Object {
-                                      "backgroundColor": "#ffffff",
-                                      "borderColor": "#151E22",
-                                      "borderRadius": 100,
-                                      "borderWidth": 1,
-                                      "height": 48,
-                                      "marginBottom": 12,
-                                      "width": "100%",
-                                    },
+                                    "marginBottom": 12,
                                     "opacity": 1,
-                                    "text": Object {
-                                      "color": "#151E22",
-                                      "fontWeight": "700",
-                                    },
                                   }
                                 }
                                 testID="btn-apple"

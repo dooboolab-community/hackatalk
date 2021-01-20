@@ -1,9 +1,9 @@
 import * as Config from '../../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { FetchFunction } from 'relay-runtime';
+import {FetchFunction} from 'relay-runtime';
 
-const { GRAPHQL_URL } = Config;
+const {GRAPHQL_URL} = Config;
 
 type RequestProps = {
   method: string;
@@ -31,7 +31,7 @@ const fetchGraphQL: FetchFunction = async (
 
   if (uploadables) {
     const requestText = JSON.stringify(operation?.text?.replace(/\n/g, ''));
-    const { file, dir } = variables;
+    const {file, dir} = variables;
 
     const formData = new FormData();
 

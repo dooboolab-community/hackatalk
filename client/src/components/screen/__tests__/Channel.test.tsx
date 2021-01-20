@@ -2,13 +2,13 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { fireEvent, render } from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {fireEvent, render} from '@testing-library/react-native';
 
 import Channel from '../Channel';
-import { Channel as ChannelType } from '../../../types/graphql';
-import { MockPayloadGenerator } from 'relay-test-utils';
-import { environment } from '../../../providers';
+import {Channel as ChannelType} from '../../../types/graphql';
+import {MockPayloadGenerator} from 'relay-test-utils';
+import {environment} from '../../../providers';
 
 const component = createTestElement(<Channel {...createTestProps()} />);
 
@@ -74,7 +74,7 @@ describe('[Channel] screen', () => {
     });
 
     it('should simulate onPress', () => {
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
       const btn = getByTestId('list-item-0');
 
       fireEvent.press(btn);

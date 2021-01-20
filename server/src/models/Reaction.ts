@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import {objectType} from 'nexus';
 
 export const Reaction = objectType({
   name: 'Reaction',

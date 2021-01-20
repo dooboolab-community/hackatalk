@@ -1,22 +1,22 @@
-import React, { FC } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import React, {FC} from 'react';
+import {TouchableOpacity, View} from 'react-native';
 
-import { IC_NO_IMAGE } from '../../utils/Icons';
+import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
-import { Message } from '../../types/graphql';
-import { getString } from '../../../STRINGS';
+import {Message} from '../../types/graphql';
+import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
-const WrapperPeer = styled.View<{ isSame: boolean }>`
+const WrapperPeer = styled.View<{isSame: boolean}>`
   min-height: 48px;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 20px;
   margin-right: 8px;
-  margin-top: ${({ isSame }): number => (isSame ? 8 : 20)}px;
+  margin-top: ${({isSame}): number => (isSame ? 8 : 20)}px;
   width: 100%;
 `;
 
@@ -34,29 +34,29 @@ const StyledImageSender = styled.Image`
 
 const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
-  background-color: ${({ theme }): string => theme.peerMessageBackground};
+  background-color: ${({theme}): string => theme.peerMessageBackground};
   padding: 12px;
 `;
 
 const StyledPeerTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({ theme }): string => theme.peerMessageText};
+  color: ${({theme}): string => theme.peerMessageText};
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({ theme }): string => theme.border};
+  border-color: ${({theme}): string => theme.border};
   border-width: 1px;
 `;
 
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   margin-bottom: 2px;
 `;
 
 const StyledTextPeerDate = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   margin-right: 20px;
   margin-top: 4px;
 `;
@@ -72,18 +72,18 @@ const WrapperMy = styled.View`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   margin-top: 4px;
   margin-right: 20px;
 `;
 
 const StyledMyTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({ theme }): string => theme.myMessageText};
+  color: ${({theme}): string => theme.myMessageText};
 `;
 
 const StyledMyMessage = styled.View`
-  background-color: ${({ theme }): string => theme.myMessageBackground};
+  background-color: ${({theme}): string => theme.myMessageBackground};
   margin-right: 20px;
   margin-left: 28px;
   padding: 12px;
@@ -120,9 +120,9 @@ function shouldShowDate(
   return diffNextSeconds < 60 && nextMoment.minute === currentMoment.minute;
 }
 
-const ImageSender: FC<ImageSenderProps> = ({ thumbURL, isSamePeerMsg }) => {
-  if (isSamePeerMsg) return <View style={{ width: 40 }} />;
-  else if (thumbURL) return <StyledImageSender source={{ uri: thumbURL }} />;
+const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
+  if (isSamePeerMsg) return <View style={{width: 40}} />;
+  else if (thumbURL) return <StyledImageSender source={{uri: thumbURL}} />;
 
   return (
     <View
@@ -131,18 +131,17 @@ const ImageSender: FC<ImageSenderProps> = ({ thumbURL, isSamePeerMsg }) => {
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-      }}
-    >
+      }}>
       <StyledImage source={IC_NO_IMAGE} />
     </View>
   );
 };
 
 function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   const {
-    item: { id, sender, text, createdAt, imageUrls },
+    item: {id, sender, text, createdAt, imageUrls},
     prevItem,
     nextItem,
     onPressPeerImage,
@@ -157,7 +156,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
   if (sender?.id !== userId)
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
-        <View style={{ marginRight: 8, width: 40 }}>
+        <View style={{marginRight: 8, width: 40}}>
           <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
             <ImageSender
               thumbURL={sender?.thumbURL}
@@ -166,7 +165,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             />
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'column', maxWidth: '80%' }}>
+        <View style={{flexDirection: 'column', maxWidth: '80%'}}>
           {isSamePeerMsg ? (
             <View />
           ) : (
@@ -178,20 +177,18 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
-            }}
-          >
+            }}>
             <StyledTextPeerMessageContainer>
               {imageUrls && imageUrls.length > 0 ? (
                 <StyledPhotoContainer>
                   <TouchableOpacity
                     onPress={() =>
                       onPressMessageImage && onPressMessageImage(0)
-                    }
-                  >
+                    }>
                     <Image
                       key={id}
                       width={240}
-                      source={{ uri: `${imageUrls[0]}?id=${id}` }}
+                      source={{uri: `${imageUrls[0]}?id=${id}`}}
                     />
                   </TouchableOpacity>
                 </StyledPhotoContainer>
@@ -215,12 +212,11 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         {imageUrls && imageUrls.length > 0 ? (
           <StyledPhotoContainer>
             <TouchableOpacity
-              onPress={() => onPressMessageImage && onPressMessageImage(0)}
-            >
+              onPress={() => onPressMessageImage && onPressMessageImage(0)}>
               <Image
                 key={id}
                 width={240}
-                source={{ uri: `${imageUrls[0]}?id=${id}` }}
+                source={{uri: `${imageUrls[0]}?id=${id}`}}
               />
             </TouchableOpacity>
           </StyledPhotoContainer>

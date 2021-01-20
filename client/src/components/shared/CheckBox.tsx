@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 import {
   TextStyle,
   TouchableOpacity,
@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { SvgCheck } from '../../utils/Icons';
+import {SvgCheck} from '../../utils/Icons';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -64,9 +64,8 @@ function Shared(props: Props): ReactElement {
     <Container style={containerStyle}>
       <TouchableOpacity
         testID={testID}
-        style={{ flexDirection: 'row' }}
-        onPress={onToggle}
-      >
+        style={{flexDirection: 'row'}}
+        onPress={onToggle}>
         <StyledCheck
           style={[
             checkStyle,
@@ -75,8 +74,7 @@ function Shared(props: Props): ReactElement {
               borderColor: inActiveColor,
               borderWidth: hasChecked ? 0 : 2,
             },
-          ]}
-        >
+          ]}>
           {hasChecked ? (
             <SvgCheck width={14} height={14} fill={checkColor} />
           ) : null}
@@ -86,8 +84,7 @@ function Shared(props: Props): ReactElement {
         <StyledText
           style={{
             color: checkColor,
-          }}
-        >
+          }}>
           {text}
         </StyledText>
       </TouchableWithoutFeedback>

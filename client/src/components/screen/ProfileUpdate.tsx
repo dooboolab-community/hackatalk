@@ -1,7 +1,7 @@
-import { Alert, Image, TouchableOpacity, View } from 'react-native';
-import { Button, EditText } from 'dooboo-ui';
-import { IC_CAMERA, IC_PROFILE } from '../../utils/Icons';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import {Alert, Image, TouchableOpacity, View} from 'react-native';
+import {Button, EditText} from 'dooboo-ui';
+import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {
   fetchQuery,
   graphql,
@@ -13,16 +13,16 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import type { ProfileUpdateMeQuery } from '../../__generated__/ProfileUpdateMeQuery.graphql';
-import type { ProfileUpdateMutation } from '../../__generated__/ProfileUpdateMutation.graphql';
-import { getString } from '../../../STRINGS';
-import { resizePhotoToMaxDimensionsAndCompressAsPNG } from '../../utils/image';
-import { showAlertForError } from '../../utils/common';
+import {MainStackNavigationProps} from '../navigation/MainStackNavigator';
+import type {ProfileUpdateMeQuery} from '../../__generated__/ProfileUpdateMeQuery.graphql';
+import type {ProfileUpdateMutation} from '../../__generated__/ProfileUpdateMutation.graphql';
+import {getString} from '../../../STRINGS';
+import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { uploadImageAsync } from '../../apis/upload';
-import { useActionSheet } from '@expo/react-native-action-sheet';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {uploadImageAsync} from '../../apis/upload';
+import {useActionSheet} from '@expo/react-native-action-sheet';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
@@ -35,7 +35,7 @@ const DEFAULT = {
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
   flex-direction: column;
   align-items: center;
 `;
@@ -101,11 +101,11 @@ const profileUpdate = graphql`
 `;
 
 const Screen: FC<Props> = () => {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [statusMessage, setstatusMessage] = useState('');
-  const { showActionSheetWithOptions } = useActionSheet();
+  const {showActionSheetWithOptions} = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
@@ -255,22 +255,19 @@ const Screen: FC<Props> = () => {
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
-        }}
-      >
+        }}>
         <Wrapper>
           <TouchableOpacity
             testID="button-user-icon"
             activeOpacity={0.5}
-            onPress={pressProfileImage}
-          >
+            onPress={pressProfileImage}>
             {!profilePath ? (
               <View
                 style={{
                   width: 90,
                   height: 90,
-                }}
-              >
-                <Image style={{ height: 80, width: 80 }} source={IC_PROFILE} />
+                }}>
+                <Image style={{height: 80, width: 80}} source={IC_PROFILE} />
                 <Image
                   style={{
                     position: 'absolute',
@@ -284,14 +281,14 @@ const Screen: FC<Props> = () => {
               <ProfileImage
                 testID="profile-image"
                 resizeMode="cover"
-                source={{ uri: profilePath }}
+                source={{uri: profilePath}}
               />
             )}
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
-            style={{ marginTop: 32 }}
-            textStyle={{ color: theme.fontColor }}
+            style={{marginTop: 32}}
+            textStyle={{color: theme.fontColor}}
             label={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             value={nickname}
@@ -302,8 +299,8 @@ const Screen: FC<Props> = () => {
           />
           <EditText
             testID="input-name"
-            style={{ marginTop: 32 }}
-            textStyle={{ color: theme.fontColor }}
+            style={{marginTop: 32}}
+            textStyle={{color: theme.fontColor}}
             label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
@@ -314,7 +311,7 @@ const Screen: FC<Props> = () => {
           />
           <EditText
             testID="input-status"
-            style={{ marginTop: 24 }}
+            style={{marginTop: 24}}
             textStyle={{
               color: theme.fontColor,
             }}
@@ -331,10 +328,9 @@ const Screen: FC<Props> = () => {
           <StyledButtonWrapper>
             <Button
               testID="button-update"
-              style={{
-                root: { flex: 1 },
-                button: {
-                  width: '100%',
+              style={{width: '100%'}}
+              styles={{
+                container: {
                   backgroundColor: theme.btnPrimary,
                   borderColor: theme.btnPrimary,
                   borderWidth: 1,

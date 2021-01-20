@@ -1,14 +1,14 @@
-import { Channel, Membership, MembershipType } from '@prisma/client';
-import { andThen, cond, pipe } from 'ramda';
+import {Channel, Membership, MembershipType} from '@prisma/client';
+import {andThen, cond, pipe} from 'ramda';
 
-import { assert } from '../utils/assert';
-import { prisma } from '../context';
+import {assert} from '../utils/assert';
+import {prisma} from '../context';
 
 export const findExistingChannel = async (
   channelId: string,
 ): Promise<Channel> => {
   const channel = await prisma.channel.findFirst({
-    where: { id: channelId, deletedAt: null },
+    where: {id: channelId, deletedAt: null},
   });
 
   assert(channel, 'Could not find the channel.');
@@ -30,7 +30,7 @@ export const findChannelWithUserIds = async (
     },
     where: {
       membership: {
-        every: { userId: { in: userIds } },
+        every: {userId: {in: userIds}},
       },
     },
   });
@@ -56,7 +56,7 @@ export const findPrivateChannelWithUserIds = async (
       channelType: 'private',
       membership: {
         every: {
-          userId: { in: userIds },
+          userId: {in: userIds},
         },
       },
     },
@@ -97,7 +97,7 @@ export const createNewChannel = async (
           membershipType: !isPrivate
             ? MembershipType.owner
             : MembershipType.member,
-          user: { connect: { id: userId } },
+          user: {connect: {id: userId}},
         },
       },
     },
@@ -109,17 +109,17 @@ export const createMemberships = async (
 ): Promise<void> => {
   const countMemberships = (): Promise<number> =>
     prisma.membership.count({
-      where: { channelId },
+      where: {channelId},
     });
 
   const createMembership = (userId: string): Promise<Membership> =>
     prisma.membership.create({
       data: {
         user: {
-          connect: { id: userId },
+          connect: {id: userId},
         },
         channel: {
-          connect: { id: channelId },
+          connect: {id: channelId},
         },
       },
     });

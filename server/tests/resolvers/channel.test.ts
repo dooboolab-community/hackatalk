@@ -1,4 +1,4 @@
-import { GraphQLClient, request } from 'graphql-request';
+import {GraphQLClient, request} from 'graphql-request';
 import {
   channelQuery,
   channelsQuery,
@@ -11,7 +11,7 @@ import {
   signUpMutation,
 } from '../queries';
 
-import { testHost } from '../testSetup';
+import {testHost} from '../testSetup';
 
 let authClient: GraphQLClient;
 

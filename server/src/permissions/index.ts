@@ -1,13 +1,13 @@
-import { rule, shield } from 'graphql-shield';
+import {rule, shield} from 'graphql-shield';
 
 const rules = {
-  isAuthenticatedUser: rule()((_, args, { userId }) => {
+  isAuthenticatedUser: rule()((_, args, {userId}) => {
     return Boolean(userId);
   }),
 
-  isNotificationUser: rule()(async (_, { token }, { prisma, userId }) => {
+  isNotificationUser: rule()(async (_, {token}, {prisma, userId}) => {
     const notification = await prisma.notification.findUnique({
-      where: { token },
+      where: {token},
     });
 
     return userId === notification.userId;

@@ -1,8 +1,8 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
-import { act, fireEvent, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import React, {ReactElement} from 'react';
+import {act, fireEvent, render} from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import FindPw from '../FindPw';
 
@@ -61,7 +61,7 @@ describe('[FindPw] interaction', () => {
   });
 
   it('should invoke changeText event handler when email changed', () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const textInput = getByTestId('input-email');
 
     act(() => {
@@ -79,7 +79,7 @@ describe('[FindPw] interaction', () => {
     });
 
     it('should show error text when the email is not validated', () => {
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
       const textInput = getByTestId('input-email');
 
       act(() => {
@@ -96,7 +96,7 @@ describe('[FindPw] interaction', () => {
     });
 
     it('should call FindPw when button has clicked and navigate to SignIn', () => {
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
       const textInput = getByTestId('input-email');
 
       act(() => {
@@ -120,7 +120,7 @@ describe('[FindPw] interaction', () => {
 
       component = createTestElement(<FindPw {...props} />);
 
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
 
       const textInput = getByTestId('input-email');
 

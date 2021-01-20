@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactElement } from 'react';
+import React, {ComponentType, ReactElement} from 'react';
 
 /**
  * Helper class to nest multiple react components
@@ -18,7 +18,7 @@ class ComponentWrapper {
    * @returns this. For method chaining.
    */
   wrap<P>(
-    WrapperComponent: ComponentType<P & { children: ReactElement }>,
+    WrapperComponent: ComponentType<P & {children: ReactElement}>,
     props: P,
   ): ComponentWrapper {
     const Inner = this.intermediate;

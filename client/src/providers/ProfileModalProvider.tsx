@@ -1,6 +1,6 @@
-import React, { FC, createContext, useContext, useState } from 'react';
+import React, {FC, createContext, useContext, useState} from 'react';
 
-import { User } from '../types/graphql';
+import {User} from '../types/graphql';
 
 export interface ModalState {
   /** Which user the profile modal describes */
@@ -59,8 +59,7 @@ export const ProfileModalProvider: FC = (props) => {
         ...state,
         showModal,
         hideModal,
-      }}
-    >
+      }}>
       {props.children}
     </ProfileModalContext.Provider>
   );

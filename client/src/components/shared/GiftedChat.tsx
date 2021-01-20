@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import styled from 'styled-components/native';
 
@@ -24,7 +24,7 @@ const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({theme}): string => theme.lineColor};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;
@@ -56,10 +56,10 @@ const StyledViewBottom = styled.View`
   width: 100%;
 `;
 
-const StyledViewMenu = styled.View<{ height: number }>`
+const StyledViewMenu = styled.View<{height: number}>`
   flex-direction: row;
   flex-wrap: wrap;
-  height: ${({ height }): string => `${height}px`};
+  height: ${({height}): string => `${height}px`};
 `;
 
 interface Props<T> {
@@ -149,10 +149,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}
-      >
+        })}>
         <FlatList
-          style={{ alignSelf: 'stretch' }}
+          style={{alignSelf: 'stretch'}}
           contentContainerStyle={
             chats.length === 0
               ? {
@@ -169,7 +168,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
           ListHeaderComponent={
-            <View style={{ height: showMenu ? keyboardHeight + 80 : 28 }} />
+            <View style={{height: showMenu ? keyboardHeight + 80 : 28}} />
           }
         />
         {!showMenu ? (
@@ -177,8 +176,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             style={{
               borderColor: borderColor,
               backgroundColor: backgroundColor,
-            }}
-          >
+            }}>
             <StyledInputChat
               testID="input-chat"
               style={{
@@ -205,8 +203,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               onPress={(): void => {
                 Keyboard.dismiss();
                 setShowMenu(true);
-              }}
-            >
+              }}>
               {optionView}
             </StyledTouchMenu>
             <View
@@ -214,8 +211,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 flexGrow: 0,
                 flexShrink: 0,
                 marginVertical: 8,
-              }}
-            >
+              }}>
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
@@ -227,8 +223,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             style={{
               borderColor: borderColor,
               backgroundColor: backgroundColor,
-            }}
-          >
+            }}>
             <StyledInputChat
               // @ts-ignore
               ref={input2}
@@ -247,16 +242,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             />
             <StyledTouchMenu
               testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}
-            >
+              onPress={(): void => setShowMenu(false)}>
               {optionView}
             </StyledTouchMenu>
             <View
               style={{
                 position: 'absolute',
                 right: 8,
-              }}
-            >
+              }}>
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
@@ -265,8 +258,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             height={keyboardHeight}
             style={{
               backgroundColor: backgroundColor,
-            }}
-          >
+            }}>
             {renderViewMenu?.()}
           </StyledViewMenu>
         </StyledViewBottom>

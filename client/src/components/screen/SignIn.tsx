@@ -18,8 +18,8 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import { AuthPayload, AuthType, User } from '../../types/graphql';
-import { Button, EditText } from 'dooboo-ui';
+import {AuthPayload, AuthType, User} from '../../types/graphql';
+import {Button, EditText} from 'dooboo-ui';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -27,7 +27,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../utils/Icons';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import type {
   SignInAppleMutation,
   SignInAppleMutationResponse,
@@ -36,20 +36,20 @@ import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
 } from '../../__generated__/SignInEmailMutation.graphql';
-import { ThemeType, useThemeContext } from '@dooboo-ui/theme';
-import { delay, spring, useClock, useValue } from 'react-native-redash';
-import { graphql, useMutation } from 'react-relay/hooks';
-import { showAlertForError, validateEmail } from '../../utils/common';
-import styled, { css } from 'styled-components/native';
+import {ThemeType, useThemeContext} from '@dooboo-ui/theme';
+import {delay, spring, useClock, useValue} from 'react-native-redash';
+import {graphql, useMutation} from 'react-relay/hooks';
+import {showAlertForError, validateEmail} from '../../utils/common';
+import styled, {css} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import { EditTextInputType } from 'dooboo-ui/EditText';
-import type { SignInCreateNotificationMutation } from '../../__generated__/SignInCreateNotificationMutation.graphql';
+import {AuthStackNavigationProps} from '../navigation/AuthStackNavigator';
+import {EditTextInputType} from 'dooboo-ui/EditText';
+import type {SignInCreateNotificationMutation} from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
-import { getString } from '../../../STRINGS';
-import { useAuthContext } from '../../providers/AuthProvider';
+import {getString} from '../../../STRINGS';
+import {useAuthContext} from '../../providers/AuthProvider';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
   TouchableOpacity,
@@ -58,7 +58,7 @@ const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
-  background: ${({ theme }): string => theme.background};
+  background: ${({theme}): string => theme.background};
 `;
 
 const Wrapper = styled.View`
@@ -72,7 +72,7 @@ const LogoWrapper = styled.View`
 
 const StyledLogoText = styled.Text`
   align-self: flex-start;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   font-size: 20px;
   font-weight: bold;
   margin-left: 6px;
@@ -91,7 +91,7 @@ const FindPwTouchOpacity = styled.TouchableOpacity`
 `;
 
 const FindPwText = styled.Text`
-  color: ${({ theme }): string => theme.link};
+  color: ${({theme}): string => theme.link};
   text-decoration-line: underline;
 `;
 
@@ -113,7 +113,7 @@ const StyledAgreementText = styled.Text`
 
 const StyledAgreementLinedText = styled.Text`
   line-height: 22px;
-  color: ${({ theme }): string => theme.link};
+  color: ${({theme}): string => theme.link};
   text-decoration-line: underline;
 `;
 
@@ -121,7 +121,7 @@ const StyledScrollView = styled.ScrollView`
   align-self: center;
   width: 100%;
 
-  /* ${({ theme: { desktop } }) =>
+  /* ${({theme: {desktop}}) =>
     desktop &&
     css`
       width: 50%;
@@ -185,9 +185,9 @@ const createNotification = graphql`
 `;
 
 function SignIn(props: Props): ReactElement {
-  const { navigation } = props;
-  const { setUser } = useAuthContext();
-  const { theme, changeThemeType, themeType } = useThemeContext();
+  const {navigation} = props;
+  const {setUser} = useAuthContext();
+  const {theme, changeThemeType, themeType} = useThemeContext();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -257,7 +257,7 @@ function SignIn(props: Props): ReactElement {
       },
 
       onCompleted: (response: SignInEmailMutationResponse) => {
-        const { token, user } = response.signInEmail as AuthPayload;
+        const {token, user} = response.signInEmail as AuthPayload;
 
         if (user && !user.verified)
           return navigation.navigate('VerifyEmail', {
@@ -281,7 +281,7 @@ function SignIn(props: Props): ReactElement {
   };
 
   const goToWebView = (uri: string): void => {
-    props.navigation.navigate('WebView', { uri });
+    props.navigation.navigate('WebView', {uri});
   };
 
   const appleLogin = async (): Promise<void> => {
@@ -305,7 +305,7 @@ function SignIn(props: Props): ReactElement {
         nonce: hashedNonce,
       });
 
-      const { identityToken } = appleCredential;
+      const {identityToken} = appleCredential;
 
       if (identityToken) {
         const mutationConfig = {
@@ -313,7 +313,7 @@ function SignIn(props: Props): ReactElement {
             accessToken: identityToken,
           },
           onCompleted: (response: SignInAppleMutationResponse) => {
-            const { token, user } = response.signInWithApple as AuthPayload;
+            const {token, user} = response.signInWithApple as AuthPayload;
 
             AsyncStorage.setItem('token', token);
 
@@ -349,7 +349,7 @@ function SignIn(props: Props): ReactElement {
 
   const logoSize = 80;
   const logoTransformAnimValue = useValue(0);
-  const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+  const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
   const logoInitialPosition = {
     x: (screenWidth - logoSize) * 0.5,
@@ -391,7 +391,7 @@ function SignIn(props: Props): ReactElement {
               clock,
               to: 1,
               from: 0,
-              config: { mass: 1.5, stiffness: 36 },
+              config: {mass: 1.5, stiffness: 36},
             }),
           ),
         ]),
@@ -414,17 +414,16 @@ function SignIn(props: Props): ReactElement {
             position: 'absolute',
             left: logoPositionX,
             top: logoPositionY,
-            transform: [{ scale: logoScale }],
-          }}
-        >
+            transform: [{scale: logoScale}],
+          }}>
           <Image
-            style={{ width: logoSize, height: logoSize, resizeMode: 'cover' }}
+            style={{width: logoSize, height: logoSize, resizeMode: 'cover'}}
             source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
         <Wrapper>
           <LogoWrapper>
-            <View style={{ height: 12 + 60 }} />
+            <View style={{height: 12 + 60}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
@@ -434,7 +433,7 @@ function SignIn(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
-            style={{ marginBottom: 20 }}
+            style={{marginBottom: 20}}
             isRow={true}
             label={getString('EMAIL')}
             borderColor={theme.font}
@@ -456,7 +455,7 @@ function SignIn(props: Props): ReactElement {
             textStyle={{
               color: theme.fontColor,
             }}
-            style={{ marginBottom: 20 }}
+            style={{marginBottom: 20}}
             isRow={true}
             label={getString('PASSWORD')}
             borderColor={theme.font}
@@ -476,19 +475,18 @@ function SignIn(props: Props): ReactElement {
             <Button
               testID="btn-sign-up"
               onPress={goToSignUp}
-              style={{
-                root: {
-                  flex: 1,
-                  flexDirection: 'row',
+              style={{flex: 1}}
+              styles={{
+                container: {
                   height: 52,
-                  justifyContent: 'center',
-                },
-                button: {
-                  width: '100%',
                   backgroundColor: theme.btnPrimaryLight,
                   borderColor: theme.btnPrimary,
                   borderWidth: 1,
                   borderRadius: 0,
+
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
                 },
                 text: {
                   color: theme.btnPrimary,
@@ -498,22 +496,22 @@ function SignIn(props: Props): ReactElement {
               }}
               text={getString('SIGN_UP')}
             />
-            <View style={{ width: 12 }} />
+            <View style={{width: 12}} />
             <Button
               testID="btn-sign-in"
               loading={isInFlight}
               onPress={signIn}
-              style={{
-                root: {
-                  flex: 1,
-                  flexDirection: 'row',
+              style={{}}
+              styles={{
+                container: {
                   height: 52,
-                  justifyContent: 'center',
-                },
-                button: {
                   backgroundColor: theme.btnPrimary,
                   width: '100%',
                   borderRadius: 0,
+
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
                 },
                 text: {
                   color: theme.btnPrimaryFont,
@@ -532,14 +530,14 @@ function SignIn(props: Props): ReactElement {
               ios: (
                 <Button
                   testID="btn-apple"
-                  style={{
-                    button: {
+                  style={{marginBottom: 12}}
+                  styles={{
+                    container: {
                       backgroundColor: theme.appleBackground,
                       borderColor: theme.appleText,
                       width: '100%',
                       height: 48,
                       borderWidth: 1,
-                      marginBottom: 12,
                       borderRadius: 100,
                     },
                     text: {
@@ -548,7 +546,7 @@ function SignIn(props: Props): ReactElement {
                     },
                   }}
                   leftElement={
-                    <View style={{ marginRight: 6 }}>
+                    <View style={{marginRight: 6}}>
                       <SvgApple width={18} height={18} fill={theme.appleIcon} />
                     </View>
                   }
@@ -586,8 +584,7 @@ function SignIn(props: Props): ReactElement {
               testID="btn-terms"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/termsofservice')
-              }
-            >
+              }>
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
@@ -595,8 +592,7 @@ function SignIn(props: Props): ReactElement {
               testID="btn-privacy"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/privacyandpolicy')
-              }
-            >
+              }>
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>

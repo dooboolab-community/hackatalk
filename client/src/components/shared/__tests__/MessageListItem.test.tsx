@@ -2,8 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {cleanup, fireEvent, render} from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import MessageListItem from '../MessageListItem';
 
@@ -72,7 +72,7 @@ describe('[MessageListItem] interaction', () => {
   });
 
   it('should fireEvent when peer image is pressed', () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const touchPeerImage = getByTestId(props.testID);
 
     fireEvent.press(touchPeerImage);

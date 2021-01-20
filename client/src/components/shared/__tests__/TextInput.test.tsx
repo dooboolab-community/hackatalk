@@ -3,10 +3,10 @@ import 'react-native';
 import * as React from 'react';
 
 // Note: test renderer must be required after react-native.
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import TextInput from '../TextInput';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const component = createTestElement(<TextInput {...createTestProps()} />);
 

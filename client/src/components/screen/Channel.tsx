@@ -1,37 +1,37 @@
 import * as Notifications from 'expo-notifications';
 
-import { Channel, User } from '../../types/graphql';
+import {Channel, User} from '../../types/graphql';
 import type {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import { FlatList, Platform, TouchableOpacity, View } from 'react-native';
-import React, { FC, Suspense, useEffect, useMemo, useState } from 'react';
+import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
+import React, {FC, Suspense, useEffect, useMemo, useState} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
   usePaginationFragment,
   useQueryLoader,
 } from 'react-relay/hooks';
-import useOrientation, { Orientation } from '../../hooks/useOrientation';
+import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
-import { AdMobBanner } from 'expo-ads-admob';
-import type { ChannelComponent_channel$key } from '../../__generated__/ChannelComponent_channel.graphql';
-import { ChannelLastMessageQuery } from '../../__generated__/ChannelLastMessageQuery.graphql';
+import {AdMobBanner} from 'expo-ads-admob';
+import type {ChannelComponent_channel$key} from '../../__generated__/ChannelComponent_channel.graphql';
+import {ChannelLastMessageQuery} from '../../__generated__/ChannelLastMessageQuery.graphql';
 import ChannelListItem from '../shared/ChannelListItem';
 import EmptyListItem from '../shared/EmptyListItem';
-import { LoadingIndicator } from 'dooboo-ui';
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import { SvgPlus } from '../../utils/Icons';
-import { getString } from '../../../STRINGS';
+import {LoadingIndicator} from 'dooboo-ui';
+import {MainStackNavigationProps} from '../navigation/MainStackNavigator';
+import {SvgPlus} from '../../utils/Icons';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useNavigation} from '@react-navigation/native';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
-  background: ${({ theme }): string => theme.background};
+  background: ${({theme}): string => theme.background};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -43,7 +43,7 @@ const Fab = styled.View`
   border-radius: 28px;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }): string => theme.fab};
+  background: ${({theme}): string => theme.fab};
 `;
 
 const ITEM_CNT = 20;
@@ -58,9 +58,9 @@ const channelsQuery = graphql`
 const channelsPaginationFragment = graphql`
   fragment ChannelComponent_channel on Query
   @argumentDefinitions(
-    first: { type: "Int!" }
-    after: { type: "String" }
-    withMessage: { type: "Boolean" }
+    first: {type: "Int!"}
+    after: {type: "String"}
+    withMessage: {type: "Boolean"}
   )
   @refetchable(queryName: "Channels") {
     channels(first: $first, after: $after, withMessage: $withMessage)
@@ -124,8 +124,8 @@ interface ChannelProps {
   searchArgs: ChannelsQueryVariables;
 }
 
-const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
-  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
+  const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     ChannelsQuery,
     ChannelComponent_channel$key
   >(channelsPaginationFragment, channel);
@@ -145,7 +145,7 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
           response.notification.request.content.data.data as string,
         ).messageId;
 
-        if (typeof messageId === 'string') loadLastMessage({ messageId });
+        if (typeof messageId === 'string') loadLastMessage({messageId});
       },
     );
 
@@ -157,7 +157,7 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
 
         loadNext(ITEM_CNT);
 
-        if (typeof messageId === 'string') loadLastMessage({ messageId });
+        if (typeof messageId === 'string') loadLastMessage({messageId});
       },
     );
 
@@ -176,7 +176,7 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
     item,
     index,
   }: {
-    item: { node: Channel; cursor: string };
+    item: {node: Channel; cursor: string};
     index: number;
   }): React.ReactElement | null => {
     if (!item.node?.memberships || !item.node?.memberships.length)
@@ -247,10 +247,10 @@ const ChannelsFragment: FC<ChannelProps> = ({ channel, searchArgs }) => {
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
       }
-      ListFooterComponent={<View style={{ height: 60 }} />}
+      ListFooterComponent={<View style={{height: 60}} />}
       refreshing={isLoadingNext}
       onRefresh={() => {
-        refetch(searchArgs, { fetchPolicy: 'network-only' });
+        refetch(searchArgs, {fetchPolicy: 'network-only'});
       }}
       onEndReachedThreshold={0.1}
       onEndReached={onEndReached}
@@ -262,11 +262,11 @@ interface ContentProps {
   searchArgs: ChannelsQueryVariables;
 }
 
-const ContentContainer: FC<ContentProps> = ({ searchArgs }) => {
+const ContentContainer: FC<ContentProps> = ({searchArgs}) => {
   const data: ChannelsQueryResponse = useLazyLoadQuery<ChannelsQuery>(
     channelsQuery,
     searchArgs,
-    { fetchPolicy: 'store-or-network' },
+    {fetchPolicy: 'store-or-network'},
   );
 
   return <ChannelsFragment channel={data} searchArgs={searchArgs} />;
@@ -277,7 +277,7 @@ interface Props {
 }
 
 const Screen: FC<Props> = () => {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
   const navigation = useNavigation();
 
   const searchArgs: ChannelsQueryVariables = {
@@ -297,8 +297,7 @@ const Screen: FC<Props> = () => {
           right: 20,
           bottom: 44,
         }}
-        onPress={(): void => navigation.navigate('ChannelCreate')}
-      >
+        onPress={(): void => navigation.navigate('ChannelCreate')}>
         <Fab>
           <SvgPlus fill={theme.background} />
         </Fab>

@@ -1,7 +1,7 @@
-import { booleanArg, objectType } from 'nexus';
+import {booleanArg, objectType} from 'nexus';
 
-import { assert } from '../utils/assert';
-import { relayToPrismaPagination } from '../utils/pagination';
+import {assert} from '../utils/assert';
+import {relayToPrismaPagination} from '../utils/pagination';
 
 export const Channel = objectType({
   name: 'Channel',
@@ -18,15 +18,15 @@ export const Channel = objectType({
       type: 'Message',
       description: 'Get latest message sent to the channel.',
 
-      resolve: async ({ id }, args, ctx) => {
+      resolve: async ({id}, args, ctx) => {
         const message = await ctx.prisma.message.findFirst({
           where: {
-            channel: { id },
+            channel: {id},
           },
           include: {
             sender: true,
           },
-          orderBy: { createdAt: 'desc' },
+          orderBy: {createdAt: 'desc'},
         });
 
         return message;
@@ -36,14 +36,14 @@ export const Channel = objectType({
     t.connectionField('messages', {
       type: 'Message',
 
-      nodes: async ({ id }, args, { prisma, userId }) => {
+      nodes: async ({id}, args, {prisma, userId}) => {
         assert(userId, 'Not authorized.');
 
-        const { after, before, first, last } = args;
+        const {after, before, first, last} = args;
 
         const blockedUsers = await prisma.blockedUser.findMany({
-          select: { blockedUserId: true },
-          where: { userId },
+          select: {blockedUserId: true},
+          where: {userId},
         });
 
         const blockedUsersInArray = blockedUsers.map(
@@ -58,12 +58,12 @@ export const Channel = objectType({
             last,
           }),
           where: {
-            channel: { id },
+            channel: {id},
             senderId: {
               notIn: blockedUsersInArray,
             },
           },
-          include: { sender: true },
+          include: {sender: true},
         });
       },
     });
@@ -72,23 +72,23 @@ export const Channel = objectType({
       type: 'Membership',
       description:
         'Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.',
-      args: { excludeMe: booleanArg() },
+      args: {excludeMe: booleanArg()},
 
-      resolve: ({ id }, { excludeMe }, { prisma, userId }) => {
+      resolve: ({id}, {excludeMe}, {prisma, userId}) => {
         if (excludeMe)
           return prisma.membership.findMany({
             where: {
-              channel: { id },
+              channel: {id},
               user: {
-                id: { not: userId ?? undefined },
+                id: {not: userId ?? undefined},
               },
             },
-            include: { user: true },
+            include: {user: true},
           });
 
         return prisma.membership.findMany({
-          where: { channel: { id } },
-          include: { user: true },
+          where: {channel: {id}},
+          include: {user: true},
         });
       },
     });

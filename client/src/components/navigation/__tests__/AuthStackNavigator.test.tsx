@@ -1,10 +1,10 @@
 import 'react-native';
 
-import { AllProviders } from '../../../providers';
-import { NavigationContainer } from '@react-navigation/native';
+import {AllProviders} from '../../../providers';
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import StackNavigator from '../AuthStackNavigator';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const component = (
   <AllProviders>

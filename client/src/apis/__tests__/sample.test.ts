@@ -1,9 +1,9 @@
 import * as Config from '../../../config';
 
-import { FetchMock } from 'jest-fetch-mock';
-import { sample } from '../sample';
+import {FetchMock} from 'jest-fetch-mock';
+import {sample} from '../sample';
 
-const { ROOT_URL } = Config;
+const {ROOT_URL} = Config;
 
 const fetchMock = fetch as FetchMock;
 
@@ -13,11 +13,11 @@ describe('testing sample api', () => {
   });
 
   it('should fetch sample and returns data to me', (): Promise<Response | void> => {
-    const mockedResult = JSON.stringify({ data: '12345' });
+    const mockedResult = JSON.stringify({data: '12345'});
 
     fetchMock.mockResponseOnce(mockedResult);
 
-    return sample({ zoyi: 'zoyi' }).then(async (res) => {
+    return sample({zoyi: 'zoyi'}).then(async (res) => {
       const result = await res.text();
 
       expect(result).toEqual(mockedResult);

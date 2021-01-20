@@ -1,5 +1,5 @@
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
-import { __DEV__, relayTransactionLogger } from './util';
+import {Environment, Network, RecordSource, Store} from 'relay-runtime';
+import {__DEV__, relayTransactionLogger} from './util';
 
 import fetchGraphQL from './fetch';
 

@@ -6,13 +6,13 @@ import {
 } from 'react-native';
 
 import CheckBox from './CheckBox';
-import { FontAwesome } from '@expo/vector-icons';
-import { IC_NO_IMAGE } from '../../utils/Icons';
+import {FontAwesome} from '@expo/vector-icons';
+import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
-import { User } from '../../types/graphql';
-import { getString } from '../../../STRINGS';
+import {User} from '../../types/graphql';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 interface Props {
   testID?: string;
@@ -30,10 +30,10 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View`
-  background-color: ${({ theme }): string => theme.itemBackground};
+  background-color: ${({theme}): string => theme.itemBackground};
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${({ theme }): string => theme.backgroundDark};
+  border-color: ${({theme}): string => theme.backgroundDark};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -67,17 +67,17 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
 `;
 
 const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.fontSubColor};
   max-width: 120px;
   border-width: 0.3px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({theme}): string => theme.lineColor};
   padding: 4px 8px;
 `;
 
@@ -88,12 +88,12 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: { photoURL = '', nickname, name, statusMessage, isOnline, hasBlocked },
+  user: {photoURL = '', nickname, name, statusMessage, isOnline, hasBlocked},
 }: Props): React.ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   const photoURLObj: ImageSourcePropType | null =
-    typeof photoURL === 'string' ? { uri: photoURL } : photoURL;
+    typeof photoURL === 'string' ? {uri: photoURL} : photoURL;
 
   return (
     <Container>
@@ -101,8 +101,7 @@ function Shared({
         testID={testID}
         activeOpacity={0.5}
         onPress={onPress}
-        onLongPress={onLongPress}
-      >
+        onLongPress={onLongPress}>
         <Wrapper>
           <ImageWrapper>
             <StyledImage
@@ -111,7 +110,7 @@ function Shared({
             />
             {showStatus ? (
               <StatusTag
-                style={{ backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3' }}
+                style={{backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3'}}
               />
             ) : null}
             {hasBlocked ? (
@@ -120,8 +119,7 @@ function Shared({
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                }}
-              >
+                }}>
                 <FontAwesome
                   name="ban"
                   size={16}

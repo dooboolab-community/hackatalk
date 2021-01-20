@@ -2,20 +2,20 @@ import {
   AuthStackNavigationProps,
   AuthStackParamList,
 } from '../navigation/AuthStackNavigator';
-import { Button, LoadingIndicator } from 'dooboo-ui';
-import React, { ReactElement, useState } from 'react';
+import {Button, LoadingIndicator} from 'dooboo-ui';
+import React, {ReactElement, useState} from 'react';
 import type {
   VerifyEmailMutation,
   VerifyEmailMutationResponse,
 } from '../../__generated__/VerifyEmailMutation.graphql';
-import { graphql, useMutation } from 'react-relay/hooks';
+import {graphql, useMutation} from 'react-relay/hooks';
 
-import { Alert } from 'react-native';
-import { RouteProp } from '@react-navigation/core';
-import { getString } from '../../../STRINGS';
-import { showAlertForError } from '../../utils/common';
+import {Alert} from 'react-native';
+import {RouteProp} from '@react-navigation/core';
+import {getString} from '../../../STRINGS';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
@@ -27,7 +27,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  color: ${({ theme }): string => theme.font};
+  color: ${({theme}): string => theme.font};
   font-size: 18px;
   text-align: center;
   line-height: 28px;
@@ -35,7 +35,7 @@ const StyledText = styled.Text`
 
 const StyledHighlightText = styled.Text`
   font-size: 24px;
-  color: ${({ theme }): string => theme.primary};
+  color: ${({theme}): string => theme.primary};
 `;
 
 interface Props {
@@ -50,11 +50,11 @@ const sendVerification = graphql`
 `;
 
 function Page(props: Props): ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   const {
     route: {
-      params: { email },
+      params: {email},
     },
   } = props;
 
@@ -101,25 +101,21 @@ function Page(props: Props): ReactElement {
       <StyledText
         style={{
           marginBottom: 24,
-        }}
-      >
+        }}>
         {getString('VERIFICATION_EMAIL_SENT')}
       </StyledText>
       <StyledHighlightText>{email}</StyledHighlightText>
       <Button
         testID="btn-next"
         onPress={sendVerificationLink}
-        style={{
-          root: {
+        style={{marginTop: 80}}
+        styles={{
+          container: {
             width: '100%',
             paddingHorizontal: 20,
-            marginTop: 80,
-          },
-          button: {
             backgroundColor: theme.btnPrimary,
             borderWidth: 0,
             height: 48,
-            width: '100%',
           },
           text: {
             color: theme.btnPrimaryFont,

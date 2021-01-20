@@ -1,18 +1,18 @@
-import { Channel, Message } from '../../types/graphql';
-import React, { ReactElement } from 'react';
-import { TouchableOpacity, View, ViewStyle } from 'react-native';
+import {Channel, Message} from '../../types/graphql';
+import React, {ReactElement} from 'react';
+import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
-import { IC_NO_IMAGE } from '../../utils/Icons';
-import { getString } from '../../../STRINGS';
+import {IC_NO_IMAGE} from '../../utils/Icons';
+import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
 
 const StyledViewChatRoomListItem = styled.View`
-  background-color: ${({ theme }): string => theme.itemBackground};
+  background-color: ${({theme}): string => theme.itemBackground};
   min-height: 92px;
   padding: 8px 0;
   border-bottom-width: 1px;
-  border-color: ${({ theme }): string => theme.underline};
+  border-color: ${({theme}): string => theme.underline};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -23,11 +23,11 @@ const StyledStatus = styled.View`
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: ${({ theme }): string => theme.tintColor};
+  background-color: ${({theme}): string => theme.tintColor};
   right: 0;
   bottom: 0;
   border-width: 2px;
-  border-color: ${({ theme }): string => theme.lineColor};
+  border-color: ${({theme}): string => theme.lineColor};
 `;
 
 const StyledViewContent = styled.View`
@@ -45,11 +45,11 @@ const StyledViewTop = styled.View`
 const StyledTextDisplayName = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
 `;
 
 const StyledTextWrapper = styled.View`
-  background-color: ${({ theme }): string => theme.tintColor};
+  background-color: ${({theme}): string => theme.tintColor};
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: ${({ theme }): string => theme.primary};
+  color: ${({theme}): string => theme.primary};
 `;
 
 const StyledViewBottom = styled.View`
@@ -69,17 +69,16 @@ const StyledViewBottom = styled.View`
   justify-content: space-between;
 `;
 
-const StyledTextMessage = styled.Text<{ lastMessageCnt: number }>`
+const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   max-width: 200px;
-  ${({ lastMessageCnt }): string =>
-    lastMessageCnt ? 'font-weight: bold;' : ''}
+  ${({lastMessageCnt}): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({ theme }): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.fontSubColor};
   text-align: right;
 `;
 
@@ -125,7 +124,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     onPress,
   } = props;
 
-  const { text, imageUrls, createdAt } = lastMessage as Message;
+  const {text, imageUrls, createdAt} = lastMessage as Message;
 
   if (channelType === 'private') {
     const users = memberships?.map((membership) => membership?.user);
@@ -139,7 +138,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     const renderSingleImage = (
       photoURL: string | null | undefined,
     ): ReactElement => {
-      if (photoURL) return <StyledImage source={{ uri: photoURL }} />;
+      if (photoURL) return <StyledImage source={{uri: photoURL}} />;
 
       return (
         <View
@@ -148,8 +147,7 @@ function ChannelListItem(props: Props): React.ReactElement {
             height: 40,
             alignItems: 'center',
             justifyContent: 'center',
-          }}
-        >
+          }}>
           <StyledImage source={IC_NO_IMAGE} />
         </View>
       );
@@ -165,15 +163,14 @@ function ChannelListItem(props: Props): React.ReactElement {
             height: 44,
             flexWrap: 'wrap',
             flexDirection: 'row',
-          }}
-        >
+          }}>
           {photoStrs?.map((photo, i) => {
             if (i > 3) return null;
 
             if (!photo)
               return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
 
-            return <StyledImageSmall key={i} source={{ uri: photo }} />;
+            return <StyledImageSmall key={i} source={{uri: photo}} />;
           })}
         </View>
       );
@@ -182,10 +179,10 @@ function ChannelListItem(props: Props): React.ReactElement {
     const userNames = users?.map((v) => v?.nickname || v?.name || '');
 
     return (
-      <View style={{ width: '100%' }}>
+      <View style={{width: '100%'}}>
         <TouchableOpacity testID={testID} activeOpacity={0.5} onPress={onPress}>
           <StyledViewChatRoomListItem>
-            <View style={{ marginHorizontal: 20 }}>
+            <View style={{marginHorizontal: 20}}>
               {!users || users.length === 1
                 ? renderSingleImage(photoURLs?.[0])
                 : renderMultiImages(photoURLs)}
@@ -209,8 +206,7 @@ function ChannelListItem(props: Props): React.ReactElement {
               <StyledViewBottom>
                 <StyledTextMessage
                   numberOfLines={2}
-                  lastMessageCnt={lastMessageCnt}
-                >
+                  lastMessageCnt={lastMessageCnt}>
                   {imageUrls && imageUrls.length > 0
                     ? getString('PHOTO')
                     : text}

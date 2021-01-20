@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
-import { prisma } from '../context';
+import {prisma} from '../context';
 
 export interface ExpoMessage {
   to: string;
@@ -35,7 +35,7 @@ export const getReceiversPushTokens = async (
   const memberships = await prisma.membership.findMany({
     where: {
       channelId,
-      userId: { not: userId },
+      userId: {not: userId},
     },
   });
 
@@ -43,9 +43,9 @@ export const getReceiversPushTokens = async (
 
   const receiversWhoBlockedUser = (
     await prisma.blockedUser.findMany({
-      select: { userId: true },
+      select: {userId: true},
       where: {
-        AND: [{ blockedUserId: userId }, { userId: { in: users } }],
+        AND: [{blockedUserId: userId}, {userId: {in: users}}],
       },
     })
   ).map((user) => user.userId);
@@ -56,7 +56,7 @@ export const getReceiversPushTokens = async (
 
   const notifications = await prisma.notification.findMany({
     where: {
-      userId: { in: receivers },
+      userId: {in: receivers},
     },
   });
 

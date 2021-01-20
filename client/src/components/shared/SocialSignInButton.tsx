@@ -2,9 +2,9 @@ import * as AuthSession from 'expo-auth-session';
 import * as Config from '../../../config';
 import * as WebBrowser from 'expo-web-browser';
 
-import { Alert, Platform, View } from 'react-native';
-import { AuthType, User } from '../../types/graphql';
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import {Alert, Platform, View} from 'react-native';
+import {AuthType, User} from '../../types/graphql';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
   SocialSignInButtonFacebookSignInMutation,
   SocialSignInButtonFacebookSignInMutationResponse,
@@ -13,15 +13,15 @@ import type {
   SocialSignInButtonGoogleSignInMutation,
   SocialSignInButtonGoogleSignInMutationResponse,
 } from '../../__generated__/SocialSignInButtonGoogleSignInMutation.graphql';
-import { graphql, useMutation } from 'react-relay/hooks';
+import {graphql, useMutation} from 'react-relay/hooks';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Button } from 'dooboo-ui';
-import { getString } from '../../../STRINGS';
-import { showAlertForError } from '../../utils/common';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {Button} from 'dooboo-ui';
+import {getString} from '../../../STRINGS';
+import {showAlertForError} from '../../utils/common';
+import {useThemeContext} from '@dooboo-ui/theme';
 
-const { facebookAppId, facebookSecret, googleWebClientId } = Config;
+const {facebookAppId, facebookSecret, googleWebClientId} = Config;
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -82,8 +82,8 @@ const SocialSignInButton: FC<Props> = ({
     isGoogleInFlight,
   ] = useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
-  const { theme } = useThemeContext();
-  const useProxy = Platform.select({ web: false, default: true });
+  const {theme} = useThemeContext();
+  const useProxy = Platform.select({web: false, default: true});
 
   const {
     makeRedirectUri,
@@ -136,7 +136,7 @@ const SocialSignInButton: FC<Props> = ({
           redirectUri,
           prompt: Prompt.SelectAccount,
           extraParams: {
-            display: Platform.select({ web: 'popup' }) as string,
+            display: Platform.select({web: 'popup'}) as string,
             auth_type: 'rerequest',
           },
           responseType: ResponseType.Token,
@@ -146,19 +146,19 @@ const SocialSignInButton: FC<Props> = ({
 
   useEffect(() => {
     if (response?.type === 'success') {
-      const { authentication } = response;
+      const {authentication} = response;
 
       const accessToken = authentication?.accessToken;
 
       if (accessToken) {
         if (socialProvider === AuthType.Google) {
           const mutationConfig = {
-            variables: { accessToken },
+            variables: {accessToken},
             onCompleted: (
               googleResponse: SocialSignInButtonGoogleSignInMutationResponse,
             ) => {
               if (googleResponse.signInWithGoogle) {
-                const { user, token } = googleResponse.signInWithGoogle;
+                const {user, token} = googleResponse.signInWithGoogle;
 
                 AsyncStorage.setItem('token', token as string);
 
@@ -176,12 +176,12 @@ const SocialSignInButton: FC<Props> = ({
         }
 
         const mutationConfig = {
-          variables: { accessToken },
+          variables: {accessToken},
           onCompleted: (
             fbResponse: SocialSignInButtonFacebookSignInMutationResponse,
           ) => {
             if (fbResponse.signInWithFacebook) {
-              const { user, token } = fbResponse.signInWithFacebook;
+              const {user, token} = fbResponse.signInWithFacebook;
 
               AsyncStorage.setItem('token', token as string);
 
@@ -202,7 +202,7 @@ const SocialSignInButton: FC<Props> = ({
     setSigningIn(true);
 
     try {
-      await promptAsync({ useProxy });
+      await promptAsync({useProxy});
     } catch (err) {
       Alert.alert(getString('ERROR'), err);
     } finally {
@@ -215,14 +215,13 @@ const SocialSignInButton: FC<Props> = ({
       <Button
         testID="btn-google"
         disabled={!request}
-        style={{
-          button: {
+        style={{marginBottom: 12}}
+        styles={{
+          container: {
             backgroundColor: theme.googleBackground,
             borderColor: theme.googleBackground,
             borderWidth: 1,
-            width: '100%',
             height: 48,
-            marginBottom: 12,
             borderRadius: 100,
           },
           text: {
@@ -230,7 +229,7 @@ const SocialSignInButton: FC<Props> = ({
             color: theme.googleText,
           },
         }}
-        leftElement={<View style={{ marginRight: 6 }}>{svgIcon}</View>}
+        leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
         loading={isGoogleInFlight || signingIn}
         indicatorColor={theme.primary}
         onPress={requestSignIn}
@@ -242,19 +241,18 @@ const SocialSignInButton: FC<Props> = ({
     <Button
       testID="btn-facebook"
       disabled={!request}
-      style={{
-        button: {
+      styles={{
+        container: {
           backgroundColor: theme.facebookBackground,
           borderColor: theme.facebookBackground,
           borderWidth: 1,
-          width: '100%',
           height: 48,
-          marginBottom: 12,
           borderRadius: 100,
         },
-        text: { fontWeight: '700', color: theme.facebookText },
+        text: {fontWeight: '700', color: theme.facebookText},
       }}
-      leftElement={<View style={{ marginRight: 6 }}>{svgIcon}</View>}
+      style={{marginBottom: 12}}
+      leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
       loading={isFacebookInFlight || signingIn}
       indicatorColor={theme.primary}
       onPress={requestSignIn}

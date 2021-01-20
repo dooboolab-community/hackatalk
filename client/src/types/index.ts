@@ -1,7 +1,7 @@
-import { StyleProp, TextStyle } from 'react-native';
+import {StyleProp, TextStyle} from 'react-native';
 
-import { SFC } from 'react';
-import { User } from './graphql';
+import {SFC} from 'react';
+import {User} from './graphql';
 
 export enum MessageType {
   Message,

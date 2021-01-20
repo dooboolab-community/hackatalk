@@ -1,6 +1,6 @@
 import '@expo/match-media'; // For polyfill side-effect.
 
-import { useMediaQuery } from 'react-responsive';
+import {useMediaQuery} from 'react-responsive';
 
 export type Media = 'mobile' | 'tablet' | 'desktop';
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const component = createTestElement(<ChangePw {...createTestProps()} />);
 

@@ -1,25 +1,25 @@
-import { Button, EditText } from 'dooboo-ui';
-import React, { ReactElement, useState } from 'react';
-import { graphql, useMutation } from 'react-relay/hooks';
+import {Button, EditText} from 'dooboo-ui';
+import React, {ReactElement, useState} from 'react';
+import {graphql, useMutation} from 'react-relay/hooks';
 import {
   showAlertForError,
   validateEmail,
   validatePassword,
 } from '../../utils/common';
 
-import { AuthStackNavigationProps } from '../navigation/AuthStackNavigator';
-import { Platform } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { SignUpMutation } from '../../__generated__/SignUpMutation.graphql';
-import { SignUpSendVerificationMutation } from '../../__generated__/SignUpSendVerificationMutation.graphql';
+import {AuthStackNavigationProps} from '../navigation/AuthStackNavigator';
+import {Platform} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {SignUpMutation} from '../../__generated__/SignUpMutation.graphql';
+import {SignUpSendVerificationMutation} from '../../__generated__/SignUpSendVerificationMutation.graphql';
 import StatusBar from '../shared/StatusBar';
-import { getString } from '../../../STRINGS';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background: ${({ theme }): string => theme.background};
+  background: ${({theme}): string => theme.background};
 `;
 
 const Wrapper = styled.KeyboardAvoidingView`
@@ -59,7 +59,7 @@ const sendVerification = graphql`
 `;
 
 function Page(props: Props): ReactElement {
-  const { navigation } = props;
+  const {navigation} = props;
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -77,7 +77,7 @@ function Page(props: Props): ReactElement {
     sendVerification,
   );
 
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
   // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
   // const [sendVerification] =
   //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
@@ -121,7 +121,7 @@ function Page(props: Props): ReactElement {
 
         commitSendVerification(sendVerificationMutationConfig);
 
-        return navigation.replace('VerifyEmail', { email });
+        return navigation.replace('VerifyEmail', {email});
       },
       onError: (error: any): void => {
         showAlertForError(error);
@@ -172,9 +172,8 @@ function Page(props: Props): ReactElement {
           ios: 'padding',
           android: 'height',
         })}
-        keyboardVerticalOffset={100}
-      >
-        <ScrollView style={{ alignSelf: 'stretch' }}>
+        keyboardVerticalOffset={100}>
+        <ScrollView style={{alignSelf: 'stretch'}}>
           <ContentsWrapper>
             <EditText
               testID="input-email"
@@ -205,7 +204,7 @@ function Page(props: Props): ReactElement {
               label={getString('PASSWORD')}
               value={password}
               onChangeText={inputChangeHandlers.passwordInput}
-              style={{ marginTop: 32 }}
+              style={{marginTop: 32}}
               errorText={errorPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
@@ -220,7 +219,7 @@ function Page(props: Props): ReactElement {
               label={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
-              style={{ marginTop: 32 }}
+              style={{marginTop: 32}}
               borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
@@ -241,7 +240,7 @@ function Page(props: Props): ReactElement {
               placeholderTextColor={theme.placeholder}
               value={name}
               onChangeText={inputChangeHandlers.nameInput}
-              style={{ marginTop: 32 }}
+              style={{marginTop: 32}}
               errorText={errorName}
               onSubmitEditing={requestSignUp}
             />
@@ -260,7 +259,7 @@ function Page(props: Props): ReactElement {
               onChangeText={(text: string): void => {
                 setStatusMessage(text);
               }}
-              style={{ marginTop: 32 }}
+              style={{marginTop: 32}}
               onSubmitEditing={requestSignUp}
             />
             <ButtonWrapper>
@@ -269,9 +268,11 @@ function Page(props: Props): ReactElement {
                 loading={isInFlight}
                 onPress={requestSignUp}
                 style={{
-                  root: {
+                  width: '100%',
+                }}
+                styles={{
+                  container: {
                     height: 52,
-                    width: '50%',
                     backgroundColor: theme.btnPrimary,
                   },
                   text: {

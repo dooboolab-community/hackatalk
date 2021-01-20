@@ -1,4 +1,4 @@
-import { GraphQLClient, request } from 'graphql-request';
+import {GraphQLClient, request} from 'graphql-request';
 import {
   createChannel,
   createMessage,
@@ -8,7 +8,7 @@ import {
   signUpMutation,
 } from '../queries';
 
-import { testHost } from '../testSetup';
+import {testHost} from '../testSetup';
 
 describe('Resolver - Channel', () => {
   let authClient: GraphQLClient;

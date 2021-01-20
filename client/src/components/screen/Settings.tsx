@@ -1,28 +1,28 @@
-import React, { ReactElement } from 'react';
-import { SectionList, SectionListData } from 'react-native';
-import { SvgApple, SvgFacebook, SvgGoogle } from '../../utils/Icons';
-import { graphql, useMutation } from 'react-relay/hooks';
-import styled, { DefaultTheme } from 'styled-components/native';
+import React, {ReactElement} from 'react';
+import {SectionList, SectionListData} from 'react-native';
+import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
+import {graphql, useMutation} from 'react-relay/hooks';
+import styled, {DefaultTheme} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthType } from '../../types/graphql';
-import { Button } from 'dooboo-ui';
-import { FontAwesome } from '@expo/vector-icons';
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import type { SettingsDeleteNotificationMutation } from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
-import { getString } from '../../../STRINGS';
-import { useAuthContext } from '../../providers/AuthProvider';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {AuthType} from '../../types/graphql';
+import {Button} from 'dooboo-ui';
+import {FontAwesome} from '@expo/vector-icons';
+import {MainStackNavigationProps} from '../navigation/MainStackNavigator';
+import type {SettingsDeleteNotificationMutation} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
+import {getString} from '../../../STRINGS';
+import {useAuthContext} from '../../providers/AuthProvider';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;
   padding-top: 10px;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
 `;
 
 const HeaderContainer = styled.View`
-  background-color: ${({ theme }): string => theme.background};
-  border-bottom-color: ${({ theme }): string => theme.lineColor};
+  background-color: ${({theme}): string => theme.background};
+  border-bottom-color: ${({theme}): string => theme.lineColor};
   height: 40px;
   justify-content: center;
   margin-left: 12px;
@@ -30,7 +30,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({ theme }): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.fontSubColor};
   margin-left: 2px;
 `;
 
@@ -44,7 +44,7 @@ const ItemContainer = styled.TouchableOpacity`
 `;
 
 const ItemLabel = styled.Text`
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   font-size: 16px;
   flex: 1;
 `;
@@ -74,12 +74,12 @@ interface SettingsOption {
 function Settings(props: Props): React.ReactElement {
   let signInInfoOption: SettingsOption;
 
-  const { setUser } = useAuthContext();
-  const { theme } = useThemeContext();
-  const { navigation } = props;
+  const {setUser} = useAuthContext();
+  const {theme} = useThemeContext();
+  const {navigation} = props;
 
   const {
-    state: { user },
+    state: {user},
   } = useAuthContext();
 
   const [commitNotification] = useMutation<SettingsDeleteNotificationMutation>(
@@ -96,10 +96,9 @@ function Settings(props: Props): React.ReactElement {
     return (
       <ItemContainer
         onPress={isEmailUser ? option.onPress : undefined}
-        testID={option.testID}
-      >
+        testID={option.testID}>
         {option.icon || null}
-        <ItemLabel style={{ marginLeft: 8, marginTop: 2 }}>
+        <ItemLabel style={{marginLeft: 8, marginTop: 2}}>
           {option.label}
         </ItemLabel>
         {isEmailUser ? (
@@ -192,11 +191,11 @@ function Settings(props: Props): React.ReactElement {
       <SectionList
         testID="test-section-list"
         sections={settings}
-        renderItem={({ item }): React.ReactElement =>
+        renderItem={({item}): React.ReactElement =>
           renderSectionItem(item, theme)
         }
         keyExtractor={(item: SettingsOption): string => item.label}
-        renderSectionHeader={({ section: { title } }): React.ReactElement => (
+        renderSectionHeader={({section: {title}}): React.ReactElement => (
           <HeaderContainer>
             <SectionHeader>{title}</SectionHeader>
           </HeaderContainer>
@@ -205,11 +204,11 @@ function Settings(props: Props): React.ReactElement {
       <Button
         testID="button-logout"
         style={{
-          root: {
-            paddingHorizontal: 20,
-            paddingVertical: 20,
-          },
-          button: {
+          paddingHorizontal: 20,
+          paddingVertical: 20,
+        }}
+        styles={{
+          container: {
             width: '100%',
             height: 48,
             backgroundColor: theme.btnPrimaryLight,

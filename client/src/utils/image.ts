@@ -1,6 +1,6 @@
 import * as ImageManipulator from 'expo-image-manipulator';
 
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 
 // eslint-disable-next-line no-shadow
 enum PhotoDimensions {
@@ -8,7 +8,7 @@ enum PhotoDimensions {
   HEIGHT = 'height',
 }
 
-const maximalValuesPerDimension = { width: 1000, height: 1000 };
+const maximalValuesPerDimension = {width: 1000, height: 1000};
 
 export interface ImageSize {
   width: number;
@@ -57,8 +57,8 @@ export const resizePhotoToMaxDimensionsAndCompressAsPNG = async ({
 
   const resizedPhoto = await ImageManipulator.manipulateAsync(
     uri,
-    [{ resize: { [largestDimension]: targetValueOfLargestDimension } }],
-    { compress: 1.0, format: ImageManipulator.SaveFormat.PNG },
+    [{resize: {[largestDimension]: targetValueOfLargestDimension}}],
+    {compress: 1.0, format: ImageManipulator.SaveFormat.PNG},
   );
 
   return resizedPhoto;

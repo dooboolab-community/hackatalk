@@ -3,8 +3,8 @@ import 'react-native';
 import * as React from 'react';
 
 import EmptyListItem from '../EmptyListItem';
-import { createTestProps } from '../../../../test/testUtils';
-import { render } from '@testing-library/react-native';
+import {createTestProps} from '../../../../test/testUtils';
+import {render} from '@testing-library/react-native';
 
 describe('[EmptyListItem] render', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

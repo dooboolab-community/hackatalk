@@ -1,10 +1,10 @@
 import 'react-native';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import React from 'react';
 import StackNavigator from '../RootStackNavigator';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const component = createTestElement(<StackNavigator {...createTestProps()} />);
 

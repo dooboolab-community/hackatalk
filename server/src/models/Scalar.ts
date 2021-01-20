@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
-import { asNexusMethod, scalarType } from 'nexus';
+import {asNexusMethod, scalarType} from 'nexus';
 
-import { GraphQLDate } from 'graphql-iso-date';
-import { GraphQLUpload } from 'graphql-upload';
+import {GraphQLDate} from 'graphql-iso-date';
+import {GraphQLUpload} from 'graphql-upload';
 
 export enum AuthType {
   email = 'email',
