@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
-import { GraphQLClient, request } from 'graphql-request';
-import { apolloClient, testHost } from '../testSetup';
+import {GraphQLClient, request} from 'graphql-request';
+import {apolloClient, testHost} from '../testSetup';
 import {
   meQuery,
   signInEmailMutation,
@@ -111,10 +111,10 @@ describe('Resolver - User', () => {
       apolloClient
         .subscribe({
           query: userSignedInSubscription,
-          variables: { userId: userId },
+          variables: {userId: userId},
         })
         .subscribe({
-          next: ({ data }) => {
+          next: ({data}) => {
             return (subscriptionValue = data.userSignedIn);
           },
         });
@@ -159,10 +159,10 @@ describe('Resolver - User', () => {
       apolloClient
         .subscribe({
           query: userUpdatedSubscription,
-          variables: { userId: userId },
+          variables: {userId: userId},
         })
         .subscribe({
-          next: ({ data }) => {
+          next: ({data}) => {
             return (subscriptionValue = data.userUpdated);
           },
         });

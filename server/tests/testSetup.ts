@@ -1,15 +1,15 @@
 import ApolloClient from 'apollo-client';
-import { Headers } from 'cross-fetch';
-import { Http2Server } from 'http2';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import {Headers} from 'cross-fetch';
+import {Http2Server} from 'http2';
+import {InMemoryCache} from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
-import { PrismaClient } from '@prisma/client';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
-import { WebSocketLink } from 'apollo-link-ws';
-import { createApp } from '../src/app';
-import { exec } from 'child_process';
+import {PrismaClient} from '@prisma/client';
+import {SubscriptionClient} from 'subscriptions-transport-ws';
+import {WebSocketLink} from 'apollo-link-ws';
+import {createApp} from '../src/app';
+import {exec} from 'child_process';
 import express from 'express';
-import { startServer } from '../src/server';
+import {startServer} from '../src/server';
 
 // @ts-ignore
 global.Headers = global.Headers || Headers;
@@ -22,6 +22,8 @@ export let apolloClient;
 export const testHost = `http://localhost:${port}/graphql`;
 const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
+jest.setTimeout(30000);
+
 beforeAll(async (done) => {
   const app: express.Application = createApp();
 
@@ -29,7 +31,7 @@ beforeAll(async (done) => {
 
   networkInterface = new SubscriptionClient(
     testSubscriptionHost,
-    { reconnect: true },
+    {reconnect: true},
     NodeWebSocket,
   );
 

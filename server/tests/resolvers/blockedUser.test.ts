@@ -1,4 +1,4 @@
-import { GraphQLClient, request } from 'graphql-request';
+import {GraphQLClient, request} from 'graphql-request';
 import {
   createBlockedUserMutation,
   deleteBlockedUserMutation,
@@ -6,7 +6,7 @@ import {
   signUpMutation,
 } from '../queries';
 
-import { testHost } from '../testSetup';
+import {testHost} from '../testSetup';
 
 describe('Resolver - BlockedUser', () => {
   it('scenario test', async () => {
@@ -77,7 +77,7 @@ describe('Resolver - BlockedUser', () => {
     // should add blockedUser
     const createBlockedUserResponse = await authClient.request(
       createBlockedUserMutation,
-      { blockedUserId },
+      {blockedUserId},
     );
 
     expect(createBlockedUserResponse).toHaveProperty('createBlockedUser');
@@ -90,7 +90,7 @@ describe('Resolver - BlockedUser', () => {
     // should delete blockedUser
     const deleteBlockedUserResponse = await authClient.request(
       deleteBlockedUserMutation,
-      { blockedUserId },
+      {blockedUserId},
     );
 
     expect(deleteBlockedUserResponse).toHaveProperty('deleteBlockedUser');

@@ -1,4 +1,4 @@
-import { GraphQLClient, request } from 'graphql-request';
+import {GraphQLClient, request} from 'graphql-request';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -6,7 +6,7 @@ import {
   signUpMutation,
 } from '../queries';
 
-import { testHost } from '../testSetup';
+import {testHost} from '../testSetup';
 
 describe('Resolver - Friend', () => {
   it('scenario test', async () => {
@@ -86,7 +86,7 @@ describe('Resolver - Friend', () => {
     // should delete friend
     const deleteFriendResponse = await authClient.request(
       deleteFriendMutation,
-      { friendId },
+      {friendId},
     );
 
     expect(deleteFriendResponse).toHaveProperty('deleteFriend');
