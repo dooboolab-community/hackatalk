@@ -1,7 +1,7 @@
-import { queryField, stringArg } from 'nexus';
+import {queryField, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
-import { relayToPrismaPagination } from '../../utils/pagination';
+import {assert} from '../../utils/assert';
+import {relayToPrismaPagination} from '../../utils/pagination';
 
 export const friends = queryField((t) => {
   t.connectionField('friends', {
@@ -11,16 +11,16 @@ export const friends = queryField((t) => {
       searchText: stringArg(),
     },
 
-    async nodes(_, args, { prisma, userId }) {
+    async nodes(_, args, {prisma, userId}) {
       assert(userId, 'Not authorized.');
 
-      const { after, before, first, last, searchText } = args;
+      const {after, before, first, last, searchText} = args;
 
       const filter = searchText && {
         OR: [
-          { name: { contains: searchText } },
-          { nickname: { contains: searchText } },
-          { email: { contains: searchText } },
+          {name: {contains: searchText}},
+          {nickname: {contains: searchText}},
+          {email: {contains: searchText}},
         ],
       };
 
@@ -39,7 +39,7 @@ export const friends = queryField((t) => {
             },
           },
         },
-        orderBy: { id: 'desc' },
+        orderBy: {id: 'desc'},
       });
     },
   });

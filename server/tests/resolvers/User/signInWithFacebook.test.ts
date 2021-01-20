@@ -1,8 +1,8 @@
 import * as AuthUtils from '../../../src/utils/auth';
 
-import { request } from 'graphql-request';
-import { signInWithFacebook } from '../../queries';
-import { testHost } from '../../testSetup';
+import {request} from 'graphql-request';
+import {signInWithFacebook} from '../../queries';
+import {testHost} from '../../testSetup';
 
 describe('signInWithFacebook', () => {
   it('should signIn user wigh Facebook', async () => {

@@ -1,4 +1,4 @@
-import { ChannelType, MessageType } from '@prisma/client';
+import {ChannelType, MessageType} from '@prisma/client';
 import {
   changeVisibilityWhenInvisible,
   createMemberships,
@@ -7,16 +7,10 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
-import {
-  inputObjectType,
-  list,
-  mutationField,
-  nonNull,
-  stringArg,
-} from 'nexus';
+import {inputObjectType, list, mutationField, nonNull, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
-import { filterNullProperties } from '../../utils/filterNullProperties';
+import {assert} from '../../utils/assert';
+import {filterNullProperties} from '../../utils/filterNullProperties';
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',
@@ -57,7 +51,7 @@ export const createChannel = mutationField('createChannel', {
   This query will return [Channel] with [Membership] without [Message] that has just created.
   `,
 
-  resolve: async (_, { channel, message }, { prisma, userId }) => {
+  resolve: async (_, {channel, message}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     const {
@@ -86,10 +80,10 @@ export const createChannel = mutationField('createChannel', {
         data: {
           text,
           messageType,
-          fileUrls: { set: fileUrls },
-          imageUrls: { set: imageUrls },
-          channel: { connect: { id: channelId } },
-          sender: { connect: { id: userId } },
+          fileUrls: {set: fileUrls},
+          imageUrls: {set: imageUrls},
+          channel: {connect: {id: channelId}},
+          sender: {connect: {id: userId}},
         },
       });
 
@@ -120,14 +114,14 @@ export const createChannel = mutationField('createChannel', {
       }
     }
 
-    const { id } = await createNewChannel(isPrivateChannel, userId, name);
+    const {id} = await createNewChannel(isPrivateChannel, userId, name);
 
     await createMemberships(id, userIds);
     message && (await createMessage(filterNullProperties(message), id));
 
     const getChannel = (channelId: string): Promise<any> =>
       prisma.channel.findUnique({
-        where: { id: channelId },
+        where: {id: channelId},
         include: {
           membership: true,
         },
@@ -141,10 +135,10 @@ export const findOrCreatePrivateChannel = mutationField(
   'findOrCreatePrivateChannel',
   {
     type: 'Channel',
-    args: { peerUserIds: nonNull(list(nonNull(stringArg()))) },
+    args: {peerUserIds: nonNull(list(nonNull(stringArg())))},
     description: 'Find or create channel associated to peer user id.',
 
-    resolve: async (parent, { peerUserIds }, { userId }) => {
+    resolve: async (parent, {peerUserIds}, {userId}) => {
       assert(userId, 'Not authorized.');
 
       const existingChannel = await findPrivateChannelWithUserIds([
@@ -171,7 +165,7 @@ export const findOrCreatePrivateChannel = mutationField(
 
 export const leaveChannel = mutationField('leaveChannel', {
   type: 'Membership',
-  args: { channelId: nonNull(stringArg()) },
+  args: {channelId: nonNull(stringArg())},
 
   description: `User leaves [public] channel.
   Users cannot leave the [private] channel
@@ -180,7 +174,7 @@ export const leaveChannel = mutationField('leaveChannel', {
   User will leave the [public] channel and membership will be removed.
   `,
 
-  resolve: async (parent, { channelId }, { prisma, userId }) => {
+  resolve: async (parent, {channelId}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     const channel = await findExistingChannel(channelId);
@@ -217,7 +211,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
   },
   description: 'Adds some users into [public] channel.',
 
-  resolve: async (_, { channelId, userIds }, { prisma, userId }) => {
+  resolve: async (_, {channelId, userIds}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     const channel = await findExistingChannel(channelId);
@@ -254,10 +248,10 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
         await prisma.membership.create({
           data: {
             user: {
-              connect: { id: channelUserId },
+              connect: {id: channelUserId},
             },
             channel: {
-              connect: { id: channelId },
+              connect: {id: channelId},
             },
           },
         });
@@ -275,7 +269,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
   },
   description: 'Removes some users from [public] channel.',
 
-  resolve: async (_, { channelId, userIds }, { prisma, userId }) => {
+  resolve: async (_, {channelId, userIds}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     const channel = await findExistingChannel(channelId);

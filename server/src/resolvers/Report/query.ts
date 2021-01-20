@@ -1,4 +1,4 @@
-import { list, nonNull, queryField, stringArg } from 'nexus';
+import {list, nonNull, queryField, stringArg} from 'nexus';
 
 export const reports = queryField('reports', {
   type: list('Report'),
@@ -7,9 +7,9 @@ export const reports = queryField('reports', {
     userId: nonNull(stringArg()),
   },
 
-  resolve: (_, { userId }, ctx) => {
+  resolve: (_, {userId}, ctx) => {
     return ctx.prisma.report.findMany({
-      where: { userId },
+      where: {userId},
     });
   },
 });

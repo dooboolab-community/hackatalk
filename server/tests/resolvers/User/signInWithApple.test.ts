@@ -1,6 +1,6 @@
-import { request } from 'graphql-request';
-import { signInWithApple } from '../../queries';
-import { testHost } from '../../testSetup';
+import {request} from 'graphql-request';
+import {signInWithApple} from '../../queries';
+import {testHost} from '../../testSetup';
 
 describe('signInWithApple', () => {
   it('should signIn user wigh Apple', async () => {

@@ -1,6 +1,6 @@
-import { mutationField, nonNull, stringArg } from 'nexus';
+import {mutationField, nonNull, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
+import {assert} from '../../utils/assert';
 
 export const createNotification = mutationField('createNotification', {
   type: 'Notification',
@@ -11,7 +11,7 @@ export const createNotification = mutationField('createNotification', {
     os: stringArg(),
   },
 
-  resolve: (parent, { token, device, os }, { prisma, userId }) => {
+  resolve: (parent, {token, device, os}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     return prisma.notification.create({
@@ -19,7 +19,7 @@ export const createNotification = mutationField('createNotification', {
         token,
         device,
         os,
-        user: { connect: { id: userId } },
+        user: {connect: {id: userId}},
       },
     });
   },
@@ -27,9 +27,9 @@ export const createNotification = mutationField('createNotification', {
 
 export const deleteNotification = mutationField('deleteNotification', {
   type: 'Notification',
-  args: { token: nonNull(stringArg()) },
+  args: {token: nonNull(stringArg())},
 
-  resolve: (parent, { token }, { prisma }) => {
+  resolve: (parent, {token}, {prisma}) => {
     return prisma.notification.delete({
       where: {
         token,

@@ -1,15 +1,15 @@
-import { nonNull, queryField, stringArg } from 'nexus';
+import {nonNull, queryField, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
-import { relayToPrismaPagination } from '../../utils/pagination';
+import {assert} from '../../utils/assert';
+import {relayToPrismaPagination} from '../../utils/pagination';
 
 export const message = queryField('message', {
   type: 'Message',
-  args: { id: nonNull(stringArg()) },
+  args: {id: nonNull(stringArg())},
   description: 'Get single message',
-  resolve: (_, { id }, ctx) =>
+  resolve: (_, {id}, ctx) =>
     ctx.prisma.message.findUnique({
-      where: { id },
+      where: {id},
       include: {
         sender: true,
         channel: true,
@@ -26,19 +26,19 @@ export const messages = queryField((t) => {
       searchText: stringArg(),
     },
 
-    async nodes(_, args, { prisma, userId }) {
+    async nodes(_, args, {prisma, userId}) {
       assert(userId, 'Not authorized.');
 
-      const { after, before, first, last, searchText, channelId } = args;
+      const {after, before, first, last, searchText, channelId} = args;
 
       const filter = searchText && {
-        OR: [{ text: { contains: searchText } }],
+        OR: [{text: {contains: searchText}}],
       };
 
       const blockedUsersIds = (
         await prisma.blockedUser.findMany({
-          select: { blockedUserId: true },
-          where: { userId },
+          select: {blockedUserId: true},
+          where: {userId},
         })
       ).map((user) => user.blockedUserId);
 
@@ -52,13 +52,13 @@ export const messages = queryField((t) => {
 
         where: {
           channelId,
-          senderId: { notIn: blockedUsersIds },
+          senderId: {notIn: blockedUsersIds},
           ...filter,
           deletedAt: null,
         },
 
-        include: { sender: true },
-        orderBy: { createdAt: 'desc' },
+        include: {sender: true},
+        orderBy: {createdAt: 'desc'},
       });
     },
   });

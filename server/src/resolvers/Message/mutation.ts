@@ -3,9 +3,9 @@ import {
   getReceiversPushTokens,
   sendPushNotification,
 } from '../../services/NotificationService';
-import { arg, mutationField, nonNull, stringArg } from 'nexus';
+import {arg, mutationField, nonNull, stringArg} from 'nexus';
 
-import { assert } from '../../utils/assert';
+import {assert} from '../../utils/assert';
 
 export const createMessage = mutationField('createMessage', {
   type: 'Message',
@@ -19,26 +19,22 @@ export const createMessage = mutationField('createMessage', {
     ),
   },
 
-  resolve: async (
-    parent,
-    { channelId, message },
-    { prisma, request, userId },
-  ) => {
+  resolve: async (parent, {channelId, message}, {prisma, request, userId}) => {
     assert(userId, 'Not authorized.');
 
-    const { imageUrls, fileUrls, ...rest } = message;
+    const {imageUrls, fileUrls, ...rest} = message;
 
     const created = await prisma.message.create({
       data: {
         ...rest,
-        imageUrls: { set: imageUrls ?? [] },
-        fileUrls: { set: fileUrls ?? [] },
+        imageUrls: {set: imageUrls ?? []},
+        fileUrls: {set: fileUrls ?? []},
         sender: {
           connect: {
             id: userId,
           },
         },
-        channel: { connect: { id: channelId } },
+        channel: {connect: {id: channelId}},
       },
       include: {
         sender: true,
@@ -85,13 +81,13 @@ export const createMessage = mutationField('createMessage', {
 
 export const deleteMessage = mutationField('deleteMessage', {
   type: 'Message',
-  args: { id: nonNull(stringArg()) },
+  args: {id: nonNull(stringArg())},
 
-  resolve: (parent, { id }, ctx) => {
+  resolve: (parent, {id}, ctx) => {
     return ctx.prisma.message.update({
-      data: { deletedAt: new Date().toISOString() },
-      where: { id },
-      include: { sender: true },
+      data: {deletedAt: new Date().toISOString()},
+      where: {id},
+      include: {sender: true},
     });
   },
 });
