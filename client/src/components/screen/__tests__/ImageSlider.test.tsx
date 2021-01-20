@@ -1,8 +1,8 @@
 import 'react-native';
 
-import React, { ReactElement } from 'react';
-import { RenderAPI, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import React, {ReactElement} from 'react';
+import {RenderAPI, render} from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import ImageSlider from '../ImageSlider';
 
@@ -29,7 +29,7 @@ const images = [
     uri:
       'https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg',
   },
-  { uri: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460' },
+  {uri: 'https://avatars2.githubusercontent.com/u/7970947?v=3&s=460'},
 ];
 
 jest.mock('@react-navigation/native', () => {
@@ -45,13 +45,13 @@ jest.mock('@react-navigation/native', () => {
 
 jest.mock('react-native-safe-area-context', () => {
   return {
-    useSafeAreaInsets: () => ({ top: 30, bottom: 50, left: 0, right: 0 }),
+    useSafeAreaInsets: () => ({top: 30, bottom: 50, left: 0, right: 0}),
   };
 });
 
 describe('Rendering', () => {
   beforeEach(() => {
-    props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
+    props = createTestProps({route: {params: {images, initialIndex: 1}}});
     component = createTestElement(<ImageSlider {...props} />);
     testingLib = render(component);
   });
@@ -66,7 +66,7 @@ describe('Rendering', () => {
 
 describe('Interaction', () => {
   beforeEach(() => {
-    props = createTestProps({ route: { params: { images, initialIndex: 1 } } });
+    props = createTestProps({route: {params: {images, initialIndex: 1}}});
     component = createTestElement(<ImageSlider {...props} />);
     testingLib = render(component);
   });

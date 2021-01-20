@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-import { Button, Text, View } from 'react-native';
+import {Button, Text, View} from 'react-native';
 import {
   ThemeProvider,
   ThemeType,
   defaultThemeType,
   useThemeContext,
 } from '@dooboo-ui/theme';
-import { act, fireEvent, render } from '@testing-library/react-native';
+import {act, fireEvent, render} from '@testing-library/react-native';
 
 const FakeChild = (): React.ReactElement => {
-  const { themeType, changeThemeType } = useThemeContext();
+  const {themeType, changeThemeType} = useThemeContext();
 
   return (
     <View>
@@ -43,7 +43,7 @@ describe('[ThemeProvider] rendering test', () => {
 
 describe('[ThemeProvider] interactions', () => {
   it('initial theme setup', async () => {
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <ThemeProvider>
         <FakeChild />
       </ThemeProvider>,
@@ -57,7 +57,7 @@ describe('[ThemeProvider] interactions', () => {
   });
 
   it('test changeTheme()', async () => {
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <ThemeProvider>
         <FakeChild />
       </ThemeProvider>,
@@ -83,7 +83,7 @@ describe('[ThemeProvider] interactions', () => {
       </ThemeProvider>
     );
 
-    const { getByTestId } = render(ComponentWithProps);
+    const {getByTestId} = render(ComponentWithProps);
     const text = getByTestId('test-text');
 
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
@@ -100,7 +100,7 @@ describe('[ThemeProvider] interactions', () => {
       </ThemeProvider>
     );
 
-    const { getByTestId } = render(ComponentWithProps);
+    const {getByTestId} = render(ComponentWithProps);
     const text = getByTestId('test-text');
 
     act(() => {

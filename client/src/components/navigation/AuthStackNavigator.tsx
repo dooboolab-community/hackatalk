@@ -1,18 +1,18 @@
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 
-import { CompositeNavigationProp } from '@react-navigation/native';
+import {CompositeNavigationProp} from '@react-navigation/native';
 import FindPw from '../screen/FindPw';
 import LicenseAgreement from '../screen/LicenseAgreement';
-import { RootStackNavigationProps } from './RootStackNavigator';
+import {RootStackNavigationProps} from './RootStackNavigator';
 import SignIn from '../screen/SignIn';
 import SignUp from '../screen/SignUp';
 import VerifyEmail from '../screen/VerifyEmail';
-import { getString } from '../../../STRINGS';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {getString} from '../../../STRINGS';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 export type AuthStackParamList = {
   default: undefined;
@@ -39,7 +39,7 @@ export type AuthStackNavigationProps<
 const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthNavigator(): ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   return (
     <Stack.Navigator
@@ -51,8 +51,7 @@ function AuthNavigator(): ReactElement {
           elevation: 0,
         },
         headerTintColor: theme.fontColor,
-      }}
-    >
+      }}>
       <Stack.Screen
         name="SignIn"
         component={SignIn}

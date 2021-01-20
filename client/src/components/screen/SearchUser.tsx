@@ -1,5 +1,5 @@
-import { Animated, TouchableOpacity, View } from 'react-native';
-import React, { FC, ReactElement, Suspense, useState } from 'react';
+import {Animated, TouchableOpacity, View} from 'react-native';
+import React, {FC, ReactElement, Suspense, useState} from 'react';
 import type {
   SearchUsersPaginationQuery,
   SearchUsersPaginationQueryResponse,
@@ -12,21 +12,21 @@ import {
 } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import { FontAwesome } from '@expo/vector-icons';
-import { LoadingIndicator } from 'dooboo-ui';
+import {FontAwesome} from '@expo/vector-icons';
+import {LoadingIndicator} from 'dooboo-ui';
 import SearchTextInput from '../shared/SearchTextInput';
-import type { SearchUserComponent_user$key } from '../../__generated__/SearchUserComponent_user.graphql';
-import { User } from '../../types/graphql';
+import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
+import {User} from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
-import { getString } from '../../../STRINGS';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
-import { useNavigation } from '@react-navigation/native';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
+import {useNavigation} from '@react-navigation/native';
+import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background: ${({ theme }): string => theme.background};
+  background: ${({theme}): string => theme.background};
 `;
 
 const Container = styled.View`
@@ -56,9 +56,9 @@ const usersQuery = graphql`
 const usersFragment = graphql`
   fragment SearchUserComponent_user on Query
   @argumentDefinitions(
-    first: { type: "Int" }
-    after: { type: "String" }
-    searchText: { type: "String" }
+    first: {type: "Int"}
+    after: {type: "String"}
+    searchText: {type: "String"}
   )
   @refetchable(queryName: "SearchUsersQuery") {
     users(first: $first, after: $after, searchText: $searchText)
@@ -90,13 +90,13 @@ type UserProps = {
   searchArgs: SearchUsersPaginationQueryVariables;
 };
 
-const UsersFragment: FC<UserProps> = ({ user, searchArgs }) => {
-  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
+  const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     SearchUsersPaginationQuery,
     SearchUserComponent_user$key
   >(usersFragment, user);
 
-  const { showModal } = useProfileContext();
+  const {showModal} = useProfileContext();
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
@@ -106,7 +106,7 @@ const UsersFragment: FC<UserProps> = ({ user, searchArgs }) => {
     item,
     index,
   }: {
-    item: { node: User; cursor: string };
+    item: {node: User; cursor: string};
     index: number;
   }): React.ReactElement => {
     const itemTestID = `user-list-item${index}`;
@@ -150,7 +150,7 @@ const UsersFragment: FC<UserProps> = ({ user, searchArgs }) => {
       }
       refreshing={isLoadingNext}
       onRefresh={() => {
-        refetch(searchArgs, { fetchPolicy: 'network-only' });
+        refetch(searchArgs, {fetchPolicy: 'network-only'});
       }}
       onEndReachedThreshold={0.1}
       onEndReached={onEndReached}
@@ -164,11 +164,11 @@ interface ContentProps {
   searchArgs: SearchUsersPaginationQueryVariables;
 }
 
-const ContentContainer: FC<ContentProps> = ({ searchArgs, scrollY }) => {
+const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
   const data: SearchUsersPaginationQueryResponse = useLazyLoadQuery<SearchUsersPaginationQuery>(
     usersQuery,
     searchArgs,
-    { fetchPolicy: 'store-or-network' },
+    {fetchPolicy: 'store-or-network'},
   );
 
   return (
@@ -189,8 +189,7 @@ const Screen: FC = () => {
           style={{
             paddingHorizontal: 16,
             paddingVertical: 8,
-          }}
-        >
+          }}>
           <FontAwesome name="ban" size={24} color="white" />
         </View>
       </TouchableOpacity>
@@ -218,7 +217,7 @@ const Screen: FC = () => {
       <Container>
         <SearchTextInput
           testID="text-input"
-          containerStyle={{ marginTop: 12 }}
+          containerStyle={{marginTop: 12}}
           onChangeText={onChangeText}
           value={searchText}
         />

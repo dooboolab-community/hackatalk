@@ -1,6 +1,6 @@
 import * as Config from '../../config';
 
-const { ROOT_URL } = Config;
+const {ROOT_URL} = Config;
 
 export const sample = async (
   body?: Record<string, unknown>,

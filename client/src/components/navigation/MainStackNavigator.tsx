@@ -1,38 +1,35 @@
 import * as Notifications from 'expo-notifications';
 
-import { Channel, User } from '../../types/graphql';
-import {
-  CompositeNavigationProp,
-  useNavigation,
-} from '@react-navigation/native';
-import { Image, TouchableOpacity, View } from 'react-native';
-import React, { ReactElement, useEffect, useRef } from 'react';
+import {Channel, User} from '../../types/graphql';
+import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
+import {Image, TouchableOpacity, View} from 'react-native';
+import React, {ReactElement, useEffect, useRef} from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
-import TabNavigator, { MainTabNavigationOptions } from './MainTabNavigator';
-import { fetchQuery, graphql, useRelayEnvironment } from 'react-relay/hooks';
+import TabNavigator, {MainTabNavigationOptions} from './MainTabNavigator';
+import {fetchQuery, graphql, useRelayEnvironment} from 'react-relay/hooks';
 
 import BlockedUser from '../screen/BlockedUser';
 import ChangePw from '../screen/ChangePw';
 import ChannelCreate from '../screen/ChannelCreate';
-import { DefaultTheme } from 'styled-components';
-import { IC_SETTING_W } from '../../utils/Icons';
-import type { MainStackNavigatorChannelQuery } from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
+import {DefaultTheme} from 'styled-components';
+import {IC_SETTING_W} from '../../utils/Icons';
+import type {MainStackNavigatorChannelQuery} from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import Message from '../screen/Message';
 import ProfileModal from '../shared/ProfileModal';
-import { ProfileModalProvider } from '../../providers/ProfileModalProvider';
+import {ProfileModalProvider} from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../screen/ProfileUpdate';
 import Report from '../screen/Report';
-import { RootStackNavigationProps } from './RootStackNavigator';
+import {RootStackNavigationProps} from './RootStackNavigator';
 import SearchUser from '../screen/SearchUser';
 import Settings from '../screen/Settings';
 import StatusBar from '../shared/StatusBar';
-import { getString } from '../../../STRINGS';
+import {getString} from '../../../STRINGS';
 // import useAppState from '../../hooks/useAppState';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 export type MainStackParamList = {
   MainTab: undefined;
@@ -102,7 +99,7 @@ const channelQuery = graphql`
 `;
 
 function MainStackNavigator(): ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
   // const currentAppState = useAppState();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
   const environment = useRelayEnvironment();
@@ -152,8 +149,7 @@ function MainStackNavigator(): ReactElement {
       headerMode="screen"
       screenOptions={{
         headerBackTitle: '',
-      }}
-    >
+      }}>
       <Stack.Screen
         name="MainTab"
         component={TabNavigator}
@@ -174,12 +170,8 @@ function MainStackNavigator(): ReactElement {
                 }}
                 onPress={(): void => {
                   navigation.navigate('Settings');
-                }}
-              >
-                <Image
-                  style={{ height: 24, width: 24 }}
-                  source={IC_SETTING_W}
-                />
+                }}>
+                <Image style={{height: 24, width: 24}} source={IC_SETTING_W} />
               </TouchableOpacity>
             );
           };
@@ -235,8 +227,7 @@ function RootNavigator(): ReactElement {
       style={{
         flex: 1,
         flexDirection: 'column',
-      }}
-    >
+      }}>
       <StatusBar />
       <MainStackNavigator />
       <ProfileModal testID="modal" />

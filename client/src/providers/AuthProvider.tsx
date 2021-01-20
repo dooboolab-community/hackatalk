@@ -1,6 +1,6 @@
-import React, { useReducer } from 'react';
+import React, {useReducer} from 'react';
 
-import { User } from '../types/graphql';
+import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
 export interface State {
@@ -21,7 +21,7 @@ export enum ActionType {
 
 type SetUserAction = {
   type: ActionType.SetUser;
-  payload: { user: User };
+  payload: {user: User};
 };
 type Action = SetUserAction;
 
@@ -37,7 +37,7 @@ const setUser = (dispatch: React.Dispatch<SetUserAction>) => (
 ): void => {
   dispatch({
     type: ActionType.SetUser,
-    payload: { user: authUser },
+    payload: {user: authUser},
   });
 };
 
@@ -49,7 +49,7 @@ const initialState: State = {
 const reducer: Reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SetUser:
-      return { ...action.payload };
+      return {...action.payload};
     default:
       return state;
   }
@@ -66,7 +66,7 @@ function AuthProvider(props: Props): React.ReactElement {
     setUser: setUser(dispatch),
   };
 
-  return <Provider value={{ state, ...actions }}>{props.children}</Provider>;
+  return <Provider value={{state, ...actions}}>{props.children}</Provider>;
 }
 
 const AuthContext = {
@@ -74,5 +74,5 @@ const AuthContext = {
   AuthProvider,
 };
 
-export { useCtx as useAuthContext, AuthProvider };
+export {useCtx as useAuthContext, AuthProvider};
 export default AuthContext;

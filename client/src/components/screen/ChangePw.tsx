@@ -6,21 +6,21 @@ import {
   Platform,
   SafeAreaView,
 } from 'react-native';
-import { Button, EditText } from 'dooboo-ui';
+import {Button, EditText} from 'dooboo-ui';
 import type {
   ChangePwChangeEmailPasswordMutation,
   ChangePwChangeEmailPasswordMutationResponse,
 } from '../../__generated__/ChangePwChangeEmailPasswordMutation.graphql';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
-import { graphql, useMutation } from 'react-relay/hooks';
+import React, {ReactElement, useEffect, useRef, useState} from 'react';
+import {graphql, useMutation} from 'react-relay/hooks';
 
 import Constants from 'expo-constants';
-import { MainStackNavigationProps } from '../navigation/MainStackNavigator';
-import { getString } from '../../../STRINGS';
-import { isIPhoneX } from '../../utils/Styles';
-import { showAlertForError } from '../../utils/common';
+import {MainStackNavigationProps} from '../navigation/MainStackNavigator';
+import {getString} from '../../../STRINGS';
+import {isIPhoneX} from '../../utils/Styles';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -50,8 +50,8 @@ const changeEmailPasswordMutation = graphql`
 `;
 
 function ChangePw(props: Props): ReactElement {
-  const { navigation } = props;
-  const { theme } = useThemeContext();
+  const {navigation} = props;
+  const {theme} = useThemeContext();
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
@@ -133,8 +133,7 @@ function ChangePw(props: Props): ReactElement {
         flex: 1,
         backgroundColor: theme.background,
         paddingBottom: keyboardOffset,
-      }}
-    >
+      }}>
       <StyledKeyboardAvoidingView
         keyboardVerticalOffset={
           isIPhoneX()
@@ -144,13 +143,12 @@ function ChangePw(props: Props): ReactElement {
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}
-      >
+        })}>
         <InnerContainer>
           <EditText
             key="input-pw"
             testID="input-pw"
-            style={{ marginTop: 40 }}
+            style={{marginTop: 40}}
             borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -163,7 +161,7 @@ function ChangePw(props: Props): ReactElement {
           <EditText
             key="new-pw-input"
             testID="new-pw-input"
-            style={{ marginTop: 20 }}
+            style={{marginTop: 20}}
             secureTextEntry
             borderColor={theme.font}
             focusColor={theme.focused}
@@ -176,7 +174,7 @@ function ChangePw(props: Props): ReactElement {
           <EditText
             key="input-validation"
             testID="input-validation"
-            style={{ marginTop: 20 }}
+            style={{marginTop: 20}}
             secureTextEntry
             borderColor={theme.font}
             focusColor={theme.focused}
@@ -190,17 +188,14 @@ function ChangePw(props: Props): ReactElement {
         <Button
           testID="close-current-pw-btn"
           onPress={handleChangePasswordPress}
-          style={{
-            root: {
-              width: '100%',
-              paddingHorizontal: 20,
-            },
-            button: {
+          style={{marginBottom: 24}}
+          styles={{
+            container: {
               backgroundColor: theme.btnPrimary,
               borderWidth: 0,
               height: 48,
               width: '100%',
-              marginBottom: 24,
+              paddingHorizontal: 20,
             },
             text: {
               color: theme.btnPrimaryFont,

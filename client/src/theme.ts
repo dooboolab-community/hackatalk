@@ -1,4 +1,4 @@
-import { MediaQueryType } from './utils/media';
+import {MediaQueryType} from './utils/media';
 
 /* eslint-disable */
 export const colors = {

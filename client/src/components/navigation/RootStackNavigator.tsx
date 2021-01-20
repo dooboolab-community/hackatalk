@@ -6,14 +6,14 @@ import {
 import AuthStack from './AuthStackNavigator';
 import ImageSlider from '../screen/ImageSlider';
 import MainStack from './MainStackNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import NotFound from '../screen/NotFound';
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WebView from '../screen/WebView';
-import { useAuthContext } from '../../providers/AuthProvider';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useAuthContext} from '../../providers/AuthProvider';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 export type RootStackParamList = {
   default: undefined;
@@ -23,7 +23,7 @@ export type RootStackParamList = {
     uri: string;
   };
   ImageSlider: {
-    images: { uri: string | null; sender?: string | null }[];
+    images: {uri: string | null; sender?: string | null}[];
     initialIndex?: number;
   };
   NotFound: undefined;
@@ -36,10 +36,10 @@ export type RootStackNavigationProps<
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   const {
-    state: { user },
+    state: {user},
   } = useAuthContext();
 
   return (
@@ -55,18 +55,16 @@ function RootNavigator(): React.ReactElement {
             text: theme.text,
           },
           dark: true,
-        }}
-      >
+        }}>
         <Stack.Navigator
           screenOptions={{
             headerStyle: {
               backgroundColor: theme.background,
             },
-            headerTitleStyle: { color: theme.fontColor },
+            headerTitleStyle: {color: theme.fontColor},
             headerTintColor: theme.tintColor,
             headerShown: false,
-          }}
-        >
+          }}>
           {!user || !user.verified ? (
             <Stack.Screen
               name="AuthStack"
@@ -104,7 +102,7 @@ function RootNavigator(): React.ReactElement {
             component={ImageSlider}
             options={({
               route: {
-                params: { images, initialIndex = 0 },
+                params: {images, initialIndex = 0},
               },
             }) => ({
               headerShown: true,

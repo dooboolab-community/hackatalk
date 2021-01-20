@@ -2,14 +2,14 @@ import 'react-native';
 
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { fireEvent, render } from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {fireEvent, render} from '@testing-library/react-native';
 
-import { Channel } from '../../../types/graphql';
+import {Channel} from '../../../types/graphql';
 import Message from '../Message';
-import { MockPayloadGenerator } from 'relay-test-utils';
+import {MockPayloadGenerator} from 'relay-test-utils';
 import React from 'react';
-import { environment } from '../../../providers';
+import {environment} from '../../../providers';
 
 jest.mock('@react-navigation/core', () => {
   const Original = jest.requireActual('@react-navigation/core');
@@ -79,7 +79,7 @@ describe('[Message] interaction', () => {
   jest.useFakeTimers();
 
   it('should [sendMessage] when pressing button', () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const MessageBtn = getByTestId('btn-message');
 
     fireEvent.press(MessageBtn);
@@ -98,7 +98,7 @@ describe('[Message] interaction', () => {
           modalState: null,
         }));
 
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
 
       environment.mock.queueOperationResolver((op) =>
         MockPayloadGenerator.generate(op),
@@ -113,7 +113,7 @@ describe('[Message] interaction', () => {
   });
 
   it('should open image library when pressing photo icon button', () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const touchMenu = getByTestId('touch-menu');
 
     fireEvent.press(touchMenu);
@@ -126,7 +126,7 @@ describe('[Message] interaction', () => {
   });
 
   it('should open camera when pressing camera icon button', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const touchMenu = getByTestId('touch-menu');
 
     fireEvent.press(touchMenu);

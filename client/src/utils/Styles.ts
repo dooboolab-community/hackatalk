@@ -1,4 +1,4 @@
-import { Dimensions, Platform, ScaledSize } from 'react-native';
+import {Dimensions, Platform, ScaledSize} from 'react-native';
 
 function isIPhoneXSize(dim: ScaledSize): boolean {
   return dim.height === 812 || dim.width === 812;

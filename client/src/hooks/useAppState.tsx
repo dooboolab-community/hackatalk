@@ -1,5 +1,5 @@
-import { AppState, AppStateStatus } from 'react-native';
-import { useEffect, useState } from 'react';
+import {AppState, AppStateStatus} from 'react-native';
+import {useEffect, useState} from 'react';
 
 export default function useAppState(): AppStateStatus {
   const currentState = AppState.currentState;

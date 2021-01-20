@@ -2,18 +2,18 @@ import type {
   BlockedUsersQuery,
   BlockedUsersQueryResponse,
 } from '../../__generated__/BlockedUsersQuery.graphql';
-import { FlatList, View } from 'react-native';
-import React, { FC, Suspense } from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
+import {FlatList, View} from 'react-native';
+import React, {FC, Suspense} from 'react';
+import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import { LoadingIndicator } from 'dooboo-ui';
-import { RootStackNavigationProps } from '../navigation/RootStackNavigator';
-import { User } from '../../types/graphql';
+import {LoadingIndicator} from 'dooboo-ui';
+import {RootStackNavigationProps} from '../navigation/RootStackNavigator';
+import {User} from '../../types/graphql';
 import UserListItem from '../shared/UserListItem';
-import { getString } from '../../../STRINGS';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
+import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const Container = styled.View`
   flex: 1;
@@ -44,14 +44,14 @@ const blockedUsersQuery = graphql`
 `;
 
 const ContentContainer: FC = () => {
-  const { showModal } = useProfileContext();
+  const {showModal} = useProfileContext();
 
   const {
     blockedUsers = [],
   }: BlockedUsersQueryResponse = useLazyLoadQuery<BlockedUsersQuery>(
     blockedUsersQuery,
     {},
-    { fetchPolicy: 'store-or-network' },
+    {fetchPolicy: 'store-or-network'},
   );
 
   const renderItem = ({
@@ -78,7 +78,7 @@ const ContentContainer: FC = () => {
 
   return (
     <FlatList
-      style={{ alignSelf: 'stretch' }}
+      style={{alignSelf: 'stretch'}}
       contentContainerStyle={
         blockedUsers?.length === 0
           ? {
@@ -96,7 +96,7 @@ const ContentContainer: FC = () => {
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_BANNED_USER')}</EmptyListItem>
       }
-      ListFooterComponent={<View style={{ height: 60 }} />}
+      ListFooterComponent={<View style={{height: 60}} />}
       onEndReachedThreshold={0.1}
     />
   );

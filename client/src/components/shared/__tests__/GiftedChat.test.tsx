@@ -2,8 +2,8 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { RenderAPI, fireEvent, render } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {RenderAPI, fireEvent, render} from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import GiftedChatInput from '../GiftedChat';
 

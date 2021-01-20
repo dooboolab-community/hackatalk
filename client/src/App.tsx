@@ -1,9 +1,9 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Alert, Image, View } from 'react-native';
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
-import { AuthProvider, useAuthContext } from './providers/AuthProvider';
+import {Alert, Image, View} from 'react-native';
+import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
+import {AuthProvider, useAuthContext} from './providers/AuthProvider';
 import React, {
   FC,
   ReactElement,
@@ -18,23 +18,23 @@ import {
   graphql,
   useLazyLoadQuery,
 } from 'react-relay/hooks';
-import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
-import { dark, light } from './theme';
+import {ThemeProvider, ThemeType} from '@dooboo-ui/theme';
+import {dark, light} from './theme';
 
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import type { AppUserQuery } from './__generated__/AppUserQuery.graphql';
-import { Asset } from 'expo-asset';
+import {ActionSheetProvider} from '@expo/react-native-action-sheet';
+import type {AppUserQuery} from './__generated__/AppUserQuery.graphql';
+import {Asset} from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
-import { DeviceProvider } from './providers/DeviceProvider';
+import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
-import { LoadingIndicator } from 'dooboo-ui';
+import {LoadingIndicator} from 'dooboo-ui';
 import RootNavigator from './components/navigation/RootStackNavigator';
-import { User } from './types/graphql';
-import { getString } from '../STRINGS';
-import { registerForPushNotificationsAsync } from './utils/noti';
+import {User} from './types/graphql';
+import {getString} from '../STRINGS';
+import {registerForPushNotificationsAsync} from './utils/noti';
 import relayEnvironment from './relay';
-import { useMedia } from './utils/media';
+import {useMedia} from './utils/media';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -85,7 +85,7 @@ function App(): ReactElement {
     setAssetLoaded(true);
   };
 
-  const { me } = useLazyLoadQuery<AppUserQuery>(meQuery, {});
+  const {me} = useLazyLoadQuery<AppUserQuery>(meQuery, {});
 
   const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
     await SplashScreen.hideAsync();
@@ -133,9 +133,7 @@ function App(): ReactElement {
   return <RootNavigator />;
 }
 
-const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({
-  children,
-}) => {
+const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const colorScheme = useColorScheme();
   const mediaQuery = useMedia();
 
@@ -157,8 +155,7 @@ const HackatalkThemeProvider: FC<{ children: ReactElement }> = ({
       }}
       initialThemeType={
         colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
-      }
-    >
+      }>
       {children}
     </ThemeProvider>
   );
@@ -173,8 +170,8 @@ function ActionSheetProviderWithChildren(props: {
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(App)
   .wrap(ActionSheetProviderWithChildren, {})
-  .wrap(Suspense, { fallback: <LoadingIndicator /> })
-  .wrap(RelayEnvironmentProvider, { environment: relayEnvironment })
+  .wrap(Suspense, {fallback: <LoadingIndicator />})
+  .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
   .wrap(AuthProvider, {})
   .wrap(DeviceProvider, {})
   .wrap(HackatalkThemeProvider, {})

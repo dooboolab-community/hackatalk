@@ -1,10 +1,10 @@
 import 'react-native';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import ChannelListItem from '../ChannelListItem';
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const props = createTestProps({
   item: {

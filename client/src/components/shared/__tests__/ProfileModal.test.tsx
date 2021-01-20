@@ -2,14 +2,14 @@ import {
   ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, { createRef, forwardRef, useImperativeHandle } from 'react';
-import { act, fireEvent, render } from '@testing-library/react-native';
+import React, {createRef, forwardRef, useImperativeHandle} from 'react';
+import {act, fireEvent, render} from '@testing-library/react-native';
 
-import { MockPayloadGenerator } from 'relay-test-utils';
+import {MockPayloadGenerator} from 'relay-test-utils';
 import ProfileModal from '../ProfileModal';
-import { View } from 'react-native';
-import { createTestElement } from '../../../../test/testUtils';
-import { environment } from '../../../providers';
+import {View} from 'react-native';
+import {createTestElement} from '../../../../test/testUtils';
+import {environment} from '../../../providers';
 
 jest.mock('@react-navigation/core', () => {
   return {
@@ -27,9 +27,9 @@ type ConsumerRef = {
 };
 
 const ProfileConsumer = forwardRef<ConsumerRef>((props, ref) => {
-  const { showModal, hideModal } = useProfileContext();
+  const {showModal, hideModal} = useProfileContext();
 
-  useImperativeHandle(ref, () => ({ showModal, hideModal }));
+  useImperativeHandle(ref, () => ({showModal, hideModal}));
 
   return null;
 });
@@ -45,7 +45,7 @@ const component = createTestElement(
 
 describe('[ProfileModal] rendering test', () => {
   it('Render without crashing', async () => {
-    const { toJSON } = render(component);
+    const {toJSON} = render(component);
 
     await act(() =>
       ref.current?.showModal({
@@ -63,12 +63,12 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Should be opened', async () => {
-    const { queryByTestId } = render(component);
+    const {queryByTestId} = render(component);
 
     await act(() =>
       ref.current?.showModal({
         // @ts-ignore
-        user: { id: '' },
+        user: {id: ''},
         isFriend: false,
       }),
     );
@@ -79,12 +79,12 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Check "Added to your friend." button', async () => {
-    const { getByTestId, queryByTestId } = render(component);
+    const {getByTestId, queryByTestId} = render(component);
 
     await act(() =>
       ref.current?.showModal({
         // @ts-ignore
-        user: { id: '' },
+        user: {id: ''},
         isFriend: false,
       }),
     );
@@ -103,7 +103,7 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Should be closed', async () => {
-    const { queryByTestId } = render(component);
+    const {queryByTestId} = render(component);
 
     await act(() => ref.current?.hideModal());
 
@@ -113,12 +113,12 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('delete', async () => {
-    const { queryByTestId, toJSON } = render(component);
+    const {queryByTestId, toJSON} = render(component);
 
     await act(() =>
       ref.current?.showModal({
         // @ts-ignore
-        user: { id: '' },
+        user: {id: ''},
         isFriend: true,
       }),
     );

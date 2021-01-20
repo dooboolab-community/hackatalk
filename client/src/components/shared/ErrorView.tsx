@@ -1,14 +1,14 @@
-import React, { FC, ReactChildren } from 'react';
+import React, {FC, ReactChildren} from 'react';
 
-import { Button } from 'dooboo-ui';
-import { IC_ERROR } from '../../utils/Icons';
-import { getString } from '../../../STRINGS';
+import {Button} from 'dooboo-ui';
+import {IC_ERROR} from '../../utils/Icons';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,7 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: ${({ theme }): string => theme.errorTitle};
+  color: ${({theme}): string => theme.errorTitle};
 `;
 
 const Body = styled.Text`
@@ -41,7 +41,7 @@ const Body = styled.Text`
   align-items: center;
   text-align: center;
   letter-spacing: -0.25px;
-  color: ${({ theme }): string => theme.errorBody};
+  color: ${({theme}): string => theme.errorBody};
 `;
 
 interface Props {
@@ -64,7 +64,7 @@ const ErrorView: FC<Props> = (props) => {
     testID,
   } = props;
 
-  const { theme } = useThemeContext();
+  const {theme} = useThemeContext();
 
   return (
     <Container>
@@ -77,17 +77,15 @@ const ErrorView: FC<Props> = (props) => {
           onPress={onButtonPressed}
           text={buttonText}
           style={{
-            root: {
-              flexDirection: 'row',
-              marginTop: 44,
-              height: 52,
-              justifyContent: 'center',
-              backgroundColor: theme.btnPrimary,
-            },
-            button: {
+            marginTop: 44,
+          }}
+          styles={{
+            container: {
               width: 156,
               height: 48,
+              justifyContent: 'center',
               backgroundColor: theme.btnPrimary,
+              flexDirection: 'row',
             },
             text: {
               color: theme.btnPrimaryLight,

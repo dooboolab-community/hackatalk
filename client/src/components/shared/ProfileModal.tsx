@@ -1,4 +1,4 @@
-import { Alert, TouchableOpacity, View, ViewStyle } from 'react-native';
+import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {
   ProfileModalContext,
   useProfileContext,
@@ -7,23 +7,23 @@ import {
   ProfileModalFindOrCreatePrivateChannelMutation,
   ProfileModalFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
-import React, { FC, useState } from 'react';
-import { graphql, useMutation } from 'react-relay/hooks';
+import React, {FC, useState} from 'react';
+import {graphql, useMutation} from 'react-relay/hooks';
 
-import { ConnectionHandler } from 'relay-runtime';
-import { FontAwesome } from '@expo/vector-icons';
-import { IC_NO_IMAGE } from '../../utils/Icons';
-import { LoadingIndicator } from 'dooboo-ui';
+import {ConnectionHandler} from 'relay-runtime';
+import {FontAwesome} from '@expo/vector-icons';
+import {IC_NO_IMAGE} from '../../utils/Icons';
+import {LoadingIndicator} from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
-import { ProfileModalAddFriendMutation } from '../../__generated__/ProfileModalAddFriendMutation.graphql';
-import { ProfileModalCreateBlockedUserMutation } from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
-import { ProfileModalDeleteBlockedUserMutation } from '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
-import { ProfileModalDeleteFriendMutation } from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
-import { getString } from '../../../STRINGS';
-import { showAlertForError } from '../../utils/common';
+import {ProfileModalAddFriendMutation} from '../../__generated__/ProfileModalAddFriendMutation.graphql';
+import {ProfileModalCreateBlockedUserMutation} from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
+import {ProfileModalDeleteBlockedUserMutation} from '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
+import {ProfileModalDeleteFriendMutation} from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
+import {getString} from '../../../STRINGS';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/core';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useNavigation} from '@react-navigation/core';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const StyledView = styled.View`
   margin-top: 64px;
@@ -38,7 +38,7 @@ const StyledImage = styled.Image`
 const StyledViewBtns = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({ theme }): string => theme.modalBtnBackground};
+  background-color: ${({theme}): string => theme.modalBtnBackground};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +47,7 @@ const StyledViewBtns = styled.View`
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
-  background-color: ${({ theme }): string => theme.placeholder};
+  background-color: ${({theme}): string => theme.placeholder};
 `;
 
 const StyledTextDisplayName = styled.Text`
@@ -67,21 +67,21 @@ const StyledTextstatusMessage = styled.Text`
 `;
 
 const StyledText = styled.Text`
-  color: ${({ theme }): string => theme.modalBtnFont};
+  color: ${({theme}): string => theme.modalBtnFont};
   font-size: 16px;
 `;
 
 const StyledTextFriendAdded = styled.Text`
-  color: ${({ theme }): string => theme.tintColor};
+  color: ${({theme}): string => theme.tintColor};
   font-size: 12px;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
   padding: 4px;
 `;
 
 const StyledTextFriendAlreadyAdded = styled.Text`
   color: red;
   font-size: 12px;
-  background-color: ${({ theme }): string => theme.background};
+  background-color: ${({theme}): string => theme.background};
   padding: 4px;
 `;
 
@@ -214,10 +214,10 @@ const ModalContent: FC<ModalContentProps> = ({
 
   const addFriend = async (): Promise<void> => {
     if (modalState) {
-      const { user, onAddFriend } = modalState;
+      const {user, onAddFriend} = modalState;
 
       commitAddFriend({
-        variables: { friendId: user.id },
+        variables: {friendId: user.id},
         updater: (proxyStore) => {
           const root = proxyStore.getRoot();
 
@@ -249,10 +249,10 @@ const ModalContent: FC<ModalContentProps> = ({
 
   const deleteFriend = async (): Promise<void> => {
     if (modalState) {
-      const { user, onDeleteFriend } = modalState;
+      const {user, onDeleteFriend} = modalState;
 
       commitDeleteFriend({
-        variables: { friendId: user.id },
+        variables: {friendId: user.id},
         updater: (proxyStore) => {
           const root = proxyStore.getRoot();
 
@@ -275,7 +275,7 @@ const ModalContent: FC<ModalContentProps> = ({
 
     if (blockedUserId)
       commitCreateBlockedUser({
-        variables: { blockedUserId },
+        variables: {blockedUserId},
       });
 
     hideModal();
@@ -286,7 +286,7 @@ const ModalContent: FC<ModalContentProps> = ({
 
     if (blockedUserId)
       commitDeleteBlockedUser({
-        variables: { blockedUserId },
+        variables: {blockedUserId},
       });
 
     hideModal();
@@ -322,13 +322,13 @@ const ModalContent: FC<ModalContentProps> = ({
   };
 
   const {
-    theme: { primary, modalBtnPrimaryFont },
+    theme: {primary, modalBtnPrimaryFont},
   } = useThemeContext();
 
   const imageURL =
     typeof modalState?.user.photoURL === 'string' &&
     modalState?.user.photoURL !== 'null'
-      ? { uri: modalState?.user.photoURL }
+      ? {uri: modalState?.user.photoURL}
       : modalState?.user.photoURL;
 
   return (
@@ -340,16 +340,14 @@ const ModalContent: FC<ModalContentProps> = ({
         alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: primary,
-      }}
-    >
+      }}>
       <View
         style={{
           position: 'absolute',
           top: 4,
           right: 8,
           flexDirection: 'row',
-        }}
-      >
+        }}>
         <TouchableOpacity
           testID="touch-done"
           onPress={() => {
@@ -362,15 +360,13 @@ const ModalContent: FC<ModalContentProps> = ({
             });
 
             hideModal();
-          }}
-        >
+          }}>
           <View
             style={{
               paddingRight: 12,
               paddingLeft: 8,
               paddingVertical: 8,
-            }}
-          >
+            }}>
             <FontAwesome name="exclamation-circle" size={24} color="white" />
           </View>
         </TouchableOpacity>
@@ -381,8 +377,7 @@ const ModalContent: FC<ModalContentProps> = ({
               paddingLeft: 8,
               paddingVertical: 8,
               justifyContent: 'center',
-            }}
-          >
+            }}>
             <LoadingIndicator size="small" />
           </View>
         ) : (
@@ -409,17 +404,15 @@ const ModalContent: FC<ModalContentProps> = ({
                       : createBlockedUser,
                   },
                 ],
-                { cancelable: false },
+                {cancelable: false},
               )
-            }
-          >
+            }>
             <View
               style={{
                 paddingRight: 16,
                 paddingLeft: 8,
                 paddingVertical: 8,
-              }}
-            >
+              }}>
               <FontAwesome
                 name="ban"
                 size={24}
@@ -437,13 +430,12 @@ const ModalContent: FC<ModalContentProps> = ({
 
             if (user)
               navigation.navigate('ImageSlider', {
-                images: [{ uri: user.photoURL, sender: user }],
+                images: [{uri: user.photoURL, sender: user}],
               });
-          }}
-        >
+          }}>
           {modalState?.user.photoURL ? (
             <StyledImage
-              style={{ alignSelf: 'center' }}
+              style={{alignSelf: 'center'}}
               source={imageURL || IC_NO_IMAGE}
             />
           ) : (
@@ -454,12 +446,8 @@ const ModalContent: FC<ModalContentProps> = ({
                 alignSelf: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}
-            >
-              <StyledImage
-                style={{ alignSelf: 'center' }}
-                source={IC_NO_IMAGE}
-              />
+              }}>
+              <StyledImage style={{alignSelf: 'center'}} source={IC_NO_IMAGE} />
             </View>
           )}
         </TouchableOpacity>
@@ -494,8 +482,7 @@ const ModalContent: FC<ModalContentProps> = ({
               testID="touch-add-friend"
               activeOpacity={0.5}
               onPress={modalState?.isFriend ? deleteFriend : addFriend}
-              style={styles.viewBtn}
-            >
+              style={styles.viewBtn}>
               <View style={styles.viewBtn}>
                 <StyledText testID="text-add-title">
                   {modalState?.isFriend
@@ -510,8 +497,7 @@ const ModalContent: FC<ModalContentProps> = ({
             testID="btn-chat"
             activeOpacity={0.5}
             onPress={startChatting}
-            style={styles.viewBtn}
-          >
+            style={styles.viewBtn}>
             {isChannelInFlight ? (
               <LoadingIndicator size="small" />
             ) : (
@@ -519,8 +505,7 @@ const ModalContent: FC<ModalContentProps> = ({
                 <StyledText
                   style={{
                     color: modalBtnPrimaryFont,
-                  }}
-                >
+                  }}>
                   {getString('CHAT')}
                 </StyledText>
               </View>
@@ -538,7 +523,7 @@ interface Props {
 
 const ProfileModal: FC<Props> = () => {
   const profileContext = useProfileContext();
-  const { isVisible, hideModal } = profileContext;
+  const {isVisible, hideModal} = profileContext;
 
   return (
     <Modal
@@ -554,8 +539,7 @@ const ProfileModal: FC<Props> = () => {
        * props is true while the internal state is closed.
        */
       onClosed={hideModal}
-      style={styles.wrapper}
-    >
+      style={styles.wrapper}>
       {profileContext.isVisible ? <ModalContent {...profileContext} /> : null}
     </Modal>
   );

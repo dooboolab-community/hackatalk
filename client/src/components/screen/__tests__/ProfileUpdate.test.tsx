@@ -1,12 +1,12 @@
 import 'react-native';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
-import { MockPayloadGenerator } from 'relay-test-utils';
+import {MockPayloadGenerator} from 'relay-test-utils';
 import ProfileUpdate from '../ProfileUpdate';
 import React from 'react';
-import { environment } from '../../../providers';
+import {environment} from '../../../providers';
 
 const component = createTestElement(<ProfileUpdate {...createTestProps()} />);
 
@@ -30,7 +30,7 @@ jest.mock('@expo/react-native-action-sheet', () => ({
 }));
 
 jest.mock('expo-permissions', () => ({
-  askAsync: (): { status: string } => ({
+  askAsync: (): {status: string} => ({
     status: 'granted',
   }),
 }));
@@ -66,7 +66,7 @@ describe('rendering test', () => {
 
 describe('[ProfileUpdate] interaction', () => {
   it('should change nickname', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const inputStatus = getByTestId('input-nickname');
 
     await waitFor(() => expect(inputStatus).toBeTruthy());
@@ -77,7 +77,7 @@ describe('[ProfileUpdate] interaction', () => {
   });
 
   it('should change name', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const inputName = getByTestId('input-name');
 
     await waitFor(() => expect(inputName).toBeTruthy());
@@ -88,7 +88,7 @@ describe('[ProfileUpdate] interaction', () => {
   });
 
   it('should change status text', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const inputStatus = getByTestId('input-status');
 
     await waitFor(() => expect(inputStatus).toBeTruthy());
@@ -99,7 +99,7 @@ describe('[ProfileUpdate] interaction', () => {
   });
 
   it('should call updateProfile when update button pressed', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const updateButton = getByTestId('button-update');
 
     await waitFor(() => expect(updateButton).toBeTruthy());

@@ -1,16 +1,16 @@
 import * as Device from 'expo-device';
 
-import React, { ReactElement, Suspense } from 'react';
-import { RelayMockEnvironment, createMockEnvironment } from 'relay-test-utils';
-import { ThemeProvider, ThemeType } from '@dooboo-ui/theme';
-import { dark, light } from '../theme';
+import React, {ReactElement, Suspense} from 'react';
+import {RelayMockEnvironment, createMockEnvironment} from 'relay-test-utils';
+import {ThemeProvider, ThemeType} from '@dooboo-ui/theme';
+import {dark, light} from '../theme';
 
-import { AuthProvider } from './AuthProvider';
-import { DeviceProvider } from './DeviceProvider';
-import { LoadingIndicator } from 'dooboo-ui';
-import { ProfileModalProvider } from './ProfileModalProvider';
-import { RelayEnvironmentProvider } from 'react-relay/hooks';
-import { User } from '../types/graphql';
+import {AuthProvider} from './AuthProvider';
+import {DeviceProvider} from './DeviceProvider';
+import {LoadingIndicator} from 'dooboo-ui';
+import {ProfileModalProvider} from './ProfileModalProvider';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import {User} from '../types/graphql';
 
 interface AllProvidersProps {
   initialDeviceType?: Device.DeviceType;
@@ -47,8 +47,7 @@ export const AllProviders = ({
     <DeviceProvider initialDeviceType={initialDeviceType}>
       <ThemeProvider
         initialThemeType={initialThemeType}
-        customTheme={{ light, dark }}
-      >
+        customTheme={{light, dark}}>
         <AuthProvider initialAuthUser={initialAuthUser}>
           <RelayProviderWrapper>{children}</RelayProviderWrapper>
         </AuthProvider>

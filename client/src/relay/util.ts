@@ -1,4 +1,4 @@
-import { LogRequestInfoFunction } from 'relay-runtime';
+import {LogRequestInfoFunction} from 'relay-runtime';
 
 export const __DEV__ = process.env.NODE_ENV === 'development';
 

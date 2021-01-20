@@ -23,12 +23,12 @@ const requestPermissions = async (
   type: string,
 ): Promise<Permissions.PermissionStatus> => {
   if (type === 'photo') {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
     return status;
   }
 
-  const { status } = await Permissions.askAsync(Permissions.CAMERA);
+  const {status} = await Permissions.askAsync(Permissions.CAMERA);
 
   return status;
 };

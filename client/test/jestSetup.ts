@@ -4,16 +4,18 @@ import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/asy
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
-const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock & typeof globalThis;
+const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock &
+  // eslint-disable-next-line no-undef
+  typeof globalThis;
 
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
 // Mock react-native-reanimated because it depends on native modules
 // which is not available inside testing environment.
-jest.mock('react-native-reanimated', () => jest.requireActual(
-  'react-native-reanimated/mock',
-));
+jest.mock('react-native-reanimated', () =>
+  jest.requireActual('react-native-reanimated/mock'),
+);
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
@@ -48,9 +50,11 @@ jest.mock('dooboo-ui', () => {
   const ret = {
     ...DoobooUI,
     get Button() {
-      return jest.fn().mockImplementation((props) =>
-        React.createElement(ReactNative.TouchableOpacity, props),
-      );
+      return jest
+        .fn()
+        .mockImplementation((props) =>
+          React.createElement(ReactNative.TouchableOpacity, props),
+        );
     },
   };
 

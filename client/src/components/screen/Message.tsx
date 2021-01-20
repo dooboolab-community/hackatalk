@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Button, LoadingIndicator } from 'dooboo-ui';
-import { ConnectionHandler, RecordSourceSelectorProxy } from 'relay-runtime';
+import {Button, LoadingIndicator} from 'dooboo-ui';
+import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
 import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigation/MainStackNavigator';
-import { Message, User } from '../../types/graphql';
+import {Message, User} from '../../types/graphql';
 import {
   MessagesQuery,
   MessagesQueryResponse,
@@ -28,7 +28,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { RouteProp, useNavigation } from '@react-navigation/core';
+import {RouteProp, useNavigation} from '@react-navigation/core';
 import {
   graphql,
   useLazyLoadQuery,
@@ -43,27 +43,27 @@ import {
 import Constants from 'expo-constants';
 import EmptyListItem from '../shared/EmptyListItem';
 import GiftedChat from '../shared/GiftedChat';
-import { IC_SMILE } from '../../utils/Icons';
-import { Ionicons } from '@expo/vector-icons';
-import type { MessageComponent_message$key } from '../../__generated__/MessageComponent_message.graphql';
-import type { MessageCreateMutation } from '../../__generated__/MessageCreateMutation.graphql';
+import {IC_SMILE} from '../../utils/Icons';
+import {Ionicons} from '@expo/vector-icons';
+import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
+import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../shared/MessageListItem';
-import { RootStackNavigationProps } from 'components/navigation/RootStackNavigator';
-import { getString } from '../../../STRINGS';
+import {RootStackNavigationProps} from 'components/navigation/RootStackNavigator';
+import {getString} from '../../../STRINGS';
 import moment from 'moment';
-import { resizePhotoToMaxDimensionsAndCompressAsPNG } from '../../utils/image';
-import { showAlertForError } from '../../utils/common';
+import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { uploadImageAsync } from '../../apis/upload';
-import { useAuthContext } from '../../providers/AuthProvider';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {uploadImageAsync} from '../../apis/upload';
+import {useAuthContext} from '../../providers/AuthProvider';
+import {useProfileContext} from '../../providers/ProfileModalProvider';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }): string => theme.messageBackground};
+  background-color: ${({theme}): string => theme.messageBackground};
   flex-direction: column;
   align-items: center;
 `;
@@ -123,10 +123,10 @@ const messagesQuery = graphql`
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
   @argumentDefinitions(
-    first: { type: "Int!" }
-    after: { type: "String" }
-    channelId: { type: "String!" }
-    searchText: { type: "String" }
+    first: {type: "Int!"}
+    after: {type: "String"}
+    channelId: {type: "String!"}
+    searchText: {type: "String"}
   )
   @refetchable(queryName: "MessagePaginationQuery") {
     messages(
@@ -259,11 +259,11 @@ interface MessageProp {
   searchArgs: MessagesQueryVariables;
 }
 
-const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
-  const { theme } = useThemeContext();
+const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
+  const {theme} = useThemeContext();
   const navigation = useNavigation<RootStackNavigationProps>();
 
-  const { data, loadNext, loadPrevious } = usePaginationFragment<
+  const {data, loadNext, loadPrevious} = usePaginationFragment<
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
@@ -294,14 +294,14 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
 
   const [textToSend, setTextToSend] = useState<string>('');
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
-  const { showModal } = useProfileContext();
+  const {showModal} = useProfileContext();
 
   const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(
     createMessage,
   );
 
   const {
-    state: { user },
+    state: {user},
   } = useAuthContext();
 
   const onSubmit = (): void => {
@@ -310,7 +310,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
     const mutationConfig = {
       variables: {
         channelId,
-        message: { text: textToSend },
+        message: {text: textToSend},
       },
       updater: (proxyStore: RecordSourceSelectorProxy) => {
         if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
@@ -350,7 +350,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
           `_${channelId}_${new Date().toISOString()}`,
         );
 
-        const { url } = JSON.parse(await response.text());
+        const {url} = JSON.parse(await response.text());
 
         const mutationConfig = {
           variables: {
@@ -413,14 +413,14 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
             nextItem={messages[index + 1]}
             item={item}
             onPressPeerImage={(): void => {
-              showModal({ user: item?.sender as User });
+              showModal({user: item?.sender as User});
             }}
             onPressMessageImage={(indexOfTheNode: number) => {
               let initialIndex = indexOfTheNode;
 
               const imagesList = nodes
                 .filter((node, nodeIndex) => {
-                  const { imageUrls } = node as Message;
+                  const {imageUrls} = node as Message;
 
                   if (imageUrls && nodeIndex < index)
                     initialIndex += imageUrls.length;
@@ -428,7 +428,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
                   return imageUrls && imageUrls.length > 0;
                 })
                 .map((message) => {
-                  const { imageUrls, sender } = message as Message;
+                  const {imageUrls, sender} = message as Message;
 
                   return imageUrls?.map((uri) => ({
                     uri,
@@ -469,8 +469,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
           style={{
             flexDirection: 'row',
             marginTop: 10,
-          }}
-        >
+          }}>
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> => onRequestImagePicker('camera')}
@@ -481,8 +480,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
               height: 60,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Ionicons
               name="ios-camera"
               size={36}
@@ -499,8 +497,7 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
               height: 60,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Ionicons
               name="md-images"
               size={36}
@@ -512,8 +509,8 @@ const MessagesFragment: FC<MessageProp> = ({ channelId, messages }) => {
       renderSendButton={(): React.ReactElement => (
         <Button
           testID="btn-message"
-          style={{
-            button: {
+          styles={{
+            container: {
               backgroundColor: theme.btnPrimary,
               width: 80,
               height: 40,
@@ -539,11 +536,11 @@ interface ContentProps {
   searchArgs: MessagesQueryVariables;
 }
 
-const ContentContainer: FC<ContentProps> = ({ searchArgs, channelId }) => {
+const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   const data: MessagesQueryResponse = useLazyLoadQuery<MessagesQuery>(
     messagesQuery,
     searchArgs,
-    { fetchPolicy: 'store-or-network' },
+    {fetchPolicy: 'store-or-network'},
   );
 
   return (
@@ -563,7 +560,7 @@ interface Props {
 const MessageScreen: FC<Props> = (props) => {
   const {
     route: {
-      params: { users, channel },
+      params: {users, channel},
     },
     navigation,
   } = props;
@@ -589,8 +586,7 @@ const MessageScreen: FC<Props> = (props) => {
             fontSize: 18,
             fontWeight: '500',
           }}
-          numberOfLines={2}
-        >
+          numberOfLines={2}>
           {title}
         </Text>
       );

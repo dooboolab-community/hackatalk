@@ -20,15 +20,15 @@ import React, {
 type Props = PropsWithChildren<{
   style?: ViewStyle;
   onScaleChanged?(value: number): void;
-  onTranslateChanged?(valueXY: { x: number; y: number }): void;
+  onTranslateChanged?(valueXY: {x: number; y: number}): void;
   onRelease?(): void;
-  allowEmpty?: { x?: boolean; y?: boolean };
+  allowEmpty?: {x?: boolean; y?: boolean};
   fixOverflowAfterRelease?: boolean;
 }>;
 
 export interface PinchZoomRef {
-  animatedValue: { scale: Animated.Value; translate: Animated.ValueXY };
-  setValues(_: { scale?: number; translate?: { x: number; y: number } }): void;
+  animatedValue: {scale: Animated.Value; translate: Animated.ValueXY};
+  setValues(_: {scale?: number; translate?: {x: number; y: number}}): void;
 }
 
 type TouchePosition = Pick<
@@ -46,8 +46,8 @@ function getDistanceFromTouches(touches: NativeTouchEvent[]): number {
 
 function getRelativeTouchesCenterPosition(
   touches: NativeTouchEvent[],
-  layout: { width: number; height: number; pageX: number; pageY: number },
-  transformCache: { scale: number; translateX: number; translateY: number },
+  layout: {width: number; height: number; pageX: number; pageY: number},
+  transformCache: {scale: number; translateX: number; translateY: number},
 ): TouchePosition {
   const pageX =
     (touches[0].pageX + touches[1].pageX) / 2 - layout.width / 2 - layout.pageX;
@@ -78,12 +78,12 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
 
   const containerView = useRef<NativeMethods>();
   const scale = useRef(new Animated.Value(1)).current;
-  const translate = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const translate = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
 
-  const transformCache = useRef({ scale: 1, translateX: 0, translateY: 0 })
+  const transformCache = useRef({scale: 1, translateX: 0, translateY: 0})
     .current;
 
-  const lastTransform = useRef({ scale: 1, translateX: 0, translateY: 0 });
+  const lastTransform = useRef({scale: 1, translateX: 0, translateY: 0});
   const initialDistance = useRef<number>();
   const initialTouchesCenter = useRef<TouchePosition>();
 
@@ -96,19 +96,19 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
 
   const decayingTranslateAnimation = useRef<Animated.CompositeAnimation>();
   const isResponderActive = useRef(false);
-  const movingVelocity = useRef<{ x: number; y: number }>();
+  const movingVelocity = useRef<{x: number; y: number}>();
 
   containerView.current?.measure((x, y, width, height, pageX, pageY) => {
-    layout.current = { width, height, pageX, pageY };
+    layout.current = {width, height, pageX, pageY};
   });
 
   useEffect(() => {
-    scale.addListener(({ value }) => {
+    scale.addListener(({value}) => {
       transformCache.scale = value;
       onScaleChanged && onScaleChanged(value);
     });
 
-    const id = translate.addListener(({ x, y }) => {
+    const id = translate.addListener(({x, y}) => {
       if (
         decayingTranslateAnimation.current &&
         layout.current &&
@@ -144,7 +144,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
 
       transformCache.translateX = x;
       transformCache.translateY = y;
-      onTranslateChanged && onTranslateChanged({ x, y });
+      onTranslateChanged && onTranslateChanged({x, y});
     });
 
     return () => {
@@ -159,15 +159,15 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
     setPanResponder(
       PanResponder.create({
         onMoveShouldSetPanResponder: () => true,
-        onPanResponderGrant: ({ nativeEvent }) => {
+        onPanResponderGrant: ({nativeEvent}) => {
           isResponderActive.current = true;
 
           if (decayingTranslateAnimation.current)
             decayingTranslateAnimation.current.stop();
 
-          const { touches } = nativeEvent;
+          const {touches} = nativeEvent;
 
-          lastTransform.current = { ...transformCache };
+          lastTransform.current = {...transformCache};
 
           initialDistance.current = undefined;
 
@@ -182,8 +182,8 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
               );
             } else initialDistance.current = undefined;
         },
-        onPanResponderMove: ({ nativeEvent }, gestureState) => {
-          const { touches } = nativeEvent;
+        onPanResponderMove: ({nativeEvent}, gestureState) => {
+          const {touches} = nativeEvent;
 
           if (layout.current == null) return;
 
@@ -193,7 +193,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
               y: (movingVelocity.current.y + gestureState.vy) / 2,
             };
           else
-            movingVelocity.current = { x: gestureState.vx, y: gestureState.vy };
+            movingVelocity.current = {x: gestureState.vx, y: gestureState.vy};
 
           if (touches.length === 2)
             if (
@@ -207,7 +207,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
                   lastTransform.current.scale,
               );
 
-              const { pageX, pageY } = getRelativeTouchesCenterPosition(
+              const {pageX, pageY} = getRelativeTouchesCenterPosition(
                 touches,
                 layout.current,
                 transformCache,
@@ -304,7 +304,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
             }).start();
           } else {
             decayingTranslateAnimation.current = Animated.decay(translate, {
-              velocity: movingVelocity.current ?? { x: 0, y: 0 },
+              velocity: movingVelocity.current ?? {x: 0, y: 0},
               useNativeDriver: true,
             });
 
@@ -327,7 +327,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
   ]);
 
   useImperativeHandle(ref, () => ({
-    animatedValue: { scale, translate },
+    animatedValue: {scale, translate},
     setValues: (values) => {
       values.scale != null && scale.setValue(values.scale);
       values.translate != null && translate.setValue(values.translate);
@@ -346,14 +346,13 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
           ? {}
           : {
               transform: [
-                { translateX: translate.x },
-                { translateY: translate.y },
-                { scale },
+                {translateX: translate.x},
+                {translateY: translate.y},
+                {scale},
               ],
             },
       ]}
-      {...(panResponder?.panHandlers || {})}
-    >
+      {...(panResponder?.panHandlers || {})}>
       {children}
     </Animated.View>
   );

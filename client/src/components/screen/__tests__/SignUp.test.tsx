@@ -6,12 +6,12 @@ import {
   render,
   waitFor,
 } from '@testing-library/react-native';
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import { MockPayloadGenerator } from 'relay-test-utils';
+import {MockPayloadGenerator} from 'relay-test-utils';
 import React from 'react';
 import SignUp from '../SignUp';
-import { environment } from '../../../providers';
+import {environment} from '../../../providers';
 
 const component = createTestElement(<SignUp {...createTestProps()} />);
 
@@ -56,7 +56,7 @@ describe('[SignUp] rendering test', () => {
 
 describe('[SignUp] interaction', () => {
   it('should invoke changeText event handler when email changed', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const textInput = getByTestId('input-email');
 
     await waitFor(() => expect(textInput).toBeTruthy());
@@ -67,7 +67,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event handler when password changed', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
 
     const textInput = getByTestId('input-password');
 
@@ -79,7 +79,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should confirm password', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
 
     const textInput = getByTestId('input-confirm-password');
 
@@ -91,7 +91,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event when name changed', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const textInput = getByTestId('input-name');
 
     await waitFor(() => expect(textInput).toBeTruthy());
@@ -102,7 +102,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event when status changed', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const textInput = getByTestId('input-status');
 
     await waitFor(() => expect(textInput).toBeTruthy());
@@ -115,7 +115,7 @@ describe('[SignUp] interaction', () => {
   describe('onSignUp', () => {
     describe('check validation', () => {
       it('should show error text when the email is not validated', async () => {
-        const { getByTestId } = render(component);
+        const {getByTestId} = render(component);
         const emailInput = getByTestId('input-email');
 
         await waitFor(() => expect(emailInput).toBeTruthy());
@@ -152,7 +152,7 @@ describe('[SignUp] interaction', () => {
       });
 
       it('should show error text when the password is not validated', async () => {
-        const { getByTestId } = render(component);
+        const {getByTestId} = render(component);
         const emailInput = getByTestId('input-email');
 
         await waitFor(() => expect(emailInput).toBeTruthy());
@@ -190,7 +190,7 @@ describe('[SignUp] interaction', () => {
     });
 
     it('should show error text when the name is not validated', async () => {
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
       const emailInput = getByTestId('input-email');
 
       await waitFor(() => expect(emailInput).toBeTruthy());
@@ -227,7 +227,7 @@ describe('[SignUp] interaction', () => {
     });
 
     it('should show error text when the password is not confirmed', async () => {
-      const { getByTestId } = render(component);
+      const {getByTestId} = render(component);
       const emailInput = getByTestId('input-email');
 
       await waitFor(() => expect(emailInput).toBeTruthy());
@@ -265,7 +265,7 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should call signUp when button has clicked and navigate to MainStack', async () => {
-    const { getByTestId } = render(component);
+    const {getByTestId} = render(component);
     const emailInput = getByTestId('input-email');
 
     await waitFor(() => expect(emailInput).toBeTruthy());
@@ -320,7 +320,7 @@ describe('[SignUp] interaction', () => {
       />,
     );
 
-    const { getByTestId } = render(anotherComponent);
+    const {getByTestId} = render(anotherComponent);
 
     const emailInput = getByTestId('input-email');
 

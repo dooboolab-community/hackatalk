@@ -2,10 +2,10 @@ import 'react-native';
 
 import * as React from 'react';
 
-import { createTestElement, createTestProps } from '../../../../test/testUtils';
+import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
 import Shared from '../SocialSignInButton';
-import { render } from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 const props = createTestProps({
   svgIcon: jest.mock,

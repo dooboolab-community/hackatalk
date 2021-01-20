@@ -1,22 +1,22 @@
-import { Alert, Platform, SafeAreaView } from 'react-native';
-import { Button, EditText } from 'dooboo-ui';
+import {Alert, Platform, SafeAreaView} from 'react-native';
+import {Button, EditText} from 'dooboo-ui';
 import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigation/MainStackNavigator';
-import React, { ReactElement, useState } from 'react';
+import React, {ReactElement, useState} from 'react';
 import type {
   ReportCreateReportMutation,
   ReportCreateReportMutationResponse,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
-import { graphql, useMutation } from 'react-relay/hooks';
+import {graphql, useMutation} from 'react-relay/hooks';
 
-import { Report } from '../../types/graphql';
-import { RouteProp } from '@react-navigation/core';
-import { getString } from '../../../STRINGS';
-import { showAlertForError } from '../../utils/common';
+import {Report} from '../../types/graphql';
+import {RouteProp} from '@react-navigation/core';
+import {getString} from '../../../STRINGS';
+import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import { useThemeContext } from '@dooboo-ui/theme';
+import {useThemeContext} from '@dooboo-ui/theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -49,13 +49,13 @@ export interface Props {
 }
 
 function ReportScreen(props: Props): ReactElement {
-  const { navigation } = props;
-  const { theme } = useThemeContext();
+  const {navigation} = props;
+  const {theme} = useThemeContext();
   const [message, setMessage] = useState('');
 
   const {
     route: {
-      params: { name, userId },
+      params: {name, userId},
     },
   } = props;
 
@@ -73,7 +73,7 @@ function ReportScreen(props: Props): ReactElement {
         showAlertForError(error);
       },
       onCompleted: (response: ReportCreateReportMutationResponse) => {
-        const { report } = response.createReport as Report;
+        const {report} = response.createReport as Report;
 
         setMessage('');
 
@@ -93,19 +93,17 @@ function ReportScreen(props: Props): ReactElement {
         flex: 1,
         backgroundColor: theme.background,
         paddingBottom: 20,
-      }}
-    >
+      }}>
       <StyledKeyboardAvoidingView
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}
-      >
+        })}>
         <InnerContainer>
           <EditText
             key="report-input"
             testID="input-status"
-            style={{ marginTop: 40 }}
+            style={{marginTop: 40}}
             textInputProps={{
               style: {
                 minHeight: 80,
@@ -125,16 +123,13 @@ function ReportScreen(props: Props): ReactElement {
         <Button
           onPress={handleReport}
           loading={isInFlight}
-          style={{
-            root: {
+          styles={{
+            container: {
               width: '100%',
               paddingHorizontal: 20,
-            },
-            button: {
               backgroundColor: theme.btnPrimary,
               borderWidth: 0,
               height: 48,
-              width: '100%',
             },
             text: {
               color: theme.btnPrimaryFont,

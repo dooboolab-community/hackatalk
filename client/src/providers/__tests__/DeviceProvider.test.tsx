@@ -1,12 +1,12 @@
 import * as Device from 'expo-device';
 import * as React from 'react';
 
-import { Button, View } from 'react-native';
-import { DeviceProvider, useDeviceContext } from '../DeviceProvider';
-import { act, fireEvent, render } from '@testing-library/react-native';
+import {Button, View} from 'react-native';
+import {DeviceProvider, useDeviceContext} from '../DeviceProvider';
+import {act, fireEvent, render} from '@testing-library/react-native';
 
 const FakeChild = (): React.ReactElement => {
-  const { setDeviceType } = useDeviceContext();
+  const {setDeviceType} = useDeviceContext();
 
   return (
     <View>
@@ -36,7 +36,7 @@ describe('Rendering', () => {
 
 describe('Interactions', () => {
   it('should setUser', async () => {
-    const { getByTestId } = render(
+    const {getByTestId} = render(
       <DeviceProvider>
         <FakeChild />
       </DeviceProvider>,

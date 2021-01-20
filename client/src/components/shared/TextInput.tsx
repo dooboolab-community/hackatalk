@@ -1,11 +1,11 @@
-import React, { Ref, forwardRef, useState } from 'react';
-import { ReturnKeyTypeOptions, TextStyle, ViewStyle } from 'react-native';
+import React, {Ref, forwardRef, useState} from 'react';
+import {ReturnKeyTypeOptions, TextStyle, ViewStyle} from 'react-native';
 
-import { Ionicons } from '@expo/vector-icons';
+import {Ionicons} from '@expo/vector-icons';
 import styled from 'styled-components/native';
 
-const StyledLabelText = styled.Text<{ focused: boolean }>`
-  color: ${({ focused, theme }): string =>
+const StyledLabelText = styled.Text<{focused: boolean}>`
+  color: ${({focused, theme}): string =>
     focused ? theme.focused : theme.inactiveColor};
   margin-bottom: 8px;
   font-size: 12px;
@@ -18,27 +18,27 @@ const WrapperView = styled.View`
   align-items: flex-start;
 `;
 
-const StyledTextInputContainer = styled.View<{ isFocused?: boolean }>`
+const StyledTextInputContainer = styled.View<{isFocused?: boolean}>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-width: 1px;
-  border-color: ${({ isFocused, theme }): string =>
+  border-color: ${({isFocused, theme}): string =>
     isFocused ? theme.focused : theme.lineColor};
   border-radius: 3px;
   margin-bottom: 8px;
 `;
 
-const StyledTextInput = styled.TextInput.attrs<{ focused: boolean }>(
-  ({ theme, focused }) => ({
+const StyledTextInput = styled.TextInput.attrs<{focused: boolean}>(
+  ({theme, focused}) => ({
     placeholderTextColor: focused
       ? theme.placeholderFocused
       : theme.placeholder,
   }),
-)<{ focused: boolean }>`
+)<{focused: boolean}>`
   flex: 1;
   align-self: stretch;
-  color: ${({ theme }): string => theme.fontColor};
+  color: ${({theme}): string => theme.fontColor};
   font-size: 16px;
   padding: 22px 20px;
   border: none;
@@ -47,7 +47,7 @@ const StyledTextInput = styled.TextInput.attrs<{ focused: boolean }>(
   justify-content: flex-start;
 `;
 
-const StyledStatusMark = styled(Ionicons).attrs(({ theme }) => ({
+const StyledStatusMark = styled(Ionicons).attrs(({theme}) => ({
   name: 'md-checkmark',
   size: 24,
   color: theme.status,

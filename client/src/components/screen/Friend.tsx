@@ -1,5 +1,5 @@
-import React, { FC, ReactElement, Suspense, useMemo } from 'react';
-import { User, UserConnection, UserEdge } from '../../types/graphql';
+import React, {FC, ReactElement, Suspense, useMemo} from 'react';
+import {User, UserConnection, UserEdge} from '../../types/graphql';
 import {
   graphql,
   useLazyLoadQuery,
@@ -7,22 +7,22 @@ import {
 } from 'react-relay/hooks';
 
 import EmptyListItem from '../shared/EmptyListItem';
-import { FlatList } from 'react-native';
-import { FriendFriendsPaginationQuery } from '../../__generated__/FriendFriendsPaginationQuery.graphql';
-import { FriendFriendsQuery } from '../../__generated__/FriendFriendsQuery.graphql';
-import { Friend_friends$key } from '../../__generated__/Friend_friends.graphql';
-import { LoadingIndicator } from 'dooboo-ui';
+import {FlatList} from 'react-native';
+import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
+import {FriendFriendsQuery} from '../../__generated__/FriendFriendsQuery.graphql';
+import {Friend_friends$key} from '../../__generated__/Friend_friends.graphql';
+import {LoadingIndicator} from 'dooboo-ui';
 import UserListItem from '../shared/UserListItem';
-import { getString } from '../../../STRINGS';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import { useProfileContext } from '../../providers/ProfileModalProvider';
+import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const ITEM_CNT = 20;
 
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background: ${({ theme }): string => theme.background};
+  background: ${({theme}): string => theme.background};
   align-items: center;
   justify-content: center;
 `;
@@ -35,7 +35,7 @@ const friendsQuery = graphql`
 
 const friendsFragment = graphql`
   fragment Friend_friends on Query
-  @argumentDefinitions(first: { type: "Int!" }, after: { type: "String" })
+  @argumentDefinitions(first: {type: "Int!"}, after: {type: "String"})
   @refetchable(queryName: "FriendFriendsPaginationQuery") {
     friends(first: $first, after: $after)
       @connection(key: "Friend_friends", filters: []) {
@@ -73,10 +73,10 @@ type FriendsFragmentProps = {
   friendsKey: Friend_friends$key;
 };
 
-const FriendsFragment: FC<FriendsFragmentProps> = ({ friendsKey }) => {
-  const { showModal } = useProfileContext();
+const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
+  const {showModal} = useProfileContext();
 
-  const { data, loadNext, isLoadingNext, refetch } = usePaginationFragment<
+  const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     FriendFriendsPaginationQuery,
     Friend_friends$key
   >(friendsFragment, friendsKey);
@@ -141,7 +141,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({ friendsKey }) => {
       }
       refreshing={isLoadingNext}
       onRefresh={() => {
-        refetch({ first: ITEM_CNT }, { fetchPolicy: 'network-only' });
+        refetch({first: ITEM_CNT}, {fetchPolicy: 'network-only'});
       }}
       onEndReachedThreshold={0.1}
       onEndReached={() => loadNext(ITEM_CNT)}
@@ -152,8 +152,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({ friendsKey }) => {
 const Friend: FC = () => {
   const queryResponse = useLazyLoadQuery<FriendFriendsQuery>(
     friendsQuery,
-    { first: ITEM_CNT },
-    { fetchPolicy: 'store-or-network' },
+    {first: ITEM_CNT},
+    {fetchPolicy: 'store-or-network'},
   );
 
   return <FriendsFragment friendsKey={queryResponse} />;
