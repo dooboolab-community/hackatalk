@@ -4,7 +4,7 @@
  */
 export function filterNullProperties<T>(
   obj: T,
-): { [P in keyof T]: Exclude<T[P], null> } {
+): {[P in keyof T]: Exclude<T[P], null>} {
   return Object.assign(
     {},
     ...Object.getOwnPropertyNames(obj).map((name) => ({

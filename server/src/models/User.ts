@@ -1,7 +1,7 @@
-import { NexusGenRootTypes } from '../generated/nexus';
-import { assert } from '../utils/assert';
-import { objectType } from 'nexus';
-import { prisma } from '../context';
+import {NexusGenRootTypes} from '../generated/nexus';
+import {assert} from '../utils/assert';
+import {objectType} from 'nexus';
+import {prisma} from '../context';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -31,17 +31,17 @@ export const User = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.list.field('notifications', { type: 'Notification' });
+    t.list.field('notifications', {type: 'Notification'});
 
     t.boolean('hasBlocked', {
       description:
         'Check if the user is blocked by the user who have signed in.',
 
-      resolve: async ({ id }, args, { userId }) => {
+      resolve: async ({id}, args, {userId}) => {
         assert(userId, 'Not authorized.');
 
         const blockedUser = await prisma.blockedUser.findFirst({
-          where: { userId, blockedUserId: id },
+          where: {userId, blockedUserId: id},
         });
 
         return !!blockedUser;
@@ -55,8 +55,8 @@ export const resetPassword = (
   password: string,
 ): Promise<NexusGenRootTypes['User']> => {
   return prisma.user.update({
-    where: { email },
-    data: { password },
+    where: {email},
+    data: {password},
   });
 };
 
@@ -64,7 +64,7 @@ export const verifyEmail = (
   email: string,
 ): Promise<NexusGenRootTypes['User']> => {
   return prisma.user.update({
-    where: { email },
+    where: {email},
     data: {
       verified: true,
     },

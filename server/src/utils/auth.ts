@@ -5,7 +5,7 @@ import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import qs from 'querystring';
-import { verify } from 'jsonwebtoken';
+import {verify} from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
@@ -35,7 +35,7 @@ interface Token {
   userId: string;
 }
 
-export function getUserId({ req }: { req: ReqI18n }): string | null {
+export function getUserId({req}: {req: ReqI18n}): string | null {
   const Authorization = req?.get?.('Authorization');
 
   if (!Authorization) return null;
@@ -79,7 +79,7 @@ export interface GoogleUser {
  */
 
 export const verifyGoogleId = async (token: string): Promise<GoogleUser> => {
-  const { data } = await axios.get(
+  const {data} = await axios.get(
     `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${token}`,
   );
 
@@ -95,7 +95,7 @@ export interface FacebookUser {
 export const verifyFacebookId = async (
   accessToken: string,
 ): Promise<FacebookUser> => {
-  const { data } = await axios.get('https://graph.facebook.com/v7.0/me', {
+  const {data} = await axios.get('https://graph.facebook.com/v7.0/me', {
     params: {
       access_token: accessToken,
       fields: 'id,name,email',
@@ -106,14 +106,14 @@ export const verifyFacebookId = async (
 };
 
 const getApplePublicKey = async (): Promise<string> => {
-  const { data } = await axios.get('https://appleid.apple.com/auth/keys');
+  const {data} = await axios.get('https://appleid.apple.com/auth/keys');
 
   const key = data.keys[0];
 
   const pubKey = new NodeRSA();
 
   pubKey.importKey(
-    { n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64') },
+    {n: Buffer.from(key.n, 'base64'), e: Buffer.from(key.e, 'base64')},
     'components-public',
   );
 

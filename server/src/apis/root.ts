@@ -1,14 +1,14 @@
-import { encryptCredential, getToken } from '../utils/auth';
-import { resetPassword, verifyEmail } from '../models/User';
+import {encryptCredential, getToken} from '../utils/auth';
+import {resetPassword, verifyEmail} from '../models/User';
 
-import { MulterAzureStorage } from 'multer-azure-blob-storage';
-import { Router } from 'express';
-import { getURL } from '../utils/azure';
+import {MulterAzureStorage} from 'multer-azure-blob-storage';
+import {Router} from 'express';
+import {getURL} from '../utils/azure';
 import multer from 'multer';
-import { nanoid } from 'nanoid';
-import { prisma } from '../context';
+import {nanoid} from 'nanoid';
+import {prisma} from '../context';
 import qs from 'querystring';
-import { verify } from 'jsonwebtoken';
+import {verify} from 'jsonwebtoken';
 
 interface VerificationToken {
   email: string;

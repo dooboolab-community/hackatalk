@@ -1,13 +1,13 @@
-import AzureStorage, { BlobService } from 'azure-storage';
+import AzureStorage, {BlobService} from 'azure-storage';
 
-import { assert } from './assert';
+import {assert} from './assert';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import stream from 'stream';
 
 // eslint-disable-next-line
 require('dotenv').config();
 
-const { STORAGE_ACCOUNT, STORAGE_KEY } = process.env;
+const {STORAGE_ACCOUNT, STORAGE_KEY} = process.env;
 
 const blobService =
   STORAGE_ACCOUNT && STORAGE_KEY

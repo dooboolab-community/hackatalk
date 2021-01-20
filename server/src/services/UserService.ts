@@ -1,10 +1,10 @@
-import { AuthType, Gender } from '../models';
-import { ErrorEmailForUserExists, ErrorString } from '../utils/error';
+import {AuthType, Gender} from '../models';
+import {ErrorEmailForUserExists, ErrorString} from '../utils/error';
 
-import { Context } from '../context';
-import { NexusGenRootTypes } from '../generated/nexus';
-import { USER_SIGNED_IN } from '../resolvers';
-import { sign } from 'jsonwebtoken';
+import {Context} from '../context';
+import {NexusGenRootTypes} from '../generated/nexus';
+import {USER_SIGNED_IN} from '../resolvers';
+import {sign} from 'jsonwebtoken';
 
 export interface SocialUserInput {
   socialId: string;
@@ -36,11 +36,11 @@ export class UserService {
           socialId: socialUser.socialId,
         },
       },
-      data: { lastSignedIn: new Date().toISOString() },
+      data: {lastSignedIn: new Date().toISOString()},
     });
 
     return {
-      token: sign({ userId: user.id }, ctx.appSecret),
+      token: sign({userId: user.id}, ctx.appSecret),
       user,
     };
   }
@@ -77,7 +77,7 @@ export class UserService {
           socialId: socialUser.socialId,
         },
       },
-      include: { profile: true },
+      include: {profile: true},
     });
 
     if (!user)
@@ -96,7 +96,7 @@ export class UserService {
           phone: socialUser.phone,
           verified: true,
         },
-        include: { profile: true },
+        include: {profile: true},
       });
 
     return user;

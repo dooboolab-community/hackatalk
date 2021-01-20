@@ -1,4 +1,4 @@
-import { objectType } from 'nexus';
+import {objectType} from 'nexus';
 
 export const Friend = objectType({
   name: 'Friend',
@@ -6,7 +6,7 @@ export const Friend = objectType({
     t.model.createdAt();
     t.model.updatedAt();
     t.model.deletedAt();
-    t.field('user', { type: 'User' });
-    t.field('friend', { type: 'User' });
+    t.field('user', {type: 'User'});
+    t.field('friend', {type: 'User'});
   },
 });

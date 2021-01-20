@@ -1,4 +1,4 @@
-import { ApolloError } from 'apollo-server-core';
+import {ApolloError} from 'apollo-server-core';
 
 // eslint-disable-next-line no-shadow
 export enum ErrorString {

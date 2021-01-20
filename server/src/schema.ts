@@ -1,9 +1,9 @@
 import * as path from 'path';
 import * as types from './types';
 
-import { connectionPlugin, makeSchema } from 'nexus';
+import {connectionPlugin, makeSchema} from 'nexus';
 
-import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema';
+import {nexusSchemaPrisma} from 'nexus-plugin-prisma/schema';
 
 export const schema = makeSchema({
   types,
