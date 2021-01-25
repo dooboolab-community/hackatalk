@@ -30,7 +30,7 @@
     "studio": "dotenv -e ./dotenv/.env -- prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "2.14.0",
+    "@prisma/client": "2.15.0",
     "@sendgrid/mail": "^7.4.2",
     "apollo-server": "^2.19.2",
     "axios": "^0.21.1",
@@ -54,11 +54,11 @@
     "nexus-plugin-prisma": "^0.28.0",
     "node-rsa": "^1.1.1",
     "ramda": "^0.27.1",
-    "verify-apple-id-token": "^2.0.2"
+    "verify-apple-id-token": "^2.0.3"
   },
   "devDependencies": {
     "@dooboo/eslint-config": "^0.6.17",
-    "@prisma/cli": "~2.14.0",
+    "@prisma/cli": "~2.15.0",
     "@types/bcrypt": "^3.0.0",
     "@types/ejs": "^3.0.5",
     "@types/express": "^4.17.11",
@@ -69,7 +69,7 @@
     "@types/nanoid": "^2.1.0",
     "@types/node": "^14.14.22",
     "@types/node-rsa": "^1.0.0",
-    "@types/ramda": "^0.27.35",
+    "@types/ramda": "^0.27.36",
     "@types/ws": "7.4.0",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
