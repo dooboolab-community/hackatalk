@@ -6,7 +6,7 @@ import mime from 'mime';
 export const uploadImageAsync = async (
   uri: string,
   dir: string,
-  fileNamePrefix?: string = '',
+  fileNamePrefix: string = '',
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
   const fileType = mime.getType(uri) as string;
