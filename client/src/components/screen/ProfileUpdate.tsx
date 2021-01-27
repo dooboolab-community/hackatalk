@@ -96,6 +96,7 @@ const profileUpdate = graphql`
       name
       nickname
       statusMessage
+      photoURL
     }
   }
 `;
