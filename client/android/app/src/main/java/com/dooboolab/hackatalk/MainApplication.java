@@ -1,6 +1,7 @@
-package com.hackatalk;
+package com.dooboolab.hackatalk;
 
-import com.hackatalk.generated.BasePackageList;
+import com.dooboolab.hackatalk.BuildConfig;
+import com.dooboolab.hackatalk.generated.BasePackageList;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,7 +17,6 @@ import java.util.Arrays;
  
 import org.unimodules.adapters.react.ModuleRegistryAdapter;
 import org.unimodules.adapters.react.ReactModuleRegistryProvider;
-import org.unimodules.core.interfaces.SingletonModule;
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(new BasePackageList().getPackageList(), null);
@@ -77,7 +77,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.hackatalk.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.dooboolab.hackatalk.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);
