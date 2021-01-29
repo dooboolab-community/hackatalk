@@ -1,18 +1,14 @@
-import * as Config from '../../../config';
+import {ROOT_URL, sample} from '../sample';
 
-import {FetchMock} from 'jest-fetch-mock';
-import {sample} from '../sample';
-
-const {ROOT_URL} = Config;
-
-const fetchMock = fetch as FetchMock;
+import fetchMock from 'jest-fetch-mock';
 
 describe('testing sample api', () => {
   beforeEach(() => {
+    fetchMock.enableMocks();
     fetchMock.resetMocks();
   });
 
-  it('should fetch sample and returns data to me', (): Promise<Response | void> => {
+  it('calls google and returns data to me', () => {
     const mockedResult = JSON.stringify({data: '12345'});
 
     fetchMock.mockResponseOnce(mockedResult);
@@ -23,15 +19,15 @@ describe('testing sample api', () => {
       expect(result).toEqual(mockedResult);
 
       expect(fetchMock.mock.calls.length).toEqual(1);
-      expect(fetchMock.mock.calls[0][0]).toEqual(`${ROOT_URL}/sample`);
+      expect(fetchMock.mock.calls[0][0]).toEqual(`${ROOT_URL}`);
     });
   });
 
-  it('throws an error if object is null', () => {
+  it('throws an error if object is undefined', () => {
     const onResponse = jest.fn();
     const onError = jest.fn();
 
-    sample()
+    sample(undefined)
       .then(onResponse)
       .catch(onError)
       .then(() => {

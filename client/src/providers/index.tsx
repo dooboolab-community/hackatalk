@@ -1,57 +1,23 @@
-import * as Device from 'expo-device';
+import {AppProvider} from './AppProvider';
+import React from 'react';
+import {ThemeProvider} from './ThemeProvider';
+import {ThemeType} from '../utils/theme';
 
-import React, {ReactElement, Suspense} from 'react';
-import {RelayMockEnvironment, createMockEnvironment} from 'relay-test-utils';
-import {ThemeProvider, ThemeType} from '@dooboo-ui/theme';
-import {dark, light} from '../theme';
-
-import {AuthProvider} from './AuthProvider';
-import {DeviceProvider} from './DeviceProvider';
-import {LoadingIndicator} from 'dooboo-ui';
-import {ProfileModalProvider} from './ProfileModalProvider';
-import {RelayEnvironmentProvider} from 'react-relay/hooks';
-import {User} from '../types/graphql';
-
-interface AllProvidersProps {
-  initialDeviceType?: Device.DeviceType;
+interface Props {
   initialThemeType?: ThemeType;
-  initialAuthUser?: User;
-  children?: React.ReactElement;
-}
-interface RelayProvidersProps {
   children?: React.ReactElement;
 }
 
-// hyochan => for testing
-export const environment: RelayMockEnvironment = createMockEnvironment();
-
-const RelayProviderWrapper = ({
+// Add providers here
+const RootProvider = ({
+  initialThemeType = ThemeType.LIGHT,
   children,
-}: RelayProvidersProps): ReactElement => {
+}: Props): React.ReactElement => {
   return (
-    <RelayEnvironmentProvider environment={environment}>
-      <Suspense fallback={<LoadingIndicator />}>
-        <ProfileModalProvider>{children}</ProfileModalProvider>
-      </Suspense>
-    </RelayEnvironmentProvider>
+    <ThemeProvider initialThemeType={initialThemeType}>
+      <AppProvider>{children}</AppProvider>
+    </ThemeProvider>
   );
 };
 
-export const AllProviders = ({
-  initialThemeType,
-  initialAuthUser,
-  initialDeviceType,
-  children,
-}: AllProvidersProps): React.ReactElement => {
-  return (
-    <DeviceProvider initialDeviceType={initialDeviceType}>
-      <ThemeProvider
-        initialThemeType={initialThemeType}
-        customTheme={{light, dark}}>
-        <AuthProvider initialAuthUser={initialAuthUser}>
-          <RelayProviderWrapper>{children}</RelayProviderWrapper>
-        </AuthProvider>
-      </ThemeProvider>
-    </DeviceProvider>
-  );
-};
+export default RootProvider;

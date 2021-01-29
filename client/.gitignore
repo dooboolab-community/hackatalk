@@ -1,34 +1,72 @@
+# OSX
+#
 .DS_Store
-dist/
-node_modules/**/*
-.expo/*
-npm-debug.*
-*.jks
-*.p12
-*.key
-*.mobileprovision
-.jest
-coverage/
-*.orig.*
-web-build/
-web-report/
 
-package-lock.json
-yarn-error*
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
 
-firebase-debug*.*
-.firebase
-
+# Android/IntelliJ
+#
+build/
 .idea
-.gitmessage.txt
-.env
+.gradle
+local.properties
+*.iml
 
-# firebase
-google-services.json
+# node.js
 
-# IDE & Text Editor
-.vscode
-!.vscode/launch.json
-!.vscode/settings.json
+dist/
+node_modules/
+npm-debug.log
+yarn-error.log
 
-__snapshots__
+# eslint
+.eslintcache
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+!android/app/debug.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
+.jest/
+
+coverage/
+package-lock.json
+
+ios/Pods/
+
+# fbt
+src/utils/i18n/fbt/.enum_manifest.json
+src/utils/i18n/fbt/.source_strings.json
+src/utils/i18n/fbt/.src_manifest.json

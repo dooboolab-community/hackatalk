@@ -1,17 +1,11 @@
 import {StyleProp, TextStyle} from 'react-native';
 
 import {SFC} from 'react';
-import {User} from './graphql';
 
-export enum MessageType {
-  Message,
-  Photo,
-  File,
-}
-
-export interface Friend extends User {
-  isFriend?: boolean;
-  friendSince: Date;
+export interface User {
+  displayName: string;
+  age: number;
+  job: string;
 }
 
 interface IconProps {
@@ -22,8 +16,3 @@ interface IconProps {
 }
 
 export type IconType = SFC<IconProps>;
-
-export enum ThemeType {
-  LIGHT = 'LIGHT',
-  DARK = 'DARK',
-}

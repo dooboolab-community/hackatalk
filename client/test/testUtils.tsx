@@ -1,31 +1,24 @@
-import * as Device from 'expo-device';
+import 'react-native';
 
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 
-import { AllProviders } from '../src/providers';
-import { ThemeType } from '@dooboo-ui/theme';
-import { User } from '../src/types/graphql';
+import RootProvider from '../src/providers';
+import {ThemeType} from '../src/utils/theme';
 
 export const createTestElement = (
   child: ReactElement,
   themeType?: ThemeType,
-  deviceType?: Device.DeviceType,
-  user?: User,
 ): ReactElement => (
-  <AllProviders
-    initialDeviceType={deviceType}
-    initialThemeType={themeType}
-    initialAuthUser={user}>
-    {child}
-  </AllProviders>
+  <RootProvider initialThemeType={themeType}>{child}</RootProvider>
 );
 
-export const createTestProps = (obj: Record<string, unknown> = {}): Record<string, unknown> | unknown | any => ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const createTestProps = (
+  obj?: Record<string, unknown>,
+): Record<string, unknown> | unknown | any => ({
   navigation: {
     navigate: jest.fn(),
     goBack: jest.fn(),
-    replace: jest.fn(),
-    setOptions: jest.fn(),
   },
   ...obj,
 });

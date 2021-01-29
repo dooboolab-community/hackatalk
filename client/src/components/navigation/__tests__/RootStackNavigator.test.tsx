@@ -1,18 +1,45 @@
 import 'react-native';
 
+import React, {ReactElement} from 'react';
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import React from 'react';
 import StackNavigator from '../RootStackNavigator';
-import {render} from '@testing-library/react-native';
+import {ThemeType} from '../../../providers/ThemeProvider';
+import renderer from 'react-test-renderer';
 
-const component = createTestElement(<StackNavigator {...createTestProps()} />);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let props: any;
+let component: ReactElement;
 
 describe('[Stack] navigator', () => {
-  it('should renders without crashing', async () => {
-    const json = render(component);
+  beforeEach(() => {
+    props = createTestProps();
 
-    expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
+    component = createTestElement(<StackNavigator {...props} />);
+  });
+
+  it('should renders without crashing', () => {
+    jest.useFakeTimers();
+
+    const rendered = renderer.create(component).toJSON();
+
+    jest.runAllTimers();
+    expect(rendered).toMatchSnapshot();
+    expect(rendered).toBeTruthy();
+  });
+
+  it('should renders [Dark] mode', () => {
+    jest.useFakeTimers();
+
+    component = createTestElement(
+      <StackNavigator {...props} />,
+      ThemeType.DARK,
+    );
+
+    const rendered = renderer.create(component).toJSON();
+
+    jest.runAllTimers();
+    expect(rendered).toMatchSnapshot();
+    expect(rendered).toBeTruthy();
   });
 });

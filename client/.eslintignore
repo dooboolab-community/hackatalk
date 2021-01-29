@@ -1,3 +1,2 @@
-graphql.ts
-**/*.js
-# **/*/__tests__/**/*
+src/assets
+src/utils/i18n

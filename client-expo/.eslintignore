@@ -1,0 +1,3 @@
+graphql.ts
+**/*.js
+# **/*/__tests__/**/*

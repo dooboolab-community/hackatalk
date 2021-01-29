@@ -1,5 +1,4 @@
 {
-  "eslint.enable": true,
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -23,6 +22,5 @@
   },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
-  "prettier.configPath": ".prettierrc.js",
-  "react-native.packager.port": 19001
+  "prettier.configPath": ".prettierrc.js"
 }

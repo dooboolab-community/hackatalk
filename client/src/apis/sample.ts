@@ -1,13 +1,13 @@
-import * as Config from '../../config';
-
-const {ROOT_URL} = Config;
+export const ROOT_URL = 'http://localhost:3000/api';
 
 export const sample = async (
-  body?: Record<string, unknown>,
-  // signal?: AbortController['signal'],
+  body: Record<string, unknown> | undefined,
+  signal?: AbortSignal | undefined,
 ): Promise<Response> => {
+  if (!body) throw new Error('No request object');
+
   const fetchOption = {
-    // signal,
+    signal,
     method: 'POST',
     headers: new Headers({
       Accept: 'application/json',
@@ -17,7 +17,7 @@ export const sample = async (
   };
 
   try {
-    const res: Response = await fetch(`${ROOT_URL}/sample`, fetchOption);
+    const res: Response = await fetch(`${ROOT_URL}`, fetchOption);
 
     return res;
   } catch (err) {
