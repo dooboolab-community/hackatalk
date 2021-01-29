@@ -11,8 +11,9 @@ jest.mock('expo-permissions', () => ({
 }));
 
 jest.mock('expo-image-picker', () => ({
-  launchCameraAsync: (): Promise<string> => Promise.resolve('photo info'),
-  launchImageLibraryAsync: (): Promise<string> => Promise.resolve('photo info'),
+  requestMediaLibraryPermissionsAsync: () => Promise.resolve({status: true}),
+  launchCameraAsync: () => Promise.resolve(null),
+  launchImageLibraryAsync: () => Promise.resolve(null),
 }));
 
 describe('ImagePicker interaction', () => {
@@ -24,7 +25,7 @@ describe('ImagePicker interaction', () => {
 
     const result = await ImagePicker.launchCameraAsync();
 
-    expect(result).toBe('photo info');
+    expect(result).toBe(null);
   });
 
   it('launchImageLibraryAsync should return photo info when permission is granted', async () => {
@@ -35,7 +36,7 @@ describe('ImagePicker interaction', () => {
 
     const result = await ImagePicker.launchImageLibraryAsync();
 
-    expect(result).toBe('photo info');
+    expect(result).toBe(null);
   });
 
   it('launchCameraAsync should not return photo info when permission is not granted', async () => {

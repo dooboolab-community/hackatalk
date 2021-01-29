@@ -1,6 +1,8 @@
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 
+import {Platform} from 'react-native';
+
 enum MediaTypeOptions {
   All = 'All',
   Videos = 'Videos',
@@ -22,11 +24,12 @@ const photoOptions = {
 const requestPermissions = async (
   type: string,
 ): Promise<Permissions.PermissionStatus> => {
-  if (type === 'photo') {
-    const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+  if (type === 'photo')
+    if (Platform.OS !== 'web') {
+      const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    return status;
-  }
+      return status;
+    }
 
   const {status} = await Permissions.askAsync(Permissions.CAMERA);
 
