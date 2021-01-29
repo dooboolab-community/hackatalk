@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		3CA056D125C4595500934D11 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CA056D025C4595500934D11 /* SplashScreen.storyboard */; };
 		5641D7F97A8D2A1FB02EA74E /* libPods-HackaTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E1E30AAA4782277D50B951 /* libPods-HackaTalk.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		91ED374E6DAB778E3C895385 /* libPods-HackaTalk-HackaTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E7D857FACB1E6C8453065B /* libPods-HackaTalk-HackaTalkTests.a */; };
@@ -37,6 +38,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HackaTalk/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HackaTalk/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HackaTalk/main.m; sourceTree = "<group>"; };
+		3CA056D025C4595500934D11 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		3DC7147BDD22695F1752D56C /* libPods-HackaTalk-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackaTalk-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A48C1259143BA4B147BAB4B /* Pods-HackaTalk-HackaTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.release.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C8C6791CA2BAF41BE652CD6 /* Pods-HackaTalk-HackaTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; path = "Target Support Files/Pods-HackaTalk-HackaTalkTests/Pods-HackaTalk-HackaTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				3CA056D025C4595500934D11 /* SplashScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = HackaTalk;
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				3CA056D125C4595500934D11 /* SplashScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
