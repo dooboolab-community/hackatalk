@@ -30,7 +30,7 @@
     "studio": "dotenv -e ./dotenv/.env -- prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "2.15.0",
+    "@prisma/client": "2.14.0",
     "@sendgrid/mail": "^7.4.2",
     "apollo-server": "^2.19.2",
     "axios": "^0.21.1",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@dooboo/eslint-config": "^0.6.17",
-    "@prisma/cli": "~2.15.0",
+    "@prisma/cli": "~2.14.0",
     "@types/bcrypt": "^3.0.0",
     "@types/ejs": "^3.0.5",
     "@types/express": "^4.17.11",
