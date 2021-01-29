@@ -56,6 +56,7 @@
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.17.1",
+    "react-native-unimodules": "^0.12.0",
     "react-native-web": "^0.14.10",
     "react-responsive": "^8.2.0",
     "react-scripts": "^4.0.1",

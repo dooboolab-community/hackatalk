@@ -1,9 +1,11 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'HackaTalk' do
+  use_unimodules!
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
@@ -20,14 +22,13 @@ target 'HackaTalk' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+        config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
+        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      end
+    end
   end
 end
 
-target 'HackaTalk-tvOS' do
-  # Pods for HackaTalk-tvOS
-
-  target 'HackaTalk-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
