@@ -1,5 +1,6 @@
 package com.dooboolab.hackatalk;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.content.res.Configuration;
@@ -20,8 +21,22 @@ public class MainActivity extends ReactActivity {
     // SplashScreen.show(...) has to be called after super.onCreate(...)
     // Below line is handled by '@expo/configure-splash-screen' command and it's discouraged to modify it manually
     SplashScreen.show(this, SplashScreenImageResizeMode.COVER, ReactRootView.class, false);
-  }
 
+    int nightModeFlags =
+          getApplicationContext().getResources().getConfiguration().uiMode &
+                  Configuration.UI_MODE_NIGHT_MASK;
+
+    switch (nightModeFlags) {
+        case Configuration.UI_MODE_NIGHT_YES:
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#222222"));
+            break;
+
+        case Configuration.UI_MODE_NIGHT_NO:
+        case Configuration.UI_MODE_NIGHT_UNDEFINED:
+            getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+            break;
+    }
+  }
 
     static String currentLocale;
 
