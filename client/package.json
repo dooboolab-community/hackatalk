@@ -45,9 +45,12 @@
   },
   "dependencies": {
     "@expo/metro-config": "^0.1.53",
-    "@react-native-community/async-storage": "^1.12.0",
+    "@expo/react-native-action-sheet": "^3.8.0",
+    "@expo/vector-icons": "^12.0.3",
+    "@react-native-async-storage/async-storage": "^1.13.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/core": "^5.15.1",
+    "@react-navigation/material-top-tabs": "^5.3.13",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
     "expo-splash-screen": "^0.9.0",

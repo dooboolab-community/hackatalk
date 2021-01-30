@@ -32,7 +32,7 @@ function RootNavigator(): React.ReactElement {
           background: theme.background,
           border: theme.disabled,
           card: theme.paper,
-          primary: theme.link,
+          primary: theme.primary,
           notification: theme.disabled,
           text: theme.text,
         },
@@ -45,7 +45,7 @@ function RootNavigator(): React.ReactElement {
             backgroundColor: theme.background,
           },
           headerTitleStyle: {color: theme.text},
-          headerTintColor: theme.heading,
+          headerTintColor: theme.primary,
         }}>
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="Temp" component={Temp} />
