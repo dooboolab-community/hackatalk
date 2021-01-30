@@ -1,8 +1,10 @@
-import AzureStorage, {BlobService} from 'azure-storage';
+import {
+  BlobServiceClient,
+  StorageSharedKeyCredential,
+} from '@azure/storage-blob';
 
+import Stream from 'stream';
 import {assert} from './assert';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import stream from 'stream';
 
 // eslint-disable-next-line
 require('dotenv').config();
@@ -11,89 +13,68 @@ const {STORAGE_ACCOUNT, STORAGE_KEY} = process.env;
 
 const blobService =
   STORAGE_ACCOUNT && STORAGE_KEY
-    ? AzureStorage.createBlobService(STORAGE_ACCOUNT, STORAGE_KEY)
+    ? new BlobServiceClient(
+        `https://${STORAGE_ACCOUNT}.blob.core.windows.net`,
+        new StorageSharedKeyCredential(STORAGE_ACCOUNT, STORAGE_KEY),
+      )
     : undefined;
 
-export const uploadFileToAzureBlobFromStream = (
-  inputStream: stream.Readable,
+export function resolveBlobName(destFile: string, destDir: string): string {
+  destDir = destDir ? `${destDir}/` : '';
+
+  return `${destDir}${destFile}_${new Date().getTime()}`;
+}
+
+/**
+ * Upload a file stream to Azure Storage.
+ * @param stream Stream to be uploaded.
+ * @param destFile Destination file name.
+ * @param destDir Destination directory name.
+ * @param containerName Azure storage container name. This should be created on the server-side before using.
+ * @returns Azure Storage URL.
+ */
+export const uploadFileToAzureBlobFromStream = async (
+  stream: Stream.Readable,
   destFile: string,
   destDir: string,
-  container: string,
-): Promise<BlobService.BlobResult> => {
+  containerName: string,
+): Promise<string> => {
   assert(blobService, 'Azure Storage is not initialized.');
 
-  return new Promise((resolve, reject) => {
-    inputStream.pipe(
-      blobService.createWriteStreamToBlockBlob(
-        container,
-        `${destDir}${destFile}`,
-        (error, resultUpload) => {
-          if (!error) {
-            resolve(resultUpload);
+  assert(containerName, 'Missing environment variable containerName');
 
-            return;
-          }
+  const blockBlobClient = blobService
+    .getContainerClient(containerName)
+    .getBlockBlobClient(resolveBlobName(destFile, destDir));
 
-          reject(error);
-        },
-      ),
-    );
-  });
+  await blockBlobClient.uploadStream(stream);
+
+  return blockBlobClient.url;
 };
 
-export const uploadFileToAzureBlobFromFile = (
-  container: string,
+/**
+ * Upload a file to Azure Storage.
+ * @param file Path to the file to be uploaded.
+ * @param destFile destination file name.
+ * @param destDir Destination directory name.
+ * @param containerName Azure storage container name. This should be created on the server-side before using.
+ * @returns Azure Storage URL.
+ */
+export const uploadFileToAzureBlobFromFile = async (
   file: string,
   destFile: string,
   destDir: string,
-): Promise<BlobService.BlobResult> => {
+  containerName: string,
+): Promise<string> => {
   assert(blobService, 'Azure Storage is not initialized.');
 
-  return new Promise((resolve, reject) => {
-    blobService.createBlockBlobFromLocalFile(
-      container,
-      `${destDir}${destFile}`,
-      file,
-      (error, resultUpload) => {
-        if (!error) {
-          resolve(resultUpload);
+  assert(containerName, 'Missing environment variable containerName');
 
-          return;
-        }
+  const blockBlobClient = blobService
+    .getContainerClient(containerName)
+    .getBlockBlobClient(resolveBlobName(destFile, destDir));
 
-        reject(error);
-      },
-    );
-  });
-};
+  await blockBlobClient.uploadFile(file);
 
-export const deleteFileFromAzureBlob = (
-  destFile: string,
-  destDir: string,
-): Promise<boolean> => {
-  assert(blobService, 'Azure Storage is not initialized.');
-
-  return new Promise((resolve, reject) => {
-    blobService.deleteBlobIfExists(destDir, destFile, (error, resultUpload) => {
-      if (!error) {
-        resolve(resultUpload);
-
-        return;
-      }
-
-      reject(error);
-    });
-  });
-};
-
-export const getURL = (
-  container: string,
-  blob?: string,
-  sasToken?: string,
-  primary?: boolean,
-  snapshotId?: string,
-): string => {
-  assert(blobService, 'Azure Storage is not initialized.');
-
-  return blobService.getUrl(container, blob, sasToken, primary, snapshotId);
+  return blockBlobClient.url;
 };
