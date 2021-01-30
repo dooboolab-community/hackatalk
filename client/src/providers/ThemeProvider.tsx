@@ -1,11 +1,19 @@
-import {Appearance, Platform} from 'react-native';
-import {Colors, ThemeType, colors, dark, light} from '../utils/theme';
+import {
+  Colors,
+  ThemeParam,
+  ThemeType,
+  colors,
+  createTheme,
+  dark as darkTheme,
+  light as lightTheme,
+} from '../utils/theme';
 import {
   DefaultTheme,
   ThemeProvider as OriginalThemeProvider,
 } from 'styled-components/native';
-import React, {ReactElement, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
+import {Appearance} from 'react-native';
 import createCtx from '../utils/createCtx';
 import {useMediaQuery} from 'react-responsive';
 
@@ -24,27 +32,40 @@ interface Context {
 const [useCtx, Provider] = createCtx<Context>();
 
 interface Props {
-  children?: ReactElement;
+  children?: React.ReactElement;
+  // Using initial ThemeType is essential while testing apps with consistent ThemeType
   initialThemeType?: ThemeType;
+  customTheme?: ThemeParam;
 }
 
-function ThemeProvider({children, initialThemeType}: Props): ReactElement {
+function ThemeProvider({
+  children,
+  initialThemeType,
+  customTheme,
+}: Props): React.ReactElement {
   const isMobile = useMediaQuery({maxWidth: 767});
   const isTablet = useMediaQuery({minWidth: 767, maxWidth: 992});
   const isDesktop = useMediaQuery({minWidth: 992});
 
-  const colorScheme = Appearance.getColorScheme();
-
-  const isDarkMode = Platform.select({
-    // web: window.matchMedia('(prefers-color-scheme: dark)').matches,
-    default: colorScheme === 'dark',
-  });
-
+  const scheme = Appearance.getColorScheme();
+  const isDarkMode = scheme === 'dark';
   const defaultThemeType = isDarkMode ? ThemeType.DARK : ThemeType.LIGHT;
 
   const [themeType, setThemeType] = useState(
     initialThemeType || defaultThemeType,
   );
+
+  useEffect(() => {
+    const listener = ({colorScheme}): void => {
+      setThemeType(colorScheme === 'light' ? ThemeType.LIGHT : ThemeType.DARK);
+    };
+
+    Appearance.addChangeListener(listener);
+
+    return function cleanup() {
+      Appearance.removeChangeListener(listener);
+    };
+  }, []);
 
   const changeThemeType = (): void => {
     const newThemeType =
@@ -53,7 +74,7 @@ function ThemeProvider({children, initialThemeType}: Props): ReactElement {
     setThemeType(newThemeType);
   };
 
-  const defaultTheme = themeType === ThemeType.DARK ? dark : light;
+  let theme: DefaultTheme;
 
   const media = {
     isMobile,
@@ -61,7 +82,18 @@ function ThemeProvider({children, initialThemeType}: Props): ReactElement {
     isDesktop,
   };
 
-  const theme: DefaultTheme = {...defaultTheme, ...media};
+  if (customTheme)
+    theme = createTheme(themeType, {
+      light: {
+        ...lightTheme,
+        ...customTheme.light,
+      },
+      dark: {
+        ...darkTheme,
+        ...customTheme.dark,
+      },
+    }) as DefaultTheme;
+  else theme = createTheme(themeType, {light: {}, dark: {}}) as DefaultTheme;
 
   return (
     <Provider
@@ -69,7 +101,7 @@ function ThemeProvider({children, initialThemeType}: Props): ReactElement {
         media,
         themeType,
         changeThemeType,
-        theme: defaultTheme,
+        theme,
         colors,
       }}>
       <OriginalThemeProvider theme={theme}>{children}</OriginalThemeProvider>

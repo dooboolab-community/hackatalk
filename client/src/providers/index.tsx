@@ -10,7 +10,7 @@ interface Props {
 
 // Add providers here
 const RootProvider = ({
-  initialThemeType = ThemeType.LIGHT,
+  initialThemeType,
   children,
 }: Props): React.ReactElement => {
   return (
