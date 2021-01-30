@@ -134,14 +134,6 @@ const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
     });
   }
 
-  if (!req.body.dir) {
-    res.status(400);
-
-    return res.json({
-      message: 'Directory name is missing.',
-    });
-  }
-
   if (!req.body.name) {
     res.status(400);
 
@@ -157,9 +149,9 @@ const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
     'hackatalk',
   );
 
-  res.status(200);
+  req.file.url = url;
 
-  res.json({url});
+  res.status(200).json(req.file);
 };
 
 router.use((req: ReqI18n, res, next) => {
