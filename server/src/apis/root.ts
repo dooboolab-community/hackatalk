@@ -134,17 +134,9 @@ const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
     });
   }
 
-  if (!req.body.name) {
-    res.status(400);
-
-    return res.json({
-      message: 'File name is missing.',
-    });
-  }
-
   const url = await uploadFileToAzureBlobFromStream(
     bufferToStream(req.file.buffer),
-    req.body.name,
+    req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
     req.body.dir,
     'hackatalk',
   );

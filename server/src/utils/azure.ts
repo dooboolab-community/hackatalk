@@ -22,7 +22,7 @@ const blobService =
 export function resolveBlobName(destFile: string, destDir: string): string {
   destDir = destDir ? `${destDir}/` : '';
 
-  return `${destDir}${destFile}_${new Date().getTime()}`;
+  return `${destDir}${destFile}}`;
 }
 
 /**
