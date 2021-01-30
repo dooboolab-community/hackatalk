@@ -77,3 +77,5 @@ GoogleService-Info.plist
 
 # watchman
 .watchman*
+
+.env

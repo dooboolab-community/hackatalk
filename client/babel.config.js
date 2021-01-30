@@ -13,6 +13,7 @@ module.exports = {
   ],
   plugins: [
     'babel-plugin-fbt-runtime',
+    ['module:react-native-dotenv'],
     [
       'babel-plugin-fbt',
       {

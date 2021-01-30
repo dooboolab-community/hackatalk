@@ -1,4 +1,3 @@
-import {AppProvider} from './AppProvider';
 import React from 'react';
 import {ThemeProvider} from './ThemeProvider';
 import {ThemeType} from '../utils/theme';
@@ -15,7 +14,7 @@ const RootProvider = ({
 }: Props): React.ReactElement => {
   return (
     <ThemeProvider initialThemeType={initialThemeType}>
-      <AppProvider>{children}</AppProvider>
+      {children}
     </ThemeProvider>
   );
 };
