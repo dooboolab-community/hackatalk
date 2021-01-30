@@ -49,8 +49,6 @@ interface Props {
 }
 
 function Intro(props: Props): React.ReactElement {
-  let timer: number;
-
   const {
     state: {user},
     setUser,
@@ -62,7 +60,7 @@ function Intro(props: Props): React.ReactElement {
   const onLogin = (): void => {
     setIsLoggingIn(true);
 
-    timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       const myUser: User = {
         displayName: 'dooboolab',
         age: 30,

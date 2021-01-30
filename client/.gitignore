@@ -70,3 +70,10 @@ ios/Pods/
 src/utils/i18n/fbt/.enum_manifest.json
 src/utils/i18n/fbt/.source_strings.json
 src/utils/i18n/fbt/.src_manifest.json
+
+# firebase
+google-services.json
+GoogleService-Info.plist
+
+# watchman
+.watchman*
