@@ -177,14 +177,17 @@ function Page(props: Props): ReactElement {
           <ContentsWrapper>
             <EditText
               testID="input-email"
-              errorTestID="error-email"
-              textStyle={{
-                color: theme.fontColor,
+              styles={{
+                input: {
+                  color: theme.text,
+                },
+                container: {
+                  borderBottomColor: theme.text,
+                },
               }}
-              borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
-              label={getString('EMAIL')}
+              labelText={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
               onChangeText={inputChangeHandlers.emailInput}
@@ -193,15 +196,18 @@ function Page(props: Props): ReactElement {
             />
             <EditText
               testID="input-password"
-              errorTestID="error-password"
-              textStyle={{
-                color: theme.fontColor,
+              styles={{
+                input: {
+                  color: theme.text,
+                },
+                container: {
+                  borderColor: theme.text,
+                },
               }}
-              borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               placeholder="********"
-              label={getString('PASSWORD')}
+              labelText={getString('PASSWORD')}
               value={password}
               onChangeText={inputChangeHandlers.passwordInput}
               style={{marginTop: 32}}
@@ -211,16 +217,19 @@ function Page(props: Props): ReactElement {
             />
             <EditText
               testID="input-confirm-password"
-              errorTestID="error-confirm-password"
-              textStyle={{
-                color: theme.fontColor,
+              styles={{
+                input: {
+                  color: theme.text,
+                },
+                container: {
+                  borderBottomColor: theme.text,
+                },
               }}
               placeholder="********"
-              label={getString('CONFIRM_PASSWORD')}
+              labelText={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
               style={{marginTop: 32}}
-              borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               errorText={errorConfirmPassword}
@@ -229,13 +238,16 @@ function Page(props: Props): ReactElement {
             />
             <EditText
               testID="input-name"
-              errorTestID="error-name"
-              textStyle={{
-                color: theme.fontColor,
+              styles={{
+                input: {
+                  color: theme.text,
+                },
+                container: {
+                  borderColor: theme.text,
+                },
               }}
-              label={getString('NAME')}
+              labelText={getString('NAME')}
               placeholder={getString('NAME_HINT')}
-              borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               value={name}
@@ -246,14 +258,17 @@ function Page(props: Props): ReactElement {
             />
             <EditText
               testID="input-status"
-              errorTestID="error-status"
-              textStyle={{
-                color: theme.fontColor,
+              styles={{
+                input: {
+                  color: theme.text,
+                },
+                container: {
+                  borderColor: theme.text,
+                },
               }}
-              borderColor={theme.font}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
-              label={getString('STATUS')}
+              labelText={getString('STATUS')}
               placeholder={getString('STATUS_MSG_HINT')}
               value={statusMessage}
               onChangeText={(text: string): void => {

@@ -18,7 +18,7 @@ const Container = styled.SafeAreaView`
 
 const StyledText = styled.Text`
   font-size: 16px;
-  color: ${({theme}): string => theme.font};
+  color: ${({theme}): string => theme.text};
 `;
 
 interface Props {
@@ -43,7 +43,7 @@ const Page: FC<Props> = ({navigation}) => {
           }}>
           <Text
             style={{
-              color: theme.font,
+              color: theme.text,
               fontSize: 14,
               fontWeight: 'bold',
             }}>

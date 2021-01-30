@@ -30,7 +30,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.secondaryText};
   margin-left: 2px;
 `;
 
@@ -44,7 +44,7 @@ const ItemContainer = styled.TouchableOpacity`
 `;
 
 const ItemLabel = styled.Text`
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   font-size: 16px;
   flex: 1;
 `;
@@ -102,11 +102,7 @@ function Settings(props: Props): React.ReactElement {
           {option.label}
         </ItemLabel>
         {isEmailUser ? (
-          <FontAwesome
-            name="angle-right"
-            size={24}
-            color={themeProps.fontColor}
-          />
+          <FontAwesome name="angle-right" size={24} color={themeProps.text} />
         ) : null}
       </ItemContainer>
     );
@@ -135,7 +131,7 @@ function Settings(props: Props): React.ReactElement {
   switch (user?.profile?.authType) {
     case AuthType.Google:
       signInInfoOption = {
-        icon: <SvgGoogle width={24} fill={theme.font} />,
+        icon: <SvgGoogle width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -146,7 +142,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Facebook:
       signInInfoOption = {
-        icon: <SvgFacebook width={24} fill={theme.font} />,
+        icon: <SvgFacebook width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -157,7 +153,7 @@ function Settings(props: Props): React.ReactElement {
       break;
     case AuthType.Apple:
       signInInfoOption = {
-        icon: <SvgApple width={24} fill={theme.font} />,
+        icon: <SvgApple width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');

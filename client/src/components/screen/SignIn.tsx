@@ -44,7 +44,6 @@ import styled, {css} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackNavigationProps} from '../navigation/AuthStackNavigator';
-import {EditTextInputType} from 'dooboo-ui/EditText';
 import type {SignInCreateNotificationMutation} from '../../__generated__/SignInCreateNotificationMutation.graphql';
 import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
@@ -72,7 +71,7 @@ const LogoWrapper = styled.View`
 
 const StyledLogoText = styled.Text`
   align-self: flex-start;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   font-size: 20px;
   font-weight: bold;
   margin-left: 6px;
@@ -427,16 +426,18 @@ function SignIn(props: Props): ReactElement {
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
+            type="row"
             testID="input-email"
-            errorTestID="error-email"
-            type={EditTextInputType.ROW}
-            textStyle={{
-              color: theme.fontColor,
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
             }}
             style={{marginBottom: 20}}
-            isRow={true}
-            label={getString('EMAIL')}
-            borderColor={theme.font}
+            labelText={getString('EMAIL')}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             placeholder="hello@example.com"
@@ -450,15 +451,17 @@ function SignIn(props: Props): ReactElement {
           />
           <EditText
             testID="input-password"
-            errorTestID="error-password"
-            type={EditTextInputType.ROW}
-            textStyle={{
-              color: theme.fontColor,
+            type="row"
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
             }}
             style={{marginBottom: 20}}
-            isRow={true}
-            label={getString('PASSWORD')}
-            borderColor={theme.font}
+            labelText={getString('PASSWORD')}
             focusColor={theme.focused}
             placeholder="******"
             placeholderTextColor={theme.placeholder}

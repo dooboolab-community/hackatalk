@@ -191,7 +191,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             style={{
               fontSize: 12,
               marginTop: 4,
-              color: theme.fontColor,
+              color: theme.text,
             }}>
             {friendArg.nickname || friendArg.name}
           </Text>

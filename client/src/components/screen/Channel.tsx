@@ -205,6 +205,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
 
   return (
     <FlatList
+      scrollIndicatorInsets={{right: 1}}
       style={{
         alignSelf: 'stretch',
       }}

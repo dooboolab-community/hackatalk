@@ -67,14 +67,14 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
 `;
 
 const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.secondaryText};
   max-width: 120px;
   border-width: 0.3px;
   border-color: ${({theme}): string => theme.lineColor};
@@ -138,7 +138,7 @@ function Shared({
                 right: 20,
               }}
               backgroundColor={theme.background}
-              checkColor={theme.font}
+              checkColor={theme.text}
               inActiveColor={theme.inactiveColor}
               activeColor={theme.checkBackground}
               hasChecked={checked}

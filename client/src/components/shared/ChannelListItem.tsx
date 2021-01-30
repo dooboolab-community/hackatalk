@@ -11,8 +11,8 @@ const StyledViewChatRoomListItem = styled.View`
   background-color: ${({theme}): string => theme.itemBackground};
   min-height: 92px;
   padding: 8px 0;
-  border-bottom-width: 1px;
-  border-color: ${({theme}): string => theme.underline};
+  border-bottom-width: 0.3px;
+  border-color: ${({theme}): string => theme.disabled};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +45,7 @@ const StyledViewTop = styled.View`
 const StyledTextDisplayName = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
 `;
 
 const StyledTextWrapper = styled.View`
@@ -71,14 +71,14 @@ const StyledViewBottom = styled.View`
 
 const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
   font-size: 12px;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   max-width: 200px;
   ${({lastMessageCnt}): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.fontSubColor};
+  color: ${({theme}): string => theme.secondaryText};
   text-align: right;
 `;
 

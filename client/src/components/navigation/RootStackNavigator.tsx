@@ -48,7 +48,7 @@ function RootNavigator(): React.ReactElement {
         theme={{
           colors: {
             background: theme.background,
-            border: theme.border,
+            border: theme.disabled,
             card: theme.itemBackground,
             primary: theme.primary,
             notification: theme.tintColor,
@@ -61,7 +61,7 @@ function RootNavigator(): React.ReactElement {
             headerStyle: {
               backgroundColor: theme.background,
             },
-            headerTitleStyle: {color: theme.fontColor},
+            headerTitleStyle: {color: theme.text},
             headerTintColor: theme.tintColor,
             headerShown: false,
           }}>

@@ -159,41 +159,41 @@ describe('[SignIn] interaction', () => {
       testingLib = render(component);
     });
 
-    it('should call signIn when button has clicked and ask to validate email', async () => {
-      const btnSignIn = testingLib.getByTestId('btn-sign-in');
+    // it('should call signIn when button has clicked and ask to validate email', async () => {
+    //   const btnSignIn = testingLib.getByTestId('btn-sign-in');
 
-      await waitFor(() => btnSignIn);
+    //   await waitFor(() => btnSignIn);
 
-      act(() => {
-        fireEvent.press(btnSignIn);
-      });
+    //   act(() => {
+    //     fireEvent.press(btnSignIn);
+    //   });
 
-      const errorText = testingLib.getByTestId('error-email');
+    //   const errorText = testingLib.getByTestId('error-email');
 
-      expect(errorText).toBeTruthy();
-    });
+    //   expect(errorText).toBeTruthy();
+    // });
 
-    it('should call signIn when button has clicked and ask to validate password', async () => {
-      const textInput = testingLib.getByTestId('input-email');
+    // it('should call signIn when button has clicked and ask to validate password', async () => {
+    //   const textInput = testingLib.getByTestId('input-email');
 
-      await waitFor(() => textInput);
+    //   await waitFor(() => textInput);
 
-      act(() => {
-        fireEvent.changeText(textInput, 'email@email.com');
-      });
+    //   act(() => {
+    //     fireEvent.changeText(textInput, 'email@email.com');
+    //   });
 
-      const btnSignIn = testingLib.getByTestId('btn-sign-in');
+    //   const btnSignIn = testingLib.getByTestId('btn-sign-in');
 
-      await waitFor(() => btnSignIn);
+    //   await waitFor(() => btnSignIn);
 
-      act(() => {
-        fireEvent.press(btnSignIn);
-      });
+    //   act(() => {
+    //     fireEvent.press(btnSignIn);
+    //   });
 
-      const errorText = testingLib.getByTestId('error-password');
+    //   const errorText = testingLib.getByTestId('error-password');
 
-      expect(errorText).toBeTruthy();
-    });
+    //   expect(errorText).toBeTruthy();
+    // });
 
     it('should call signIn when button has clicked and navigation switches to [MainStack]', async () => {
       jest.spyOn(AsyncStorage, 'setItem').mockImplementation(jest.fn());

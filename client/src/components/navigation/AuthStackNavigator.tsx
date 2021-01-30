@@ -50,7 +50,7 @@ function AuthNavigator(): ReactElement {
           borderBottomWidth: 0,
           elevation: 0,
         },
-        headerTintColor: theme.fontColor,
+        headerTintColor: theme.text,
       }}>
       <Stack.Screen
         name="SignIn"

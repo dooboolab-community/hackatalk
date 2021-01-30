@@ -288,11 +288,17 @@ const Screen: FC<Props> = () => {
           <EditText
             testID="input-nickname"
             style={{marginTop: 32}}
-            textStyle={{color: theme.fontColor}}
-            label={getString('NICKNAME')}
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
+            }}
+            labelText={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             value={nickname}
-            borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void => changeText('NICKNAME', text)}
@@ -300,11 +306,17 @@ const Screen: FC<Props> = () => {
           <EditText
             testID="input-name"
             style={{marginTop: 32}}
-            textStyle={{color: theme.fontColor}}
-            label={getString('NAME')}
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
+            }}
+            labelText={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
-            borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void => changeText('NAME', text)}
@@ -312,13 +324,17 @@ const Screen: FC<Props> = () => {
           <EditText
             testID="input-status"
             style={{marginTop: 24}}
-            textStyle={{
-              color: theme.fontColor,
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
             }}
-            label={getString('STATUS_MSG')}
+            labelText={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
-            borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void =>

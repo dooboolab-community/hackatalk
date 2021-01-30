@@ -387,7 +387,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       borderColor={theme.lineColor}
       onEndReached={onEndReached}
       backgroundColor={theme.background}
-      fontColor={theme.fontColor}
+      fontColor={theme.text}
       keyboardOffset={Platform.select({
         ios: Constants.statusBarHeight + 40,
         android: Constants.statusBarHeight + 52,
@@ -484,7 +484,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             <Ionicons
               name="ios-camera"
               size={36}
-              color={theme ? theme.fontColor : '#3d3d3d'}
+              color={theme ? theme.text : '#3d3d3d'}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -501,7 +501,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             <Ionicons
               name="md-images"
               size={36}
-              color={theme ? theme.fontColor : '#3d3d3d'}
+              color={theme ? theme.text : '#3d3d3d'}
             />
           </TouchableOpacity>
         </View>
