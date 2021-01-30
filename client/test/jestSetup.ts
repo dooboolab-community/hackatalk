@@ -1,4 +1,4 @@
-import { GlobalWithFetchMock } from 'jest-fetch-mock';
+import {GlobalWithFetchMock} from 'jest-fetch-mock';
 // @ts-ignore
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 
@@ -34,7 +34,7 @@ jest.mock('expo-constants', () => ({
   },
 }));
 
-jest.mock('src/components/shared/SocialSignInButton', () => 'test');
+jest.mock('src/components/fragments/SocialSignInButton', () => 'test');
 
 jest.mock('react-native-scalable-image', () => 'test');
 

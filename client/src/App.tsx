@@ -29,7 +29,7 @@ import ComponentWrapper from './utils/ComponentWrapper';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {LoadingIndicator} from 'dooboo-ui';
-import RootNavigator from './components/navigation/RootStackNavigator';
+import RootNavigator from './components/navigations/RootStackNavigator';
 import {User} from './types/graphql';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
