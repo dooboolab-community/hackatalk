@@ -13,11 +13,8 @@ module.exports = {
   ],
   plugins: [
     'macros',
-    'inline-dotenv',
-    'transform-inline-environment-variables',
     ['relay', {artifactDirectory: './src/__generated__'}],
     ['babel-plugin-styled-components'],
-    'babel-plugin-fbt-runtime',
     ['module:react-native-dotenv'],
     [
       'babel-plugin-fbt',
@@ -26,5 +23,6 @@ module.exports = {
         extraOptions: {__self: true},
       },
     ],
+    'babel-plugin-fbt-runtime',
   ],
 };

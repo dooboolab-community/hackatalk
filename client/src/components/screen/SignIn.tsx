@@ -10,14 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Animated, {
-  block,
-  clockRunning,
-  cond,
-  not,
-  set,
-  useCode,
-} from 'react-native-reanimated';
 import {AuthPayload, AuthType, User} from '../../types/graphql';
 import {Button, EditText} from 'dooboo-ui';
 import {
@@ -40,7 +32,6 @@ import {
   ThemeType,
   useTheme as useThemeContext,
 } from '../../providers/ThemeProvider';
-import {delay, spring, useClock, useValue} from 'react-native-redash';
 import {graphql, useMutation} from 'react-relay/hooks';
 import {showAlertForError, validateEmail} from '../../utils/common';
 import styled, {css} from 'styled-components/native';
@@ -53,10 +44,7 @@ import SocialSignInButton from '../shared/SocialSignInButton';
 import StatusBar from '../shared/StatusBar';
 import {getString} from '../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
-
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
-  TouchableOpacity,
-);
+import {withScreen} from '../../utils/wrapper';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -351,79 +339,26 @@ function SignIn(props: Props): ReactElement {
   }, []);
 
   const logoSize = 80;
-  const logoTransformAnimValue = useValue(0);
   const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
-
-  const logoInitialPosition = {
-    x: (screenWidth - logoSize) * 0.5,
-    y: screenHeight * 0.5 - logoSize,
-  };
-
-  const logoFinalPosition = {
-    x: 30,
-    y: 80,
-  };
-
-  const logoScale = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2, 1],
-  });
-
-  const logoPositionX = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [logoInitialPosition.x, logoFinalPosition.x],
-  });
-
-  const logoPositionY = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [logoInitialPosition.y, logoFinalPosition.y],
-  });
-
-  const animating = useValue<number>(0);
-  const clock = useClock();
-
-  useCode(() => block([delay(set(animating, 1), 100)]), []);
-
-  useCode(
-    () =>
-      block([
-        cond(animating, [
-          set(
-            logoTransformAnimValue,
-            spring({
-              clock,
-              to: 1,
-              from: 0,
-              config: {mass: 1.5, stiffness: 36},
-            }),
-          ),
-        ]),
-        cond(not(clockRunning(clock)), set(animating, 0)),
-      ]),
-    [],
-  );
 
   return (
     <Container>
       <StatusBar />
 
       <StyledScrollView>
-        <AnimatedTouchableOpacity
+        <TouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
           // @ts-ignore
           style={{
             zIndex: 15,
             position: 'absolute',
-            left: logoPositionX,
-            top: logoPositionY,
-            transform: [{scale: logoScale}],
           }}>
           <Image
             style={{width: logoSize, height: logoSize, resizeMode: 'cover'}}
             source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
           />
-        </AnimatedTouchableOpacity>
+        </TouchableOpacity>
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
@@ -606,4 +541,4 @@ function SignIn(props: Props): ReactElement {
   );
 }
 
-export default SignIn;
+export default withScreen(SignIn);
