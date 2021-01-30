@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[GiftedChatInput] render renders without crashing 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Array [
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+      ],
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    ListEmptyComponent={<Component />}
+    ListHeaderComponent={
+      <Component
+        style={
+          Object {
+            "height": 28,
+          }
+        }
+      />
+    }
+    contentContainerStyle={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    invertStickyHeaders={true}
+    inverted={true}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Array [
+        Object {
+          "transform": Array [
+            Object {
+              "scaleY": -1,
+            },
+          ],
+        },
+        Object {
+          "alignSelf": "stretch",
+        },
+      ]
+    }
+    updateCellsBatchingPeriod={50}
+    viewabilityConfigCallbackPairs={Array []}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 28,
+            }
+          }
+        />
+      </View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "scaleY": -1,
+              },
+            ],
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#d3d8e8",
+          "borderTopWidth": 0.3,
+          "flexBasis": 0,
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "space-between",
+          "maxHeight": 56,
+          "maxWidth": "100%",
+          "minHeight": 56,
+          "paddingLeft": 8,
+          "paddingRight": 8,
+          "width": "100%",
+        },
+        Object {
+          "backgroundColor": undefined,
+          "borderColor": undefined,
+        },
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      defaultValue=""
+      multiline={true}
+      onChangeText={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      rejectResponderTermination={true}
+      style={
+        Array [
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "paddingBottom": 4,
+            "paddingLeft": 48,
+          },
+          Object {
+            "backgroundColor": undefined,
+            "color": undefined,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "marginRight": 10,
+            "paddingBottom": 5,
+            "paddingTop": 5,
+          },
+        ]
+      }
+      testID="input-chat"
+      underlineColorAndroid="transparent"
+      value=""
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "left": 10,
+          "minWidth": 20,
+          "opacity": 1,
+          "position": "absolute",
+        }
+      }
+      testID="touch-menu"
+    >
+      <View />
+    </View>
+    <View
+      style={
+        Object {
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "marginVertical": 8,
+        }
+      }
+    >
+      <View />
+    </View>
+  </View>
+</View>
+`;

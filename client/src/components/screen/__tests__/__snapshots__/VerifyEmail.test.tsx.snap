@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "flexBasis": 0,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+        "paddingBottom": 0,
+        "paddingLeft": 24,
+        "paddingRight": 24,
+        "paddingTop": 0,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#2E2E2E",
+          "fontSize": 18,
+          "lineHeight": 28,
+          "textAlign": "center",
+        },
+        Object {
+          "marginBottom": 24,
+        },
+      ]
+    }
+  >
+    Verification link has been sent. Please check your email. If you have not received an email please check out your spam inbox.
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#1E6EFA",
+          "fontSize": 24,
+        },
+      ]
+    }
+  >
+    test@email.com
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginTop": 80,
+        "opacity": 1,
+      }
+    }
+    testID="btn-next"
+  />
+</View>
+`;

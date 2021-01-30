@@ -6,6 +6,8 @@ PODS:
   - EXAdsAdMob (9.0.0):
     - Google-Mobile-Ads-SDK (= 7.55.1)
     - UMCore
+  - EXAppleAuthentication (3.0.0):
+    - UMCore
   - EXApplication (3.0.0):
     - UMCore
   - EXConstants (10.0.1):
@@ -18,6 +20,9 @@ PODS:
   - EXFileSystem (9.3.0):
     - UMCore
     - UMFileSystemInterface
+  - EXFont (9.0.0):
+    - UMCore
+    - UMFontInterface
   - EXImageLoader (1.3.0):
     - React-Core
     - UMCore
@@ -32,12 +37,16 @@ PODS:
     - UMPermissionsInterface
   - EXLinearGradient (9.0.0):
     - UMCore
+  - EXLocalization (10.0.0):
+    - UMCore
   - EXNotifications (0.9.0):
     - UMCore
     - UMPermissionsInterface
   - EXPermissions (11.0.0):
     - UMCore
     - UMPermissionsInterface
+  - EXRandom (11.0.0):
+    - React-Core
   - EXScreenOrientation (3.0.0):
     - React-Core
     - UMCore
@@ -394,6 +403,8 @@ PODS:
     - Sentry (= 6.0.9)
   - RNSVG (12.1.0):
     - React
+  - RNVectorIcons (8.0.0):
+    - React-Core
   - Sentry (6.0.9):
     - Sentry/Core (= 6.0.9)
   - Sentry/Core (6.0.9)
@@ -421,17 +432,21 @@ PODS:
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXAdsAdMob (from `../node_modules/expo-ads-admob/ios`)
+  - EXAppleAuthentication (from `../node_modules/expo-apple-authentication/ios`)
   - EXApplication (from `../node_modules/expo-notifications/node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXCrypto (from `../node_modules/expo-crypto/ios`)
   - EXDevice (from `../node_modules/expo-device/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
+  - EXFont (from `../node_modules/expo-font/ios`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - EXImageManipulator (from `../node_modules/expo-image-manipulator/ios`)
   - EXImagePicker (from `../node_modules/expo-image-picker/ios`)
   - EXLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
+  - EXLocalization (from `../node_modules/expo-localization/ios`)
   - EXNotifications (from `../node_modules/expo-notifications/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
+  - EXRandom (from `../node_modules/expo-random/ios`)
   - EXScreenOrientation (from `../node_modules/expo-screen-orientation/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - EXUpdates (from `../node_modules/expo-updates/ios`)
@@ -491,6 +506,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - UMAppLoader (from `../node_modules/unimodules-app-loader/ios`)
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
@@ -532,6 +548,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXAdsAdMob:
     :path: "../node_modules/expo-ads-admob/ios"
+  EXAppleAuthentication:
+    :path: "../node_modules/expo-apple-authentication/ios"
   EXApplication:
     :path: "../node_modules/expo-notifications/node_modules/expo-application/ios"
   EXConstants:
@@ -542,6 +560,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-device/ios"
   EXFileSystem:
     :path: "../node_modules/expo-file-system/ios"
+  EXFont:
+    :path: "../node_modules/expo-font/ios"
   EXImageLoader:
     :path: "../node_modules/expo-image-loader/ios"
   EXImageManipulator:
@@ -550,10 +570,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-image-picker/ios"
   EXLinearGradient:
     :path: "../node_modules/expo-linear-gradient/ios"
+  EXLocalization:
+    :path: "../node_modules/expo-localization/ios"
   EXNotifications:
     :path: "../node_modules/expo-notifications/ios"
   EXPermissions:
     :path: "../node_modules/expo-permissions/ios"
+  EXRandom:
+    :path: "../node_modules/expo-random/ios"
   EXScreenOrientation:
     :path: "../node_modules/expo-screen-orientation/ios"
   EXSplashScreen:
@@ -630,6 +654,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@sentry/react-native"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   UMAppLoader:
     :path: "../node_modules/unimodules-app-loader/ios"
   UMBarCodeScannerInterface:
@@ -665,17 +691,21 @@ SPEC CHECKSUMS:
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   EXAdsAdMob: c6ff22c4155bbf712acd286741f948ce24ed72b8
+  EXAppleAuthentication: f808549b4f641a2915b1c892b4b21b77f5998e8b
   EXApplication: e3a06b6d81f94e526f029a57b2121d6cde044004
   EXConstants: d9483a8fe0a963dd7ee3389f371303773e6ecd37
   EXCrypto: 77fb158996b02292902cc6c4fef59b21c663c673
   EXDevice: 101eddd9bc28faba8246ba0c499a65a4821a6b5e
   EXFileSystem: 0e4974ab77bff04cda68d2886d070cbe64b93a6b
+  EXFont: ec06a9fb8f0d558fb7afa8540f3d932622fa85d6
   EXImageLoader: f96ec9992733a4224418bbd9382e5485c8948944
   EXImageManipulator: f1c9cddaf6aa42dbfe9d2485d29eca374f45d454
   EXImagePicker: 50e8688af1278af72d3235753a825a49465b4a84
   EXLinearGradient: ffc008d7ddcce356534cfdf9bd7fbcdedec4c438
+  EXLocalization: 0470b3cb25dac6cdbe6f12ca15408134dba03c91
   EXNotifications: 3a88b7b898fa842cae3c5a895a255fab554bc0c8
   EXPermissions: 015f1129f80266f6c38e3691102546232b641614
+  EXRandom: 4f71ea72eaeea674c4597e536e3014b4387af21a
   EXScreenOrientation: ab2546170e1d6ea7c8ac01a24bc4cc2da7af67d1
   EXSplashScreen: ab5984afcca91e0af6b3138f01a8c47dc4955c51
   EXUpdates: 28368049118dbe4ceaf4422ec72e0ad5f770df1f
@@ -727,6 +757,7 @@ SPEC CHECKSUMS:
   RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
   RNSentry: 6b46b6fc1d715a378fbaa5d7d43bc9ce99b500e5
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNVectorIcons: f67a1abce2ec73e62fe4606e8110e95a832bc859
   Sentry: 388c9dc093b2fd3a264466a5c5b21e25959610a9
   UMAppLoader: 92d044af52626af3d81a69796ad666fc7a9a7d78
   UMBarCodeScannerInterface: 3f6c1b09ef4b867ce752b8c0b3893bcf9cd85f32

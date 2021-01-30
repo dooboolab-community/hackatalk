@@ -1,4 +1,5 @@
 import 'moment/locale/ko';
+import 'expo-asset';
 
 import * as Sentry from 'sentry-expo';
 

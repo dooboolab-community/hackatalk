@@ -1,0 +1,454 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+scalar AlertMode
+
+scalar Auth
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+enum AuthType {
+  email
+  facebook
+  google
+  apple
+}
+
+type BlockedUser {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  blockedUser: User
+}
+
+type Channel {
+  id: String!
+  channelType: ChannelType!
+  name: String
+  lastMessageId: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+
+  """Get latest message sent to the channel."""
+  lastMessage: Message
+  messages(
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): MessageConnection
+
+  """
+  Get memberships assigned to channel. If excludeMe is set, it will not return authenticated user.
+  """
+  memberships(excludeMe: Boolean): [Membership!]
+}
+
+type ChannelConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [ChannelEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+input ChannelCreateInput {
+  channelType: ChannelType
+  name: String
+  userIds: [String!]
+}
+
+type ChannelEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: Channel
+}
+
+scalar ChannelType
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format
+outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+scalar DateTime
+
+type Friend {
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  friend: User
+}
+
+scalar Gender
+
+type Membership {
+  alertMode: AlertMode
+  membershipType: MembershipType
+  isVisible: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
+  user: User
+  channel: Channel
+}
+
+scalar MembershipType
+
+type Message {
+  id: String!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String]
+  fileUrls: [String]
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  channel: Channel
+  sender: User
+  replies: [Reply]
+  reactions: [Reaction]
+}
+
+type MessageConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [MessageEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+input MessageCreateInput {
+  messageType: MessageType
+  text: String
+  imageUrls: [String!]
+  fileUrls: [String!]
+}
+
+type MessageEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: Message
+}
+
+scalar MessageType
+
+type Mutation {
+  signUp(user: UserCreateInput!): User!
+  signInEmail(email: String!, password: String!): AuthPayload!
+  signInWithFacebook(accessToken: String!): AuthPayload!
+  signInWithApple(accessToken: String!): AuthPayload!
+  signInWithGoogle(accessToken: String!): AuthPayload!
+  sendVerification(email: String!): Boolean!
+
+  """
+  Update user profile. Becareful that nullable fields will be updated either.
+  """
+  updateProfile(user: UserUpdateInput!): User
+  findPassword(email: String!): Boolean
+  changeEmailPassword(password: String!, newPassword: String!): Boolean
+  createNotification(token: String!, device: String, os: String): Notification
+  deleteNotification(token: String!): Notification
+
+  """
+  Provide `dir` optionally, Upload single file to the server with graphql-upload
+  """
+  singleUpload(file: Upload, dir: String): String
+  addFriend(friendId: String!): Friend
+  deleteFriend(friendId: String!): Friend
+
+  """
+  Creates channel of [ChannelType].
+    The private channel is unique by the unique members while
+    the public channel can be created by each request.
+    The public channel is something like an open chat while
+    private channel is all kinds of direct messages.
+    The [Membership] of private channel will be identical to all users which is (member).
+    
+    <Optional> The channel can be created with message of [MessageType].
+    Please becareful when creating message and provide proper [MessageType].
+    This query will return [Channel] with [Membership] without [Message] that has just created.
+    
+  """
+  createChannel(channel: ChannelCreateInput!, message: MessageCreateInput): Channel
+
+  """Find or create channel associated to peer user id."""
+  findOrCreatePrivateChannel(peerUserIds: [String!]!): Channel
+
+  """
+  User leaves [public] channel.
+    Users cannot leave the [private] channel
+    and rather this is going to be invisible in [Membership].
+    This will reset to true when new [Message] is created to channel.
+    User will leave the [public] channel and membership will be removed.
+    
+  """
+  leaveChannel(channelId: String!): Membership
+
+  """Adds some users into [public] channel."""
+  inviteUsersToChannel(channelId: String!, userIds: [String!]!): Channel
+
+  """Removes some users from [public] channel."""
+  kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel
+  createMessage(channelId: String!, message: MessageCreateInput!): Message
+  deleteMessage(id: String!): Message
+  createBlockedUser(blockedUserId: String!): BlockedUser
+  deleteBlockedUser(blockedUserId: String!): BlockedUser
+  createReport(reportedUserId: String!, report: String!): Report
+}
+
+type Notification {
+  id: Int!
+  token: String!
+  device: String
+  os: String
+  user: User!
+  createdAt: DateTime
+}
+
+"""
+PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+"""
+type PageInfo {
+  """
+  Used to indicate whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Used to indicate whether more edges exist prior to the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  The cursor corresponding to the first nodes in edges. Null if the connection is empty.
+  """
+  startCursor: String
+
+  """
+  The cursor corresponding to the last nodes in edges. Null if the connection is empty.
+  """
+  endCursor: String
+}
+
+type Profile {
+  socialId: String
+  authType: AuthType
+}
+
+type Query {
+  """Fetch user profile"""
+  user(id: String!): User
+
+  """
+  Query users with relay pagination. This is filterable but it will not return user itself and the blocked users.
+  """
+  users(
+    searchText: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): UserConnection
+
+  """Fetch current user profile when authenticated."""
+  me: User
+  notifications(userId: String!): [Notification]
+  friends(
+    searchText: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): UserConnection
+
+  """Get single channel"""
+  channel(channelId: String!): Channel
+  channels(
+    withMessage: Boolean
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): ChannelConnection
+
+  """Get single message"""
+  message(id: String!): Message
+  messages(
+    channelId: String!
+    searchText: String
+
+    """Returns the first n elements from the list."""
+    first: Int
+
+    """Returns the elements in the list that come after the specified cursor"""
+    after: String
+
+    """Returns the last n elements from the list."""
+    last: Int
+
+    """Returns the elements in the list that come before the specified cursor"""
+    before: String
+  ): MessageConnection
+
+  """Arguments are not needed. Only find blocked users of signed in user"""
+  blockedUsers: [User]
+  reports(userId: String!): [Report]
+}
+
+type Reaction {
+  id: Int!
+  value: String!
+}
+
+type Reply {
+  id: Int!
+  messageType: MessageType!
+  text: String
+  imageUrls: [String!]!
+  fileUrls: [String!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  sender: User!
+}
+
+type Report {
+  report: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  user: User
+  reportedUser: User
+}
+
+type Subscription {
+  userSignedIn(userId: String!): User
+  userUpdated(userId: String!): User
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  id: String!
+  email: String
+  name: String
+  nickname: String
+  thumbURL: String
+  photoURL: String
+  birthday: DateTime
+  gender: Gender
+  phone: String
+  statusMessage: String
+  verified: Boolean
+  lastSignedIn: DateTime
+  isOnline: Boolean
+  profile: Profile
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  notifications: [Notification]
+
+  """Check if the user is blocked by the user who have signed in."""
+  hasBlocked: Boolean
+}
+
+type UserConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [UserEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+input UserCreateInput {
+  email: String!
+  password: String!
+  name: String
+  nickname: String
+  thumbURL: String
+  photoURL: String
+  birthday: Date
+  gender: Gender
+  phone: String
+  statusMessage: String
+}
+
+type UserEdge {
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor"""
+  cursor: String!
+
+  """https://facebook.github.io/relay/graphql/connections.htm#sec-Node"""
+  node: User
+}
+
+input UserUpdateInput {
+  email: String
+  name: String
+  nickname: String
+  thumbURL: String
+  photoURL: String
+  birthday: Date
+  phone: String
+  statusMessage: String
+  gender: Gender
+}
+

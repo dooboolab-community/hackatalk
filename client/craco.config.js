@@ -9,6 +9,7 @@ module.exports = {
           extraOptions: {__self: true},
         },
       ],
+      '@babel/plugin-proposal-class-properties',
       'babel-plugin-fbt-runtime',
     ],
   },

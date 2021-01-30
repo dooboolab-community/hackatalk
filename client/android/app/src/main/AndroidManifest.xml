@@ -8,6 +8,8 @@
     android:allowBackup="false"
     android:theme="@style/AppTheme"
   >
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://exp.host/@dooboolab/HackaTalk" />
+    <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="40.0.0" />
     <meta-data
       android:name="com.google.android.gms.ads.APPLICATION_ID"
       android:value="ca-app-pub-7837089095803162~5303560311"/>

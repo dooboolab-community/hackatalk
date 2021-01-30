@@ -1,10 +1,16 @@
 import 'styled-components';
-import type {Theme} from './utils/theme';
+
+import {DoobooTheme} from '@dooboo-ui/theme';
+import {Theme} from './theme';
+
+type AllTheme = Theme & DoobooTheme;
+
+interface CustomTheme extends AllTheme {
+  background: string;
+}
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends Theme {
-    isMobile?: boolean;
-    isTablet?: boolean;
-    isDesktop?: boolean;
+  export interface DefaultTheme extends CustomTheme {
+    background: string;
   }
 }
