@@ -270,6 +270,14 @@ export const findPassword = mutationField('findPassword', {
     if (!email || !validateEmail(email))
       throw ErrorEmailNotValid('Email is not valid');
 
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) throw ErrorEmailNotValid(`User with this email doesn't exist.`);
+
     const verificationToken = sign(
       {email, type: 'findPassword'},
       ctx.appSecretEtc,
