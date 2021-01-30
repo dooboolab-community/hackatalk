@@ -1,34 +1,24 @@
-import {mutationField, stringArg} from 'nexus';
+import {arg, mutationField, nonNull, stringArg} from 'nexus';
 
+import {Upload} from '../../models';
+import {nanoid} from 'nanoid';
 import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
 
 export const singleUpload = mutationField('singleUpload', {
-  type: 'String',
-
-  description:
-    'Provide `dir` optionally, Upload single file to the server with graphql-upload',
-
+  type: nonNull('String'),
   args: {
-    file: 'Upload',
-    dir: stringArg(),
+    file: nonNull(arg({type: Upload})),
+    dir: nonNull(stringArg()),
   },
+  resolve: async (_parent, {file, dir}) => {
+    const {createReadStream} = await file;
+    const stream = createReadStream();
 
-  resolve: async (parent, args) => {
-    const {STORAGE_ENDPOINT} = process.env;
-    const container = 'hackatalk';
-    const dir = args.dir ? `${args.dir}/` : '';
-
-    const file = await args.file;
-    const {filename} = file;
-
-    const stream = file.createReadStream();
-
-    try {
-      await uploadFileToAzureBlobFromStream(stream, filename, dir, container);
-    } catch (err) {
-      throw new Error(err);
-    }
-
-    return `${STORAGE_ENDPOINT}/${container}/${dir}${filename}`;
+    return uploadFileToAzureBlobFromStream(
+      stream,
+      nanoid(),
+      dir ?? '',
+      'hackatalk',
+    );
   },
 });

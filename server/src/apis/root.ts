@@ -1,13 +1,12 @@
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
-import {MulterAzureStorage} from 'multer-azure-blob-storage';
 import {Router} from 'express';
-import {getURL} from '../utils/azure';
 import multer from 'multer';
-import {nanoid} from 'nanoid';
 import {prisma} from '../context';
 import qs from 'querystring';
+import stream from 'stream';
+import {uploadFileToAzureBlobFromStream} from '../utils/azure';
 import {verify} from 'jsonwebtoken';
 
 interface VerificationToken {
@@ -15,23 +14,11 @@ interface VerificationToken {
   type: 'verifyEmail' | 'findPassword';
 }
 
-const {
-  STORAGE_ACCOUNT,
-  STORAGE_KEY,
-  STORAGE_CONNECTION_STRING,
-  JWT_SECRET,
-} = process.env;
+const {JWT_SECRET} = process.env;
 
-const resolveBlobName = (req): Promise<string> => {
-  return new Promise((resolve) => {
-    const dir: string = req.body.dir ? `${req.body.dir}/` : '';
-    const blobName = `${dir}${nanoid()}_${new Date().getTime()}`;
-
-    const name: string = req.body.name ? `${dir}${req.body.name}` : blobName;
-
-    resolve(name);
-  });
-};
+export function resolveBlobName(destFile: string, destDir: string): string {
+  return `${destDir}_${new Date().getTime()}_${destFile}`;
+}
 
 // const resolveMetadata = (req, file) => {
 //   return new Promise((resolve, reject) => {
@@ -41,22 +28,23 @@ const resolveBlobName = (req): Promise<string> => {
 //   });
 // };
 
-const azureStorage = new MulterAzureStorage({
-  connectionString: STORAGE_CONNECTION_STRING,
-  accessKey: STORAGE_KEY,
-  accountName: STORAGE_ACCOUNT,
-  containerName: 'hackatalk',
-  blobName: resolveBlobName,
-  // metadata: resolveMetadata,
-  containerAccessLevel: 'blob',
-  urlExpirationTime: 60,
-});
-
-const upload = multer({
-  storage: azureStorage,
-});
-
 const router = Router();
+const storage = multer.memoryStorage();
+const upload = multer({storage});
+
+function bufferToStream(buffer: Buffer): stream.Readable {
+  const duplexStream = new stream.Duplex();
+
+  duplexStream.push(buffer);
+  duplexStream.push(null);
+
+  return duplexStream;
+}
+
+router.use((req: ReqI18n, res, next) => {
+  req.appSecret = process.env.JWT_SECRET;
+  next();
+});
 
 const verifyEmailToken = (
   token: string,
@@ -128,51 +116,50 @@ const onVerifyEmail = async (req: ReqI18n, res): Promise<void> => {
 };
 
 const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
-  interface Result {
-    message: string | unknown;
-    status: number;
-    url?: string;
-  }
-
-  const result: Result = {
-    message: '',
-    status: 0,
-  };
-
   const token = getToken(req);
 
-  if (!token) {
-    result.message = 'User has not signed in.';
-    result.status = 401;
+  if (token === null) {
+    res.status(401);
 
-    return res.json(result);
+    return res.json({
+      message: 'User has not signed in.',
+    });
   }
 
-  if (!req.file) {
-    result.message = 'File is missing.';
-    result.status = 400;
+  if (req.file === undefined) {
+    res.status(400);
 
-    return res.json(result);
+    return res.json({
+      message: 'File is missing.',
+    });
   }
 
-  if (req.file.size === 0) {
-    result.message = 'File size is zero.';
-    result.status = 400;
+  if (!req.body.dir) {
+    res.status(400);
 
-    return res.json(result);
+    return res.json({
+      message: 'Directory name is missing.',
+    });
   }
 
-  const actualURL = getURL(
+  if (!req.body.name) {
+    res.status(400);
+
+    return res.json({
+      message: 'File name is missing.',
+    });
+  }
+
+  const url = await uploadFileToAzureBlobFromStream(
+    bufferToStream(req.file.buffer),
+    req.body.name,
+    req.body.dir,
     'hackatalk',
-    req.file.blobName,
-    req.file.sasToken,
-    true,
-    req.file.snapshotId,
   );
 
-  req.file.url = actualURL;
+  res.status(200);
 
-  res.status(200).json(req.file);
+  res.json({url});
 };
 
 router.use((req: ReqI18n, res, next) => {
