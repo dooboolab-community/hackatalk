@@ -91,6 +91,7 @@
   "DONE": "Done",
   "NO_FRIEND": "No friends",
   "NO_FRIEND_BODY": "You currently do not have any friends. Please search for users to add to your friend list.",
+  "URL_IS_NULL": "Url is not received from the file",
   "FAILED_GET_PUSH_NOTI": "You have blocked the alert for HackaTalk. Please allow it to receive chattings immediately.",
   "PHOTO": "Photo",
   "LICENSE_AGREEMENT": "License Agreement",

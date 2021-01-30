@@ -91,6 +91,7 @@
   "DONE": "완료",
   "NO_FRIEND": "친구 없음",
   "NO_FRIEND_BODY": "친구가 없습니다. 사용자를 검색 후 친구 리스트에 추가한 후 다시 이용해주세요.",
+  "URL_IS_NULL": "Url is not received from the file",
   "FAILED_GET_PUSH_NOTI": "해커톡의 알림을 허용하지 않으셨습니다. 채팅 메시지를 바로 받아보시려면 알림을 허용해주셔야 합니다.",
   "PHOTO": "사진",
   "LICENSE_AGREEMENT": "라이센스 계약",
