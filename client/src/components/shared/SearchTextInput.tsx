@@ -16,7 +16,7 @@ const StyledTextInputWrapper = styled.View`
 const StyledTextInput = styled.TextInput`
   width: 100%;
   padding: 12px 0;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   background-color: ${({theme}): string => theme.searchBackground};
   border-radius: 4px;
   padding-left: 40px;
@@ -51,7 +51,7 @@ function SearchTextInput(props: Props): ReactElement {
         style={style}
         value={value}
         underlineColorAndroid="transparent" // android fix
-        selectionColor={theme.fontColor}
+        selectionColor={theme.text}
         autoCapitalize="none"
         autoCorrect={false}
         multiline={false}

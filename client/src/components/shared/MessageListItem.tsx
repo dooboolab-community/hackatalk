@@ -44,19 +44,19 @@ const StyledPeerTextMessage = styled.Text`
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({theme}): string => theme.border};
+  border-color: ${({theme}): string => theme.disabled};
   border-width: 1px;
 `;
 
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   margin-bottom: 2px;
 `;
 
 const StyledTextPeerDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   margin-right: 20px;
   margin-top: 4px;
 `;
@@ -72,7 +72,7 @@ const WrapperMy = styled.View`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.fontColor};
+  color: ${({theme}): string => theme.text};
   margin-top: 4px;
   margin-right: 20px;
 `;
@@ -161,7 +161,7 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
             <ImageSender
               thumbURL={sender?.thumbURL}
               isSamePeerMsg={!!isSamePeerMsg}
-              fontColor={theme.fontColor}
+              fontColor={theme.text}
             />
           </TouchableOpacity>
         </View>

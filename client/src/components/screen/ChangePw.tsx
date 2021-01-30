@@ -26,6 +26,10 @@ const InnerContainer = styled.View`
   padding: 0 24px;
   flex: 1;
   width: 100%;
+
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
@@ -148,13 +152,21 @@ function ChangePw(props: Props): ReactElement {
           <EditText
             key="input-pw"
             testID="input-pw"
+            styles={{
+              input: {
+                color: theme.text,
+                fontSize: 16,
+              },
+              container: {
+                height: 80,
+              },
+            }}
             style={{marginTop: 40}}
-            borderColor={theme.font}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
-            label={getString('PASSWORD_CURRENT')}
+            labelText={getString('PASSWORD_CURRENT')}
             value={currentPw}
             placeholder="******"
           />
@@ -163,11 +175,16 @@ function ChangePw(props: Props): ReactElement {
             testID="new-pw-input"
             style={{marginTop: 20}}
             secureTextEntry
-            borderColor={theme.font}
+            styles={{
+              input: {
+                color: theme.text,
+                fontSize: 16,
+              },
+            }}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setNewPw(pw)}
-            label={getString('PASSWORD_NEW')}
+            labelText={getString('PASSWORD_NEW')}
             value={newPw}
             placeholder="******"
           />
@@ -176,11 +193,20 @@ function ChangePw(props: Props): ReactElement {
             testID="input-validation"
             style={{marginTop: 20}}
             secureTextEntry
-            borderColor={theme.font}
+            styles={{
+              container: {
+                height: 20,
+                paddingVertical: 20,
+              },
+              input: {
+                color: theme.text,
+                fontSize: 16,
+              },
+            }}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
-            label={getString('PASSWORD_NEW_REPEAT')}
+            labelText={getString('PASSWORD_NEW_REPEAT')}
             value={confirmPw}
             placeholder="******"
           />
@@ -194,11 +220,11 @@ function ChangePw(props: Props): ReactElement {
               backgroundColor: theme.btnPrimary,
               borderWidth: 0,
               height: 48,
-              width: '100%',
-              paddingHorizontal: 20,
             },
             text: {
-              color: theme.btnPrimaryFont,
+              marginHorizontal: 60,
+              color: theme.contrastText,
+              textAlign: 'center',
               fontSize: 16,
             },
           }}

@@ -103,21 +103,25 @@ function ReportScreen(props: Props): ReactElement {
           <EditText
             key="report-input"
             testID="input-status"
-            style={{marginTop: 40}}
-            textInputProps={{
-              style: {
-                minHeight: 80,
+            style={{
+              marginTop: 40,
+              minHeight: 80,
+            }}
+            styles={{
+              container: {
+                borderColor: theme.text,
               },
             }}
-            borderColor={theme.font}
+            textInputProps={{
+              multiline: true,
+            }}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
-            label={name}
+            labelText={name}
             value={message}
             placeholder={getString('REPORT_DESCRIPTION')}
-            multiline={true}
           />
         </InnerContainer>
         <Button

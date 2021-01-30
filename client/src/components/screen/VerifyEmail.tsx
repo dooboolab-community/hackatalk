@@ -27,7 +27,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}): string => theme.font};
+  color: ${({theme}): string => theme.text};
   font-size: 18px;
   text-align: center;
   line-height: 28px;

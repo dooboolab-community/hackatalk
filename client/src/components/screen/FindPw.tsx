@@ -15,11 +15,8 @@ import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
+  padding: 0 32px;
   background-color: ${({theme}): string => theme.background};
-`;
-
-const Wrapper = styled.View`
-  margin: 44px;
 `;
 
 const ButtonWrapper = styled.View`
@@ -78,45 +75,46 @@ function Page({navigation}: Props): ReactElement {
 
   return (
     <Container>
-      <Wrapper>
-        <EditText
-          testID="input-email"
-          errorTestID="error-email"
-          textStyle={{
-            color: theme.fontColor,
+      <EditText
+        testID="input-email"
+        style={{marginVertical: 20}}
+        styles={{
+          container: {
+            borderColor: theme.text,
+          },
+          input: {
+            color: 'red',
+          },
+        }}
+        focusColor={theme.focused}
+        labelText={getString('EMAIL')}
+        placeholderTextColor={theme.placeholder}
+        placeholder="hello@example.com"
+        value={email}
+        onChangeText={(text: string): void => {
+          setEmail(text);
+          setErrorEmail('');
+        }}
+        errorText={errorEmail}
+        onSubmitEditing={onFindPw}
+      />
+      <ButtonWrapper>
+        <Button
+          testID="btn-find-pw"
+          loading={isInFlight}
+          onPress={onFindPw}
+          styles={{
+            container: {
+              height: 52,
+              backgroundColor: theme.btnPrimary,
+            },
+            text: {
+              color: theme.btnPrimaryFont,
+            },
           }}
-          borderColor={theme.font}
-          focusColor={theme.focused}
-          placeholderTextColor={theme.placeholder}
-          label={getString('EMAIL')}
-          placeholder="hello@example.com"
-          value={email}
-          onChangeText={(text: string): void => {
-            setEmail(text);
-            setErrorEmail('');
-          }}
-          style={{marginTop: 20}}
-          errorText={errorEmail}
-          onSubmitEditing={onFindPw}
+          text={getString('FIND_PW')}
         />
-        <ButtonWrapper>
-          <Button
-            testID="btn-find-pw"
-            loading={isInFlight}
-            onPress={onFindPw}
-            styles={{
-              container: {
-                height: 52,
-                backgroundColor: theme.btnPrimary,
-              },
-              text: {
-                color: theme.btnPrimaryFont,
-              },
-            }}
-            text={getString('FIND_PW')}
-          />
-        </ButtonWrapper>
-      </Wrapper>
+      </ButtonWrapper>
     </Container>
   );
 }

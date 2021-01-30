@@ -318,17 +318,16 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                   Array [
                                     Object {
                                       "alignItems": "center",
+                                      "alignSelf": "stretch",
+                                      "borderBottomColor": "#666666",
+                                      "borderBottomWidth": 0.3,
                                       "flexDirection": "row",
                                       "justifyContent": "space-between",
-                                      "width": "100%",
                                     },
                                     Object {
-                                      "borderBottomWidth": 0.6,
-                                      "borderColor": "#2E2E2E",
+                                      "borderBottomColor": "#999999",
+                                      "borderColor": "#999999",
                                     },
-                                    undefined,
-                                    false,
-                                    undefined,
                                   ]
                                 }
                               >
@@ -338,12 +337,11 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       Object {
                                         "color": "#b9b9c4",
                                         "fontSize": 14,
-                                        "fontWeight": "bold",
+                                        "width": 100,
                                       },
                                       undefined,
-                                      false,
                                       Object {
-                                        "width": 110,
+                                        "color": "#999999",
                                       },
                                     ]
                                   }
@@ -353,33 +351,28 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 <TextInput
                                   allowFontScaling={true}
                                   autoCapitalize="none"
-                                  multiline={false}
+                                  editable={true}
                                   onBlur={[Function]}
                                   onChangeText={[Function]}
                                   onFocus={[Function]}
-                                  onSubmitEditing={[Function]}
                                   placeholder="hello@example.com"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
+                                  secureTextEntry={false}
                                   style={
                                     Array [
                                       Object {
                                         "color": "#2c374e",
-                                        "flexBasis": 0,
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
+                                        "flex": 1,
                                         "fontSize": 14,
                                         "fontWeight": "bold",
-                                        "height": "100%",
-                                        "paddingBottom": 16,
-                                        "paddingTop": 16,
+                                        "paddingHorizontal": 8,
+                                        "paddingVertical": 12,
                                       },
                                       Object {
                                         "color": "#151A25",
                                       },
-                                      Object {
-                                        "textAlign": "left",
-                                      },
+                                      false,
                                     ]
                                   }
                                   testID="input-email"
@@ -406,17 +399,16 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                   Array [
                                     Object {
                                       "alignItems": "center",
+                                      "alignSelf": "stretch",
+                                      "borderBottomColor": "#666666",
+                                      "borderBottomWidth": 0.3,
                                       "flexDirection": "row",
                                       "justifyContent": "space-between",
-                                      "width": "100%",
                                     },
                                     Object {
-                                      "borderBottomWidth": 0.6,
-                                      "borderColor": "#2E2E2E",
+                                      "borderBottomColor": "#999999",
+                                      "borderColor": "#999999",
                                     },
-                                    undefined,
-                                    false,
-                                    undefined,
                                   ]
                                 }
                               >
@@ -426,12 +418,11 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       Object {
                                         "color": "#b9b9c4",
                                         "fontSize": 14,
-                                        "fontWeight": "bold",
+                                        "width": 100,
                                       },
                                       undefined,
-                                      false,
                                       Object {
-                                        "width": 110,
+                                        "color": "#999999",
                                       },
                                     ]
                                   }
@@ -441,11 +432,10 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 <TextInput
                                   allowFontScaling={true}
                                   autoCapitalize="none"
-                                  multiline={false}
+                                  editable={true}
                                   onBlur={[Function]}
                                   onChangeText={[Function]}
                                   onFocus={[Function]}
-                                  onSubmitEditing={[Function]}
                                   placeholder="******"
                                   placeholderTextColor="#676c7a"
                                   rejectResponderTermination={true}
@@ -454,21 +444,16 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     Array [
                                       Object {
                                         "color": "#2c374e",
-                                        "flexBasis": 0,
-                                        "flexGrow": 1,
-                                        "flexShrink": 1,
+                                        "flex": 1,
                                         "fontSize": 14,
                                         "fontWeight": "bold",
-                                        "height": "100%",
-                                        "paddingBottom": 16,
-                                        "paddingTop": 16,
+                                        "paddingHorizontal": 8,
+                                        "paddingVertical": 12,
                                       },
                                       Object {
                                         "color": "#151A25",
                                       },
-                                      Object {
-                                        "textAlign": "left",
-                                      },
+                                      false,
                                     ]
                                   }
                                   testID="input-password"
