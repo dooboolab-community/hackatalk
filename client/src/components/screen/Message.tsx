@@ -352,6 +352,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
         const {url} = JSON.parse(await response.text());
 
+        if (!url)
+          return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+
         const mutationConfig = {
           variables: {
             channelId,
