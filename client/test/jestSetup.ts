@@ -34,7 +34,7 @@ jest.mock('expo-constants', () => ({
   },
 }));
 
-jest.mock('src/components/fragments/SocialSignInButton', () => 'test');
+jest.mock('src/components/templates/SocialSignInButton', () => 'test');
 
 jest.mock('react-native-scalable-image', () => 'test');
 

@@ -19,7 +19,7 @@ import {DefaultTheme} from 'styled-components';
 import {IC_SETTING_W} from '../../utils/Icons';
 import type {MainStackNavigatorChannelQuery} from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import Message from '../pages/Message';
-import ProfileModal from '../fragments/ProfileModal';
+import ProfileModal from '../templates/ProfileModal';
 import {ProfileModalProvider} from '../../providers/ProfileModalProvider';
 import ProfileUpdate from '../pages/ProfileUpdate';
 import Report from '../pages/Report';

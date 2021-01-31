@@ -45,7 +45,7 @@ import styled, {css} from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import type {SignInCreateNotificationMutation} from '../../__generated__/SignInCreateNotificationMutation.graphql';
-import SocialSignInButton from '../fragments/SocialSignInButton';
+import SocialSignInButton from '../templates/SocialSignInButton';
 import StatusBar from '../UI/atoms/StatusBar';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
