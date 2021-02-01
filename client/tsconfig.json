@@ -18,7 +18,7 @@
     "baseUrl": "src"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "**/*.test.tsx", "**/*.spec.ts", "src/__generated__"],
+  "exclude": ["node_modules", "**/*.test.tsx", "**/*.spec.ts", "src/__generated__", "**/*.graphql.tsx"],
   "files": ["environment.d.ts"],
   "types": ["typePatches"],
   "jest": {

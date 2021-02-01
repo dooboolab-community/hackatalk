@@ -2,10 +2,15 @@ overwrite: true
 schema:
   - './schema.graphql'
 generates:
-  src/types/graphql.ts:
+  src/types/graphql.tsx:
+    # documents: 'src/__generated__/**/*.graphql'
+    config:
+      skipDocumentsValidation: true
+      flattenGeneratedTypes: true
+      gqlImport: graphql-tag
     plugins:
       - 'typescript'
-      - typescript-operations
-    config:
-      avoidOptionals: true
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+
 
