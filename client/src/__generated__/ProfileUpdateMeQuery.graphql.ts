@@ -3,7 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthType = "apple" | "email" | "facebook" | "google" | "%future added value";
+export type AuthType = "apple" | "email" | "facebook" | "google";
 export type ProfileUpdateMeQueryVariables = {};
 export type ProfileUpdateMeQueryResponse = {
     readonly me: {

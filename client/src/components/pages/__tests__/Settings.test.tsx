@@ -46,7 +46,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Email),
+      getEmptyAuthUserWithSignInType('email'),
     );
 
     testingLib = render(component);
@@ -61,7 +61,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Facebook),
+      getEmptyAuthUserWithSignInType('facebook'),
     );
 
     testingLib = render(component);
@@ -76,7 +76,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Google),
+      getEmptyAuthUserWithSignInType('google'),
     );
 
     testingLib = render(component);
@@ -91,7 +91,7 @@ describe('[Setting] screen', () => {
       <SettingTest />,
       undefined,
       undefined,
-      getEmptyAuthUserWithSignInType(AuthType.Apple),
+      getEmptyAuthUserWithSignInType('apple'),
     );
 
     testingLib = render(component);

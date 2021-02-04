@@ -96,7 +96,7 @@ const SocialSignInButton: FC<Props> = ({
   const [signingIn, setSigningIn] = useState<boolean>(false);
 
   const discovery =
-    socialProvider === AuthType.Google
+    socialProvider === 'google'
       ? googleDiscovery
       : {
           authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
@@ -104,7 +104,7 @@ const SocialSignInButton: FC<Props> = ({
         };
 
   const redirectUri = makeRedirectUri(
-    socialProvider === AuthType.Google
+    socialProvider === 'google'
       ? {
           // native: 'com.dooboolab.hackatalk',
           useProxy,
@@ -116,7 +116,7 @@ const SocialSignInButton: FC<Props> = ({
   );
 
   const [request, response, promptAsync] = useAuthRequest(
-    socialProvider === AuthType.Google
+    socialProvider === 'google'
       ? {
           clientId: googleWebClientId,
           // iosClientId: googleIOSClientId,
@@ -150,7 +150,7 @@ const SocialSignInButton: FC<Props> = ({
       const accessToken = authentication?.accessToken;
 
       if (accessToken) {
-        if (socialProvider === AuthType.Google) {
+        if (socialProvider === 'google') {
           const mutationConfig = {
             variables: {accessToken},
             onCompleted: (
@@ -209,7 +209,7 @@ const SocialSignInButton: FC<Props> = ({
     }
   };
 
-  if (socialProvider === AuthType.Google)
+  if (socialProvider === 'google')
     return (
       <Button
         testID="btn-google"

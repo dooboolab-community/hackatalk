@@ -1,7 +1,6 @@
 import {LoadingIndicator, ThemeProvider} from 'dooboo-ui';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {Suspense} from 'react';
-import {dark, light} from '../../../theme';
 
 import Friend from '../Friend';
 import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';

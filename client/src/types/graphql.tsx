@@ -35,12 +35,11 @@ export type AuthPayload = {
   user: User;
 };
 
-export enum AuthType {
-  Email = 'email',
-  Facebook = 'facebook',
-  Google = 'google',
-  Apple = 'apple'
-}
+export type AuthType =
+  | 'email'
+  | 'facebook'
+  | 'google'
+  | 'apple';
 
 export type BlockedUser = {
   __typename?: 'BlockedUser';

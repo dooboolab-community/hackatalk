@@ -18,7 +18,7 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import {AuthPayload, AuthType, User} from '../../types/graphql';
+import {AuthPayload, User} from '../../types/graphql';
 import {Button, EditText, ThemeType, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
@@ -575,7 +575,7 @@ function SignIn(props: Props): ReactElement {
                 createNotificationIfPushTokenExists();
                 setUser?.(user);
               }}
-              socialProvider={AuthType.Facebook}
+              socialProvider={'facebook'}
             />
             <SocialSignInButton
               svgIcon={
@@ -585,7 +585,7 @@ function SignIn(props: Props): ReactElement {
                 createNotificationIfPushTokenExists();
                 setUser?.(user);
               }}
-              socialProvider={AuthType.Google}
+              socialProvider="google"
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>

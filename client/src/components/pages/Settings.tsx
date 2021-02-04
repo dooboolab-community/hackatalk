@@ -6,7 +6,6 @@ import {graphql, useMutation} from 'react-relay/hooks';
 import styled, {DefaultTheme} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthType} from '../../types/graphql';
 import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {SettingsDeleteNotificationMutation} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
@@ -89,8 +88,7 @@ function Settings(props: Props): React.ReactElement {
     option: SettingsOption,
     themeProps: DefaultTheme,
   ): React.ReactElement => {
-    const isEmailUser =
-      (user?.profile?.authType || AuthType.Email) === AuthType.Email;
+    const isEmailUser = (user?.profile?.authType || 'email') === 'email';
 
     return (
       <ItemContainer
@@ -128,7 +126,7 @@ function Settings(props: Props): React.ReactElement {
   };
 
   switch (user?.profile?.authType) {
-    case AuthType.Google:
+    case 'google':
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
@@ -139,7 +137,7 @@ function Settings(props: Props): React.ReactElement {
       };
 
       break;
-    case AuthType.Facebook:
+    case 'facebook':
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
@@ -150,7 +148,7 @@ function Settings(props: Props): React.ReactElement {
       };
 
       break;
-    case AuthType.Apple:
+    case 'apple':
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
@@ -161,7 +159,7 @@ function Settings(props: Props): React.ReactElement {
       };
 
       break;
-    case AuthType.Email:
+    case 'email':
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),

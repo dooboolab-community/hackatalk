@@ -2,7 +2,6 @@ import 'react-native';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {act, fireEvent, render} from '@testing-library/react-native';
-import {dark, light} from '../../../theme';
 
 import React from 'react';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
