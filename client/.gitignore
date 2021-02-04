@@ -33,3 +33,6 @@ google-services.json
 !.vscode/settings.json
 
 __snapshots__
+
+# watchman
+.watchman*
