@@ -8,6 +8,7 @@ generates:
       skipDocumentsValidation: true
       flattenGeneratedTypes: true
       gqlImport: graphql-tag
+      enumsAsTypes: true
     plugins:
       - 'typescript'
       - 'typescript-operations'

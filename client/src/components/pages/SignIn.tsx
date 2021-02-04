@@ -19,7 +19,7 @@ import Animated, {
   useCode,
 } from 'react-native-reanimated';
 import {AuthPayload, AuthType, User} from '../../types/graphql';
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, ThemeType, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -36,7 +36,6 @@ import type {
   SignInEmailMutation,
   SignInEmailMutationResponse,
 } from '../../__generated__/SignInEmailMutation.graphql';
-import {ThemeType, useThemeContext} from '@dooboo-ui/theme';
 import {delay, spring, useClock, useValue} from 'react-native-redash';
 import {graphql, useMutation} from 'react-relay/hooks';
 import {showAlertForError, validateEmail} from '../../utils/common';
@@ -57,7 +56,7 @@ const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
-  background: ${({theme}): string => theme.background};
+  background: ${({theme}) => theme.background};
 `;
 
 const Wrapper = styled.View`
@@ -71,7 +70,7 @@ const LogoWrapper = styled.View`
 
 const StyledLogoText = styled.Text`
   align-self: flex-start;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   font-size: 20px;
   font-weight: bold;
   margin-left: 6px;
@@ -79,6 +78,7 @@ const StyledLogoText = styled.Text`
 
 const ButtonWrapper = styled.View`
   margin-top: 12px;
+  height: 52px;
   width: 100%;
   flex-direction: row;
 `;
@@ -90,7 +90,7 @@ const FindPwTouchOpacity = styled.TouchableOpacity`
 `;
 
 const FindPwText = styled.Text`
-  color: ${({theme}): string => theme.link};
+  color: ${({theme}) => theme.link};
   text-decoration-line: underline;
 `;
 
@@ -112,7 +112,7 @@ const StyledAgreementText = styled.Text`
 
 const StyledAgreementLinedText = styled.Text`
   line-height: 22px;
-  color: ${({theme}): string => theme.link};
+  color: ${({theme}) => theme.link};
   text-decoration-line: underline;
 `;
 
@@ -120,8 +120,8 @@ const StyledScrollView = styled.ScrollView`
   align-self: center;
   width: 100%;
 
-  /* ${({theme: {desktop}}) =>
-    desktop &&
+  /* ${({theme: {isDesktop}}) =>
+    isDesktop &&
     css`
       width: 50%;
       max-width: 800;
@@ -186,7 +186,7 @@ const createNotification = graphql`
 function SignIn(props: Props): ReactElement {
   const {navigation} = props;
   const {setUser} = useAuthContext();
-  const {theme, changeThemeType, themeType} = useThemeContext();
+  const {theme, changeThemeType, themeType} = useTheme();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -407,7 +407,6 @@ function SignIn(props: Props): ReactElement {
         <AnimatedTouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}
-          // @ts-ignore
           style={{
             zIndex: 15,
             position: 'absolute',
@@ -434,6 +433,7 @@ function SignIn(props: Props): ReactElement {
               },
               input: {
                 color: theme.text,
+                height: 52,
               },
             }}
             style={{marginBottom: 20}}
@@ -458,6 +458,7 @@ function SignIn(props: Props): ReactElement {
               },
               input: {
                 color: theme.text,
+                height: 52,
               },
             }}
             style={{marginBottom: 20}}
@@ -481,11 +482,9 @@ function SignIn(props: Props): ReactElement {
               style={{flex: 1}}
               styles={{
                 container: {
-                  height: 52,
                   backgroundColor: theme.btnPrimaryLight,
                   borderColor: theme.btnPrimary,
                   borderWidth: 1,
-                  borderRadius: 0,
 
                   flex: 1,
                   flexDirection: 'row',
@@ -496,6 +495,9 @@ function SignIn(props: Props): ReactElement {
                   fontSize: 14,
                   fontWeight: 'bold',
                 },
+                hovered: {
+                  borderColor: theme.text,
+                },
               }}
               text={getString('SIGN_UP')}
             />
@@ -504,15 +506,17 @@ function SignIn(props: Props): ReactElement {
               testID="btn-sign-in"
               loading={isInFlight}
               onPress={signIn}
-              style={{}}
+              style={{
+                flex: 1,
+              }}
               styles={{
                 container: {
                   height: 52,
-                  backgroundColor: theme.btnPrimary,
-                  width: '100%',
-                  borderRadius: 0,
-
+                  backgroundColor: theme.primary,
                   flex: 1,
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
+
                   flexDirection: 'row',
                   justifyContent: 'center',
                 },
@@ -520,6 +524,9 @@ function SignIn(props: Props): ReactElement {
                   color: theme.btnPrimaryFont,
                   fontSize: 14,
                   fontWeight: 'bold',
+                },
+                hovered: {
+                  borderColor: theme.text,
                 },
               }}
               text={getString('LOGIN')}

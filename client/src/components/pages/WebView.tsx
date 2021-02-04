@@ -10,7 +10,7 @@ import styled from 'styled-components/native';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: center;

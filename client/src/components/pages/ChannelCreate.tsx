@@ -17,6 +17,7 @@ import {
   ChannelCreateFriendsPaginationQueryVariables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
+import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
 import {
   graphql,
@@ -28,7 +29,6 @@ import {
 import {ChannelCreateFriendsQuery} from '../../__generated__/ChannelCreateFriendsQuery.graphql';
 import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
 import ErroView from '../UI/molecules/ErrorView';
-import {LoadingIndicator} from 'dooboo-ui';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../UI/atoms/SearchTextInput';
 import UserListItem from '../UI/molecules/UserListItem';
@@ -38,13 +38,12 @@ import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}): string => theme.backgroundDark};
+  background-color: ${({theme}) => theme.backgroundDark};
   flex-direction: column;
 `;
 
@@ -148,7 +147,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     );
   }, [data]);
 
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   // const [friends, setFriends] = useState<Friend[]>(fakeFriends);
 
   const navigation = useNavigation();

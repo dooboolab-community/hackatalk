@@ -1,4 +1,4 @@
-import {MediaQueryType} from './utils/media';
+import {DoobooTheme} from 'dooboo-ui';
 
 /* eslint-disable */
 export const colors = {
@@ -27,6 +27,7 @@ export const colors = {
 /* eslint-enable */
 
 export const light = {
+  header: colors.blue_70,
   background: colors.light,
   backgroundDark: colors.paleBlue_05,
   itemBackground: colors.light,
@@ -76,9 +77,10 @@ export const light = {
   fab: colors.blue_70,
 };
 
-export type Theme = typeof light & MediaQueryType;
+export type Theme = typeof light & DoobooTheme;
 
 export const dark = {
+  header: colors.dark,
   background: colors.deepDark,
   backgroundDark: colors.deepDark,
   itemBackground: colors.dark,
@@ -96,7 +98,7 @@ export const dark = {
   lineColor: colors.light,
   indicatorColor: colors.paleBlue_10,
   inactiveColor: colors.gray_50,
-  primary: colors.deepDark,
+  primary: colors.paleBlue_10,
   primaryLight: colors.dark,
   headerFont: colors.light,
   searchBackground: colors.gray_80,

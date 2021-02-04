@@ -1,3 +1,4 @@
+import {Button, useTheme} from 'dooboo-ui';
 import React, {ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
@@ -6,23 +7,21 @@ import styled, {DefaultTheme} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthType} from '../../types/graphql';
-import {Button} from 'dooboo-ui';
 import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {SettingsDeleteNotificationMutation} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;
   padding-top: 10px;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
 `;
 
 const HeaderContainer = styled.View`
-  background-color: ${({theme}): string => theme.background};
-  border-bottom-color: ${({theme}): string => theme.lineColor};
+  background-color: ${({theme}) => theme.background};
+  border-bottom-color: ${({theme}) => theme.lineColor};
   height: 40px;
   justify-content: center;
   margin-left: 12px;
@@ -30,7 +29,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}): string => theme.secondaryText};
+  color: ${({theme}) => theme.secondaryText};
   margin-left: 2px;
 `;
 
@@ -44,7 +43,7 @@ const ItemContainer = styled.TouchableOpacity`
 `;
 
 const ItemLabel = styled.Text`
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   font-size: 16px;
   flex: 1;
 `;
@@ -75,7 +74,7 @@ function Settings(props: Props): React.ReactElement {
   let signInInfoOption: SettingsOption;
 
   const {setUser} = useAuthContext();
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const {navigation} = props;
 
   const {

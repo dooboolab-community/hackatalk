@@ -8,11 +8,11 @@ import moment from 'moment';
 import styled from 'styled-components/native';
 
 const StyledViewChatRoomListItem = styled.View`
-  background-color: ${({theme}): string => theme.itemBackground};
+  background-color: ${({theme}) => theme.itemBackground};
   min-height: 92px;
   padding: 8px 0;
   border-bottom-width: 0.3px;
-  border-color: ${({theme}): string => theme.disabled};
+  border-color: ${({theme}) => theme.disabled};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -23,11 +23,11 @@ const StyledStatus = styled.View`
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: ${({theme}): string => theme.tintColor};
+  background-color: ${({theme}) => theme.tintColor};
   right: 0;
   bottom: 0;
   border-width: 2px;
-  border-color: ${({theme}): string => theme.lineColor};
+  border-color: ${({theme}) => theme.lineColor};
 `;
 
 const StyledViewContent = styled.View`
@@ -45,11 +45,11 @@ const StyledViewTop = styled.View`
 const StyledTextDisplayName = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
 `;
 
 const StyledTextWrapper = styled.View`
-  background-color: ${({theme}): string => theme.tintColor};
+  background-color: ${({theme}) => theme.tintColor};
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -59,7 +59,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: ${({theme}): string => theme.primary};
+  color: ${({theme}) => theme.primary};
 `;
 
 const StyledViewBottom = styled.View`
@@ -71,14 +71,14 @@ const StyledViewBottom = styled.View`
 
 const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
   font-size: 12px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   max-width: 200px;
   ${({lastMessageCnt}): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.secondaryText};
+  color: ${({theme}) => theme.secondaryText};
   text-align: right;
 `;
 

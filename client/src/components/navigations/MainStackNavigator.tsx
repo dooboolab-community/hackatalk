@@ -29,7 +29,7 @@ import Settings from '../pages/Settings';
 import StatusBar from '../UI/atoms/StatusBar';
 import {getString} from '../../../STRINGS';
 // import useAppState from '../../hooks/useAppState';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
   MainTab: undefined;
@@ -72,7 +72,7 @@ function getSimpleHeader(
     headerTitle: title,
     headerTintColor: theme.headerFont,
     headerStyle: {
-      backgroundColor: theme.primary,
+      backgroundColor: theme.header,
       borderBottomWidth: 0,
       elevation: 0,
       shadowColor: 'transparent',
@@ -99,7 +99,7 @@ const channelQuery = graphql`
 `;
 
 function MainStackNavigator(): ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   // const currentAppState = useAppState();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
   const environment = useRelayEnvironment();

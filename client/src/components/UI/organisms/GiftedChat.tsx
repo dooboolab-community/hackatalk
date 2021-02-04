@@ -24,7 +24,7 @@ const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({theme}): string => theme.lineColor};
+  border-color: ${({theme}) => theme.lineColor};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;
@@ -182,8 +182,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               style={{
                 flexGrow: 1,
                 flexShrink: 1,
-                paddingTop: 5,
-                paddingBottom: 5,
+                paddingVertical: 12,
                 marginRight: 10,
                 color: fontColor,
                 backgroundColor: backgroundColor,

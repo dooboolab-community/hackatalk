@@ -6,7 +6,7 @@ import {dark, light} from '../../../theme';
 
 import React from 'react';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
-import {ThemeProvider} from '@dooboo-ui/theme';
+import {ThemeProvider} from 'dooboo-ui';
 import VerifyEmail from '../VerifyEmail';
 import {createTestProps} from '../../../../test/testUtils';
 
@@ -23,7 +23,7 @@ const props = createTestProps({
 
 const component = (
   <RelayEnvironmentProvider environment={environment}>
-    <ThemeProvider customTheme={{light, dark}}>
+    <ThemeProvider>
       <VerifyEmail {...props} />
     </ThemeProvider>
   </RelayEnvironmentProvider>

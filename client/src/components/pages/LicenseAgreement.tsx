@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 const Container = styled.SafeAreaView`
   padding: 8px;
@@ -18,7 +18,7 @@ const Container = styled.SafeAreaView`
 
 const StyledText = styled.Text`
   font-size: 16px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
 `;
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
 }
 
 const Page: FC<Props> = ({navigation}) => {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const pressAgree = async (): Promise<void> => {
     await AsyncStorage.setItem('license_agreed', JSON.stringify(true));

@@ -2,7 +2,7 @@ import {
   AuthStackNavigationProps,
   AuthStackParamList,
 } from '../navigations/AuthStackNavigator';
-import {Button, LoadingIndicator} from 'dooboo-ui';
+import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {ReactElement, useState} from 'react';
 import type {
   VerifyEmailMutation,
@@ -15,7 +15,6 @@ import {RouteProp} from '@react-navigation/core';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
@@ -27,7 +26,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   font-size: 18px;
   text-align: center;
   line-height: 28px;
@@ -35,7 +34,7 @@ const StyledText = styled.Text`
 
 const StyledHighlightText = styled.Text`
   font-size: 24px;
-  color: ${({theme}): string => theme.primary};
+  color: ${({theme}) => theme.primary};
 `;
 
 interface Props {
@@ -50,7 +49,7 @@ const sendVerification = graphql`
 `;
 
 function Page(props: Props): ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const {
     route: {

@@ -3,7 +3,7 @@ import 'react-native';
 import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {ThemeProvider} from '@dooboo-ui/theme';
+import {ThemeProvider} from 'dooboo-ui';
 import WebView from '../WebView';
 import {createStackNavigator} from '@react-navigation/stack';
 import {render} from '@testing-library/react-native';

@@ -33,7 +33,6 @@
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting"
   },
   "dependencies": {
-    "@dooboo-ui/theme": "^0.1.0",
     "@expo/match-media": "^0.0.0-beta.2",
     "@expo/metro-config": "^0.1.53",
     "@expo/react-native-action-sheet": "^3.8.0",
@@ -46,7 +45,7 @@
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
     "date-fns": "^2.16.1",
-    "dooboo-ui": "^0.0.34",
+    "dooboo-ui": "^0.0.40",
     "expo": "^40.0.1",
     "expo-ads-admob": "~8.4.0",
     "expo-apple-authentication": "~2.2.2",

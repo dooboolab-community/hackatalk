@@ -26,7 +26,7 @@ import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}): string => theme.background};
+  background: ${({theme}) => theme.background};
 `;
 
 const Container = styled.View`

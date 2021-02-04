@@ -38,7 +38,7 @@ const StyledTextInput = styled.TextInput.attrs<{focused: boolean}>(
 )<{focused: boolean}>`
   flex: 1;
   align-self: stretch;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   font-size: 16px;
   padding: 22px 20px;
   border: none;

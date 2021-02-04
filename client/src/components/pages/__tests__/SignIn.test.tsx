@@ -16,7 +16,7 @@ import AuthContext from '../../../providers/AuthProvider';
 import {FetchMock} from 'jest-fetch-mock';
 import {MockPayloadGenerator} from 'relay-test-utils';
 import SignIn from '../SignIn';
-import {ThemeType} from '@dooboo-ui/theme';
+import {ThemeType} from 'dooboo-ui';
 import {environment} from '../../../providers';
 
 const fetchMock = fetch as FetchMock;

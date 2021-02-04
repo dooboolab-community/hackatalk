@@ -12,7 +12,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import VerifyEmail from '../pages/VerifyEmail';
 import {getString} from '../../../STRINGS';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 export type AuthStackParamList = {
   default: undefined;
@@ -39,7 +39,7 @@ export type AuthStackNavigationProps<
 const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthNavigator(): ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   return (
     <Stack.Navigator

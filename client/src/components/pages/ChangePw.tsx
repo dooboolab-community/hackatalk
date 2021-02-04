@@ -6,7 +6,7 @@ import {
   Platform,
   SafeAreaView,
 } from 'react-native';
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import type {
   ChangePwChangeEmailPasswordMutation,
   ChangePwChangeEmailPasswordMutationResponse,
@@ -20,7 +20,6 @@ import {getString} from '../../../STRINGS';
 import {isIPhoneX} from '../../utils/Styles';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -55,7 +54,7 @@ const changeEmailPasswordMutation = graphql`
 
 function ChangePw(props: Props): ReactElement {
   const {navigation} = props;
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
@@ -153,12 +152,10 @@ function ChangePw(props: Props): ReactElement {
             key="input-pw"
             testID="input-pw"
             styles={{
+              container: {paddingVertical: 8},
               input: {
                 color: theme.text,
                 fontSize: 16,
-              },
-              container: {
-                height: 80,
               },
             }}
             style={{marginTop: 40}}
@@ -176,6 +173,7 @@ function ChangePw(props: Props): ReactElement {
             style={{marginTop: 20}}
             secureTextEntry
             styles={{
+              container: {paddingVertical: 8},
               input: {
                 color: theme.text,
                 fontSize: 16,
@@ -194,10 +192,7 @@ function ChangePw(props: Props): ReactElement {
             style={{marginTop: 20}}
             secureTextEntry
             styles={{
-              container: {
-                height: 20,
-                paddingVertical: 20,
-              },
+              container: {paddingVertical: 8},
               input: {
                 color: theme.text,
                 fontSize: 16,
@@ -214,18 +209,23 @@ function ChangePw(props: Props): ReactElement {
         <Button
           testID="close-current-pw-btn"
           onPress={handleChangePasswordPress}
-          style={{marginBottom: 24}}
+          style={{marginBottom: 24, alignSelf: 'stretch', marginHorizontal: 24}}
           styles={{
             container: {
               backgroundColor: theme.btnPrimary,
-              borderWidth: 0,
+              borderWidth: 1,
               height: 48,
+              justifyContent: 'center',
+              alignItems: 'center',
             },
             text: {
-              marginHorizontal: 60,
+              alignSelf: 'center',
               color: theme.contrastText,
               textAlign: 'center',
               fontSize: 16,
+            },
+            hovered: {
+              borderColor: theme.text,
             },
           }}
           loading={isInFlight}

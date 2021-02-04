@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Button, LoadingIndicator} from 'dooboo-ui';
+import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
 import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
 import {
   MainStackNavigationProps,
@@ -57,13 +57,12 @@ import styled from 'styled-components/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}): string => theme.messageBackground};
+  background-color: ${({theme}) => theme.messageBackground};
   flex-direction: column;
   align-items: center;
 `;
@@ -260,7 +259,7 @@ interface MessageProp {
 }
 
 const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
 
   const {data, loadNext, loadPrevious} = usePaginationFragment<
