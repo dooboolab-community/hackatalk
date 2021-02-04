@@ -1,16 +1,11 @@
 import * as React from 'react';
 
 import {Button, Text, View} from 'react-native';
-import {
-  ThemeProvider,
-  ThemeType,
-  defaultThemeType,
-  useThemeContext,
-} from '@dooboo-ui/theme';
+import {ThemeProvider, ThemeType, useTheme} from 'dooboo-ui';
 import {act, fireEvent, render} from '@testing-library/react-native';
 
 const FakeChild = (): React.ReactElement => {
-  const {themeType, changeThemeType} = useThemeContext();
+  const {themeType, changeThemeType} = useTheme();
 
   return (
     <View>
@@ -52,7 +47,7 @@ describe('[ThemeProvider] interactions', () => {
     const text = getByTestId('test-text');
 
     expect(JSON.parse(text.children[0] as string)).toStrictEqual(
-      defaultThemeType,
+      ThemeType.LIGHT,
     );
   });
 

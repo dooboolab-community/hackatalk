@@ -1,13 +1,12 @@
 import * as Device from 'expo-device';
 
+import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
 import React, {ReactElement, Suspense} from 'react';
 import {RelayMockEnvironment, createMockEnvironment} from 'relay-test-utils';
-import {ThemeProvider, ThemeType} from '@dooboo-ui/theme';
 import {dark, light} from '../theme';
 
 import {AuthProvider} from './AuthProvider';
 import {DeviceProvider} from './DeviceProvider';
-import {LoadingIndicator} from 'dooboo-ui';
 import {ProfileModalProvider} from './ProfileModalProvider';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import {User} from '../types/graphql';

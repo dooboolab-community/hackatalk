@@ -1,6 +1,6 @@
 import {IC_SEARCH, IC_SEARCH_W} from '../../../utils/Icons';
 import React, {ReactChildren, ReactElement} from 'react';
-import {ThemeType, useThemeContext} from '@dooboo-ui/theme';
+import {ThemeType, useTheme} from 'dooboo-ui';
 
 import {ViewStyle} from 'react-native';
 import styled from 'styled-components/native';
@@ -16,8 +16,8 @@ const StyledTextInputWrapper = styled.View`
 const StyledTextInput = styled.TextInput`
   width: 100%;
   padding: 12px 0;
-  color: ${({theme}): string => theme.text};
-  background-color: ${({theme}): string => theme.searchBackground};
+  color: ${({theme}) => theme.text};
+  background-color: ${({theme}) => theme.searchBackground};
   border-radius: 4px;
   padding-left: 40px;
   padding-right: 10px;
@@ -41,7 +41,7 @@ interface Props {
 
 function SearchTextInput(props: Props): ReactElement {
   const {testID, onChangeText, value, containerStyle, style} = props;
-  const {themeType, theme} = useThemeContext();
+  const {themeType, theme} = useTheme();
 
   return (
     <StyledTextInputWrapper style={containerStyle}>

@@ -1,4 +1,5 @@
 import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ProfileModalContext,
   useProfileContext,
@@ -13,7 +14,6 @@ import {graphql, useMutation} from 'react-relay/hooks';
 import {ConnectionHandler} from 'relay-runtime';
 import {FontAwesome} from '@expo/vector-icons';
 import {IC_NO_IMAGE} from '../../utils/Icons';
-import {LoadingIndicator} from 'dooboo-ui';
 import Modal from 'react-native-modalbox';
 import {ProfileModalAddFriendMutation} from '../../__generated__/ProfileModalAddFriendMutation.graphql';
 import {ProfileModalCreateBlockedUserMutation} from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
@@ -23,7 +23,6 @@ import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/core';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const StyledView = styled.View`
   margin-top: 64px;
@@ -38,7 +37,7 @@ const StyledImage = styled.Image`
 const StyledViewBtns = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({theme}): string => theme.modalBtnBackground};
+  background-color: ${({theme}) => theme.modalBtnBackground};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +46,7 @@ const StyledViewBtns = styled.View`
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
-  background-color: ${({theme}): string => theme.placeholder};
+  background-color: ${({theme}) => theme.placeholder};
 `;
 
 const StyledTextDisplayName = styled.Text`
@@ -67,21 +66,21 @@ const StyledTextstatusMessage = styled.Text`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}): string => theme.modalBtnFont};
+  color: ${({theme}) => theme.modalBtnFont};
   font-size: 16px;
 `;
 
 const StyledTextFriendAdded = styled.Text`
-  color: ${({theme}): string => theme.tintColor};
+  color: ${({theme}) => theme.tintColor};
   font-size: 12px;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
   padding: 4px;
 `;
 
 const StyledTextFriendAlreadyAdded = styled.Text`
   color: red;
   font-size: 12px;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
   padding: 4px;
 `;
 
@@ -322,8 +321,8 @@ const ModalContent: FC<ModalContentProps> = ({
   };
 
   const {
-    theme: {primary, modalBtnPrimaryFont},
-  } = useThemeContext();
+    theme: {header, modalBtnPrimaryFont},
+  } = useTheme();
 
   const imageURL =
     typeof modalState?.user.photoURL === 'string' &&
@@ -339,7 +338,7 @@ const ModalContent: FC<ModalContentProps> = ({
         alignSelf: 'stretch',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: primary,
+        backgroundColor: header,
       }}>
       <View
         style={{
@@ -430,7 +429,7 @@ const ModalContent: FC<ModalContentProps> = ({
 
             if (user)
               navigation.navigate('ImageSlider', {
-                images: [{uri: user.photoURL, sender: user}],
+                images: [{uri: user.photoURL, sender: user.name}],
               });
           }}>
           {modalState?.user.photoURL ? (

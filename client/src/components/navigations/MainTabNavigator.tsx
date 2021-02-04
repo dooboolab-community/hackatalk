@@ -14,7 +14,7 @@ import {LinearGradient} from 'expo-linear-gradient';
 import {MainStackNavigationProps} from './MainStackNavigator';
 import {getString} from '../../../STRINGS';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 export type MaterialTopTabParamList = {
   Friend: undefined;
@@ -35,7 +35,7 @@ export type MaterialTopTabNavigationProps<
 const Tab = createMaterialTopTabNavigator<MaterialTopTabParamList>();
 
 const CustomHeader = (): ReactElement => {
-  const {theme, changeThemeType} = useThemeContext();
+  const {theme, changeThemeType} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   return (
@@ -58,7 +58,7 @@ const CustomHeader = (): ReactElement => {
       start={[0.4, 0.6]}
       end={[1.0, 0.85]}
       locations={[0, 0.85]}
-      colors={[theme.primary, theme.primaryLight]}>
+      colors={[theme.header, theme.primaryLight]}>
       <View style={{marginLeft: 8}}>
         <TouchableOpacity
           style={{padding: 8}}
@@ -91,7 +91,7 @@ const CustomHeader = (): ReactElement => {
 };
 
 function TabNavigator(): ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const insets = useSafeAreaInsets();
 
   return (

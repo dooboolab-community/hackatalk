@@ -4,6 +4,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Alert, Platform, View} from 'react-native';
 import {AuthType, User} from '../../types/graphql';
+import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
   SocialSignInButtonFacebookSignInMutation,
@@ -16,10 +17,8 @@ import type {
 import {graphql, useMutation} from 'react-relay/hooks';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Button} from 'dooboo-ui';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const {facebookAppId, facebookSecret, googleWebClientId} = Config;
 
@@ -82,7 +81,7 @@ const SocialSignInButton: FC<Props> = ({
     isGoogleInFlight,
   ] = useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
 
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const useProxy = Platform.select({web: false, default: true});
 
   const {

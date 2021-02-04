@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import {Alert, Image, View} from 'react-native';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import {AuthProvider, useAuthContext} from './providers/AuthProvider';
+import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
 import React, {
   FC,
   ReactElement,
@@ -18,7 +19,6 @@ import {
   graphql,
   useLazyLoadQuery,
 } from 'react-relay/hooks';
-import {ThemeProvider, ThemeType} from '@dooboo-ui/theme';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
@@ -28,13 +28,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
-import {LoadingIndicator} from 'dooboo-ui';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {User} from './types/graphql';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import relayEnvironment from './relay';
-import {useMedia} from './utils/media';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -135,7 +133,6 @@ function App(): ReactElement {
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const colorScheme = useColorScheme();
-  const mediaQuery = useMedia();
 
   useEffect(() => {
     prepareAutoHide();
@@ -146,11 +143,9 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
       customTheme={{
         light: {
           ...light,
-          ...mediaQuery,
         },
         dark: {
           ...dark,
-          ...mediaQuery,
         },
       }}
       initialThemeType={

@@ -1,5 +1,5 @@
 import {Alert, Platform, SafeAreaView} from 'react-native';
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import {
   MainStackNavigationProps,
   MainStackParamList,
@@ -16,7 +16,6 @@ import {RouteProp} from '@react-navigation/core';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -50,7 +49,7 @@ export interface Props {
 
 function ReportScreen(props: Props): ReactElement {
   const {navigation} = props;
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const [message, setMessage] = useState('');
 
   const {

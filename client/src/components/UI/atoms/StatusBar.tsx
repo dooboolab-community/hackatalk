@@ -1,5 +1,5 @@
 import type {FC, ReactElement} from 'react';
-import {ThemeType, useThemeContext} from '@dooboo-ui/theme';
+import {ThemeType, useTheme} from 'dooboo-ui';
 
 import React from 'react';
 import {StatusBar} from 'react-native';
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Shared: FC<Props> = ({themeType}): ReactElement => {
-  const {themeType: currentThemeType} = useThemeContext();
+  const {themeType: currentThemeType} = useTheme();
 
   const statusColor: StatusBarStyle =
     (themeType || currentThemeType) === ThemeType.LIGHT

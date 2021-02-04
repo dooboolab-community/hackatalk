@@ -13,7 +13,7 @@ import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WebView from '../pages/WebView';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
   default: undefined;
@@ -36,7 +36,7 @@ export type RootStackNavigationProps<
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator(): React.ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const {
     state: {user},

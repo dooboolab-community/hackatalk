@@ -1,10 +1,10 @@
 import * as Device from 'expo-device';
 
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 
-import { AllProviders } from '../src/providers';
-import { ThemeType } from '@dooboo-ui/theme';
-import { User } from '../src/types/graphql';
+import {AllProviders} from '../src/providers';
+import {ThemeType} from 'dooboo-ui';
+import {User} from '../src/types/graphql';
 
 export const createTestElement = (
   child: ReactElement,
@@ -20,7 +20,9 @@ export const createTestElement = (
   </AllProviders>
 );
 
-export const createTestProps = (obj: Record<string, unknown> = {}): Record<string, unknown> | unknown | any => ({
+export const createTestProps = (
+  obj: Record<string, unknown> = {},
+): Record<string, unknown> | unknown | any => ({
   navigation: {
     navigate: jest.fn(),
     goBack: jest.fn(),

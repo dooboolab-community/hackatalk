@@ -7,7 +7,7 @@ import {Message} from '../../../types/graphql';
 import {getString} from '../../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 const WrapperPeer = styled.View<{isSame: boolean}>`
   min-height: 48px;
@@ -34,29 +34,29 @@ const StyledImageSender = styled.Image`
 
 const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
-  background-color: ${({theme}): string => theme.peerMessageBackground};
+  background-color: ${({theme}) => theme.peerMessageBackground};
   padding: 12px;
 `;
 
 const StyledPeerTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({theme}): string => theme.peerMessageText};
+  color: ${({theme}) => theme.peerMessageText};
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({theme}): string => theme.disabled};
+  border-color: ${({theme}) => theme.disabled};
   border-width: 1px;
 `;
 
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   margin-bottom: 2px;
 `;
 
 const StyledTextPeerDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   margin-right: 20px;
   margin-top: 4px;
 `;
@@ -72,18 +72,18 @@ const WrapperMy = styled.View`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
   margin-top: 4px;
   margin-right: 20px;
 `;
 
 const StyledMyTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({theme}): string => theme.myMessageText};
+  color: ${({theme}) => theme.myMessageText};
 `;
 
 const StyledMyMessage = styled.View`
-  background-color: ${({theme}): string => theme.myMessageBackground};
+  background-color: ${({theme}) => theme.myMessageBackground};
   margin-right: 20px;
   margin-left: 28px;
   padding: 12px;
@@ -138,7 +138,7 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
 };
 
 function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const {
     item: {id, sender, text, createdAt, imageUrls},

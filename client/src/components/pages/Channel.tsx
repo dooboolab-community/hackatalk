@@ -7,6 +7,7 @@ import type {
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
 import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
+import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {FC, Suspense, useEffect, useMemo, useState} from 'react';
 import {
   graphql,
@@ -21,17 +22,15 @@ import type {ChannelComponent_channel$key} from '../../__generated__/ChannelComp
 import {ChannelLastMessageQuery} from '../../__generated__/ChannelLastMessageQuery.graphql';
 import ChannelListItem from '../UI/molecules/ChannelListItem';
 import EmptyListItem from '../UI/molecules/EmptyListItem';
-import {LoadingIndicator} from 'dooboo-ui';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {SvgPlus} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
-  background: ${({theme}): string => theme.background};
+  background: ${({theme}) => theme.background};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -43,7 +42,7 @@ const Fab = styled.View`
   border-radius: 28px;
   justify-content: center;
   align-items: center;
-  background: ${({theme}): string => theme.fab};
+  background: ${({theme}) => theme.fab};
 `;
 
 const ITEM_CNT = 20;
@@ -278,7 +277,7 @@ interface Props {
 }
 
 const Screen: FC<Props> = () => {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const navigation = useNavigation();
 
   const searchArgs: ChannelsQueryVariables = {

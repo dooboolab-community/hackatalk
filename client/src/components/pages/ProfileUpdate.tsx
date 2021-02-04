@@ -1,5 +1,5 @@
 import {Alert, Image, TouchableOpacity, View} from 'react-native';
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {
@@ -22,7 +22,6 @@ import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
@@ -35,7 +34,7 @@ const DEFAULT = {
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
   flex-direction: column;
   align-items: center;
 `;
@@ -101,7 +100,7 @@ const profileUpdate = graphql`
 `;
 
 const Screen: FC<Props> = () => {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [statusMessage, setstatusMessage] = useState('');
@@ -135,7 +134,7 @@ const Screen: FC<Props> = () => {
           setName(myName ?? '');
           setNickname(nickName ?? '');
           setstatusMessage(statusMsg ?? '');
-          setProfilePath(photoURL ?? thumbURL ?? '');
+          setProfilePath((thumbURL || photoURL) ?? '');
         }
       },
     });
@@ -323,13 +322,18 @@ const Screen: FC<Props> = () => {
           />
           <EditText
             testID="input-status"
-            style={{marginTop: 24}}
+            type="column"
+            style={{marginTop: 36}}
             styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
               container: {
                 borderColor: theme.text,
-              },
-              input: {
-                color: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
               },
             }}
             labelText={getString('STATUS_MSG')}
@@ -340,13 +344,17 @@ const Screen: FC<Props> = () => {
             onChangeText={(text: string): void =>
               changeText('STATUS_MSG', text)
             }
+            textInputProps={{
+              multiline: true,
+            }}
           />
           <StyledButtonWrapper>
             <Button
               testID="button-update"
-              style={{width: '100%'}}
+              style={{alignSelf: 'stretch', flex: 1}}
               styles={{
                 container: {
+                  height: 44,
                   backgroundColor: theme.btnPrimary,
                   borderColor: theme.btnPrimary,
                   borderWidth: 1,

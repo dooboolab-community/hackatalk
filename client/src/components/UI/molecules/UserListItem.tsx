@@ -12,7 +12,7 @@ import React from 'react';
 import {User} from '../../../types/graphql';
 import {getString} from '../../../../STRINGS';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
+import {useTheme} from 'dooboo-ui';
 
 interface Props {
   testID?: string;
@@ -30,10 +30,10 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View`
-  background-color: ${({theme}): string => theme.itemBackground};
+  background-color: ${({theme}) => theme.itemBackground};
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${({theme}): string => theme.backgroundDark};
+  border-color: ${({theme}) => theme.backgroundDark};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -67,17 +67,17 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}): string => theme.text};
+  color: ${({theme}) => theme.text};
 `;
 
 const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}): string => theme.secondaryText};
+  color: ${({theme}) => theme.secondaryText};
   max-width: 120px;
   border-width: 0.3px;
-  border-color: ${({theme}): string => theme.lineColor};
+  border-color: ${({theme}) => theme.lineColor};
   padding: 4px 8px;
 `;
 
@@ -90,7 +90,7 @@ function Shared({
   testID,
   user: {photoURL = '', nickname, name, statusMessage, isOnline, hasBlocked},
 }: Props): React.ReactElement {
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const photoURLObj: ImageSourcePropType | null =
     typeof photoURL === 'string' ? {uri: photoURL} : photoURL;

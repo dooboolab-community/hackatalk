@@ -1,4 +1,4 @@
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import React, {ReactElement, useState} from 'react';
 import {graphql, useMutation} from 'react-relay/hooks';
 import {
@@ -15,11 +15,10 @@ import {SignUpSendVerificationMutation} from '../../__generated__/SignUpSendVeri
 import StatusBar from '../UI/atoms/StatusBar';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}): string => theme.background};
+  background: ${({theme}) => theme.background};
 `;
 
 const Wrapper = styled.KeyboardAvoidingView`
@@ -77,7 +76,7 @@ function Page(props: Props): ReactElement {
     sendVerification,
   );
 
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
   // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
   // const [sendVerification] =
   //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
@@ -223,6 +222,7 @@ function Page(props: Props): ReactElement {
                 },
                 container: {
                   borderBottomColor: theme.text,
+                  paddingVertical: 8,
                 },
               }}
               placeholder="********"
@@ -258,12 +258,17 @@ function Page(props: Props): ReactElement {
             />
             <EditText
               testID="input-status"
+              type="column"
               styles={{
                 input: {
+                  marginTop: 12,
                   color: theme.text,
                 },
                 container: {
                   borderColor: theme.text,
+                  borderWidth: 1,
+                  paddingHorizontal: 8,
+                  paddingVertical: 12,
                 },
               }}
               focusColor={theme.focused}
@@ -276,6 +281,9 @@ function Page(props: Props): ReactElement {
               }}
               style={{marginTop: 32}}
               onSubmitEditing={requestSignUp}
+              textInputProps={{
+                multiline: true,
+              }}
             />
             <ButtonWrapper>
               <Button
@@ -283,7 +291,8 @@ function Page(props: Props): ReactElement {
                 loading={isInFlight}
                 onPress={requestSignUp}
                 style={{
-                  width: '100%',
+                  alignSelf: 'stretch',
+                  borderWidth: 1,
                 }}
                 styles={{
                   container: {
@@ -293,6 +302,9 @@ function Page(props: Props): ReactElement {
                   text: {
                     color: theme.btnPrimaryFont,
                     fontSize: 16,
+                  },
+                  hovered: {
+                    borderColor: theme.text,
                   },
                 }}
                 text={getString('SIGN_UP')}

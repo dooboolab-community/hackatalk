@@ -1,4 +1,4 @@
-import {Button, EditText} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import type {
   FindPwMutation,
   FindPwMutationResponse,
@@ -11,12 +11,11 @@ import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
-import {useThemeContext} from '@dooboo-ui/theme';
 
 const Container = styled.View`
   flex: 1;
   padding: 0 32px;
-  background-color: ${({theme}): string => theme.background};
+  background-color: ${({theme}) => theme.background};
 `;
 
 const ButtonWrapper = styled.View`
@@ -42,7 +41,7 @@ function Page({navigation}: Props): ReactElement {
     findPasswordMutation,
   );
 
-  const {theme} = useThemeContext();
+  const {theme} = useTheme();
 
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
@@ -107,9 +106,13 @@ function Page({navigation}: Props): ReactElement {
             container: {
               height: 52,
               backgroundColor: theme.btnPrimary,
+              borderWidth: 1,
             },
             text: {
               color: theme.btnPrimaryFont,
+            },
+            hovered: {
+              borderColor: theme.text,
             },
           }}
           text={getString('FIND_PW')}
