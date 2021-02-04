@@ -38,6 +38,11 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator(): React.ReactElement {
   const {theme} = useTheme();
 
+  const linking = {
+    prefixes: ['https://hackatalk.dev', 'hackatalk://'],
+    enabled: true,
+  };
+
   const {
     state: {user},
   } = useAuthContext();
@@ -45,6 +50,9 @@ function RootNavigator(): React.ReactElement {
   return (
     <SafeAreaProvider>
       <NavigationContainer
+        linking={Platform.select({
+          web: linking,
+        })}
         theme={{
           colors: {
             background: theme.background,
