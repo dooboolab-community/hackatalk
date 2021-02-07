@@ -18,6 +18,7 @@
   "DELETE_FRIEND": "Delete",
   "DONE": "Done",
   "EMAIL": "Email",
+  "EMAIL_USER_NOT_EXISTS": "User does not exists.",
   "EMAIL_FORMAT_NOT_VALID": "Email format is not valid.",
   "EMAIL_REQUIRED": "Email is required.",
   "ERROR": "Error",

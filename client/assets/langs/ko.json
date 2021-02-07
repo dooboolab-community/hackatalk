@@ -18,6 +18,7 @@
   "DELETE_FRIEND": "친구삭제",
   "DONE": "완료",
   "EMAIL": "이메일",
+  "EMAIL_USER_NOT_EXISTS": "가입되지 않은 유저입니다.",
   "EMAIL_FORMAT_NOT_VALID": "이메일 형식이 올바르지 않습니다.",
   "EMAIL_REQUIRED": "이메일 주소는 필수 항목입니다.",
   "ERROR": "에러",

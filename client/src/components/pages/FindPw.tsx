@@ -9,6 +9,7 @@ import {showAlertForError, validateEmail} from '../../utils/common';
 
 import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import {PayloadError} from 'relay-runtime';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 
@@ -55,8 +56,17 @@ function Page({navigation}: Props): ReactElement {
       onError: (error: Error): void => {
         showAlertForError(error);
       },
-      onCompleted: (response: FindPwMutationResponse) => {
+      onCompleted: (
+        response: FindPwMutationResponse,
+        errors: PayloadError[],
+      ) => {
         const result = response.findPassword;
+
+        if (errors && errors.length > 0) {
+          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'),);
+
+          return;
+        }
 
         if (result) {
           Alert.alert(
