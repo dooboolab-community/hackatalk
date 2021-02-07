@@ -12,6 +12,8 @@ import {
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
+  ErrorString,
+  ErrorUserNotExists,
 } from '../../utils/error';
 import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {USER_SIGNED_IN, USER_UPDATED} from './subscription';
@@ -276,7 +278,7 @@ export const findPassword = mutationField('findPassword', {
       },
     });
 
-    if (!user) throw ErrorEmailNotValid(`User with this email doesn't exist.`);
+    if (!user) throw ErrorUserNotExists(ErrorString.UserNotExists);
 
     const verificationToken = sign(
       {email, type: 'findPassword'},
