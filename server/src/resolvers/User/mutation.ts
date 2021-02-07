@@ -270,7 +270,7 @@ export const findPassword = mutationField('findPassword', {
 
   resolve: async (_parent, {email}, ctx) => {
     if (!email || !validateEmail(email))
-      throw ErrorEmailNotValid('Email is not valid');
+      throw ErrorEmailNotValid(ErrorString.EmailNotValid);
 
     const user = await ctx.prisma.user.findUnique({
       where: {
