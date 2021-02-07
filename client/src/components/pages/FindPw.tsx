@@ -63,7 +63,7 @@ function Page({navigation}: Props): ReactElement {
         const result = response.findPassword;
 
         if (errors && errors.length > 0) {
-          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'),);
+          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'));
 
           return;
         }
