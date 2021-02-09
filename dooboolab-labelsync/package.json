@@ -1,0 +1,29 @@
+{
+  "name": "dooboolab-labelsync",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "make": "ts-node labelsync.ts"
+  },
+  "dependencies": {
+    "husky": "latest",
+    "label-sync": "latest"
+  },
+  "devDependencies": {
+    "prettier": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn -s make && git add labelsync.yml"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 100
+  },
+  "license": "MIT"
+}
