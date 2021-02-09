@@ -12,6 +12,8 @@ import {
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
+  ErrorString,
+  ErrorUserNotExists,
 } from '../../utils/error';
 import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {USER_SIGNED_IN, USER_UPDATED} from './subscription';
@@ -268,7 +270,15 @@ export const findPassword = mutationField('findPassword', {
 
   resolve: async (_parent, {email}, ctx) => {
     if (!email || !validateEmail(email))
-      throw ErrorEmailNotValid('Email is not valid');
+      throw ErrorEmailNotValid(ErrorString.EmailNotValid);
+
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) throw ErrorUserNotExists(ErrorString.UserNotExists);
 
     const verificationToken = sign(
       {email, type: 'findPassword'},

@@ -2,6 +2,7 @@
 import {GraphQLClient, request} from 'graphql-request';
 import {apolloClient, testHost} from '../testSetup';
 import {
+  findPasswordMutation,
   meQuery,
   signInEmailMutation,
   signUpMutation,
@@ -9,6 +10,8 @@ import {
   userSignedInSubscription,
   userUpdatedSubscription,
 } from '../queries';
+
+import {ErrorString} from '../../src/utils/error';
 
 let client: GraphQLClient;
 
@@ -58,6 +61,44 @@ describe('Resolver - User', () => {
         authorization: response.signInEmail.token,
       },
     });
+  });
+
+  it('should throw error when it requests findPassword', async () => {
+    const variableNotExist = {
+      email: 'notexistuser@email.com',
+    };
+
+    try {
+      await client.request(findPasswordMutation, variableNotExist);
+    } catch (e) {
+      const response = e.response;
+
+      expect(response.errors[0].message).toEqual(ErrorString.UserNotExists);
+    }
+
+    const variableNotValid = {
+      email: 'notvaliduser@email',
+    };
+
+    try {
+      await client.request(findPasswordMutation, variableNotValid);
+    } catch (e) {
+      const response = e.response;
+
+      expect(response.errors[0].message).toEqual(ErrorString.EmailNotValid);
+    }
+
+    const variableValidUser = {
+      email: userVariables.user.email,
+    };
+
+    try {
+      await client.request(findPasswordMutation, variableValidUser);
+    } catch (e) {
+      const response = e.response;
+
+      expect(response.errors[0].message).toEqual(ErrorString.EmailSentFailed);
+    }
   });
 
   describe('Resolver - after signInEmail', () => {

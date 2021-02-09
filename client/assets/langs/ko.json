@@ -20,6 +20,7 @@
   "EMAIL": "이메일",
   "EMAIL_FORMAT_NOT_VALID": "이메일 형식이 올바르지 않습니다.",
   "EMAIL_REQUIRED": "이메일 주소는 필수 항목입니다.",
+  "EMAIL_USER_NOT_EXISTS": "가입되지 않은 유저입니다.",
   "ERROR": "에러",
   "ERROR_OCCURED": "오류가 발생했습니다.",
   "FAILED": "실패",

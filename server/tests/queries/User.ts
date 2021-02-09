@@ -11,6 +11,12 @@ export const signUpMutation = /* GraphQL */ `
   }
 `;
 
+export const findPasswordMutation = /* GraphQL */ `
+  mutation FindPwMutation($email: String!) {
+    findPassword(email: $email)
+  }
+`;
+
 export const signInEmailMutation = /* GraphQL */ `
   mutation signInEmail($email: String!, $password: String!) {
     signInEmail(email: $email, password: $password) {
