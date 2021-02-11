@@ -14,12 +14,11 @@ import type {
 import React, {ReactElement, useEffect, useRef, useState} from 'react';
 import {graphql, useMutation} from 'react-relay/hooks';
 
-import Constants from 'expo-constants';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {getString} from '../../../STRINGS';
-import {isIPhoneX} from '../../utils/Styles';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -53,6 +52,7 @@ const changeEmailPasswordMutation = graphql`
 `;
 
 function ChangePw(props: Props): ReactElement {
+  const insets = useSafeAreaInsets();
   const {navigation} = props;
   const {theme} = useTheme();
   const [currentPw, setCurrentPw] = useState('');
@@ -138,11 +138,7 @@ function ChangePw(props: Props): ReactElement {
         paddingBottom: keyboardOffset,
       }}>
       <StyledKeyboardAvoidingView
-        keyboardVerticalOffset={
-          isIPhoneX()
-            ? Constants.statusBarHeight + 52
-            : Constants.statusBarHeight
-        }
+        keyboardVerticalOffset={insets.top + insets.bottom}
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,

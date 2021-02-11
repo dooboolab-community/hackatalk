@@ -8,7 +8,6 @@ import {
 import React, {ReactElement} from 'react';
 
 import Channel from '../pages/Channel';
-import Constants from 'expo-constants';
 import Friend from '../pages/Friend';
 import {LinearGradient} from 'expo-linear-gradient';
 import {MainStackNavigationProps} from './MainStackNavigator';
@@ -35,6 +34,7 @@ export type MaterialTopTabNavigationProps<
 const Tab = createMaterialTopTabNavigator<MaterialTopTabParamList>();
 
 const CustomHeader = (): ReactElement => {
+  const insets = useSafeAreaInsets();
   const {theme, changeThemeType} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
@@ -42,12 +42,9 @@ const CustomHeader = (): ReactElement => {
     // @ts-ignore
     <LinearGradient
       style={{
-        paddingTop: Platform.select({
-          ios: Constants.statusBarHeight,
-          default: 0,
-        }),
+        paddingTop: insets.top,
         height: Platform.select({
-          ios: 44 + Constants.statusBarHeight,
+          ios: 44 + insets.top,
           default: 56,
         }),
         alignSelf: 'stretch',
