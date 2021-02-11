@@ -1,13 +1,6 @@
 import * as Notifications from 'expo-notifications';
 
-import {
-  Alert,
-  Image,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
 import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
 import {
@@ -29,6 +22,7 @@ import React, {
   useState,
 } from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/core';
+import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   graphql,
   useLazyLoadQuery,
@@ -40,7 +34,6 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import Constants from 'expo-constants';
 import EmptyListItem from '../UI/molecules/EmptyListItem';
 import GiftedChat from '../UI/organisms/GiftedChat';
 import {IC_SMILE} from '../../utils/Icons';
@@ -57,6 +50,7 @@ import styled from 'styled-components/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const ITEM_CNT = 20;
 
@@ -65,58 +59,6 @@ const Container = styled.SafeAreaView`
   background-color: ${({theme}) => theme.messageBackground};
   flex-direction: column;
   align-items: center;
-`;
-
-const createMessage = graphql`
-  mutation MessageCreateMutation(
-    $channelId: String!
-    $message: MessageCreateInput!
-  ) {
-    createMessage(channelId: $channelId, message: $message) {
-      id
-      text
-      messageType
-      imageUrls
-      fileUrls
-      channel {
-        id
-        channelType
-        name
-        memberships(excludeMe: true) {
-          user {
-            name
-            nickname
-            thumbURL
-            photoURL
-          }
-        }
-        lastMessage {
-          messageType
-          text
-          imageUrls
-          fileUrls
-          createdAt
-        }
-      }
-    }
-  }
-`;
-
-const messagesQuery = graphql`
-  query MessagesQuery(
-    $first: Int!
-    $after: String
-    $channelId: String!
-    $searchText: String
-  ) {
-    ...MessageComponent_message
-      @arguments(
-        first: $first
-        after: $after
-        channelId: $channelId
-        searchText: $searchText
-      )
-  }
 `;
 
 const messagesFragment = graphql`
@@ -261,6 +203,7 @@ interface MessageProp {
 const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
+  const insets = useSafeAreaInsets();
 
   const {data, loadNext, loadPrevious} = usePaginationFragment<
     MessagesQuery,
@@ -390,10 +333,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       onEndReached={onEndReached}
       backgroundColor={theme.background}
       fontColor={theme.text}
-      keyboardOffset={Platform.select({
-        ios: Constants.statusBarHeight + 40,
-        android: Constants.statusBarHeight + 52,
-      })}
+      keyboardOffset={insets.top + insets.bottom}
       message={textToSend}
       placeholder={getString('WRITE_MESSAGE')}
       placeholderTextColor={theme.placeholder}

@@ -1,13 +1,13 @@
 import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {
+  ChannelFindOrCreatePrivateChannelMutation,
+  ChannelFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ProfileModalContext,
   useProfileContext,
 } from '../../providers/ProfileModalProvider';
-import {
-  ProfileModalFindOrCreatePrivateChannelMutation,
-  ProfileModalFindOrCreatePrivateChannelMutationResponse,
-} from '../../__generated__/ProfileModalFindOrCreatePrivateChannelMutation.graphql';
 import React, {FC, useState} from 'react';
 import {graphql, useMutation} from 'react-relay/hooks';
 
@@ -19,6 +19,7 @@ import {ProfileModalAddFriendMutation} from '../../__generated__/ProfileModalAdd
 import {ProfileModalCreateBlockedUserMutation} from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
 import {ProfileModalDeleteBlockedUserMutation} from '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
 import {ProfileModalDeleteFriendMutation} from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
+import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -82,17 +83,6 @@ const StyledTextFriendAlreadyAdded = styled.Text`
   font-size: 12px;
   background-color: ${({theme}) => theme.background};
   padding: 4px;
-`;
-
-const findOrCreatePrivateChannel = graphql`
-  mutation ProfileModalFindOrCreatePrivateChannelMutation(
-    $peerUserIds: [String!]!
-  ) {
-    findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
-      id
-      name
-    }
-  }
 `;
 
 const addFriendMutation = graphql`
@@ -183,7 +173,7 @@ const ModalContent: FC<ModalContentProps> = ({
   const [
     commitChannel,
     isChannelInFlight,
-  ] = useMutation<ProfileModalFindOrCreatePrivateChannelMutation>(
+  ] = useMutation<ChannelFindOrCreatePrivateChannelMutation>(
     findOrCreatePrivateChannel,
   );
 
@@ -300,7 +290,7 @@ const ModalContent: FC<ModalContentProps> = ({
           peerUserIds: [user.id],
         },
         onCompleted: (
-          response: ProfileModalFindOrCreatePrivateChannelMutationResponse,
+          response: ChannelFindOrCreatePrivateChannelMutationResponse,
         ): void => {
           const channel = response.findOrCreatePrivateChannel;
 

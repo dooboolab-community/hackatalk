@@ -2,7 +2,7 @@ import {LoadingIndicator, ThemeProvider} from 'dooboo-ui';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {Suspense} from 'react';
 
-import Friend from '../Friend';
+import Friend from '../MainFriend';
 import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import {User} from '../../../types/graphql';

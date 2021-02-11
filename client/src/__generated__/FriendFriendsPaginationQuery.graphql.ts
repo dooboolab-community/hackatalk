@@ -7,9 +7,10 @@ import { FragmentRefs } from "relay-runtime";
 export type FriendFriendsPaginationQueryVariables = {
     after?: string | null;
     first: number;
+    searchText?: string | null;
 };
 export type FriendFriendsPaginationQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"Friend_friends">;
+    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends">;
 };
 export type FriendFriendsPaginationQuery = {
     readonly response: FriendFriendsPaginationQueryResponse;
@@ -22,12 +23,13 @@ export type FriendFriendsPaginationQuery = {
 query FriendFriendsPaginationQuery(
   $after: String
   $first: Int!
+  $searchText: String
 ) {
-  ...Friend_friends_2HEEH6
+  ...MainFriend_friends_2HEEH6
 }
 
-fragment Friend_friends_2HEEH6 on Query {
-  friends(first: $first, after: $after) {
+fragment MainFriend_friends_2HEEH6 on Query {
+  friends(first: $first, after: $after, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -70,18 +72,30 @@ var v0 = [
     "defaultValue": null,
     "kind": "LocalArgument",
     "name": "first"
-  }
-],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "after",
-    "variableName": "after"
   },
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "searchText"
+  }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "after",
+  "variableName": "after"
+},
+v2 = {
+  "kind": "Variable",
+  "name": "first",
+  "variableName": "first"
+},
+v3 = [
+  (v1/*: any*/),
+  (v2/*: any*/),
+  {
     "kind": "Variable",
-    "name": "first",
-    "variableName": "first"
+    "name": "searchText",
+    "variableName": "searchText"
   }
 ];
 return {
@@ -92,9 +106,12 @@ return {
     "name": "FriendFriendsPaginationQuery",
     "selections": [
       {
-        "args": (v1/*: any*/),
+        "args": [
+          (v1/*: any*/),
+          (v2/*: any*/)
+        ],
         "kind": "FragmentSpread",
-        "name": "Friend_friends"
+        "name": "MainFriend_friends"
       }
     ],
     "type": "Query",
@@ -108,7 +125,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v3/*: any*/),
         "concreteType": "UserConnection",
         "kind": "LinkedField",
         "name": "friends",
@@ -299,24 +316,24 @@ return {
       },
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": (v3/*: any*/),
         "filters": [],
         "handle": "connection",
-        "key": "Friend_friends",
+        "key": "MainFriend_friends",
         "kind": "LinkedHandle",
         "name": "friends"
       }
     ]
   },
   "params": {
-    "cacheID": "fee6f67fa219f1e3486b9374b6af9195",
+    "cacheID": "01d352900c0f67fa385620a064bd6f35",
     "id": null,
     "metadata": {},
     "name": "FriendFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n) {\n  ...Friend_friends_2HEEH6\n}\n\nfragment Friend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...MainFriend_friends_2HEEH6\n}\n\nfragment MainFriend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'ccf6d0ce442aca2da0e065d948a57351';
+(node as any).hash = '5e5d71064e799fd4fe5cc0c1ffb7344b';
 export default node;

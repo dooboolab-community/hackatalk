@@ -4,10 +4,10 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type AuthType = "apple" | "email" | "facebook" | "google";
-export type SignInAppleMutationVariables = {
+export type UserSignInAppleMutationVariables = {
     accessToken: string;
 };
-export type SignInAppleMutationResponse = {
+export type UserSignInAppleMutationResponse = {
     readonly signInWithApple: {
         readonly token: string;
         readonly user: {
@@ -22,15 +22,15 @@ export type SignInAppleMutationResponse = {
         };
     };
 };
-export type SignInAppleMutation = {
-    readonly response: SignInAppleMutationResponse;
-    readonly variables: SignInAppleMutationVariables;
+export type UserSignInAppleMutation = {
+    readonly response: UserSignInAppleMutationResponse;
+    readonly variables: UserSignInAppleMutationVariables;
 };
 
 
 
 /*
-mutation SignInAppleMutation(
+mutation UserSignInAppleMutation(
   $accessToken: String!
 ) {
   signInWithApple(accessToken: $accessToken) {
@@ -152,7 +152,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignInAppleMutation",
+    "name": "UserSignInAppleMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -161,18 +161,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SignInAppleMutation",
+    "name": "UserSignInAppleMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "8772fffb1661318a2c90c4141fa0b59b",
+    "cacheID": "05828268b57653965d9b3bbb0958f417",
     "id": null,
     "metadata": {},
-    "name": "SignInAppleMutation",
+    "name": "UserSignInAppleMutation",
     "operationKind": "mutation",
-    "text": "mutation SignInAppleMutation(\n  $accessToken: String!\n) {\n  signInWithApple(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserSignInAppleMutation(\n  $accessToken: String!\n) {\n  signInWithApple(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'c2b69573f6e7755b516cad69ab5e4d3d';
+(node as any).hash = 'f40963ef2a9220b26fa19a785b32ff15';
 export default node;

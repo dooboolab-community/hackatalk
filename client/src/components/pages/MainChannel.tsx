@@ -18,13 +18,15 @@ import {
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import {AdMobBanner} from 'expo-ads-admob';
-import type {ChannelComponent_channel$key} from '../../__generated__/ChannelComponent_channel.graphql';
-import {ChannelLastMessageQuery} from '../../__generated__/ChannelLastMessageQuery.graphql';
 import ChannelListItem from '../UI/molecules/ChannelListItem';
 import EmptyListItem from '../UI/molecules/EmptyListItem';
+import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';
 import {SvgPlus} from '../../utils/Icons';
+import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
+import {lastMessageQuery} from '../../relay/queries/Message';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -47,15 +49,8 @@ const Fab = styled.View`
 
 const ITEM_CNT = 20;
 
-const channelsQuery = graphql`
-  query ChannelsQuery($first: Int!, $after: String, $withMessage: Boolean) {
-    ...ChannelComponent_channel
-      @arguments(first: $first, after: $after, withMessage: $withMessage)
-  }
-`;
-
 const channelsPaginationFragment = graphql`
-  fragment ChannelComponent_channel on Query
+  fragment MainChannelComponent_channel on Query
   @argumentDefinitions(
     first: {type: "Int!"}
     after: {type: "String"}
@@ -63,7 +58,10 @@ const channelsPaginationFragment = graphql`
   )
   @refetchable(queryName: "Channels") {
     channels(first: $first, after: $after, withMessage: $withMessage)
-      @connection(key: "ChannelComponent_channels", filters: ["withMessage"]) {
+      @connection(
+        key: "MainChannelComponent_channels"
+        filters: ["withMessage"]
+      ) {
       edges {
         cursor
         node {
@@ -96,40 +94,18 @@ const channelsPaginationFragment = graphql`
   }
 `;
 
-const lastMessageQuery = graphql`
-  query ChannelLastMessageQuery($messageId: String!) {
-    message(id: $messageId) {
-      id
-      messageType
-      text
-      imageUrls
-      fileUrls
-      createdAt
-      sender {
-        id
-      }
-      channel {
-        id
-        lastMessage {
-          id
-        }
-      }
-    }
-  }
-`;
-
 interface ChannelProps {
-  channel: ChannelComponent_channel$key;
+  channel: MainChannelComponent_channel$key;
   searchArgs: ChannelsQueryVariables;
 }
 
 const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     ChannelsQuery,
-    ChannelComponent_channel$key
+    MainChannelComponent_channel$key
   >(channelsPaginationFragment, channel);
 
-  const [, loadLastMessage] = useQueryLoader<ChannelLastMessageQuery>(
+  const [, loadLastMessage] = useQueryLoader<MessageLastMessageQuery>(
     lastMessageQuery,
   );
 

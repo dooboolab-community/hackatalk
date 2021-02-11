@@ -4,12 +4,11 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type AuthType = "apple" | "email" | "facebook" | "google";
-export type SignInEmailMutationVariables = {
-    email: string;
-    password: string;
+export type UserGoogleSignInMutationVariables = {
+    accessToken: string;
 };
-export type SignInEmailMutationResponse = {
-    readonly signInEmail: {
+export type UserGoogleSignInMutationResponse = {
+    readonly signInWithGoogle: {
         readonly token: string;
         readonly user: {
             readonly id: string;
@@ -23,19 +22,18 @@ export type SignInEmailMutationResponse = {
         };
     };
 };
-export type SignInEmailMutation = {
-    readonly response: SignInEmailMutationResponse;
-    readonly variables: SignInEmailMutationVariables;
+export type UserGoogleSignInMutation = {
+    readonly response: UserGoogleSignInMutationResponse;
+    readonly variables: UserGoogleSignInMutationVariables;
 };
 
 
 
 /*
-mutation SignInEmailMutation(
-  $email: String!
-  $password: String!
+mutation UserGoogleSignInMutation(
+  $accessToken: String!
 ) {
-  signInEmail(email: $email, password: $password) {
+  signInWithGoogle(accessToken: $accessToken) {
     token
     user {
       id
@@ -56,12 +54,7 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "email"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "password"
+    "name": "accessToken"
   }
 ],
 v1 = [
@@ -70,18 +63,13 @@ v1 = [
     "args": [
       {
         "kind": "Variable",
-        "name": "email",
-        "variableName": "email"
-      },
-      {
-        "kind": "Variable",
-        "name": "password",
-        "variableName": "password"
+        "name": "accessToken",
+        "variableName": "accessToken"
       }
     ],
     "concreteType": "AuthPayload",
     "kind": "LinkedField",
-    "name": "signInEmail",
+    "name": "signInWithGoogle",
     "plural": false,
     "selections": [
       {
@@ -164,7 +152,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignInEmailMutation",
+    "name": "UserGoogleSignInMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -173,18 +161,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SignInEmailMutation",
+    "name": "UserGoogleSignInMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "2ff728a460fd9de16bf8d77b0c340c01",
+    "cacheID": "c53213d3873873ebba7ffcd390648487",
     "id": null,
     "metadata": {},
-    "name": "SignInEmailMutation",
+    "name": "UserGoogleSignInMutation",
     "operationKind": "mutation",
-    "text": "mutation SignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserGoogleSignInMutation(\n  $accessToken: String!\n) {\n  signInWithGoogle(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'd904abca767bd552a1894629fbcd7da1';
+(node as any).hash = 'ff7dc4d845dfb3b4872d2a87a4f3030c';
 export default node;

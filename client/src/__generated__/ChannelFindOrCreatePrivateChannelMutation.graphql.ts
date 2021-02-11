@@ -3,25 +3,25 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ChannelCreateFindOrCreatePrivateChannelMutationVariables = {
+export type ChannelFindOrCreatePrivateChannelMutationVariables = {
     peerUserIds: Array<string>;
 };
-export type ChannelCreateFindOrCreatePrivateChannelMutationResponse = {
+export type ChannelFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
         readonly channelType: unknown;
     } | null;
 };
-export type ChannelCreateFindOrCreatePrivateChannelMutation = {
-    readonly response: ChannelCreateFindOrCreatePrivateChannelMutationResponse;
-    readonly variables: ChannelCreateFindOrCreatePrivateChannelMutationVariables;
+export type ChannelFindOrCreatePrivateChannelMutation = {
+    readonly response: ChannelFindOrCreatePrivateChannelMutationResponse;
+    readonly variables: ChannelFindOrCreatePrivateChannelMutationVariables;
 };
 
 
 
 /*
-mutation ChannelCreateFindOrCreatePrivateChannelMutation(
+mutation ChannelFindOrCreatePrivateChannelMutation(
   $peerUserIds: [String!]!
 ) {
   findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
@@ -85,7 +85,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
+    "name": "ChannelFindOrCreatePrivateChannelMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -94,18 +94,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
+    "name": "ChannelFindOrCreatePrivateChannelMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "a8d3262106bfb28cbe87b4008c2d3356",
+    "cacheID": "9120d90bec6954cdd44bed7eb33e214d",
     "id": null,
     "metadata": {},
-    "name": "ChannelCreateFindOrCreatePrivateChannelMutation",
+    "name": "ChannelFindOrCreatePrivateChannelMutation",
     "operationKind": "mutation",
-    "text": "mutation ChannelCreateFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String!]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
+    "text": "mutation ChannelFindOrCreatePrivateChannelMutation(\n  $peerUserIds: [String!]!\n) {\n  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {\n    id\n    name\n    channelType\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'a4ba54c3dd6f7d0debf4577aa3883071';
+(node as any).hash = '075bfd59cf64c8590f62b6a68277c01d';
 export default node;

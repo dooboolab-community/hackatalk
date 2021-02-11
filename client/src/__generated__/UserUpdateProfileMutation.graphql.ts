@@ -14,25 +14,25 @@ export type UserUpdateInput = {
     statusMessage?: string | null;
     gender?: unknown | null;
 };
-export type ProfileUpdateMutationVariables = {
+export type UserUpdateProfileMutationVariables = {
     user: UserUpdateInput;
 };
-export type ProfileUpdateMutationResponse = {
+export type UserUpdateProfileMutationResponse = {
     readonly updateProfile: {
         readonly name: string | null;
         readonly nickname: string | null;
         readonly statusMessage: string | null;
     } | null;
 };
-export type ProfileUpdateMutation = {
-    readonly response: ProfileUpdateMutationResponse;
-    readonly variables: ProfileUpdateMutationVariables;
+export type UserUpdateProfileMutation = {
+    readonly response: UserUpdateProfileMutationResponse;
+    readonly variables: UserUpdateProfileMutationVariables;
 };
 
 
 
 /*
-mutation ProfileUpdateMutation(
+mutation UserUpdateProfileMutation(
   $user: UserUpdateInput!
 ) {
   updateProfile(user: $user) {
@@ -96,7 +96,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileUpdateMutation",
+    "name": "UserUpdateProfileMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -105,18 +105,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileUpdateMutation",
+    "name": "UserUpdateProfileMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "3e58167d08cc50b916407bfc8da573fd",
+    "cacheID": "c80b477a80d01190b33947329887fc8a",
     "id": null,
     "metadata": {},
-    "name": "ProfileUpdateMutation",
+    "name": "UserUpdateProfileMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileUpdateMutation(\n  $user: UserUpdateInput!\n) {\n  updateProfile(user: $user) {\n    name\n    nickname\n    statusMessage\n  }\n}\n"
+    "text": "mutation UserUpdateProfileMutation(\n  $user: UserUpdateInput!\n) {\n  updateProfile(user: $user) {\n    name\n    nickname\n    statusMessage\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'a31676c824a0ff1cf2e046388cabc683';
+(node as any).hash = '43eb9f16e3f55b1eb7cb8c5ed83fc964';
 export default node;

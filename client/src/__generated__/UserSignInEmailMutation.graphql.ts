@@ -4,11 +4,12 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type AuthType = "apple" | "email" | "facebook" | "google";
-export type SocialSignInButtonFacebookSignInMutationVariables = {
-    accessToken: string;
+export type UserSignInEmailMutationVariables = {
+    email: string;
+    password: string;
 };
-export type SocialSignInButtonFacebookSignInMutationResponse = {
-    readonly signInWithFacebook: {
+export type UserSignInEmailMutationResponse = {
+    readonly signInEmail: {
         readonly token: string;
         readonly user: {
             readonly id: string;
@@ -22,18 +23,19 @@ export type SocialSignInButtonFacebookSignInMutationResponse = {
         };
     };
 };
-export type SocialSignInButtonFacebookSignInMutation = {
-    readonly response: SocialSignInButtonFacebookSignInMutationResponse;
-    readonly variables: SocialSignInButtonFacebookSignInMutationVariables;
+export type UserSignInEmailMutation = {
+    readonly response: UserSignInEmailMutationResponse;
+    readonly variables: UserSignInEmailMutationVariables;
 };
 
 
 
 /*
-mutation SocialSignInButtonFacebookSignInMutation(
-  $accessToken: String!
+mutation UserSignInEmailMutation(
+  $email: String!
+  $password: String!
 ) {
-  signInWithFacebook(accessToken: $accessToken) {
+  signInEmail(email: $email, password: $password) {
     token
     user {
       id
@@ -54,7 +56,12 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "accessToken"
+    "name": "email"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "password"
   }
 ],
 v1 = [
@@ -63,13 +70,18 @@ v1 = [
     "args": [
       {
         "kind": "Variable",
-        "name": "accessToken",
-        "variableName": "accessToken"
+        "name": "email",
+        "variableName": "email"
+      },
+      {
+        "kind": "Variable",
+        "name": "password",
+        "variableName": "password"
       }
     ],
     "concreteType": "AuthPayload",
     "kind": "LinkedField",
-    "name": "signInWithFacebook",
+    "name": "signInEmail",
     "plural": false,
     "selections": [
       {
@@ -152,7 +164,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SocialSignInButtonFacebookSignInMutation",
+    "name": "UserSignInEmailMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -161,18 +173,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SocialSignInButtonFacebookSignInMutation",
+    "name": "UserSignInEmailMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "168ad1c505c0cbe50ea3c2dc9cb2294e",
+    "cacheID": "486c10b27b631985930700b614b94548",
     "id": null,
     "metadata": {},
-    "name": "SocialSignInButtonFacebookSignInMutation",
+    "name": "UserSignInEmailMutation",
     "operationKind": "mutation",
-    "text": "mutation SocialSignInButtonFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserSignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '7963716f8f2c9a21116c08e8a6975d3f';
+(node as any).hash = '86c5e76b97ac579d31fb84937480e7b8';
 export default node;

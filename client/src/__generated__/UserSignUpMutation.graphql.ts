@@ -15,10 +15,10 @@ export type UserCreateInput = {
     phone?: string | null;
     statusMessage?: string | null;
 };
-export type SignUpMutationVariables = {
+export type UserSignUpMutationVariables = {
     user: UserCreateInput;
 };
-export type SignUpMutationResponse = {
+export type UserSignUpMutationResponse = {
     readonly signUp: {
         readonly id: string;
         readonly email: string | null;
@@ -27,15 +27,15 @@ export type SignUpMutationResponse = {
         readonly verified: boolean | null;
     };
 };
-export type SignUpMutation = {
-    readonly response: SignUpMutationResponse;
-    readonly variables: SignUpMutationVariables;
+export type UserSignUpMutation = {
+    readonly response: UserSignUpMutationResponse;
+    readonly variables: UserSignUpMutationVariables;
 };
 
 
 
 /*
-mutation SignUpMutation(
+mutation UserSignUpMutation(
   $user: UserCreateInput!
 ) {
   signUp(user: $user) {
@@ -115,7 +115,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignUpMutation",
+    "name": "UserSignUpMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -124,18 +124,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SignUpMutation",
+    "name": "UserSignUpMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "34202a012c4c6bc130c3cb1cd1c72ff1",
+    "cacheID": "0392e1dd69d7dbe47d28ec02dd07b203",
     "id": null,
     "metadata": {},
-    "name": "SignUpMutation",
+    "name": "UserSignUpMutation",
     "operationKind": "mutation",
-    "text": "mutation SignUpMutation(\n  $user: UserCreateInput!\n) {\n  signUp(user: $user) {\n    id\n    email\n    name\n    photoURL\n    verified\n  }\n}\n"
+    "text": "mutation UserSignUpMutation(\n  $user: UserCreateInput!\n) {\n  signUp(user: $user) {\n    id\n    email\n    name\n    photoURL\n    verified\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '24d7361e7fd2c2f8691e52eaf708c0af';
+(node as any).hash = '6323b0c85cbbb1ecc6a8360caffd1cbd';
 export default node;

@@ -3,10 +3,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ChannelLastMessageQueryVariables = {
+export type MessageLastMessageQueryVariables = {
     messageId: string;
 };
-export type ChannelLastMessageQueryResponse = {
+export type MessageLastMessageQueryResponse = {
     readonly message: {
         readonly id: string;
         readonly messageType: unknown;
@@ -25,15 +25,15 @@ export type ChannelLastMessageQueryResponse = {
         } | null;
     } | null;
 };
-export type ChannelLastMessageQuery = {
-    readonly response: ChannelLastMessageQueryResponse;
-    readonly variables: ChannelLastMessageQueryVariables;
+export type MessageLastMessageQuery = {
+    readonly response: MessageLastMessageQueryResponse;
+    readonly variables: MessageLastMessageQueryVariables;
 };
 
 
 
 /*
-query ChannelLastMessageQuery(
+query MessageLastMessageQuery(
   $messageId: String!
 ) {
   message(id: $messageId) {
@@ -166,7 +166,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChannelLastMessageQuery",
+    "name": "MessageLastMessageQuery",
     "selections": (v3/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -175,18 +175,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ChannelLastMessageQuery",
+    "name": "MessageLastMessageQuery",
     "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "c29ae19fa452ef1c798507915dade5a9",
+    "cacheID": "eead5c942d3a463b72b7455923c4f68a",
     "id": null,
     "metadata": {},
-    "name": "ChannelLastMessageQuery",
+    "name": "MessageLastMessageQuery",
     "operationKind": "query",
-    "text": "query ChannelLastMessageQuery(\n  $messageId: String!\n) {\n  message(id: $messageId) {\n    id\n    messageType\n    text\n    imageUrls\n    fileUrls\n    createdAt\n    sender {\n      id\n    }\n    channel {\n      id\n      lastMessage {\n        id\n      }\n    }\n  }\n}\n"
+    "text": "query MessageLastMessageQuery(\n  $messageId: String!\n) {\n  message(id: $messageId) {\n    id\n    messageType\n    text\n    imageUrls\n    fileUrls\n    createdAt\n    sender {\n      id\n    }\n    channel {\n      id\n      lastMessage {\n        id\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '583780a8ef53622da37fa9f821778923';
+(node as any).hash = 'c3f84b35476b61285bb36e9693482766';
 export default node;

@@ -3,10 +3,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type SettingsDeleteNotificationMutationVariables = {
+export type NotificationDeleteNotificationMutationVariables = {
     token: string;
 };
-export type SettingsDeleteNotificationMutationResponse = {
+export type NotificationDeleteNotificationMutationResponse = {
     readonly deleteNotification: {
         readonly id: number;
         readonly token: string;
@@ -14,15 +14,15 @@ export type SettingsDeleteNotificationMutationResponse = {
         readonly createdAt: unknown | null;
     } | null;
 };
-export type SettingsDeleteNotificationMutation = {
-    readonly response: SettingsDeleteNotificationMutationResponse;
-    readonly variables: SettingsDeleteNotificationMutationVariables;
+export type NotificationDeleteNotificationMutation = {
+    readonly response: NotificationDeleteNotificationMutationResponse;
+    readonly variables: NotificationDeleteNotificationMutationVariables;
 };
 
 
 
 /*
-mutation SettingsDeleteNotificationMutation(
+mutation NotificationDeleteNotificationMutation(
   $token: String!
 ) {
   deleteNotification(token: $token) {
@@ -94,7 +94,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SettingsDeleteNotificationMutation",
+    "name": "NotificationDeleteNotificationMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -103,18 +103,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SettingsDeleteNotificationMutation",
+    "name": "NotificationDeleteNotificationMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "5a45fefcb36b151a45be3ec0f38b73b8",
+    "cacheID": "f1d9280bcdd359a6e3e95f1c203d4b0f",
     "id": null,
     "metadata": {},
-    "name": "SettingsDeleteNotificationMutation",
+    "name": "NotificationDeleteNotificationMutation",
     "operationKind": "mutation",
-    "text": "mutation SettingsDeleteNotificationMutation(\n  $token: String!\n) {\n  deleteNotification(token: $token) {\n    id\n    token\n    device\n    createdAt\n  }\n}\n"
+    "text": "mutation NotificationDeleteNotificationMutation(\n  $token: String!\n) {\n  deleteNotification(token: $token) {\n    id\n    token\n    device\n    createdAt\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '67ae6ccb7e960ba43b96e9bdefdbbaca';
+(node as any).hash = '33ff5a6bcb4157acc9baec2582521a38';
 export default node;

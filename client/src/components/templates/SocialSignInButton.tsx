@@ -7,18 +7,19 @@ import {AuthType, User} from '../../types/graphql';
 import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
-  SocialSignInButtonFacebookSignInMutation,
-  SocialSignInButtonFacebookSignInMutationResponse,
-} from '../../__generated__/SocialSignInButtonFacebookSignInMutation.graphql';
+  UserFacebookSignInMutation,
+  UserFacebookSignInMutationResponse,
+} from '../../__generated__/UserFacebookSignInMutation.graphql';
 import type {
-  SocialSignInButtonGoogleSignInMutation,
-  SocialSignInButtonGoogleSignInMutationResponse,
-} from '../../__generated__/SocialSignInButtonGoogleSignInMutation.graphql';
-import {graphql, useMutation} from 'react-relay/hooks';
+  UserGoogleSignInMutation,
+  UserGoogleSignInMutationResponse,
+} from '../../__generated__/UserGoogleSignInMutation.graphql';
+import {signInWithFacebook, signInWithGoogle} from '../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
+import {useMutation} from 'react-relay/hooks';
 
 const {facebookAppId, facebookSecret, googleWebClientId} = Config;
 
@@ -30,42 +31,6 @@ interface Props {
   onUserCreated?: (user?: User) => void;
 }
 
-const signInWithFacebook = graphql`
-  mutation SocialSignInButtonFacebookSignInMutation($accessToken: String!) {
-    signInWithFacebook(accessToken: $accessToken) {
-      token
-      user {
-        id
-        email
-        name
-        photoURL
-        verified
-        profile {
-          authType
-        }
-      }
-    }
-  }
-`;
-
-const signInWithGoogle = graphql`
-  mutation SocialSignInButtonGoogleSignInMutation($accessToken: String!) {
-    signInWithGoogle(accessToken: $accessToken) {
-      token
-      user {
-        id
-        email
-        name
-        photoURL
-        verified
-        profile {
-          authType
-        }
-      }
-    }
-  }
-`;
-
 const SocialSignInButton: FC<Props> = ({
   svgIcon,
   socialProvider,
@@ -74,12 +39,12 @@ const SocialSignInButton: FC<Props> = ({
   const [
     commitFacebook,
     isFacebookInFlight,
-  ] = useMutation<SocialSignInButtonFacebookSignInMutation>(signInWithFacebook);
+  ] = useMutation<UserFacebookSignInMutation>(signInWithFacebook);
 
   const [
     commitGoogle,
     isGoogleInFlight,
-  ] = useMutation<SocialSignInButtonGoogleSignInMutation>(signInWithGoogle);
+  ] = useMutation<UserGoogleSignInMutation>(signInWithGoogle);
 
   const {theme} = useTheme();
   const useProxy = Platform.select({web: false, default: true});
@@ -153,9 +118,7 @@ const SocialSignInButton: FC<Props> = ({
         if (socialProvider === 'google') {
           const mutationConfig = {
             variables: {accessToken},
-            onCompleted: (
-              googleResponse: SocialSignInButtonGoogleSignInMutationResponse,
-            ) => {
+            onCompleted: (googleResponse: UserGoogleSignInMutationResponse) => {
               if (googleResponse.signInWithGoogle) {
                 const {user, token} = googleResponse.signInWithGoogle;
 
@@ -176,9 +139,7 @@ const SocialSignInButton: FC<Props> = ({
 
         const mutationConfig = {
           variables: {accessToken},
-          onCompleted: (
-            fbResponse: SocialSignInButtonFacebookSignInMutationResponse,
-          ) => {
+          onCompleted: (fbResponse: UserFacebookSignInMutationResponse) => {
             if (fbResponse.signInWithFacebook) {
               const {user, token} = fbResponse.signInWithFacebook;
 

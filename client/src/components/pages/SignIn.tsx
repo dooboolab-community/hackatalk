@@ -29,25 +29,27 @@ import {
 } from '../../utils/Icons';
 import React, {ReactElement, useEffect, useState} from 'react';
 import type {
-  SignInAppleMutation,
-  SignInAppleMutationResponse,
-} from '../../__generated__/SignInAppleMutation.graphql';
+  UserSignInAppleMutation,
+  UserSignInAppleMutationResponse,
+} from '../../__generated__/UserSignInAppleMutation.graphql';
 import type {
-  SignInEmailMutation,
-  SignInEmailMutationResponse,
-} from '../../__generated__/SignInEmailMutation.graphql';
+  UserSignInEmailMutation,
+  UserSignInEmailMutationResponse,
+} from '../../__generated__/UserSignInEmailMutation.graphql';
 import {delay, spring, useClock, useValue} from 'react-native-redash';
-import {graphql, useMutation} from 'react-relay/hooks';
 import {showAlertForError, validateEmail} from '../../utils/common';
+import {signInEmail, signInWithApple} from '../../relay/queries/User';
 import styled, {css} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import type {SignInCreateNotificationMutation} from '../../__generated__/SignInCreateNotificationMutation.graphql';
+import type {NotificationCreateNotificationMutation} from '../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from '../templates/SocialSignInButton';
 import StatusBar from '../UI/atoms/StatusBar';
+import {createNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useMutation} from 'react-relay/hooks';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
   TouchableOpacity,
@@ -132,57 +134,6 @@ interface Props {
   navigation: AuthStackNavigationProps<'SignIn'>;
 }
 
-const signInEmail = graphql`
-  mutation SignInEmailMutation($email: String!, $password: String!) {
-    signInEmail(email: $email, password: $password) {
-      token
-      user {
-        id
-        email
-        name
-        photoURL
-        verified
-        profile {
-          authType
-        }
-      }
-    }
-  }
-`;
-
-const signInWithApple = graphql`
-  mutation SignInAppleMutation($accessToken: String!) {
-    signInWithApple(accessToken: $accessToken) {
-      token
-      user {
-        id
-        email
-        name
-        photoURL
-        verified
-        profile {
-          authType
-        }
-      }
-    }
-  }
-`;
-
-const createNotification = graphql`
-  mutation SignInCreateNotificationMutation(
-    $token: String!
-    $device: String
-    $os: String
-  ) {
-    createNotification(token: $token, device: $device, os: $os) {
-      id
-      token
-      device
-      createdAt
-    }
-  }
-`;
-
 function SignIn(props: Props): ReactElement {
   const {navigation} = props;
   const {setUser} = useAuthContext();
@@ -194,17 +145,17 @@ function SignIn(props: Props): ReactElement {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [commitEmail, isInFlight] = useMutation<SignInEmailMutation>(
+  const [commitEmail, isInFlight] = useMutation<UserSignInEmailMutation>(
     signInEmail,
   );
 
-  const [commitApple, isAppleInFlight] = useMutation<SignInAppleMutation>(
+  const [commitApple, isAppleInFlight] = useMutation<UserSignInAppleMutation>(
     signInWithApple,
   );
 
-  const [commitNotification] = useMutation<SignInCreateNotificationMutation>(
-    createNotification,
-  );
+  const [
+    commitNotification,
+  ] = useMutation<NotificationCreateNotificationMutation>(createNotification);
 
   const createNotificationIfPushTokenExists = async (): Promise<void> => {
     const pushToken = await AsyncStorage.getItem('push_token');
@@ -255,7 +206,7 @@ function SignIn(props: Props): ReactElement {
         password,
       },
 
-      onCompleted: (response: SignInEmailMutationResponse) => {
+      onCompleted: (response: UserSignInEmailMutationResponse) => {
         const {token, user} = response.signInEmail as AuthPayload;
 
         if (user && !user.verified)
@@ -311,7 +262,7 @@ function SignIn(props: Props): ReactElement {
           variables: {
             accessToken: identityToken,
           },
-          onCompleted: (response: SignInAppleMutationResponse) => {
+          onCompleted: (response: UserSignInAppleMutationResponse) => {
             const {token, user} = response.signInWithApple as AuthPayload;
 
             AsyncStorage.setItem('token', token);

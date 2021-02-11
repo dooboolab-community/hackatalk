@@ -1,17 +1,18 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import type {
-  FindPwMutation,
-  FindPwMutationResponse,
-} from '../../__generated__/FindPwMutation.graphql';
 import React, {ReactElement, useState} from 'react';
-import {graphql, useMutation} from 'react-relay/hooks';
+import type {
+  UserFindPwMutation,
+  UserFindPwMutationResponse,
+} from '../../__generated__/UserFindPwMutation.graphql';
 import {showAlertForError, validateEmail} from '../../utils/common';
 
 import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {PayloadError} from 'relay-runtime';
+import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 
 const Container = styled.View`
   flex: 1;
@@ -28,17 +29,11 @@ interface Props {
   navigation: AuthStackNavigationProps<'FindPw'>;
 }
 
-const findPasswordMutation = graphql`
-  mutation FindPwMutation($email: String!) {
-    findPassword(email: $email)
-  }
-`;
-
 function Page({navigation}: Props): ReactElement {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
 
-  const [commitFindPassword, isInFlight] = useMutation<FindPwMutation>(
+  const [commitFindPassword, isInFlight] = useMutation<UserFindPwMutation>(
     findPasswordMutation,
   );
 
@@ -57,7 +52,7 @@ function Page({navigation}: Props): ReactElement {
         showAlertForError(error);
       },
       onCompleted: (
-        response: FindPwMutationResponse,
+        response: UserFindPwMutationResponse,
         errors: PayloadError[],
       ) => {
         const result = response.findPassword;

@@ -4,7 +4,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ChannelComponent_channel = {
+export type MainChannelComponent_channel = {
     readonly channels: {
         readonly edges: ReadonlyArray<{
             readonly cursor: string;
@@ -35,12 +35,12 @@ export type ChannelComponent_channel = {
             readonly endCursor: string | null;
         };
     } | null;
-    readonly " $refType": "ChannelComponent_channel";
+    readonly " $refType": "MainChannelComponent_channel";
 };
-export type ChannelComponent_channel$data = ChannelComponent_channel;
-export type ChannelComponent_channel$key = {
-    readonly " $data"?: ChannelComponent_channel$data;
-    readonly " $fragmentRefs": FragmentRefs<"ChannelComponent_channel">;
+export type MainChannelComponent_channel$data = MainChannelComponent_channel;
+export type MainChannelComponent_channel$key = {
+    readonly " $data"?: MainChannelComponent_channel$data;
+    readonly " $fragmentRefs": FragmentRefs<"MainChannelComponent_channel">;
 };
 
 
@@ -104,7 +104,7 @@ return {
       "operation": require('./Channels.graphql.ts')
     }
   },
-  "name": "ChannelComponent_channel",
+  "name": "MainChannelComponent_channel",
   "selections": [
     {
       "alias": "channels",
@@ -117,7 +117,7 @@ return {
       ],
       "concreteType": "ChannelConnection",
       "kind": "LinkedField",
-      "name": "__ChannelComponent_channels_connection",
+      "name": "__MainChannelComponent_channels_connection",
       "plural": false,
       "selections": [
         {
@@ -295,5 +295,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'b187011ff4317aa93bc22ae72cab219e';
+(node as any).hash = '86847c3995ba53b300e407f301c459ca';
 export default node;

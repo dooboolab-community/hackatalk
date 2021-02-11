@@ -2,15 +2,16 @@ import {Button, useTheme} from 'dooboo-ui';
 import React, {ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
-import {graphql, useMutation} from 'react-relay/hooks';
 import styled, {DefaultTheme} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
-import type {SettingsDeleteNotificationMutation} from '../../__generated__/SettingsDeleteNotificationMutation.graphql';
+import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
+import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useMutation} from 'react-relay/hooks';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -51,17 +52,6 @@ export interface Props {
   navigation: MainStackNavigationProps<'Settings'>;
 }
 
-const deleteNotification = graphql`
-  mutation SettingsDeleteNotificationMutation($token: String!) {
-    deleteNotification(token: $token) {
-      id
-      token
-      device
-      createdAt
-    }
-  }
-`;
-
 interface SettingsOption {
   label: string;
   icon?: ReactElement;
@@ -80,9 +70,9 @@ function Settings(props: Props): React.ReactElement {
     state: {user},
   } = useAuthContext();
 
-  const [commitNotification] = useMutation<SettingsDeleteNotificationMutation>(
-    deleteNotification,
-  );
+  const [
+    commitNotification,
+  ] = useMutation<NotificationDeleteNotificationMutation>(deleteNotification);
 
   const renderSectionItem = (
     option: SettingsOption,

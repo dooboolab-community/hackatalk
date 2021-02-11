@@ -5,16 +5,17 @@ import {
 import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {ReactElement, useState} from 'react';
 import type {
-  VerifyEmailMutation,
-  VerifyEmailMutationResponse,
-} from '../../__generated__/VerifyEmailMutation.graphql';
-import {graphql, useMutation} from 'react-relay/hooks';
+  UserVerifyEmailMutation,
+  UserVerifyEmailMutationResponse,
+} from '../../__generated__/UserVerifyEmailMutation.graphql';
 
 import {Alert} from 'react-native';
 import {RouteProp} from '@react-navigation/core';
 import {getString} from '../../../STRINGS';
+import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 
 const Container = styled.View`
   flex: 1;
@@ -42,12 +43,6 @@ interface Props {
   route: RouteProp<AuthStackParamList, 'VerifyEmail'>;
 }
 
-const sendVerification = graphql`
-  mutation VerifyEmailMutation($email: String!) {
-    sendVerification(email: $email)
-  }
-`;
-
 function Page(props: Props): ReactElement {
   const {theme} = useTheme();
 
@@ -59,7 +54,7 @@ function Page(props: Props): ReactElement {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [commitEmail, isInFlight] = useMutation<VerifyEmailMutation>(
+  const [commitEmail, isInFlight] = useMutation<UserVerifyEmailMutation>(
     sendVerification,
   );
 
@@ -67,7 +62,7 @@ function Page(props: Props): ReactElement {
     variables: {
       email,
     },
-    onCompleted: (response: VerifyEmailMutationResponse) => {
+    onCompleted: (response: UserVerifyEmailMutationResponse) => {
       if (response.sendVerification)
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
 

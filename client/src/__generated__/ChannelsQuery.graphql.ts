@@ -10,7 +10,7 @@ export type ChannelsQueryVariables = {
     withMessage?: boolean | null;
 };
 export type ChannelsQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"ChannelComponent_channel">;
+    readonly " $fragmentRefs": FragmentRefs<"MainChannelComponent_channel">;
 };
 export type ChannelsQuery = {
     readonly response: ChannelsQueryResponse;
@@ -25,10 +25,10 @@ query ChannelsQuery(
   $after: String
   $withMessage: Boolean
 ) {
-  ...ChannelComponent_channel_4q1LXA
+  ...MainChannelComponent_channel_4q1LXA
 }
 
-fragment ChannelComponent_channel_4q1LXA on Query {
+fragment MainChannelComponent_channel_4q1LXA on Query {
   channels(first: $first, after: $after, withMessage: $withMessage) {
     edges {
       cursor
@@ -124,7 +124,7 @@ return {
       {
         "args": (v3/*: any*/),
         "kind": "FragmentSpread",
-        "name": "ChannelComponent_channel"
+        "name": "MainChannelComponent_channel"
       }
     ],
     "type": "Query",
@@ -325,21 +325,21 @@ return {
           "withMessage"
         ],
         "handle": "connection",
-        "key": "ChannelComponent_channels",
+        "key": "MainChannelComponent_channels",
         "kind": "LinkedHandle",
         "name": "channels"
       }
     ]
   },
   "params": {
-    "cacheID": "ce77fa003884101ab97e6fe88df64f4b",
+    "cacheID": "047431ecf913de2826e4003ae2d842d8",
     "id": null,
     "metadata": {},
     "name": "ChannelsQuery",
     "operationKind": "query",
-    "text": "query ChannelsQuery(\n  $first: Int!\n  $after: String\n  $withMessage: Boolean\n) {\n  ...ChannelComponent_channel_4q1LXA\n}\n\nfragment ChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ChannelsQuery(\n  $first: Int!\n  $after: String\n  $withMessage: Boolean\n) {\n  ...MainChannelComponent_channel_4q1LXA\n}\n\nfragment MainChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'cfd723363244f4f6fb9ddb0b8a57319f';
+(node as any).hash = '0dd27c60fe79ef0d4f6eeca5c76dec88';
 export default node;

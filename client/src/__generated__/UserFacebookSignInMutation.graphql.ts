@@ -4,11 +4,11 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type AuthType = "apple" | "email" | "facebook" | "google";
-export type SocialSignInButtonGoogleSignInMutationVariables = {
+export type UserFacebookSignInMutationVariables = {
     accessToken: string;
 };
-export type SocialSignInButtonGoogleSignInMutationResponse = {
-    readonly signInWithGoogle: {
+export type UserFacebookSignInMutationResponse = {
+    readonly signInWithFacebook: {
         readonly token: string;
         readonly user: {
             readonly id: string;
@@ -22,18 +22,18 @@ export type SocialSignInButtonGoogleSignInMutationResponse = {
         };
     };
 };
-export type SocialSignInButtonGoogleSignInMutation = {
-    readonly response: SocialSignInButtonGoogleSignInMutationResponse;
-    readonly variables: SocialSignInButtonGoogleSignInMutationVariables;
+export type UserFacebookSignInMutation = {
+    readonly response: UserFacebookSignInMutationResponse;
+    readonly variables: UserFacebookSignInMutationVariables;
 };
 
 
 
 /*
-mutation SocialSignInButtonGoogleSignInMutation(
+mutation UserFacebookSignInMutation(
   $accessToken: String!
 ) {
-  signInWithGoogle(accessToken: $accessToken) {
+  signInWithFacebook(accessToken: $accessToken) {
     token
     user {
       id
@@ -69,7 +69,7 @@ v1 = [
     ],
     "concreteType": "AuthPayload",
     "kind": "LinkedField",
-    "name": "signInWithGoogle",
+    "name": "signInWithFacebook",
     "plural": false,
     "selections": [
       {
@@ -152,7 +152,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "SocialSignInButtonGoogleSignInMutation",
+    "name": "UserFacebookSignInMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -161,18 +161,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "SocialSignInButtonGoogleSignInMutation",
+    "name": "UserFacebookSignInMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "6f9179d23eff937964b439480ed50166",
+    "cacheID": "a84a13de21bb31078dcab6eb033f1e92",
     "id": null,
     "metadata": {},
-    "name": "SocialSignInButtonGoogleSignInMutation",
+    "name": "UserFacebookSignInMutation",
     "operationKind": "mutation",
-    "text": "mutation SocialSignInButtonGoogleSignInMutation(\n  $accessToken: String!\n) {\n  signInWithGoogle(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'e8872eb7256f348ab599a4615d930896';
+(node as any).hash = '7d54ecc87ecd2ae786f3a92a9ba77d74';
 export default node;

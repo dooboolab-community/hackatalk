@@ -2,20 +2,16 @@ import {Alert, Image, TouchableOpacity, View} from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useEffect, useRef, useState} from 'react';
-import {
-  fetchQuery,
-  graphql,
-  useMutation,
-  useRelayEnvironment,
-} from 'react-relay/hooks';
+import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay/hooks';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
+import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
-import type {ProfileUpdateMeQuery} from '../../__generated__/ProfileUpdateMeQuery.graphql';
-import type {ProfileUpdateMutation} from '../../__generated__/ProfileUpdateMutation.graphql';
+import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
+import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -71,34 +67,6 @@ interface Props {
   navigation: MainStackNavigationProps<'ProfileUpdate'>;
 }
 
-const meQuery = graphql`
-  query ProfileUpdateMeQuery {
-    me {
-      id
-      email
-      name
-      nickname
-      statusMessage
-      verified
-      photoURL
-      thumbURL
-      profile {
-        authType
-      }
-    }
-  }
-`;
-
-const profileUpdate = graphql`
-  mutation ProfileUpdateMutation($user: UserUpdateInput!) {
-    updateProfile(user: $user) {
-      name
-      nickname
-      statusMessage
-    }
-  }
-`;
-
 const Screen: FC<Props> = () => {
   const {theme} = useTheme();
   const [name, setName] = useState('');
@@ -109,18 +77,15 @@ const Screen: FC<Props> = () => {
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
 
-  const [commitProfileUpdate, isUpdating] = useMutation<ProfileUpdateMutation>(
-    profileUpdate,
-  );
+  const [
+    commitProfileUpdate,
+    isUpdating,
+  ] = useMutation<UserUpdateProfileMutation>(profileUpdate);
 
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    fetchQuery<ProfileUpdateMeQuery>(
-      envrionmentProps.current,
-      meQuery,
-      {},
-    ).subscribe({
+    fetchQuery<UserMeQuery>(envrionmentProps.current, meQuery, {}).subscribe({
       next: (data) => {
         if (data.me) {
           const {

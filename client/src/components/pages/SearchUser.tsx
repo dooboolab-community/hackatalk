@@ -1,10 +1,10 @@
 import {Animated, TouchableOpacity, View} from 'react-native';
 import React, {FC, ReactElement, Suspense, useState} from 'react';
 import type {
-  SearchUsersPaginationQuery,
-  SearchUsersPaginationQueryResponse,
-  SearchUsersPaginationQueryVariables,
-} from '../../__generated__/SearchUsersPaginationQuery.graphql';
+  UserUsersPaginationQuery,
+  UserUsersPaginationQueryResponse,
+  UserUsersPaginationQueryVariables,
+} from '../../__generated__/UserUsersPaginationQuery.graphql';
 import {
   graphql,
   useLazyLoadQuery,
@@ -23,6 +23,7 @@ import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
+import {usersQuery} from '../../relay/queries/User';
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -41,17 +42,6 @@ const StyledFlatList = styled.FlatList`
 `;
 
 const ITEM_CNT = 10;
-
-const usersQuery = graphql`
-  query SearchUsersPaginationQuery(
-    $first: Int!
-    $after: String
-    $searchText: String
-  ) {
-    ...SearchUserComponent_user
-      @arguments(first: $first, after: $after, searchText: $searchText)
-  }
-`;
 
 const usersFragment = graphql`
   fragment SearchUserComponent_user on Query
@@ -87,12 +77,12 @@ const usersFragment = graphql`
 type UserProps = {
   scrollY: Animated.Value;
   user: SearchUserComponent_user$key;
-  searchArgs: SearchUsersPaginationQueryVariables;
+  searchArgs: UserUsersPaginationQueryVariables;
 };
 
 const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
-    SearchUsersPaginationQuery,
+    UserUsersPaginationQuery,
     SearchUserComponent_user$key
   >(usersFragment, user);
 
@@ -161,11 +151,11 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
 
 interface ContentProps {
   scrollY: Animated.Value;
-  searchArgs: SearchUsersPaginationQueryVariables;
+  searchArgs: UserUsersPaginationQueryVariables;
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
-  const data: SearchUsersPaginationQueryResponse = useLazyLoadQuery<SearchUsersPaginationQuery>(
+  const data: UserUsersPaginationQueryResponse = useLazyLoadQuery<UserUsersPaginationQuery>(
     usersQuery,
     searchArgs,
     {fetchPolicy: 'store-or-network'},
@@ -196,7 +186,7 @@ const Screen: FC = () => {
     ),
   });
 
-  const searchArgs: SearchUsersPaginationQueryVariables = {
+  const searchArgs: UserUsersPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
   };
