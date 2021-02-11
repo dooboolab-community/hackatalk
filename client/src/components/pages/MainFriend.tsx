@@ -9,10 +9,10 @@ import {
 import EmptyListItem from '../UI/molecules/EmptyListItem';
 import {FlatList} from 'react-native';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
-import {FriendFriendsQuery} from '../../__generated__/FriendFriendsQuery.graphql';
-import {Friend_friends$key} from '../../__generated__/Friend_friends.graphql';
 import {LoadingIndicator} from 'dooboo-ui';
+import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
 import UserListItem from '../UI/molecules/UserListItem';
+import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
@@ -27,18 +27,12 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const friendsQuery = graphql`
-  query FriendFriendsQuery($first: Int!, $after: String) {
-    ...Friend_friends @arguments(first: $first, after: $after)
-  }
-`;
-
 const friendsFragment = graphql`
-  fragment Friend_friends on Query
+  fragment MainFriend_friends on Query
   @argumentDefinitions(first: {type: "Int!"}, after: {type: "String"})
   @refetchable(queryName: "FriendFriendsPaginationQuery") {
-    friends(first: $first, after: $after)
-      @connection(key: "Friend_friends", filters: []) {
+    friends(first: $first, after: $after, searchText: $searchText)
+      @connection(key: "MainFriend_friends", filters: []) {
       edges {
         cursor
         node {
@@ -70,7 +64,7 @@ const friendsFragment = graphql`
 `;
 
 type FriendsFragmentProps = {
-  friendsKey: Friend_friends$key;
+  friendsKey: MainFriend_friends$key;
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
@@ -78,7 +72,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     FriendFriendsPaginationQuery,
-    Friend_friends$key
+    MainFriend_friends$key
   >(friendsFragment, friendsKey);
 
   const userListOnPress = (user: User): void => {
@@ -150,7 +144,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 };
 
 const Friend: FC = () => {
-  const queryResponse = useLazyLoadQuery<FriendFriendsQuery>(
+  const queryResponse = useLazyLoadQuery<FriendFriendsPaginationQuery>(
     friendsQuery,
     {first: ITEM_CNT},
     {fetchPolicy: 'store-or-network'},

@@ -4,32 +4,32 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ChannelCreateFriendsQueryVariables = {
+export type UserUsersPaginationQueryVariables = {
     first: number;
     after?: string | null;
     searchText?: string | null;
 };
-export type ChannelCreateFriendsQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"ChannelCreate_friends">;
+export type UserUsersPaginationQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
 };
-export type ChannelCreateFriendsQuery = {
-    readonly response: ChannelCreateFriendsQueryResponse;
-    readonly variables: ChannelCreateFriendsQueryVariables;
+export type UserUsersPaginationQuery = {
+    readonly response: UserUsersPaginationQueryResponse;
+    readonly variables: UserUsersPaginationQueryVariables;
 };
 
 
 
 /*
-query ChannelCreateFriendsQuery(
+query UserUsersPaginationQuery(
   $first: Int!
   $after: String
   $searchText: String
 ) {
-  ...ChannelCreate_friends_2yyznZ
+  ...SearchUserComponent_user_2yyznZ
 }
 
-fragment ChannelCreate_friends_2yyznZ on Query {
-  friends(first: $first, after: $after, searchText: $searchText) {
+fragment SearchUserComponent_user_2yyznZ on Query {
+  users(first: $first, after: $after, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -37,19 +37,10 @@ fragment ChannelCreate_friends_2yyznZ on Query {
         email
         name
         nickname
-        thumbURL
-        photoURL
-        birthday
-        gender
-        phone
-        statusMessage
-        verified
-        lastSignedIn
-        isOnline
         hasBlocked
-        createdAt
-        updatedAt
-        deletedAt
+        photoURL
+        thumbURL
+        statusMessage
         __typename
       }
     }
@@ -103,12 +94,12 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChannelCreateFriendsQuery",
+    "name": "UserUsersPaginationQuery",
     "selections": [
       {
         "args": (v3/*: any*/),
         "kind": "FragmentSpread",
-        "name": "ChannelCreate_friends"
+        "name": "SearchUserComponent_user"
       }
     ],
     "type": "Query",
@@ -122,14 +113,14 @@ return {
       (v2/*: any*/)
     ],
     "kind": "Operation",
-    "name": "ChannelCreateFriendsQuery",
+    "name": "UserUsersPaginationQuery",
     "selections": [
       {
         "alias": null,
         "args": (v3/*: any*/),
         "concreteType": "UserConnection",
         "kind": "LinkedField",
-        "name": "friends",
+        "name": "users",
         "plural": false,
         "selections": [
           {
@@ -187,7 +178,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "thumbURL",
+                    "name": "hasBlocked",
                     "storageKey": null
                   },
                   {
@@ -201,21 +192,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "birthday",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "gender",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "phone",
+                    "name": "thumbURL",
                     "storageKey": null
                   },
                   {
@@ -223,55 +200,6 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "statusMessage",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "verified",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "lastSignedIn",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "isOnline",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "hasBlocked",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "createdAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "updatedAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "deletedAt",
                     "storageKey": null
                   },
                   {
@@ -322,21 +250,21 @@ return {
           "searchText"
         ],
         "handle": "connection",
-        "key": "ChannelCreate_friends",
+        "key": "SearchUserComponent_users",
         "kind": "LinkedHandle",
-        "name": "friends"
+        "name": "users"
       }
     ]
   },
   "params": {
-    "cacheID": "c8f7ff0d8db1a00afe404794ba67c94f",
+    "cacheID": "bd359383433d5c974249c22c1da11071",
     "id": null,
     "metadata": {},
-    "name": "ChannelCreateFriendsQuery",
+    "name": "UserUsersPaginationQuery",
     "operationKind": "query",
-    "text": "query ChannelCreateFriendsQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query UserUsersPaginationQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        hasBlocked\n        photoURL\n        thumbURL\n        statusMessage\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'bec5995afca6f8f4eb949783bd7445a5';
+(node as any).hash = 'c1475a894e8b8699446be24a5fba3cc1';
 export default node;

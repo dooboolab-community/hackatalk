@@ -1,18 +1,19 @@
-import type {
-  BlockedUsersQuery,
-  BlockedUsersQueryResponse,
-} from '../../__generated__/BlockedUsersQuery.graphql';
 import {FlatList, View} from 'react-native';
 import React, {FC, Suspense} from 'react';
-import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
+import type {
+  UserBlockedUsersQuery,
+  UserBlockedUsersQueryResponse,
+} from '../../__generated__/UserBlockedUsersQuery.graphql';
 
 import EmptyListItem from '../UI/molecules/EmptyListItem';
 import {LoadingIndicator} from 'dooboo-ui';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {User} from '../../types/graphql';
 import UserListItem from '../UI/molecules/UserListItem';
+import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
+import {useLazyLoadQuery} from 'react-relay/hooks';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const Container = styled.View`
@@ -27,28 +28,12 @@ interface Props {
   navigation: RootStackNavigationProps<'default'>;
 }
 
-const blockedUsersQuery = graphql`
-  query BlockedUsersQuery {
-    blockedUsers {
-      id
-      email
-      name
-      nickname
-      hasBlocked
-      photoURL
-      thumbURL
-      photoURL
-      statusMessage
-    }
-  }
-`;
-
 const ContentContainer: FC = () => {
   const {showModal} = useProfileContext();
 
   const {
     blockedUsers = [],
-  }: BlockedUsersQueryResponse = useLazyLoadQuery<BlockedUsersQuery>(
+  }: UserBlockedUsersQueryResponse = useLazyLoadQuery<UserBlockedUsersQuery>(
     blockedUsersQuery,
     {},
     {fetchPolicy: 'store-or-network'},

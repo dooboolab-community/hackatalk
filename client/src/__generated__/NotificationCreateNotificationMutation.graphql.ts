@@ -3,12 +3,12 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type SignInCreateNotificationMutationVariables = {
+export type NotificationCreateNotificationMutationVariables = {
     token: string;
     device?: string | null;
     os?: string | null;
 };
-export type SignInCreateNotificationMutationResponse = {
+export type NotificationCreateNotificationMutationResponse = {
     readonly createNotification: {
         readonly id: number;
         readonly token: string;
@@ -16,15 +16,15 @@ export type SignInCreateNotificationMutationResponse = {
         readonly createdAt: unknown | null;
     } | null;
 };
-export type SignInCreateNotificationMutation = {
-    readonly response: SignInCreateNotificationMutationResponse;
-    readonly variables: SignInCreateNotificationMutationVariables;
+export type NotificationCreateNotificationMutation = {
+    readonly response: NotificationCreateNotificationMutationResponse;
+    readonly variables: NotificationCreateNotificationMutationVariables;
 };
 
 
 
 /*
-mutation SignInCreateNotificationMutation(
+mutation NotificationCreateNotificationMutation(
   $token: String!
   $device: String
   $os: String
@@ -120,7 +120,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "SignInCreateNotificationMutation",
+    "name": "NotificationCreateNotificationMutation",
     "selections": (v3/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -133,18 +133,18 @@ return {
       (v1/*: any*/)
     ],
     "kind": "Operation",
-    "name": "SignInCreateNotificationMutation",
+    "name": "NotificationCreateNotificationMutation",
     "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "e87159af80b83024835534395b9603d4",
+    "cacheID": "fc82b348807a617a56d66f4af86da492",
     "id": null,
     "metadata": {},
-    "name": "SignInCreateNotificationMutation",
+    "name": "NotificationCreateNotificationMutation",
     "operationKind": "mutation",
-    "text": "mutation SignInCreateNotificationMutation(\n  $token: String!\n  $device: String\n  $os: String\n) {\n  createNotification(token: $token, device: $device, os: $os) {\n    id\n    token\n    device\n    createdAt\n  }\n}\n"
+    "text": "mutation NotificationCreateNotificationMutation(\n  $token: String!\n  $device: String\n  $os: String\n) {\n  createNotification(token: $token, device: $device, os: $os) {\n    id\n    token\n    device\n    createdAt\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'f2fbb2871161dd79f6d1d80c3a27955b';
+(node as any).hash = '5ba581f22b993f4439a2046d38677d13';
 export default node;

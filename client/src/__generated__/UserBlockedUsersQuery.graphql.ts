@@ -3,44 +3,37 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthType = "apple" | "email" | "facebook" | "google";
-export type ProfileUpdateMeQueryVariables = {};
-export type ProfileUpdateMeQueryResponse = {
-    readonly me: {
+export type UserBlockedUsersQueryVariables = {};
+export type UserBlockedUsersQueryResponse = {
+    readonly blockedUsers: ReadonlyArray<{
         readonly id: string;
         readonly email: string | null;
         readonly name: string | null;
         readonly nickname: string | null;
-        readonly statusMessage: string | null;
-        readonly verified: boolean | null;
+        readonly hasBlocked: boolean | null;
         readonly photoURL: string | null;
         readonly thumbURL: string | null;
-        readonly profile: {
-            readonly authType: AuthType | null;
-        } | null;
-    } | null;
+        readonly statusMessage: string | null;
+    } | null> | null;
 };
-export type ProfileUpdateMeQuery = {
-    readonly response: ProfileUpdateMeQueryResponse;
-    readonly variables: ProfileUpdateMeQueryVariables;
+export type UserBlockedUsersQuery = {
+    readonly response: UserBlockedUsersQueryResponse;
+    readonly variables: UserBlockedUsersQueryVariables;
 };
 
 
 
 /*
-query ProfileUpdateMeQuery {
-  me {
+query UserBlockedUsersQuery {
+  blockedUsers {
     id
     email
     name
     nickname
-    statusMessage
-    verified
+    hasBlocked
     photoURL
     thumbURL
-    profile {
-      authType
-    }
+    statusMessage
   }
 }
 */
@@ -52,8 +45,8 @@ var v0 = [
     "args": null,
     "concreteType": "User",
     "kind": "LinkedField",
-    "name": "me",
-    "plural": false,
+    "name": "blockedUsers",
+    "plural": true,
     "selections": [
       {
         "alias": null,
@@ -87,14 +80,7 @@ var v0 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "statusMessage",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "verified",
+        "name": "hasBlocked",
         "storageKey": null
       },
       {
@@ -114,19 +100,8 @@ var v0 = [
       {
         "alias": null,
         "args": null,
-        "concreteType": "Profile",
-        "kind": "LinkedField",
-        "name": "profile",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "authType",
-            "storageKey": null
-          }
-        ],
+        "kind": "ScalarField",
+        "name": "statusMessage",
         "storageKey": null
       }
     ],
@@ -138,7 +113,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileUpdateMeQuery",
+    "name": "UserBlockedUsersQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -147,18 +122,18 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "ProfileUpdateMeQuery",
+    "name": "UserBlockedUsersQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "f71da5b3e1367fc5bd7964b5e6b7caf8",
+    "cacheID": "23d2d70e6546b829d78cf617591dfe02",
     "id": null,
     "metadata": {},
-    "name": "ProfileUpdateMeQuery",
+    "name": "UserBlockedUsersQuery",
     "operationKind": "query",
-    "text": "query ProfileUpdateMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
+    "text": "query UserBlockedUsersQuery {\n  blockedUsers {\n    id\n    email\n    name\n    nickname\n    hasBlocked\n    photoURL\n    thumbURL\n    statusMessage\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'c57ad9efd9805fc9946d1a4897b43b11';
+(node as any).hash = '49cbddc2b156acd00896a1cc15bd5cee';
 export default node;

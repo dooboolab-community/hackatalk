@@ -3,22 +3,22 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ChangePwChangeEmailPasswordMutationVariables = {
+export type UserChangeEmailPasswordMutationVariables = {
     password: string;
     newPassword: string;
 };
-export type ChangePwChangeEmailPasswordMutationResponse = {
+export type UserChangeEmailPasswordMutationResponse = {
     readonly changeEmailPassword: boolean | null;
 };
-export type ChangePwChangeEmailPasswordMutation = {
-    readonly response: ChangePwChangeEmailPasswordMutationResponse;
-    readonly variables: ChangePwChangeEmailPasswordMutationVariables;
+export type UserChangeEmailPasswordMutation = {
+    readonly response: UserChangeEmailPasswordMutationResponse;
+    readonly variables: UserChangeEmailPasswordMutationVariables;
 };
 
 
 
 /*
-mutation ChangePwChangeEmailPasswordMutation(
+mutation UserChangeEmailPasswordMutation(
   $password: String!
   $newPassword: String!
 ) {
@@ -65,7 +65,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChangePwChangeEmailPasswordMutation",
+    "name": "UserChangeEmailPasswordMutation",
     "selections": (v2/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -77,18 +77,18 @@ return {
       (v0/*: any*/)
     ],
     "kind": "Operation",
-    "name": "ChangePwChangeEmailPasswordMutation",
+    "name": "UserChangeEmailPasswordMutation",
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "b4032e96839ed3dada69236fd5544841",
+    "cacheID": "2044b314aa9a246816b4c0edd3a17718",
     "id": null,
     "metadata": {},
-    "name": "ChangePwChangeEmailPasswordMutation",
+    "name": "UserChangeEmailPasswordMutation",
     "operationKind": "mutation",
-    "text": "mutation ChangePwChangeEmailPasswordMutation(\n  $password: String!\n  $newPassword: String!\n) {\n  changeEmailPassword(password: $password, newPassword: $newPassword)\n}\n"
+    "text": "mutation UserChangeEmailPasswordMutation(\n  $password: String!\n  $newPassword: String!\n) {\n  changeEmailPassword(password: $password, newPassword: $newPassword)\n}\n"
   }
 };
 })();
-(node as any).hash = 'b2c399e3706cf44019c20b5acbd5fabb';
+(node as any).hash = '03344bb98349028625d160a240186b15';
 export default node;

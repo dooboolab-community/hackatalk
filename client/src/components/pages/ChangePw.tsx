@@ -7,17 +7,18 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import type {
-  ChangePwChangeEmailPasswordMutation,
-  ChangePwChangeEmailPasswordMutationResponse,
-} from '../../__generated__/ChangePwChangeEmailPasswordMutation.graphql';
 import React, {ReactElement, useEffect, useRef, useState} from 'react';
-import {graphql, useMutation} from 'react-relay/hooks';
+import type {
+  UserChangeEmailPasswordMutation,
+  UserChangeEmailPasswordMutationResponse,
+} from '../../__generated__/UserChangeEmailPasswordMutation.graphql';
 
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const InnerContainer = styled.View`
@@ -42,15 +43,6 @@ export interface Props {
   navigation: MainStackNavigationProps<'ChangePw'>;
 }
 
-const changeEmailPasswordMutation = graphql`
-  mutation ChangePwChangeEmailPasswordMutation(
-    $password: String!
-    $newPassword: String!
-  ) {
-    changeEmailPassword(password: $password, newPassword: $newPassword)
-  }
-`;
-
 function ChangePw(props: Props): ReactElement {
   const insets = useSafeAreaInsets();
   const {navigation} = props;
@@ -62,9 +54,7 @@ function ChangePw(props: Props): ReactElement {
   const [
     commitChangePassword,
     isInFlight,
-  ] = useMutation<ChangePwChangeEmailPasswordMutation>(
-    changeEmailPasswordMutation,
-  );
+  ] = useMutation<UserChangeEmailPasswordMutation>(changeEmailPasswordMutation);
 
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
@@ -81,7 +71,7 @@ function ChangePw(props: Props): ReactElement {
       onError: (error: Error): void => {
         showAlertForError(error);
       },
-      onCompleted: (response: ChangePwChangeEmailPasswordMutationResponse) => {
+      onCompleted: (response: UserChangeEmailPasswordMutationResponse) => {
         const resultBool = response.changeEmailPassword;
 
         if (resultBool) {

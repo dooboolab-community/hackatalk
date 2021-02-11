@@ -5,7 +5,7 @@ import * as React from 'react';
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import Channel from '../Channel';
+import Channel from '../MainChannel';
 import {Channel as ChannelType} from '../../../types/graphql';
 import {MockPayloadGenerator} from 'relay-test-utils';
 import {environment} from '../../../providers';

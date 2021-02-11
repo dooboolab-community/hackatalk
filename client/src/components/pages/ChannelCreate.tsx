@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import {Channel, User, UserConnection, UserEdge} from '../../types/graphql';
 import {
-  ChannelCreateFindOrCreatePrivateChannelMutation,
-  ChannelCreateFindOrCreatePrivateChannelMutationResponse,
-} from '../../__generated__/ChannelCreateFindOrCreatePrivateChannelMutation.graphql';
-import {
   ChannelCreateFriendsPaginationQuery,
   ChannelCreateFriendsPaginationQueryVariables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
+import {
+  ChannelFindOrCreatePrivateChannelMutation,
+  ChannelFindOrCreatePrivateChannelMutationResponse,
+} from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
@@ -26,12 +26,14 @@ import {
   usePaginationFragment,
 } from 'react-relay/hooks';
 
-import {ChannelCreateFriendsQuery} from '../../__generated__/ChannelCreateFriendsQuery.graphql';
 import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
 import ErroView from '../UI/molecules/ErrorView';
+import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../UI/atoms/SearchTextInput';
 import UserListItem from '../UI/molecules/UserListItem';
+import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
+import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
@@ -57,29 +59,6 @@ const FriendThumbView = styled.View`
 interface ChannelCreate extends User {
   checked?: boolean;
 }
-
-const findOrCreatePrivateChannel = graphql`
-  mutation ChannelCreateFindOrCreatePrivateChannelMutation(
-    $peerUserIds: [String!]!
-  ) {
-    findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
-      id
-      name
-      channelType
-    }
-  }
-`;
-
-const friendsQuery = graphql`
-  query ChannelCreateFriendsQuery(
-    $first: Int!
-    $after: String
-    $searchText: String
-  ) {
-    ...ChannelCreate_friends
-      @arguments(first: $first, after: $after, searchText: $searchText)
-  }
-`;
 
 const friendsFragment = graphql`
   fragment ChannelCreate_friends on Query
@@ -302,7 +281,7 @@ const ContentContainer: FC<ContentProps> = ({
   selectedUsers,
   setSelectedUsers,
 }) => {
-  const queryResponse = useLazyLoadQuery<ChannelCreateFriendsQuery>(
+  const queryResponse = useLazyLoadQuery<FriendsQuery>(
     friendsQuery,
     searchArgs,
     {fetchPolicy: 'store-or-network'},
@@ -333,7 +312,7 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
   const [
     commitChannel,
     isChannelInFlight,
-  ] = useMutation<ChannelCreateFindOrCreatePrivateChannelMutation>(
+  ] = useMutation<ChannelFindOrCreatePrivateChannelMutation>(
     findOrCreatePrivateChannel,
   );
 
@@ -361,7 +340,7 @@ const ChannelCreate: FC<ChannelCreateProps> = (props) => {
         peerUserIds: userIds,
       },
       onCompleted: (
-        response: ChannelCreateFindOrCreatePrivateChannelMutationResponse,
+        response: ChannelFindOrCreatePrivateChannelMutationResponse,
       ): void => {
         const channel = response.findOrCreatePrivateChannel as Channel;
 

@@ -1,6 +1,6 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import React, {ReactElement, useState} from 'react';
-import {graphql, useMutation} from 'react-relay/hooks';
+import {sendVerification, signUp} from '../../relay/queries/User';
 import {
   showAlertForError,
   validateEmail,
@@ -10,11 +10,12 @@ import {
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {SignUpMutation} from '../../__generated__/SignUpMutation.graphql';
-import {SignUpSendVerificationMutation} from '../../__generated__/SignUpSendVerificationMutation.graphql';
 import StatusBar from '../UI/atoms/StatusBar';
+import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
+import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -39,24 +40,6 @@ interface Props {
   navigation: AuthStackNavigationProps<'SignUp'>;
 }
 
-const signUp = graphql`
-  mutation SignUpMutation($user: UserCreateInput!) {
-    signUp(user: $user) {
-      id
-      email
-      name
-      photoURL
-      verified
-    }
-  }
-`;
-
-const sendVerification = graphql`
-  mutation SignUpSendVerificationMutation($email: String!) {
-    sendVerification(email: $email)
-  }
-`;
-
 function Page(props: Props): ReactElement {
   const {navigation} = props;
   const [email, setEmail] = useState<string>('');
@@ -70,9 +53,9 @@ function Page(props: Props): ReactElement {
   const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('');
   const [errorName, setErrorName] = useState<string>('');
 
-  const [commitSignUp, isInFlight] = useMutation<SignUpMutation>(signUp);
+  const [commitSignUp, isInFlight] = useMutation<UserSignUpMutation>(signUp);
 
-  const [commitSendVerification] = useMutation<SignUpSendVerificationMutation>(
+  const [commitSendVerification] = useMutation<UserVerifyEmailMutation>(
     sendVerification,
   );
 

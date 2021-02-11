@@ -9,13 +9,14 @@ import type {
   ReportCreateReportMutation,
   ReportCreateReportMutationResponse,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
-import {graphql, useMutation} from 'react-relay/hooks';
 
 import {Report} from '../../types/graphql';
 import {RouteProp} from '@react-navigation/core';
+import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -29,17 +30,6 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   align-self: stretch;
   flex-direction: column;
   align-items: center;
-`;
-
-const createReport = graphql`
-  mutation ReportCreateReportMutation(
-    $reportedUserId: String!
-    $report: String!
-  ) {
-    createReport(reportedUserId: $reportedUserId, report: $report) {
-      report
-    }
-  }
 `;
 
 export interface Props {

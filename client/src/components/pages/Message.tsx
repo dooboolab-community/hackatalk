@@ -22,6 +22,7 @@ import React, {
   useState,
 } from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/core';
+import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   graphql,
   useLazyLoadQuery,
@@ -58,58 +59,6 @@ const Container = styled.SafeAreaView`
   background-color: ${({theme}) => theme.messageBackground};
   flex-direction: column;
   align-items: center;
-`;
-
-const createMessage = graphql`
-  mutation MessageCreateMutation(
-    $channelId: String!
-    $message: MessageCreateInput!
-  ) {
-    createMessage(channelId: $channelId, message: $message) {
-      id
-      text
-      messageType
-      imageUrls
-      fileUrls
-      channel {
-        id
-        channelType
-        name
-        memberships(excludeMe: true) {
-          user {
-            name
-            nickname
-            thumbURL
-            photoURL
-          }
-        }
-        lastMessage {
-          messageType
-          text
-          imageUrls
-          fileUrls
-          createdAt
-        }
-      }
-    }
-  }
-`;
-
-const messagesQuery = graphql`
-  query MessagesQuery(
-    $first: Int!
-    $after: String
-    $channelId: String!
-    $searchText: String
-  ) {
-    ...MessageComponent_message
-      @arguments(
-        first: $first
-        after: $after
-        channelId: $channelId
-        searchText: $searchText
-      )
-  }
 `;
 
 const messagesFragment = graphql`

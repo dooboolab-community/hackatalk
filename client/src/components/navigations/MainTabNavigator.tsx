@@ -7,8 +7,8 @@ import {
 } from '@react-navigation/material-top-tabs';
 import React, {ReactElement} from 'react';
 
-import Channel from '../pages/Channel';
-import Friend from '../pages/Friend';
+import Channel from '../pages/MainChannel';
+import Friend from '../pages/MainFriend';
 import {LinearGradient} from 'expo-linear-gradient';
 import {MainStackNavigationProps} from './MainStackNavigator';
 import {getString} from '../../../STRINGS';

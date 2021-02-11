@@ -4,7 +4,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type Friend_friends = {
+export type MainFriend_friends = {
     readonly friends: {
         readonly edges: ReadonlyArray<{
             readonly cursor: string;
@@ -33,12 +33,12 @@ export type Friend_friends = {
             readonly endCursor: string | null;
         };
     } | null;
-    readonly " $refType": "Friend_friends";
+    readonly " $refType": "MainFriend_friends";
 };
-export type Friend_friends$data = Friend_friends;
-export type Friend_friends$key = {
-    readonly " $data"?: Friend_friends$data;
-    readonly " $fragmentRefs": FragmentRefs<"Friend_friends">;
+export type MainFriend_friends$data = MainFriend_friends;
+export type MainFriend_friends$key = {
+    readonly " $data"?: MainFriend_friends$data;
+    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends">;
 };
 
 
@@ -58,6 +58,10 @@ return {
       "defaultValue": null,
       "kind": "LocalArgument",
       "name": "first"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "searchText"
     }
   ],
   "kind": "Fragment",
@@ -83,14 +87,14 @@ return {
       "operation": require('./FriendFriendsPaginationQuery.graphql.ts')
     }
   },
-  "name": "Friend_friends",
+  "name": "MainFriend_friends",
   "selections": [
     {
       "alias": "friends",
       "args": null,
       "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "__Friend_friends_connection",
+      "name": "__MainFriend_friends_connection",
       "plural": false,
       "selections": [
         {
@@ -281,5 +285,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'ccf6d0ce442aca2da0e065d948a57351';
+(node as any).hash = '5e5d71064e799fd4fe5cc0c1ffb7344b';
 export default node;

@@ -3,24 +3,24 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type VerifyEmailMutationVariables = {
+export type UserFindPwMutationVariables = {
     email: string;
 };
-export type VerifyEmailMutationResponse = {
-    readonly sendVerification: boolean;
+export type UserFindPwMutationResponse = {
+    readonly findPassword: boolean | null;
 };
-export type VerifyEmailMutation = {
-    readonly response: VerifyEmailMutationResponse;
-    readonly variables: VerifyEmailMutationVariables;
+export type UserFindPwMutation = {
+    readonly response: UserFindPwMutationResponse;
+    readonly variables: UserFindPwMutationVariables;
 };
 
 
 
 /*
-mutation VerifyEmailMutation(
+mutation UserFindPwMutation(
   $email: String!
 ) {
-  sendVerification(email: $email)
+  findPassword(email: $email)
 }
 */
 
@@ -43,7 +43,7 @@ v1 = [
       }
     ],
     "kind": "ScalarField",
-    "name": "sendVerification",
+    "name": "findPassword",
     "storageKey": null
   }
 ];
@@ -52,7 +52,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "VerifyEmailMutation",
+    "name": "UserFindPwMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -61,18 +61,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "VerifyEmailMutation",
+    "name": "UserFindPwMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "9fdbf96b198c492e8b7d287e695a0f2a",
+    "cacheID": "dfc25d419209a80d1c8ded8e2b043693",
     "id": null,
     "metadata": {},
-    "name": "VerifyEmailMutation",
+    "name": "UserFindPwMutation",
     "operationKind": "mutation",
-    "text": "mutation VerifyEmailMutation(\n  $email: String!\n) {\n  sendVerification(email: $email)\n}\n"
+    "text": "mutation UserFindPwMutation(\n  $email: String!\n) {\n  findPassword(email: $email)\n}\n"
   }
 };
 })();
-(node as any).hash = '3ca6abd765eef3d36ac25d7d63355707';
+(node as any).hash = '9911a45920167b82d3c49c3ae8ade091';
 export default node;
