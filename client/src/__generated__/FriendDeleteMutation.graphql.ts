@@ -3,25 +3,25 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ProfileModalDeleteFriendMutationVariables = {
+export type FriendDeleteMutationVariables = {
     friendId: string;
 };
-export type ProfileModalDeleteFriendMutationResponse = {
+export type FriendDeleteMutationResponse = {
     readonly deleteFriend: {
         readonly friend: {
             readonly id: string;
         } | null;
     } | null;
 };
-export type ProfileModalDeleteFriendMutation = {
-    readonly response: ProfileModalDeleteFriendMutationResponse;
-    readonly variables: ProfileModalDeleteFriendMutationVariables;
+export type FriendDeleteMutation = {
+    readonly response: FriendDeleteMutationResponse;
+    readonly variables: FriendDeleteMutationVariables;
 };
 
 
 
 /*
-mutation ProfileModalDeleteFriendMutation(
+mutation FriendDeleteMutation(
   $friendId: String!
 ) {
   deleteFriend(friendId: $friendId) {
@@ -82,7 +82,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileModalDeleteFriendMutation",
+    "name": "FriendDeleteMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -91,18 +91,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileModalDeleteFriendMutation",
+    "name": "FriendDeleteMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "5db59de77725245c02cd239b07aea341",
+    "cacheID": "e6824128ef490212bcc9b08bfa6ecca4",
     "id": null,
     "metadata": {},
-    "name": "ProfileModalDeleteFriendMutation",
+    "name": "FriendDeleteMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileModalDeleteFriendMutation(\n  $friendId: String!\n) {\n  deleteFriend(friendId: $friendId) {\n    friend {\n      id\n    }\n  }\n}\n"
+    "text": "mutation FriendDeleteMutation(\n  $friendId: String!\n) {\n  deleteFriend(friendId: $friendId) {\n    friend {\n      id\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'b464424734fa67f8c7b2659e1569a7bd';
+(node as any).hash = '176edfc666a319a4889313b91cc4bf44';
 export default node;

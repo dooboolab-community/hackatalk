@@ -3,10 +3,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ProfileModalCreateBlockedUserMutationVariables = {
+export type BlockedUserCreateMutationVariables = {
     blockedUserId: string;
 };
-export type ProfileModalCreateBlockedUserMutationResponse = {
+export type BlockedUserCreateMutationResponse = {
     readonly createBlockedUser: {
         readonly blockedUser: {
             readonly id: string;
@@ -17,15 +17,15 @@ export type ProfileModalCreateBlockedUserMutationResponse = {
         } | null;
     } | null;
 };
-export type ProfileModalCreateBlockedUserMutation = {
-    readonly response: ProfileModalCreateBlockedUserMutationResponse;
-    readonly variables: ProfileModalCreateBlockedUserMutationVariables;
+export type BlockedUserCreateMutation = {
+    readonly response: BlockedUserCreateMutationResponse;
+    readonly variables: BlockedUserCreateMutationVariables;
 };
 
 
 
 /*
-mutation ProfileModalCreateBlockedUserMutation(
+mutation BlockedUserCreateMutation(
   $blockedUserId: String!
 ) {
   createBlockedUser(blockedUserId: $blockedUserId) {
@@ -118,7 +118,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileModalCreateBlockedUserMutation",
+    "name": "BlockedUserCreateMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -127,18 +127,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileModalCreateBlockedUserMutation",
+    "name": "BlockedUserCreateMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "731c4c863ece1b5c125915670be2bae7",
+    "cacheID": "9032a1898d78e69ef5c5a2a381c1a304",
     "id": null,
     "metadata": {},
-    "name": "ProfileModalCreateBlockedUserMutation",
+    "name": "BlockedUserCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileModalCreateBlockedUserMutation(\n  $blockedUserId: String!\n) {\n  createBlockedUser(blockedUserId: $blockedUserId) {\n    blockedUser {\n      id\n      email\n      name\n      nickname\n      hasBlocked\n    }\n  }\n}\n"
+    "text": "mutation BlockedUserCreateMutation(\n  $blockedUserId: String!\n) {\n  createBlockedUser(blockedUserId: $blockedUserId) {\n    blockedUser {\n      id\n      email\n      name\n      nickname\n      hasBlocked\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '6aa9bf21b798c9e07b93811d5b1da6d8';
+(node as any).hash = '255e2482a3c7ea5d7ce6f42d07cd088b';
 export default node;
