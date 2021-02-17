@@ -1,5 +1,5 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useState} from 'react';
+import React, {FC, ReactElement, useState} from 'react';
 import type {
   UserFindPwMutation,
   UserFindPwMutationResponse,
@@ -26,56 +26,25 @@ const ButtonWrapper = styled.View`
 `;
 
 interface Props {
-  navigation: AuthStackNavigationProps<'FindPw'>;
+  email: string;
+  setEmail: (str: string) => void;
+  onFindPassword: () => void;
+  onChangePassword: (str: string) => void;
+  isFindingPassword?: boolean;
+  errorEmail?: string;
+  setErrorEmail?: (str: string) => void;
 }
 
-function Page({navigation}: Props): ReactElement {
-  const [email, setEmail] = useState<string>('');
-  const [errorEmail, setErrorEmail] = useState<string>('');
-
-  const [commitFindPassword, isInFlight] = useMutation<UserFindPwMutation>(
-    findPasswordMutation,
-  );
-
+const Page: FC<Props> = ({
+  email,
+  setEmail,
+  errorEmail,
+  setErrorEmail,
+  onChangePassword,
+  onFindPassword,
+  isFindingPassword,
+}) => {
   const {theme} = useTheme();
-
-  const onFindPw = async (): Promise<void> => {
-    if (!validateEmail(email)) {
-      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-
-      return;
-    }
-
-    const mutationConfig = {
-      variables: {email},
-      onError: (error: Error): void => {
-        showAlertForError(error);
-      },
-      onCompleted: (
-        response: UserFindPwMutationResponse,
-        errors: PayloadError[],
-      ) => {
-        const result = response.findPassword;
-
-        if (errors && errors.length > 0) {
-          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'));
-
-          return;
-        }
-
-        if (result) {
-          Alert.alert(
-            getString('SUCCESS'),
-            getString('PASSWORD_RESET_EMAIL_SENT'),
-          );
-
-          navigation.goBack();
-        }
-      },
-    };
-
-    commitFindPassword(mutationConfig);
-  };
 
   return (
     <Container>
@@ -95,18 +64,15 @@ function Page({navigation}: Props): ReactElement {
         placeholderTextColor={theme.placeholder}
         placeholder="hello@example.com"
         value={email}
-        onChangeText={(text: string): void => {
-          setEmail(text);
-          setErrorEmail('');
-        }}
+        onChangeText={onChangePassword}
         errorText={errorEmail}
-        onSubmitEditing={onFindPw}
+        onSubmitEditing={onFindPassword}
       />
       <ButtonWrapper>
         <Button
           testID="btn-find-pw"
-          loading={isInFlight}
-          onPress={onFindPw}
+          loading={isFindingPassword}
+          onPress={onFindPassword}
           styles={{
             container: {
               height: 52,
@@ -125,6 +91,6 @@ function Page({navigation}: Props): ReactElement {
       </ButtonWrapper>
     </Container>
   );
-}
+};
 
 export default Page;

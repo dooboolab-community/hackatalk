@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/stack';
 
 import {CompositeNavigationProp} from '@react-navigation/native';
-import FindPw from '../pages/FindPw';
+import FindPwContainer from '../pages/FindPwContainer';
 import LicenseAgreement from '../pages/LicenseAgreement';
 import {RootStackNavigationProps} from './RootStackNavigator';
 import SignInContainer from '../pages/SignInContainer';
@@ -68,7 +68,7 @@ function AuthNavigator(): ReactElement {
       />
       <Stack.Screen
         name="FindPw"
-        component={FindPw}
+        component={FindPwContainer}
         options={{
           title: getString('FIND_PW'),
         }}
