@@ -28,6 +28,8 @@ let props: any;
 let component: ReactElement;
 let testingLib: RenderAPI;
 
+jest.mock('../../../components/pages/SignIn/SocialSignInButton', () => 'test');
+
 describe('[SignIn] rendering test', () => {
   beforeEach(() => {
     props = createTestProps();

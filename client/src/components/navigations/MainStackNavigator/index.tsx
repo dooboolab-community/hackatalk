@@ -1,6 +1,6 @@
 import * as Notifications from 'expo-notifications';
 
-import {Channel, User} from '../../types/graphql';
+import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, TouchableOpacity, View} from 'react-native';
 import React, {ReactElement, useEffect, useRef} from 'react';
@@ -9,25 +9,25 @@ import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
-import TabNavigator, {MainTabNavigationOptions} from './MainTabNavigator';
+import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
 import {fetchQuery, graphql, useRelayEnvironment} from 'react-relay/hooks';
 
-import BlockedUser from '../pages/BlockedUser';
-import ChangePw from '../pages/ChangePw';
-import ChannelCreate from '../pages/ChannelCreate';
+import BlockedUser from '../../pages/BlockedUser';
+import ChangePw from '../../pages/ChangePw';
+import ChannelCreate from '../../pages/ChannelCreate';
 import {DefaultTheme} from 'styled-components';
-import {IC_SETTING_W} from '../../utils/Icons';
-import type {MainStackNavigatorChannelQuery} from '../../__generated__/MainStackNavigatorChannelQuery.graphql';
-import Message from '../pages/Message';
-import ProfileModal from '../templates/ProfileModal';
-import {ProfileModalProvider} from '../../providers/ProfileModalProvider';
-import ProfileUpdate from '../pages/ProfileUpdate';
-import Report from '../pages/Report';
-import {RootStackNavigationProps} from './RootStackNavigator';
-import SearchUser from '../pages/SearchUser';
-import Settings from '../pages/Settings';
-import StatusBar from '../UI/atoms/StatusBar';
-import {getString} from '../../../STRINGS';
+import {IC_SETTING_W} from '../../../utils/Icons';
+import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';
+import Message from '../../pages/Message';
+import ProfileModal from './ProfileModal';
+import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';
+import ProfileUpdate from '../../pages/ProfileUpdate';
+import Report from '../../pages/Report';
+import {RootStackNavigationProps} from '../RootStackNavigator';
+import SearchUser from '../../pages/SearchUser';
+import Settings from '../../pages/Settings';
+import StatusBar from '../../UI/atoms/StatusBar';
+import {getString} from '../../../../STRINGS';
 // import useAppState from '../../hooks/useAppState';
 import {useTheme} from 'dooboo-ui';
 

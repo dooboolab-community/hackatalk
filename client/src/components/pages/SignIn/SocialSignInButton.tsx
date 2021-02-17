@@ -1,24 +1,27 @@
 import * as AuthSession from 'expo-auth-session';
-import * as Config from '../../../config';
+import * as Config from '../../../../config';
 import * as WebBrowser from 'expo-web-browser';
 
 import {Alert, Platform, View} from 'react-native';
-import {AuthType, User} from '../../types/graphql';
+import {AuthType, User} from '../../../types/graphql';
 import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
   UserFacebookSignInMutation,
   UserFacebookSignInMutationResponse,
-} from '../../__generated__/UserFacebookSignInMutation.graphql';
+} from '../../../__generated__/UserFacebookSignInMutation.graphql';
 import type {
   UserGoogleSignInMutation,
   UserGoogleSignInMutationResponse,
-} from '../../__generated__/UserGoogleSignInMutation.graphql';
-import {signInWithFacebook, signInWithGoogle} from '../../relay/queries/User';
+} from '../../../__generated__/UserGoogleSignInMutation.graphql';
+import {
+  signInWithFacebook,
+  signInWithGoogle,
+} from '../../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getString} from '../../../STRINGS';
-import {showAlertForError} from '../../utils/common';
+import {getString} from '../../../../STRINGS';
+import {showAlertForError} from '../../../utils/common';
 import {useMutation} from 'react-relay/hooks';
 
 const {facebookAppId, facebookSecret, googleWebClientId} = Config;

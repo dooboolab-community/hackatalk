@@ -2,33 +2,33 @@ import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
-} from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
+} from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ProfileModalContext,
   useProfileContext,
-} from '../../providers/ProfileModalProvider';
+} from '../../../providers/ProfileModalProvider';
 import React, {FC, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
-} from '../../relay/queries/Friend';
+} from '../../../relay/queries/Friend';
 import {
   createBlockedUserMutation,
   deleteBlockedUserMutation,
-} from '../../relay/queries/BlockedUser';
+} from '../../../relay/queries/BlockedUser';
 
-import {BlockedUserCreateMutation} from '../../__generated__/BlockedUserCreateMutation.graphql';
-import {BlockedUserDeleteMutation} from '../../__generated__/BlockedUserDeleteMutation.graphql';
+import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
+import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
 import {ConnectionHandler} from 'relay-runtime';
 import {FontAwesome} from '@expo/vector-icons';
-import {FriendAddMutation} from '../../__generated__/FriendAddMutation.graphql';
-import {FriendDeleteMutation} from '../../__generated__/FriendDeleteMutation.graphql';
-import {IC_NO_IMAGE} from '../../utils/Icons';
+import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
+import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
+import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
-import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
-import {getString} from '../../../STRINGS';
-import {showAlertForError} from '../../utils/common';
+import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
+import {getString} from '../../../../STRINGS';
+import {showAlertForError} from '../../../utils/common';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -87,7 +87,7 @@ const StyledTextFriendAdded = styled.Text`
 `;
 
 const StyledTextFriendAlreadyAdded = styled.Text`
-  color: red;
+  color: ${({theme}) => theme.negative};
   font-size: 12px;
   background-color: ${({theme}) => theme.background};
   padding: 4px;

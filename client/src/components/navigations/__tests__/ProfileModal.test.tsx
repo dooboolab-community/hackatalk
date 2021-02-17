@@ -6,7 +6,7 @@ import React, {createRef, forwardRef, useImperativeHandle} from 'react';
 import {act, fireEvent, render} from '@testing-library/react-native';
 
 import {MockPayloadGenerator} from 'relay-test-utils';
-import ProfileModal from '../ProfileModal';
+import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {View} from 'react-native';
 import {createTestElement} from '../../../../test/testUtils';
 import {environment} from '../../../providers';
