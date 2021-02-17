@@ -8,7 +8,7 @@ import {CompositeNavigationProp} from '@react-navigation/native';
 import FindPw from '../pages/FindPw';
 import LicenseAgreement from '../pages/LicenseAgreement';
 import {RootStackNavigationProps} from './RootStackNavigator';
-import SignIn from '../pages/SignIn';
+import SignInContainer from '../pages/SignInContainer';
 import SignUp from '../pages/SignUp';
 import VerifyEmail from '../pages/VerifyEmail';
 import {getString} from '../../../STRINGS';
@@ -54,7 +54,7 @@ function AuthNavigator(): ReactElement {
       }}>
       <Stack.Screen
         name="SignIn"
-        component={SignIn}
+        component={SignInContainer}
         options={{
           headerShown: false,
         }}

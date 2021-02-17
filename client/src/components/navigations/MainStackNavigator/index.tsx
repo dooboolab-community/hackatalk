@@ -12,9 +12,9 @@ import {
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
 import {fetchQuery, graphql, useRelayEnvironment} from 'react-relay/hooks';
 
-import BlockedUser from '../../pages/BlockedUser';
-import ChangePw from '../../pages/ChangePw';
-import ChannelCreate from '../../pages/ChannelCreate';
+import BlockedUser from '../../pages/BlockedUserContainer';
+import ChangePwContainer from '../../pages/ChangePwContainer';
+import ChannelCreateContainer from '../../pages/ChannelCreateContainer';
 import {DefaultTheme} from 'styled-components';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';
@@ -28,7 +28,6 @@ import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import StatusBar from '../../UI/atoms/StatusBar';
 import {getString} from '../../../../STRINGS';
-// import useAppState from '../../hooks/useAppState';
 import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
@@ -209,12 +208,12 @@ function MainStackNavigator(): ReactElement {
       />
       <Stack.Screen
         name="ChangePw"
-        component={ChangePw}
+        component={ChangePwContainer}
         options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
       />
       <Stack.Screen
         name="ChannelCreate"
-        component={ChannelCreate}
+        component={ChannelCreateContainer}
         options={getSimpleHeader(getString('NEW_CHAT'), theme)}
       />
     </Stack.Navigator>

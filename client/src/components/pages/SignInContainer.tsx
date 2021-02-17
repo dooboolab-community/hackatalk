@@ -19,7 +19,7 @@ import {signInEmail, signInWithApple} from '../../relay/queries/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../__generated__/NotificationCreateNotificationMutation.graphql';
-import SignIn from '../templates/SignIn';
+import SignIn from '../templates/SignInTemp';
 import {createNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';

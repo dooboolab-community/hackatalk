@@ -1,24 +1,15 @@
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import {
-  Alert,
   EmitterSubscription,
   Keyboard,
   KeyboardEvent,
   Platform,
   SafeAreaView,
 } from 'react-native';
-import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useEffect, useRef, useState} from 'react';
-import type {
-  UserChangeEmailPasswordMutation,
-  UserChangeEmailPasswordMutationResponse,
-} from '../../__generated__/UserChangeEmailPasswordMutation.graphql';
+import React, {FC, useEffect, useRef, useState} from 'react';
 
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
-import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
-import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
-import {useMutation} from 'react-relay/hooks';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const InnerContainer = styled.View`
@@ -40,56 +31,28 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
 `;
 
 export interface Props {
-  navigation: MainStackNavigationProps<'ChangePw'>;
+  isChangingPassword: boolean;
+  password: string;
+  newPassword: string;
+  newPasswordConfirm: string;
+  onChangePassword?: (str: string) => void;
+  onChangeNewPassword?: (str: string) => void;
+  onChangeConfirmPassword?: (str: string) => void;
+  onChangePasswordButtonPressed?: () => void;
 }
 
-function ChangePw(props: Props): ReactElement {
+const ChangePwTemp: FC<Props> = ({
+  newPasswordConfirm,
+  isChangingPassword,
+  newPassword,
+  password,
+  onChangePassword,
+  onChangeNewPassword,
+  onChangeConfirmPassword,
+  onChangePasswordButtonPressed,
+}) => {
   const insets = useSafeAreaInsets();
-  const {navigation} = props;
   const {theme} = useTheme();
-  const [currentPw, setCurrentPw] = useState('');
-  const [newPw, setNewPw] = useState('');
-  const [confirmPw, setConfirmPw] = useState('');
-
-  const [
-    commitChangePassword,
-    isInFlight,
-  ] = useMutation<UserChangeEmailPasswordMutation>(changeEmailPasswordMutation);
-
-  const handleChangePasswordPress = async (): Promise<void> => {
-    if (newPw !== confirmPw) {
-      Alert.alert(getString('ERROR'), getString('PASSWORD_MUST_MATCH'));
-
-      return;
-    }
-
-    const mutationConfig = {
-      variables: {
-        password: currentPw,
-        newPassword: newPw,
-      },
-      onError: (error: Error): void => {
-        showAlertForError(error);
-      },
-      onCompleted: (response: UserChangeEmailPasswordMutationResponse) => {
-        const resultBool = response.changeEmailPassword;
-
-        if (resultBool) {
-          Alert.alert(getString('SUCCESS'), getString('PASSWORD_IS_CHANGED'));
-          navigation.goBack();
-
-          return;
-        }
-
-        Alert.alert(
-          getString('FAILED'),
-          getString('CHANGE_PASSWORD_HAS_FAILED'),
-        );
-      },
-    };
-
-    commitChangePassword(mutationConfig);
-  };
 
   const [keyboardOffset, setKeyboardOffset] = useState(0);
 
@@ -148,9 +111,9 @@ function ChangePw(props: Props): ReactElement {
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             secureTextEntry
-            onChangeText={(pw: string): void => setCurrentPw(pw)}
+            onChangeText={onChangePassword}
             labelText={getString('PASSWORD_CURRENT')}
-            value={currentPw}
+            value={password}
             placeholder="******"
           />
           <EditText
@@ -167,9 +130,9 @@ function ChangePw(props: Props): ReactElement {
             }}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
-            onChangeText={(pw: string): void => setNewPw(pw)}
+            onChangeText={onChangeNewPassword}
             labelText={getString('PASSWORD_NEW')}
-            value={newPw}
+            value={newPassword}
             placeholder="******"
           />
           <EditText
@@ -186,15 +149,15 @@ function ChangePw(props: Props): ReactElement {
             }}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
-            onChangeText={(pw: string): void => setConfirmPw(pw)}
+            onChangeText={onChangeConfirmPassword}
             labelText={getString('PASSWORD_NEW_REPEAT')}
-            value={confirmPw}
+            value={newPasswordConfirm}
             placeholder="******"
           />
         </InnerContainer>
         <Button
           testID="close-current-pw-btn"
-          onPress={handleChangePasswordPress}
+          onPress={onChangePasswordButtonPressed}
           style={{marginBottom: 24, alignSelf: 'stretch', marginHorizontal: 24}}
           styles={{
             container: {
@@ -214,12 +177,12 @@ function ChangePw(props: Props): ReactElement {
               borderColor: theme.text,
             },
           }}
-          loading={isInFlight}
+          loading={isChangingPassword}
           text={getString('UPDATE')}
         />
       </StyledKeyboardAvoidingView>
     </SafeAreaView>
   );
-}
+};
 
-export default ChangePw;
+export default ChangePwTemp;
