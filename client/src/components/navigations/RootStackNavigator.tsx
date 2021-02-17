@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/stack';
 
 import AuthStack from './AuthStackNavigator';
-import ImageSlider from '../pages/ImageSlider';
+import ImageSliderContainer from '../templates/ImageSliderTemp';
 import MainStack from './MainStackNavigator';
 import {NavigationContainer} from '@react-navigation/native';
 import NotFound from '../pages/NotFound';
@@ -107,7 +107,7 @@ function RootNavigator(): React.ReactElement {
           />
           <Stack.Screen
             name="ImageSlider"
-            component={ImageSlider}
+            component={ImageSliderContainer}
             options={({
               route: {
                 params: {images, initialIndex = 0},

@@ -1,25 +1,11 @@
 import React, {FC, ReactElement} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LicenseAgreementTemp from '../templates/LicenseAgreementTemp';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
-
-const Container = styled.SafeAreaView`
-  padding: 8px;
-
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const StyledText = styled.Text`
-  font-size: 16px;
-  color: ${({theme}) => theme.text};
-`;
 
 interface Props {
   navigation: RootStackNavigationProps<'default'>;
@@ -54,17 +40,7 @@ const Page: FC<Props> = ({navigation}) => {
     ),
   });
 
-  return (
-    <Container>
-      <ScrollView
-        contentContainerStyle={{
-          paddingVertical: 8,
-          paddingHorizontal: 20,
-        }}>
-        <StyledText>{getString('LICENSE_AGREEMENT_BY_APPLE')}</StyledText>
-      </ScrollView>
-    </Container>
-  );
+  return <LicenseAgreementTemp />;
 };
 
 export default Page;

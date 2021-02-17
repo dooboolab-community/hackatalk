@@ -6,7 +6,7 @@ import {
 
 import {CompositeNavigationProp} from '@react-navigation/native';
 import FindPwContainer from '../pages/FindPwContainer';
-import LicenseAgreement from '../pages/LicenseAgreement';
+import LicenseAgreementContainer from '../pages/LicenseAgreementContainer';
 import {RootStackNavigationProps} from './RootStackNavigator';
 import SignInContainer from '../pages/SignInContainer';
 import SignUp from '../pages/SignUp';
@@ -82,7 +82,7 @@ function AuthNavigator(): ReactElement {
       />
       <Stack.Screen
         name="LicenseAgreement"
-        component={LicenseAgreement}
+        component={LicenseAgreementContainer}
         options={{
           title: getString('LICENSE_AGREEMENT'),
         }}
