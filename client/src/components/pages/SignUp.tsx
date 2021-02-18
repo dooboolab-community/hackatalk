@@ -10,7 +10,7 @@ import {
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import StatusBar from '../UI/atoms/StatusBar';
+import StatusBar from '../uis/StatusBar';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';

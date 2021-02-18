@@ -6,12 +6,12 @@ import {
   usePaginationFragment,
 } from 'react-relay/hooks';
 
-import EmptyListItem from '../UI/molecules/EmptyListItem';
+import EmptyListItem from '../uis/EmptyListItem';
 import {FlatList} from 'react-native';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
 import {LoadingIndicator} from 'dooboo-ui';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
-import UserListItem from '../UI/molecules/UserListItem';
+import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';

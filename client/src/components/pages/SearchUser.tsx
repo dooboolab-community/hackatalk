@@ -11,13 +11,13 @@ import {
   usePaginationFragment,
 } from 'react-relay/hooks';
 
-import EmptyListItem from '../UI/molecules/EmptyListItem';
+import EmptyListItem from '../uis/EmptyListItem';
 import {FontAwesome} from '@expo/vector-icons';
 import {LoadingIndicator} from 'dooboo-ui';
-import SearchTextInput from '../UI/atoms/SearchTextInput';
+import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
 import {User} from '../../types/graphql';
-import UserListItem from '../UI/molecules/UserListItem';
+import UserListItem from '../uis/UserListItem';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';

@@ -27,11 +27,11 @@ import {
 } from 'react-relay/hooks';
 
 import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
-import ErroView from '../UI/molecules/ErrorView';
+import ErroView from '../uis/ErrorView';
 import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
-import SearchTextInput from '../UI/atoms/SearchTextInput';
-import UserListItem from '../UI/molecules/UserListItem';
+import SearchTextInput from '../uis/SearchTextInput';
+import UserListItem from '../uis/UserListItem';
 import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';

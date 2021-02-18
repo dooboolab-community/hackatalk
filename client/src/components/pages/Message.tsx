@@ -34,13 +34,13 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
-import EmptyListItem from '../UI/molecules/EmptyListItem';
-import GiftedChat from '../UI/organisms/GiftedChat';
+import EmptyListItem from '../uis/EmptyListItem';
+import GiftedChat from '../uis/GiftedChat';
 import {IC_SMILE} from '../../utils/Icons';
 import {Ionicons} from '@expo/vector-icons';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
-import MessageListItem from '../UI/molecules/MessageListItem';
+import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';

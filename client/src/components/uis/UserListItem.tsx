@@ -5,12 +5,12 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import CheckBox from '../atoms/CheckBox';
+import CheckBox from './CheckBox';
 import {FontAwesome} from '@expo/vector-icons';
-import {IC_NO_IMAGE} from '../../../utils/Icons';
+import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
-import {User} from '../../../types/graphql';
-import {getString} from '../../../../STRINGS';
+import {User} from '../../types/graphql';
+import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
 

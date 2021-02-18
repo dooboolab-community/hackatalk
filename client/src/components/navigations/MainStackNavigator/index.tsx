@@ -26,7 +26,7 @@ import Report from '../../pages/Report';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
-import StatusBar from '../../UI/atoms/StatusBar';
+import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
 // import useAppState from '../../hooks/useAppState';
 import {useTheme} from 'dooboo-ui';

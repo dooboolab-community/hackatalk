@@ -5,11 +5,11 @@ import type {
   UserBlockedUsersQueryResponse,
 } from '../../__generated__/UserBlockedUsersQuery.graphql';
 
-import EmptyListItem from '../UI/molecules/EmptyListItem';
+import EmptyListItem from '../uis/EmptyListItem';
 import {LoadingIndicator} from 'dooboo-ui';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {User} from '../../types/graphql';
-import UserListItem from '../UI/molecules/UserListItem';
+import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';

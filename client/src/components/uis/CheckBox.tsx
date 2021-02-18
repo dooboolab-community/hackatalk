@@ -6,7 +6,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import {SvgCheck} from '../../../utils/Icons';
+import {SvgCheck} from '../../utils/Icons';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
