@@ -1,19 +1,16 @@
-import React, {FC, ReactElement, Suspense, useMemo} from 'react';
-import {User, UserConnection, UserEdge} from '../../types/graphql';
+import React, {FC, Suspense, useMemo} from 'react';
+import {User, UserConnection} from '../../types/graphql';
 import {
   graphql,
   useLazyLoadQuery,
   usePaginationFragment,
 } from 'react-relay/hooks';
 
-import EmptyListItem from '../UI/molecules/EmptyListItem';
-import {FlatList} from 'react-native';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
 import {LoadingIndicator} from 'dooboo-ui';
+import MainFriendTemp from '../templates/MainFriendTemp';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
-import UserListItem from '../UI/molecules/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
-import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
@@ -75,11 +72,12 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     MainFriend_friends$key
   >(friendsFragment, friendsKey);
 
-  const userListOnPress = (user: User): void => {
-    showModal({
-      user,
-      isFriend: true,
-    });
+  const pressUserList = (user?: User | null): void => {
+    if (user)
+      showModal({
+        user,
+        isFriend: true,
+      });
   };
 
   const friendEdges = useMemo(() => {
@@ -90,54 +88,14 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     );
   }, [data]);
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: UserEdge;
-    index: number;
-  }): ReactElement => {
-    const testID = `user-id-${index}`;
-
-    const userListOnPressInlineFn = (): void =>
-      userListOnPress(item.node as User);
-
-    return (
-      <UserListItem
-        testID={testID}
-        showStatus
-        user={item.node as User}
-        onPress={userListOnPressInlineFn}
-      />
-    );
-  };
-
   return (
-    <FlatList
-      testID="friend-list"
-      style={{
-        alignSelf: 'stretch',
-      }}
-      contentContainerStyle={
-        friendEdges.length === 0
-          ? {
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-          : undefined
-      }
-      keyExtractor={(item, index): string => index.toString()}
-      data={friendEdges as UserEdge[]}
-      renderItem={renderItem}
-      ListEmptyComponent={
-        <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
-      }
+    <MainFriendTemp
+      friendEdges={friendEdges}
       refreshing={isLoadingNext}
+      onUserListPressed={pressUserList}
       onRefresh={() => {
         refetch({first: ITEM_CNT}, {fetchPolicy: 'network-only'});
       }}
-      onEndReachedThreshold={0.1}
       onEndReached={() => loadNext(ITEM_CNT)}
     />
   );

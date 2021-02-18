@@ -7,9 +7,9 @@ import {
 } from '@react-navigation/material-top-tabs';
 import React, {ReactElement} from 'react';
 
-import Channel from '../pages/MainChannel';
-import Friend from '../pages/MainFriend';
 import {LinearGradient} from 'expo-linear-gradient';
+import MainChannelContainer from '../pages/MainChannelContainer';
+import MainFriendContainer from '../pages/MainFriendContainer';
 import {MainStackNavigationProps} from './MainStackNavigator';
 import {getString} from '../../../STRINGS';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -117,14 +117,14 @@ function TabNavigator(): ReactElement {
       }}>
       <Tab.Screen
         name="Friend"
-        component={Friend}
+        component={MainFriendContainer}
         options={{
           title: getString('FRIEND'),
         }}
       />
       <Tab.Screen
         name="Channel"
-        component={Channel}
+        component={MainChannelContainer}
         options={{
           title: getString('CHANNEL'),
         }}

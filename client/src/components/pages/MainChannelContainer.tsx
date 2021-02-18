@@ -6,26 +6,22 @@ import type {
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
-import React, {FC, Suspense, useEffect, useMemo, useState} from 'react';
+import React, {FC, Suspense, useEffect, useMemo} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
   usePaginationFragment,
   useQueryLoader,
 } from 'react-relay/hooks';
-import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
-import {AdMobBanner} from 'expo-ads-admob';
-import ChannelListItem from '../UI/molecules/ChannelListItem';
-import EmptyListItem from '../UI/molecules/EmptyListItem';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
+import MainChannelTemp from '../templates/MainChannelTemp';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';
 import {SvgPlus} from '../../utils/Icons';
+import {TouchableOpacity} from 'react-native';
 import {channelsQuery} from '../../relay/queries/Channel';
-import {getString} from '../../../STRINGS';
 import {lastMessageQuery} from '../../relay/queries/Message';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
@@ -100,6 +96,8 @@ interface ChannelProps {
 }
 
 const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
+  const navigation = useNavigation();
+
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     ChannelsQuery,
     MainChannelComponent_channel$key
@@ -108,10 +106,6 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   const [, loadLastMessage] = useQueryLoader<MessageLastMessageQuery>(
     lastMessageQuery,
   );
-
-  const [bannerError, setBannerError] = useState<boolean>(false);
-  const orientation = useOrientation();
-  const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(
@@ -147,89 +141,27 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     loadNext(ITEM_CNT);
   };
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: {node: Channel; cursor: string};
-    index: number;
-  }): React.ReactElement | null => {
-    if (!item.node?.memberships || !item.node?.memberships.length)
-      return <View key={index} />;
-
-    return (
-      <ChannelListItem
-        testID={`list-item-${index}`}
-        key={index.toString()}
-        item={item.node}
-        onPress={(): void => {
-          navigation.navigate('Message', {
-            channel: item.node,
-            users: item.node?.memberships?.map(
-              (membership) => membership?.user,
-            ) as User[],
-          });
-        }}
-      />
-    );
-  };
-
   const channels = useMemo(() => {
     return data?.channels?.edges ?? [];
   }, [data?.channels?.edges]);
 
   return (
-    <FlatList
-      scrollIndicatorInsets={{right: 1}}
-      style={{
-        alignSelf: 'stretch',
-      }}
-      contentContainerStyle={
-        channels.length === 0
-          ? {
-              flex: 1,
-              alignSelf: 'stretch',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-          : null
-      }
-      keyExtractor={(_, index): string => index.toString()}
+    <MainChannelTemp
       // @ts-ignore
-      data={channels}
-      renderItem={renderItem}
-      ListHeaderComponent={
-        !bannerError && orientation === Orientation.PORTRAIT
-          ? Platform.select({
-              android: (
-                <AdMobBanner
-                  bannerSize={'smartBannerPortrait'}
-                  // adUnitID="ca-app-pub-3940256099942544/6300978111"
-                  adUnitID="ca-app-pub-7837089095803162/8109702961"
-                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                />
-              ),
-              ios: (
-                <AdMobBanner
-                  bannerSize={'smartBannerPortrait'}
-                  // adUnitID="ca-app-pub-3940256099942544/2934735716"
-                  adUnitID="ca-app-pub-7837089095803162/4326063134"
-                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                />
-              ),
-            })
-          : null
-      }
-      ListEmptyComponent={
-        <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
-      }
-      ListFooterComponent={<View style={{height: 60}} />}
-      refreshing={isLoadingNext}
+      channels={channels}
+      isLoadingNext={isLoadingNext}
+      onEndReached={onEndReached}
       onRefresh={() => {
         refetch(searchArgs, {fetchPolicy: 'network-only'});
       }}
-      onEndReachedThreshold={0.1}
-      onEndReached={onEndReached}
+      onChannelPressed={(item: Channel): void => {
+        navigation.navigate('Message', {
+          channel: item,
+          users: item?.memberships?.map(
+            (membership) => membership?.user,
+          ) as User[],
+        });
+      }}
     />
   );
 };
