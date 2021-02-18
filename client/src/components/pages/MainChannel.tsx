@@ -18,8 +18,8 @@ import {
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import {AdMobBanner} from 'expo-ads-admob';
-import ChannelListItem from '../UI/molecules/ChannelListItem';
-import EmptyListItem from '../UI/molecules/EmptyListItem';
+import ChannelListItem from '../uis/ChannelListItem';
+import EmptyListItem from '../uis/EmptyListItem';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';

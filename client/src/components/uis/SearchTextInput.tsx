@@ -1,4 +1,4 @@
-import {IC_SEARCH, IC_SEARCH_W} from '../../../utils/Icons';
+import {IC_SEARCH, IC_SEARCH_W} from '../../utils/Icons';
 import React, {ReactChildren, ReactElement} from 'react';
 import {ThemeType, useTheme} from 'dooboo-ui';
 

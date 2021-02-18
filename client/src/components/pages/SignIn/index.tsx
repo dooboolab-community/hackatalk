@@ -18,7 +18,7 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import {AuthPayload, User} from '../../types/graphql';
+import {AuthPayload, User} from '../../../types/graphql';
 import {Button, EditText, ThemeType, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
@@ -26,29 +26,29 @@ import {
   SvgApple,
   SvgFacebook,
   SvgGoogle,
-} from '../../utils/Icons';
+} from '../../../utils/Icons';
 import React, {ReactElement, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutationResponse,
-} from '../../__generated__/UserSignInAppleMutation.graphql';
+} from '../../../__generated__/UserSignInAppleMutation.graphql';
 import type {
   UserSignInEmailMutation,
   UserSignInEmailMutationResponse,
-} from '../../__generated__/UserSignInEmailMutation.graphql';
+} from '../../../__generated__/UserSignInEmailMutation.graphql';
 import {delay, spring, useClock, useValue} from 'react-native-redash';
-import {showAlertForError, validateEmail} from '../../utils/common';
-import {signInEmail, signInWithApple} from '../../relay/queries/User';
+import {showAlertForError, validateEmail} from '../../../utils/common';
+import {signInEmail, signInWithApple} from '../../../relay/queries/User';
 import styled, {css} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import type {NotificationCreateNotificationMutation} from '../../__generated__/NotificationCreateNotificationMutation.graphql';
-import SocialSignInButton from '../templates/SocialSignInButton';
-import StatusBar from '../UI/atoms/StatusBar';
-import {createNotification} from '../../relay/queries/Notification';
-import {getString} from '../../../STRINGS';
-import {useAuthContext} from '../../providers/AuthProvider';
+import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
+import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
+import SocialSignInButton from './SocialSignInButton';
+import StatusBar from '../../uis/StatusBar';
+import {createNotification} from '../../../relay/queries/Notification';
+import {getString} from '../../../../STRINGS';
+import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(

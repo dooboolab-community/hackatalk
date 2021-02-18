@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 
-import {IC_NO_IMAGE} from '../../../utils/Icons';
+import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
-import {Message} from '../../../types/graphql';
-import {getString} from '../../../../STRINGS';
+import {Message} from '../../types/graphql';
+import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';

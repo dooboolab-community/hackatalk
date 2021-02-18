@@ -34,8 +34,6 @@ jest.mock('expo-constants', () => ({
   },
 }));
 
-jest.mock('src/components/templates/SocialSignInButton', () => 'test');
-
 jest.mock('react-native-scalable-image', () => 'test');
 
 // Mock dooboo-ui because it is causing cyclic reference issue that

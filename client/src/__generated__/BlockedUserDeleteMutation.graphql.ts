@@ -3,10 +3,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type ProfileModalDeleteBlockedUserMutationVariables = {
+export type BlockedUserDeleteMutationVariables = {
     blockedUserId: string;
 };
-export type ProfileModalDeleteBlockedUserMutationResponse = {
+export type BlockedUserDeleteMutationResponse = {
     readonly deleteBlockedUser: {
         readonly blockedUser: {
             readonly id: string;
@@ -17,15 +17,15 @@ export type ProfileModalDeleteBlockedUserMutationResponse = {
         } | null;
     } | null;
 };
-export type ProfileModalDeleteBlockedUserMutation = {
-    readonly response: ProfileModalDeleteBlockedUserMutationResponse;
-    readonly variables: ProfileModalDeleteBlockedUserMutationVariables;
+export type BlockedUserDeleteMutation = {
+    readonly response: BlockedUserDeleteMutationResponse;
+    readonly variables: BlockedUserDeleteMutationVariables;
 };
 
 
 
 /*
-mutation ProfileModalDeleteBlockedUserMutation(
+mutation BlockedUserDeleteMutation(
   $blockedUserId: String!
 ) {
   deleteBlockedUser(blockedUserId: $blockedUserId) {
@@ -118,7 +118,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ProfileModalDeleteBlockedUserMutation",
+    "name": "BlockedUserDeleteMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -127,18 +127,18 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ProfileModalDeleteBlockedUserMutation",
+    "name": "BlockedUserDeleteMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "d7526ce8b862fbf9a42654617ef4dddf",
+    "cacheID": "577c3448d6c6338443e1af331eba7dbe",
     "id": null,
     "metadata": {},
-    "name": "ProfileModalDeleteBlockedUserMutation",
+    "name": "BlockedUserDeleteMutation",
     "operationKind": "mutation",
-    "text": "mutation ProfileModalDeleteBlockedUserMutation(\n  $blockedUserId: String!\n) {\n  deleteBlockedUser(blockedUserId: $blockedUserId) {\n    blockedUser {\n      id\n      email\n      name\n      nickname\n      hasBlocked\n    }\n  }\n}\n"
+    "text": "mutation BlockedUserDeleteMutation(\n  $blockedUserId: String!\n) {\n  deleteBlockedUser(blockedUserId: $blockedUserId) {\n    blockedUser {\n      id\n      email\n      name\n      nickname\n      hasBlocked\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '7bb8e8ff9a32d1ff5cf84d4a5a002a9f';
+(node as any).hash = '283e8eaf8e72c19582dbfe2e79786479';
 export default node;

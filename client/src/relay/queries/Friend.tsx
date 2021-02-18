@@ -7,3 +7,23 @@ export const friendsQuery = graphql`
       @arguments(first: $first, after: $after, searchText: $searchText)
   }
 `;
+
+export const addFriendMutation = graphql`
+  mutation FriendAddMutation($friendId: String!) {
+    addFriend(friendId: $friendId) {
+      friend {
+        id
+      }
+    }
+  }
+`;
+
+export const deleteFriendMutation = graphql`
+  mutation FriendDeleteMutation($friendId: String!) {
+    deleteFriend(friendId: $friendId) {
+      friend {
+        id
+      }
+    }
+  }
+`;

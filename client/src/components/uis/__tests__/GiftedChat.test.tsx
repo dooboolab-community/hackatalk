@@ -5,7 +5,7 @@ import * as React from 'react';
 import {RenderAPI, fireEvent, render} from '@testing-library/react-native';
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import GiftedChatInput from '../organisms/GiftedChat';
+import GiftedChatInput from '../GiftedChat';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let props: any;

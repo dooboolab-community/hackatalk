@@ -1,9 +1,9 @@
-import {Channel, Message} from '../../../types/graphql';
+import {Channel, Message} from '../../types/graphql';
 import React, {ReactElement} from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
-import {IC_NO_IMAGE} from '../../../utils/Icons';
-import {getString} from '../../../../STRINGS';
+import {IC_NO_IMAGE} from '../../utils/Icons';
+import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
 

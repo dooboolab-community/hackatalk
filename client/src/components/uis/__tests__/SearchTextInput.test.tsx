@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import Shared from '../atoms/SearchTextInput';
+import Shared from '../SearchTextInput';
 import {render} from '@testing-library/react-native';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -11,7 +11,7 @@ import {
 } from '@testing-library/react-native';
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import UserListItem from '../molecules/UserListItem';
+import UserListItem from '../UserListItem';
 
 jest.useFakeTimers();
 

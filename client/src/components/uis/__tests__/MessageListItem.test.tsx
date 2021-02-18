@@ -5,7 +5,7 @@ import * as React from 'react';
 import {cleanup, fireEvent, render} from '@testing-library/react-native';
 import {createTestElement, createTestProps} from '../../../../test/testUtils';
 
-import MessageListItem from '../molecules/MessageListItem';
+import MessageListItem from '../MessageListItem';
 
 let props = {
   item: {

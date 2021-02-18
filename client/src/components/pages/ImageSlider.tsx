@@ -1,5 +1,5 @@
 import {Animated, Dimensions, Image, StatusBar} from 'react-native';
-import PinchZoom, {PinchZoomRef} from '../UI/atoms/PinchZoom';
+import PinchZoom, {PinchZoomRef} from '../uis/PinchZoom';
 import {
   RootStackNavigationProps,
   RootStackParamList,

@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import EmptyListItem from '../molecules/EmptyListItem';
+import EmptyListItem from '../EmptyListItem';
 import {createTestProps} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 

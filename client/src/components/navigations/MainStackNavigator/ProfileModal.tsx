@@ -2,27 +2,35 @@ import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
-} from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
+} from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ProfileModalContext,
   useProfileContext,
-} from '../../providers/ProfileModalProvider';
+} from '../../../providers/ProfileModalProvider';
 import React, {FC, useState} from 'react';
-import {graphql, useMutation} from 'react-relay/hooks';
+import {
+  addFriendMutation,
+  deleteFriendMutation,
+} from '../../../relay/queries/Friend';
+import {
+  createBlockedUserMutation,
+  deleteBlockedUserMutation,
+} from '../../../relay/queries/BlockedUser';
 
+import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
+import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
 import {ConnectionHandler} from 'relay-runtime';
 import {FontAwesome} from '@expo/vector-icons';
-import {IC_NO_IMAGE} from '../../utils/Icons';
+import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
+import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
+import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
-import {ProfileModalAddFriendMutation} from '../../__generated__/ProfileModalAddFriendMutation.graphql';
-import {ProfileModalCreateBlockedUserMutation} from '../../__generated__/ProfileModalCreateBlockedUserMutation.graphql';
-import {ProfileModalDeleteBlockedUserMutation} from '../../__generated__/ProfileModalDeleteBlockedUserMutation.graphql';
-import {ProfileModalDeleteFriendMutation} from '../../__generated__/ProfileModalDeleteFriendMutation.graphql';
-import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
-import {getString} from '../../../STRINGS';
-import {showAlertForError} from '../../utils/common';
+import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
+import {getString} from '../../../../STRINGS';
+import {showAlertForError} from '../../../utils/common';
 import styled from 'styled-components/native';
+import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
 
 const StyledView = styled.View`
@@ -79,58 +87,10 @@ const StyledTextFriendAdded = styled.Text`
 `;
 
 const StyledTextFriendAlreadyAdded = styled.Text`
-  color: red;
+  color: ${({theme}) => theme.negative};
   font-size: 12px;
   background-color: ${({theme}) => theme.background};
   padding: 4px;
-`;
-
-const addFriendMutation = graphql`
-  mutation ProfileModalAddFriendMutation($friendId: String!) {
-    addFriend(friendId: $friendId) {
-      friend {
-        id
-      }
-    }
-  }
-`;
-
-const deleteFriendMutation = graphql`
-  mutation ProfileModalDeleteFriendMutation($friendId: String!) {
-    deleteFriend(friendId: $friendId) {
-      friend {
-        id
-      }
-    }
-  }
-`;
-
-const createBlockedUserMutation = graphql`
-  mutation ProfileModalCreateBlockedUserMutation($blockedUserId: String!) {
-    createBlockedUser(blockedUserId: $blockedUserId) {
-      blockedUser {
-        id
-        email
-        name
-        nickname
-        hasBlocked
-      }
-    }
-  }
-`;
-
-const deleteBlockedUserMutation = graphql`
-  mutation ProfileModalDeleteBlockedUserMutation($blockedUserId: String!) {
-    deleteBlockedUser(blockedUserId: $blockedUserId) {
-      blockedUser {
-        id
-        email
-        name
-        nickname
-        hasBlocked
-      }
-    }
-  }
 `;
 
 interface Styles {
@@ -177,29 +137,24 @@ const ModalContent: FC<ModalContentProps> = ({
     findOrCreatePrivateChannel,
   );
 
-  const [
-    commitAddFriend,
-    addFriendInFlight,
-  ] = useMutation<ProfileModalAddFriendMutation>(addFriendMutation);
+  const [commitAddFriend, addFriendInFlight] = useMutation<FriendAddMutation>(
+    addFriendMutation,
+  );
 
   const [
     commitDeleteFriend,
     deleteFriendInFlight,
-  ] = useMutation<ProfileModalDeleteFriendMutation>(deleteFriendMutation);
+  ] = useMutation<FriendDeleteMutation>(deleteFriendMutation);
 
   const [
     commitCreateBlockedUser,
     isCreateBlockedUserInFlight,
-  ] = useMutation<ProfileModalCreateBlockedUserMutation>(
-    createBlockedUserMutation,
-  );
+  ] = useMutation<BlockedUserCreateMutation>(createBlockedUserMutation);
 
   const [
     commitDeleteBlockedUser,
     isDeleteBlockedUserInFlight,
-  ] = useMutation<ProfileModalDeleteBlockedUserMutation>(
-    deleteBlockedUserMutation,
-  );
+  ] = useMutation<BlockedUserDeleteMutation>(deleteBlockedUserMutation);
 
   const addFriend = async (): Promise<void> => {
     if (modalState) {
