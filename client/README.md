@@ -49,8 +49,8 @@ app/
 │  └─ apis
 │  └─ components
 │     └─ navigations
-│     └─ screen
-│     └─ shared
+│     └─ pages
+│     └─ uis
 │  └─ graphql
 │  └─ hooks
 │  └─ providers
