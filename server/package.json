@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.4.1",
-    "@prisma/client": "2.16.1",
+    "@prisma/client": "2.17.0",
     "@sendgrid/mail": "^7.4.2",
     "apollo-server": "^2.21.0",
     "axios": "^0.21.1",
@@ -52,7 +52,7 @@
     "multer": "^1.4.2",
     "nanoid": "^3.1.20",
     "nexus": "^1.0.0",
-    "nexus-plugin-prisma": "^0.30.0",
+    "nexus-plugin-prisma": "^0.31.0",
     "node-rsa": "^1.1.1",
     "ramda": "^0.27.1",
     "verify-apple-id-token": "^2.0.4"
@@ -86,7 +86,7 @@
     "jest": "26.6.3",
     "node-fetch": "^2.6.1",
     "prettier": "^2.2.1",
-    "prisma": "^2.16.1",
+    "prisma": "^2.17.0",
     "ts-jest": "^26.5.1",
     "ts-node": "9.1.1",
     "ts-node-dev": "^1.1.1",
