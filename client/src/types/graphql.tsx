@@ -279,7 +279,7 @@ export type MutationDeleteNotificationArgs = {
 
 export type MutationSingleUploadArgs = {
   file: Scalars['Upload'];
-  dir: Scalars['String'];
+  dir?: Maybe<Scalars['String']>;
 };
 
 

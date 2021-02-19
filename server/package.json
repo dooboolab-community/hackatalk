@@ -22,6 +22,7 @@
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
     "migrate": "prisma migrate deploy --preview-feature",
+    "migrate:local": "dotenv -e ./dotenv/.env -- prisma migrate deploy --preview-feature",
     "migrate:reset": "dotenv -e ./dotenv/prod.env -- prisma migrate reset --preview-feature",
     "migrate:dev": "dotenv -e ./dotenv/prod.env -- prisma migrate dev --preview-feature",
     "migrate:deploy": "dotenv -e ./dotenv/prod.env -- prisma migrate deploy --preview-feature",
@@ -66,7 +67,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/multer": "^1.4.5",
     "@types/nanoid": "^2.1.0",
-    "@types/node": "^14.14.30",
+    "@types/node": "^14.14.31",
     "@types/node-rsa": "^1.1.0",
     "@types/ramda": "^0.27.38",
     "@types/ws": "7.4.0",
@@ -93,5 +94,9 @@
   },
   "engines": {
     "node": ">=10.0.0"
+  },
+  "resolutions": {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^11.0.0"
   }
 }
