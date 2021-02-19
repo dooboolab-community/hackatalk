@@ -30,20 +30,33 @@ const fetchGraphQL: FetchFunction = async (
   // https://github.com/jaydenseric/graphql-multipart-request-spec
 
   if (uploadables) {
-    const requestText = JSON.stringify(operation?.text?.replace(/\n/g, ''));
-    const {file, dir} = variables;
-
     const formData = new FormData();
 
-    formData.append(
-      'operations',
-      `{"query": ${requestText}, "variables": {"file": ${file}, "dir": ${JSON.stringify(
-        dir,
-      )}} }`,
-    );
+    const requestText = operation?.text?.replace(/\n/g, '');
 
-    formData.append('map', '{ "0": ["variables.file"] }');
-    formData.append('0', uploadables.file);
+    const query = JSON.stringify({
+      query: requestText,
+      variables,
+    });
+
+    formData.append('operations', query);
+
+    let map = '';
+
+    if (uploadables.file) {
+      // single upload
+      map += `{ "${0}": ["variables.file"] }`;
+      formData.append('map', map);
+      formData.append('0', uploadables.file);
+    } else {
+      // multi uploads
+      for (let i in uploadables.files) {
+        map += `{ "${i}": ["variables.files.${i}"] }`;
+        formData.append(i, uploadables.files[i]);
+      }
+
+      formData.append('map', map);
+    }
 
     config.body = formData;
   } else {

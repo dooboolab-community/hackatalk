@@ -7,8 +7,9 @@ import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
 export const singleUpload = mutationField('singleUpload', {
   type: nonNull('String'),
   args: {
+    // @ts-ignore
     file: nonNull(arg({type: Upload})),
-    dir: nonNull(stringArg()),
+    dir: stringArg(),
   },
   resolve: async (_parent, {file, dir}) => {
     const {createReadStream} = await file;

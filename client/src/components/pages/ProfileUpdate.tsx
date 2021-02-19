@@ -1,7 +1,11 @@
 import {Alert, Image, TouchableOpacity, View} from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
+import {
+  UploadSingleUploadMutation,
+  UploadSingleUploadMutationResponse,
+} from '../../__generated__/UploadSingleUploadMutation.graphql';
 import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay/hooks';
 import {
   launchCameraAsync,
@@ -9,15 +13,19 @@ import {
 } from '../../utils/ImagePicker';
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 
+import {ImagePickerResult} from 'expo-image-picker';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import {ReactNativeFile} from 'apollo-upload-client';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
+import {singleUpload} from '../../relay/queries/Upload';
 import styled from 'styled-components/native';
-import {uploadImageAsync} from '../../apis/upload';
+// import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
+import {useAuthContext} from '../../providers/AuthProvider';
 
 const BUTTON_INDEX_LAUNCH_CAMERA = 0;
 const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
@@ -77,6 +85,15 @@ const Screen: FC<Props> = () => {
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
 
+  const {
+    state: {user},
+  } = useAuthContext();
+
+  const [
+    commitUpload,
+    isUploadInFlight,
+  ] = useMutation<UploadSingleUploadMutation>(singleUpload);
+
   const [
     commitProfileUpdate,
     isUpdating,
@@ -120,6 +137,62 @@ const Screen: FC<Props> = () => {
     }
   };
 
+  const processImageUpload = useCallback(
+    async (image: ImagePickerResult | null): Promise<void> => {
+      if (image && !image.cancelled) {
+        setIsUploading(true);
+
+        try {
+          const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
+            {
+              uri: image.uri,
+              width: DEFAULT.PROFILEIMAGE_WIDTH,
+              height: DEFAULT.PROFILEIMAGE_HEIGHT,
+            },
+          );
+
+          const fileName = resizedImage.uri.split('/').pop() || '';
+          const fileTypeMatch = /\.(\w+)$/.exec(fileName);
+
+          const fileType = fileTypeMatch
+            ? `image/${fileTypeMatch[1]}`
+            : 'image';
+
+          const file = new ReactNativeFile({
+            uri: resizedImage.uri,
+            name: `${user?.id || fileName}.${fileType}`,
+            type: fileType,
+          });
+
+          commitUpload({
+            variables: {
+              file: null,
+              dir: 'profiles',
+            },
+            uploadables: {
+              file,
+            },
+            onCompleted: (response: UploadSingleUploadMutationResponse) => {
+              const url = response.singleUpload;
+
+              if (url) setProfilePath(url);
+
+              setIsUploading(false);
+            },
+            onError: (err) => {
+              Alert.alert(getString('ERROR'), err.message);
+            },
+          });
+        } catch (err) {
+          Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+        } finally {
+          setIsUploading(false);
+        }
+      }
+    },
+    [commitUpload, user?.id],
+  );
+
   const pressProfileImage = async (): Promise<void> => {
     const options = [
       getString('TAKE_A_PICTURE'),
@@ -136,31 +209,7 @@ const Screen: FC<Props> = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
 
-          setIsUploading(true);
-
-          if (image && !image.cancelled)
-            try {
-              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
-                {
-                  uri: image.uri,
-                  width: DEFAULT.PROFILEIMAGE_WIDTH,
-                  height: DEFAULT.PROFILEIMAGE_HEIGHT,
-                },
-              );
-
-              const response = await uploadImageAsync(
-                resizedImage.uri,
-                'profiles',
-              );
-
-              const result = JSON.parse(await response.text());
-
-              setIsUploading(false);
-
-              setProfilePath(result.url);
-            } catch (err) {
-              Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
-            }
+          processImageUpload(image);
 
           return;
         }
@@ -168,27 +217,7 @@ const Screen: FC<Props> = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchImageLibraryAsync();
 
-          if (image && !image.cancelled)
-            try {
-              const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
-                {
-                  uri: image.uri,
-                  width: DEFAULT.PROFILEIMAGE_WIDTH,
-                  height: DEFAULT.PROFILEIMAGE_HEIGHT,
-                },
-              );
-
-              const response = await uploadImageAsync(
-                resizedImage.uri,
-                'profiles',
-              );
-
-              const result = JSON.parse(await response.text());
-
-              setProfilePath(result.url);
-            } catch (err) {
-              Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
-            }
+          processImageUpload(image);
         }
       },
     );
@@ -330,7 +359,7 @@ const Screen: FC<Props> = () => {
                   fontWeight: 'bold',
                 },
               }}
-              loading={isUploading || isUpdating}
+              loading={isUploading || isUpdating || isUploadInFlight}
               onPress={updateProfile}
               text={getString('UPDATE')}
             />

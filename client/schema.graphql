@@ -178,7 +178,7 @@ type Mutation {
   changeEmailPassword(password: String!, newPassword: String!): Boolean
   createNotification(token: String!, device: String, os: String): Notification
   deleteNotification(token: String!): Notification
-  singleUpload(file: Upload!, dir: String!): String!
+  singleUpload(file: Upload!, dir: String): String!
   addFriend(friendId: String!): Friend
   deleteFriend(friendId: String!): Friend
 

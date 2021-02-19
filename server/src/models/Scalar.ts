@@ -2,7 +2,7 @@
 import {asNexusMethod, scalarType} from 'nexus';
 
 import {GraphQLDate} from 'graphql-iso-date';
-import {GraphQLUpload} from 'graphql-upload';
+import {GraphQLUpload} from 'apollo-server-express';
 
 export enum AuthType {
   email = 'email',

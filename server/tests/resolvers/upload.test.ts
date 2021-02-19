@@ -17,19 +17,16 @@ describe('Resolver - File', () => {
     body.append(
       'operations',
       JSON.stringify({
-        query: `
-          mutation($file: Upload!) {
-            singleUpload(file: $file) 
-          }
-        `,
+        query:
+          'mutation ($file: Upload! $dir: String) { singleUpload(file: $file dir: $dir) }',
         variables: {
           file: null,
         },
       }),
     );
 
-    body.append('map', JSON.stringify({1: ['variables.file']}));
-    body.append('1', 'a', {filename: 'a.txt'});
+    body.append('map', JSON.stringify({'0': ['variables.file']}));
+    body.append('0', 'a', {filename: 'a.txt'});
 
     const response = await fetch(testHost, {method: 'POST', body});
     const jsonResult = await response.json();
