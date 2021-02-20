@@ -1,6 +1,4 @@
 {
-  "baseUrl": "types",
-  "typeRoots": ["types"],
   "compilerOptions": {
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -10,9 +8,9 @@
     "esModuleInterop": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "declaration":false,
+    "declaration": true,
     "noLib":false,
-    "sourceMap":true,
+    "sourceMap":false,
     "pretty":true,
     "allowUnreachableCode":true,
     "allowUnusedLabels":true,

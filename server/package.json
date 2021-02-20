@@ -20,7 +20,6 @@
     "generate": "yarn generate:prisma && yarn generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
-    "postinstall": "npm -s run generate",
     "migrate": "prisma migrate deploy --preview-feature",
     "migrate:local": "dotenv -e ./dotenv/.env -- prisma migrate deploy --preview-feature",
     "migrate:reset": "dotenv -e ./dotenv/prod.env -- prisma migrate reset --preview-feature",
@@ -28,7 +27,15 @@
     "migrate:deploy": "dotenv -e ./dotenv/prod.env -- prisma migrate deploy --preview-feature",
     "db-push:local": "dotenv -e ./dotenv/.env -- prisma db push --preview-feature",
     "db-push:test": "dotenv -e ./dotenv/test.env -- prisma db push --preview-feature",
-    "studio": "dotenv -e ./dotenv/.env -- prisma studio"
+    "studio": "dotenv -e ./dotenv/.env -- prisma studio",
+    "docker:build": "docker build --tag hackatalk/node .",
+    "docker:start": "docker run --name hackatalk -e 'NODE_ENV=production' -it -p 4000:4000 -d hackatalk/node",
+    "docker:ps": "docker ps -a",
+    "docker:remove": "docker stop hackatalk && docker rm $(docker ps -a -q) && docker rmi hackatalk/node",
+    "docker:push": "docker tag hackatalk/node dooboolab/hackatalk_node && docker push dooboolab/hackatalk_node",
+    "docker:remote": "docker run --name hackatalk -e 'NODE_ENV=production' -it -p 4000:4000 -d dooboolab/hackatalk_node",
+    "docker:prod": "NODE_ENV=production node dist/server",
+    "docker:logs": "docker logs -f hackatalk"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.4.1",
