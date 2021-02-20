@@ -25,6 +25,12 @@ jobs:
             yarn
 
       - run:
+          name: Generate prisma types
+          working_directory: server
+          command: |
+            yarn generate
+
+      - run:
           name: ESLint
           working_directory: server
           command: |
@@ -55,7 +61,7 @@ jobs:
   client:
     working_directory: ~/dooboo
     docker:
-      - image: circleci/node:12.12.0
+      - image: circleci/node:14.9.0
     environment:
       TZ: 'Asia/Seoul'
     steps:
