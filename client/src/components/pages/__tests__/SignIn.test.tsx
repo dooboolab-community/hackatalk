@@ -340,11 +340,6 @@ describe('[SignIn] interaction', () => {
       fireEvent.press(btnApple);
     });
   });
-
-  afterAll((done) => {
-    cleanup();
-    done();
-  });
 });
 
 describe('Apple SignIn', () => {
@@ -354,11 +349,6 @@ describe('Apple SignIn', () => {
     component = createTestElement(<SignIn {...props} />);
 
     testingLib = render(component);
-  });
-
-  afterAll((done) => {
-    cleanup();
-    done();
   });
 
   it('should Apple auth available', async () => {
