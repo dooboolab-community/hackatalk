@@ -80,6 +80,8 @@ interface Props<T> {
   renderSendButton?: () => React.ReactElement;
 }
 
+let isFirstTime: boolean = false;
+
 function Shared<T>(props: Props<T>): React.ReactElement {
   const input1 = useRef<TextInput>();
   const input2 = useRef<TextInput>();
@@ -104,7 +106,6 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [isFirstTime, setIsFirstTime] = useState<boolean>(true);
 
   const backHandler = useRef<BackHandlerStatic>(BackHandler);
   const keyboard = useRef(Keyboard);
@@ -114,11 +115,13 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     else {
       if (!isFirstTime) input1?.current?.focus();
 
-      setIsFirstTime(false);
+      isFirstTime = false;
     }
-  }, [showMenu, isFirstTime]);
+  }, [showMenu]);
 
   useEffect(() => {
+    isFirstTime = true;
+
     const backHandlerListner = backHandler.current.addEventListener(
       'hardwareBackPress',
       (): boolean => {
