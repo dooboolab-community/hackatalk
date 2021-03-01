@@ -1,4 +1,4 @@
-import {ChannelType, MessageType} from '@prisma/client';
+import {ChannelType, Message, MessageType} from '@prisma/client';
 import {
   changeVisibilityWhenInvisible,
   createMemberships,
@@ -51,7 +51,7 @@ export const createChannel = mutationField('createChannel', {
   This query will return [Channel] with [Membership] without [Message] that has just created.
   `,
 
-  resolve: async (_, {channel, message}, {prisma, userId}) => {
+  resolve: async (_, {channel, message}, {prisma, userId, pubsub}) => {
     assert(userId, 'Not authorized.');
 
     const {
@@ -60,7 +60,7 @@ export const createChannel = mutationField('createChannel', {
       name,
     } = filterNullProperties(channel);
 
-    interface Message {
+    interface MessageProps {
       text?: string;
       messageType?: MessageType;
       fileUrls?: string[];
@@ -73,10 +73,10 @@ export const createChannel = mutationField('createChannel', {
         messageType = MessageType.text,
         fileUrls = [],
         imageUrls = [],
-      }: Message,
+      }: MessageProps,
       channelId: string,
-    ): Promise<any> =>
-      prisma.message.create({
+    ): Promise<Message> => {
+      const createdMessage = await prisma.message.create({
         data: {
           text,
           messageType,
@@ -86,6 +86,9 @@ export const createChannel = mutationField('createChannel', {
           sender: {connect: {id: userId}},
         },
       });
+
+      return createdMessage;
+    };
 
     const isPrivateChannel = channelType === ChannelType.private;
 

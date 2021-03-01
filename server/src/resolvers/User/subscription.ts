@@ -6,11 +6,8 @@ export const USER_SIGNED_IN = 'USER_SIGNED_IN';
 export const USER_UPDATED = 'USER_UPDATED';
 
 export const userSignedIn = subscriptionField('userSignedIn', {
+  args: {userId: nonNull(stringArg())},
   type: 'User',
-
-  args: {
-    userId: nonNull(stringArg()),
-  },
 
   subscribe: withFilter(
     (_, args, ctx) => {
@@ -28,11 +25,8 @@ export const userSignedIn = subscriptionField('userSignedIn', {
 });
 
 export const userUpdated = subscriptionField('userUpdated', {
+  args: {userId: nonNull(stringArg())},
   type: 'User',
-
-  args: {
-    userId: nonNull(stringArg()),
-  },
 
   subscribe: withFilter(
     (_, args, ctx) => {

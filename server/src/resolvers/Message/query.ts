@@ -7,6 +7,7 @@ export const message = queryField('message', {
   type: 'Message',
   args: {id: nonNull(stringArg())},
   description: 'Get single message',
+
   resolve: (_, {id}, ctx) =>
     ctx.prisma.message.findUnique({
       where: {id},

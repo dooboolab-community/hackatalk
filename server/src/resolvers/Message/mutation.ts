@@ -5,6 +5,7 @@ import {
 } from '../../services/NotificationService';
 import {arg, mutationField, nonNull, stringArg} from 'nexus';
 
+import {ON_MESSAGE} from './subscription';
 import {assert} from '../../utils/assert';
 
 export const createMessage = mutationField('createMessage', {
@@ -19,7 +20,11 @@ export const createMessage = mutationField('createMessage', {
     ),
   },
 
-  resolve: async (parent, {channelId, message}, {prisma, request, userId}) => {
+  resolve: async (
+    parent,
+    {channelId, message},
+    {prisma, request, userId, pubsub},
+  ) => {
     assert(userId, 'Not authorized.');
 
     const {imageUrls, fileUrls, ...rest} = message;
@@ -41,6 +46,8 @@ export const createMessage = mutationField('createMessage', {
         channel: true,
       },
     });
+
+    pubsub.publish(ON_MESSAGE, created);
 
     await prisma.channel.update({
       data: {
