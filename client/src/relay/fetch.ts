@@ -44,23 +44,25 @@ const fetchGraphQL: FetchFunction = async (
     let map: {[key: number]: string[]} = {};
 
     let idx = 0;
-    const prefix = 'variables'
+    const prefix = 'variables';
+
     Object.keys(uploadables).forEach((field: string) => {
-      const files = uploadables[field]
-      if (Array.isArray(files)) {
+      const files = uploadables[field];
+
+      if (Array.isArray(files))
         // multi uploads
         for (let i in files) {
-          map[idx] = [`${prefix}.${field}.${i}`]
+          map[idx] = [`${prefix}.${field}.${i}`];
           formData.append(`${idx}`, files[i]);
           idx++;
         }
-      } else {
+      else {
         // single upload
         map[idx] = [`${prefix}.${field}`];
         formData.append(`${idx}`, files);
         idx++;
       }
-    })
+    });
 
     formData.append('map', JSON.stringify(map));
 
