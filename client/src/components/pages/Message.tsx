@@ -44,6 +44,7 @@ import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
+import relayEnvironment from '../../relay';
 import {requestSubscription} from 'react-relay';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -60,6 +61,38 @@ const Container = styled.SafeAreaView`
   background-color: ${({theme}) => theme.messageBackground};
   flex-direction: column;
   align-items: center;
+`;
+
+const subscription = graphql`
+  subscription MessageSubscription($channelId: String!) {
+    onMessage(channelId: $channelId) {
+      id
+      text
+      messageType
+      imageUrls
+      fileUrls
+      channel {
+        id
+        channelType
+        name
+        memberships(excludeMe: true) {
+          user {
+            name
+            nickname
+            thumbURL
+            photoURL
+          }
+        }
+        lastMessage {
+          messageType
+          text
+          imageUrls
+          fileUrls
+          createdAt
+        }
+      }
+    }
+  }
 `;
 
 const messagesFragment = graphql`
@@ -110,7 +143,7 @@ const messagesFragment = graphql`
   }
 `;
 
-function updateMessageOnSubmit(
+function updateMessageOnMessage(
   proxyStore: RecordSourceSelectorProxy,
   currentChannelId: string,
   currentUserId: string,
@@ -124,15 +157,13 @@ function updateMessageOnSubmit(
       searchText: null,
     });
 
-  const payload = proxyStore.getRootField('createMessage');
+  const payload = proxyStore.getRootField('onMessage');
   const userProxy = proxyStore.get(currentUserId);
   const now = moment().toString();
 
   if (userProxy && payload) {
     payload.setLinkedRecord(userProxy, 'sender');
-
     payload.setValue(now, 'createdAt');
-
     payload.setValue(now, 'updatedAt');
   }
 
@@ -255,11 +286,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         channelId,
         message: {text: textToSend},
       },
-      updater: (proxyStore: RecordSourceSelectorProxy) => {
-        if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
-
-        updateChannelsOnSubmit(proxyStore, channelId);
-      },
       onCompleted: () => {
         setTextToSend('');
       },
@@ -305,11 +331,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               messageType: 'photo',
               imageUrls: [url],
             },
-          },
-          updater: (proxyStore: RecordSourceSelectorProxy) => {
-            if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
-
-            updateChannelsOnSubmit(proxyStore, channelId);
           },
           onCompleted: () => {},
           onError: (error: Error): void => {
@@ -480,6 +501,32 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
+  const {
+    state: {user},
+  } = useAuthContext();
+
+  useEffect(() => {
+    const variables = {channelId};
+
+    const subscriptionConfig = {
+      subscription,
+      variables,
+      updater: (proxyStore: RecordSourceSelectorProxy) => {
+        if (user) updateMessageOnMessage(proxyStore, channelId, user.id);
+
+        updateChannelsOnSubmit(proxyStore, channelId);
+      },
+      onError: (error: Error) => console.log('An error occured:', error),
+    };
+
+    // @ts-ignore
+    const sub = requestSubscription(relayEnvironment, subscriptionConfig);
+
+    return () => {
+      sub.dispose();
+    };
+  }, [channelId, user]);
+
   const data: MessagesQueryResponse = useLazyLoadQuery<MessagesQuery>(
     messagesQuery,
     searchArgs,

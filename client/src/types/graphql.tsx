@@ -492,6 +492,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   userSignedIn?: Maybe<User>;
   userUpdated?: Maybe<User>;
+  onMessage?: Maybe<Message>;
 };
 
 
@@ -502,6 +503,11 @@ export type SubscriptionUserSignedInArgs = {
 
 export type SubscriptionUserUpdatedArgs = {
   userId: Scalars['String'];
+};
+
+
+export type SubscriptionOnMessageArgs = {
+  channelId: Scalars['String'];
 };
 
 
