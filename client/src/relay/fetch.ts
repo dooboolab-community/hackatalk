@@ -41,22 +41,30 @@ const fetchGraphQL: FetchFunction = async (
 
     formData.append('operations', query);
 
-    let map = '';
+    let map: {[key: number]: string[]} = {};
 
-    if (uploadables.file) {
-      // single upload
-      map += `{ "${0}": ["variables.file"] }`;
-      formData.append('map', map);
-      formData.append('0', uploadables.file);
-    } else {
-      // multi uploads
-      for (let i in uploadables.files) {
-        map += `{ "${i}": ["variables.files.${i}"] }`;
-        formData.append(i, uploadables.files[i]);
+    let idx = 0;
+    const prefix = 'variables';
+
+    Object.keys(uploadables).forEach((field: string) => {
+      const files = uploadables[field];
+
+      if (Array.isArray(files))
+        // multi uploads
+        for (let i in files) {
+          map[idx] = [`${prefix}.${field}.${i}`];
+          formData.append(`${idx}`, files[i]);
+          idx++;
+        }
+      else {
+        // single upload
+        map[idx] = [`${prefix}.${field}`];
+        formData.append(`${idx}`, files);
+        idx++;
       }
+    });
 
-      formData.append('map', map);
-    }
+    formData.append('map', JSON.stringify(map));
 
     config.body = formData;
   } else {
