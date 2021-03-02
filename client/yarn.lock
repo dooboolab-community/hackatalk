@@ -5749,10 +5749,10 @@ babel-plugin-react-native-web@~0.13.6:
   resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.13.18.tgz#f0b640412b81acd02d8036b7a935ffb3ab446e4e"
   integrity sha512-f8pAxyKqXBNRIh8l4Sqju055BNec+DQlItdtutByYxULU0iJ1F7evIYE3skPKAkTB/xJH17l+n3Z8dVabGIIGg==
 
-babel-plugin-relay@^10.1.3:
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-10.1.3.tgz#3c52f06869c2295766f4df63736b9ad887386af3"
-  integrity sha512-2dD9J6lRAT9jOWD6WqMKSdpZ5inoRlyOnEEVGoRVQ9jVR6ktO+KDgigS/+sfbg8GIY+3Xb/meC1cegdI5evrSA==
+babel-plugin-relay@^11.0.0-rc.0:
+  version "11.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-11.0.0-rc.0.tgz#b2709fe9485a68f677eb071ca7f264abbe644d81"
+  integrity sha512-tYForBD1z5K/UJdFTvHNjpGw0f52KkvSJYTngMrLYcUz7G8wJNm1Kl3yNn4g41gvjgn9Yjtx4uhWf5EaZiGwwg==
   dependencies:
     babel-plugin-macros "^2.0.0"
 
@@ -15227,15 +15227,6 @@ react-devtools-core@^4.6.0:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-dom@^0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-4190a3458.tgz#7a382c396fa2952c8e86e2b40db02b5aa18d0660"
-  integrity sha512-tAucfKjiKQPqgAkJYoApvpjZ7ZtHs/A+WY/HWEceEnOQ8PD6grp4Qc0rkFTDWBThEj9i/9bXLcm/3bARoJ14jg==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "0.0.0-experimental-4190a3458"
-
 react-error-boundary@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-3.1.0.tgz#9487443df2f9ba1db90d8ab52351814907ea4af3"
@@ -15433,16 +15424,15 @@ react-refresh@^0.8.2:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react-relay@^0.0.0-experimental-4c4107dd:
-  version "0.0.0-experimental-4c4107dd"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-0.0.0-experimental-4c4107dd.tgz#8576b9a2d9b2c321199a9a6c5a4bb7ff1047a733"
-  integrity sha512-P59f5dYEZQOjrigi0oqpYZYewC3ty1uTPqOEfSWgsSXbcJ0h8NNbNvnZ/oaDdAdpeVi85qkMjqcNxTAn6XzZpA==
+react-relay@^11.0.0-rc.0:
+  version "11.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-11.0.0-rc.0.tgz#8d50f919eaf94cf146c9932316988f2d661ec260"
+  integrity sha512-NMKfwQKRntddu4FjBKST5oMLbdubIXNUnORdHlMKC8qPif2FXFks0PcIGUbGgTjrgG6YpfC0VRcRoFyicaodvg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.0"
     nullthrows "^1.1.1"
-    relay-runtime "10.1.3"
-    scheduler "^0.19.1"
+    relay-runtime "11.0.0-rc.0"
 
 react-responsive@^8.2.0:
   version "8.2.0"
@@ -15479,10 +15469,10 @@ react-timer-mixin@^0.13.4:
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
-react@^0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-4190a3458.tgz#7f3be065422480a24af2db6e36419cb4ef653e1b"
-  integrity sha512-Vz8Uyt/3/6tu4rGaqh2pXqNOs+oTMLuTMizqjWV+D/H0tQAHuOwepCNHoEHAOmcYOYk/keQYspoZ5iHOCKT0mA==
+react@^17.0.1:
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
+  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -15714,10 +15704,10 @@ relay-compiler@10.1.0:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-relay-compiler@^10.1.3:
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-10.1.3.tgz#76ec4fd5d16f5b6aae61183f64b5caaef27f2525"
-  integrity sha512-AJoET3U8PrLXiA1/jmcr5beR/928+8c8qf46nOuumaNXhTfJC2RvN2fpD0APF0Fti+oKBxwKcQJ93R5BK6A2xw==
+relay-compiler@^11.0.0-rc.0:
+  version "11.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-11.0.0-rc.0.tgz#1a081c7f82ec87e56b2c6aa64738c54a95a2471c"
+  integrity sha512-PV84HNu56fHLcLEjy9b5h0V5GLdUeFOohvZ+AguciUoP7+7aig7LIPa2FGp8lFz/tFY60RIGGY6uSD6W544bwg==
   dependencies:
     "@babel/core" "^7.0.0"
     "@babel/generator" "^7.5.0"
@@ -15732,7 +15722,7 @@ relay-compiler@^10.1.3:
     glob "^7.1.1"
     immutable "~3.7.6"
     nullthrows "^1.1.1"
-    relay-runtime "10.1.3"
+    relay-runtime "11.0.0-rc.0"
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
@@ -15751,22 +15741,22 @@ relay-runtime@10.1.0:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.0"
 
-relay-runtime@10.1.3:
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-10.1.3.tgz#1d7bfe590b50cd7f18f6d1c0f20df71fe5bb451a"
-  integrity sha512-NSh4CaRRpUaziK72h4T5uKw6rvHovmS/xD9+czqUYg6yKv22ajwBE6SWmjwTSKnt2NBzIfDjh2C3heo9pLbvtg==
+relay-runtime@11.0.0-rc.0, relay-runtime@^11.0.0-rc.0:
+  version "11.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-11.0.0-rc.0.tgz#37e14c69dcdde2797979735ae6e25e386a829c6e"
+  integrity sha512-SmzjG5f6G//5g4xlwAFc9wkKQJ2dd3wuxPYa0+QTDSQXo0YoFnexsCB6Bqu9mh19HY8dsQpSpsmZ4HCa6OlDJg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.0"
 
-relay-test-utils@^10.1.3:
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-10.1.3.tgz#bec211b49c048a561ac1faad229a3d58e79c5103"
-  integrity sha512-aG0ghuSPX6vmVb89vHLZELumxv7YtKTdpUqgolYRYCpbvhpMex2ACaeFmlEVUQ3JLiWYhoe7VgVVgmm3uHJD1Q==
+relay-test-utils@^11.0.0-rc.0:
+  version "11.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-11.0.0-rc.0.tgz#23b401aa09f6dcf8c87b77a28ad9f6ec622c51d6"
+  integrity sha512-HUldxGLJO34FMr47SLXFh04G1M/TMXnXCX5xHpCyovLMeWH5CC7mzueUPnKdaWWY4z4AiAJzaVHJueRx5zpXoQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.0"
-    relay-runtime "10.1.3"
+    relay-runtime "11.0.0-rc.0"
 
 remedial@^1.0.7:
   version "1.0.8"
@@ -16120,14 +16110,6 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.0.0-experimental-4190a3458:
-  version "0.0.0-experimental-4190a3458"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-4190a3458.tgz#23f503e93d9d92e0582946737d3450ef045afa41"
-  integrity sha512-+RVzR2n7AHews8MOutk1nMSTa0WyAcnulZDRbwLTpxW1ya5aC0Lz6h3UUf67I7n2OXTTHeCrk00z5u84gkc80w==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-
 scheduler@0.0.0-fec00a869:
   version "0.0.0-fec00a869"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-fec00a869.tgz#e28ff1aa107e1d04d6e8901641b4fb1e3ba98577"
@@ -16136,7 +16118,7 @@ scheduler@0.0.0-fec00a869:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@0.19.1, scheduler@^0.19.1:
+scheduler@0.19.1:
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==

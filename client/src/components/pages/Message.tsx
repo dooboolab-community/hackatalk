@@ -44,6 +44,7 @@ import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
+import {requestSubscription} from 'react-relay';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
