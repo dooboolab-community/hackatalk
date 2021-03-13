@@ -23,13 +23,13 @@ jest.mock('expo-constants', () => ({
   appOwnership: 'expo',
   manifest: {
     extra: {
-      GRAPHQL_URL: process.env.GRAPHQL_URL,
-      ROOT_URL: process.env.ROOT_URL,
-      facebookAppId: process.env.facebookAppId,
-      facebookSecret: process.env.facebookSecret,
-      googleWebClientId: process.env.googleWebClientId,
-      googleAndroidClientId: process.env.googleAndroidClientId,
-      googleIOSClientId: process.env.googleIOSClientId,
+      GRAPHQL_URL: process.env.REACT_NATIVE_GRAPHQL_URL,
+      ROOT_URL: process.env.REACT_NATIVE_ROOT_URL,
+      facebookAppId: process.env.REACT_NATIVE_facebookAppId,
+      facebookSecret: process.env.REACT_NATIVE_facebookSecret,
+      googleWebClientId: process.env.REACT_NATIVE_googleWebClientId,
+      googleAndroidClientId: process.env.REACT_NATIVE_googleAndroidClientId,
+      googleIOSClientId: process.env.REACT_NATIVE_googleIOSClientId,
     },
   },
 }));
