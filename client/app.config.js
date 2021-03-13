@@ -1,5 +1,7 @@
 import 'dotenv/config';
 
+import {version} from './package.json';
+
 export default {
   expo: {
     name: 'HackaTalk',
@@ -10,7 +12,7 @@ export default {
       'android',
       'web',
     ],
-    version: process.env.appVersion,
+    version,
     orientation: 'default',
     icon: './assets/icon.png',
     splash: {
@@ -37,7 +39,6 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      buildNumber: process.env.appVersion,
       usesAppleSignIn: true,
       infoPlist: {
         NSCameraUsageDescription:
@@ -53,7 +54,6 @@ export default {
       },
     },
     android: {
-      versionCode: parseInt(process.env.androidVersionCode),
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
