@@ -21,17 +21,6 @@ jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 jest.mock('expo-constants', () => ({
   appOwnership: 'expo',
-  manifest: {
-    extra: {
-      GRAPHQL_URL: process.env.REACT_NATIVE_GRAPHQL_URL,
-      ROOT_URL: process.env.REACT_NATIVE_ROOT_URL,
-      facebookAppId: process.env.REACT_NATIVE_facebookAppId,
-      facebookSecret: process.env.REACT_NATIVE_facebookSecret,
-      googleWebClientId: process.env.REACT_NATIVE_googleWebClientId,
-      googleAndroidClientId: process.env.REACT_NATIVE_googleAndroidClientId,
-      googleIOSClientId: process.env.REACT_NATIVE_googleIOSClientId,
-    },
-  },
 }));
 
 jest.mock('react-native-scalable-image', () => 'test');

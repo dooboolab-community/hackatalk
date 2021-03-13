@@ -74,11 +74,11 @@ const SocialSignInButton: FC<Props> = ({
   const redirectUri = makeRedirectUri(
     socialProvider === 'google'
       ? {
-          // native: 'com.dooboolab.hackatalk',
+          native: 'com.dooboolab.hackatalk',
           useProxy,
         }
       : {
-          // native: `fb${facebookAppId}://authorize`,
+          native: `fb${facebookAppId}://authorize`,
           useProxy,
         },
   );
