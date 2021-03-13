@@ -4,10 +4,15 @@ module.exports = function(api) {
   return {
     presets: ['babel-preset-expo', '@babel/preset-typescript'],
     plugins: [
-      ['relay', { artifactDirectory: './src/__generated__' }],
-      'react-native-reanimated/plugin',
       'macros',
       'inline-dotenv',
+      'react-native-reanimated/plugin',
+      ['relay', { artifactDirectory: './src/__generated__' }],
+      ["transform-inline-environment-variables", {
+        "include": [
+          "NODE_ENV"
+        ]
+      }],
       ['babel-plugin-styled-components'],
     ],
   };
