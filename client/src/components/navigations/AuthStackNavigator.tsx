@@ -11,7 +11,7 @@ import {RootStackNavigationProps} from './RootStackNavigator';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import VerifyEmail from '../pages/VerifyEmail';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {useTheme} from 'dooboo-ui';
 
 export type AuthStackParamList = {
@@ -63,28 +63,28 @@ function AuthNavigator(): ReactElement {
         name="SignUp"
         component={SignUp}
         options={{
-          title: getString('SIGN_UP'),
+          title: fbt('회원가입', 'sign up').toString(),
         }}
       />
       <Stack.Screen
         name="FindPw"
         component={FindPw}
         options={{
-          title: getString('FIND_PW'),
+          title: fbt('비밀번호 찾기', 'find password').toString(),
         }}
       />
       <Stack.Screen
         name="VerifyEmail"
         component={VerifyEmail}
         options={{
-          title: getString('VERIFY_EMAIL'),
+          title: fbt('이메일 인증', 'verify email').toString(),
         }}
       />
       <Stack.Screen
         name="LicenseAgreement"
         component={LicenseAgreement}
         options={{
-          title: getString('LICENSE_AGREEMENT'),
+          title: fbt('라이센스 계약', 'license agreement').toString(),
         }}
       />
     </Stack.Navigator>

@@ -5,8 +5,10 @@ import {version} from './package.json';
 export default {
   expo: {
     name: 'HackaTalk',
+    displayName: 'HackaTalk',
     slug: 'HackaTalk-Expo',
     privacy: 'public',
+    sdkVersion: "40.0.0",
     platforms: [
       'ios',
       'android',
@@ -21,14 +23,14 @@ export default {
       tabletImage: './assets/splashTablet.png',
     },
     userInterfaceStyle: 'automatic',
-    scheme: 'hackatalk',
+    scheme: 'HackaTalk',
     updates: {
       fallbackToCacheTimeout: 0,
     },
     assetBundlePatterns: [
       '**/*',
     ],
-    facebookDisplayName: 'hackatalk',
+    facebookDisplayName: 'HackaTalk',
     facebookScheme: `fb${process.env.facebookAppId}`,
     ios: {
       userInterfaceStyle: 'light',
