@@ -13,7 +13,7 @@ module.exports = function(api) {
           "NODE_ENV"
         ]
       }],
-      ['babel-plugin-styled-components'],
+      ['babel-plugin-styled-components']
     ],
   };
 };
