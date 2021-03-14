@@ -106,4 +106,7 @@ buck-out/
 .expo/*
 web-build/
 
+# env
+config.ts
+
 # @end expo-cli
