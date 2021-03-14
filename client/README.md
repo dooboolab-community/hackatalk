@@ -63,7 +63,6 @@ app/
 │  └─ theme.ts
 ├─ test/
 ├─ web-build/
-├─ .env
 ├─ .eslintignore
 ├─ .eslintrc.js
 ├─ .gitignore
@@ -72,7 +71,7 @@ app/
 ├─ App.tsx
 ├─ babel.config.js
 ├─ codegen.yml
-├─ config.ts
+├─ config.sample.ts
 ├─ environment.d.ts
 ├─ jest.config.js
 ├─ metro.config.js
@@ -86,11 +85,11 @@ app/
 └─ yarn.lock
 ```
 
-### .ENV
+### Environment variables
 
-Run below to make your own `app` variables.
+Run below to make your own `app` variables. We currently use `config.ts` file for this.
 
-> `cp .env.sample .env`
+> `cp config.sample.ts config.ts`
 
 - `env` variables
 
