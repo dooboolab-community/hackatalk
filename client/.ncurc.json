@@ -3,12 +3,6 @@
     "react",
     "react-dom",
     "react-test-renderer",
-    "react-relay",
-    "react-native-gesture-handler",
-    "react-native-reanimated",
-    "react-native-screens",
-    "react-native-safe-area-context",
-    "@types/react-native",
     "react-native-redash"
   ]
 }

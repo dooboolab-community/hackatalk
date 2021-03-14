@@ -31,8 +31,11 @@ import Icons from './utils/Icons';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {User} from './types/graphql';
 import {getString} from '../STRINGS';
+import {initFbt} from './utils/fbt';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import relayEnvironment from './relay';
+
+initFbt();
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

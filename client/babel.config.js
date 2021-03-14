@@ -1,3 +1,11 @@
+// eslint-disable-next-line
+const path = require('path');
+
+const fbtEnumPath = path.join(
+  __dirname,
+  'src/utils/i18n/fbt/.enum_manifest.json',
+);
+
 module.exports = function(api) {
   api.cache(true);
 
@@ -13,7 +21,15 @@ module.exports = function(api) {
           "NODE_ENV"
         ]
       }],
-      ['babel-plugin-styled-components']
+      ['babel-plugin-styled-components'],
+      'babel-plugin-fbt-runtime',
+      [
+        'babel-plugin-fbt',
+        {
+          fbtEnumPath,
+          extraOptions: {__self: true},
+        },
+      ],
     ],
   };
 };

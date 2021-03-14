@@ -110,3 +110,8 @@ web-build/
 config.ts
 
 # @end expo-cli
+
+# fbt
+.enum_manifest.json
+.source_strings.json
+.src_manifest.json
