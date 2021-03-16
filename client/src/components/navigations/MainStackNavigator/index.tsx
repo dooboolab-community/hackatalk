@@ -2,7 +2,6 @@ import * as Notifications from 'expo-notifications';
 
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {GraphQLSubscriptionConfig, requestSubscription} from 'relay-runtime';
 import {Image, TouchableOpacity, View} from 'react-native';
 import React, {ReactElement, useEffect, useMemo, useRef} from 'react';
 import {
@@ -22,6 +21,7 @@ import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
 import ChannelCreate from '../../pages/ChannelCreate';
 import {DefaultTheme} from 'styled-components';
+import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
@@ -35,6 +35,7 @@ import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
+import {onMessageUpdater} from '../../../relay/updaters';
 import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
@@ -109,6 +110,9 @@ const onMessageSubscription = graphql`
     onMessage {
       id
       imageUrls
+      channel {
+        id
+      }
       sender {
         id
         name
@@ -167,6 +171,9 @@ function MainStackNavigator(): ReactElement {
     () => ({
       variables: {},
       subscription: onMessageSubscription,
+      updater: (store) => {
+        onMessageUpdater(store);
+      },
     }),
     [],
   );

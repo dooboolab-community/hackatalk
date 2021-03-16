@@ -70,6 +70,7 @@ interface Props<T> {
   onEndReached?: () => void;
   keyboardOffset?: number;
   renderItem: ListRenderItem<T>;
+  keyExtractor?: (item: T, index: number) => string;
   optionView?: React.ReactElement;
   emptyItem?: React.ReactElement;
   renderViewMenu?: () => React.ReactElement;
@@ -93,6 +94,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     fontColor,
     keyboardOffset,
     renderItem,
+    keyExtractor,
     emptyItem,
     renderViewMenu,
     optionView,
@@ -165,7 +167,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               : null
           }
           inverted
-          keyExtractor={(item, index): string => index.toString()}
+          keyExtractor={keyExtractor}
           data={messages}
           renderItem={renderItem}
           onEndReached={onEndReached}

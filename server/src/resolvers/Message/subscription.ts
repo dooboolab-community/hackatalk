@@ -16,8 +16,6 @@ export const onMessage = subscriptionField('onMessage', {
       return pubsub.asyncIterator(ON_MESSAGE);
     },
     async (payload: Message, _args, {userId, prisma}: Context) => {
-      // Only send messages which is sent to
-      // the authorized user's channels.
       assert(userId, 'Not Authorized!');
 
       const membership = await prisma.membership.findFirst({
@@ -27,7 +25,10 @@ export const onMessage = subscriptionField('onMessage', {
         },
       });
 
-      return !!membership;
+      const correctChannel = !!membership; // Message is sent to the auth user's channel.
+      const fromSelf = payload.senderId === userId; // Message is sent by the auth user.
+
+      return correctChannel && !fromSelf;
     },
   ),
   resolve: (payload) => {

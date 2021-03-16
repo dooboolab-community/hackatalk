@@ -9,6 +9,9 @@ export type MainStackNavigatorOnMessageSubscriptionResponse = {
     readonly onMessage: {
         readonly id: string;
         readonly imageUrls: ReadonlyArray<string | null> | null;
+        readonly channel: {
+            readonly id: string;
+        } | null;
         readonly sender: {
             readonly id: string;
             readonly name: string | null;
@@ -30,6 +33,9 @@ subscription MainStackNavigatorOnMessageSubscription {
   onMessage {
     id
     imageUrls
+    channel {
+      id
+    }
     sender {
       id
       name
@@ -85,18 +91,30 @@ v1 = {
 v2 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "name",
+  "concreteType": "Channel",
+  "kind": "LinkedField",
+  "name": "channel",
+  "plural": false,
+  "selections": [
+    (v0/*: any*/)
+  ],
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "nickname",
+  "name": "name",
   "storageKey": null
 },
 v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "nickname",
+  "storageKey": null
+},
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -120,6 +138,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -129,12 +148,12 @@ return {
             "plural": false,
             "selections": [
               (v0/*: any*/),
-              (v2/*: any*/),
-              (v3/*: any*/)
+              (v3/*: any*/),
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -163,6 +182,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
+          (v2/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -172,8 +192,8 @@ return {
             "plural": false,
             "selections": [
               (v0/*: any*/),
-              (v2/*: any*/),
               (v3/*: any*/),
+              (v4/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -205,7 +225,7 @@ return {
             ],
             "storageKey": null
           },
-          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -240,14 +260,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "bc4b707e8f7afbd8b581be2e2a585ca6",
+    "cacheID": "a2d986333aa36459efbf09013fac7716",
     "id": null,
     "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
-    "text": "subscription MainStackNavigatorOnMessageSubscription {\n  onMessage {\n    id\n    imageUrls\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n"
+    "text": "subscription MainStackNavigatorOnMessageSubscription {\n  onMessage {\n    id\n    imageUrls\n    channel {\n      id\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n"
   }
 };
 })();
-(node as any).hash = 'bbb3e5fd1be436d7d6d72177c08da0aa';
+(node as any).hash = 'e6101c91df9eca86c5065d4547befc9b';
 export default node;

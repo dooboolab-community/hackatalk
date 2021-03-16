@@ -1,8 +1,14 @@
 import * as Notifications from 'expo-notifications';
 
-import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  ListRenderItem,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
-import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
 import {
   MainStackNavigationProps,
   MainStackParamList,
@@ -42,10 +48,8 @@ import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutat
 import MessageListItem from '../uis/MessageListItem';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
-import moment from 'moment';
-import relayEnvironment from '../../relay';
-import {requestSubscription} from 'react-relay';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -106,89 +110,6 @@ const messagesFragment = graphql`
   }
 `;
 
-function updateMessageOnMessage(
-  proxyStore: RecordSourceSelectorProxy,
-  currentChannelId: string,
-  currentUserId: string,
-): void {
-  const root = proxyStore.getRoot();
-
-  const connectionRecord =
-    root &&
-    ConnectionHandler.getConnection(root, 'MessageComponent_messages', {
-      channelId: currentChannelId,
-      searchText: null,
-    });
-
-  const payload = proxyStore.getRootField('onMessage');
-  const userProxy = proxyStore.get(currentUserId);
-  const now = moment().toString();
-
-  if (userProxy && payload) {
-    payload.setLinkedRecord(userProxy, 'sender');
-    payload.setValue(now, 'createdAt');
-    payload.setValue(now, 'updatedAt');
-  }
-
-  const newEdge =
-    connectionRecord &&
-    payload &&
-    ConnectionHandler.createEdge(
-      proxyStore,
-      connectionRecord,
-      payload,
-      'Message',
-    );
-
-  if (connectionRecord && newEdge)
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-}
-
-function updateChannelsOnSubmit(
-  proxyStore: RecordSourceSelectorProxy,
-  currentChannelId: string,
-): void {
-  const root = proxyStore.getRoot();
-  const channelProxy = proxyStore.get(currentChannelId);
-
-  const connectionRecord =
-    root &&
-    ConnectionHandler.getConnection(root, 'ChannelComponent_channels', {
-      withMessage: true,
-    });
-
-  // Get existing edges.
-  const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
-
-  // Check if the message is created inside a new channel.
-  let existingNode;
-
-  for (const edge of prevEdges) {
-    const node = edge.getLinkedRecord('node');
-
-    if (node?.getDataID() === currentChannelId) {
-      existingNode = node;
-      break;
-    }
-  }
-
-  const newEdge =
-    connectionRecord &&
-    channelProxy &&
-    ConnectionHandler.createEdge(
-      proxyStore,
-      connectionRecord,
-      channelProxy,
-      'Channel',
-    );
-
-  if (existingNode && connectionRecord)
-    ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
-
-  if (connectionRecord && newEdge)
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-}
-
 interface MessageProp {
   channelId: string;
   messages: MessageComponent_message$key;
@@ -220,9 +141,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const nodes = useMemo(() => {
     return (
       data.messages?.edges
-        ?.filter((x): x is NonNullable<typeof x> => x !== null)
+        ?.filter((x): x is NonNullable<typeof x> => !!x)
         ?.map((x) => x.node)
-        ?.filter((x): x is NonNullable<typeof x> => x !== null) || []
+        ?.filter((x): x is NonNullable<typeof x> => !!x) || []
     );
   }, [data]);
 
@@ -245,10 +166,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const onSubmit = (): void => {
     if (!textToSend) return;
 
-    const mutationConfig = {
+    commitMessage({
       variables: {
         channelId,
         message: {text: textToSend},
+      },
+      updater: (store) => {
+        if (user) createMessageUpdater(store, channelId, user.id);
       },
       onCompleted: () => {
         setTextToSend('');
@@ -256,9 +180,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       onError: (error: Error): void => {
         showAlertForError(error);
       },
-    };
-
-    commitMessage(mutationConfig);
+    });
   };
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
@@ -288,7 +210,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         if (!url)
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
-        const mutationConfig = {
+        commitMessage({
           variables: {
             channelId,
             message: {
@@ -296,19 +218,72 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               imageUrls: [url],
             },
           },
+          updater: (store) => {
+            if (user) createMessageUpdater(store, channelId, user.id);
+          },
           onCompleted: () => {},
           onError: (error: Error): void => {
             showAlertForError(error);
             setIsImageUploading(false);
           },
-        };
-
-        commitMessage(mutationConfig);
+        });
       } catch (err) {
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
 
     setIsImageUploading(false);
+  };
+
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
+    const nextItemDate = nodes[index + 1]?.createdAt;
+
+    return (
+      <MessageListItem
+        userId={user?.id}
+        testID={`message-list-item${index}`}
+        prevItemSenderId={nodes[index - 1]?.sender?.id}
+        nextItemDate={
+          typeof nextItemDate === 'string' ? nextItemDate : undefined
+        }
+        item={item}
+        onPressPeerImage={(sender): void => {
+          showModal({user: sender});
+        }}
+        onPressMessageImage={(indexOfTheNode: number) => {
+          let initialIndex = indexOfTheNode;
+
+          const imagesList = nodes
+            .filter((node, nodeIndex) => {
+              const {imageUrls} = node;
+
+              if (imageUrls && nodeIndex < index)
+                initialIndex += imageUrls.length;
+
+              return imageUrls && imageUrls.length > 0;
+            })
+            .map((message) => {
+              const {imageUrls, sender} = message;
+
+              return imageUrls?.map((uri) => ({
+                uri,
+                sender: sender?.nickname || sender?.name,
+              }));
+            });
+
+          const flattenImages =
+            imagesList.reduce(
+              (prev, current) =>
+                current != null ? [...(prev || []), ...current] : prev || [],
+              [],
+            ) || [];
+
+          navigation.push('ImageSlider', {
+            images: flattenImages.reverse(),
+            initialIndex: flattenImages.length - 1 - initialIndex,
+          });
+        }}
+      />
+    );
   };
 
   return (
@@ -323,65 +298,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       placeholder={getString('WRITE_MESSAGE')}
       placeholderTextColor={theme.placeholder}
       onChangeMessage={(text: string): void => setTextToSend(text)}
-      renderItem={({
-        item,
-        index,
-      }: {
-        item: MessageListItem_message$key;
-        index: number;
-      }): React.ReactElement => {
-        const nextItemDate = nodes[index + 1]?.createdAt;
-
-        return (
-          <MessageListItem
-            userId={user?.id}
-            testID={`message-list-item${index}`}
-            prevItemSenderId={nodes[index - 1]?.sender?.id}
-            nextItemDate={
-              typeof nextItemDate === 'string' ? nextItemDate : undefined
-            }
-            item={item}
-            onPressPeerImage={(sender): void => {
-              showModal({user: sender});
-            }}
-            onPressMessageImage={(indexOfTheNode: number) => {
-              let initialIndex = indexOfTheNode;
-
-              const imagesList = nodes
-                .filter((node, nodeIndex) => {
-                  const {imageUrls} = node;
-
-                  if (imageUrls && nodeIndex < index)
-                    initialIndex += imageUrls.length;
-
-                  return imageUrls && imageUrls.length > 0;
-                })
-                .map((message) => {
-                  const {imageUrls, sender} = message;
-
-                  return imageUrls?.map((uri) => ({
-                    uri,
-                    sender: sender?.nickname || sender?.name,
-                  }));
-                });
-
-              const flattenImages =
-                imagesList.reduce(
-                  (prev, current) =>
-                    current != null
-                      ? [...(prev || []), ...current]
-                      : prev || [],
-                  [],
-                ) || [];
-
-              navigation.push('ImageSlider', {
-                images: flattenImages.reverse(),
-                initialIndex: flattenImages.length - 1 - initialIndex,
-              });
-            }}
-          />
-        );
-      }}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
       optionView={
         <Image
           style={{
