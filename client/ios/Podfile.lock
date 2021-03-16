@@ -1,19 +1,19 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
-  - EXAdsAdMob (8.4.0):
+  - EXAdsAdMob (9.0.0):
     - Google-Mobile-Ads-SDK (= 7.55.1)
     - UMCore
-  - EXAppleAuthentication (2.2.2):
+  - EXAppleAuthentication (3.0.0):
     - UMCore
-  - EXApplication (2.4.1):
+  - EXApplication (3.0.0):
     - UMCore
-  - EXConstants (9.3.5):
+  - EXConstants (10.0.1):
     - UMConstantsInterface
     - UMCore
-  - EXCrypto (8.4.0):
+  - EXCrypto (9.0.0):
     - UMCore
-  - EXDevice (2.4.0):
+  - EXDevice (3.1.1):
     - UMCore
   - EXErrorRecovery (1.4.0):
     - UMCore
@@ -27,38 +27,38 @@ PODS:
     - React-Core
     - UMCore
     - UMImageLoaderInterface
-  - EXImageManipulator (8.4.0):
+  - EXImageManipulator (9.0.0):
     - UMCore
     - UMFileSystemInterface
     - UMImageLoaderInterface
-  - EXImagePicker (9.2.1):
+  - EXImagePicker (10.0.0):
     - UMCore
     - UMFileSystemInterface
     - UMPermissionsInterface
   - EXKeepAwake (8.4.0):
     - UMCore
-  - EXLinearGradient (8.4.0):
+  - EXLinearGradient (9.0.0):
     - UMCore
-  - EXLocalization (9.1.0):
+  - EXLocalization (10.0.0):
     - UMCore
   - EXLocation (10.0.0):
     - UMCore
     - UMPermissionsInterface
     - UMTaskManagerInterface
-  - EXNotifications (0.8.2):
+  - EXNotifications (0.9.0):
     - UMCore
     - UMPermissionsInterface
-  - EXPermissions (10.0.0):
+  - EXPermissions (11.0.0):
     - UMCore
     - UMPermissionsInterface
-  - EXRandom (10.0.0):
+  - EXRandom (11.0.0):
     - React-Core
-  - EXScreenOrientation (2.1.0):
+  - EXScreenOrientation (3.0.0):
     - React-Core
     - UMCore
   - EXSecureStore (9.3.0):
     - UMCore
-  - EXSplashScreen (0.8.1):
+  - EXSplashScreen (0.9.0):
     - React-Core
     - UMCore
   - EXSQLite (8.5.0):
@@ -67,7 +67,7 @@ PODS:
   - EXUpdates (0.4.2):
     - React-Core
     - UMCore
-  - EXWebBrowser (8.6.0):
+  - EXWebBrowser (9.0.0):
     - UMCore
   - FBLazyVector (0.63.4)
   - FBReactNativeSpec (0.63.4):
@@ -286,9 +286,11 @@ PODS:
   - React-jsinspector (0.63.4)
   - react-native-appearance (0.3.4):
     - React
-  - react-native-safe-area-context (3.1.9):
+  - react-native-pager-view (5.1.2):
     - React-Core
-  - react-native-webview (11.0.0):
+  - react-native-safe-area-context (3.2.0):
+    - React-Core
+  - react-native-webview (11.2.5):
     - React-Core
   - React-RCTActionSheet (0.63.4):
     - React-Core/RCTActionSheetHeaders (= 0.63.4)
@@ -354,8 +356,8 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNGestureHandler (1.8.0):
-    - React
+  - RNGestureHandler (1.10.3):
+    - React-Core
   - RNReanimated (2.0.0-rc.0):
     - DoubleConversion
     - FBLazyVector
@@ -385,7 +387,7 @@ PODS:
     - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (2.15.0):
+  - RNScreens (2.18.1):
     - React-Core
   - RNSVG (12.1.0):
     - React
@@ -412,7 +414,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXAdsAdMob (from `../node_modules/expo-ads-admob/ios`)
   - EXAppleAuthentication (from `../node_modules/expo-apple-authentication/ios`)
-  - EXApplication (from `../node_modules/expo-application/ios`)
+  - EXApplication (from `../node_modules/expo-notifications/node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXCrypto (from `../node_modules/expo-crypto/ios`)
   - EXDevice (from `../node_modules/expo-device/ios`)
@@ -452,6 +454,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-appearance (from `../node_modules/react-native-appearance`)
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -502,7 +505,7 @@ EXTERNAL SOURCES:
   EXAppleAuthentication:
     :path: "../node_modules/expo-apple-authentication/ios"
   EXApplication:
-    :path: "../node_modules/expo-application/ios"
+    :path: "../node_modules/expo-notifications/node_modules/expo-application/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
   EXCrypto:
@@ -577,6 +580,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-appearance:
     :path: "../node_modules/react-native-appearance"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -645,31 +650,31 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
-  EXAdsAdMob: 312dc4af8d5568f21240e0baee6ebe1e605a87c5
-  EXAppleAuthentication: 97d5db59f3fb7aefc6cb06e351ba0828c8982232
-  EXApplication: e3c201e7b913d081bbd37bd3c5d0e2cdc21733b4
-  EXConstants: 54d0bf04319d1692c6c7bc03ca151ef7a71705a4
-  EXCrypto: 81948191c3d2caf18fb32f18ee88d87d42532d62
-  EXDevice: 01f54314f618aa4098893f66cd8f2a8a411f33ee
+  EXAdsAdMob: c6ff22c4155bbf712acd286741f948ce24ed72b8
+  EXAppleAuthentication: f808549b4f641a2915b1c892b4b21b77f5998e8b
+  EXApplication: e3a06b6d81f94e526f029a57b2121d6cde044004
+  EXConstants: d9483a8fe0a963dd7ee3389f371303773e6ecd37
+  EXCrypto: 77fb158996b02292902cc6c4fef59b21c663c673
+  EXDevice: 101eddd9bc28faba8246ba0c499a65a4821a6b5e
   EXErrorRecovery: b46af4b91e2b4ec598ab1fa51d2cf088aaf5511f
   EXFileSystem: 0e4974ab77bff04cda68d2886d070cbe64b93a6b
   EXFont: 30c64ed8735a180e3f20046e4fdac4ea074d71d3
   EXImageLoader: f96ec9992733a4224418bbd9382e5485c8948944
-  EXImageManipulator: 77756def08b3f2bc2a0470c657fbd0d94f381fa4
-  EXImagePicker: 82fb929fb57b38de8d0a2d7fc3ca49726b9b8f78
+  EXImageManipulator: f1c9cddaf6aa42dbfe9d2485d29eca374f45d454
+  EXImagePicker: 50e8688af1278af72d3235753a825a49465b4a84
   EXKeepAwake: 615c5a6fca5c2afedf611bb6f7f2ca323246de94
-  EXLinearGradient: c803fbd1aa974be038177b1e45524bc35759fe9c
-  EXLocalization: 8b9463c81843da214476b541a27811dd885c9a76
+  EXLinearGradient: ffc008d7ddcce356534cfdf9bd7fbcdedec4c438
+  EXLocalization: 0470b3cb25dac6cdbe6f12ca15408134dba03c91
   EXLocation: d55e2a37f61bcfb4eba9c813b3f4621d896c4c00
-  EXNotifications: fba3319b1555961b99ddd185021b4c7ff978d5dd
-  EXPermissions: 17d4846ad1880f6891c74ae58ca1acb43e47ed47
-  EXRandom: d7e0f3dd64810aabd27d59f8ecffee359177e2c3
-  EXScreenOrientation: 74ec9be3963b613eb37730d41ef0954e014b08ff
+  EXNotifications: 3a88b7b898fa842cae3c5a895a255fab554bc0c8
+  EXPermissions: 015f1129f80266f6c38e3691102546232b641614
+  EXRandom: 4f71ea72eaeea674c4597e536e3014b4387af21a
+  EXScreenOrientation: ab2546170e1d6ea7c8ac01a24bc4cc2da7af67d1
   EXSecureStore: 1b571851e6068b30b8ec097be848a04603c03bae
-  EXSplashScreen: 8c7c1112ce7611a853486af4737fe2298eda7657
+  EXSplashScreen: ab5984afcca91e0af6b3138f01a8c47dc4955c51
   EXSQLite: bda6a286dded0637bb312ee781239dcca163ff4b
   EXUpdates: 5124c03b19730078482a27b97fcb4718b06ca6b5
-  EXWebBrowser: cb4811e6c883876d2e2ba1c10527de96963d410a
+  EXWebBrowser: 2e708935a91ae0f51f5f8ffc85ba673950f34833
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
   FBReactNativeSpec: f2c97f2529dd79c083355182cc158c9f98f4bd6e
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
@@ -690,8 +695,9 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
   react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
-  react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
-  react-native-webview: 6b7950628616679d81bdd75747e50cf6de9b5a5f
+  react-native-pager-view: c1ec84a464024641ccb1102e9ec12be020d3d74c
+  react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-webview: e994346d13f4d8b240347bc5be043a860452e4b6
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
@@ -704,9 +710,9 @@ SPEC CHECKSUMS:
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNCAsyncStorage: fe58eec522885718d6b297b7b658bf87d7ca557b
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
+  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: b9c929bfff7dedc9c89ab1875f1c6151023358d9
-  RNScreens: 2ad555d4d9fa10b91bb765ca07fe9b29d59573f0
+  RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   UMAppLoader: 92d044af52626af3d81a69796ad666fc7a9a7d78
   UMBarCodeScannerInterface: 3f6c1b09ef4b867ce752b8c0b3893bcf9cd85f32
