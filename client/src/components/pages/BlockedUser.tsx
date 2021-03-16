@@ -1,14 +1,10 @@
-import {FlatList, View} from 'react-native';
-import React, {FC, Suspense} from 'react';
-import type {
-  UserBlockedUsersQuery,
-  UserBlockedUsersQueryResponse,
-} from '../../__generated__/UserBlockedUsersQuery.graphql';
+import {FlatList, ListRenderItem, View} from 'react-native';
+import React, {FC, Suspense, useMemo} from 'react';
 
 import EmptyListItem from '../uis/EmptyListItem';
 import {LoadingIndicator} from 'dooboo-ui';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
-import {User} from '../../types/graphql';
+import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
@@ -31,21 +27,24 @@ interface Props {
 const ContentContainer: FC = () => {
   const {showModal} = useProfileContext();
 
-  const {
-    blockedUsers = [],
-  }: UserBlockedUsersQueryResponse = useLazyLoadQuery<UserBlockedUsersQuery>(
+  const response = useLazyLoadQuery<UserBlockedUsersQuery>(
     blockedUsersQuery,
     {},
     {fetchPolicy: 'store-or-network'},
   );
 
-  const renderItem = ({
+  const blockedUsers = useMemo(() => {
+    return (
+      response.blockedUsers?.filter(
+        (x): x is NonNullable<typeof x> => x !== null,
+      ) ?? []
+    );
+  }, [response]);
+
+  const renderItem: ListRenderItem<typeof blockedUsers[number]> = ({
     item,
     index,
-  }: {
-    item: User;
-    index: number;
-  }): React.ReactElement => {
+  }) => {
     const itemTestID = `user-list-item${index}`;
 
     const pressUserItem = (): void => {
@@ -75,7 +74,6 @@ const ContentContainer: FC = () => {
           : null
       }
       keyExtractor={(_, index): string => index.toString()}
-      // @ts-ignore
       data={blockedUsers}
       renderItem={renderItem}
       ListEmptyComponent={

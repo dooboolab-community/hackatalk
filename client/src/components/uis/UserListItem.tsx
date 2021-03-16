@@ -4,20 +4,33 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import {graphql, useFragment} from 'react-relay/hooks';
 
 import CheckBox from './CheckBox';
 import {FontAwesome} from '@expo/vector-icons';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
-import {User} from '../../types/graphql';
+import {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
 
+const fragment = graphql`
+  fragment UserListItem_user on User {
+    id
+    photoURL
+    nickname
+    name
+    statusMessage
+    isOnline
+    hasBlocked
+  }
+`;
+
 interface Props {
   testID?: string;
   style?: ViewStyle;
-  user: User;
+  user: UserListItem_user$key;
   onPress?: () => void;
   onLongPress?: () => void;
   showCheckBox?: boolean;
@@ -88,8 +101,17 @@ function Shared({
   onPress,
   onLongPress,
   testID,
-  user: {photoURL = '', nickname, name, statusMessage, isOnline, hasBlocked},
+  user,
 }: Props): React.ReactElement {
+  const {
+    photoURL = '',
+    nickname,
+    name,
+    statusMessage,
+    isOnline,
+    hasBlocked,
+  } = useFragment(fragment, user);
+
   const {theme} = useTheme();
 
   const photoURLObj: ImageSourcePropType | null =

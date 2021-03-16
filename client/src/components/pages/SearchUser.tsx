@@ -1,5 +1,11 @@
-import {Animated, TouchableOpacity, View} from 'react-native';
-import React, {FC, ReactElement, Suspense, useState} from 'react';
+import {
+  Animated,
+  FlatList,
+  ListRenderItem,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
 import type {
   UserUsersPaginationQuery,
   UserUsersPaginationQueryResponse,
@@ -16,7 +22,6 @@ import {FontAwesome} from '@expo/vector-icons';
 import {LoadingIndicator} from 'dooboo-ui';
 import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
-import {User} from '../../types/graphql';
 import UserListItem from '../uis/UserListItem';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
@@ -36,11 +41,6 @@ const Container = styled.View`
   flex-direction: column;
 `;
 
-const StyledFlatList = styled.FlatList`
-  width: 100%;
-  height: 100%;
-`;
-
 const ITEM_CNT = 10;
 
 const usersFragment = graphql`
@@ -57,13 +57,8 @@ const usersFragment = graphql`
         cursor
         node {
           id
-          email
-          name
-          nickname
-          hasBlocked
-          photoURL
-          thumbURL
-          statusMessage
+          ...ProfileModal_user
+          ...UserListItem_user
         }
       }
       pageInfo {
@@ -86,41 +81,44 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
     SearchUserComponent_user$key
   >(usersFragment, user);
 
+  const nodes = useMemo(() => {
+    return (
+      data.users?.edges
+        ?.filter((x): x is NonNullable<typeof x> => x !== null)
+        .map((x) => x.node)
+        .filter((x): x is NonNullable<typeof x> => x !== null) ?? []
+    );
+  }, [data]);
+
   const {showModal} = useProfileContext();
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
   };
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: {node: User; cursor: string};
-    index: number;
-  }): React.ReactElement => {
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
     const itemTestID = `user-list-item${index}`;
 
     const pressUserItem = (): void => {
       showModal({
-        user: item.node,
+        user: item,
         isFriend: false,
       });
     };
 
     return (
-      <UserListItem
-        testID={itemTestID}
-        user={item?.node}
-        onPress={pressUserItem}
-      />
+      <UserListItem testID={itemTestID} user={item} onPress={pressUserItem} />
     );
   };
 
   const users = data?.users?.edges || [];
 
   return (
-    <StyledFlatList
+    <FlatList
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
       testID="animated-flatlist"
       contentContainerStyle={
         users.length === 0
@@ -132,8 +130,7 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
           : undefined
       }
       keyExtractor={(item, index): string => index.toString()}
-      data={users}
-      // @ts-ignore
+      data={nodes}
       renderItem={renderItem}
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_RECENT_SEARCH')}</EmptyListItem>

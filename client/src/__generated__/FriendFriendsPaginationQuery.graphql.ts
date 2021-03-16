@@ -34,22 +34,8 @@ fragment MainFriend_friends_2HEEH6 on Query {
       cursor
       node {
         id
-        email
-        name
-        nickname
-        thumbURL
-        photoURL
-        birthday
-        gender
-        phone
-        statusMessage
-        verified
-        lastSignedIn
-        isOnline
-        hasBlocked
-        createdAt
-        updatedAt
-        deletedAt
+        ...ProfileModal_user
+        ...UserListItem_user
         __typename
       }
     }
@@ -58,6 +44,25 @@ fragment MainFriend_friends_2HEEH6 on Query {
       endCursor
     }
   }
+}
+
+fragment ProfileModal_user on User {
+  id
+  photoURL
+  name
+  nickname
+  hasBlocked
+  statusMessage
+}
+
+fragment UserListItem_user on User {
+  id
+  photoURL
+  nickname
+  name
+  statusMessage
+  isOnline
+  hasBlocked
 }
 */
 
@@ -165,7 +170,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "email",
+                    "name": "photoURL",
                     "storageKey": null
                   },
                   {
@@ -186,35 +191,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "thumbURL",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "photoURL",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "birthday",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "gender",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "phone",
+                    "name": "hasBlocked",
                     "storageKey": null
                   },
                   {
@@ -228,49 +205,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "verified",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "lastSignedIn",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "isOnline",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "hasBlocked",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "createdAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "updatedAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "deletedAt",
                     "storageKey": null
                   },
                   {
@@ -326,14 +261,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "01d352900c0f67fa385620a064bd6f35",
+    "cacheID": "0b5648fdb0d624a30ec8fe26d19d6d3a",
     "id": null,
     "metadata": {},
     "name": "FriendFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...MainFriend_friends_2HEEH6\n}\n\nfragment MainFriend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query FriendFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...MainFriend_friends_2HEEH6\n}\n\nfragment MainFriend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        ...ProfileModal_user\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '5e5d71064e799fd4fe5cc0c1ffb7344b';
+(node as any).hash = '2eafd01b0fcaf94a5708b4a275b195c9';
 export default node;

@@ -5,6 +5,7 @@ import {
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
+  ModalState,
   ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
@@ -17,6 +18,7 @@ import {
   createBlockedUserMutation,
   deleteBlockedUserMutation,
 } from '../../../relay/queries/BlockedUser';
+import {graphql, useFragment, useMutation} from 'react-relay/hooks';
 
 import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
 import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
@@ -30,8 +32,18 @@ import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import styled from 'styled-components/native';
-import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
+
+const fragment = graphql`
+  fragment ProfileModal_user on User {
+    id
+    photoURL
+    name
+    nickname
+    hasBlocked
+    statusMessage
+  }
+`;
 
 const StyledView = styled.View`
   margin-top: 64px;
@@ -117,13 +129,16 @@ const styles: Styles = {
 };
 
 type ModalContentProps = {
-  isVisible: boolean;
-} & ProfileModalContext;
+  modalState: ModalState & {isVisible: true};
+  hideModal: ProfileModalContext['hideModal'];
+};
 
-const ModalContent: FC<ModalContentProps> = ({
-  modalState,
-  hideModal,
-}: ModalContentProps) => {
+const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
+  const {id, name, nickname, statusMessage, photoURL, hasBlocked} = useFragment(
+    fragment,
+    modalState.user,
+  );
+
   const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(
     false,
   );
@@ -157,65 +172,61 @@ const ModalContent: FC<ModalContentProps> = ({
   ] = useMutation<BlockedUserDeleteMutation>(deleteBlockedUserMutation);
 
   const addFriend = async (): Promise<void> => {
-    if (modalState) {
-      const {user, onAddFriend} = modalState;
+    const {onAddFriend} = modalState;
 
-      commitAddFriend({
-        variables: {friendId: user.id},
-        updater: (proxyStore) => {
-          const root = proxyStore.getRoot();
+    commitAddFriend({
+      variables: {friendId: id},
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
 
-          const connectionRecord =
-            root && ConnectionHandler.getConnection(root, 'Friend_friends');
+        const connectionRecord =
+          root && ConnectionHandler.getConnection(root, 'Friend_friends');
 
-          const userProxy = proxyStore.get(user.id);
+        const userProxy = proxyStore.get(id);
 
-          const newEdge =
-            connectionRecord &&
-            userProxy &&
-            ConnectionHandler.createEdge(
-              proxyStore,
-              connectionRecord,
-              userProxy,
-              'User',
-            );
+        const newEdge =
+          connectionRecord &&
+          userProxy &&
+          ConnectionHandler.createEdge(
+            proxyStore,
+            connectionRecord,
+            userProxy,
+            'User',
+          );
 
-          if (connectionRecord && newEdge)
-            ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
-        },
-      });
+        if (connectionRecord && newEdge)
+          ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
+      },
+    });
 
-      if (onAddFriend) onAddFriend();
+    if (onAddFriend) onAddFriend();
 
-      setShowFriendAddedMessage(true);
-    }
+    setShowFriendAddedMessage(true);
   };
 
   const deleteFriend = async (): Promise<void> => {
-    if (modalState) {
-      const {user, onDeleteFriend} = modalState;
+    const {onDeleteFriend} = modalState;
 
-      commitDeleteFriend({
-        variables: {friendId: user.id},
-        updater: (proxyStore) => {
-          const root = proxyStore.getRoot();
+    commitDeleteFriend({
+      variables: {friendId: id},
+      updater: (proxyStore) => {
+        const root = proxyStore.getRoot();
 
-          const connectionRecord =
-            root && ConnectionHandler.getConnection(root, 'Friend_friends');
+        const connectionRecord =
+          root && ConnectionHandler.getConnection(root, 'Friend_friends');
 
-          if (connectionRecord)
-            ConnectionHandler.deleteNode(connectionRecord, user.id);
-        },
-      });
+        if (connectionRecord)
+          ConnectionHandler.deleteNode(connectionRecord, id);
+      },
+    });
 
-      if (onDeleteFriend) onDeleteFriend();
+    if (onDeleteFriend) onDeleteFriend();
 
-      hideModal();
-    }
+    hideModal();
   };
 
   const createBlockedUser = (): void => {
-    const blockedUserId = modalState?.user?.id;
+    const blockedUserId = id;
 
     if (blockedUserId)
       commitCreateBlockedUser({
@@ -226,7 +237,7 @@ const ModalContent: FC<ModalContentProps> = ({
   };
 
   const deleteBlockedUser = (): void => {
-    const blockedUserId = modalState?.user?.id;
+    const blockedUserId = id;
 
     if (blockedUserId)
       commitDeleteBlockedUser({
@@ -242,7 +253,7 @@ const ModalContent: FC<ModalContentProps> = ({
     if (user) {
       const mutationConfig = {
         variables: {
-          peerUserIds: [user.id],
+          peerUserIds: [id],
         },
         onCompleted: (
           response: ChannelFindOrCreatePrivateChannelMutationResponse,
@@ -269,12 +280,6 @@ const ModalContent: FC<ModalContentProps> = ({
     theme: {header, modalBtnPrimaryFont},
   } = useTheme();
 
-  const imageURL =
-    typeof modalState?.user.photoURL === 'string' &&
-    modalState?.user.photoURL !== 'null'
-      ? {uri: modalState?.user.photoURL}
-      : modalState?.user.photoURL;
-
   return (
     <View
       style={{
@@ -296,11 +301,8 @@ const ModalContent: FC<ModalContentProps> = ({
           testID="touch-done"
           onPress={() => {
             navigation.navigate('Report', {
-              name:
-                modalState?.user.nickname ||
-                modalState?.user.name ||
-                getString('NO_NAME'),
-              userId: modalState?.user.id,
+              name: nickname || name || getString('NO_NAME'),
+              userId: id,
             });
 
             hideModal();
@@ -329,10 +331,8 @@ const ModalContent: FC<ModalContentProps> = ({
             testID="touch-done"
             onPress={(): void =>
               Alert.alert(
-                modalState?.user.hasBlocked
-                  ? getString('UNBAN_USER')
-                  : getString('BAN_USER'),
-                modalState?.user.hasBlocked
+                hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
+                hasBlocked
                   ? getString('UNBAN_USER_TEXT')
                   : getString('BAN_USER_TEXT'),
                 [
@@ -343,9 +343,7 @@ const ModalContent: FC<ModalContentProps> = ({
                   },
                   {
                     text: getString('YES'),
-                    onPress: modalState?.user.hasBlocked
-                      ? deleteBlockedUser
-                      : createBlockedUser,
+                    onPress: hasBlocked ? deleteBlockedUser : createBlockedUser,
                   },
                 ],
                 {cancelable: false},
@@ -360,7 +358,7 @@ const ModalContent: FC<ModalContentProps> = ({
               <FontAwesome
                 name="ban"
                 size={24}
-                color={modalState?.user.hasBlocked ? 'red' : 'white'}
+                color={hasBlocked ? 'red' : 'white'}
               />
             </View>
           </TouchableOpacity>
@@ -374,13 +372,13 @@ const ModalContent: FC<ModalContentProps> = ({
 
             if (user)
               navigation.navigate('ImageSlider', {
-                images: [{uri: user.photoURL, sender: user.name}],
+                images: [{uri: photoURL, sender: name}],
               });
           }}>
-          {modalState?.user.photoURL ? (
+          {photoURL ? (
             <StyledImage
               style={{alignSelf: 'center'}}
-              source={imageURL || IC_NO_IMAGE}
+              source={{uri: photoURL}}
             />
           ) : (
             <View
@@ -396,13 +394,9 @@ const ModalContent: FC<ModalContentProps> = ({
           )}
         </TouchableOpacity>
         <StyledTextDisplayName numberOfLines={1}>
-          {modalState?.user.nickname ||
-            modalState?.user.name ||
-            getString('NO_NAME')}
+          {nickname || name || getString('NO_NAME')}
         </StyledTextDisplayName>
-        <StyledTextstatusMessage>
-          {modalState?.user.statusMessage}
-        </StyledTextstatusMessage>
+        <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
       </StyledView>
       {showFriendAddedMessage ? (
         addFriendInFlight ? (
@@ -467,11 +461,11 @@ interface Props {
 
 const ProfileModal: FC<Props> = () => {
   const profileContext = useProfileContext();
-  const {isVisible, hideModal} = profileContext;
+  const {modalState} = profileContext;
 
   return (
     <Modal
-      isOpen={isVisible}
+      isOpen={modalState.isVisible}
       backdropOpacity={0.075}
       entry={'top'}
       position={'center'}
@@ -482,9 +476,14 @@ const ProfileModal: FC<Props> = () => {
        * `Modal` gets into an illegal state where `isOpen`
        * props is true while the internal state is closed.
        */
-      onClosed={hideModal}
+      onClosed={profileContext.hideModal}
       style={styles.wrapper}>
-      {profileContext.isVisible ? <ModalContent {...profileContext} /> : null}
+      {modalState.isVisible ? (
+        <ModalContent
+          hideModal={profileContext.hideModal}
+          modalState={modalState}
+        />
+      ) : null}
     </Modal>
   );
 };

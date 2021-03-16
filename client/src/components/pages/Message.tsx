@@ -7,7 +7,6 @@ import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import {Message, User} from '../../types/graphql';
 import {
   MessagesQuery,
   MessagesQueryResponse,
@@ -41,6 +40,7 @@ import {Ionicons} from '@expo/vector-icons';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
+import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
@@ -118,19 +118,14 @@ const messagesFragment = graphql`
         cursor
         node {
           id
-          messageType
-          text
           imageUrls
-          fileUrls
           sender {
             id
             name
             nickname
-            thumbURL
-            photoURL
           }
           createdAt
-          updatedAt
+          ...MessageListItem_message
         }
       }
       pageInfo {
@@ -258,7 +253,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     return (
       data.messages?.edges
         ?.filter((x): x is NonNullable<typeof x> => x !== null)
-        .map((x) => x.node) || []
+        ?.map((x) => x.node)
+        ?.filter((x): x is NonNullable<typeof x> => x !== null) || []
     );
   }, [data]);
 
@@ -349,8 +345,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
   return (
     <GiftedChat
-      // @ts-ignore
-      chats={nodes}
+      messages={nodes}
       borderColor={theme.lineColor}
       onEndReached={onEndReached}
       backgroundColor={theme.background}
@@ -364,27 +359,29 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         item,
         index,
       }: {
-        item: Message;
+        item: MessageListItem_message$key;
         index: number;
       }): React.ReactElement => {
+        const nextItemDate = nodes[index + 1]?.createdAt;
+
         return (
           <MessageListItem
             userId={user?.id}
             testID={`message-list-item${index}`}
-            // @ts-ignore
-            prevItem={messages[index - 1]}
-            // @ts-ignore
-            nextItem={messages[index + 1]}
+            prevItemSenderId={nodes[index - 1]?.sender?.id}
+            nextItemDate={
+              typeof nextItemDate === 'string' ? nextItemDate : undefined
+            }
             item={item}
-            onPressPeerImage={(): void => {
-              showModal({user: item?.sender as User});
+            onPressPeerImage={(sender): void => {
+              showModal({user: sender});
             }}
             onPressMessageImage={(indexOfTheNode: number) => {
               let initialIndex = indexOfTheNode;
 
               const imagesList = nodes
                 .filter((node, nodeIndex) => {
-                  const {imageUrls} = node as Message;
+                  const {imageUrls} = node;
 
                   if (imageUrls && nodeIndex < index)
                     initialIndex += imageUrls.length;
@@ -392,7 +389,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
                   return imageUrls && imageUrls.length > 0;
                 })
                 .map((message) => {
-                  const {imageUrls, sender} = message as Message;
+                  const {imageUrls, sender} = message;
 
                   return imageUrls?.map((uri) => ({
                     uri,

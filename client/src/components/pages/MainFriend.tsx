@@ -1,5 +1,5 @@
-import React, {FC, ReactElement, Suspense, useMemo} from 'react';
-import {User, UserConnection, UserEdge} from '../../types/graphql';
+import {FlatList, ListRenderItem} from 'react-native';
+import React, {FC, Suspense, useMemo} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -7,10 +7,10 @@ import {
 } from 'react-relay/hooks';
 
 import EmptyListItem from '../uis/EmptyListItem';
-import {FlatList} from 'react-native';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
 import {LoadingIndicator} from 'dooboo-ui';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
+import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
@@ -37,22 +37,8 @@ const friendsFragment = graphql`
         cursor
         node {
           id
-          email
-          name
-          nickname
-          thumbURL
-          photoURL
-          birthday
-          gender
-          phone
-          statusMessage
-          verified
-          lastSignedIn
-          isOnline
-          hasBlocked
-          createdAt
-          updatedAt
-          deletedAt
+          ...ProfileModal_user
+          ...UserListItem_user
         }
       }
       pageInfo {
@@ -75,38 +61,32 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     MainFriend_friends$key
   >(friendsFragment, friendsKey);
 
-  const userListOnPress = (user: User): void => {
+  const nodes = useMemo(() => {
+    return (
+      data.friends?.edges
+        ?.filter((x): x is NonNullable<typeof x> => x !== null)
+        .map((x) => x.node)
+        ?.filter((x): x is NonNullable<typeof x> => x !== null) ?? []
+    );
+  }, [data]);
+
+  const userListOnPress = (user: ProfileModal_user$key): void => {
     showModal({
       user,
       isFriend: true,
     });
   };
 
-  const friendEdges = useMemo(() => {
-    return (
-      (data?.friends as UserConnection)?.edges?.filter(
-        (x): x is NonNullable<typeof x> => x !== null,
-      ) || []
-    );
-  }, [data]);
-
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: UserEdge;
-    index: number;
-  }): ReactElement => {
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
     const testID = `user-id-${index}`;
 
-    const userListOnPressInlineFn = (): void =>
-      userListOnPress(item.node as User);
+    const userListOnPressInlineFn = (): void => userListOnPress(item);
 
     return (
       <UserListItem
         testID={testID}
         showStatus
-        user={item.node as User}
+        user={item}
         onPress={userListOnPressInlineFn}
       />
     );
@@ -119,7 +99,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
         alignSelf: 'stretch',
       }}
       contentContainerStyle={
-        friendEdges.length === 0
+        nodes.length === 0
           ? {
               flex: 1,
               alignItems: 'center',
@@ -128,7 +108,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
           : undefined
       }
       keyExtractor={(item, index): string => index.toString()}
-      data={friendEdges as UserEdge[]}
+      data={nodes}
       renderItem={renderItem}
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>

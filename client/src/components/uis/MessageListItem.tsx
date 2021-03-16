@@ -1,13 +1,34 @@
 import React, {FC} from 'react';
 import {TouchableOpacity, View} from 'react-native';
+import {graphql, useFragment} from 'react-relay/hooks';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
-import {Message} from '../../types/graphql';
+import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
+import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
+
+const fragment = graphql`
+  fragment MessageListItem_message on Message {
+    id
+    messageType
+    text
+    imageUrls
+    fileUrls
+    createdAt
+    updatedAt
+    sender {
+      id
+      name
+      nickname
+      thumbURL
+      ...ProfileModal_user
+    }
+  }
+`;
 
 const WrapperPeer = styled.View<{isSame: boolean}>`
   min-height: 48px;
@@ -90,16 +111,6 @@ const StyledMyMessage = styled.View`
   border-radius: 3px;
 `;
 
-interface Props<T> {
-  userId?: string;
-  item: T;
-  prevItem?: T;
-  nextItem?: T;
-  onPressPeerImage?: () => void;
-  onPressMessageImage?: (index: number) => void;
-  testID?: string;
-}
-
 interface ImageSenderProps {
   thumbURL?: string | null;
   isSamePeerMsg: boolean;
@@ -137,27 +148,43 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
   );
 };
 
-function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
+interface Props {
+  userId?: string;
+  item: MessageListItem_message$key;
+  prevItemSenderId?: string;
+  nextItemDate?: string;
+  onPressPeerImage?: (sender: ProfileModal_user$key) => void;
+  onPressMessageImage?: (index: number) => void;
+  testID?: string;
+}
+
+const MessageListItem: FC<Props> = ({
+  item,
+  prevItemSenderId,
+  nextItemDate,
+  onPressPeerImage,
+  onPressMessageImage,
+  testID,
+  userId,
+}) => {
   const {theme} = useTheme();
+  const {id, sender, text, createdAt, imageUrls} = useFragment(fragment, item);
+  const isSamePeerMsg = prevItemSenderId === sender?.id;
 
-  const {
-    item: {id, sender, text, createdAt, imageUrls},
-    prevItem,
-    nextItem,
-    onPressPeerImage,
-    onPressMessageImage,
-    testID,
-    userId,
-  } = props;
-
-  const isSamePeerMsg = prevItem?.sender?.id === sender?.id;
-  const showDate = shouldShowDate(createdAt, nextItem?.createdAt);
+  const showDate = shouldShowDate(
+    typeof createdAt === 'string' ? createdAt : undefined,
+    nextItemDate,
+  );
 
   if (sender?.id !== userId)
     return (
       <WrapperPeer isSame={!!isSamePeerMsg}>
         <View style={{marginRight: 8, width: 40}}>
-          <TouchableOpacity testID={testID} onPress={onPressPeerImage}>
+          <TouchableOpacity
+            testID={testID}
+            onPress={() => {
+              if (sender && onPressPeerImage) onPressPeerImage(sender);
+            }}>
             <ImageSender
               thumbURL={sender?.thumbURL}
               isSamePeerMsg={!!isSamePeerMsg}
@@ -199,7 +226,9 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
           </View>
           {!showDate ? (
             <StyledTextPeerDate>
-              {createdAt ? `${moment(createdAt).fromNow()}` : '0 : 0'}
+              {typeof createdAt === 'string'
+                ? `${moment(createdAt).fromNow()}`
+                : '0 : 0'}
             </StyledTextPeerDate>
           ) : null}
         </View>
@@ -225,10 +254,12 @@ function MessageListItem<T>(props: Props<T & Message>): React.ReactElement {
         )}
       </StyledMyMessage>
       <StyledTextDate>
-        {createdAt ? `${moment(createdAt).fromNow()}` : '0 : 0'}
+        {typeof createdAt === 'string'
+          ? `${moment(createdAt).fromNow()}`
+          : '0 : 0'}
       </StyledTextDate>
     </WrapperMy>
   );
-}
+};
 
 export default MessageListItem;

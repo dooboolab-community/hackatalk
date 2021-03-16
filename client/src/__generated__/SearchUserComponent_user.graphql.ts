@@ -10,13 +10,7 @@ export type SearchUserComponent_user = {
             readonly cursor: string;
             readonly node: {
                 readonly id: string;
-                readonly email: string | null;
-                readonly name: string | null;
-                readonly nickname: string | null;
-                readonly hasBlocked: boolean | null;
-                readonly photoURL: string | null;
-                readonly thumbURL: string | null;
-                readonly statusMessage: string | null;
+                readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
             } | null;
         } | null> | null;
         readonly pageInfo: {
@@ -129,57 +123,18 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "email",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "name",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "nickname",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "hasBlocked",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "photoURL",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "thumbURL",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "statusMessage",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "ProfileModal_user"
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "UserListItem_user"
                 }
               ],
               "storageKey": null
@@ -220,5 +175,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '67b6bb26c754487ff04cacda759862d6';
+(node as any).hash = '691c234f491eb78cb6d7de46bd948e49';
 export default node;

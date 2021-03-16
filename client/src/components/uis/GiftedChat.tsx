@@ -63,7 +63,7 @@ const StyledViewMenu = styled.View<{height: number}>`
 `;
 
 interface Props<T> {
-  chats?: T[];
+  messages: T[];
   borderColor?: string;
   backgroundColor?: string;
   fontColor?: string;
@@ -87,7 +87,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
-    chats = [],
+    messages,
     borderColor,
     backgroundColor,
     fontColor,
@@ -156,7 +156,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         <FlatList
           style={{alignSelf: 'stretch'}}
           contentContainerStyle={
-            chats.length === 0
+            messages.length === 0
               ? {
                   flex: 1,
                   alignItems: 'center',
@@ -166,7 +166,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           }
           inverted
           keyExtractor={(item, index): string => index.toString()}
-          data={chats}
+          data={messages}
           renderItem={renderItem}
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
@@ -270,7 +270,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
-  chats: [],
+  messages: [],
   keyboardOffset: 0,
   optionView: <View />,
   emptyItem: <View />,

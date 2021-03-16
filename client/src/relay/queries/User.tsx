@@ -148,14 +148,8 @@ export const blockedUsersQuery = graphql`
   query UserBlockedUsersQuery {
     blockedUsers {
       id
-      email
-      name
-      nickname
-      hasBlocked
-      photoURL
-      thumbURL
-      photoURL
-      statusMessage
+      ...ProfileModal_user
+      ...UserListItem_user
     }
   }
 `;

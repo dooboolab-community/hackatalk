@@ -28,19 +28,23 @@ query SearchUsersQuery(
   ...SearchUserComponent_user_2yyznZ
 }
 
+fragment ProfileModal_user on User {
+  id
+  photoURL
+  name
+  nickname
+  hasBlocked
+  statusMessage
+}
+
 fragment SearchUserComponent_user_2yyznZ on Query {
   users(first: $first, after: $after, searchText: $searchText) {
     edges {
       cursor
       node {
         id
-        email
-        name
-        nickname
-        hasBlocked
-        photoURL
-        thumbURL
-        statusMessage
+        ...ProfileModal_user
+        ...UserListItem_user
         __typename
       }
     }
@@ -49,6 +53,16 @@ fragment SearchUserComponent_user_2yyznZ on Query {
       endCursor
     }
   }
+}
+
+fragment UserListItem_user on User {
+  id
+  photoURL
+  nickname
+  name
+  statusMessage
+  isOnline
+  hasBlocked
 }
 */
 
@@ -151,7 +165,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "email",
+                    "name": "photoURL",
                     "storageKey": null
                   },
                   {
@@ -179,21 +193,14 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "photoURL",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "thumbURL",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "statusMessage",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "isOnline",
                     "storageKey": null
                   },
                   {
@@ -251,14 +258,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b15f92b6205396867b473700d9e54f71",
+    "cacheID": "46661c899e96ca6e2905c2b96d36b027",
     "id": null,
     "metadata": {},
     "name": "SearchUsersQuery",
     "operationKind": "query",
-    "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        hasBlocked\n        photoURL\n        thumbURL\n        statusMessage\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query SearchUsersQuery(\n  $after: String\n  $first: Int\n  $searchText: String\n) {\n  ...SearchUserComponent_user_2yyznZ\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment SearchUserComponent_user_2yyznZ on Query {\n  users(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        ...ProfileModal_user\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '67b6bb26c754487ff04cacda759862d6';
+(node as any).hash = '691c234f491eb78cb6d7de46bd948e49';
 export default node;
