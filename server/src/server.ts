@@ -25,8 +25,11 @@ const createApolloServer = (): ApolloServer =>
     // introspection: process.env.NODE_ENV !== 'production',
     // playground: process.env.NODE_ENV !== 'production',
     subscriptions: {
-      onConnect: (): void => {
+      onConnect: async (connectionParams, _webSocket, _context) => {
         process.stdout.write('Connected to websocket\n');
+
+        // Return connection parameters for context building.
+        return {connectionParams};
       },
     },
   });

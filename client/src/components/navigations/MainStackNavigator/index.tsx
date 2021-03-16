@@ -2,15 +2,21 @@ import * as Notifications from 'expo-notifications';
 
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
+import {GraphQLSubscriptionConfig, requestSubscription} from 'relay-runtime';
 import {Image, TouchableOpacity, View} from 'react-native';
-import React, {ReactElement, useEffect, useRef} from 'react';
+import React, {ReactElement, useEffect, useMemo, useRef} from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
-import {fetchQuery, graphql, useRelayEnvironment} from 'react-relay/hooks';
+import {
+  fetchQuery,
+  graphql,
+  useRelayEnvironment,
+  useSubscription,
+} from 'react-relay/hooks';
 
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
@@ -18,6 +24,7 @@ import ChannelCreate from '../../pages/ChannelCreate';
 import {DefaultTheme} from 'styled-components';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';
+import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
 import Message from '../../pages/Message';
 import ProfileModal from './ProfileModal';
 import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';
@@ -28,7 +35,6 @@ import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
-// import useAppState from '../../hooks/useAppState';
 import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
@@ -98,6 +104,22 @@ const channelQuery = graphql`
   }
 `;
 
+const onMessageSubscription = graphql`
+  subscription MainStackNavigatorOnMessageSubscription {
+    onMessage {
+      id
+      imageUrls
+      sender {
+        id
+        name
+        nickname
+      }
+      createdAt
+      ...MessageListItem_message
+    }
+  }
+`;
+
 function MainStackNavigator(): ReactElement {
   const {theme} = useTheme();
   // const currentAppState = useAppState();
@@ -139,9 +161,17 @@ function MainStackNavigator(): ReactElement {
     return () => subscription.remove();
   }, []);
 
-  // useEffect(() => {
-  //   console.log('currentAppState', currentAppState);
-  // }, [currentAppState]);
+  const subscriptionConfig = useMemo<
+    GraphQLSubscriptionConfig<MainStackNavigatorOnMessageSubscription>
+  >(
+    () => ({
+      variables: {},
+      subscription: onMessageSubscription,
+    }),
+    [],
+  );
+
+  useSubscription(subscriptionConfig);
 
   return (
     <Stack.Navigator

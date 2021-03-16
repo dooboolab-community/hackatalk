@@ -1,22 +1,41 @@
-import {Observable} from 'relay-runtime';
+import {Observable, RequestParameters, Variables} from 'relay-runtime';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SUBSCRIPTION_URL} from '../../config';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 
-const subscriptionClient = new SubscriptionClient(SUBSCRIPTION_URL, {
-  reconnect: true,
-});
+async function createClient(): Promise<SubscriptionClient> {
+  const token = await AsyncStorage.getItem('token');
+
+  return new SubscriptionClient(SUBSCRIPTION_URL, {
+    reconnect: true,
+    connectionParams: {
+      Authorization: token ?? '',
+    },
+  });
+}
 
 export const subscribe = (
-  request: {text: any; name: any},
-  variables: any,
+  operation: RequestParameters,
+  variables: Variables,
 ): Observable<any> => {
-  const subscribeObservable = subscriptionClient.request({
-    query: request.text,
-    operationName: request.name,
-    variables,
-  });
+  return Observable.create((sink) => {
+    createClient()
+      .then((client) => {
+        if (!operation.text) throw new Error('Query cannot be empty.');
 
-  // Important: Convert subscriptions-transport-ws observable type to Relay's
-  // @ts-ignore
-  return Observable.from(subscribeObservable);
+        client
+          .request({
+            query: operation.text,
+            operationName: operation.name,
+            variables,
+          })
+          .subscribe({
+            complete: () => sink.complete(),
+            error: (err) => sink.error(err),
+            next: (val) => sink.next(val),
+          });
+      })
+      .catch((err) => sink.error(err));
+  });
 };

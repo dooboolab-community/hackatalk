@@ -63,38 +63,6 @@ const Container = styled.SafeAreaView`
   align-items: center;
 `;
 
-const subscription = graphql`
-  subscription MessageSubscription($channelId: String!) {
-    onMessage(channelId: $channelId) {
-      id
-      text
-      messageType
-      imageUrls
-      fileUrls
-      channel {
-        id
-        channelType
-        name
-        memberships(excludeMe: true) {
-          user {
-            name
-            nickname
-            thumbURL
-            photoURL
-          }
-        }
-        lastMessage {
-          messageType
-          text
-          imageUrls
-          fileUrls
-          createdAt
-        }
-      }
-    }
-  }
-`;
-
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
   @argumentDefinitions(
@@ -498,32 +466,6 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
-  const {
-    state: {user},
-  } = useAuthContext();
-
-  useEffect(() => {
-    const variables = {channelId};
-
-    const subscriptionConfig = {
-      subscription,
-      variables,
-      updater: (proxyStore: RecordSourceSelectorProxy) => {
-        if (user) updateMessageOnMessage(proxyStore, channelId, user.id);
-
-        updateChannelsOnSubmit(proxyStore, channelId);
-      },
-      onError: (error: Error) => console.log('An error occured:', error),
-    };
-
-    // @ts-ignore
-    const sub = requestSubscription(relayEnvironment, subscriptionConfig);
-
-    return () => {
-      sub.dispose();
-    };
-  }, [channelId, user]);
-
   const data: MessagesQueryResponse = useLazyLoadQuery<MessagesQuery>(
     messagesQuery,
     searchArgs,
