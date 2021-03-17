@@ -9,7 +9,7 @@
     "postinstall": "patch-package",
     "dev": "node node_modules/react-native/local-cli/cli.js start",
     "tsc": "tsc",
-    "cp:config": "cp .env.sample .env",
+    "cp:config": "cp config.sample.ts config.ts",
     "watch": "tsc -w",
     "start": "react-native start",
     "codecov": "codecov",
