@@ -110,6 +110,12 @@ jobs:
             yarn tsc
 
       - run:
+          name: Generate fbts
+          working_directory: client
+          command: |
+            yarn fbt:all
+
+      - run:
           name: Jest Test
           working_directory: client
           command: |
