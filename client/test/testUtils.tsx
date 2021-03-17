@@ -5,7 +5,6 @@ import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from '../src/theme';
 
 import {AuthProvider} from '../src/providers/AuthProvider';
-import {DeviceProvider} from '../src/providers/DeviceProvider';
 import {IEnvironment} from 'relay-runtime';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
 import {RelayEnvironmentProvider} from 'react-relay/hooks';
@@ -52,22 +51,20 @@ export const createTestElement = (
   });
 
   return (
-    <DeviceProvider>
-      <ThemeProvider
-        initialThemeType={mockContext?.themeType ?? ThemeType.DARK}
-        customTheme={{light, dark}}>
-        <AuthProvider initialAuthUser={mockContext?.user}>
-          <RelayEnvironmentProvider
-            environment={mockContext?.environment ?? createMockEnvironment()}>
-            <Suspense fallback={<Text>TEST FALLBACK</Text>}>
-              <ProfileModalProvider>
-                <TestSafeAreaProvider>{child}</TestSafeAreaProvider>
-              </ProfileModalProvider>
-            </Suspense>
-          </RelayEnvironmentProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </DeviceProvider>
+    <ThemeProvider
+      initialThemeType={mockContext?.themeType ?? ThemeType.DARK}
+      customTheme={{light, dark}}>
+      <AuthProvider initialAuthUser={mockContext?.user}>
+        <RelayEnvironmentProvider
+          environment={mockContext?.environment ?? createMockEnvironment()}>
+          <Suspense fallback={<Text>TEST FALLBACK</Text>}>
+            <ProfileModalProvider>
+              <TestSafeAreaProvider>{child}</TestSafeAreaProvider>
+            </ProfileModalProvider>
+          </Suspense>
+        </RelayEnvironmentProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 };
 

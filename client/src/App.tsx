@@ -26,7 +26,6 @@ import type {AppUserQuery} from './__generated__/AppUserQuery.graphql';
 import {Asset} from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ComponentWrapper from './utils/ComponentWrapper';
-import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {User} from './types/graphql';
@@ -171,7 +170,6 @@ const WrappedApp = new ComponentWrapper(App)
   .wrap(Suspense, {fallback: <LoadingIndicator />})
   .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
   .wrap(AuthProvider, {})
-  .wrap(DeviceProvider, {})
   .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})
   .build();

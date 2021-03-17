@@ -337,6 +337,7 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
   return (
     <Animated.View
       testID="PINCH_ZOOM_CONTAINER"
+      // @ts-ignore
       ref={(pinchViewRef: NativeMethods | undefined) => {
         containerView.current = pinchViewRef;
       }}

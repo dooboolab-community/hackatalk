@@ -11,7 +11,7 @@ module.exports = {
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
-  moduleFileExtensions: ['js', 'ts', 'tsx', 'svg', 'png'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'svg', 'png', 'json'],
   globals: {
     'ts-jest': {
       babelConfig: true,
@@ -41,7 +41,7 @@ module.exports = {
   ],
   /* eslint-disable */
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|@react-native/|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui|@sentry/.*|sentry-expo)',
+    'node_modules/(?!(jest-)?(@react-native|react-native)|react-clone-referenced-element|@react-native-community|@unimodules|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui|@sentry/.*|sentry-expo)',
   ],
   /* eslint-enable */
   collectCoverageFrom: [
@@ -49,4 +49,5 @@ module.exports = {
     '!src/App.tsx',
     '!<rootDir>/**/tablet.tsx',
   ],
+  coveragePathIgnorePatterns: ['/node_modules/'],
 };

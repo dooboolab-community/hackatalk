@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import {Platform} from 'react-native';
 
 export const registerForPushNotificationsAsync = async (): Promise<
-  string | undefined
+  string | void
 > => {
   let token: string | undefined;
 

@@ -9,6 +9,8 @@ import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
+// import useAppState from '../../hooks/useAppState';
+import {StatusBarBrightness, useTheme} from 'dooboo-ui';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
 import {
   fetchQuery,
@@ -33,7 +35,6 @@ import Report from '../../pages/Report';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
-import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {useTheme} from 'dooboo-ui';
@@ -265,7 +266,7 @@ function RootNavigator(): ReactElement {
         flex: 1,
         flexDirection: 'column',
       }}>
-      <StatusBar />
+      <StatusBarBrightness />
       <MainStackNavigator />
       <ProfileModal testID="modal" />
     </View>

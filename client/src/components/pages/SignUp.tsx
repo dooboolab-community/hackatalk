@@ -9,7 +9,6 @@ import {
 } from '../../utils/common';
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import StatusBar from '../uis/StatusBar';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -141,7 +140,6 @@ const Page: FC = () => {
 
   return (
     <Container>
-      <StatusBar />
       <Wrapper
         behavior={Platform.select({
           ios: 'padding',

@@ -134,12 +134,13 @@ const Screen: FC = () => {
 
   const processImageUpload = useCallback(
     async (image: ImagePickerResult | null): Promise<void> => {
-      if (image && !image.cancelled) {
+      if (image && image.cancelled) {
         setIsUploading(true);
 
         try {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
+              // @ts-ignore
               uri: image.uri,
               width: DEFAULT.PROFILEIMAGE_WIDTH,
               height: DEFAULT.PROFILEIMAGE_HEIGHT,
@@ -165,6 +166,7 @@ const Screen: FC = () => {
               dir: 'profiles',
             },
             uploadables: {
+              // @ts-ignore
               file,
             },
             onCompleted: (response: UploadSingleUploadMutationResponse) => {
