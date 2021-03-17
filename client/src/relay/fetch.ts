@@ -76,8 +76,6 @@ const fetchGraphQL: FetchFunction = async (
     });
   }
 
-  console.log('GRAPHQL_URL', GRAPHQL_URL);
-
   return fetch(GRAPHQL_URL, config).then((response) => response.json());
 };
 

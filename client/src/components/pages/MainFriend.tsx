@@ -22,7 +22,7 @@ const ITEM_CNT = 20;
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.background};
   align-items: center;
   justify-content: center;
 `;

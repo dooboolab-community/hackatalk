@@ -1,4 +1,5 @@
 import {GlobalWithFetchMock} from 'jest-fetch-mock';
+import {initFbt} from '../src/utils/fbt';
 // @ts-ignore
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 
@@ -47,3 +48,5 @@ jest.mock('dooboo-ui', () => {
 
   return ret;
 });
+
+initFbt();
