@@ -63,28 +63,28 @@ function AuthNavigator(): ReactElement {
         name="SignUp"
         component={SignUp}
         options={{
-          title: fbt('회원가입', 'sign up').toString(),
+          title: fbt('Sign Up', 'sign up').toString(),
         }}
       />
       <Stack.Screen
         name="FindPw"
         component={FindPw}
         options={{
-          title: fbt('비밀번호 찾기', 'find password').toString(),
+          title: fbt('Find password', 'find password').toString(),
         }}
       />
       <Stack.Screen
         name="VerifyEmail"
         component={VerifyEmail}
         options={{
-          title: fbt('이메일 인증', 'verify email').toString(),
+          title: fbt('Verify email', 'verify email').toString(),
         }}
       />
       <Stack.Screen
         name="LicenseAgreement"
         component={LicenseAgreement}
         options={{
-          title: fbt('라이센스 계약', 'license agreement').toString(),
+          title: fbt('License Agreement', 'license agreement').toString(),
         }}
       />
     </Stack.Navigator>

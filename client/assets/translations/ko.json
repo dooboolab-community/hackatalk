@@ -1,6 +1,45 @@
 {
   "fb-locale": "ko_KR",
   "translations": {
-    
+    "0864b6b10ae026634b6180d22ffc00d7": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "회원가입",
+          "variations": {}
+        }
+      ]
+    },
+    "65f849684ff91e88d6e3f8256cb8cbb8": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "비밀번호 찾기",
+          "variations": {}
+        }
+      ]
+    },
+    "f8598f5bc067eebfc9665148c7dd2535": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "이메일 인증",
+          "variations": {}
+        }
+      ]
+    },
+    "85cf0c4823e408c47a25bd0450178ade": {
+      "tokens": [],
+      "types": [],
+      "translations": [
+        {
+          "translation": "라이센스 계약",
+          "variations": {}
+        }
+      ]
+    }
   }
 }
