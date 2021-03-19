@@ -1,11 +1,24 @@
 import * as Device from 'expo-device';
 
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, Suspense} from 'react';
+import ReactNavigation, {
+  NavigationProp,
+  ParamListBase,
+  RouteProp,
+} from '@react-navigation/core';
+import {ThemeProvider, ThemeType} from 'dooboo-ui';
+import {dark, light} from '../src/theme';
 
-import {AllProviders} from '../src/providers';
+import {AuthProvider} from '../src/providers/AuthProvider';
+import {DeviceProvider} from '../src/providers/DeviceProvider';
+import {IEnvironment} from 'relay-runtime';
+import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
+import {RelayEnvironmentProvider} from 'react-relay/hooks';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {ThemeType} from 'dooboo-ui';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {Text} from 'react-native';
 import {User} from '../src/types/graphql';
+import {createMockEnvironment} from 'relay-test-utils';
 
 export const TestSafeAreaProvider: FC = ({children}) => {
   return (
@@ -19,28 +32,84 @@ export const TestSafeAreaProvider: FC = ({children}) => {
   );
 };
 
+type MockContext = {
+  themeType?: ThemeType;
+  deviceType?: Device.DeviceType;
+  user?: User;
+  environment?: IEnvironment;
+};
+
+/**
+ * Wrap an React element with predefined context values
+ * for easy testing.
+ * @param child Element to be wrapped.
+ * @param mockContext Mock context values.
+ * @returns Wrapped element.
+ */
 export const createTestElement = (
   child: ReactElement,
-  themeType?: ThemeType,
-  deviceType?: Device.DeviceType,
-  user?: User,
-): ReactElement => (
-  <AllProviders
-    initialDeviceType={deviceType}
-    initialThemeType={themeType}
-    initialAuthUser={user}>
-    <TestSafeAreaProvider>{child}</TestSafeAreaProvider>
-  </AllProviders>
-);
+  mockContext?: MockContext,
+): ReactElement => {
+  jest.spyOn(Device, 'getDeviceTypeAsync').mockImplementation(async () => {
+    if (mockContext?.deviceType) return mockContext.deviceType;
 
-export const createTestProps = (
-  obj: Record<string, unknown> = {},
-): Record<string, unknown> | unknown | any => ({
-  navigation: {
-    navigate: jest.fn(),
+    return Device.DeviceType.PHONE;
+  });
+
+  return (
+    <DeviceProvider>
+      <ThemeProvider
+        initialThemeType={mockContext?.themeType ?? ThemeType.DARK}
+        customTheme={{light, dark}}>
+        <AuthProvider initialAuthUser={mockContext?.user}>
+          <RelayEnvironmentProvider
+            environment={mockContext?.environment ?? createMockEnvironment()}>
+            <Suspense fallback={<Text>TEST FALLBACK</Text>}>
+              <ProfileModalProvider>
+                <TestSafeAreaProvider>{child}</TestSafeAreaProvider>
+              </ProfileModalProvider>
+            </Suspense>
+          </RelayEnvironmentProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </DeviceProvider>
+  );
+};
+
+type NavigationStub<T extends {}> = {
+  [K in keyof StackNavigationProp<T>]: jest.Mock;
+};
+
+/**
+ * Create a navigation stub which can be used to mock `useNavigation` hook.
+ * Each method can be overriden for each test cases.
+ * @example
+ * const stub = createNavigationStub();
+ * stub.setParams.mockImplementation(() => {
+ *   // Your implementation can go here.
+ * });
+ * jest
+ *   .spyOn(ReactNavigation, 'useNavigation')
+ *   .mockImplementation(() => stub);
+ * @returns the generated navigation stub.
+ */
+export function createNavigationStub<T = {}>(): NavigationStub<T> {
+  return {
+    addListener: jest.fn(),
+    canGoBack: jest.fn(),
+    dangerouslyGetParent: jest.fn(),
+    dangerouslyGetState: jest.fn(),
+    dispatch: jest.fn(),
     goBack: jest.fn(),
-    replace: jest.fn(),
+    isFocused: jest.fn(),
+    navigate: jest.fn(),
+    removeListener: jest.fn(),
+    reset: jest.fn(),
     setOptions: jest.fn(),
-  },
-  ...obj,
-});
+    setParams: jest.fn(),
+    pop: jest.fn(),
+    popToTop: jest.fn(),
+    push: jest.fn(),
+    replace: jest.fn(),
+  };
+}

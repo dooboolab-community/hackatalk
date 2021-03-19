@@ -26,7 +26,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {RouteProp, useNavigation} from '@react-navigation/core';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   graphql,
@@ -46,7 +46,6 @@ import {Ionicons} from '@expo/vector-icons';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
-import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
@@ -399,18 +398,12 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   );
 };
 
-interface Props {
-  navigation: MainStackNavigationProps<'Message'>;
-  route: RouteProp<MainStackParamList, 'Message'>;
-}
+const MessageScreen: FC = () => {
+  const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
 
-const MessageScreen: FC<Props> = (props) => {
   const {
-    route: {
-      params: {users, channel},
-    },
-    navigation,
-  } = props;
+    params: {users, channel},
+  } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {

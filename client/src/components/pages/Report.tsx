@@ -4,14 +4,14 @@ import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import React, {ReactElement, useState} from 'react';
+import React, {FC, useState} from 'react';
 import type {
   ReportCreateReportMutation,
   ReportCreateReportMutationResponse,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 
 import {Report} from '../../types/graphql';
-import {RouteProp} from '@react-navigation/core';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
@@ -32,21 +32,15 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   align-items: center;
 `;
 
-export interface Props {
-  navigation: MainStackNavigationProps<'Report'>;
-  route: RouteProp<MainStackParamList, 'Report'>;
-}
-
-function ReportScreen(props: Props): ReactElement {
-  const {navigation} = props;
-  const {theme} = useTheme();
-  const [message, setMessage] = useState('');
+const ReportScreen: FC = () => {
+  const navigation = useNavigation<MainStackNavigationProps<'Report'>>();
 
   const {
-    route: {
-      params: {name, userId},
-    },
-  } = props;
+    params: {name, userId},
+  } = useRoute<RouteProp<MainStackParamList, 'Report'>>();
+
+  const {theme} = useTheme();
+  const [message, setMessage] = useState('');
 
   const [commitReport, isInFlight] = useMutation<ReportCreateReportMutation>(
     createReport,
@@ -134,6 +128,6 @@ function ReportScreen(props: Props): ReactElement {
       </StyledKeyboardAvoidingView>
     </SafeAreaView>
   );
-}
+};
 
 export default ReportScreen;

@@ -1,12 +1,15 @@
+import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
+import MainStack, {MainStackParamList} from './MainStackNavigator';
+import {
+  NavigationContainer,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 
-import AuthStack from './AuthStackNavigator';
 import ImageSlider from '../pages/ImageSlider';
-import MainStack from './MainStackNavigator';
-import {NavigationContainer} from '@react-navigation/native';
 import NotFound from '../pages/NotFound';
 import {Platform} from 'react-native';
 import React from 'react';
@@ -17,8 +20,8 @@ import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
   default: undefined;
-  AuthStack: undefined;
-  MainStack: undefined;
+  AuthStack: NavigatorScreenParams<AuthStackParamList>;
+  MainStack: NavigatorScreenParams<MainStackParamList>;
   WebView: {
     uri: string;
   };

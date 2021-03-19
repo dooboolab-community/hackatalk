@@ -14,7 +14,6 @@ import {
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {ReactNativeFile} from 'apollo-upload-client';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
@@ -71,11 +70,7 @@ const ProfileImage = styled.Image`
   border-radius: 45px;
 `;
 
-interface Props {
-  navigation: MainStackNavigationProps<'ProfileUpdate'>;
-}
-
-const Screen: FC<Props> = () => {
+const Screen: FC = () => {
   const {theme} = useTheme();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');

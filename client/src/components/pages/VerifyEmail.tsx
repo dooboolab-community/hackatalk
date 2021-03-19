@@ -1,16 +1,13 @@
-import {
-  AuthStackNavigationProps,
-  AuthStackParamList,
-} from '../navigations/AuthStackNavigator';
 import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useState} from 'react';
+import React, {FC, useState} from 'react';
+import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
   UserVerifyEmailMutation,
   UserVerifyEmailMutationResponse,
 } from '../../__generated__/UserVerifyEmailMutation.graphql';
 
 import {Alert} from 'react-native';
-import {RouteProp} from '@react-navigation/core';
+import {AuthStackParamList} from '../navigations/AuthStackNavigator';
 import {getString} from '../../../STRINGS';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
@@ -38,19 +35,12 @@ const StyledHighlightText = styled.Text`
   color: ${({theme}) => theme.primary};
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'VerifyEmail'>;
-  route: RouteProp<AuthStackParamList, 'VerifyEmail'>;
-}
-
-function Page(props: Props): ReactElement {
-  const {theme} = useTheme();
-
+const Page: FC = () => {
   const {
-    route: {
-      params: {email},
-    },
-  } = props;
+    params: {email},
+  } = useRoute<RouteProp<AuthStackParamList, 'VerifyEmail'>>();
+
+  const {theme} = useTheme();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -122,6 +112,6 @@ function Page(props: Props): ReactElement {
       {loading ? <LoadingIndicator /> : null}
     </Container>
   );
-}
+};
 
 export default Page;

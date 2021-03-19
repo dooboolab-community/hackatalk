@@ -1,5 +1,5 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useState} from 'react';
+import React, {FC, useState} from 'react';
 import type {
   UserFindPwMutation,
   UserFindPwMutationResponse,
@@ -13,6 +13,7 @@ import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
+import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.View`
   flex: 1;
@@ -25,11 +26,8 @@ const ButtonWrapper = styled.View`
   margin-top: 20px;
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'FindPw'>;
-}
-
-function Page({navigation}: Props): ReactElement {
+const Page: FC = () => {
+  const navigation = useNavigation<AuthStackNavigationProps<'FindPw'>>();
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
 
@@ -125,6 +123,6 @@ function Page({navigation}: Props): ReactElement {
       </ButtonWrapper>
     </Container>
   );
-}
+};
 
 export default Page;

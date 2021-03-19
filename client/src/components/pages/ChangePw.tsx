@@ -7,7 +7,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import type {
   UserChangeEmailPasswordMutation,
   UserChangeEmailPasswordMutationResponse,
@@ -19,6 +19,7 @@ import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
+import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const InnerContainer = styled.View`
@@ -39,13 +40,9 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   align-items: center;
 `;
 
-export interface Props {
-  navigation: MainStackNavigationProps<'ChangePw'>;
-}
-
-function ChangePw(props: Props): ReactElement {
+const ChangePw: FC = () => {
   const insets = useSafeAreaInsets();
-  const {navigation} = props;
+  const navigation = useNavigation<MainStackNavigationProps<'ChangePw'>>();
   const {theme} = useTheme();
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
@@ -220,6 +217,6 @@ function ChangePw(props: Props): ReactElement {
       </StyledKeyboardAvoidingView>
     </SafeAreaView>
   );
-}
+};
 
 export default ChangePw;

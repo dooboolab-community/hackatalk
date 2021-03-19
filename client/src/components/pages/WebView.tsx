@@ -1,10 +1,7 @@
-import React, {ReactElement} from 'react';
-import {
-  RootStackNavigationProps,
-  RootStackParamList,
-} from '../navigations/RootStackNavigator';
+import React, {FC} from 'react';
+import {RouteProp, useRoute} from '@react-navigation/core';
 
-import {RouteProp} from '@react-navigation/core';
+import {RootStackParamList} from '../navigations/RootStackNavigator';
 import {WebView} from 'react-native-webview';
 import styled from 'styled-components/native';
 
@@ -16,23 +13,16 @@ const Container = styled.SafeAreaView`
   justify-content: center;
 `;
 
-interface Props {
-  navigation: RootStackNavigationProps<'WebView'>;
-  route: RouteProp<RootStackParamList, 'WebView'>;
-}
-
-function Page(props: Props): ReactElement {
+const Page: FC = () => {
   const {
-    route: {
-      params: {uri},
-    },
-  } = props;
+    params: {uri},
+  } = useRoute<RouteProp<RootStackParamList, 'WebView'>>();
 
   return (
     <Container>
       <WebView source={{uri}} />
     </Container>
   );
-}
+};
 
 export default Page;

@@ -1,45 +1,28 @@
 import 'react-native';
 
-import React, {ReactElement} from 'react';
-import {RenderAPI, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 
-import Screen from '../BlockedUser';
+import BlockedUser from '../BlockedUser';
+import React from 'react';
+import {createTestElement} from '../../../../test/testUtils';
+import {render} from '@testing-library/react-native';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-let testingLib: RenderAPI;
+const mockEnvironment = createMockEnvironment();
+
+mockEnvironment.mock.queueOperationResolver((operation) =>
+  MockPayloadGenerator.generate(operation),
+);
 
 describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
+  it('renders without crashing', async () => {
+    const component = createTestElement(<BlockedUser />, {
+      environment: mockEnvironment,
+    });
 
-  it('renders without crashing', () => {
-    const baseElement = testingLib.toJSON();
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
-  });
-});
-
-describe('Interaction', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
-
-  it('should simulate onClick', () => {
-    expect(testingLib.toJSON()).toMatchSnapshot();
-    // const btn = testingLib.queryByTestId('btn');
-    // act(() => {
-    //   fireEvent.press(btn);
-    //   fireEvent.press(btn);
-    // });
-    // expect(cnt).toBe(3);
+    expect(json).toMatchSnapshot();
+    expect(json).toBeTruthy();
   });
 });

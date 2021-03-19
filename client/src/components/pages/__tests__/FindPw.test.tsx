@@ -1,53 +1,28 @@
-import 'react-native';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {
+  createNavigationStub,
+  createTestElement,
+} from '../../../../test/testUtils';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
-import React, {ReactElement} from 'react';
-import {act, fireEvent, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-
+import {Alert} from 'react-native';
 import FindPw from '../FindPw';
+import React from 'react';
+import ReactNavigation from '@react-navigation/core';
+import {getString} from '../../../../STRINGS';
 
-// eslint-disable-next-line
-let props: any;
-let component: ReactElement;
+const mockNavigation = createNavigationStub();
 
-// const mockFindPwMutation = [
-//   {
-//     request: {
-//       query: MUTATION_FIND_PASSWORD,
-//       variables: {
-//         email: 'email@email.com',
-//       },
-//     },
-//     result: {
-//       data: {
-//         findPassword: true,
-//       },
-//     },
-//   },
-// ];
-
-const mockAlert = {
-  alert: jest.fn(),
-};
-
-jest.mock('react-native', () => {
-  const ReactNative = jest.requireActual('react-native');
-
-  Object.defineProperty(ReactNative, 'Alert', {
-    get: () => mockAlert,
-  });
-
-  return ReactNative;
-});
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
 
 describe('[FindPw] rendering test', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<FindPw {...props} />);
-  });
-
   it('should renders as expected', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(<FindPw />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
@@ -55,86 +30,61 @@ describe('[FindPw] rendering test', () => {
 });
 
 describe('[FindPw] interaction', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<FindPw {...props} />);
-  });
-
   it('should invoke changeText event handler when email changed', () => {
-    const {getByTestId} = render(component);
-    const textInput = getByTestId('input-email');
+    const component = createTestElement(<FindPw />);
+    const screen = render(component);
+    const textInput = screen.getByTestId('input-email');
 
-    act(() => {
-      fireEvent.changeText(textInput, 'email@email.com');
-    });
+    fireEvent.changeText(textInput, 'email@email.com');
 
     expect(textInput.props.value).toEqual('email@email.com');
   });
 
   describe('onFindPw', () => {
-    beforeAll(() => {
-      props = createTestProps();
-
-      component = createTestElement(<FindPw {...props} />);
-    });
-
     it('should show error text when the email is not validated', () => {
-      const {getByTestId} = render(component);
-      const textInput = getByTestId('input-email');
+      const component = createTestElement(<FindPw />);
+      const screen = render(component);
+      const textInput = screen.getByTestId('input-email');
 
-      act(() => {
-        fireEvent.changeText(textInput, 'example');
-      });
+      fireEvent.changeText(textInput, 'example');
 
-      const btnFindPw = getByTestId('btn-find-pw');
+      const btnFindPw = screen.getByTestId('btn-find-pw');
 
-      act(() => {
-        fireEvent.press(btnFindPw);
-      });
-      // const errorText = testingLib.getByTestId('error-email');
-      // expect(errorText).toBeTruthy();
+      fireEvent.press(btnFindPw);
+
+      const errorText = screen.getByText(getString('EMAIL_FORMAT_NOT_VALID'));
+
+      expect(errorText).toBeTruthy();
     });
 
-    it('should call FindPw when button has clicked and navigate to SignIn', () => {
-      const {getByTestId} = render(component);
-      const textInput = getByTestId('input-email');
+    it('should call FindPw when button has clicked and navigate to SignIn', async () => {
+      const mockEnvironment = createMockEnvironment();
 
-      act(() => {
-        fireEvent.changeText(textInput, 'email@email.com');
+      mockEnvironment.mock.queueOperationResolver((operation) =>
+        MockPayloadGenerator.generate(operation),
+      );
+
+      const mockAlert = jest.spyOn(Alert, 'alert');
+
+      const component = createTestElement(<FindPw />, {
+        environment: mockEnvironment,
       });
 
-      const btnFindPw = getByTestId('btn-find-pw');
+      const screen = render(component);
+      const textInput = screen.getByTestId('input-email');
 
-      act(() => {
-        fireEvent.press(btnFindPw);
-      });
+      fireEvent.changeText(textInput, 'email@email.com');
 
-      // await wait(() => expect(mockAlert.alert).toHaveBeenCalled());
-      // expect(mockAlert.alert.mock.calls[0][1]).toEqual(getString('PASSWORD_RESET_EMAIL_SENT'));
-    });
+      const btnFindPw = screen.getByTestId('btn-find-pw');
 
-    it('should do nothing when navigation is not defined.', () => {
-      props = createTestProps({
-        navigation: null,
-      });
+      fireEvent.press(btnFindPw);
 
-      component = createTestElement(<FindPw {...props} />);
+      await waitFor(() => expect(mockAlert).toHaveBeenCalled());
 
-      const {getByTestId} = render(component);
-
-      const textInput = getByTestId('input-email');
-
-      act(() => {
-        fireEvent.changeText(textInput, 'email@email.com');
-      });
-
-      const btnFindPw = getByTestId('btn-find-pw');
-
-      act(() => {
-        fireEvent.press(btnFindPw);
-      });
-
-      expect(props.navigation).toBeNull();
+      expect(mockAlert).toHaveBeenCalledWith(
+        expect.any(String),
+        getString('PASSWORD_RESET_EMAIL_SENT'),
+      );
     });
   });
 });

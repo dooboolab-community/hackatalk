@@ -2,82 +2,73 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {
+  createNavigationStub,
+  createTestElement,
+} from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import Channel from '../MainChannel';
-import {Channel as ChannelType} from '../../../types/graphql';
-import {MockPayloadGenerator} from 'relay-test-utils';
-import {environment} from '../../../providers';
+import {Channel} from '../../../types/graphql';
+import MainChannel from '../MainChannel';
+import ReactNavigation from '@react-navigation/core';
 
-const component = createTestElement(<Channel {...createTestProps()} />);
+const mockNavigation = createNavigationStub();
 
-jest.mock('@react-navigation/native', () => {
-  return {
-    useNavigation: (): Record<string, unknown> => {
-      return {
-        navigate: jest.fn(),
-      };
-    },
-  };
-});
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
+
+const mockEnvironment = createMockEnvironment();
+
+mockEnvironment.mock.queueOperationResolver((operation) =>
+  MockPayloadGenerator.generate(operation, {
+    Channel: (_, generateId): Channel => ({
+      id: `test-channel-${generateId()}`,
+      name: 'HackaTalk',
+      channelType: 'private',
+      lastMessage: {
+        id: 'test-message-3848',
+        messageType: 'text',
+        createdAt: '2021-03-19T05:13:22.932Z',
+      },
+      messages: {
+        edges: [],
+        pageInfo: {
+          hasNextPage: false,
+          hasPreviousPage: false,
+        },
+      },
+    }),
+  }),
+);
 
 describe('[Channel] screen', () => {
-  beforeEach(() => {
-    environment.mockClear();
-  });
-
   it('renders without crashing', () => {
-    environment.mock.queueOperationResolver((operation) => {
-      return MockPayloadGenerator.generate(operation, {
-        Channel: (_, generateId): ChannelType => ({
-          id: `user-${generateId()}`,
-          name: 'HackaTalk',
-          channelType: 'private',
-          messages: {
-            edges: [],
-            // @ts-ignore
-            pageInfo: {
-              hasNextPage: false,
-              hasPreviousPage: false,
-            },
-          },
-        }),
-      });
+    const component = createTestElement(<MainChannel />, {
+      environment: mockEnvironment,
     });
 
-    const json = render(component).toJSON();
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
-    beforeEach(() => {
-      environment.mock.queueOperationResolver((operation) => {
-        return MockPayloadGenerator.generate(operation, {
-          Channel: (_, generateId): ChannelType => ({
-            id: `user-${generateId()}`,
-            name: 'HackaTalk',
-            channelType: 'private',
-            messages: {
-              edges: [],
-              // @ts-ignore
-              pageInfo: {
-                hasNextPage: false,
-                hasPreviousPage: false,
-              },
-            },
-          }),
-        });
+    it('should simulate onPress', async () => {
+      const component = createTestElement(<MainChannel />, {
+        environment: mockEnvironment,
       });
-    });
 
-    it('should simulate onPress', () => {
-      const {getByTestId} = render(component);
-      const btn = getByTestId('list-item-0');
+      const screen = render(component);
+      const btn = await screen.findByTestId('list-item-0');
 
       fireEvent.press(btn);
+
+      // TODO: Test what happens after pressing the button.
     });
   });
 });

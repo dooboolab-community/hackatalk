@@ -1,5 +1,6 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {ReactElement, useState} from 'react';
+import {Platform, ScrollView} from 'react-native';
+import React, {FC, useState} from 'react';
 import {sendVerification, signUp} from '../../relay/queries/User';
 import {
   showAlertForError,
@@ -8,14 +9,13 @@ import {
 } from '../../utils/common';
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import {Platform} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import StatusBar from '../uis/StatusBar';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
+import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -36,12 +36,8 @@ const ButtonWrapper = styled.View`
   flex-direction: row-reverse;
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'SignUp'>;
-}
-
-function Page(props: Props): ReactElement {
-  const {navigation} = props;
+const Page: FC = () => {
+  const navigation = useNavigation<AuthStackNavigationProps<'SignUp'>>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -60,9 +56,6 @@ function Page(props: Props): ReactElement {
   );
 
   const {theme} = useTheme();
-  // const [signUp] = useMutation<{ signUp: AuthPayload }, MutationSignUpInput>(MUTATION_SIGN_UP);
-  // const [sendVerification] =
-  //   useMutation<{ sendVerification: boolean }, MutationSendVerificationInput>(MUTATION_SEND_VERIFICATION);
 
   const requestSignUp = async (): Promise<void> => {
     if (
@@ -298,6 +291,6 @@ function Page(props: Props): ReactElement {
       </Wrapper>
     </Container>
   );
-}
+};
 
 export default Page;

@@ -133,7 +133,14 @@ function shouldShowDate(
 
 const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
   if (isSamePeerMsg) return <View style={{width: 40}} />;
-  else if (thumbURL) return <StyledImageSender source={{uri: thumbURL}} />;
+  else if (thumbURL)
+    return (
+      <StyledImageSender
+        accessible
+        accessibilityHint="sender image"
+        source={{uri: thumbURL}}
+      />
+    );
 
   return (
     <View
@@ -143,7 +150,11 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <StyledImage source={IC_NO_IMAGE} />
+      <StyledImage
+        accessible
+        accessibilityHint="no sender image"
+        source={IC_NO_IMAGE}
+      />
     </View>
   );
 };

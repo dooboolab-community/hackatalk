@@ -1,46 +1,47 @@
 import 'react-native';
 
+import * as ImagePicker from '../../../utils/ImagePicker';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {Channel, Message as MessageType} from '../../../types/graphql';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import ReactNavigation, {RouteProp} from '@react-navigation/core';
+import {
+  createNavigationStub,
+  createTestElement,
+} from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import {Channel} from '../../../types/graphql';
+import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
-import {MockPayloadGenerator} from 'relay-test-utils';
 import React from 'react';
-import {environment} from '../../../providers';
 
-jest.mock('@react-navigation/core', () => {
-  const Original = jest.requireActual('@react-navigation/core');
+Date.now = jest.fn(() => 1616128254591);
 
-  return {
-    ...Original,
-    get useNavigation() {
-      return jest.fn().mockImplementation(() => ({
-        setOptions: jest.fn(),
-      }));
+const mockNavigation = createNavigationStub();
+
+const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
+  key: '',
+  name: 'Message',
+  params: {
+    channel: {
+      id: 'abcdef',
+      channelType: 'private',
     },
-  };
-});
-
-const component = createTestElement(
-  <Message
-    {...createTestProps({
-      route: {
-        params: {
-          user: {
-            name: '',
-          },
-          channel: {
-            id: '',
-            name: '',
-          },
-        },
+    users: [
+      {
+        id: 'test-user-123',
+        name: 'Alice',
       },
-    })}
-  />,
-);
+    ],
+  },
+};
+
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+  useRoute: () => mockRoute,
+}));
 
 jest.mock('expo-permissions', () => ({
   askAsync: (): string => 'granted',
@@ -51,24 +52,42 @@ jest.mock('expo-image-picker', () => ({
   launchImageLibraryAsync: (): string => 'photo info',
 }));
 
-describe('[Message] rendering test', () => {
-  jest.useFakeTimers();
+const mockEnvironment = createMockEnvironment();
 
-  beforeEach(() => {
-    environment.mockClear();
+mockEnvironment.mock.queueOperationResolver((operation) => {
+  return MockPayloadGenerator.generate(operation, {
+    Channel: (_, generateId): Partial<Channel> => ({
+      id: `test-channel-${generateId()}`,
+      channelType: 'private',
+      name: 'John Doe',
+    }),
+    Message: (_, generateId): Partial<MessageType> => ({
+      id: `test-message-${generateId()}`,
+      text: 'Hello there!',
+      messageType: 'text',
+      createdAt: '2021-03-19T04:30:30.162Z',
+      sender: {
+        id: 'test-user-111',
+        name: 'John Doe',
+        nickname: 'john',
+        photoURL: 'https://example.com/myphoto.jpg',
+        thumbURL: 'https://example.com/john-profile.jpg',
+        hasBlocked: false,
+        statusMessage: "I'm alive.",
+      },
+    }),
   });
+});
 
-  it('renders as expected', () => {
-    environment.mock.queueOperationResolver((operation) => {
-      return MockPayloadGenerator.generate(operation, {
-        Channel: (_, generateId): Partial<Channel> => ({
-          id: `channel-${generateId()}`,
-          name: 'John Doe',
-        }),
-      });
+describe('[Message] rendering test', () => {
+  it('renders as expected', async () => {
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
     });
 
-    const json = render(component).toJSON();
+    const screen = render(component);
+
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
@@ -76,35 +95,39 @@ describe('[Message] rendering test', () => {
 });
 
 describe('[Message] interaction', () => {
-  jest.useFakeTimers();
+  it('should [sendMessage] when pressing button', async () => {
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
+    });
 
-  it('should [sendMessage] when pressing button', () => {
-    const {getByTestId} = render(component);
-    const MessageBtn = getByTestId('btn-message');
+    const screen = render(component);
+
+    const MessageBtn = screen.getByTestId('btn-message');
 
     fireEvent.press(MessageBtn);
+
+    // TODO: Detect message sent.
   });
 
   describe('dispatch showModal', () => {
     it('should dispatch [show-modal] when peerImage is pressed', async () => {
       const mockShowModal = jest.fn();
 
+      const component = createTestElement(<Message />, {
+        environment: mockEnvironment,
+      });
+
       jest
         .spyOn(ProfileContext, 'useProfileContext')
         .mockImplementation(() => ({
           showModal: mockShowModal,
           hideModal: jest.fn(),
-          isVisible: false,
-          modalState: null,
+          modalState: {isVisible: false},
         }));
 
-      const {getByTestId} = render(component);
+      const screen = render(component);
 
-      environment.mock.queueOperationResolver((op) =>
-        MockPayloadGenerator.generate(op),
-      );
-
-      const messageListItem = getByTestId('message-list-item0');
+      const messageListItem = screen.getByTestId('message-list-item0');
 
       fireEvent.press(messageListItem);
 
@@ -112,31 +135,50 @@ describe('[Message] interaction', () => {
     });
   });
 
-  it('should open image library when pressing photo icon button', () => {
-    const {getByTestId} = render(component);
-    const touchMenu = getByTestId('touch-menu');
+  it('should open image library when pressing photo icon button', async () => {
+    const launchImageLibraryAsyncSpy = jest
+      .spyOn(ImagePicker, 'launchImageLibraryAsync')
+      .mockResolvedValue(null);
+
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+    const touchMenu = screen.getByTestId('touch-menu');
 
     fireEvent.press(touchMenu);
 
-    jest.runAllTimers();
-
-    const photoBtn = getByTestId('icon-photo');
+    const photoBtn = screen.getByTestId('icon-photo');
 
     fireEvent.press(photoBtn);
+
+    expect(launchImageLibraryAsyncSpy).toBeCalledTimes(1);
+
+    await screen.findByTestId('btn-message');
   });
 
   it('should open camera when pressing camera icon button', async () => {
-    const {getByTestId} = render(component);
-    const touchMenu = getByTestId('touch-menu');
+    const launchCameraAsyncSpy = jest
+      .spyOn(ImagePicker, 'launchCameraAsync')
+      .mockResolvedValue(null);
+
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+
+    const touchMenu = screen.getByTestId('touch-menu');
 
     fireEvent.press(touchMenu);
 
-    jest.runAllTimers();
-
-    const cameraBtn = getByTestId('icon-camera');
+    const cameraBtn = screen.getByTestId('icon-camera');
 
     fireEvent.press(cameraBtn);
 
-    jest.runAllTimers();
+    expect(launchCameraAsyncSpy).toHaveBeenCalledTimes(1);
+
+    await screen.findByTestId('btn-message');
   });
 });

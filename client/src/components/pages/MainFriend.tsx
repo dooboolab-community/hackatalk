@@ -77,18 +77,11 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     });
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
-    const testID = `user-id-${index}`;
-
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
     const userListOnPressInlineFn = (): void => userListOnPress(item);
 
     return (
-      <UserListItem
-        testID={testID}
-        showStatus
-        user={item}
-        onPress={userListOnPressInlineFn}
-      />
+      <UserListItem showStatus user={item} onPress={userListOnPressInlineFn} />
     );
   };
 

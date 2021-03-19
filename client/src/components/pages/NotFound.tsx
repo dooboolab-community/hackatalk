@@ -1,5 +1,5 @@
-import React from 'react';
-import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
+import React, {FC} from 'react';
+
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -15,17 +15,12 @@ const StyledText = styled.Text`
   color: blue;
 `;
 
-interface Props {
-  navigation?: RootStackNavigationProps<'NotFound'>;
-}
-
-// eslint-disable-next-line
-function Page(props: Props): React.ReactElement {
+const Page: FC = () => {
   return (
     <Container>
       <StyledText testID="my-text">dooboolab</StyledText>
     </Container>
   );
-}
+};
 
 export default Page;

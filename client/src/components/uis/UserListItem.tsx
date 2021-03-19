@@ -28,7 +28,6 @@ const fragment = graphql`
 `;
 
 interface Props {
-  testID?: string;
   style?: ViewStyle;
   user: UserListItem_user$key;
   onPress?: () => void;
@@ -100,7 +99,6 @@ function Shared({
   checked = false,
   onPress,
   onLongPress,
-  testID,
   user,
 }: Props): React.ReactElement {
   const {
@@ -120,7 +118,7 @@ function Shared({
   return (
     <Container>
       <TouchableOpacity
-        testID={testID}
+        testID="peer-button"
         activeOpacity={0.5}
         onPress={onPress}
         onLongPress={onLongPress}>

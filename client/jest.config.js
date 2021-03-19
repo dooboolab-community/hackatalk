@@ -34,6 +34,7 @@ module.exports = {
   setupFiles: [
     ...expoPreset.setupFiles,
     '<rootDir>/test/jestSetup.ts',
+    './node_modules/react-native-gesture-handler/jestSetup.js',
   ],
   setupFilesAfterEnv: [
     './test/setupTest.js',

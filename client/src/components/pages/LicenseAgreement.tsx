@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
+import {useNavigation} from '@react-navigation/core';
 import {useTheme} from 'dooboo-ui';
 
 const Container = styled.SafeAreaView`
@@ -21,11 +22,8 @@ const StyledText = styled.Text`
   color: ${({theme}) => theme.text};
 `;
 
-interface Props {
-  navigation: RootStackNavigationProps<'default'>;
-}
-
-const Page: FC<Props> = ({navigation}) => {
+const Page: FC = () => {
+  const navigation = useNavigation<RootStackNavigationProps<'default'>>();
   const {theme} = useTheme();
 
   const pressAgree = async (): Promise<void> => {

@@ -1,4 +1,10 @@
-import {Alert, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {
+  Alert,
+  StyleProp,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
@@ -28,6 +34,7 @@ import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphq
 import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
 import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
+import {RootStackNavigationProps} from '../RootStackNavigator';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -106,8 +113,8 @@ const StyledTextFriendAlreadyAdded = styled.Text`
 `;
 
 interface Styles {
-  wrapper: ViewStyle;
-  viewBtn: ViewStyle;
+  wrapper: StyleProp<ViewStyle>;
+  viewBtn: StyleProp<ViewStyle>;
 }
 
 const styles: Styles = {
@@ -134,16 +141,15 @@ type ModalContentProps = {
 };
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
-  const {id, name, nickname, statusMessage, photoURL, hasBlocked} = useFragment(
-    fragment,
-    modalState.user,
-  );
+  const userData = useFragment(fragment, modalState.user);
+
+  const {id, name, nickname, statusMessage, photoURL, hasBlocked} = userData;
 
   const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(
     false,
   );
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<RootStackNavigationProps>();
 
   const [
     commitChannel,
@@ -260,12 +266,17 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         ): void => {
           const channel = response.findOrCreatePrivateChannel;
 
-          hideModal();
+          if (channel) {
+            hideModal();
 
-          navigation.navigate('Message', {
-            users: [user],
-            channel,
-          });
+            navigation.navigate('MainStack', {
+              screen: 'Message',
+              params: {
+                users: [userData],
+                channel,
+              },
+            });
+          }
         },
         onError: (error: Error): void => {
           showAlertForError(error);
@@ -300,9 +311,12 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         <TouchableOpacity
           testID="touch-done"
           onPress={() => {
-            navigation.navigate('Report', {
-              name: nickname || name || getString('NO_NAME'),
-              userId: id,
+            navigation.navigate('MainStack', {
+              screen: 'Report',
+              params: {
+                name: nickname || name || getString('NO_NAME'),
+                userId: id,
+              },
             });
 
             hideModal();

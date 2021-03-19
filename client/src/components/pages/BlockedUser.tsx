@@ -3,7 +3,6 @@ import React, {FC, Suspense, useMemo} from 'react';
 
 import EmptyListItem from '../uis/EmptyListItem';
 import {LoadingIndicator} from 'dooboo-ui';
-import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
@@ -19,10 +18,6 @@ const Container = styled.View`
   align-items: center;
   justify-content: center;
 `;
-
-interface Props {
-  navigation: RootStackNavigationProps<'default'>;
-}
 
 const ContentContainer: FC = () => {
   const {showModal} = useProfileContext();
@@ -41,12 +36,7 @@ const ContentContainer: FC = () => {
     );
   }, [response]);
 
-  const renderItem: ListRenderItem<typeof blockedUsers[number]> = ({
-    item,
-    index,
-  }) => {
-    const itemTestID = `user-list-item${index}`;
-
+  const renderItem: ListRenderItem<typeof blockedUsers[number]> = ({item}) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
@@ -55,9 +45,7 @@ const ContentContainer: FC = () => {
       });
     };
 
-    return (
-      <UserListItem testID={itemTestID} user={item} onPress={pressUserItem} />
-    );
+    return <UserListItem user={item} onPress={pressUserItem} />;
   };
 
   return (
@@ -85,7 +73,7 @@ const ContentContainer: FC = () => {
   );
 };
 
-const Page: FC<Props> = () => {
+const Page: FC = () => {
   return (
     <Container>
       <Suspense fallback={<LoadingIndicator />}>

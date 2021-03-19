@@ -2,106 +2,97 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {RenderAPI, fireEvent, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {fireEvent, render} from '@testing-library/react-native';
 
-import GiftedChatInput from '../GiftedChat';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderAPI;
+import GiftedChat from '../GiftedChat';
+import {createTestElement} from '../../../../test/testUtils';
 
 jest.useFakeTimers();
 
+const TEST_MESSAGES = [
+  {
+    id: 'abcde',
+    sender: {
+      id: '0',
+      nickname: 'sender111',
+      thumbURL: '',
+      photoURL: '',
+      statusMessage: '',
+    },
+    message: 'hello1',
+  },
+  {
+    id: 'xyz',
+    sender: {
+      id: '2',
+      nickname: 'sender111',
+      thumbURL: '',
+      photoURL: '',
+      statusMessage: '',
+    },
+    message:
+      'Hello2. This is long message. This is long message.This is long message.' +
+      'This is long message. This is long message. This is long message.' +
+      'This is long message. This is long message.' +
+      'This is long message. This is long message. This is long message.',
+  },
+  {
+    id: 'pqr',
+    sender: {
+      id: '0',
+      nickname: 'sender111',
+      thumbURL: '',
+      photoURL: '',
+      statusMessage: '',
+    },
+    message: 'hello',
+  },
+];
+
 describe('[GiftedChatInput] render', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      messages: [
-        {
-          id: '',
-          sender: {
-            id: '0',
-            nickname: 'sender111',
-            thumbURL: '',
-            photoURL: '',
-            statusMessage: '',
-          },
-          message: 'hello1',
-        },
-        {
-          id: '',
-          sender: {
-            id: '2',
-            nickname: 'sender111',
-            thumbURL: '',
-            photoURL: '',
-            statusMessage: '',
-          },
-          message:
-            'Hello2. This is long message. This is long message.This is long message.' +
-            'This is long message. This is long message. This is long message.' +
-            'This is long message. This is long message.' +
-            'This is long message. This is long message. This is long message.',
-        },
-        {
-          id: '',
-          sender: {
-            id: '0',
-            nickname: 'sender111',
-            thumbURL: '',
-            photoURL: '',
-            statusMessage: '',
-          },
-          message: 'hello',
-        },
-      ],
-    });
-
-    component = createTestElement(<GiftedChatInput {...props} />);
-  });
-
   it('renders without crashing', () => {
-    testingLib = render(component);
+    const component = createTestElement(
+      <GiftedChat messages={TEST_MESSAGES} />,
+    );
 
-    const json = testingLib.toJSON();
+    const screen = render(component);
+
+    const json = screen.toJSON();
 
     expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
+    it('should toggle view menu when touch menu is pressed', async () => {
+      const component = createTestElement(<GiftedChat />);
+      const screen = render(component);
+
+      // Press the touch menu for the first time.
+      fireEvent.press(screen.getByTestId('touch-menu'));
+
+      // View menu should be visible.
+      expect(screen.getByTestId('view-menu')).toBeTruthy();
+
+      // Press the touch menu again.
+      fireEvent.press(screen.getByTestId('touch-menu'));
+
+      // View menu should be gone.
+      expect(screen.queryByTestId('view-menu')).toBeNull();
     });
 
-    it('should call [setShowMenu] when focused', () => {
-      const textInput = testingLib.getByTestId('input-chat');
+    it('should invoke changeText event handler when message changed', async () => {
+      const mockChangeMessage = jest.fn();
 
-      textInput.props.onFocus();
-    });
+      const component = createTestElement(
+        <GiftedChat onChangeMessage={mockChangeMessage} />,
+      );
 
-    it('should [showMenu] when touch pressed', () => {
-      let touchMenu = testingLib.getByTestId('touch-menu');
+      const screen = render(component);
+      const textInput = screen.getByTestId('input-chat');
 
-      fireEvent.press(touchMenu);
-
-      touchMenu = testingLib.getByTestId('touch-menu');
-      fireEvent.press(touchMenu);
-    });
-
-    it('should call [setShowMenu] when focused again', () => {
-      const touchMenu = testingLib.getByTestId('touch-menu');
-
-      fireEvent.press(touchMenu);
-    });
-
-    it('should invoke changeText event handler when message changed', () => {
-      const textInput = testingLib.getByTestId('input-chat');
-
-      jest.runAllTimers();
       fireEvent.changeText(textInput, 'chat test');
-      // TODO: expect should pass
-      // expect(textInput.props.value).toEqual('chat test');
+
+      expect(mockChangeMessage).toBeCalledWith('chat test');
     });
   });
 });
