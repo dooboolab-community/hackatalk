@@ -90,15 +90,23 @@ export interface FacebookUser {
   id: string;
   name: string;
   email: string;
+  picture?: {
+    data: {
+      height: number;
+      is_silhouette: boolean;
+      url: string;
+      width: number;
+    };
+  };
 }
 
 export const verifyFacebookId = async (
   accessToken: string,
 ): Promise<FacebookUser> => {
-  const {data} = await axios.get('https://graph.facebook.com/v7.0/me', {
+  const {data} = await axios.get('https://graph.facebook.com/v10.0/me', {
     params: {
       access_token: accessToken,
-      fields: 'id,name,email',
+      fields: 'id,name,email,picture',
     },
   });
 

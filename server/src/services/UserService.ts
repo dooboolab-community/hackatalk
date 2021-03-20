@@ -14,6 +14,8 @@ export interface SocialUserInput {
   birthday?: Date;
   gender?: Gender;
   phone?: string;
+  photoURL?: string;
+  thumbURL?: string;
 }
 
 export class UserService {
@@ -94,6 +96,8 @@ export class UserService {
           birthday: socialUser.birthday,
           gender: socialUser.gender,
           phone: socialUser.phone,
+          thumbURL: socialUser.thumbURL,
+          photoURL: socialUser.photoURL,
           verified: true,
         },
         include: {profile: true},
