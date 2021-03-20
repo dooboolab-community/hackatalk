@@ -106,9 +106,7 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
       });
     };
 
-    return (
-      <UserListItem testID={itemTestID} user={item} onPress={pressUserItem} />
-    );
+    return <UserListItem user={item} onPress={pressUserItem} />;
   };
 
   const users = data?.users?.edges || [];

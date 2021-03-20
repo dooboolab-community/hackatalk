@@ -28,7 +28,7 @@ export function createContext(params: CreateContextParams): Context {
 
   const authorization =
     !req || !req.headers
-      ? connection.context.connectionParams.Authorization // for subscriptions.
+      ? (connection as any)?.context?.connectionParams?.Authorization // for subscriptions.
       : req.get('Authorization'); // for queries & mutations.
 
   const {JWT_SECRET, JWT_SECRET_ETC} = process.env;

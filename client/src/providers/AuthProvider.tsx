@@ -1,4 +1,4 @@
-import React, {FC, useReducer} from 'react';
+import React, {FC, ReactElement, ReactNode, useReducer} from 'react';
 
 import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
@@ -26,6 +26,7 @@ type SetUserAction = {
 type Action = SetUserAction;
 
 interface Props {
+  children: ReactNode;
   initialAuthUser?: User;
 }
 
@@ -54,7 +55,7 @@ const reducer: Reducer = (state = initialState, action) => {
   }
 };
 
-const AuthProvider: FC<Props> = ({children, initialAuthUser}) => {
+function AuthProvider({children, initialAuthUser}: Props): ReactElement {
   const [state, dispatch] = useReducer<Reducer>(reducer, {
     user: initialAuthUser,
   });
@@ -64,7 +65,7 @@ const AuthProvider: FC<Props> = ({children, initialAuthUser}) => {
   };
 
   return <Provider value={{state, ...actions}}>{children}</Provider>;
-};
+}
 
 const AuthContext = {
   useAuthContext: useCtx,

@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
 
+import AuthProviderModule, {AuthProvider} from '../src/providers/AuthProvider';
 import React, {FC, ReactElement, Suspense} from 'react';
 import ReactNavigation, {
   NavigationProp,
@@ -9,7 +10,6 @@ import ReactNavigation, {
 import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from '../src/theme';
 
-import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
 import {IEnvironment} from 'relay-runtime';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
