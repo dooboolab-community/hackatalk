@@ -144,7 +144,9 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
   args: {accessToken: nonNull(stringArg())},
 
   resolve: async (_parent, {accessToken}, ctx) => {
-    const {id: facebookId, name, email} = await verifyFacebookId(accessToken);
+    const {id: facebookId, name, email, picture} = await verifyFacebookId(
+      accessToken,
+    );
 
     return UserService.signInWithSocialAccount(
       {
@@ -152,6 +154,7 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
         authType: AuthType.facebook,
         name,
         email: email || `${facebookId}@facebook.com`,
+        photoURL: picture && picture.data.url,
       },
       ctx,
     );
@@ -191,7 +194,7 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
   args: {accessToken: nonNull(stringArg())},
 
   resolve: async (_parent, {accessToken}, ctx) => {
-    const {sub, email, name = ''} = await verifyGoogleId(accessToken);
+    const {sub, email, name = '', picture} = await verifyGoogleId(accessToken);
 
     assert(email, 'No email returned from Google.');
 
@@ -201,6 +204,7 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
         authType: AuthType.google,
         name,
         email,
+        photoURL: picture,
       },
       ctx,
     );
