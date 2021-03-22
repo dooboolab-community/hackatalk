@@ -1,15 +1,10 @@
 import * as Device from 'expo-device';
 
-import AuthProviderModule, {AuthProvider} from '../src/providers/AuthProvider';
 import React, {FC, ReactElement, Suspense} from 'react';
-import ReactNavigation, {
-  NavigationProp,
-  ParamListBase,
-  RouteProp,
-} from '@react-navigation/core';
 import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from '../src/theme';
 
+import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
 import {IEnvironment} from 'relay-runtime';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
@@ -84,16 +79,19 @@ type NavigationStub<T extends {}> = {
  * Create a navigation stub which can be used to mock `useNavigation` hook.
  * Each method can be overriden for each test cases.
  * @example
- * const stub = createNavigationStub();
- * stub.setParams.mockImplementation(() => {
+ * const mockNavigation = createMockNavigation();
+ * const mockRoute = {}; // Provide your own route params here.
+ * mockNavigation.setParams.mockImplementation(() => {
  *   // Your implementation can go here.
  * });
- * jest
- *   .spyOn(ReactNavigation, 'useNavigation')
- *   .mockImplementation(() => stub);
+ * jest.mock('@react-navigation/core', () => ({
+ *   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+ *   useNavigation: () => mockNavigation,
+ *   useRoute: () => mockRoute,
+ * }));
  * @returns the generated navigation stub.
  */
-export function createNavigationStub<T = {}>(): NavigationStub<T> {
+export function createMockNavigation<T = {}>(): NavigationStub<T> {
   return {
     addListener: jest.fn(),
     canGoBack: jest.fn(),

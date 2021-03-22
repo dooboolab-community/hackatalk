@@ -2,7 +2,7 @@ import 'react-native';
 
 import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 
@@ -11,7 +11,7 @@ import React from 'react';
 import Report from '../Report';
 import {render} from '@testing-library/react-native';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 const mockRoute: RouteProp<MainStackParamList, 'Report'> = {
   key: '',

@@ -7,7 +7,7 @@ import {Channel, Message as MessageType} from '../../../types/graphql';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
@@ -18,7 +18,7 @@ import React from 'react';
 
 Date.now = jest.fn(() => 1616128254591);
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
   key: '',

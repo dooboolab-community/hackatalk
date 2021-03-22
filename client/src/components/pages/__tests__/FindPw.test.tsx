@@ -1,6 +1,6 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
@@ -11,7 +11,7 @@ import React from 'react';
 import ReactNavigation from '@react-navigation/core';
 import {getString} from '../../../../STRINGS';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),

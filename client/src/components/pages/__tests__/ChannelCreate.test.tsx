@@ -1,7 +1,7 @@
 import 'react-native';
 
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
@@ -10,7 +10,7 @@ import ChannelCreate from '../ChannelCreate';
 import React from 'react';
 import ReactNavigation from '@react-navigation/core';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),

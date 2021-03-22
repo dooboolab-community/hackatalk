@@ -2,7 +2,7 @@ import 'react-native';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
@@ -13,7 +13,7 @@ import ReactNavigation from '@react-navigation/core';
 import SignUp from '../SignUp';
 import {act} from 'react-test-renderer';
 
-const mockNavigation = createNavigationStub<
+const mockNavigation = createMockNavigation<
   AuthStackNavigationProps<'SignUp'>
 >();
 

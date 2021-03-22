@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {AuthType, User} from '../../../types/graphql';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
@@ -13,7 +13,7 @@ import ReactNavigation from '@react-navigation/core';
 import Settings from '../Settings';
 import {useAuthContext} from '../../../providers/AuthProvider';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),

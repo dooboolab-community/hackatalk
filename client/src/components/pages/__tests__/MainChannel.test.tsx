@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
@@ -13,7 +13,7 @@ import {Channel} from '../../../types/graphql';
 import MainChannel from '../MainChannel';
 import ReactNavigation from '@react-navigation/core';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),

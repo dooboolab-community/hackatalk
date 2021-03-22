@@ -2,7 +2,7 @@ import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {createRef, forwardRef, useImperativeHandle} from 'react';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
@@ -14,7 +14,7 @@ import {User} from '../../../types/graphql';
 import {View} from 'react-native';
 import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.useFakeTimers();
 

@@ -3,7 +3,7 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {
-  createNavigationStub,
+  createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 
@@ -19,7 +19,7 @@ const fetchMock = fetch as FetchMock;
 
 fetchMock.mockResponse(JSON.stringify({id: 1}));
 
-const mockNavigation = createNavigationStub();
+const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
