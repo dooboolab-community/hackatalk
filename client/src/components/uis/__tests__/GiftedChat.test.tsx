@@ -7,8 +7,6 @@ import {fireEvent, render} from '@testing-library/react-native';
 import GiftedChat from '../GiftedChat';
 import {createTestElement} from '../../../../test/testUtils';
 
-jest.useFakeTimers();
-
 const TEST_MESSAGES = [
   {
     id: 'abcde',

@@ -16,8 +16,6 @@ import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
 import React from 'react';
 
-Date.now = jest.fn(() => 1616128254591);
-
 const mockNavigation = createMockNavigation();
 
 const mockRoute: RouteProp<MainStackParamList, 'Message'> = {

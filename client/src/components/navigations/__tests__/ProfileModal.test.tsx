@@ -16,8 +16,6 @@ import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
 const mockNavigation = createMockNavigation();
 
-jest.useFakeTimers();
-
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
