@@ -1,17 +1,39 @@
 import FilesystemBackend from 'i18next-node-fs-backend';
 import RouteApi from './apis/root';
+import {assert} from './utils/assert';
 import cors from 'cors';
 import ejs from 'ejs';
 import express from 'express';
+import i18Middleware from 'i18next-http-middleware';
 import i18next from 'i18next';
-import middleware from 'i18next-http-middleware';
 import path from 'path';
 
 // eslint-disable-next-line
 require('dotenv').config();
 
+/**
+ * Express middleware for loading required environment variables into req object.
+ */
+const environmentVariableMiddleware = (
+  req: express.Request,
+  _res: express.Response,
+  next: express.NextFunction,
+): void => {
+  const appSecret = process.env.JWT_SECRET;
+  const appSecretEtc = process.env.JWT_SECRET_ETC;
+
+  // Throw an error when there is any missing environment variable.
+  assert(appSecret, 'Missing JWT_SECRET environment variable.');
+  assert(appSecretEtc, 'Missing JWT_SECRET_ETC environment variable.');
+
+  req.appSecret = appSecret;
+  req.appSecretEtc = appSecretEtc;
+
+  next();
+};
+
 i18next
-  .use(middleware.LanguageDetector)
+  .use(i18Middleware.LanguageDetector)
   .use(FilesystemBackend)
   .init({
     lng: 'en',
@@ -32,15 +54,9 @@ export const createApp = (): express.Application => {
   const filePath = path.join(__dirname, '../files');
 
   app.use(cors());
-  app.use(middleware.handle(i18next));
+  app.use(i18Middleware.handle(i18next));
   app.use(express.static(filePath));
-
-  app.use((req: ReqI18n, res, next) => {
-    const {JWT_SECRET_ETC} = process.env;
-
-    req.appSecretEtc = JWT_SECRET_ETC;
-    next();
-  });
+  app.use(environmentVariableMiddleware);
 
   app.set('views', path.join(__dirname, '../html'));
   app.engine('html', ejs.renderFile);

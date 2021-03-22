@@ -7,7 +7,7 @@ import {getUserId} from './utils/auth';
 export const prisma = new PrismaClient();
 
 export interface Context {
-  request: {req: ReqI18n};
+  request: {req: express.Request};
   prisma: PrismaClient;
   pubsub: PubSub;
   appSecret: string;
