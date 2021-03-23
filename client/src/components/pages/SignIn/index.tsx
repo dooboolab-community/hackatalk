@@ -27,7 +27,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../../utils/Icons';
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutationResponse,
@@ -50,6 +50,7 @@ import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
 import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
+import {useNavigation} from '@react-navigation/core';
 
 const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
   TouchableOpacity,
@@ -130,12 +131,8 @@ const StyledScrollView = styled.ScrollView`
     `} */
 `;
 
-interface Props {
-  navigation: AuthStackNavigationProps<'SignIn'>;
-}
-
-function SignIn(props: Props): ReactElement {
-  const {navigation} = props;
+const SignIn: FC = () => {
+  const navigation = useNavigation<AuthStackNavigationProps<'SignIn'>>();
   const {setUser} = useAuthContext();
   const {theme, changeThemeType, themeType} = useTheme();
 
@@ -231,7 +228,7 @@ function SignIn(props: Props): ReactElement {
   };
 
   const goToWebView = (uri: string): void => {
-    props.navigation.navigate('WebView', {uri});
+    navigation.navigate('WebView', {uri});
   };
 
   const appleLogin = async (): Promise<void> => {
@@ -562,6 +559,6 @@ function SignIn(props: Props): ReactElement {
       </StyledScrollView>
     </Container>
   );
-}
+};
 
 export default SignIn;

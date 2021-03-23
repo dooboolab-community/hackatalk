@@ -1,53 +1,32 @@
 import 'react-native';
 
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+  createMockNavigation,
+  createTestElement,
+} from '../../../../test/testUtils';
+import {fireEvent, render} from '@testing-library/react-native';
 
-import {MockPayloadGenerator} from 'relay-test-utils';
+import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import React from 'react';
+import ReactNavigation from '@react-navigation/core';
 import SignUp from '../SignUp';
-import {environment} from '../../../providers';
+import {act} from 'react-test-renderer';
 
-const component = createTestElement(<SignUp {...createTestProps()} />);
+const mockNavigation = createMockNavigation<
+  AuthStackNavigationProps<'SignUp'>
+>();
 
-// const mockSignUpMutation = [
-//   {
-//     request: {
-//       query: MUTATION_SIGN_UP,
-//       variables: {
-//         user: {
-//           email: 'test@email.com',
-//           name: 'name',
-//           password: 'testpass12!',
-//           statusMessage: 'status',
-//         },
-//       },
-//     },
-//     result: {
-//       data: {
-//         signUp: {
-//           token: 'access token',
-//           user: {
-//             id: 'userId',
-//             email: 'test@email.com',
-//             nickname: 'nickname',
-//             statusMessage: 'status',
-//             verified: false,
-//           },
-//         },
-//       },
-//     },
-//   },
-// ];
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
 
 describe('[SignUp] rendering test', () => {
   it('renders as expected', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
@@ -56,10 +35,9 @@ describe('[SignUp] rendering test', () => {
 
 describe('[SignUp] interaction', () => {
   it('should invoke changeText event handler when email changed', async () => {
-    const {getByTestId} = render(component);
-    const textInput = getByTestId('input-email');
-
-    await waitFor(() => expect(textInput).toBeTruthy());
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
+    const textInput = screen.getByTestId('input-email');
 
     fireEvent.changeText(textInput, 'email@email.com');
 
@@ -67,11 +45,10 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event handler when password changed', async () => {
-    const {getByTestId} = render(component);
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
 
-    const textInput = getByTestId('input-password');
-
-    await waitFor(() => expect(textInput).toBeTruthy());
+    const textInput = screen.getByTestId('input-password');
 
     fireEvent.changeText(textInput, 'pw test');
 
@@ -79,11 +56,10 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should confirm password', async () => {
-    const {getByTestId} = render(component);
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
 
-    const textInput = getByTestId('input-confirm-password');
-
-    await waitFor(() => expect(textInput).toBeTruthy());
+    const textInput = screen.getByTestId('input-confirm-password');
 
     fireEvent.changeText(textInput, 'pw test');
 
@@ -91,10 +67,9 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event when name changed', async () => {
-    const {getByTestId} = render(component);
-    const textInput = getByTestId('input-name');
-
-    await waitFor(() => expect(textInput).toBeTruthy());
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
+    const textInput = screen.getByTestId('input-name');
 
     fireEvent.changeText(textInput, 'dooboo');
 
@@ -102,10 +77,9 @@ describe('[SignUp] interaction', () => {
   });
 
   it('should invoke changeText event when status changed', async () => {
-    const {getByTestId} = render(component);
-    const textInput = getByTestId('input-status');
-
-    await waitFor(() => expect(textInput).toBeTruthy());
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
+    const textInput = screen.getByTestId('input-status');
 
     fireEvent.changeText(textInput, 'I am good');
 
@@ -265,96 +239,74 @@ describe('[SignUp] interaction', () => {
   // });
 
   it('should call signUp when button has clicked and navigate to MainStack', async () => {
-    const {getByTestId} = render(component);
-    const emailInput = getByTestId('input-email');
+    const mockEnvironment = createMockEnvironment();
 
-    await waitFor(() => expect(emailInput).toBeTruthy());
+    const component = createTestElement(<SignUp />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+    const emailInput = screen.getByTestId('input-email');
 
     fireEvent.changeText(emailInput, 'test@email.com');
 
-    const passwordInput = getByTestId('input-password');
-
-    await waitFor(() => expect(passwordInput).toBeTruthy());
+    const passwordInput = screen.getByTestId('input-password');
 
     fireEvent.changeText(passwordInput, 'testpass12!');
 
-    const confirmPasswordInput = getByTestId('input-confirm-password');
-
-    await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+    const confirmPasswordInput = screen.getByTestId('input-confirm-password');
 
     fireEvent.changeText(confirmPasswordInput, 'testpass12!');
 
-    const nameInput = getByTestId('input-name');
-
-    await waitFor(() => expect(nameInput).toBeTruthy());
+    const nameInput = screen.getByTestId('input-name');
 
     fireEvent.changeText(nameInput, 'name');
 
-    const statusInput = getByTestId('input-status');
-
-    await waitFor(() => expect(nameInput).toBeTruthy());
+    const statusInput = screen.getByTestId('input-status');
 
     fireEvent.changeText(statusInput, 'status');
 
-    const btnSignUp = getByTestId('btn-sign-up');
-
-    await waitFor(() => expect(btnSignUp).toBeTruthy());
+    const btnSignUp = screen.getByTestId('btn-sign-up');
 
     fireEvent.press(btnSignUp);
 
-    const operation = environment.mock.getMostRecentOperation();
+    const operation = mockEnvironment.mock.getMostRecentOperation();
 
-    environment.mock.resolve(
-      operation,
-      MockPayloadGenerator.generate(operation),
+    act(() => {
+      mockEnvironment.mock.resolve(
+        operation,
+        MockPayloadGenerator.generate(operation),
+      );
+    });
+
+    expect(mockNavigation.replace).toHaveBeenCalledWith(
+      'VerifyEmail',
+      expect.objectContaining({email: expect.any(String)}),
     );
-    // expect(props.navigation.resetRoot).toHaveBeenCalledTimes(1);
   });
 
   it('should call signUp when the button has clicked and check whether it catches error', async () => {
-    const anotherComponent = createTestElement(
-      <SignUp
-        {...createTestProps({
-          navigation: null,
-        })}
-      />,
-    );
+    const component = createTestElement(<SignUp />);
+    const screen = render(component);
 
-    const {getByTestId} = render(anotherComponent);
-
-    const emailInput = getByTestId('input-email');
-
-    await waitFor(() => expect(emailInput).toBeTruthy());
+    const emailInput = screen.getByTestId('input-email');
 
     fireEvent.changeText(emailInput, 'email@email.com');
 
-    const passwordInput = getByTestId('input-password');
-
-    await waitFor(() => expect(passwordInput).toBeTruthy());
+    const passwordInput = screen.getByTestId('input-password');
 
     fireEvent.changeText(passwordInput, 'Abc123##');
 
-    const confirmPasswordInput = getByTestId('input-confirm-password');
-
-    await waitFor(() => expect(confirmPasswordInput).toBeTruthy());
+    const confirmPasswordInput = screen.getByTestId('input-confirm-password');
 
     fireEvent.changeText(confirmPasswordInput, 'Abc123##');
 
-    const nameInput = getByTestId('input-name');
-
-    await waitFor(() => expect(nameInput).toBeTruthy());
+    const nameInput = screen.getByTestId('input-name');
 
     fireEvent.changeText(nameInput, 'dooboo');
 
-    const btnSignUp = getByTestId('btn-sign-up');
-
-    await waitFor(() => expect(btnSignUp).toBeTruthy());
+    const btnSignUp = screen.getByTestId('btn-sign-up');
 
     fireEvent.press(btnSignUp);
-  });
-
-  afterAll((done) => {
-    cleanup();
-    done();
   });
 });

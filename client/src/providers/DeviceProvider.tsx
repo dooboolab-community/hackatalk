@@ -1,6 +1,6 @@
 import * as Device from 'expo-device';
 
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import createCtx from '../utils/createCtx';
 
@@ -11,24 +11,22 @@ interface Context {
 
 const [useCtx, Provider] = createCtx<Context>();
 
-interface Props {
-  initialDeviceType?: Device.DeviceType;
-  children?: React.ReactElement;
-}
-
-function DeviceProvider(props: Props): React.ReactElement {
-  const {initialDeviceType = Device.DeviceType.PHONE, children} = props;
-
+const DeviceProvider: FC = ({children}) => {
   const [deviceType, setDeviceType] = useState<Device.DeviceType>(
-    initialDeviceType,
+    Device.DeviceType.PHONE,
   );
 
-  const setDevice = async (): Promise<void> => {
-    setDeviceType(await Device.getDeviceTypeAsync());
-  };
-
   useEffect(() => {
-    setDevice();
+    let isMounted = true;
+
+    Device.getDeviceTypeAsync().then((result) => {
+      // Only change state if this component is still mounted.
+      if (isMounted) setDeviceType(result);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -40,7 +38,7 @@ function DeviceProvider(props: Props): React.ReactElement {
       {children}
     </Provider>
   );
-}
+};
 
 const DeviceContext = {
   useDeviceContext: useCtx,

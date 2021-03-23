@@ -10,19 +10,14 @@ export type MessageComponent_message = {
             readonly cursor: string;
             readonly node: {
                 readonly id: string;
-                readonly messageType: unknown;
-                readonly text: string | null;
                 readonly imageUrls: ReadonlyArray<string | null> | null;
-                readonly fileUrls: ReadonlyArray<string | null> | null;
                 readonly sender: {
                     readonly id: string;
                     readonly name: string | null;
                     readonly nickname: string | null;
-                    readonly thumbURL: string | null;
-                    readonly photoURL: string | null;
                 } | null;
                 readonly createdAt: unknown | null;
-                readonly updatedAt: unknown | null;
+                readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
             } | null;
         } | null> | null;
         readonly pageInfo: {
@@ -148,28 +143,7 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "messageType",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "text",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
                   "name": "imageUrls",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "fileUrls",
                   "storageKey": null
                 },
                 {
@@ -194,20 +168,6 @@ return {
                       "kind": "ScalarField",
                       "name": "nickname",
                       "storageKey": null
-                    },
-                    {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "thumbURL",
-                      "storageKey": null
-                    },
-                    {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "photoURL",
-                      "storageKey": null
                     }
                   ],
                   "storageKey": null
@@ -223,15 +183,13 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "updatedAt",
+                  "name": "__typename",
                   "storageKey": null
                 },
                 {
-                  "alias": null,
                   "args": null,
-                  "kind": "ScalarField",
-                  "name": "__typename",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "MessageListItem_message"
                 }
               ],
               "storageKey": null
@@ -286,5 +244,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '7d14441d374a003dcfe1bd5dd2e828b3';
+(node as any).hash = 'b3770569d6ba7ca5b814a0467cf595c0';
 export default node;

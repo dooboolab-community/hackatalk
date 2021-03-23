@@ -67,22 +67,8 @@ fragment MainFriend_friends_2HEEH6 on Query {
       cursor
       node {
         id
-        email
-        name
-        nickname
-        thumbURL
-        photoURL
-        birthday
-        gender
-        phone
-        statusMessage
-        verified
-        lastSignedIn
-        isOnline
-        hasBlocked
-        createdAt
-        updatedAt
-        deletedAt
+        ...ProfileModal_user
+        ...UserListItem_user
         __typename
       }
     }
@@ -91,6 +77,25 @@ fragment MainFriend_friends_2HEEH6 on Query {
       endCursor
     }
   }
+}
+
+fragment ProfileModal_user on User {
+  id
+  photoURL
+  name
+  nickname
+  hasBlocked
+  statusMessage
+}
+
+fragment UserListItem_user on User {
+  id
+  photoURL
+  nickname
+  name
+  statusMessage
+  isOnline
+  hasBlocked
 }
 */
 
@@ -209,7 +214,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "email",
+                    "name": "photoURL",
                     "storageKey": null
                   },
                   {
@@ -230,14 +235,42 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "thumbURL",
+                    "name": "hasBlocked",
                     "storageKey": null
                   },
                   {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "photoURL",
+                    "name": "statusMessage",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "isOnline",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "__typename",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "email",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "thumbURL",
                     "storageKey": null
                   },
                   {
@@ -265,13 +298,6 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "statusMessage",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "verified",
                     "storageKey": null
                   },
@@ -280,20 +306,6 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "lastSignedIn",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "isOnline",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "hasBlocked",
                     "storageKey": null
                   },
                   {
@@ -315,13 +327,6 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "deletedAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "__typename",
                     "storageKey": null
                   }
                 ],
@@ -381,12 +386,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8d699e5b342242ae65ff45068de5ea81",
+    "cacheID": "9b5919d240b2548ac3e4e442cbb8e4e0",
     "id": null,
     "metadata": {},
     "name": "FriendsQuery",
     "operationKind": "query",
-    "text": "query FriendsQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n) {\n  ...MainFriend_friends_2HEEH6\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment MainFriend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query FriendsQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n) {\n  ...MainFriend_friends_2HEEH6\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment MainFriend_friends_2HEEH6 on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        ...ProfileModal_user\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();

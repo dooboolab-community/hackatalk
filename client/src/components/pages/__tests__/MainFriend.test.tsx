@@ -1,46 +1,37 @@
-import {LoadingIndicator, ThemeProvider} from 'dooboo-ui';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import React, {Suspense} from 'react';
 
-import Friend from '../MainFriend';
-import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';
-import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import MainFriend from '../MainFriend';
+import React from 'react';
 import {User} from '../../../types/graphql';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 
-const environment = createMockEnvironment();
+const mockEnvironment = createMockEnvironment();
 
-const component = (
-  <ThemeProvider>
-    <RelayEnvironmentProvider environment={environment}>
-      <Suspense fallback={<LoadingIndicator />}>
-        <ProfileModalProvider>
-          <Friend />
-        </ProfileModalProvider>
-      </Suspense>
-    </RelayEnvironmentProvider>
-  </ThemeProvider>
-);
+mockEnvironment.mock.queueOperationResolver((operation) => {
+  return MockPayloadGenerator.generate(operation, {
+    User: (_, generateId): User => ({
+      id: `user-${generateId()}`,
+      name: 'John Doe',
+      nickname: 'jdoe1234',
+    }),
+    PageInfo: () => ({has_next_page: false}),
+  });
+});
 
 describe('[Friend] rendering test', () => {
   it('renders a friend', async () => {
-    const {toJSON} = render(component);
-
-    environment.mock.resolveMostRecentOperation((operation) => {
-      return MockPayloadGenerator.generate(operation, {
-        // @ts-ignore
-        User: (_, generateId): User => ({
-          id: `user-${generateId()}`,
-          name: 'John Doe',
-          nickname: 'jdoe1234',
-        }),
-        PageInfo: () => ({has_next_page: false}),
-      });
+    const component = createTestElement(<MainFriend />, {
+      environment: mockEnvironment,
     });
 
-    // await waitFor(() => expect(getByText('John Doe')).toBeTruthy());
+    const screen = render(component);
 
-    const json = toJSON();
+    const nickname = await screen.findByText('jdoe1234');
+
+    expect(nickname).toBeTruthy();
+
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();

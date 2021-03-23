@@ -1,5 +1,5 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {ReactElement} from 'react';
+import React, {FC, ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
 import styled, {DefaultTheme} from 'styled-components/native';
@@ -12,6 +12,7 @@ import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
+import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -48,10 +49,6 @@ const ItemLabel = styled.Text`
   flex: 1;
 `;
 
-export interface Props {
-  navigation: MainStackNavigationProps<'Settings'>;
-}
-
 interface SettingsOption {
   label: string;
   icon?: ReactElement;
@@ -59,12 +56,12 @@ interface SettingsOption {
   testID: string;
 }
 
-function Settings(props: Props): React.ReactElement {
+const Settings: FC = () => {
   let signInInfoOption: SettingsOption;
 
   const {setUser} = useAuthContext();
   const {theme} = useTheme();
-  const {navigation} = props;
+  const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
 
   const {
     state: {user},
@@ -209,6 +206,6 @@ function Settings(props: Props): React.ReactElement {
       />
     </Container>
   );
-}
+};
 
 export default Settings;

@@ -2,20 +2,31 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import ReactNavigation, {RouteProp} from '@react-navigation/core';
 
+import {RootStackParamList} from '../../navigations/RootStackNavigator';
 import WebView from '../WebView';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 
-const props = createTestProps({
-  route: {params: {uri: 'http'}},
-});
+const mockRoute: RouteProp<RootStackParamList, 'WebView'> = {
+  key: '',
+  name: 'WebView',
+  params: {
+    uri: 'http://example.com',
+  },
+};
 
-const component = createTestElement(<WebView {...props} />);
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useRoute: () => mockRoute,
+}));
 
 describe('[WebView] screen', () => {
   it('renders without crashing', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(<WebView />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toMatchSnapshot();
   });

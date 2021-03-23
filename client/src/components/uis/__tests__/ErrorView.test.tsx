@@ -2,16 +2,15 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-
-import Shared from '../ErrorView';
+import ErrorView from '../ErrorView';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
-
-const component = createTestElement(<Shared {...createTestProps()} />);
 
 describe('Rendering', () => {
   it('renders without crashing', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(<ErrorView />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();

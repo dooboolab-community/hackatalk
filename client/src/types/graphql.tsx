@@ -506,11 +506,6 @@ export type SubscriptionUserUpdatedArgs = {
 };
 
 
-export type SubscriptionOnMessageArgs = {
-  channelId: Scalars['String'];
-};
-
-
 export type User = {
   __typename?: 'User';
   id: Scalars['String'];

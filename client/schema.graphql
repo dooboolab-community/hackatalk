@@ -374,7 +374,7 @@ type Report {
 type Subscription {
   userSignedIn(userId: String!): User
   userUpdated(userId: String!): User
-  onMessage(channelId: String!): Message
+  onMessage: Message
 }
 
 """The `Upload` scalar type represents a file upload."""

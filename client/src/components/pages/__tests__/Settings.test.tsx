@@ -4,21 +4,23 @@ import * as React from 'react';
 
 import {AuthType, User} from '../../../types/graphql';
 import {
-  RenderAPI,
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+  createMockNavigation,
+  createTestElement,
+} from '../../../../test/testUtils';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
-import AuthContext from '../../../providers/AuthProvider';
+import ReactNavigation from '@react-navigation/core';
 import Settings from '../Settings';
+import {useAuthContext} from '../../../providers/AuthProvider';
 
-let component: React.ReactElement;
+const mockNavigation = createMockNavigation();
+
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
 
 function getEmptyAuthUserWithSignInType(authType: AuthType): User {
-  // @ts-ignore
   return {
     id: '',
     nickname: '',
@@ -32,106 +34,90 @@ function getEmptyAuthUserWithSignInType(authType: AuthType): User {
   };
 }
 
-function SettingTest(): React.ReactElement {
-  const settingProps = createTestProps();
-
-  return <Settings {...settingProps} />;
-}
-
 describe('[Setting] screen', () => {
-  let testingLib: RenderAPI;
-
-  beforeEach(() => {
-    component = createTestElement(
-      <SettingTest />,
-      undefined,
-      undefined,
-      getEmptyAuthUserWithSignInType('email'),
-    );
-
-    testingLib = render(component);
-
-    const json = testingLib.toJSON();
-
-    expect(json).toMatchSnapshot();
-  });
-
   it('renders without crashing with Facebook auth type', () => {
-    component = createTestElement(
-      <SettingTest />,
-      undefined,
-      undefined,
-      getEmptyAuthUserWithSignInType('facebook'),
-    );
+    const component = createTestElement(<Settings />, {
+      user: getEmptyAuthUserWithSignInType('facebook'),
+    });
 
-    testingLib = render(component);
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    const json = testingLib.toJSON();
-
+    expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 
   it('should renders without crashing with Google auth type', () => {
-    component = createTestElement(
-      <SettingTest />,
-      undefined,
-      undefined,
-      getEmptyAuthUserWithSignInType('google'),
-    );
+    const component = createTestElement(<Settings />, {
+      user: getEmptyAuthUserWithSignInType('google'),
+    });
 
-    testingLib = render(component);
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    const json = testingLib.toJSON();
-
+    expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 
   it('should render without crashing with Apple auth type', () => {
-    component = createTestElement(
-      <SettingTest />,
-      undefined,
-      undefined,
-      getEmptyAuthUserWithSignInType('apple'),
-    );
+    const component = createTestElement(<Settings />, {
+      user: getEmptyAuthUserWithSignInType('apple'),
+    });
 
-    testingLib = render(component);
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    const json = testingLib.toJSON();
-
+    expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
-    beforeEach(() => {
-      testingLib = render(component);
-    });
-
     it('should simulate onPress login state item', async () => {
-      const btn = testingLib.getByTestId('change-pw-item');
+      const component = createTestElement(<Settings />, {
+        user: getEmptyAuthUserWithSignInType('email'),
+      });
+
+      const screen = render(component);
+      const btn = screen.getByTestId('change-pw-item');
 
       fireEvent.press(btn);
+      // TODO: Test what happens after pressing the button.
     });
 
-    it('should fireEvent when logout button pressed', () => {
-      jest.spyOn(AuthContext, 'useAuthContext').mockImplementation(() => ({
-        state: {
-          user: undefined,
-        },
-        setUser: jest.fn().mockReturnValue({
-          id: 'userId',
-          email: 'email@email.com',
-          nickname: 'nickname',
-          statusMessage: 'status',
-        }),
-      }));
+    it('should set auth user to undefined after logout button pressed', async () => {
+      // Test component for detecting changes in auth context.
+      const TestComponent: React.FC<{onAuthChange: (user?: User) => void}> = ({
+        onAuthChange,
+      }) => {
+        const {
+          state: {user},
+        } = useAuthContext();
 
-      act(() => {
-        fireEvent.press(testingLib.getByTestId('button-logout'));
+        React.useEffect(() => {
+          onAuthChange(user);
+        }, [user, onAuthChange]);
+
+        return <Settings />;
+      };
+
+      // This function is called whenever auth user changes.
+      const mockOnAuthChange = jest.fn();
+
+      const component = createTestElement(
+        <TestComponent onAuthChange={mockOnAuthChange} />,
+        {
+          user: getEmptyAuthUserWithSignInType('apple'),
+        },
+      );
+
+      const screen = render(component);
+
+      fireEvent.press(screen.getByTestId('button-logout'));
+
+      // Auth user is set to undefined after logout.
+      await waitFor(() => {
+        expect(mockOnAuthChange).toHaveBeenCalledWith(undefined);
       });
     });
-  });
-
-  afterAll(() => {
-    cleanup();
   });
 });

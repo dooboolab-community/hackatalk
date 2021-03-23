@@ -22,6 +22,7 @@ import ChannelListItem from '../uis/ChannelListItem';
 import EmptyListItem from '../uis/EmptyListItem';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import {MaterialTopTabNavigationProps} from '../navigations/MainTabNavigator';
 import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';
 import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
@@ -248,13 +249,9 @@ const ContentContainer: FC<ContentProps> = ({searchArgs}) => {
   return <ChannelsFragment channel={data} searchArgs={searchArgs} />;
 };
 
-interface Props {
-  navigation: MainStackNavigationProps<'Message'>;
-}
-
-const Screen: FC<Props> = () => {
+const Screen: FC = () => {
   const {theme} = useTheme();
-  const navigation = useNavigation();
+  const navigation = useNavigation<MaterialTopTabNavigationProps<'Channel'>>();
 
   const searchArgs: ChannelsQueryVariables = {
     first: ITEM_CNT,

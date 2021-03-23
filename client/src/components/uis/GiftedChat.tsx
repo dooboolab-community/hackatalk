@@ -63,13 +63,14 @@ const StyledViewMenu = styled.View<{height: number}>`
 `;
 
 interface Props<T> {
-  chats?: T[];
+  messages: T[];
   borderColor?: string;
   backgroundColor?: string;
   fontColor?: string;
   onEndReached?: () => void;
   keyboardOffset?: number;
   renderItem: ListRenderItem<T>;
+  keyExtractor?: (item: T, index: number) => string;
   optionView?: React.ReactElement;
   emptyItem?: React.ReactElement;
   renderViewMenu?: () => React.ReactElement;
@@ -87,12 +88,13 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
-    chats = [],
+    messages,
     borderColor,
     backgroundColor,
     fontColor,
     keyboardOffset,
     renderItem,
+    keyExtractor,
     emptyItem,
     renderViewMenu,
     optionView,
@@ -156,7 +158,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         <FlatList
           style={{alignSelf: 'stretch'}}
           contentContainerStyle={
-            chats.length === 0
+            messages.length === 0
               ? {
                   flex: 1,
                   alignItems: 'center',
@@ -165,8 +167,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               : null
           }
           inverted
-          keyExtractor={(item, index): string => index.toString()}
-          data={chats}
+          keyExtractor={keyExtractor}
+          data={messages}
           renderItem={renderItem}
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
@@ -270,7 +272,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
-  chats: [],
+  messages: [],
   keyboardOffset: 0,
   optionView: <View />,
   emptyItem: <View />,

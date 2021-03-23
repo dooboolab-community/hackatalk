@@ -1,12 +1,12 @@
 import {Animated, Dimensions, Image, StatusBar} from 'react-native';
 import PinchZoom, {PinchZoomRef} from '../uis/PinchZoom';
+import React, {FC} from 'react';
 import {
   RootStackNavigationProps,
   RootStackParamList,
 } from '../navigations/RootStackNavigator';
-import {RouteProp, useNavigation} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 
-import React from 'react';
 import styled from 'styled-components/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -24,16 +24,13 @@ const ImageSliderContainer = styled.View`
   max-width: ${(): number => Dimensions.get('screen').width}px;
 `;
 
-interface Props {
-  navigation: RootStackNavigationProps<'ImageSlider'>;
-  route: RouteProp<RootStackParamList, 'ImageSlider'>;
-}
+const ImageSlider: FC = () => {
+  const navigation = useNavigation<RootStackNavigationProps<'ImageSlider'>>();
 
-function ImageSlider({
-  route: {
+  const {
     params: {images, initialIndex = 0},
-  },
-}: Props): React.ReactElement {
+  } = useRoute<RouteProp<RootStackParamList, 'ImageSlider'>>();
+
   const [currentIndex, setCurrentIndex] = React.useState<number>(initialIndex);
   const insets = useSafeAreaInsets();
   const imageContainerWidth = Dimensions.get('screen').width;
@@ -60,7 +57,6 @@ function ImageSlider({
   const pinchZoom = React.useRef<PinchZoomRef>(null);
   const nextImageTranslateX = React.useRef(new Animated.Value(0)).current;
   const prevImageTranslateX = React.useRef(new Animated.Value(0)).current;
-  const navigation = useNavigation();
 
   const translateOtherImages = React.useCallback(() => {
     animValues.nextTranslateX =
@@ -239,6 +235,6 @@ function ImageSlider({
       </ImageSliderContainer>
     </Container>
   );
-}
+};
 
 export default ImageSlider;

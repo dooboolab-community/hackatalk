@@ -4,26 +4,23 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type UserBlockedUsersQueryVariables = {};
-export type UserBlockedUsersQueryResponse = {
-    readonly blockedUsers: ReadonlyArray<{
-        readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-    } | null> | null;
+export type ProfileModalTestQueryVariables = {};
+export type ProfileModalTestQueryResponse = {
+    readonly myData: {
+        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
+    } | null;
 };
-export type UserBlockedUsersQuery = {
-    readonly response: UserBlockedUsersQueryResponse;
-    readonly variables: UserBlockedUsersQueryVariables;
+export type ProfileModalTestQuery = {
+    readonly response: ProfileModalTestQueryResponse;
+    readonly variables: ProfileModalTestQueryVariables;
 };
 
 
 
 /*
-query UserBlockedUsersQuery {
-  blockedUsers {
-    id
+query ProfileModalTestQuery {
+  myData: user(id: "test-id") {
     ...ProfileModal_user
-    ...UserListItem_user
   }
 }
 
@@ -35,54 +32,38 @@ fragment ProfileModal_user on User {
   hasBlocked
   statusMessage
 }
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
+var v0 = [
+  {
+    "kind": "Literal",
+    "name": "id",
+    "value": "test-id"
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "UserBlockedUsersQuery",
+    "name": "ProfileModalTestQuery",
     "selections": [
       {
-        "alias": null,
-        "args": null,
+        "alias": "myData",
+        "args": (v0/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "blockedUsers",
-        "plural": true,
+        "name": "user",
+        "plural": false,
         "selections": [
-          (v0/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
             "name": "ProfileModal_user"
-          },
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "UserListItem_user"
           }
         ],
-        "storageKey": null
+        "storageKey": "user(id:\"test-id\")"
       }
     ],
     "type": "Query",
@@ -92,17 +73,23 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "UserBlockedUsersQuery",
+    "name": "ProfileModalTestQuery",
     "selections": [
       {
-        "alias": null,
-        "args": null,
+        "alias": "myData",
+        "args": (v0/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "blockedUsers",
-        "plural": true,
+        "name": "user",
+        "plural": false,
         "selections": [
-          (v0/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -137,28 +124,21 @@ return {
             "kind": "ScalarField",
             "name": "statusMessage",
             "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "isOnline",
-            "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "user(id:\"test-id\")"
       }
     ]
   },
   "params": {
-    "cacheID": "c562c517044916513e601b9f741b0344",
+    "cacheID": "245bc16bb59c2de7400c37232a76892f",
     "id": null,
     "metadata": {},
-    "name": "UserBlockedUsersQuery",
+    "name": "ProfileModalTestQuery",
     "operationKind": "query",
-    "text": "query UserBlockedUsersQuery {\n  blockedUsers {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query ProfileModalTestQuery {\n  myData: user(id: \"test-id\") {\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n"
   }
 };
 })();
-(node as any).hash = 'de6f1c0db8178def0afba2a4c90484fc';
+(node as any).hash = '7b45aba25079e2138a1378b69a511d12';
 export default node;

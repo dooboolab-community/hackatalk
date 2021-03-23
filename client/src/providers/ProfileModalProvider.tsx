@@ -1,64 +1,63 @@
 import React, {FC, createContext, useContext, useState} from 'react';
 
-import {User} from '../types/graphql';
+import {ProfileModal_user$key} from '../__generated__/ProfileModal_user.graphql';
 
-export interface ModalState {
-  /** Which user the profile modal describes */
-  user: User;
-  /** Is the profile user a friend of the current user? */
-  isFriend?: boolean;
-  /** Callback function for delete button */
-  onDeleteFriend?: () => void;
-  /** Callback function for add friend button */
-  onAddFriend?: () => void;
-  hideButtons?: boolean;
-}
+export type ModalState =
+  | {
+      isVisible: false;
+    }
+  | {
+      /** Modal visiblity */
+      isVisible: true;
+      /** Which user the profile modal describes */
+      user: ProfileModal_user$key;
+      /** Is the profile user a friend of the current user? */
+      isFriend?: boolean;
+      /** Callback function for delete button */
+      onDeleteFriend?: () => void;
+      /** Callback function for add friend button */
+      onAddFriend?: () => void;
+      hideButtons?: boolean;
+    };
 
 export type ProfileModalContext = {
-  modalState?: ModalState | null;
-  isVisible: boolean;
   /** Allow context consumers to make the modal visible with a new state. */
-  showModal: (next: ModalState) => void;
+  showModal: (next: Omit<ModalState & {isVisible: true}, 'isVisible'>) => void;
   /** Allow context consumers to hide the modal. */
   hideModal: () => void;
+  modalState: ModalState;
 };
 
 const ProfileModalContext = createContext<ProfileModalContext>({
-  isVisible: false,
-  modalState: null,
+  modalState: {isVisible: false},
   showModal: () => {},
   hideModal: () => {},
 });
 
-type ContextState = {
-  isVisible: boolean;
-  modalState?: ModalState | null;
-};
-
 export const ProfileModalProvider: FC = (props) => {
-  const [state, setState] = useState<ContextState>({
+  const [state, setState] = useState<ModalState>({
     isVisible: false,
-    modalState: null,
   });
 
-  const showModal = (next: ModalState): void =>
+  const showModal = (
+    next: Omit<ModalState & {isVisible: true}, 'isVisible'>,
+  ): void =>
     setState({
       isVisible: true,
-      modalState: next,
+      ...next,
     });
 
   const hideModal = (): void =>
     setState({
       isVisible: false,
-      modalState: null,
     });
 
   return (
     <ProfileModalContext.Provider
       value={{
-        ...state,
         showModal,
         hideModal,
+        modalState: state,
       }}>
       {props.children}
     </ProfileModalContext.Provider>

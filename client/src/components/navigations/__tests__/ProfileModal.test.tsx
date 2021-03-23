@@ -1,167 +1,188 @@
-import {
-  ProfileModalContext,
-  useProfileContext,
-} from '../../../providers/ProfileModalProvider';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {createRef, forwardRef, useImperativeHandle} from 'react';
-import {act, fireEvent, render} from '@testing-library/react-native';
+import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
+import {
+  createMockNavigation,
+  createTestElement,
+} from '../../../../test/testUtils';
+import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
 
-import {MockPayloadGenerator} from 'relay-test-utils';
 import ProfileModal from '../MainStackNavigator/ProfileModal';
+import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
+import ReactNavigation from '@react-navigation/core';
+import {User} from '../../../types/graphql';
 import {View} from 'react-native';
-import {createTestElement} from '../../../../test/testUtils';
-import {environment} from '../../../providers';
+import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
-jest.mock('@react-navigation/core', () => {
-  return {
-    useNavigation: (): Record<string, unknown> => {
-      return {
-        navigate: jest.fn(),
-      };
-    },
-  };
+const mockNavigation = createMockNavigation();
+
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
+
+const mockEnvironment = createMockEnvironment();
+
+const generateUser = (_: unknown, generateId: () => number): User => ({
+  id: `user-test-${generateId()}`,
+  name: 'Unnamed',
 });
 
+mockEnvironment.mock.queueOperationResolver((operation) =>
+  MockPayloadGenerator.generate(operation, {
+    User: generateUser,
+  }),
+);
+
 type ConsumerRef = {
-  showModal: ProfileModalContext['showModal'];
-  hideModal: ProfileModalContext['hideModal'];
+  showModal: (next: {
+    isFriend?: boolean;
+    onDeleteFriend?: () => void;
+    onAddFriend?: () => void;
+    hideButtons?: boolean;
+  }) => void;
+  hideModal: () => void;
 };
 
-const ProfileConsumer = forwardRef<ConsumerRef>((props, ref) => {
+const ProfileConsumer = forwardRef<ConsumerRef>((_props, ref) => {
+  const {myData} = useLazyLoadQuery<ProfileModalTestQuery>(
+    graphql`
+      query ProfileModalTestQuery {
+        myData: user(id: "test-id") {
+          ...ProfileModal_user
+        }
+      }
+    `,
+    {},
+  );
+
   const {showModal, hideModal} = useProfileContext();
 
-  useImperativeHandle(ref, () => ({showModal, hideModal}));
+  if (!myData) throw new Error('myData is null');
+
+  useImperativeHandle(ref, () => ({
+    showModal: (next) => showModal({...next, user: myData}),
+    hideModal,
+  }));
 
   return null;
 });
 
-const ref = createRef<ConsumerRef>();
+const consumerRef = createRef<ConsumerRef>();
 
 const component = createTestElement(
   <View>
-    <ProfileConsumer ref={ref} />
+    <ProfileConsumer ref={consumerRef} />
     <ProfileModal />
   </View>,
+  {
+    environment: mockEnvironment,
+  },
 );
 
 describe('[ProfileModal] rendering test', () => {
   it('Render without crashing', async () => {
-    const {toJSON} = render(component);
+    const screen = render(component);
 
-    await act(() =>
-      ref.current?.showModal({
-        // @ts-ignore
-        user: {
-          id: '',
-        },
+    act(() =>
+      consumerRef.current?.showModal({
         isFriend: false,
       }),
     );
 
-    const json = toJSON();
+    const json = screen.toJSON();
 
     expect(json).toMatchSnapshot();
   });
 
   it('Should be opened', async () => {
-    const {queryByTestId} = render(component);
+    const screen = render(component);
 
-    await act(() =>
-      ref.current?.showModal({
-        // @ts-ignore
-        user: {id: ''},
+    act(() =>
+      consumerRef.current?.showModal({
         isFriend: false,
       }),
     );
 
-    const button = queryByTestId('touch-add-friend');
+    const button = screen.getByTestId('touch-add-friend');
 
-    expect(button).not.toBeNull();
+    expect(button).toBeTruthy();
   });
 
   it('Check "Added to your friend." button', async () => {
-    const {getByTestId, queryByTestId} = render(component);
+    const screen = render(component);
 
-    await act(() =>
-      ref.current?.showModal({
-        // @ts-ignore
-        user: {id: ''},
+    act(() =>
+      consumerRef.current?.showModal({
         isFriend: false,
       }),
     );
 
-    const button = getByTestId('touch-add-friend');
+    const button = screen.getByTestId('touch-add-friend');
 
     fireEvent.press(button);
 
-    environment.mock.resolveMostRecentOperation((op) =>
-      MockPayloadGenerator.generate(op),
+    // Resolve mutation.
+    await waitFor(() =>
+      mockEnvironment.mock.resolveMostRecentOperation((operation) =>
+        MockPayloadGenerator.generate(operation, {
+          User: generateUser,
+        }),
+      ),
     );
 
-    const message = queryByTestId('added-message');
+    const message = screen.getByTestId('added-message');
 
-    expect(message).not.toBeNull();
+    expect(message).toBeTruthy();
   });
 
   it('Should be closed', async () => {
-    const {queryByTestId} = render(component);
+    const screen = render(component);
 
-    await act(() => ref.current?.hideModal());
+    act(() => consumerRef.current?.hideModal());
 
-    const button = queryByTestId('touch-add-friend');
+    const button = screen.queryByTestId('touch-add-friend');
 
     expect(button).toBeNull();
   });
 
   it('delete', async () => {
-    const {queryByTestId, toJSON} = render(component);
+    const screen = render(component);
 
-    await act(() =>
-      ref.current?.showModal({
-        // @ts-ignore
-        user: {id: ''},
+    const mockOnDeleteFriend = jest.fn();
+
+    act(() =>
+      consumerRef.current?.showModal({
         isFriend: true,
+        onDeleteFriend: mockOnDeleteFriend,
       }),
     );
 
-    const button = queryByTestId('touch-add-friend');
+    // Find the delete button.
+    // 'touch-add-friend' button becomes the delete button if
+    // the user is already a friend.
+    const button = screen.getByTestId('touch-add-friend');
+
+    fireEvent.press(button);
+    expect(mockOnDeleteFriend).toHaveBeenCalledTimes(1);
+  });
+
+  it('Add Friend', async () => {
+    const screen = render(component);
+
+    const mockOnAddFriend = jest.fn();
+
+    act(() => {
+      consumerRef.current?.showModal({
+        isFriend: false,
+        onAddFriend: mockOnAddFriend,
+      });
+    });
+
+    const button = screen.getByTestId('touch-add-friend');
 
     fireEvent.press(button);
 
-    const json = toJSON();
-
-    expect(json).toBeTruthy();
+    expect(mockOnAddFriend).toHaveBeenCalledTimes(1);
   });
-
-  // it('Add Friend', async () => {
-  //   await act(async () => {
-  //     fakeProfileModalRef.current?.showModal({
-  //       user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
-  //     });
-  //   });
-
-  //   const button = testingLib2.queryByTestId('touch-add-friend');
-
-  //   await act(async () => {
-  //     fireEvent.press(button);
-  //   });
-
-  //   expect(onAddFriend).toHaveBeenCalled();
-  // });
-
-  // it('Delete Friend', async () => {
-  //   await act(async () => {
-  //     fakeProfileModalRef.current?.showModal({
-  //       user: { photoURL: '', nickname: 'nickname', statusMessage: 'online' },
-  //       deleteMode: true,
-  //     });
-  //   });
-
-  //   const button = testingLib2.queryByTestId('touch-add-friend');
-
-  //   await act(async () => {
-  //     fireEvent.press(button);
-  //   });
-
-  //   expect(onDeleteFriend).toHaveBeenCalled();
-  // });
 });

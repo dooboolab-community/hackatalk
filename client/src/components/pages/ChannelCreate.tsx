@@ -298,12 +298,8 @@ const ContentContainer: FC<ContentProps> = ({
   );
 };
 
-interface ChannelCreateProps {
-  navigation: MainStackNavigationProps<'ChannelCreate'>;
-}
-
-const ChannelCreate: FC<ChannelCreateProps> = (props) => {
-  const {navigation} = props;
+const ChannelCreate: FC = () => {
+  const navigation = useNavigation<MainStackNavigationProps<'ChannelCreate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const debouncedText = useDebounce(searchText, 500);

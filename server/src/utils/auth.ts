@@ -1,4 +1,5 @@
 import NodeRSA from 'node-rsa';
+import {Request} from 'express';
 import axios from 'axios';
 import bcrypt from 'bcrypt';
 import ejs from 'ejs';
@@ -35,12 +36,10 @@ interface Token {
   userId: string;
 }
 
-export function getUserId({req}: {req: ReqI18n}): string | null {
-  const Authorization = req?.get?.('Authorization');
+export function getUserId(authorization?: string): string | null {
+  if (!authorization) return null;
 
-  if (!Authorization) return null;
-
-  const token = Authorization.replace('Bearer ', '');
+  const token = authorization.replace('Bearer ', '');
   const verifiedToken = verify(token, APP_SECRET) as Token;
 
   return verifiedToken && verifiedToken.userId;
@@ -199,7 +198,7 @@ export const validateCredential = async (
 
 export const getEmailVerificationHTML = (
   verificationToken: string,
-  req: ReqI18n,
+  req: Request,
 ): string => {
   const templateString = fs.readFileSync(
     path.resolve(__dirname, '../../html/email_verification.html'),
@@ -221,7 +220,7 @@ export const getEmailVerificationHTML = (
 export const getPasswordResetHTML = (
   token: string,
   password: string,
-  req: ReqI18n,
+  req: Request,
 ): string => {
   const templateString = fs.readFileSync(
     path.resolve(__dirname, '../../html/password_reset.html'),
@@ -245,7 +244,7 @@ export const getPasswordResetHTML = (
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getToken = (req: Request & any): string | null => {
+export const getToken = (req: Request): string | null => {
   const authHeader = req.get('Authorization');
 
   if (!authHeader) return null;
