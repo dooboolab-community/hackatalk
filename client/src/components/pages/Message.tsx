@@ -1,13 +1,18 @@
 import * as Notifications from 'expo-notifications';
 
-import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  Image,
+  ListRenderItem,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
-import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
 import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import {Message, User} from '../../types/graphql';
 import {
   MessagesQuery,
   MessagesQueryResponse,
@@ -21,7 +26,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {RouteProp, useNavigation} from '@react-navigation/core';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   graphql,
@@ -42,9 +47,8 @@ import type {MessageComponent_message$key} from '../../__generated__/MessageComp
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
-import moment from 'moment';
-import {requestSubscription} from 'react-relay';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -85,19 +89,14 @@ const messagesFragment = graphql`
         cursor
         node {
           id
-          messageType
-          text
           imageUrls
-          fileUrls
           sender {
             id
             name
             nickname
-            thumbURL
-            photoURL
           }
           createdAt
-          updatedAt
+          ...MessageListItem_message
         }
       }
       pageInfo {
@@ -109,91 +108,6 @@ const messagesFragment = graphql`
     }
   }
 `;
-
-function updateMessageOnSubmit(
-  proxyStore: RecordSourceSelectorProxy,
-  currentChannelId: string,
-  currentUserId: string,
-): void {
-  const root = proxyStore.getRoot();
-
-  const connectionRecord =
-    root &&
-    ConnectionHandler.getConnection(root, 'MessageComponent_messages', {
-      channelId: currentChannelId,
-      searchText: null,
-    });
-
-  const payload = proxyStore.getRootField('createMessage');
-  const userProxy = proxyStore.get(currentUserId);
-  const now = moment().toString();
-
-  if (userProxy && payload) {
-    payload.setLinkedRecord(userProxy, 'sender');
-
-    payload.setValue(now, 'createdAt');
-
-    payload.setValue(now, 'updatedAt');
-  }
-
-  const newEdge =
-    connectionRecord &&
-    payload &&
-    ConnectionHandler.createEdge(
-      proxyStore,
-      connectionRecord,
-      payload,
-      'Message',
-    );
-
-  if (connectionRecord && newEdge)
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-}
-
-function updateChannelsOnSubmit(
-  proxyStore: RecordSourceSelectorProxy,
-  currentChannelId: string,
-): void {
-  const root = proxyStore.getRoot();
-  const channelProxy = proxyStore.get(currentChannelId);
-
-  const connectionRecord =
-    root &&
-    ConnectionHandler.getConnection(root, 'ChannelComponent_channels', {
-      withMessage: true,
-    });
-
-  // Get existing edges.
-  const prevEdges = connectionRecord?.getLinkedRecords('edges') ?? [];
-
-  // Check if the message is created inside a new channel.
-  let existingNode;
-
-  for (const edge of prevEdges) {
-    const node = edge.getLinkedRecord('node');
-
-    if (node?.getDataID() === currentChannelId) {
-      existingNode = node;
-      break;
-    }
-  }
-
-  const newEdge =
-    connectionRecord &&
-    channelProxy &&
-    ConnectionHandler.createEdge(
-      proxyStore,
-      connectionRecord,
-      channelProxy,
-      'Channel',
-    );
-
-  if (existingNode && connectionRecord)
-    ConnectionHandler.deleteNode(connectionRecord, existingNode.getDataID());
-
-  if (connectionRecord && newEdge)
-    ConnectionHandler.insertEdgeBefore(connectionRecord, newEdge);
-}
 
 interface MessageProp {
   channelId: string;
@@ -226,8 +140,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const nodes = useMemo(() => {
     return (
       data.messages?.edges
-        ?.filter((x): x is NonNullable<typeof x> => x !== null)
-        .map((x) => x.node) || []
+        ?.filter((x): x is NonNullable<typeof x> => !!x)
+        ?.map((x) => x.node)
+        ?.filter((x): x is NonNullable<typeof x> => !!x) || []
     );
   }, [data]);
 
@@ -250,15 +165,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const onSubmit = (): void => {
     if (!textToSend) return;
 
-    const mutationConfig = {
+    commitMessage({
       variables: {
         channelId,
         message: {text: textToSend},
       },
-      updater: (proxyStore: RecordSourceSelectorProxy) => {
-        if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
-
-        updateChannelsOnSubmit(proxyStore, channelId);
+      updater: (store) => {
+        if (user) createMessageUpdater(store, channelId, user.id);
       },
       onCompleted: () => {
         setTextToSend('');
@@ -266,9 +179,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       onError: (error: Error): void => {
         showAlertForError(error);
       },
-    };
-
-    commitMessage(mutationConfig);
+    });
   };
 
   const onRequestImagePicker = async (type: string): Promise<void> => {
@@ -298,7 +209,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         if (!url)
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
-        const mutationConfig = {
+        commitMessage({
           variables: {
             channelId,
             message: {
@@ -306,19 +217,15 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               imageUrls: [url],
             },
           },
-          updater: (proxyStore: RecordSourceSelectorProxy) => {
-            if (user) updateMessageOnSubmit(proxyStore, channelId, user.id);
-
-            updateChannelsOnSubmit(proxyStore, channelId);
+          updater: (store) => {
+            if (user) createMessageUpdater(store, channelId, user.id);
           },
           onCompleted: () => {},
           onError: (error: Error): void => {
             showAlertForError(error);
             setIsImageUploading(false);
           },
-        };
-
-        commitMessage(mutationConfig);
+        });
       } catch (err) {
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
@@ -326,10 +233,61 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     setIsImageUploading(false);
   };
 
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
+    const nextItemDate = nodes[index + 1]?.createdAt;
+
+    return (
+      <MessageListItem
+        userId={user?.id}
+        testID={`message-list-item${index}`}
+        prevItemSenderId={nodes[index - 1]?.sender?.id}
+        nextItemDate={
+          typeof nextItemDate === 'string' ? nextItemDate : undefined
+        }
+        item={item}
+        onPressPeerImage={(sender): void => {
+          showModal({user: sender});
+        }}
+        onPressMessageImage={(indexOfTheNode: number) => {
+          let initialIndex = indexOfTheNode;
+
+          const imagesList = nodes
+            .filter((node, nodeIndex) => {
+              const {imageUrls} = node;
+
+              if (imageUrls && nodeIndex < index)
+                initialIndex += imageUrls.length;
+
+              return imageUrls && imageUrls.length > 0;
+            })
+            .map((message) => {
+              const {imageUrls, sender} = message;
+
+              return imageUrls?.map((uri) => ({
+                uri,
+                sender: sender?.nickname || sender?.name,
+              }));
+            });
+
+          const flattenImages =
+            imagesList.reduce(
+              (prev, current) =>
+                current != null ? [...(prev || []), ...current] : prev || [],
+              [],
+            ) || [];
+
+          navigation.push('ImageSlider', {
+            images: flattenImages.reverse(),
+            initialIndex: flattenImages.length - 1 - initialIndex,
+          });
+        }}
+      />
+    );
+  };
+
   return (
     <GiftedChat
-      // @ts-ignore
-      chats={nodes}
+      messages={nodes}
       borderColor={theme.lineColor}
       onEndReached={onEndReached}
       backgroundColor={theme.background}
@@ -339,63 +297,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       placeholder={getString('WRITE_MESSAGE')}
       placeholderTextColor={theme.placeholder}
       onChangeMessage={(text: string): void => setTextToSend(text)}
-      renderItem={({
-        item,
-        index,
-      }: {
-        item: Message;
-        index: number;
-      }): React.ReactElement => {
-        return (
-          <MessageListItem
-            userId={user?.id}
-            testID={`message-list-item${index}`}
-            // @ts-ignore
-            prevItem={messages[index - 1]}
-            // @ts-ignore
-            nextItem={messages[index + 1]}
-            item={item}
-            onPressPeerImage={(): void => {
-              showModal({user: item?.sender as User});
-            }}
-            onPressMessageImage={(indexOfTheNode: number) => {
-              let initialIndex = indexOfTheNode;
-
-              const imagesList = nodes
-                .filter((node, nodeIndex) => {
-                  const {imageUrls} = node as Message;
-
-                  if (imageUrls && nodeIndex < index)
-                    initialIndex += imageUrls.length;
-
-                  return imageUrls && imageUrls.length > 0;
-                })
-                .map((message) => {
-                  const {imageUrls, sender} = message as Message;
-
-                  return imageUrls?.map((uri) => ({
-                    uri,
-                    sender: sender?.nickname || sender?.name,
-                  }));
-                });
-
-              const flattenImages =
-                imagesList.reduce(
-                  (prev, current) =>
-                    current != null
-                      ? [...(prev || []), ...current]
-                      : prev || [],
-                  [],
-                ) || [];
-
-              navigation.push('ImageSlider', {
-                images: flattenImages.reverse(),
-                initialIndex: flattenImages.length - 1 - initialIndex,
-              });
-            }}
-          />
-        );
-      }}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
       optionView={
         <Image
           style={{
@@ -495,18 +398,12 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   );
 };
 
-interface Props {
-  navigation: MainStackNavigationProps<'Message'>;
-  route: RouteProp<MainStackParamList, 'Message'>;
-}
+const MessageScreen: FC = () => {
+  const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
 
-const MessageScreen: FC<Props> = (props) => {
   const {
-    route: {
-      params: {users, channel},
-    },
-    navigation,
-  } = props;
+    params: {users, channel},
+  } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {

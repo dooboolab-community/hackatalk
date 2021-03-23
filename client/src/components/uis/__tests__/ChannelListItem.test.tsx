@@ -1,35 +1,37 @@
 import 'react-native';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-
+import {Channel} from '../../../types/graphql';
 import ChannelListItem from '../ChannelListItem';
 import React from 'react';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 
-const props = createTestProps({
-  item: {
-    id: 'room1',
-    secret: 'secret1',
-    lastMessage: {
-      id: 'id_3',
-      sender: {
-        id: 'uid_3',
-        nickname: 'displayName3',
-        thumbURL: '',
-      },
-      text: 'How are you doing?',
-      createdAt: '2020-01-01 12:00',
-      updatedAt: '2020-01-01 12:00',
+const TEST_CHANNEL: Channel = {
+  id: 'test-channel-111',
+  channelType: 'private',
+  lastMessage: {
+    id: 'test-message-2022',
+    messageType: 'text',
+    sender: {
+      id: 'test-user-999',
+      nickname: 'displayName3',
+      thumbURL: 'https://example.com/hola.png',
     },
-    lastMessageCnt: 3,
+    text: 'How are you doing?',
+    createdAt: '2020-01-01 12:00',
+    updatedAt: '2020-01-01 12:00',
   },
-});
-
-const component = createTestElement(<ChannelListItem {...props} />);
+};
 
 describe('[ChannelListItem] rendering test', () => {
   it('renders as expected', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(
+      <ChannelListItem item={TEST_CHANNEL} lastMessageCnt={3} />,
+    );
+
+    const screen = render(component);
+
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();

@@ -34,13 +34,14 @@ module.exports = {
   setupFiles: [
     ...expoPreset.setupFiles,
     '<rootDir>/test/jestSetup.ts',
+    './node_modules/react-native-gesture-handler/jestSetup.js',
   ],
   setupFilesAfterEnv: [
     './test/setupTest.js',
   ],
   /* eslint-disable */
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui|@sentry/.*|sentry-expo)',
+    'node_modules/(?!(jest-)?react-native|@react-native/|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules-*|sentry-expo|native-base|dooboo-ui|@dooboo-ui|@sentry/.*|sentry-expo)',
   ],
   /* eslint-enable */
   collectCoverageFrom: [

@@ -1,14 +1,13 @@
 import 'react-native';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {fireEvent, render} from '@testing-library/react-native';
 
-import {MockPayloadGenerator} from 'relay-test-utils';
 import ProfileUpdate from '../ProfileUpdate';
 import React from 'react';
-import {environment} from '../../../providers';
-
-const component = createTestElement(<ProfileUpdate {...createTestProps()} />);
+import {User} from '../../../types/graphql';
+import {act} from 'react-test-renderer';
+import {createTestElement} from '../../../../test/testUtils';
 
 jest.mock('@expo/react-native-action-sheet', () => ({
   useActionSheet: (): Record<string, unknown> => {
@@ -40,24 +39,22 @@ jest.mock('expo-image-picker', () => ({
   launchImageLibraryAsync: (): string => 'photo info',
 }));
 
+const mockEnvironment = createMockEnvironment();
+
+const generateUser = (_: unknown, generateId: () => number): User => ({
+  id: `test-user-${generateId()}`,
+  email: 'email',
+  name: 'name',
+  nickname: 'nickname',
+  statusMessage: '',
+  verified: true,
+});
+
 describe('rendering test', () => {
   it('renders as expected', () => {
-    const mockResolver = {
-      Profile: () => ({
-        id: 'id',
-        email: 'email',
-        name: 'name',
-        nickname: 'nickname',
-        statusMessage: '',
-        verified: true,
-      }),
-    };
-
-    environment.mock.queueOperationResolver((operation) =>
-      MockPayloadGenerator.generate(operation, mockResolver),
-    );
-
-    const json = render(component).toJSON();
+    const component = createTestElement(<ProfileUpdate />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
@@ -66,21 +63,19 @@ describe('rendering test', () => {
 
 describe('[ProfileUpdate] interaction', () => {
   it('should change nickname', async () => {
-    const {getByTestId} = render(component);
-    const inputStatus = getByTestId('input-nickname');
+    const component = createTestElement(<ProfileUpdate />);
+    const screen = render(component);
+    const inputNickname = screen.getByTestId('input-nickname');
 
-    await waitFor(() => expect(inputStatus).toBeTruthy());
+    fireEvent.changeText(inputNickname, 'nickname');
 
-    fireEvent.changeText(inputStatus, 'nickname');
-
-    expect(inputStatus.props.value).toEqual('nickname');
+    expect(inputNickname.props.value).toEqual('nickname');
   });
 
   it('should change name', async () => {
-    const {getByTestId} = render(component);
-    const inputName = getByTestId('input-name');
-
-    await waitFor(() => expect(inputName).toBeTruthy());
+    const component = createTestElement(<ProfileUpdate />);
+    const screen = render(component);
+    const inputName = screen.getByTestId('input-name');
 
     fireEvent.changeText(inputName, 'name');
 
@@ -88,10 +83,9 @@ describe('[ProfileUpdate] interaction', () => {
   });
 
   it('should change status text', async () => {
-    const {getByTestId} = render(component);
-    const inputStatus = getByTestId('input-status');
-
-    await waitFor(() => expect(inputStatus).toBeTruthy());
+    const component = createTestElement(<ProfileUpdate />);
+    const screen = render(component);
+    const inputStatus = screen.getByTestId('input-status');
 
     fireEvent.changeText(inputStatus, 'status');
 
@@ -99,19 +93,25 @@ describe('[ProfileUpdate] interaction', () => {
   });
 
   it('should call updateProfile when update button pressed', async () => {
-    const {getByTestId} = render(component);
-    const updateButton = getByTestId('button-update');
+    const component = createTestElement(<ProfileUpdate />, {
+      environment: mockEnvironment,
+    });
 
-    await waitFor(() => expect(updateButton).toBeTruthy());
+    const screen = render(component);
+    const updateButton = screen.getByTestId('button-update');
 
     fireEvent.press(updateButton);
 
-    const operation = environment.mock.getMostRecentOperation();
+    const operation = mockEnvironment.mock.getMostRecentOperation();
 
-    environment.mock.resolve(
-      operation,
-      MockPayloadGenerator.generate(operation),
-    );
+    act(() => {
+      mockEnvironment.mock.resolve(
+        operation,
+        MockPayloadGenerator.generate(operation, {
+          User: generateUser,
+        }),
+      );
+    });
   });
 
   // it('should launch camera when user select "Take a picture"', async () => {

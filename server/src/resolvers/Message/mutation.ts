@@ -70,7 +70,7 @@ export const createMessage = mutationField('createMessage', {
             ? request.req.t('PHOTO')
             : created.messageType === 'file'
             ? request.req.t('FILE')
-            : created.text,
+            : created.text ?? undefined,
         data: {
           data: JSON.stringify({
             messageId: created.id,

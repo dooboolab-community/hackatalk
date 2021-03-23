@@ -2,23 +2,15 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-
-import Shared from '../CheckBox';
+import CheckBox from '../CheckBox';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: React.ReactElement;
-
 describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Shared {...props} />);
-  });
-
   it('renders without crashing', () => {
-    const json = render(component).toJSON();
+    const component = createTestElement(<CheckBox />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();

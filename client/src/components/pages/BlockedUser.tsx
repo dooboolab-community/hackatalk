@@ -1,14 +1,9 @@
-import {FlatList, View} from 'react-native';
-import React, {FC, Suspense} from 'react';
-import type {
-  UserBlockedUsersQuery,
-  UserBlockedUsersQueryResponse,
-} from '../../__generated__/UserBlockedUsersQuery.graphql';
+import {FlatList, ListRenderItem, View} from 'react-native';
+import React, {FC, Suspense, useMemo} from 'react';
 
 import EmptyListItem from '../uis/EmptyListItem';
 import {LoadingIndicator} from 'dooboo-ui';
-import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
-import {User} from '../../types/graphql';
+import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
@@ -24,30 +19,24 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-interface Props {
-  navigation: RootStackNavigationProps<'default'>;
-}
-
 const ContentContainer: FC = () => {
   const {showModal} = useProfileContext();
 
-  const {
-    blockedUsers = [],
-  }: UserBlockedUsersQueryResponse = useLazyLoadQuery<UserBlockedUsersQuery>(
+  const response = useLazyLoadQuery<UserBlockedUsersQuery>(
     blockedUsersQuery,
     {},
     {fetchPolicy: 'store-or-network'},
   );
 
-  const renderItem = ({
-    item,
-    index,
-  }: {
-    item: User;
-    index: number;
-  }): React.ReactElement => {
-    const itemTestID = `user-list-item${index}`;
+  const blockedUsers = useMemo(() => {
+    return (
+      response.blockedUsers?.filter(
+        (x): x is NonNullable<typeof x> => x !== null,
+      ) ?? []
+    );
+  }, [response]);
 
+  const renderItem: ListRenderItem<typeof blockedUsers[number]> = ({item}) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
@@ -56,9 +45,7 @@ const ContentContainer: FC = () => {
       });
     };
 
-    return (
-      <UserListItem testID={itemTestID} user={item} onPress={pressUserItem} />
-    );
+    return <UserListItem user={item} onPress={pressUserItem} />;
   };
 
   return (
@@ -75,7 +62,6 @@ const ContentContainer: FC = () => {
           : null
       }
       keyExtractor={(_, index): string => index.toString()}
-      // @ts-ignore
       data={blockedUsers}
       renderItem={renderItem}
       ListEmptyComponent={
@@ -87,7 +73,7 @@ const ContentContainer: FC = () => {
   );
 };
 
-const Page: FC<Props> = () => {
+const Page: FC = () => {
   return (
     <Container>
       <Suspense fallback={<LoadingIndicator />}>

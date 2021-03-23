@@ -1,18 +1,18 @@
 import 'react-native';
 
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
-
 import React from 'react';
-import StackNavigator from '../RootStackNavigator';
+import RootStackNavigator from '../RootStackNavigator';
+import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 
 jest.mock('../../../components/pages/SignIn/SocialSignInButton', () => 'test');
 
-const component = createTestElement(<StackNavigator {...createTestProps()} />);
-
 describe('[Stack] navigator', () => {
   it('should renders without crashing', async () => {
-    const json = render(component);
+    const component = createTestElement(<RootStackNavigator />);
+
+    const screen = render(component);
+    const json = screen.toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();

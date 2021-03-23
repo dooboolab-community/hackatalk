@@ -4,36 +4,24 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type UserBlockedUsersQueryVariables = {};
-export type UserBlockedUsersQueryResponse = {
-    readonly blockedUsers: ReadonlyArray<{
-        readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-    } | null> | null;
+export type UserListItemTestQueryVariables = {};
+export type UserListItemTestQueryResponse = {
+    readonly myData: {
+        readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
+    } | null;
 };
-export type UserBlockedUsersQuery = {
-    readonly response: UserBlockedUsersQueryResponse;
-    readonly variables: UserBlockedUsersQueryVariables;
+export type UserListItemTestQuery = {
+    readonly response: UserListItemTestQueryResponse;
+    readonly variables: UserListItemTestQueryVariables;
 };
 
 
 
 /*
-query UserBlockedUsersQuery {
-  blockedUsers {
-    id
-    ...ProfileModal_user
+query UserListItemTestQuery {
+  myData: user(id: "test-id") {
     ...UserListItem_user
   }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
 }
 
 fragment UserListItem_user on User {
@@ -48,41 +36,35 @@ fragment UserListItem_user on User {
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "id",
-  "storageKey": null
-};
+var v0 = [
+  {
+    "kind": "Literal",
+    "name": "id",
+    "value": "test-id"
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "UserBlockedUsersQuery",
+    "name": "UserListItemTestQuery",
     "selections": [
       {
-        "alias": null,
-        "args": null,
+        "alias": "myData",
+        "args": (v0/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "blockedUsers",
-        "plural": true,
+        "name": "user",
+        "plural": false,
         "selections": [
-          (v0/*: any*/),
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "ProfileModal_user"
-          },
           {
             "args": null,
             "kind": "FragmentSpread",
             "name": "UserListItem_user"
           }
         ],
-        "storageKey": null
+        "storageKey": "user(id:\"test-id\")"
       }
     ],
     "type": "Query",
@@ -92,29 +74,28 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "UserBlockedUsersQuery",
+    "name": "UserListItemTestQuery",
     "selections": [
       {
-        "alias": null,
-        "args": null,
+        "alias": "myData",
+        "args": (v0/*: any*/),
         "concreteType": "User",
         "kind": "LinkedField",
-        "name": "blockedUsers",
-        "plural": true,
+        "name": "user",
+        "plural": false,
         "selections": [
-          (v0/*: any*/),
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "photoURL",
+            "name": "id",
             "storageKey": null
           },
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "name",
+            "name": "photoURL",
             "storageKey": null
           },
           {
@@ -128,7 +109,7 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "hasBlocked",
+            "name": "name",
             "storageKey": null
           },
           {
@@ -144,21 +125,28 @@ return {
             "kind": "ScalarField",
             "name": "isOnline",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "hasBlocked",
+            "storageKey": null
           }
         ],
-        "storageKey": null
+        "storageKey": "user(id:\"test-id\")"
       }
     ]
   },
   "params": {
-    "cacheID": "c562c517044916513e601b9f741b0344",
+    "cacheID": "a0056f27a643459dd64cec949ac6cc56",
     "id": null,
     "metadata": {},
-    "name": "UserBlockedUsersQuery",
+    "name": "UserListItemTestQuery",
     "operationKind": "query",
-    "text": "query UserBlockedUsersQuery {\n  blockedUsers {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query UserListItemTestQuery {\n  myData: user(id: \"test-id\") {\n    ...UserListItem_user\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = 'de6f1c0db8178def0afba2a4c90484fc';
+(node as any).hash = 'c4a52477153608200e909deac90e3cfc';
 export default node;

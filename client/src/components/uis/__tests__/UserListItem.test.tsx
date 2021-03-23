@@ -2,51 +2,64 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {
-  RenderAPI,
-  act,
-  cleanup,
-  fireEvent,
-  render,
-} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {fireEvent, render} from '@testing-library/react-native';
+import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
 
 import UserListItem from '../UserListItem';
+import {UserListItemTestQuery} from '../../../__generated__/UserListItemTestQuery.graphql';
+import {createTestElement} from '../../../../test/testUtils';
 
-jest.useFakeTimers();
-
-let cnt = 0;
-
-const onPress = (): void => {
-  cnt++;
+type QueryWrapperProps = {
+  /** Press handler for testing. */
+  onPress?: () => void;
 };
 
-const propsObj = {
-  testID: 'test_yo',
-  user: {
-    id: '',
-    nickname: '',
-    thumbURL: null,
-    photoURL: null,
-    statusMessage: '',
-    isOnline: false,
-    createdAt: undefined,
-    updatedAt: undefined,
-  },
-  onPress,
+const QueryWrapper: React.FC<QueryWrapperProps> = ({onPress}) => {
+  const {myData} = useLazyLoadQuery<UserListItemTestQuery>(
+    graphql`
+      query UserListItemTestQuery {
+        myData: user(id: "test-id") {
+          ...UserListItem_user
+        }
+      }
+    `,
+    {},
+  );
+
+  return <UserListItem onPress={onPress} user={myData ?? undefined} />;
 };
+
+const mockEnvironment = createMockEnvironment();
+
+mockEnvironment.mock.queueOperationResolver((operation) =>
+  MockPayloadGenerator.generate(operation, {
+    User(_, generateId) {
+      return {
+        id: `test-user-${generateId()}`,
+        nickname: '',
+        thumbURL: null,
+        photoURL: null,
+        statusMessage: '',
+        isOnline: false,
+        createdAt: undefined,
+        updatedAt: undefined,
+      };
+    },
+  }),
+);
 
 describe('[UserListItem] rendering test', () => {
-  let props;
-  let component;
+  it('renders as expected', async () => {
+    const component = createTestElement(<QueryWrapper />, {
+      environment: mockEnvironment,
+    });
 
-  beforeEach(() => {
-    props = createTestProps(propsObj);
-    component = createTestElement(<UserListItem {...props} />);
-  });
+    const {toJSON, findByTestId} = render(component);
 
-  it('renders as expected', () => {
-    const json = render(component).toJSON();
+    await findByTestId('peer-button');
+
+    const json = toJSON();
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
@@ -54,25 +67,22 @@ describe('[UserListItem] rendering test', () => {
 });
 
 describe('[UserListItem] interaction', () => {
-  let testingLib: RenderAPI;
-  let props;
-  let component;
+  it('should fireEvent when peer image is pressed', async () => {
+    const onPressMock = jest.fn();
 
-  beforeEach(() => {
-    props = createTestProps(propsObj);
-    component = createTestElement(<UserListItem {...props} />);
-    testingLib = render(component);
-  });
+    const component = createTestElement(
+      <QueryWrapper onPress={onPressMock} />,
+      {
+        environment: mockEnvironment,
+      },
+    );
 
-  afterAll(() => {
-    cleanup();
-  });
+    const screen = render(component);
 
-  it('should fireEvent when peer image is pressed', () => {
-    act(() => {
-      fireEvent.press(testingLib.getByTestId('test_yo'));
-    });
+    const target = await screen.findByTestId('peer-button');
 
-    expect(cnt).toEqual(1);
+    fireEvent.press(target);
+
+    expect(onPressMock).toHaveBeenCalledTimes(1);
   });
 });

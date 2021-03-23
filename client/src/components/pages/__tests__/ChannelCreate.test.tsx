@@ -1,72 +1,41 @@
 import 'react-native';
 
-import React, {ReactElement} from 'react';
-import {RenderAPI, act, fireEvent, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {
+  createMockNavigation,
+  createTestElement,
+} from '../../../../test/testUtils';
+import {fireEvent, render} from '@testing-library/react-native';
 
-import Screen from '../ChannelCreate';
+import ChannelCreate from '../ChannelCreate';
+import React from 'react';
+import ReactNavigation from '@react-navigation/core';
 
-let props: any;
-let component: ReactElement;
-let testingLib: RenderAPI;
+const mockNavigation = createMockNavigation();
+
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+}));
 
 describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
-
   it('renders without crashing', () => {
-    testingLib = render(component);
+    const component = createTestElement(<ChannelCreate />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    const json = testingLib.toJSON();
-
+    expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 });
 
 describe('Interaction', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
-
   it('should change search text', () => {
-    const searchInput = testingLib.getByTestId('text-input');
+    const component = createTestElement(<ChannelCreate />);
+    const screen = render(component);
+    const searchInput = screen.getByTestId('text-input');
 
-    act(() => {
-      fireEvent.changeText(searchInput, 'test search');
-    });
+    fireEvent.changeText(searchInput, 'test search');
 
     expect(searchInput.props.value).toEqual('test search');
   });
-
-  // it('should press userListItem and then remove friend', async () => {
-  //   const userListItem0 = testingLib.getByTestId('user-list-item0');
-  //   act(() => {
-  //     fireEvent.press(userListItem0);
-  //   });
-
-  //   const removeItem0 = testingLib.getByTestId('remove-0');
-  //   await waitForElement(() => removeItem0);
-  //   act(() => {
-  //     fireEvent.press(removeItem0);
-  //   });
-  // });
-
-  // it('should press done button', () => {
-  //   const touchDone = testingLib.getByTestId('touch-done');
-  //   act(() => {
-  //     fireEvent.press(touchDone);
-  //   });
-  // });
-
-  // it('should press error button', () => {
-  //   const btnError = testingLib.getByTestId('btn-error');
-  //   act(() => {
-  //     fireEvent.press(btnError);
-  //   });
-  // });
 });

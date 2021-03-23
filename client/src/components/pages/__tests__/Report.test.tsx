@@ -1,61 +1,40 @@
 import 'react-native';
 
-import React, {ReactElement} from 'react';
-import {RenderAPI, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import ReactNavigation, {RouteProp} from '@react-navigation/core';
+import {
+  createMockNavigation,
+  createTestElement,
+} from '../../../../test/testUtils';
 
-import Screen from '../Report';
+import {MainStackParamList} from '../../navigations/MainStackNavigator';
+import React from 'react';
+import Report from '../Report';
+import {render} from '@testing-library/react-native';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let props: any;
-let component: ReactElement;
-let testingLib: RenderAPI;
+const mockNavigation = createMockNavigation();
+
+const mockRoute: RouteProp<MainStackParamList, 'Report'> = {
+  key: '',
+  name: 'Report',
+  params: {
+    name: 'hello',
+    userId: 'my-user-id',
+  },
+};
+
+jest.mock('@react-navigation/core', () => ({
+  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  useNavigation: () => mockNavigation,
+  useRoute: () => mockRoute,
+}));
 
 describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          name: 'hello',
-          userId: 'my-user-id',
-        },
-      },
-    });
-
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
-
   it('renders without crashing', () => {
-    const baseElement = testingLib.toJSON();
+    const component = createTestElement(<Report />);
+    const screen = render(component);
+    const json = screen.toJSON();
 
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
-  });
-});
-
-describe('Interaction', () => {
-  beforeEach(() => {
-    props = createTestProps({
-      route: {
-        params: {
-          name: 'hello',
-          userId: 'my-user-id',
-        },
-      },
-    });
-
-    component = createTestElement(<Screen {...props} />);
-    testingLib = render(component);
-  });
-
-  it('should simulate onClick', () => {
-    expect(testingLib.toJSON()).toMatchSnapshot();
-    // const btn = testingLib.queryByTestId('btn');
-    // act(() => {
-    //   fireEvent.press(btn);
-    //   fireEvent.press(btn);
-    // });
-    // expect(cnt).toBe(3);
+    expect(json).toMatchSnapshot();
+    expect(json).toBeTruthy();
   });
 });

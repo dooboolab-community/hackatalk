@@ -492,6 +492,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   userSignedIn?: Maybe<User>;
   userUpdated?: Maybe<User>;
+  onMessage?: Maybe<Message>;
 };
 
 

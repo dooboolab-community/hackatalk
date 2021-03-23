@@ -1,7 +1,7 @@
+import {Request, Response, Router} from 'express';
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
-import {Router} from 'express';
 import multer from 'multer';
 import {prisma} from '../context';
 import qs from 'querystring';
@@ -13,8 +13,6 @@ interface VerificationToken {
   email: string;
   type: 'verifyEmail' | 'findPassword';
 }
-
-const {JWT_SECRET} = process.env;
 
 export function resolveBlobName(destFile: string, destDir: string): string {
   return `${destDir}_${new Date().getTime()}_${destFile}`;
@@ -41,17 +39,12 @@ function bufferToStream(buffer: Buffer): stream.Readable {
   return duplexStream;
 }
 
-router.use((req: ReqI18n, res, next) => {
-  req.appSecret = process.env.JWT_SECRET;
-  next();
-});
-
 const verifyEmailToken = (
   token: string,
   appSecretEtc: string,
 ): VerificationToken => verify(token, appSecretEtc) as VerificationToken;
 
-const onResetPassword = async (req: ReqI18n, res): Promise<void> => {
+const onResetPassword = async (req: Request, res: Response): Promise<void> => {
   const token = req.params.token;
   const randomPassword = qs.unescape(req.params.password);
 
@@ -77,7 +70,7 @@ const onResetPassword = async (req: ReqI18n, res): Promise<void> => {
   }
 };
 
-const onVerifyEmail = async (req: ReqI18n, res): Promise<void> => {
+const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   const token = req.params.token;
 
   try {
@@ -115,23 +108,27 @@ const onVerifyEmail = async (req: ReqI18n, res): Promise<void> => {
   }
 };
 
-const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
+const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
   const token = getToken(req);
 
   if (token === null) {
     res.status(401);
 
-    return res.json({
+    res.json({
       message: 'User has not signed in.',
     });
+
+    return;
   }
 
   if (req.file === undefined) {
     res.status(400);
 
-    return res.json({
+    res.json({
       message: 'File is missing.',
     });
+
+    return;
   }
 
   const url = await uploadFileToAzureBlobFromStream(
@@ -141,15 +138,11 @@ const onUploadSingle = async (req: ReqI18n, res): Promise<void> => {
     'hackatalk',
   );
 
-  req.file.url = url;
-
-  res.status(200).json(req.file);
+  res.status(200).json({
+    ...req.file,
+    url,
+  });
 };
-
-router.use((req: ReqI18n, res, next) => {
-  req.appSecret = JWT_SECRET;
-  next();
-});
 
 router
   .get('/reset_password/:token/:password', onResetPassword)

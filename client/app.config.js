@@ -91,6 +91,7 @@ export default {
     extra: {
       GRAPHQL_URL: process.env.GRAPHQL_URL,
       ROOT_URL: process.env.ROOT_URL,
+      SUBSCRIPTION_URL: process.env.SUBSCRIPTION_URL,
       facebookAppId: process.env.facebookAppId,
       facebookSecret: process.env.facebookSecret,
       googleWebClientId: process.env.googleWebClientId,

@@ -10,22 +10,7 @@ export type MainFriend_friends = {
             readonly cursor: string;
             readonly node: {
                 readonly id: string;
-                readonly email: string | null;
-                readonly name: string | null;
-                readonly nickname: string | null;
-                readonly thumbURL: string | null;
-                readonly photoURL: string | null;
-                readonly birthday: unknown | null;
-                readonly gender: unknown | null;
-                readonly phone: string | null;
-                readonly statusMessage: string | null;
-                readonly verified: boolean | null;
-                readonly lastSignedIn: unknown | null;
-                readonly isOnline: boolean | null;
-                readonly hasBlocked: boolean | null;
-                readonly createdAt: unknown | null;
-                readonly updatedAt: unknown | null;
-                readonly deletedAt: unknown | null;
+                readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
             } | null;
         } | null> | null;
         readonly pageInfo: {
@@ -131,120 +116,18 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
-                  "name": "email",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "name",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "nickname",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "thumbURL",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "photoURL",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "birthday",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "gender",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "phone",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "statusMessage",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "verified",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "lastSignedIn",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "isOnline",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "hasBlocked",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "createdAt",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "updatedAt",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "deletedAt",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "ProfileModal_user"
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "UserListItem_user"
                 }
               ],
               "storageKey": null
@@ -285,5 +168,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '5e5d71064e799fd4fe5cc0c1ffb7344b';
+(node as any).hash = '2eafd01b0fcaf94a5708b4a275b195c9';
 export default node;
