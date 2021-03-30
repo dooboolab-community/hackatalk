@@ -37,7 +37,6 @@ import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
-import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
   MainTab: undefined;

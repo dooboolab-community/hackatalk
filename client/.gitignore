@@ -115,3 +115,5 @@ config.ts
 .enum_manifest.json
 .source_strings.json
 .src_manifest.json
+
+config.ts

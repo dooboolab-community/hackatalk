@@ -12,45 +12,52 @@ const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock &
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
+// Mock react-native-reanimated because it depends on native modules
+// which is not available inside testing environment.
+jest.mock('react-native-reanimated', () =>
+  jest.requireActual('react-native-reanimated/mock'),
+);
+
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 jest.mock('expo-constants', () => ({
   appOwnership: 'expo',
+  manifest: {
+    extra: {
+      GRAPHQL_URL: process.env.GRAPHQL_URL,
+      ROOT_URL: process.env.ROOT_URL,
+      facebookAppId: process.env.facebookAppId,
+      facebookSecret: process.env.facebookSecret,
+      googleWebClientId: process.env.googleWebClientId,
+      googleAndroidClientId: process.env.googleAndroidClientId,
+      googleIOSClientId: process.env.googleIOSClientId,
+    },
+  },
 }));
 
 jest.mock('react-native-scalable-image', () => 'test');
 
 // Mock dooboo-ui because it is causing cyclic reference issue that
 // breaks jest snapshot serializer.
+jest.mock('dooboo-ui', () => {
+  const DoobooUI = jest.requireActual('dooboo-ui');
+  const React = jest.requireActual('react');
+  const ReactNative = jest.requireActual('react-native');
 
-jest.useFakeTimers();
-jest.setTimeout(30000);
+  DoobooUI.Button = jest.fn().mockImplementation(() => 'dooboo-ui-button');
 
-jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
+  const ret = {
+    ...DoobooUI,
+    get Button() {
+      return jest
+        .fn()
+        .mockImplementation((props) =>
+          React.createElement(ReactNative.TouchableOpacity, props),
+        );
+    },
+  };
 
-jest.mock('react-native-reanimated', () =>
-  require('react-native-reanimated/mock'),
-);
-
-// jest.mock('dooboo-ui', () => {
-//   const DoobooUI = jest.requireActual('dooboo-ui');
-//   const React = jest.requireActual('react');
-//   const ReactNative = jest.requireActual('react-native');
-
-//   DoobooUI.Button = jest.fn().mockImplementation(() => 'dooboo-ui-button');
-
-//   const ret = {
-//     ...DoobooUI,
-//     get Button() {
-//       return jest
-//         .fn()
-//         .mockImplementation((props) =>
-//           React.createElement(ReactNative.TouchableOpacity, props),
-//         );
-//     },
-//   };
-
-//   return ret;
-// });
+  return ret;
+});
 
 initFbt();
