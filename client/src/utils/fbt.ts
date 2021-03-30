@@ -1,7 +1,7 @@
 import * as Localization from 'expo-localization';
 
 import {init} from 'fbt';
-import intl from '../../assets/translatedFbts.json';
+import intl from '../utils/i18n/fbt/translatedFbts.json';
 
 const DEFAULT_LOCALE = 'en';
 
