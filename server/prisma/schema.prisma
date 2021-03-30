@@ -44,6 +44,9 @@ model User {
   memberships            Membership[]            @relation("Membership")
   blockedUsers           BlockedUser[]           @relation("BlockedUser")
   reports                Report[]                @relation("Report")
+  messages               Message[]               @relation("Message")
+  replys                 Reply[]                 @relation("Reply")
+  reactions              Reaction[]              @relation("Reaction")
 }
 
 model Notification {
@@ -52,7 +55,7 @@ model Notification {
   device                 String?
   os                     String?
   userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
+  user                   User                    @relation("Notification", fields: [userId], references: [id])
   createdAt              DateTime?               @default(now())
 }
 
@@ -71,7 +74,6 @@ model Friend {
   deletedAt              DateTime?
 
   userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
   friendId               String
   friend                 User                    @relation(name: "Friend", fields: [friendId], references: [id])
 
@@ -84,7 +86,6 @@ model BlockedUser {
   deletedAt              DateTime?
 
   userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
   blockedUserId          String
   blockedUser            User                    @relation(name: "BlockedUser", fields: [blockedUserId], references: [id])
 
@@ -92,17 +93,14 @@ model BlockedUser {
 }
 
 model Report {
+  id                     String                  @default(cuid()) @id
   report                 String
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
   deletedAt              DateTime?
 
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
   reportedUserId         String
   reportedUser           User                    @relation(name: "Report", fields: [reportedUserId], references: [id])
-
-  @@id([userId, reportedUserId])
 }
 
 enum MembershipType {
@@ -125,7 +123,7 @@ model Membership {
   updatedAt              DateTime?               @default(now()) @updatedAt
 
   userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
+  user                   User                    @relation("Membership", fields: [userId], references: [id])
   channelId              String
   channel                Channel                 @relation(fields: [channelId], references: [id])
 
@@ -162,16 +160,16 @@ model Message {
   imageUrls              String[]
   fileUrls               String[]
   reactions              Reaction[]
+  replys                 Reply[]                 @relation("Reply")
 
-  replies                Reply[]                 @relation("Reply")
   createdAt              DateTime?               @default(now())
   updatedAt              DateTime?               @default(now()) @updatedAt
   deletedAt              DateTime?
 
   channelId              String
-  channel                Channel                 @relation(fields: [channelId], references: [id])
+  channel                Channel                 @relation("Message", fields: [channelId], references: [id])
   senderId               String
-  sender                 User                    @relation(fields: [senderId], references: [id])
+  sender                 User                    @relation("Message", fields: [senderId], references: [id])
 }
 
 model Reply {
@@ -186,16 +184,16 @@ model Reply {
   deletedAt              DateTime?
 
   senderId               String
-  sender                 User                    @relation(fields: [senderId], references: [id])
+  sender                 User                    @relation("Reply", fields: [senderId], references: [id])
   messageId              String
-  message                Message                 @relation(fields: [messageId], references: [id])
+  message                Message                 @relation("Reply", fields: [messageId], references: [id])
 }
 
 model Reaction {
   id                     Int                     @default(autoincrement()) @id
   value                  String
   userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
+  user                   User                    @relation("Reaction", fields: [userId], references: [id])
   messageId              String
   message                Message                 @relation(fields: [messageId], references: [id])
   replyId                Int
