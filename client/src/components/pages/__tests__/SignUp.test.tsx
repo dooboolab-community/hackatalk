@@ -23,37 +23,17 @@ jest.mock('@react-navigation/core', () => ({
 }));
 
 describe('[SignUp] rendering test', () => {
-  let props: any;
-  let component: ReactElement;
-  let testingLib: RenderAPI;
-
-  beforeEach(() => {
-    props = createTestProps();
-  });
-
-  afterEach(cleanup);
-
   it('renders as expected', () => {
     const component = createTestElement(<SignUp />);
     const screen = render(component);
     const json = screen.toJSON();
 
+    expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
 });
 
 describe('[SignUp] interaction', () => {
-  let props: any;
-  let component: ReactElement;
-
-  beforeEach(() => {
-    props = createTestProps();
-
-    component = createTestElement(<SignUp {...props} />);
-  });
-
-  afterEach(cleanup);
-
   it('should invoke changeText event handler when email changed', async () => {
     const component = createTestElement(<SignUp />);
     const screen = render(component);
