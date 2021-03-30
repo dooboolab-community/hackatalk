@@ -9,7 +9,7 @@ export const reports = queryField('reports', {
 
   resolve: (_, {userId}, ctx) => {
     return ctx.prisma.report.findMany({
-      where: {userId},
+      where: {reportedUserId: userId},
     });
   },
 });
