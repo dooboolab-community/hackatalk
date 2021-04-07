@@ -89,7 +89,7 @@ export interface FacebookUser {
   id: string;
   name: string;
   email: string;
-  picture?: {
+  picture: {
     data: {
       height: number;
       is_silhouette: boolean;
