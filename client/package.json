@@ -31,6 +31,8 @@
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
     "ios": "react-native run-ios",
     "android": "react-native run-android",
+    "build:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ./ios --sourcemap-output ./ios/main.jsbundle.map",
+    "build:android": "react-native bundle --entry-file index.js --platform android --dev false --bundle-output android/main.jsbundle --assets-dest ./android --sourcemap-output ./android/main.jsbundle.map",
     "manifest": "fbt-manifest --src src/ --enum-manifest  src/utils/i18n/fbt/.enum_manifest.json --src-manifest  src/utils/i18n/fbt/.src_manifest.json",
     "collect-fbts": "fbt-collect --hash-module 'fb-tiger-hash/src/hashPhrases' --react-native-mode --manifest --options __self <  src/utils/i18n/fbt/.src_manifest.json >  src/utils/i18n/fbt/.source_strings.json",
     "translate-fbts": "fbt-translate --jenkins --source-strings  src/utils/i18n/fbt/.source_strings.json --translations assets/translations/*.json >  src/utils/i18n/fbt/translatedFbts.json",
