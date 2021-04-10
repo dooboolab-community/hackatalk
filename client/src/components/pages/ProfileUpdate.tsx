@@ -6,7 +6,7 @@ import {
   UploadSingleUploadMutation,
   UploadSingleUploadMutationResponse,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
-import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay/hooks';
+import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,

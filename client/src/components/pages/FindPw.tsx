@@ -46,12 +46,12 @@ const Page: FC = () => {
 
     const mutationConfig = {
       variables: {email},
-      onError: (error: Error): void => {
+      onError: (error: Error) => {
         showAlertForError(error);
       },
       onCompleted: (
         response: UserFindPwMutationResponse,
-        errors: PayloadError[],
+        errors: PayloadError[] | null,
       ) => {
         const result = response.findPassword;
 
