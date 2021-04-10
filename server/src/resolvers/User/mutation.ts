@@ -144,17 +144,22 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
   args: {accessToken: nonNull(stringArg())},
 
   resolve: async (_parent, {accessToken}, ctx) => {
-    const {id: facebookId, name, email, picture} = await verifyFacebookId(
-      accessToken,
-    );
+    const {
+      id: facebookId,
+      name,
+      email,
+      picture: {
+        data: {url},
+      },
+    } = await verifyFacebookId(accessToken);
 
     return UserService.signInWithSocialAccount(
       {
         socialId: facebookId,
         authType: AuthType.facebook,
         name,
-        email: email || `${facebookId}@facebook.com`,
-        photoURL: picture && picture.data.url,
+        email: email || '',
+        photoURL: url,
       },
       ctx,
     );

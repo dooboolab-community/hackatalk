@@ -7,14 +7,18 @@ import {testHost} from '../../testSetup';
 describe('signInWithFacebook', () => {
   it('should signIn user wigh Facebook', async () => {
     const variables = {
-      accessToken: 'google_user_token',
+      accessToken: 'facebook_user_token',
     };
 
     jest.spyOn(AuthUtils, 'verifyFacebookId').mockImplementation(() =>
       // @ts-ignore
       Promise.resolve({
         id: 'facebook_user_id',
+        name: 'userName',
         email: 'facebook@email.com',
+        picture: {
+          data: 'http://image.com',
+        },
       } as AuthUtils.FacebookUser),
     );
 
