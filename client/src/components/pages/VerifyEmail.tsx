@@ -8,7 +8,7 @@ import type {
 
 import {Alert} from 'react-native';
 import {AuthStackParamList} from '../navigations/AuthStackNavigator';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -54,11 +54,19 @@ const Page: FC = () => {
     },
     onCompleted: (response: UserVerifyEmailMutationResponse) => {
       if (response.sendVerification)
-        return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+        return Alert.alert(
+          fbt(
+            'Email verification link has been resent',
+            'email verification resent',
+          ).toString(),
+        );
 
       Alert.alert(
-        getString('ERROR'),
-        getString('RESENT_VERIFICATION_EMAIL_FAILED'),
+        fbt('Error', 'error').toString(),
+        fbt(
+          'Email has not sent. Please check the email address once more.',
+          'failed sending email verification',
+        ).toString(),
       );
     },
     onError: (error: any): void => {
@@ -72,8 +80,11 @@ const Page: FC = () => {
       commitEmail(mutationConfig);
     } catch (err) {
       Alert.alert(
-        getString('ERROR'),
-        getString('RESENT_VERIFICATION_EMAIL_FAILED'),
+        fbt('Error', 'error').toString(),
+        fbt(
+          'Email has not sent. Please check the email address once more.',
+          'failed sending email verification',
+        ),
       );
     } finally {
       setLoading(false);
@@ -86,7 +97,10 @@ const Page: FC = () => {
         style={{
           marginBottom: 24,
         }}>
-        {getString('VERIFICATION_EMAIL_SENT')}
+        <fbt desc="varification email sent">
+          Verification link has been sent. Please check your email. If you have
+          not received an email please check out your spam inbox.
+        </fbt>
       </StyledText>
       <StyledHighlightText>{email}</StyledHighlightText>
       <Button
@@ -106,7 +120,7 @@ const Page: FC = () => {
             fontSize: 16,
           },
         }}
-        text={getString('RESEND_EMAIL')}
+        text={fbt('Resent Email', 'resent email').toString()}
         loading={isInFlight}
       />
       {loading ? <LoadingIndicator /> : null}

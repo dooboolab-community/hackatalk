@@ -1,8 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import {Alert, Image, View} from 'react-native';
-import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
+import {Alert, Image, View, useColorScheme} from 'react-native';
 import {AuthProvider, useAuthContext} from './providers/AuthProvider';
 import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
 import React, {
@@ -29,7 +28,7 @@ import ComponentWrapper from './utils/ComponentWrapper';
 import Icons from './utils/Icons';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {User} from './types/graphql';
-import {getString} from '../STRINGS';
+import {fbt} from 'fbt';
 import {initFbt} from './utils/fbt';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import relayEnvironment from './relay';
@@ -99,14 +98,20 @@ function App(): ReactElement {
         }
 
         Alert.alert(
-          getString('WARNING'),
-          getString('NOTIFICATION_TOKEN_NOT_VALID'),
+          fbt('Warning', 'warning').toString(),
+          fbt(
+            "You won't receive the new messages from other users. Please enable push notification.",
+            'notification token not valid',
+          ).toString(),
         );
       })
       .catch((): void => {
         Alert.alert(
-          getString('ERROR'),
-          getString('NOTIFICATION_TOKEN_NOT_VALID'),
+          fbt('Warning', 'warning').toString(),
+          fbt(
+            "You won't receive the new messages from other users. Please enable push notification.",
+            'notification token not valid',
+          ).toString(),
         );
       });
   };
@@ -171,7 +176,6 @@ const WrappedApp = new ComponentWrapper(App)
   .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
   .wrap(AuthProvider, {})
   .wrap(HackatalkThemeProvider, {})
-  .wrap(AppearanceProvider, {})
   .build();
 
 export default WrappedApp;

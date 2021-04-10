@@ -1,6 +1,6 @@
 import {Alert, Platform} from 'react-native';
 
-import {getString} from '../../STRINGS';
+import {fbt} from 'fbt';
 
 export const validateEmail = (email: string): boolean => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20,7 +20,7 @@ export const showAlertForError = (error: Error | string): void => {
   if (Platform.OS === 'web') return alert(error || '');
 
   return Alert.alert(
-    getString('ERROR'),
+    fbt('Error', 'error').toString(),
     typeof error === 'string' ? error : error?.message ?? '',
   );
 };

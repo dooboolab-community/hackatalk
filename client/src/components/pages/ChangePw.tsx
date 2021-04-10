@@ -15,7 +15,7 @@ import type {
 
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {changeEmailPasswordMutation} from '../../relay/queries/User';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
@@ -55,7 +55,10 @@ const ChangePw: FC = () => {
 
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {
-      Alert.alert(getString('ERROR'), getString('PASSWORD_MUST_MATCH'));
+      Alert.alert(
+        fbt('Error', 'error').toString(),
+        fbt('Password does not match', 'password must match').toString(),
+      );
 
       return;
     }
@@ -72,15 +75,25 @@ const ChangePw: FC = () => {
         const resultBool = response.changeEmailPassword;
 
         if (resultBool) {
-          Alert.alert(getString('SUCCESS'), getString('PASSWORD_IS_CHANGED'));
+          Alert.alert(
+            fbt('Success', 'success').toString(),
+            fbt(
+              'Your password has been changed successfully',
+              'Password has changed',
+            ).toString(),
+          );
+
           navigation.goBack();
 
           return;
         }
 
         Alert.alert(
-          getString('FAILED'),
-          getString('CHANGE_PASSWORD_HAS_FAILED'),
+          fbt('Failed', 'failed').toString(),
+          fbt(
+            'Failed to change password. Please retry.',
+            'changing password has failed',
+          ).toString(),
         );
       },
     };
@@ -146,7 +159,10 @@ const ChangePw: FC = () => {
             placeholderTextColor={theme.placeholder}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
-            labelText={getString('PASSWORD_CURRENT')}
+            labelText={fbt(
+              'Enter current password',
+              'enter current password',
+            ).toString()}
             value={currentPw}
             placeholder="******"
           />
@@ -165,7 +181,10 @@ const ChangePw: FC = () => {
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setNewPw(pw)}
-            labelText={getString('PASSWORD_NEW')}
+            labelText={fbt(
+              'Enter new password',
+              'enter new password',
+            ).toString()}
             value={newPw}
             placeholder="******"
           />
@@ -184,7 +203,10 @@ const ChangePw: FC = () => {
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
-            labelText={getString('PASSWORD_NEW_REPEAT')}
+            labelText={fbt(
+              'Repeat new password',
+              'repeat new password',
+            ).toString()}
             value={confirmPw}
             placeholder="******"
           />
@@ -212,7 +234,7 @@ const ChangePw: FC = () => {
             },
           }}
           loading={isInFlight}
-          text={getString('UPDATE')}
+          text={fbt('Update', 'update').toString()}
         />
       </StyledKeyboardAvoidingView>
     </SafeAreaView>

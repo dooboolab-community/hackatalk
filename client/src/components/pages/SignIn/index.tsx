@@ -52,7 +52,7 @@ import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
 import {createNotification} from '../../../relay/queries/Notification';
-import {getString} from '../../../../STRINGS';
+import {fbt} from 'fbt';
 import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -137,6 +137,18 @@ const StyledScrollView = styled.ScrollView`
 `;
 
 const SignIn: FC = () => {
+  const errorEmailString = fbt(
+    'Email format is not valid.',
+    'email format not valid',
+  );
+
+  const errorPasswordRequiredString = fbt(
+    'Password is required.',
+    'password is required',
+  );
+
+  const errorPasswordString = fbt('Incorrect Password', 'incorrect password');
+
   const navigation = useNavigation<AuthStackNavigationProps<'SignIn'>>();
   const {setUser} = useAuthContext();
   const {theme, changeThemeType, themeType} = useTheme();
@@ -185,13 +197,13 @@ const SignIn: FC = () => {
 
   const signIn = async (): Promise<void> => {
     if (!validateEmail(email)) {
-      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      setErrorEmail(errorEmailString);
 
       return;
     }
 
     if (!password) {
-      setErrorPassword(getString('PASSWORD_REQUIRED'));
+      setErrorPassword(errorPasswordRequiredString);
 
       return;
     }
@@ -225,7 +237,7 @@ const SignIn: FC = () => {
 
       onError: (error: Error): void => {
         setErrorPassword(error.message);
-        setErrorPassword(getString('PASSWORD_INCORRECT'));
+        setErrorPassword(errorPasswordString);
       },
     };
 
@@ -375,7 +387,9 @@ const SignIn: FC = () => {
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
-            <StyledLogoText>{getString('HELLO')}</StyledLogoText>
+            <StyledLogoText>
+              <fbt desc="hello">Hello</fbt>
+            </StyledLogoText>
           </LogoWrapper>
           <EditText
             type="row"
@@ -390,7 +404,7 @@ const SignIn: FC = () => {
               },
             }}
             style={{marginBottom: 20}}
-            labelText={getString('EMAIL')}
+            labelText={fbt('Email', 'email')}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
             placeholder="hello@example.com"
@@ -415,7 +429,7 @@ const SignIn: FC = () => {
               },
             }}
             style={{marginBottom: 20}}
-            labelText={getString('PASSWORD')}
+            labelText={fbt('Password', 'password').toString()}
             focusColor={theme.focused}
             placeholder="******"
             placeholderTextColor={theme.placeholder}
@@ -452,7 +466,7 @@ const SignIn: FC = () => {
                   borderColor: theme.text,
                 },
               }}
-              text={getString('SIGN_UP')}
+              text={fbt('Sign Up', 'sign up').toString()}
             />
             <View style={{width: 12}} />
             <Button
@@ -482,11 +496,13 @@ const SignIn: FC = () => {
                   borderColor: theme.text,
                 },
               }}
-              text={getString('LOGIN')}
+              text={fbt('Login', 'login').toString()}
             />
           </ButtonWrapper>
           <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
-            <FindPwText>{getString('FORGOT_PW')}</FindPwText>
+            <FindPwText>
+              <fbt desc="forgot password">Forgot password</fbt>?
+            </FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
             {Platform.select({
@@ -516,7 +532,10 @@ const SignIn: FC = () => {
                   loading={signingInApple || isAppleInFlight}
                   indicatorColor={theme.primary}
                   onPress={appleLogin}
-                  text={getString('SIGN_IN_WITH_APPLE')}
+                  text={fbt(
+                    'Sign in with Apple',
+                    'sign in with apple',
+                  ).toString()}
                 />
               ),
             })}
@@ -542,23 +561,29 @@ const SignIn: FC = () => {
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
-            <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
+            <StyledAgreementText>
+              <fbt desc="agreement1">We consider that you agree with </fbt>
+            </StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-terms"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/termsofservice')
               }>
-              {getString('AGREEMENT2')}
+              <fbt desc="agreeement2">Terms for Agreement</fbt>
             </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
+            <StyledAgreementText>
+              <fbt desc="agreement3"> and </fbt>
+            </StyledAgreementText>
             <StyledAgreementLinedText
               testID="btn-privacy"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/privacyandpolicy')
               }>
-              {getString('AGREEMENT4')}
+              <fbt desc="privacy and policy">Privacy and Policy</fbt>
             </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
+            <StyledAgreementText>
+              <fbt desc="agreement5"> by going onto next step.</fbt>
+            </StyledAgreementText>
           </StyledAgreementTextWrapper>
         </Wrapper>
       </StyledScrollView>

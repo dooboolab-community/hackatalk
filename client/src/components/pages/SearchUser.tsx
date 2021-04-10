@@ -23,7 +23,7 @@ import {LoadingIndicator} from 'dooboo-ui';
 import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
 import UserListItem from '../uis/UserListItem';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import styled from 'styled-components/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
@@ -131,7 +131,9 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
       data={nodes}
       renderItem={renderItem}
       ListEmptyComponent={
-        <EmptyListItem>{getString('NO_RECENT_SEARCH')}</EmptyListItem>
+        <EmptyListItem>
+          {fbt('No recent searches', 'no recent searches').toString()}
+        </EmptyListItem>
       }
       refreshing={isLoadingNext}
       onRefresh={() => {

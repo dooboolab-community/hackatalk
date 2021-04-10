@@ -48,7 +48,7 @@ import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutat
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {createMessageUpdater} from '../../relay/updaters';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -207,7 +207,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         const {url} = JSON.parse(await response.text());
 
         if (!url)
-          return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+          return Alert.alert(
+            fbt('Error', 'error').toString(),
+            fbt(
+              'Url is not received from the file',
+              'url not received',
+            ).toString(),
+          );
 
         commitMessage({
           variables: {
@@ -227,7 +233,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err) {
-        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+        Alert.alert(
+          fbt('Error', 'error').toString(),
+          fbt(
+            'Failed loading image. Please try again.',
+            'failed loading image',
+          ).toString(),
+        );
       }
 
     setIsImageUploading(false);
@@ -294,7 +306,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       fontColor={theme.text}
       keyboardOffset={insets.top + insets.bottom}
       message={textToSend}
-      placeholder={getString('WRITE_MESSAGE')}
+      placeholder={fbt('Write message...', 'write message...').toString()}
       placeholderTextColor={theme.placeholder}
       onChangeMessage={(text: string): void => setTextToSend(text)}
       renderItem={renderItem}
@@ -309,7 +321,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           source={IC_SMILE}
         />
       }
-      emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
+      emptyItem={
+        <EmptyListItem>
+          {fbt('No content', 'no content').toString()}
+        </EmptyListItem>
+      }
       renderViewMenu={(): React.ReactElement => (
         <View
           style={{
@@ -367,7 +383,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           }}
           loading={isMessageInFlight || isImageUploading}
           onPress={onSubmit}
-          text={getString('SEND')}
+          text={fbt('Send', 'send').toString()}
           textProps={{
             numberOfLines: 1,
           }}

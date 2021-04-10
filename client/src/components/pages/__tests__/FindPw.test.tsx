@@ -9,7 +9,6 @@ import {Alert} from 'react-native';
 import FindPw from '../FindPw';
 import React from 'react';
 import ReactNavigation from '@react-navigation/core';
-import {getString} from '../../../../STRINGS';
 
 const mockNavigation = createMockNavigation();
 
@@ -52,7 +51,7 @@ describe('[FindPw] interaction', () => {
 
       fireEvent.press(btnFindPw);
 
-      const errorText = screen.getByText(getString('EMAIL_FORMAT_NOT_VALID'));
+      const errorText = screen.getByText('Email format is not valid.');
 
       expect(errorText).toBeTruthy();
     });
@@ -83,7 +82,7 @@ describe('[FindPw] interaction', () => {
 
       expect(mockAlert).toHaveBeenCalledWith(
         expect.any(String),
-        getString('PASSWORD_RESET_EMAIL_SENT'),
+        'A Password reset link has been sent. Please check your email.',
       );
     });
   });

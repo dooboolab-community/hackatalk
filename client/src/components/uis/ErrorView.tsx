@@ -2,7 +2,7 @@ import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactChildren} from 'react';
 
 import {IC_ERROR} from '../../utils/Icons';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import styled from 'styled-components/native';
 
 const Container = styled.View`
@@ -56,9 +56,9 @@ interface Props {
 const ErrorView: FC<Props> = (props) => {
   const {
     onButtonPressed,
-    title = getString('ERROR_OCCURED'),
+    title = fbt('Error occured.', 'error occured').toString(),
     body = '',
-    buttonText = getString('TRY_AGAIN'),
+    buttonText = fbt('Try again', 'try again').toString(),
     hideButton,
     testID,
   } = props;

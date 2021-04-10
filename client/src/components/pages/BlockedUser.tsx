@@ -6,7 +6,7 @@ import {LoadingIndicator} from 'dooboo-ui';
 import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import styled from 'styled-components/native';
 import {useLazyLoadQuery} from 'react-relay/hooks';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
@@ -65,7 +65,9 @@ const ContentContainer: FC = () => {
       data={blockedUsers}
       renderItem={renderItem}
       ListEmptyComponent={
-        <EmptyListItem>{getString('NO_BANNED_USER')}</EmptyListItem>
+        <EmptyListItem>
+          {fbt('No banned user', 'no banned user').toString()}
+        </EmptyListItem>
       }
       ListFooterComponent={<View style={{height: 60}} />}
       onEndReachedThreshold={0.1}

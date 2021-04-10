@@ -35,8 +35,8 @@ import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.
 import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import {RootStackNavigationProps} from '../RootStackNavigator';
+import {fbt} from 'fbt';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
-import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/core';
@@ -314,7 +314,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             navigation.navigate('MainStack', {
               screen: 'Report',
               params: {
-                name: nickname || name || getString('NO_NAME'),
+                name: nickname || name || fbt('Unnamed', 'unnamed').toString(),
                 userId: id,
               },
             });
@@ -345,18 +345,26 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             testID="touch-done"
             onPress={(): void =>
               Alert.alert(
-                hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
                 hasBlocked
-                  ? getString('UNBAN_USER_TEXT')
-                  : getString('BAN_USER_TEXT'),
+                  ? fbt('Unban User', 'unban user').toString()
+                  : fbt('Ban User', 'ban user').toString(),
+                hasBlocked
+                  ? fbt(
+                      'Do you want to unban current user? If then, you will start to see and receive messages from the user.',
+                      'unban user text',
+                    ).toString()
+                  : fbt(
+                      'Do you want to unban current user? If then, you will start to see and receive messages from the user.',
+                      'ban user text',
+                    ).toString(),
                 [
                   {
-                    text: getString('NO'),
+                    text: fbt('No', 'no').toString(),
                     onPress: () => {},
                     style: 'cancel',
                   },
                   {
-                    text: getString('YES'),
+                    text: fbt('Yes', 'yes').toString(),
                     onPress: hasBlocked ? deleteBlockedUser : createBlockedUser,
                   },
                 ],
@@ -408,7 +416,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           )}
         </TouchableOpacity>
         <StyledTextDisplayName numberOfLines={1}>
-          {nickname || name || getString('NO_NAME')}
+          {nickname || name || fbt('Unnamed', 'unnamed').toString()}
         </StyledTextDisplayName>
         <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
       </StyledView>
@@ -417,11 +425,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           <LoadingIndicator size="small" />
         ) : modalState?.isFriend ? (
           <StyledTextFriendAlreadyAdded testID="already-added-message">
-            {getString('FRIEND_ALREADY_ADDED')}
+            <fbt desc="friend already added">Already your friend.</fbt>
           </StyledTextFriendAlreadyAdded>
         ) : (
           <StyledTextFriendAdded testID="added-message">
-            {getString('FRIEND_ADDED')}
+            <fbt desc="friend added">Added to your friend.</fbt>
           </StyledTextFriendAdded>
         )
       ) : null}
@@ -437,9 +445,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               style={styles.viewBtn}>
               <View style={styles.viewBtn}>
                 <StyledText testID="text-add-title">
-                  {modalState?.isFriend
-                    ? getString('DELETE_FRIEND')
-                    : getString('ADD_FRIEND')}
+                  {modalState?.isFriend ? (
+                    <fbt desc="delete">Delete</fbt>
+                  ) : (
+                    <fbt desc="add">Add</fbt>
+                  )}
                 </StyledText>
               </View>
             </TouchableOpacity>
@@ -458,7 +468,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   style={{
                     color: modalBtnPrimaryFont,
                   }}>
-                  {getString('CHAT')}
+                  <fbt desc="chat">Chat</fbt>
                 </StyledText>
               </View>
             )}

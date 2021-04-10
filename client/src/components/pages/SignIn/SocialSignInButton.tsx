@@ -20,7 +20,7 @@ import {
 } from '../../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getString} from '../../../../STRINGS';
+import {fbt} from 'fbt';
 import {showAlertForError} from '../../../utils/common';
 import {useMutation} from 'react-relay/hooks';
 
@@ -167,7 +167,7 @@ const SocialSignInButton: FC<Props> = ({
     try {
       await promptAsync({useProxy});
     } catch (err) {
-      Alert.alert(getString('ERROR'), err);
+      Alert.alert(fbt('Error', 'error').toString(), err);
     } finally {
       setSigningIn(false);
     }
@@ -196,7 +196,7 @@ const SocialSignInButton: FC<Props> = ({
         loading={isGoogleInFlight || signingIn}
         indicatorColor={theme.primary}
         onPress={requestSignIn}
-        text={getString('SIGN_IN_WITH_GOOGLE')}
+        text={fbt('Sign in with Google', 'sign in with google').toString()}
       />
     );
 
@@ -219,7 +219,7 @@ const SocialSignInButton: FC<Props> = ({
       loading={isFacebookInFlight || signingIn}
       indicatorColor={theme.primary}
       onPress={requestSignIn}
-      text={getString('SIGN_IN_WITH_FACEBOOK')}
+      text={fbt('Sign in with Facebook', 'sign in with facebook').toString()}
     />
   );
 };

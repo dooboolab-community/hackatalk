@@ -6,7 +6,7 @@ import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import moment from 'moment';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
@@ -208,7 +208,9 @@ const MessageListItem: FC<Props> = ({
             <View />
           ) : (
             <StyledTextPeerName>
-              {sender?.nickname || sender?.name || getString('NO_NAME')}
+              {sender?.nickname ||
+                sender?.name ||
+                fbt('Unnamed', 'unnamed').toString()}
             </StyledTextPeerName>
           )}
           <View

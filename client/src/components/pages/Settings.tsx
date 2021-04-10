@@ -9,7 +9,7 @@ import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -116,7 +116,7 @@ const Settings: FC = () => {
     case 'google':
       signInInfoOption = {
         icon: <SvgGoogle width={24} fill={theme.text} />,
-        label: getString('SIGNED_IN_WITH_GOOGLE'),
+        label: fbt('Signed in with Google', 'signed in with google').toString(),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
@@ -127,7 +127,10 @@ const Settings: FC = () => {
     case 'facebook':
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.text} />,
-        label: getString('SIGNED_IN_WITH_FACEBOOK'),
+        label: fbt(
+          'Signed in with Facebook',
+          'signed in with facebook',
+        ).toString(),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
@@ -138,7 +141,7 @@ const Settings: FC = () => {
     case 'apple':
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.text} />,
-        label: getString('SIGNED_IN_WITH_APPLE'),
+        label: fbt('Signed in with Apple', 'signed in with apple').toString(),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
@@ -149,7 +152,7 @@ const Settings: FC = () => {
     case 'email':
     default:
       signInInfoOption = {
-        label: getString('SIGNED_IN_WITH_EMAIL'),
+        label: fbt('Signed in with Email', 'signed in with email').toString(),
         onPress: (): void => {
           navigation.navigate('ChangePw');
         },
@@ -161,7 +164,7 @@ const Settings: FC = () => {
 
   const settings: SectionListData<SettingsOption>[] = [
     {
-      title: getString('LOGIN_INFORMATION'),
+      title: fbt('Login information', 'login information').toString(),
       data: [signInInfoOption],
     },
   ];
@@ -202,7 +205,7 @@ const Settings: FC = () => {
           },
         }}
         onPress={logout}
-        text={getString('LOGOUT')}
+        text={fbt('Logout', 'logout').toString()}
       />
     </Container>
   );

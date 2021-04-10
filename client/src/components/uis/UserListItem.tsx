@@ -11,7 +11,7 @@ import {FontAwesome} from '@expo/vector-icons';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
 import {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import styled from 'styled-components/native';
 import {useTheme} from 'dooboo-ui';
 
@@ -149,7 +149,7 @@ function Shared({
             ) : null}
           </ImageWrapper>
           <StyledText numberOfLines={1}>
-            {nickname || name || getString('NO_NAME')}
+            {nickname || name || fbt('Unnamed', 'unnamed').toString()}
           </StyledText>
           {showCheckBox ? (
             <CheckBox

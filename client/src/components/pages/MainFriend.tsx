@@ -12,8 +12,8 @@ import {LoadingIndicator} from 'dooboo-ui';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import UserListItem from '../uis/UserListItem';
+import {fbt} from 'fbt';
 import {friendsQuery} from '../../relay/queries/Friend';
-import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
@@ -104,7 +104,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
       data={nodes}
       renderItem={renderItem}
       ListEmptyComponent={
-        <EmptyListItem>{getString('NO_FRIENDLIST')}</EmptyListItem>
+        <EmptyListItem>{fbt('Start a Chat', 'start a chat')}</EmptyListItem>
       }
       refreshing={isLoadingNext}
       onRefresh={() => {

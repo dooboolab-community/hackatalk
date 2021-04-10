@@ -11,7 +11,7 @@ import Channel from '../pages/MainChannel';
 import Friend from '../pages/MainFriend';
 import {LinearGradient} from 'expo-linear-gradient';
 import {MainStackNavigationProps} from './MainStackNavigator';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useTheme} from 'dooboo-ui';
 
@@ -71,7 +71,7 @@ const CustomHeader = (): ReactElement => {
             fontWeight: '500',
             color: 'white',
           }}>
-          {getString('HACKATALK')}
+          <fbt desc="hackatalk">HackaTalk</fbt>
         </Text>
       </TouchableOpacity>
       <View style={{marginRight: 8}}>
@@ -119,14 +119,14 @@ function TabNavigator(): ReactElement {
         name="Friend"
         component={Friend}
         options={{
-          title: getString('FRIEND'),
+          title: fbt('Friend', 'friend').toString(),
         }}
       />
       <Tab.Screen
         name="Channel"
         component={Channel}
         options={{
-          title: getString('CHANNEL'),
+          title: fbt('Channel', 'channel').toString(),
         }}
       />
     </Tab.Navigator>

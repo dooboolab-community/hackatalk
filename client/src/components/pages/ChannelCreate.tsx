@@ -32,9 +32,9 @@ import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import UserListItem from '../uis/UserListItem';
+import {fbt} from 'fbt';
 import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
 import {friendsQuery} from '../../relay/queries/Friend';
-import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
@@ -257,9 +257,12 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         ListEmptyComponent={
           <ErroView
             testID="btn-error"
-            title={getString('NO_FRIEND')}
-            body={getString('NO_FRIEND_BODY')}
-            buttonText={getString('GO_BACK')}
+            title={fbt('No friends', 'no friends').toString()}
+            body={fbt(
+              'You currently do not have any friends. Please search for users to add to your friend list.',
+              'no friend text',
+            ).toString()}
+            buttonText={fbt('Go back', 'go back').toString()}
             onButtonPressed={(): void => navigation.goBack()}
           />
         }
@@ -367,7 +370,7 @@ const ChannelCreate: FC = () => {
               fontSize: 14,
               fontWeight: 'bold',
             }}>
-            {getString('DONE')}
+            <fbt desc="done">Done</fbt>
           </Text>
         </View>
       </TouchableOpacity>

@@ -11,7 +11,7 @@ import {
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -54,6 +54,26 @@ const Page: FC = () => {
     sendVerification,
   );
 
+  const errorEmailString = fbt(
+    'Email format is not valid.',
+    'email format not valid',
+  );
+
+  const errorPasswordString = fbt(
+    'Password must be more than 6 characters',
+    'password validation text',
+  );
+
+  const errorNameString = fbt(
+    'Name must be at least 3 characters.',
+    'name validation text',
+  );
+
+  const errorConfirmPasswordString = fbt(
+    'Password must match',
+    'password must match',
+  );
+
   const {theme} = useTheme();
 
   const requestSignUp = async (): Promise<void> => {
@@ -63,16 +83,14 @@ const Page: FC = () => {
       name.length < 2 ||
       password !== confirmPassword
     ) {
-      if (!validateEmail(email))
-        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      if (!validateEmail(email)) setErrorEmail(errorEmailString);
 
-      if (!validatePassword(password))
-        setErrorPassword(getString('PASSWORD_MIN'));
+      if (!validatePassword(password)) setErrorPassword(errorPasswordString);
 
-      if (name.length < 2) setErrorName(getString('NAME_MIN'));
+      if (name.length < 2) setErrorName(errorNameString);
 
       if (password !== confirmPassword)
-        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+        setErrorConfirmPassword(errorConfirmPasswordString);
 
       return;
     }
@@ -110,30 +128,31 @@ const Page: FC = () => {
       setEmail(emailStr);
 
       if (!validateEmail(emailStr))
-        setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+        setErrorEmail(
+          fbt('Not a valid email address', 'not a valid email address'),
+        );
       else setErrorEmail('');
     },
     passwordInput: (passwordStr: string): void => {
       setPassword(passwordStr);
 
-      if (!validatePassword(passwordStr))
-        setErrorPassword(getString('PASSWORD_MIN'));
+      if (!validatePassword(passwordStr)) setErrorPassword(errorPasswordString);
       else if (confirmPassword && passwordStr !== confirmPassword) {
         setErrorPassword('');
-        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+        setErrorConfirmPassword(errorConfirmPasswordString);
       } else setErrorPassword('');
     },
     confirmPasswordInput: (confirmPasswordStr: string): void => {
       setConfirmPassword(confirmPasswordStr);
 
       if (password !== confirmPasswordStr)
-        setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+        setErrorConfirmPassword(errorConfirmPasswordString);
       else setErrorConfirmPassword('');
     },
     nameInput: (nameStr: string): void => {
       setName(nameStr);
 
-      if (nameStr.length < 2) setErrorName(getString('NAME_MIN'));
+      if (nameStr.length < 2) setErrorName(errorNameString);
       else setErrorName('');
     },
   };
@@ -160,7 +179,7 @@ const Page: FC = () => {
               }}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
-              labelText={getString('EMAIL')}
+              labelText={fbt('Email', 'email').toString()}
               placeholder="hello@example.com"
               value={email}
               onChangeText={inputChangeHandlers.emailInput}
@@ -180,7 +199,7 @@ const Page: FC = () => {
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               placeholder="********"
-              labelText={getString('PASSWORD')}
+              labelText={fbt('Password', 'password').toString()}
               value={password}
               onChangeText={inputChangeHandlers.passwordInput}
               style={{marginTop: 32}}
@@ -200,7 +219,7 @@ const Page: FC = () => {
                 },
               }}
               placeholder="********"
-              labelText={getString('CONFIRM_PASSWORD')}
+              labelText={fbt('Confirm password', 'confirm password').toString()}
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
               style={{marginTop: 32}}
@@ -220,8 +239,11 @@ const Page: FC = () => {
                   borderColor: theme.text,
                 },
               }}
-              labelText={getString('NAME')}
-              placeholder={getString('NAME_HINT')}
+              labelText={fbt('Name', 'name').toString()}
+              placeholder={fbt(
+                'Please write your name.',
+                'name hint',
+              ).toString()}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
               value={name}
@@ -247,8 +269,11 @@ const Page: FC = () => {
               }}
               focusColor={theme.focused}
               placeholderTextColor={theme.placeholder}
-              labelText={getString('STATUS')}
-              placeholder={getString('STATUS_MSG_HINT')}
+              labelText={fbt('Status', 'status').toString()}
+              placeholder={fbt(
+                'Please write your status message.',
+                'status message hint',
+              ).toString()}
               value={statusMessage}
               onChangeText={(text: string): void => {
                 setStatusMessage(text);
@@ -281,7 +306,7 @@ const Page: FC = () => {
                     borderColor: theme.text,
                   },
                 }}
-                text={getString('SIGN_UP')}
+                text={fbt('Sign Up', 'sign up').toString()}
               />
             </ButtonWrapper>
           </ContentsWrapper>

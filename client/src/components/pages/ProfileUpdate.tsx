@@ -17,7 +17,7 @@ import {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
@@ -177,11 +177,17 @@ const Screen: FC = () => {
               setIsUploading(false);
             },
             onError: (err) => {
-              Alert.alert(getString('ERROR'), err.message);
+              Alert.alert(fbt('Error', 'error').toString(), err.message);
             },
           });
         } catch (err) {
-          Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+          Alert.alert(
+            fbt('Error', 'error').toString(),
+            fbt(
+              'Failed loading image. Please try again.',
+              'failed loading image',
+            ).toString(),
+          );
         } finally {
           setIsUploading(false);
         }
@@ -192,9 +198,9 @@ const Screen: FC = () => {
 
   const pressProfileImage = async (): Promise<void> => {
     const options = [
-      getString('TAKE_A_PICTURE'),
-      getString('SELECT_FROM_ALBUM'),
-      getString('CANCEL'),
+      fbt('Take a picture', 'take a picture').toString(),
+      fbt('Select from album', 'select from album').toString(),
+      fbt('Cancel', 'cancel').toString(),
     ];
 
     showActionSheetWithOptions(
@@ -286,8 +292,11 @@ const Screen: FC = () => {
                 color: theme.text,
               },
             }}
-            labelText={getString('NICKNAME')}
-            placeholder={getString('NICKNAME_HINT')}
+            labelText={fbt('Nickname', 'nickname').toString()}
+            placeholder={fbt(
+              'A Nickname can help others find you',
+              'nickname hint',
+            ).toString()}
             value={nickname}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -304,8 +313,8 @@ const Screen: FC = () => {
                 color: theme.text,
               },
             }}
-            labelText={getString('NAME')}
-            placeholder={getString('NAME_HINT')}
+            labelText={fbt('Name', 'name').toString()}
+            placeholder={fbt('Please write your name', 'name hint').toString()}
             value={name}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -327,8 +336,11 @@ const Screen: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('STATUS_MSG')}
-            placeholder={getString('STATUS_MSG_HINT')}
+            labelText={fbt('Status message', 'status message').toString()}
+            placeholder={fbt(
+              'Please write your status message',
+              'status message hint',
+            ).toString()}
             value={statusMessage}
             focusColor={theme.focused}
             placeholderTextColor={theme.placeholder}
@@ -358,7 +370,7 @@ const Screen: FC = () => {
               }}
               loading={isUploading || isUpdating || isUploadInFlight}
               onPress={updateProfile}
-              text={getString('UPDATE')}
+              text={fbt('Update', 'update').toString()}
             />
           </StyledButtonWrapper>
         </Wrapper>

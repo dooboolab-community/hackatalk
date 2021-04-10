@@ -13,7 +13,7 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 
 import {Report} from '../../types/graphql';
 import {createReport} from '../../relay/queries/Report';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {showAlertForError} from '../../utils/common';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
@@ -61,7 +61,14 @@ const ReportScreen: FC = () => {
         setMessage('');
 
         if (report) {
-          Alert.alert(getString('SUCCESS'), getString('REPORT_SENT'));
+          Alert.alert(
+            fbt('Success', 'success').toString(),
+            fbt(
+              'Report has been sent successfully. The support team will review your reports.',
+              'report sent',
+            ).toString(),
+          );
+
           navigation.goBack();
         }
       },
@@ -104,7 +111,10 @@ const ReportScreen: FC = () => {
             onChangeText={(txt: string): void => setMessage(txt)}
             labelText={name}
             value={message}
-            placeholder={getString('REPORT_DESCRIPTION')}
+            placeholder={fbt(
+              'Please give sepecific reason on why you want to ban the following user.',
+              'report description',
+            ).toString()}
           />
         </InnerContainer>
         <Button
@@ -123,7 +133,7 @@ const ReportScreen: FC = () => {
               fontSize: 16,
             },
           }}
-          text={getString('REPORT')}
+          text={fbt('Report user', 'report user').toString()}
         />
       </StyledKeyboardAvoidingView>
     </SafeAreaView>

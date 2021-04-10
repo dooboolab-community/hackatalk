@@ -9,8 +9,8 @@ import {showAlertForError, validateEmail} from '../../utils/common';
 import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {PayloadError} from 'relay-runtime';
+import {fbt} from 'fbt';
 import {findPasswordMutation} from '../../relay/queries/User';
-import {getString} from '../../../STRINGS';
 import styled from 'styled-components/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -39,7 +39,9 @@ const Page: FC = () => {
 
   const onFindPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
-      setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      setErrorEmail(
+        fbt('Email format is not valid.', 'email format not valid').toString(),
+      );
 
       return;
     }
@@ -56,15 +58,21 @@ const Page: FC = () => {
         const result = response.findPassword;
 
         if (errors && errors.length > 0) {
-          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'));
+          Alert.alert(
+            fbt('Failed', 'failed').toString(),
+            fbt('User does not exists', 'email user not exists').toString(),
+          );
 
           return;
         }
 
         if (result) {
           Alert.alert(
-            getString('SUCCESS'),
-            getString('PASSWORD_RESET_EMAIL_SENT'),
+            fbt('Success', 'success').toString(),
+            fbt(
+              'A Password reset link has been sent. Please check your email.',
+              'password reset email sent',
+            ).toString(),
           );
 
           navigation.goBack();
@@ -89,7 +97,7 @@ const Page: FC = () => {
           },
         }}
         focusColor={theme.focused}
-        labelText={getString('EMAIL')}
+        labelText={fbt('Email', 'email').toString()}
         placeholderTextColor={theme.placeholder}
         placeholder="hello@example.com"
         value={email}
@@ -118,7 +126,7 @@ const Page: FC = () => {
               borderColor: theme.text,
             },
           }}
-          text={getString('FIND_PW')}
+          text={fbt('Find Password', 'find password').toString()}
         />
       </ButtonWrapper>
     </Container>

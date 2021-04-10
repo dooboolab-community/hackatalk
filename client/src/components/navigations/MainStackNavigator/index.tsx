@@ -35,7 +35,7 @@ import Report from '../../pages/Report';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
-import {getString} from '../../../../STRINGS';
+import {fbt} from 'fbt';
 import {onMessageUpdater} from '../../../relay/updaters';
 
 export type MainStackParamList = {
@@ -214,7 +214,10 @@ function MainStackNavigator(): ReactElement {
           };
 
           return {
-            ...getSimpleHeader(getString('MY_PROFILE'), theme),
+            ...getSimpleHeader(
+              fbt('My Profile', 'my profile').toString(),
+              theme,
+            ),
             headerRight: settingButton,
           };
         }}
@@ -222,37 +225,46 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen
         name="SearchUser"
         component={SearchUser}
-        options={getSimpleHeader(getString('SEARCH_USER'), theme)}
+        options={getSimpleHeader(
+          fbt('Search User', 'search user').toString(),
+          theme,
+        )}
       />
       <Stack.Screen
         name="BlockedUser"
         component={BlockedUser}
-        options={getSimpleHeader(getString('BLOCKED_USER'), theme)}
+        options={getSimpleHeader(
+          fbt('Blocked User', 'blocked user').toString(),
+          theme,
+        )}
       />
       <Stack.Screen
         name="Report"
         component={Report}
-        options={getSimpleHeader(getString('REPORT'), theme)}
+        options={getSimpleHeader(fbt('Report', 'report').toString(), theme)}
       />
       <Stack.Screen
         name="Message"
         component={Message}
-        options={getSimpleHeader(getString('MESSAGE'), theme)}
+        options={getSimpleHeader(fbt('Message', 'message').toString(), theme)}
       />
       <Stack.Screen
         name="Settings"
         component={Settings}
-        options={getSimpleHeader(getString('SETTINGS'), theme)}
+        options={getSimpleHeader(fbt('Settings', 'settings').toString(), theme)}
       />
       <Stack.Screen
         name="ChangePw"
         component={ChangePw}
-        options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
+        options={getSimpleHeader(
+          fbt('Change Password', 'change password').toString(),
+          theme,
+        )}
       />
       <Stack.Screen
         name="ChannelCreate"
         component={ChannelCreate}
-        options={getSimpleHeader(getString('NEW_CHAT'), theme)}
+        options={getSimpleHeader(fbt('New Chat', 'new chat').toString(), theme)}
       />
     </Stack.Navigator>
   );

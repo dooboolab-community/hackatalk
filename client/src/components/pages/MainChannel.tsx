@@ -26,7 +26,7 @@ import {MaterialTopTabNavigationProps} from '../navigations/MainTabNavigator';
 import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';
 import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import {lastMessageQuery} from '../../relay/queries/Message';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
@@ -222,7 +222,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
           : null
       }
       ListEmptyComponent={
-        <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
+        <EmptyListItem>{fbt('Start a Chat', 'start a chat')}</EmptyListItem>
       }
       ListFooterComponent={<View style={{height: 60}} />}
       refreshing={isLoadingNext}

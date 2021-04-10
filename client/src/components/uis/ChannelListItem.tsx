@@ -3,7 +3,7 @@ import React, {ReactElement} from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
-import {getString} from '../../../STRINGS';
+import {fbt} from 'fbt';
 import moment from 'moment';
 import styled from 'styled-components/native';
 
@@ -194,7 +194,7 @@ function ChannelListItem(props: Props): React.ReactElement {
                   {users?.length === 1
                     ? users?.[0]?.nickname ||
                       users?.[0]?.name ||
-                      getString('NO_NAME')
+                      fbt('Unnamed', 'unnamed')
                     : userNames?.join(', ')}
                 </StyledTextDisplayName>
                 {lastMessageCnt !== 0 ? (
@@ -208,7 +208,7 @@ function ChannelListItem(props: Props): React.ReactElement {
                   numberOfLines={2}
                   lastMessageCnt={lastMessageCnt}>
                   {imageUrls && imageUrls.length > 0
-                    ? getString('PHOTO')
+                    ? fbt('Photo', 'photo')
                     : text}
                 </StyledTextMessage>
                 <StyledTextDate>
