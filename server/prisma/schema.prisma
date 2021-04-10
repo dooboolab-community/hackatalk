@@ -20,89 +20,94 @@ enum AuthType {
 }
 
 model User {
-  id                     String                  @default(cuid()) @id
-  email                  String?                 @unique
-  password               String?
-  name                   String?
-  nickname               String?
-  thumbURL               String?
-  photoURL               String?
-  birthday               DateTime?
-  gender                 Gender?
-  phone                  String?
-  statusMessage          String?
-  verified               Boolean?                @default(false)
-  lastSignedIn           DateTime?
-  isOnline               Boolean?                @default(false)
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  password      String?
+  name          String?
+  nickname      String?
+  thumbURL      String?
+  photoURL      String?
+  birthday      DateTime?
+  gender        Gender?
+  phone         String?
+  statusMessage String?
+  verified      Boolean?  @default(false)
+  lastSignedIn  DateTime?
+  isOnline      Boolean?  @default(false)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @default(now()) @updatedAt
+  deletedAt     DateTime?
 
-  profile                Profile?
-  notifications          Notification[]          @relation("Notification")
-  friends                Friend[]                @relation("Friend")
-  memberships            Membership[]            @relation("Membership")
-  blockedUsers           BlockedUser[]           @relation("BlockedUser")
-  reports                Report[]                @relation("Report")
+  profile       Profile?
+  notifications Notification[]
+  friends       Friend[]
+  memberships   Membership[]
+  blockedUsers  BlockedUser[]
+  reports       Report[]       @relation("UserReport")
+  messages      Message[]
+  replys        Reply[]
+  reactions     Reaction[]
+  Friend        Friend[]       @relation("FriendFrom")
+  Report        Report[]
+  BlockedUser   BlockedUser[]  @relation("UserBlock")
 }
 
 model Notification {
-  id                     Int                     @default(autoincrement()) @id
-  token                  String                  @unique
-  device                 String?
-  os                     String?
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  createdAt              DateTime?               @default(now())
+  id        Int       @id @default(autoincrement())
+  token     String    @unique
+  device    String?
+  os        String?
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  createdAt DateTime? @default(now())
 }
 
 model Profile {
-  id                     Int                     @default(autoincrement()) @id
-  socialId               String?
-  authType               AuthType?
+  id       Int       @id @default(autoincrement())
+  socialId String?
+  authType AuthType?
 
-  userId                 String                  @unique
-  User                   User                    @relation(fields: [userId], references: [id])
+  userId String @unique
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model Friend {
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  deletedAt DateTime?
 
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  friendId               String
-  friend                 User                    @relation(name: "Friend", fields: [friendId], references: [id])
+  userId   String
+  user     User   @relation("FriendFrom", fields: [userId], references: [id])
+  friendId String
+  friend   User   @relation(fields: [friendId], references: [id])
 
   @@id([userId, friendId])
 }
 
 model BlockedUser {
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  deletedAt DateTime?
 
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  blockedUserId          String
-  blockedUser            User                    @relation(name: "BlockedUser", fields: [blockedUserId], references: [id])
+  userId        String
+  user          User   @relation("UserBlock", fields: [userId], references: [id])
+  blockedUserId String
+  blockedUser   User   @relation(fields: [blockedUserId], references: [id])
 
   @@id([userId, blockedUserId])
 }
 
 model Report {
-  report                 String
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  id        String    @id @default(cuid())
+  report    String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  deletedAt DateTime?
 
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  reportedUserId         String
-  reportedUser           User                    @relation(name: "Report", fields: [reportedUserId], references: [id])
-
-  @@id([userId, reportedUserId])
+  userId         String
+  user           User   @relation("UserReport", fields: [userId], references: [id])
+  reportedUserId String
+  reportedUser   User   @relation(fields: [reportedUserId], references: [id])
 }
 
 enum MembershipType {
@@ -118,16 +123,16 @@ enum AlertMode {
 }
 
 model Membership {
-  alertMode              AlertMode?              @default(sound)
-  membershipType         MembershipType          @default(member)
-  isVisible              Boolean                 @default(true)
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
+  alertMode      AlertMode?     @default(sound)
+  membershipType MembershipType @default(member)
+  isVisible      Boolean        @default(true)
+  createdAt      DateTime?      @default(now())
+  updatedAt      DateTime?      @default(now()) @updatedAt
 
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  channelId              String
-  channel                Channel                 @relation(fields: [channelId], references: [id])
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  channelId String
+  channel   Channel @relation(fields: [channelId], references: [id])
 
   @@id([userId, channelId])
 }
@@ -138,15 +143,15 @@ enum ChannelType {
 }
 
 model Channel {
-  id                     String                  @default(cuid()) @id
-  channelType            ChannelType
-  name                   String?
-  messages               Message[]               @relation("Message")
-  membership             Membership[]
-  lastMessageId          String?
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  id            String       @id @default(cuid())
+  channelType   ChannelType
+  name          String?
+  messages      Message[]    @relation("Message")
+  membership    Membership[]
+  lastMessageId String?
+  createdAt     DateTime?    @default(now())
+  updatedAt     DateTime?    @default(now()) @updatedAt
+  deletedAt     DateTime?
 }
 
 enum MessageType {
@@ -156,48 +161,48 @@ enum MessageType {
 }
 
 model Message {
-  id                     String                  @default(cuid()) @id
-  messageType            MessageType             @default(text)
-  text                   String?
-  imageUrls              String[]
-  fileUrls               String[]
-  reactions              Reaction[]
+  id          String      @id @default(cuid())
+  messageType MessageType @default(text)
+  text        String?
+  imageUrls   String[]
+  fileUrls    String[]
+  reactions   Reaction[]
+  replys      Reply[]
 
-  replies                Reply[]                 @relation("Reply")
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now()) @updatedAt
+  deletedAt DateTime?
 
-  channelId              String
-  channel                Channel                 @relation(fields: [channelId], references: [id])
-  senderId               String
-  sender                 User                    @relation(fields: [senderId], references: [id])
+  channelId String
+  channel   Channel @relation("Message", fields: [channelId], references: [id])
+  senderId  String
+  sender    User    @relation(fields: [senderId], references: [id])
 }
 
 model Reply {
-  id                     Int                     @default(autoincrement()) @id
-  messageType            MessageType             @default(text)
-  text                   String?
-  imageUrls              String[]
-  fileUrls               String[]
-  reactions              Reaction[]
-  createdAt              DateTime?               @default(now())
-  updatedAt              DateTime?               @default(now()) @updatedAt
-  deletedAt              DateTime?
+  id          Int         @id @default(autoincrement())
+  messageType MessageType @default(text)
+  text        String?
+  imageUrls   String[]
+  fileUrls    String[]
+  reactions   Reaction[]
+  createdAt   DateTime?   @default(now())
+  updatedAt   DateTime?   @default(now()) @updatedAt
+  deletedAt   DateTime?
 
-  senderId               String
-  sender                 User                    @relation(fields: [senderId], references: [id])
-  messageId              String
-  message                Message                 @relation(fields: [messageId], references: [id])
+  senderId  String
+  sender    User    @relation(fields: [senderId], references: [id])
+  messageId String
+  message   Message @relation(fields: [messageId], references: [id])
 }
 
 model Reaction {
-  id                     Int                     @default(autoincrement()) @id
-  value                  String
-  userId                 String
-  user                   User                    @relation(fields: [userId], references: [id])
-  messageId              String
-  message                Message                 @relation(fields: [messageId], references: [id])
-  replyId                Int
-  reply                  Reply                   @relation(fields: [replyId], references: [id])
+  id        Int     @id @default(autoincrement())
+  value     String
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  messageId String
+  message   Message @relation(fields: [messageId], references: [id])
+  replyId   Int
+  reply     Reply   @relation(fields: [replyId], references: [id])
 }

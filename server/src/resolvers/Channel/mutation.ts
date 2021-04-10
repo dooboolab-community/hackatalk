@@ -51,7 +51,7 @@ export const createChannel = mutationField('createChannel', {
   This query will return [Channel] with [Membership] without [Message] that has just created.
   `,
 
-  resolve: async (_, {channel, message}, {prisma, userId, pubsub}) => {
+  resolve: async (_, {channel, message}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
     const {
