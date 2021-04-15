@@ -1,6 +1,7 @@
 {
   "reject": [
     "react",
+    "react-native",
     "react-dom",
     "react-test-renderer",
     "react-native-gesture-handler",
