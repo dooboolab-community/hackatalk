@@ -34,7 +34,8 @@
     "environment.d.ts"
   ],
   "types": [
-    "typePatches"
+    "typePatches",
+    "styled-components-react-native"
   ],
   "jest": {
     "globals": {

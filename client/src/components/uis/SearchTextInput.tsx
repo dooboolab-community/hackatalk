@@ -1,8 +1,8 @@
 import {IC_SEARCH, IC_SEARCH_W} from '../../utils/Icons';
 import React, {ReactChildren, ReactElement} from 'react';
+import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 import {ThemeType, useTheme} from 'dooboo-ui';
 
-import {ViewStyle} from 'react-native';
 import styled from 'styled-components/native';
 
 const StyledTextInputWrapper = styled.View`
@@ -35,8 +35,8 @@ interface Props {
   onChangeText?: (text: string) => void;
   value?: string;
   children?: ReactChildren;
-  containerStyle?: ViewStyle;
-  style?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<TextStyle>;
 }
 
 function SearchTextInput(props: Props): ReactElement {
