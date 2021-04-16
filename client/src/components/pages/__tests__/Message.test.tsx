@@ -41,10 +41,6 @@ jest.mock('@react-navigation/core', () => ({
   useRoute: () => mockRoute,
 }));
 
-jest.mock('expo-permissions', () => ({
-  askAsync: (): string => 'granted',
-}));
-
 jest.mock('expo-image-picker', () => ({
   launchCameraAsync: (): string => 'photo info',
   launchImageLibraryAsync: (): string => 'photo info',
