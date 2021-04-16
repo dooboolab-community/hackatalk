@@ -60,7 +60,6 @@
     "expo-linear-gradient": "~9.1.0",
     "expo-localization": "~10.1.0",
     "expo-notifications": "~0.11.5",
-    "expo-permissions": "~12.0.1",
     "expo-random": "~11.1.2",
     "expo-screen-orientation": "~3.1.0",
     "expo-splash-screen": "~0.10.2",

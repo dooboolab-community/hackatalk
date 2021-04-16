@@ -28,12 +28,6 @@ jest.mock('@expo/react-native-action-sheet', () => ({
   },
 }));
 
-jest.mock('expo-permissions', () => ({
-  askAsync: (): {status: string} => ({
-    status: 'granted',
-  }),
-}));
-
 jest.mock('expo-image-picker', () => ({
   launchCameraAsync: (): string => 'photo info',
   launchImageLibraryAsync: (): string => 'photo info',

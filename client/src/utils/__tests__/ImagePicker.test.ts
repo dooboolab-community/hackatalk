@@ -1,63 +1,69 @@
 import 'react-native';
 
+import * as ExImagePiacker from 'expo-image-picker';
 import * as ImagePicker from '../ImagePicker';
 
-import {askAsync} from 'expo-permissions';
-
-jest.mock('expo-permissions', () => ({
-  // @ts-ignore
-  ...jest.requireActual('expo-permissions'),
-  askAsync: jest.fn(),
-}));
-
 jest.mock('expo-image-picker', () => ({
+  ...jest.requireActual('expo-image-picker'),
   requestMediaLibraryPermissionsAsync: () => Promise.resolve({status: true}),
   launchCameraAsync: () => Promise.resolve(null),
   launchImageLibraryAsync: () => Promise.resolve(null),
 }));
 
 describe('ImagePicker interaction', () => {
-  it('launchCameraAsync should return photo info when permission is granted', async () => {
-    // @ts-ignore
-    askAsync.mockReturnValueOnce({
-      status: 'granted',
+  describe('Permission is granted', () => {
+    it('launchCameraAsync should return photo info when permission is granted', async () => {
+      jest
+        .spyOn(ExImagePiacker, 'requestCameraPermissionsAsync')
+        // @ts-ignore
+        .mockResolvedValue({
+          status: ExImagePiacker.PermissionStatus.GRANTED,
+        });
+
+      const result = await ImagePicker.launchCameraAsync();
+
+      expect(result).toBe(null);
     });
 
-    const result = await ImagePicker.launchCameraAsync();
+    it('launchImageLibraryAsync should return photo info when permission is granted', async () => {
+      jest
+        .spyOn(ExImagePiacker, 'requestCameraPermissionsAsync')
+        // @ts-ignore
+        .mockResolvedValue({
+          status: ExImagePiacker.PermissionStatus.GRANTED,
+        });
 
-    expect(result).toBe(null);
+      const result = await ImagePicker.launchImageLibraryAsync();
+
+      expect(result).toBe(null);
+    });
   });
 
-  it('launchImageLibraryAsync should return photo info when permission is granted', async () => {
-    // @ts-ignore
-    askAsync.mockReturnValueOnce({
-      status: 'granted',
+  describe('Permission is not granted', () => {
+    it('launchCameraAsync should not return photo info when permission is not granted', async () => {
+      jest
+        .spyOn(ExImagePiacker, 'requestCameraPermissionsAsync')
+        // @ts-ignore
+        .mockResolvedValue({
+          status: ExImagePiacker.PermissionStatus.DENIED,
+        });
+
+      const result = await ImagePicker.launchCameraAsync();
+
+      expect(result).toBe(null);
     });
 
-    const result = await ImagePicker.launchImageLibraryAsync();
+    it('launchImageLibraryAsync should not return photo info when permission is not granted', async () => {
+      jest
+        .spyOn(ExImagePiacker, 'requestCameraPermissionsAsync')
+        // @ts-ignore
+        .mockResolvedValue({
+          status: ExImagePiacker.PermissionStatus.DENIED,
+        });
 
-    expect(result).toBe(null);
-  });
+      const result = await ImagePicker.launchImageLibraryAsync();
 
-  it('launchCameraAsync should not return photo info when permission is not granted', async () => {
-    // @ts-ignore
-    askAsync.mockReturnValueOnce({
-      status: 'denied',
+      expect(result).toBe(null);
     });
-
-    const result = await ImagePicker.launchCameraAsync();
-
-    expect(result).toBe(null);
-  });
-
-  it('launchImageLibraryAsync should not return photo info when permission is not granted', async () => {
-    // @ts-ignore
-    askAsync.mockReturnValueOnce({
-      status: 'denied',
-    });
-
-    const result = await ImagePicker.launchImageLibraryAsync();
-
-    expect(result).toBe(null);
   });
 });

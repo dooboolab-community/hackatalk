@@ -1,5 +1,4 @@
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 
 import {Platform} from 'react-native';
 
@@ -23,7 +22,7 @@ const photoOptions = {
 
 const requestPermissions = async (
   type: string,
-): Promise<Permissions.PermissionStatus> => {
+): Promise<ImagePicker.CameraPermissionResponse['status']> => {
   if (type === 'photo')
     if (Platform.OS !== 'web') {
       const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -31,7 +30,7 @@ const requestPermissions = async (
       return status;
     }
 
-  const {status} = await Permissions.askAsync(Permissions.CAMERA);
+  const {status} = await ImagePicker.requestCameraPermissionsAsync();
 
   return status;
 };
