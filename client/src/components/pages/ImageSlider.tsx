@@ -7,7 +7,7 @@ import {
 } from '../navigations/RootStackNavigator';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Container = styled.View`

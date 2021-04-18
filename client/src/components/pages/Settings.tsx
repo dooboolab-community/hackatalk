@@ -1,8 +1,7 @@
-import {Button, useTheme} from 'dooboo-ui';
+import {Button, DoobooTheme, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
-import styled, {DefaultTheme} from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
@@ -10,6 +9,7 @@ import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
+import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
@@ -73,7 +73,7 @@ const Settings: FC = () => {
 
   const renderSectionItem = (
     option: SettingsOption,
-    themeProps: DefaultTheme,
+    themeProps: DoobooTheme,
   ): React.ReactElement => {
     const isEmailUser = (user?.profile?.authType || 'email') === 'email';
 

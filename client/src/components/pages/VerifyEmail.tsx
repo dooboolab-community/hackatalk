@@ -11,7 +11,7 @@ import {AuthStackParamList} from '../navigations/AuthStackNavigator';
 import {getString} from '../../../STRINGS';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useMutation} from 'react-relay/hooks';
 
 const Container = styled.View`

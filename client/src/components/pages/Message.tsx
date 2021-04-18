@@ -51,7 +51,7 @@ import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useProfileContext} from '../../providers/ProfileModalProvider';

@@ -1,4 +1,3 @@
-import 'jest-styled-components';
 import '@testing-library/jest-native/extend-expect';
 
 import { cleanup } from '@testing-library/react-native';

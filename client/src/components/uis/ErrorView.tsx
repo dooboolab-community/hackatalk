@@ -3,7 +3,7 @@ import React, {FC, ReactChildren} from 'react';
 
 import {IC_ERROR} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 
 const Container = styled.View`
   flex: 1;

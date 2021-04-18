@@ -3,7 +3,7 @@ import {RouteProp, useRoute} from '@react-navigation/core';
 
 import {RootStackParamList} from '../navigations/RootStackNavigator';
 import {WebView} from 'react-native-webview';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 
 const Container = styled.SafeAreaView`
   flex: 1;

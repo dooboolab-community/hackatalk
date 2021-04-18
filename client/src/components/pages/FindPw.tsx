@@ -11,7 +11,7 @@ import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {PayloadError} from 'relay-runtime';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
 

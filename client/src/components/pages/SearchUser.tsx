@@ -24,7 +24,7 @@ import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
 import UserListItem from '../uis/UserListItem';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';

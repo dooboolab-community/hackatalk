@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;

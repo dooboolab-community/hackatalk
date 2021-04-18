@@ -8,7 +8,7 @@
 - [react-navigation](https://github.com/react-navigation/react-navigation)
 - [typescript](https://github.com/Microsoft/TypeScript)
 - [fbt](https://github.com/facebook/fbt)
-- [styled-components](https://github.com/styled-components/styled-components)
+- [emotion](https://emotion.sh)
 - [ts-jest](https://github.com/kulshekhar/ts-jest)
 - [expo](https://expo.io)
 - [@testing-library/react-native](https://www.native-testing-library.com/docs/install)

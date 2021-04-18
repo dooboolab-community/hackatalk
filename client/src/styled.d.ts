@@ -1,4 +1,4 @@
-import 'styled-components';
+import '@emotion/react';
 
 import {DoobooTheme} from 'dooboo-ui';
 import {Theme} from './theme';
@@ -9,8 +9,10 @@ interface CustomTheme extends AllTheme {
   background: string;
 }
 
-declare module 'styled-components' {
-  export interface DefaultTheme extends CustomTheme {
-    background: string;
+declare module '@emotion/react' {
+  export interface Theme extends CustomTheme {
+    isMobile?: boolean;
+    isTablet?: boolean;
+    isDesktop?: boolean;
   }
 }

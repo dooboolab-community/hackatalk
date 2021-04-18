@@ -39,7 +39,7 @@ import type {
 import {delay, spring, useClock, useValue} from 'react-native-redash';
 import {showAlertForError, validateEmail} from '../../../utils/common';
 import {signInEmail, signInWithApple} from '../../../relay/queries/User';
-import styled, {css} from 'styled-components/native';
+import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';

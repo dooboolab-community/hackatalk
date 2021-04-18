@@ -13,7 +13,7 @@ import StatusBar from '../uis/StatusBar';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
 
