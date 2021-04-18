@@ -28,7 +28,7 @@ import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import {lastMessageQuery} from '../../relay/queries/Message';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/native';
 
 const Container = styled.View`

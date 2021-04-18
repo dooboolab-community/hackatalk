@@ -8,7 +8,7 @@ import {MessageListItem_message$key} from '../../__generated__/MessageListItem_m
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
 
 const fragment = graphql`

@@ -7,7 +7,7 @@ import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQu
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useLazyLoadQuery} from 'react-relay/hooks';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 

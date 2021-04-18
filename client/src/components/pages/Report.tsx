@@ -15,7 +15,7 @@ import {Report} from '../../types/graphql';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useMutation} from 'react-relay/hooks';
 
 const InnerContainer = styled.View`

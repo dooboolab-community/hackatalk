@@ -4,7 +4,7 @@ import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
 import {useTheme} from 'dooboo-ui';
 

@@ -14,7 +14,7 @@ import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graph
 import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const ITEM_CNT = 20;

@@ -12,7 +12,7 @@ import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
 import {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
 import {getString} from '../../../STRINGS';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
 
 const fragment = graphql`

@@ -37,7 +37,7 @@ import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 

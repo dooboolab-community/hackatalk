@@ -20,7 +20,7 @@ import {
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
 import ChannelCreate from '../../pages/ChannelCreate';
-import {DefaultTheme} from 'styled-components';
+import {Theme as DefaultTheme} from '@emotion/react';
 import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';

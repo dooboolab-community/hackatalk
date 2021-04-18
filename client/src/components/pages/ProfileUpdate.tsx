@@ -21,7 +21,7 @@ import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 // import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';

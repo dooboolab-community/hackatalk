@@ -17,7 +17,7 @@ import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useMutation} from 'react-relay/hooks';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';

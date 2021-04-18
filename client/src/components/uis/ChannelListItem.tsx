@@ -5,7 +5,7 @@ import {TouchableOpacity, View, ViewStyle} from 'react-native';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({theme}) => theme.itemBackground};

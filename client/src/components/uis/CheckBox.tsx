@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {SvgCheck} from '../../utils/Icons';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 
 const Container = styled.View`
   height: 24px;

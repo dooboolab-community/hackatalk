@@ -2,7 +2,8 @@ import React, {Ref, forwardRef, useState} from 'react';
 import {ReturnKeyTypeOptions, TextStyle, ViewStyle} from 'react-native';
 
 import {Ionicons} from '@expo/vector-icons';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
+import {useTheme} from 'dooboo-ui';
 
 const StyledLabelText = styled.Text<{focused: boolean}>`
   color: ${({focused, theme}): string =>
@@ -29,13 +30,7 @@ const StyledTextInputContainer = styled.View<{isFocused?: boolean}>`
   margin-bottom: 8px;
 `;
 
-const StyledTextInput = styled.TextInput.attrs<{focused: boolean}>(
-  ({theme, focused}) => ({
-    placeholderTextColor: focused
-      ? theme.placeholderFocused
-      : theme.placeholder,
-  }),
-)<{focused: boolean}>`
+const StyledTextInput = styled.TextInput`
   flex: 1;
   align-self: stretch;
   color: ${({theme}) => theme.text};
@@ -47,13 +42,11 @@ const StyledTextInput = styled.TextInput.attrs<{focused: boolean}>(
   justify-content: flex-start;
 `;
 
-const StyledStatusMark = styled(Ionicons).attrs(({theme}) => ({
-  name: 'md-checkmark',
+const StyledStatusMark = styled(Ionicons)(({theme}) => ({
   size: 24,
   color: theme.status,
-}))`
-  padding-right: 5%;
-`;
+  paddingRight: '5%',
+}));
 
 interface Props {
   testID?: string;
@@ -73,6 +66,7 @@ interface Props {
 
 function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   const [focused, setFocused] = useState(false);
+  const {theme} = useTheme();
 
   const renderTxtLabel = (): React.ReactElement | null => {
     if (props.txtLabel)
@@ -90,7 +84,9 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
         <StyledTextInput
           ref={ref}
           testID={props.testID}
-          focused={focused}
+          placeholderTextColor={
+            focused ? theme.placeholderFocused : theme.placeholder
+          }
           underlineColorAndroid="transparent" // android fix
           autoCapitalize="none"
           autoCorrect={false}
@@ -105,7 +101,9 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
           secureTextEntry={props.isPassword}
           textContentType="none" // to disable autoifill on iOS
         />
-        {!!props.txt && !props.error && <StyledStatusMark />}
+        {!!props.txt && !props.error && (
+          <StyledStatusMark name="md-checkmark" />
+        )}
       </StyledTextInputContainer>
     </WrapperView>
   );

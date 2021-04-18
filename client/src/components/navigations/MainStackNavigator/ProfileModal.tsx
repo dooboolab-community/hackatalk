@@ -38,7 +38,7 @@ import {RootStackNavigationProps} from '../RootStackNavigator';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
-import styled from 'styled-components/native';
+import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
 
 const fragment = graphql`
