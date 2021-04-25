@@ -95,15 +95,18 @@ const Page: FC = () => {
         style={{marginTop: 80}}
         styles={{
           container: {
-            width: '100%',
-            paddingHorizontal: 20,
             backgroundColor: theme.btnPrimary,
             borderWidth: 0,
             height: 48,
+
+            justifyContent: 'center',
+            alignItems: 'center',
           },
           text: {
+            marginHorizontal: 40,
             color: theme.btnPrimaryFont,
             fontSize: 16,
+            textAlign: 'center',
           },
         }}
         text={getString('RESEND_EMAIL')}
