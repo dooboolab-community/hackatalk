@@ -1,4 +1,11 @@
 import {Alert, Image, TouchableOpacity, View} from 'react-native';
+import {
+  BUTTON_INDEX_CANCEL,
+  BUTTON_INDEX_LAUNCH_CAMERA,
+  BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
+  PROFILEIMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH,
+} from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
@@ -25,15 +32,6 @@ import styled from '@emotion/native';
 // import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
-
-const BUTTON_INDEX_LAUNCH_CAMERA = 0;
-const BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY = 1;
-const BUTTON_INDEX_CANCEL = 2;
-
-const DEFAULT = {
-  PROFILEIMAGE_WIDTH: 1280,
-  PROFILEIMAGE_HEIGHT: 1280,
-};
 
 const Container = styled.View`
   flex: 1;
@@ -141,8 +139,8 @@ const Screen: FC = () => {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
               uri: image.uri,
-              width: DEFAULT.PROFILEIMAGE_WIDTH,
-              height: DEFAULT.PROFILEIMAGE_HEIGHT,
+              width: PROFILEIMAGE_WIDTH,
+              height: PROFILEIMAGE_HEIGHT,
             },
           );
 
@@ -155,7 +153,7 @@ const Screen: FC = () => {
 
           const file = new ReactNativeFile({
             uri: resizedImage.uri,
-            name: `${user?.id || fileName}.${fileType}`,
+            name: `${user?.id || fileName}`,
             type: fileType,
           });
 
