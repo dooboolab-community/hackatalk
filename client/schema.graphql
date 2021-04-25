@@ -163,7 +163,7 @@ type MessageEdge {
 scalar MessageType
 
 type Mutation {
-  signUp(user: UserCreateInput!): User!
+  signUp(user: UserCreateInput!, photoUpload: Upload): User!
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!

@@ -17,6 +17,7 @@ export type UserCreateInput = {
 };
 export type UserSignUpMutationVariables = {
     user: UserCreateInput;
+    photoUpload?: unknown | null;
 };
 export type UserSignUpMutationResponse = {
     readonly signUp: {
@@ -37,8 +38,9 @@ export type UserSignUpMutation = {
 /*
 mutation UserSignUpMutation(
   $user: UserCreateInput!
+  $photoUpload: Upload
 ) {
-  signUp(user: $user) {
+  signUp(user: $user, photoUpload: $photoUpload) {
     id
     email
     name
@@ -49,17 +51,25 @@ mutation UserSignUpMutation(
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "user"
-  }
-],
-v1 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "photoUpload"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "user"
+},
+v2 = [
   {
     "alias": null,
     "args": [
+      {
+        "kind": "Variable",
+        "name": "photoUpload",
+        "variableName": "photoUpload"
+      },
       {
         "kind": "Variable",
         "name": "user",
@@ -112,30 +122,36 @@ v1 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "UserSignUpMutation",
-    "selections": (v1/*: any*/),
+    "selections": (v2/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "UserSignUpMutation",
-    "selections": (v1/*: any*/)
+    "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "0392e1dd69d7dbe47d28ec02dd07b203",
+    "cacheID": "29906fac887921ab95c5a709a6c04dcc",
     "id": null,
     "metadata": {},
     "name": "UserSignUpMutation",
     "operationKind": "mutation",
-    "text": "mutation UserSignUpMutation(\n  $user: UserCreateInput!\n) {\n  signUp(user: $user) {\n    id\n    email\n    name\n    photoURL\n    verified\n  }\n}\n"
+    "text": "mutation UserSignUpMutation(\n  $user: UserCreateInput!\n  $photoUpload: Upload\n) {\n  signUp(user: $user, photoUpload: $photoUpload) {\n    id\n    email\n    name\n    photoURL\n    verified\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '6323b0c85cbbb1ecc6a8360caffd1cbd';
+(node as any).hash = '46810a7b7e003b671ed6a6c75a3fc13f';
 export default node;

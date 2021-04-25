@@ -18,14 +18,17 @@ import {
 import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {USER_SIGNED_IN, USER_UPDATED} from './subscription';
 import {andThen, pipe} from 'ramda';
-import {inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
+import {arg, inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
 
 import {AuthType} from '../../models/Scalar';
+import {Upload} from '../../models';
 import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
+import {nanoid} from 'nanoid';
 import {sign} from 'jsonwebtoken';
+import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
 import verifyAppleToken from 'verify-apple-id-token';
 
 const {SENDGRID_EMAIL, APPLE_CLIENT_ID} = process.env;
@@ -38,8 +41,6 @@ export const UserInputType = inputObjectType({
 
     t.string('name');
     t.string('nickname');
-    t.string('thumbURL');
-    t.string('photoURL');
     t.date('birthday');
     t.gender('gender');
     t.string('phone');
@@ -64,11 +65,30 @@ export const UserUpdateInputType = inputObjectType({
 
 export const signUp = mutationField('signUp', {
   type: nonNull('User'),
-  args: {user: nonNull(UserInputType)},
+  args: {
+    // @ts-ignore
+    photoUpload: arg({type: Upload}),
+    user: nonNull(UserInputType),
+  },
 
-  resolve: async (_parent, {user}, ctx) => {
-    const {name, email, password, gender, photoURL, thumbURL} = user;
+  resolve: async (_parent, {user, photoUpload}, ctx) => {
+    const {name, email, password, gender} = user;
+
     const hashedPassword = await encryptCredential(password);
+
+    let uploadedURL = '';
+
+    if (photoUpload) {
+      const {createReadStream} = await photoUpload;
+      const stream = createReadStream();
+
+      uploadedURL = await uploadFileToAzureBlobFromStream(
+        stream,
+        nanoid(),
+        'profile',
+        'hackatalk',
+      );
+    }
 
     try {
       const created = await ctx.prisma.user.create({
@@ -77,8 +97,8 @@ export const signUp = mutationField('signUp', {
           email,
           password: hashedPassword,
           gender,
-          photoURL,
-          thumbURL,
+          photoURL: uploadedURL,
+          thumbURL: uploadedURL,
         },
       });
 
