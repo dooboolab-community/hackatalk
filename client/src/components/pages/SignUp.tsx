@@ -1,6 +1,25 @@
+import {
+  BUTTON_INDEX_CANCEL,
+  BUTTON_INDEX_LAUNCH_CAMERA,
+  BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
+  PROFILEIMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH,
+} from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import {Platform, ScrollView} from 'react-native';
+import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
+import {
+  Image,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {FC, useState} from 'react';
+import {UseMutationConfig, useMutation} from 'react-relay/hooks';
+import {
+  launchCameraAsync,
+  launchImageLibraryAsync,
+} from '../../utils/ImagePicker';
 import {sendVerification, signUp} from '../../relay/queries/User';
 import {
   showAlertForError,
@@ -9,12 +28,14 @@ import {
 } from '../../utils/common';
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import {ReactNativeFile} from 'extract-files';
 import StatusBar from '../uis/StatusBar';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
+import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import styled from '@emotion/native';
-import {useMutation} from 'react-relay/hooks';
+import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
@@ -30,6 +51,12 @@ const ContentsWrapper = styled.View`
   margin: 44px;
 `;
 
+const ProfileImage = styled.Image`
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+`;
+
 const ButtonWrapper = styled.View`
   width: 100%;
   margin-top: 32px;
@@ -43,6 +70,7 @@ const Page: FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [statusMessage, setStatusMessage] = useState<string>('');
+  const [profilePath, setProfilePath] = useState('');
 
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
@@ -55,7 +83,39 @@ const Page: FC = () => {
     sendVerification,
   );
 
+  const {showActionSheetWithOptions} = useActionSheet();
+
   const {theme} = useTheme();
+
+  const pressProfileImage = async (): Promise<void> => {
+    const options = [
+      getString('TAKE_A_PICTURE'),
+      getString('SELECT_FROM_ALBUM'),
+      getString('CANCEL'),
+    ];
+
+    showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex: BUTTON_INDEX_CANCEL,
+      },
+      async (buttonIndex: number) => {
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
+          const image = await launchCameraAsync();
+
+          if (image && !image.cancelled) setProfilePath(image.uri);
+
+          return;
+        }
+
+        if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
+          const image = await launchImageLibraryAsync();
+
+          if (image && !image.cancelled) setProfilePath(image.uri);
+        }
+      },
+    );
+  };
 
   const requestSignUp = async (): Promise<void> => {
     if (
@@ -78,7 +138,7 @@ const Page: FC = () => {
       return;
     }
 
-    const mutationConfig = {
+    const mutationConfig: UseMutationConfig<UserSignUpMutation> = {
       variables: {
         user: {
           email,
@@ -86,12 +146,11 @@ const Page: FC = () => {
           name,
           statusMessage,
         },
+        photoUpload: null,
       },
       onCompleted: () => {
         const sendVerificationMutationConfig = {
-          variables: {
-            email,
-          },
+          variables: {email},
         };
 
         commitSendVerification(sendVerificationMutationConfig);
@@ -102,6 +161,29 @@ const Page: FC = () => {
         showAlertForError(error);
       },
     };
+
+    if (profilePath) {
+      const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+        uri: profilePath,
+        width: PROFILEIMAGE_WIDTH,
+        height: PROFILEIMAGE_HEIGHT,
+      });
+
+      const fileName = resizedImage.uri.split('/').pop() || '';
+      const fileTypeMatch = /\.(\w+)$/.exec(fileName);
+
+      const fileType = fileTypeMatch ? `image/${fileTypeMatch[1]}` : 'image';
+
+      const file = new ReactNativeFile({
+        uri: resizedImage.uri,
+        name: `${fileName}`,
+        type: fileType,
+      });
+
+      mutationConfig.uploadables = {
+        photoUpload: file,
+      };
+    }
 
     commitSignUp(mutationConfig);
   };
@@ -150,6 +232,39 @@ const Page: FC = () => {
         keyboardVerticalOffset={100}>
         <ScrollView style={{alignSelf: 'stretch'}}>
           <ContentsWrapper>
+            <TouchableOpacity
+              testID="button-user-icon"
+              activeOpacity={0.5}
+              style={{
+                alignSelf: 'center',
+                marginBottom: 12,
+              }}
+              onPress={pressProfileImage}>
+              {!profilePath ? (
+                <View
+                  style={{
+                    width: 90,
+                    height: 90,
+                  }}>
+                  <Image style={{height: 80, width: 80}} source={IC_PROFILE} />
+                  <Image
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                    }}
+                    source={IC_CAMERA}
+                  />
+                </View>
+              ) : (
+                <ProfileImage
+                  testID="profile-image"
+                  resizeMode="cover"
+                  source={{uri: profilePath}}
+                />
+              )}
+            </TouchableOpacity>
+
             <EditText
               testID="input-email"
               styles={{

@@ -219,6 +219,7 @@ export type Mutation = {
 
 
 export type MutationSignUpArgs = {
+  photoUpload?: Maybe<Scalars['Upload']>;
   user: UserCreateInput;
 };
 

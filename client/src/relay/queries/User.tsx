@@ -73,8 +73,8 @@ export const signInWithGoogle = graphql`
 `;
 
 export const signUp = graphql`
-  mutation UserSignUpMutation($user: UserCreateInput!) {
-    signUp(user: $user) {
+  mutation UserSignUpMutation($user: UserCreateInput!, $photoUpload: Upload) {
+    signUp(user: $user, photoUpload: $photoUpload) {
       id
       email
       name

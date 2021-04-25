@@ -99,7 +99,6 @@ Run below to make your own `app` variables.
   | GRAPHQL_URL                  | `https://hackatalk.azurewebsites.net/graphql` | yes |  |
   | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
   | facebookAppId                |                                      |     |  |
-  | facebookSecret               |                                      |     |  |
   | googleWebClientId            |                                      |     |  |
   | googleAndroidClientId        |                                      |     |  |
   | googleIOSClientId            |                                      |     |  |

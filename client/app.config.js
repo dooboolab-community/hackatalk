@@ -97,7 +97,6 @@ export default {
       ROOT_URL: process.env.ROOT_URL,
       SUBSCRIPTION_URL: process.env.SUBSCRIPTION_URL,
       facebookAppId: process.env.facebookAppId,
-      facebookSecret: process.env.facebookSecret,
       googleWebClientId: process.env.googleWebClientId,
       googleAndroidClientId: process.env.googleAndroidClientId,
       googleIOSClientId: process.env.googleIOSClientId,
