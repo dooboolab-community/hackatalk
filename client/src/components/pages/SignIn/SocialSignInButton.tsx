@@ -24,7 +24,7 @@ import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import {useMutation} from 'react-relay/hooks';
 
-const {facebookAppId, facebookSecret, googleWebClientId} = Config;
+const {facebookAppId, googleWebClientId} = Config;
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -98,7 +98,6 @@ const SocialSignInButton: FC<Props> = ({
         }
       : {
           clientId: facebookAppId,
-          clientSecret: facebookSecret,
           // scopes: ['public_profile, email'],
           redirectUri,
           prompt: Prompt.SelectAccount,
