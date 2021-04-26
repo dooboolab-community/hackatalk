@@ -37,7 +37,7 @@ const WrapperPeer = styled.View<{isSame: boolean}>`
   justify-content: flex-start;
   margin-left: 20px;
   margin-right: 8px;
-  margin-top: ${({isSame}): number => (isSame ? 8 : 20)}px;
+  margin-top: ${({isSame}) => (isSame ? '8px' : '20px')};
   width: 100%;
 `;
 
