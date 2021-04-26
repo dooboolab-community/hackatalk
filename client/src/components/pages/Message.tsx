@@ -234,13 +234,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
-    const nextItemDate = nodes[index + 1]?.createdAt;
+    const nextItemDate = nodes[index - 1]?.createdAt;
 
     return (
       <MessageListItem
         userId={user?.id}
         testID={`message-list-item${index}`}
-        prevItemSenderId={nodes[index - 1]?.sender?.id}
+        prevItemSenderId={nodes[index + 1]?.sender?.id}
         nextItemDate={
           typeof nextItemDate === 'string' ? nextItemDate : undefined
         }
