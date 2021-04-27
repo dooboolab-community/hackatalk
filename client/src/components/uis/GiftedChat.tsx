@@ -170,6 +170,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           keyExtractor={keyExtractor}
           data={messages}
           renderItem={renderItem}
+          removeClippedSubviews={false}
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
           ListHeaderComponent={
