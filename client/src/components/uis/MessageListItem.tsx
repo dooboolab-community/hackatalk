@@ -231,7 +231,7 @@ const MessageListItem: FC<Props> = ({
                   </TouchableOpacity>
                 </StyledPhotoContainer>
               ) : (
-                <StyledPeerTextMessage>{text}</StyledPeerTextMessage>
+                <StyledPeerTextMessage selectable>{text}</StyledPeerTextMessage>
               )}
             </StyledTextPeerMessageContainer>
           </View>
@@ -261,7 +261,7 @@ const MessageListItem: FC<Props> = ({
             </TouchableOpacity>
           </StyledPhotoContainer>
         ) : (
-          <StyledMyTextMessage>{text}</StyledMyTextMessage>
+          <StyledMyTextMessage selectable>{text}</StyledMyTextMessage>
         )}
       </StyledMyMessage>
       <StyledTextDate>
