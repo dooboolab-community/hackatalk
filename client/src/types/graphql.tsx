@@ -529,6 +529,8 @@ export type User = {
   notifications?: Maybe<Array<Maybe<Notification>>>;
   /** Check if the user is blocked by the user who have signed in. */
   hasBlocked?: Maybe<Scalars['Boolean']>;
+  /** This user is a friend of the authenticated user. */
+  isFriend?: Maybe<Scalars['Boolean']>;
 };
 
 export type UserConnection = {
@@ -544,8 +546,6 @@ export type UserCreateInput = {
   password: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
-  thumbURL?: Maybe<Scalars['String']>;
-  photoURL?: Maybe<Scalars['String']>;
   birthday?: Maybe<Scalars['Date']>;
   gender?: Maybe<Scalars['Gender']>;
   phone?: Maybe<Scalars['String']>;

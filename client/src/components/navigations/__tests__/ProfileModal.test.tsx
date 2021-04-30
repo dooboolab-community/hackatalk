@@ -1,5 +1,11 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import React, {createRef, forwardRef, useImperativeHandle} from 'react';
+import React, {
+  FC,
+  RefObject,
+  createRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {
   createMockNavigation,
@@ -7,6 +13,7 @@ import {
 } from '../../../../test/testUtils';
 import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
 
+import {IEnvironment} from 'relay-runtime';
 import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
 import ReactNavigation from '@react-navigation/core';
@@ -21,22 +28,13 @@ jest.mock('@react-navigation/core', () => ({
   useNavigation: () => mockNavigation,
 }));
 
-const mockEnvironment = createMockEnvironment();
-
-const generateUser = (_: unknown, generateId: () => number): User => ({
-  id: `user-test-${generateId()}`,
-  name: 'Unnamed',
+const generateUser = (idNum: number, isFriend: boolean): Partial<User> => ({
+  id: `user-test-${idNum}`,
+  isFriend,
 });
-
-mockEnvironment.mock.queueOperationResolver((operation) =>
-  MockPayloadGenerator.generate(operation, {
-    User: generateUser,
-  }),
-);
 
 type ConsumerRef = {
   showModal: (next: {
-    isFriend?: boolean;
     onDeleteFriend?: () => void;
     onAddFriend?: () => void;
     hideButtons?: boolean;
@@ -68,27 +66,40 @@ const ProfileConsumer = forwardRef<ConsumerRef>((_props, ref) => {
   return null;
 });
 
-const consumerRef = createRef<ConsumerRef>();
+interface TestComponentProps {
+  consumerRef: RefObject<ConsumerRef>;
+  environment: IEnvironment;
+}
 
-const component = createTestElement(
-  <View>
-    <ProfileConsumer ref={consumerRef} />
-    <ProfileModal />
-  </View>,
-  {
-    environment: mockEnvironment,
-  },
-);
+const TestComponent: FC<TestComponentProps> = ({consumerRef, environment}) => {
+  return createTestElement(
+    <View>
+      <ProfileConsumer ref={consumerRef} />
+      <ProfileModal />
+    </View>,
+    {
+      environment,
+    },
+  );
+};
 
 describe('[ProfileModal] rendering test', () => {
   it('Render without crashing', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
 
-    act(() =>
-      consumerRef.current?.showModal({
-        isFriend: false,
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
       }),
     );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({}));
 
     const json = screen.toJSON();
 
@@ -96,13 +107,21 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Should be opened', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
 
-    act(() =>
-      consumerRef.current?.showModal({
-        isFriend: false,
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
       }),
     );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({}));
 
     const button = screen.getByTestId('touch-add-friend');
 
@@ -110,26 +129,34 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Check "Added to your friend." button', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
 
-    act(() =>
-      consumerRef.current?.showModal({
-        isFriend: false,
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
       }),
     );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({}));
 
     const button = screen.getByTestId('touch-add-friend');
 
     fireEvent.press(button);
 
     // Resolve mutation.
-    await waitFor(() =>
+    act(() => {
       mockEnvironment.mock.resolveMostRecentOperation((operation) =>
         MockPayloadGenerator.generate(operation, {
-          User: generateUser,
+          User: (_, generateId) => generateUser(generateId(), true),
         }),
-      ),
-    );
+      );
+    });
 
     const message = screen.getByTestId('added-message');
 
@@ -137,7 +164,19 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Should be closed', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
 
     act(() => consumerRef.current?.hideModal());
 
@@ -147,13 +186,24 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('delete', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), true),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
 
     const mockOnDeleteFriend = jest.fn();
 
     act(() =>
       consumerRef.current?.showModal({
-        isFriend: true,
         onDeleteFriend: mockOnDeleteFriend,
       }),
     );
@@ -168,13 +218,24 @@ describe('[ProfileModal] rendering test', () => {
   });
 
   it('Add Friend', async () => {
-    const screen = render(component);
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
 
     const mockOnAddFriend = jest.fn();
 
     act(() => {
       consumerRef.current?.showModal({
-        isFriend: false,
         onAddFriend: mockOnAddFriend,
       });
     });

@@ -11,8 +11,6 @@ export type ModalState =
       isVisible: true;
       /** Which user the profile modal describes */
       user: ProfileModal_user$key;
-      /** Is the profile user a friend of the current user? */
-      isFriend?: boolean;
       /** Callback function for delete button */
       onDeleteFriend?: () => void;
       /** Callback function for add friend button */

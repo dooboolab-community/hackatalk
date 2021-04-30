@@ -10,6 +10,7 @@ export type FriendAddMutationResponse = {
     readonly addFriend: {
         readonly friend: {
             readonly id: string;
+            readonly isFriend: boolean | null;
         } | null;
     } | null;
 };
@@ -27,6 +28,7 @@ mutation FriendAddMutation(
   addFriend(friendId: $friendId) {
     friend {
       id
+      isFriend
     }
   }
 }
@@ -69,6 +71,13 @@ v1 = [
             "kind": "ScalarField",
             "name": "id",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "isFriend",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -95,14 +104,14 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "b2878c3fa9f926c9ffa231ef1e328c4c",
+    "cacheID": "544c28c83204588b98cec8e076a7f9de",
     "id": null,
     "metadata": {},
     "name": "FriendAddMutation",
     "operationKind": "mutation",
-    "text": "mutation FriendAddMutation(\n  $friendId: String!\n) {\n  addFriend(friendId: $friendId) {\n    friend {\n      id\n    }\n  }\n}\n"
+    "text": "mutation FriendAddMutation(\n  $friendId: String!\n) {\n  addFriend(friendId: $friendId) {\n    friend {\n      id\n      isFriend\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'a0f15536b577ae75587a9ec980809a5d';
+(node as any).hash = 'e4eb66b7631419b65f07fa38c7eeb214';
 export default node;

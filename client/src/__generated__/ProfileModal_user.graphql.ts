@@ -11,6 +11,7 @@ export type ProfileModal_user = {
     readonly nickname: string | null;
     readonly hasBlocked: boolean | null;
     readonly statusMessage: string | null;
+    readonly isFriend: boolean | null;
     readonly " $refType": "ProfileModal_user";
 };
 export type ProfileModal_user$data = ProfileModal_user;
@@ -68,10 +69,17 @@ const node: ReaderFragment = {
       "kind": "ScalarField",
       "name": "statusMessage",
       "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "isFriend",
+      "storageKey": null
     }
   ],
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = 'b17dffee414a7016405304ea4a3eea02';
+(node as any).hash = '589f433fd2a1a3c2e632de6bc8024f36';
 export default node;

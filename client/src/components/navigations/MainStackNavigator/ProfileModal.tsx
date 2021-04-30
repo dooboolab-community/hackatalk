@@ -49,6 +49,7 @@ const fragment = graphql`
     nickname
     hasBlocked
     statusMessage
+    isFriend
   }
 `;
 
@@ -105,13 +106,6 @@ const StyledTextFriendAdded = styled.Text`
   padding: 4px;
 `;
 
-const StyledTextFriendAlreadyAdded = styled.Text`
-  color: ${({theme}) => theme.negative};
-  font-size: 12px;
-  background-color: ${({theme}) => theme.background};
-  padding: 4px;
-`;
-
 interface Styles {
   wrapper: StyleProp<ViewStyle>;
   viewBtn: StyleProp<ViewStyle>;
@@ -143,7 +137,15 @@ type ModalContentProps = {
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const userData = useFragment(fragment, modalState.user);
 
-  const {id, name, nickname, statusMessage, photoURL, hasBlocked} = userData;
+  const {
+    id,
+    name,
+    nickname,
+    statusMessage,
+    photoURL,
+    hasBlocked,
+    isFriend,
+  } = userData;
 
   const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(
     false,
@@ -186,7 +188,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         const root = proxyStore.getRoot();
 
         const connectionRecord =
-          root && ConnectionHandler.getConnection(root, 'Friend_friends');
+          root && ConnectionHandler.getConnection(root, 'MainFriend_friends');
 
         const userProxy = proxyStore.get(id);
 
@@ -219,7 +221,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         const root = proxyStore.getRoot();
 
         const connectionRecord =
-          root && ConnectionHandler.getConnection(root, 'Friend_friends');
+          root && ConnectionHandler.getConnection(root, 'MainFriend_friends');
 
         if (connectionRecord)
           ConnectionHandler.deleteNode(connectionRecord, id);
@@ -415,10 +417,6 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
       {showFriendAddedMessage ? (
         addFriendInFlight ? (
           <LoadingIndicator size="small" />
-        ) : modalState?.isFriend ? (
-          <StyledTextFriendAlreadyAdded testID="already-added-message">
-            {getString('FRIEND_ALREADY_ADDED')}
-          </StyledTextFriendAlreadyAdded>
         ) : (
           <StyledTextFriendAdded testID="added-message">
             {getString('FRIEND_ADDED')}
@@ -433,11 +431,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             <TouchableOpacity
               testID="touch-add-friend"
               activeOpacity={0.5}
-              onPress={modalState?.isFriend ? deleteFriend : addFriend}
+              onPress={isFriend ? deleteFriend : addFriend}
               style={styles.viewBtn}>
               <View style={styles.viewBtn}>
                 <StyledText testID="text-add-title">
-                  {modalState?.isFriend
+                  {isFriend
                     ? getString('DELETE_FRIEND')
                     : getString('ADD_FRIEND')}
                 </StyledText>

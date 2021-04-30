@@ -73,7 +73,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   const userListOnPress = (user: ProfileModal_user$key): void => {
     showModal({
       user,
-      isFriend: true,
     });
   };
 

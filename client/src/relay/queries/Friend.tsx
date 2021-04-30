@@ -13,6 +13,7 @@ export const addFriendMutation = graphql`
     addFriend(friendId: $friendId) {
       friend {
         id
+        isFriend
       }
     }
   }
@@ -23,6 +24,7 @@ export const deleteFriendMutation = graphql`
     deleteFriend(friendId: $friendId) {
       friend {
         id
+        isFriend
       }
     }
   }

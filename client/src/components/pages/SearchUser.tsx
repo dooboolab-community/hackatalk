@@ -102,7 +102,6 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
-        isFriend: false,
       });
     };
 

@@ -163,7 +163,7 @@ type MessageEdge {
 scalar MessageType
 
 type Mutation {
-  signUp(user: UserCreateInput!, photoUpload: Upload): User!
+  signUp(photoUpload: Upload, user: UserCreateInput!): User!
   signInEmail(email: String!, password: String!): AuthPayload!
   signInWithFacebook(accessToken: String!): AuthPayload!
   signInWithApple(accessToken: String!): AuthPayload!
@@ -402,6 +402,9 @@ type User {
 
   """Check if the user is blocked by the user who have signed in."""
   hasBlocked: Boolean
+
+  """This user is a friend of the authenticated user."""
+  isFriend: Boolean
 }
 
 type UserConnection {
@@ -421,8 +424,6 @@ input UserCreateInput {
   password: String!
   name: String
   nickname: String
-  thumbURL: String
-  photoURL: String
   birthday: Date
   gender: Gender
   phone: String

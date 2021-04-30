@@ -10,6 +10,7 @@ export type FriendDeleteMutationResponse = {
     readonly deleteFriend: {
         readonly friend: {
             readonly id: string;
+            readonly isFriend: boolean | null;
         } | null;
     } | null;
 };
@@ -27,6 +28,7 @@ mutation FriendDeleteMutation(
   deleteFriend(friendId: $friendId) {
     friend {
       id
+      isFriend
     }
   }
 }
@@ -69,6 +71,13 @@ v1 = [
             "kind": "ScalarField",
             "name": "id",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "isFriend",
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -95,14 +104,14 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "e6824128ef490212bcc9b08bfa6ecca4",
+    "cacheID": "83a03bd58e54642b4ea7e6038a998cf6",
     "id": null,
     "metadata": {},
     "name": "FriendDeleteMutation",
     "operationKind": "mutation",
-    "text": "mutation FriendDeleteMutation(\n  $friendId: String!\n) {\n  deleteFriend(friendId: $friendId) {\n    friend {\n      id\n    }\n  }\n}\n"
+    "text": "mutation FriendDeleteMutation(\n  $friendId: String!\n) {\n  deleteFriend(friendId: $friendId) {\n    friend {\n      id\n      isFriend\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '176edfc666a319a4889313b91cc4bf44';
+(node as any).hash = '0d50b4385882035ea6d9551c1fc47657';
 export default node;
