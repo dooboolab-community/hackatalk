@@ -31,6 +31,7 @@ fragment ProfileModal_user on User {
   nickname
   hasBlocked
   statusMessage
+  isFriend
 }
 */
 
@@ -124,6 +125,13 @@ return {
             "kind": "ScalarField",
             "name": "statusMessage",
             "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "isFriend",
+            "storageKey": null
           }
         ],
         "storageKey": "user(id:\"test-id\")"
@@ -131,12 +139,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "245bc16bb59c2de7400c37232a76892f",
+    "cacheID": "fbcce0820e8b7b4bea23d7c1f85df55b",
     "id": null,
     "metadata": {},
     "name": "ProfileModalTestQuery",
     "operationKind": "query",
-    "text": "query ProfileModalTestQuery {\n  myData: user(id: \"test-id\") {\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n"
+    "text": "query ProfileModalTestQuery {\n  myData: user(id: \"test-id\") {\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();

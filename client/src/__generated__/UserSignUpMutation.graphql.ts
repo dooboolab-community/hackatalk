@@ -8,8 +8,6 @@ export type UserCreateInput = {
     password: string;
     name?: string | null;
     nickname?: string | null;
-    thumbURL?: string | null;
-    photoURL?: string | null;
     birthday?: unknown | null;
     gender?: unknown | null;
     phone?: string | null;

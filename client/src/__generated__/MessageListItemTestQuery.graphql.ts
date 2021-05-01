@@ -48,6 +48,7 @@ fragment ProfileModal_user on User {
   nickname
   hasBlocked
   statusMessage
+  isFriend
 }
 */
 
@@ -200,6 +201,13 @@ return {
                 "kind": "ScalarField",
                 "name": "statusMessage",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "isFriend",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -210,12 +218,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e5d792a8ca9a91411c7a80d505e17db1",
+    "cacheID": "15cbd80b34796cddc574810b807baea1",
     "id": null,
     "metadata": {},
     "name": "MessageListItemTestQuery",
     "operationKind": "query",
-    "text": "query MessageListItemTestQuery {\n  myData: message(id: \"test-id\") {\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n"
+    "text": "query MessageListItemTestQuery {\n  myData: message(id: \"test-id\") {\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();

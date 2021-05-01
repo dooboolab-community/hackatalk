@@ -47,6 +47,24 @@ export const User = objectType({
         return !!blockedUser;
       },
     });
+
+    t.boolean('isFriend', {
+      description: 'This user is a friend of the authenticated user.',
+      resolve: async ({id}, _args, {userId}) => {
+        assert(userId, 'Not authorized.');
+
+        const friendQueryResult = await prisma.friend.findUnique({
+          where: {
+            userId_friendId: {
+              userId,
+              friendId: id,
+            },
+          },
+        });
+
+        return !!friendQueryResult;
+      },
+    });
   },
 });
 

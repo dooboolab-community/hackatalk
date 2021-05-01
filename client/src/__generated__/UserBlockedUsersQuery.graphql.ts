@@ -34,6 +34,7 @@ fragment ProfileModal_user on User {
   nickname
   hasBlocked
   statusMessage
+  isFriend
 }
 
 fragment UserListItem_user on User {
@@ -142,6 +143,13 @@ return {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
+            "name": "isFriend",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
             "name": "isOnline",
             "storageKey": null
           }
@@ -151,12 +159,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c562c517044916513e601b9f741b0344",
+    "cacheID": "7bd15cc4e160652eb15d970256188c5b",
     "id": null,
     "metadata": {},
     "name": "UserBlockedUsersQuery",
     "operationKind": "query",
-    "text": "query UserBlockedUsersQuery {\n  blockedUsers {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query UserBlockedUsersQuery {\n  blockedUsers {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();

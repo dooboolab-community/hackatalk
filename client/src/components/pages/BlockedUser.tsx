@@ -40,7 +40,6 @@ const ContentContainer: FC = () => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
-        isFriend: false,
         hideButtons: true,
       });
     };
