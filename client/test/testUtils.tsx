@@ -93,10 +93,10 @@ type NavigationStub<T extends {}> = {
  */
 export function createMockNavigation<T = {}>(): NavigationStub<T> {
   return {
+    getParent: jest.fn(),
+    getState: jest.fn(),
     addListener: jest.fn(),
     canGoBack: jest.fn(),
-    dangerouslyGetParent: jest.fn(),
-    dangerouslyGetState: jest.fn(),
     dispatch: jest.fn(),
     goBack: jest.fn(),
     isFocused: jest.fn(),

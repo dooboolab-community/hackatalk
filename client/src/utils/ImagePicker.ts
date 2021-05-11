@@ -8,12 +8,6 @@ enum MediaTypeOptions {
   Images = 'Images',
 }
 
-enum PermissionStatus {
-  UNDETERMINED = 'undetermined',
-  GRANTED = 'granted',
-  DENIED = 'denied',
-}
-
 const photoOptions = {
   mediaType: MediaTypeOptions.Images,
   allowsEditing: true,
@@ -21,34 +15,37 @@ const photoOptions = {
 };
 
 const requestPermissions = async (
-  type: string,
-): Promise<ImagePicker.CameraPermissionResponse['status']> => {
-  if (type === 'photo')
-    if (Platform.OS !== 'web') {
-      const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  type: 'photo' | 'camera',
+): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
+  if (type === 'camera') {
+    if (Platform.OS === 'web') {
+      const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-      return status;
+      return granted;
     }
 
-  const {status} = await ImagePicker.requestCameraPermissionsAsync();
+    const {granted} = await ImagePicker.requestCameraPermissionsAsync();
 
-  return status;
+    return granted;
+  }
+
+  const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+  return granted;
 };
 
 export const launchCameraAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
-  const permissionStatus = await requestPermissions('camera');
+  const granted = await requestPermissions('camera');
 
-  if (permissionStatus === PermissionStatus.GRANTED)
-    return ImagePicker.launchCameraAsync(photoOptions);
+  if (granted) return ImagePicker.launchCameraAsync(photoOptions);
 
   return null;
 };
 
 export const launchImageLibraryAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
-  const permissionStatus = await requestPermissions('photo');
+  const granted = await requestPermissions('photo');
 
-  if (permissionStatus === PermissionStatus.GRANTED)
-    return ImagePicker.launchImageLibraryAsync(photoOptions);
+  if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
 
   return null;
 };
