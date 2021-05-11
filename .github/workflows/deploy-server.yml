@@ -4,6 +4,7 @@
 name: Build and deploy Node.js app to Azure Web App - hackatalk server
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
