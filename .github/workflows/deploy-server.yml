@@ -26,7 +26,7 @@ jobs:
     - name: Install packages and build
       run: |
         pushd ./server
-        yarn
+        yarn install --ignore-engines
         yarn build --if-present
         yarn migrate --if-present
         popd

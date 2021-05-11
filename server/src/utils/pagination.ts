@@ -49,9 +49,11 @@ function resolveSkip(cursor: {id: string} | null | undefined): 1 | undefined {
   return undefined;
 }
 
-export function relayToPrismaPagination(
-  args: PaginationArgs,
-): {cursor?: {id: string}; take?: number; skip?: number} {
+export function relayToPrismaPagination(args: PaginationArgs): {
+  cursor?: {id: string};
+  take?: number;
+  skip?: number;
+} {
   const {first, last, before, after} = args;
 
   // If no pagination set, don't touch the args

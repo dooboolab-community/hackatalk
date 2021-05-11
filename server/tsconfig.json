@@ -10,7 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "noLib":false,
-    "sourceMap":false,
+    "sourceMap":true,
     "pretty":true,
     "allowUnreachableCode":true,
     "allowUnusedLabels":true,
