@@ -39,7 +39,6 @@ const CustomHeader = (): ReactElement => {
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   return (
-    // @ts-ignore
     <LinearGradient
       style={{
         paddingTop: insets.top,
@@ -98,19 +97,19 @@ function TabNavigator(): ReactElement {
         paddingLeft: insets.left,
         paddingRight: insets.right,
       }}
-      tabBarOptions={{
-        activeTintColor: theme.indicatorColor,
-        inactiveTintColor: theme.inactiveColor,
-        indicatorStyle: {
+      screenOptions={{
+        tabBarActiveTintColor: theme.indicatorColor,
+        tabBarInactiveTintColor: theme.inactiveColor,
+        tabBarIndicatorStyle: {
           backgroundColor: theme.indicatorColor,
         },
-        tabStyle: {
+        tabBarItemStyle: {
           backgroundColor: 'transparent',
         },
-        style: {
+        tabBarStyle: {
           backgroundColor: theme.background,
         },
-        indicatorContainerStyle: {
+        tabBarIndicatorContainerStyle: {
           paddingLeft: insets.left,
           paddingRight: insets.right,
         },

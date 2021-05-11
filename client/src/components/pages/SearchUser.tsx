@@ -20,6 +20,7 @@ import {
 import EmptyListItem from '../uis/EmptyListItem';
 import {FontAwesome} from '@expo/vector-icons';
 import {LoadingIndicator} from 'dooboo-ui';
+import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
 import UserListItem from '../uis/UserListItem';
@@ -96,9 +97,7 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
     loadNext(ITEM_CNT);
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
-    const itemTestID = `user-list-item${index}`;
-
+  const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
@@ -164,7 +163,7 @@ const Screen: FC = () => {
   const [searchText, setSearchText] = useState<string>('');
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
-  const navigation = useNavigation();
+  const navigation = useNavigation<MainStackNavigationProps<'SearchUser'>>();
 
   navigation.setOptions({
     headerRight: (): ReactElement => (

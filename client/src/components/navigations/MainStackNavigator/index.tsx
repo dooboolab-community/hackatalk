@@ -183,7 +183,6 @@ function MainStackNavigator(): ReactElement {
   return (
     <Stack.Navigator
       initialRouteName="MainTab"
-      headerMode="screen"
       screenOptions={{
         headerBackTitle: '',
       }}>
