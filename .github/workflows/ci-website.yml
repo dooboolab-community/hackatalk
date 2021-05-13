@@ -1,4 +1,4 @@
-name: CI
+name: CI for Website
 
 on:
   workflow_dispatch:

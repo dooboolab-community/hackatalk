@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk)
 [![Deploy Server](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml)
 [![Deploy Web App](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml)
+[![CI For Website](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml)
 [![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)
 [![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)

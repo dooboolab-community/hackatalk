@@ -11,20 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
       - name: Set up Node.js
         uses: actions/setup-node@master
         with:
           node-version: 14.x
 
       - name: Install packages and build
-        run: |
-          pushd ./website
-          yarn install --ignore-engines
-          yarn build
-          popd
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.5.0
         run: |
           pushd ./website
           yarn install --ignore-engines
