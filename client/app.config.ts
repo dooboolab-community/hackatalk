@@ -9,11 +9,7 @@ export default {
     name: 'HackaTalk',
     slug: 'HackaTalk-Expo',
     privacy: 'public',
-    platforms: [
-      'ios',
-      'android',
-      'web',
-    ],
+    platforms: ['ios', 'android', 'web'],
     version,
     orientation: 'default',
     icon: './assets/icon.png',
@@ -27,9 +23,7 @@ export default {
     updates: {
       fallbackToCacheTimeout: 0,
     },
-    assetBundlePatterns: [
-      '**/*',
-    ],
+    assetBundlePatterns: ['**/*'],
     facebookDisplayName: 'hackatalk',
     facebookScheme: `fb${process.env.facebookAppId}`,
     ios: {
@@ -61,7 +55,8 @@ export default {
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
-      playStoreUrl: 'https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk',
+      playStoreUrl:
+        'https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk',
       permissions: [
         'CAMERA',
         'CAMERA_ROLL',
@@ -103,6 +98,18 @@ export default {
     },
     description: 'Opensource chat app',
     githubUrl: 'https://github.com/dooboolab/hackatalk',
+    hooks: {
+      postPublish: [
+        {
+          file: 'sentry-expo/upload-sourcemaps',
+          config: {
+            organization: 'dooboolab',
+            project: 'hackatalk',
+            authToken: process.env.sentryAuthToken,
+          },
+        },
+      ],
+    },
   },
   web: {
     relatedApplications: [
@@ -118,17 +125,5 @@ export default {
       },
     ],
     preferRelatedApplications: true,
-  },
-  hooks: {
-    postPublish: [
-      {
-        file: 'sentry-expo/upload-sourcemaps',
-        config: {
-          organization: 'dooboolab',
-          project: 'hackatalk',
-          authToken: process.env.sentryAuthToken,
-        },
-      },
-    ],
   },
 };

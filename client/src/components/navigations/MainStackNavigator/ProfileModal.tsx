@@ -472,6 +472,7 @@ const ProfileModal: FC<Props> = () => {
        * props is true while the internal state is closed.
        */
       onClosed={profileContext.hideModal}
+      // @ts-ignore
       style={styles.wrapper}>
       {modalState.isVisible ? (
         <ModalContent
