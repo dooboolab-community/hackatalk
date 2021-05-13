@@ -35,15 +35,20 @@ yarn generate
 1. Change models in `schema.prisma`.
    > Note that `prisma/migrations` dir is included in `.gitignore` in this repo but it should not be ignored in production.
 2. Run migration script.
-   > Note that this should be targeting the production database. Locally, you can just run `yarn db-push`.
    ```
-   yarn migrate
+   yarn migrate:dev
    ```
+   > Prisma ensure that the db migrates correctly after changing Prisma schema (`schema.prisma`).
 3. Deploy migration to production.
-   > Note you may want to run `yarn migrate:dev` beforhand to test your migration.
    ```
    yarn migrate:deploy
    ```
+   > This migrates your local database.
+
+When you've changed your `schema.prisma`, in your `pull request`, note that in the readme that the db should be migrated before deploying sourcecode to production.
+
+[2021.05.13]
+Currently, we don't have any better solution to seamlessly deploy database when sourcecode is merged. This is because we won't let github workflow or anyother workflow to access our database for security reason. We are looking for a better option to run the migration script in [Azure](https://azure.microsoft.com) side.
 
 #### Create test user
 
