@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = (api) => {
   api.cache(true);
 
   return {
@@ -7,10 +7,11 @@ module.exports = function(api) {
         '@babel/preset-react',
         {runtime: 'automatic', importSource: '@emotion/react'},
       ],
-      'babel-preset-expo', '@babel/preset-typescript'
+      'babel-preset-expo',
+      '@babel/preset-typescript',
     ],
     plugins: [
-      ['relay', { artifactDirectory: './src/__generated__' }],
+      ['relay', {artifactDirectory: './src/__generated__'}],
       'react-native-reanimated/plugin',
       'macros',
       'inline-dotenv',
