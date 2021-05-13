@@ -49,12 +49,11 @@ import StatusBar from '../../uis/StatusBar';
 import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
 import {useAuthContext} from '../../../providers/AuthProvider';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
-const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
-  TouchableOpacity,
-);
+const AnimatedTouchableOpacity =
+  Animated.createAnimatedComponent(TouchableOpacity);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -142,17 +141,14 @@ const SignIn: FC = () => {
   const [errorEmail, setErrorEmail] = useState<string>('');
   const [errorPassword, setErrorPassword] = useState<string>('');
 
-  const [commitEmail, isInFlight] = useMutation<UserSignInEmailMutation>(
-    signInEmail,
-  );
+  const [commitEmail, isInFlight] =
+    useMutation<UserSignInEmailMutation>(signInEmail);
 
-  const [commitApple, isAppleInFlight] = useMutation<UserSignInAppleMutation>(
-    signInWithApple,
-  );
+  const [commitApple, isAppleInFlight] =
+    useMutation<UserSignInAppleMutation>(signInWithApple);
 
-  const [
-    commitNotification,
-  ] = useMutation<NotificationCreateNotificationMutation>(createNotification);
+  const [commitNotification] =
+    useMutation<NotificationCreateNotificationMutation>(createNotification);
 
   const createNotificationIfPushTokenExists = async (): Promise<void> => {
     const pushToken = await AsyncStorage.getItem('push_token');

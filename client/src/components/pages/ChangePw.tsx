@@ -18,7 +18,7 @@ import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -48,10 +48,8 @@ const ChangePw: FC = () => {
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
 
-  const [
-    commitChangePassword,
-    isInFlight,
-  ] = useMutation<UserChangeEmailPasswordMutation>(changeEmailPasswordMutation);
+  const [commitChangePassword, isInFlight] =
+    useMutation<UserChangeEmailPasswordMutation>(changeEmailPasswordMutation);
 
   const handleChangePasswordPress = async (): Promise<void> => {
     if (newPw !== confirmPw) {

@@ -1,10 +1,6 @@
 import {FlatList, ListRenderItem} from 'react-native';
 import React, {FC, Suspense, useMemo} from 'react';
-import {
-  graphql,
-  useLazyLoadQuery,
-  usePaginationFragment,
-} from 'react-relay/hooks';
+import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 
 import EmptyListItem from '../uis/EmptyListItem';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';

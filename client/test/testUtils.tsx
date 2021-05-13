@@ -8,7 +8,7 @@ import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
 import {IEnvironment} from 'relay-runtime';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
-import {RelayEnvironmentProvider} from 'react-relay/hooks';
+import {RelayEnvironmentProvider} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Text} from 'react-native';

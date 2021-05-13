@@ -12,7 +12,7 @@ import {PayloadError} from 'relay-runtime';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.View`
@@ -31,9 +31,8 @@ const Page: FC = () => {
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
 
-  const [commitFindPassword, isInFlight] = useMutation<UserFindPwMutation>(
-    findPasswordMutation,
-  );
+  const [commitFindPassword, isInFlight] =
+    useMutation<UserFindPwMutation>(findPasswordMutation);
 
   const {theme} = useTheme();
 

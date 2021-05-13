@@ -12,7 +12,7 @@ import {getString} from '../../../STRINGS';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 
 const Container = styled.View`
   flex: 1;
@@ -44,9 +44,8 @@ const Page: FC = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [commitEmail, isInFlight] = useMutation<UserVerifyEmailMutation>(
-    sendVerification,
-  );
+  const [commitEmail, isInFlight] =
+    useMutation<UserVerifyEmailMutation>(sendVerification);
 
   const mutationConfig = {
     variables: {

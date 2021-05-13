@@ -34,18 +34,20 @@ const requestPermissions = async (
   return granted;
 };
 
-export const launchCameraAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
-  const granted = await requestPermissions('camera');
+export const launchCameraAsync =
+  async (): Promise<ImagePicker.ImagePickerResult | null> => {
+    const granted = await requestPermissions('camera');
 
-  if (granted) return ImagePicker.launchCameraAsync(photoOptions);
+    if (granted) return ImagePicker.launchCameraAsync(photoOptions);
 
-  return null;
-};
+    return null;
+  };
 
-export const launchImageLibraryAsync = async (): Promise<ImagePicker.ImagePickerResult | null> => {
-  const granted = await requestPermissions('photo');
+export const launchImageLibraryAsync =
+  async (): Promise<ImagePicker.ImagePickerResult | null> => {
+    const granted = await requestPermissions('photo');
 
-  if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
+    if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
 
-  return null;
-};
+    return null;
+  };

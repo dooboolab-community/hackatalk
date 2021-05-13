@@ -82,15 +82,11 @@ const Screen: FC = () => {
     state: {user},
   } = useAuthContext();
 
-  const [
-    commitUpload,
-    isUploadInFlight,
-  ] = useMutation<UploadSingleUploadMutation>(singleUpload);
+  const [commitUpload, isUploadInFlight] =
+    useMutation<UploadSingleUploadMutation>(singleUpload);
 
-  const [
-    commitProfileUpdate,
-    isUpdating,
-  ] = useMutation<UserUpdateProfileMutation>(profileUpdate);
+  const [commitProfileUpdate, isUpdating] =
+    useMutation<UserUpdateProfileMutation>(profileUpdate);
 
   const [isUploading, setIsUploading] = useState(false);
 

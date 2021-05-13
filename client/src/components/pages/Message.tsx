@@ -154,9 +154,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
-  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(
-    createMessage,
-  );
+  const [commitMessage, isMessageInFlight] =
+    useMutation<MessageCreateMutation>(createMessage);
 
   const {
     state: {user},

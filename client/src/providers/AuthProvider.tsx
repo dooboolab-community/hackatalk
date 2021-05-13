@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, ReactNode, useReducer} from 'react';
+import React, {ReactElement, ReactNode, useReducer} from 'react';
 
 import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
@@ -32,14 +32,14 @@ interface Props {
 
 type Reducer = (state: State, action: Action) => State;
 
-const setUser = (dispatch: React.Dispatch<SetUserAction>) => (
-  authUser: User,
-): void => {
-  dispatch({
-    type: ActionType.SetUser,
-    payload: {user: authUser},
-  });
-};
+const setUser =
+  (dispatch: React.Dispatch<SetUserAction>) =>
+  (authUser: User): void => {
+    dispatch({
+      type: ActionType.SetUser,
+      payload: {user: authUser},
+    });
+  };
 
 const initialState: State = {
   user: undefined,

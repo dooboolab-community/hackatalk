@@ -11,7 +11,7 @@ import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
@@ -67,9 +67,8 @@ const Settings: FC = () => {
     state: {user},
   } = useAuthContext();
 
-  const [
-    commitNotification,
-  ] = useMutation<NotificationDeleteNotificationMutation>(deleteNotification);
+  const [commitNotification] =
+    useMutation<NotificationDeleteNotificationMutation>(deleteNotification);
 
   const renderSectionItem = (
     option: SettingsOption,

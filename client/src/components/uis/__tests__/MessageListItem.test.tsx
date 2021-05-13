@@ -1,7 +1,7 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {Suspense} from 'react';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
-import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
+import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import MessageListItem from '../MessageListItem';
 import {MessageListItemTestQuery} from '../../../__generated__/MessageListItemTestQuery.graphql';
