@@ -6,9 +6,8 @@ package-lock.json
 .DS_Store
 
 
-dotenv/prod.env
-dotenv/.env
-prisma/.env
+dotenv
+!dotenv/test.env
 src/generated
 
 .idea
