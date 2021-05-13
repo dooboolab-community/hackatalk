@@ -15,7 +15,7 @@
 <img src="https://user-images.githubusercontent.com/60481383/96114278-5c7d0780-0f20-11eb-8189-edbaa2b9860e.png" width="70%">
 
 etup environment
-1. cp `./dotenv/dev.env` `./dotenv/.env`
+1. cp `./dotenv/test.env` `./dotenv/.env`
 2. Include `DATABASE_URL`
    ```
    DATABASE_URL="postgresql://<user>:<password>@<url>:5432/postgres?schema=<scheme>"
