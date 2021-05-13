@@ -22,7 +22,7 @@ jobs:
           name: Install packages
           working_directory: server
           command: |
-            yarn
+            yarn install --ignore-engines
 
       - run:
           name: Generate prisma types

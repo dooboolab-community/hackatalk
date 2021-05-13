@@ -38,16 +38,6 @@
 
 - [Server](server) :computer:
 
-  * Test Web
-    [hackatalk.dev](https://hackatalk.dev)
-
-  * Test Apis
-    [api](https://hackatalk.azurewebsites.net)
-
-  * Test Graphql queries
-    [graphql](https://hackatalk.azurewebsites.net/graphql)
-
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

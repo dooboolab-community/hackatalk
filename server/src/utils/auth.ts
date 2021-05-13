@@ -30,7 +30,7 @@ const envPath =
     : path.resolve(__dirname, '../dotenv/.env');
 
 // eslint-disable-next-line
-require('dotenv').config({ path: envPath });
+require('dotenv').config({path: envPath});
 
 interface Token {
   userId: string;
@@ -47,6 +47,7 @@ export function getUserId(authorization?: string): string | null {
 
 export const validateEmail = (email: string): boolean => {
   // eslint-disable-next-line max-len
+  // eslint-disable-next-line prettier/prettier
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   return re.test(email);

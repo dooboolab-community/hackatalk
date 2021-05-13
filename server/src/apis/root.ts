@@ -135,7 +135,7 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
     bufferToStream(req.file.buffer),
     req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
     req.body.dir,
-    'hackatalk',
+    process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
   );
 
   res.status(200).json({
