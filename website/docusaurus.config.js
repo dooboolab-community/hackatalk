@@ -13,7 +13,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'dooboolab',
-  projectName: 'hackatalk-website',
+  projectName: 'hackatalk',
   onBrokenLinks: 'ignore',
   themeConfig: {
     navbar: {
@@ -73,7 +73,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/dooboolab/hackatalk-website/tree/master'
+            'https://github.com/dooboolab/hackatalk/tree/master/website'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
