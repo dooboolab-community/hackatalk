@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {graphql, useFragment} from 'react-relay/hooks';
+import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';

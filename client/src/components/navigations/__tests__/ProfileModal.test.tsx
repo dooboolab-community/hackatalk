@@ -11,7 +11,7 @@ import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
-import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
+import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import {IEnvironment} from 'relay-runtime';
 import ProfileModal from '../MainStackNavigator/ProfileModal';

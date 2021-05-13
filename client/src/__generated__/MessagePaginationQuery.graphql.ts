@@ -5,9 +5,9 @@
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MessagePaginationQueryVariables = {
-    after?: string | null;
+    before?: string | null;
     channelId: string;
-    first: number;
+    last: number;
     searchText?: string | null;
 };
 export type MessagePaginationQueryResponse = {
@@ -22,16 +22,16 @@ export type MessagePaginationQuery = {
 
 /*
 query MessagePaginationQuery(
-  $after: String
+  $before: String
   $channelId: String!
-  $first: Int!
+  $last: Int!
   $searchText: String
 ) {
-  ...MessageComponent_message_WlZsr
+  ...MessageComponent_message_1DZBY3
 }
 
-fragment MessageComponent_message_WlZsr on Query {
-  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {
+fragment MessageComponent_message_1DZBY3 on Query {
+  messages(last: $last, before: $before, channelId: $channelId, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -89,7 +89,7 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "after"
+    "name": "before"
   },
   {
     "defaultValue": null,
@@ -99,7 +99,7 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "first"
+    "name": "last"
   },
   {
     "defaultValue": null,
@@ -110,8 +110,8 @@ var v0 = [
 v1 = [
   {
     "kind": "Variable",
-    "name": "after",
-    "variableName": "after"
+    "name": "before",
+    "variableName": "before"
   },
   {
     "kind": "Variable",
@@ -120,8 +120,8 @@ v1 = [
   },
   {
     "kind": "Variable",
-    "name": "first",
-    "variableName": "first"
+    "name": "last",
+    "variableName": "last"
   },
   {
     "kind": "Variable",
@@ -363,14 +363,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "61dcdc65e32b9d221cbe7a0587f27155",
+    "cacheID": "09d939e7efb5a03a53f980cdbdd91633",
     "id": null,
     "metadata": {},
     "name": "MessagePaginationQuery",
     "operationKind": "query",
-    "text": "query MessagePaginationQuery(\n  $after: String\n  $channelId: String!\n  $first: Int!\n  $searchText: String\n) {\n  ...MessageComponent_message_WlZsr\n}\n\nfragment MessageComponent_message_WlZsr on Query {\n  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "query MessagePaginationQuery(\n  $before: String\n  $channelId: String!\n  $last: Int!\n  $searchText: String\n) {\n  ...MessageComponent_message_1DZBY3\n}\n\nfragment MessageComponent_message_1DZBY3 on Query {\n  messages(last: $last, before: $before, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = 'b3770569d6ba7ca5b814a0467cf595c0';
+(node as any).hash = 'cbbef07cb7d3b9b49f4dc37c3b5511e6';
 export default node;

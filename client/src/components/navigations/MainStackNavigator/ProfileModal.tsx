@@ -24,7 +24,7 @@ import {
   createBlockedUserMutation,
   deleteBlockedUserMutation,
 } from '../../../relay/queries/BlockedUser';
-import {graphql, useFragment, useMutation} from 'react-relay/hooks';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
 import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
@@ -137,47 +137,30 @@ type ModalContentProps = {
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const userData = useFragment(fragment, modalState.user);
 
-  const {
-    id,
-    name,
-    nickname,
-    statusMessage,
-    photoURL,
-    hasBlocked,
-    isFriend,
-  } = userData;
+  const {id, name, nickname, statusMessage, photoURL, hasBlocked, isFriend} =
+    userData;
 
-  const [showFriendAddedMessage, setShowFriendAddedMessage] = useState<boolean>(
-    false,
-  );
+  const [showFriendAddedMessage, setShowFriendAddedMessage] =
+    useState<boolean>(false);
 
   const navigation = useNavigation<RootStackNavigationProps>();
 
-  const [
-    commitChannel,
-    isChannelInFlight,
-  ] = useMutation<ChannelFindOrCreatePrivateChannelMutation>(
-    findOrCreatePrivateChannel,
-  );
+  const [commitChannel, isChannelInFlight] =
+    useMutation<ChannelFindOrCreatePrivateChannelMutation>(
+      findOrCreatePrivateChannel,
+    );
 
-  const [commitAddFriend, addFriendInFlight] = useMutation<FriendAddMutation>(
-    addFriendMutation,
-  );
+  const [commitAddFriend, addFriendInFlight] =
+    useMutation<FriendAddMutation>(addFriendMutation);
 
-  const [
-    commitDeleteFriend,
-    deleteFriendInFlight,
-  ] = useMutation<FriendDeleteMutation>(deleteFriendMutation);
+  const [commitDeleteFriend, deleteFriendInFlight] =
+    useMutation<FriendDeleteMutation>(deleteFriendMutation);
 
-  const [
-    commitCreateBlockedUser,
-    isCreateBlockedUserInFlight,
-  ] = useMutation<BlockedUserCreateMutation>(createBlockedUserMutation);
+  const [commitCreateBlockedUser, isCreateBlockedUserInFlight] =
+    useMutation<BlockedUserCreateMutation>(createBlockedUserMutation);
 
-  const [
-    commitDeleteBlockedUser,
-    isDeleteBlockedUserInFlight,
-  ] = useMutation<BlockedUserDeleteMutation>(deleteBlockedUserMutation);
+  const [commitDeleteBlockedUser, isDeleteBlockedUserInFlight] =
+    useMutation<BlockedUserDeleteMutation>(deleteBlockedUserMutation);
 
   const addFriend = async (): Promise<void> => {
     const {onAddFriend} = modalState;

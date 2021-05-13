@@ -4,7 +4,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {graphql, useFragment} from 'react-relay/hooks';
+import {graphql, useFragment} from 'react-relay';
 
 import CheckBox from './CheckBox';
 import {FontAwesome} from '@expo/vector-icons';

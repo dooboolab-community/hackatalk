@@ -14,7 +14,7 @@ import {
   useLazyLoadQuery,
   usePaginationFragment,
   useQueryLoader,
-} from 'react-relay/hooks';
+} from 'react-relay';
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import {AdMobBanner} from 'expo-ads-admob';
@@ -106,9 +106,8 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     MainChannelComponent_channel$key
   >(channelsPaginationFragment, channel);
 
-  const [, loadLastMessage] = useQueryLoader<MessageLastMessageQuery>(
-    lastMessageQuery,
-  );
+  const [, loadLastMessage] =
+    useQueryLoader<MessageLastMessageQuery>(lastMessageQuery);
 
   const [bannerError, setBannerError] = useState<boolean>(false);
   const orientation = useOrientation();
@@ -128,8 +127,9 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     // Add notification handler.
     const responseListener = Notifications.addNotificationReceivedListener(
       (event) => {
-        const messageId = JSON.parse(event.request.content.data.data as string)
-          .messageId;
+        const messageId = JSON.parse(
+          event.request.content.data.data as string,
+        ).messageId;
 
         loadNext(ITEM_CNT);
 

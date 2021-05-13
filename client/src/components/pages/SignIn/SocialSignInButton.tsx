@@ -22,7 +22,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 
 const {facebookAppId, googleWebClientId} = Config;
 
@@ -39,15 +39,11 @@ const SocialSignInButton: FC<Props> = ({
   socialProvider,
   onUserCreated,
 }) => {
-  const [
-    commitFacebook,
-    isFacebookInFlight,
-  ] = useMutation<UserFacebookSignInMutation>(signInWithFacebook);
+  const [commitFacebook, isFacebookInFlight] =
+    useMutation<UserFacebookSignInMutation>(signInWithFacebook);
 
-  const [
-    commitGoogle,
-    isGoogleInFlight,
-  ] = useMutation<UserGoogleSignInMutation>(signInWithGoogle);
+  const [commitGoogle, isGoogleInFlight] =
+    useMutation<UserGoogleSignInMutation>(signInWithGoogle);
 
   const {theme} = useTheme();
   const useProxy = Platform.select({web: false, default: true});

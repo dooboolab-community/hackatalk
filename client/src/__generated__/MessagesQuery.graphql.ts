@@ -5,8 +5,8 @@
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type MessagesQueryVariables = {
-    first: number;
-    after?: string | null;
+    last: number;
+    before?: string | null;
     channelId: string;
     searchText?: string | null;
 };
@@ -22,16 +22,16 @@ export type MessagesQuery = {
 
 /*
 query MessagesQuery(
-  $first: Int!
-  $after: String
+  $last: Int!
+  $before: String
   $channelId: String!
   $searchText: String
 ) {
-  ...MessageComponent_message_WlZsr
+  ...MessageComponent_message_1DZBY3
 }
 
-fragment MessageComponent_message_WlZsr on Query {
-  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {
+fragment MessageComponent_message_1DZBY3 on Query {
+  messages(last: $last, before: $before, channelId: $channelId, searchText: $searchText) {
     edges {
       cursor
       node {
@@ -88,7 +88,7 @@ const node: ConcreteRequest = (function(){
 var v0 = {
   "defaultValue": null,
   "kind": "LocalArgument",
-  "name": "after"
+  "name": "before"
 },
 v1 = {
   "defaultValue": null,
@@ -98,7 +98,7 @@ v1 = {
 v2 = {
   "defaultValue": null,
   "kind": "LocalArgument",
-  "name": "first"
+  "name": "last"
 },
 v3 = {
   "defaultValue": null,
@@ -108,8 +108,8 @@ v3 = {
 v4 = [
   {
     "kind": "Variable",
-    "name": "after",
-    "variableName": "after"
+    "name": "before",
+    "variableName": "before"
   },
   {
     "kind": "Variable",
@@ -118,8 +118,8 @@ v4 = [
   },
   {
     "kind": "Variable",
-    "name": "first",
-    "variableName": "first"
+    "name": "last",
+    "variableName": "last"
   },
   {
     "kind": "Variable",
@@ -371,14 +371,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "6e9722a274e6596db662555b22e5ccb5",
+    "cacheID": "353cef7aff62b86bcd95da81b8d7ed46",
     "id": null,
     "metadata": {},
     "name": "MessagesQuery",
     "operationKind": "query",
-    "text": "query MessagesQuery(\n  $first: Int!\n  $after: String\n  $channelId: String!\n  $searchText: String\n) {\n  ...MessageComponent_message_WlZsr\n}\n\nfragment MessageComponent_message_WlZsr on Query {\n  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "query MessagesQuery(\n  $last: Int!\n  $before: String\n  $channelId: String!\n  $searchText: String\n) {\n  ...MessageComponent_message_1DZBY3\n}\n\nfragment MessageComponent_message_1DZBY3 on Query {\n  messages(last: $last, before: $before, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = '06622ff6f54faabf675e48932f249991';
+(node as any).hash = '417596735a53042816470aa757cff988';
 export default node;

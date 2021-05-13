@@ -80,19 +80,23 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
   const scale = useRef(new Animated.Value(1)).current;
   const translate = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
 
-  const transformCache = useRef({scale: 1, translateX: 0, translateY: 0})
-    .current;
+  const transformCache = useRef({
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+  }).current;
 
   const lastTransform = useRef({scale: 1, translateX: 0, translateY: 0});
   const initialDistance = useRef<number>();
   const initialTouchesCenter = useRef<TouchePosition>();
 
-  const layout = useRef<{
-    width: number;
-    height: number;
-    pageX: number;
-    pageY: number;
-  }>();
+  const layout =
+    useRef<{
+      width: number;
+      height: number;
+      pageX: number;
+      pageY: number;
+    }>();
 
   const decayingTranslateAnimation = useRef<Animated.CompositeAnimation>();
   const isResponderActive = useRef(false);

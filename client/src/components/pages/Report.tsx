@@ -16,7 +16,7 @@ import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
-import {useMutation} from 'react-relay/hooks';
+import {useMutation} from 'react-relay';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
@@ -42,9 +42,8 @@ const ReportScreen: FC = () => {
   const {theme} = useTheme();
   const [message, setMessage] = useState('');
 
-  const [commitReport, isInFlight] = useMutation<ReportCreateReportMutation>(
-    createReport,
-  );
+  const [commitReport, isInFlight] =
+    useMutation<ReportCreateReportMutation>(createReport);
 
   const handleReport = (): void => {
     const mutationConfig = {

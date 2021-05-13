@@ -15,7 +15,7 @@ import {
   graphql,
   useRelayEnvironment,
   useSubscription,
-} from 'react-relay/hooks';
+} from 'react-relay';
 
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
@@ -62,12 +62,11 @@ type NavigationProps<T extends keyof MainStackParamList> = StackNavigationProp<
   T
 >;
 
-export type MainStackNavigationProps<
-  T extends keyof MainStackParamList
-> = CompositeNavigationProp<
-  NavigationProps<T>,
-  RootStackNavigationProps<'MainStack'>
->;
+export type MainStackNavigationProps<T extends keyof MainStackParamList> =
+  CompositeNavigationProp<
+    NavigationProps<T>,
+    RootStackNavigationProps<'MainStack'>
+  >;
 
 const Stack = createStackNavigator<MainStackParamList>();
 

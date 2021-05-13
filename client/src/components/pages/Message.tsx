@@ -33,7 +33,7 @@ import {
   useLazyLoadQuery,
   useMutation,
   usePaginationFragment,
-} from 'react-relay/hooks';
+} from 'react-relay';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
@@ -69,15 +69,15 @@ const Container = styled.SafeAreaView`
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
   @argumentDefinitions(
-    first: {type: "Int!"}
-    after: {type: "String"}
+    last: {type: "Int!"}
+    before: {type: "String"}
     channelId: {type: "String!"}
     searchText: {type: "String"}
   )
   @refetchable(queryName: "MessagePaginationQuery") {
     messages(
-      first: $first
-      after: $after
+      last: $last
+      before: $before
       channelId: $channelId
       searchText: $searchText
     )
@@ -120,7 +120,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
 
-  const {data, loadNext, loadPrevious} = usePaginationFragment<
+  const {data, loadPrevious} = usePaginationFragment<
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
@@ -147,16 +147,15 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   }, [data]);
 
   const onEndReached = (): void => {
-    loadNext(ITEM_CNT);
+    loadPrevious(ITEM_CNT);
   };
 
   const [textToSend, setTextToSend] = useState<string>('');
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
-  const [commitMessage, isMessageInFlight] = useMutation<MessageCreateMutation>(
-    createMessage,
-  );
+  const [commitMessage, isMessageInFlight] =
+    useMutation<MessageCreateMutation>(createMessage);
 
   const {
     state: {user},
@@ -413,7 +412,7 @@ const MessageScreen: FC = () => {
       if (users)
         if (users.length === 1)
           title = users[0].nickname || users[0].name || '';
-        else {
+        else if (users.length > 1) {
           const userNames = users.map((v) => v.nickname || v.name || '');
 
           title = userNames.join(', ');
@@ -434,7 +433,7 @@ const MessageScreen: FC = () => {
   });
 
   const searchArgs: MessagesQueryVariables = {
-    first: ITEM_CNT,
+    last: ITEM_CNT,
     channelId: channel.id,
   };
 

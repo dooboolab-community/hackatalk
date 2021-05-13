@@ -4,7 +4,7 @@ orbs:
 jobs:
   server:
     docker:
-    - image: circleci/node:14.9.0
+    - image: circleci/node:14.13.0
     - image: circleci/postgres:12.5
       environment:
         POSTGRES_DB: test
@@ -61,7 +61,7 @@ jobs:
   client:
     working_directory: ~/dooboo
     docker:
-      - image: circleci/node:14.9.0
+      - image: circleci/node:14.13.0
     environment:
       TZ: 'Asia/Seoul'
     steps:

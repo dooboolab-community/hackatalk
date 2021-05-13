@@ -25,12 +25,11 @@ export type AuthStackParamList = {
   LicenseAgreement: undefined;
 };
 
-type NavigationProps<
-  T extends keyof AuthStackParamList = 'default'
-> = StackNavigationProp<AuthStackParamList, T>;
+type NavigationProps<T extends keyof AuthStackParamList = 'default'> =
+  StackNavigationProp<AuthStackParamList, T>;
 
 export type AuthStackNavigationProps<
-  T extends keyof AuthStackParamList = 'default'
+  T extends keyof AuthStackParamList = 'default',
 > = CompositeNavigationProp<
   NavigationProps<T>,
   RootStackNavigationProps<'AuthStack'>

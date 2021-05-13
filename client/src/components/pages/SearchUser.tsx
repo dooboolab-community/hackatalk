@@ -11,11 +11,7 @@ import type {
   UserUsersPaginationQueryResponse,
   UserUsersPaginationQueryVariables,
 } from '../../__generated__/UserUsersPaginationQuery.graphql';
-import {
-  graphql,
-  useLazyLoadQuery,
-  usePaginationFragment,
-} from 'react-relay/hooks';
+import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 
 import EmptyListItem from '../uis/EmptyListItem';
 import {FontAwesome} from '@expo/vector-icons';
@@ -148,11 +144,10 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
-  const data: UserUsersPaginationQueryResponse = useLazyLoadQuery<UserUsersPaginationQuery>(
-    usersQuery,
-    searchArgs,
-    {fetchPolicy: 'store-or-network'},
-  );
+  const data: UserUsersPaginationQueryResponse =
+    useLazyLoadQuery<UserUsersPaginationQuery>(usersQuery, searchArgs, {
+      fetchPolicy: 'store-or-network',
+    });
 
   return (
     <UsersFragment scrollY={scrollY} user={data} searchArgs={searchArgs} />

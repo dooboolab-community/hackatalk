@@ -14,11 +14,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  RelayEnvironmentProvider,
-  graphql,
-  useLazyLoadQuery,
-} from 'react-relay/hooks';
+import {RelayEnvironmentProvider, graphql, useLazyLoadQuery} from 'react-relay';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';

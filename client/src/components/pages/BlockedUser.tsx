@@ -8,7 +8,7 @@ import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
-import {useLazyLoadQuery} from 'react-relay/hooks';
+import {useLazyLoadQuery} from 'react-relay';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const Container = styled.View`

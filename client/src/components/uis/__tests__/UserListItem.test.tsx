@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {fireEvent, render} from '@testing-library/react-native';
-import {graphql, useLazyLoadQuery} from 'react-relay/hooks';
+import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import UserListItem from '../UserListItem';
 import {UserListItemTestQuery} from '../../../__generated__/UserListItemTestQuery.graphql';

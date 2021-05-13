@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import React, {FC, useState} from 'react';
-import {UseMutationConfig, useMutation} from 'react-relay/hooks';
+import {UseMutationConfig, useMutation} from 'react-relay';
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
@@ -79,9 +79,8 @@ const Page: FC = () => {
 
   const [commitSignUp, isInFlight] = useMutation<UserSignUpMutation>(signUp);
 
-  const [commitSendVerification] = useMutation<UserVerifyEmailMutation>(
-    sendVerification,
-  );
+  const [commitSendVerification] =
+    useMutation<UserVerifyEmailMutation>(sendVerification);
 
   const {showActionSheetWithOptions} = useActionSheet();
 
