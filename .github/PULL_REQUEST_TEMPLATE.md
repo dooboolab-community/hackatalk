@@ -1,5 +1,5 @@
 ## Specify project
-_Is this related `react-native` project or `server` side? Or both?_
+_Is this related `react-native` project or `server` side or `website`?
 
 ## Description
 
