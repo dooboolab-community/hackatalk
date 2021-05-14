@@ -18,9 +18,10 @@ interface Context {
 }
 
 interface Props {
-  /**
-   * Factory function for generating Relay environments.
-   */
+  /* For testing */
+  environment?: IEnvironment;
+
+  /* Factory function for generating Relay environments */
   createRelayEnvironment: () => IEnvironment;
 }
 
@@ -28,10 +29,11 @@ const [useResettableRelayContext, Provider] = createCtx<Context>();
 
 const ResettableRelayProvider: FC<Props> = ({
   children,
+  environment: initialEnvironment,
   createRelayEnvironment,
 }) => {
   const [environment, setEnvironment] = useState<IEnvironment>(
-    createRelayEnvironment(),
+    initialEnvironment || createRelayEnvironment(),
   );
 
   const resetRelayEnvironment = (): void => {

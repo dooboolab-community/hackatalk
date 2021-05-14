@@ -89,9 +89,7 @@ describe('[Setting] screen', () => {
       const TestComponent: React.FC<{onAuthChange: (user?: User) => void}> = ({
         onAuthChange,
       }) => {
-        const {
-          state: {user},
-        } = useAuthContext();
+        const {user} = useAuthContext();
 
         React.useEffect(() => {
           onAuthChange(user);
@@ -116,7 +114,14 @@ describe('[Setting] screen', () => {
 
       // Auth user is set to undefined after logout.
       await waitFor(() => {
-        expect(mockOnAuthChange).toHaveBeenCalledWith(undefined);
+        expect(mockOnAuthChange).toHaveBeenCalledWith({
+          id: '',
+          nickname: '',
+          photoURL: '',
+          profile: {authType: 'apple', socialId: ''},
+          statusMessage: '',
+          thumbURL: '',
+        });
       });
     });
   });

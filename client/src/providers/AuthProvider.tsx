@@ -7,7 +7,7 @@ import {PreloadedQuery, graphql, useQueryLoader} from 'react-relay/hooks';
 import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {DisposeFn} from 'relay-runtime';
+import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
 import {useResettableRelayContext} from './ResettableProvider';
 
@@ -15,18 +15,18 @@ export interface AuthContext {
   user: AuthProviderMeQueryResponse['me'] | null;
   setUser: (value: AuthProviderMeQueryResponse['me'] | null) => void;
   signOutAsync: () => void;
-  meQueryReference:
+  meQueryReference?:
     | PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>
     | null
     | undefined;
   loadMeQuery: (variables: AuthProviderMeQueryVariables, options?: any) => void;
-  disposeMeQuery: DisposeFn;
 }
 
 const [useCtx, Provider] = createCtx<AuthContext>();
 
 interface Props {
   children?: React.ReactElement;
+  initialAuthUser?: User;
 }
 
 export const meQuery = graphql`
@@ -43,9 +43,10 @@ export const meQuery = graphql`
   }
 `;
 
-function AuthProvider({children}: Props): React.ReactElement {
-  const [user, setUser] =
-    useState<AuthProviderMeQueryResponse['me'] | null>(null);
+function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
+  const [user, setUser] = useState<AuthProviderMeQueryResponse['me'] | null>(
+    (initialAuthUser as AuthProviderMeQueryResponse['me']) || null,
+  );
 
   const [meQueryReference, loadMeQuery, disposeMeQuery] =
     useQueryLoader<AuthProviderMeQuery>(meQuery);
@@ -72,7 +73,6 @@ function AuthProvider({children}: Props): React.ReactElement {
         signOutAsync,
         meQueryReference,
         loadMeQuery,
-        disposeMeQuery,
       }}>
       {children}
     </Provider>
@@ -80,3 +80,10 @@ function AuthProvider({children}: Props): React.ReactElement {
 }
 
 export {useCtx as useAuthContext, AuthProvider};
+
+const AuthContext = {
+  useAuthContext: useCtx,
+  AuthProvider,
+};
+
+export default AuthContext;
