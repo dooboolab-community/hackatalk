@@ -104,7 +104,7 @@ export default {
           file: 'sentry-expo/upload-sourcemaps',
           config: {
             organization: 'dooboolab',
-            project: 'hackatalk',
+            project: 'hackatalk-client',
             authToken: process.env.sentryAuthToken,
           },
         },
