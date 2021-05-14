@@ -27,4 +27,4 @@ The encryption is being done in the **text** message only. This should be **encr
 
 ## Push Notification
 
-There are push token id in each device and browser. They are used to receive **push notification** in their devices. Push token in the device is sent to the server when user sign-in. `createNotification` mutation will be called on the client-side. The `id` of the user and the device's `push token` will be mapped in the database and they will be used to send messages via **push notification**. This will be removed with the `deleteNotification` mutation query when the user signs out.
+There are push token ids in every devices and browsers. They are used to receive **push notification** in their devices. Push token in the device is sent to the server when user sign-in. `createNotification` mutation will be called on the client-side. The `id` of the user and the device's `push token` will be mapped in the database and they will be used to send messages via **push notification**. This will be removed with the `deleteNotification` mutation query when the user signs out.

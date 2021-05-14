@@ -40,32 +40,6 @@
    git clone https://github.com/<your-id>/hackatalk.git
    ```
 
-#### Installation - Client specific
-
-1. Install your packages in `client` directory.
-   ```
-   yarn
-   ```
-   - Note that we recommend using yarn because all of our team members do.
-   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
-
-2. Configure `environment` for project
-   - Copy `.env.sample` to `.env`.
-     ```
-     cp .env.sample .env
-     ```
-
-3. Run your project
-   - Server
-     - Run `yarn dev` or `yarn local` if you want to run your local server.
-   - Client
-     - `yarn start` will open `expo` console.
-
-4. Configure linting in [vscode](https://code.visualstudio.com) correctly.
-   - Example vscode [setting.json](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1)
-   - Recommended [vscode extension list](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1#gistcomment-3019263)
-
-
 #### Installation - Server specific
 
 1. Install your packages in `server` directory.
@@ -80,9 +54,9 @@
 3. Setup environment
    1. You can use our default `environment` which is configured in `dotenv/dev.env`. However, this may not be sufficient when developing so you can also set them up locally.
    2. Setting up own `environment` locally.
-      - Copy `dotenv/dev.env` to `dotenv/.env`.
+      - Copy `dotenv/test.env` to `dotenv/.env`.
         ```
-        cp dotenv/dev.env dotenv/.env
+        cp dotenv/test.env dotenv/.env
         ```
       - Include `DATABASE_URL` (* necessary field)
          ```
@@ -105,36 +79,57 @@
 
 4. Sync your local database with `Prisma`.
    ```
-   yarn migrate:up
+   yarn migrate:deploy
    ```
    - Above command will follow `dotenv/.env` environment.
+   - If `Prisma` script does not create your `database` or `schema` automatically, create them manually then try again.
 
 5. Generate Prisma Client and Nexus
    ```
    yarn generate
    ```
 
-6. Migration
+6. Migration (Usually during development)
    1. Change models in `./prisma/schema.prisma`.
-   2. Run `migration:save` script and type the migration name that you want.
+   2. Run `migration:dev` to see if migration does not fail in your database.
       ```
-      yarn migrate:save
-      ✔ Name of migration … [type the "migration_name"]
-      📼  migrate save --name migration_name
+      yarn migrate:dev
       ```
-      - This [migration process](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-migrate#prisma-migrate) makes some files like
+      - This [migration process](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-migrate#prisma-migrate) generates files below
          ```
          migrations/
          └─ 20200724010758-migration_name/
-            └─ steps.json
-            └─ schema.prisma
-            └─ README.md
+            └─ migration.sql
          ```
-   3. Run `migration:up`. this process will generate models that you've changed in actual postgre DB.
+   3. Running `migration:deploy` will finish migrating your database.
       ```
-      yarn migrate:up
+      yarn migrate:deploy
       ```
 
+#### Installation - Client specific
+
+1. Install your packages in `client` directory.
+   ```
+   yarn
+   ```
+   - Note that we recommend using yarn because all of our team members do.
+   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+
+2. Configure `environment` for project
+   - Copy `.env.sample` to `.env`.
+     ```
+     cp .env.sample .env
+     ```
+
+3. Run your project
+   - Server
+     - Run `yarn local` to start your local server.
+       > Make sure that you should have server `env` ready.
+   - Client
+     - `yarn start` will open `expo` console.
+
+4. Helpful vscode extentions are listed below.
+   - Recommended [vscode extension list](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1#gistcomment-3019263)
 
 ## Commit message
 
@@ -164,19 +159,9 @@ Generally, each PR should contain one commit that is amended as you address code
 
 ## Coding Guidelines
 
-Please follow the Coding conventions as much as possible when contributing your code. This is mostly covered by `eslint` plugin in `vscode`. Add `eslint` plugin and add below in `setting.json` in `vscode` to fix `coding style` in live editing.
+Mostly, coding convention is configured in project with `eslint` and `prettier`.
 
-```
-"eslint.enable": true,
-"eslint.validate": [
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "typescriptreact"
-],
-```
-
-> `npm run lint` command will cover your code style either.
+> `yarn lint` command will cover your code style either.
 
 General styles
 
@@ -210,7 +195,7 @@ array.forEach((e) => {
 
 ## Formatting (Prettier)
 
-- [how to use prettier extension for the eslint code rules](https://medium.com/dooboolab/using-eslint-prettier-and-sort-imports-vscode-extensions-for-formatting-open-source-project-16edf317129d)
+- [How to use prettier extension for the eslint code rules](https://medium.com/dooboolab/using-eslint-prettier-and-sort-imports-vscode-extensions-for-formatting-open-source-project-16edf317129d)
 - while you are using prettier extension, you may encounter **ternary operator** indentation problems
 
   ![error](https://i.imgur.com/RhGrbLo.png)
@@ -226,7 +211,7 @@ array.forEach((e) => {
   ![fixes](https://i.imgur.com/x3bL5kf.png)
 
 ## Test Code
-Hackatalk uses [Jest](https://jestjs.io/) to write test codes for both client & server.
+Hackatalk uses [Jest](https://jestjs.io) to write test codes for both client & server.
 ### Client Testing
 #### Testing Library
 Client test codes are written with `@testing-library/react-native`.

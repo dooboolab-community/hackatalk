@@ -5,5 +5,16 @@ title: Contributing
 
 Our developement stacks are introduced in [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md).
 
-Our development server is open for everyone in [azure websites](https://hackatalk.azurewebsites.net) and we are mainly using graphql. You can checkout our graphql resolvers in [playground](https://hackatalk.azurewebsites.net/graphql). We opened our development server to share and improve `HackaTalk` publically.
+To work on this project, you need to install the `server` project locally. You can follow the [server specific installation](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#installation---server-specific) to setup your local server.
 
+After that, [configure react-native project](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#installation---client-specific) and run your app which communicate with your local server.
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<a href={useBaseUrl('img/running_project.png')} target="_blank" rel="noopener noreferrer">
+  <img src={useBaseUrl('img/running_project.png')} alt="hackatalk client index.js diagram" />
+</a>
+
+<a href={useBaseUrl('img/running_expo.gif')} target="_blank" rel="noopener noreferrer">
+  <img src={useBaseUrl('img/running_expo.gif')} alt="hackatalk client index.js diagram" />
+</a>
