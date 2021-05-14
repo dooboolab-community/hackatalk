@@ -59,7 +59,7 @@ interface SettingsOption {
 const Settings: FC = () => {
   let signInInfoOption: SettingsOption;
 
-  const {user, signOutAsync, disposeMeQuery} = useAuthContext();
+  const {user, signOutAsync} = useAuthContext();
   const {theme} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
 
@@ -105,7 +105,6 @@ const Settings: FC = () => {
       }
 
       signOutAsync();
-      disposeMeQuery();
     }
   };
 
