@@ -1,7 +1,7 @@
 ---
 id: search-users
 title: Search Users
-sidebar_label: Searching users
+sidebar_label: Search users
 ---
 
 ## SearchUser screen
@@ -10,6 +10,6 @@ sidebar_label: Searching users
 
 Users will be fetched in infinite scrollview. Relay style cursor pagination is applied in this implementation as written in [medium blog](https://medium.com/@dooboolab/relay-experimental-cursor-pagination-6a9e448d3146).
 
-### Searching Users
+### Search Users
 
 When searching users, you can just send `searchText` argument to grapqhl `query` and it will likey return the list of users who might be related.
