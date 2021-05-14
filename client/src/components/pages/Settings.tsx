@@ -2,6 +2,7 @@ import {Button, DoobooTheme, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
+import {UseMutationConfig, useMutation} from 'react-relay';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
@@ -11,7 +12,6 @@ import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
@@ -59,13 +59,9 @@ interface SettingsOption {
 const Settings: FC = () => {
   let signInInfoOption: SettingsOption;
 
-  const {setUser} = useAuthContext();
+  const {user, signOutAsync, disposeMeQuery} = useAuthContext();
   const {theme} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
-
-  const {
-    state: {user},
-  } = useAuthContext();
 
   const [commitNotification] =
     useMutation<NotificationDeleteNotificationMutation>(deleteNotification);
@@ -98,16 +94,18 @@ const Settings: FC = () => {
       const pushToken = await AsyncStorage.getItem('push_token');
 
       if (pushToken) {
-        const deleteNotificationMutationConfig = {
-          variables: {
-            token: pushToken,
-          },
-        };
+        const deleteNotificationMutationConfig: UseMutationConfig<NotificationDeleteNotificationMutation> =
+          {
+            variables: {
+              token: pushToken,
+            },
+          };
 
         commitNotification(deleteNotificationMutationConfig);
       }
 
-      setUser(undefined);
+      signOutAsync();
+      disposeMeQuery();
     }
   };
 
@@ -127,7 +125,7 @@ const Settings: FC = () => {
       signInInfoOption = {
         icon: <SvgFacebook width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
-        onPress: (): void => {
+        onPress: () => {
           navigation.navigate('ChangePw');
         },
         testID: 'change-pw-item',
@@ -138,7 +136,7 @@ const Settings: FC = () => {
       signInInfoOption = {
         icon: <SvgApple width={24} fill={theme.text} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
-        onPress: (): void => {
+        onPress: () => {
           navigation.navigate('ChangePw');
         },
         testID: 'change-pw-item',
@@ -149,7 +147,7 @@ const Settings: FC = () => {
     default:
       signInInfoOption = {
         label: getString('SIGNED_IN_WITH_EMAIL'),
-        onPress: (): void => {
+        onPress: () => {
           navigation.navigate('ChangePw');
         },
         testID: 'change-pw-item',

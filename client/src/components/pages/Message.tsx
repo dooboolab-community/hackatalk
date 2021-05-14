@@ -157,9 +157,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [commitMessage, isMessageInFlight] =
     useMutation<MessageCreateMutation>(createMessage);
 
-  const {
-    state: {user},
-  } = useAuthContext();
+  const {user} = useAuthContext();
 
   const onSubmit = (): void => {
     if (!textToSend) return;

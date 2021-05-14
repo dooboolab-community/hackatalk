@@ -3,7 +3,6 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import {Alert, Image, View} from 'react-native';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
-import {AuthProvider, useAuthContext} from './providers/AuthProvider';
 import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
 import React, {
   FC,
@@ -11,24 +10,22 @@ import React, {
   ReactNode,
   Suspense,
   useEffect,
-  useRef,
   useState,
 } from 'react';
-import {RelayEnvironmentProvider, graphql, useLazyLoadQuery} from 'react-relay';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
-import type {AppUserQuery} from './__generated__/AppUserQuery.graphql';
 import {Asset} from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
+import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
-import {User} from './types/graphql';
+import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
-import relayEnvironment from './relay';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -37,20 +34,6 @@ Notifications.setNotificationHandler({
     shouldSetBadge: false,
   }),
 });
-
-const meQuery = graphql`
-  query AppUserQuery {
-    me {
-      id
-      email
-      verified
-      profile {
-        socialId
-        authType
-      }
-    }
-  }
-`;
 
 function cacheImages(images: (number | string)[]): any[] {
   return images.map((image) => {
@@ -69,7 +52,6 @@ const prepareAutoHide = async (): Promise<void> => {
 
 function App(): ReactElement {
   const [assetLoaded, setAssetLoaded] = useState<boolean>(false);
-  const authRef = useRef(useAuthContext());
 
   const loadAssetsAsync = async (): Promise<void> => {
     const imageAssets = cacheImages(Icons);
@@ -79,10 +61,12 @@ function App(): ReactElement {
     setAssetLoaded(true);
   };
 
-  const {me} = useLazyLoadQuery<AppUserQuery>(meQuery, {});
-
   const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
-    await SplashScreen.hideAsync();
+    try {
+      await SplashScreen.hideAsync();
+    } catch (err) {
+      // console.log('hide splash', err);
+    }
 
     registerForPushNotificationsAsync()
       .then((pushToken) => {
@@ -111,16 +95,6 @@ function App(): ReactElement {
       loadAssetsAsync();
     } else hideSplashScreenThenRegisterNotification();
   }, [assetLoaded]);
-
-  useEffect(() => {
-    if (me === null) {
-      AsyncStorage.removeItem('token');
-
-      return;
-    }
-
-    authRef.current?.setUser(me as User);
-  }, [me]);
 
   if (!assetLoaded) return <View />;
 
@@ -161,9 +135,9 @@ function ActionSheetProviderWithChildren(props: {
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(App)
   .wrap(ActionSheetProviderWithChildren, {})
-  .wrap(Suspense, {fallback: <LoadingIndicator />})
-  .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
   .wrap(AuthProvider, {})
+  .wrap(Suspense, {fallback: <LoadingIndicator />})
+  .wrap(ResettableRelayProvider, {createRelayEnvironment})
   .wrap(DeviceProvider, {})
   .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})

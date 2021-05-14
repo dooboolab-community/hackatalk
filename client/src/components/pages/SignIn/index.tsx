@@ -18,7 +18,6 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import {AuthPayload, User} from '../../../types/graphql';
 import {Button, EditText, ThemeType, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
@@ -42,6 +41,7 @@ import {signInEmail, signInWithApple} from '../../../relay/queries/User';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthPayload} from '../../../types/graphql';
 import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
@@ -132,7 +132,7 @@ const StyledScrollView = styled.ScrollView`
 
 const SignIn: FC = () => {
   const navigation = useNavigation<AuthStackNavigationProps<'SignIn'>>();
-  const {setUser} = useAuthContext();
+  const {loadMeQuery} = useAuthContext();
   const {theme, changeThemeType, themeType} = useTheme();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
@@ -207,11 +207,13 @@ const SignIn: FC = () => {
             email,
           });
 
-        AsyncStorage.setItem('token', token);
+        if (user && token) {
+          createNotificationIfPushTokenExists();
 
-        createNotificationIfPushTokenExists();
-
-        setUser(user as User);
+          AsyncStorage.setItem('token', token).then(() => {
+            loadMeQuery({}, {fetchPolicy: 'network-only'});
+          });
+        }
       },
 
       onError: (error: Error): void => {
@@ -258,11 +260,13 @@ const SignIn: FC = () => {
           onCompleted: (response: UserSignInAppleMutationResponse) => {
             const {token, user} = response.signInWithApple as AuthPayload;
 
-            AsyncStorage.setItem('token', token);
+            if (user && token) {
+              createNotificationIfPushTokenExists();
 
-            createNotificationIfPushTokenExists();
-
-            setUser(user as User);
+              AsyncStorage.setItem('token', token).then(() => {
+                loadMeQuery({}, {fetchPolicy: 'network-only'});
+              });
+            }
           },
           onError: (err: Error) => {
             showAlertForError(err);
@@ -515,9 +519,9 @@ const SignIn: FC = () => {
               svgIcon={
                 <SvgFacebook width={18} height={18} fill={theme.facebookIcon} />
               }
-              onUserCreated={(user?: User): void => {
+              onUserCreated={() => {
                 createNotificationIfPushTokenExists();
-                setUser?.(user);
+                loadMeQuery({}, {fetchPolicy: 'network-only'});
               }}
               socialProvider={'facebook'}
             />
@@ -525,9 +529,9 @@ const SignIn: FC = () => {
               svgIcon={
                 <SvgGoogle width={20} height={20} fill={theme.googleIcon} />
               }
-              onUserCreated={(user?: User): void => {
+              onUserCreated={() => {
                 createNotificationIfPushTokenExists();
-                setUser?.(user);
+                loadMeQuery({}, {fetchPolicy: 'network-only'});
               }}
               socialProvider="google"
             />

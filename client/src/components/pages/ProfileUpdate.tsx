@@ -78,9 +78,7 @@ const Screen: FC = () => {
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
 
-  const {
-    state: {user},
-  } = useAuthContext();
+  const {user} = useAuthContext();
 
   const [commitUpload, isUploadInFlight] =
     useMutation<UploadSingleUploadMutation>(singleUpload);

@@ -120,9 +120,9 @@ const SocialSignInButton: FC<Props> = ({
               if (googleResponse.signInWithGoogle) {
                 const {user, token} = googleResponse.signInWithGoogle;
 
-                AsyncStorage.setItem('token', token as string);
-
-                if (onUserCreated) onUserCreated(user as User);
+                AsyncStorage.setItem('token', token).then(() => {
+                  if (onUserCreated) onUserCreated(user as User);
+                });
               }
             },
             onError: (error: Error): void => {
@@ -141,9 +141,9 @@ const SocialSignInButton: FC<Props> = ({
             if (fbResponse.signInWithFacebook) {
               const {user, token} = fbResponse.signInWithFacebook;
 
-              AsyncStorage.setItem('token', token as string);
-
-              if (onUserCreated) onUserCreated(user as User);
+              AsyncStorage.setItem('token', token).then(() => {
+                if (onUserCreated) onUserCreated(user as User);
+              });
             }
           },
           onError: (error: Error): void => {

@@ -1,22 +1,27 @@
+import * as SplashScreen from 'expo-splash-screen';
+
 import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
+import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import MainStack, {MainStackParamList} from './MainStackNavigator';
 import {
   NavigationContainer,
   NavigatorScreenParams,
 } from '@react-navigation/native';
+import {Platform, View} from 'react-native';
+import {PreloadedQuery, usePreloadedQuery} from 'react-relay';
+import React, {FC, Suspense, useEffect} from 'react';
 import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
+import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
 import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';
-import {Platform} from 'react-native';
-import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WebView from '../pages/WebView';
-import {useAuthContext} from '../../providers/AuthProvider';
-import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
   default: undefined;
@@ -38,7 +43,11 @@ export type RootStackNavigationProps<
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-function RootNavigator(): React.ReactElement {
+type Props = {
+  queryReference: PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>;
+};
+
+function RootNavigator({queryReference}: Props): React.ReactElement {
   const {theme} = useTheme();
 
   const linking = {
@@ -46,9 +55,31 @@ function RootNavigator(): React.ReactElement {
     enabled: true,
   };
 
-  const {
-    state: {user},
-  } = useAuthContext();
+  const {me} = usePreloadedQuery<AuthProviderMeQuery>(meQuery, queryReference);
+
+  const {user, setUser} = useAuthContext();
+
+  const hideSplash = async (): Promise<void> => {
+    try {
+      await SplashScreen.hideAsync();
+    } catch (err) {
+      // err
+    }
+  };
+
+  useEffect(() => {
+    if (!me) {
+      AsyncStorage.removeItem('token');
+      hideSplash();
+      setUser(null);
+
+      return;
+    }
+
+    hideSplash();
+
+    setUser(me);
+  }, [me, setUser]);
 
   return (
     <SafeAreaProvider>
@@ -68,6 +99,7 @@ function RootNavigator(): React.ReactElement {
           dark: true,
         }}>
         <Stack.Navigator
+          initialRouteName="AuthStack"
           screenOptions={{
             headerStyle: {
               backgroundColor: theme.background,
@@ -129,4 +161,51 @@ function RootNavigator(): React.ReactElement {
   );
 }
 
-export default RootNavigator;
+function AuthNavigatorOnly(): React.ReactElement {
+  const {theme} = useTheme();
+
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer
+        theme={{
+          colors: {
+            background: theme.background,
+            border: theme.dialog,
+            card: theme.paper,
+            primary: theme.primary,
+            notification: theme.primary,
+            text: theme.primaryText,
+          },
+          dark: true,
+        }}>
+        <AuthStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}
+
+const RootNavigatorWrapper: FC = () => {
+  const {theme} = useTheme();
+  const {user, loadMeQuery, meQueryReference} = useAuthContext();
+
+  useEffect(() => {
+    if (!user) loadMeQuery({});
+  }, [loadMeQuery, user]);
+
+  return (
+    <Suspense
+      fallback={
+        <View style={{flex: 1, backgroundColor: theme.background}}>
+          <LoadingIndicator />
+        </View>
+      }>
+      {meQueryReference ? (
+        <RootNavigator queryReference={meQueryReference} />
+      ) : (
+        <AuthNavigatorOnly />
+      )}
+    </Suspense>
+  );
+};
+
+export default RootNavigatorWrapper;

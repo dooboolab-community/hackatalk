@@ -1,76 +1,82 @@
-import React, {ReactElement, ReactNode, useReducer} from 'react';
+import {
+  AuthProviderMeQuery,
+  AuthProviderMeQueryResponse,
+  AuthProviderMeQueryVariables,
+} from '../__generated__/AuthProviderMeQuery.graphql';
+import {PreloadedQuery, graphql, useQueryLoader} from 'react-relay/hooks';
+import React, {useState} from 'react';
 
-import {User} from '../types/graphql';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {DisposeFn} from 'relay-runtime';
 import createCtx from '../utils/createCtx';
+import {useResettableRelayContext} from './ResettableProvider';
 
-export interface State {
-  user: User | undefined;
+export interface AuthContext {
+  user: AuthProviderMeQueryResponse['me'] | null;
+  setUser: (value: AuthProviderMeQueryResponse['me'] | null) => void;
+  signOutAsync: () => void;
+  meQueryReference:
+    | PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>
+    | null
+    | undefined;
+  loadMeQuery: (variables: AuthProviderMeQueryVariables, options?: any) => void;
+  disposeMeQuery: DisposeFn;
 }
 
-interface Context {
-  state: State;
-  setUser(user: User | undefined): void;
-}
-
-const [useCtx, Provider] = createCtx<Context>();
-
-// eslint-disable-next-line no-shadow
-export enum ActionType {
-  SetUser = 'set-user',
-}
-
-type SetUserAction = {
-  type: ActionType.SetUser;
-  payload: {user: User};
-};
-type Action = SetUserAction;
+const [useCtx, Provider] = createCtx<AuthContext>();
 
 interface Props {
-  children: ReactNode;
-  initialAuthUser?: User;
+  children?: React.ReactElement;
 }
 
-type Reducer = (state: State, action: Action) => State;
-
-const setUser =
-  (dispatch: React.Dispatch<SetUserAction>) =>
-  (authUser: User): void => {
-    dispatch({
-      type: ActionType.SetUser,
-      payload: {user: authUser},
-    });
-  };
-
-const initialState: State = {
-  user: undefined,
-};
-
-// eslint-disable-next-line default-param-last
-const reducer: Reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.SetUser:
-      return {...action.payload};
-    default:
-      return state;
+export const meQuery = graphql`
+  query AuthProviderMeQuery {
+    me {
+      id
+      email
+      verified
+      profile {
+        socialId
+        authType
+      }
+    }
   }
-};
+`;
 
-function AuthProvider({children, initialAuthUser}: Props): ReactElement {
-  const [state, dispatch] = useReducer<Reducer>(reducer, {
-    user: initialAuthUser,
-  });
+function AuthProvider({children}: Props): React.ReactElement {
+  const [user, setUser] =
+    useState<AuthProviderMeQueryResponse['me'] | null>(null);
 
-  const actions = {
-    setUser: setUser(dispatch),
+  const [meQueryReference, loadMeQuery, disposeMeQuery] =
+    useQueryLoader<AuthProviderMeQuery>(meQuery);
+
+  const {resetRelayEnvironment} = useResettableRelayContext();
+
+  const signOutAsync = async (): Promise<void> => {
+    const cleanup = async (): Promise<void> => {
+      await AsyncStorage.removeItem('token');
+
+      disposeMeQuery();
+
+      resetRelayEnvironment();
+    };
+
+    await cleanup();
   };
 
-  return <Provider value={{state, ...actions}}>{children}</Provider>;
+  return (
+    <Provider
+      value={{
+        user,
+        setUser,
+        signOutAsync,
+        meQueryReference,
+        loadMeQuery,
+        disposeMeQuery,
+      }}>
+      {children}
+    </Provider>
+  );
 }
-
-const AuthContext = {
-  useAuthContext: useCtx,
-  AuthProvider,
-};
 
 export {useCtx as useAuthContext, AuthProvider};
-export default AuthContext;
