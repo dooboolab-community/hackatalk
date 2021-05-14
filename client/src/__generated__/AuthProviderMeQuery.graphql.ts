@@ -4,8 +4,8 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type AuthType = "apple" | "email" | "facebook" | "google";
-export type AppUserQueryVariables = {};
-export type AppUserQueryResponse = {
+export type AuthProviderMeQueryVariables = {};
+export type AuthProviderMeQueryResponse = {
     readonly me: {
         readonly id: string;
         readonly email: string | null;
@@ -16,15 +16,15 @@ export type AppUserQueryResponse = {
         } | null;
     } | null;
 };
-export type AppUserQuery = {
-    readonly response: AppUserQueryResponse;
-    readonly variables: AppUserQueryVariables;
+export type AuthProviderMeQuery = {
+    readonly response: AuthProviderMeQueryResponse;
+    readonly variables: AuthProviderMeQueryVariables;
 };
 
 
 
 /*
-query AppUserQuery {
+query AuthProviderMeQuery {
   me {
     id
     email
@@ -102,7 +102,7 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "AppUserQuery",
+    "name": "AuthProviderMeQuery",
     "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -111,18 +111,18 @@ return {
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "AppUserQuery",
+    "name": "AuthProviderMeQuery",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "c7ac373f316ddaa2bcdad1f78395f167",
+    "cacheID": "adc59e55f2b1217c3b7f056ce8462f65",
     "id": null,
     "metadata": {},
-    "name": "AppUserQuery",
+    "name": "AuthProviderMeQuery",
     "operationKind": "query",
-    "text": "query AppUserQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      socialId\n      authType\n    }\n  }\n}\n"
+    "text": "query AuthProviderMeQuery {\n  me {\n    id\n    email\n    verified\n    profile {\n      socialId\n      authType\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '5899dec4c7af0421b48b8c44700ff68a';
+(node as any).hash = 'db26cc1b346f5db0fdbcd497d3d20728';
 export default node;
