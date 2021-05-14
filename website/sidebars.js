@@ -28,11 +28,6 @@ module.exports = {
       'server/channel',
       'server/membership',
       'server/message',
-    ],
-    Postgres: [
-      'postgres/description',
-      'postgres/shell',
-      'postgres/pgcli',
-    ],
+    ]
   },
 };
