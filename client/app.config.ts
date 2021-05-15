@@ -44,10 +44,12 @@ export default {
           'HackaTalk would like to save photos that you have selected to your photo gallery',
         NSPhotoLibraryUsageDescription:
           'HackaTalk would like to access your gallery for you to pick one and share with others.',
+        NSUserTrackingUsageDescription:
+          'HackaTalk would like to access IDFA for tracking purpose for qualified ads servation.',
       },
       appStoreUrl: 'https://apps.apple.com/us/app/hackatalk/id1479617602',
       config: {
-        googleMobileAdsAppId: 'ca-app-pub-7837089095803162~5303560311',
+        googleMobileAdsAppId: 'ca-app-pub-7837089095803162~8846750311',
       },
     },
     android: {

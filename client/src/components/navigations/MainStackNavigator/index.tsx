@@ -36,6 +36,7 @@ import Settings from '../../pages/Settings';
 import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
+import {requestPermissionsAsync} from 'expo-ads-admob';
 import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
@@ -133,6 +134,8 @@ function MainStackNavigator(): ReactElement {
   const latestEnvironment = useRef(environment);
 
   useEffect(() => {
+    requestPermissionsAsync();
+
     const subscription = Notifications.addNotificationResponseReceivedListener(
       async (response) => {
         Notifications.setBadgeCountAsync(0);
