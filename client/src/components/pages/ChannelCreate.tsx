@@ -76,6 +76,8 @@ const friendsFragment = graphql`
           id
           nickname
           name
+          thumbURL
+          photoURL
           ...UserListItem_user
         }
       }

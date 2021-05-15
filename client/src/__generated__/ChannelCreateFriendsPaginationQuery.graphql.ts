@@ -36,6 +36,8 @@ fragment ChannelCreate_friends_2yyznZ on Query {
         id
         nickname
         name
+        thumbURL
+        photoURL
         ...UserListItem_user
         __typename
       }
@@ -171,6 +173,13 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "thumbURL",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "photoURL",
                     "storageKey": null
                   },
@@ -250,14 +259,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "f9ba36909338939af3607fed87d8863b",
+    "cacheID": "4551c7a38ac38d613cbadadc59beb1d0",
     "id": null,
     "metadata": {},
     "name": "ChannelCreateFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = 'be6e32a9236715aa66c809f72947f693';
+(node as any).hash = '73e8bfa8c367386edf73dea6e61ed543';
 export default node;

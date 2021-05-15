@@ -12,6 +12,8 @@ export type ChannelCreate_friends = {
                 readonly id: string;
                 readonly nickname: string | null;
                 readonly name: string | null;
+                readonly thumbURL: string | null;
+                readonly photoURL: string | null;
                 readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
             } | null;
         } | null> | null;
@@ -139,6 +141,20 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
+                  "name": "thumbURL",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "photoURL",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
                 },
@@ -186,5 +202,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'be6e32a9236715aa66c809f72947f693';
+(node as any).hash = '73e8bfa8c367386edf73dea6e61ed543';
 export default node;
