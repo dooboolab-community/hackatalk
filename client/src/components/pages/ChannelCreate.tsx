@@ -232,7 +232,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         ListHeaderComponent={(): ReactElement => {
           return (
             <ScrollView
-              style={{paddingHorizontal: 24, marginBottom: 12}}
+              style={{paddingHorizontal: 24, marginBottom: 8}}
               horizontal>
               {selectedUsers.map((selectedUser, i) =>
                 renderFriendThumbnail(selectedUser, i),
@@ -291,10 +291,12 @@ const ChannelCreate: FC = () => {
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
-  const [commitChannel, isChannelInFlight] =
-    useMutation<ChannelFindOrCreatePrivateChannelMutation>(
-      findOrCreatePrivateChannel,
-    );
+  const [
+    commitChannel,
+    isChannelInFlight,
+  ] = useMutation<ChannelFindOrCreatePrivateChannelMutation>(
+    findOrCreatePrivateChannel,
+  );
 
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
@@ -364,7 +366,7 @@ const ChannelCreate: FC = () => {
         testID="text-input"
         onChangeText={onChangeText}
         containerStyle={{
-          marginTop: 12,
+          marginTop: 8,
         }}
         value={searchText}
       />

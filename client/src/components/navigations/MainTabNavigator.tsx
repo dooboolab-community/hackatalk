@@ -20,11 +20,12 @@ export type MaterialTopTabParamList = {
   Channel: undefined;
 };
 
-type NavigationProps<T extends keyof MaterialTopTabParamList> =
-  MaterialTopTabNavigationProp<MaterialTopTabParamList, T>;
+type NavigationProps<
+  T extends keyof MaterialTopTabParamList
+> = MaterialTopTabNavigationProp<MaterialTopTabParamList, T>;
 
 export type MaterialTopTabNavigationProps<
-  T extends keyof MaterialTopTabParamList,
+  T extends keyof MaterialTopTabParamList
 > = CompositeNavigationProp<
   NavigationProps<T>,
   MainStackNavigationProps<'MainTab'>

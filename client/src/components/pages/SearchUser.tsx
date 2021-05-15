@@ -144,10 +144,13 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
-  const data: UserUsersPaginationQueryResponse =
-    useLazyLoadQuery<UserUsersPaginationQuery>(usersQuery, searchArgs, {
+  const data: UserUsersPaginationQueryResponse = useLazyLoadQuery<UserUsersPaginationQuery>(
+    usersQuery,
+    searchArgs,
+    {
       fetchPolicy: 'store-or-network',
-    });
+    },
+  );
 
   return (
     <UsersFragment scrollY={scrollY} user={data} searchArgs={searchArgs} />
@@ -195,7 +198,7 @@ const Screen: FC = () => {
       <Container>
         <SearchTextInput
           testID="text-input"
-          containerStyle={{marginTop: 12}}
+          containerStyle={{marginVertical: 8}}
           onChangeText={onChangeText}
           value={searchText}
         />
