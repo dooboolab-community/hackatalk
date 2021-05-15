@@ -188,7 +188,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               style={{
                 flexGrow: 1,
                 flexShrink: 1,
-                paddingVertical: 12,
+                paddingVertical: Platform.select({
+                  ios: 12,
+                }),
                 marginRight: 10,
                 color: fontColor,
                 backgroundColor: backgroundColor,

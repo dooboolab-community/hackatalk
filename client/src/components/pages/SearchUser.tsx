@@ -195,7 +195,7 @@ const Screen: FC = () => {
       <Container>
         <SearchTextInput
           testID="text-input"
-          containerStyle={{marginTop: 12}}
+          containerStyle={{marginVertical: 8}}
           onChangeText={onChangeText}
           value={searchText}
         />
