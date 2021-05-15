@@ -7,8 +7,6 @@ on:
       - master
     paths:
       - 'website/**'
-  pull_request:
-    types: [opened, synchronize, reopened]
 
 jobs:
   build:
