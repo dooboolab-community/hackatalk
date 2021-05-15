@@ -34,22 +34,9 @@ fragment ChannelCreate_friends_2yyznZ on Query {
       cursor
       node {
         id
-        email
-        name
         nickname
-        thumbURL
-        photoURL
-        birthday
-        gender
-        phone
-        statusMessage
-        verified
-        lastSignedIn
-        isOnline
-        hasBlocked
-        createdAt
-        updatedAt
-        deletedAt
+        name
+        ...UserListItem_user
         __typename
       }
     }
@@ -58,6 +45,16 @@ fragment ChannelCreate_friends_2yyznZ on Query {
       endCursor
     }
   }
+}
+
+fragment UserListItem_user on User {
+  id
+  photoURL
+  nickname
+  name
+  statusMessage
+  isOnline
+  hasBlocked
 }
 */
 
@@ -160,7 +157,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "email",
+                    "name": "nickname",
                     "storageKey": null
                   },
                   {
@@ -174,20 +171,6 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "nickname",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "thumbURL",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "photoURL",
                     "storageKey": null
                   },
@@ -195,42 +178,7 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "birthday",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "gender",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "phone",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "statusMessage",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "verified",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "lastSignedIn",
                     "storageKey": null
                   },
                   {
@@ -245,27 +193,6 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "hasBlocked",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "createdAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "updatedAt",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "deletedAt",
                     "storageKey": null
                   },
                   {
@@ -323,14 +250,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "e64da034d5c3783dc1900dead8c44425",
+    "cacheID": "f9ba36909338939af3607fed87d8863b",
     "id": null,
     "metadata": {},
     "name": "ChannelCreateFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        email\n        name\n        nickname\n        thumbURL\n        photoURL\n        birthday\n        gender\n        phone\n        statusMessage\n        verified\n        lastSignedIn\n        isOnline\n        hasBlocked\n        createdAt\n        updatedAt\n        deletedAt\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '522973ce95660f7c00f8dfb45d535b2c';
+(node as any).hash = 'be6e32a9236715aa66c809f72947f693';
 export default node;

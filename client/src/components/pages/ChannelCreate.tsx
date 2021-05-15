@@ -74,22 +74,9 @@ const friendsFragment = graphql`
         cursor
         node {
           id
-          email
-          name
           nickname
-          thumbURL
-          photoURL
-          birthday
-          gender
-          phone
-          statusMessage
-          verified
-          lastSignedIn
-          isOnline
-          hasBlocked
-          createdAt
-          updatedAt
-          deletedAt
+          name
+          ...UserListItem_user
         }
       }
       pageInfo {
@@ -127,7 +114,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   }, [data]);
 
   const {theme} = useTheme();
-  // const [friends, setFriends] = useState<Friend[]>(fakeFriends);
 
   const navigation = useNavigation();
 
@@ -378,7 +364,7 @@ const ChannelCreate: FC = () => {
         testID="text-input"
         onChangeText={onChangeText}
         containerStyle={{
-          marginVertical: 12,
+          marginTop: 12,
         }}
         value={searchText}
       />
