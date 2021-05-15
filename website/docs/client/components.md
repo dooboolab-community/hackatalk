@@ -24,10 +24,10 @@ We are organizing our main components into three different characteristcs which 
 
 The navigation components are group of screen components.
 
-### Screen
+### Page
 
-The screen components are screen unit component which means that it fill up the device size.
+The page components are screen unit component which means that it generally has size of the device's screen.
 
-### Shared
+### UI
 
-The shared components are mostly reusable components that can be used everywhere. They are components like `Button`, `EditText`, `Calendar` and so on.
+The ui components are mostly reusable components which focus on UI layer. They are components like `Button`, `EditText`, `Calendar` and so on.
