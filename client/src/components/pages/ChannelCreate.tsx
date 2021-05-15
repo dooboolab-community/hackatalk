@@ -291,12 +291,10 @@ const ChannelCreate: FC = () => {
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
-  const [
-    commitChannel,
-    isChannelInFlight,
-  ] = useMutation<ChannelFindOrCreatePrivateChannelMutation>(
-    findOrCreatePrivateChannel,
-  );
+  const [commitChannel, isChannelInFlight] =
+    useMutation<ChannelFindOrCreatePrivateChannelMutation>(
+      findOrCreatePrivateChannel,
+    );
 
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,

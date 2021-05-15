@@ -144,13 +144,10 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
-  const data: UserUsersPaginationQueryResponse = useLazyLoadQuery<UserUsersPaginationQuery>(
-    usersQuery,
-    searchArgs,
-    {
+  const data: UserUsersPaginationQueryResponse =
+    useLazyLoadQuery<UserUsersPaginationQuery>(usersQuery, searchArgs, {
       fetchPolicy: 'store-or-network',
-    },
-  );
+    });
 
   return (
     <UsersFragment scrollY={scrollY} user={data} searchArgs={searchArgs} />
