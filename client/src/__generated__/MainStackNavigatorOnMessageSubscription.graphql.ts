@@ -11,6 +11,14 @@ export type MainStackNavigatorOnMessageSubscriptionResponse = {
         readonly imageUrls: ReadonlyArray<string | null> | null;
         readonly channel: {
             readonly id: string;
+            readonly lastMessage: {
+                readonly id: string;
+                readonly messageType: unknown;
+                readonly text: string | null;
+                readonly imageUrls: ReadonlyArray<string | null> | null;
+                readonly fileUrls: ReadonlyArray<string | null> | null;
+                readonly createdAt: unknown | null;
+            } | null;
         } | null;
         readonly sender: {
             readonly id: string;
@@ -35,6 +43,14 @@ subscription MainStackNavigatorOnMessageSubscription {
     imageUrls
     channel {
       id
+      lastMessage {
+        id
+        messageType
+        text
+        imageUrls
+        fileUrls
+        createdAt
+      }
     }
     sender {
       id
@@ -92,27 +108,22 @@ v1 = {
 v2 = {
   "alias": null,
   "args": null,
-  "concreteType": "Channel",
-  "kind": "LinkedField",
-  "name": "channel",
-  "plural": false,
-  "selections": [
-    (v0/*: any*/)
-  ],
+  "kind": "ScalarField",
+  "name": "messageType",
   "storageKey": null
 },
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "name",
+  "name": "text",
   "storageKey": null
 },
 v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "nickname",
+  "name": "fileUrls",
   "storageKey": null
 },
 v5 = {
@@ -120,6 +131,49 @@ v5 = {
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "concreteType": "Channel",
+  "kind": "LinkedField",
+  "name": "channel",
+  "plural": false,
+  "selections": [
+    (v0/*: any*/),
+    {
+      "alias": null,
+      "args": null,
+      "concreteType": "Message",
+      "kind": "LinkedField",
+      "name": "lastMessage",
+      "plural": false,
+      "selections": [
+        (v0/*: any*/),
+        (v2/*: any*/),
+        (v3/*: any*/),
+        (v1/*: any*/),
+        (v4/*: any*/),
+        (v5/*: any*/)
+      ],
+      "storageKey": null
+    }
+  ],
+  "storageKey": null
+},
+v7 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v8 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "nickname",
   "storageKey": null
 };
 return {
@@ -139,7 +193,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
-          (v2/*: any*/),
+          (v6/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -149,8 +203,8 @@ return {
             "plural": false,
             "selections": [
               (v0/*: any*/),
-              (v3/*: any*/),
-              (v4/*: any*/)
+              (v7/*: any*/),
+              (v8/*: any*/)
             ],
             "storageKey": null
           },
@@ -183,7 +237,7 @@ return {
         "selections": [
           (v0/*: any*/),
           (v1/*: any*/),
-          (v2/*: any*/),
+          (v6/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -193,8 +247,8 @@ return {
             "plural": false,
             "selections": [
               (v0/*: any*/),
-              (v3/*: any*/),
-              (v4/*: any*/),
+              (v7/*: any*/),
+              (v8/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -234,27 +288,9 @@ return {
             "storageKey": null
           },
           (v5/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "messageType",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "text",
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "fileUrls",
-            "storageKey": null
-          },
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -268,14 +304,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4e12c618eb031c7c20a6d8d00c3e287c",
+    "cacheID": "18658598b6d85ba73ad7ef4f5bc09637",
     "id": null,
     "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
-    "text": "subscription MainStackNavigatorOnMessageSubscription {\n  onMessage {\n    id\n    imageUrls\n    channel {\n      id\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "subscription MainStackNavigatorOnMessageSubscription {\n  onMessage {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = 'e6101c91df9eca86c5065d4547befc9b';
+(node as any).hash = 'befdb0a2235749160b96a256ca4e03bc';
 export default node;

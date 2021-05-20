@@ -1,5 +1,3 @@
-import * as Notifications from 'expo-notifications';
-
 import {Channel, User} from '../../types/graphql';
 import type {
   ChannelsQuery,
@@ -8,13 +6,8 @@ import type {
 } from '../../__generated__/ChannelsQuery.graphql';
 import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
-import React, {FC, Suspense, useEffect, useMemo, useState} from 'react';
-import {
-  graphql,
-  useLazyLoadQuery,
-  usePaginationFragment,
-  useQueryLoader,
-} from 'react-relay';
+import React, {FC, Suspense, useMemo, useState} from 'react';
+import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import {AdMobBanner} from 'expo-ads-admob';
@@ -23,11 +16,9 @@ import EmptyListItem from '../uis/EmptyListItem';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {MaterialTopTabNavigationProps} from '../navigations/MainTabNavigator';
-import {MessageLastMessageQuery} from '../../__generated__/MessageLastMessageQuery.graphql';
 import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
-import {lastMessageQuery} from '../../relay/queries/Message';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -106,43 +97,9 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     MainChannelComponent_channel$key
   >(channelsPaginationFragment, channel);
 
-  const [, loadLastMessage] =
-    useQueryLoader<MessageLastMessageQuery>(lastMessageQuery);
-
   const [bannerError, setBannerError] = useState<boolean>(false);
   const orientation = useOrientation();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
-
-  useEffect(() => {
-    const subscription = Notifications.addNotificationResponseReceivedListener(
-      async (response) => {
-        const messageId = JSON.parse(
-          response.notification.request.content.data.data as string,
-        ).messageId;
-
-        if (typeof messageId === 'string') loadLastMessage({messageId});
-      },
-    );
-
-    // Add notification handler.
-    const responseListener = Notifications.addNotificationReceivedListener(
-      (event) => {
-        const messageId = JSON.parse(
-          event.request.content.data.data as string,
-        ).messageId;
-
-        loadNext(ITEM_CNT);
-
-        if (typeof messageId === 'string') loadLastMessage({messageId});
-      },
-    );
-
-    // Clean up : remove notification handler.
-    return () => {
-      Notifications.removeNotificationSubscription(responseListener);
-      subscription.remove();
-    };
-  }, [loadLastMessage, loadNext]);
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);

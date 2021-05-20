@@ -20,6 +20,9 @@ export type MessageCreateMutationResponse = {
         readonly messageType: unknown;
         readonly imageUrls: ReadonlyArray<string | null> | null;
         readonly fileUrls: ReadonlyArray<string | null> | null;
+        readonly sender: {
+            readonly id: string;
+        } | null;
         readonly channel: {
             readonly id: string;
             readonly channelType: unknown;
@@ -60,6 +63,9 @@ mutation MessageCreateMutation(
     messageType
     imageUrls
     fileUrls
+    sender {
+      id
+    }
     channel {
       id
       channelType
@@ -164,6 +170,18 @@ v7 = [
       (v3/*: any*/),
       (v4/*: any*/),
       (v5/*: any*/),
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "sender",
+        "plural": false,
+        "selections": [
+          (v1/*: any*/)
+        ],
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -278,14 +296,14 @@ return {
     "selections": (v7/*: any*/)
   },
   "params": {
-    "cacheID": "217c329100860d8d34dcdf75f3e2572d",
+    "cacheID": "50fb9f8aa4d4f0d545d0eef76299bd80",
     "id": null,
     "metadata": {},
     "name": "MessageCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n) {\n  createMessage(channelId: $channelId, message: $message) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n) {\n  createMessage(channelId: $channelId, message: $message) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '26de6e96cce7cf7d9acbd1c945f1ba45';
+(node as any).hash = '2c875d97a923b922c04582e60fc4bb18';
 export default node;

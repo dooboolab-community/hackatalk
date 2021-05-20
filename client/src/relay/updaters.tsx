@@ -1,6 +1,89 @@
-import {ConnectionHandler, RecordSourceSelectorProxy} from 'relay-runtime';
+import {
+  ConnectionHandler,
+  RecordProxy,
+  RecordSourceSelectorProxy,
+} from 'relay-runtime';
 
-import moment from 'moment';
+/**
+ * Prepend a message record to a message connection of a channel.
+ * @param store Relay store proxy.
+ * @param channelId ID of the channel to be updated.
+ * @param messageProxy Record proxy of the messaged to be prepended.
+ */
+function prependMessageToChannel(
+  store: RecordSourceSelectorProxy,
+  channelId: string,
+  messageProxy: RecordProxy,
+): void {
+  const root = store.getRoot();
+
+  const messagesConnection = ConnectionHandler.getConnection(
+    root,
+    'MessageComponent_messages',
+    {
+      channelId,
+      searchText: null,
+    },
+  );
+
+  if (!messagesConnection) return;
+
+  const newMessageEdge = ConnectionHandler.createEdge(
+    store,
+    messagesConnection,
+    messageProxy,
+    'Message',
+  );
+
+  ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
+}
+
+/**
+ * Put the updated channel at the beginning of channels connection.
+ * @param store Relay store proxy.
+ * @param channelId ID of the channel that is updated.
+ */
+function markUpdatedChannel(
+  store: RecordSourceSelectorProxy,
+  channelId: string,
+): void {
+  const root = store.getRoot();
+
+  const channelProxy =
+    store.get(channelId) || store.create(channelId, 'Channel');
+
+  const channelsConnection = ConnectionHandler.getConnection(
+    root,
+    'MainChannelComponent_channels',
+    {
+      withMessage: true,
+    },
+  );
+
+  if (!channelsConnection) return;
+
+  // Remove existing edge.
+  const existingEdges = channelsConnection?.getLinkedRecords('edges') ?? [];
+
+  for (const edge of existingEdges) {
+    const node = edge.getLinkedRecord('node');
+
+    if (node?.getDataID() === channelId) {
+      ConnectionHandler.deleteNode(channelsConnection, node.getDataID());
+      break;
+    }
+  }
+
+  // Prepend new edge.
+  const newChannelEdge = ConnectionHandler.createEdge(
+    store,
+    channelsConnection,
+    channelProxy,
+    'Channel',
+  );
+
+  ConnectionHandler.insertEdgeBefore(channelsConnection, newChannelEdge);
+}
 
 /**
  * Update Relay store after `createMessage` mutation.
@@ -9,72 +92,15 @@ import moment from 'moment';
  * @param userId ID of the auth user.
  */
 export function createMessageUpdater(
-  store: RecordSourceSelectorProxy,
+  store: RecordSourceSelectorProxy<{
+    createMessage: {readonly id: string} | null;
+  }>,
   channelId: string,
-  userId: string,
 ): void {
-  // Update message connection.
-  const root = store.getRoot();
+  const messageProxy = store.getRootField('createMessage');
 
-  const messagesConnection =
-    root &&
-    ConnectionHandler.getConnection(root, 'MessageComponent_messages', {
-      channelId,
-      searchText: null,
-    });
-
-  const payload = store.getRootField('createMessage');
-  const user = store.get(userId);
-  const now = moment().toString();
-
-  if (user && payload) {
-    payload.setLinkedRecord(user, 'sender');
-    payload.setValue(now, 'createdAt');
-    payload.setValue(now, 'updatedAt');
-  }
-
-  const newMessageEdge =
-    messagesConnection &&
-    payload &&
-    ConnectionHandler.createEdge(store, messagesConnection, payload, 'Message');
-
-  if (messagesConnection && newMessageEdge)
-    ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
-
-  // Update channels.
-  const channel = store.get(channelId);
-
-  const channelsConnection =
-    root &&
-    ConnectionHandler.getConnection(root, 'ChannelComponent_channels', {
-      withMessage: true,
-    });
-
-  // Get existing edges.
-  const existingChannels = channelsConnection?.getLinkedRecords('edges') ?? [];
-
-  // Check if the message is created inside a new channel.
-  let existingNode;
-
-  for (const edge of existingChannels) {
-    const node = edge.getLinkedRecord('node');
-
-    if (node?.getDataID() === channelId) {
-      existingNode = node;
-      break;
-    }
-  }
-
-  const newChannelEdge =
-    channelsConnection &&
-    channel &&
-    ConnectionHandler.createEdge(store, channelsConnection, channel, 'Channel');
-
-  if (existingNode && channelsConnection)
-    ConnectionHandler.deleteNode(channelsConnection, existingNode.getDataID());
-
-  if (channelsConnection && newChannelEdge)
-    ConnectionHandler.insertEdgeBefore(channelsConnection, newChannelEdge);
+  prependMessageToChannel(store, channelId, messageProxy);
+  markUpdatedChannel(store, channelId);
 }
 
 /**
@@ -98,22 +124,11 @@ export function onMessageUpdater(
       | undefined;
   }>,
 ): void {
-  const root = store.getRoot();
   const payload = store.getRootField('onMessage');
-
   const channelId = payload.getLinkedRecord('channel')?.getValue('id');
 
-  const messagesConnection =
-    root &&
-    ConnectionHandler.getConnection(root, 'MessageComponent_messages', {
-      channelId,
-      searchText: null,
-    });
+  if (!channelId) return;
 
-  const newMessageEdge =
-    messagesConnection &&
-    ConnectionHandler.createEdge(store, messagesConnection, payload, 'Message');
-
-  if (messagesConnection && newMessageEdge)
-    ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
+  prependMessageToChannel(store, channelId, payload);
+  markUpdatedChannel(store, channelId);
 }

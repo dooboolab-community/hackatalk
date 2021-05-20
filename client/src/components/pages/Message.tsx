@@ -1,5 +1,3 @@
-import * as Notifications from 'expo-notifications';
-
 import {
   Alert,
   Image,
@@ -18,14 +16,7 @@ import {
   MessagesQueryResponse,
   MessagesQueryVariables,
 } from '../../__generated__/MessagesQuery.graphql';
-import React, {
-  FC,
-  ReactElement,
-  Suspense,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
@@ -125,18 +116,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     MessageComponent_message$key
   >(messagesFragment, messages);
 
-  useEffect(() => {
-    // Add notification handler.
-    const responseListener = Notifications.addNotificationReceivedListener(
-      () => {
-        loadPrevious(ITEM_CNT);
-      },
-    );
-
-    // Clean up : remove notification handler.
-    return () => Notifications.removeNotificationSubscription(responseListener);
-  }, [data, loadPrevious]);
-
   const nodes = useMemo(() => {
     return (
       data.messages?.edges
@@ -168,7 +147,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         message: {text: textToSend},
       },
       updater: (store) => {
-        if (user) createMessageUpdater(store, channelId, user.id);
+        if (user) createMessageUpdater(store, channelId);
       },
       onCompleted: () => {
         setTextToSend('');
@@ -215,7 +194,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             },
           },
           updater: (store) => {
-            if (user) createMessageUpdater(store, channelId, user.id);
+            if (user) createMessageUpdater(store, channelId);
           },
           onCompleted: () => {},
           onError: (error: Error): void => {
