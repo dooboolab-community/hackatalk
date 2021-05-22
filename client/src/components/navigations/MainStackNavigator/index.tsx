@@ -1,21 +1,14 @@
-import * as Notifications from 'expo-notifications';
-
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, TouchableOpacity, View} from 'react-native';
-import React, {ReactElement, useEffect, useMemo, useRef} from 'react';
+import React, {ReactElement, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
-import {
-  fetchQuery,
-  graphql,
-  useRelayEnvironment,
-  useSubscription,
-} from 'react-relay';
+import {graphql, useSubscription} from 'react-relay';
 
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
@@ -23,7 +16,6 @@ import ChannelCreate from '../../pages/ChannelCreate';
 import {Theme as DefaultTheme} from '@emotion/react';
 import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
-import type {MainStackNavigatorChannelQuery} from '../../../__generated__/MainStackNavigatorChannelQuery.graphql';
 import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
 import Message from '../../pages/Message';
 import ProfileModal from './ProfileModal';
@@ -87,24 +79,6 @@ function getSimpleHeader(
   };
 }
 
-const channelQuery = graphql`
-  query MainStackNavigatorChannelQuery($channelId: String!) {
-    channel(channelId: $channelId) {
-      id
-      channelType
-      name
-      memberships(excludeMe: true) {
-        user {
-          name
-          nickname
-          thumbURL
-          photoURL
-        }
-      }
-    }
-  }
-`;
-
 const onMessageSubscription = graphql`
   subscription MainStackNavigatorOnMessageSubscription {
     onMessage {
@@ -112,6 +86,14 @@ const onMessageSubscription = graphql`
       imageUrls
       channel {
         id
+        lastMessage {
+          id
+          messageType
+          text
+          imageUrls
+          fileUrls
+          createdAt
+        }
       }
       sender {
         id
@@ -126,45 +108,10 @@ const onMessageSubscription = graphql`
 
 function MainStackNavigator(): ReactElement {
   const {theme} = useTheme();
-  // const currentAppState = useAppState();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
-  const environment = useRelayEnvironment();
-
-  const latestNavigation = useRef(navigation);
-  const latestEnvironment = useRef(environment);
 
   useEffect(() => {
-    requestPermissionsAsync();
-
-    const subscription = Notifications.addNotificationResponseReceivedListener(
-      async (response) => {
-        Notifications.setBadgeCountAsync(0);
-
-        const channelId = JSON.parse(
-          response.notification.request.content.data.data as string,
-        ).channelId;
-
-        fetchQuery<MainStackNavigatorChannelQuery>(
-          latestEnvironment.current,
-          channelQuery,
-          {
-            channelId,
-          },
-        ).subscribe({
-          next: (data) => {
-            if (data.channel)
-              latestNavigation.current.navigate('Message', {
-                channel: data.channel as Channel,
-                users: data.channel?.memberships?.map(
-                  (membership) => membership?.user as User,
-                ),
-              });
-          },
-        });
-      },
-    );
-
-    return () => subscription.remove();
+    requestPermissionsAsync(); // expo-ads-admob
   }, []);
 
   const subscriptionConfig = useMemo<
