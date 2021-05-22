@@ -237,9 +237,7 @@ const MessageListItem: FC<Props> = ({
           </View>
           {!showDate ? (
             <StyledTextPeerDate>
-              {typeof createdAt === 'string'
-                ? `${moment(createdAt).fromNow()}`
-                : '0 : 0'}
+              {`${moment(createdAt as string).fromNow()}`}
             </StyledTextPeerDate>
           ) : null}
         </View>
@@ -264,11 +262,9 @@ const MessageListItem: FC<Props> = ({
           <StyledMyTextMessage selectable>{text}</StyledMyTextMessage>
         )}
       </StyledMyMessage>
-      <StyledTextDate>
-        {typeof createdAt === 'string'
-          ? `${moment(createdAt).fromNow()}`
-          : '0 : 0'}
-      </StyledTextDate>
+      <StyledTextDate>{`${moment(
+        createdAt as string,
+      ).fromNow()}`}</StyledTextDate>
     </WrapperMy>
   );
 };

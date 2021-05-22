@@ -43,7 +43,7 @@ function prependMessageToChannel(
  * @param store Relay store proxy.
  * @param channelId ID of the channel that is updated.
  */
-function markUpdatedChannel(
+function updateChannelAndRearrange(
   store: RecordSourceSelectorProxy,
   channelId: string,
 ): void {
@@ -100,7 +100,7 @@ export function createMessageUpdater(
   const messageProxy = store.getRootField('createMessage');
 
   prependMessageToChannel(store, channelId, messageProxy);
-  markUpdatedChannel(store, channelId);
+  updateChannelAndRearrange(store, channelId);
 }
 
 /**
@@ -130,5 +130,5 @@ export function onMessageUpdater(
   if (!channelId) return;
 
   prependMessageToChannel(store, channelId, payload);
-  markUpdatedChannel(store, channelId);
+  updateChannelAndRearrange(store, channelId);
 }
