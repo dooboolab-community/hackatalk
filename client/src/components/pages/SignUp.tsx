@@ -30,6 +30,7 @@ import {
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
 import StatusBar from '../uis/StatusBar';
+import {Uploadable} from 'relay-runtime';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -180,7 +181,7 @@ const Page: FC = () => {
       });
 
       mutationConfig.uploadables = {
-        photoUpload: file,
+        photoUpload: file as unknown as Uploadable,
       };
     }
 

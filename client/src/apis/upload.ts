@@ -1,6 +1,7 @@
 import * as Config from '../../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Platform} from 'react-native';
 import mime from 'mime';
 
 export const uploadImageAsync = async (
@@ -16,25 +17,50 @@ export const uploadImageAsync = async (
   data.append('dir', dir);
   data.append('name', `${fileName}${fileNamePrefix}`);
 
-  data.append('inputFile', {
-    uri: uri,
-    type: fileType || 'image/png',
-    name: `${fileName}${fileNamePrefix}`,
-  });
+  if (Platform.OS === 'web') {
+    const byteString = atob(uri.split(',')[1]);
+
+    const ab = new ArrayBuffer(byteString.length);
+    const arr = new Uint8Array(ab);
+
+    for (let i = 0; i < byteString.length; i++)
+      arr[i] = byteString.charCodeAt(i);
+
+    const blob = new Blob([arr], {
+      type: fileType || 'image/png',
+    });
+
+    const file = new File([blob], `${fileName}${fileNamePrefix}`);
+
+    data.append('inputFile', file);
+  } else
+    data.append('inputFile', {
+      // @ts-ignore
+      uri,
+      type: fileType || 'image/png',
+      name: `${fileName}${fileNamePrefix}`,
+    });
 
   const fetchOption = {
     method: 'POST',
     body: data,
-    headers: new Headers({
-      Accept: 'application/json',
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`,
+    headers: Platform.select({
+      web: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      default: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
     }),
   };
 
   try {
     const res: Response = await fetch(
       `${Config.ROOT_URL}/upload_single`,
+      // @ts-ignore
       fetchOption,
     );
 

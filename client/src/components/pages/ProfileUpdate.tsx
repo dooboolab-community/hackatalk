@@ -22,6 +22,7 @@ import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
+import {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -149,16 +150,14 @@ const Screen: FC = () => {
             uri: resizedImage.uri,
             name: `${user?.id || fileName}`,
             type: fileType,
-          });
+          }) as unknown as Uploadable;
 
           commitUpload({
             variables: {
               file: null,
               dir: 'profiles',
             },
-            uploadables: {
-              file,
-            },
+            uploadables: {file},
             onCompleted: (response: UploadSingleUploadMutationResponse) => {
               const url = response.singleUpload;
 
