@@ -6,7 +6,8 @@
     "emitDecoratorMetadata": true,
     "jsx": "react-native",
     "lib": [
-      "es2017"
+      "es2017",
+      "dom"
     ],
     "module": "es2015",
     "moduleResolution": "node",
