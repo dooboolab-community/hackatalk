@@ -1,6 +1,12 @@
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Platform,
+  PlatformColor,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {ReactElement, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
@@ -111,7 +117,8 @@ function MainStackNavigator(): ReactElement {
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   useEffect(() => {
-    requestPermissionsAsync(); // expo-ads-admob
+    if (Platform.OS === 'android' || Platform.OS === 'ios')
+      requestPermissionsAsync(); // expo-ads-admob
   }, []);
 
   const subscriptionConfig = useMemo<
