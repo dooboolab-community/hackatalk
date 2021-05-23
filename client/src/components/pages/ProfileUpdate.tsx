@@ -1,4 +1,4 @@
-import {Alert, Image, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, Platform, TouchableOpacity, View} from 'react-native';
 import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
@@ -30,7 +30,7 @@ import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
 import styled from '@emotion/native';
-// import {uploadImageAsync} from '../../apis/upload';
+import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
 
@@ -145,6 +145,25 @@ const Screen: FC = () => {
           const fileType = fileTypeMatch
             ? `image/${fileTypeMatch[1]}`
             : 'image';
+
+          if (Platform.OS === 'web') {
+            const response = await uploadImageAsync(
+              resizedImage.uri,
+              'profiles',
+              `${user?.id || fileName}`,
+            );
+
+            const {url} = JSON.parse(await response.text());
+
+            if (!url)
+              return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+
+            if (url) setProfilePath(url);
+
+            setIsUploading(false);
+
+            return;
+          }
 
           const file = new ReactNativeFile({
             uri: resizedImage.uri,

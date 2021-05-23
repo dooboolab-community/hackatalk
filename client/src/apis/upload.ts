@@ -10,7 +10,7 @@ export const uploadImageAsync = async (
   fileNamePrefix: string = '',
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
-  const fileType = mime.getType(uri) as string;
+  const fileType = mime.getType(uri);
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 
