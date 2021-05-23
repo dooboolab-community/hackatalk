@@ -30,6 +30,7 @@ import {
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
 import StatusBar from '../uis/StatusBar';
+import {Uploadable} from 'relay-runtime';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -180,7 +181,7 @@ const Page: FC = () => {
       });
 
       mutationConfig.uploadables = {
-        photoUpload: file,
+        photoUpload: file as unknown as Uploadable,
       };
     }
 
@@ -231,39 +232,43 @@ const Page: FC = () => {
         keyboardVerticalOffset={100}>
         <ScrollView style={{alignSelf: 'stretch'}}>
           <ContentsWrapper>
-            <TouchableOpacity
-              testID="button-user-icon"
-              activeOpacity={0.5}
-              style={{
-                alignSelf: 'center',
-                marginBottom: 12,
-              }}
-              onPress={pressProfileImage}>
-              {!profilePath ? (
-                <View
-                  style={{
-                    width: 90,
-                    height: 90,
-                  }}>
-                  <Image style={{height: 80, width: 80}} source={IC_PROFILE} />
-                  <Image
+            {Platform.OS !== 'web' && (
+              <TouchableOpacity
+                testID="button-user-icon"
+                activeOpacity={0.5}
+                style={{
+                  alignSelf: 'center',
+                  marginBottom: 12,
+                }}
+                onPress={pressProfileImage}>
+                {!profilePath ? (
+                  <View
                     style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      right: 0,
-                    }}
-                    source={IC_CAMERA}
+                      width: 90,
+                      height: 90,
+                    }}>
+                    <Image
+                      style={{height: 80, width: 80}}
+                      source={IC_PROFILE}
+                    />
+                    <Image
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                      }}
+                      source={IC_CAMERA}
+                    />
+                  </View>
+                ) : (
+                  <ProfileImage
+                    testID="profile-image"
+                    resizeMode="cover"
+                    source={{uri: profilePath}}
                   />
-                </View>
-              ) : (
-                <ProfileImage
-                  testID="profile-image"
-                  resizeMode="cover"
-                  source={{uri: profilePath}}
-                />
-              )}
-            </TouchableOpacity>
-
+                )}
+              </TouchableOpacity>
+            )}
             <EditText
               testID="input-email"
               styles={{

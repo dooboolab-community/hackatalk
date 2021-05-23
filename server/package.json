@@ -4,9 +4,7 @@
   "repository": "https://github.com/dooboolab/hackatalk/server",
   "license": "MIT",
   "scripts": {
-    "local": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "start": "ts-node src/server.ts",
+    "start": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
     "prod": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",

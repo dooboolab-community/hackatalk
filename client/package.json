@@ -24,11 +24,9 @@
     "lint:i18n": "eslint --fix --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js assets/langs/",
     "relay": "relay-compiler",
     "relay-watch": "yarn relay-compiler --watch",
-    "schema": "get-graphql-schema https://hackatalk.azurewebsites.net/graphql > schema.graphql",
-    "schema:local": "get-graphql-schema http://localhost:4000/graphql > schema.graphql",
+    "schema": "get-graphql-schema http://localhost:4000/graphql > schema.graphql",
     "codegen": "graphql-codegen --config codegen.yml",
-    "generate": "yarn schema && yarn codegen",
-    "generate:local": "yarn schema:local && yarn codegen",
+    "generate": "yarn schema:local && yarn codegen",
     "predeploy": "expo build:web",
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting"
   },

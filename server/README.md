@@ -21,7 +21,7 @@ Setup environment
    DATABASE_URL="postgresql://<user>:<password>@<url>:5432/postgres?schema=<scheme>"
    ```
    > Note that you should change appropriate values in `user`, `password`, `url`, `scheme` fields. Or you can even use other database. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
-3. Running `yarn local` will load `env` from `dotenv/.env`.
+3. Running `yarn start` will load `env` from `dotenv/.env`.
 
 ## Generate Prisma Client and Nexus
 ```
