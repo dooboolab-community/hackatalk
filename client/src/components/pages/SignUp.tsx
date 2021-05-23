@@ -232,39 +232,43 @@ const Page: FC = () => {
         keyboardVerticalOffset={100}>
         <ScrollView style={{alignSelf: 'stretch'}}>
           <ContentsWrapper>
-            <TouchableOpacity
-              testID="button-user-icon"
-              activeOpacity={0.5}
-              style={{
-                alignSelf: 'center',
-                marginBottom: 12,
-              }}
-              onPress={pressProfileImage}>
-              {!profilePath ? (
-                <View
-                  style={{
-                    width: 90,
-                    height: 90,
-                  }}>
-                  <Image style={{height: 80, width: 80}} source={IC_PROFILE} />
-                  <Image
+            {Platform.OS !== 'web' && (
+              <TouchableOpacity
+                testID="button-user-icon"
+                activeOpacity={0.5}
+                style={{
+                  alignSelf: 'center',
+                  marginBottom: 12,
+                }}
+                onPress={pressProfileImage}>
+                {!profilePath ? (
+                  <View
                     style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      right: 0,
-                    }}
-                    source={IC_CAMERA}
+                      width: 90,
+                      height: 90,
+                    }}>
+                    <Image
+                      style={{height: 80, width: 80}}
+                      source={IC_PROFILE}
+                    />
+                    <Image
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                      }}
+                      source={IC_CAMERA}
+                    />
+                  </View>
+                ) : (
+                  <ProfileImage
+                    testID="profile-image"
+                    resizeMode="cover"
+                    source={{uri: profilePath}}
                   />
-                </View>
-              ) : (
-                <ProfileImage
-                  testID="profile-image"
-                  resizeMode="cover"
-                  source={{uri: profilePath}}
-                />
-              )}
-            </TouchableOpacity>
-
+                )}
+              </TouchableOpacity>
+            )}
             <EditText
               testID="input-email"
               styles={{
