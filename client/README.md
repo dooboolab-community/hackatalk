@@ -96,12 +96,13 @@ Run below to make your own `app` variables.
 
   | Name                      | default | required | description                 |
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
-  | GRAPHQL_URL                  | `https://hackatalk.azurewebsites.net/graphql` | yes |  |
-  | ROOT_URL                     | `https://hackatalk.azurewebsites.net`         | yes |  |
-  | facebookAppId                |                                      |     |  |
-  | googleWebClientId            |                                      |     |  |
-  | googleAndroidClientId        |                                      |     |  |
-  | googleIOSClientId            |                                      |     |  |
+  | GRAPHQL_URL                  | `http://localhost:4000/graphql` | yes |  |
+  | ROOT_URL                     | `http://localhost:4000`         | yes |  |
+  | SYBSCRIPTION_URL             | `http://localhost:4000`         | yes |  |
+  | facebookAppId                |                                 |     |  |
+  | googleWebClientId            |                                 |     |  |
+  | googleAndroidClientId        |                                 |     |  |
+  | googleIOSClientId            |                                 |     |  |
 
 ### Adding FCM
 To use FCM in android, you need to download own `google-services.json` from [firebase](https://console.firebase.google.com) and put that in root folder.

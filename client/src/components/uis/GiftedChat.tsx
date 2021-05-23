@@ -194,6 +194,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 marginRight: 10,
                 color: fontColor,
                 backgroundColor: backgroundColor,
+                // @ts-ignore => For web
+                outline: 'none',
               }}
               // @ts-ignore
               ref={input1}

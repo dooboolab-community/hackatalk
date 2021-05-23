@@ -29,6 +29,7 @@ jobs:
       env:
         GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
         ROOT_URL: ${{ secrets.ROOT_URL }}
+        SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL}}
         facebookAppId: ${{ secrets.facebookAppId }}
         facebookSecret: ${{ secrets.facebookSecret }}
         googleWebClientId: ${{ secrets.googleWebClientId }}
