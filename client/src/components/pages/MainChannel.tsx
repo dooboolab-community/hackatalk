@@ -122,10 +122,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
         item={item.node}
         onPress={(): void => {
           navigation.navigate('Message', {
-            channel: item.node,
-            users: item.node?.memberships?.map(
-              (membership) => membership?.user,
-            ) as User[],
+            channelId: item.node.id,
           });
         }}
       />

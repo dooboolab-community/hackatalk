@@ -1,5 +1,21 @@
 import {graphql} from 'react-relay';
 
+export const channelQuery = graphql`
+  query ChannelQuery($channelId: String!) {
+    channel(channelId: $channelId) {
+      id
+      name
+      memberships {
+        user {
+          id
+          nickname
+          name
+        }
+      }
+    }
+  }
+`;
+
 export const channelsQuery = graphql`
   query ChannelsQuery($first: Int!, $after: String, $withMessage: Boolean) {
     ...MainChannelComponent_channel

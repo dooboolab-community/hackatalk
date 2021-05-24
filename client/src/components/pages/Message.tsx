@@ -30,6 +30,7 @@ import {
   launchImageLibraryAsync,
 } from '../../utils/ImagePicker';
 
+import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
 import {IC_SMILE} from '../../utils/Icons';
@@ -38,6 +39,7 @@ import type {MessageComponent_message$key} from '../../__generated__/MessageComp
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import {channelQuery} from '../../relay/queries/Channel';
 import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
@@ -359,27 +361,11 @@ interface ContentProps {
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
-  const data: MessagesQueryResponse = useLazyLoadQuery<MessagesQuery>(
-    messagesQuery,
-    searchArgs,
-    {fetchPolicy: 'store-or-network'},
-  );
-
-  return (
-    <MessagesFragment
-      channelId={channelId}
-      messages={data}
-      searchArgs={searchArgs}
-    />
-  );
-};
-
-const MessageScreen: FC = () => {
   const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
+  const {channel} = useLazyLoadQuery<ChannelQuery>(channelQuery, {channelId});
 
-  const {
-    params: {users, channel},
-  } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
+  const users =
+    channel?.memberships?.map((membership) => membership.user) ?? [];
 
   navigation.setOptions({
     headerTitle: (): ReactElement => {
@@ -388,9 +374,11 @@ const MessageScreen: FC = () => {
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
       if (users)
         if (users.length === 1)
-          title = users[0].nickname || users[0].name || '';
+          title = users[0]?.nickname || users[0]?.name || '';
         else if (users.length > 1) {
-          const userNames = users.map((v) => v.nickname || v.name || '');
+          const userNames = users.map(
+            (user) => user?.nickname || user?.name || '',
+          );
 
           title = userNames.join(', ');
         }
@@ -409,15 +397,34 @@ const MessageScreen: FC = () => {
     },
   });
 
+  const messagesQueryResponse: MessagesQueryResponse =
+    useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
+      fetchPolicy: 'store-or-network',
+    });
+
+  return (
+    <MessagesFragment
+      channelId={channelId}
+      messages={messagesQueryResponse}
+      searchArgs={searchArgs}
+    />
+  );
+};
+
+const MessageScreen: FC = () => {
+  const {
+    params: {channelId},
+  } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
+
   const searchArgs: MessagesQueryVariables = {
     last: ITEM_CNT,
-    channelId: channel.id,
+    channelId,
   };
 
   return (
     <Container>
       <Suspense fallback={<LoadingIndicator />}>
-        <ContentContainer searchArgs={searchArgs} channelId={channel.id} />
+        <ContentContainer searchArgs={searchArgs} channelId={channelId} />
       </Suspense>
     </Container>
   );

@@ -327,8 +327,7 @@ const ChannelCreate: FC = () => {
         const channel = response.findOrCreatePrivateChannel as Channel;
 
         navigation.replace('Message', {
-          channel,
-          users: selectedUsers,
+          channelId: channel.id,
         });
       },
       onError: (error: Error): void => {
