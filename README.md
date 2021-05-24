@@ -23,8 +23,6 @@
 * Web
 
   [https://hackatalk.dev](https://hackatalk.dev)
-  
-  - Note: Receiving instant chat messages isn't currently supported in `web`.
 
 
 ## Contributing to `HackaTalk`
