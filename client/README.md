@@ -98,7 +98,7 @@ Run below to make your own `app` variables.
   | ------------------- | -------------------------------------------------------------------------------- | --------- | ----------------------- |
   | GRAPHQL_URL                  | `http://localhost:4000/graphql` | yes |  |
   | ROOT_URL                     | `http://localhost:4000`         | yes |  |
-  | SYBSCRIPTION_URL             | `http://localhost:4000`         | yes |  |
+  | SYBSCRIPTION_URL             | `http://localhost:4000/graphql` | yes |  |
   | facebookAppId                |                                 |     |  |
   | googleWebClientId            |                                 |     |  |
   | googleAndroidClientId        |                                 |     |  |

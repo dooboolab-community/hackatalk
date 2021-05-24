@@ -1,12 +1,6 @@
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {
-  Image,
-  Platform,
-  PlatformColor,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, Platform, TouchableOpacity, View} from 'react-native';
 import React, {ReactElement, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
