@@ -30,6 +30,7 @@ const prodRedisOption: Redis.RedisOptions = {
   host: REDIS_HOSTNAME,
   password: REDIS_CACHEKEY,
   port: 6380,
+  tls: {},
 };
 
 const pubsub =
