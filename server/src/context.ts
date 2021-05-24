@@ -1,21 +1,44 @@
 import {PrismaClient} from '@prisma/client';
 import {PubSub} from 'graphql-subscriptions';
+import Redis from 'ioredis';
+import {RedisPubSub} from 'graphql-redis-subscriptions';
 import {assert} from './utils/assert';
 import express from 'express';
 import {getUserId} from './utils/auth';
+
+// eslint-disable-next-line prettier/prettier
+const {
+  JWT_SECRET,
+  JWT_SECRET_ETC,
+  REDIS_HOSTNAME,
+  REDIS_CACHEKEY,
+  NODE_ENV,
+} = process.env;
 
 export const prisma = new PrismaClient();
 
 export interface Context {
   request: {req: express.Request};
   prisma: PrismaClient;
-  pubsub: PubSub;
+  pubsub: PubSub | RedisPubSub;
   appSecret: string;
   appSecretEtc: string;
   userId: string | null;
 }
 
-const pubsub = new PubSub();
+const prodRedisOption: Redis.RedisOptions = {
+  host: REDIS_HOSTNAME,
+  password: REDIS_CACHEKEY,
+  port: 6380,
+};
+
+const pubsub =
+  NODE_ENV !== 'production'
+    ? new PubSub()
+    : new RedisPubSub({
+        publisher: new Redis(prodRedisOption),
+        subscriber: new Redis(prodRedisOption),
+      });
 
 type CreateContextParams = {
   req: express.Request;
@@ -30,8 +53,6 @@ export function createContext(params: CreateContextParams): Context {
     !req || !req.headers
       ? (connection as any)?.context?.connectionParams?.Authorization // for subscriptions.
       : req.get('Authorization'); // for queries & mutations.
-
-  const {JWT_SECRET, JWT_SECRET_ETC} = process.env;
 
   assert(JWT_SECRET, 'Missing JWT_SECRET environment variable.');
   assert(JWT_SECRET_ETC, 'Missing JWT_SECRET_ETC environment variable.');
