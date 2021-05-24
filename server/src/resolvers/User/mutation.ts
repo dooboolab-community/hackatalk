@@ -294,7 +294,7 @@ export const updateProfile = mutationField('updateProfile', {
 });
 
 export const findPassword = mutationField('findPassword', {
-  type: 'Boolean',
+  type: nonNull('Boolean'),
   args: {email: nonNull(stringArg())},
 
   resolve: async (_parent, {email}, ctx) => {
@@ -331,7 +331,7 @@ export const findPassword = mutationField('findPassword', {
 
       return true;
     } catch (err) {
-      throw ErrorEmailSentFailed(err.message);
+      throw ErrorEmailSentFailed(ErrorString.EmailSentFailed);
     }
   },
 });

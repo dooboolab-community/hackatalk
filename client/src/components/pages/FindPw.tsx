@@ -8,7 +8,6 @@ import {showAlertForError, validateEmail} from '../../utils/common';
 
 import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import {PayloadError} from 'relay-runtime';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
@@ -46,19 +45,18 @@ const Page: FC = () => {
     const mutationConfig = {
       variables: {email},
       onError: (error: Error) => {
-        showAlertForError(error);
+        let errorMsg: string = error.message.toLowerCase();
+
+        if (errorMsg.includes('not a valid email address'))
+          errorMsg = getString('EMAIL_FORMAT_NOT_VALID');
+        else if (errorMsg.includes('user does not exists'))
+          errorMsg = getString('EMAIL_USER_NOT_EXISTS');
+        else errorMsg = getString('EMAIL_SENT_FAILED');
+
+        showAlertForError(errorMsg);
       },
-      onCompleted: (
-        response: UserFindPwMutationResponse,
-        errors: PayloadError[] | null,
-      ) => {
+      onCompleted: (response: UserFindPwMutationResponse) => {
         const result = response.findPassword;
-
-        if (errors && errors.length > 0) {
-          Alert.alert(getString('FAILED'), getString('EMAIL_USER_NOT_EXISTS'));
-
-          return;
-        }
 
         if (result) {
           Alert.alert(

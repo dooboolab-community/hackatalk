@@ -20,6 +20,7 @@
   "EMAIL": "Email",
   "EMAIL_FORMAT_NOT_VALID": "Email format is not valid.",
   "EMAIL_REQUIRED": "Email is required.",
+  "EMAIL_SENT_FAILED": "Verification Email sent failed.",
   "EMAIL_USER_NOT_EXISTS": "User does not exists.",
   "ERROR": "Error",
   "ERROR_OCCURED": "Error occured.",
