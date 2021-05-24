@@ -70,6 +70,7 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
   useEffect(() => {
     if (!me) {
       AsyncStorage.removeItem('token');
+      AsyncStorage.removeItem('push_token');
       hideSplash();
       setUser(null);
 
