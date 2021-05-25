@@ -40,15 +40,15 @@ export const createMessage = graphql`
 
 export const messagesQuery = graphql`
   query MessagesQuery(
-    $last: Int!
-    $before: String
+    $first: Int!
+    $after: String
     $channelId: String!
     $searchText: String
   ) {
     ...MessageComponent_message
       @arguments(
-        last: $last
-        before: $before
+        first: $first
+        after: $after
         channelId: $channelId
         searchText: $searchText
       )

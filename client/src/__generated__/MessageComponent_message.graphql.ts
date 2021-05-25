@@ -53,7 +53,7 @@ return {
     {
       "defaultValue": null,
       "kind": "LocalArgument",
-      "name": "before"
+      "name": "after"
     },
     {
       "defaultValue": null,
@@ -63,7 +63,7 @@ return {
     {
       "defaultValue": null,
       "kind": "LocalArgument",
-      "name": "last"
+      "name": "first"
     },
     {
       "defaultValue": null,
@@ -75,19 +75,19 @@ return {
   "metadata": {
     "connection": [
       {
-        "count": "last",
-        "cursor": "before",
-        "direction": "backward",
+        "count": "first",
+        "cursor": "after",
+        "direction": "forward",
         "path": (v0/*: any*/)
       }
     ],
     "refetch": {
       "connection": {
-        "forward": null,
-        "backward": {
-          "count": "last",
-          "cursor": "before"
+        "forward": {
+          "count": "first",
+          "cursor": "after"
         },
+        "backward": null,
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
@@ -244,5 +244,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'cbbef07cb7d3b9b49f4dc37c3b5511e6';
+(node as any).hash = 'b3770569d6ba7ca5b814a0467cf595c0';
 export default node;
