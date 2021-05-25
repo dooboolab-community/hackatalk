@@ -23,7 +23,12 @@ jobs:
         with:
           expo-version: 4.x
           expo-token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Write dev.json
+        run: echo '{{ secrets.GOOGLE_SERVICES }}' > google-services.json
+
       - run: yarn install
+
       - run: expo publish
         env:
           GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
