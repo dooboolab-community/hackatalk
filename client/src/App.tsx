@@ -2,14 +2,7 @@ import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
-import React, {
-  FC,
-  ReactElement,
-  ReactNode,
-  Suspense,
-  useEffect,
-  useState,
-} from 'react';
+import React, {FC, ReactElement, ReactNode, Suspense, useEffect} from 'react';
 import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from './theme';
 
@@ -28,7 +21,6 @@ import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import {useAssets} from 'expo-asset';
-import useTimeout from './hooks/useTimeout';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -74,18 +66,13 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   };
 
   const [assets] = useAssets(Icons);
-  const [isReady, setIsReady] = useState(false);
-
-  useTimeout(() => {
-    setIsReady(true);
-  }, 2000);
 
   useEffect(() => {
     if (!assets) preventAutoHide();
     else hideSplashScreenThenRegisterNotification();
   }, [assets]);
 
-  if (!assets && isReady)
+  if (!assets)
     return <AppLoading autoHideSplash={false} onError={console.warn} />;
 
   return (
