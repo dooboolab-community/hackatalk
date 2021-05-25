@@ -176,7 +176,7 @@ export type Mutation = {
   sendVerification: Scalars['Boolean'];
   /** Update user profile. Becareful that nullable fields will be updated either. */
   updateProfile?: Maybe<User>;
-  findPassword?: Maybe<Scalars['Boolean']>;
+  findPassword: Scalars['Boolean'];
   changeEmailPassword?: Maybe<Scalars['Boolean']>;
   createNotification?: Maybe<Notification>;
   deleteNotification?: Maybe<Notification>;
@@ -494,16 +494,6 @@ export type Subscription = {
   userSignedIn?: Maybe<User>;
   userUpdated?: Maybe<User>;
   onMessage?: Maybe<Message>;
-};
-
-
-export type SubscriptionUserSignedInArgs = {
-  userId: Scalars['String'];
-};
-
-
-export type SubscriptionUserUpdatedArgs = {
-  userId: Scalars['String'];
 };
 
 
