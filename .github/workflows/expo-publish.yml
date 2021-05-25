@@ -3,7 +3,7 @@ on:
   release:
     types: [created]
   paths:
-      - 'website/**'
+      - 'client/**'
 jobs:
   publish:
     name: Install and publish
