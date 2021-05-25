@@ -362,6 +362,12 @@ interface ContentProps {
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
+
+  const messagesQueryResponse: MessagesQueryResponse =
+    useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
+      fetchPolicy: 'store-or-network',
+    });
+
   const {channel} = useLazyLoadQuery<ChannelQuery>(channelQuery, {channelId});
 
   const users =
@@ -396,11 +402,6 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
       );
     },
   });
-
-  const messagesQueryResponse: MessagesQueryResponse =
-    useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
-      fetchPolicy: 'store-or-network',
-    });
 
   return (
     <MessagesFragment

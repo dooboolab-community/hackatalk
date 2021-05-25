@@ -9,6 +9,7 @@ import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
   createMockNavigation,
   createTestElement,
+  resolveAllOperations,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
@@ -22,16 +23,7 @@ const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
   key: '',
   name: 'Message',
   params: {
-    channel: {
-      id: 'abcdef',
-      channelType: 'private',
-    },
-    users: [
-      {
-        id: 'test-user-123',
-        name: 'Alice',
-      },
-    ],
+    channelId: 'abcdef',
   },
 };
 
@@ -48,30 +40,46 @@ jest.mock('expo-image-picker', () => ({
 
 const mockEnvironment = createMockEnvironment();
 
-mockEnvironment.mock.queueOperationResolver((operation) => {
-  return MockPayloadGenerator.generate(operation, {
-    Channel: (_, generateId): Partial<Channel> => ({
-      id: `test-channel-${generateId()}`,
-      channelType: 'private',
-      name: 'John Doe',
-    }),
-    Message: (_, generateId): Partial<MessageType> => ({
-      id: `test-message-${generateId()}`,
-      text: 'Hello there!',
-      messageType: 'text',
-      createdAt: '2021-03-19T04:30:30.162Z',
-      sender: {
-        id: 'test-user-111',
-        name: 'John Doe',
-        nickname: 'john',
-        photoURL: 'https://example.com/myphoto.jpg',
-        thumbURL: 'https://example.com/john-profile.jpg',
-        hasBlocked: false,
-        statusMessage: "I'm alive.",
+const resolver: MockPayloadGenerator.MockResolvers = {
+  Channel: (context, generateId): Partial<Channel> => ({
+    id: context.args?.channelId ?? `test-channel-${generateId()}`,
+    channelType: 'private',
+    name: 'John Doe',
+    memberships: [
+      {
+        user: {
+          id: 'test-user-123',
+          nickname: 'alice',
+          name: 'Alice Downer',
+        },
+        isVisible: true,
       },
-    }),
-  });
-});
+      {
+        user: {
+          id: 'test-user-111',
+          nickname: 'john',
+          name: 'John Doe',
+        },
+        isVisible: true,
+      },
+    ],
+  }),
+  Message: (_, generateId): Partial<MessageType> => ({
+    id: `test-message-${generateId()}`,
+    text: 'Hello there!',
+    messageType: 'text',
+    createdAt: '2021-03-19T04:30:30.162Z',
+    sender: {
+      id: 'test-user-111',
+      name: 'John Doe',
+      nickname: 'john',
+      photoURL: 'https://example.com/myphoto.jpg',
+      thumbURL: 'https://example.com/john-profile.jpg',
+      hasBlocked: false,
+      statusMessage: "I'm alive.",
+    },
+  }),
+};
 
 describe('[Message] rendering test', () => {
   it('renders as expected', async () => {
@@ -80,6 +88,9 @@ describe('[Message] rendering test', () => {
     });
 
     const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
+    await screen.findByText('john');
 
     const json = screen.toJSON();
 
@@ -95,6 +106,8 @@ describe('[Message] interaction', () => {
     });
 
     const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
 
     const MessageBtn = screen.getByTestId('btn-message');
 
@@ -121,6 +134,8 @@ describe('[Message] interaction', () => {
 
       const screen = render(component);
 
+      resolveAllOperations(mockEnvironment, resolver);
+
       const messageListItem = screen.getByTestId('message-list-item0');
 
       fireEvent.press(messageListItem);
@@ -139,6 +154,9 @@ describe('[Message] interaction', () => {
     });
 
     const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
+
     const touchMenu = screen.getByTestId('touch-menu');
 
     fireEvent.press(touchMenu);
@@ -162,6 +180,8 @@ describe('[Message] interaction', () => {
     });
 
     const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
 
     const touchMenu = screen.getByTestId('touch-menu');
 
