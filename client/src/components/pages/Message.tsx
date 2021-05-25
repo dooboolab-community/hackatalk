@@ -180,6 +180,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     if (type === 'photo') image = await launchImageLibraryAsync();
     else image = await launchCameraAsync();
 
+    setIsImageUploading(false);
+
     if (image && !image.cancelled)
       try {
         const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
@@ -219,8 +221,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       } catch (err) {
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
-
-    setIsImageUploading(false);
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {

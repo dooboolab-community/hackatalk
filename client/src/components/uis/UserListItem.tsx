@@ -121,6 +121,7 @@ function Shared({
         testID="peer-button"
         activeOpacity={0.5}
         onPress={onPress}
+        delayPressIn={130}
         onLongPress={onLongPress}>
         <Wrapper>
           <ImageWrapper>

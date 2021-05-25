@@ -180,7 +180,11 @@ function ChannelListItem(props: Props): React.ReactElement {
 
     return (
       <View style={{width: '100%'}}>
-        <TouchableOpacity testID={testID} activeOpacity={0.5} onPress={onPress}>
+        <TouchableOpacity
+          testID={testID}
+          activeOpacity={0.5}
+          delayPressIn={130}
+          onPress={onPress}>
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 20}}>
               {!users || users.length === 1
