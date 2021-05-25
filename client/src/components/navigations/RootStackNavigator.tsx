@@ -16,7 +16,6 @@ import {
 } from '@react-navigation/stack';
 import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
 import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';

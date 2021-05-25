@@ -1,5 +1,10 @@
 import * as Device from 'expo-device';
 
+import {
+  MockPayloadGenerator,
+  RelayMockEnvironment,
+  createMockEnvironment,
+} from 'relay-test-utils';
 import React, {FC, ReactElement, Suspense} from 'react';
 import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from '../src/theme';
@@ -13,7 +18,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Text} from 'react-native';
 import {User} from '../src/types/graphql';
-import {createMockEnvironment} from 'relay-test-utils';
+import {act} from '@testing-library/react-native';
 
 export const TestSafeAreaProvider: FC = ({children}) => {
   return (
@@ -111,4 +116,28 @@ export function createMockNavigation<T = {}>(): NavigationStub<T> {
     push: jest.fn(),
     replace: jest.fn(),
   };
+}
+
+/**
+ * Resolve all pending operations in `mockEnvironment`.
+ *
+ * Sometimes it is not possible to know how many GraphQL requests should be handled
+ * before rendering a component.
+ * Therefore, use this function after render function
+ * instead of calling `queueOperationResolver` multiple times before render.
+ *
+ * @param mockEnvironment Pending operations are retrieved from this environment.
+ * @param resolver Resolver object for operation resolution.
+ */
+export function resolveAllOperations(
+  mockEnvironment: RelayMockEnvironment,
+  resolver: MockPayloadGenerator.MockResolvers,
+): void {
+  for (const op of mockEnvironment.mock.getAllOperations())
+    act(() => {
+      mockEnvironment.mock.resolve(
+        op,
+        MockPayloadGenerator.generate(op, resolver),
+      );
+    });
 }

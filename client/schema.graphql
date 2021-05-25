@@ -174,7 +174,7 @@ type Mutation {
   Update user profile. Becareful that nullable fields will be updated either.
   """
   updateProfile(user: UserUpdateInput!): User
-  findPassword(email: String!): Boolean
+  findPassword(email: String!): Boolean!
   changeEmailPassword(password: String!, newPassword: String!): Boolean
   createNotification(token: String!, device: String, os: String): Notification
   deleteNotification(token: String!): Notification
@@ -372,8 +372,8 @@ type Report {
 }
 
 type Subscription {
-  userSignedIn(userId: String!): User
-  userUpdated(userId: String!): User
+  userSignedIn: User
+  userUpdated: User
   onMessage: Message
 }
 

@@ -257,8 +257,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             navigation.navigate('MainStack', {
               screen: 'Message',
               params: {
-                users: [userData],
-                channel,
+                channelId: channel.id,
               },
             });
           }

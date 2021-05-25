@@ -91,8 +91,8 @@ export const meQuery = /* GraphQL */ `
 `;
 
 export const userUpdatedSubscription = gql`
-  subscription userUpdated($userId: String!) {
-    userUpdated(userId: $userId) {
+  subscription userUpdated {
+    userUpdated {
       id
       email
       name
@@ -102,8 +102,8 @@ export const userUpdatedSubscription = gql`
 `;
 
 export const userSignedInSubscription = gql`
-  subscription userSignedIn($userId: String!) {
-    userSignedIn(userId: $userId) {
+  subscription userSignedIn {
+    userSignedIn {
       id
       email
       name

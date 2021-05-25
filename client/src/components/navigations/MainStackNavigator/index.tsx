@@ -1,3 +1,5 @@
+import * as Notifications from 'expo-notifications';
+
 import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, Platform, TouchableOpacity, View} from 'react-native';
@@ -41,8 +43,7 @@ export type MainStackParamList = {
     userId: string;
   };
   Message: {
-    channel: Channel;
-    users?: User[];
+    channelId: string;
   };
   Settings: undefined;
   ChangePw: undefined;
@@ -114,6 +115,25 @@ function MainStackNavigator(): ReactElement {
     if (Platform.OS === 'android' || Platform.OS === 'ios')
       requestPermissionsAsync(); // expo-ads-admob
   }, []);
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      async (response) => {
+        await Notifications.setBadgeCountAsync(0);
+
+        const {data: jsonString} = response.notification.request.content.data;
+
+        if (typeof jsonString === 'string') {
+          const {channelId} = JSON.parse(jsonString);
+
+          if (typeof channelId === 'string')
+            navigation.navigate('Message', {channelId});
+        }
+      },
+    );
+
+    return () => subscription.remove();
+  }, [navigation]);
 
   const subscriptionConfig = useMemo<
     GraphQLSubscriptionConfig<MainStackNavigatorOnMessageSubscription>
