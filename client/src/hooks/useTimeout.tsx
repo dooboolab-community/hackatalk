@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useTimeout = (callback: () => void, delay: number) => {
+const useTimeout = (callback: () => void, delay: number): void => {
   const savedCallback = React.useRef<() => void>();
 
   React.useEffect(() => {
@@ -8,11 +8,13 @@ const useTimeout = (callback: () => void, delay: number) => {
   }, [callback]);
 
   React.useEffect(() => {
-    function tick() {
+    function tick(): void {
       savedCallback.current?.();
     }
+
     if (delay !== null) {
       let id = setTimeout(tick, delay);
+
       return () => clearTimeout(id);
     }
   }, [delay]);
