@@ -206,7 +206,7 @@ function MainStackNavigator(): ReactElement {
       <Stack.Screen
         name="Message"
         component={Message}
-        options={getSimpleHeader(getString('MESSAGE'), theme)}
+        options={getSimpleHeader('', theme)}
       />
       <Stack.Screen
         name="Settings"
