@@ -7,7 +7,7 @@ export type UserFindPwMutationVariables = {
     email: string;
 };
 export type UserFindPwMutationResponse = {
-    readonly findPassword: boolean | null;
+    readonly findPassword: boolean;
 };
 export type UserFindPwMutation = {
     readonly response: UserFindPwMutationResponse;

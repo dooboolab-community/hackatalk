@@ -70,15 +70,15 @@ const Container = styled.SafeAreaView`
 const messagesFragment = graphql`
   fragment MessageComponent_message on Query
   @argumentDefinitions(
-    last: {type: "Int!"}
-    before: {type: "String"}
+    first: {type: "Int!"}
+    after: {type: "String"}
     channelId: {type: "String!"}
     searchText: {type: "String"}
   )
   @refetchable(queryName: "MessagePaginationQuery") {
     messages(
-      last: $last
-      before: $before
+      first: $first
+      after: $after
       channelId: $channelId
       searchText: $searchText
     )
@@ -121,13 +121,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
 
-  const {data, loadPrevious} = usePaginationFragment<
+  const {data, loadNext} = usePaginationFragment<
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
 
   useEffect(() => {
-    loadPrevious(1);
+    loadNext(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -141,7 +141,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   }, [data]);
 
   const onEndReached = (): void => {
-    loadPrevious(ITEM_CNT);
+    loadNext(ITEM_CNT);
   };
 
   const [textToSend, setTextToSend] = useState<string>('');
@@ -436,7 +436,7 @@ const MessageScreen: FC = () => {
   } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
 
   const searchArgs: MessagesQueryVariables = {
-    last: ITEM_CNT,
+    first: ITEM_CNT,
     channelId,
   };
 
