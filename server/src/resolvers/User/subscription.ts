@@ -1,12 +1,11 @@
-import {nonNull, stringArg, subscriptionField} from 'nexus';
-
+import {assert} from '../../utils/assert';
+import {subscriptionField} from 'nexus';
 import {withFilter} from 'apollo-server';
 
 export const USER_SIGNED_IN = 'USER_SIGNED_IN';
 export const USER_UPDATED = 'USER_UPDATED';
 
 export const userSignedIn = subscriptionField('userSignedIn', {
-  args: {userId: nonNull(stringArg())},
   type: 'User',
 
   subscribe: withFilter(
@@ -15,7 +14,9 @@ export const userSignedIn = subscriptionField('userSignedIn', {
 
       return pubsub.asyncIterator(USER_SIGNED_IN);
     },
-    (payload, {userId}) => {
+    (payload, _, {userId}) => {
+      assert(userId, 'Not Authorized!');
+
       return payload.id === userId;
     },
   ),
@@ -25,7 +26,6 @@ export const userSignedIn = subscriptionField('userSignedIn', {
 });
 
 export const userUpdated = subscriptionField('userUpdated', {
-  args: {userId: nonNull(stringArg())},
   type: 'User',
 
   subscribe: withFilter(
@@ -34,7 +34,9 @@ export const userUpdated = subscriptionField('userUpdated', {
 
       return pubsub.asyncIterator(USER_UPDATED);
     },
-    (payload, {userId}) => {
+    (payload, _, {userId}) => {
+      assert(userId, 'Not Authorized!');
+
       return payload.id === userId;
     },
   ),
