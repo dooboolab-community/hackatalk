@@ -16,7 +16,14 @@ import {
   MessagesQueryResponse,
   MessagesQueryVariables,
 } from '../../__generated__/MessagesQuery.graphql';
-import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
+import React, {
+  FC,
+  ReactElement,
+  Suspense,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
@@ -117,6 +124,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
+
+  useEffect(() => {
+    loadPrevious(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const nodes = useMemo(() => {
     return (
@@ -362,6 +374,7 @@ interface ContentProps {
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
+  const {user: auth} = useAuthContext();
 
   const messagesQueryResponse: MessagesQueryResponse =
     useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
@@ -379,8 +392,12 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
 
       // Note that if the user exists, this is direct message which title should appear as user name or nickname
       if (users)
-        if (users.length === 1)
-          title = users[0]?.nickname || users[0]?.name || '';
+        if (users.length <= 2)
+          title = users
+            .map((user) =>
+              user?.id !== auth?.id ? user?.nickname || user?.name || '' : '',
+            )
+            .join('');
         else if (users.length > 1) {
           const userNames = users.map(
             (user) => user?.nickname || user?.name || '',
