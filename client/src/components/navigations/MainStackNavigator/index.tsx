@@ -1,6 +1,5 @@
 import * as Notifications from 'expo-notifications';
 
-import {Channel, User} from '../../../types/graphql';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, Platform, TouchableOpacity, View} from 'react-native';
 import React, {ReactElement, useEffect, useMemo} from 'react';
@@ -155,6 +154,9 @@ function MainStackNavigator(): ReactElement {
       initialRouteName="MainTab"
       screenOptions={{
         headerBackTitle: '',
+        cardStyle: {
+          backgroundColor: theme.background,
+        },
       }}>
       <Stack.Screen
         name="MainTab"
@@ -227,12 +229,15 @@ function MainStackNavigator(): ReactElement {
   );
 }
 
-function RootNavigator(): ReactElement {
+function MainNavigator(): ReactElement {
+  const {theme} = useTheme();
+
   return (
     <View
       style={{
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: theme.background,
       }}>
       <StatusBar />
       <MainStackNavigator />
@@ -241,10 +246,10 @@ function RootNavigator(): ReactElement {
   );
 }
 
-export default function RootNavigatorWrapper(): ReactElement {
+export default function MainNavigatorWrapper(): ReactElement {
   return (
     <ProfileModalProvider>
-      <RootNavigator />
+      <MainNavigator />
     </ProfileModalProvider>
   );
 }

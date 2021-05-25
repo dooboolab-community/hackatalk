@@ -2,9 +2,9 @@ import {FlatList, ListRenderItem} from 'react-native';
 import React, {FC, Suspense, useMemo} from 'react';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
-import {LoadingIndicator} from 'dooboo-ui';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import UserListItem from '../uis/UserListItem';
@@ -124,7 +124,7 @@ const Friend: FC = () => {
 const Screen: FC = () => {
   return (
     <Container>
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
         <Friend />
       </Suspense>
     </Container>

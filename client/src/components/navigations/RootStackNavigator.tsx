@@ -1,7 +1,6 @@
 import * as SplashScreen from 'expo-splash-screen';
 
 import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
-import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import MainStack, {MainStackParamList} from './MainStackNavigator';
 import {
   NavigationContainer,
@@ -17,10 +16,12 @@ import {
 import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
 import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WebView from '../pages/WebView';
+import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
   default: undefined;
@@ -183,26 +184,28 @@ function AuthNavigatorOnly(): React.ReactElement {
 }
 
 const RootNavigatorWrapper: FC = () => {
-  const {theme} = useTheme();
   const {user, loadMeQuery, meQueryReference} = useAuthContext();
+  const {theme} = useTheme();
 
   useEffect(() => {
     if (!user) loadMeQuery({});
   }, [loadMeQuery, user]);
 
   return (
-    <Suspense
-      fallback={
-        <View style={{flex: 1, backgroundColor: theme.background}}>
-          <LoadingIndicator />
-        </View>
-      }>
-      {meQueryReference ? (
-        <RootNavigator queryReference={meQueryReference} />
-      ) : (
-        <AuthNavigatorOnly />
-      )}
-    </Suspense>
+    <View
+      style={{
+        flex: 1,
+        alignSelf: 'stretch',
+        backgroundColor: theme.background,
+      }}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
+        {meQueryReference ? (
+          <RootNavigator queryReference={meQueryReference} />
+        ) : (
+          <AuthNavigatorOnly />
+        )}
+      </Suspense>
+    </View>
   );
 };
 

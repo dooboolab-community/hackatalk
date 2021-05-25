@@ -1,25 +1,18 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import {Alert, Image} from 'react-native';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
-import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
-import React, {
-  FC,
-  ReactElement,
-  ReactNode,
-  Suspense,
-  useEffect,
-  useState,
-} from 'react';
+import React, {FC, ReactElement, ReactNode, Suspense, useEffect} from 'react';
+import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
+import {Alert} from 'react-native';
 import AppLoading from 'expo-app-loading';
-import {Asset} from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
+import CustomLoadingIndicator from './components/uis/CustomLoadingIndicator';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
@@ -27,6 +20,7 @@ import RootNavigator from './components/navigations/RootStackNavigator';
 import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
+import {useAssets} from 'expo-asset';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -36,27 +30,12 @@ Notifications.setNotificationHandler({
   }),
 });
 
-function cacheImages(images: (number | string)[]): any[] {
-  return images.map((image) => {
-    if (typeof image === 'string') return Image.prefetch(image);
-    else return Asset.fromModule(image as number).downloadAsync();
-  });
-}
-
-const prepareAutoHide = async (): Promise<void> => {
+const preventAutoHide = async (): Promise<void> => {
   await SplashScreen.preventAutoHideAsync();
 };
 
-function App(): ReactElement {
-  const [assetLoaded, setAssetLoaded] = useState<boolean>(false);
-
-  const loadAssetsAsync = async (): Promise<void> => {
-    const imageAssets = cacheImages(Icons);
-
-    await Promise.all([...imageAssets]);
-
-    setAssetLoaded(true);
-  };
+const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
+  const colorScheme = useColorScheme();
 
   const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
     try {
@@ -86,25 +65,15 @@ function App(): ReactElement {
       });
   };
 
-  useEffect(() => {
-    if (!assetLoaded) {
-      SplashScreen.preventAutoHideAsync();
-      loadAssetsAsync();
-    } else hideSplashScreenThenRegisterNotification();
-  }, [assetLoaded]);
+  const [assets] = useAssets(Icons);
 
-  if (!assetLoaded)
+  useEffect(() => {
+    if (!assets) preventAutoHide();
+    else hideSplashScreenThenRegisterNotification();
+  }, [assets]);
+
+  if (!assets)
     return <AppLoading autoHideSplash={false} onError={console.warn} />;
-
-  return <RootNavigator />;
-}
-
-const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
-  const colorScheme = useColorScheme();
-
-  useEffect(() => {
-    prepareAutoHide();
-  }, []);
 
   return (
     <ThemeProvider
@@ -131,10 +100,10 @@ function ActionSheetProviderWithChildren(props: {
 }
 
 // Add all required providers for App.
-const WrappedApp = new ComponentWrapper(App)
+const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
-  .wrap(Suspense, {fallback: <LoadingIndicator />})
+  .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
   .wrap(ResettableRelayProvider, {createRelayEnvironment})
   .wrap(DeviceProvider, {})
   .wrap(HackatalkThemeProvider, {})

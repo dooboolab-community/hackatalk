@@ -1,8 +1,8 @@
 import {FlatList, ListRenderItem, View} from 'react-native';
 import React, {FC, Suspense, useMemo} from 'react';
 
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
-import {LoadingIndicator} from 'dooboo-ui';
 import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
@@ -75,7 +75,7 @@ const ContentContainer: FC = () => {
 const Page: FC = () => {
   return (
     <Container>
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
         <ContentContainer />
       </Suspense>
     </Container>

@@ -1,17 +1,17 @@
-import {Channel, User} from '../../types/graphql';
 import type {
   ChannelsQuery,
   ChannelsQueryResponse,
   ChannelsQueryVariables,
 } from '../../__generated__/ChannelsQuery.graphql';
 import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
-import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {FC, Suspense, useMemo, useState} from 'react';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import {AdMobBanner} from 'expo-ads-admob';
+import {Channel} from '../../types/graphql';
 import ChannelListItem from '../uis/ChannelListItem';
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
@@ -21,6 +21,7 @@ import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/native';
+import {useTheme} from 'dooboo-ui';
 
 const Container = styled.View`
   flex: 1;
@@ -214,7 +215,7 @@ const Screen: FC = () => {
 
   return (
     <Container>
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
         <ContentContainer searchArgs={searchArgs} />
       </Suspense>
       <TouchableOpacity

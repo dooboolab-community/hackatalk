@@ -1,4 +1,4 @@
-import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
+import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, useState} from 'react';
 import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
@@ -8,6 +8,7 @@ import type {
 
 import {Alert} from 'react-native';
 import {AuthStackParamList} from '../navigations/AuthStackNavigator';
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import {getString} from '../../../STRINGS';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
@@ -111,7 +112,7 @@ const Page: FC = () => {
         text={getString('RESEND_EMAIL')}
         loading={isInFlight}
       />
-      {loading ? <LoadingIndicator /> : null}
+      {loading ? <CustomLoadingIndicator /> : null}
     </Container>
   );
 };

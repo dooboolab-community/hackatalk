@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Button, LoadingIndicator, useTheme} from 'dooboo-ui';
+import {Button, useTheme} from 'dooboo-ui';
 import {
   MainStackNavigationProps,
   MainStackParamList,
@@ -38,6 +38,7 @@ import {
 } from '../../utils/ImagePicker';
 
 import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
 import {IC_SMILE} from '../../utils/Icons';
@@ -441,7 +442,7 @@ const MessageScreen: FC = () => {
 
   return (
     <Container>
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
         <ContentContainer searchArgs={searchArgs} channelId={channelId} />
       </Suspense>
     </Container>
