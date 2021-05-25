@@ -13,9 +13,9 @@ import type {
 } from '../../__generated__/UserUsersPaginationQuery.graphql';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import {FontAwesome} from '@expo/vector-icons';
-import {LoadingIndicator} from 'dooboo-ui';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
@@ -199,7 +199,7 @@ const Screen: FC = () => {
           onChangeText={onChangeText}
           value={searchText}
         />
-        <Suspense fallback={<LoadingIndicator />}>
+        <Suspense fallback={<CustomLoadingIndicator />}>
           <ContentContainer scrollY={scrollY} searchArgs={searchArgs} />
         </Suspense>
       </Container>

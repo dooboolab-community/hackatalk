@@ -17,7 +17,6 @@ import {
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
-import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
 import {
   graphql,
@@ -27,6 +26,7 @@ import {
 } from 'react-relay';
 
 import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
+import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ErroView from '../uis/ErrorView';
 import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
@@ -40,6 +40,7 @@ import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
+import {useTheme} from 'dooboo-ui';
 
 const ITEM_CNT = 20;
 
@@ -369,7 +370,7 @@ const ChannelCreate: FC = () => {
         }}
         value={searchText}
       />
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<CustomLoadingIndicator />}>
         <ContentContainer
           scrollY={scrollY}
           searchArgs={searchArgs}
@@ -377,7 +378,7 @@ const ChannelCreate: FC = () => {
           setSelectedUsers={setSelectedUsers}
         />
       </Suspense>
-      {isChannelInFlight ? <LoadingIndicator /> : null}
+      {isChannelInFlight ? <CustomLoadingIndicator /> : null}
     </Container>
   );
 };
