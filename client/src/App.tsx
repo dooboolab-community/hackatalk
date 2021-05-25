@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import {Alert, Image, View} from 'react-native';
+import {Alert, Image} from 'react-native';
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import {LoadingIndicator, ThemeProvider, ThemeType} from 'dooboo-ui';
 import React, {
@@ -15,6 +15,7 @@ import React, {
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
+import AppLoading from 'expo-app-loading';
 import {Asset} from 'expo-asset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
@@ -43,11 +44,7 @@ function cacheImages(images: (number | string)[]): any[] {
 }
 
 const prepareAutoHide = async (): Promise<void> => {
-  try {
-    await SplashScreen.preventAutoHideAsync();
-  } catch (e) {
-    console.warn(e);
-  }
+  await SplashScreen.preventAutoHideAsync();
 };
 
 function App(): ReactElement {
@@ -96,7 +93,8 @@ function App(): ReactElement {
     } else hideSplashScreenThenRegisterNotification();
   }, [assetLoaded]);
 
-  if (!assetLoaded) return <View />;
+  if (!assetLoaded)
+    return <AppLoading autoHideSplash={false} onError={console.warn} />;
 
   return <RootNavigator />;
 }
