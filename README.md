@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk)
 [![Deploy Server](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml)
+[![Expo Publish](https://github.com/dooboolab/hackatalk/actions/workflows/expo-publish.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/expo-publish.yml)
 [![Deploy Web App](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml)
 [![CI For Website](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml)
 [![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)

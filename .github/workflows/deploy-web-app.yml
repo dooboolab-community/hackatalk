@@ -1,9 +1,9 @@
 name: Deploy Web App
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+  release:
+    types: [created]
     paths:
       - 'client/**'
 

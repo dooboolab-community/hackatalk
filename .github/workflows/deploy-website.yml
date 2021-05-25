@@ -1,8 +1,8 @@
 name: Deploy Website
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+  release:
+    types: [created]
     paths:
       - 'website/**'
 
