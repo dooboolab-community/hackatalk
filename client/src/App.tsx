@@ -30,9 +30,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const preventAutoHide = async (): Promise<void> => {
-  await SplashScreen.preventAutoHideAsync();
-};
+SplashScreen.preventAutoHideAsync();
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const colorScheme = useColorScheme();
@@ -68,8 +66,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const [assets] = useAssets(Icons);
 
   useEffect(() => {
-    if (!assets) preventAutoHide();
-    else hideSplashScreenThenRegisterNotification();
+    if (assets) hideSplashScreenThenRegisterNotification();
   }, [assets]);
 
   if (!assets)

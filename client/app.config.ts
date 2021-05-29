@@ -53,6 +53,9 @@ export default {
       },
     },
     android: {
+      splash: {
+        resizeMode: 'native',
+      },
       versionCode: androidVersionCode,
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
