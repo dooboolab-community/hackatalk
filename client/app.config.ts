@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import {version} from './package.json';
 
-const androidVersionCode = 21;
+const androidVersionCode = 22;
 
 export default {
   expo: {
