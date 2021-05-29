@@ -1,23 +1,71 @@
-import React, {FC} from 'react';
+import {Animated, Easing, ImageStyle, StyleProp, View} from 'react-native';
+import React, {FC, useEffect, useState} from 'react';
 
-import {LoadingIndicator} from 'dooboo-ui';
-import styled from '@emotion/native';
+import {IC_ICON} from '../../utils/Icons';
 
-const Container = styled.View`
-  flex: 1;
-  background-color: ${({theme}) => theme.background};
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
+type Props = {
+  style?: StyleProp<ImageStyle>;
+};
 
-type Props = {};
+const CustomLoadingIndicator: FC<Props> = ({style}) => {
+  const [animation] = useState(new Animated.Value(0));
+  const inputRange = [0, 1];
+  const outputRange = [1.7, 1.3];
+  const scale = animation.interpolate({inputRange, outputRange});
 
-const CustomLoadingIndicator: FC<Props> = () => {
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 300,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animation, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 300,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animation, {
+          toValue: 0,
+          duration: 500,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        }),
+      ]),
+    ).start();
+  });
+
   return (
-    <Container>
-      <LoadingIndicator />
-    </Container>
+    <View
+      style={{
+        flex: 1,
+        alignSelf: 'stretch',
+        backgroundColor: '(0, 0, 0, 0)',
+
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Animated.Image
+        style={[
+          {
+            opacity: 0.75,
+            borderRadius: 28,
+            transform: [{scale}],
+          },
+          style,
+        ]}
+        source={IC_ICON}
+      />
+    </View>
   );
 };
 
