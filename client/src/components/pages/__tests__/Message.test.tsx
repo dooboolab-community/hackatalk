@@ -17,6 +17,8 @@ import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
 import React from 'react';
 
+jest.mock('../../uis/CustomLoadingIndicator', () => 'test');
+
 const mockNavigation = createMockNavigation();
 
 const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
