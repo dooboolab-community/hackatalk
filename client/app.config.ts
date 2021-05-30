@@ -17,6 +17,7 @@ export default {
       resizeMode: 'cover',
       image: './assets/splash.png',
       tabletImage: './assets/splashTablet.png',
+      backgroundColor: '#1E6EFA',
     },
     userInterfaceStyle: 'automatic',
     scheme: 'hackatalk',
@@ -53,9 +54,6 @@ export default {
       },
     },
     android: {
-      splash: {
-        resizeMode: 'native',
-      },
       versionCode: androidVersionCode,
       userInterfaceStyle: 'dark',
       package: 'com.dooboolab.hackatalk',
