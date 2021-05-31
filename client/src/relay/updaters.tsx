@@ -89,7 +89,6 @@ function updateChannelAndRearrange(
  * Update Relay store after `createMessage` mutation.
  * @param store Relay store proxy for updater.
  * @param channelId ID of the channel to be updated.
- * @param userId ID of the auth user.
  */
 export function createMessageUpdater(
   store: RecordSourceSelectorProxy<{
@@ -98,6 +97,31 @@ export function createMessageUpdater(
   channelId: string,
 ): void {
   const messageProxy = store.getRootField('createMessage');
+
+  prependMessageToChannel(store, channelId, messageProxy);
+  updateChannelAndRearrange(store, channelId);
+}
+
+/**
+ * Optimistically update Relay store after `createMessage` mutation.
+ * @param store Relay store proxy for updater.
+ * @param channelId ID of the channel to be updated.
+ * @param text Text content of the message.
+ * @param userId ID of the auth user.
+ */
+export function createMessageOptimisticUpdater(
+  store: RecordSourceSelectorProxy,
+  channelId: string,
+  text: string,
+  userId: string,
+): void {
+  const messageProxy = store.create(
+    `client:message:${Math.floor(Math.random() * 1000)}`,
+    'Message',
+  );
+
+  messageProxy.setValue(text, 'text');
+  messageProxy.setLinkedRecord(store.get(userId) ?? null, 'sender');
 
   prependMessageToChannel(store, channelId, messageProxy);
   updateChannelAndRearrange(store, channelId);

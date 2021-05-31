@@ -27,6 +27,10 @@ import React, {
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
+  createMessageOptimisticUpdater,
+  createMessageUpdater,
+} from '../../relay/updaters';
+import {
   graphql,
   useLazyLoadQuery,
   useMutation,
@@ -48,7 +52,6 @@ import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutat
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
-import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -160,6 +163,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       variables: {
         channelId,
         message: {text: textToSend},
+      },
+      optimisticUpdater: (store) => {
+        if (user)
+          createMessageOptimisticUpdater(store, channelId, textToSend, user.id);
       },
       updater: (store) => {
         if (user) createMessageUpdater(store, channelId);
