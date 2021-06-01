@@ -151,8 +151,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
-  const [commitMessage, isMessageInFlight] =
-    useMutation<MessageCreateMutation>(createMessage);
+  const [commitMessage] = useMutation<MessageCreateMutation>(createMessage);
 
   const {user} = useAuthContext();
 
@@ -165,14 +164,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         message: {text: textToSend},
       },
       optimisticUpdater: (store) => {
-        if (user)
+        if (user) {
           createMessageOptimisticUpdater(store, channelId, textToSend, user.id);
+          setTextToSend('');
+        }
       },
       updater: (store) => {
         if (user) createMessageUpdater(store, channelId);
-      },
-      onCompleted: () => {
-        setTextToSend('');
       },
       onError: (error: Error): void => {
         showAlertForError(error);
@@ -363,7 +361,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               color: theme.btnPrimaryFont,
             },
           }}
-          loading={isMessageInFlight || isImageUploading}
+          loading={isImageUploading}
           onPress={onSubmit}
           text={getString('SEND')}
           textProps={{
