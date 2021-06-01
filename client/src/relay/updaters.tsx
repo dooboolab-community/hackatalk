@@ -1,8 +1,12 @@
+import 'react-native-get-random-values';
+
 import {
   ConnectionHandler,
   RecordProxy,
   RecordSourceSelectorProxy,
 } from 'relay-runtime';
+
+import {nanoid} from 'nanoid';
 
 /**
  * Prepend a message record to a message connection of a channel.
@@ -115,10 +119,7 @@ export function createMessageOptimisticUpdater(
   text: string,
   userId: string,
 ): void {
-  const messageProxy = store.create(
-    `client:message:${Math.floor(Math.random() * 1000)}`,
-    'Message',
-  );
+  const messageProxy = store.create(nanoid(), 'Message');
 
   messageProxy.setValue(text, 'text');
   messageProxy.setLinkedRecord(store.get(userId) ?? null, 'sender');
