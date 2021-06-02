@@ -2,6 +2,7 @@ import {
   Alert,
   Image,
   ListRenderItem,
+  Platform,
   Text,
   TouchableOpacity,
   View,
@@ -283,7 +284,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       onEndReached={onEndReached}
       backgroundColor={theme.background}
       fontColor={theme.text}
-      keyboardOffset={insets.top + insets.bottom}
+      keyboardOffset={Platform.select({
+        ios: insets.bottom + 56,
+        android: insets.bottom,
+      })}
       message={textToSend}
       placeholder={getString('WRITE_MESSAGE')}
       placeholderTextColor={theme.placeholder}
