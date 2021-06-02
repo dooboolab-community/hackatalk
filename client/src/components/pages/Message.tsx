@@ -309,7 +309,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           source={IC_SMILE}
         />
       }
-      emptyItem={<EmptyListItem>{getString('NO_CONTENT')}</EmptyListItem>}
+      emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View
           style={{
