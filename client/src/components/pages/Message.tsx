@@ -28,6 +28,10 @@ import React, {
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
+  createMessageOptimisticUpdater,
+  createMessageUpdater,
+} from '../../relay/updaters';
+import {
   graphql,
   useLazyLoadQuery,
   useMutation,
@@ -49,7 +53,6 @@ import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutat
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
-import {createMessageUpdater} from '../../relay/updaters';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -149,8 +152,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
-  const [commitMessage, isMessageInFlight] =
-    useMutation<MessageCreateMutation>(createMessage);
+  const [commitMessage] = useMutation<MessageCreateMutation>(createMessage);
 
   const {user} = useAuthContext();
 
@@ -162,11 +164,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         channelId,
         message: {text: textToSend},
       },
+      optimisticUpdater: (store) => {
+        if (user) {
+          createMessageOptimisticUpdater(store, channelId, textToSend, user.id);
+          setTextToSend('');
+        }
+      },
       updater: (store) => {
         if (user) createMessageUpdater(store, channelId);
-      },
-      onCompleted: () => {
-        setTextToSend('');
       },
       onError: (error: Error): void => {
         showAlertForError(error);
@@ -360,7 +365,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               color: theme.btnPrimaryFont,
             },
           }}
-          loading={isMessageInFlight || isImageUploading}
+          loading={isImageUploading}
           onPress={onSubmit}
           text={getString('SEND')}
           textProps={{
