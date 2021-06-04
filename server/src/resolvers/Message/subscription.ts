@@ -25,10 +25,7 @@ export const onMessage = subscriptionField('onMessage', {
         },
       });
 
-      const correctChannel = !!membership; // Message is sent to the auth user's channel.
-      const fromSelf = payload.senderId === userId; // Message is sent by the auth user.
-
-      return correctChannel && !fromSelf;
+      return !!membership; // Message is sent to the auth user's channel.
     },
   ),
   resolve: (payload) => {
