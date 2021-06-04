@@ -59,7 +59,7 @@ export const createTestElement = (
   return (
     <DeviceProvider>
       <ThemeProvider
-        initialThemeType={mockContext?.themeType ?? ThemeType.DARK}
+        initialThemeType={mockContext?.themeType ?? 'dark'}
         customTheme={{light, dark}}>
         <ResettableRelayProvider
           environment={mockContext?.environment ?? createMockEnvironment()}

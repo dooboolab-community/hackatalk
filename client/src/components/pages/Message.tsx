@@ -295,7 +295,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       })}
       message={textToSend}
       placeholder={getString('WRITE_MESSAGE')}
-      placeholderTextColor={theme.placeholder}
       onChangeMessage={(text: string): void => setTextToSend(text)}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}

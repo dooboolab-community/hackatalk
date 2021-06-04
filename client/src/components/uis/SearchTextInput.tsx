@@ -58,7 +58,7 @@ function SearchTextInput(props: Props): ReactElement {
         defaultValue={''}
       />
       <StyledSearchImage
-        source={themeType === ThemeType.LIGHT ? IC_SEARCH : IC_SEARCH_W}
+        source={themeType === 'light' ? IC_SEARCH : IC_SEARCH_W}
       />
     </StyledTextInputWrapper>
   );

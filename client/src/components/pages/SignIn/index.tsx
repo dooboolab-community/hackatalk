@@ -18,7 +18,7 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import {Button, EditText, ThemeType, useTheme} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -87,7 +87,8 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 44px;
+  margin-top: 4px;
+  margin-bottom: 36px;
   align-self: center;
 `;
 
@@ -364,7 +365,7 @@ const SignIn: FC = () => {
           }}>
           <Image
             style={{width: logoSize, height: logoSize, resizeMode: 'cover'}}
-            source={themeType === ThemeType.DARK ? IC_LOGO_D : IC_LOGO_W}
+            source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
         <Wrapper>
@@ -376,18 +377,16 @@ const SignIn: FC = () => {
             type="row"
             testID="input-email"
             styles={{
-              container: {
-                borderColor: theme.text,
-              },
+              container: {borderColor: theme.text},
+              labelText: {width: 80},
               input: {
                 color: theme.text,
                 height: 52,
               },
             }}
-            style={{marginBottom: 20}}
+            style={{marginBottom: 12}}
             labelText={getString('EMAIL')}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
@@ -401,9 +400,8 @@ const SignIn: FC = () => {
             testID="input-password"
             type="row"
             styles={{
-              container: {
-                borderColor: theme.text,
-              },
+              container: {borderColor: theme.text},
+              labelText: {width: 80},
               input: {
                 color: theme.text,
                 height: 52,
@@ -413,7 +411,6 @@ const SignIn: FC = () => {
             labelText={getString('PASSWORD')}
             focusColor={theme.focused}
             placeholder="******"
-            placeholderTextColor={theme.placeholder}
             value={password}
             onChangeText={(text: string): void => {
               setPassword(text);
@@ -429,23 +426,23 @@ const SignIn: FC = () => {
               onPress={goToSignUp}
               style={{flex: 1}}
               styles={{
-                container: {
-                  backgroundColor: theme.btnPrimaryLight,
-                  borderColor: theme.btnPrimary,
-                  borderWidth: 1,
+                container: css`
+                  background-color: ${theme.btnPrimaryLight};
+                  border-color: ${theme.btnPrimary};
+                  border-width: 1px;
 
-                  flex: 1,
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                },
-                text: {
-                  color: theme.btnPrimary,
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                },
-                hovered: {
-                  borderColor: theme.text,
-                },
+                  flex: 1;
+                  flex-direction: row;
+                  justify-content: center;
+                `,
+                text: css`
+                  color: ${theme.btnPrimary};
+                  font-size: 14px;
+                  font-weight: bold;
+                `,
+                hovered: css`
+                  border-color: ${theme.text};
+                `,
               }}
               text={getString('SIGN_UP')}
             />
@@ -454,28 +451,26 @@ const SignIn: FC = () => {
               testID="btn-sign-in"
               loading={isInFlight}
               onPress={signIn}
-              style={{
-                flex: 1,
-              }}
+              style={{flex: 1}}
               styles={{
-                container: {
-                  height: 52,
-                  backgroundColor: theme.primary,
-                  flex: 1,
-                  alignSelf: 'stretch',
-                  borderWidth: 1,
+                container: css`
+                  height: 52px;
+                  background-color: ${theme.primary};
+                  flex: 1;
+                  align-self: stretch;
+                  border-width: 1px;
 
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                },
-                text: {
-                  color: theme.btnPrimaryFont,
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                },
-                hovered: {
-                  borderColor: theme.text,
-                },
+                  flex-direction: row;
+                  justify-content: center;
+                `,
+                text: css`
+                  font-size: 14px;
+                  font-weight: bold;
+                  color: ${theme.btnPrimaryFont};
+                `,
+                hovered: css`
+                  border-color: ${theme.text};
+                `,
               }}
               text={getString('LOGIN')}
             />
@@ -490,14 +485,14 @@ const SignIn: FC = () => {
                   testID="btn-apple"
                   style={{marginBottom: 12}}
                   styles={{
-                    container: {
-                      backgroundColor: theme.appleBackground,
-                      borderColor: theme.appleText,
-                      width: '100%',
-                      height: 48,
-                      borderWidth: 1,
-                      borderRadius: 100,
-                    },
+                    container: css`
+                      background-color: ${theme.appleBackground};
+                      border-color: ${theme.appleText};
+                      width: 100%;
+                      height: 48px;
+                      border-width: 1px;
+                      border-radius: 100px;
+                    `,
                     text: {
                       fontWeight: '700',
                       color: theme.appleText,

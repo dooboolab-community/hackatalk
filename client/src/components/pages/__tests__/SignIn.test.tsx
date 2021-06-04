@@ -1,6 +1,5 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 
-import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
 import {
   createMockNavigation,
@@ -13,7 +12,7 @@ import {FetchMock} from 'jest-fetch-mock';
 import React from 'react';
 import ReactNavigation from '@react-navigation/core';
 import SignIn from '../SignIn';
-import {ThemeType} from 'dooboo-ui';
+import {createMockEnvironment} from 'relay-test-utils';
 
 const fetchMock = fetch as FetchMock;
 
@@ -40,7 +39,7 @@ describe('[SignIn] rendering test', () => {
 
   it('should render [Dark] mode without crashing', () => {
     const component = createTestElement(<SignIn />, {
-      themeType: ThemeType.DARK,
+      themeType: 'dark',
     });
 
     const screen = render(component);

@@ -98,7 +98,6 @@ const ReportScreen: FC = () => {
               multiline: true,
             }}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
             labelText={name}

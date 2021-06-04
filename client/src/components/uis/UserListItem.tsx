@@ -86,7 +86,7 @@ const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}) => theme.secondaryText};
+  color: ${({theme}) => theme.textSecondaryColor};
   max-width: 120px;
   border-width: 0.3px;
   border-color: ${({theme}) => theme.lineColor};

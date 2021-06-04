@@ -141,7 +141,6 @@ const ChangePw: FC = () => {
             }}
             style={{marginTop: 40}}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
             labelText={getString('PASSWORD_CURRENT')}
@@ -161,7 +160,6 @@ const ChangePw: FC = () => {
               },
             }}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setNewPw(pw)}
             labelText={getString('PASSWORD_NEW')}
             value={newPw}
@@ -180,7 +178,6 @@ const ChangePw: FC = () => {
               },
             }}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
             labelText={getString('PASSWORD_NEW_REPEAT')}
             value={confirmPw}
@@ -201,7 +198,7 @@ const ChangePw: FC = () => {
             },
             text: {
               alignSelf: 'center',
-              color: theme.contrastText,
+              color: theme.textContrast,
               textAlign: 'center',
               fontSize: 16,
             },

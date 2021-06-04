@@ -1,14 +1,13 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import React, {FC, ReactElement, ReactNode, Suspense, useEffect} from 'react';
-import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
 import {Alert} from 'react-native';
 import AppLoading from 'expo-app-loading';
+import {AppearanceProvider} from 'react-native-appearance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
@@ -17,6 +16,7 @@ import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
+import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
@@ -33,8 +33,6 @@ Notifications.setNotificationHandler({
 SplashScreen.preventAutoHideAsync();
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
-  const colorScheme = useColorScheme();
-
   const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
     try {
       await SplashScreen.hideAsync();
@@ -81,10 +79,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
         dark: {
           ...dark,
         },
-      }}
-      initialThemeType={
-        colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
-      }>
+      }}>
       {children}
     </ThemeProvider>
   );

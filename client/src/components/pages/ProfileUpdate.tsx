@@ -298,7 +298,6 @@ const Screen: FC = () => {
             placeholder={getString('NICKNAME_HINT')}
             value={nickname}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void => changeText('NICKNAME', text)}
           />
           <EditText
@@ -316,7 +315,6 @@ const Screen: FC = () => {
             placeholder={getString('NAME_HINT')}
             value={name}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void => changeText('NAME', text)}
           />
           <EditText
@@ -339,7 +337,6 @@ const Screen: FC = () => {
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
             focusColor={theme.focused}
-            placeholderTextColor={theme.placeholder}
             onChangeText={(text: string): void =>
               changeText('STATUS_MSG', text)
             }

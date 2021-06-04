@@ -30,7 +30,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}) => theme.secondaryText};
+  color: ${({theme}) => theme.textSecondaryColor};
   margin-left: 2px;
 `;
 

@@ -22,7 +22,6 @@ const Container = styled.View`
 
 const ButtonWrapper = styled.View`
   width: 100%;
-  margin-top: 20px;
 `;
 
 const Page: FC = () => {
@@ -76,7 +75,7 @@ const Page: FC = () => {
     <Container>
       <EditText
         testID="input-email"
-        style={{marginVertical: 20}}
+        style={{marginTop: 32, marginBottom: 4}}
         styles={{
           container: {
             borderColor: theme.text,
@@ -87,7 +86,6 @@ const Page: FC = () => {
         }}
         focusColor={theme.focused}
         labelText={getString('EMAIL')}
-        placeholderTextColor={theme.placeholder}
         placeholder="hello@example.com"
         value={email}
         onChangeText={(text: string): void => {
