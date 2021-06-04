@@ -39,7 +39,17 @@ function prependMessageToChannel(
     'Message',
   );
 
-  ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
+  // Insert new edge if the message is not already in connection.
+
+  const existingEdges = messagesConnection?.getLinkedRecords('edges') ?? [];
+
+  if (
+    !existingEdges.find(
+      (edge) =>
+        edge.getLinkedRecord('node')?.getDataID() === messageProxy.getDataID(),
+    )
+  )
+    ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
 }
 
 /**
