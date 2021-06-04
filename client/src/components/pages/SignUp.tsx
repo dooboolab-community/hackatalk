@@ -280,7 +280,6 @@ const Page: FC = () => {
                 },
               }}
               focusColor={theme.focused}
-              placeholderTextColor={theme.placeholder}
               labelText={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
@@ -299,7 +298,6 @@ const Page: FC = () => {
                 },
               }}
               focusColor={theme.focused}
-              placeholderTextColor={theme.placeholder}
               placeholder="********"
               labelText={getString('PASSWORD')}
               value={password}
@@ -326,7 +324,6 @@ const Page: FC = () => {
               onChangeText={inputChangeHandlers.confirmPasswordInput}
               style={{marginTop: 32}}
               focusColor={theme.focused}
-              placeholderTextColor={theme.placeholder}
               errorText={errorConfirmPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
@@ -344,7 +341,6 @@ const Page: FC = () => {
               labelText={getString('NAME')}
               placeholder={getString('NAME_HINT')}
               focusColor={theme.focused}
-              placeholderTextColor={theme.placeholder}
               value={name}
               onChangeText={inputChangeHandlers.nameInput}
               style={{marginTop: 32}}
@@ -367,7 +363,6 @@ const Page: FC = () => {
                 },
               }}
               focusColor={theme.focused}
-              placeholderTextColor={theme.placeholder}
               labelText={getString('STATUS')}
               placeholder={getString('STATUS_MSG_HINT')}
               value={statusMessage}
@@ -385,10 +380,7 @@ const Page: FC = () => {
                 testID="btn-sign-up"
                 loading={isInFlight}
                 onPress={requestSignUp}
-                style={{
-                  alignSelf: 'stretch',
-                  borderWidth: 1,
-                }}
+                style={{alignSelf: 'stretch'}}
                 styles={{
                   container: {
                     height: 52,
@@ -398,9 +390,7 @@ const Page: FC = () => {
                     color: theme.btnPrimaryFont,
                     fontSize: 16,
                   },
-                  hovered: {
-                    borderColor: theme.text,
-                  },
+                  hovered: {borderColor: theme.text},
                 }}
                 text={getString('SIGN_UP')}
               />

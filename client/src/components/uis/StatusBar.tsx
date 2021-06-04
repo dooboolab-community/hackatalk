@@ -13,7 +13,7 @@ const Shared: FC<Props> = ({themeType}): ReactElement => {
   const {themeType: currentThemeType} = useTheme();
 
   const statusColor: StatusBarStyle =
-    (themeType || currentThemeType) === ThemeType.LIGHT
+    (themeType || currentThemeType) === 'light'
       ? 'dark-content'
       : 'light-content';
 

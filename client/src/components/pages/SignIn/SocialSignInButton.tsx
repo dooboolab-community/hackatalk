@@ -20,6 +20,7 @@ import {
 } from '../../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {css} from '@emotion/native';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import {useMutation} from 'react-relay';
@@ -175,13 +176,14 @@ const SocialSignInButton: FC<Props> = ({
         disabled={!request}
         style={{marginBottom: 12}}
         styles={{
-          container: {
-            backgroundColor: theme.googleBackground,
-            borderColor: theme.googleBackground,
-            borderWidth: 1,
-            height: 48,
-            borderRadius: 100,
-          },
+          container: css`
+            background-color: ${theme.googleBackground};
+            border-color: ${theme.googleText};
+            width: 100%;
+            height: 48px;
+            border-width: 1px;
+            border-radius: 100px;
+          `,
           text: {
             fontWeight: '700',
             color: theme.googleText,
@@ -200,13 +202,14 @@ const SocialSignInButton: FC<Props> = ({
       testID="btn-facebook"
       disabled={!request}
       styles={{
-        container: {
-          backgroundColor: theme.facebookBackground,
-          borderColor: theme.facebookBackground,
-          borderWidth: 1,
-          height: 48,
-          borderRadius: 100,
-        },
+        container: css`
+          background-color: ${theme.facebookBackground};
+          border-color: ${theme.facebookText};
+          width: 100%;
+          height: 48px;
+          border-width: 1px;
+          border-radius: 100px;
+        `,
         text: {fontWeight: '700', color: theme.facebookText},
       }}
       style={{marginBottom: 12}}

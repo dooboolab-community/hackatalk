@@ -3,7 +3,6 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
 import React, {FC, ReactElement, ReactNode, Suspense, useEffect} from 'react';
-import {ThemeProvider, ThemeType} from 'dooboo-ui';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
@@ -17,6 +16,7 @@ import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
+import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
@@ -81,10 +81,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
         dark: {
           ...dark,
         },
-      }}
-      initialThemeType={
-        colorScheme === 'dark' ? ThemeType.DARK : ThemeType.LIGHT
-      }>
+      }}>
       {children}
     </ThemeProvider>
   );
