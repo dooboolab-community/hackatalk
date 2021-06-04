@@ -115,6 +115,7 @@ describe('Resolver - Channel', () => {
       message: {
         text: 'hellooo',
       },
+      deviceKey: 'unique',
     };
 
     const response = await authClient.request(createMessage, variables);

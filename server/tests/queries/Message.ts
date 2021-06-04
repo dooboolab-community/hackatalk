@@ -1,6 +1,14 @@
 export const createMessage = /* GraphQL */ `
-  mutation createMessage($channelId: String!, $message: MessageCreateInput!) {
-    createMessage(channelId: $channelId, message: $message) {
+  mutation createMessage(
+    $channelId: String!
+    $message: MessageCreateInput!
+    $deviceKey: String!
+  ) {
+    createMessage(
+      channelId: $channelId
+      message: $message
+      deviceKey: $deviceKey
+    ) {
       id
       text
     }
