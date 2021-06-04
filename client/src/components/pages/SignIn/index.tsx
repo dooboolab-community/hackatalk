@@ -87,7 +87,8 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 20px;
-  margin-bottom: 44px;
+  margin-top: 4px;
+  margin-bottom: 36px;
   align-self: center;
 `;
 
@@ -383,7 +384,7 @@ const SignIn: FC = () => {
                 height: 52,
               },
             }}
-            style={{marginBottom: 20}}
+            style={{marginBottom: 12}}
             labelText={getString('EMAIL')}
             focusColor={theme.focused}
             placeholder="hello@example.com"

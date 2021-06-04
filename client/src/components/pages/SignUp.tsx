@@ -60,7 +60,7 @@ const ProfileImage = styled.Image`
 
 const ButtonWrapper = styled.View`
   width: 100%;
-  margin-top: 32px;
+  margin-top: 16px;
   flex-direction: row-reverse;
 `;
 
