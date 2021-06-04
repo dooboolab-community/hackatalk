@@ -78,7 +78,7 @@ const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.secondaryText};
+  color: ${({theme}) => theme.textSecondaryColor};
   text-align: right;
 `;
 

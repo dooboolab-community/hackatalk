@@ -169,11 +169,11 @@ function AuthNavigatorOnly(): React.ReactElement {
         theme={{
           colors: {
             background: theme.background,
-            border: theme.dialog,
-            card: theme.paper,
+            border: theme.background,
+            card: theme.background,
             primary: theme.primary,
             notification: theme.primary,
-            text: theme.primaryText,
+            text: theme.primary,
           },
           dark: true,
         }}>
