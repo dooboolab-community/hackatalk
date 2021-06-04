@@ -325,6 +325,7 @@ export type MutationKickUsersFromChannelArgs = {
 export type MutationCreateMessageArgs = {
   channelId: Scalars['String'];
   message: MessageCreateInput;
+  deviceKey: Scalars['String'];
 };
 
 
@@ -494,6 +495,11 @@ export type Subscription = {
   userSignedIn?: Maybe<User>;
   userUpdated?: Maybe<User>;
   onMessage?: Maybe<Message>;
+};
+
+
+export type SubscriptionOnMessageArgs = {
+  deviceKey: Scalars['String'];
 };
 
 

@@ -3,9 +3,12 @@ import * as Device from 'expo-device';
 import React, {FC, useEffect, useState} from 'react';
 
 import createCtx from '../utils/createCtx';
+import {nanoid} from 'nanoid';
 
 interface Context {
   deviceType: Device.DeviceType;
+  /** Key for identifying each device on GraphQL server. */
+  deviceKey: string;
   setDeviceType: React.Dispatch<React.SetStateAction<Device.DeviceType>>;
 }
 
@@ -15,6 +18,8 @@ const DeviceProvider: FC = ({children}) => {
   const [deviceType, setDeviceType] = useState<Device.DeviceType>(
     Device.DeviceType.PHONE,
   );
+
+  const deviceKey = nanoid();
 
   useEffect(() => {
     let isMounted = true;
@@ -33,6 +38,7 @@ const DeviceProvider: FC = ({children}) => {
     <Provider
       value={{
         deviceType,
+        deviceKey,
         setDeviceType,
       }}>
       {children}

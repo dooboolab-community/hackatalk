@@ -59,6 +59,7 @@ import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useDeviceContext} from '../../providers';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -155,6 +156,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [commitMessage] = useMutation<MessageCreateMutation>(createMessage);
 
   const {user} = useAuthContext();
+  const {deviceKey} = useDeviceContext();
 
   const onSubmit = (): void => {
     if (!textToSend) return;
@@ -163,6 +165,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       variables: {
         channelId,
         message: {text: textToSend},
+        deviceKey,
       },
       optimisticUpdater: (store) => {
         if (user) {
@@ -215,6 +218,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               messageType: 'photo',
               imageUrls: [url],
             },
+            deviceKey,
           },
           updater: (store) => {
             if (user) createMessageUpdater(store, channelId);

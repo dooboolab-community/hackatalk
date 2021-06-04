@@ -30,6 +30,7 @@ import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
+import {useDeviceContext} from '../../../providers';
 import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
@@ -80,8 +81,8 @@ function getSimpleHeader(
 }
 
 const onMessageSubscription = graphql`
-  subscription MainStackNavigatorOnMessageSubscription {
-    onMessage {
+  subscription MainStackNavigatorOnMessageSubscription($deviceKey: String!) {
+    onMessage(deviceKey: $deviceKey) {
       id
       imageUrls
       channel {
@@ -134,17 +135,19 @@ function MainStackNavigator(): ReactElement {
     return () => subscription.remove();
   }, [navigation]);
 
+  const {deviceKey} = useDeviceContext();
+
   const subscriptionConfig = useMemo<
     GraphQLSubscriptionConfig<MainStackNavigatorOnMessageSubscription>
   >(
     () => ({
-      variables: {},
+      variables: {deviceKey},
       subscription: onMessageSubscription,
       updater: (store) => {
         onMessageUpdater(store);
       },
     }),
-    [],
+    [deviceKey],
   );
 
   useSubscription(subscriptionConfig);
