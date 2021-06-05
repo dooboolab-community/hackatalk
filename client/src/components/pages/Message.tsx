@@ -371,8 +371,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           styles={{
             container: {
               backgroundColor: theme.btnPrimary,
-              width: 80,
-              height: 40,
             },
             text: {
               color: theme.btnPrimaryFont,

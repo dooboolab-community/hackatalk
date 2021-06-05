@@ -31,14 +31,15 @@ const fragment = graphql`
   }
 `;
 
-const WrapperPeer = styled.View<{isSameUserMessage: boolean}>`
+const WrapperPeer = styled.View<{shouldShowDatePeer: boolean}>`
   min-height: 48px;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 20px;
   margin-right: 8px;
-  margin-top: ${({isSameUserMessage}) => (isSameUserMessage ? '8px' : '20px')};
+  margin-top: ${({shouldShowDatePeer}) =>
+    shouldShowDatePeer ? '8px' : '20px'};
   width: 100%;
 `;
 
@@ -83,10 +84,10 @@ const StyledTextPeerDate = styled.Text`
   margin-top: 4px;
 `;
 
-const WrapperMy = styled.View<{isSameUserMessage: boolean}>`
+const WrapperMy = styled.View<{shouldShowDateMy: boolean}>`
   min-height: 48px;
   width: 100%;
-  margin-top: ${({isSameUserMessage: isSame}) => (isSame ? '8px' : '20px')};
+  margin-top: ${({shouldShowDateMy}) => (shouldShowDateMy ? '8px' : '20px')};
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
@@ -134,7 +135,7 @@ function shouldShowDate(
   const currentMoment = moment(currentDate);
   const nextMoment = moment(nextDate);
 
-  const diffNextMins = currentMoment.diff(nextMoment, 'minute');
+  const diffNextMins = nextMoment.diff(currentMoment, 'minute');
 
   if (diffNextMins <= 1 && isNextItemSameUser) return false;
 
@@ -219,7 +220,7 @@ const MessageListItem: FC<Props> = ({
 
   if (sender?.id !== userId)
     return (
-      <WrapperPeer isSameUserMessage={!!isPrevMessageSameUser}>
+      <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
         <View style={{marginRight: 8, width: 40}}>
           <TouchableOpacity
             testID={testID}
@@ -275,7 +276,7 @@ const MessageListItem: FC<Props> = ({
     );
 
   return (
-    <WrapperMy isSameUserMessage={!!isPrevMessageSameUser}>
+    <WrapperMy shouldShowDateMy={!!shouldShowDate}>
       <StyledMyMessage>
         {imageUrls && imageUrls.length > 0 ? (
           <StyledPhotoContainer>
