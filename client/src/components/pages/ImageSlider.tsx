@@ -1,4 +1,4 @@
-import {Animated, Dimensions, Image, StatusBar} from 'react-native';
+import {Animated, Dimensions, Image} from 'react-native';
 import PinchZoom, {PinchZoomRef} from '../uis/PinchZoom';
 import React, {FC} from 'react';
 import {
@@ -7,6 +7,7 @@ import {
 } from '../navigations/RootStackNavigator';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 
+import {StatusBarBrightness} from 'dooboo-ui';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -165,7 +166,7 @@ const ImageSlider: FC = () => {
 
   return (
     <Container>
-      <StatusBar barStyle="light-content" backgroundColor="#6a51ae" />
+      <StatusBarBrightness />
       <ImageSliderContainer>
         {currentIndex > 0 ? (
           <PinchZoom

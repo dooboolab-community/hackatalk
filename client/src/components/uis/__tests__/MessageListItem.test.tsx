@@ -49,7 +49,9 @@ const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
         {...props}
         testID="chat-list-item0"
         item={myData}
-        prevItemSenderId="previous-message-id"
+        prevItemSender={{
+          id: 'previous-message-id',
+        }}
         nextItemDate="2021-03-19T00:57:16.762Z"
       />
     </Suspense>

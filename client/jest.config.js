@@ -3,7 +3,7 @@ const expoPreset = require('jest-expo/jest-preset');
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {
-  preset: 'react-native',
+  preset: 'jest-expo',
   transform: {
     '^.+\\.js$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',

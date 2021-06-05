@@ -18,7 +18,7 @@ import Animated, {
   set,
   useCode,
 } from 'react-native-reanimated';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, StatusBarBrightness, useTheme} from 'dooboo-ui';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -45,7 +45,6 @@ import {AuthPayload} from '../../../types/graphql';
 import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
-import StatusBar from '../../uis/StatusBar';
 import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
 import {useAuthContext} from '../../../providers/AuthProvider';
@@ -350,7 +349,7 @@ const SignIn: FC = () => {
 
   return (
     <Container>
-      <StatusBar />
+      <StatusBarBrightness />
 
       <StyledScrollView>
         <AnimatedTouchableOpacity
