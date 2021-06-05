@@ -215,7 +215,7 @@ type Mutation {
 
   """Removes some users from [public] channel."""
   kickUsersFromChannel(channelId: String!, userIds: [String!]!): Channel
-  createMessage(channelId: String!, message: MessageCreateInput!): Message
+  createMessage(channelId: String!, message: MessageCreateInput!, deviceKey: String!): Message
   deleteMessage(id: String!): Message
   createBlockedUser(blockedUserId: String!): BlockedUser
   deleteBlockedUser(blockedUserId: String!): BlockedUser
@@ -374,7 +374,7 @@ type Report {
 type Subscription {
   userSignedIn: User
   userUpdated: User
-  onMessage: Message
+  onMessage(deviceKey: String!): Message
 }
 
 """The `Upload` scalar type represents a file upload."""

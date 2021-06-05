@@ -4,7 +4,9 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type MainStackNavigatorOnMessageSubscriptionVariables = {};
+export type MainStackNavigatorOnMessageSubscriptionVariables = {
+    deviceKey: string;
+};
 export type MainStackNavigatorOnMessageSubscriptionResponse = {
     readonly onMessage: {
         readonly id: string;
@@ -37,8 +39,10 @@ export type MainStackNavigatorOnMessageSubscription = {
 
 
 /*
-subscription MainStackNavigatorOnMessageSubscription {
-  onMessage {
+subscription MainStackNavigatorOnMessageSubscription(
+  $deviceKey: String!
+) {
+  onMessage(deviceKey: $deviceKey) {
     id
     imageUrls
     channel {
@@ -91,49 +95,63 @@ fragment ProfileModal_user on User {
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "deviceKey"
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "deviceKey",
+    "variableName": "deviceKey"
+  }
+],
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "imageUrls",
   "storageKey": null
 },
-v2 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "messageType",
   "storageKey": null
 },
-v3 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "text",
   "storageKey": null
 },
-v4 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "fileUrls",
   "storageKey": null
 },
-v5 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "createdAt",
   "storageKey": null
 },
-v6 = {
+v8 = {
   "alias": null,
   "args": null,
   "concreteType": "Channel",
@@ -141,7 +159,7 @@ v6 = {
   "name": "channel",
   "plural": false,
   "selections": [
-    (v0/*: any*/),
+    (v2/*: any*/),
     {
       "alias": null,
       "args": null,
@@ -150,26 +168,26 @@ v6 = {
       "name": "lastMessage",
       "plural": false,
       "selections": [
-        (v0/*: any*/),
         (v2/*: any*/),
-        (v3/*: any*/),
-        (v1/*: any*/),
         (v4/*: any*/),
-        (v5/*: any*/)
+        (v5/*: any*/),
+        (v3/*: any*/),
+        (v6/*: any*/),
+        (v7/*: any*/)
       ],
       "storageKey": null
     }
   ],
   "storageKey": null
 },
-v7 = {
+v9 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v8 = {
+v10 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -178,22 +196,22 @@ v8 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "MainStackNavigatorOnMessageSubscription",
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "Message",
         "kind": "LinkedField",
         "name": "onMessage",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          (v6/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v8/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -202,13 +220,13 @@ return {
             "name": "sender",
             "plural": false,
             "selections": [
-              (v0/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/)
+              (v2/*: any*/),
+              (v9/*: any*/),
+              (v10/*: any*/)
             ],
             "storageKey": null
           },
-          (v5/*: any*/),
+          (v7/*: any*/),
           {
             "args": null,
             "kind": "FragmentSpread",
@@ -223,21 +241,21 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "MainStackNavigatorOnMessageSubscription",
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "Message",
         "kind": "LinkedField",
         "name": "onMessage",
         "plural": false,
         "selections": [
-          (v0/*: any*/),
-          (v1/*: any*/),
-          (v6/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/),
+          (v8/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -246,9 +264,9 @@ return {
             "name": "sender",
             "plural": false,
             "selections": [
-              (v0/*: any*/),
-              (v7/*: any*/),
-              (v8/*: any*/),
+              (v2/*: any*/),
+              (v9/*: any*/),
+              (v10/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -287,10 +305,10 @@ return {
             ],
             "storageKey": null
           },
-          (v5/*: any*/),
-          (v2/*: any*/),
-          (v3/*: any*/),
+          (v7/*: any*/),
           (v4/*: any*/),
+          (v5/*: any*/),
+          (v6/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -304,14 +322,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "18658598b6d85ba73ad7ef4f5bc09637",
+    "cacheID": "0e1751d727db1f3c91debe575577e25b",
     "id": null,
     "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
-    "text": "subscription MainStackNavigatorOnMessageSubscription {\n  onMessage {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = 'befdb0a2235749160b96a256ca4e03bc';
+(node as any).hash = '31048ba88c501348e582a1bd6ce29daa';
 export default node;

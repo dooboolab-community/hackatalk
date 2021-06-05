@@ -18,11 +18,12 @@ export const createMessage = mutationField('createMessage', {
         type: 'MessageCreateInput',
       }),
     ),
+    deviceKey: nonNull(stringArg()),
   },
 
   resolve: async (
     parent,
-    {channelId, message},
+    {channelId, message, deviceKey},
     {prisma, request, userId, pubsub},
   ) => {
     assert(userId, 'Not authorized.');
@@ -47,7 +48,10 @@ export const createMessage = mutationField('createMessage', {
       },
     });
 
-    pubsub.publish(ON_MESSAGE, created);
+    pubsub.publish(ON_MESSAGE, {
+      message: created,
+      deviceKey,
+    });
 
     await prisma.channel.update({
       data: {

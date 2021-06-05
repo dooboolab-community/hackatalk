@@ -12,6 +12,7 @@ export type MessageCreateInput = {
 export type MessageCreateMutationVariables = {
     channelId: string;
     message: MessageCreateInput;
+    deviceKey: string;
 };
 export type MessageCreateMutationResponse = {
     readonly createMessage: {
@@ -56,8 +57,9 @@ export type MessageCreateMutation = {
 mutation MessageCreateMutation(
   $channelId: String!
   $message: MessageCreateInput!
+  $deviceKey: String!
 ) {
-  createMessage(channelId: $channelId, message: $message) {
+  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {
     id
     text
     messageType
@@ -91,61 +93,64 @@ mutation MessageCreateMutation(
 */
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "channelId"
-  },
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "message"
-  }
-],
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "channelId"
+},
 v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "deviceKey"
+},
+v2 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "message"
+},
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v2 = {
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "text",
   "storageKey": null
 },
-v3 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "messageType",
   "storageKey": null
 },
-v4 = {
+v6 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "imageUrls",
   "storageKey": null
 },
-v5 = {
+v7 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "fileUrls",
   "storageKey": null
 },
-v6 = {
+v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v7 = [
+v9 = [
   {
     "alias": null,
     "args": [
@@ -153,6 +158,11 @@ v7 = [
         "kind": "Variable",
         "name": "channelId",
         "variableName": "channelId"
+      },
+      {
+        "kind": "Variable",
+        "name": "deviceKey",
+        "variableName": "deviceKey"
       },
       {
         "kind": "Variable",
@@ -165,11 +175,11 @@ v7 = [
     "name": "createMessage",
     "plural": false,
     "selections": [
-      (v1/*: any*/),
-      (v2/*: any*/),
       (v3/*: any*/),
       (v4/*: any*/),
       (v5/*: any*/),
+      (v6/*: any*/),
+      (v7/*: any*/),
       {
         "alias": null,
         "args": null,
@@ -178,7 +188,7 @@ v7 = [
         "name": "sender",
         "plural": false,
         "selections": [
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       },
@@ -190,7 +200,7 @@ v7 = [
         "name": "channel",
         "plural": false,
         "selections": [
-          (v1/*: any*/),
+          (v3/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -198,7 +208,7 @@ v7 = [
             "name": "channelType",
             "storageKey": null
           },
-          (v6/*: any*/),
+          (v8/*: any*/),
           {
             "alias": null,
             "args": [
@@ -221,7 +231,7 @@ v7 = [
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  (v6/*: any*/),
+                  (v8/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -257,10 +267,10 @@ v7 = [
             "name": "lastMessage",
             "plural": false,
             "selections": [
-              (v3/*: any*/),
-              (v2/*: any*/),
-              (v4/*: any*/),
               (v5/*: any*/),
+              (v4/*: any*/),
+              (v6/*: any*/),
+              (v7/*: any*/),
               {
                 "alias": null,
                 "args": null,
@@ -280,30 +290,38 @@ v7 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/),
+      (v2/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "MessageCreateMutation",
-    "selections": (v7/*: any*/),
+    "selections": (v9/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v2/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Operation",
     "name": "MessageCreateMutation",
-    "selections": (v7/*: any*/)
+    "selections": (v9/*: any*/)
   },
   "params": {
-    "cacheID": "50fb9f8aa4d4f0d545d0eef76299bd80",
+    "cacheID": "8c6d2c5aa0c7f7f1da9297e14a067a68",
     "id": null,
     "metadata": {},
     "name": "MessageCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n) {\n  createMessage(channelId: $channelId, message: $message) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n  $deviceKey: String!\n) {\n  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '2c875d97a923b922c04582e60fc4bb18';
+(node as any).hash = '9b92d316535633c66e53a01aeaad0f5c';
 export default node;

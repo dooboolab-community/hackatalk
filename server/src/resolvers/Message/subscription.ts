@@ -1,13 +1,23 @@
+import {nonNull, stringArg, subscriptionField} from 'nexus';
+
 import {Context} from '../../context';
 import {Message} from '@prisma/client';
 import {assert} from '../../utils/assert';
-import {subscriptionField} from 'nexus';
 import {withFilter} from 'apollo-server';
 
 export const ON_MESSAGE = 'ON_MESSAGE';
 
+interface Payload {
+  message: Message;
+  deviceKey: string;
+}
+
 export const onMessage = subscriptionField('onMessage', {
   type: 'Message',
+
+  args: {
+    deviceKey: nonNull(stringArg()),
+  },
 
   subscribe: withFilter(
     (_, _args, ctx: Context) => {
@@ -15,20 +25,22 @@ export const onMessage = subscriptionField('onMessage', {
 
       return pubsub.asyncIterator(ON_MESSAGE);
     },
-    async (payload: Message, _args, {userId, prisma}: Context) => {
+    async (payload: Payload, args, {userId, prisma}: Context) => {
       assert(userId, 'Not Authorized!');
 
-      const membership = await prisma.membership.findFirst({
+      const isMessageForAuthUser = !!(await prisma.membership.findFirst({
         where: {
-          channelId: payload.channelId,
+          channelId: payload.message.channelId,
           userId: userId,
         },
-      });
+      }));
 
-      return !!membership; // Message is sent to the auth user's channel.
+      const isMessageFromSameDevice = args.deviceKey === payload.deviceKey;
+
+      return !isMessageFromSameDevice && isMessageForAuthUser;
     },
   ),
-  resolve: (payload) => {
-    return payload;
+  resolve: (payload: Payload) => {
+    return payload.message;
   },
 });
