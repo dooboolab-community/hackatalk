@@ -6,7 +6,7 @@ import {
   RecordSourceSelectorProxy,
 } from 'relay-runtime';
 
-import {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid/non-secure';
 
 /**
  * Prepend a message record to a message connection of a channel.
