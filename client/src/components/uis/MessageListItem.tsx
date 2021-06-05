@@ -79,7 +79,7 @@ const StyledTextPeerName = styled.Text`
 
 const StyledTextPeerDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.textDisabled};
   margin-right: 20px;
   margin-top: 4px;
 `;
@@ -95,7 +95,7 @@ const WrapperMy = styled.View<{shouldShowDateMy: boolean}>`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.textDisabled};
   margin-top: 4px;
   margin-right: 20px;
 `;
@@ -145,9 +145,19 @@ function shouldShowDate(
 const decorateDate = (createdAt: string): string => {
   const now = moment();
   const date = moment(createdAt);
+  const diffYearCnt = now.year() - date.year();
+  const diffMonthCnt = now.month() - date.month();
+  const diffDays = now.diff(date, 'days');
   const diffHours = now.diff(date, 'hours');
 
-  if (diffHours >= 1) return `${date.fromNow()},  ${date.format('A hh:mm')}`;
+  if (diffDays >= 1) {
+    if (diffYearCnt >= 1) return `${date.format('YYYY MMM Do, A hh:mm')}`;
+    if (diffMonthCnt >= 1) return `${date.format('MMM Do, A hh:mm')}`;
+
+    return `${date.format('Do, A hh:mm')}`;
+  }
+
+  if (diffHours >= 1) return `${date.format('A hh:mm')}`;
 
   return date.fromNow();
 };
