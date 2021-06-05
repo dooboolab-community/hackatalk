@@ -132,6 +132,7 @@ export function createMessageOptimisticUpdater(
   const messageProxy = store.create(nanoid(), 'Message');
 
   messageProxy.setValue(text, 'text');
+  messageProxy.setValue(new Date().toISOString(), 'createdAt');
   messageProxy.setLinkedRecord(store.get(userId) ?? null, 'sender');
 
   prependMessageToChannel(store, channelId, messageProxy);

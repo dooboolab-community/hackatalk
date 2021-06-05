@@ -16,6 +16,7 @@ export const createMessage = graphql`
       messageType
       imageUrls
       fileUrls
+      createdAt
       sender {
         id
       }
