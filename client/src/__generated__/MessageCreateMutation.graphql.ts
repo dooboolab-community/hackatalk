@@ -21,6 +21,7 @@ export type MessageCreateMutationResponse = {
         readonly messageType: unknown;
         readonly imageUrls: ReadonlyArray<string | null> | null;
         readonly fileUrls: ReadonlyArray<string | null> | null;
+        readonly createdAt: unknown | null;
         readonly sender: {
             readonly id: string;
         } | null;
@@ -65,6 +66,7 @@ mutation MessageCreateMutation(
     messageType
     imageUrls
     fileUrls
+    createdAt
     sender {
       id
     }
@@ -147,10 +149,17 @@ v8 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "createdAt",
+  "storageKey": null
+},
+v9 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "name",
   "storageKey": null
 },
-v9 = [
+v10 = [
   {
     "alias": null,
     "args": [
@@ -180,6 +189,7 @@ v9 = [
       (v5/*: any*/),
       (v6/*: any*/),
       (v7/*: any*/),
+      (v8/*: any*/),
       {
         "alias": null,
         "args": null,
@@ -208,7 +218,7 @@ v9 = [
             "name": "channelType",
             "storageKey": null
           },
-          (v8/*: any*/),
+          (v9/*: any*/),
           {
             "alias": null,
             "args": [
@@ -231,7 +241,7 @@ v9 = [
                 "name": "user",
                 "plural": false,
                 "selections": [
-                  (v8/*: any*/),
+                  (v9/*: any*/),
                   {
                     "alias": null,
                     "args": null,
@@ -271,13 +281,7 @@ v9 = [
               (v4/*: any*/),
               (v6/*: any*/),
               (v7/*: any*/),
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "createdAt",
-                "storageKey": null
-              }
+              (v8/*: any*/)
             ],
             "storageKey": null
           }
@@ -298,7 +302,7 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "MessageCreateMutation",
-    "selections": (v9/*: any*/),
+    "selections": (v10/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
@@ -311,17 +315,17 @@ return {
     ],
     "kind": "Operation",
     "name": "MessageCreateMutation",
-    "selections": (v9/*: any*/)
+    "selections": (v10/*: any*/)
   },
   "params": {
-    "cacheID": "8c6d2c5aa0c7f7f1da9297e14a067a68",
+    "cacheID": "9bcf3624396d67ec8243f9797fcf59fe",
     "id": null,
     "metadata": {},
     "name": "MessageCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n  $deviceKey: String!\n) {\n  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n  $deviceKey: String!\n) {\n  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    createdAt\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '9b92d316535633c66e53a01aeaad0f5c';
+(node as any).hash = '009b2fb8212dba414e3f439180ec92ac';
 export default node;
