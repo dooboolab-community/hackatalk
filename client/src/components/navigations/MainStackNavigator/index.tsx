@@ -8,6 +8,7 @@ import {
   StackNavigationProp,
   createStackNavigator,
 } from '@react-navigation/stack';
+import {StatusBarBrightness, useTheme} from 'dooboo-ui';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
 import {graphql, useSubscription} from 'react-relay';
 
@@ -26,12 +27,10 @@ import Report from '../../pages/Report';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
-import StatusBar from '../../uis/StatusBar';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
 import {useDeviceContext} from '../../../providers';
-import {useTheme} from 'dooboo-ui';
 
 export type MainStackParamList = {
   MainTab: undefined;
@@ -242,7 +241,7 @@ function MainNavigator(): ReactElement {
         flexDirection: 'column',
         backgroundColor: theme.background,
       }}>
-      <StatusBar />
+      <StatusBarBrightness />
       <MainStackNavigator />
       <ProfileModal testID="modal" />
     </View>

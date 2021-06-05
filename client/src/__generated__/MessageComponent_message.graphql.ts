@@ -11,6 +11,7 @@ export type MessageComponent_message = {
             readonly node: {
                 readonly id: string;
                 readonly imageUrls: ReadonlyArray<string | null> | null;
+                readonly text: string | null;
                 readonly sender: {
                     readonly id: string;
                     readonly name: string | null;
@@ -149,6 +150,13 @@ return {
                 {
                   "alias": null,
                   "args": null,
+                  "kind": "ScalarField",
+                  "name": "text",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
                   "concreteType": "User",
                   "kind": "LinkedField",
                   "name": "sender",
@@ -244,5 +252,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'b3770569d6ba7ca5b814a0467cf595c0';
+(node as any).hash = '8b046f4256a182e785d6b79388dc36f5';
 export default node;

@@ -5,7 +5,7 @@ import {
   PROFILEIMAGE_HEIGHT,
   PROFILEIMAGE_WIDTH,
 } from '../../utils/const';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, StatusBarBrightness, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import {
   Image,
@@ -29,7 +29,6 @@ import {
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
-import StatusBar from '../uis/StatusBar';
 import {Uploadable} from 'relay-runtime';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
@@ -223,7 +222,7 @@ const Page: FC = () => {
 
   return (
     <Container>
-      <StatusBar />
+      <StatusBarBrightness />
       <Wrapper
         behavior={Platform.select({
           ios: 'padding',

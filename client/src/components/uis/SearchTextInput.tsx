@@ -1,9 +1,9 @@
 import {IC_SEARCH, IC_SEARCH_W} from '../../utils/Icons';
 import React, {ReactChildren, ReactElement} from 'react';
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
-import {ThemeType, useTheme} from 'dooboo-ui';
 
 import styled from '@emotion/native';
+import {useTheme} from 'dooboo-ui';
 
 const StyledTextInputWrapper = styled.View`
   width: 100%;

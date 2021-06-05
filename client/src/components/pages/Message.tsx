@@ -96,6 +96,7 @@ const messagesFragment = graphql`
         node {
           id
           imageUrls
+          text
           sender {
             id
             name
@@ -235,15 +236,24 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
-    const nextItemDate = nodes[index - 1]?.createdAt;
+    const prevItem = nodes[index + 1];
+    const nextItem = nodes[index - 1];
 
     return (
       <MessageListItem
         userId={user?.id}
         testID={`message-list-item${index}`}
-        prevItemSenderId={nodes[index + 1]?.sender?.id}
+        prevItemSender={prevItem?.sender}
+        prevItemDate={
+          typeof prevItem?.createdAt === 'string'
+            ? prevItem?.createdAt
+            : undefined
+        }
+        nextItemSender={nextItem?.sender}
         nextItemDate={
-          typeof nextItemDate === 'string' ? nextItemDate : undefined
+          typeof nextItem?.createdAt === 'string'
+            ? nextItem?.createdAt
+            : undefined
         }
         item={item}
         onPressPeerImage={(sender): void => {

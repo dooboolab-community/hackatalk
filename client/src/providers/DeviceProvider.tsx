@@ -3,7 +3,7 @@ import * as Device from 'expo-device';
 import React, {FC, useEffect, useState} from 'react';
 
 import createCtx from '../utils/createCtx';
-import {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid/non-secure';
 
 interface Context {
   deviceType: Device.DeviceType;

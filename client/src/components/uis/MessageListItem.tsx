@@ -6,6 +6,7 @@ import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import {User} from '../../types/graphql';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
@@ -30,14 +31,14 @@ const fragment = graphql`
   }
 `;
 
-const WrapperPeer = styled.View<{isSame: boolean}>`
+const WrapperPeer = styled.View<{isSameUserMessage: boolean}>`
   min-height: 48px;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   margin-left: 20px;
   margin-right: 8px;
-  margin-top: ${({isSame}) => (isSame ? '8px' : '20px')};
+  margin-top: ${({isSameUserMessage}) => (isSameUserMessage ? '8px' : '20px')};
   width: 100%;
 `;
 
@@ -82,10 +83,10 @@ const StyledTextPeerDate = styled.Text`
   margin-top: 4px;
 `;
 
-const WrapperMy = styled.View`
+const WrapperMy = styled.View<{isSameUserMessage: boolean}>`
   min-height: 48px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: ${({isSameUserMessage: isSame}) => (isSame ? '8px' : '20px')};
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
@@ -118,18 +119,37 @@ interface ImageSenderProps {
 }
 
 function shouldShowDate(
+  isPrevItemSameUser: boolean,
+  isNextItemSameUser: boolean,
   currentDate: string | undefined,
+  prevDate: string | undefined,
   nextDate: string | undefined,
 ): boolean {
-  if (!currentDate || !nextDate) return false;
+  if (!nextDate) return true;
+
+  if (!currentDate || !prevDate) return false;
+
+  if (!isPrevItemSameUser && !isNextItemSameUser) return true;
 
   const currentMoment = moment(currentDate);
   const nextMoment = moment(nextDate);
 
-  const diffNextSeconds = nextMoment.diff(currentMoment, 'seconds');
+  const diffNextMins = currentMoment.diff(nextMoment, 'minute');
 
-  return diffNextSeconds < 60 && nextMoment.minute === currentMoment.minute;
+  if (diffNextMins <= 1 && isNextItemSameUser) return false;
+
+  return true;
 }
+
+const decorateDate = (createdAt: string): string => {
+  const now = moment();
+  const date = moment(createdAt);
+  const diffHours = now.diff(date, 'hours');
+
+  if (diffHours >= 1) return `${date.fromNow()},  ${date.format('A hh:mm')}`;
+
+  return date.fromNow();
+};
 
 const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
   if (isSamePeerMsg) return <View style={{width: 40}} />;
@@ -162,8 +182,11 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
 interface Props {
   userId?: string;
   item: MessageListItem_message$key;
-  prevItemSenderId?: string;
+  prevItemSender?: User | null;
+  prevItemDate?: string;
+  nextItemSender?: User | null;
   nextItemDate?: string;
+
   onPressPeerImage?: (sender: ProfileModal_user$key) => void;
   onPressMessageImage?: (index: number) => void;
   testID?: string;
@@ -171,7 +194,9 @@ interface Props {
 
 const MessageListItem: FC<Props> = ({
   item,
-  prevItemSenderId,
+  prevItemSender,
+  prevItemDate,
+  nextItemSender,
   nextItemDate,
   onPressPeerImage,
   onPressMessageImage,
@@ -180,16 +205,21 @@ const MessageListItem: FC<Props> = ({
 }) => {
   const {theme} = useTheme();
   const {id, sender, text, createdAt, imageUrls} = useFragment(fragment, item);
-  const isSamePeerMsg = prevItemSenderId === sender?.id;
+
+  const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
+  const isNextMessageSameUser = nextItemSender?.id === sender?.id;
 
   const showDate = shouldShowDate(
+    isPrevMessageSameUser,
+    isNextMessageSameUser,
     typeof createdAt === 'string' ? createdAt : undefined,
+    prevItemDate,
     nextItemDate,
   );
 
   if (sender?.id !== userId)
     return (
-      <WrapperPeer isSame={!!isSamePeerMsg}>
+      <WrapperPeer isSameUserMessage={!!isPrevMessageSameUser}>
         <View style={{marginRight: 8, width: 40}}>
           <TouchableOpacity
             testID={testID}
@@ -198,13 +228,13 @@ const MessageListItem: FC<Props> = ({
             }}>
             <ImageSender
               thumbURL={sender?.thumbURL}
-              isSamePeerMsg={!!isSamePeerMsg}
+              isSamePeerMsg={!!isPrevMessageSameUser}
               fontColor={theme.text}
             />
           </TouchableOpacity>
         </View>
         <View style={{flexDirection: 'column', maxWidth: '80%'}}>
-          {isSamePeerMsg ? (
+          {isPrevMessageSameUser ? (
             <View />
           ) : (
             <StyledTextPeerName>
@@ -235,9 +265,9 @@ const MessageListItem: FC<Props> = ({
               )}
             </StyledTextPeerMessageContainer>
           </View>
-          {!showDate ? (
+          {showDate ? (
             <StyledTextPeerDate>
-              {`${moment(createdAt as string).fromNow()}`}
+              {`${decorateDate(createdAt as string)}`}
             </StyledTextPeerDate>
           ) : null}
         </View>
@@ -245,7 +275,7 @@ const MessageListItem: FC<Props> = ({
     );
 
   return (
-    <WrapperMy>
+    <WrapperMy isSameUserMessage={!!isPrevMessageSameUser}>
       <StyledMyMessage>
         {imageUrls && imageUrls.length > 0 ? (
           <StyledPhotoContainer>
@@ -262,9 +292,11 @@ const MessageListItem: FC<Props> = ({
           <StyledMyTextMessage selectable>{text}</StyledMyTextMessage>
         )}
       </StyledMyMessage>
-      <StyledTextDate>{`${moment(
-        createdAt as string,
-      ).fromNow()}`}</StyledTextDate>
+      {showDate ? (
+        <StyledTextDate>{`${decorateDate(
+          createdAt as string,
+        )}`}</StyledTextDate>
+      ) : null}
     </WrapperMy>
   );
 };
