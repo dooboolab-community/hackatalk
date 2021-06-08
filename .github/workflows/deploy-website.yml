@@ -25,7 +25,7 @@ jobs:
           popd
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.5.0
+        uses: peaceiris/actions-gh-pages@v3
         env:
           PERSONAL_TOKEN: ${{secrets.GH_TOKEN}}
           PUBLISH_BRANCH: gh-pages
