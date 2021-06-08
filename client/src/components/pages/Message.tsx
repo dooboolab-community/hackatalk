@@ -58,6 +58,7 @@ import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
+import useAppStateChangeHandler from '../../hooks/useAppStateChangeHandler';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useDeviceContext} from '../../providers';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
@@ -131,6 +132,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
+
+  useAppStateChangeHandler((state) => {
+    if (state === 'active') loadNext(ITEM_CNT);
+  });
 
   useEffect(() => {
     loadNext(1);

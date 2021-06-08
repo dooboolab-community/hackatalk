@@ -9,7 +9,7 @@ export enum Orientation {
   LANDSCAPE = 'landscape',
 }
 
-export default function useAppState(): Orientation {
+export default function useOrientation(): Orientation {
   const isPortrait =
     Dimensions.get('window').width < Dimensions.get('window').height;
 
