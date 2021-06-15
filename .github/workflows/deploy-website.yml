@@ -30,3 +30,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: ./website/build
           publish_branch: gh-pages
+          cname: website.hackatalk.dev
