@@ -1,4 +1,4 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, useLayoutEffect} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,31 +26,33 @@ const Page: FC = () => {
   const navigation = useNavigation<RootStackNavigationProps<'default'>>();
   const {theme} = useTheme();
 
-  const pressAgree = async (): Promise<void> => {
-    await AsyncStorage.setItem('license_agreed', JSON.stringify(true));
-    navigation.pop();
-  };
+  useLayoutEffect(() => {
+    const pressAgree = async (): Promise<void> => {
+      await AsyncStorage.setItem('license_agreed', JSON.stringify(true));
+      navigation.pop();
+    };
 
-  navigation.setOptions({
-    headerRight: (): ReactElement => (
-      <TouchableOpacity testID="touch-done" onPress={pressAgree}>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-          }}>
-          <Text
+    navigation.setOptions({
+      headerRight: (): ReactElement => (
+        <TouchableOpacity testID="touch-done" onPress={pressAgree}>
+          <View
             style={{
-              color: theme.text,
-              fontSize: 14,
-              fontWeight: 'bold',
+              paddingHorizontal: 16,
+              paddingVertical: 8,
             }}>
-            {getString('AGREE')}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    ),
-  });
+            <Text
+              style={{
+                color: theme.text,
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+              {getString('AGREE')}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation, theme.text]);
 
   return (
     <Container>
