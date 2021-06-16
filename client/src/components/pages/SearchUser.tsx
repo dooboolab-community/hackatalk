@@ -5,7 +5,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
+import React, {
+  FC,
+  ReactElement,
+  Suspense,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
 import type {
   UserUsersPaginationQuery,
   UserUsersPaginationQueryResponse,
@@ -160,19 +167,21 @@ const Screen: FC = () => {
   const scrollY = new Animated.Value(0);
   const navigation = useNavigation<MainStackNavigationProps<'SearchUser'>>();
 
-  navigation.setOptions({
-    headerRight: (): ReactElement => (
-      <TouchableOpacity onPress={() => navigation.navigate('BlockedUser')}>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-          }}>
-          <FontAwesome name="ban" size={24} color="white" />
-        </View>
-      </TouchableOpacity>
-    ),
-  });
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: (): ReactElement => (
+        <TouchableOpacity onPress={() => navigation.navigate('BlockedUser')}>
+          <View
+            style={{
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }}>
+            <FontAwesome name="ban" size={24} color="white" />
+          </View>
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   const searchArgs: UserUsersPaginationQueryVariables = {
     first: ITEM_CNT,

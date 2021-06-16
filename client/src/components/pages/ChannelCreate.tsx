@@ -17,7 +17,14 @@ import {
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
-import React, {FC, ReactElement, Suspense, useMemo, useState} from 'react';
+import React, {
+  FC,
+  ReactElement,
+  Suspense,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -299,6 +306,53 @@ const ChannelCreate: FC = () => {
       findOrCreatePrivateChannel,
     );
 
+  useLayoutEffect(() => {
+    const pressDone = (): void => {
+      const userIds = selectedUsers.map((v) => v.id);
+
+      const mutationConfig = {
+        variables: {
+          peerUserIds: userIds,
+        },
+        onCompleted: (
+          response: ChannelFindOrCreatePrivateChannelMutationResponse,
+        ): void => {
+          const channel = response.findOrCreatePrivateChannel as Channel;
+
+          navigation.replace('Message', {
+            channelId: channel.id,
+          });
+        },
+        onError: (error: Error): void => {
+          showAlertForError(error);
+        },
+      };
+
+      commitChannel(mutationConfig);
+    };
+
+    navigation.setOptions({
+      headerRight: (): ReactElement => (
+        <TouchableOpacity testID="touch-done" onPress={pressDone}>
+          <View
+            style={{
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+              {getString('DONE')}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ),
+    });
+  }, [commitChannel, navigation, selectedUsers]);
+
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
@@ -314,51 +368,6 @@ const ChannelCreate: FC = () => {
       duration: 500,
     }).start();
   };
-
-  const pressDone = (): void => {
-    const userIds = selectedUsers.map((v) => v.id);
-
-    const mutationConfig = {
-      variables: {
-        peerUserIds: userIds,
-      },
-      onCompleted: (
-        response: ChannelFindOrCreatePrivateChannelMutationResponse,
-      ): void => {
-        const channel = response.findOrCreatePrivateChannel as Channel;
-
-        navigation.replace('Message', {
-          channelId: channel.id,
-        });
-      },
-      onError: (error: Error): void => {
-        showAlertForError(error);
-      },
-    };
-
-    commitChannel(mutationConfig);
-  };
-
-  navigation.setOptions({
-    headerRight: (): ReactElement => (
-      <TouchableOpacity testID="touch-done" onPress={pressDone}>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 14,
-              fontWeight: 'bold',
-            }}>
-            {getString('DONE')}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    ),
-  });
 
   return (
     <Container>

@@ -22,6 +22,7 @@ import React, {
   ReactElement,
   Suspense,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
 } from 'react';
@@ -409,42 +410,46 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
 
   const {channel} = useLazyLoadQuery<ChannelQuery>(channelQuery, {channelId});
 
-  const users =
-    channel?.memberships?.map((membership) => membership.user) ?? [];
+  const users = useMemo(
+    () => channel?.memberships?.map((membership) => membership.user) ?? [],
+    [channel?.memberships],
+  );
 
-  navigation.setOptions({
-    headerTitle: (): ReactElement => {
-      let title = channel?.name || '';
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: (): ReactElement => {
+        let title = channel?.name || '';
 
-      // Note that if the user exists, this is direct message which title should appear as user name or nickname
-      if (users)
-        if (users.length <= 2)
-          title = users
-            .map((user) =>
-              user?.id !== auth?.id ? user?.nickname || user?.name || '' : '',
-            )
-            .join('');
-        else if (users.length > 1) {
-          const userNames = users.map(
-            (user) => user?.nickname || user?.name || '',
-          );
+        // Note that if the user exists, this is direct message which title should appear as user name or nickname
+        if (users)
+          if (users.length <= 2)
+            title = users
+              .map((user) =>
+                user?.id !== auth?.id ? user?.nickname || user?.name || '' : '',
+              )
+              .join('');
+          else if (users.length > 1) {
+            const userNames = users.map(
+              (user) => user?.nickname || user?.name || '',
+            );
 
-          title = userNames.join(', ');
-        }
+            title = userNames.join(', ');
+          }
 
-      return (
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 18,
-            fontWeight: '500',
-          }}
-          numberOfLines={2}>
-          {title}
-        </Text>
-      );
-    },
-  });
+        return (
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 18,
+              fontWeight: '500',
+            }}
+            numberOfLines={2}>
+            {title}
+          </Text>
+        );
+      },
+    });
+  }, [auth?.id, channel?.name, navigation, users]);
 
   return (
     <MessagesFragment
