@@ -15,6 +15,10 @@ module.exports = {
   organizationName: 'dooboolab',
   projectName: 'hackatalk',
   onBrokenLinks: 'ignore',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ko'],
+  },
   themeConfig: {
     navbar: {
       title: 'HackaTalk',
@@ -28,6 +32,10 @@ module.exports = {
         {
           href: 'https://github.com/dooboolab/hackatalk',
           label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
       ],

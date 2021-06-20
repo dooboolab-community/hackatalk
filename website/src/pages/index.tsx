@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import Translate, {translate} from '@docusaurus/Translate';
+
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import React from 'react';
@@ -15,7 +17,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 const features = [
   {
-    title: <>StackShare</>,
+    title: translate({
+      message: 'StackShare',
+      description: 'StackShare',
+    }),
     imageUrl: 'img/svg_hackatalk1.svg',
     description: (
       <>
