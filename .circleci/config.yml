@@ -134,5 +134,13 @@ workflows:
   version: 2.1
   node-android-ios:
     jobs:
-      - server
-      - client
+      - server:
+        filters:
+          branches:
+            ignore:
+              - gh-pages
+      - client:
+        filters:
+          branches:
+            ignore:
+              - gh-pages
