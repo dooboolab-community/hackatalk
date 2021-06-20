@@ -1,6 +1,6 @@
 ---
-id: contributing
-title: Contributing
+id: stackshare
+title: 스택 공유
 ---
 
 Our developement stacks are introduced in [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md).
