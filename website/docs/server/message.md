@@ -6,7 +6,7 @@ sidebar_label: Message
 
 Creating a message is pretty straightforward as long as you know the `id` of the channel you wish to send the message to.
 
-## Type of message
+## Type of messages
 
 > Types of message are defined in `MessageType`.
 

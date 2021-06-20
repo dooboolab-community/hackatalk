@@ -14,6 +14,13 @@ module.exports = {
       'implementation/features',
       'implementation/pagination',
     ],
+    Server: [
+      'server/overview',
+      'server/installation',
+      'server/channel',
+      'server/membership',
+      'server/message',
+    ],
     Client: [
       'client/overview',
       'client/installation',
@@ -21,13 +28,6 @@ module.exports = {
       'client/integrate-with-backend',
       'client/search-users',
       'client/direct-messaging',
-    ],
-    Server: [
-      'server/overview',
-      'server/specification',
-      'server/channel',
-      'server/membership',
-      'server/message',
     ]
   },
 };
