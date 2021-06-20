@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "해커톡",
+    "description": "The title in the navbar"
+  },
+  "item.label.Implementation": {
+    "message": "구현물",
+    "description": "Navbar item with label Implementation"
+  },
+  "item.label.Blog": {
+    "message": "블로그",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.GitHub": {
+    "message": "깃허브",
+    "description": "Navbar item with label GitHub"
+  }
+}

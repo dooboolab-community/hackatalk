@@ -7,12 +7,12 @@
 
 module.exports = {
   docs: {
-    Development: [
-      'development/contributing',
-      'development/design',
-      'development/authentication',
-      'development/features',
-      'development/pagination',
+    Implementation: [
+      'implementation/stackshare',
+      'implementation/design',
+      'implementation/authentication',
+      'implementation/features',
+      'implementation/pagination',
     ],
     Client: [
       'client/overview',
@@ -20,7 +20,7 @@ module.exports = {
       'client/components',
       'client/integrate-with-backend',
       'client/search-users',
-      'client/start-direct-messaging',
+      'client/direct-messaging',
     ],
     Server: [
       'server/overview',

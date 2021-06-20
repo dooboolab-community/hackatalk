@@ -7,7 +7,6 @@
 
 module.exports = {
   title: 'HackaTalk',
-  tagline: 'Opensource chat app that works on iOS, android and web',
   url: 'https://website.hackatalk.dev',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -27,7 +26,7 @@ module.exports = {
         src: 'img/logo.png',
       },
       items: [
-        { to: '/docs/development/contributing', label: 'Development', position: 'left' },
+        { to: '/docs/implementation/stackshare', label: 'Implementation', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/dooboolab/hackatalk',
@@ -47,8 +46,8 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Development',
-              to: '/docs/development/contributing',
+              label: 'Implementation',
+              to: '/docs/implementation/stackshare',
             },
           ],
         },

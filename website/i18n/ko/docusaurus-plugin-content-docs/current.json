@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "다음",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Implementation": {
+    "message": "구현물",
+    "description": "The label for category Implementation in sidebar docs"
+  },
+  "sidebar.docs.category.Client": {
+    "message": "클라이언트",
+    "description": "The label for category Client in sidebar docs"
+  },
+  "sidebar.docs.category.Server": {
+    "message": "서버",
+    "description": "The label for category Server in sidebar docs"
+  }
+}

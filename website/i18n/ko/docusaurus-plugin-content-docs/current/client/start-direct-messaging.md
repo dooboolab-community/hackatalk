@@ -1,7 +1,7 @@
 ---
 id: direct-messaging
-title: Direct messaging
-sidebar_label: Direct messaging
+title: 다이렉트 메시징
+sidebar_label: 다이렉트 메시징
 ---
 
 <img width="220" alt="start-chatting" src="https://user-images.githubusercontent.com/27461460/92318266-8f400000-f044-11ea-873f-96145e5645e4.png"/>
