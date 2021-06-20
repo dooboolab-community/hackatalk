@@ -9,35 +9,40 @@ Client project belongs to seperate directory [client](https://github.com/doobool
 
 **You need to follow [react-native environment setup](https://reactnative.dev/docs/environment-setup) and [expo installation](https://docs.expo.io/get-started/installation) to continue further steps.**
 
-> We recommend to fork the `repository` first instead of cloning directly.
-
 1. Clone the sourcecode.
+   ```
+   git clone https://github.com/dooboolab/hackatalk.git
+   ```
+   > If you are willing to contribute to `HackaTalk` then please follow the [git forking workflow](https://medium.com/dooboolab/quick-start-for-contributing-to-whatssub-with-forking-workflow-16c8c971adc5) procedure.
+
 2. Navigate to `/client`
    ```
    cd client
    ```
-   - Also note that yarn.lock and package-lock.json sometimes make collision. Try to delete one of them.
+   - Note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
 
 3. Copy the environment file.
    ```
-   cp config.sample.ts config.ts
+   cp .env.sample .env
    ```
+   You may ignore `facebookAppId`, `googleWebClientId`, `googleAndroidClientId`, `googleIOSClientId` and `sentryAuthToken` if you are not developing related features. Otherwise, you should create your own.
+
 4. Install packages. We recommend using [yarn](https://classic.yarnpkg.com) instead of `npm`.
    ```
    yarn
    ```
+
 5. Finally run `HackaTalk` by running `yarn start`.
    ```
    yarn start
    ```
-   - If you have an error in node_modules, try
-   ```
-   rm -rf node_modules && yarn
-   ```
-   this will reinstall node_modules and yarn after this, run yarn start again.
+   It will open up [expo](https://expo.io) console.
 
-6. Login to Hackatalk
-   
-   - You can log into Hackatalk with 
-      ID : hackatalk@gmail.com
-      pass : password12!
+6. Running in `web` environment.
+   ```
+   yarn web
+   ```
+   > Above command will let you develop with [react fast refresh](https://javascript.plainenglish.io/react-fast-refresh-the-new-react-hot-reloader-652c6645548c).
+
+**vscode extentions**
+- Recommended [vscode extension list](https://gist.github.com/hyochan/815e9040593180c4725d7694d863e5a1#gistcomment-3019263) to help contributing.

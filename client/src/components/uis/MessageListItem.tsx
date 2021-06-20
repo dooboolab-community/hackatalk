@@ -152,6 +152,7 @@ const decorateDate = (createdAt: string): string => {
 
   if (diffDays >= 1) {
     if (diffYearCnt >= 1) return `${date.format('YYYY MMM Do, A hh:mm')}`;
+
     if (diffMonthCnt >= 1) return `${date.format('MMM Do, A hh:mm')}`;
 
     return `${date.format('Do, A hh:mm')}`;
