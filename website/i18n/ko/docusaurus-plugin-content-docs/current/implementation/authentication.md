@@ -4,38 +4,42 @@ title: 인증
 sidebar_label: 인증
 ---
 
-We mainly use [json web token](https://jwt.io) to verify our user. This is very efficient in handling multi-device(phone, tablet, pc) users.
+
+해커톡에서는 [json web token](https://jwt.io)을 사용하여 사용자들을 인증합니다. 이는 여러 기기(스마트폰, 태블릿, PC)를 지원하는 멀티 디바이스 플랫폼인만큼 세션 변수를 관리해야하는 서버의 부담을 줄여주기 위함입니다.
 
 ## Resolvers
 
 ### Mutations
 
-Below are the mutations you can find in our development server.
+다음은 서버코드에서 확인할 수 있는 `mutation` 쿼리입니다.
 
-#### Register user
-You can use the `signUp` mutation to register users to `HackaTalk` and get user info. Note that the token is not delivered directly just by the `signUp` mutation. Users need to `sign in` in order to achieve the `jwt token`.
+#### 회원가입
+`signUp` mutation 쿼리를 사용하여`HackaTalk`에서 사용자를 등록하고 정보를 획득할 수 있습니다. `Access Token`은 `signUp` 쿼리로 반환되지는 않습니다. 사용자는`토큰`을 획득하기 위해 `login` 쿼리를 호출해야 합니다.
 
-#### Sign in user
-Users sign in into `HackaTalk` and this returns `AuthPayload` which we've defined. This returns a `user` and `token` field. Put the `token` into the `header` as below so that the server knows the user is signed in. 
+#### 로그인
+사용자가 `HackaTalk`에 로그인하면 `AuthPayload`가 반환됩니다. 이것은 `user` 및 `token` 필드를 가지고 있습니다. 서버에서 사용자가 로그인되었음을 알 수 있도록 아래와 같이`header`에`token`을 넣습니다.
+
 ```
 {
    "authorization: "{returned_user_token}"
 }
 ```
 
-There are 2 types of ways to sign in.
+로그인은 두가지 방법으로 할 수 있습니다.
 
-1. Sign in with email
+1. 이메일로 로그인
 
-   `signInEmail` mutation lets users of `HackaTalk` sign in with an `email` and `password`. However, if the `user`'s email is not `verified`, the client's app will direct users to their verify email. In this case, you should [verify user's email](#verify-email).
+   `signInEmail` 쿼리를 사용하면 사용자가 `email`과 `password`로 로그인 할 수 있습니다. 그러나 사용자의 이메일이 `검증`되지 않은 경우 클라이언트에서 사용자를 이메일 검증 화면으로 안내합니다. 이 경우 [사용자 이메일 주소 검증](# verify-email)을 진행해야 합니다.
 
-2. Sign in with a social account
+2. 소셜 계정으로 로그인
 
-   We provide a social account sign-in. We are currently supporting below.
+   해커톡에서는 아래의 소셜 계정 로그인을 제공합니다.
 
-   * Facebook - `signInWithFacebook`
-   * Apple - `signInWithApple`
-   * Google - `signInWithGoogle`
+   * 페이스북 - `signInWithFacebook`
+   * 애플 - `signInWithApple`
+   * 구글 - `signInWithGoogle`
+
+   > [facebook 로그인 플로우](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow)와 같은 URL `redirect` 접근 방식은 제공하고 있지 않습니다. 소셜 인증 공급자는 사용자 인증이 완료된 후 URL을 리디렉션합니다. 'HackaTalk'에서이 접근 방식을 사용한다면 모바일 애플리케이션 용 새 브라우저를 열어야합니다. 우리는이 워크 플로를 좋아하지 않으므로 대신 각 클라이언트가 소셜 공급자의 'access_token'을 직접 수신 한 다음 해당 'access_token'을 사용하여 서버에 요청을 보내야합니다. 우리의 '스키마'는 다음과 같이 설계되었습니다.
 
    > We are not providing any `redirect` url approach like in [facebook login flow](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow). Social authentication providers redirect the url after user's authentication completes. If we use this approach in `HackaTalk`, we should have to open up a new browser for mobile applications. We don't like this workflow so instead , we will we require each client to receive a social provider's `access_token` by themselves and then send a request to our server with that `access_token`. Our `schema` is designed as below.
 

@@ -8,7 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Diagrams
 
-These diagrams are for those who want to understand how this project operates at a glance.
+아래는 해커톡 프로젝트가 어떻게 구성이 되어있는지 한 눈에 보기 위한 도표입니다.
 
 ### Root: src/index.js
 
