@@ -9,4 +9,4 @@ authorTwitter: dooboolab
 tags: [react-navigation, migration]
 ---
 
-react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our `react-navigation` and [here is the post](https://medium.com/dooboolab/migrating-to-react-navigation-v5-2998cd9c9d0b).
+[react-navigation](https://reactnavigation.org)이 `v5`부터 완전히 재 설계된 HOC 패턴으로 출시되었습니다. 해커톡도 `v5`로 마이그레이션을 완료했습니다. [여기에 관련 게시물](https://medium.com/dooboolab/migrating-to-react-navigation-v5-2998cd9c9d0b)을 보실 수 있습니다.

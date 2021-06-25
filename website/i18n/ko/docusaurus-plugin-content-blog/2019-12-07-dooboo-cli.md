@@ -9,4 +9,4 @@ authorTwitter: dooboolab
 tags: [dooboo-cli, tools]
 ---
 
-[dooboo-cli version3](https://medium.com/dooboolab/announcing-dooboo-cli-v3-5c9fceeb2ac4) has released with more boilerplates 👐.
+[dooboo-cli version3](https://medium.com/dooboolab/announcing-dooboo-cli-v3-5c9fceeb2ac4)가 다양한 템플릿을 품고 새롭게 출시되었습니다 👐.

@@ -9,4 +9,5 @@ authorTwitter: dooboolab
 tags: [relay, integration]
 ---
 
-[Relay integration](https://medium.com/dooboolab/integrate-relay-hook-in-expo-app-bae12d50a130) has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.
+[Relay 통합](https://medium.com/dooboolab/integrate-relay-hook-in-expo-app-bae12d50a130)을 완료하였습니다. 
+많은 컨트리뷰터분들이 동일한 경험을 즐길 수 있도록 백엔드 서버에 더 많은 리졸버를 제공 할 예정입니다.

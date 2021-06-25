@@ -9,4 +9,4 @@ authorTwitter: dooboolab
 tags: [prisma, setup]
 ---
 
-[Here](https://medium.com/dooboolab/setting-up-postgresql-for-prisma-v2-9d14586f3acc) is how you can setup [Postgresql](https://www.postgresql.org) in [Prisma v2](https://www.prisma.io).
+[Medium 포스트](https://medium.com/dooboolab/setting-up-postgresql-for-prisma-v2-9d14586f3acc)에서 [Postgresql](https://www.postgresql.org)을 [Prisma v2](https://www.prisma.io)로 다루는 방법을 볼 수 있습니다.
