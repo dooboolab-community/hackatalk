@@ -10,4 +10,5 @@ sidebar_label: Backend 연동
 
 Relay 버전 11이상부터는 `hook`이 포함되므로 더이상 `relay experimental`을 사용하지 않아도 됩니다.
 
-**주의: 라이브러리 인 [relay-hooks](https://github.com/relay-tools/relay-hooks)와 혼동하지 마세요.**
+> **주의**
+  * [relay-hooks](https://github.com/relay-tools/relay-hooks)는 다른 라이브러리이니 혼동하지 마세요.
