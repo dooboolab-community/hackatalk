@@ -6,25 +6,24 @@ sidebar_label: 채널
 
 해당 페이지에서는 컨트리뷰팅을 희망하시는 분들께 해커톡 데이터 구조를 파악하는데 도움을 드리고자 합니다. 해커톡에 있는 `Channel`들이 어떻게 구성되어 있고 또 생성되는 알아보겠습니다.
 
-The `Channel`(aka `Chatroom`) relational model is an important concept when it comes to building chatting apps. A `Channel` aggregates users and prepares an environment for chatting.  Many relational models can exist in-between `User` and `Channel`. These in-between relationships make it easier for developers to add complex business logic in their chat applications. Among these many realtionships, we will first look at the `Membership` relationship.
+`Channel` (aka `Chatroom`) 모델은 채팅 앱을 만들 때 굉장히 중요한 요소입니다. `Channel`은 사용자를 모아 채팅 환경을 준비합니다. 많은 관계형 모델이 `User`와 `Channel`사이에 존재할 수 있습니다. 이러한 중간 관계를 통해 개발자는 해커톡에 다양한 비즈니스 피쳐들을 쉽게 추가 할 수 있습니다. 그 중 하나인 `Membership` 모델을 살펴보겠습니다.
 
-When a user grants permission to other users to access a `Channel`, a `Membership`relationship is created between the `Users`, `Membership`, and `Channel`. The `memberships` table has a `userId` and a `channelId` that links `Users` to their `Channel`.
+사용자가 다른 사용자에게 `Channel`에 대한 액세스 권한을 부여하며 `User`, `Membership`, `Channel`간에 관계가 생성됩니다. `Membership` 테이블에는 `User` 모델의 `userId`와 `Channel` 모델의`channelId`를 [primary key](https://en.wikipedia.org/wiki/Primary_key)로 지니고 있습니다.
 
- Another scenario is when the user wants to manage the sound(vibrate, silent, etc) of each channel, we can create `Sound` relation. Like this, we can add more relations in between to handle more complex logic.
+또한, 사용자가 본인이 속한 `Channel`의 알림음을 조절하고자 할 때에도 `Membership` 테이블이 각 유저들의 알림음을 설정할 수 있도록 도와줍니다. 혹은 `Sound` 테이블을 별도로 `User`와 `Channel` 사이의 관계형 모델로 생성할 수 있습니다. 이렇게 복잡한 로직들을 관계형 모델을 통해 구현해나갈 수 있습니다.
 
-## Entity Relationship Model Diagram
+## [개체 관계 모델](https://en.wikipedia.org/wiki/Entity–relationship_model)
 
 <img src="https://user-images.githubusercontent.com/27461460/88914167-2de67d80-d29d-11ea-8230-6762a4cfe1b4.png" width="1000"/>
 
-The decision was made in our first proposal in designing [Entity Relation Model](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model).
-* Note that the above [UML](https://creately.com/blog/diagrams/uml-diagram-types-examples) diagram is not recent and this is keep 
-changing as we continue implementing cool features.
+위 [엔티티 관계 모델](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model) 설계도는 해커톡의 첫 `proposal`입니다.
+* 위 [UML](https://creately.com/blog/diagrams/uml-diagram-types-examples)은 개발이 진행됨에 따라 계속 수정이 이루어지고 있기 때문에 최신 상태를 유지하지 않을 수 있습니다.
 
-As you can see in the diagram above, there are `userAlert`, `userMode` as well as `type` of membership which determines what type of membership permissions a user has in the `Channel` (view only, leader ...etc). We usually call this a [single table inheritance](https://en.wikipedia.org/wiki/Single_Table_Inheritance) where a single table can have multiple models. We are presenting this diagram to clarify the relationship model for the creation of channels for our contributors. Note that the features that each table has will continue to change.
+위 다이어그램에서 볼 수 있듯이 `Membership`에는 `userAlert`, `userMode` 그리고 `type`과 같은 필드들이 존재합니다. `type` 필드는 사용자가 `Channel`에서 어떤 권한을 가지고 있는지 구분해주고 있습니다. 이렇게 다양한 피쳐들을 하나의 모델에서 해결할 때 주로 [single table inheritance](https://en.wikipedia.org/wiki/Single_Table_Inheritance)라고 표현합니다. 해다 다이어그램은 앞으로 해커톡에 기여하고자 하는 분들을 위해 제공되었습니다. 다시 한번 지속적이 변경이 이루어질 수 있음을 상기시켜드립니다.
 
-## Creating a Channel
+## 채널 생성
 
-Below is a description of how to find a channel using the `unique` number of users in each channel. 
+다음으로 고유의 사용자를 확인하고 `Channel`을 찾는 방법에 대해 알아봅니다.
 
 In most [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping)(Object Relational Mapping), developers use the [IN operator](https://stackoverflow.com/questions/42719750/sequelize-relation-with-where-in-array?rq=1).
 
