@@ -16,8 +16,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
    ```
    yarn
    ```
-   - Note that we recommend using yarn because all of our team members do.
-   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+   - npm이 아닌 yarn을 사용해주세요. 우리는 yarn을 선호합니다.
+   - npm과 yarn을 동시에 쓰면 lock파일이 서로 충돌을 일으킬 수 있습니다.
 
 2. [Postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) 데이터베이스를 설치합니다. [Prisma](https://prisma.io)가 다른 데이터베이스들과도 호환되지만 해커톡에서 사용되는 데이터베이스가 `postgres`이기 때문에 이를 권장합니다. 첨언으로 `postgres`는 `Prisma`에서 우선적으로 자원하는 데이터베이스입니다.
    - Ubuntu 사용자를 위한 설치 예시
