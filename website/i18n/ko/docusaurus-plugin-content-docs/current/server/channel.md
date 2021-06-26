@@ -4,7 +4,7 @@ title: 채널
 sidebar_label: 채널
 ---
 
-This page explains how the `Channels` in `Hackatalk` are structured and was created with the purpose of helping our contributors understand Hackatalk's data structure.
+해당 페이지에서는 컨트리뷰팅을 희망하시는 분들께 해커톡 데이터 구조를 파악하는데 도움을 드리고자 합니다. 해커톡에 있는 `Channel`들이 어떻게 구성되어 있고 또 생성되는 알아보겠습니다.
 
 The `Channel`(aka `Chatroom`) relational model is an important concept when it comes to building chatting apps. A `Channel` aggregates users and prepares an environment for chatting.  Many relational models can exist in-between `User` and `Channel`. These in-between relationships make it easier for developers to add complex business logic in their chat applications. Among these many realtionships, we will first look at the `Membership` relationship.
 
