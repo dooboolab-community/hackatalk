@@ -28,13 +28,13 @@ Below is a description of how to find a channel using the `unique` number of use
 
 In most [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping)(Object Relational Mapping), developers use the [IN operator](https://stackoverflow.com/questions/42719750/sequelize-relation-with-where-in-array?rq=1).
 
-Developers usually use this to find if subarray matches the query. This is also possible with [prisma filtering](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/filtering#filter-on-related-records) in a similar way. However, the `in` operator will return all the rows of the query when the subarray matches not just the unique subarray with only [ 'tom', 'jerry' ]. 
+Developers usually use this to find if subarray matches in query. This is also possible with [prisma filtering](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/filtering#filter-on-related-records) in a similar way. However, the `in` operator will return all rows that contain [ 'tom', 'jerry' ] instead of unique one. 
 
 <img src="https://user-images.githubusercontent.com/27461460/90379570-da09d000-e0b5-11ea-8215-df2828108b58.png" width="200"/>
 
-As in the image, when you query for users of `tom` and `jerry` using the IN operator, it will return all the other arrays in which the subarray [ 'tom' , 'jerry' ] exists. A similar discussion could be found on [Prisma1 forum](https://v1.prisma.io/forum/t/query-for-exact-match-of-array-of-ids/5700/17).
+When you query for users, `tom` and `jerry`, using the IN operator, it will return all the other arrays which [ 'tom' , 'jerry' ] exists. A similar discussion could be found on [Prisma1 forum](https://v1.prisma.io/forum/t/query-for-exact-match-of-array-of-ids/5700/17).
 
-We resolved the above problem by checking the unique number of users  in addition to the userIDs of a `Channel`. If you have any other suggestions on better code other than the one below, please let shoot us a PR request! The code below is located in `Hackatalk/server/src/types/resolvers/Channel/mutation.ts`. (08/17/2020)
+We resolve the above problem by checking the unique number of users  in addition to the userIDs of a `Channel`. If you have any other suggestions on better code other than the one below, please let shoot us a PR request! The code below is located in `Hackatalk/server/src/types/resolvers/Channel/mutation.ts`. (08/17/2020)
 
 The code below is doing this:
 

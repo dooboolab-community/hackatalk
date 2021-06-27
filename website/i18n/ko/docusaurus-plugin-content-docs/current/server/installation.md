@@ -6,27 +6,27 @@ sidebar_label: 설치
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Server project belongs to seperate directory [server](https://github.com/dooboolab/hackatalk/tree/master/server), in [github](https://github.com/dooboolab/hackatalk).
+서버 어플리케이션은 별도 디렉토리인 [server](https://github.com/dooboolab/hackatalk/tree/master/server)에 작성되었습니다.
 
-We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/docs/nexus-prisma) to serve our resolvers to clients.
+서버에서 구현된 api들은 [Prisma](https://www.prisma.io)와 [Nexus](https://nexus.js.org/docs/nexus-prisma)를 주로 이용하며 개발하고 있습니다.
 
-### Local installation
+### 로컬 설치
 
-1. Install your packages in `server` directory.
+1. `server` 디렉토리에서 패키지들을 설치합니다.
    ```
    yarn
    ```
-   - Note that we recommend using yarn because all of our team members do.
-   - Also note that `yarn.lock` and `package-lock.json` sometimes make collision. Try to delete one of them.
+   - npm이 아닌 yarn을 사용해주세요. 우리는 yarn을 선호합니다.
+   - npm과 yarn을 동시에 쓰면 lock파일이 서로 충돌을 일으킬 수 있습니다.
 
-2. Configure [postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) database. Although [Prisma](https://prisma.io) works on many other databases, we recommend using `postgres` since we are using this in our live server. Also `postgres` is the primarily supported database in `Prisma`.
-   - Sample installation for Ubuntu user
+2. [Postgresql](https://www.google.com/search?q=postgresql&rlz=1C5CHFA_enKR865KR867&oq=postgresql&aqs=chrome.0.69i59j35i39j0l3j69i60j69i61l2.3220j0j7&sourceid=chrome&ie=UTF-8) 데이터베이스를 설치합니다. [Prisma](https://prisma.io)가 다른 데이터베이스들과도 호환되지만 해커톡에서 사용되는 데이터베이스가 `postgres`이기 때문에 이를 권장합니다. 첨언으로 `postgres`는 `Prisma`에서 우선적으로 자원하는 데이터베이스입니다.
+   - Ubuntu 사용자를 위한 설치 예시
      ```sh
      sudo apt install postgresql
      sudo -u postgres psql
      alter user postgres with password 'your_password';
      ```
-   - Sample installation for Mac user
+   - Mac 사용자를 위한 설치 예시
      ```sh
      ~ brew services start postgresql
      ~ createuser --interactive --pwprompt
@@ -36,19 +36,19 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
      Shall the new role be a superuser? (y/n) y
      ```
 
-3. Setup environment
-   1. Setup your own local `environment` in your machine.
-      - Copy `dotenv/test.env` to `dotenv/.env`.
+3. 환경설정
+   1. 로컬에서 `환경변수`를 설정해줍니다.
+      - `dotenv/test.env`를 `dotenv/.env`에 복사합니다.
         ```sh
         cp dotenv/test.env dotenv/.env
         ```
-      - Include `DATABASE_URL` (* necessary field)
+      - 올바른 `DATABASE_URL`을 기재합니다. **필수**
          ```
          DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
          ```
-         > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other databases. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
-      - Then run `yarn start` to start server with your local environment.
-   2. Include `test` environment locally to test queries in your database. This should be included when writing a test code.
+         > `user`, `password`, `url`, `database`, `scheme` 필드들을 올바로 적어주새요. 참고로 [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)를 확인하시면 되겠습니다.
+      - 다음으로 `yarn start` 스크립트를 실행하야 로컬환경에서 서버를 실행시킵니다.
+   2. 로컬에 `test` 환경을 설정하고 쿼리들을 테스트합니다. 테스크코드 작성을 위해 필수적으로 진행해주세요.
       ```sh
       $ psql postgres
       postgres=> CREATE DATABASE postgres;
@@ -56,26 +56,26 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
       postgres=> \connect postgres
       test=> CREATE SCHEMA test;
       ```
-      - Above should match `test.env`
+      - 위와 같이 해주시며뉴`test.env`와 동일한 상태가 됩니다.
         ```
         DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
         ```
 
-4. Sync your local database with `Prisma`.
+4. `Prisma`와 데이터베이스를 동기화합니다.
    ```sh
    yarn migrate:deploy
    ```
-   - Above command will follow `dotenv/.env` environment.
-   - If `Prisma` script does not create your `database` or `schema` automatically, create them manually then try again.
+   - 위 스크립트는 `dotenv/.env` 환경과 동기화시킵니다.
+   - 만약 `Prisma` 명령어가 `database` 또는 `schema`를 생성해주지 않으면, 메뉴얼하게 파일을 생성하고 다시 시도해주세요.
 
-5. Generate Prisma Client and Nexus
+5. Prisma Client와 Nexus를 이용하여 typegen을 실시합니다.
    ```
    yarn generate
    ```
 
-6. Migration (Usually during development)
-   1. Change models in `./prisma/schema.prisma`.
-   2. Run `migration:dev` to see if migration does not fail in your database.
+6. 개발 도중 마이그레이션
+   1. 변경할 모델을 `./prisma/schema.prisma`에서 수정합니다.
+   2. `migration:dev`를 실행하여 로컬 데이터베이스에서 마이그레이션이 통과하는지 확인합니다.
       ```
       yarn migrate:dev
       ```
@@ -85,7 +85,7 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
          └─ 20200724010758-migration_name/
             └─ migration.sql
          ```
-   3. Running `migration:deploy` will finish migrating your database.
+   3. 2번이 성공적으로 수행하면 `migration:deploy`로 실제 마이그레이션을 적용합니다.
       ```
       yarn migrate:deploy
       ```

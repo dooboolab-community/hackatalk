@@ -45,7 +45,9 @@ There are 2 types of ways to sign in.
    signInWithGoogle(accessToken: String!): AuthPayload!
    ```
 
-   We used [expo-auth-session](https://docs.expo.io/versions/latest/sdk/auth-session) for `facebook` and `google` sign in to support all platforms in one codebase. This has been provided by [expo](https://expo.io) by [Evan Bacon in twitter](https://twitter.com/baconbrix/status/1256985914749759488). However, we still use [expo-apple-authentication](https://docs.expo.io/versions/latest/sdk/apple-authentication) for `apple` because providing this on server-side makes hands dirty currently refered to [apple-auth](https://github.com/ananay/apple-auth). Therefore we decide to provide Apple signin only in `iOS` (AUG-02-2020).
+   We used [expo-auth-session](https://docs.expo.io/versions/latest/sdk/auth-session) for `facebook` and `google` sign in to support all platforms in one codebase. This has been provided by [expo](https://expo.io) by [Evan Bacon in twitter](https://twitter.com/baconbrix/status/1256985914749759488). However, we still use [expo-apple-authentication](https://docs.expo.io/versions/latest/sdk/apple-authentication) for `apple` because providing this on server-side makes hands dirty currently refered to [apple-auth](https://github.com/ananay/apple-auth).
+
+   Therefore we decide to provide Apple signin only in `iOS` - **AUG-02-2020**.
 
 #### Verify email
 
