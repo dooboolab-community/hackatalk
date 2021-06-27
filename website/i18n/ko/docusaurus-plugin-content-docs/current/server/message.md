@@ -4,27 +4,21 @@ title: 메시지
 sidebar_label: 메시지
 ---
 
-Creating a message is pretty straightforward as long as you know the `id` of the channel you wish to send the message to.
+메시지를 보내려는 채널의 고유 `id`를 알고 있으면 메시지를 간단하게 보낼 수 있습니다.
 
-## Type of message
+## 메시지 종류
 
-> Types of message are defined in `MessageType`.
+> `MessageType`에 메시지 종류들이 정의되어 있습니다.
 
 1. text
-   * Text message
+   * 텍스트 메시지
 2. photo
-   * Photo type will display images in the client
+   * 이미지를 바로 표시하는 메시지
 3. file
-   * File type will be displayed and be presented as a downloadable link in the client
+   * 다운로드 링크를 가지는 메시지
 
-The `photo` and the `file` will be provided by the array of string which contains urls. The urls will be provided by `singleUpload` mutation query defined in our [HackaTalk's graphql server](http://hackatalk.azurewebsites.net/graphql).
-
-## Encryption
-
-The encryption is being done in the **text** message only. This should be **encrypted** and **decrpyted** when communicating with the [database](https://en.wikipedia.org/wiki/Database). We are using [aes-192-cbc](https://encode-decode.com/aes-192-cbc-encrypt-online) algorithm with [crypto](https://nodejs.org/api/crypto.html) package in [nodejs](https://nodejs.org).
-* You can read more about it in [nodejs crypto](https://nodejs.org/api/crypto.html).
-
+`photo`와 `file`은 URL이 포함 된 문자열 배열로 제공됩니다. URL은 `singleUpload` 쿼리에 의해 제공됩니다. 미래에는 `createMessage`에 업로드 부분도 통합되어야 할 것입니다.
 
 ## Push Notification
 
-There are push token ids in every devices and browsers. They are used to receive **push notification** in their devices. Push token in the device is sent to the server when user sign-in. `createNotification` mutation will be called on the client-side. The `id` of the user and the device's `push token` will be mapped in the database and they will be used to send messages via **push notification**. This will be removed with the `deleteNotification` mutation query when the user signs out.
+모든 장치와 브라우저에는 푸시 토큰 ID가 있습니다. 이는 기기에서 **푸시 알림**을 수신할 때 사용됩니다. 사용자가 로그인하면 단말의 푸시 토큰이 서버로 전송됩니다. `createNotification` 쿼리가 이를 담당합니다. 사용자의 고유 `id`와 기기의 `푸시 토큰`은 데이터베이스에서 매핑되며 **푸시 알림**을 통해 원하는 단말로 메시지를 보내는 데 사용됩니다. 사용자가 로그아웃 할 때`deleteNotification` 쿼리를 호출해서 매핑을 삭제하면 잘못된 대화가 전송되지 않을 것입니다.
