@@ -23,15 +23,14 @@ export const testHost = `http://localhost:${port}/graphql`;
 const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
 beforeAll(async () => {
-
   // Instantiate prisma client.
   const prisma = new PrismaClient();
 
   // Create test schema.
-  await prisma.$executeRaw(`DROP SCHEMA IF EXISTS test CASCADE`);
-  await prisma.$executeRaw(`CREATE SCHEMA test`);
+  await prisma.$executeRaw('DROP SCHEMA IF EXISTS test CASCADE');
+  await prisma.$executeRaw('CREATE SCHEMA test');
 
-  execSync(`yarn db-push:test`, {env: process.env});
+  execSync('yarn db-push:test', {env: process.env});
 
   const app: express.Application = createApp();
 
