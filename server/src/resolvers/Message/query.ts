@@ -59,7 +59,7 @@ export const messages = queryField((t) => {
         },
 
         include: {sender: true},
-        orderBy: {createdAt: 'desc'},
+        orderBy: {id: 'desc'},
       });
     },
   });

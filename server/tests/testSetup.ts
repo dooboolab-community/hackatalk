@@ -1,9 +1,9 @@
 import ApolloClient from 'apollo-client';
 import {Headers} from 'cross-fetch';
-import {Http2Server} from 'http2';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
 import {PrismaClient} from '@prisma/client';
+import {Server} from 'http';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 import {WebSocketLink} from 'apollo-link-ws';
 import {createApp} from '../src/app';
@@ -16,7 +16,7 @@ global.Headers = global.Headers || Headers;
 
 const prisma = new PrismaClient();
 const port = 4000;
-let server: Http2Server;
+let server: Server;
 let networkInterface;
 export let apolloClient;
 export const testHost = `http://localhost:${port}/graphql`;
@@ -24,7 +24,7 @@ const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
 jest.setTimeout(30000);
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   const app: express.Application = createApp();
 
   server = await startServer(app);
@@ -44,8 +44,6 @@ beforeAll(async (done) => {
 
   exec('yarn db-push:test', (err): void => {
     if (err) throw new Error(err.message);
-
-    done();
   });
 });
 

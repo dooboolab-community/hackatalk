@@ -135,6 +135,7 @@ model Membership {
   channel   Channel @relation(fields: [channelId], references: [id])
 
   @@id([userId, channelId])
+  @@index([updatedAt])
 }
 
 enum ChannelType {
@@ -167,7 +168,7 @@ model Message {
   imageUrls   String[]
   fileUrls    String[]
   reactions   Reaction[]
-  replys      Reply[]
+  replies     Reply[]
 
   createdAt DateTime? @default(now())
   updatedAt DateTime? @default(now()) @updatedAt
