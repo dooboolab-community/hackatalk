@@ -23,7 +23,7 @@
     "migrate:dev": "dotenv -e ./dotenv/.env -- prisma migrate dev",
     "migrate:deploy": "dotenv -e ./dotenv/prod.env -- prisma migrate deploy",
     "db-push:local": "dotenv -e ./dotenv/.env -- prisma db push",
-    "db-push:test": "dotenv -e ./dotenv/test.env -- prisma db push --preview-feature",
+    "db-push:test": "dotenv -e ./dotenv/test.env -- prisma db push",
     "studio": "dotenv -e ./dotenv/.env -- prisma studio",
     "docker:build": "docker build --tag hackatalk/node .",
     "docker:start": "docker run --name hackatalk -e 'NODE_ENV=production' -it -p 4000:4000 -d hackatalk/node",
