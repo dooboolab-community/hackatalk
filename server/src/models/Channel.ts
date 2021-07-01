@@ -26,7 +26,7 @@ export const Channel = objectType({
           include: {
             sender: true,
           },
-          orderBy: {createdAt: 'desc'},
+          orderBy: {id: 'desc'},
         });
 
         return message;

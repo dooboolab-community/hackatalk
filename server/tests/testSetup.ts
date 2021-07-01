@@ -1,13 +1,13 @@
 import ApolloClient from 'apollo-client';
 import {Headers} from 'cross-fetch';
-import {Http2Server} from 'http2';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
 import {PrismaClient} from '@prisma/client';
+import {Server} from 'http';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 import {WebSocketLink} from 'apollo-link-ws';
 import {createApp} from '../src/app';
-import {exec} from 'child_process';
+import {execSync} from 'child_process';
 import express from 'express';
 import {startServer} from '../src/server';
 
@@ -16,15 +16,22 @@ global.Headers = global.Headers || Headers;
 
 const prisma = new PrismaClient();
 const port = 4000;
-let server: Http2Server;
+let server: Server;
 let networkInterface;
 export let apolloClient;
 export const testHost = `http://localhost:${port}/graphql`;
 const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
-jest.setTimeout(30000);
+beforeAll(async () => {
+  // Instantiate prisma client.
+  const prisma = new PrismaClient();
 
-beforeAll(async (done) => {
+  // Create test schema.
+  await prisma.$executeRaw('DROP SCHEMA IF EXISTS test CASCADE');
+  await prisma.$executeRaw('CREATE SCHEMA test');
+
+  execSync('yarn db-push:test', {env: process.env});
+
   const app: express.Application = createApp();
 
   server = await startServer(app);
@@ -38,14 +45,6 @@ beforeAll(async (done) => {
   apolloClient = new ApolloClient({
     link: new WebSocketLink(networkInterface),
     cache: new InMemoryCache(),
-  });
-
-  await prisma.$executeRaw('create schema test');
-
-  exec('yarn db-push:test', (err): void => {
-    if (err) throw new Error(err.message);
-
-    done();
   });
 });
 
