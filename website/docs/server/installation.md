@@ -42,7 +42,7 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
      ```
    - Example for createing new database
      ```sh
-     postgres -U postgres -h localhost -W
+     psql -U postgres -h localhost -W
      Password: 
 
      postgres=# createdb hackatalk

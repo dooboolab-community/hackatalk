@@ -45,7 +45,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
      ```
    - 새로운 데이터베이스 생성 예시
      ```sh
-     postgres -U postgres -h localhost -W
+     psql -U postgres -h localhost -W
      Password: 
 
      postgres=# createdb hackatalk
