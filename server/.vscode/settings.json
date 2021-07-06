@@ -1,5 +1,4 @@
 {
-  "eslint.enable": true,
   "eslint.validate": [
     "javascript",
     "typescript",
@@ -26,5 +25,8 @@
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.hg/store/**": true
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "locales"
+  ]
 }

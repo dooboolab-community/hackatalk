@@ -23,17 +23,36 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
    - Ubuntu 사용자를 위한 설치 예시
      ```sh
      sudo apt install postgresql
-     sudo -u postgres psql
-     alter user postgres with password 'your_password';
      ```
    - Mac 사용자를 위한 설치 예시
      ```sh
+     ~ brew install postgresql
      ~ brew services start postgresql
+     ```
+   - 데이터베이스 `postgres` 사용자 암호 변경 예시
+     ```sh
+     sudo su - postgres
+     psql
+     alter user postgres with password 'your_password';
+     ```
+   - 데이터베이스 새 사용자 생성 예시
+     ```sh
      ~ createuser --interactive --pwprompt
      Enter name of role to add: postgres
      Enter password for new role: 
      Enter it again: 
      Shall the new role be a superuser? (y/n) y
+     ```
+   - 새로운 데이터베이스 생성 예시
+     ```sh
+     postgres -U postgres -h localhost -W
+     Password: 
+
+     postgres=# createdb hackatalk
+     ```
+   - [pgcli](https://www.pgcli.com)를 이용하여 데이터베이스에 접속
+     ```sh
+     PGPASSWORD=dooboolab0! pgcli -h localhost -U postgres
      ```
 
 3. 환경설정
@@ -44,21 +63,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
         ```
       - 올바른 `DATABASE_URL`을 기재합니다. **필수**
          ```
-         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
+         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>"
          ```
-         > `user`, `password`, `url`, `database`, `scheme` 필드들을 올바로 적어주새요. 참고로 [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)를 확인하시면 되겠습니다.
-      - 다음으로 `yarn start` 스크립트를 실행하야 로컬환경에서 서버를 실행시킵니다.
-   2. 로컬에 `test` 환경을 설정하고 쿼리들을 테스트합니다. 테스크코드 작성을 위해 필수적으로 진행해주세요.
+         > `user`, `password`, `url`, `database` 필드들을 올바로 적어주새요. 참고로 [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)를 확인하시면 되겠습니다.
+      - 다음으로 `yarn start` 스크립트를 실행하여 로컬환경에서 서버를 실행시킵니다.
+   2. 로컬에 `test` 환경을 설정하고 쿼리들을 테스트합니다. 테스트코드 작성을 위해 필수적으로 진행해주세요.
       ```sh
-      $ psql postgres
-      postgres=> CREATE DATABASE postgres;
-      // Connect Inside `postgres` database to create `test` schema.
-      postgres=> \connect postgres
-      test=> CREATE SCHEMA test;
+      $ psql -U postgres -h localhost -W
+      postgres=> CREATE DATABASE test;
+      postgres=> \connect test
+      test=>
       ```
-      - 위와 같이 해주시며뉴`test.env`와 동일한 상태가 됩니다.
+      - 위와 같이 해주시면 `test.env`와 동일한 상태가 됩니다.
         ```
-        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
+        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/test"
         ```
 
 4. `Prisma`와 데이터베이스를 동기화합니다.

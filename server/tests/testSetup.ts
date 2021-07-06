@@ -27,8 +27,8 @@ beforeAll(async () => {
   const prisma = new PrismaClient();
 
   // Create test schema.
-  await prisma.$executeRaw('DROP SCHEMA IF EXISTS test CASCADE');
-  await prisma.$executeRaw('CREATE SCHEMA test');
+  await prisma.$executeRaw('DROP SCHEMA IF EXISTS public CASCADE');
+  await prisma.$executeRaw('CREATE SCHEMA public');
 
   execSync('yarn db-push:test', {env: process.env});
 
@@ -49,7 +49,7 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await prisma.$executeRaw('DROP schema test CASCADE');
+  await prisma.$executeRaw('DROP schema public CASCADE');
   networkInterface.close();
   server.close();
 });

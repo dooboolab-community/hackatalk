@@ -21,17 +21,35 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
    - Sample installation for Ubuntu user
      ```sh
      sudo apt install postgresql
-     sudo -u postgres psql
-     alter user postgres with password 'your_password';
      ```
    - Sample installation for Mac user
      ```sh
      ~ brew services start postgresql
+     ```
+   - Example for changing password for user `postgres`
+     ```sh
+     sudo su - postgres
+     psql
+     alter user postgres with password 'your_password';
+     ```
+   - Example for creating new database user
+     ```sh
      ~ createuser --interactive --pwprompt
      Enter name of role to add: postgres
      Enter password for new role: 
      Enter it again: 
      Shall the new role be a superuser? (y/n) y
+     ```
+   - Example for createing new database
+     ```sh
+     postgres -U postgres -h localhost -W
+     Password: 
+
+     postgres=# createdb hackatalk
+     ```
+   - Connect to database using [pgcli](https://www.pgcli.com)
+     ```sh
+     PGPASSWORD=dooboolab0! pgcli -h localhost -U postgres
      ```
 
 3. Setup environment
@@ -42,21 +60,20 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
         ```
       - Include `DATABASE_URL` (* necessary field)
          ```
-         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>?schema=<scheme>"
+         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>"
          ```
          > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other databases. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
       - Then run `yarn start` to start server with your local environment.
    2. Include `test` environment locally to test queries in your database. This should be included when writing a test code.
       ```sh
-      $ psql postgres
-      postgres=> CREATE DATABASE postgres;
-      // Connect Inside `postgres` database to create `test` schema.
-      postgres=> \connect postgres
-      test=> CREATE SCHEMA test;
+      $ psql -U postgres -h localhost -W
+      postgres=> CREATE DATABASE test;
+      postgres=> \connect test
+      test=>
       ```
       - Above should match `test.env`
         ```
-        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/postgres?schema=test"
+        DATABASE_URL="postgresql://postgres:dooboolab0!@localhost:5432/test"
         ```
 
 4. Sync your local database with `Prisma`.
