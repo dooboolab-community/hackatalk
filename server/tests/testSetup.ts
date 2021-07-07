@@ -23,9 +23,6 @@ export const testHost = `http://localhost:${port}/graphql`;
 const testSubscriptionHost = `ws://localhost:${port}/graphql`;
 
 beforeAll(async () => {
-  // Instantiate prisma client.
-  const prisma = new PrismaClient();
-
   // Create test schema.
   await prisma.$executeRaw('DROP SCHEMA IF EXISTS public CASCADE');
   await prisma.$executeRaw('CREATE SCHEMA public');
