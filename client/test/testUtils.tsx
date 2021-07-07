@@ -91,7 +91,7 @@ type NavigationStub<T extends {}> = {
  *   // Your implementation can go here.
  * });
  * jest.mock('@react-navigation/core', () => ({
- *   ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+ *   ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
  *   useNavigation: () => mockNavigation,
  *   useRoute: () => mockRoute,
  * }));

@@ -1,6 +1,4 @@
-import '@testing-library/jest-native/extend-expect';
-
-import { cleanup } from '@testing-library/react-native';
+import {cleanup} from '@testing-library/react-native';
 
 // Cleanup after each case.
 afterEach(cleanup);
@@ -15,6 +13,10 @@ afterEach(cleanup);
  */
 jest.useFakeTimers('modern');
 Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
+
+jest.mock('react-native-reanimated', () =>
+  require('react-native-reanimated/mock'),
+);
 
 jest.mock('../src/relay', () => {
   // eslint-disable-next-line

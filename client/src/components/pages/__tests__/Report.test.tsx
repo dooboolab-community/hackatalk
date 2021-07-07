@@ -1,10 +1,10 @@
 import 'react-native';
 
-import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
+import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import React from 'react';
@@ -23,7 +23,7 @@ const mockRoute: RouteProp<MainStackParamList, 'Report'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
   useRoute: () => mockRoute,
 }));

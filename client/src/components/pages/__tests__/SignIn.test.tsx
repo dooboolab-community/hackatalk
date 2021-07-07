@@ -10,9 +10,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
 import {FetchMock} from 'jest-fetch-mock';
 import React from 'react';
-import ReactNavigation from '@react-navigation/core';
 import SignIn from '../SignIn';
 import {createMockEnvironment} from 'relay-test-utils';
+import mockReactNavigation from '@react-navigation/core';
 
 const fetchMock = fetch as FetchMock;
 
@@ -21,7 +21,7 @@ fetchMock.mockResponse(JSON.stringify({id: 1}));
 const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 

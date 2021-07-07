@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import ReactNavigation, {RouteProp} from '@react-navigation/core';
+import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import {RootStackParamList} from '../../navigations/RootStackNavigator';
 import WebView from '../WebView';
@@ -18,7 +18,7 @@ const mockRoute: RouteProp<RootStackParamList, 'WebView'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useRoute: () => mockRoute,
 }));
 

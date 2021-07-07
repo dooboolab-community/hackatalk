@@ -1,10 +1,10 @@
 import 'react-native';
 
-import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
+import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import ImageSlider from '../ImageSlider';
 import React from 'react';
@@ -37,7 +37,7 @@ const mockRoute: RouteProp<RootStackParamList, 'ImageSlider'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
   useRoute: () => mockRoute,
 }));

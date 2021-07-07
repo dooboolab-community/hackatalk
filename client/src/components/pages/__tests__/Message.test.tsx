@@ -5,13 +5,13 @@ import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import {Channel, Message as MessageType} from '../../../types/graphql';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {
   createMockNavigation,
   createTestElement,
   resolveAllOperations,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
+import mockmockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
@@ -30,7 +30,9 @@ const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockmockReactNavigation>(
+    '@react-navigation/core',
+  ),
   useNavigation: () => mockNavigation,
   useRoute: () => mockRoute,
 }));

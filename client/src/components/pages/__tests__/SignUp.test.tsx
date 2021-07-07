@@ -9,15 +9,15 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import React from 'react';
-import ReactNavigation from '@react-navigation/core';
 import SignUp from '../SignUp';
 import {act} from 'react-test-renderer';
+import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation =
   createMockNavigation<AuthStackNavigationProps<'SignUp'>>();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 
