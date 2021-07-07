@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-const extra = Constants.manifest.extra;
+const extra = Constants?.manifest?.extra;
 
 export const GRAPHQL_URL = extra?.GRAPHQL_URL;
 export const SUBSCRIPTION_URL = extra?.SUBSCRIPTION_URL;
