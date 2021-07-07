@@ -7,13 +7,13 @@ import {
 
 import LicenseAgreement from '../LicenseAgreement';
 import React from 'react';
-import ReactNavigation from '@react-navigation/core';
+import mockReactNavigation from '@react-navigation/core';
 import {render} from '@testing-library/react-native';
 
 const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 

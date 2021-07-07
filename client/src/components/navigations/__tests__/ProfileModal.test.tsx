@@ -16,15 +16,15 @@ import {graphql, useLazyLoadQuery} from 'react-relay';
 import {IEnvironment} from 'relay-runtime';
 import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
-import ReactNavigation from '@react-navigation/core';
 import {User} from '../../../types/graphql';
 import {View} from 'react-native';
+import mockReactNavigation from '@react-navigation/core';
 import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
 const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 

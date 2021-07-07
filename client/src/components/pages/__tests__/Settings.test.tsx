@@ -9,14 +9,14 @@ import {
 } from '../../../../test/testUtils';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
-import ReactNavigation from '@react-navigation/core';
 import Settings from '../Settings';
+import mockReactNavigation from '@react-navigation/core';
 import {useAuthContext} from '../../../providers/AuthProvider';
 
 const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 

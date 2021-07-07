@@ -1,8 +1,8 @@
 import 'react-native';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import ReactNavigation, {RouteProp} from '@react-navigation/core';
 import {act, fireEvent, render} from '@testing-library/react-native';
+import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import {AuthStackParamList} from '../../navigations/AuthStackNavigator';
 import React from 'react';
@@ -18,7 +18,7 @@ const mockRoute: RouteProp<AuthStackParamList, 'VerifyEmail'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useRoute: () => mockRoute,
 }));
 

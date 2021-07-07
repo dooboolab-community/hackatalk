@@ -8,12 +8,12 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import ChannelCreate from '../ChannelCreate';
 import React from 'react';
-import ReactNavigation from '@react-navigation/core';
+import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof ReactNavigation>('@react-navigation/core'),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
 }));
 
