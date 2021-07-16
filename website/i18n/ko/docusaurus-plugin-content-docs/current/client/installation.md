@@ -27,18 +27,25 @@ Client 프로젝트는 [github 소스코드](https://github.com/dooboolab/hackat
    ```
    관련 기능을 개발하지 않는 경우`facebookAppId`,`googleWebClientId`,`googleAndroidClientId`,`googleIOSClientId` 및`sentryAuthToken`은 무시해도 무방합니다. 해당 기능을 개발해야하는 경우 직접 본인들의 소셜 계정을 이용해주세요.
 
-4. 패키지를 설치합니다. `npm` 대신 [yarn](https://classic.yarnpkg.com)을 사용하는 것을 추천드립니다.
+   * **참고**로 android emulator에서 실행하는 경우 `localhost` 주소를 내부 `ip` 주소로 바꿔주세요. 예) 192.0.0.6
+
+4. 빈 `google-services.json` 파일을 만들어주세요.
+   ```
+   touch google-services.json
+   ```
+
+5. 패키지를 설치합니다. `npm` 대신 [yarn](https://classic.yarnpkg.com)을 사용하는 것을 추천드립니다.
    ```
    yarn
    ```
 
-5. 마지막으로`yarn start`를 실행하여`HackaTalk`를 실행합니다.
+6. 마지막으로`yarn start`를 실행하여`HackaTalk`를 실행합니다.
    ```
    yarn start
    ```
    위 스크립트를 실행하면 [expo](https://expo.io) 콘솔이 열립니다.
 
-6. 웹 환경에서 실행하기.
+7. 웹 환경에서 실행하기.
    ```
    yarn web
    ```
