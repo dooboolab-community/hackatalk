@@ -32,13 +32,20 @@ Client project belongs to seperate directory [client](https://github.com/doobool
    yarn
    ```
 
-5. Finally run `HackaTalk` by running `yarn start`.
+   * **Note** If you are using android emulator, you may have to change the `localhost` address to your local `ip` address. Ex) 192.0.0.6
+
+5. Create empty `google-services.json` file.
+   ```
+   touch google-services.json
+   ```
+
+6. Finally run `HackaTalk` by running `yarn start`.
    ```
    yarn start
    ```
    It will open up [expo](https://expo.io) console.
 
-6. Running in `web` environment.
+7. Running in `web` environment.
    ```
    yarn web
    ```
