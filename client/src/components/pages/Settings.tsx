@@ -1,8 +1,4 @@
-import AuthNavigator, {
-  AuthStackNavigationProps,
-} from '../navigations/AuthStackNavigator';
 import {Button, DoobooTheme, useTheme} from 'dooboo-ui';
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/core';
 import {Platform, SectionList, SectionListData} from 'react-native';
 import React, {FC, ReactElement} from 'react';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
@@ -12,12 +8,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
-import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
-import {makeRedirectUri} from 'expo-auth-session';
 import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
