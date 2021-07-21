@@ -96,6 +96,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://t.me/giautm"><img src="https://avatars.githubusercontent.com/u/12751435?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Giau. Tran Minh</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=giautm" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/DevYuns"><img src="https://avatars.githubusercontent.com/u/58724686?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Dean</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=DevYuns" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=DevYuns" title="Tests">⚠️</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://taehwannoh.dev"><img src="https://avatars.githubusercontent.com/u/7760903?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Taehwan Noh</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=taehwanno" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
