@@ -94,6 +94,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/winz87"><img src="https://avatars0.githubusercontent.com/u/49703731?v=4?s=60" width="60px;" alt=""/><br /><sub><b>winz87</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=winz87" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/JaeeunAhn"><img src="https://avatars2.githubusercontent.com/u/49272528?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Jaeeun Ahn</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=JaeeunAhn" title="Code">💻</a></td>
     <td align="center"><a href="http://t.me/giautm"><img src="https://avatars.githubusercontent.com/u/12751435?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Giau. Tran Minh</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=giautm" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/DevYuns"><img src="https://avatars.githubusercontent.com/u/58724686?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Dean</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=DevYuns" title="Code">💻</a> <a href="https://github.com/dooboolab/hackatalk/commits?author=DevYuns" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
