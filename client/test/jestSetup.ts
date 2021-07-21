@@ -4,6 +4,8 @@ import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/asy
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
+global.__reanimatedWorkletInit = jest.fn();
+
 const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock &
   // eslint-disable-next-line no-undef
   typeof globalThis;
