@@ -11,12 +11,10 @@ import {
   View,
 } from 'react-native';
 import Animated, {
-  block,
-  clockRunning,
-  cond,
-  not,
-  set,
-  useCode,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import {Button, EditText, StatusBarBrightness, useTheme} from 'dooboo-ui';
 import {
@@ -35,7 +33,6 @@ import type {
   UserSignInEmailMutation,
   UserSignInEmailMutationResponse,
 } from '../../../__generated__/UserSignInEmailMutation.graphql';
-import {delay, spring, useClock, useValue} from 'react-native-redash';
 import {showAlertForError, validateEmail} from '../../../utils/common';
 import {signInEmail, signInWithApple} from '../../../relay/queries/User';
 import styled, {css} from '@emotion/native';
@@ -294,58 +291,42 @@ const SignIn: FC = () => {
     // console.log('appOwnership', Constants.appOwnership);
   }, []);
 
-  const logoSize = 80;
-  const logoTransformAnimValue = useValue(0);
+  const LOGO_SIZE = 80;
+  const logoAnimValue = useSharedValue(0);
   const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
   const logoInitialPosition = {
-    x: (screenWidth - logoSize) * 0.5,
-    y: screenHeight * 0.5 - logoSize,
+    x: (screenWidth - LOGO_SIZE) * 0.5,
+    y: screenHeight * 0.5 - LOGO_SIZE,
   };
 
-  const logoFinalPosition = {
-    x: 30,
-    y: 80,
-  };
+  useEffect(() => {
+    logoAnimValue.value = withSpring(1, {stiffness: 36, mass: 1.5});
+  }, [logoAnimValue]);
 
-  const logoScale = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2, 1],
+  const logoAnimStyle = useAnimatedStyle(() => {
+    const left = interpolate(
+      logoAnimValue.value,
+      [0, 1],
+      [logoInitialPosition.x, 30],
+    );
+
+    const top = interpolate(
+      logoAnimValue.value,
+      [0, 1],
+      [logoInitialPosition.y, 80],
+    );
+
+    const scale = interpolate(logoAnimValue.value, [0, 1], [2, 1]);
+
+    return {
+      zIndex: 15,
+      position: 'absolute',
+      left,
+      top,
+      transform: [{scale}],
+    };
   });
-
-  const logoPositionX = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [logoInitialPosition.x, logoFinalPosition.x],
-  });
-
-  const logoPositionY = logoTransformAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [logoInitialPosition.y, logoFinalPosition.y],
-  });
-
-  const animating = useValue<number>(0);
-  const clock = useClock();
-
-  useCode(() => block([delay(set(animating, 1), 100)]), []);
-
-  useCode(
-    () =>
-      block([
-        cond(animating, [
-          set(
-            logoTransformAnimValue,
-            spring({
-              clock,
-              to: 1,
-              from: 0,
-              config: {mass: 1.5, stiffness: 36},
-            }),
-          ),
-        ]),
-        cond(not(clockRunning(clock)), set(animating, 0)),
-      ]),
-    [],
-  );
 
   return (
     <Container>
@@ -353,17 +334,11 @@ const SignIn: FC = () => {
 
       <StyledScrollView>
         <AnimatedTouchableOpacity
+          style={logoAnimStyle}
           testID="theme-test"
-          onPress={(): void => changeThemeType()}
-          style={{
-            zIndex: 15,
-            position: 'absolute',
-            left: logoPositionX,
-            top: logoPositionY,
-            transform: [{scale: logoScale}],
-          }}>
+          onPress={(): void => changeThemeType()}>
           <Image
-            style={{width: logoSize, height: logoSize, resizeMode: 'cover'}}
+            style={{width: LOGO_SIZE, height: LOGO_SIZE, resizeMode: 'cover'}}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
