@@ -4136,11 +4136,6 @@ abort-controller@3.0.0, abort-controller@^3.0.0:
   dependencies:
     event-target-shim "^5.0.0"
 
-abs-svg-path@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/abs-svg-path/-/abs-svg-path-0.1.1.tgz#df601c8e8d2ba10d4a76d625e236a9a39c2723bf"
-  integrity sha1-32Acjo0roQ1KdtYl4japo5wnI78=
-
 absolute-path@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/absolute-path/-/absolute-path-0.0.0.tgz#a78762fbdadfb5297be99b15d35a785b2f095bf7"
@@ -12450,13 +12445,6 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
-normalize-svg-path@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/normalize-svg-path/-/normalize-svg-path-1.1.0.tgz#0e614eca23c39f0cffe821d6be6cd17e569a766c"
-  integrity sha512-r9KHKG2UUeB5LoTouwDzBy2VxXlHsiM6fyLQvnJa0S5hrhzqElH/CH7TUGhT1fVvIYBIKf3OpY4YJ4CK+iaqHg==
-  dependencies:
-    svg-arc-to-cubic-bezier "^3.0.0"
-
 normalize-url@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-2.0.1.tgz#835a9da1551fa26f70e92329069a23aa6574d7e6"
@@ -12985,11 +12973,6 @@ parse-srcset@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/parse-srcset/-/parse-srcset-1.0.2.tgz#f2bd221f6cc970a938d88556abc589caaaa2bde1"
   integrity sha1-8r0iH2zJcKk42IVWq8WJyqqiveE=
-
-parse-svg-path@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/parse-svg-path/-/parse-svg-path-0.1.2.tgz#7a7ec0d1eb06fa5325c7d3e009b859a09b5d49eb"
-  integrity sha1-en7A0esG+lMlx9PgCbhZoJtdSes=
 
 parse5@5.1.0:
   version "5.1.0"
@@ -14077,15 +14060,6 @@ react-native-reanimated@~2.2.0:
     fbjs "^3.0.0"
     mockdate "^3.0.2"
     string-hash-64 "^1.0.3"
-
-react-native-redash@^14.2.4:
-  version "14.2.4"
-  resolved "https://registry.yarnpkg.com/react-native-redash/-/react-native-redash-14.2.4.tgz#5dbb4b2f1a7441bb304fe3494b89e0dc9010c8ef"
-  integrity sha512-/1R9UxXv3ffKcrbxolqa2B247Cgd3ikyEm2q1VlBng77Es6PAD4LAOXQ83pBavvwNfOsbhF3ebkbMpJcLaVt3Q==
-  dependencies:
-    abs-svg-path "^0.1.1"
-    normalize-svg-path "^1.0.1"
-    parse-svg-path "^0.1.2"
 
 react-native-safe-area-context@3.2.0:
   version "3.2.0"
@@ -15806,11 +15780,6 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-svg-arc-to-cubic-bezier@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/svg-arc-to-cubic-bezier/-/svg-arc-to-cubic-bezier-3.2.0.tgz#390c450035ae1c4a0104d90650304c3bc814abe6"
-  integrity sha512-djbJ/vZKZO+gPoSDThGNpKDO+o+bAeA4XQKovvkNCqnIS2t+S4qnLAGQhyyrulhCFRl1WWzAp0wUDV8PpTVU3g==
-
 svg-parser@^2.0.0, svg-parser@^2.0.2:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/svg-parser/-/svg-parser-2.0.4.tgz#fdc2e29e13951736140b76cb122c8ee6630eb6b5"
@@ -16790,10 +16759,8 @@ watchpack@^1.6.1:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
-    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
-    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"
