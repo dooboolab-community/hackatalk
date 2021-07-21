@@ -27,11 +27,6 @@ firebase-debug*.*
 # firebase
 google-services.json
 
-# IDE & Text Editor
-.vscode
-!.vscode/launch.json
-!.vscode/settings.json
-
 __snapshots__
 
 # watchman

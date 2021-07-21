@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "graphql.vscode-graphql",
+    "wix.vscode-import-cost",
+    "prisma.prisma",
+    "amatiasq.sort-imports",
+  ]
+}
