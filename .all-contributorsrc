@@ -341,6 +341,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "DevYuns",
+      "name": "Dean",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58724686?v=4",
+      "profile": "https://github.com/DevYuns",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
