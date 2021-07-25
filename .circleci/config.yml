@@ -119,7 +119,7 @@ jobs:
             JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
 
       - codecov/upload:
-          file: ./coverage/lcov.info
+          file: ./client/coverage/lcov.info
           token: 0fc24d24-3658-478c-8976-9e832903e609
 
       - store_test_results:
