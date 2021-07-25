@@ -60,7 +60,7 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
         ```
       - Include `DATABASE_URL` (* necessary field)
          ```
-         DATABASE_URL="postgresql://<user>:<password>!@<url>:5432/<database>"
+         DATABASE_URL="postgresql://<user>:<password>@<url>:5432/<database>"
          ```
          > Note that you should change appropriate values in `user`, `password`, `url`, `database`, `scheme` fields. Or you can even use other databases. More about [connection urls](https://www.prisma.io/docs/reference/database-connectors/connection-urls)
       - Then run `yarn start` to start server with your local environment.
