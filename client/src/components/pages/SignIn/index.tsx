@@ -11,10 +11,8 @@ import {
   View,
 } from 'react-native';
 import Animated, {
-  Extrapolate,
   interpolate,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
