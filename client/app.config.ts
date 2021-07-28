@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 import {version} from './package.json';
 
-const androidVersionCode = 26;
+const androidVersionCode = 27;
 
 export default {
   expo: {
@@ -27,7 +27,7 @@ export default {
     facebookDisplayName: 'hackatalk',
     facebookScheme: `fb${process.env.facebookAppId}`,
     ios: {
-      userInterfaceStyle: 'light',
+      userInterfaceStyle: 'automatic',
       supportsTablet: true,
       bundleIdentifier: 'com.dooboolab.hackatalk',
       splash: {
@@ -61,7 +61,7 @@ export default {
       },
       backgroundColor: '#FFF',
       versionCode: androidVersionCode,
-      userInterfaceStyle: 'dark',
+      userInterfaceStyle: 'automatic',
       package: 'com.dooboolab.hackatalk',
       useNextNotificationsApi: true,
       playStoreUrl:
