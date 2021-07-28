@@ -48,8 +48,7 @@ import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
-const AnimatedTouchableOpacity =
-  Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -291,40 +290,64 @@ const SignIn: FC = () => {
     // console.log('appOwnership', Constants.appOwnership);
   }, []);
 
-  const LOGO_SIZE = 80;
-  const logoAnimValue = useSharedValue(0);
   const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+  const LOGO_SIZE = 80;
 
-  const logoInitialPosition = {
-    x: (screenWidth - LOGO_SIZE) * 0.5,
-    y: screenHeight * 0.5 - LOGO_SIZE,
-  };
+  const logoAnimValue = useSharedValue(0);
 
   useEffect(() => {
-    logoAnimValue.value = withSpring(1, {stiffness: 36, mass: 1.5});
+    let timer = setTimeout(
+      () => (logoAnimValue.value = withSpring(1, {stiffness: 36, mass: 1.5})),
+      100,
+    );
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [logoAnimValue]);
 
   const logoAnimStyle = useAnimatedStyle(() => {
     const left = interpolate(
       logoAnimValue.value,
       [0, 1],
-      [logoInitialPosition.x, 30],
+      [screenWidth * 0.7, 30],
     );
 
     const top = interpolate(
       logoAnimValue.value,
       [0, 1],
-      [logoInitialPosition.y, 80],
+      [screenHeight * 0.3, 80],
     );
 
-    const scale = interpolate(logoAnimValue.value, [0, 1], [2, 1]);
+    const width =
+      Platform.OS !== 'web'
+        ? withSpring(
+            interpolate(
+              logoAnimValue.value,
+              [0, 1],
+              [LOGO_SIZE * 2, LOGO_SIZE],
+            ),
+          )
+        : interpolate(logoAnimValue.value, [0, 1], [LOGO_SIZE * 2, LOGO_SIZE]);
+
+    const height =
+      Platform.OS !== 'web'
+        ? withSpring(
+            interpolate(
+              logoAnimValue.value,
+              [0, 1],
+              [LOGO_SIZE * 2, LOGO_SIZE],
+            ),
+          )
+        : interpolate(logoAnimValue.value, [0, 1], [LOGO_SIZE * 2, LOGO_SIZE]);
 
     return {
-      zIndex: 15,
       position: 'absolute',
-      left,
+      zIndex: 15,
       top,
-      transform: [{scale}],
+      left,
+      width,
+      height,
     };
   });
 
@@ -333,15 +356,14 @@ const SignIn: FC = () => {
       <StatusBarBrightness />
 
       <StyledScrollView>
-        <AnimatedTouchableOpacity
-          style={logoAnimStyle}
+        <TouchableOpacity
           testID="theme-test"
           onPress={(): void => changeThemeType()}>
-          <Image
-            style={{width: LOGO_SIZE, height: LOGO_SIZE, resizeMode: 'cover'}}
+          <AnimatedImage
+            style={[logoAnimStyle, {resizeMode: 'cover'}]}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
-        </AnimatedTouchableOpacity>
+        </TouchableOpacity>
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
