@@ -50,6 +50,9 @@ import {useNavigation} from '@react-navigation/core';
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
+const AnimatedTouchableOpacity =
+  Animated.createAnimatedComponent(TouchableOpacity);
+
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
@@ -306,7 +309,7 @@ const SignIn: FC = () => {
     };
   }, [logoAnimValue]);
 
-  const logoAnimStyle = useAnimatedStyle(() => {
+  const touchableAnimStyle = useAnimatedStyle(() => {
     const left = interpolate(
       logoAnimValue.value,
       [0, 1],
@@ -319,6 +322,15 @@ const SignIn: FC = () => {
       [screenHeight * 0.3, 80],
     );
 
+    return {
+      position: 'absolute',
+      zIndex: 17,
+      top,
+      left,
+    };
+  });
+
+  const logoAnimStyle = useAnimatedStyle(() => {
     const width =
       Platform.OS !== 'web'
         ? withSpring(
@@ -342,10 +354,9 @@ const SignIn: FC = () => {
         : interpolate(logoAnimValue.value, [0, 1], [LOGO_SIZE * 2, LOGO_SIZE]);
 
     return {
-      position: 'absolute',
       zIndex: 15,
-      top,
-      left,
+      top: 0,
+      left: 0,
       width,
       height,
     };
@@ -356,19 +367,45 @@ const SignIn: FC = () => {
       <StatusBarBrightness />
 
       <StyledScrollView>
-        <TouchableOpacity
+        <AnimatedTouchableOpacity
           testID="theme-test"
-          onPress={(): void => changeThemeType()}>
+          style={touchableAnimStyle}
+          onPress={(): void => {
+            console.log('change Theme type');
+            changeThemeType();
+          }}>
           <AnimatedImage
-            style={[logoAnimStyle, {resizeMode: 'cover'}]}
+            style={[
+              logoAnimStyle,
+
+              {resizeMode: 'cover', borderColor: 'red', borderWidth: 2},
+            ]}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
-        </TouchableOpacity>
+        </AnimatedTouchableOpacity>
+        {/* <TouchableOpacity
+          testID="theme-test"
+          style={{borderColor: 'blue', borderWidth: 3}}
+          // style={[logoAnimStyle, {resizeMode: 'cover'}]}
+          onPress={(): void => {
+            console.log('change Theme type');
+            changeThemeType();
+          }}>
+          <AnimatedImage
+            style={[
+              touchableAnimStyle,
+              {resizeMode: 'cover', borderColor: 'red', borderWidth: 2},
+            ]}
+            source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
+          />
+        </TouchableOpacity> */}
+
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
+
           <EditText
             type="row"
             testID="input-email"
