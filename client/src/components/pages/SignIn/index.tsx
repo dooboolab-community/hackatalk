@@ -48,7 +48,8 @@ import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
-const AnimatedImage = Animated.createAnimatedComponent(Image);
+const AnimatedTouchableOpacity =
+  Animated.createAnimatedComponent(TouchableOpacity);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -356,19 +357,24 @@ const SignIn: FC = () => {
       <StatusBarBrightness />
 
       <StyledScrollView>
-        <TouchableOpacity
+        <AnimatedTouchableOpacity
           testID="theme-test"
-          onPress={(): void => changeThemeType()}>
-          <AnimatedImage
-            style={[logoAnimStyle, {resizeMode: 'cover'}]}
+          style={logoAnimStyle}
+          onPress={(): void => {
+            changeThemeType();
+          }}>
+          <Image
+            style={{width: '100%', height: '100%', resizeMode: 'cover'}}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
-        </TouchableOpacity>
+        </AnimatedTouchableOpacity>
+
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
+
           <EditText
             type="row"
             testID="input-email"
