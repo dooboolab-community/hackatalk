@@ -51,8 +51,6 @@ import {useNavigation} from '@react-navigation/core';
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
 
-const AnimatedImage = Animated.createAnimatedComponent(Image);
-
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
@@ -309,7 +307,7 @@ const SignIn: FC = () => {
     };
   }, [logoAnimValue]);
 
-  const touchableAnimStyle = useAnimatedStyle(() => {
+  const logoAnimStyle = useAnimatedStyle(() => {
     const left = interpolate(
       logoAnimValue.value,
       [0, 1],
@@ -322,15 +320,6 @@ const SignIn: FC = () => {
       [screenHeight * 0.3, 80],
     );
 
-    return {
-      position: 'absolute',
-      zIndex: 17,
-      top,
-      left,
-    };
-  });
-
-  const logoAnimStyle = useAnimatedStyle(() => {
     const width =
       Platform.OS !== 'web'
         ? withSpring(
@@ -354,12 +343,12 @@ const SignIn: FC = () => {
         : interpolate(logoAnimValue.value, [0, 1], [LOGO_SIZE * 2, LOGO_SIZE]);
 
     return {
+      position: 'absolute',
       zIndex: 15,
-      top: 0,
-      left: 0,
+      top,
+      left,
       width,
       height,
-      resizeMode: 'cover',
     };
   });
 
@@ -370,12 +359,12 @@ const SignIn: FC = () => {
       <StyledScrollView>
         <AnimatedTouchableOpacity
           testID="theme-test"
-          style={touchableAnimStyle}
+          style={logoAnimStyle}
           onPress={(): void => {
             changeThemeType();
           }}>
-          <AnimatedImage
-            style={logoAnimStyle}
+          <Image
+            style={{width: '100%', height: '100%', resizeMode: 'cover'}}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
