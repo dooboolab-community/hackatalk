@@ -98,6 +98,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://taehwannoh.dev"><img src="https://avatars.githubusercontent.com/u/7760903?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Taehwan Noh</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=taehwanno" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/rarira"><img src="https://avatars.githubusercontent.com/u/8540420?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Inseong Park</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=rarira" title="Code">💻</a></td>
   </tr>
 </table>
 
