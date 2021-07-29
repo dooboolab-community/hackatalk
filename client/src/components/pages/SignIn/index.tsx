@@ -48,10 +48,10 @@ import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
-const AnimatedImage = Animated.createAnimatedComponent(Image);
-
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const Container = styled.SafeAreaView`
   flex: 1;
@@ -359,6 +359,7 @@ const SignIn: FC = () => {
       left: 0,
       width,
       height,
+      resizeMode: 'cover',
     };
   });
 
@@ -371,34 +372,13 @@ const SignIn: FC = () => {
           testID="theme-test"
           style={touchableAnimStyle}
           onPress={(): void => {
-            console.log('change Theme type');
             changeThemeType();
           }}>
           <AnimatedImage
-            style={[
-              logoAnimStyle,
-
-              {resizeMode: 'cover', borderColor: 'red', borderWidth: 2},
-            ]}
+            style={logoAnimStyle}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
-        {/* <TouchableOpacity
-          testID="theme-test"
-          style={{borderColor: 'blue', borderWidth: 3}}
-          // style={[logoAnimStyle, {resizeMode: 'cover'}]}
-          onPress={(): void => {
-            console.log('change Theme type');
-            changeThemeType();
-          }}>
-          <AnimatedImage
-            style={[
-              touchableAnimStyle,
-              {resizeMode: 'cover', borderColor: 'red', borderWidth: 2},
-            ]}
-            source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
-          />
-        </TouchableOpacity> */}
 
         <Wrapper>
           <LogoWrapper>
