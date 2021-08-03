@@ -84,11 +84,21 @@ export const Channel = objectType({
               },
             },
             include: {user: true},
+            orderBy: [
+              {
+                updatedAt: 'desc',
+              },
+            ],
           });
 
         return prisma.membership.findMany({
           where: {channel: {id}},
           include: {user: true},
+          orderBy: [
+            {
+              updatedAt: 'desc',
+            },
+          ],
         });
       },
     });

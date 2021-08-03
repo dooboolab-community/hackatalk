@@ -62,6 +62,18 @@ export const createMessage = mutationField('createMessage', {
       },
     });
 
+    await prisma.membership.update({
+      data: {
+        updatedAt: created.createdAt,
+      },
+      where: {
+        userId_channelId: {
+          userId,
+          channelId,
+        },
+      },
+    });
+
     const tokens = await getReceiversPushTokens(channelId, userId);
 
     tokens.forEach((token) => {

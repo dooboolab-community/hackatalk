@@ -8,6 +8,7 @@ export const Membership = objectType({
     t.model.isVisible();
     t.model.createdAt();
     t.model.updatedAt();
+    t.model.createdAt();
 
     t.field('user', {type: 'User'});
     t.field('channel', {type: 'Channel'});
