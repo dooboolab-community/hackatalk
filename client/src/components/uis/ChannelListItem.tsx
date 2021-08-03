@@ -1,6 +1,6 @@
 import {Channel, Message} from '../../types/graphql';
 import React, {ReactElement} from 'react';
-import {TouchableOpacity, View, ViewStyle} from 'react-native';
+import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
@@ -96,6 +96,17 @@ const StyledImageSmall = styled.Image`
   margin-bottom: 2px;
 `;
 
+const StyledCircleView = styled.View`
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  background-color: ${({theme}) => theme.tintColor};
+  align-items: center;
+  justify-content: center;
+`;
+
 interface Props {
   testID?: string;
   style?: ViewStyle;
@@ -156,6 +167,12 @@ function ChannelListItem(props: Props): React.ReactElement {
     const renderMultiImages = (
       photoStrs: (string | null | undefined)[] | undefined,
     ): ReactElement => {
+      photoStrs[2] = photoStrs[1];
+
+      photoStrs[3] = photoStrs[0];
+      photoStrs[4] = photoStrs[0];
+      console.log(photoStrs?.length);
+
       return (
         <View
           style={{
@@ -166,6 +183,15 @@ function ChannelListItem(props: Props): React.ReactElement {
           }}>
           {photoStrs?.map((photo, i) => {
             if (i > 3) return null;
+
+            if (photoStrs?.length > 4 && i === 3)
+              return (
+                <StyledCircleView>
+                  <Text style={{fontSize: 8}}>{`+${
+                    photoStrs.length - 3
+                  }`}</Text>
+                </StyledCircleView>
+              );
 
             if (!photo)
               return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
