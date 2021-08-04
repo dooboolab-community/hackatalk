@@ -89,7 +89,7 @@ const StyledRightText = styled.Text`
   color: ${({theme}) => theme.textSecondaryColor};
   max-width: 120px;
   border-width: 0.3px;
-  /* border-color: ${({theme}) => theme.lineColor}; */
+  border-color: ${({theme}) => theme.lineColor};
   padding: 4px 8px;
 `;
 
