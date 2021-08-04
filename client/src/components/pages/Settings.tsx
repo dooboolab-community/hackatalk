@@ -61,7 +61,6 @@ const Settings: FC = () => {
 
   const {user, signOutAsync} = useAuthContext();
   const {theme} = useTheme();
-
   const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
 
   const [commitNotification] =
