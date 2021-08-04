@@ -1,6 +1,6 @@
 import {Channel, Message} from '../../types/graphql';
 import React, {ReactElement} from 'react';
-import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
@@ -175,7 +175,6 @@ function ChannelListItem(props: Props): React.ReactElement {
 
     const renderMultiImages = (
       photoStrs: (string | null | undefined)[] | undefined,
-      userNames?: string[],
     ): ReactElement => {
       return (
         <View
@@ -233,7 +232,7 @@ function ChannelListItem(props: Props): React.ReactElement {
             <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1
                 ? renderSingleImage(photoURLs?.[0])
-                : renderMultiImages(photoURLs, userNames)}
+                : renderMultiImages(photoURLs)}
               {isOnline ? <StyledStatus /> : <View />}
             </View>
             <StyledViewContent>
