@@ -59,6 +59,8 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
 
       disposeMeQuery();
 
+      setUser(null);
+
       resetRelayEnvironment();
     };
 
