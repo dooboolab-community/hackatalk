@@ -82,6 +82,11 @@ const StyledTextDate = styled.Text`
   text-align: right;
 `;
 
+const StyledTextMembershipsCount = styled.Text`
+  font-size: 10px;
+  font-weight: bold;
+`;
+
 const StyledImage = styled.Image`
   width: 40px;
   height: 40px;
@@ -94,6 +99,21 @@ const StyledImageSmall = styled.Image`
   border-radius: 10px;
   margin-right: 2px;
   margin-bottom: 2px;
+`;
+
+const StyledCircleView = styled.View`
+  position: absolute;
+  right: -5px;
+  bottom: -10px;
+  padding-right: 5px;
+  padding-left: 5px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  background-color: ${({theme}) => theme.secondary};
+  align-items: center;
+  justify-content: center;
 `;
 
 interface Props {
@@ -143,8 +163,8 @@ function ChannelListItem(props: Props): React.ReactElement {
       return (
         <View
           style={{
-            width: 40,
-            height: 40,
+            width: 50,
+            height: 50,
             alignItems: 'center',
             justifyContent: 'center',
           }}>
@@ -159,19 +179,38 @@ function ChannelListItem(props: Props): React.ReactElement {
       return (
         <View
           style={{
-            width: 44,
-            height: 44,
-            flexWrap: 'wrap',
-            flexDirection: 'row',
+            width: 50,
+            height: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
           }}>
-          {photoStrs?.map((photo, i) => {
-            if (i > 3) return null;
+          <View
+            style={{
+              width: 44,
+              height: 44,
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+            }}>
+            {photoStrs?.slice(0, 4).map((photo, i) => {
+              if (i > 3) return null;
 
-            if (!photo)
-              return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
+              if (!photo)
+                return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
 
-            return <StyledImageSmall key={i} source={{uri: photo}} />;
-          })}
+              return <StyledImageSmall key={i} source={{uri: photo}} />;
+            })}
+          </View>
+          {!!photoStrs && photoStrs.length > 4 && (
+            <StyledCircleView>
+              <StyledTextMembershipsCount>
+                {`${
+                  photoStrs.length > 1000
+                    ? '+>1000'
+                    : `+${photoStrs?.length - 4}`
+                }`}
+              </StyledTextMembershipsCount>
+            </StyledCircleView>
+          )}
         </View>
       );
     };
@@ -179,14 +218,18 @@ function ChannelListItem(props: Props): React.ReactElement {
     const userNames = users?.map((v) => v?.nickname || v?.name || '');
 
     return (
-      <View style={{width: '100%'}}>
+      <View
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+        }}>
         <TouchableOpacity
           testID={testID}
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}>
           <StyledViewChatRoomListItem>
-            <View style={{marginHorizontal: 20}}>
+            <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1
                 ? renderSingleImage(photoURLs?.[0])
                 : renderMultiImages(photoURLs)}
