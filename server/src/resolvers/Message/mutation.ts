@@ -56,21 +56,22 @@ export const createMessage = mutationField('createMessage', {
     await prisma.channel.update({
       data: {
         lastMessageId: created.id,
+        membership: {
+          update: {
+            data: {
+              updatedAt: created.createdAt,
+            },
+            where: {
+              userId_channelId: {
+                userId,
+                channelId,
+              },
+            },
+          },
+        },
       },
       where: {
         id: channelId,
-      },
-    });
-
-    await prisma.membership.update({
-      data: {
-        updatedAt: created.createdAt,
-      },
-      where: {
-        userId_channelId: {
-          userId,
-          channelId,
-        },
       },
     });
 
