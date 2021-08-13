@@ -21,6 +21,7 @@ import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import {useAssets} from 'expo-asset';
+import {useFonts} from 'expo-font';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -63,11 +64,15 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
 
   const [assets] = useAssets(Icons);
 
-  useEffect(() => {
-    if (assets) hideSplashScreenThenRegisterNotification();
-  }, [assets]);
+  const [dooboouiAssets] = useFonts({
+    IcoMoon: require('dooboo-ui/Icon/doobooui.ttf'),
+  });
 
-  if (!assets)
+  useEffect(() => {
+    if (assets && dooboouiAssets) hideSplashScreenThenRegisterNotification();
+  }, [assets, dooboouiAssets]);
+
+  if (!assets || !dooboouiAssets)
     return <AppLoading autoHideSplash={false} onError={console.warn} />;
 
   return (
