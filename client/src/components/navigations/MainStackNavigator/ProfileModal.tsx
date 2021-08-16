@@ -35,6 +35,7 @@ import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.
 import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import {RootStackNavigationProps} from '../RootStackNavigator';
+import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -278,7 +279,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   return (
     <View
       style={{
-        height: 300,
+        flex: 1,
+        // height: 300,
         marginHorizontal: 20,
         alignSelf: 'stretch',
         alignItems: 'center',
@@ -394,7 +396,10 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         <StyledTextDisplayName numberOfLines={1}>
           {nickname || name || getString('NO_NAME')}
         </StyledTextDisplayName>
-        <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
+        <StatusMessageView statusMessage={statusMessage} />
+        {/* <StyledTextstatusMessage numberOfLines={2} ellipsizeMode={'tail'}>
+          {statusMessage}
+        </StyledTextstatusMessage> */}
       </StyledView>
       {showFriendAddedMessage ? (
         addFriendInFlight ? (
