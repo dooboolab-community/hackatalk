@@ -168,6 +168,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const addFriend = async (): Promise<void> => {
     const {onAddFriend} = modalState;
 
+    setOpened(false);
+
     commitAddFriend({
       variables: {friendId: id},
       updater: (proxyStore) => {
