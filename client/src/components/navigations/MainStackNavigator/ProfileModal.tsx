@@ -479,13 +479,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         {...(!opened && {pointerEvents: 'box-none'})}
       />
-      <StatusMessageView
-        statusMessage={statusMessage}
-        transitionOpacity={transitionOpacity}
-        modalLayout={modalLayout}
-        opened={opened}
-        handleAnim={handleAnim}
-      />
+      {statusMessage && (
+        <StatusMessageView
+          statusMessage={statusMessage}
+          transitionOpacity={transitionOpacity}
+          modalLayout={modalLayout}
+          opened={opened}
+          handleAnim={handleAnim}
+        />
+      )}
     </>
   );
 };

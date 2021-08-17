@@ -9,7 +9,7 @@ type StyledTextProps = {
 };
 
 type Props = {
-  statusMessage: String | null;
+  statusMessage: String;
   transitionOpacity: Animated.Value;
   modalLayout: {
     width: number;
@@ -67,19 +67,16 @@ const StatusMessageView: FC<Props> = (props: Props) => {
           useNativeDriver: true,
         }),
       ]).start();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opened, bodyHeight]);
+  }, [opened, bodyHeight, transitionOpacity]);
 
   useEffect(() => {
     const statusMessageLength = statusMessage?.split('\n').length;
 
-    if (statusMessage && (textLayoutWidth >= 195 || statusMessageLength > 2))
+    if (textLayoutWidth >= 195 || statusMessageLength > 2)
       setSeeMore({show: true, length: statusMessageLength || 0});
     else setSeeMore({show: false, length: statusMessageLength || 0});
   }, [statusMessage, textLayoutWidth]);
-
-  if (!statusMessage) return null;
 
   return (
     <Animated.View
