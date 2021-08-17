@@ -1,10 +1,17 @@
 import {FlatList, ListRenderItem} from 'react-native';
 import React, {FC, Suspense, useMemo} from 'react';
-import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
+import {
+  graphql,
+  useLazyLoadQuery,
+  usePaginationFragment,
+  useSubscription,
+} from 'react-relay';
 
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
+import {GraphQLSubscriptionConfig} from 'relay-runtime';
+import {MainFriendUserUpdatedSubscription} from '../../__generated__/MainFriendUserUpdatedSubscription.graphql';
 import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import UserListItem from '../uis/UserListItem';
@@ -12,6 +19,7 @@ import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
+import {userUpdatedUpdater} from '../../relay/updaters';
 
 const ITEM_CNT = 20;
 
@@ -49,6 +57,16 @@ type FriendsFragmentProps = {
   friendsKey: MainFriend_friends$key;
 };
 
+const userUpdatedSubscription = graphql`
+  subscription MainFriendUserUpdatedSubscription {
+    userUpdated {
+      id
+      ...ProfileModal_user
+      ...UserListItem_user
+    }
+  }
+`;
+
 const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   const {showModal} = useProfileContext();
 
@@ -56,6 +74,18 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     FriendFriendsPaginationQuery,
     MainFriend_friends$key
   >(friendsFragment, friendsKey);
+
+  const subscriptionConfig = useMemo<
+    GraphQLSubscriptionConfig<MainFriendUserUpdatedSubscription>
+  >(
+    () => ({
+      variables: {},
+      subscription: userUpdatedSubscription,
+    }),
+    [],
+  );
+
+  useSubscription(subscriptionConfig);
 
   const nodes = useMemo(() => {
     return (
