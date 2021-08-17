@@ -19,7 +19,6 @@ import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
-import {userUpdatedUpdater} from '../../relay/updaters';
 
 const ITEM_CNT = 20;
 
