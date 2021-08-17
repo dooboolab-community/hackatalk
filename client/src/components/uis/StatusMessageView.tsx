@@ -1,15 +1,12 @@
 import {Animated, TouchableOpacity} from 'react-native';
-import React, {FC, useLayoutEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useLayoutEffect, useRef, useState} from 'react';
 
+import {Icon} from 'dooboo-ui';
 import styled from '@emotion/native';
 
-const StyledTextstatusMessage = styled.Text`
-  font-size: 12px;
-  color: white;
-  margin-top: 8px;
-  align-self: center;
-  margin-bottom: 8px;
-`;
+type StyledTextProps = {
+  opened: Boolean;
+};
 
 type Props = {
   statusMessage: String | null;
@@ -22,8 +19,24 @@ type Props = {
   handleAnim: () => void;
 };
 
+const StyledTextstatusMessage = styled.Text<StyledTextProps>`
+  font-size: 12px;
+  color: white;
+  align-self: center;
+  font-weight: ${(props) => (props.opened ? 'bold' : 'normal')};
+`;
+
+const MAX_STATUS_MESSAGE_LINES = 10;
+
 const StatusMessageView: FC<Props> = (props: Props) => {
   const [bodyHeight, setBodyHeight] = useState(0);
+
+  const [seeMore, setSeeMore] = useState<{show: Boolean; length: number}>({
+    show: false,
+    length: 0,
+  });
+
+  const [textLayoutWidth, setTextLayoutWidth] = useState(0);
 
   const transition = useRef(new Animated.Value(140)).current;
 
@@ -31,31 +44,40 @@ const StatusMessageView: FC<Props> = (props: Props) => {
     props;
 
   useLayoutEffect(() => {
-    if (!opened) {
-      Animated.spring(transition, {
-        toValue: 140,
-        useNativeDriver: true,
-      }).start();
+    if (!opened)
+      Animated.parallel([
+        Animated.spring(transition, {
+          toValue: 140,
+          useNativeDriver: true,
+        }),
+        Animated.spring(transitionOpacity, {
+          toValue: 0,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    else
+      Animated.parallel([
+        Animated.spring(transition, {
+          toValue: 300 - (110 + bodyHeight),
+          useNativeDriver: true,
+        }),
 
-      Animated.spring(transitionOpacity, {
-        toValue: 0,
-
-        useNativeDriver: true,
-      }).start();
-    } else {
-      Animated.spring(transition, {
-        toValue: 300 - (110 + bodyHeight),
-        useNativeDriver: true,
-      }).start();
-
-      Animated.spring(transitionOpacity, {
-        toValue: 0.7,
-        useNativeDriver: true,
-      }).start();
-    }
+        Animated.spring(transitionOpacity, {
+          toValue: 0.7,
+          useNativeDriver: true,
+        }),
+      ]).start();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [opened, bodyHeight]);
+
+  useEffect(() => {
+    const statusMessageLength = statusMessage?.split('\n').length;
+
+    if (statusMessage && (textLayoutWidth >= 195 || statusMessageLength > 2))
+      setSeeMore({show: true, length: statusMessageLength || 0});
+    else setSeeMore({show: false, length: statusMessageLength || 0});
+  }, [statusMessage, textLayoutWidth]);
 
   if (!statusMessage) return null;
 
@@ -71,12 +93,43 @@ const StatusMessageView: FC<Props> = (props: Props) => {
         width: 200,
       }}
       onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}>
-      <TouchableOpacity onPress={handleAnim}>
+      <TouchableOpacity
+        onPress={handleAnim}
+        style={{
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        {seeMore.show && !opened && (
+          <Icon
+            name="chevron-up-light"
+            size={12}
+            color="white"
+            style={{marginBottom: 4}}
+          />
+        )}
         <StyledTextstatusMessage
-          numberOfLines={!opened ? 2 : 6}
-          ellipsizeMode="tail">
-          {`${opened}${statusMessage}`}
+          opened={opened}
+          numberOfLines={!opened ? 2 : MAX_STATUS_MESSAGE_LINES}
+          ellipsizeMode="tail"
+          onTextLayout={(event) => {
+            setTextLayoutWidth(
+              event.nativeEvent.lines[event.nativeEvent.lines.length - 1].width,
+            );
+          }}>
+          {statusMessage}
         </StyledTextstatusMessage>
+        {opened && seeMore.length > MAX_STATUS_MESSAGE_LINES && (
+          <StyledTextstatusMessage opened={opened}>...</StyledTextstatusMessage>
+        )}
+        {seeMore.show && opened && (
+          <Icon
+            name="chevron-down-light"
+            size={12}
+            color="white"
+            style={{marginTop: 4}}
+          />
+        )}
       </TouchableOpacity>
     </Animated.View>
   );
