@@ -9,6 +9,7 @@ import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {User} from '../../types/graphql';
 import {getString} from '../../../STRINGS';
+import {light} from '../../theme';
 import moment from 'moment';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
@@ -116,7 +117,7 @@ const StyledMyMessage = styled.View`
 
 const styles = StyleSheet.create({
   url: {
-    color: '#1E6EFA',
+    color: light.link,
     textDecorationLine: 'underline',
   },
 });
