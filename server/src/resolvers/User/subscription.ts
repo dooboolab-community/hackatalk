@@ -37,7 +37,7 @@ export const userUpdated = subscriptionField('userUpdated', {
     (payload, _, {userId}) => {
       assert(userId, 'Not Authorized!');
 
-      return payload.id === userId;
+      return payload.id !== userId;
     },
   ),
   resolve: (payload) => {
