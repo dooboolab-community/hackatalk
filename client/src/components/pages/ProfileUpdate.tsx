@@ -229,8 +229,6 @@ const Screen: FC = () => {
   };
 
   const updateProfile = async (): Promise<void> => {
-    console.log(statusMessage, statusMessage.length);
-
     const mutationConfig = {
       variables: {
         user: {
