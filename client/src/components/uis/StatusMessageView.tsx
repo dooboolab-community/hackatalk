@@ -1,5 +1,5 @@
 import {Animated, TouchableOpacity} from 'react-native';
-import React, {FC, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {FC, MutableRefObject, useEffect, useRef, useState} from 'react';
 
 import {Icon} from 'dooboo-ui';
 import styled from '@emotion/native';
@@ -10,7 +10,7 @@ type StyledTextProps = {
 
 type Props = {
   statusMessage: String;
-  transitionOpacity: Animated.Value;
+  transitionOpacity: MutableRefObject<Animated.Value>;
   modalLayout: {
     width: number;
     height: number;
@@ -43,14 +43,14 @@ const StatusMessageView: FC<Props> = (props: Props) => {
   const {statusMessage, transitionOpacity, modalLayout, opened, handleAnim} =
     props;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!opened)
       Animated.parallel([
         Animated.spring(transition, {
           toValue: 140,
           useNativeDriver: true,
         }),
-        Animated.spring(transitionOpacity, {
+        Animated.spring(transitionOpacity.current, {
           toValue: 0,
           useNativeDriver: true,
         }),
@@ -62,13 +62,14 @@ const StatusMessageView: FC<Props> = (props: Props) => {
           useNativeDriver: true,
         }),
 
-        Animated.spring(transitionOpacity, {
+        Animated.spring(transitionOpacity.current, {
           toValue: 0.7,
           useNativeDriver: true,
         }),
       ]).start();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opened, bodyHeight, transitionOpacity]);
+  }, [opened, bodyHeight]);
 
   useEffect(() => {
     const statusMessageLength = statusMessage?.split('\n').length;
@@ -85,8 +86,8 @@ const StatusMessageView: FC<Props> = (props: Props) => {
         transform: [{translateY: transition}],
         backgroundColor: 'transparent',
         zIndex: 100,
-        left: 20 + (modalLayout.width - 200) / 2,
-        top: modalLayout.height - 260,
+        left: 20 + ((modalLayout?.width || 200) - 200) / 2,
+        top: (modalLayout?.height || 260) - 260,
         width: 200,
       }}
       onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}>

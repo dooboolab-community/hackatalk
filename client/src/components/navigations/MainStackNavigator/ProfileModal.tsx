@@ -144,7 +144,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     height: number;
   }>({width: 0, height: 0});
   const [opened, setOpened] = useState(false);
-  const transitionOpacity = useRef(new Animated.Value(0)).current;
+  const transitionOpacity = useRef(new Animated.Value(0));
 
   const navigation = useNavigation<RootStackNavigationProps>();
 
@@ -475,7 +475,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           top: 0,
           left: 20,
           backgroundColor: 'black',
-          opacity: transitionOpacity,
+          opacity: transitionOpacity.current,
         }}
         {...(!opened && {pointerEvents: 'box-none'})}
       />
