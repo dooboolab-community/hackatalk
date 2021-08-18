@@ -280,7 +280,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     theme: {header, modalBtnPrimaryFont},
   } = useTheme();
 
-  const handleAnim: () => void = () => setOpened(!opened);
+  const handleAnim = (): void => setOpened(!opened);
 
   return (
     <>
