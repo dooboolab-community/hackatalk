@@ -5,7 +5,7 @@ import {Icon} from 'dooboo-ui';
 import styled from '@emotion/native';
 
 type StyledTextProps = {
-  opened: Boolean;
+  isStatusMessageExpanded: Boolean;
 };
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
     width: number;
     height: number;
   };
-  opened: boolean;
+  isStatusMessageExpanded: boolean;
   handleAnim: () => void;
 };
 
@@ -23,15 +23,22 @@ const StyledTextstatusMessage = styled.Text<StyledTextProps>`
   font-size: 12px;
   color: white;
   align-self: center;
-  font-weight: ${(props) => (props.opened ? 'bold' : 'normal')};
+  font-weight: ${(props) =>
+    props.isStatusMessageExpanded ? 'bold' : 'normal'};
 `;
 
 const MAX_STATUS_MESSAGE_LINES = 10;
 
-const StatusMessageView: FC<Props> = (props: Props) => {
+const StatusMessageView: FC<Props> = ({
+  statusMessage,
+  transitionOpacity,
+  modalLayout,
+  isStatusMessageExpanded,
+  handleAnim,
+}) => {
   const [bodyHeight, setBodyHeight] = useState(0);
 
-  const [seeMore, setSeeMore] = useState<{show: Boolean; length: number}>({
+  const [showArrow, setShowArrow] = useState<{show: Boolean; length: number}>({
     show: false,
     length: 0,
   });
@@ -40,11 +47,8 @@ const StatusMessageView: FC<Props> = (props: Props) => {
 
   const transition = useRef(new Animated.Value(140)).current;
 
-  const {statusMessage, transitionOpacity, modalLayout, opened, handleAnim} =
-    props;
-
   useEffect(() => {
-    if (!opened)
+    if (!isStatusMessageExpanded)
       Animated.parallel([
         Animated.spring(transition, {
           toValue: 140,
@@ -69,14 +73,14 @@ const StatusMessageView: FC<Props> = (props: Props) => {
       ]).start();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [opened, bodyHeight]);
+  }, [isStatusMessageExpanded, bodyHeight]);
 
   useEffect(() => {
     const statusMessageLength = statusMessage?.split('\n').length;
 
     if (textLayoutWidth >= 195 || statusMessageLength > 2)
-      setSeeMore({show: true, length: statusMessageLength || 0});
-    else setSeeMore({show: false, length: statusMessageLength || 0});
+      setShowArrow({show: true, length: statusMessageLength || 0});
+    else setShowArrow({show: false, length: statusMessageLength || 0});
   }, [statusMessage, textLayoutWidth]);
 
   return (
@@ -98,7 +102,7 @@ const StatusMessageView: FC<Props> = (props: Props) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        {seeMore.show && !opened && (
+        {showArrow.show && !isStatusMessageExpanded && (
           <Icon
             name="chevron-up-light"
             size={12}
@@ -107,8 +111,8 @@ const StatusMessageView: FC<Props> = (props: Props) => {
           />
         )}
         <StyledTextstatusMessage
-          opened={opened}
-          numberOfLines={!opened ? 2 : MAX_STATUS_MESSAGE_LINES}
+          isStatusMessageExpanded={isStatusMessageExpanded}
+          numberOfLines={isStatusMessageExpanded ? MAX_STATUS_MESSAGE_LINES : 2}
           ellipsizeMode="tail"
           onTextLayout={(event) => {
             setTextLayoutWidth(
@@ -117,10 +121,14 @@ const StatusMessageView: FC<Props> = (props: Props) => {
           }}>
           {statusMessage}
         </StyledTextstatusMessage>
-        {opened && seeMore.length > MAX_STATUS_MESSAGE_LINES && (
-          <StyledTextstatusMessage opened={opened}>...</StyledTextstatusMessage>
-        )}
-        {seeMore.show && opened && (
+        {isStatusMessageExpanded &&
+          showArrow.length > MAX_STATUS_MESSAGE_LINES && (
+            <StyledTextstatusMessage
+              isStatusMessageExpanded={isStatusMessageExpanded}>
+              ...
+            </StyledTextstatusMessage>
+          )}
+        {showArrow.show && isStatusMessageExpanded && (
           <Icon
             name="chevron-down-light"
             size={12}

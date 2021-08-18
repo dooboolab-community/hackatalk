@@ -143,7 +143,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     width: number;
     height: number;
   }>({width: 0, height: 0});
-  const [opened, setOpened] = useState(false);
+  const [isStatusMessageExpanded, setStatusMessageExpanded] = useState(false);
   const transitionOpacity = useRef(new Animated.Value(0));
 
   const navigation = useNavigation<RootStackNavigationProps>();
@@ -168,7 +168,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const addFriend = async (): Promise<void> => {
     const {onAddFriend} = modalState;
 
-    setOpened(false);
+    setStatusMessageExpanded(false);
 
     commitAddFriend({
       variables: {friendId: id},
@@ -280,7 +280,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     theme: {header, modalBtnPrimaryFont},
   } = useTheme();
 
-  const handleAnim = (): void => setOpened(!opened);
+  const handleAnim = (): void =>
+    setStatusMessageExpanded(!isStatusMessageExpanded);
 
   return (
     <>
@@ -411,10 +412,6 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           <StyledTextDisplayName numberOfLines={1}>
             {nickname || name || getString('NO_NAME')}
           </StyledTextDisplayName>
-
-          {/* <StyledTextstatusMessage numberOfLines={2} ellipsizeMode={'tail'}>
-          {statusMessage}
-        </StyledTextstatusMessage> */}
         </StyledView>
         {showFriendAddedMessage ? (
           addFriendInFlight ? (
@@ -477,14 +474,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           backgroundColor: 'black',
           opacity: transitionOpacity.current,
         }}
-        {...(!opened && {pointerEvents: 'box-none'})}
+        {...(!isStatusMessageExpanded && {pointerEvents: 'box-none'})}
       />
       {statusMessage && (
         <StatusMessageView
           statusMessage={statusMessage}
           transitionOpacity={transitionOpacity}
           modalLayout={modalLayout}
-          opened={opened}
+          isStatusMessageExpanded={isStatusMessageExpanded}
           handleAnim={handleAnim}
         />
       )}
