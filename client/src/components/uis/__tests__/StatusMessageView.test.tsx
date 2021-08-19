@@ -3,7 +3,7 @@ import * as React from 'react';
 import StatusMessageView, {
   MAX_STATUS_MESSAGE_LINES,
 } from '../StatusMessageView';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {fireEvent, render} from '@testing-library/react-native';
 import timeTravel, {setupTimeTravel} from '../../../../test/timeTravel';
 
 import {Animated} from 'react-native';
