@@ -96,6 +96,7 @@ const StatusMessageView: FC<Props> = ({
       }}
       onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}>
       <TouchableOpacity
+        testID="touchable-statusMessageView"
         onPress={handleAnim}
         style={{
           flexDirection: 'column',

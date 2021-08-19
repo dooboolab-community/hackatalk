@@ -6,7 +6,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import {act, fireEvent, render, waitFor} from '@testing-library/react-native';
+import {act, fireEvent, render} from '@testing-library/react-native';
 import {
   createMockNavigation,
   createTestElement,
@@ -18,6 +18,7 @@ import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
 import {User} from '../../../types/graphql';
 import {View} from 'react-native';
+import {debug} from 'react-native-reanimated';
 import mockReactNavigation from '@react-navigation/core';
 import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
@@ -102,7 +103,6 @@ describe('[ProfileModal] rendering test', () => {
     act(() => consumerRef.current?.showModal({}));
 
     const json = screen.toJSON();
-
     expect(json).toMatchSnapshot();
   });
 
@@ -245,5 +245,69 @@ describe('[ProfileModal] rendering test', () => {
     fireEvent.press(button);
 
     expect(mockOnAddFriend).toHaveBeenCalledTimes(1);
+  });
+
+  it('Pressing StatusMessageView should call handleAnim', () => {
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const {getByTestId} = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({}));
+
+    const touchable = getByTestId('touchable-statusMessageView');
+
+    const container = getByTestId('view-statusMessageView');
+
+    expect(container.props.pointerEvents).toBe('box-none');
+
+    fireEvent.press(touchable);
+
+    expect(container.props.pointerEvents).toBe(undefined);
+  });
+
+  it('Should call onLayout callback', () => {
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const {getByTestId} = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({}));
+
+    const container = getByTestId('container');
+    const overlay = getByTestId('view-statusMessageView');
+
+    expect(overlay.props.style.width).toBe(0);
+    expect(overlay.props.style.height).toBe(-48);
+
+    fireEvent(container, 'onLayout', {
+      nativeEvent: {
+        layout: {
+          width: 300,
+          height: 300,
+        },
+      },
+    });
+
+    expect(overlay.props.style.width).toBe(300);
+    expect(overlay.props.style.height).toBe(252);
   });
 });

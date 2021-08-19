@@ -286,6 +286,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   return (
     <>
       <View
+        testID="container"
         style={{
           flex: 1,
           marginHorizontal: 20,
@@ -464,6 +465,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         ) : null}
       </View>
       <Animated.View
+        testID="view-statusMessageView"
         style={{
           position: 'absolute',
           width: modalLayout.width,
