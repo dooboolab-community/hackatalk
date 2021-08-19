@@ -17,6 +17,7 @@ type Props = {
   };
   isStatusMessageExpanded: boolean;
   handleAnim: () => void;
+  testID?: String;
 };
 
 const StyledTextstatusMessage = styled.Text<StyledTextProps>`
@@ -27,7 +28,7 @@ const StyledTextstatusMessage = styled.Text<StyledTextProps>`
     props.isStatusMessageExpanded ? 'bold' : 'normal'};
 `;
 
-const MAX_STATUS_MESSAGE_LINES = 10;
+export const MAX_STATUS_MESSAGE_LINES = 10;
 
 const StatusMessageView: FC<Props> = ({
   statusMessage,
@@ -76,22 +77,23 @@ const StatusMessageView: FC<Props> = ({
   }, [isStatusMessageExpanded, bodyHeight]);
 
   useEffect(() => {
-    const statusMessageLength = statusMessage?.split('\n').length;
+    const statusMessageLength = statusMessage.split('\n').length;
 
     if (textLayoutWidth >= 195 || statusMessageLength > 2)
-      setShowArrow({show: true, length: statusMessageLength || 0});
-    else setShowArrow({show: false, length: statusMessageLength || 0});
+      setShowArrow({show: true, length: statusMessageLength});
+    else setShowArrow({show: false, length: statusMessageLength});
   }, [statusMessage, textLayoutWidth]);
 
   return (
     <Animated.View
+      testID="view-animated"
       style={{
         position: 'absolute',
         transform: [{translateY: transition}],
         backgroundColor: 'transparent',
         zIndex: 100,
-        left: 20 + ((modalLayout?.width || 200) - 200) / 2,
-        top: (modalLayout?.height || 260) - 260,
+        left: 20 + ((modalLayout.width || 200) - 200) / 2,
+        top: (modalLayout.height || 260) - 260,
         width: 200,
       }}
       onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}>
@@ -112,6 +114,7 @@ const StatusMessageView: FC<Props> = ({
           />
         )}
         <StyledTextstatusMessage
+          testID="text-main"
           isStatusMessageExpanded={isStatusMessageExpanded}
           numberOfLines={isStatusMessageExpanded ? MAX_STATUS_MESSAGE_LINES : 2}
           ellipsizeMode="tail"
@@ -125,6 +128,7 @@ const StatusMessageView: FC<Props> = ({
         {isStatusMessageExpanded &&
           showArrow.length > MAX_STATUS_MESSAGE_LINES && (
             <StyledTextstatusMessage
+              testID="text-end"
               isStatusMessageExpanded={isStatusMessageExpanded}>
               ...
             </StyledTextstatusMessage>

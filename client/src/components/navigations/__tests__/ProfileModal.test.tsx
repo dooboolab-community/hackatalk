@@ -18,7 +18,6 @@ import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
 import {User} from '../../../types/graphql';
 import {View} from 'react-native';
-import {debug} from 'react-native-reanimated';
 import mockReactNavigation from '@react-navigation/core';
 import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
