@@ -146,7 +146,7 @@ function ChannelListItem(props: Props): React.ReactElement {
 
   const {text, imageUrls, createdAt} = lastMessage as Message;
 
-  if (channelType === 'private') {
+  if (channelType === 'private' || channelType === 'self') {
     const users = memberships?.map((membership) => membership?.user);
 
     const photoURLs = memberships?.map(

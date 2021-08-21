@@ -61,7 +61,7 @@ const channelsPaginationFragment = graphql`
           id
           channelType
           name
-          memberships(excludeMe: true) {
+          memberships(excludeMe: false) {
             user {
               name
               nickname
@@ -102,6 +102,8 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   const orientation = useOrientation();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
+  console.log(data);
+
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
   };
@@ -113,6 +115,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     item: {node: Channel; cursor: string};
     index: number;
   }): React.ReactElement | null => {
+    console.log(item);
     if (!item.node?.memberships || !item.node?.memberships.length)
       return <View key={index} />;
 

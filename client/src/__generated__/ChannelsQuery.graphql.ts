@@ -37,7 +37,7 @@ fragment MainChannelComponent_channel_4q1LXA on Query {
         id
         channelType
         name
-        memberships(excludeMe: true) {
+        memberships(excludeMe: false) {
           user {
             name
             nickname
@@ -187,7 +187,7 @@ return {
                       {
                         "kind": "Literal",
                         "name": "excludeMe",
-                        "value": true
+                        "value": false
                       }
                     ],
                     "concreteType": "Membership",
@@ -229,7 +229,7 @@ return {
                         "storageKey": null
                       }
                     ],
-                    "storageKey": "memberships(excludeMe:true)"
+                    "storageKey": "memberships(excludeMe:false)"
                   },
                   {
                     "alias": null,
@@ -333,12 +333,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "047431ecf913de2826e4003ae2d842d8",
+    "cacheID": "500c1c4e72b6421d64f2875cdfde50f2",
     "id": null,
     "metadata": {},
     "name": "ChannelsQuery",
     "operationKind": "query",
-    "text": "query ChannelsQuery(\n  $first: Int!\n  $after: String\n  $withMessage: Boolean\n) {\n  ...MainChannelComponent_channel_4q1LXA\n}\n\nfragment MainChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: true) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query ChannelsQuery(\n  $first: Int!\n  $after: String\n  $withMessage: Boolean\n) {\n  ...MainChannelComponent_channel_4q1LXA\n}\n\nfragment MainChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: false) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
