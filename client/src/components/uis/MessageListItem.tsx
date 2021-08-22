@@ -1,5 +1,5 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
@@ -7,9 +7,9 @@ import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import {Theme} from '../../theme';
 import {User} from '../../types/graphql';
 import {getString} from '../../../STRINGS';
-import {light} from '../../theme';
 import moment from 'moment';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
@@ -115,12 +115,14 @@ const StyledMyMessage = styled.View`
   border-radius: 3px;
 `;
 
-const styles = StyleSheet.create({
-  url: {
-    color: light.link,
-    textDecorationLine: 'underline',
-  },
-});
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const makeStyles = (theme: Theme) =>
+  StyleSheet.create({
+    url: {
+      color: theme.link,
+      textDecorationLine: 'underline',
+    },
+  });
 
 interface ImageSenderProps {
   thumbURL?: string | null;
@@ -229,6 +231,7 @@ const MessageListItem: FC<Props> = ({
   userId,
 }) => {
   const {theme} = useTheme();
+  const styles = useMemo(() => makeStyles(theme), [theme]);
   const {id, sender, text, createdAt, imageUrls} = useFragment(fragment, item);
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
@@ -286,7 +289,18 @@ const MessageListItem: FC<Props> = ({
                   </TouchableOpacity>
                 </StyledPhotoContainer>
               ) : (
-                <StyledPeerTextMessage selectable>{text}</StyledPeerTextMessage>
+                <StyledPeerTextMessage selectable>
+                  <ParsedText
+                    parse={[
+                      {
+                        type: 'url',
+                        onPress: handleUrlPress,
+                        style: styles.url,
+                      },
+                    ]}>
+                    {text}
+                  </ParsedText>
+                </StyledPeerTextMessage>
               )}
             </StyledTextPeerMessageContainer>
           </View>
