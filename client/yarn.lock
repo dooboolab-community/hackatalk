@@ -6814,10 +6814,10 @@ domutils@^2.0.0, domutils@^2.5.2, domutils@^2.6.0:
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
 
-dooboo-ui@^0.1.5:
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.1.14.tgz#03e195616187ae92e883500a99b135e8d9d27822"
-  integrity sha512-iTEm7XRMXGDztVcNFdrZth/XYK01mdyhuQtQcMsv9SMuwyUPIlOiyjhdHYsT4zwHIHQsE/sKF75buOym5JCR7Q==
+dooboo-ui@^0.1.25:
+  version "0.1.25"
+  resolved "https://registry.yarnpkg.com/dooboo-ui/-/dooboo-ui-0.1.25.tgz#061397ee1cfd1bf9543612f9dea8905ee3a363d9"
+  integrity sha512-d4QsM8isBapH6pCXgfR/LLuyUj1vXKnQgts4cUqWz3sViKN8H7YqysQt4UT15mdnQQMM8QZRsaIEBQuQLITBKQ==
   dependencies:
     dooboolab-welcome "^1.2.0"
     react-native-web-hooks "^3.0.1"
