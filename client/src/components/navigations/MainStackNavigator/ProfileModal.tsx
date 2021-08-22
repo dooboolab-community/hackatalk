@@ -476,7 +476,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           backgroundColor: 'black',
           opacity: transitionOpacity.current,
         }}
-        {...(!isStatusMessageExpanded && {pointerEvents: 'box-none'})}
+        pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
       {statusMessage && (
         <StatusMessageView
