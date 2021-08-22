@@ -41,7 +41,7 @@ describe('[FindPw] interaction', () => {
   });
 
   describe('onFindPw', () => {
-    it('should show error text when the email is not validated', async () => {
+    it('should show error text when the email is not validated', () => {
       const component = createTestElement(<FindPw />);
       const screen = render(component);
       const textInput = screen.getByTestId('input-email');
