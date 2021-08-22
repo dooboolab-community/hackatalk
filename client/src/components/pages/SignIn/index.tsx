@@ -188,7 +188,8 @@ const SignIn: FC = () => {
       (await AsyncStorage.getItem('license_agreed')) as string,
     );
 
-    if (!licenseAgreed) return navigation.navigate('LicenseAgreement');
+    if (!licenseAgreed && Platform.OS === 'ios')
+      return navigation.navigate('LicenseAgreement');
 
     const mutationConfig = {
       variables: {
