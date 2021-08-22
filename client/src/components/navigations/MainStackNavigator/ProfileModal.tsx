@@ -94,13 +94,6 @@ const StyledText = styled.Text`
   font-size: 16px;
 `;
 
-const StyledTextFriendAdded = styled.Text`
-  color: ${({theme}) => theme.tintColor};
-  font-size: 12px;
-  background-color: ${({theme}) => theme.background};
-  padding: 4px;
-`;
-
 interface Styles {
   wrapper: StyleProp<ViewStyle>;
   viewBtn: StyleProp<ViewStyle>;
@@ -167,8 +160,6 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
   const addFriend = async (): Promise<void> => {
     const {onAddFriend} = modalState;
-
-    setStatusMessageExpanded(false);
 
     commitAddFriend({
       variables: {friendId: id},
@@ -414,15 +405,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             {nickname || name || getString('NO_NAME')}
           </StyledTextDisplayName>
         </StyledView>
-        {showFriendAddedMessage ? (
-          addFriendInFlight ? (
-            <LoadingIndicator size="small" />
-          ) : (
-            <StyledTextFriendAdded testID="added-message">
-              {getString('FRIEND_ADDED')}
-            </StyledTextFriendAdded>
-          )
-        ) : null}
+
         {!modalState?.hideButtons ? (
           <StyledViewBtns>
             {deleteFriendInFlight ? (
@@ -485,6 +468,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           modalLayout={modalLayout}
           isStatusMessageExpanded={isStatusMessageExpanded}
           handleAnim={handleAnim}
+          showFriendAddedMessage={showFriendAddedMessage}
+          addFriendInFlight={addFriendInFlight}
         />
       )}
     </>

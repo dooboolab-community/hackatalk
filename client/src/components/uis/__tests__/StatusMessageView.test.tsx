@@ -20,6 +20,8 @@ const props = {
     width: 300,
     height: 300,
   },
+  showFriendAddedMessage: false,
+  addFriendInFlight: false,
 };
 
 describe('[StatusMessageView] render', () => {
