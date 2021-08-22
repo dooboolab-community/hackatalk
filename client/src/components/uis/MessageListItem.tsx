@@ -1,11 +1,13 @@
-import React, {FC} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
+import React, {FC, useMemo} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
+import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import {Theme} from '../../theme';
 import {User} from '../../types/graphql';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
@@ -113,6 +115,15 @@ const StyledMyMessage = styled.View`
   border-radius: 3px;
 `;
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const makeStyles = (theme: Theme) =>
+  StyleSheet.create({
+    url: {
+      color: theme.link,
+      textDecorationLine: 'underline',
+    },
+  });
+
 interface ImageSenderProps {
   thumbURL?: string | null;
   isSamePeerMsg: boolean;
@@ -161,6 +172,10 @@ const decorateDate = (createdAt: string): string => {
   if (diffHours >= 1) return `${date.format('A hh:mm')}`;
 
   return date.fromNow();
+};
+
+const handleUrlPress = (url: string): void => {
+  Linking.openURL(url);
 };
 
 const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
@@ -216,6 +231,7 @@ const MessageListItem: FC<Props> = ({
   userId,
 }) => {
   const {theme} = useTheme();
+  const styles = useMemo(() => makeStyles(theme), [theme]);
   const {id, sender, text, createdAt, imageUrls} = useFragment(fragment, item);
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
@@ -273,7 +289,18 @@ const MessageListItem: FC<Props> = ({
                   </TouchableOpacity>
                 </StyledPhotoContainer>
               ) : (
-                <StyledPeerTextMessage selectable>{text}</StyledPeerTextMessage>
+                <StyledPeerTextMessage selectable>
+                  <ParsedText
+                    parse={[
+                      {
+                        type: 'url',
+                        onPress: handleUrlPress,
+                        style: styles.url,
+                      },
+                    ]}>
+                    {text}
+                  </ParsedText>
+                </StyledPeerTextMessage>
               )}
             </StyledTextPeerMessageContainer>
           </View>
@@ -301,7 +328,18 @@ const MessageListItem: FC<Props> = ({
             </TouchableOpacity>
           </StyledPhotoContainer>
         ) : (
-          <StyledMyTextMessage selectable>{text}</StyledMyTextMessage>
+          <StyledMyTextMessage selectable>
+            <ParsedText
+              parse={[
+                {
+                  type: 'url',
+                  onPress: handleUrlPress,
+                  style: styles.url,
+                },
+              ]}>
+              {text}
+            </ParsedText>
+          </StyledMyTextMessage>
         )}
       </StyledMyMessage>
       {showDate ? (
