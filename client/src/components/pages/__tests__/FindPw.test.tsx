@@ -41,7 +41,7 @@ describe('[FindPw] interaction', () => {
   });
 
   describe('onFindPw', () => {
-    it('should show error text when the email is not validated', () => {
+    it('should show error text when the email is not validated', async () => {
       const component = createTestElement(<FindPw />);
       const screen = render(component);
       const textInput = screen.getByTestId('input-email');
@@ -55,6 +55,54 @@ describe('[FindPw] interaction', () => {
       const errorText = screen.getByText(getString('EMAIL_FORMAT_NOT_VALID'));
 
       expect(errorText).toBeTruthy();
+    });
+
+    it('should show error alert when user does not exists', async () => {
+      const mockEnvironment = createMockEnvironment();
+
+      mockEnvironment.mock.queueOperationResolver(
+        () => new Error(JSON.stringify({message: 'user does not exists'})),
+      );
+
+      const component = createTestElement(<FindPw />, {
+        environment: mockEnvironment,
+      });
+      const screen = render(component);
+      const textInput = screen.getByTestId('input-email');
+      const email = '11111@geoseong.net';
+
+      fireEvent.changeText(textInput, email);
+
+      const btnFindPw = screen.getByTestId('btn-find-pw');
+      const mockAlert = jest.spyOn(Alert, 'alert');
+
+      fireEvent.press(btnFindPw);
+
+      await waitFor(() => expect(mockAlert).toHaveBeenCalled());
+    });
+
+    it('should show error alert when email sent failed', async () => {
+      const mockEnvironment = createMockEnvironment();
+
+      mockEnvironment.mock.queueOperationResolver(
+        () => new Error(JSON.stringify({message: 'mail sent failed'})),
+      );
+
+      const component = createTestElement(<FindPw />, {
+        environment: mockEnvironment,
+      });
+      const screen = render(component);
+      const textInput = screen.getByTestId('input-email');
+      const email = 'hyochan@dooboolab.com';
+
+      fireEvent.changeText(textInput, email);
+
+      const btnFindPw = screen.getByTestId('btn-find-pw');
+      const mockAlert = jest.spyOn(Alert, 'alert');
+
+      fireEvent.press(btnFindPw);
+
+      await waitFor(() => expect(mockAlert).toHaveBeenCalled());
     });
 
     it('should call FindPw when button has clicked and navigate to SignIn', async () => {
