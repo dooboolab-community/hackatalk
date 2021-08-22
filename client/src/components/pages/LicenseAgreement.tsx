@@ -9,9 +9,10 @@ import {useNavigation} from '@react-navigation/core';
 import {useTheme} from 'dooboo-ui';
 
 const Container = styled.SafeAreaView`
+  padding: 8px;
+
   flex: 1;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
 `;
 
@@ -58,7 +59,6 @@ const Page: FC = () => {
         contentContainerStyle={{
           paddingVertical: 8,
           paddingHorizontal: 20,
-          backgroundColor: theme.background,
         }}>
         <StyledText>{getString('LICENSE_AGREEMENT_BY_APPLE')}</StyledText>
       </ScrollView>
