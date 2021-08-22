@@ -1,5 +1,6 @@
 import {
   Alert,
+  Animated,
   StyleProp,
   TouchableOpacity,
   View,
@@ -15,7 +16,7 @@ import {
   ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, {FC, useState} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -35,6 +36,7 @@ import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.
 import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import {RootStackNavigationProps} from '../RootStackNavigator';
+import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -87,23 +89,9 @@ const StyledTextDisplayName = styled.Text`
   align-self: center;
 `;
 
-const StyledTextstatusMessage = styled.Text`
-  font-size: 12px;
-  color: white;
-  margin-top: 8px;
-  align-self: center;
-`;
-
 const StyledText = styled.Text`
   color: ${({theme}) => theme.modalBtnFont};
   font-size: 16px;
-`;
-
-const StyledTextFriendAdded = styled.Text`
-  color: ${({theme}) => theme.tintColor};
-  font-size: 12px;
-  background-color: ${({theme}) => theme.background};
-  padding: 4px;
 `;
 
 interface Styles {
@@ -142,6 +130,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
   const [showFriendAddedMessage, setShowFriendAddedMessage] =
     useState<boolean>(false);
+
+  // to animate opacity of the modal box
+  const [modalLayout, setModalLayout] = useState<{
+    width: number;
+    height: number;
+  }>({width: 0, height: 0});
+  const [isStatusMessageExpanded, setStatusMessageExpanded] = useState(false);
+  const transitionOpacity = useRef(new Animated.Value(0));
 
   const navigation = useNavigation<RootStackNavigationProps>();
 
@@ -275,177 +271,208 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     theme: {header, modalBtnPrimaryFont},
   } = useTheme();
 
-  return (
-    <View
-      style={{
-        height: 300,
-        marginHorizontal: 20,
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: header,
-      }}>
-      <View
-        style={{
-          position: 'absolute',
-          top: 4,
-          right: 8,
-          flexDirection: 'row',
-        }}>
-        <TouchableOpacity
-          testID="touch-done"
-          onPress={() => {
-            navigation.navigate('MainStack', {
-              screen: 'Report',
-              params: {
-                name: nickname || name || getString('NO_NAME'),
-                userId: id,
-              },
-            });
+  const handleAnim = (): void =>
+    setStatusMessageExpanded(!isStatusMessageExpanded);
 
-            hideModal();
+  return (
+    <>
+      <View
+        testID="container"
+        style={{
+          flex: 1,
+          marginHorizontal: 20,
+          alignSelf: 'stretch',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          backgroundColor: header,
+        }}
+        onLayout={(event) => {
+          const {width, height} = event.nativeEvent.layout;
+          setModalLayout({width, height});
+        }}>
+        <View
+          style={{
+            position: 'absolute',
+            top: 4,
+            right: 8,
+            flexDirection: 'row',
           }}>
-          <View
-            style={{
-              paddingRight: 12,
-              paddingLeft: 8,
-              paddingVertical: 8,
-            }}>
-            <FontAwesome name="exclamation-circle" size={24} color="white" />
-          </View>
-        </TouchableOpacity>
-        {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
-          <View
-            style={{
-              paddingRight: 16,
-              paddingLeft: 8,
-              paddingVertical: 8,
-              justifyContent: 'center',
-            }}>
-            <LoadingIndicator size="small" />
-          </View>
-        ) : (
           <TouchableOpacity
             testID="touch-done"
-            onPress={(): void =>
-              Alert.alert(
-                hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
-                hasBlocked
-                  ? getString('UNBAN_USER_TEXT')
-                  : getString('BAN_USER_TEXT'),
-                [
-                  {
-                    text: getString('NO'),
-                    onPress: () => {},
-                    style: 'cancel',
-                  },
-                  {
-                    text: getString('YES'),
-                    onPress: hasBlocked ? deleteBlockedUser : createBlockedUser,
-                  },
-                ],
-                {cancelable: false},
-              )
-            }>
+            onPress={() => {
+              navigation.navigate('MainStack', {
+                screen: 'Report',
+                params: {
+                  name: nickname || name || getString('NO_NAME'),
+                  userId: id,
+                },
+              });
+
+              hideModal();
+            }}>
+            <View
+              style={{
+                paddingRight: 12,
+                paddingLeft: 8,
+                paddingVertical: 8,
+              }}>
+              <FontAwesome name="exclamation-circle" size={24} color="white" />
+            </View>
+          </TouchableOpacity>
+          {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
             <View
               style={{
                 paddingRight: 16,
                 paddingLeft: 8,
                 paddingVertical: 8,
-              }}>
-              <FontAwesome
-                name="ban"
-                size={24}
-                color={hasBlocked ? 'red' : 'white'}
-              />
-            </View>
-          </TouchableOpacity>
-        )}
-      </View>
-      <StyledView>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() => {
-            const user = modalState?.user;
-
-            if (user)
-              navigation.navigate('ImageSlider', {
-                images: [{uri: photoURL, sender: name}],
-              });
-          }}>
-          {photoURL ? (
-            <StyledImage
-              style={{alignSelf: 'center'}}
-              source={{uri: photoURL}}
-            />
-          ) : (
-            <View
-              style={{
-                width: 80,
-                height: 80,
-                alignSelf: 'center',
-                alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <StyledImage style={{alignSelf: 'center'}} source={IC_NO_IMAGE} />
+              <LoadingIndicator size="small" />
             </View>
-          )}
-        </TouchableOpacity>
-        <StyledTextDisplayName numberOfLines={1}>
-          {nickname || name || getString('NO_NAME')}
-        </StyledTextDisplayName>
-        <StyledTextstatusMessage>{statusMessage}</StyledTextstatusMessage>
-      </StyledView>
-      {showFriendAddedMessage ? (
-        addFriendInFlight ? (
-          <LoadingIndicator size="small" />
-        ) : (
-          <StyledTextFriendAdded testID="added-message">
-            {getString('FRIEND_ADDED')}
-          </StyledTextFriendAdded>
-        )
-      ) : null}
-      {!modalState?.hideButtons ? (
-        <StyledViewBtns>
-          {deleteFriendInFlight ? (
-            <LoadingIndicator size="small" />
           ) : (
             <TouchableOpacity
-              testID="touch-add-friend"
-              activeOpacity={0.5}
-              onPress={isFriend ? deleteFriend : addFriend}
-              style={styles.viewBtn}>
-              <View style={styles.viewBtn}>
-                <StyledText testID="text-add-title">
-                  {isFriend
-                    ? getString('DELETE_FRIEND')
-                    : getString('ADD_FRIEND')}
-                </StyledText>
+              testID="touch-done"
+              onPress={(): void =>
+                Alert.alert(
+                  hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
+                  hasBlocked
+                    ? getString('UNBAN_USER_TEXT')
+                    : getString('BAN_USER_TEXT'),
+                  [
+                    {
+                      text: getString('NO'),
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {
+                      text: getString('YES'),
+                      onPress: hasBlocked
+                        ? deleteBlockedUser
+                        : createBlockedUser,
+                    },
+                  ],
+                  {cancelable: false},
+                )
+              }>
+              <View
+                style={{
+                  paddingRight: 16,
+                  paddingLeft: 8,
+                  paddingVertical: 8,
+                }}>
+                <FontAwesome
+                  name="ban"
+                  size={24}
+                  color={hasBlocked ? 'red' : 'white'}
+                />
               </View>
             </TouchableOpacity>
           )}
-          <StyledViewBtnDivider />
+        </View>
+        <StyledView>
           <TouchableOpacity
-            testID="btn-chat"
             activeOpacity={0.5}
-            onPress={startChatting}
-            style={styles.viewBtn}>
-            {isChannelInFlight ? (
-              <LoadingIndicator size="small" />
+            onPress={() => {
+              const user = modalState?.user;
+
+              if (user)
+                navigation.navigate('ImageSlider', {
+                  images: [{uri: photoURL, sender: name}],
+                });
+            }}>
+            {photoURL ? (
+              <StyledImage
+                style={{alignSelf: 'center'}}
+                source={{uri: photoURL}}
+              />
             ) : (
-              <View style={styles.viewBtn}>
-                <StyledText
-                  style={{
-                    color: modalBtnPrimaryFont,
-                  }}>
-                  {getString('CHAT')}
-                </StyledText>
+              <View
+                style={{
+                  width: 80,
+                  height: 80,
+                  alignSelf: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <StyledImage
+                  style={{alignSelf: 'center'}}
+                  source={IC_NO_IMAGE}
+                />
               </View>
             )}
           </TouchableOpacity>
-        </StyledViewBtns>
-      ) : null}
-    </View>
+          <StyledTextDisplayName numberOfLines={1}>
+            {nickname || name || getString('NO_NAME')}
+          </StyledTextDisplayName>
+        </StyledView>
+
+        {!modalState?.hideButtons ? (
+          <StyledViewBtns>
+            {deleteFriendInFlight ? (
+              <LoadingIndicator size="small" />
+            ) : (
+              <TouchableOpacity
+                testID="touch-add-friend"
+                activeOpacity={0.5}
+                onPress={isFriend ? deleteFriend : addFriend}
+                style={styles.viewBtn}>
+                <View style={styles.viewBtn}>
+                  <StyledText testID="text-add-title">
+                    {isFriend
+                      ? getString('DELETE_FRIEND')
+                      : getString('ADD_FRIEND')}
+                  </StyledText>
+                </View>
+              </TouchableOpacity>
+            )}
+            <StyledViewBtnDivider />
+            <TouchableOpacity
+              testID="btn-chat"
+              activeOpacity={0.5}
+              onPress={startChatting}
+              style={styles.viewBtn}>
+              {isChannelInFlight ? (
+                <LoadingIndicator size="small" />
+              ) : (
+                <View style={styles.viewBtn}>
+                  <StyledText
+                    style={{
+                      color: modalBtnPrimaryFont,
+                    }}>
+                    {getString('CHAT')}
+                  </StyledText>
+                </View>
+              )}
+            </TouchableOpacity>
+          </StyledViewBtns>
+        ) : null}
+      </View>
+      <Animated.View
+        testID="view-statusMessageView"
+        style={{
+          position: 'absolute',
+          width: modalLayout.width,
+          height: modalLayout.height - 48,
+          zIndex: 1,
+          top: 0,
+          left: 20,
+          backgroundColor: 'black',
+          opacity: transitionOpacity.current,
+        }}
+        pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
+      />
+      {statusMessage && (
+        <StatusMessageView
+          statusMessage={statusMessage}
+          transitionOpacity={transitionOpacity}
+          modalLayout={modalLayout}
+          isStatusMessageExpanded={isStatusMessageExpanded}
+          handleAnim={handleAnim}
+          showFriendAddedMessage={showFriendAddedMessage}
+          addFriendInFlight={addFriendInFlight}
+        />
+      )}
+    </>
   );
 };
 

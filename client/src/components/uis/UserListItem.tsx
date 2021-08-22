@@ -88,9 +88,8 @@ const StyledRightText = styled.Text`
   font-size: 12px;
   color: ${({theme}) => theme.textSecondaryColor};
   max-width: 120px;
-  border-width: 0.3px;
-  border-color: ${({theme}) => theme.lineColor};
   padding: 4px 8px;
+  overflow: hidden;
 `;
 
 function Shared({
@@ -166,7 +165,9 @@ function Shared({
               onToggle={onPress}
             />
           ) : statusMessage ? (
-            <StyledRightText>{statusMessage}</StyledRightText>
+            <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
+              {statusMessage}
+            </StyledRightText>
           ) : null}
         </Wrapper>
       </TouchableOpacity>

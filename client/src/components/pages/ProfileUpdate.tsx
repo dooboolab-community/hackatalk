@@ -342,6 +342,7 @@ const Screen: FC = () => {
             }
             textInputProps={{
               multiline: true,
+              maxLength: 60,
             }}
           />
           <StyledButtonWrapper>
