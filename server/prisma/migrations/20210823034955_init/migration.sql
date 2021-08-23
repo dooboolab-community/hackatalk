@@ -1,20 +1,20 @@
 -- CreateEnum
-CREATE TYPE "hackatalk"."Gender" AS ENUM ('male', 'female');
+CREATE TYPE "Gender" AS ENUM ('male', 'female');
 
 -- CreateEnum
-CREATE TYPE "hackatalk"."AuthType" AS ENUM ('email', 'facebook', 'google', 'apple');
+CREATE TYPE "AuthType" AS ENUM ('email', 'facebook', 'google', 'apple');
 
 -- CreateEnum
-CREATE TYPE "hackatalk"."MembershipType" AS ENUM ('owner', 'admin', 'member');
+CREATE TYPE "MembershipType" AS ENUM ('owner', 'admin', 'member');
 
 -- CreateEnum
-CREATE TYPE "hackatalk"."AlertMode" AS ENUM ('sound', 'vibrate', 'silent');
+CREATE TYPE "AlertMode" AS ENUM ('sound', 'vibrate', 'silent');
 
 -- CreateEnum
-CREATE TYPE "hackatalk"."ChannelType" AS ENUM ('private', 'public');
+CREATE TYPE "ChannelType" AS ENUM ('private', 'public');
 
 -- CreateEnum
-CREATE TYPE "hackatalk"."MessageType" AS ENUM ('text', 'photo', 'file');
+CREATE TYPE "MessageType" AS ENUM ('text', 'photo', 'file');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -41,7 +41,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Notification" (
-"id" SERIAL,
+    "id" SERIAL NOT NULL,
     "token" TEXT NOT NULL,
     "device" TEXT,
     "os" TEXT,
@@ -53,7 +53,7 @@ CREATE TABLE "Notification" (
 
 -- CreateTable
 CREATE TABLE "Profile" (
-"id" SERIAL,
+    "id" SERIAL NOT NULL,
     "socialId" TEXT,
     "authType" "AuthType",
     "userId" TEXT NOT NULL,
@@ -85,6 +85,7 @@ CREATE TABLE "BlockedUser" (
 
 -- CreateTable
 CREATE TABLE "Report" (
+    "id" TEXT NOT NULL,
     "report" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
@@ -92,7 +93,7 @@ CREATE TABLE "Report" (
     "userId" TEXT NOT NULL,
     "reportedUserId" TEXT NOT NULL,
 
-    PRIMARY KEY ("userId","reportedUserId")
+    PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -139,7 +140,7 @@ CREATE TABLE "Message" (
 
 -- CreateTable
 CREATE TABLE "Reply" (
-"id" SERIAL,
+    "id" SERIAL NOT NULL,
     "messageType" "MessageType" NOT NULL DEFAULT E'text',
     "text" TEXT,
     "imageUrls" TEXT[],
@@ -155,7 +156,7 @@ CREATE TABLE "Reply" (
 
 -- CreateTable
 CREATE TABLE "Reaction" (
-"id" SERIAL,
+    "id" SERIAL NOT NULL,
     "value" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "messageId" TEXT NOT NULL,
@@ -173,65 +174,56 @@ CREATE UNIQUE INDEX "Notification.token_unique" ON "Notification"("token");
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile.userId_unique" ON "Profile"("userId");
 
--- AddForeignKey
-ALTER TABLE "Notification" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- CreateIndex
+CREATE INDEX "Membership.updatedAt_index" ON "Membership"("updatedAt");
 
 -- AddForeignKey
-ALTER TABLE "Notification" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Notification" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Profile" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Profile" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Friend" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Friend" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Friend" ADD FOREIGN KEY("friendId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Friend" ADD FOREIGN KEY ("friendId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "BlockedUser" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "BlockedUser" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "BlockedUser" ADD FOREIGN KEY("blockedUserId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "BlockedUser" ADD FOREIGN KEY ("blockedUserId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Report" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Report" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Report" ADD FOREIGN KEY("reportedUserId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Report" ADD FOREIGN KEY ("reportedUserId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Membership" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Membership" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Membership" ADD FOREIGN KEY("channelId")REFERENCES "Channel"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Membership" ADD FOREIGN KEY ("channelId") REFERENCES "Channel"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Membership" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Message" ADD FOREIGN KEY ("channelId") REFERENCES "Channel"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Message" ADD FOREIGN KEY("channelId")REFERENCES "Channel"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Message" ADD FOREIGN KEY ("senderId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Message" ADD FOREIGN KEY("senderId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Reply" ADD FOREIGN KEY ("senderId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Message" ADD FOREIGN KEY("channelId")REFERENCES "Channel"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Reply" ADD FOREIGN KEY ("messageId") REFERENCES "Message"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reply" ADD FOREIGN KEY("senderId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Reaction" ADD FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reply" ADD FOREIGN KEY("messageId")REFERENCES "Message"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Reaction" ADD FOREIGN KEY ("messageId") REFERENCES "Message"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reply" ADD FOREIGN KEY("messageId")REFERENCES "Message"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Reaction" ADD FOREIGN KEY("userId")REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Reaction" ADD FOREIGN KEY("messageId")REFERENCES "Message"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Reaction" ADD FOREIGN KEY("replyId")REFERENCES "Reply"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Reaction" ADD FOREIGN KEY ("replyId") REFERENCES "Reply"("id") ON DELETE CASCADE ON UPDATE CASCADE;
