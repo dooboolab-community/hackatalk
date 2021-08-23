@@ -100,6 +100,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://taehwannoh.dev"><img src="https://avatars.githubusercontent.com/u/7760903?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Taehwan Noh</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=taehwanno" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rarira"><img src="https://avatars.githubusercontent.com/u/8540420?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Inseong Park</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=rarira" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/woosanggyu"><img src="https://avatars.githubusercontent.com/u/45311830?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Sang Gyu</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=woosanggyu" title="Code">💻</a></td>
+    <td align="center"><a href="https://chloe-codes1.gitbook.io/til"><img src="https://avatars.githubusercontent.com/u/53922851?v=4?s=60" width="60px;" alt=""/><br /><sub><b>Chloe</b></sub></a><br /><a href="https://github.com/dooboolab/hackatalk/commits?author=chloe-codes1" title="Code">💻</a></td>
   </tr>
 </table>
 

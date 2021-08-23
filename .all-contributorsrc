@@ -378,6 +378,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "chloe-codes1",
+      "name": "Chloe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53922851?v=4",
+      "profile": "https://chloe-codes1.gitbook.io/til",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
