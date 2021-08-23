@@ -1,15 +1,11 @@
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 
-module.exports = async function(env, argv) {
+module.exports = async (env, argv) => {
   const config = await createExpoWebpackConfigAsync(
     {
       ...env,
-      offline: true,
       babel: {
-        dangerouslyAddModulePathsToTranspile: [
-          'dooboo-ui',
-          '@dooboo-ui',
-        ],
+        dangerouslyAddModulePathsToTranspile: ['dooboo-ui', '@dooboo-ui'],
       },
     },
     argv,
@@ -29,16 +25,14 @@ module.exports = async function(env, argv) {
 
             const test = oneOfRule.test.toString().replace('|svg', '');
 
-            return { ...oneOfRule, test: new RegExp(test) };
-          } else {
-            return oneOfRule;
-          }
+            return {...oneOfRule, test: new RegExp(test)};
+          } else return oneOfRule;
         }),
       };
 
       // Add new rule to use svgr
       // Place at the beginning so that the default loader doesn't catch it
-      if (hasModified) {
+      if (hasModified)
         newRule.oneOf.unshift({
           test: /\.svg$/,
           exclude: /node_modules/,
@@ -48,12 +42,9 @@ module.exports = async function(env, argv) {
             },
           ],
         });
-      }
 
       return newRule;
-    } else {
-      return rule;
-    }
+    } else return rule;
   });
 
   return config;
