@@ -141,6 +141,7 @@ model Membership {
 enum ChannelType {
   private
   public
+  self
 }
 
 model Channel {

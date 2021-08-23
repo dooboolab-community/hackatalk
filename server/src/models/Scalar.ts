@@ -75,6 +75,7 @@ export const alertMode = scalarType({
 export enum ChannelType {
   private = 'private',
   public = 'public',
+  self = 'self',
 }
 
 export const channelType = scalarType({
