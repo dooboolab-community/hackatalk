@@ -74,10 +74,15 @@ const friendsFragment = graphql`
     first: {type: "Int!"}
     after: {type: "String"}
     searchText: {type: "String"}
+    includeMe: {type: "Boolean"}
   )
   @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
-    friends(first: $first, after: $after, searchText: $searchText)
-      @connection(key: "ChannelCreate_friends") {
+    friends(
+      first: $first
+      after: $after
+      searchText: $searchText
+      includeMe: $includeMe
+    ) @connection(key: "ChannelCreate_friends") {
       edges {
         cursor
         node {
@@ -356,6 +361,7 @@ const ChannelCreate: FC = () => {
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
+    includeMe: true,
   };
 
   const onChangeText = (text: string): void => {

@@ -32,10 +32,19 @@ const Container = styled.View`
 
 const friendsFragment = graphql`
   fragment MainFriend_friends on Query
-  @argumentDefinitions(first: {type: "Int!"}, after: {type: "String"})
+  @argumentDefinitions(
+    first: {type: "Int!"}
+    after: {type: "String"}
+    searchText: {type: "String"}
+    includeMe: {type: "Boolean"}
+  )
   @refetchable(queryName: "FriendFriendsPaginationQuery") {
-    friends(first: $first, after: $after, searchText: $searchText)
-      @connection(key: "MainFriend_friends", filters: []) {
+    friends(
+      first: $first
+      after: $after
+      searchText: $searchText
+      includeMe: $includeMe
+    ) @connection(key: "MainFriend_friends", filters: []) {
       edges {
         cursor
         node {
@@ -143,7 +152,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 const Friend: FC = () => {
   const queryResponse = useLazyLoadQuery<FriendFriendsPaginationQuery>(
     friendsQuery,
-    {first: ITEM_CNT},
+    {first: ITEM_CNT, includeMe: true},
     {fetchPolicy: 'store-or-network'},
   );
 
