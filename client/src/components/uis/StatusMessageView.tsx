@@ -1,8 +1,7 @@
 import {Animated, TouchableOpacity} from 'react-native';
-import {Icon, LoadingIndicator} from 'dooboo-ui';
 import React, {FC, MutableRefObject, useEffect, useRef, useState} from 'react';
 
-import {getString} from '../../../STRINGS';
+import {Icon} from 'dooboo-ui';
 import styled from '@emotion/native';
 
 type StyledTextProps = {
@@ -18,8 +17,6 @@ type Props = {
   };
   isStatusMessageExpanded: boolean;
   handleAnim: () => void;
-  showFriendAddedMessage: boolean;
-  addFriendInFlight: boolean;
 };
 
 const StyledTextstatusMessage = styled.Text<StyledTextProps>`
@@ -30,14 +27,6 @@ const StyledTextstatusMessage = styled.Text<StyledTextProps>`
     props.isStatusMessageExpanded ? 'bold' : 'normal'};
 `;
 
-const StyledTextFriendAdded = styled.Text`
-  color: ${({theme}) => theme.tintColor};
-  font-size: 12px;
-  background-color: ${({theme}) => theme.background};
-  padding: 4px;
-  align-self: center;
-`;
-
 export const MAX_STATUS_MESSAGE_LINES = 10;
 
 const StatusMessageView: FC<Props> = ({
@@ -45,8 +34,6 @@ const StatusMessageView: FC<Props> = ({
   transitionOpacity,
   modalLayout,
   isStatusMessageExpanded,
-  showFriendAddedMessage,
-  addFriendInFlight,
   handleAnim,
 }) => {
   const [bodyHeight, setBodyHeight] = useState(0);
@@ -156,15 +143,6 @@ const StatusMessageView: FC<Props> = ({
           />
         )}
       </TouchableOpacity>
-      {showFriendAddedMessage ? (
-        addFriendInFlight ? (
-          <LoadingIndicator size="small" />
-        ) : (
-          <StyledTextFriendAdded testID="added-message">
-            {getString('FRIEND_ADDED')}
-          </StyledTextFriendAdded>
-        )
-      ) : null}
     </Animated.View>
   );
 };

@@ -11,14 +11,13 @@ import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
-import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
-import {LoadingIndicator, useTheme} from 'dooboo-ui';
+import {LoadingIndicator, Snackbar, SnackbarRef, useTheme} from 'dooboo-ui';
 import {
   ModalState,
   ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -125,6 +124,8 @@ type ModalContentProps = {
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const userData = useFragment(fragment, modalState.user);
+
+  const snackbarRef = useRef<SnackbarRef>(null);
 
   const {id, name, nickname, statusMessage, photoURL, hasBlocked, isFriend} =
     userData;
@@ -268,12 +269,18 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     }
   };
 
-  const {
-    theme: {header, modalBtnPrimaryFont},
-  } = useTheme();
+  const {theme} = useTheme();
 
   const handleAnim = (): void =>
     setStatusMessageExpanded(!isStatusMessageExpanded);
+
+  useEffect(() => {
+    if (snackbarRef && showFriendAddedMessage)
+      snackbarRef.current?.show({
+        text: getString('FRIEND_ADDED'),
+        type: 'success',
+      });
+  }, [snackbarRef, showFriendAddedMessage]);
 
   return (
     <>
@@ -285,7 +292,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           alignSelf: 'stretch',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: header,
+          backgroundColor: theme.header,
         }}
         onLayout={(event) => {
           const {width, height} = event.nativeEvent.layout;
@@ -495,15 +502,18 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      <StatusMessageView
-        statusMessage={statusMessage || ''}
-        transitionOpacity={transitionOpacity}
-        modalLayout={modalLayout}
-        isStatusMessageExpanded={isStatusMessageExpanded}
-        handleAnim={handleAnim}
-        showFriendAddedMessage={showFriendAddedMessage}
-        addFriendInFlight={addFriendInFlight}
-      />
+      {statusMessage && (
+        <StatusMessageView
+          statusMessage={statusMessage}
+          transitionOpacity={transitionOpacity}
+          modalLayout={modalLayout}
+          isStatusMessageExpanded={isStatusMessageExpanded}
+          handleAnim={handleAnim}
+        />
+      )}
+      <View style={{zIndex: 101}}>
+        <Snackbar testID="profile-snackbar" theme={theme} ref={snackbarRef} />
+      </View>
     </>
   );
 };
