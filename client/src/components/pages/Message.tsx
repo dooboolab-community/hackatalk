@@ -156,7 +156,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     loadNext(ITEM_CNT);
   };
 
-  const [textToSend, setTextToSend] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
@@ -166,18 +166,18 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const {deviceKey} = useDeviceContext();
 
   const onSubmit = (): void => {
-    if (!textToSend) return;
+    if (!message) return;
 
     commitMessage({
       variables: {
         channelId,
-        message: {text: textToSend},
+        message: {text: message},
         deviceKey,
       },
       optimisticUpdater: (store) => {
         if (user) {
-          createMessageOptimisticUpdater(store, channelId, textToSend, user.id);
-          setTextToSend('');
+          createMessageOptimisticUpdater(store, channelId, message, user.id);
+          setMessage('');
         }
       },
       updater: (store) => {
@@ -313,11 +313,17 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         ios: insets.bottom + 56,
         android: insets.bottom,
       })}
-      message={textToSend}
+      message={message}
       placeholder={getString('WRITE_MESSAGE')}
-      onChangeMessage={(text: string): void => setTextToSend(text)}
+      onChangeMessage={(text: string): void => setMessage(text)}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
+      onKeyPress={({nativeEvent}) => {
+        if (Platform.OS === 'web')
+          if (nativeEvent.key === 'Enter')
+            // @ts-ignore
+            !nativeEvent.altKey ? onSubmit() : setMessage(`${message}\n`);
+      }}
       optionView={
         <Image
           style={{

@@ -1,8 +1,7 @@
 import * as ScreenOrientation from 'expo-screen-orientation';
 
+import {Dimensions, Platform} from 'react-native';
 import {useEffect, useState} from 'react';
-
-import {Dimensions} from 'react-native';
 
 export enum Orientation {
   PORTRAIT = 'portrait',
@@ -35,7 +34,8 @@ export default function useOrientation(): Orientation {
     );
 
     return (): void => {
-      ScreenOrientation.removeOrientationChangeListener(subscription);
+      if (Platform.OS !== 'web')
+        ScreenOrientation.removeOrientationChangeListener(subscription);
     };
   });
 

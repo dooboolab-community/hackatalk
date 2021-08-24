@@ -6,6 +6,7 @@ import {
   ListRenderItem,
   Platform,
   TextInput,
+  TextInputProps,
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
@@ -39,7 +40,6 @@ const StyledInputChat = styled.TextInput`
   font-size: 14px;
   padding-left: 48px;
   padding-bottom: 4px;
-  color: black;
 `;
 
 const StyledTouchMenu = styled.TouchableOpacity`
@@ -76,6 +76,7 @@ interface Props<T> {
   renderViewMenu?: () => React.ReactElement;
   message?: string;
   onChangeMessage?: (text: string) => void;
+  onKeyPress?: TextInputProps['onKeyPress'];
   placeholder?: string;
   placeholderTextColor?: string;
   renderSendButton?: () => React.ReactElement;
@@ -104,6 +105,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     placeholderTextColor,
     renderSendButton,
     onEndReached,
+    onKeyPress: onKeyPress,
   } = props;
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
@@ -181,19 +183,16 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           <StyledViewChat
             style={{
               borderColor: borderColor,
-              backgroundColor: backgroundColor,
+              backgroundColor,
             }}>
             <StyledInputChat
               testID="input-chat"
               style={{
-                flexGrow: 1,
-                flexShrink: 1,
-                paddingVertical: Platform.select({
-                  ios: 12,
-                }),
+                flex: 1,
+                paddingVertical: Platform.select({ios: 12}),
                 marginRight: 10,
                 color: fontColor,
-                backgroundColor: backgroundColor,
+                backgroundColor,
                 ...(Platform.OS === 'web'
                   ? {
                       outline: 'none',
@@ -203,11 +202,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               // @ts-ignore
               ref={input1}
               onFocus={(): void => setShowMenu(false)}
+              autoFocus={true}
+              enablesReturnKeyAutomatically={true}
               multiline={true}
+              onKeyPress={onKeyPress}
+              returnKeyType="done"
               placeholder={placeholder}
               placeholderTextColor={placeholderTextColor}
               value={message}
-              defaultValue={message}
               onChangeText={onChangeMessage}
             />
             <StyledTouchMenu
@@ -218,14 +220,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               }}>
               {optionView}
             </StyledTouchMenu>
-            <View
-              style={{
-                flexGrow: 0,
-                flexShrink: 0,
-                marginVertical: 8,
-              }}>
-              {renderSendButton?.()}
-            </View>
+            <View style={{marginVertical: 8}}>{renderSendButton?.()}</View>
           </StyledViewChat>
         ) : null}
       </StyledKeyboardAvoidingView>
@@ -241,16 +236,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               ref={input2}
               onFocus={(): void => setShowMenu(false)}
               style={{
+                flex: 1,
                 color: fontColor,
                 backgroundColor: backgroundColor,
-                flexGrow: 1,
-                flexShrink: 1,
               }}
               multiline={true}
               placeholder={placeholder}
               placeholderTextColor={placeholderTextColor}
               value={message}
-              defaultValue={message}
             />
             <StyledTouchMenu
               testID="touch-menu"
