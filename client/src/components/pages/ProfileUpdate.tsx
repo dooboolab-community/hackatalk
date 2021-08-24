@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Dimensions,
-  Image,
-  Platform,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Alert, Image, Platform, TouchableOpacity, View} from 'react-native';
 import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
@@ -90,7 +83,7 @@ const Screen: FC = () => {
 
   const {user} = useAuthContext();
 
-  const UpdateProfile = useCallback(
+  const updateProfileToast = useCallback(
     (type?: SnackbarType): void => {
       if (snackbar)
         return snackbar.current?.show({
@@ -99,8 +92,8 @@ const Screen: FC = () => {
           styles: {
             container: {
               backgroundColor: `${theme.toastBackground}`,
-              width: Dimensions.get('screen').width * 0.9,
-              marginVertical: -(Dimensions.get('screen').height / 12),
+              width: 500,
+              marginBottom: 50,
               justifyContent: 'center',
               borderTopRightRadius: 15,
               borderTopLeftRadius: 15,
@@ -280,7 +273,7 @@ const Screen: FC = () => {
         showAlertForError(error);
       },
       onCompleted: (): void => {
-        UpdateProfile('default');
+        updateProfileToast('default');
       },
     };
 
@@ -407,9 +400,9 @@ const Screen: FC = () => {
               text={getString('UPDATE')}
             />
           </StyledButtonWrapper>
-          <Snackbar testID="UpdateProfile" ref={snackbar} />
         </Wrapper>
       </StyledScrollView>
+      <Snackbar testID="update-profile" ref={snackbar} />
     </Container>
   );
 };
