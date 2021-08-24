@@ -168,21 +168,26 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const onSubmit = (): void => {
     if (!message) return;
 
+    const messageToSend = message;
+    setMessage('');
+
     commitMessage({
       variables: {
         channelId,
-        message: {text: message},
+        message: {text: messageToSend},
         deviceKey,
       },
       optimisticUpdater: (store) => {
         if (user)
-          createMessageOptimisticUpdater(store, channelId, message, user.id);
+          createMessageOptimisticUpdater(
+            store,
+            channelId,
+            messageToSend,
+            user.id,
+          );
       },
       updater: (store) => {
         if (user) createMessageUpdater(store, channelId);
-      },
-      onCompleted: () => {
-        setMessage('');
       },
       onError: (error: Error): void => {
         showAlertForError(error);
