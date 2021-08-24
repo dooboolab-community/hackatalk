@@ -169,6 +169,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     if (!message) return;
 
     const messageToSend = message;
+
     setMessage('');
 
     commitMessage({
@@ -283,8 +284,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
               return imageUrls && imageUrls.length > 0;
             })
-            .map((message) => {
-              const {imageUrls, sender} = message;
+            .map((el) => {
+              const {imageUrls, sender} = el;
 
               return imageUrls?.map((uri) => ({
                 uri,
@@ -321,14 +322,23 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       })}
       message={message}
       placeholder={getString('WRITE_MESSAGE')}
-      onChangeMessage={(text: string): void => setMessage(text)}
+      onChangeMessage={(text) => {
+        if (text === '\n') return setMessage('');
+
+        setMessage(text);
+      }}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
       onKeyPress={({nativeEvent}) => {
         if (Platform.OS === 'web')
-          if (nativeEvent.key === 'Enter')
+          if (nativeEvent.key === 'Enter') {
             // @ts-ignore
-            !nativeEvent.altKey ? onSubmit() : setMessage(`${message}\n`);
+            const altKeyPressed = !!nativeEvent.altKey;
+
+            if (!altKeyPressed) return onSubmit();
+
+            setMessage(`${message}\n`);
+          }
       }}
       optionView={
         <Image
