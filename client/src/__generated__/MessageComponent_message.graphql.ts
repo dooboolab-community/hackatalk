@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import MessagePaginationQuery from "./MessagePaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type MessageComponent_message = {
     readonly messages: {
@@ -93,7 +92,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": MessagePaginationQuery
+      "operation": require('./MessagePaginationQuery.graphql.ts')
     }
   },
   "name": "MessageComponent_message",

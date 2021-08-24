@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import FriendFriendsPaginationQuery from "./FriendFriendsPaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type MainFriend_friends = {
     readonly friends: {
@@ -70,7 +69,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": FriendFriendsPaginationQuery
+      "operation": require('./FriendFriendsPaginationQuery.graphql.ts')
     }
   },
   "name": "MainFriend_friends",

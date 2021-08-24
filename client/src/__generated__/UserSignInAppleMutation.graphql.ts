@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 export type AuthType = "apple" | "email" | "facebook" | "google";
 export type UserSignInAppleMutationVariables = {
     accessToken: string;

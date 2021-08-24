@@ -3,44 +3,37 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type AuthType = "apple" | "email" | "facebook" | "google";
-export type UserMeQueryVariables = {};
-export type UserMeQueryResponse = {
-    readonly me: {
+export type MainStackNavigatorUserUpdatedSubscriptionVariables = {};
+export type MainStackNavigatorUserUpdatedSubscriptionResponse = {
+    readonly userUpdated: {
         readonly id: string;
-        readonly email: string | null;
+        readonly photoURL: string | null;
         readonly name: string | null;
         readonly nickname: string | null;
+        readonly hasBlocked: boolean | null;
         readonly statusMessage: string | null;
-        readonly verified: boolean | null;
-        readonly photoURL: string | null;
-        readonly thumbURL: string | null;
-        readonly profile: {
-            readonly authType: AuthType | null;
-        } | null;
+        readonly isFriend: boolean | null;
+        readonly isOnline: boolean | null;
     } | null;
 };
-export type UserMeQuery = {
-    readonly response: UserMeQueryResponse;
-    readonly variables: UserMeQueryVariables;
+export type MainStackNavigatorUserUpdatedSubscription = {
+    readonly response: MainStackNavigatorUserUpdatedSubscriptionResponse;
+    readonly variables: MainStackNavigatorUserUpdatedSubscriptionVariables;
 };
 
 
 
 /*
-query UserMeQuery {
-  me {
+subscription MainStackNavigatorUserUpdatedSubscription {
+  userUpdated {
     id
-    email
+    photoURL
     name
     nickname
+    hasBlocked
     statusMessage
-    verified
-    photoURL
-    thumbURL
-    profile {
-      authType
-    }
+    isFriend
+    isOnline
   }
 }
 */
@@ -52,7 +45,7 @@ var v0 = [
     "args": null,
     "concreteType": "User",
     "kind": "LinkedField",
-    "name": "me",
+    "name": "userUpdated",
     "plural": false,
     "selections": [
       {
@@ -66,7 +59,7 @@ var v0 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "email",
+        "name": "photoURL",
         "storageKey": null
       },
       {
@@ -87,6 +80,13 @@ var v0 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
+        "name": "hasBlocked",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
         "name": "statusMessage",
         "storageKey": null
       },
@@ -94,39 +94,14 @@ var v0 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "verified",
+        "name": "isFriend",
         "storageKey": null
       },
       {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "photoURL",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "thumbURL",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "Profile",
-        "kind": "LinkedField",
-        "name": "profile",
-        "plural": false,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "authType",
-            "storageKey": null
-          }
-        ],
+        "name": "isOnline",
         "storageKey": null
       }
     ],
@@ -138,27 +113,27 @@ return {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "UserMeQuery",
+    "name": "MainStackNavigatorUserUpdatedSubscription",
     "selections": (v0/*: any*/),
-    "type": "Query",
+    "type": "Subscription",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
     "argumentDefinitions": [],
     "kind": "Operation",
-    "name": "UserMeQuery",
+    "name": "MainStackNavigatorUserUpdatedSubscription",
     "selections": (v0/*: any*/)
   },
   "params": {
-    "cacheID": "7d65ad470f810669844d4cde6568ccde",
+    "cacheID": "c242df31af22727eb38b9b31ed5d037b",
     "id": null,
     "metadata": {},
-    "name": "UserMeQuery",
-    "operationKind": "query",
-    "text": "query UserMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n    }\n  }\n}\n"
+    "name": "MainStackNavigatorUserUpdatedSubscription",
+    "operationKind": "subscription",
+    "text": "subscription MainStackNavigatorUserUpdatedSubscription {\n  userUpdated {\n    id\n    photoURL\n    name\n    nickname\n    hasBlocked\n    statusMessage\n    isFriend\n    isOnline\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'd170a02507c90481ece3263e8285b966';
+(node as any).hash = '0afd2144a9bfbfe7b2a92ceae58c1574';
 export default node;
