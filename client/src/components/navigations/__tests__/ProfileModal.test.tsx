@@ -164,7 +164,7 @@ describe('[ProfileModal] rendering test', () => {
       );
     });
 
-    const message = screen.getByTestId('added-message');
+    const message = screen.getByTestId('profile-snackbar');
 
     expect(message).toBeTruthy();
   });
