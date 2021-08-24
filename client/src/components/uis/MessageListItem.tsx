@@ -232,7 +232,10 @@ const MessageListItem: FC<Props> = ({
 }) => {
   const {theme} = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
-  const {id, sender, text, createdAt, imageUrls} = useFragment(fragment, item);
+
+  const data = useFragment(fragment, item);
+
+  const {id, sender, text, createdAt, imageUrls} = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
@@ -282,9 +285,9 @@ const MessageListItem: FC<Props> = ({
                       onPressMessageImage && onPressMessageImage(0)
                     }>
                     <Image
-                      key={id}
+                      key={id || ''}
                       width={240}
-                      source={{uri: `${imageUrls[0]}?id=${id}`}}
+                      source={{uri: `${imageUrls[0]}?id=${id || ''}`}}
                     />
                   </TouchableOpacity>
                 </StyledPhotoContainer>
@@ -321,9 +324,9 @@ const MessageListItem: FC<Props> = ({
             <TouchableOpacity
               onPress={() => onPressMessageImage && onPressMessageImage(0)}>
               <Image
-                key={id}
+                key={id || ''}
                 width={240}
-                source={{uri: `${imageUrls[0]}?id=${id}`}}
+                source={{uri: `${imageUrls[0]}?id=${id || ''}`}}
               />
             </TouchableOpacity>
           </StyledPhotoContainer>

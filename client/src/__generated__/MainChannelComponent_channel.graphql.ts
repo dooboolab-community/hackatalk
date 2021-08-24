@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+import Channels from "./Channels.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type MainChannelComponent_channel = {
     readonly channels: {
@@ -101,7 +102,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./Channels.graphql.ts')
+      "operation": Channels
     }
   },
   "name": "MainChannelComponent_channel",

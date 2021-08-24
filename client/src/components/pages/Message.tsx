@@ -175,13 +175,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         deviceKey,
       },
       optimisticUpdater: (store) => {
-        if (user) {
+        if (user)
           createMessageOptimisticUpdater(store, channelId, message, user.id);
-          setMessage('');
-        }
       },
       updater: (store) => {
         if (user) createMessageUpdater(store, channelId);
+      },
+      onCompleted: () => {
+        setMessage('');
       },
       onError: (error: Error): void => {
         showAlertForError(error);
