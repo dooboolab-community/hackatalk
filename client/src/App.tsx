@@ -16,7 +16,6 @@ import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
-import {RootSiblingParent} from 'react-native-root-siblings';
 import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
@@ -106,7 +105,6 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(DeviceProvider, {})
   .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})
-  .wrap(RootSiblingParent, {})
   .build();
 
 export default WrappedApp;

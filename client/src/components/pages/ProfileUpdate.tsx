@@ -13,7 +13,7 @@ import {
   PROFILEIMAGE_HEIGHT,
   PROFILEIMAGE_WIDTH,
 } from '../../utils/const';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, Snackbar, SnackbarRef, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
@@ -29,7 +29,7 @@ import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
-import Toast from 'react-native-root-toast';
+import {SnackbarType} from 'dooboo-ui/Styled/StyledComponents';
 import {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
@@ -86,8 +86,37 @@ const Screen: FC = () => {
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
+  const snackbar = useRef<SnackbarRef>(null);
 
   const {user} = useAuthContext();
+
+  const UpdateProfile = useCallback(
+    (type?: SnackbarType): void => {
+      if (snackbar)
+        return snackbar.current?.show({
+          text: getString('UPDATE_PROFILE'),
+          type,
+          styles: {
+            container: {
+              backgroundColor: `${theme.toastBackground}`,
+              width: Dimensions.get('screen').width * 0.9,
+              marginVertical: -(Dimensions.get('screen').height / 12),
+              justifyContent: 'center',
+              borderTopRightRadius: 15,
+              borderTopLeftRadius: 15,
+              borderBottomLeftRadius: 15,
+              borderBottomRightRadius: 15,
+            },
+            text: {
+              color: `${theme.toastFont}`,
+              fontSize: 13,
+              fontWeight: '600',
+            },
+          },
+        });
+    },
+    [theme.toastBackground, theme.toastFont],
+  );
 
   const [commitUpload, isUploadInFlight] =
     useMutation<UploadSingleUploadMutation>(singleUpload);
@@ -251,20 +280,7 @@ const Screen: FC = () => {
         showAlertForError(error);
       },
       onCompleted: (): void => {
-        Toast.show(getString('UPDATE_PROFILE'), {
-          duration: 1500,
-          position: Dimensions.get('screen').height * 0.9,
-          backgroundColor: `${theme.toastBackground}`,
-          opacity: 0.9,
-          shadow: false,
-          textColor: `${theme.toastFont}`,
-          textStyle: {fontSize: 15},
-          containerStyle: {
-            width: Dimensions.get('screen').width * 0.9,
-            height: 40,
-            borderRadius: 10,
-          },
-        });
+        UpdateProfile('default');
       },
     };
 
@@ -391,6 +407,7 @@ const Screen: FC = () => {
               text={getString('UPDATE')}
             />
           </StyledButtonWrapper>
+          <Snackbar testID="UpdateProfile" ref={snackbar} />
         </Wrapper>
       </StyledScrollView>
     </Container>
