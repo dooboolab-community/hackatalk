@@ -55,6 +55,7 @@ import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
+import {nanoid} from 'nanoid/non-secure';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
@@ -160,17 +161,17 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
-  const [commitMessage] = useMutation<MessageCreateMutation>(createMessage);
+  const [commitMessage, messageInFlight] =
+    useMutation<MessageCreateMutation>(createMessage);
 
   const {user} = useAuthContext();
   const {deviceKey} = useDeviceContext();
 
-  const onSubmit = (): void => {
-    if (!message) return;
+  const submitMessage = (): void => {
+    setMessage('');
+    if (!message || messageInFlight) return;
 
     const messageToSend = message;
-
-    setMessage('');
 
     commitMessage({
       variables: {
@@ -328,14 +329,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         setMessage(text);
       }}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id || nanoid()}
       onKeyPress={({nativeEvent}) => {
         if (Platform.OS === 'web')
           if (nativeEvent.key === 'Enter') {
             // @ts-ignore
             const altKeyPressed = !!nativeEvent.altKey;
 
-            if (!altKeyPressed) return onSubmit();
+            if (!altKeyPressed) return submitMessage();
 
             setMessage(`${message}\n`);
           }
@@ -405,7 +406,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             },
           }}
           loading={isImageUploading}
-          onPress={onSubmit}
+          onPress={submitMessage}
           text={getString('SEND')}
           textProps={{
             numberOfLines: 1,
