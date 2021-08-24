@@ -108,7 +108,7 @@ const Screen: FC = () => {
           },
         });
     },
-    [theme.toastBackground, theme.toastFont],
+    [theme.toastBackground, theme.toastFont, snackbar],
   );
 
   const [commitUpload, isUploadInFlight] =
