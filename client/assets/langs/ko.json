@@ -112,5 +112,6 @@
   "VERIFY_EMAIL": "이메일 인증",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
-  "YES": "예"
+  "YES": "예",
+  "UPDATE_PROFILE": "프로필이 수정되었습니다."
 }
