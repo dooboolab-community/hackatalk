@@ -106,12 +106,12 @@
   "UNBAN_USER": "Unban User",
   "UNBAN_USER_TEXT": "Do you wan to unban current user? If then, you will start to see and receive messages from the user.",
   "UPDATE": "Update",
+  "UPDATE_PROFILE": "Update profile",
   "URL_IS_NULL": "Url is not received from the file",
   "VERIFICATION_EMAIL_SENT": "Verification link has been sent. Please check your email. If you have not received an email please check out your spam inbox.",
   "VERIFY": "Verify",
   "VERIFY_EMAIL": "Verify Email",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes",
-  "UPDATE_PROFILE": "Update profile"
+  "YES": "Yes"
 }
