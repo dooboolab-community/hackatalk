@@ -20,10 +20,6 @@ import {
   UploadSingleUploadMutation,
   UploadSingleUploadMutationResponse,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
-import type {
-  UserUpdateProfileMutation,
-  UserUpdateProfileMutationResponse,
-} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay';
 import {
   launchCameraAsync,
@@ -36,6 +32,7 @@ import {ReactNativeFile} from 'apollo-upload-client';
 import Toast from 'react-native-root-toast';
 import {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
+import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -253,22 +250,21 @@ const Screen: FC = () => {
       onError: (error: Error): void => {
         showAlertForError(error);
       },
-      onCompleted: (response: UserUpdateProfileMutationResponse): void => {
-        if (response.updateProfile)
-          Toast.show(getString('UPDATE_PROFILE'), {
-            duration: 1500,
-            position: Dimensions.get('screen').height * 0.9,
-            backgroundColor: `${theme.toastBackground}`,
-            opacity: 0.9,
-            shadow: false,
-            textColor: `${theme.toastFont}`,
-            textStyle: {fontSize: 15},
-            containerStyle: {
-              width: Dimensions.get('screen').width * 0.9,
-              height: 40,
-              borderRadius: 2,
-            },
-          });
+      onCompleted: (): void => {
+        Toast.show(getString('UPDATE_PROFILE'), {
+          duration: 1500,
+          position: Dimensions.get('screen').height * 0.9,
+          backgroundColor: `${theme.toastBackground}`,
+          opacity: 0.9,
+          shadow: false,
+          textColor: `${theme.toastFont}`,
+          textStyle: {fontSize: 15},
+          containerStyle: {
+            width: Dimensions.get('screen').width * 0.9,
+            height: 40,
+            borderRadius: 10,
+          },
+        });
       },
     };
 
