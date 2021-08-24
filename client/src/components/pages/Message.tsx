@@ -318,6 +318,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       onChangeMessage={(text: string): void => setTextToSend(text)}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
+      onSubmitEditing={onSubmit}
       optionView={
         <Image
           style={{

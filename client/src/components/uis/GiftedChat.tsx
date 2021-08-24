@@ -6,6 +6,7 @@ import {
   ListRenderItem,
   Platform,
   TextInput,
+  TextInputProps,
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
@@ -76,6 +77,7 @@ interface Props<T> {
   renderViewMenu?: () => React.ReactElement;
   message?: string;
   onChangeMessage?: (text: string) => void;
+  onSubmitEditing?: TextInputProps['onSubmitEditing'];
   placeholder?: string;
   placeholderTextColor?: string;
   renderSendButton?: () => React.ReactElement;
@@ -104,6 +106,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     placeholderTextColor,
     renderSendButton,
     onEndReached,
+    onSubmitEditing,
   } = props;
 
   const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
@@ -185,6 +188,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             }}>
             <StyledInputChat
               testID="input-chat"
+              numberOfLines={1}
               style={{
                 flexGrow: 1,
                 flexShrink: 1,
@@ -209,6 +213,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               value={message}
               defaultValue={message}
               onChangeText={onChangeMessage}
+              onSubmitEditing={onSubmitEditing}
             />
             <StyledTouchMenu
               testID="touch-menu"
