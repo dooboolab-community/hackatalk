@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+import SearchUsersQuery from "./SearchUsersQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type SearchUserComponent_user = {
     readonly users: {
@@ -70,7 +71,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./SearchUsersQuery.graphql.ts')
+      "operation": SearchUsersQuery
     }
   },
   "name": "SearchUserComponent_user",

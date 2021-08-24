@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+
 export type BlockedUserCreateMutationVariables = {
     blockedUserId: string;
 };
