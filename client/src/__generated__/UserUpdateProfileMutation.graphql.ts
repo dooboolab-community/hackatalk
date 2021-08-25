@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 export type UserUpdateInput = {
     email?: string | null;
     name?: string | null;
@@ -20,6 +19,7 @@ export type UserUpdateProfileMutationVariables = {
 };
 export type UserUpdateProfileMutationResponse = {
     readonly updateProfile: {
+        readonly id: string;
         readonly name: string | null;
         readonly nickname: string | null;
         readonly statusMessage: string | null;
@@ -37,6 +37,7 @@ mutation UserUpdateProfileMutation(
   $user: UserUpdateInput!
 ) {
   updateProfile(user: $user) {
+    id
     name
     nickname
     statusMessage
@@ -67,6 +68,13 @@ v1 = [
     "name": "updateProfile",
     "plural": false,
     "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -110,14 +118,14 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "c80b477a80d01190b33947329887fc8a",
+    "cacheID": "16c368269c398374db4a3fed3e3224fa",
     "id": null,
     "metadata": {},
     "name": "UserUpdateProfileMutation",
     "operationKind": "mutation",
-    "text": "mutation UserUpdateProfileMutation(\n  $user: UserUpdateInput!\n) {\n  updateProfile(user: $user) {\n    name\n    nickname\n    statusMessage\n  }\n}\n"
+    "text": "mutation UserUpdateProfileMutation(\n  $user: UserUpdateInput!\n) {\n  updateProfile(user: $user) {\n    id\n    name\n    nickname\n    statusMessage\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '43eb9f16e3f55b1eb7cb8c5ed83fc964';
+(node as any).hash = '2ddfbc52853331dac9f9f79c11ef29a5';
 export default node;
