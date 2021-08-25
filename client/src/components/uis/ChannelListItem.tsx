@@ -1,11 +1,13 @@
 import {Channel, Message} from '../../types/graphql';
 import React, {ReactElement} from 'react';
-import {TouchableOpacity, View, ViewStyle} from 'react-native';
+import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
+import {theme} from 'dooboo-ui/theme/colors';
+import {useAuthContext} from '../../providers/AuthProvider';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({theme}) => theme.itemBackground};
@@ -116,6 +118,29 @@ const StyledCircleView = styled.View`
   justify-content: center;
 `;
 
+const StyledNamesContainerView = styled.View`
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const StyledMeCircleView = styled.View`
+  height: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 8px;
+  background-color: ${({theme}) => theme.disabled};
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+`;
+
+const StyledMeCircleText = styled.Text`
+  color: ${({theme}) => theme.text};
+  font-size: 10px;
+  font-weight: bold;
+`;
+
 interface Props {
   testID?: string;
   style?: ViewStyle;
@@ -128,32 +153,28 @@ interface Props {
 function ChannelListItem(props: Props): React.ReactElement {
   const {
     testID,
-    item: {
-      channelType = 'private',
-      lastMessage,
-      memberships,
-
-      // lastMessage: {
-      //   sender: { photoURL, isOnline, nickname },
-      //   // @ts-ignore
-      //   message,
-      //   created,
-      // },
-    },
+    item: {channelType = 'private', lastMessage, memberships},
     lastMessageCnt = 0,
     onPress,
   } = props;
 
   const {text, imageUrls, createdAt} = lastMessage as Message;
+  const {user} = useAuthContext();
 
-  if (channelType === 'private' || channelType === 'self') {
-    const users = memberships?.map((membership) => membership?.user);
+  if (channelType !== 'public') {
+    const filteredMemberships = memberships?.filter((member) => {
+      if (channelType !== 'self') return member?.user?.id !== user?.id;
 
-    const photoURLs = memberships?.map(
+      return true;
+    });
+
+    const users = filteredMemberships?.map((membership) => membership?.user);
+
+    const photoURLs = filteredMemberships?.map(
       (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
     );
 
-    const isOnline = memberships?.[0]?.user?.isOnline;
+    const isOnline = filteredMemberships?.[0]?.user?.isOnline;
 
     const renderSingleImage = (
       photoURL: string | null | undefined,
@@ -237,13 +258,20 @@ function ChannelListItem(props: Props): React.ReactElement {
             </View>
             <StyledViewContent>
               <StyledViewTop>
-                <StyledTextDisplayName numberOfLines={2}>
-                  {users?.length === 1
-                    ? users?.[0]?.nickname ||
-                      users?.[0]?.name ||
-                      getString('NO_NAME')
-                    : userNames?.join(', ')}
-                </StyledTextDisplayName>
+                <StyledNamesContainerView>
+                  {channelType === 'self' && (
+                    <StyledMeCircleView>
+                      <StyledMeCircleText>{getString('ME')}</StyledMeCircleText>
+                    </StyledMeCircleView>
+                  )}
+                  <StyledTextDisplayName numberOfLines={2}>
+                    {users?.length === 1
+                      ? users?.[0]?.nickname ||
+                        users?.[0]?.name ||
+                        getString('NO_NAME')
+                      : userNames?.join(', ')}
+                  </StyledTextDisplayName>
+                </StyledNamesContainerView>
                 {lastMessageCnt !== 0 ? (
                   <StyledTextWrapper>
                     <StyledTextCount>{lastMessageCnt}</StyledTextCount>

@@ -1,13 +1,5 @@
 import {ChannelType, Message, MessageType} from '@prisma/client';
 import {
-  booleanArg,
-  inputObjectType,
-  list,
-  mutationField,
-  nonNull,
-  stringArg,
-} from 'nexus';
-import {
   changeVisibilityWhenInvisible,
   createMemberships,
   createNewChannel,
@@ -15,6 +7,7 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
+import {inputObjectType, list, mutationField, nonNull, stringArg} from 'nexus';
 
 import {assert} from '../../utils/assert';
 import {filterNullProperties} from '../../utils/filterNullProperties';
@@ -171,7 +164,8 @@ export const findOrCreatePrivateChannel = mutationField(
 
       const channel = await createNewChannel(channelType, userId);
 
-      await createMemberships(channel.id, peerUserIds);
+      if (channelType !== ChannelType.self)
+        await createMemberships(channel.id, peerUserIds);
 
       return channel;
     },

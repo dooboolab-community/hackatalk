@@ -46,8 +46,6 @@ export const findPrivateChannelWithUserIds = async (
   const channelType =
     userIds.length === 1 ? ChannelType.self : ChannelType.private;
 
-  console.log(userIds, channelType);
-
   const channels = await prisma.channel.findMany({
     include: {
       membership: {
