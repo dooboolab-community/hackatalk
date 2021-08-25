@@ -37,6 +37,7 @@ import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphq
 import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
 import Modal from 'react-native-modalbox';
 import {RootStackNavigationProps} from '../RootStackNavigator';
+import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -492,7 +493,17 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {}
+      {statusMessage && (
+        <StatusMessageView
+          statusMessage={statusMessage}
+          transitionOpacity={transitionOpacity}
+          modalLayout={modalLayout}
+          isStatusMessageExpanded={isStatusMessageExpanded}
+          handleAnim={handleAnim}
+          showFriendAddedMessage={showFriendAddedMessage}
+          addFriendInFlight={addFriendInFlight}
+        />
+      )}
     </>
   );
 };
