@@ -16,6 +16,7 @@ export type ModalState =
       /** Callback function for add friend button */
       onAddFriend?: () => void;
       hideButtons?: boolean;
+      isMyself?: boolean;
     };
 
 export type ProfileModalContext = {

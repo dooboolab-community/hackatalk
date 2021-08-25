@@ -297,78 +297,89 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             right: 8,
             flexDirection: 'row',
           }}>
-          <TouchableOpacity
-            testID="touch-done"
-            onPress={() => {
-              navigation.navigate('MainStack', {
-                screen: 'Report',
-                params: {
-                  name: nickname || name || getString('NO_NAME'),
-                  userId: id,
-                },
-              });
+          {modalState.isMyself ? null : (
+            <>
+              <TouchableOpacity
+                testID="touch-done"
+                onPress={() => {
+                  navigation.navigate('MainStack', {
+                    screen: 'Report',
+                    params: {
+                      name: nickname || name || getString('NO_NAME'),
+                      userId: id,
+                    },
+                  });
 
-              hideModal();
-            }}>
-            <View
-              style={{
-                paddingRight: 12,
-                paddingLeft: 8,
-                paddingVertical: 8,
-              }}>
-              <FontAwesome name="exclamation-circle" size={24} color="white" />
-            </View>
-          </TouchableOpacity>
-          {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
-            <View
-              style={{
-                paddingRight: 16,
-                paddingLeft: 8,
-                paddingVertical: 8,
-                justifyContent: 'center',
-              }}>
-              <LoadingIndicator size="small" />
-            </View>
-          ) : (
-            <TouchableOpacity
-              testID="touch-done"
-              onPress={(): void =>
-                Alert.alert(
-                  hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
-                  hasBlocked
-                    ? getString('UNBAN_USER_TEXT')
-                    : getString('BAN_USER_TEXT'),
-                  [
-                    {
-                      text: getString('NO'),
-                      onPress: () => {},
-                      style: 'cancel',
-                    },
-                    {
-                      text: getString('YES'),
-                      onPress: hasBlocked
-                        ? deleteBlockedUser
-                        : createBlockedUser,
-                    },
-                  ],
-                  {cancelable: false},
-                )
-              }>
-              <View
-                style={{
-                  paddingRight: 16,
-                  paddingLeft: 8,
-                  paddingVertical: 8,
+                  hideModal();
                 }}>
-                <FontAwesome
-                  name="ban"
-                  size={24}
-                  color={hasBlocked ? 'red' : 'white'}
-                />
-              </View>
-            </TouchableOpacity>
+                <View
+                  style={{
+                    paddingRight: 12,
+                    paddingLeft: 8,
+                    paddingVertical: 8,
+                  }}>
+                  <FontAwesome
+                    name="exclamation-circle"
+                    size={24}
+                    color="white"
+                  />
+                </View>
+              </TouchableOpacity>
+              {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
+                <View
+                  style={{
+                    paddingRight: 16,
+                    paddingLeft: 8,
+                    paddingVertical: 8,
+                    justifyContent: 'center',
+                  }}>
+                  <LoadingIndicator size="small" />
+                </View>
+              ) : (
+                <TouchableOpacity
+                  testID="touch-done"
+                  onPress={(): void =>
+                    Alert.alert(
+                      hasBlocked
+                        ? getString('UNBAN_USER')
+                        : getString('BAN_USER'),
+                      hasBlocked
+                        ? getString('UNBAN_USER_TEXT')
+                        : getString('BAN_USER_TEXT'),
+                      [
+                        {
+                          text: getString('NO'),
+                          onPress: () => {},
+                          style: 'cancel',
+                        },
+                        {
+                          text: getString('YES'),
+                          onPress: hasBlocked
+                            ? deleteBlockedUser
+                            : createBlockedUser,
+                        },
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <View
+                    style={{
+                      paddingRight: 16,
+                      paddingLeft: 8,
+                      paddingVertical: 8,
+                    }}>
+                    <FontAwesome
+                      name="ban"
+                      size={24}
+                      color={hasBlocked ? 'red' : 'white'}
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
+            </>
           )}
         </View>
+
         <StyledView>
           <TouchableOpacity
             activeOpacity={0.5}
@@ -408,29 +419,36 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
         {!modalState?.hideButtons ? (
           <StyledViewBtns>
-            {deleteFriendInFlight ? (
-              <LoadingIndicator size="small" />
-            ) : (
-              <TouchableOpacity
-                testID="touch-add-friend"
-                activeOpacity={0.5}
-                onPress={isFriend ? deleteFriend : addFriend}
-                style={styles.viewBtn}>
-                <View style={styles.viewBtn}>
-                  <StyledText testID="text-add-title">
-                    {isFriend
-                      ? getString('DELETE_FRIEND')
-                      : getString('ADD_FRIEND')}
-                  </StyledText>
-                </View>
-              </TouchableOpacity>
+            {!modalState.isMyself && (
+              <>
+                (deleteFriendInFlight ? (
+                <LoadingIndicator size="small" />) : (
+                <TouchableOpacity
+                  testID="touch-add-friend"
+                  activeOpacity={0.5}
+                  onPress={isFriend ? deleteFriend : addFriend}
+                  style={styles.viewBtn}>
+                  <View style={styles.viewBtn}>
+                    <StyledText testID="text-add-title">
+                      {isFriend
+                        ? getString('DELETE_FRIEND')
+                        : getString('ADD_FRIEND')}
+                    </StyledText>
+                  </View>
+                </TouchableOpacity>
+                ))
+                <StyledViewBtnDivider />
+              </>
             )}
-            <StyledViewBtnDivider />
+
             <TouchableOpacity
               testID="btn-chat"
               activeOpacity={0.5}
               onPress={startChatting}
-              style={styles.viewBtn}>
+              style={[
+                styles.viewBtn,
+                [modalState.isMyself ? {width: '100%'} : {}],
+              ]}>
               {isChannelInFlight ? (
                 <LoadingIndicator size="small" />
               ) : (
@@ -439,7 +457,9 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     style={{
                       color: modalBtnPrimaryFont,
                     }}>
-                    {getString('CHAT')}
+                    {modalState.isMyself
+                      ? getString('SELF_CHAT')
+                      : getString('CHAT')}
                   </StyledText>
                 </View>
               )}
@@ -461,17 +481,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {statusMessage && (
-        <StatusMessageView
-          statusMessage={statusMessage}
-          transitionOpacity={transitionOpacity}
-          modalLayout={modalLayout}
-          isStatusMessageExpanded={isStatusMessageExpanded}
-          handleAnim={handleAnim}
-          showFriendAddedMessage={showFriendAddedMessage}
-          addFriendInFlight={addFriendInFlight}
-        />
-      )}
+      {}
     </>
   );
 };

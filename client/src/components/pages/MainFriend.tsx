@@ -106,15 +106,19 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     );
   }, [data]);
 
-  const userListOnPress = (user: ProfileModal_user$key): void => {
+  const userListOnPress = (
+    user: ProfileModal_user$key,
+    isMyself: boolean,
+  ): void => {
     showModal({
       user,
+      isMyself,
     });
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
-    const userListOnPressInlineFn = (): void => userListOnPress(item);
     const isMyself = item.id === user?.id;
+    const userListOnPressInlineFn = (): void => userListOnPress(item, isMyself);
 
     return (
       <UserListItem
