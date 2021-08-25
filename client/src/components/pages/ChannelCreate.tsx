@@ -45,6 +45,7 @@ import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
+import {useAuthContext} from '../../providers';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'dooboo-ui';
@@ -129,7 +130,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   }, [data]);
 
   const {theme} = useTheme();
-
+  const {user} = useAuthContext();
   const navigation = useNavigation();
 
   const removeFriend = (friendArg: User): void => {
@@ -196,11 +197,14 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     item: UserEdge;
     index: number;
   }): ReactElement => {
+    const isMyself = item?.node?.id === user?.id;
+
     return (
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
         checked={selectedUsers.includes(item?.node as User)}
+        isMyself={isMyself}
         // @ts-ignore
         user={item.node}
         onPress={(): void => {
@@ -303,6 +307,7 @@ const ChannelCreate: FC = () => {
   const navigation = useNavigation<MainStackNavigationProps<'ChannelCreate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const {theme} = useTheme();
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
@@ -338,7 +343,10 @@ const ChannelCreate: FC = () => {
 
     navigation.setOptions({
       headerRight: (): ReactElement => (
-        <TouchableOpacity testID="touch-done" onPress={pressDone}>
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={pressDone}
+          disabled={selectedUsers.length === 0}>
           <View
             style={{
               paddingHorizontal: 16,
@@ -346,7 +354,7 @@ const ChannelCreate: FC = () => {
             }}>
             <Text
               style={{
-                color: 'white',
+                color: selectedUsers.length === 0 ? theme.disabled : 'white',
                 fontSize: 14,
                 fontWeight: 'bold',
               }}>
@@ -356,7 +364,7 @@ const ChannelCreate: FC = () => {
         </TouchableOpacity>
       ),
     });
-  }, [commitChannel, navigation, selectedUsers]);
+  }, [commitChannel, navigation, selectedUsers, theme]);
 
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
