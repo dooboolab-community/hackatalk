@@ -1,5 +1,13 @@
 import {ChannelType, Message, MessageType} from '@prisma/client';
 import {
+  booleanArg,
+  inputObjectType,
+  list,
+  mutationField,
+  nonNull,
+  stringArg,
+} from 'nexus';
+import {
   changeVisibilityWhenInvisible,
   createMemberships,
   createNewChannel,
@@ -7,10 +15,10 @@ import {
   findExistingChannel,
   findPrivateChannelWithUserIds,
 } from '../../services/ChannelService';
-import {inputObjectType, list, mutationField, nonNull, stringArg} from 'nexus';
 
 import {assert} from '../../utils/assert';
 import {filterNullProperties} from '../../utils/filterNullProperties';
+import {getChannelType} from './../../services/ChannelService';
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',
@@ -117,7 +125,7 @@ export const createChannel = mutationField('createChannel', {
       }
     }
 
-    const {id} = await createNewChannel(isPrivateChannel, userId, name);
+    const {id} = await createNewChannel(channelType, userId, name);
 
     await createMemberships(id, userIds);
     message && (await createMessage(filterNullProperties(message), id));
@@ -138,15 +146,19 @@ export const findOrCreatePrivateChannel = mutationField(
   'findOrCreatePrivateChannel',
   {
     type: 'Channel',
-    args: {peerUserIds: nonNull(list(nonNull(stringArg())))},
+    args: {
+      peerUserIds: nonNull(list(nonNull(stringArg()))),
+    },
     description: 'Find or create channel associated to peer user id.',
 
     resolve: async (parent, {peerUserIds}, {userId}) => {
       assert(userId, 'Not authorized.');
 
+      const channelType = getChannelType(userId, peerUserIds);
+
       const existingChannel = await findPrivateChannelWithUserIds([
         userId,
-        ...peerUserIds,
+        ...(channelType === ChannelType.self ? [] : peerUserIds),
       ]);
 
       if (existingChannel) {
@@ -157,7 +169,7 @@ export const findOrCreatePrivateChannel = mutationField(
         return existingChannel;
       }
 
-      const channel = await createNewChannel(true, userId);
+      const channel = await createNewChannel(channelType, userId);
 
       await createMemberships(channel.id, peerUserIds);
 
