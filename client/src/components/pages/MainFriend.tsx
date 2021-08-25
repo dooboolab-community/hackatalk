@@ -18,6 +18,7 @@ import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import {useAuthContext} from '../../providers/AuthProvider';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const ITEM_CNT = 20;
@@ -77,6 +78,7 @@ const userUpdatedSubscription = graphql`
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   const {showModal} = useProfileContext();
+  const {user} = useAuthContext();
 
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     FriendFriendsPaginationQuery,
@@ -112,9 +114,15 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
     const userListOnPressInlineFn = (): void => userListOnPress(item);
+    const isMyself = item.id === user?.id;
 
     return (
-      <UserListItem showStatus user={item} onPress={userListOnPressInlineFn} />
+      <UserListItem
+        showStatus
+        user={item}
+        onPress={userListOnPressInlineFn}
+        isMyself={isMyself}
+      />
     );
   };
 
