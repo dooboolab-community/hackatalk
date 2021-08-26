@@ -21,8 +21,8 @@ import {andThen, pipe} from 'ramda';
 import {arg, inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
 
 import {AuthType} from '../../models/Scalar';
-import {ChannelType} from './../../models/Scalar';
 import {Upload} from '../../models';
+import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
