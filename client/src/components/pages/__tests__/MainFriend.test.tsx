@@ -1,10 +1,16 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {
+  ModalState,
+  ProfileModalContext,
+  ProfileModalProvider,
+} from '../../../providers';
+import {fireEvent, render} from '@testing-library/react-native';
 
 import MainFriend from '../MainFriend';
 import React from 'react';
 import {User} from '../../../types/graphql';
+import {assertAbstractType} from 'graphql';
 import {createTestElement} from '../../../../test/testUtils';
-import {render} from '@testing-library/react-native';
 
 const mockEnvironment = createMockEnvironment();
 
@@ -35,5 +41,40 @@ describe('[Friend] rendering test', () => {
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
+  });
+});
+
+describe('[Friend] interaction test', () => {
+  it('shows modal when peer button pressed', async () => {
+    const mockShowModal = jest.fn();
+    const mockHideModal = jest.fn();
+
+    const modalState: ModalState = {
+      isVisible: false,
+    };
+
+    const component = createTestElement(
+      <ProfileModalContext.Provider
+        value={{
+          showModal: mockShowModal,
+          hideModal: mockHideModal,
+          modalState,
+        }}>
+        <MainFriend />
+      </ProfileModalContext.Provider>,
+      {
+        environment: mockEnvironment,
+      },
+    );
+
+    const screen = render(component);
+
+    const peerButton = await screen.findByTestId('peer-button');
+
+    expect(peerButton).toBeTruthy();
+
+    fireEvent.press(peerButton);
+
+    expect(mockShowModal).toBeCalledTimes(1);
   });
 });

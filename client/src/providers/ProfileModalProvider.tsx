@@ -27,7 +27,7 @@ export type ProfileModalContext = {
   modalState: ModalState;
 };
 
-const ProfileModalContext = createContext<ProfileModalContext>({
+export const ProfileModalContext = createContext<ProfileModalContext>({
   modalState: {isVisible: false},
   showModal: () => {},
   hideModal: () => {},
