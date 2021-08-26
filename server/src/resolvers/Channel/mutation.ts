@@ -148,14 +148,15 @@ export const findOrCreatePrivateChannel = mutationField(
       assert(userId, 'Not authorized.');
 
       const channelType = getChannelType(userId, peerUserIds);
+      const filteredPeerUserIds = peerUserIds.filter((peer) => peer !== userId);
 
       const existingChannel = await findPrivateChannelWithUserIds([
         userId,
-        ...peerUserIds.filter((peer) => peer !== userId),
+        ...filteredPeerUserIds,
       ]);
 
       if (existingChannel) {
-        peerUserIds.forEach((id: string) =>
+        filteredPeerUserIds.forEach((id: string) =>
           changeVisibilityWhenInvisible(id, existingChannel),
         );
 
@@ -165,7 +166,7 @@ export const findOrCreatePrivateChannel = mutationField(
       const channel = await createNewChannel(channelType, userId);
 
       if (channelType !== ChannelType.self)
-        await createMemberships(channel.id, peerUserIds);
+        await createMemberships(channel.id, filteredPeerUserIds);
 
       return channel;
     },
