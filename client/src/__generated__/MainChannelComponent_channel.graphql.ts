@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import Channels from "./Channels.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type MainChannelComponent_channel = {
     readonly channels: {
@@ -15,6 +14,7 @@ export type MainChannelComponent_channel = {
                 readonly name: string | null;
                 readonly memberships: ReadonlyArray<{
                     readonly user: {
+                        readonly id: string;
                         readonly name: string | null;
                         readonly nickname: string | null;
                         readonly thumbURL: string | null;
@@ -102,7 +102,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": Channels
+      "operation": require('./Channels.graphql.ts')
     }
   },
   "name": "MainChannelComponent_channel",
@@ -175,6 +175,7 @@ return {
                       "name": "user",
                       "plural": false,
                       "selections": [
+                        (v1/*: any*/),
                         (v2/*: any*/),
                         {
                           "alias": null,
@@ -296,5 +297,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'fcd7dced0658bdf5011e46ed25d0c275';
+(node as any).hash = 'f551c35c2daad31db679d6855c6109c5';
 export default node;

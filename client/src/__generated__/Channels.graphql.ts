@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 import { FragmentRefs } from "relay-runtime";
 export type ChannelsVariables = {
     after?: string | null;
@@ -39,6 +38,7 @@ fragment MainChannelComponent_channel_4q1LXA on Query {
         name
         memberships(excludeMe: false) {
           user {
+            id
             name
             nickname
             thumbURL
@@ -197,6 +197,7 @@ return {
                         "name": "user",
                         "plural": false,
                         "selections": [
+                          (v2/*: any*/),
                           (v3/*: any*/),
                           {
                             "alias": null,
@@ -327,14 +328,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "907b2d0e1a8d3e298492817eb93f11b2",
+    "cacheID": "983ded6fa4e7a17a872d2d00f735dcaf",
     "id": null,
     "metadata": {},
     "name": "Channels",
     "operationKind": "query",
-    "text": "query Channels(\n  $after: String\n  $first: Int!\n  $withMessage: Boolean\n) {\n  ...MainChannelComponent_channel_4q1LXA\n}\n\nfragment MainChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: false) {\n          user {\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
+    "text": "query Channels(\n  $after: String\n  $first: Int!\n  $withMessage: Boolean\n) {\n  ...MainChannelComponent_channel_4q1LXA\n}\n\nfragment MainChannelComponent_channel_4q1LXA on Query {\n  channels(first: $first, after: $after, withMessage: $withMessage) {\n    edges {\n      cursor\n      node {\n        id\n        channelType\n        name\n        memberships(excludeMe: false) {\n          user {\n            id\n            name\n            nickname\n            thumbURL\n            photoURL\n          }\n        }\n        lastMessage {\n          id\n          messageType\n          text\n          imageUrls\n          fileUrls\n          createdAt\n        }\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = 'fcd7dced0658bdf5011e46ed25d0c275';
+(node as any).hash = 'f551c35c2daad31db679d6855c6109c5';
 export default node;

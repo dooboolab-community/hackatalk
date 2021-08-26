@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 export type ReportCreateReportMutationVariables = {
     reportedUserId: string;
     report: string;

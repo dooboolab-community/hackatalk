@@ -3,11 +3,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 import { FragmentRefs } from "relay-runtime";
 export type ChannelCreateFriendsPaginationQueryVariables = {
     after?: string | null;
     first: number;
+    includeMe?: boolean | null;
     searchText?: string | null;
 };
 export type ChannelCreateFriendsPaginationQueryResponse = {
@@ -24,13 +24,14 @@ export type ChannelCreateFriendsPaginationQuery = {
 query ChannelCreateFriendsPaginationQuery(
   $after: String
   $first: Int!
+  $includeMe: Boolean
   $searchText: String
 ) {
-  ...ChannelCreate_friends_2yyznZ
+  ...ChannelCreate_friends_1KCjMM
 }
 
-fragment ChannelCreate_friends_2yyznZ on Query {
-  friends(first: $first, after: $after, searchText: $searchText) {
+fragment ChannelCreate_friends_1KCjMM on Query {
+  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
     edges {
       cursor
       node {
@@ -76,6 +77,11 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
+    "name": "includeMe"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
     "name": "searchText"
   }
 ],
@@ -89,6 +95,11 @@ v1 = [
     "kind": "Variable",
     "name": "first",
     "variableName": "first"
+  },
+  {
+    "kind": "Variable",
+    "name": "includeMe",
+    "variableName": "includeMe"
   },
   {
     "kind": "Variable",
@@ -250,7 +261,8 @@ return {
         "alias": null,
         "args": (v1/*: any*/),
         "filters": [
-          "searchText"
+          "searchText",
+          "includeMe"
         ],
         "handle": "connection",
         "key": "ChannelCreate_friends",
@@ -260,14 +272,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "4551c7a38ac38d613cbadadc59beb1d0",
+    "cacheID": "deb52b2fec2b3ae81cff263321d86cf7",
     "id": null,
     "metadata": {},
     "name": "ChannelCreateFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $searchText: String\n) {\n  ...ChannelCreate_friends_2yyznZ\n}\n\nfragment ChannelCreate_friends_2yyznZ on Query {\n  friends(first: $first, after: $after, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $includeMe: Boolean\n  $searchText: String\n) {\n  ...ChannelCreate_friends_1KCjMM\n}\n\nfragment ChannelCreate_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '73e8bfa8c367386edf73dea6e61ed543';
+(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
 export default node;

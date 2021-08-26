@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import ChannelCreateFriendsPaginationQuery from "./ChannelCreateFriendsPaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type ChannelCreate_friends = {
     readonly friends: {
@@ -52,6 +51,11 @@ return {
     {
       "defaultValue": null,
       "kind": "LocalArgument",
+      "name": "includeMe"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
       "name": "searchText"
     }
   ],
@@ -75,7 +79,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": ChannelCreateFriendsPaginationQuery
+      "operation": require('./ChannelCreateFriendsPaginationQuery.graphql.ts')
     }
   },
   "name": "ChannelCreate_friends",
@@ -83,6 +87,11 @@ return {
     {
       "alias": "friends",
       "args": [
+        {
+          "kind": "Variable",
+          "name": "includeMe",
+          "variableName": "includeMe"
+        },
         {
           "kind": "Variable",
           "name": "searchText",
@@ -203,5 +212,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '73e8bfa8c367386edf73dea6e61ed543';
+(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
 export default node;

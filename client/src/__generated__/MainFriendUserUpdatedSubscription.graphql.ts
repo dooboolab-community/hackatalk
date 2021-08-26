@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 import { FragmentRefs } from "relay-runtime";
 export type MainFriendUserUpdatedSubscriptionVariables = {};
 export type MainFriendUserUpdatedSubscriptionResponse = {

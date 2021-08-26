@@ -3,7 +3,6 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import FriendFriendsPaginationQuery from "./FriendFriendsPaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type MainFriend_friends = {
     readonly friends: {
@@ -46,7 +45,13 @@ return {
       "name": "first"
     },
     {
-      "kind": "RootArgument",
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "includeMe"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
       "name": "searchText"
     }
   ],
@@ -70,7 +75,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": FriendFriendsPaginationQuery
+      "operation": require('./FriendFriendsPaginationQuery.graphql.ts')
     }
   },
   "name": "MainFriend_friends",
@@ -169,5 +174,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '2eafd01b0fcaf94a5708b4a275b195c9';
+(node as any).hash = '9fbd55fcfc373597074710e5f1cbc7bd';
 export default node;
