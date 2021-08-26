@@ -152,7 +152,7 @@ interface Props {
 function ChannelListItem(props: Props): React.ReactElement {
   const {
     testID,
-    item: {channelType = 'private', lastMessage, memberships},
+    item: {channelType, lastMessage, memberships},
     lastMessageCnt = 0,
     onPress,
   } = props;
@@ -212,8 +212,6 @@ function ChannelListItem(props: Props): React.ReactElement {
               flexDirection: 'row',
             }}>
             {photoStrs?.slice(0, 4).map((photo, i) => {
-              if (i > 3) return null;
-
               if (!photo)
                 return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
 
