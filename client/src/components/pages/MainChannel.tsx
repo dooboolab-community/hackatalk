@@ -220,6 +220,7 @@ const Screen: FC = () => {
         <ContentContainer searchArgs={searchArgs} />
       </Suspense>
       <TouchableOpacity
+        testID="channel-create-FAB"
         activeOpacity={0.65}
         style={{
           position: 'absolute',
