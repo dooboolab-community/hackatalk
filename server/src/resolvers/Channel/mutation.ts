@@ -151,7 +151,7 @@ export const findOrCreatePrivateChannel = mutationField(
 
       const existingChannel = await findPrivateChannelWithUserIds([
         userId,
-        ...(channelType === ChannelType.self ? [] : peerUserIds),
+        ...peerUserIds.filter((peer) => peer !== userId),
       ]);
 
       if (existingChannel) {

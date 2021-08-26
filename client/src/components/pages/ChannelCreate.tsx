@@ -45,7 +45,7 @@ import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
-import {useAuthContext} from '../../providers';
+import {useAuthContext} from '../../providers/AuthProvider';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'dooboo-ui';
@@ -120,6 +120,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     ChannelCreateFriendsPaginationQuery,
     ChannelCreate_friends$key
   >(friendsFragment, friend);
+  const {user} = useAuthContext();
 
   const friendEdges = useMemo(() => {
     return (
@@ -130,7 +131,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   }, [data]);
 
   const {theme} = useTheme();
-  const {user} = useAuthContext();
   const navigation = useNavigation();
 
   const removeFriend = (friendArg: User): void => {
@@ -203,8 +203,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
-        checked={selectedUsers.includes(item?.node as User)}
         isMyself={isMyself}
+        checked={selectedUsers.includes(item?.node as User)}
         // @ts-ignore
         user={item.node}
         onPress={(): void => {
