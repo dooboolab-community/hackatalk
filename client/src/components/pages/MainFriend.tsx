@@ -78,7 +78,7 @@ const userUpdatedSubscription = graphql`
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   const {showModal} = useProfileContext();
-  const {user} = useAuthContext();
+  const {user: authUser} = useAuthContext();
 
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     FriendFriendsPaginationQuery,
@@ -117,7 +117,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
-    const isMyself = item.id === user?.id;
+    const isMyself = item.id === authUser?.id;
     const userListOnPressInlineFn = (): void => userListOnPress(item, isMyself);
 
     return (

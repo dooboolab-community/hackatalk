@@ -1,12 +1,11 @@
 import {Channel, Message} from '../../types/graphql';
 import React, {ReactElement} from 'react';
-import {Text, TouchableOpacity, View, ViewStyle} from 'react-native';
+import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
-import {theme} from 'dooboo-ui/theme/colors';
 import {useAuthContext} from '../../providers/AuthProvider';
 
 const StyledViewChatRoomListItem = styled.View`
