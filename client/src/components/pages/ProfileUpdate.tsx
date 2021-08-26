@@ -6,7 +6,7 @@ import {
   PROFILEIMAGE_HEIGHT,
   PROFILEIMAGE_WIDTH,
 } from '../../utils/const';
-import {Button, EditText, Snackbar, SnackbarRef, useTheme} from 'dooboo-ui';
+import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
@@ -22,7 +22,6 @@ import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
-import {SnackbarType} from 'dooboo-ui/Styled/StyledComponents';
 import {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
@@ -34,6 +33,7 @@ import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useSnackbarContext} from '@dooboo-ui/snackbar';
 
 const Container = styled.View`
   flex: 1;
@@ -79,37 +79,9 @@ const Screen: FC = () => {
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
-  const snackbar = useRef<SnackbarRef>(null);
+  const snackbar = useSnackbarContext();
 
   const {user} = useAuthContext();
-
-  const updateProfileToast = useCallback(
-    (type?: SnackbarType): void => {
-      if (snackbar)
-        return snackbar.current?.show({
-          text: getString('UPDATE_PROFILE'),
-          type,
-          styles: {
-            container: {
-              backgroundColor: `${theme.toastBackground}`,
-              width: 500,
-              marginBottom: 50,
-              justifyContent: 'center',
-              borderTopRightRadius: 15,
-              borderTopLeftRadius: 15,
-              borderBottomLeftRadius: 15,
-              borderBottomRightRadius: 15,
-            },
-            text: {
-              color: `${theme.toastFont}`,
-              fontSize: 13,
-              fontWeight: '600',
-            },
-          },
-        });
-    },
-    [theme.toastBackground, theme.toastFont, snackbar],
-  );
 
   const [commitUpload, isUploadInFlight] =
     useMutation<UploadSingleUploadMutation>(singleUpload);
@@ -258,6 +230,24 @@ const Screen: FC = () => {
     );
   };
 
+  const updateProfileToast = (): void => {
+    snackbar?.show({
+      text: getString('UPDATE_PROFILE'),
+      containerStyle: {
+        backgroundColor: `${theme.toastBackground}`,
+        width: 500,
+        marginBottom: 50,
+        justifyContent: 'center',
+        borderRadius: 15,
+      },
+      messageStyle: {
+        color: `${theme.toastFont}`,
+        fontSize: 13,
+        fontWeight: '600',
+      },
+    });
+  };
+
   const updateProfile = async (): Promise<void> => {
     const mutationConfig = {
       variables: {
@@ -273,7 +263,7 @@ const Screen: FC = () => {
         showAlertForError(error);
       },
       onCompleted: (): void => {
-        updateProfileToast('default');
+        updateProfileToast();
       },
     };
 
@@ -402,7 +392,6 @@ const Screen: FC = () => {
           </StyledButtonWrapper>
         </Wrapper>
       </StyledScrollView>
-      <Snackbar testID="update-profile" ref={snackbar} />
     </Container>
   );
 };

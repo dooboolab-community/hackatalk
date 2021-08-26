@@ -31,6 +31,7 @@
     "deploy-hosting": "npm run predeploy && firebase deploy --only hosting"
   },
   "dependencies": {
+    "@dooboo-ui/snackbar": "^0.0.1",
     "@emotion/native": "^11.0.0",
     "@emotion/react": "^11.4.1",
     "@expo/match-media": "^0.1.0",
