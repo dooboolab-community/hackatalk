@@ -1,15 +1,10 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import {
-  ModalState,
-  ProfileModalContext,
-  ProfileModalProvider,
-} from '../../../providers';
+import {ModalState, ProfileModalContext} from '../../../providers';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import MainFriend from '../MainFriend';
 import React from 'react';
 import {User} from '../../../types/graphql';
-import {assertAbstractType} from 'graphql';
 import {createTestElement} from '../../../../test/testUtils';
 
 const mockEnvironment = createMockEnvironment();
@@ -38,7 +33,6 @@ describe('[Friend] rendering test', () => {
     expect(nickname).toBeTruthy();
 
     const json = screen.toJSON();
-
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });

@@ -125,7 +125,7 @@ function Shared({
         onPress={onPress}
         delayPressIn={130}
         onLongPress={onLongPress}>
-        <Wrapper isMyself={isMyself}>
+        <Wrapper isMyself={isMyself} testID="userListItem-wrapper">
           <ImageWrapper isMyself={isMyself}>
             <StyledImage
               resizeMode="cover"

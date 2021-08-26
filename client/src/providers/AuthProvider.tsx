@@ -22,7 +22,7 @@ export interface AuthContext {
   loadMeQuery: (variables: AuthProviderMeQueryVariables, options?: any) => void;
 }
 
-const [useCtx, Provider] = createCtx<AuthContext>();
+export const [useCtx, AuthContextProvider] = createCtx<AuthContext>();
 
 interface Props {
   children?: React.ReactElement;
@@ -68,7 +68,7 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
   };
 
   return (
-    <Provider
+    <AuthContextProvider
       value={{
         user,
         setUser,
@@ -77,7 +77,7 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
         loadMeQuery,
       }}>
       {children}
-    </Provider>
+    </AuthContextProvider>
   );
 }
 

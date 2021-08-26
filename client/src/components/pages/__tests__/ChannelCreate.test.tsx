@@ -1,16 +1,33 @@
 import 'react-native';
 
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
+import {AuthContextProvider} from '../../../providers/AuthProvider';
+import {AuthProviderMeQueryResponse} from '../../../__generated__/AuthProviderMeQuery.graphql';
 import ChannelCreate from '../ChannelCreate';
 import React from 'react';
+import {User} from '../../../types/graphql';
 import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
+
+const mockEnvironment = createMockEnvironment();
+
+mockEnvironment.mock.queueOperationResolver((operation) => {
+  return MockPayloadGenerator.generate(operation, {
+    User: (_, generateId): User => ({
+      id: `user-${generateId()}`,
+      name: 'John Doe',
+      nickname: 'jdoe1234',
+    }),
+    PageInfo: () => ({has_next_page: false}),
+  });
+});
 
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
@@ -25,6 +42,40 @@ describe('Rendering', () => {
 
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
+  });
+
+  it('renders [UserListItem]', async () => {
+    const user: AuthProviderMeQueryResponse['me'] | null = {
+      id: 'user-1',
+      verified: true,
+      email: 'test@email.com',
+      profile: null,
+    };
+
+    const component = createTestElement(
+      <AuthContextProvider
+        value={{
+          user,
+          setUser: jest.fn(),
+          signOutAsync: jest.fn(),
+          loadMeQuery: jest.fn(),
+        }}>
+        <ChannelCreate />
+      </AuthContextProvider>,
+      {
+        environment: mockEnvironment,
+      },
+    );
+    const screen = render(component);
+
+    const nickname = await screen.findByText('jdoe1234');
+
+    const userListItemWrapper = await screen.getByTestId(
+      'userListItem-wrapper',
+    );
+
+    expect(nickname).toBeTruthy();
+    expect(userListItemWrapper.props.isMyself).toBeTruthy();
   });
 });
 
