@@ -1,7 +1,6 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   ModalState,
-  ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
 import React, {
