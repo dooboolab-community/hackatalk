@@ -300,6 +300,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           }}>
           {modalState.isMyself ? (
             <TouchableOpacity
+              testID="profile-update-button"
               style={{padding: 8}}
               activeOpacity={0.5}
               onPress={(): void => {

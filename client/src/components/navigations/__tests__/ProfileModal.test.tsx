@@ -1,4 +1,9 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import {
+  ModalState,
+  ProfileModalContext,
+  useProfileContext,
+} from '../../../providers/ProfileModalProvider';
 import React, {
   FC,
   RefObject,
@@ -19,7 +24,6 @@ import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuer
 import {User} from '../../../types/graphql';
 import {View} from 'react-native';
 import mockReactNavigation from '@react-navigation/core';
-import {useProfileContext} from '../../../providers/ProfileModalProvider';
 
 const mockNavigation = createMockNavigation();
 
@@ -38,8 +42,10 @@ type ConsumerRef = {
     onDeleteFriend?: () => void;
     onAddFriend?: () => void;
     hideButtons?: boolean;
+    isMyself?: boolean;
   }) => void;
   hideModal: () => void;
+  modalState: ModalState;
 };
 
 const ProfileConsumer = forwardRef<ConsumerRef>((_props, ref) => {
@@ -54,13 +60,14 @@ const ProfileConsumer = forwardRef<ConsumerRef>((_props, ref) => {
     {},
   );
 
-  const {showModal, hideModal} = useProfileContext();
+  const {showModal, hideModal, modalState} = useProfileContext();
 
   if (!myData) throw new Error('myData is null');
 
   useImperativeHandle(ref, () => ({
     showModal: (next) => showModal({...next, user: myData}),
     hideModal,
+    modalState,
   }));
 
   return null;
@@ -201,11 +208,11 @@ describe('[ProfileModal] rendering test', () => {
 
     const mockOnDeleteFriend = jest.fn();
 
-    act(() =>
+    act(() => {
       consumerRef.current?.showModal({
         onDeleteFriend: mockOnDeleteFriend,
-      }),
-    );
+      });
+    });
 
     // Find the delete button.
     // 'touch-add-friend' button becomes the delete button if
@@ -308,5 +315,56 @@ describe('[ProfileModal] rendering test', () => {
 
     expect(overlay.props.style.width).toBe(300);
     expect(overlay.props.style.height).toBe(252);
+  });
+
+  it('Should be opened when modalState.isMyself true', async () => {
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({isMyself: true}));
+
+    expect(screen.queryAllByTestId('touch-add-friend')).toStrictEqual([]);
+    expect(screen.queryAllByTestId('touch-done')).toStrictEqual([]);
+    expect(screen.getByText('Chat with myself')).toBeTruthy();
+  });
+});
+
+describe('[ProfileModal] interaction test', () => {
+  it('Deals with when modalState.isMyself true and button clicked', async () => {
+    const mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        User: (_, generateId) => generateUser(generateId(), false),
+      }),
+    );
+
+    const consumerRef = createRef<ConsumerRef>();
+
+    const screen = render(
+      <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
+    );
+
+    act(() => consumerRef.current?.showModal({isMyself: true}));
+
+    const button = screen.getByTestId('profile-update-button');
+    fireEvent.press(button);
+
+    expect(mockNavigation.navigate).toHaveBeenCalledWith('MainStack', {
+      screen: 'ProfileUpdate',
+    });
+
+    expect(consumerRef.current?.modalState.isVisible).toBeFalsy();
   });
 });
