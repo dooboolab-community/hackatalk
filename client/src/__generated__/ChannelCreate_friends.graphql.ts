@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
+import ChannelCreateFriendsPaginationQuery from "./ChannelCreateFriendsPaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
 export type ChannelCreate_friends = {
     readonly friends: {
@@ -79,7 +80,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": require('./ChannelCreateFriendsPaginationQuery.graphql.ts')
+      "operation": ChannelCreateFriendsPaginationQuery
     }
   },
   "name": "ChannelCreate_friends",
