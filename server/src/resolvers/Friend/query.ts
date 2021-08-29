@@ -51,7 +51,8 @@ export const friends = queryField((t) => {
           },
         });
 
-        result.unshift(myProfile!);
+        assert(myProfile, 'Failed to fetch self profile.');
+        result.unshift(myProfile);
       }
 
       return result;
