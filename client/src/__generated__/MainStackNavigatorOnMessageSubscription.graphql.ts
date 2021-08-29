@@ -64,7 +64,7 @@ subscription MainStackNavigatorOnMessageSubscription(
         fileUrls
         createdAt
       }
-      memberships(excludeMe: true) {
+      memberships(excludeMe: false) {
         user {
           name
           nickname
@@ -228,7 +228,7 @@ v12 = {
         {
           "kind": "Literal",
           "name": "excludeMe",
-          "value": true
+          "value": false
         }
       ],
       "concreteType": "Membership",
@@ -252,7 +252,7 @@ v12 = {
           "storageKey": null
         }
       ],
-      "storageKey": "memberships(excludeMe:true)"
+      "storageKey": "memberships(excludeMe:false)"
     }
   ],
   "storageKey": null
@@ -373,14 +373,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "951cceae47651853d1d1fbb8cbb1a968",
+    "cacheID": "7b5d146f5a389a2f1932ed96cbf8853e",
     "id": null,
     "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
-    "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: true) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: false) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = '813efae8c9cb3380c2ce3aa4248109d3';
+(node as any).hash = 'a6c09547ba5c488aa4975a1241266c9a';
 export default node;
