@@ -45,7 +45,7 @@ describe('Rendering', () => {
   });
 
   it('renders [UserListItem]', async () => {
-    const user: AuthProviderMeQueryResponse['me'] | null = {
+    const user: AuthProviderMeQueryResponse['me'] = {
       id: 'user-1',
       verified: true,
       email: 'test@email.com',
