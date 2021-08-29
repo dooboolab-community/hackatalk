@@ -1,5 +1,9 @@
 import 'react-native';
 
+import {
+  AuthContext,
+  AuthContextProvider,
+} from '../../../providers/AuthProvider';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   createMockNavigation,
@@ -7,7 +11,6 @@ import {
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import {AuthContextProvider} from '../../../providers/AuthProvider';
 import {AuthProviderMeQueryResponse} from '../../../__generated__/AuthProviderMeQuery.graphql';
 import ChannelCreate from '../ChannelCreate';
 import React from 'react';
@@ -52,14 +55,17 @@ describe('Rendering', () => {
       profile: null,
     };
 
+    const useAuthContextMock: jest.Mock<AuthContext> = jest.fn();
+
+    useAuthContextMock.mockReturnValue({
+      user,
+      setUser: jest.fn(),
+      signOutAsync: jest.fn(),
+      loadMeQuery: jest.fn(),
+    });
+
     const component = createTestElement(
-      <AuthContextProvider
-        value={{
-          user,
-          setUser: jest.fn(),
-          signOutAsync: jest.fn(),
-          loadMeQuery: jest.fn(),
-        }}>
+      <AuthContextProvider value={useAuthContextMock()}>
         <ChannelCreate />
       </AuthContextProvider>,
       {
