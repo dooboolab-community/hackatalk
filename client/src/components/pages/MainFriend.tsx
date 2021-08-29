@@ -124,7 +124,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
       <UserListItem
         showStatus
         user={item}
-        onPress={userListOnPressInlineFn}
+        onPress={() => userListOnPress(item, isMyself)}
         isMyself={isMyself}
       />
     );
