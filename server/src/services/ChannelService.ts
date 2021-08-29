@@ -86,31 +86,21 @@ export const changeVisibilityWhenInvisible = (
     },
   });
 
-export const getChannelType = (
-  userId: string,
-  peerUserIds: string[],
-): ChannelType => {
-  if (peerUserIds.length === 1 && peerUserIds[0] === userId)
-    return ChannelType.self;
-
-  return ChannelType.private;
-};
+export const isSelfChannel = (userId: string, memberIds: string[]): boolean =>
+  memberIds.length === 1 && memberIds[0] === userId;
 
 export const createNewChannel = async (
-  channelType: ChannelType,
+  isSelf: boolean,
   userId: string,
   name?: string,
 ): Promise<Channel> =>
   prisma.channel.create({
     data: {
-      channelType,
+      channelType: isSelf ? ChannelType.self : ChannelType.private,
       name,
       membership: {
         create: {
-          membershipType:
-            channelType === ChannelType.public
-              ? MembershipType.owner
-              : MembershipType.member,
+          membershipType: MembershipType.member,
           user: {connect: {id: userId}},
         },
       },
