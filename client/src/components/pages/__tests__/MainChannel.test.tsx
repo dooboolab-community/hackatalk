@@ -59,7 +59,7 @@ describe('[Channel] screen', () => {
 });
 
 describe('interactions', () => {
-  it('should simulate [ChanneItem] onPress', async () => {
+  it('should simulate [ChannelItem] onPress', async () => {
     const component = createTestElement(<MainChannel />, {
       environment: mockEnvironment,
     });
