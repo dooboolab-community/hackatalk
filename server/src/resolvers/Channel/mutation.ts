@@ -6,12 +6,12 @@ import {
   findChannelWithUserIds,
   findExistingChannel,
   findPrivateChannelWithUserIds,
-  isSelfChannel,
 } from '../../services/ChannelService';
 import {inputObjectType, list, mutationField, nonNull, stringArg} from 'nexus';
 
 import {assert} from '../../utils/assert';
 import {filterNullProperties} from '../../utils/filterNullProperties';
+import {getChannelType} from './../../services/ChannelService';
 
 export const MessageCreateInput = inputObjectType({
   name: 'MessageCreateInput',
@@ -147,7 +147,7 @@ export const findOrCreatePrivateChannel = mutationField(
     resolve: async (parent, {peerUserIds}, {userId}) => {
       assert(userId, 'Not authorized.');
 
-      const isSelf = isSelfChannel(userId, peerUserIds);
+      const channelType = getChannelType(userId, peerUserIds);
       const filteredPeerUserIds = peerUserIds.filter((peer) => peer !== userId);
 
       const existingChannel = await findPrivateChannelWithUserIds([
@@ -163,9 +163,9 @@ export const findOrCreatePrivateChannel = mutationField(
         return existingChannel;
       }
 
-      const channel = await createNewChannel(isSelf, userId);
+      const channel = await createNewChannel(channelType, userId);
 
-      if (!isSelfChannel)
+      if (channelType !== ChannelType.self)
         await createMemberships(channel.id, filteredPeerUserIds);
 
       return channel;
