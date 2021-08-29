@@ -118,7 +118,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
     const isMyself = item.id === authUser?.id;
-    const userListOnPressInlineFn = (): void => userListOnPress(item, isMyself);
 
     return (
       <UserListItem
