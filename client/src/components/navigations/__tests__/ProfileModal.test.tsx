@@ -340,7 +340,7 @@ describe('[ProfileModal] rendering test', () => {
 });
 
 describe('[ProfileModal] interaction test', () => {
-  it('Deals with when modalState.isMyself true and button clicked', async () => {
+  it('Should have a navigation button to [ProfileUpdate] when [isMyself] is true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>

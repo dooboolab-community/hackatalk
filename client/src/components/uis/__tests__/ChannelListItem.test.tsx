@@ -95,12 +95,13 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders "renderSingleImage" as expected', () => {
-    TEST_CHANNEL.channelType = 'self';
-    TEST_CHANNEL.memberships = MEMBERSHIPS.slice(0, 1);
+    const channel = {
+      ...TEST_CHANNEL,
+      channelType: 'self',
+      memberships: MEMBERSHIPS.slice(0, 1),
+    };
 
-    const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} />,
-    );
+    const component = createTestElement(<ChannelListItem item={channel} />);
     const screen = render(component);
 
     const json = screen.toJSON();
@@ -110,12 +111,13 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders "renderSingleImage" without photoURL as expected', () => {
-    TEST_CHANNEL.channelType = 'self';
-    TEST_CHANNEL.memberships = MEMBERSHIPS.slice(4);
+    const channel = {
+      ...TEST_CHANNEL,
+      channelType: 'self',
+      memberships: MEMBERSHIPS.slice(4),
+    };
 
-    const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} />,
-    );
+    const component = createTestElement(<ChannelListItem item={channel} />);
 
     const screen = render(component);
 
@@ -126,11 +128,12 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders "renderMultiImages" when 1000+ users exited', () => {
-    TEST_CHANNEL.memberships = new Array(201).fill(MEMBERSHIPS).flat();
+    const channel = {
+      ...TEST_CHANNEL,
+      memberships: new Array(201).fill(MEMBERSHIPS).flat(),
+    };
 
-    const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} />,
-    );
+    const component = createTestElement(<ChannelListItem item={channel} />);
 
     const {getByText} = render(component);
 
