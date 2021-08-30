@@ -1,7 +1,8 @@
-import {Channel, Message} from '../../types/graphql';
+import {Channel, Maybe, Membership, Message, User} from '../../types/graphql';
 import React, {ReactElement} from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
+import {AuthProviderMeQueryResponse} from '../../__generated__/AuthProviderMeQuery.graphql';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
@@ -149,6 +150,52 @@ interface Props {
   fontColor?: string;
 }
 
+class FilteredMemberships {
+  constructor(
+    private memberships: Maybe<Membership[]> | undefined,
+    private user: AuthProviderMeQueryResponse['me'] | null,
+    private channelType: string,
+  ) {
+    this.memberships = memberships;
+    this.channelType = channelType;
+    this.user = user;
+  }
+
+  private get filtered(): (Maybe<Membership> | undefined)[] | undefined {
+    return this.memberships?.filter((member) => {
+      if (this.channelType !== 'self')
+        return member?.user?.id !== this.user?.id;
+
+      return true;
+    });
+  }
+
+  get users(): (Maybe<User> | undefined)[] | undefined {
+    return this.filtered?.map((membership) => membership?.user);
+  }
+
+  get userNames(): string[] | undefined {
+    return this.users?.map((v) => v?.nickname || v?.name || '');
+  }
+  calculatedPhotoUrls(): (Maybe<string> | undefined)[] | undefined {
+    return this.filtered?.map(
+      (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
+    );
+  }
+
+  calculateOnlineStatus(): Maybe<Boolean> | undefined {
+    return this.filtered?.[0]?.user?.isOnline;
+  }
+
+  calculateDisplayName(): Maybe<string> | undefined {
+    return this.users?.length === 1
+      ? this.users?.[0]?.nickname ||
+          this.users?.[0]?.name ||
+          getString('NO_NAME')
+      : this.userNames?.join(', ');
+  }
+}
+
 function ChannelListItem(props: Props): React.ReactElement {
   const {
     testID,
@@ -161,19 +208,15 @@ function ChannelListItem(props: Props): React.ReactElement {
   const {user} = useAuthContext();
 
   if (channelType !== 'public') {
-    const filteredMemberships = memberships?.filter((member) => {
-      if (channelType !== 'self') return member?.user?.id !== user?.id;
-
-      return true;
-    });
-
-    const users = filteredMemberships?.map((membership) => membership?.user);
-
-    const photoURLs = filteredMemberships?.map(
-      (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
+    const filteredMemberships = new FilteredMemberships(
+      memberships,
+      user,
+      channelType,
     );
 
-    const isOnline = filteredMemberships?.[0]?.user?.isOnline;
+    const users = filteredMemberships.users;
+    const photoURLs = filteredMemberships.calculatedPhotoUrls();
+    const isOnline = filteredMemberships.calculateOnlineStatus();
 
     const renderSingleImage = (
       photoURL: string | null | undefined,
@@ -233,8 +276,6 @@ function ChannelListItem(props: Props): React.ReactElement {
       );
     };
 
-    const userNames = users?.map((v) => v?.nickname || v?.name || '');
-
     return (
       <View
         style={{
@@ -262,11 +303,7 @@ function ChannelListItem(props: Props): React.ReactElement {
                     </StyledMeCircleView>
                   )}
                   <StyledTextDisplayName numberOfLines={2}>
-                    {users?.length === 1
-                      ? users?.[0]?.nickname ||
-                        users?.[0]?.name ||
-                        getString('NO_NAME')
-                      : userNames?.join(', ')}
+                    {filteredMemberships.calculateDisplayName()}
                   </StyledTextDisplayName>
                 </StyledNamesContainerView>
                 {lastMessageCnt !== 0 ? (
