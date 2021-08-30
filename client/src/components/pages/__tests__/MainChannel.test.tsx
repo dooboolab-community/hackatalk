@@ -81,7 +81,7 @@ describe('interactions', () => {
     });
 
     const screen = render(component);
-    const fabBtn = await screen.findByTestId('channel-create-FAB');
+    const fabBtn = screen.getByTestId('channel-create-FAB');
 
     fireEvent.press(fabBtn);
 
