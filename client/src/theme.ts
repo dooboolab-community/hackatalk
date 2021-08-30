@@ -105,7 +105,7 @@ export const dark = {
   messageBackground: colors.dark,
   status: colors.green_30,
   placeholder: colors.gray_50,
-  focused: '#ffffff',
+  focused: colors.light,
   placeholderFocused: colors.paleBlue_10,
   socialBtn: colors.gray_05,
   link: colors.blue_60,
