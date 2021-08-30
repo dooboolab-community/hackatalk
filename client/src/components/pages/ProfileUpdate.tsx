@@ -233,18 +233,13 @@ const Screen: FC = () => {
   const showUpdateProfileToast = (): void => {
     snackbar?.openSnackbar({
       text: getString('UPDATE_PROFILE'),
+      type: 'success',
       styles: {
         container: {
-          backgroundColor: theme.toastBackground,
-          width: 500,
+          minWidth: '85%',
+          minHeight: '10%',
           marginBottom: 50,
           justifyContent: 'center',
-          borderRadius: 15,
-        },
-        text: {
-          color: theme.toastFont,
-          fontSize: 13,
-          fontWeight: '600',
         },
       },
     });

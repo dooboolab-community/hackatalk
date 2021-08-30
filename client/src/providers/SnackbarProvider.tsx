@@ -7,19 +7,14 @@ import React, {
   useState,
 } from 'react';
 import {Snackbar, SnackbarContent, SnackbarRef, useTheme} from 'dooboo-ui';
-import {StyleProp, TextStyle, View, ViewStyle} from 'react-native';
 
-// import {Theme} from '../theme';
-
-declare type styles = {
-  container?: StyleProp<ViewStyle>;
-  text?: StyleProp<TextStyle>;
-};
+import {Theme} from '../theme';
+import {View} from 'react-native';
 
 export interface SnackbarState extends SnackbarContent {
   testID?: string;
   zIndex?: number;
-  styles?: styles;
+  theme?: Theme;
 }
 
 export type SnackbarContext = {
@@ -31,7 +26,7 @@ const SnackbarContext = createContext<SnackbarContext>({
 });
 
 export const SnackbarProvider: FC = (props) => {
-  // const {theme} = useTheme();
+  const {theme} = useTheme();
   const [snackbarState, setSnackbarState] = useState<SnackbarState>();
 
   const snackbarRef = useRef<SnackbarRef>(null);
@@ -64,7 +59,7 @@ export const SnackbarProvider: FC = (props) => {
       <View style={{zIndex: snackbarState?.zIndex}}>
         <Snackbar
           testID={snackbarState?.testID}
-          // theme={snackbarState?.styles ?? theme}
+          theme={snackbarState?.theme ?? theme}
           ref={snackbarRef}
         />
       </View>
