@@ -71,7 +71,7 @@ const StatusTag = styled.View`
 `;
 
 const StyledImage = styled.Image<{isMyself?: boolean}>`
-  width: ${(props) => (props.isMyself ? '50px' : '40px')};
+  width: ${({ isMyself }) => (isMyself ? '50px' : '40px')};
   height: ${(props) => (props.isMyself ? '50px' : '40px')};
   border-radius: ${(props) => (props.isMyself ? '25px' : '20px')}; ;
 `;
