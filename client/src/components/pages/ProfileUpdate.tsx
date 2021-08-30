@@ -33,7 +33,7 @@ import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useSnackbarContext} from '@dooboo-ui/snackbar';
+import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const Container = styled.View`
   flex: 1;
@@ -230,20 +230,22 @@ const Screen: FC = () => {
     );
   };
 
-  const updateProfileToast = (): void => {
-    snackbar?.show({
+  const showUpdateProfileToast = (): void => {
+    snackbar?.openSnackbar({
       text: getString('UPDATE_PROFILE'),
-      containerStyle: {
-        backgroundColor: `${theme.toastBackground}`,
-        width: 500,
-        marginBottom: 50,
-        justifyContent: 'center',
-        borderRadius: 15,
-      },
-      messageStyle: {
-        color: `${theme.toastFont}`,
-        fontSize: 13,
-        fontWeight: '600',
+      styles: {
+        container: {
+          backgroundColor: theme.toastBackground,
+          width: 500,
+          marginBottom: 50,
+          justifyContent: 'center',
+          borderRadius: 15,
+        },
+        text: {
+          color: theme.toastFont,
+          fontSize: 13,
+          fontWeight: '600',
+        },
       },
     });
   };
@@ -263,7 +265,7 @@ const Screen: FC = () => {
         showAlertForError(error);
       },
       onCompleted: (): void => {
-        updateProfileToast();
+        showUpdateProfileToast();
       },
     };
 

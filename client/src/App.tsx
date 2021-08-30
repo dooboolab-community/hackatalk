@@ -16,6 +16,7 @@ import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
+import {SnackbarProvider} from './providers/SnackbarProvider';
 import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
@@ -103,6 +104,7 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
   .wrap(ResettableRelayProvider, {createRelayEnvironment})
   .wrap(DeviceProvider, {})
+  .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})
   .build();

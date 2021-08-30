@@ -20,7 +20,6 @@ import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {SnackbarProvider} from '@dooboo-ui/snackbar';
 import WebView from '../pages/WebView';
 import {useTheme} from 'dooboo-ui';
 
@@ -201,9 +200,7 @@ const RootNavigatorWrapper: FC = () => {
       }}>
       <Suspense fallback={<CustomLoadingIndicator />}>
         {meQueryReference ? (
-          <SnackbarProvider>
-            <RootNavigator queryReference={meQueryReference} />
-          </SnackbarProvider>
+          <RootNavigator queryReference={meQueryReference} />
         ) : (
           <AuthNavigatorOnly />
         )}
