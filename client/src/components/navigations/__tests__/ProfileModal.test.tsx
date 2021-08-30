@@ -316,7 +316,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(overlay.props.style.height).toBe(252);
   });
 
-  it('Should be opened when modalState.isMyself true', async () => {
+  it('Should be open when modalState.isMyself true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
