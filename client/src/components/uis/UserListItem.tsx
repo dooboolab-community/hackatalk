@@ -132,12 +132,12 @@ function Shared({
               source={photoURL && photoURLObj ? photoURLObj : IC_NO_IMAGE}
               isMyself={isMyself}
             />
-            {showStatus && !isMyself ? (
+            {showStatus && !isMyself && (
               <StatusTag
                 style={{backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3'}}
               />
-            ) : null}
-            {hasBlocked ? (
+            )}
+            {hasBlocked && (
               <View
                 style={{
                   position: 'absolute',
@@ -150,7 +150,7 @@ function Shared({
                   color={hasBlocked ? 'red' : 'white'}
                 />
               </View>
-            ) : null}
+            )}
           </ImageWrapper>
           <StyledText numberOfLines={1}>
             {nickname || name || getString('NO_NAME')}
@@ -168,11 +168,13 @@ function Shared({
               hasChecked={checked}
               onToggle={onPress}
             />
-          ) : statusMessage ? (
-            <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
-              {statusMessage}
-            </StyledRightText>
-          ) : null}
+          ) : (
+            statusMessage && (
+              <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
+                {statusMessage}
+              </StyledRightText>
+            )
+          )}
         </Wrapper>
       </TouchableOpacity>
     </Container>
