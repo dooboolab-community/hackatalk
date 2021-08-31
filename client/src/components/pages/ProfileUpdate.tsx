@@ -33,6 +33,7 @@ import styled from '@emotion/native';
 import {uploadImageAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const Container = styled.View`
   flex: 1;
@@ -78,6 +79,7 @@ const Screen: FC = () => {
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const envrionmentProps = useRef(environment);
+  const snackbar = useSnackbarContext();
 
   const {user} = useAuthContext();
 
@@ -228,6 +230,21 @@ const Screen: FC = () => {
     );
   };
 
+  const showUpdateProfileToast = (): void => {
+    snackbar?.openSnackbar({
+      text: getString('UPDATE_PROFILE'),
+      type: 'success',
+      styles: {
+        container: {
+          minWidth: '85%',
+          minHeight: '10%',
+          marginBottom: 50,
+          justifyContent: 'center',
+        },
+      },
+    });
+  };
+
   const updateProfile = async (): Promise<void> => {
     const mutationConfig = {
       variables: {
@@ -241,6 +258,9 @@ const Screen: FC = () => {
       },
       onError: (error: Error): void => {
         showAlertForError(error);
+      },
+      onCompleted: (): void => {
+        showUpdateProfileToast();
       },
     };
 

@@ -106,6 +106,7 @@
   "UNBAN_USER": "차단 해제",
   "UNBAN_USER_TEXT": "선택한 유저의 차단을 해지하시겠습니까? 앞으로 해당 유저의 모든 메시지를 보거나 받을 수 있습니다.",
   "UPDATE": "수정",
+  "UPDATE_PROFILE": "프로필이 수정되었습니다.",
   "URL_IS_NULL": "Url is not received from the file",
   "VERIFICATION_EMAIL_SENT": "인증 메일을 보냈습니다. 메일함을 확인해주세요. GMAIL의 경우 스팸함도 확인해주세오.",
   "VERIFY": "인증하기",
