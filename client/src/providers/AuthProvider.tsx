@@ -22,7 +22,7 @@ export interface AuthContext {
   loadMeQuery: (variables: AuthProviderMeQueryVariables, options?: any) => void;
 }
 
-export const [useCtx, AuthContextProvider] = createCtx<AuthContext>();
+const [useCtx, AuthContextProvider] = createCtx<AuthContext>();
 
 interface Props {
   children?: React.ReactElement;

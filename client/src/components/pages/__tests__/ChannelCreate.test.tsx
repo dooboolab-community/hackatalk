@@ -1,9 +1,5 @@
 import 'react-native';
 
-import {
-  AuthContext,
-  AuthContextProvider,
-} from '../../../providers/AuthProvider';
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   createMockNavigation,
@@ -55,23 +51,10 @@ describe('Rendering', () => {
       profile: null,
     };
 
-    const useAuthContextMock: jest.Mock<AuthContext> = jest.fn();
-
-    useAuthContextMock.mockReturnValue({
+    const component = createTestElement(<ChannelCreate />, {
+      environment: mockEnvironment,
       user,
-      setUser: jest.fn(),
-      signOutAsync: jest.fn(),
-      loadMeQuery: jest.fn(),
     });
-
-    const component = createTestElement(
-      <AuthContextProvider value={useAuthContextMock()}>
-        <ChannelCreate />
-      </AuthContextProvider>,
-      {
-        environment: mockEnvironment,
-      },
-    );
     const screen = render(component);
 
     const nickname = await screen.findByText('jdoe1234');
