@@ -139,7 +139,13 @@ function MainStackNavigator(): ReactElement {
       },
     );
 
-    return () => subscription.remove();
+    return () => {
+      try {
+        Notifications.removeNotificationSubscription(subscription);
+      } catch (err) {
+        if (__DEV__) console.log('remove noti subscription', err);
+      }
+    };
   }, [navigation]);
 
   const {deviceKey} = useDeviceContext();
