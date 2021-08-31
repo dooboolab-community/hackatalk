@@ -68,10 +68,13 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders when channelType is public', () => {
-    TEST_CHANNEL.channelType = 'public';
+    const channel = {
+      ...TEST_CHANNEL,
+      channelType: 'public',
+    };
 
     const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} lastMessageCnt={3} />,
+      <ChannelListItem item={channel} lastMessageCnt={3} />,
     );
 
     const screen = render(component);
@@ -83,10 +86,13 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders [StyledMeCircleView] when channelType is "self"', () => {
-    TEST_CHANNEL.channelType = 'self';
+    const channel = {
+      ...TEST_CHANNEL,
+      channelType: 'self',
+    };
 
     const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} lastMessageCnt={3} />,
+      <ChannelListItem item={channel} lastMessageCnt={3} />,
     );
 
     const {getByText} = render(component);
@@ -141,11 +147,12 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders [StyledTextDate] when createdAt is undefined', () => {
-    TEST_CHANNEL.lastMessage.createdAt = undefined;
+    const channel = {
+      ...TEST_CHANNEL,
+      lastMessage: {...TEST_CHANNEL.lastMessage, createdAt: undefined},
+    };
 
-    const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} />,
-    );
+    const component = createTestElement(<ChannelListItem item={channel} />);
 
     const {getByText} = render(component);
 
@@ -153,14 +160,15 @@ describe('[ChannelListItem] rendering test', () => {
   });
 
   it('renders [StyledTextMessage] when lastMessage has multiple images', () => {
-    TEST_CHANNEL.lastMessage.imageUrls = [
-      'https://picsum.photos/201',
-      'https://picsum.photos/202',
-    ];
+    const channel = {
+      ...TEST_CHANNEL,
+      lastMessage: {
+        ...TEST_CHANNEL.lastMessage,
+        imageUrls: ['https://picsum.photos/201', 'https://picsum.photos/202'],
+      },
+    };
 
-    const component = createTestElement(
-      <ChannelListItem item={TEST_CHANNEL} />,
-    );
+    const component = createTestElement(<ChannelListItem item={channel} />);
 
     const {getByText} = render(component);
 

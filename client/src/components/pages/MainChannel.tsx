@@ -119,7 +119,6 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
 
     return (
       <ChannelListItem
-        testID={`list-item-${index}`}
         key={index.toString()}
         item={item.node}
         onPress={(): void => {

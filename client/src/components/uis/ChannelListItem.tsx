@@ -142,7 +142,6 @@ const StyledMeCircleText = styled.Text`
 `;
 
 interface Props {
-  testID?: string;
   style?: ViewStyle;
   item: Channel;
   lastMessageCnt?: number;
@@ -198,7 +197,6 @@ class FilteredMemberships {
 
 function ChannelListItem(props: Props): React.ReactElement {
   const {
-    testID,
     item: {channelType, lastMessage, memberships},
     lastMessageCnt = 0,
     onPress,
@@ -283,7 +281,7 @@ function ChannelListItem(props: Props): React.ReactElement {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          testID={testID}
+          accessibilityLabel="Go chat room"
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}>

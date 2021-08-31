@@ -59,13 +59,13 @@ describe('[Channel] screen', () => {
 });
 
 describe('interactions', () => {
-  it('should simulate [ChannelItem] onPress', async () => {
+  it('should simulate [ChannelListItem] onPress', async () => {
     const component = createTestElement(<MainChannel />, {
       environment: mockEnvironment,
     });
 
     const screen = render(component);
-    const channelItemBtn = await screen.findByTestId('list-item-0');
+    const channelItemBtn = await screen.findByA11yLabel('Go chat room');
 
     fireEvent.press(channelItemBtn);
 
