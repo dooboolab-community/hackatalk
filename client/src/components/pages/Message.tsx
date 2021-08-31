@@ -638,6 +638,24 @@ const MessageScreen: FC = () => {
     params: {channelId},
   } = useRoute<RouteProp<MainStackParamList, 'Message'>>();
 
+  // Delete notification if user is foreground in channel.
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        const parsedNotificationData = JSON.parse(
+          notification.request.content.data.data as string,
+        );
+
+        if (parsedNotificationData.channelId === channelId)
+          Notifications.dismissNotificationAsync(
+            notification.request.identifier,
+          );
+      },
+    );
+
+    return () => subscription.remove();
+  }, [channelId]);
+
   useEffect(() => {
     async function DeleteSameChannelNotification(): Promise<void> {
       const notifications =
