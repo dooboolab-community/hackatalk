@@ -131,9 +131,11 @@ const StatusMessageView: FC<Props> = ({
           numberOfLines={isStatusMessageExpanded ? MAX_STATUS_MESSAGE_LINES : 2}
           ellipsizeMode="tail"
           onTextLayout={(event) => {
-            setTextLayoutWidth(
-              event.nativeEvent.lines[event.nativeEvent.lines.length - 1].width,
-            );
+            if (event.nativeEvent.lines.length)
+              setTextLayoutWidth(
+                event.nativeEvent.lines[event.nativeEvent.lines.length - 1]
+                  .width,
+              );
           }}>
           {statusMessage}
         </StyledTextstatusMessage>

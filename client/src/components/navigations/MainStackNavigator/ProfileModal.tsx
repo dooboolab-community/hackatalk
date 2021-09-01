@@ -112,11 +112,9 @@ const styles: Styles = {
   },
   viewBtn: {
     width: '50%',
-    height: 80,
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
   },
 };
 
@@ -497,17 +495,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {statusMessage && (
-        <StatusMessageView
-          statusMessage={statusMessage}
-          transitionOpacity={transitionOpacity}
-          modalLayout={modalLayout}
-          isStatusMessageExpanded={isStatusMessageExpanded}
-          handleAnim={handleAnim}
-          showFriendAddedMessage={showFriendAddedMessage}
-          addFriendInFlight={addFriendInFlight}
-        />
-      )}
+      <StatusMessageView
+        statusMessage={statusMessage || ''}
+        transitionOpacity={transitionOpacity}
+        modalLayout={modalLayout}
+        isStatusMessageExpanded={isStatusMessageExpanded}
+        handleAnim={handleAnim}
+        showFriendAddedMessage={showFriendAddedMessage}
+        addFriendInFlight={addFriendInFlight}
+      />
     </>
   );
 };
