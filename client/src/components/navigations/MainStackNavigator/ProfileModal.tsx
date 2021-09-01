@@ -115,6 +115,8 @@ const styles: Styles = {
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: 'red',
+    borderWidth: 1,
   },
 };
 
@@ -301,7 +303,12 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           {modalState.isMyself ? (
             <TouchableOpacity
               testID="profile-update-button"
-              style={{padding: 8}}
+              style={{
+                paddingRight: 16,
+                paddingLeft: 8,
+                paddingVertical: 8,
+                justifyContent: 'center',
+              }}
               activeOpacity={0.5}
               onPress={(): void => {
                 navigation.navigate('MainStack', {
@@ -442,13 +449,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     activeOpacity={0.5}
                     onPress={isFriend ? deleteFriend : addFriend}
                     style={styles.viewBtn}>
-                    <View style={styles.viewBtn}>
-                      <StyledText testID="text-add-title">
-                        {isFriend
-                          ? getString('DELETE_FRIEND')
-                          : getString('ADD_FRIEND')}
-                      </StyledText>
-                    </View>
+                    <StyledText testID="text-add-title">
+                      {isFriend
+                        ? getString('DELETE_FRIEND')
+                        : getString('ADD_FRIEND')}
+                    </StyledText>
                   </TouchableOpacity>
                 )}
                 <StyledViewBtnDivider />
@@ -465,16 +470,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               {isChannelInFlight ? (
                 <LoadingIndicator size="small" />
               ) : (
-                <View style={styles.viewBtn}>
-                  <StyledText
-                    style={{
-                      color: modalBtnPrimaryFont,
-                    }}>
-                    {modalState.isMyself
-                      ? getString('SELF_CHAT')
-                      : getString('CHAT')}
-                  </StyledText>
-                </View>
+                <StyledText
+                  style={{
+                    color: modalBtnPrimaryFont,
+                  }}>
+                  {modalState.isMyself
+                    ? getString('SELF_CHAT')
+                    : getString('CHAT')}
+                </StyledText>
               )}
             </TouchableOpacity>
           </StyledViewBtns>

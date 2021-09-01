@@ -260,7 +260,7 @@ function ChannelListItem(props: Props): React.ReactElement {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          accessibilityLabel="Go chat room"
+          accessibilityLabel={getString('GO_CHAT')}
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}>

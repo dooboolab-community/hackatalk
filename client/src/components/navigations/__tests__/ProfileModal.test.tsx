@@ -22,6 +22,7 @@ import ProfileModal from '../MainStackNavigator/ProfileModal';
 import {ProfileModalTestQuery} from '../../../__generated__/ProfileModalTestQuery.graphql';
 import {User} from '../../../types/graphql';
 import {View} from 'react-native';
+import {getString} from '../../../../STRINGS';
 import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
@@ -111,7 +112,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(json).toMatchSnapshot();
   });
 
-  it('Should be opened', async () => {
+  it('should be opened', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -168,7 +169,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(message).toBeTruthy();
   });
 
-  it('Should be closed', async () => {
+  it('should be closed', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -280,7 +281,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(container.props.pointerEvents).toBe(undefined);
   });
 
-  it('Should call onLayout callback', () => {
+  it('should call onLayout callback', () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -316,7 +317,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(overlay.props.style.height).toBe(252);
   });
 
-  it('Should be open when modalState.isMyself true', async () => {
+  it('should be open when modalState.isMyself true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -335,12 +336,12 @@ describe('[ProfileModal] rendering test', () => {
 
     expect(screen.queryAllByTestId('touch-add-friend')).toStrictEqual([]);
     expect(screen.queryAllByTestId('touch-done')).toStrictEqual([]);
-    expect(screen.getByText('Chat with myself')).toBeTruthy();
+    expect(screen.getByText(getString('SELF_CHAT'))).toBeTruthy();
   });
 });
 
 describe('[ProfileModal] interaction test', () => {
-  it('Should have a navigation button to [ProfileUpdate] when [isMyself] is true', async () => {
+  it('should have a navigation button to [ProfileUpdate] when [isMyself] is true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>

@@ -11,6 +11,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import {Channel} from '../../../types/graphql';
 import MainChannel from '../MainChannel';
+import {getString} from '../../../../STRINGS';
 import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
@@ -65,7 +66,7 @@ describe('interactions', () => {
     });
 
     const screen = render(component);
-    const channelItemBtn = await screen.findByA11yLabel('Go chat room');
+    const channelItemBtn = await screen.findByA11yLabel(getString('GO_CHAT'));
 
     fireEvent.press(channelItemBtn);
 
@@ -81,7 +82,7 @@ describe('interactions', () => {
     });
 
     const screen = render(component);
-    const fabBtn = screen.getByTestId('channel-create-FAB');
+    const fabBtn = screen.getByTestId('channel-create-fab');
 
     fireEvent.press(fabBtn);
 

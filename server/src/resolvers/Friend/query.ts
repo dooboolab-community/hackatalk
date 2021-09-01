@@ -1,6 +1,5 @@
 import {booleanArg, queryField, stringArg} from 'nexus';
 
-import {User} from '@prisma/client';
 import {assert} from '../../utils/assert';
 import {relayToPrismaPagination} from '../../utils/pagination';
 
