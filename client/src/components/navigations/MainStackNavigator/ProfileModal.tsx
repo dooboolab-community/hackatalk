@@ -11,7 +11,8 @@ import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
-import {LoadingIndicator, Snackbar, SnackbarRef, useTheme} from 'dooboo-ui';
+import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
+import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ModalState,
   ProfileModalContext,
@@ -42,6 +43,7 @@ import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
+import {useSnackbarContext} from '../../../providers';
 
 const fragment = graphql`
   fragment ProfileModal_user on User {
@@ -125,7 +127,7 @@ type ModalContentProps = {
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const userData = useFragment(fragment, modalState.user);
 
-  const snackbarRef = useRef<SnackbarRef>(null);
+  const {openSnackbar} = useSnackbarContext();
 
   const {id, name, nickname, statusMessage, photoURL, hasBlocked, isFriend} =
     userData;
@@ -275,12 +277,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     setStatusMessageExpanded(!isStatusMessageExpanded);
 
   useEffect(() => {
-    if (snackbarRef && showFriendAddedMessage)
-      snackbarRef.current?.show({
+    if (openSnackbar && showFriendAddedMessage)
+      openSnackbar({
         text: getString('FRIEND_ADDED'),
         type: 'success',
+        testID: 'profile-snackbar',
+        zIndex: 101,
       });
-  }, [snackbarRef, showFriendAddedMessage]);
+  }, [openSnackbar, showFriendAddedMessage]);
 
   return (
     <>
@@ -446,7 +450,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           <StyledViewBtns>
             {!modalState.isMyself && (
               <>
-                {deleteFriendInFlight ? (
+                {deleteFriendInFlight || addFriendInFlight ? (
                   <LoadingIndicator size="small" />
                 ) : (
                   <TouchableOpacity
@@ -477,7 +481,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               ) : (
                 <StyledText
                   style={{
-                    color: modalBtnPrimaryFont,
+                    color: theme.modalBtnPrimaryFont,
                   }}>
                   {modalState.isMyself
                     ? getString('SELF_CHAT')
@@ -511,9 +515,6 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           handleAnim={handleAnim}
         />
       )}
-      <View style={{zIndex: 101}}>
-        <Snackbar testID="profile-snackbar" theme={theme} ref={snackbarRef} />
-      </View>
     </>
   );
 };
