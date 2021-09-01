@@ -1,5 +1,6 @@
+import * as ProfileContext from '../../../providers/ProfileModalProvider';
+
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import {ModalState, ProfileModalContext} from '../../../providers';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import MainFriend from '../MainFriend';
@@ -41,25 +42,16 @@ describe('[Friend] rendering test', () => {
 describe('[Friend] interaction test', () => {
   it('shows modal when peer button pressed', async () => {
     const mockShowModal = jest.fn();
-    const mockHideModal = jest.fn();
 
-    const modalState: ModalState = {
-      isVisible: false,
-    };
+    jest.spyOn(ProfileContext, 'useProfileContext').mockImplementation(() => ({
+      showModal: mockShowModal,
+      hideModal: jest.fn(),
+      modalState: {isVisible: false},
+    }));
 
-    const component = createTestElement(
-      <ProfileModalContext.Provider
-        value={{
-          showModal: mockShowModal,
-          hideModal: mockHideModal,
-          modalState,
-        }}>
-        <MainFriend />
-      </ProfileModalContext.Provider>,
-      {
-        environment: mockEnvironment,
-      },
-    );
+    const component = createTestElement(<MainFriend />, {
+      environment: mockEnvironment,
+    });
 
     const screen = render(component);
 

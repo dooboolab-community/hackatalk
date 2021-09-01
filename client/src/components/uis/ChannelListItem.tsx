@@ -148,32 +148,27 @@ interface Props {
   fontColor?: string;
 }
 
-const calculateFilteredMemberships = (
+const calculateUsers = (
   memberships: Maybe<Membership[]> | undefined,
   authUserId: string | undefined,
   channelType: string,
-): (Maybe<Membership> | undefined)[] | undefined =>
-  memberships?.filter((member) => {
-    if (channelType !== 'self') return member?.user?.id !== authUserId;
-
-    return true;
-  });
-
-const calculateUsers = (
-  memberships: (Maybe<Membership> | undefined)[] | undefined,
 ): (Maybe<User> | undefined)[] | undefined =>
-  memberships?.map((membership) => membership?.user);
+  memberships
+    ?.filter((member) => {
+      if (channelType !== 'self') return member?.user?.id !== authUserId;
+
+      return true;
+    })
+    .map((membership) => membership?.user);
 
 const calculatePhotoUrls = (
-  memberships: (Maybe<Membership> | undefined)[] | undefined,
+  users: (Maybe<User> | undefined)[] | undefined,
 ): (Maybe<string> | undefined)[] | undefined =>
-  memberships?.map(
-    (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
-  );
+  users?.map((user) => user?.thumbURL || user?.photoURL);
 
 const calculateOnlineStatus = (
-  memberships: (Maybe<Membership> | undefined)[] | undefined,
-): Maybe<Boolean> | undefined => memberships?.[0]?.user?.isOnline;
+  users: (Maybe<User> | undefined)[] | undefined,
+): Maybe<Boolean> | undefined => users?.[0]?.isOnline;
 
 const calculateDisplayNames = (
   users: (Maybe<User> | undefined)[] | undefined,
@@ -196,15 +191,9 @@ function ChannelListItem(props: Props): React.ReactElement {
   const {user} = useAuthContext();
 
   if (channelType !== 'public') {
-    const filteredMemberships = calculateFilteredMemberships(
-      memberships,
-      user?.id,
-      channelType,
-    );
-
-    const users = calculateUsers(filteredMemberships);
-    const photoURLs = calculatePhotoUrls(filteredMemberships);
-    const isOnline = calculateOnlineStatus(filteredMemberships);
+    const users = calculateUsers(memberships, user?.id, channelType);
+    const photoURLs = calculatePhotoUrls(users);
+    const isOnline = calculateOnlineStatus(users);
 
     const renderSingleImage = (
       photoURL: string | null | undefined,

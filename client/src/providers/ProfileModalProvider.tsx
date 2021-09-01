@@ -27,13 +27,13 @@ export type ProfileModalContext = {
   modalState: ModalState;
 };
 
-export const ProfileModalContext = createContext<ProfileModalContext>({
+const ProfileModalContext = createContext<ProfileModalContext>({
   modalState: {isVisible: false},
   showModal: () => {},
   hideModal: () => {},
 });
 
-export const ProfileModalProvider: FC = (props) => {
+export const ProfileModalProvider: FC = ({children}) => {
   const [state, setState] = useState<ModalState>({
     isVisible: false,
   });
@@ -58,7 +58,7 @@ export const ProfileModalProvider: FC = (props) => {
         hideModal,
         modalState: state,
       }}>
-      {props.children}
+      {children}
     </ProfileModalContext.Provider>
   );
 };
