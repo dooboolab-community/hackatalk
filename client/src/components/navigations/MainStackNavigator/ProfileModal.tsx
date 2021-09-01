@@ -497,17 +497,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {statusMessage && (
-        <StatusMessageView
-          statusMessage={statusMessage}
-          transitionOpacity={transitionOpacity}
-          modalLayout={modalLayout}
-          isStatusMessageExpanded={isStatusMessageExpanded}
-          handleAnim={handleAnim}
-          showFriendAddedMessage={showFriendAddedMessage}
-          addFriendInFlight={addFriendInFlight}
-        />
-      )}
+      <StatusMessageView
+        statusMessage={statusMessage || ''}
+        transitionOpacity={transitionOpacity}
+        modalLayout={modalLayout}
+        isStatusMessageExpanded={isStatusMessageExpanded}
+        handleAnim={handleAnim}
+        showFriendAddedMessage={showFriendAddedMessage}
+        addFriendInFlight={addFriendInFlight}
+      />
     </>
   );
 };
