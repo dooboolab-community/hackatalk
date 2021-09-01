@@ -15,6 +15,7 @@ export type MainChannelComponent_channel = {
                 readonly name: string | null;
                 readonly memberships: ReadonlyArray<{
                     readonly user: {
+                        readonly id: string;
                         readonly name: string | null;
                         readonly nickname: string | null;
                         readonly thumbURL: string | null;
@@ -159,7 +160,7 @@ return {
                     {
                       "kind": "Literal",
                       "name": "excludeMe",
-                      "value": true
+                      "value": false
                     }
                   ],
                   "concreteType": "Membership",
@@ -175,6 +176,7 @@ return {
                       "name": "user",
                       "plural": false,
                       "selections": [
+                        (v1/*: any*/),
                         (v2/*: any*/),
                         {
                           "alias": null,
@@ -201,7 +203,7 @@ return {
                       "storageKey": null
                     }
                   ],
-                  "storageKey": "memberships(excludeMe:true)"
+                  "storageKey": "memberships(excludeMe:false)"
                 },
                 {
                   "alias": null,
@@ -296,5 +298,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '86847c3995ba53b300e407f301c459ca';
+(node as any).hash = 'f551c35c2daad31db679d6855c6109c5';
 export default node;

@@ -46,7 +46,13 @@ return {
       "name": "first"
     },
     {
-      "kind": "RootArgument",
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "includeMe"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
       "name": "searchText"
     }
   ],
@@ -169,5 +175,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '2eafd01b0fcaf94a5708b4a275b195c9';
+(node as any).hash = '9fbd55fcfc373597074710e5f1cbc7bd';
 export default node;

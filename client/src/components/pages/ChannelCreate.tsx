@@ -45,6 +45,7 @@ import {getString} from '../../../STRINGS';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
+import {useAuthContext} from '../../providers/AuthProvider';
 import useDebounce from '../../hooks/useDebounce';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'dooboo-ui';
@@ -74,10 +75,15 @@ const friendsFragment = graphql`
     first: {type: "Int!"}
     after: {type: "String"}
     searchText: {type: "String"}
+    includeMe: {type: "Boolean"}
   )
   @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
-    friends(first: $first, after: $after, searchText: $searchText)
-      @connection(key: "ChannelCreate_friends") {
+    friends(
+      first: $first
+      after: $after
+      searchText: $searchText
+      includeMe: $includeMe
+    ) @connection(key: "ChannelCreate_friends") {
       edges {
         cursor
         node {
@@ -114,6 +120,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     ChannelCreateFriendsPaginationQuery,
     ChannelCreate_friends$key
   >(friendsFragment, friend);
+  const {user} = useAuthContext();
 
   const friendEdges = useMemo(() => {
     return (
@@ -124,7 +131,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   }, [data]);
 
   const {theme} = useTheme();
-
   const navigation = useNavigation();
 
   const removeFriend = (friendArg: User): void => {
@@ -191,10 +197,13 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     item: UserEdge;
     index: number;
   }): ReactElement => {
+    const isMyself = item?.node?.id === user?.id;
+
     return (
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
+        isMyself={isMyself}
         checked={selectedUsers.includes(item?.node as User)}
         // @ts-ignore
         user={item.node}
@@ -298,6 +307,7 @@ const ChannelCreate: FC = () => {
   const navigation = useNavigation<MainStackNavigationProps<'ChannelCreate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const {theme} = useTheme();
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 
@@ -333,7 +343,10 @@ const ChannelCreate: FC = () => {
 
     navigation.setOptions({
       headerRight: (): ReactElement => (
-        <TouchableOpacity testID="touch-done" onPress={pressDone}>
+        <TouchableOpacity
+          testID="touch-done"
+          onPress={pressDone}
+          disabled={selectedUsers.length === 0}>
           <View
             style={{
               paddingHorizontal: 16,
@@ -341,7 +354,7 @@ const ChannelCreate: FC = () => {
             }}>
             <Text
               style={{
-                color: 'white',
+                color: selectedUsers.length === 0 ? theme.disabled : 'white',
                 fontSize: 14,
                 fontWeight: 'bold',
               }}>
@@ -351,11 +364,12 @@ const ChannelCreate: FC = () => {
         </TouchableOpacity>
       ),
     });
-  }, [commitChannel, navigation, selectedUsers]);
+  }, [commitChannel, navigation, selectedUsers, theme]);
 
   const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
+    includeMe: true,
   };
 
   const onChangeText = (text: string): void => {

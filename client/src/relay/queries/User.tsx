@@ -122,6 +122,7 @@ export const meQuery = graphql`
 export const profileUpdate = graphql`
   mutation UserUpdateProfileMutation($user: UserUpdateInput!) {
     updateProfile(user: $user) {
+      id
       name
       nickname
       statusMessage

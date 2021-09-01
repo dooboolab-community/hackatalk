@@ -52,6 +52,11 @@ return {
     {
       "defaultValue": null,
       "kind": "LocalArgument",
+      "name": "includeMe"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
       "name": "searchText"
     }
   ],
@@ -83,6 +88,11 @@ return {
     {
       "alias": "friends",
       "args": [
+        {
+          "kind": "Variable",
+          "name": "includeMe",
+          "variableName": "includeMe"
+        },
         {
           "kind": "Variable",
           "name": "searchText",
@@ -203,5 +213,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '73e8bfa8c367386edf73dea6e61ed543';
+(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
 export default node;

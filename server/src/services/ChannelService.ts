@@ -1,4 +1,4 @@
-import {Channel, Membership, MembershipType} from '@prisma/client';
+import {Channel, ChannelType, Membership, MembershipType} from '@prisma/client';
 import {andThen, cond, pipe} from 'ramda';
 
 import {assert} from '../utils/assert';
@@ -43,6 +43,9 @@ export const findChannelWithUserIds = async (
 export const findPrivateChannelWithUserIds = async (
   userIds: string[],
 ): Promise<Channel | undefined> => {
+  const channelType =
+    userIds.length === 1 ? ChannelType.self : ChannelType.private;
+
   const channels = await prisma.channel.findMany({
     include: {
       membership: {
@@ -53,7 +56,7 @@ export const findPrivateChannelWithUserIds = async (
       },
     },
     where: {
-      channelType: 'private',
+      channelType,
       membership: {
         every: {
           userId: {in: userIds},
@@ -83,20 +86,31 @@ export const changeVisibilityWhenInvisible = (
     },
   });
 
+export const getChannelType = (
+  userId: string,
+  peerUserIds: string[],
+): ChannelType => {
+  if (peerUserIds.length === 1 && peerUserIds[0] === userId)
+    return ChannelType.self;
+
+  return ChannelType.private;
+};
+
 export const createNewChannel = async (
-  isPrivate: boolean,
+  channelType: ChannelType,
   userId: string,
   name?: string,
 ): Promise<Channel> =>
   prisma.channel.create({
     data: {
-      channelType: isPrivate ? 'private' : 'public',
+      channelType,
       name,
       membership: {
         create: {
-          membershipType: !isPrivate
-            ? MembershipType.owner
-            : MembershipType.member,
+          membershipType:
+            channelType === ChannelType.public
+              ? MembershipType.owner
+              : MembershipType.member,
           user: {connect: {id: userId}},
         },
       },

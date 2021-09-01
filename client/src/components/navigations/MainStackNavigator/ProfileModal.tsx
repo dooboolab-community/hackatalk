@@ -1,6 +1,7 @@
 import {
   Alert,
   Animated,
+  Image,
   StyleProp,
   TouchableOpacity,
   View,
@@ -10,6 +11,7 @@ import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
+import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
 import {
   ModalState,
@@ -33,7 +35,6 @@ import {ConnectionHandler} from 'relay-runtime';
 import {FontAwesome} from '@expo/vector-icons';
 import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
 import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
-import {IC_NO_IMAGE} from '../../../utils/Icons';
 import Modal from 'react-native-modalbox';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import StatusMessageView from '../../uis/StatusMessageView';
@@ -114,6 +115,8 @@ const styles: Styles = {
     height: 80,
     alignItems: 'center',
     justifyContent: 'center',
+    borderColor: 'red',
+    borderWidth: 1,
   },
 };
 
@@ -297,78 +300,106 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             right: 8,
             flexDirection: 'row',
           }}>
-          <TouchableOpacity
-            testID="touch-done"
-            onPress={() => {
-              navigation.navigate('MainStack', {
-                screen: 'Report',
-                params: {
-                  name: nickname || name || getString('NO_NAME'),
-                  userId: id,
-                },
-              });
-
-              hideModal();
-            }}>
-            <View
-              style={{
-                paddingRight: 12,
-                paddingLeft: 8,
-                paddingVertical: 8,
-              }}>
-              <FontAwesome name="exclamation-circle" size={24} color="white" />
-            </View>
-          </TouchableOpacity>
-          {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
-            <View
+          {modalState.isMyself ? (
+            <TouchableOpacity
+              testID="profile-update-button"
               style={{
                 paddingRight: 16,
                 paddingLeft: 8,
                 paddingVertical: 8,
                 justifyContent: 'center',
+              }}
+              activeOpacity={0.5}
+              onPress={(): void => {
+                navigation.navigate('MainStack', {
+                  screen: 'ProfileUpdate',
+                });
+                hideModal();
               }}>
-              <LoadingIndicator size="small" />
-            </View>
-          ) : (
-            <TouchableOpacity
-              testID="touch-done"
-              onPress={(): void =>
-                Alert.alert(
-                  hasBlocked ? getString('UNBAN_USER') : getString('BAN_USER'),
-                  hasBlocked
-                    ? getString('UNBAN_USER_TEXT')
-                    : getString('BAN_USER_TEXT'),
-                  [
-                    {
-                      text: getString('NO'),
-                      onPress: () => {},
-                      style: 'cancel',
-                    },
-                    {
-                      text: getString('YES'),
-                      onPress: hasBlocked
-                        ? deleteBlockedUser
-                        : createBlockedUser,
-                    },
-                  ],
-                  {cancelable: false},
-                )
-              }>
-              <View
-                style={{
-                  paddingRight: 16,
-                  paddingLeft: 8,
-                  paddingVertical: 8,
-                }}>
-                <FontAwesome
-                  name="ban"
-                  size={24}
-                  color={hasBlocked ? 'red' : 'white'}
-                />
-              </View>
+              <Image style={{height: 24, width: 24}} source={IC_PROFILE_W} />
             </TouchableOpacity>
+          ) : (
+            <>
+              <TouchableOpacity
+                testID="touch-done"
+                onPress={() => {
+                  navigation.navigate('MainStack', {
+                    screen: 'Report',
+                    params: {
+                      name: nickname || name || getString('NO_NAME'),
+                      userId: id,
+                    },
+                  });
+                  hideModal();
+                }}>
+                <View
+                  style={{
+                    paddingRight: 12,
+                    paddingLeft: 8,
+                    paddingVertical: 8,
+                  }}>
+                  <FontAwesome
+                    name="exclamation-circle"
+                    size={24}
+                    color="white"
+                  />
+                </View>
+              </TouchableOpacity>
+              {isCreateBlockedUserInFlight || isDeleteBlockedUserInFlight ? (
+                <View
+                  style={{
+                    paddingRight: 16,
+                    paddingLeft: 8,
+                    paddingVertical: 8,
+                    justifyContent: 'center',
+                  }}>
+                  <LoadingIndicator size="small" />
+                </View>
+              ) : (
+                <TouchableOpacity
+                  testID="touch-done"
+                  onPress={(): void =>
+                    Alert.alert(
+                      hasBlocked
+                        ? getString('UNBAN_USER')
+                        : getString('BAN_USER'),
+                      hasBlocked
+                        ? getString('UNBAN_USER_TEXT')
+                        : getString('BAN_USER_TEXT'),
+                      [
+                        {
+                          text: getString('NO'),
+                          onPress: () => {},
+                          style: 'cancel',
+                        },
+                        {
+                          text: getString('YES'),
+                          onPress: hasBlocked
+                            ? deleteBlockedUser
+                            : createBlockedUser,
+                        },
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <View
+                    style={{
+                      paddingRight: 16,
+                      paddingLeft: 8,
+                      paddingVertical: 8,
+                    }}>
+                    <FontAwesome
+                      name="ban"
+                      size={24}
+                      color={hasBlocked ? 'red' : 'white'}
+                    />
+                  </View>
+                </TouchableOpacity>
+              )}
+            </>
           )}
         </View>
+
         <StyledView>
           <TouchableOpacity
             activeOpacity={0.5}
@@ -408,40 +439,45 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
         {!modalState?.hideButtons ? (
           <StyledViewBtns>
-            {deleteFriendInFlight ? (
-              <LoadingIndicator size="small" />
-            ) : (
-              <TouchableOpacity
-                testID="touch-add-friend"
-                activeOpacity={0.5}
-                onPress={isFriend ? deleteFriend : addFriend}
-                style={styles.viewBtn}>
-                <View style={styles.viewBtn}>
-                  <StyledText testID="text-add-title">
-                    {isFriend
-                      ? getString('DELETE_FRIEND')
-                      : getString('ADD_FRIEND')}
-                  </StyledText>
-                </View>
-              </TouchableOpacity>
+            {!modalState.isMyself && (
+              <>
+                {deleteFriendInFlight ? (
+                  <LoadingIndicator size="small" />
+                ) : (
+                  <TouchableOpacity
+                    testID="touch-add-friend"
+                    activeOpacity={0.5}
+                    onPress={isFriend ? deleteFriend : addFriend}
+                    style={styles.viewBtn}>
+                    <StyledText testID="text-add-title">
+                      {isFriend
+                        ? getString('DELETE_FRIEND')
+                        : getString('ADD_FRIEND')}
+                    </StyledText>
+                  </TouchableOpacity>
+                )}
+                <StyledViewBtnDivider />
+              </>
             )}
-            <StyledViewBtnDivider />
             <TouchableOpacity
               testID="btn-chat"
               activeOpacity={0.5}
               onPress={startChatting}
-              style={styles.viewBtn}>
+              style={[
+                styles.viewBtn,
+                [modalState.isMyself ? {width: '100%'} : undefined],
+              ]}>
               {isChannelInFlight ? (
                 <LoadingIndicator size="small" />
               ) : (
-                <View style={styles.viewBtn}>
-                  <StyledText
-                    style={{
-                      color: modalBtnPrimaryFont,
-                    }}>
-                    {getString('CHAT')}
-                  </StyledText>
-                </View>
+                <StyledText
+                  style={{
+                    color: modalBtnPrimaryFont,
+                  }}>
+                  {modalState.isMyself
+                    ? getString('SELF_CHAT')
+                    : getString('CHAT')}
+                </StyledText>
               )}
             </TouchableOpacity>
           </StyledViewBtns>

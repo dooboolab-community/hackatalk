@@ -24,7 +24,7 @@ export const createMessage = graphql`
         id
         channelType
         name
-        memberships(excludeMe: true) {
+        memberships(excludeMe: false) {
           user {
             name
             nickname

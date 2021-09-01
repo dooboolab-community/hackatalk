@@ -16,6 +16,7 @@ export type ModalState =
       /** Callback function for add friend button */
       onAddFriend?: () => void;
       hideButtons?: boolean;
+      isMyself?: boolean;
     };
 
 export type ProfileModalContext = {
@@ -32,7 +33,7 @@ const ProfileModalContext = createContext<ProfileModalContext>({
   hideModal: () => {},
 });
 
-export const ProfileModalProvider: FC = (props) => {
+export const ProfileModalProvider: FC = ({children}) => {
   const [state, setState] = useState<ModalState>({
     isVisible: false,
   });
@@ -57,7 +58,7 @@ export const ProfileModalProvider: FC = (props) => {
         hideModal,
         modalState: state,
       }}>
-      {props.children}
+      {children}
     </ProfileModalContext.Provider>
   );
 };

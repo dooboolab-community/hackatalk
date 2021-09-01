@@ -1,4 +1,4 @@
-import {queryField, stringArg} from 'nexus';
+import {booleanArg, queryField, stringArg} from 'nexus';
 
 import {assert} from '../../utils/assert';
 import {relayToPrismaPagination} from '../../utils/pagination';
@@ -9,12 +9,13 @@ export const friends = queryField((t) => {
 
     additionalArgs: {
       searchText: stringArg(),
+      includeMe: booleanArg(),
     },
 
     async nodes(_, args, {prisma, userId}) {
       assert(userId, 'Not authorized.');
 
-      const {after, before, first, last, searchText} = args;
+      const {after, before, first, last, searchText, includeMe} = args;
 
       const filter = searchText && {
         OR: [
@@ -24,7 +25,7 @@ export const friends = queryField((t) => {
         ],
       };
 
-      return prisma.user.findMany({
+      const result = await prisma.user.findMany({
         ...relayToPrismaPagination({
           after,
           before,
@@ -41,6 +42,19 @@ export const friends = queryField((t) => {
         },
         orderBy: {id: 'desc'},
       });
+
+      if (includeMe) {
+        const myProfile = await prisma.user.findUnique({
+          where: {
+            id: userId,
+          },
+        });
+
+        assert(myProfile, 'Failed to fetch self profile.');
+        result.unshift(myProfile);
+      }
+
+      return result;
     },
   });
 });

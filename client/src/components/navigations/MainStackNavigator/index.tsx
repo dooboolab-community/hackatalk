@@ -94,7 +94,7 @@ const onMessageSubscription = graphql`
           fileUrls
           createdAt
         }
-        memberships(excludeMe: true) {
+        memberships(excludeMe: false) {
           user {
             name
             nickname

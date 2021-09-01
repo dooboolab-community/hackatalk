@@ -421,6 +421,7 @@ export type QueryNotificationsArgs = {
 
 export type QueryFriendsArgs = {
   searchText?: Maybe<Scalars['String']>;
+  includeMe?: Maybe<Scalars['Boolean']>;
   first?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   last?: Maybe<Scalars['Int']>;

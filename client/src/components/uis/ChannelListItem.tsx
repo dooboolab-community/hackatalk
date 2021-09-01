@@ -1,4 +1,4 @@
-import {Channel, Message} from '../../types/graphql';
+import {Channel, Maybe, Membership, Message, User} from '../../types/graphql';
 import React, {ReactElement} from 'react';
 import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
@@ -6,6 +6,7 @@ import {IC_NO_IMAGE} from '../../utils/Icons';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
+import {useAuthContext} from '../../providers/AuthProvider';
 
 const StyledViewChatRoomListItem = styled.View`
   background-color: ${({theme}) => theme.itemBackground};
@@ -116,8 +117,30 @@ const StyledCircleView = styled.View`
   justify-content: center;
 `;
 
+const StyledNamesContainerView = styled.View`
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const StyledMeCircleView = styled.View`
+  height: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 8px;
+  background-color: ${({theme}) => theme.disabled};
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+`;
+
+const StyledMeCircleText = styled.Text`
+  color: ${({theme}) => theme.text};
+  font-size: 10px;
+  font-weight: bold;
+`;
+
 interface Props {
-  testID?: string;
   style?: ViewStyle;
   item: Channel;
   lastMessageCnt?: number;
@@ -125,35 +148,52 @@ interface Props {
   fontColor?: string;
 }
 
+const calculateUsers = (
+  memberships: Maybe<Membership[]> | undefined,
+  authUserId: string | undefined,
+  channelType: string,
+): (Maybe<User> | undefined)[] | undefined =>
+  memberships
+    ?.filter((member) => {
+      if (channelType !== 'self') return member?.user?.id !== authUserId;
+
+      return true;
+    })
+    .map((membership) => membership?.user);
+
+const calculatePhotoUrls = (
+  users: (Maybe<User> | undefined)[] | undefined,
+): (Maybe<string> | undefined)[] | undefined =>
+  users?.map((user) => user?.thumbURL || user?.photoURL);
+
+const calculateOnlineStatus = (
+  users: (Maybe<User> | undefined)[] | undefined,
+): Maybe<Boolean> | undefined => users?.[0]?.isOnline;
+
+const calculateDisplayNames = (
+  users: (Maybe<User> | undefined)[] | undefined,
+): Maybe<string> | undefined => {
+  const userNames = users?.map((v) => v?.nickname || v?.name || '');
+
+  return users?.length === 1
+    ? users?.[0]?.nickname || users?.[0]?.name || getString('NO_NAME')
+    : userNames?.join(', ');
+};
+
 function ChannelListItem(props: Props): React.ReactElement {
   const {
-    testID,
-    item: {
-      channelType = 'private',
-      lastMessage,
-      memberships,
-
-      // lastMessage: {
-      //   sender: { photoURL, isOnline, nickname },
-      //   // @ts-ignore
-      //   message,
-      //   created,
-      // },
-    },
+    item: {channelType, lastMessage, memberships},
     lastMessageCnt = 0,
     onPress,
   } = props;
 
   const {text, imageUrls, createdAt} = lastMessage as Message;
+  const {user} = useAuthContext();
 
-  if (channelType === 'private') {
-    const users = memberships?.map((membership) => membership?.user);
-
-    const photoURLs = memberships?.map(
-      (membership) => membership?.user?.thumbURL || membership?.user?.photoURL,
-    );
-
-    const isOnline = memberships?.[0]?.user?.isOnline;
+  if (channelType !== 'public') {
+    const users = calculateUsers(memberships, user?.id, channelType);
+    const photoURLs = calculatePhotoUrls(users);
+    const isOnline = calculateOnlineStatus(users);
 
     const renderSingleImage = (
       photoURL: string | null | undefined,
@@ -192,8 +232,6 @@ function ChannelListItem(props: Props): React.ReactElement {
               flexDirection: 'row',
             }}>
             {photoStrs?.slice(0, 4).map((photo, i) => {
-              if (i > 3) return null;
-
               if (!photo)
                 return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
 
@@ -215,8 +253,6 @@ function ChannelListItem(props: Props): React.ReactElement {
       );
     };
 
-    const userNames = users?.map((v) => v?.nickname || v?.name || '');
-
     return (
       <View
         style={{
@@ -224,7 +260,7 @@ function ChannelListItem(props: Props): React.ReactElement {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
-          testID={testID}
+          accessibilityLabel={getString('GO_CHAT')}
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}>
@@ -237,13 +273,16 @@ function ChannelListItem(props: Props): React.ReactElement {
             </View>
             <StyledViewContent>
               <StyledViewTop>
-                <StyledTextDisplayName numberOfLines={2}>
-                  {users?.length === 1
-                    ? users?.[0]?.nickname ||
-                      users?.[0]?.name ||
-                      getString('NO_NAME')
-                    : userNames?.join(', ')}
-                </StyledTextDisplayName>
+                <StyledNamesContainerView>
+                  {channelType === 'self' && (
+                    <StyledMeCircleView>
+                      <StyledMeCircleText>{getString('ME')}</StyledMeCircleText>
+                    </StyledMeCircleView>
+                  )}
+                  <StyledTextDisplayName numberOfLines={2}>
+                    {calculateDisplayNames(users)}
+                  </StyledTextDisplayName>
+                </StyledNamesContainerView>
                 {lastMessageCnt !== 0 ? (
                   <StyledTextWrapper>
                     <StyledTextCount>{lastMessageCnt}</StyledTextCount>

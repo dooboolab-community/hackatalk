@@ -61,8 +61,9 @@ const channelsPaginationFragment = graphql`
           id
           channelType
           name
-          memberships(excludeMe: true) {
+          memberships(excludeMe: false) {
             user {
+              id
               name
               nickname
               thumbURL
@@ -118,7 +119,6 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
 
     return (
       <ChannelListItem
-        testID={`list-item-${index}`}
         key={index.toString()}
         item={item.node}
         onPress={(): void => {
@@ -219,6 +219,7 @@ const Screen: FC = () => {
         <ContentContainer searchArgs={searchArgs} />
       </Suspense>
       <TouchableOpacity
+        testID="channel-create-fab"
         activeOpacity={0.65}
         style={{
           position: 'absolute',

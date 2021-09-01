@@ -18,6 +18,7 @@ import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import {useAuthContext} from '../../providers/AuthProvider';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 
 const ITEM_CNT = 20;
@@ -32,10 +33,19 @@ const Container = styled.View`
 
 const friendsFragment = graphql`
   fragment MainFriend_friends on Query
-  @argumentDefinitions(first: {type: "Int!"}, after: {type: "String"})
+  @argumentDefinitions(
+    first: {type: "Int!"}
+    after: {type: "String"}
+    searchText: {type: "String"}
+    includeMe: {type: "Boolean"}
+  )
   @refetchable(queryName: "FriendFriendsPaginationQuery") {
-    friends(first: $first, after: $after, searchText: $searchText)
-      @connection(key: "MainFriend_friends", filters: []) {
+    friends(
+      first: $first
+      after: $after
+      searchText: $searchText
+      includeMe: $includeMe
+    ) @connection(key: "MainFriend_friends", filters: []) {
       edges {
         cursor
         node {
@@ -68,6 +78,7 @@ const userUpdatedSubscription = graphql`
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
   const {showModal} = useProfileContext();
+  const {user: authUser} = useAuthContext();
 
   const {data, loadNext, isLoadingNext, refetch} = usePaginationFragment<
     FriendFriendsPaginationQuery,
@@ -95,17 +106,26 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     );
   }, [data]);
 
-  const userListOnPress = (user: ProfileModal_user$key): void => {
+  const userListOnPress = (
+    user: ProfileModal_user$key,
+    isMyself: boolean,
+  ): void => {
     showModal({
       user,
+      isMyself,
     });
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
-    const userListOnPressInlineFn = (): void => userListOnPress(item);
+    const isMyself = item.id === authUser?.id;
 
     return (
-      <UserListItem showStatus user={item} onPress={userListOnPressInlineFn} />
+      <UserListItem
+        showStatus
+        user={item}
+        onPress={() => userListOnPress(item, isMyself)}
+        isMyself={isMyself}
+      />
     );
   };
 
@@ -143,7 +163,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
 const Friend: FC = () => {
   const queryResponse = useLazyLoadQuery<FriendFriendsPaginationQuery>(
     friendsQuery,
-    {first: ITEM_CNT},
+    {first: ITEM_CNT, includeMe: true},
     {fetchPolicy: 'store-or-network'},
   );
 

@@ -35,26 +35,28 @@ interface Props {
   showCheckBox?: boolean;
   showStatus?: boolean;
   checked?: boolean;
+  isMyself?: boolean;
 }
 
 const Container = styled.View`
   width: 100%;
 `;
 
-const Wrapper = styled.View`
+const Wrapper = styled.View<{isMyself?: boolean}>`
   background-color: ${({theme}) => theme.itemBackground};
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${({theme}) => theme.backgroundDark};
+  border-color: ${(props) =>
+    props.isMyself ? props.theme.disabled : props.theme.backgroundDark};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
 `;
 
-const ImageWrapper = styled.View`
-  width: 40px;
-  height: 40px;
+const ImageWrapper = styled.View<{isMyself?: boolean}>`
+  width: ${(props) => (props.isMyself ? '50px' : '40px')};
+  height: ${(props) => (props.isMyself ? '50px' : '40px')};
   align-items: center;
   justify-content: center;
 `;
@@ -68,10 +70,10 @@ const StatusTag = styled.View`
   border-radius: 25px;
 `;
 
-const StyledImage = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+const StyledImage = styled.Image<{isMyself?: boolean}>`
+  width: ${({isMyself}) => (isMyself ? '50px' : '40px')};
+  height: ${(props) => (props.isMyself ? '50px' : '40px')};
+  border-radius: ${(props) => (props.isMyself ? '25px' : '20px')}; ;
 `;
 
 const StyledText = styled.Text`
@@ -99,6 +101,7 @@ function Shared({
   onPress,
   onLongPress,
   user,
+  isMyself,
 }: Props): React.ReactElement {
   const {
     photoURL = '',
@@ -122,18 +125,19 @@ function Shared({
         onPress={onPress}
         delayPressIn={130}
         onLongPress={onLongPress}>
-        <Wrapper>
-          <ImageWrapper>
+        <Wrapper isMyself={isMyself} testID="userListItem-wrapper">
+          <ImageWrapper isMyself={isMyself}>
             <StyledImage
               resizeMode="cover"
               source={photoURL && photoURLObj ? photoURLObj : IC_NO_IMAGE}
+              isMyself={isMyself}
             />
-            {showStatus ? (
+            {showStatus && !isMyself && (
               <StatusTag
                 style={{backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3'}}
               />
-            ) : null}
-            {hasBlocked ? (
+            )}
+            {hasBlocked && (
               <View
                 style={{
                   position: 'absolute',
@@ -146,7 +150,7 @@ function Shared({
                   color={hasBlocked ? 'red' : 'white'}
                 />
               </View>
-            ) : null}
+            )}
           </ImageWrapper>
           <StyledText numberOfLines={1}>
             {nickname || name || getString('NO_NAME')}
@@ -164,11 +168,13 @@ function Shared({
               hasChecked={checked}
               onToggle={onPress}
             />
-          ) : statusMessage ? (
-            <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
-              {statusMessage}
-            </StyledRightText>
-          ) : null}
+          ) : (
+            statusMessage && (
+              <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
+                {statusMessage}
+              </StyledRightText>
+            )
+          )}
         </Wrapper>
       </TouchableOpacity>
     </Container>

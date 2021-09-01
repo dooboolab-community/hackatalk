@@ -11,6 +11,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import {Channel} from '../../../types/graphql';
 import MainChannel from '../MainChannel';
+import {getString} from '../../../../STRINGS';
 import mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
@@ -56,19 +57,35 @@ describe('[Channel] screen', () => {
     expect(json).toBeTruthy();
     expect(json).toMatchSnapshot();
   });
+});
 
-  describe('interactions', () => {
-    it('should simulate onPress', async () => {
-      const component = createTestElement(<MainChannel />, {
-        environment: mockEnvironment,
-      });
-
-      const screen = render(component);
-      const btn = await screen.findByTestId('list-item-0');
-
-      fireEvent.press(btn);
-
-      // TODO: Test what happens after pressing the button.
+describe('interactions', () => {
+  it('should simulate [ChannelListItem] onPress', async () => {
+    const component = createTestElement(<MainChannel />, {
+      environment: mockEnvironment,
     });
+
+    const screen = render(component);
+    const channelItemBtn = await screen.findByA11yLabel(getString('GO_CHAT'));
+
+    fireEvent.press(channelItemBtn);
+
+    expect(mockNavigation.navigate).toHaveBeenCalledWith(
+      'Message',
+      expect.objectContaining({channelId: expect.any(String)}),
+    );
+  });
+
+  it('should simulate FAB Button onPress', async () => {
+    const component = createTestElement(<MainChannel />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+    const fabBtn = screen.getByTestId('channel-create-fab');
+
+    fireEvent.press(fabBtn);
+
+    expect(mockNavigation.navigate).toHaveBeenCalledWith('ChannelCreate');
   });
 });
