@@ -1,3 +1,5 @@
+import * as SnackbarContext from '../../../providers/SnackbarProvider';
+
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   ModalState,
@@ -134,7 +136,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(button).toBeTruthy();
   });
 
-  it('Check "Added to your friend." button', async () => {
+  it('check "Added to your friend." button', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -142,6 +144,14 @@ describe('[ProfileModal] rendering test', () => {
         User: (_, generateId) => generateUser(generateId(), false),
       }),
     );
+
+    const mockOpenSnackbar = jest.fn();
+
+    jest
+      .spyOn(SnackbarContext, 'useSnackbarContext')
+      .mockImplementation(() => ({
+        openSnackbar: mockOpenSnackbar,
+      }));
 
     const consumerRef = createRef<ConsumerRef>();
 
@@ -155,18 +165,7 @@ describe('[ProfileModal] rendering test', () => {
 
     fireEvent.press(button);
 
-    // Resolve mutation.
-    act(() => {
-      mockEnvironment.mock.resolveMostRecentOperation((operation) =>
-        MockPayloadGenerator.generate(operation, {
-          User: (_, generateId) => generateUser(generateId(), true),
-        }),
-      );
-    });
-
-    const message = screen.getByTestId('profile-snackbar');
-
-    expect(message).toBeTruthy();
+    expect(mockOpenSnackbar).toBeCalledTimes(1);
   });
 
   it('should be closed', async () => {
@@ -223,7 +222,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(mockOnDeleteFriend).toHaveBeenCalledTimes(1);
   });
 
-  it('Add Friend', async () => {
+  it('add Friend', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
