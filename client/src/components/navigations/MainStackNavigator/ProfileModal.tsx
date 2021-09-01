@@ -112,11 +112,9 @@ const styles: Styles = {
   },
   viewBtn: {
     width: '50%',
-    height: 80,
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: 'red',
-    borderWidth: 1,
   },
 };
 
