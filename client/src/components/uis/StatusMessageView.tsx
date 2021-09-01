@@ -19,7 +19,7 @@ type Props = {
   handleAnim: () => void;
 };
 
-const StyledTextstatusMessage = styled.Text<StyledTextProps>`
+const StyledTextStatusMessage = styled.Text<StyledTextProps>`
   font-size: 12px;
   color: white;
   align-self: center;
@@ -112,7 +112,7 @@ const StatusMessageView: FC<Props> = ({
             style={{marginBottom: 4}}
           />
         )}
-        <StyledTextstatusMessage
+        <StyledTextStatusMessage
           testID="text-main"
           isStatusMessageExpanded={isStatusMessageExpanded}
           numberOfLines={isStatusMessageExpanded ? MAX_STATUS_MESSAGE_LINES : 2}
@@ -125,14 +125,14 @@ const StatusMessageView: FC<Props> = ({
               );
           }}>
           {statusMessage}
-        </StyledTextstatusMessage>
+        </StyledTextStatusMessage>
         {isStatusMessageExpanded &&
           showArrow.length > MAX_STATUS_MESSAGE_LINES && (
-            <StyledTextstatusMessage
+            <StyledTextStatusMessage
               testID="text-end"
               isStatusMessageExpanded={isStatusMessageExpanded}>
               ...
-            </StyledTextstatusMessage>
+            </StyledTextStatusMessage>
           )}
         {showArrow.show && isStatusMessageExpanded && (
           <Icon
