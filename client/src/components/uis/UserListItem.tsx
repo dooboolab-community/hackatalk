@@ -169,11 +169,9 @@ function Shared({
               onToggle={onPress}
             />
           ) : (
-            statusMessage && (
-              <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
-                {statusMessage}
-              </StyledRightText>
-            )
+            <StyledRightText numberOfLines={1} ellipsizeMode={'tail'}>
+              {statusMessage || ''}
+            </StyledRightText>
           )}
         </Wrapper>
       </TouchableOpacity>
