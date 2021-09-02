@@ -91,12 +91,12 @@ function TabNavigator(): ReactElement {
 
   return (
     <Tab.Navigator
-      swipeEnabled={true}
       sceneContainerStyle={{
         paddingLeft: insets.left,
         paddingRight: insets.right,
       }}
       screenOptions={{
+        swipeEnabled: true,
         tabBarActiveTintColor: theme.indicatorColor,
         tabBarInactiveTintColor: theme.inactiveColor,
         tabBarIndicatorStyle: {
