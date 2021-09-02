@@ -70,7 +70,7 @@ const Page: FC = () => {
     try {
       setLoading(true);
       commitEmail(mutationConfig);
-    } catch (err) {
+    } catch (err: any) {
       Alert.alert(
         getString('ERROR'),
         getString('RESENT_VERIFICATION_EMAIL_FAILED'),

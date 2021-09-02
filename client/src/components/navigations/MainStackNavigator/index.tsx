@@ -142,7 +142,7 @@ function MainStackNavigator(): ReactElement {
     return () => {
       try {
         Notifications.removeNotificationSubscription(subscription);
-      } catch (err) {
+      } catch (err: any) {
         if (__DEV__) console.log('remove noti subscription', err);
       }
     };

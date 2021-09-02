@@ -273,12 +273,11 @@ const SignIn: FC = () => {
 
         commitApple(mutationConfig);
       }
-    } catch (e) {
+    } catch (e: any) {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow
       } else
         Platform.select({
-          // @ts-ignore
           // eslint-disable-next-line no-alert
           web: alert(`Apple Login Error: ${e.code} - ${e.message}`),
           default: Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`),

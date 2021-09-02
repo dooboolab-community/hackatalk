@@ -62,7 +62,7 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
   const hideSplash = async (): Promise<void> => {
     try {
       await SplashScreen.hideAsync();
-    } catch (err) {
+    } catch (err: any) {
       // err
     }
   };

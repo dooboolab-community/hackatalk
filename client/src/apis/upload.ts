@@ -65,7 +65,7 @@ export const uploadImageAsync = async (
     );
 
     return res;
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err);
   }
 };

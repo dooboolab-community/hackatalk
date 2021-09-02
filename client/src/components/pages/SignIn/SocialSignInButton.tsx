@@ -162,7 +162,7 @@ const SocialSignInButton: FC<Props> = ({
 
     try {
       await promptAsync({useProxy});
-    } catch (err) {
+    } catch (err: any) {
       Alert.alert(getString('ERROR'), err);
     } finally {
       setSigningIn(false);

@@ -190,7 +190,7 @@ const Screen: FC = () => {
               Alert.alert(getString('ERROR'), err.message);
             },
           });
-        } catch (err) {
+        } catch (err: any) {
           Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
         } finally {
           setIsUploading(false);

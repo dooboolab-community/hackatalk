@@ -244,7 +244,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             setIsImageUploading(false);
           },
         });
-      } catch (err) {
+      } catch (err: any) {
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
   };

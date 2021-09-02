@@ -38,7 +38,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
     try {
       await SplashScreen.hideAsync();
-    } catch (err) {
+    } catch (err: any) {
       // console.log('hide splash', err);
     }
 
