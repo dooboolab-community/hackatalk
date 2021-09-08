@@ -82,8 +82,6 @@ interface Props<T> {
   renderSendButton?: () => React.ReactElement;
 }
 
-let isFirstTime: boolean = false;
-
 function Shared<T>(props: Props<T>): React.ReactElement {
   const input1 = useRef<TextInput>();
   const input2 = useRef<TextInput>();
@@ -116,16 +114,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   useEffect(() => {
     if (showMenu) Keyboard.dismiss();
-    else {
-      if (!isFirstTime) input1?.current?.focus();
-
-      isFirstTime = false;
-    }
   }, [showMenu]);
 
   useEffect(() => {
-    isFirstTime = true;
-
     const backHandlerListner = backHandler.current.addEventListener(
       'hardwareBackPress',
       (): boolean => {
@@ -202,7 +193,6 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               // @ts-ignore
               ref={input1}
               onFocus={(): void => setShowMenu(false)}
-              autoFocus={true}
               enablesReturnKeyAutomatically={true}
               multiline={true}
               onKeyPress={onKeyPress}
