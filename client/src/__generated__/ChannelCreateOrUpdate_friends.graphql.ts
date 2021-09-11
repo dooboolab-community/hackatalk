@@ -3,9 +3,9 @@
 // @ts-nocheck
 
 import { ReaderFragment } from "relay-runtime";
-import ChannelCreateFriendsPaginationQuery from "./ChannelCreateFriendsPaginationQuery.graphql";
+import ChannelCreateOrUpdateFriendsPaginationQuery from "./ChannelCreateOrUpdateFriendsPaginationQuery.graphql";
 import { FragmentRefs } from "relay-runtime";
-export type ChannelCreate_friends = {
+export type ChannelCreateOrUpdate_friends = {
     readonly friends: {
         readonly edges: ReadonlyArray<{
             readonly cursor: string;
@@ -23,12 +23,12 @@ export type ChannelCreate_friends = {
             readonly endCursor: string | null;
         };
     } | null;
-    readonly " $refType": "ChannelCreate_friends";
+    readonly " $refType": "ChannelCreateOrUpdate_friends";
 };
-export type ChannelCreate_friends$data = ChannelCreate_friends;
-export type ChannelCreate_friends$key = {
-    readonly " $data"?: ChannelCreate_friends$data;
-    readonly " $fragmentRefs": FragmentRefs<"ChannelCreate_friends">;
+export type ChannelCreateOrUpdate_friends$data = ChannelCreateOrUpdate_friends;
+export type ChannelCreateOrUpdate_friends$key = {
+    readonly " $data"?: ChannelCreateOrUpdate_friends$data;
+    readonly " $fragmentRefs": FragmentRefs<"ChannelCreateOrUpdate_friends">;
 };
 
 
@@ -80,10 +80,10 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": ChannelCreateFriendsPaginationQuery
+      "operation": ChannelCreateOrUpdateFriendsPaginationQuery
     }
   },
-  "name": "ChannelCreate_friends",
+  "name": "ChannelCreateOrUpdate_friends",
   "selections": [
     {
       "alias": "friends",
@@ -101,7 +101,7 @@ return {
       ],
       "concreteType": "UserConnection",
       "kind": "LinkedField",
-      "name": "__ChannelCreate_friends_connection",
+      "name": "__ChannelCreateOrUpdate_friends_connection",
       "plural": false,
       "selections": [
         {
@@ -213,5 +213,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
+(node as any).hash = '7805b4d37080d0d8b2128e36a675a211';
 export default node;

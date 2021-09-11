@@ -12,7 +12,7 @@ export type FriendsQueryVariables = {
     includeMe?: boolean | null;
 };
 export type FriendsQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends" | "ChannelCreate_friends">;
+    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends" | "ChannelCreateOrUpdate_friends">;
 };
 export type FriendsQuery = {
     readonly response: FriendsQueryResponse;
@@ -29,10 +29,10 @@ query FriendsQuery(
   $includeMe: Boolean
 ) {
   ...MainFriend_friends_1KCjMM
-  ...ChannelCreate_friends_1KCjMM
+  ...ChannelCreateOrUpdate_friends_1KCjMM
 }
 
-fragment ChannelCreate_friends_1KCjMM on Query {
+fragment ChannelCreateOrUpdate_friends_1KCjMM on Query {
   friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
     edges {
       cursor
@@ -155,7 +155,7 @@ return {
       {
         "args": (v4/*: any*/),
         "kind": "FragmentSpread",
-        "name": "ChannelCreate_friends"
+        "name": "ChannelCreateOrUpdate_friends"
       }
     ],
     "type": "Query",
@@ -324,21 +324,21 @@ return {
           "includeMe"
         ],
         "handle": "connection",
-        "key": "ChannelCreate_friends",
+        "key": "ChannelCreateOrUpdate_friends",
         "kind": "LinkedHandle",
         "name": "friends"
       }
     ]
   },
   "params": {
-    "cacheID": "203c6d15d466e67649e454eec08bda32",
+    "cacheID": "2dff1fc6fdb9928fd75649b9c07a6094",
     "id": null,
     "metadata": {},
     "name": "FriendsQuery",
     "operationKind": "query",
-    "text": "query FriendsQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n  $includeMe: Boolean\n) {\n  ...MainFriend_friends_1KCjMM\n  ...ChannelCreate_friends_1KCjMM\n}\n\nfragment ChannelCreate_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment MainFriend_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        ...ProfileModal_user\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query FriendsQuery(\n  $first: Int!\n  $after: String\n  $searchText: String\n  $includeMe: Boolean\n) {\n  ...MainFriend_friends_1KCjMM\n  ...ChannelCreateOrUpdate_friends_1KCjMM\n}\n\nfragment ChannelCreateOrUpdate_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment MainFriend_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        ...ProfileModal_user\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '83e83cdfcf6f4a0573ac1e9b2624e488';
+(node as any).hash = 'cc6511e3e0da80e207f380d10880e94e';
 export default node;

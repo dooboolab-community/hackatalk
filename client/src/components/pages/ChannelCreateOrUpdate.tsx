@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import {Channel, User, UserConnection, UserEdge} from '../../types/graphql';
 import {
-  ChannelCreateFriendsPaginationQuery,
-  ChannelCreateFriendsPaginationQueryVariables,
-} from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
+  ChannelCreateOrUpdateFriendsPaginationQuery,
+  ChannelCreateOrUpdateFriendsPaginationQueryVariables,
+} from '../../__generated__/ChannelCreateOrUpdateFriendsPaginationQuery.graphql';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutationResponse,
@@ -32,7 +32,7 @@ import {
   usePaginationFragment,
 } from 'react-relay';
 
-import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
+import {ChannelCreateOrUpdate_friends$key} from '../../__generated__/ChannelCreateOrUpdate_friends.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ErroView from '../uis/ErrorView';
 import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
@@ -65,25 +65,25 @@ const FriendThumbView = styled.View`
   width: 70px;
 `;
 
-interface ChannelCreate extends User {
+interface ChannelCreateOrUpdate extends User {
   checked?: boolean;
 }
 
 const friendsFragment = graphql`
-  fragment ChannelCreate_friends on Query
+  fragment ChannelCreateOrUpdate_friends on Query
   @argumentDefinitions(
     first: {type: "Int!"}
     after: {type: "String"}
     searchText: {type: "String"}
     includeMe: {type: "Boolean"}
   )
-  @refetchable(queryName: "ChannelCreateFriendsPaginationQuery") {
+  @refetchable(queryName: "ChannelCreateOrUpdateFriendsPaginationQuery") {
     friends(
       first: $first
       after: $after
       searchText: $searchText
       includeMe: $includeMe
-    ) @connection(key: "ChannelCreate_friends") {
+    ) @connection(key: "ChannelCreateOrUpdate_friends") {
       edges {
         cursor
         node {
@@ -104,9 +104,9 @@ const friendsFragment = graphql`
 `;
 
 type FriendsFragmentProps = {
-  friend: ChannelCreate_friends$key;
+  friend: ChannelCreateOrUpdate_friends$key;
   scrollY: Animated.Value;
-  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables;
   selectedUsers: User[];
   setSelectedUsers: (users: User[]) => void;
 };
@@ -117,8 +117,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   setSelectedUsers,
 }) => {
   const {data} = usePaginationFragment<
-    ChannelCreateFriendsPaginationQuery,
-    ChannelCreate_friends$key
+    ChannelCreateOrUpdateFriendsPaginationQuery,
+    ChannelCreateOrUpdate_friends$key
   >(friendsFragment, friend);
   const {user} = useAuthContext();
 
@@ -275,7 +275,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 
 interface ContentProps {
   scrollY: Animated.Value;
-  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables;
   selectedUsers: User[];
   setSelectedUsers: (users: User[]) => void;
 }
@@ -303,8 +303,9 @@ const ContentContainer: FC<ContentProps> = ({
   );
 };
 
-const ChannelCreate: FC = () => {
-  const navigation = useNavigation<MainStackNavigationProps<'ChannelCreate'>>();
+const ChannelCreateOrUpdate: FC = () => {
+  const navigation =
+    useNavigation<MainStackNavigationProps<'ChannelCreateOrUpdate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const {theme} = useTheme();
@@ -366,7 +367,7 @@ const ChannelCreate: FC = () => {
     });
   }, [commitChannel, navigation, selectedUsers, theme]);
 
-  const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
+  const searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
     searchText: debouncedText,
     includeMe: true,
@@ -406,4 +407,4 @@ const ChannelCreate: FC = () => {
   );
 };
 
-export default ChannelCreate;
+export default ChannelCreateOrUpdate;

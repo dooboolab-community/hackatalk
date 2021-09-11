@@ -14,7 +14,7 @@ export const friendsQuery = graphql`
         searchText: $searchText
         includeMe: $includeMe
       )
-    ...ChannelCreate_friends
+    ...ChannelCreateOrUpdate_friends
       @arguments(
         first: $first
         after: $after

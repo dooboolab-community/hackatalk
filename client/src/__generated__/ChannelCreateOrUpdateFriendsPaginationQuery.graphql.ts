@@ -5,33 +5,33 @@
 import { ConcreteRequest } from "relay-runtime";
 
 import { FragmentRefs } from "relay-runtime";
-export type ChannelCreateFriendsPaginationQueryVariables = {
+export type ChannelCreateOrUpdateFriendsPaginationQueryVariables = {
     after?: string | null;
     first: number;
     includeMe?: boolean | null;
     searchText?: string | null;
 };
-export type ChannelCreateFriendsPaginationQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"ChannelCreate_friends">;
+export type ChannelCreateOrUpdateFriendsPaginationQueryResponse = {
+    readonly " $fragmentRefs": FragmentRefs<"ChannelCreateOrUpdate_friends">;
 };
-export type ChannelCreateFriendsPaginationQuery = {
-    readonly response: ChannelCreateFriendsPaginationQueryResponse;
-    readonly variables: ChannelCreateFriendsPaginationQueryVariables;
+export type ChannelCreateOrUpdateFriendsPaginationQuery = {
+    readonly response: ChannelCreateOrUpdateFriendsPaginationQueryResponse;
+    readonly variables: ChannelCreateOrUpdateFriendsPaginationQueryVariables;
 };
 
 
 
 /*
-query ChannelCreateFriendsPaginationQuery(
+query ChannelCreateOrUpdateFriendsPaginationQuery(
   $after: String
   $first: Int!
   $includeMe: Boolean
   $searchText: String
 ) {
-  ...ChannelCreate_friends_1KCjMM
+  ...ChannelCreateOrUpdate_friends_1KCjMM
 }
 
-fragment ChannelCreate_friends_1KCjMM on Query {
+fragment ChannelCreateOrUpdate_friends_1KCjMM on Query {
   friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
     edges {
       cursor
@@ -113,12 +113,12 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ChannelCreateFriendsPaginationQuery",
+    "name": "ChannelCreateOrUpdateFriendsPaginationQuery",
     "selections": [
       {
         "args": (v1/*: any*/),
         "kind": "FragmentSpread",
-        "name": "ChannelCreate_friends"
+        "name": "ChannelCreateOrUpdate_friends"
       }
     ],
     "type": "Query",
@@ -128,7 +128,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ChannelCreateFriendsPaginationQuery",
+    "name": "ChannelCreateOrUpdateFriendsPaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -266,21 +266,21 @@ return {
           "includeMe"
         ],
         "handle": "connection",
-        "key": "ChannelCreate_friends",
+        "key": "ChannelCreateOrUpdate_friends",
         "kind": "LinkedHandle",
         "name": "friends"
       }
     ]
   },
   "params": {
-    "cacheID": "deb52b2fec2b3ae81cff263321d86cf7",
+    "cacheID": "dc2884ef52dd252e553fa3c96fc80f4e",
     "id": null,
     "metadata": {},
-    "name": "ChannelCreateFriendsPaginationQuery",
+    "name": "ChannelCreateOrUpdateFriendsPaginationQuery",
     "operationKind": "query",
-    "text": "query ChannelCreateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $includeMe: Boolean\n  $searchText: String\n) {\n  ...ChannelCreate_friends_1KCjMM\n}\n\nfragment ChannelCreate_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query ChannelCreateOrUpdateFriendsPaginationQuery(\n  $after: String\n  $first: Int!\n  $includeMe: Boolean\n  $searchText: String\n) {\n  ...ChannelCreateOrUpdate_friends_1KCjMM\n}\n\nfragment ChannelCreateOrUpdate_friends_1KCjMM on Query {\n  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {\n    edges {\n      cursor\n      node {\n        id\n        nickname\n        name\n        thumbURL\n        photoURL\n        ...UserListItem_user\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      endCursor\n    }\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
+(node as any).hash = '7805b4d37080d0d8b2128e36a675a211';
 export default node;

@@ -14,7 +14,7 @@ import {graphql, useSubscription} from 'react-relay';
 
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
-import ChannelCreate from '../../pages/ChannelCreate';
+import ChannelCreateOrUpdate from '../../pages/ChannelCreateOrUpdate';
 import {Theme as DefaultTheme} from '@emotion/react';
 import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
@@ -46,7 +46,9 @@ export type MainStackParamList = {
   };
   Settings: undefined;
   ChangePw: undefined;
-  ChannelCreate: undefined;
+  ChannelCreateOrUpdate: {
+    channelId?: string;
+  };
   PinchZoomViewPager: undefined;
 };
 
@@ -237,8 +239,8 @@ function MainStackNavigator(): ReactElement {
         options={getSimpleHeader(getString('PASSWORD_CHANGE'), theme)}
       />
       <Stack.Screen
-        name="ChannelCreate"
-        component={ChannelCreate}
+        name="ChannelCreateOrUpdate"
+        component={ChannelCreateOrUpdate}
         options={getSimpleHeader(getString('NEW_CHAT'), theme)}
       />
     </Stack.Navigator>
