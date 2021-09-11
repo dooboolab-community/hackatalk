@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Button, useTheme} from 'dooboo-ui';
+import {Button, Icon, Typography, useTheme} from 'dooboo-ui';
 import {
   MainStackNavigationProps,
   MainStackParamList,
@@ -425,6 +425,7 @@ interface ContentProps {
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
   const {user: auth} = useAuthContext();
+  const {theme} = useTheme();
 
   const messagesQueryResponse: MessagesQueryResponse =
     useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
@@ -471,8 +472,17 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
           </Text>
         );
       },
+      headerRight: (): ReactElement => {
+        return (
+          <View style={{marginRight: 10}}>
+            <TouchableOpacity>
+              <Icon name="burger-shape" size={22} color={theme.background} />
+            </TouchableOpacity>
+          </View>
+        );
+      },
     });
-  }, [auth?.id, channel?.name, navigation, users]);
+  }, [auth?.id, channel?.name, navigation, users, theme]);
 
   return (
     <MessagesFragment
