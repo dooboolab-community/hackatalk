@@ -46,8 +46,8 @@ export type MainStackParamList = {
   };
   Settings: undefined;
   ChangePw: undefined;
-  ChannelCreateOrUpdate: {
-    channelId?: string;
+  ChannelCreateOrUpdate?: {
+    channelId: string;
   };
   PinchZoomViewPager: undefined;
 };
