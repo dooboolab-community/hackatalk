@@ -48,6 +48,7 @@ export type MainStackParamList = {
   ChangePw: undefined;
   ChannelCreateOrUpdate?: {
     channelId: string;
+    userIds: string[];
   };
   PinchZoomViewPager: undefined;
 };

@@ -27,27 +27,14 @@ const fragment = graphql`
   }
 `;
 
-interface Props {
-  style?: ViewStyle;
-  user: UserListItem_user$key;
-  onPress?: () => void;
-  onLongPress?: () => void;
-  showCheckBox?: boolean;
-  showStatus?: boolean;
-  checked?: boolean;
-  isMyself?: boolean;
-}
-
 const Container = styled.View`
   width: 100%;
 `;
 
-const Wrapper = styled.View<{isMyself?: boolean}>`
-  background-color: ${({theme}) => theme.itemBackground};
+const Wrapper = styled.View`
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${(props) =>
-    props.isMyself ? props.theme.disabled : props.theme.backgroundDark};
+  border-color: ${({theme}) => theme.backgroundDark};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -94,6 +81,17 @@ const StyledRightText = styled.Text`
   overflow: hidden;
 `;
 
+interface Props {
+  style?: ViewStyle;
+  user: UserListItem_user$key;
+  onPress?: () => void;
+  onLongPress?: () => void;
+  showCheckBox?: boolean;
+  showStatus?: boolean;
+  checked?: boolean;
+  isMyself?: boolean;
+  isInChatroom?: boolean;
+}
 function Shared({
   showCheckBox = false,
   showStatus = false,
@@ -102,6 +100,7 @@ function Shared({
   onLongPress,
   user,
   isMyself,
+  isInChatroom,
 }: Props): React.ReactElement {
   const {
     photoURL = '',
@@ -124,8 +123,16 @@ function Shared({
         activeOpacity={0.5}
         onPress={onPress}
         delayPressIn={130}
-        onLongPress={onLongPress}>
-        <Wrapper isMyself={isMyself} testID="userListItem-wrapper">
+        onLongPress={onLongPress}
+        disabled={isInChatroom || isMyself}>
+        <Wrapper
+          testID="userListItem-wrapper"
+          style={{
+            backgroundColor: isInChatroom
+              ? theme.disabled
+              : theme.itemBackground,
+            opacity: isInChatroom ? 0.1 : 1,
+          }}>
           <ImageWrapper isMyself={isMyself}>
             <StyledImage
               resizeMode="cover"

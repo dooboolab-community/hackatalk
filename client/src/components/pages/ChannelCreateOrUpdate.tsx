@@ -17,6 +17,10 @@ import {
   ChannelFindOrCreatePrivateChannelMutationResponse,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
+import {
+  MainStackNavigationProps,
+  MainStackParamList,
+} from '../navigations/MainStackNavigator';
 import React, {
   FC,
   ReactElement,
@@ -25,6 +29,11 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import {RouteProp, useRoute} from '@react-navigation/core';
+import {
+  findOrCreatePrivateChannel,
+  inviteUsersToChannel,
+} from '../../relay/queries/Channel';
 import {
   graphql,
   useLazyLoadQuery,
@@ -33,13 +42,12 @@ import {
 } from 'react-relay';
 
 import {ChannelCreateOrUpdate_friends$key} from '../../__generated__/ChannelCreateOrUpdate_friends.graphql';
+import {ChannelInviteUsersToChannelMutation} from '../../__generated__/ChannelInviteUsersToChannelMutation.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ErroView from '../uis/ErrorView';
 import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import UserListItem from '../uis/UserListItem';
-import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
 import produce from 'immer';
@@ -109,12 +117,14 @@ type FriendsFragmentProps = {
   searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables;
   selectedUsers: User[];
   setSelectedUsers: (users: User[]) => void;
+  userIdsFromChannel: string[];
 };
 
 const FriendsFragment: FC<FriendsFragmentProps> = ({
   friend,
   selectedUsers,
   setSelectedUsers,
+  userIdsFromChannel,
 }) => {
   const {data} = usePaginationFragment<
     ChannelCreateOrUpdateFriendsPaginationQuery,
@@ -199,35 +209,44 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
   }): ReactElement => {
     const isMyself = item?.node?.id === user?.id;
 
+    const isInChatroom = userIdsFromChannel.find(
+      (userId) => userId === item.node?.id,
+    )
+      ? true
+      : false;
+
+    const handlePress = (): void => {
+      if (selectedUsers.includes(item?.node as User)) {
+        const nextState = produce(selectedUsers, (draftState) => {
+          const selectedUserIndex = selectedUsers.findIndex(
+            (v) => v.id === item?.node?.id,
+          );
+
+          draftState.splice(selectedUserIndex, 1);
+        });
+
+        setSelectedUsers(nextState);
+
+        return;
+      }
+
+      const nextState = produce(selectedUsers, (draftState) => {
+        draftState.push(item.node as User);
+      });
+
+      setSelectedUsers(nextState);
+    };
+
     return (
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
         isMyself={isMyself}
+        isInChatroom={isInChatroom}
         checked={selectedUsers.includes(item?.node as User)}
         // @ts-ignore
         user={item.node}
-        onPress={(): void => {
-          if (selectedUsers.includes(item?.node as User)) {
-            const nextState = produce(selectedUsers, (draftState) => {
-              const selectedUserIndex = selectedUsers.findIndex(
-                (v) => v.id === item?.node?.id,
-              );
-
-              draftState.splice(selectedUserIndex, 1);
-            });
-
-            setSelectedUsers(nextState);
-
-            return;
-          }
-
-          const nextState = produce(selectedUsers, (draftState) => {
-            draftState.push(item.node as User);
-          });
-
-          setSelectedUsers(nextState);
-        }}
+        onPress={handlePress}
       />
     );
   };
@@ -251,7 +270,10 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         ListHeaderComponent={(): ReactElement => {
           return (
             <ScrollView
-              style={{paddingHorizontal: 24, marginBottom: 8}}
+              style={{
+                paddingHorizontal: 24,
+                marginBottom: 8,
+              }}
               horizontal>
               {selectedUsers.map((selectedUser, i) =>
                 renderFriendThumbnail(selectedUser, i),
@@ -277,6 +299,7 @@ interface ContentProps {
   scrollY: Animated.Value;
   searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables;
   selectedUsers: User[];
+  userIdsFromChannel: string[];
   setSelectedUsers: (users: User[]) => void;
 }
 
@@ -285,6 +308,7 @@ const ContentContainer: FC<ContentProps> = ({
   scrollY,
   selectedUsers,
   setSelectedUsers,
+  userIdsFromChannel,
 }) => {
   const queryResponse = useLazyLoadQuery<FriendsQuery>(
     friendsQuery,
@@ -299,6 +323,7 @@ const ContentContainer: FC<ContentProps> = ({
       searchArgs={searchArgs}
       selectedUsers={selectedUsers}
       setSelectedUsers={setSelectedUsers}
+      userIdsFromChannel={userIdsFromChannel}
     />
   );
 };
@@ -306,11 +331,19 @@ const ContentContainer: FC<ContentProps> = ({
 const ChannelCreateOrUpdate: FC = () => {
   const navigation =
     useNavigation<MainStackNavigationProps<'ChannelCreateOrUpdate'>>();
+
+  const route =
+    useRoute<RouteProp<MainStackParamList, 'ChannelCreateOrUpdate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const {theme} = useTheme();
+  const channelIdToInviteUser = route.params?.channelId;
+  const userIdsFromChannel = route.params?.userIds || [];
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
+
+  const [commitChannelUpdateWithInviedUser, isChannelUpdateInFlight] =
+    useMutation<ChannelInviteUsersToChannelMutation>(inviteUsersToChannel);
 
   const [commitChannel, isChannelInFlight] =
     useMutation<ChannelFindOrCreatePrivateChannelMutation>(
@@ -321,7 +354,7 @@ const ChannelCreateOrUpdate: FC = () => {
     const pressDone = (): void => {
       const userIds = selectedUsers.map((v) => v.id);
 
-      const mutationConfig = {
+      const channelCreateMutationConfig = {
         variables: {
           peerUserIds: userIds,
         },
@@ -339,14 +372,43 @@ const ChannelCreateOrUpdate: FC = () => {
         },
       };
 
-      commitChannel(mutationConfig);
+      commitChannel(channelCreateMutationConfig);
+    };
+
+    const pressUpdate = (): void => {
+      const userIds = selectedUsers.map((v) => v.id);
+      if (channelIdToInviteUser) {
+        const channelUpdateMutationConfig = {
+          variables: {
+            channelId: channelIdToInviteUser,
+            userIds,
+          },
+          onCompleted: () => {
+            navigation.replace('Message', {
+              channelId: channelIdToInviteUser,
+            });
+          },
+          onError: (error: Error): void => {
+            showAlertForError(error);
+          },
+        };
+        commitChannelUpdateWithInviedUser(channelUpdateMutationConfig);
+      }
     };
 
     navigation.setOptions({
       headerRight: (): ReactElement => (
         <TouchableOpacity
           testID="touch-done"
-          onPress={pressDone}
+          onPress={() => {
+            if (channelIdToInviteUser) {
+              pressUpdate();
+
+              return;
+            }
+
+            pressDone();
+          }}
           disabled={selectedUsers.length === 0}>
           <View
             style={{
@@ -365,7 +427,14 @@ const ChannelCreateOrUpdate: FC = () => {
         </TouchableOpacity>
       ),
     });
-  }, [commitChannel, navigation, selectedUsers, theme]);
+  }, [
+    commitChannel,
+    navigation,
+    selectedUsers,
+    theme,
+    channelIdToInviteUser,
+    commitChannelUpdateWithInviedUser,
+  ]);
 
   const searchArgs: ChannelCreateOrUpdateFriendsPaginationQueryVariables = {
     first: ITEM_CNT,
@@ -400,9 +469,12 @@ const ChannelCreateOrUpdate: FC = () => {
           searchArgs={searchArgs}
           selectedUsers={selectedUsers}
           setSelectedUsers={setSelectedUsers}
+          userIdsFromChannel={userIdsFromChannel}
         />
       </Suspense>
-      {isChannelInFlight ? <CustomLoadingIndicator /> : null}
+      {isChannelInFlight || isChannelUpdateInFlight ? (
+        <CustomLoadingIndicator />
+      ) : null}
     </Container>
   );
 };
