@@ -32,3 +32,31 @@ export const findOrCreatePrivateChannel = graphql`
     }
   }
 `;
+
+export const inviteUsersToChannel = graphql`
+  mutation ChannelInviteUsersToChannelMutation(
+    $channelId: String!
+    $userIds: [String!]!
+  ) {
+    inviteUsersToChannel(channelId: $channelId, userIds: $userIds) {
+      id
+      channelType
+      name
+      lastMessageId
+    }
+  }
+`;
+
+export const leaveChannel = graphql`
+  mutation ChannelLeaveChannelMutation($channelId: String!) {
+    leaveChannel(channelId: $channelId) {
+      user {
+        id
+      }
+      channel {
+        id
+      }
+      alertMode
+    }
+  }
+`;

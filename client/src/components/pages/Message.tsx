@@ -439,6 +439,10 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
     [channel?.memberships],
   );
 
+  const handleHamburgerPress = (): void => {
+    console.log('pressed');
+  };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: (): ReactElement => {
@@ -475,7 +479,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
       headerRight: (): ReactElement => {
         return (
           <View style={{marginRight: 10}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleHamburgerPress}>
               <Icon name="burger-shape" size={22} color={theme.background} />
             </TouchableOpacity>
           </View>
