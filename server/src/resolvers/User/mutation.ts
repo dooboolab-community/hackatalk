@@ -208,7 +208,7 @@ export const signInWithApple = mutationField('signInWithApple', {
         },
         ctx,
       );
-    } catch (err) {
+    } catch (err: any) {
       throw new Error(err);
     }
   },
