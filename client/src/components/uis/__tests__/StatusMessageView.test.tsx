@@ -25,7 +25,7 @@ const props = {
 };
 
 describe('[StatusMessageView] render', () => {
-  it('renders without crashing', () => {
+  it('render without crashing', () => {
     const screen = render(<StatusMessageView {...props} />);
     const json = screen.toJSON();
 
@@ -33,7 +33,7 @@ describe('[StatusMessageView] render', () => {
     expect(json).toMatchSnapshot();
   });
 
-  it('renders arrow-up when statusMessage has more than 2 lines and isStatusMessageExpanded is false', () => {
+  it('render arrow-up when statusMessage has more than 2 lines and isStatusMessageExpanded is false', () => {
     props.statusMessage =
       'StatusMessage test\nStatusMessage test\nStatusMessage test';
     props.isStatusMessageExpanded = false;
@@ -48,7 +48,7 @@ describe('[StatusMessageView] render', () => {
     );
   });
 
-  it('renders ... when statusMessage has more than MAX_STATUS_MESSAGE_LINES lines and isStatusMessageExpanded is true', () => {
+  it('render "..." when statusMessage has more than MAX_STATUS_MESSAGE_LINES lines and isStatusMessageExpanded is true', () => {
     props.statusMessage =
       'StatusMessage test\nStatusMessage test\nStatusMessage test';
     props.isStatusMessageExpanded = false;
@@ -63,7 +63,7 @@ describe('[StatusMessageView] render', () => {
     );
   });
 
-  it('renders arrow-down when statusMessage has more than 2 lines and isStatusMessageExpanded is true', () => {
+  it('render arrow-down when statusMessage has more than 2 lines and isStatusMessageExpanded is true', () => {
     props.statusMessage = 'StatusMessage test\n'.repeat(
       MAX_STATUS_MESSAGE_LINES,
     );
@@ -102,6 +102,53 @@ describe('[StatusMessageView] render', () => {
     );
   });
 
+  it('should not call onTextLayout callback when message is ""', () => {
+    props.statusMessage = '';
+
+    const {getByTestId} = render(<StatusMessageView {...props} />);
+
+    const mainText = getByTestId('text-main');
+
+    fireEvent(mainText, 'onTextLayout', {
+      nativeEvent: {
+        lines: [],
+      },
+    });
+
+    const parent = getByTestId('touchable-statusMessageView');
+
+    expect(typeof parent.children[0]).toBe('object');
+
+    expect((parent.children[0] as ReactTestInstance).props.children).toBe('');
+  });
+
+  it('should not render arrow when statusMessage is short', () => {
+    props.isStatusMessageExpanded = false;
+    props.statusMessage = "It's short";
+
+    const {getByTestId} = render(<StatusMessageView {...props} />);
+
+    const mainText = getByTestId('text-main');
+
+    fireEvent(mainText, 'onTextLayout', {
+      nativeEvent: {
+        lines: [
+          {
+            width: 55,
+          },
+        ],
+      },
+    });
+
+    const parent = getByTestId('touchable-statusMessageView');
+
+    expect(typeof parent.children[0]).toBe('object');
+
+    expect((parent.children[0] as ReactTestInstance).props.testID).toBe(
+      'text-main',
+    );
+  });
+
   it('should call onLayout callback of the Animated.View container', async () => {
     beforeEach(setupTimeTravel);
 
@@ -124,5 +171,16 @@ describe('[StatusMessageView] render', () => {
     timeTravel(1500);
 
     expect(animatedContainer.props.style.transform[0].translateY).toBe(90);
+  });
+
+  it('should deal with when modalLayout prop is given as initial value', () => {
+    props.modalLayout = {width: 0, height: 0};
+
+    const {getByTestId} = render(<StatusMessageView {...props} />);
+
+    const animatedContainer = getByTestId('view-animated');
+
+    expect(animatedContainer.props.style.left).toBe(20);
+    expect(animatedContainer.props.style.top).toBe(0);
   });
 });

@@ -372,6 +372,7 @@ const Page: FC = () => {
               onSubmitEditing={requestSignUp}
               textInputProps={{
                 multiline: true,
+                maxLength: 60,
               }}
             />
             <ButtonWrapper>

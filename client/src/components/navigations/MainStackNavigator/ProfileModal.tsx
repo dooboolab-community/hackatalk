@@ -18,7 +18,7 @@ import {
   ProfileModalContext,
   useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -43,6 +43,7 @@ import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
+import {useSnackbarContext} from '../../../providers';
 
 const fragment = graphql`
   fragment ProfileModal_user on User {
@@ -125,6 +126,8 @@ type ModalContentProps = {
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const userData = useFragment(fragment, modalState.user);
+
+  const {openSnackbar} = useSnackbarContext();
 
   const {id, name, nickname, statusMessage, photoURL, hasBlocked, isFriend} =
     userData;
@@ -268,12 +271,20 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     }
   };
 
-  const {
-    theme: {header, modalBtnPrimaryFont},
-  } = useTheme();
+  const {theme} = useTheme();
 
   const handleAnim = (): void =>
     setStatusMessageExpanded(!isStatusMessageExpanded);
+
+  useEffect(() => {
+    if (openSnackbar && showFriendAddedMessage)
+      openSnackbar({
+        text: getString('FRIEND_ADDED'),
+        type: 'success',
+        testID: 'profile-snackbar',
+        zIndex: 101,
+      });
+  }, [openSnackbar, showFriendAddedMessage]);
 
   return (
     <>
@@ -285,7 +296,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           alignSelf: 'stretch',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: header,
+          backgroundColor: theme.header,
         }}
         onLayout={(event) => {
           const {width, height} = event.nativeEvent.layout;
@@ -439,7 +450,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           <StyledViewBtns>
             {!modalState.isMyself && (
               <>
-                {deleteFriendInFlight ? (
+                {deleteFriendInFlight || addFriendInFlight ? (
                   <LoadingIndicator size="small" />
                 ) : (
                   <TouchableOpacity
@@ -470,7 +481,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               ) : (
                 <StyledText
                   style={{
-                    color: modalBtnPrimaryFont,
+                    color: theme.modalBtnPrimaryFont,
                   }}>
                   {modalState.isMyself
                     ? getString('SELF_CHAT')
@@ -495,15 +506,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      <StatusMessageView
-        statusMessage={statusMessage || ''}
-        transitionOpacity={transitionOpacity}
-        modalLayout={modalLayout}
-        isStatusMessageExpanded={isStatusMessageExpanded}
-        handleAnim={handleAnim}
-        showFriendAddedMessage={showFriendAddedMessage}
-        addFriendInFlight={addFriendInFlight}
-      />
+      {statusMessage && (
+        <StatusMessageView
+          statusMessage={statusMessage}
+          transitionOpacity={transitionOpacity}
+          modalLayout={modalLayout}
+          isStatusMessageExpanded={isStatusMessageExpanded}
+          handleAnim={handleAnim}
+        />
+      )}
     </>
   );
 };
