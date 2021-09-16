@@ -32,18 +32,3 @@ export const findOrCreatePrivateChannel = graphql`
     }
   }
 `;
-
-export const leaveChannel = graphql`
-  mutation ChannelLeaveChannelMutation($channelId: String!) {
-    leaveChannel(channelId: $channelId) {
-      user {
-        id
-      }
-      channel {
-        id
-      }
-      alertMode
-      isVisible
-    }
-  }
-`;
