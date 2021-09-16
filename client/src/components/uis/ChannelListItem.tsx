@@ -146,6 +146,7 @@ interface Props {
   lastMessageCnt?: number;
   onPress?: () => void;
   fontColor?: string;
+  onLongPress?: () => void;
 }
 
 const calculateUsers = (
@@ -185,6 +186,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     item: {channelType, lastMessage, memberships},
     lastMessageCnt = 0,
     onPress,
+    onLongPress,
   } = props;
 
   const {text, imageUrls, createdAt} = lastMessage as Message;
@@ -267,7 +269,8 @@ function ChannelListItem(props: Props): React.ReactElement {
           accessibilityLabel={getString('GO_CHAT')}
           activeOpacity={0.5}
           delayPressIn={130}
-          onPress={onPress}>
+          onPress={onPress}
+          onLongPress={onLongPress}>
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1
