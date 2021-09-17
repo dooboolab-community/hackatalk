@@ -114,7 +114,7 @@ const ModalContainer = styled.View`
 `;
 
 const ModalViewContainer = styled.View`
-  width: 80%;
+  width: 330px;
   height: 25%;
   background-color: ${({theme}) => theme.modalBackbround};
   border: ${({theme}) => theme.modalBtnPrimaryFont};
