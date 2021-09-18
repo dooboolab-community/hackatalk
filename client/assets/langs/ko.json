@@ -118,5 +118,6 @@
   "VERIFY_EMAIL": "이메일 인증",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
-  "YES": "예"
+  "YES": "예",
+  "LEAVE_THE_CHANNEL": "채팅방을 나가셨습니다."
 }
