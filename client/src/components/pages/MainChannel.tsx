@@ -148,60 +148,58 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   }, [data?.channels?.edges]);
 
   return (
-    <View>
-      <FlatList
-        scrollIndicatorInsets={{right: 1}}
-        style={{
-          alignSelf: 'stretch',
-        }}
-        contentContainerStyle={
-          channels.length === 0
-            ? {
-                flex: 1,
-                alignSelf: 'stretch',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }
-            : null
-        }
-        keyExtractor={(_, index): string => index.toString()}
-        // @ts-ignore
-        data={channels}
-        renderItem={renderItem}
-        ListHeaderComponent={
-          !bannerError && orientation === Orientation.PORTRAIT
-            ? Platform.select({
-                android: (
-                  <AdMobBanner
-                    bannerSize={'smartBannerPortrait'}
-                    // adUnitID="ca-app-pub-3940256099942544/6300978111"
-                    adUnitID="ca-app-pub-7837089095803162/8109702961"
-                    onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                  />
-                ),
-                ios: (
-                  <AdMobBanner
-                    bannerSize={'smartBannerPortrait'}
-                    // adUnitID="ca-app-pub-3940256099942544/2934735716"
-                    adUnitID="ca-app-pub-7837089095803162/4326063134"
-                    onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                  />
-                ),
-              })
-            : null
-        }
-        ListEmptyComponent={
-          <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
-        }
-        ListFooterComponent={<View style={{height: 60}} />}
-        refreshing={isLoadingNext}
-        onRefresh={() => {
-          refetch(searchArgs, {fetchPolicy: 'network-only'});
-        }}
-        onEndReachedThreshold={0.1}
-        onEndReached={onEndReached}
-      />
-    </View>
+    <FlatList
+      scrollIndicatorInsets={{right: 1}}
+      style={{
+        alignSelf: 'stretch',
+      }}
+      contentContainerStyle={
+        channels.length === 0
+          ? {
+              flex: 1,
+              alignSelf: 'stretch',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
+          : null
+      }
+      keyExtractor={(_, index): string => index.toString()}
+      // @ts-ignore
+      data={channels}
+      renderItem={renderItem}
+      ListHeaderComponent={
+        !bannerError && orientation === Orientation.PORTRAIT
+          ? Platform.select({
+              android: (
+                <AdMobBanner
+                  bannerSize={'smartBannerPortrait'}
+                  // adUnitID="ca-app-pub-3940256099942544/6300978111"
+                  adUnitID="ca-app-pub-7837089095803162/8109702961"
+                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
+                />
+              ),
+              ios: (
+                <AdMobBanner
+                  bannerSize={'smartBannerPortrait'}
+                  // adUnitID="ca-app-pub-3940256099942544/2934735716"
+                  adUnitID="ca-app-pub-7837089095803162/4326063134"
+                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
+                />
+              ),
+            })
+          : null
+      }
+      ListEmptyComponent={
+        <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
+      }
+      ListFooterComponent={<View style={{height: 60}} />}
+      refreshing={isLoadingNext}
+      onRefresh={() => {
+        refetch(searchArgs, {fetchPolicy: 'network-only'});
+      }}
+      onEndReachedThreshold={0.1}
+      onEndReached={onEndReached}
+    />
   );
 };
 
