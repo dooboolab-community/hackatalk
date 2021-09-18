@@ -81,12 +81,12 @@ const styles: Styles = {
 };
 
 type ModalContentProps = {
-  ChannelModalState: ChannelModalState & {isVisible: true};
+  channelModalState: ChannelModalState & {isVisible: true};
   hideModal: LeaveChannelModalContext['hideModal'];
 };
 
 const ChannelModalContent: FC<ModalContentProps> = ({
-  ChannelModalState,
+  channelModalState,
   hideModal,
 }) => {
   const {openSnackbar} = useSnackbarContext();
@@ -98,8 +98,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
     useState<boolean>(false);
 
   const onClickYes = (): void => {
-    const {channelId} = ChannelModalState;
-    console.log('onClick');
+    const {channelId} = channelModalState;
 
     const mutationConfig = {
       variables: {
@@ -177,7 +176,7 @@ const LeaveChannelModal: FC<Props> = () => {
       {modalState.isVisible ? (
         <ChannelModalContent
           hideModal={LeaveChannelContext.hideModal}
-          ChannelModalState={modalState}
+          channelModalState={modalState}
         />
       ) : null}
     </Modal>
