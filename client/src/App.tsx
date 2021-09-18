@@ -14,6 +14,7 @@ import ComponentWrapper from './utils/ComponentWrapper';
 import CustomLoadingIndicator from './components/uis/CustomLoadingIndicator';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
+import {LeaveChannelModalProvider} from './providers/LeaveChannelModalProvider';
 import {ResettableRelayProvider} from './providers/ResettableProvider';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {SnackbarProvider} from './providers/SnackbarProvider';
@@ -105,6 +106,7 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
   .wrap(ResettableRelayProvider, {createRelayEnvironment})
   .wrap(DeviceProvider, {})
+  .wrap(LeaveChannelModalProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})
   .wrap(AppearanceProvider, {})
