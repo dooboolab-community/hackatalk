@@ -36,7 +36,7 @@ const StyledViewChat = styled.View`
 
 const StyledInputChat = styled.TextInput`
   font-size: 14px;
-  padding-left: 48px;
+  padding-left: 40px;
   padding-bottom: 4px;
 `;
 
@@ -45,6 +45,7 @@ const StyledTouchMenu = styled.TouchableOpacity`
   left: 10px;
   height: 100%;
   min-width: 20px;
+  padding: 4px;
   justify-content: center;
 `;
 
@@ -194,7 +195,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <StyledInputChat
               // @ts-ignore
               ref={input2}
-              onFocus={(): void => setShowMenu(false)}
+              showSoftInputOnFocus={false}
+              onFocus={(): void => {
+                setShowMenu(false);
+
+                setTimeout(() => {
+                  input1.current?.focus();
+                });
+              }}
               style={{
                 flex: 1,
                 color: fontColor,
