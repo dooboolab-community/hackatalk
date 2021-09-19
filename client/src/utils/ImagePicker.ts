@@ -14,6 +14,12 @@ const photoOptions = {
   exif: true,
 };
 
+const videoOptions = {
+  mediaType: MediaTypeOptions.All,
+  allowsEditing: true,
+  // exif: true,
+};
+
 const requestPermissions = async (
   type: 'photo' | 'camera',
 ): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
@@ -38,7 +44,7 @@ export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
     const granted = await requestPermissions('camera');
 
-    if (granted) return ImagePicker.launchCameraAsync(photoOptions);
+    if (granted) return ImagePicker.launchCameraAsync(videoOptions);
 
     return null;
   };
@@ -48,6 +54,15 @@ export const launchImageLibraryAsync =
     const granted = await requestPermissions('photo');
 
     if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
+
+    return null;
+  };
+
+export const launchVideoLibraryAsync =
+  async (): Promise<ImagePicker.ImagePickerResult | null> => {
+    const granted = await requestPermissions('photo');
+
+    if (granted) return ImagePicker.launchImageLibraryAsync(videoOptions);
 
     return null;
   };

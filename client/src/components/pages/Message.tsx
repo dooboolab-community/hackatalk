@@ -48,6 +48,7 @@ import {
 import {
   launchCameraAsync,
   launchImageLibraryAsync,
+  launchVideoLibraryAsync,
 } from '../../utils/ImagePicker';
 
 import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
@@ -209,6 +210,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     setIsImageUploading(true);
 
     if (type === 'photo') image = await launchImageLibraryAsync();
+    else if (type === 'video') image = await launchVideoLibraryAsync();
     else image = await launchCameraAsync();
 
     setIsImageUploading(false);
@@ -381,6 +383,23 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             }}
           >
             <Image style={{width: 40, height: 40}} source={IC_MSG_IMAGE} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID="icon-video"
+            onPress={(): Promise<void> => onRequestImagePicker('video')}
+            style={{
+              marginLeft: 16,
+              marginTop: 4,
+              width: 60,
+              height: 60,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Ionicons
+              name="md-videocam"
+              size={36}
+              color={theme ? theme.text : '#3d3d3d'}
+            />
           </TouchableOpacity>
         </View>
       )}
