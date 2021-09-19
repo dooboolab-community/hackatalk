@@ -121,13 +121,15 @@ const ChangePw: FC = () => {
         flex: 1,
         backgroundColor: theme.background,
         paddingBottom: keyboardOffset,
-      }}>
+      }}
+    >
       <StyledKeyboardAvoidingView
         keyboardVerticalOffset={insets.top + insets.bottom}
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}>
+        })}
+      >
         <InnerContainer>
           <EditText
             key="input-pw"

@@ -95,7 +95,8 @@ const StatusMessageView: FC<Props> = ({
         top: (modalLayout.height || 260) - 260,
         width: 200,
       }}
-      onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}>
+      onLayout={(event) => setBodyHeight(event.nativeEvent.layout.height)}
+    >
       <TouchableOpacity
         testID="touchable-statusMessageView"
         onPress={handleAnim}
@@ -103,7 +104,8 @@ const StatusMessageView: FC<Props> = ({
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
+        }}
+      >
         {showArrow.show && !isStatusMessageExpanded && (
           <Icon
             name="chevron-up-light"
@@ -123,14 +125,16 @@ const StatusMessageView: FC<Props> = ({
                 event.nativeEvent.lines[event.nativeEvent.lines.length - 1]
                   .width,
               );
-          }}>
+          }}
+        >
           {statusMessage}
         </StyledTextStatusMessage>
         {isStatusMessageExpanded &&
           showArrow.length > MAX_STATUS_MESSAGE_LINES && (
             <StyledTextStatusMessage
               testID="text-end"
-              isStatusMessageExpanded={isStatusMessageExpanded}>
+              isStatusMessageExpanded={isStatusMessageExpanded}
+            >
               ...
             </StyledTextStatusMessage>
           )}

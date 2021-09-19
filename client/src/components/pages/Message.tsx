@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Alert,
   Image,
   ListRenderItem,
@@ -7,12 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Button, useTheme} from 'dooboo-ui';
 import {
   IC_MSG_CAMERA,
   IC_MSG_IMAGE,
   SvgArrDown,
   SvgArrUp,
+  SvgSend,
 } from '../../utils/Icons';
 import {
   MainStackNavigationProps,
@@ -69,6 +70,7 @@ import {useAuthContext} from '../../providers/AuthProvider';
 import {useDeviceContext} from '../../providers';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useTheme} from 'dooboo-ui';
 
 const ITEM_CNT = 20;
 
@@ -346,15 +348,18 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           }
       }}
       openedOptionView={
-        <SvgArrDown width={18} height={18} stroke={theme.icon} />
+        <SvgArrDown width={18} height={18} stroke={theme.icon1} />
       }
-      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.icon} />}
+      closedOptionView={
+        <SvgArrUp width={18} height={18} stroke={theme.icon1} />
+      }
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View
           style={{
             flexDirection: 'row',
-          }}>
+          }}
+        >
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> => onRequestImagePicker('camera')}
@@ -362,7 +367,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 32, height: 32}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -372,29 +378,36 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 32, height: 32}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
       )}
       renderSendButton={(): React.ReactElement => (
-        <Button
-          testID="btn-message"
-          styles={{
-            container: {
-              backgroundColor: theme.btnPrimary,
-            },
-            text: {
-              color: theme.btnPrimaryFont,
-            },
-          }}
-          loading={isImageUploading}
+        <TouchableOpacity
           onPress={submitMessage}
-          text={getString('SEND')}
-          textProps={{
-            numberOfLines: 1,
-          }}
-        />
+          activeOpacity={0.7}
+          accessibilityRole="button"
+        >
+          <View
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: theme.icon2,
+
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {isImageUploading ? (
+              <ActivityIndicator size="small" color="white" />
+            ) : (
+              <SvgSend fill={theme.icon2} width={52} height={52} />
+            )}
+          </View>
+        </TouchableOpacity>
       )}
     />
   );
@@ -449,7 +462,8 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
               fontSize: 18,
               fontWeight: '500',
             }}
-            numberOfLines={2}>
+            numberOfLines={2}
+          >
             {title}
           </Text>
         );

@@ -96,7 +96,8 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
             text: theme.text,
           },
           dark: true,
-        }}>
+        }}
+      >
         <Stack.Navigator
           initialRouteName="AuthStack"
           screenOptions={{
@@ -106,7 +107,8 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
             headerTitleStyle: {color: theme.text},
             headerTintColor: theme.tintColor,
             headerShown: false,
-          }}>
+          }}
+        >
           {!user || !user.verified ? (
             <Stack.Screen
               name="AuthStack"
@@ -176,7 +178,8 @@ function AuthNavigatorOnly(): React.ReactElement {
             text: theme.primary,
           },
           dark: true,
-        }}>
+        }}
+      >
         <AuthStack />
       </NavigationContainer>
     </SafeAreaProvider>
@@ -197,7 +200,8 @@ const RootNavigatorWrapper: FC = () => {
         flex: 1,
         alignSelf: 'stretch',
         backgroundColor: theme.background,
-      }}>
+      }}
+    >
       <Suspense fallback={<CustomLoadingIndicator />}>
         {meQueryReference ? (
           <RootNavigator queryReference={meQueryReference} />

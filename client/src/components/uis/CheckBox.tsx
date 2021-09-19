@@ -65,7 +65,8 @@ function Shared(props: Props): ReactElement {
       <TouchableOpacity
         testID={testID}
         style={{flexDirection: 'row'}}
-        onPress={onToggle}>
+        onPress={onToggle}
+      >
         <StyledCheck
           style={[
             checkStyle,
@@ -74,7 +75,8 @@ function Shared(props: Props): ReactElement {
               borderColor: inActiveColor,
               borderWidth: hasChecked ? 0 : 2,
             },
-          ]}>
+          ]}
+        >
           {hasChecked ? (
             <SvgCheck width={14} height={14} fill={checkColor} />
           ) : null}
@@ -84,7 +86,8 @@ function Shared(props: Props): ReactElement {
         <StyledText
           style={{
             color: checkColor,
-          }}>
+          }}
+        >
           {text}
         </StyledText>
       </TouchableWithoutFeedback>

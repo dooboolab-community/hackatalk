@@ -38,13 +38,15 @@ const Page: FC = () => {
             style={{
               paddingHorizontal: 16,
               paddingVertical: 8,
-            }}>
+            }}
+          >
             <Text
               style={{
                 color: theme.text,
                 fontSize: 14,
                 fontWeight: 'bold',
-              }}>
+              }}
+            >
               {getString('AGREE')}
             </Text>
           </View>
@@ -59,7 +61,8 @@ const Page: FC = () => {
         contentContainerStyle={{
           paddingVertical: 8,
           paddingHorizontal: 20,
-        }}>
+        }}
+      >
         <StyledText>{getString('LICENSE_AGREEMENT_BY_APPLE')}</StyledText>
       </ScrollView>
     </Container>

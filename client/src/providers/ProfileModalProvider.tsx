@@ -57,7 +57,8 @@ export const ProfileModalProvider: FC = ({children}) => {
         showModal,
         hideModal,
         modalState: state,
-      }}>
+      }}
+    >
       {children}
     </ProfileModalContext.Provider>
   );

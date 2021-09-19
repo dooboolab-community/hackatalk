@@ -324,14 +324,16 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         onLayout={(event) => {
           const {width, height} = event.nativeEvent.layout;
           setModalLayout({width, height});
-        }}>
+        }}
+      >
         <View
           style={{
             position: 'absolute',
             top: 4,
             right: 8,
             flexDirection: 'row',
-          }}>
+          }}
+        >
           {modalState.isMyself ? (
             <TouchableOpacity
               testID="profile-update-button"
@@ -347,7 +349,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   screen: 'ProfileUpdate',
                 });
                 hideModal();
-              }}>
+              }}
+            >
               <Image style={{height: 24, width: 24}} source={IC_PROFILE_W} />
             </TouchableOpacity>
           ) : (
@@ -363,13 +366,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     },
                   });
                   hideModal();
-                }}>
+                }}
+              >
                 <View
                   style={{
                     paddingRight: 12,
                     paddingLeft: 8,
                     paddingVertical: 8,
-                  }}>
+                  }}
+                >
                   <FontAwesome
                     name="exclamation-circle"
                     size={24}
@@ -384,7 +389,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     paddingLeft: 8,
                     paddingVertical: 8,
                     justifyContent: 'center',
-                  }}>
+                  }}
+                >
                   <LoadingIndicator size="small" />
                 </View>
               ) : (
@@ -413,13 +419,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                       ],
                       {cancelable: false},
                     )
-                  }>
+                  }
+                >
                   <View
                     style={{
                       paddingRight: 16,
                       paddingLeft: 8,
                       paddingVertical: 8,
-                    }}>
+                    }}
+                  >
                     <FontAwesome
                       name="ban"
                       size={24}
@@ -442,7 +450,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                 navigation.navigate('ImageSlider', {
                   images: [{uri: photoURL, sender: name}],
                 });
-            }}>
+            }}
+          >
             {photoURL ? (
               <StyledImage
                 style={{alignSelf: 'center'}}
@@ -456,7 +465,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   alignSelf: 'center',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}>
+                }}
+              >
                 <StyledImage
                   style={{alignSelf: 'center'}}
                   source={IC_NO_IMAGE}
@@ -480,7 +490,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     testID="touch-add-friend"
                     activeOpacity={0.5}
                     onPress={isFriend ? deleteFriend : addFriend}
-                    style={styles.viewBtn}>
+                    style={styles.viewBtn}
+                  >
                     <StyledText testID="text-add-title">
                       {isFriend
                         ? getString('DELETE_FRIEND')
@@ -498,14 +509,16 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               style={[
                 styles.viewBtn,
                 [modalState.isMyself ? {width: '100%'} : undefined],
-              ]}>
+              ]}
+            >
               {isChannelInFlight ? (
                 <LoadingIndicator size="small" />
               ) : (
                 <StyledText
                   style={{
                     color: theme.modalBtnPrimaryFont,
-                  }}>
+                  }}
+                >
                   {modalState.isMyself
                     ? getString('SELF_CHAT')
                     : getString('CHAT')}
@@ -565,7 +578,8 @@ const ProfileModal: FC<Props> = () => {
        */
       onClosed={profileContext.hideModal}
       // @ts-ignore
-      style={styles.wrapper}>
+      style={styles.wrapper}
+    >
       {modalState.isVisible ? (
         <ModalContent
           hideModal={profileContext.hideModal}

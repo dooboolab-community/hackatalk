@@ -226,7 +226,8 @@ const Screen: FC = () => {
           right: 20,
           bottom: 44,
         }}
-        onPress={(): void => navigation.navigate('ChannelCreate')}>
+        onPress={(): void => navigation.navigate('ChannelCreate')}
+      >
         <Fab>
           <SvgPlus fill={theme.background} />
         </Fab>

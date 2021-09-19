@@ -85,7 +85,8 @@ const Page: FC = () => {
       <StyledText
         style={{
           marginBottom: 24,
-        }}>
+        }}
+      >
         {getString('VERIFICATION_EMAIL_SENT')}
       </StyledText>
       <StyledHighlightText>{email}</StyledHighlightText>

@@ -10,6 +10,7 @@ import {
 import React, {useRef, useState} from 'react';
 
 import styled from '@emotion/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
@@ -110,6 +111,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   } = props;
 
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const insets = useSafeAreaInsets();
 
   return (
     <>
@@ -118,7 +120,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}>
+        })}
+      >
         <FlatList
           style={{alignSelf: 'stretch'}}
           contentContainerStyle={
@@ -146,7 +149,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             style={{
               borderColor: borderColor,
               backgroundColor,
-            }}>
+            }}
+          >
             <StyledInputChat
               testID="input-chat"
               style={{
@@ -178,7 +182,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               onPress={(): void => {
                 Keyboard.dismiss();
                 setShowMenu(true);
-              }}>
+              }}
+            >
               {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             <View style={{marginVertical: 8}}>{renderSendButton?.()}</View>
@@ -186,12 +191,13 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         ) : null}
       </StyledKeyboardAvoidingView>
       {showMenu ? (
-        <InputMenuViewWrapper>
+        <InputMenuViewWrapper style={{paddingBottom: insets.bottom}}>
           <StyledViewChat
             style={{
               borderColor: borderColor,
               backgroundColor: backgroundColor,
-            }}>
+            }}
+          >
             <StyledInputChat
               // @ts-ignore
               ref={input2}
@@ -215,14 +221,16 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             />
             <StyledTouchMenu
               testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}>
+              onPress={(): void => setShowMenu(false)}
+            >
               {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             <View
               style={{
                 position: 'absolute',
                 right: 8,
-              }}>
+              }}
+            >
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
@@ -231,7 +239,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             height={MENU_HEIGHT}
             style={{
               backgroundColor: backgroundColor,
-            }}>
+            }}
+          >
             {renderViewMenu?.()}
           </MenuView>
         </InputMenuViewWrapper>

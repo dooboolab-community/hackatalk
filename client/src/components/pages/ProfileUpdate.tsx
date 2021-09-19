@@ -273,18 +273,21 @@ const Screen: FC = () => {
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <Wrapper>
           <TouchableOpacity
             testID="button-user-icon"
             activeOpacity={0.5}
-            onPress={pressProfileImage}>
+            onPress={pressProfileImage}
+          >
             {!profilePath ? (
               <View
                 style={{
                   width: 90,
                   height: 90,
-                }}>
+                }}
+              >
                 <Image style={{height: 80, width: 80}} source={IC_PROFILE} />
                 <Image
                   style={{

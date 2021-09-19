@@ -85,7 +85,8 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
         dark: {
           ...dark,
         },
-      }}>
+      }}
+    >
       {children}
     </ThemeProvider>
   );

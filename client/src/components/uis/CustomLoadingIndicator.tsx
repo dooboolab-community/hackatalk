@@ -53,7 +53,8 @@ const CustomLoadingIndicator: FC<Props> = ({style}) => {
 
         justifyContent: 'center',
         alignItems: 'center',
-      }}>
+      }}
+    >
       <Animated.Image
         style={[
           {

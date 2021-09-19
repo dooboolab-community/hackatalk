@@ -75,7 +75,8 @@ export const light = {
   errorTitle: colors.gray_60,
   errorBody: colors.gray_50,
   fab: colors.blue_70,
-  icon: 'black',
+  icon1: 'black',
+  icon2: colors.blue_70,
 };
 
 export type Theme = typeof light & DoobooTheme;
@@ -129,5 +130,6 @@ export const dark = {
   errorTitle: colors.paleBlue_10,
   errorBody: colors.gray_40,
   fab: colors.paleBlue_10,
-  icon: colors.green_30,
+  icon1: colors.green_30,
+  icon2: colors.green_30,
 };

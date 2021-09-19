@@ -175,7 +175,8 @@ const Screen: FC = () => {
             style={{
               paddingHorizontal: 16,
               paddingVertical: 8,
-            }}>
+            }}
+          >
             <FontAwesome name="ban" size={24} color="white" />
           </View>
         </TouchableOpacity>

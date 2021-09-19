@@ -228,7 +228,8 @@ const Page: FC = () => {
           ios: 'padding',
           android: 'height',
         })}
-        keyboardVerticalOffset={100}>
+        keyboardVerticalOffset={100}
+      >
         <ScrollView style={{alignSelf: 'stretch'}}>
           <ContentsWrapper>
             {Platform.OS !== 'web' && (
@@ -239,13 +240,15 @@ const Page: FC = () => {
                   alignSelf: 'center',
                   marginBottom: 12,
                 }}
-                onPress={pressProfileImage}>
+                onPress={pressProfileImage}
+              >
                 {!profilePath ? (
                   <View
                     style={{
                       width: 90,
                       height: 90,
-                    }}>
+                    }}
+                  >
                     <Image
                       style={{height: 80, width: 80}}
                       source={IC_PROFILE}

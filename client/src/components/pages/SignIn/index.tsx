@@ -362,7 +362,8 @@ const SignIn: FC = () => {
           style={logoAnimStyle}
           onPress={(): void => {
             changeThemeType();
-          }}>
+          }}
+        >
           <Image
             style={{width: '100%', height: '100%', resizeMode: 'cover'}}
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
@@ -539,7 +540,8 @@ const SignIn: FC = () => {
               testID="btn-terms"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/termsofservice')
-              }>
+              }
+            >
               {getString('AGREEMENT2')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
@@ -547,7 +549,8 @@ const SignIn: FC = () => {
               testID="btn-privacy"
               onPress={(): void =>
                 goToWebView('https://legacy.dooboolab.com/privacyandpolicy')
-              }>
+              }
+            >
               {getString('AGREEMENT4')}
             </StyledAgreementLinedText>
             <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
