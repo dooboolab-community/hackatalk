@@ -1,7 +1,10 @@
 import {
   Alert,
   Animated,
+  BackHandler,
+  BackHandlerStatic,
   Image,
+  Keyboard,
   StyleProp,
   TouchableOpacity,
   View,
@@ -125,6 +128,22 @@ type ModalContentProps = {
 };
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
+  const backHandler = useRef<BackHandlerStatic>(BackHandler);
+  const keyboard = useRef(Keyboard);
+
+  useEffect(() => {
+    const backHandlerListner = backHandler.current.addEventListener(
+      'hardwareBackPress',
+      (): boolean => {
+        return false;
+      },
+    );
+
+    return (): void => {
+      if (backHandlerListner) backHandlerListner.remove();
+    };
+  }, []);
+
   const userData = useFragment(fragment, modalState.user);
 
   const {openSnackbar} = useSnackbarContext();
@@ -506,7 +525,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {statusMessage && (
+      {statusMessage ? (
         <StatusMessageView
           statusMessage={statusMessage}
           transitionOpacity={transitionOpacity}
@@ -514,7 +533,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           isStatusMessageExpanded={isStatusMessageExpanded}
           handleAnim={handleAnim}
         />
-      )}
+      ) : null}
     </>
   );
 };
