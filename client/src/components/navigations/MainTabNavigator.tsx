@@ -77,7 +77,6 @@ const CustomHeader = (): ReactElement => {
           style={{padding: 8}}
           activeOpacity={0.5}
           onPress={(): void => navigation.navigate('SearchUser')}>
-          {/* <Ionicons name="ios-search" size={24} color="white" /> */}
           <Image style={{height: 24, width: 24}} source={IC_SEARCH_W} />
         </TouchableOpacity>
       </View>

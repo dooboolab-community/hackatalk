@@ -1,6 +1,4 @@
 import {
-  BackHandler,
-  BackHandlerStatic,
   FlatList,
   Keyboard,
   ListRenderItem,
@@ -9,7 +7,7 @@ import {
   TextInputProps,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import styled from '@emotion/native';
 
@@ -50,13 +48,13 @@ const StyledTouchMenu = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-const StyledViewBottom = styled.View`
+const InputMenuViewWrapper = styled.View`
   position: absolute;
   bottom: 0px;
   width: 100%;
 `;
 
-const StyledViewMenu = styled.View<{height: number}>`
+const MenuView = styled.View<{height: number}>`
   flex-direction: row;
   flex-wrap: wrap;
   height: ${({height}): string => `${height}px`};
@@ -71,7 +69,8 @@ interface Props<T> {
   keyboardOffset?: number;
   renderItem: ListRenderItem<T>;
   keyExtractor?: (item: T, index: number) => string;
-  optionView?: React.ReactElement;
+  openedOptionView?: React.ReactElement;
+  closedOptionView?: React.ReactElement;
   emptyItem?: React.ReactElement;
   renderViewMenu?: () => React.ReactElement;
   message?: string;
@@ -81,6 +80,8 @@ interface Props<T> {
   placeholderTextColor?: string;
   renderSendButton?: () => React.ReactElement;
 }
+
+const MENU_HEIGHT = 56;
 
 function Shared<T>(props: Props<T>): React.ReactElement {
   const input1 = useRef<TextInput>();
@@ -96,7 +97,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     keyExtractor,
     emptyItem,
     renderViewMenu,
-    optionView,
+    openedOptionView,
+    closedOptionView,
     message,
     onChangeMessage,
     placeholder,
@@ -106,39 +108,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     onKeyPress: onKeyPress,
   } = props;
 
-  const [keyboardHeight, setKeyboardHeight] = useState<number>(258);
   const [showMenu, setShowMenu] = useState<boolean>(false);
-
-  const backHandler = useRef<BackHandlerStatic>(BackHandler);
-  const keyboard = useRef(Keyboard);
-
-  useEffect(() => {
-    if (showMenu) Keyboard.dismiss();
-  }, [showMenu]);
-
-  useEffect(() => {
-    const backHandlerListner = backHandler.current.addEventListener(
-      'hardwareBackPress',
-      (): boolean => {
-        setShowMenu((show) => (show ? false : show));
-
-        return false;
-      },
-    );
-
-    const keyboardShowListener = keyboard.current.addListener(
-      'keyboardDidShow',
-      (e) => {
-        setKeyboardHeight(e.endCoordinates.height);
-      },
-    );
-
-    return (): void => {
-      if (keyboardShowListener) keyboardShowListener.remove();
-
-      if (backHandlerListner) backHandlerListner.remove();
-    };
-  }, []);
 
   return (
     <>
@@ -167,7 +137,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
           onEndReached={onEndReached}
           ListEmptyComponent={emptyItem}
           ListHeaderComponent={
-            <View style={{height: showMenu ? keyboardHeight + 80 : 28}} />
+            <View style={{height: showMenu ? MENU_HEIGHT + 80 : 28}} />
           }
         />
         {!showMenu ? (
@@ -208,14 +178,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                 Keyboard.dismiss();
                 setShowMenu(true);
               }}>
-              {optionView}
+              {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             <View style={{marginVertical: 8}}>{renderSendButton?.()}</View>
           </StyledViewChat>
         ) : null}
       </StyledKeyboardAvoidingView>
       {showMenu ? (
-        <StyledViewBottom>
+        <InputMenuViewWrapper>
           <StyledViewChat
             style={{
               borderColor: borderColor,
@@ -238,7 +208,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <StyledTouchMenu
               testID="touch-menu"
               onPress={(): void => setShowMenu(false)}>
-              {optionView}
+              {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             <View
               style={{
@@ -248,15 +218,15 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
-          <StyledViewMenu
+          <MenuView
             testID="view-menu"
-            height={keyboardHeight}
+            height={MENU_HEIGHT}
             style={{
               backgroundColor: backgroundColor,
             }}>
             {renderViewMenu?.()}
-          </StyledViewMenu>
-        </StyledViewBottom>
+          </MenuView>
+        </InputMenuViewWrapper>
       ) : null}
     </>
   );
