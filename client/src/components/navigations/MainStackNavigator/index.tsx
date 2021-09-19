@@ -173,7 +173,8 @@ function MainStackNavigator(): ReactElement {
         cardStyle: {
           backgroundColor: theme.background,
         },
-      }}>
+      }}
+    >
       <Stack.Screen
         name="MainTab"
         component={TabNavigator}
@@ -194,7 +195,8 @@ function MainStackNavigator(): ReactElement {
                 }}
                 onPress={(): void => {
                   navigation.navigate('Settings');
-                }}>
+                }}
+              >
                 <Image style={{height: 24, width: 24}} source={IC_SETTING_W} />
               </TouchableOpacity>
             );
@@ -254,7 +256,8 @@ function MainNavigator(): ReactElement {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: theme.background,
-      }}>
+      }}
+    >
       <StatusBarBrightness />
       <MainStackNavigator />
       <ProfileModal testID="modal" />

@@ -124,7 +124,8 @@ function Shared({
         activeOpacity={0.5}
         onPress={onPress}
         delayPressIn={130}
-        onLongPress={onLongPress}>
+        onLongPress={onLongPress}
+      >
         <Wrapper isMyself={isMyself} testID="userListItem-wrapper">
           <ImageWrapper isMyself={isMyself}>
             <StyledImage
@@ -143,7 +144,8 @@ function Shared({
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                }}>
+                }}
+              >
                 <FontAwesome
                   name="ban"
                   size={16}

@@ -180,7 +180,8 @@ const ImageSlider: FC = () => {
               justifyContent: 'center',
               // @ts-ignore
               transform: [{translateX: prevImageTranslateX}],
-            }}>
+            }}
+          >
             <Image
               source={{uri: images[currentIndex - 1]?.uri as string}}
               style={imageStyle}
@@ -206,7 +207,8 @@ const ImageSlider: FC = () => {
           style={{
             width: imageContainerWidth,
             justifyContent: 'center',
-          }}>
+          }}
+        >
           <Image
             source={{uri: images[currentIndex]?.uri as string}}
             style={imageStyle}
@@ -225,7 +227,8 @@ const ImageSlider: FC = () => {
               left: imageContainerWidth + imageGap,
               // @ts-ignore
               transform: [{translateX: nextImageTranslateX}],
-            }}>
+            }}
+          >
             <Image
               source={{uri: images[currentIndex + 1]?.uri as string}}
               style={imageStyle}

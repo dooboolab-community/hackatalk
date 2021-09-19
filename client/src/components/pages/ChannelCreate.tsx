@@ -156,7 +156,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             marginBottom: 6,
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <Image
             style={{
               width: 60,
@@ -172,7 +173,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
               fontSize: 12,
               marginTop: 4,
               color: theme.text,
-            }}>
+            }}
+          >
             {friendArg.nickname || friendArg.name}
           </Text>
         </View>
@@ -183,7 +185,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             top: 0,
             right: 0,
           }}
-          onPress={(): void => removeFriend(friendArg)}>
+          onPress={(): void => removeFriend(friendArg)}
+        >
           <Image source={IC_CIRCLE_X} style={{width: 32, height: 32}} />
         </TouchableOpacity>
       </FriendThumbView>
@@ -252,7 +255,8 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
           return (
             <ScrollView
               style={{paddingHorizontal: 24, marginBottom: 8}}
-              horizontal>
+              horizontal
+            >
               {selectedUsers.map((selectedUser, i) =>
                 renderFriendThumbnail(selectedUser, i),
               )}
@@ -346,18 +350,21 @@ const ChannelCreate: FC = () => {
         <TouchableOpacity
           testID="touch-done"
           onPress={pressDone}
-          disabled={selectedUsers.length === 0}>
+          disabled={selectedUsers.length === 0}
+        >
           <View
             style={{
               paddingHorizontal: 16,
               paddingVertical: 8,
-            }}>
+            }}
+          >
             <Text
               style={{
                 color: selectedUsers.length === 0 ? theme.disabled : 'white',
                 fontSize: 14,
                 fontWeight: 'bold',
-              }}>
+              }}
+            >
               {getString('DONE')}
             </Text>
           </View>

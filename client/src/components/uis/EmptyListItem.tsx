@@ -29,7 +29,8 @@ function Shared(props: Props): React.ReactElement {
           fontSize: 14,
           color: 'rgb(155,155,155)',
           alignSelf: 'center',
-        }}>
+        }}
+      >
         {props.children}
       </Text>
     </View>

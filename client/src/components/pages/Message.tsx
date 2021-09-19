@@ -358,7 +358,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         <View
           style={{
             flexDirection: 'row',
-          }}>
+          }}
+        >
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> => onRequestImagePicker('camera')}
@@ -366,7 +367,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 32, height: 32}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -376,7 +378,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 32, height: 32}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
@@ -392,7 +395,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             {isImageUploading ? (
               <ActivityIndicator size="small" color="white" />
             ) : (
@@ -454,7 +458,8 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
               fontSize: 18,
               fontWeight: '500',
             }}
-            numberOfLines={2}>
+            numberOfLines={2}
+          >
             {title}
           </Text>
         );

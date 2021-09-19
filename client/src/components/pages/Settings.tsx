@@ -75,7 +75,8 @@ const Settings: FC = () => {
     return (
       <ItemContainer
         onPress={isEmailUser ? option.onPress : undefined}
-        testID={option.testID}>
+        testID={option.testID}
+      >
         {option.icon || null}
         <ItemLabel style={{marginLeft: 8, marginTop: 2}}>
           {option.label}

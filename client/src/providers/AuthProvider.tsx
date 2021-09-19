@@ -75,7 +75,8 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
         signOutAsync,
         meQueryReference,
         loadMeQuery,
-      }}>
+      }}
+    >
       {children}
     </AuthContextProvider>
   );

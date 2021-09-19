@@ -40,7 +40,8 @@ const DeviceProvider: FC = ({children}) => {
         deviceType,
         deviceKey,
         setDeviceType,
-      }}>
+      }}
+    >
       {children}
     </Provider>
   );

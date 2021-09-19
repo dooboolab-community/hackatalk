@@ -54,7 +54,8 @@ export const SnackbarProvider: FC = (props) => {
     <SnackbarContext.Provider
       value={{
         openSnackbar,
-      }}>
+      }}
+    >
       {props.children}
       <View style={{zIndex: snackbarState?.zIndex}}>
         <Snackbar

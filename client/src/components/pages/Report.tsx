@@ -75,12 +75,14 @@ const ReportScreen: FC = () => {
         flex: 1,
         backgroundColor: theme.background,
         paddingBottom: 20,
-      }}>
+      }}
+    >
       <StyledKeyboardAvoidingView
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}>
+        })}
+      >
         <InnerContainer>
           <EditText
             key="report-input"

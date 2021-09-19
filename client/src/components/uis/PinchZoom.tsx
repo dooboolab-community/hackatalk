@@ -355,7 +355,8 @@ function PinchZoom(props: Props, ref: Ref<PinchZoomRef>): ReactElement {
               ],
             },
       ]}
-      {...(panResponder?.panHandlers || {})}>
+      {...(panResponder?.panHandlers || {})}
+    >
       {children}
     </Animated.View>
   );

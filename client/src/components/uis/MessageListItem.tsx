@@ -196,7 +196,8 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+    >
       <StyledImage
         accessible
         accessibilityHint="no sender image"
@@ -256,7 +257,8 @@ const MessageListItem: FC<Props> = ({
             testID={testID}
             onPress={() => {
               if (sender && onPressPeerImage) onPressPeerImage(sender);
-            }}>
+            }}
+          >
             <ImageSender
               thumbURL={sender?.thumbURL}
               isSamePeerMsg={!!isPrevMessageSameUser}
@@ -276,14 +278,16 @@ const MessageListItem: FC<Props> = ({
             style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
-            }}>
+            }}
+          >
             <StyledTextPeerMessageContainer>
               {imageUrls && imageUrls.length > 0 ? (
                 <StyledPhotoContainer>
                   <TouchableOpacity
                     onPress={() =>
                       onPressMessageImage && onPressMessageImage(0)
-                    }>
+                    }
+                  >
                     <Image
                       key={id || ''}
                       width={240}
@@ -300,7 +304,8 @@ const MessageListItem: FC<Props> = ({
                         onPress: handleUrlPress,
                         style: styles.url,
                       },
-                    ]}>
+                    ]}
+                  >
                     {text}
                   </ParsedText>
                 </StyledPeerTextMessage>
@@ -322,7 +327,8 @@ const MessageListItem: FC<Props> = ({
         {imageUrls && imageUrls.length > 0 ? (
           <StyledPhotoContainer>
             <TouchableOpacity
-              onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+              onPress={() => onPressMessageImage && onPressMessageImage(0)}
+            >
               <Image
                 key={id || ''}
                 width={240}
@@ -339,7 +345,8 @@ const MessageListItem: FC<Props> = ({
                   onPress: handleUrlPress,
                   style: styles.url,
                 },
-              ]}>
+              ]}
+            >
               {text}
             </ParsedText>
           </StyledMyTextMessage>

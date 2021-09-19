@@ -53,12 +53,14 @@ const CustomHeader = (): ReactElement => {
       start={[0.4, 0.6]}
       end={[1.0, 0.85]}
       locations={[0, 0.85]}
-      colors={[theme.header, theme.primaryLight]}>
+      colors={[theme.header, theme.primaryLight]}
+    >
       <View style={{marginLeft: 8}}>
         <TouchableOpacity
           style={{padding: 8}}
           activeOpacity={0.5}
-          onPress={(): void => navigation.navigate('ProfileUpdate')}>
+          onPress={(): void => navigation.navigate('ProfileUpdate')}
+        >
           <Image style={{height: 24, width: 24}} source={IC_PROFILE_W} />
         </TouchableOpacity>
       </View>
@@ -68,7 +70,8 @@ const CustomHeader = (): ReactElement => {
             fontSize: 18,
             fontWeight: '500',
             color: 'white',
-          }}>
+          }}
+        >
           {getString('HACKATALK')}
         </Text>
       </TouchableOpacity>
@@ -76,7 +79,8 @@ const CustomHeader = (): ReactElement => {
         <TouchableOpacity
           style={{padding: 8}}
           activeOpacity={0.5}
-          onPress={(): void => navigation.navigate('SearchUser')}>
+          onPress={(): void => navigation.navigate('SearchUser')}
+        >
           <Image style={{height: 24, width: 24}} source={IC_SEARCH_W} />
         </TouchableOpacity>
       </View>
@@ -111,7 +115,8 @@ function TabNavigator(): ReactElement {
           paddingLeft: insets.left,
           paddingRight: insets.right,
         },
-      }}>
+      }}
+    >
       <Tab.Screen
         name="Friend"
         component={Friend}
