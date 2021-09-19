@@ -113,7 +113,7 @@ describe('[Message] interaction', () => {
 
     resolveAllOperations(mockEnvironment, resolver);
 
-    const MessageBtn = screen.getByTestId('btn-message');
+    const MessageBtn = screen.getByRole('button');
 
     fireEvent.press(MessageBtn);
 
@@ -171,7 +171,7 @@ describe('[Message] interaction', () => {
 
     expect(launchImageLibraryAsyncSpy).toBeCalledTimes(1);
 
-    await screen.findByTestId('btn-message');
+    await screen.findByRole('button');
   });
 
   it('should open camera when pressing camera icon button', async () => {
@@ -197,6 +197,6 @@ describe('[Message] interaction', () => {
 
     expect(launchCameraAsyncSpy).toHaveBeenCalledTimes(1);
 
-    await screen.findByTestId('btn-message');
+    await screen.findByRole('button');
   });
 });

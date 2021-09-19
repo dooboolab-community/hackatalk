@@ -385,7 +385,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         </View>
       )}
       renderSendButton={(): React.ReactElement => (
-        <TouchableOpacity onPress={submitMessage} activeOpacity={0.7}>
+        <TouchableOpacity
+          onPress={submitMessage}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+        >
           <View
             style={{
               width: 36,
