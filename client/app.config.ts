@@ -44,6 +44,8 @@ export default {
           'HackaTalk would like to save photos that you have selected to your photo gallery',
         NSPhotoLibraryUsageDescription:
           'HackaTalk would like to access your gallery for you to pick one and share with others.',
+        NSMicrophoneUsageDescription:
+          'HackaTalk would like take your video and share your video with  others.',
         NSUserTrackingUsageDescription:
           'HackaTalk would like to access IDFA for tracking purpose for qualified ads servation.',
       },
