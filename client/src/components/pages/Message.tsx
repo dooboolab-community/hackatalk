@@ -345,8 +345,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             setMessage(`${message}\n`);
           }
       }}
-      openedOptionView={<SvgArrDown width={18} height={18} fill={theme.icon} />}
-      closedOptionView={<SvgArrUp width={18} height={18} fill={theme.icon} />}
+      openedOptionView={
+        <SvgArrDown width={18} height={18} stroke={theme.icon} />
+      }
+      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.icon} />}
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View
