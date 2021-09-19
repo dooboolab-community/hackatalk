@@ -25,6 +25,7 @@ import svgCheck from '../../assets/icons/check.svg';
 import svgFacebook from '../../assets/icons/facebook.svg';
 import svgGoogle from '../../assets/icons/google.svg';
 import svgPlus from '../../assets/icons/plus.svg';
+import svgSend from '../../assets/icons/btn_send.svg';
 
 export const IC_ADD_W = icAddW;
 export const IC_ICON = icIcon;
@@ -53,6 +54,7 @@ export const SvgFacebook = svgFacebook;
 export const SvgPlus = svgPlus;
 export const SvgArrUp = svgArrUp;
 export const SvgArrDown = svgArrDown;
+export const SvgSend = svgSend;
 
 export default [
   //! Do not run svgs for now
