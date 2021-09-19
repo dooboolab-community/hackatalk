@@ -19,6 +19,7 @@ import {Theme as DefaultTheme} from '@emotion/react';
 import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import LeaveChannelModal from './LeaveChannelModal';
+import {LeaveChannelModalProvider} from '../../../providers/LeaveChannelModalProvider';
 import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
 import Message from '../../pages/Message';
 import ProfileModal from './ProfileModal';
@@ -32,8 +33,6 @@ import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
 import {useDeviceContext} from '../../../providers';
-
-// import {leave} './LeaveChannelModal';
 
 export type MainStackParamList = {
   MainTab: undefined;
@@ -272,8 +271,10 @@ function MainNavigator(): ReactElement {
 
 export default function MainNavigatorWrapper(): ReactElement {
   return (
-    <ProfileModalProvider>
-      <MainNavigator />
-    </ProfileModalProvider>
+    <LeaveChannelModalProvider>
+      <ProfileModalProvider>
+        <MainNavigator />
+      </ProfileModalProvider>
+    </LeaveChannelModalProvider>
   );
 }

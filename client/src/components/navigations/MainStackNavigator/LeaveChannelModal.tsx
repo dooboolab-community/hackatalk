@@ -1,6 +1,6 @@
 import {
-  ChannelModalState,
   LeaveChannelModalContext,
+  LeaveChannelModalState,
   useLeaveChannelContext,
 } from '../../../providers/LeaveChannelModalProvider';
 import React, {FC, useEffect, useState} from 'react';
@@ -81,12 +81,12 @@ const styles: Styles = {
 };
 
 type ModalContentProps = {
-  channelModalState: ChannelModalState & {isVisible: true};
+  leaveChannelModalState: LeaveChannelModalState & {isVisible: true};
   hideModal: LeaveChannelModalContext['hideModal'];
 };
 
 const ChannelModalContent: FC<ModalContentProps> = ({
-  channelModalState,
+  leaveChannelModalState,
   hideModal,
 }) => {
   const {openSnackbar} = useSnackbarContext();
@@ -98,7 +98,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
     useState<boolean>(false);
 
   const onClickYes = (): void => {
-    const {channelId} = channelModalState;
+    const {channelId} = leaveChannelModalState;
 
     const mutationConfig = {
       variables: {
@@ -119,7 +119,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
   useEffect(() => {
     if (openSnackbar && showLeaveChannelMessage)
       openSnackbar({
-        text: getString('LEAVE_THE_CHANNEL'),
+        text: getString('LEAVE_CHANNEL_DONE'),
         type: 'success',
         testID: 'profile-snackbar',
         zIndex: 101,
@@ -129,9 +129,10 @@ const ChannelModalContent: FC<ModalContentProps> = ({
   return (
     <ModalContainer>
       <ModalViewContainer>
-        <ModalText>{getString('LEAVE_CHANNEL')}</ModalText>
+        <ModalText>{getString('LEAVE_CHANNEL_CONFIRMATION')}</ModalText>
         <ModalBtnContainer>
           <TouchableHighlight
+            testID="leave-channel-modal-yes"
             onPress={() => {
               onClickYes();
             }}>
@@ -176,7 +177,7 @@ const LeaveChannelModal: FC<Props> = () => {
       {modalState.isVisible ? (
         <ChannelModalContent
           hideModal={LeaveChannelContext.hideModal}
-          channelModalState={modalState}
+          leaveChannelModalState={modalState}
         />
       ) : null}
     </Modal>

@@ -1,6 +1,6 @@
 import React, {FC, createContext, useContext, useState} from 'react';
 
-export type ChannelModalState =
+export type LeaveChannelModalState =
   | {
       isVisible: false;
     }
@@ -13,10 +13,10 @@ export type ChannelModalState =
 
 export type LeaveChannelModalContext = {
   showModal: (
-    next: Omit<ChannelModalState & {isVisible: true}, 'isVisible'>,
+    next: Omit<LeaveChannelModalState & {isVisible: true}, 'isVisible'>,
   ) => void;
   hideModal: () => void;
-  modalState: ChannelModalState;
+  modalState: LeaveChannelModalState;
 };
 
 const LeaveChannelModalContext = createContext<LeaveChannelModalContext>({
@@ -26,12 +26,12 @@ const LeaveChannelModalContext = createContext<LeaveChannelModalContext>({
 });
 
 export const LeaveChannelModalProvider: FC = ({children}) => {
-  const [showModalState, setModalState] = useState<ChannelModalState>({
+  const [showModalState, setModalState] = useState<LeaveChannelModalState>({
     isVisible: false,
   });
 
   const showModal = (
-    next: Omit<ChannelModalState & {isVisible: true}, 'isVisible'>,
+    next: Omit<LeaveChannelModalState & {isVisible: true}, 'isVisible'>,
   ): void =>
     setModalState({
       isVisible: true,

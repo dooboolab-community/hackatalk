@@ -109,9 +109,9 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     loadNext(ITEM_CNT);
   };
 
-  const showLeaveModal = (channelId: any): void => {
+  const showLeaveModal = (channelId: string): void => {
     showModal({
-      channelId: channelId.channelId,
+      channelId: channelId,
     });
   };
 
@@ -135,9 +135,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
           });
         }}
         onLongPress={(): void => {
-          showLeaveModal({
-            channelId: item.node.id,
-          });
+          showLeaveModal(item.node.id);
         }}
       />
     );
