@@ -26,6 +26,7 @@ export const createMessage = graphql`
         name
         memberships(excludeMe: false) {
           user {
+            id
             name
             nickname
             thumbURL

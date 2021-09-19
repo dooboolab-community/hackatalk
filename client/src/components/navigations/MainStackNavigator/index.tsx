@@ -96,6 +96,7 @@ const onMessageSubscription = graphql`
         }
         memberships(excludeMe: false) {
           user {
+            id
             name
             nickname
             thumbURL
