@@ -9,6 +9,12 @@ import {
 } from 'react-native';
 import {Button, useTheme} from 'dooboo-ui';
 import {
+  IC_MSG_CAMERA,
+  IC_MSG_IMAGE,
+  SvgArrDown,
+  SvgArrUp,
+} from '../../utils/Icons';
+import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
@@ -47,8 +53,6 @@ import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
-import {IC_SMILE} from '../../utils/Icons';
-import {Ionicons} from '@expo/vector-icons';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
@@ -341,56 +345,35 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             setMessage(`${message}\n`);
           }
       }}
-      optionView={
-        <Image
-          style={{
-            width: 24,
-            height: 24,
-          }}
-          resizeMethod="resize"
-          source={IC_SMILE}
-        />
+      openedOptionView={
+        <SvgArrDown width={18} height={18} stroke={theme.icon} />
       }
+      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.icon} />}
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View
           style={{
             flexDirection: 'row',
-            marginTop: 10,
           }}>
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> => onRequestImagePicker('camera')}
             style={{
               marginLeft: 16,
-              marginTop: 2,
-              width: 60,
-              height: 60,
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Ionicons
-              name="ios-camera"
-              size={36}
-              color={theme ? theme.text : '#3d3d3d'}
-            />
+            <Image style={{width: 32, height: 32}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
             testID="icon-photo"
             onPress={(): Promise<void> => onRequestImagePicker('photo')}
             style={{
               marginLeft: 16,
-              marginTop: 4,
-              width: 60,
-              height: 60,
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Ionicons
-              name="md-images"
-              size={36}
-              color={theme ? theme.text : '#3d3d3d'}
-            />
+            <Image style={{width: 32, height: 32}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
       )}

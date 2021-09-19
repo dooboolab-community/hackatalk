@@ -1,6 +1,8 @@
 import {
   Alert,
   Animated,
+  BackHandler,
+  BackHandlerStatic,
   Image,
   StyleProp,
   TouchableOpacity,
@@ -125,6 +127,27 @@ type ModalContentProps = {
 };
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
+  const backHandler = useRef<BackHandlerStatic>(BackHandler);
+
+  useEffect(() => {
+    const backHandlerListner = backHandler.current.addEventListener(
+      'hardwareBackPress',
+      (): boolean => {
+        if (modalState.isVisible) {
+          hideModal();
+
+          return true;
+        }
+
+        return false;
+      },
+    );
+
+    return (): void => {
+      if (backHandlerListner) backHandlerListner.remove();
+    };
+  }, [hideModal, modalState.isVisible]);
+
   const userData = useFragment(fragment, modalState.user);
 
   const {openSnackbar} = useSnackbarContext();
@@ -506,7 +529,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         }}
         pointerEvents={isStatusMessageExpanded ? undefined : 'box-none'}
       />
-      {statusMessage && (
+      {statusMessage ? (
         <StatusMessageView
           statusMessage={statusMessage}
           transitionOpacity={transitionOpacity}
@@ -514,7 +537,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           isStatusMessageExpanded={isStatusMessageExpanded}
           handleAnim={handleAnim}
         />
-      )}
+      ) : null}
     </>
   );
 };
