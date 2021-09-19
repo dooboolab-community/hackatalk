@@ -131,17 +131,23 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const url = await uploadFileToAzureBlobFromStream(
-    bufferToStream(req.file.buffer),
-    req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
-    req.body.dir,
-    process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-  );
+  try {
+    const url = await uploadFileToAzureBlobFromStream(
+      bufferToStream(req.file.buffer),
+      req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
+      req.body.dir,
+      process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+    );
 
-  res.status(200).json({
-    ...req.file,
-    url,
-  });
+    res.status(200).json({
+      ...req.file,
+      url,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err,
+    });
+  }
 };
 
 router

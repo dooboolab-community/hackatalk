@@ -39,17 +39,21 @@ export const uploadFileToAzureBlobFromStream = async (
   destDir: string,
   containerName: string,
 ): Promise<string> => {
-  assert(blobService, 'Azure Storage is not initialized.');
+  try {
+    assert(blobService, 'Azure Storage is not initialized.');
 
-  assert(containerName, 'Missing environment variable containerName');
+    assert(containerName, 'Missing environment variable containerName');
 
-  const blockBlobClient = blobService
-    .getContainerClient(containerName)
-    .getBlockBlobClient(resolveBlobName(destFile, destDir));
+    const blockBlobClient = blobService
+      .getContainerClient(containerName)
+      .getBlockBlobClient(resolveBlobName(destFile, destDir));
 
-  await blockBlobClient.uploadStream(stream);
+    await blockBlobClient.uploadStream(stream);
 
-  return blockBlobClient.url;
+    return blockBlobClient.url;
+  } catch (e: any) {
+    throw new Error(e.message);
+  }
 };
 
 /**
