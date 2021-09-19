@@ -4,7 +4,6 @@ import {
   BackHandler,
   BackHandlerStatic,
   Image,
-  Keyboard,
   StyleProp,
   TouchableOpacity,
   View,
@@ -129,12 +128,17 @@ type ModalContentProps = {
 
 const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const backHandler = useRef<BackHandlerStatic>(BackHandler);
-  const keyboard = useRef(Keyboard);
 
   useEffect(() => {
     const backHandlerListner = backHandler.current.addEventListener(
       'hardwareBackPress',
       (): boolean => {
+        if (modalState.isVisible) {
+          hideModal();
+
+          return true;
+        }
+
         return false;
       },
     );
@@ -142,7 +146,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     return (): void => {
       if (backHandlerListner) backHandlerListner.remove();
     };
-  }, []);
+  }, [hideModal, modalState.isVisible]);
 
   const userData = useFragment(fragment, modalState.user);
 
