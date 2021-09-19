@@ -110,9 +110,7 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   };
 
   const showLeaveModal = (channelId: string): void => {
-    showModal({
-      channelId: channelId,
-    });
+    showModal({channelId});
   };
 
   const renderItem = ({
