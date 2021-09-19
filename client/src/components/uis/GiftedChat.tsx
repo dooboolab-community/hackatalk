@@ -10,6 +10,7 @@ import {
 import React, {useRef, useState} from 'react';
 
 import styled from '@emotion/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
@@ -110,6 +111,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   } = props;
 
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const insets = useSafeAreaInsets();
 
   return (
     <>
@@ -186,7 +188,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         ) : null}
       </StyledKeyboardAvoidingView>
       {showMenu ? (
-        <InputMenuViewWrapper>
+        <InputMenuViewWrapper style={{paddingBottom: insets.bottom}}>
           <StyledViewChat
             style={{
               borderColor: borderColor,
