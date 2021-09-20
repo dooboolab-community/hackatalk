@@ -210,9 +210,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     setIsImageUploading(true);
 
     if (type === 'photo') image = await launchImageLibraryAsync();
-    else if (type === 'video') image = await launchVideoLibraryAsync();
     else image = await launchCameraAsync();
 
+    console.log(image);
     setIsImageUploading(false);
 
     if (image && !image.cancelled)
@@ -253,6 +253,57 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err: any) {
+        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+      }
+  };
+
+  const onRequestVideoPicker = async (): Promise<void> => {
+    setIsImageUploading(true);
+
+    const video = await launchVideoLibraryAsync();
+
+    setIsImageUploading(false);
+
+    if (video && !video.cancelled)
+      try {
+        // const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+        //   uri: image.uri,
+        //   width: 1920,
+        //   height: 1920,
+        // });
+
+        const response = await uploadImageAsync(
+          video.uri,
+          'messages',
+          `_${channelId}_${new Date().toISOString()}`,
+        );
+        // console.log('response: ', await response.json());
+
+        const {url} = JSON.parse(await response.text());
+        console.log(url);
+        if (!url)
+          return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+
+        commitMessage({
+          variables: {
+            channelId,
+            message: {
+              messageType: 'photo',
+              imageUrls: [url],
+            },
+            deviceKey,
+          },
+          updater: (store) => {
+            if (user) createMessageUpdater(store, channelId);
+          },
+          onCompleted: () => {},
+          onError: (error: Error): void => {
+            showAlertForError(error);
+            setIsImageUploading(false);
+          },
+        });
+      } catch (err: any) {
+        console.log('commit message error: ', err);
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
   };
@@ -386,7 +437,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           </TouchableOpacity>
           <TouchableOpacity
             testID="icon-video"
-            onPress={(): Promise<void> => onRequestImagePicker('video')}
+            onPress={(): Promise<void> => onRequestVideoPicker()}
             style={{
               marginLeft: 16,
               marginTop: 4,

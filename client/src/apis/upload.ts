@@ -11,6 +11,8 @@ export const uploadImageAsync = async (
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
   const fileType = mime.getType(uri);
+  console.log(fileType);
+
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 
@@ -66,6 +68,7 @@ export const uploadImageAsync = async (
 
     return res;
   } catch (err: any) {
+    console.log('upload err:', err);
     throw new Error(err);
   }
 };
