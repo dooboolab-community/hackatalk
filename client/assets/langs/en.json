@@ -27,6 +27,7 @@
   "FAILED": "FAILED",
   "FAILED_GET_PUSH_NOTI": "You have blocked the alert for HackaTalk. Please allow it to receive chattings immediately.",
   "FAILED_LOAD_IMAGE": "Failed loading image. Please try again.",
+  "FAILED_FETCH": "Failed fetching %{media}",
   "FIND_PW": "Find Password",
   "FORGOT_PW": "Forgot password?",
   "FRIEND": "Friend",
@@ -116,6 +117,7 @@
   "VERIFICATION_EMAIL_SENT": "Verification link has been sent. Please check your email. If you have not received an email please check out your spam inbox.",
   "VERIFY": "Verify",
   "VERIFY_EMAIL": "Verify Email",
+  "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
   "YES": "Yes"

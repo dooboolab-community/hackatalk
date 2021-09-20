@@ -1,5 +1,5 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
@@ -79,6 +79,11 @@ const StyledTextPeerName = styled.Text`
   font-size: 12px;
   color: ${({theme}) => theme.text};
   margin-bottom: 2px;
+`;
+
+const StyledMediaError = styled.Text`
+  font-size: 12px;
+  color: ${({theme}) => theme.errorBody};
 `;
 
 const StyledTextPeerDate = styled.Text`
@@ -235,7 +240,7 @@ const MessageListItem: FC<Props> = ({
 }: Props) => {
   const {theme} = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
-  const video = React.useRef(null);
+  const [mediaError, setMediaError] = useState('');
 
   const data = useFragment(fragment, item);
 
@@ -252,18 +257,26 @@ const MessageListItem: FC<Props> = ({
     nextItemDate,
   );
 
-  const displayImage = (): JSX.Element => (
-    <StyledPhotoContainer>
-      <TouchableOpacity
-        onPress={() => onPressMessageImage && onPressMessageImage(0)}>
-        <Image
-          key={id || ''}
-          width={240}
-          source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
-        />
-      </TouchableOpacity>
-    </StyledPhotoContainer>
-  );
+  const displayImage = (): JSX.Element =>
+    mediaError ? (
+      <StyledMediaError>{mediaError}</StyledMediaError>
+    ) : (
+      <StyledPhotoContainer>
+        <TouchableOpacity
+          onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+          <Image
+            key={id || ''}
+            width={240}
+            source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
+            onError={(_error) => {
+              setMediaError(
+                getString('FAILED_FETCH', {media: getString('PHOTO')}),
+              );
+            }}
+          />
+        </TouchableOpacity>
+      </StyledPhotoContainer>
+    );
 
   const displayParsedURLText = (): JSX.Element => (
     <ParsedText
@@ -278,23 +291,30 @@ const MessageListItem: FC<Props> = ({
     </ParsedText>
   );
 
-  const displayVideo = (): JSX.Element => (
-    <StyledPhotoContainer>
-      <Video
-        ref={video}
-        style={{
-          alignSelf: 'center',
-          width: 240,
-          height: 150,
-        }}
-        source={{
-          uri: `${fileUrls![0]}?id=${id || ''}`,
-        }}
-        useNativeControls
-        resizeMode="contain"
-      />
-    </StyledPhotoContainer>
-  );
+  const displayVideo = (): JSX.Element =>
+    mediaError ? (
+      <StyledMediaError>{mediaError}</StyledMediaError>
+    ) : (
+      <StyledPhotoContainer>
+        <Video
+          style={{
+            alignSelf: 'center',
+            width: 240,
+            height: 150,
+          }}
+          source={{
+            uri: `${fileUrls![0]}?id=${id || ''}`,
+          }}
+          useNativeControls
+          resizeMode="contain"
+          onError={() => {
+            setMediaError(
+              getString('FAILED_FETCH', {media: getString('VIDEO')}),
+            );
+          }}
+        />
+      </StyledPhotoContainer>
+    );
 
   if (sender?.id !== userId)
     return (

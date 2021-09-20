@@ -27,6 +27,7 @@
   "FAILED": "실패",
   "FAILED_GET_PUSH_NOTI": "해커톡의 알림을 허용하지 않으셨습니다. 채팅 메시지를 바로 받아보시려면 알림을 허용해주셔야 합니다.",
   "FAILED_LOAD_IMAGE": "이미지를 로딩하지 못했습니다. 다시 시도해주세요.",
+  "FAILED_FETCH": "%{media} 가져오기 실패",
   "FIND_PW": "비밀번호 찾기",
   "FORGOT_PW": "비밀번호를 잊어버리셨나요?",
   "FRIEND": "친구",
@@ -116,6 +117,7 @@
   "VERIFICATION_EMAIL_SENT": "인증 메일을 보냈습니다. 메일함을 확인해주세요. GMAIL의 경우 스팸함도 확인해주세오.",
   "VERIFY": "인증하기",
   "VERIFY_EMAIL": "이메일 인증",
+  "VIDEO": "비디오",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
   "YES": "예"
