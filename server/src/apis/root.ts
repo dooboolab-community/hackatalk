@@ -2,6 +2,7 @@ import {Request, Response, Router} from 'express';
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
+import {getMimeType} from 'stream-mime-type';
 import multer from 'multer';
 import {prisma} from '../context';
 import qs from 'querystring';
@@ -132,11 +133,14 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
+    const {mime} = await getMimeType(req.file.buffer);
+
     const url = await uploadFileToAzureBlobFromStream(
       bufferToStream(req.file.buffer),
       req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
       req.body.dir,
       process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+      mime,
     );
 
     res.status(200).json({
