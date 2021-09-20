@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  redis-server:
+    image: redis
+    container_name: redis
+    restart: always
+    command: redis-server --requirepass dooboolab0!
+    # volumes:
+    #   - /redis:/var/lib/redis/data
+    ports:
+      - '6379:6379'
+  postgresdb:
+    image: postgres:11
+    container_name: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dooboolab0!
+      POSTGRES_DB: hackatalk
+    # volumes:
+    #   - /data/:/var/lib/postgresql/data
+  hackatalk:
+    image: dooboolab/hackatalk_server
+    environment:
+      NODE_ENV: dev
+      REDIS_HOSTNAME: redis-server
+      REDIS_CACHEKEY: dooboolab0!
+      DB_USER: postgres
+      DB_PASSWORD: dooboolab0!
+      DATABASE_URL: postgresql://postgres:dooboolab0!@postgresdb:5432/hackatalk
+      APPLE_CLIENT_ID: host.exp.Exponent
+      JWT_SECRET: dooboolab
+      JWT_SECRET_ETC: encrypt_others
+      REDIRECT_URL: '${REDIRECT_URL}'
+      SENDGRID_API_KEY: random
+      SENDGRID_EMAIL: random
+      STORAGE_KEY: random
+      STORAGE_ACCOUNT: random
+      STORAGE_CONNECTION_STRING: '${STORAGE_CONNECTION_STRING}'
+      STORAGE_ENDPOINT: '${STORAGE_ENDPOINT}'
+    ports:
+      - 4000:4000
+    build: .
+    command: >
+      bash -c "yarn migrate
+      && yarn start"
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    depends_on:
+      - postgresdb
+      - redis
