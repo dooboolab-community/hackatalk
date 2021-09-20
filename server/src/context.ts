@@ -7,13 +7,8 @@ import express from 'express';
 import {getUserId} from './utils/auth';
 
 // eslint-disable-next-line prettier/prettier
-const {
-  JWT_SECRET,
-  JWT_SECRET_ETC,
-  REDIS_HOSTNAME,
-  REDIS_CACHEKEY,
-  NODE_ENV,
-} = process.env;
+const {JWT_SECRET, JWT_SECRET_ETC, REDIS_HOSTNAME, REDIS_CACHEKEY, NODE_ENV} =
+  process.env;
 
 export const prisma = new PrismaClient();
 
@@ -26,11 +21,15 @@ export interface Context {
   userId: string | null;
 }
 
+//? REDIS_HOSTNAME='redis-server' represents docker image for developers
+const tls = REDIS_HOSTNAME !== 'redis-server' ? {tls: {}} : {};
+const redisPort = REDIS_HOSTNAME !== 'redis-server' ? 6380 : 6379;
+
 const prodRedisOption: Redis.RedisOptions = {
   host: REDIS_HOSTNAME,
   password: REDIS_CACHEKEY,
-  port: 6380,
-  tls: {},
+  port: redisPort,
+  ...tls,
 };
 
 const pubsub =
