@@ -9,6 +9,7 @@ import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {Theme} from '../../theme';
 import {User} from '../../types/graphql';
+import {Video} from 'expo-av';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
@@ -231,13 +232,14 @@ const MessageListItem: FC<Props> = ({
   onPressMessageImage,
   testID,
   userId,
-}) => {
+}: Props) => {
   const {theme} = useTheme();
   const styles = useMemo(() => makeStyles(theme), [theme]);
+  const video = React.useRef(null);
 
   const data = useFragment(fragment, item);
 
-  const {id, sender, text, createdAt, imageUrls} = data;
+  const {id, sender, text, createdAt, imageUrls, fileUrls} = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
@@ -248,6 +250,50 @@ const MessageListItem: FC<Props> = ({
     typeof createdAt === 'string' ? createdAt : undefined,
     prevItemDate,
     nextItemDate,
+  );
+
+  const displayImage = (): JSX.Element => (
+    <StyledPhotoContainer>
+      <TouchableOpacity
+        onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+        <Image
+          key={id || ''}
+          width={240}
+          source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
+        />
+      </TouchableOpacity>
+    </StyledPhotoContainer>
+  );
+
+  const displayParsedURLText = (): JSX.Element => (
+    <ParsedText
+      parse={[
+        {
+          type: 'url',
+          onPress: handleUrlPress,
+          style: styles.url,
+        },
+      ]}>
+      {text}
+    </ParsedText>
+  );
+
+  const displayVideo = (): JSX.Element => (
+    <StyledPhotoContainer>
+      <Video
+        ref={video}
+        style={{
+          alignSelf: 'center',
+          width: 240,
+          height: 150,
+        }}
+        source={{
+          uri: `${fileUrls![0]}?id=${id || ''}`,
+        }}
+        useNativeControls
+        resizeMode="contain"
+      />
+    </StyledPhotoContainer>
   );
 
   if (sender?.id !== userId)
@@ -282,33 +328,13 @@ const MessageListItem: FC<Props> = ({
             }}
           >
             <StyledTextPeerMessageContainer>
-              {imageUrls && imageUrls.length > 0 ? (
-                <StyledPhotoContainer>
-                  <TouchableOpacity
-                    onPress={() =>
-                      onPressMessageImage && onPressMessageImage(0)
-                    }
-                  >
-                    <Image
-                      key={id || ''}
-                      width={240}
-                      source={{uri: `${imageUrls[0]}?id=${id || ''}`}}
-                    />
-                  </TouchableOpacity>
-                </StyledPhotoContainer>
+              {fileUrls && fileUrls.length > 0 ? (
+                displayVideo()
+              ) : imageUrls && imageUrls.length > 0 ? (
+                displayImage()
               ) : (
                 <StyledPeerTextMessage selectable>
-                  <ParsedText
-                    parse={[
-                      {
-                        type: 'url',
-                        onPress: handleUrlPress,
-                        style: styles.url,
-                      },
-                    ]}
-                  >
-                    {text}
-                  </ParsedText>
+                  {displayParsedURLText()}
                 </StyledPeerTextMessage>
               )}
             </StyledTextPeerMessageContainer>
@@ -325,31 +351,13 @@ const MessageListItem: FC<Props> = ({
   return (
     <WrapperMy shouldShowDateMy={!!shouldShowDate}>
       <StyledMyMessage>
-        {imageUrls && imageUrls.length > 0 ? (
-          <StyledPhotoContainer>
-            <TouchableOpacity
-              onPress={() => onPressMessageImage && onPressMessageImage(0)}
-            >
-              <Image
-                key={id || ''}
-                width={240}
-                source={{uri: `${imageUrls[0]}?id=${id || ''}`}}
-              />
-            </TouchableOpacity>
-          </StyledPhotoContainer>
+        {fileUrls && fileUrls.length > 0 ? (
+          displayVideo()
+        ) : imageUrls && imageUrls.length > 0 ? (
+          displayImage()
         ) : (
           <StyledMyTextMessage selectable>
-            <ParsedText
-              parse={[
-                {
-                  type: 'url',
-                  onPress: handleUrlPress,
-                  style: styles.url,
-                },
-              ]}
-            >
-              {text}
-            </ParsedText>
+            {displayParsedURLText()}
           </StyledMyTextMessage>
         )}
       </StyledMyMessage>
