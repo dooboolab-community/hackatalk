@@ -8,16 +8,17 @@ import {
 } from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
+import {
+  ImagePickerMediaType,
+  launchCameraAsync,
+  launchMediaLibraryAsync,
+} from '../../utils/ImagePicker';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
   UploadSingleUploadMutation,
   UploadSingleUploadMutationResponse,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
 import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay';
-import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-} from '../../utils/ImagePicker';
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';
@@ -222,7 +223,9 @@ const Screen: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchImageLibraryAsync();
+          const image = await launchMediaLibraryAsync(
+            ImagePickerMediaType.PHOTO,
+          );
 
           processImageUpload(image);
         }

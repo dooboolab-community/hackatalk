@@ -14,12 +14,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  ImagePickerMediaType,
+  launchCameraAsync,
+  launchMediaLibraryAsync,
+} from '../../utils/ImagePicker';
 import React, {FC, useState} from 'react';
 import {UseMutationConfig, useMutation} from 'react-relay';
-import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-} from '../../utils/ImagePicker';
 import {sendVerification, signUp} from '../../relay/queries/User';
 import {
   showAlertForError,
@@ -108,7 +109,9 @@ const Page: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchImageLibraryAsync();
+          const image = await launchMediaLibraryAsync(
+            ImagePickerMediaType.PHOTO,
+          );
 
           if (image && !image.cancelled) setProfilePath(image.uri);
         }

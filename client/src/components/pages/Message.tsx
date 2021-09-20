@@ -16,14 +16,14 @@ import {
   SvgSend,
 } from '../../utils/Icons';
 import {
-  MainStackNavigationProps,
-  MainStackParamList,
-} from '../navigations/MainStackNavigator';
-import {
-  MessageOptionMediaType,
+  ImagePickerMediaType,
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
+import {
+  MainStackNavigationProps,
+  MainStackParamList,
+} from '../navigations/MainStackNavigator';
 import {
   MessagesQuery,
   MessagesQueryResponse,
@@ -206,21 +206,20 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   };
 
   const onRequestMediaPicker = async (
-    type: MessageOptionMediaType,
+    type: ImagePickerMediaType,
   ): Promise<void> => {
     let media;
 
     setIsImageUploading(true);
 
-    if (type === MessageOptionMediaType.CAMERA)
-      media = await launchCameraAsync();
+    if (type === ImagePickerMediaType.CAMERA) media = await launchCameraAsync();
     else media = await launchMediaLibraryAsync(type);
 
     if (media && !media.cancelled)
       try {
         let response;
 
-        if (type === MessageOptionMediaType.VIDEO)
+        if (type === ImagePickerMediaType.VIDEO)
           response = await uploadSingleAsync(
             media.uri,
             'messages',
@@ -248,7 +247,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
         const urls =
-          type === MessageOptionMediaType.VIDEO
+          type === ImagePickerMediaType.VIDEO
             ? {fileUrls: [url]}
             : {imageUrls: [url]};
 
@@ -257,7 +256,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             channelId,
             message: {
               messageType:
-                type === MessageOptionMediaType.VIDEO ? 'file' : 'photo',
+                type === ImagePickerMediaType.VIDEO ? 'file' : 'photo',
               ...urls,
             },
             deviceKey,
@@ -386,7 +385,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> =>
-              onRequestMediaPicker(MessageOptionMediaType.CAMERA)
+              onRequestMediaPicker(ImagePickerMediaType.CAMERA)
             }
             style={{
               marginLeft: 16,
@@ -399,7 +398,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           <TouchableOpacity
             testID="icon-photo"
             onPress={(): Promise<void> =>
-              onRequestMediaPicker(MessageOptionMediaType.PHOTO)
+              onRequestMediaPicker(ImagePickerMediaType.PHOTO)
             }
             style={{
               marginLeft: 16,
@@ -412,7 +411,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           <TouchableOpacity
             testID="icon-video"
             onPress={(): Promise<void> =>
-              onRequestMediaPicker(MessageOptionMediaType.VIDEO)
+              onRequestMediaPicker(ImagePickerMediaType.VIDEO)
             }
             style={{
               marginLeft: 16,

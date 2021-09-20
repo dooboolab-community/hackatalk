@@ -133,8 +133,6 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
   }
 
   try {
-    console.log('upload size:', req.file.size);
-
     const {mime} = await getMimeType(req.file.buffer);
 
     const url = await uploadFileToAzureBlobFromStream(

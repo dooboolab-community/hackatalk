@@ -2,7 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import {Platform} from 'react-native';
 
-export enum MessageOptionMediaType {
+export enum ImagePickerMediaType {
   PHOTO = 'photo',
   CAMERA = 'camera',
   VIDEO = 'video',
@@ -23,9 +23,9 @@ const videoOptions: ImagePicker.ImagePickerOptions = {
 };
 
 const requestPermissions = async (
-  type: MessageOptionMediaType,
+  type: ImagePickerMediaType,
 ): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
-  if (type === MessageOptionMediaType.CAMERA) {
+  if (type === ImagePickerMediaType.CAMERA) {
     if (Platform.OS === 'web') {
       const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -44,7 +44,7 @@ const requestPermissions = async (
 
 export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions(MessageOptionMediaType.CAMERA);
+    const granted = await requestPermissions(ImagePickerMediaType.CAMERA);
 
     if (granted) return ImagePicker.launchCameraAsync(videoOptions);
 
@@ -52,7 +52,7 @@ export const launchCameraAsync =
   };
 
 export const launchMediaLibraryAsync = async (
-  type: MessageOptionMediaType,
+  type: ImagePickerMediaType,
 ): Promise<ImagePicker.ImagePickerResult | null> => {
   const granted = await requestPermissions(type);
 
