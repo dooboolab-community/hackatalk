@@ -216,8 +216,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       media = await launchCameraAsync();
     else media = await launchMediaLibraryAsync(type);
 
-    setIsImageUploading(false);
-
     if (media && !media.cancelled)
       try {
         let response;
@@ -267,7 +265,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           updater: (store) => {
             if (user) createMessageUpdater(store, channelId);
           },
-          onCompleted: () => {},
+          onCompleted: () => {
+            setIsImageUploading(false);
+          },
           onError: (error: Error): void => {
             showAlertForError(error);
             setIsImageUploading(false);

@@ -18,7 +18,7 @@ const videoOptions: ImagePicker.ImagePickerOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.Videos,
   allowsEditing: true,
   // allowsMultipleSelection: true,
-  videoMaxDuration: 300,
+  videoMaxDuration: 120,
   videoExportPreset: ImagePicker.VideoExportPreset.H264_640x480,
 };
 
