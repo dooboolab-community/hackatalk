@@ -3,15 +3,14 @@ import {objectType} from 'nexus';
 export const Message = objectType({
   name: 'Message',
   definition(t) {
-    t.model.id();
-    t.model.messageType();
-    t.model.text();
-    t.model.imageUrls();
-    t.list.field('imageUrls', {type: 'String'});
-    t.list.field('fileUrls', {type: 'String'});
-    t.model.createdAt();
-    t.model.updatedAt();
-    t.model.deletedAt();
+    t.nonNull.id('id');
+    t.nonNull.messageType('messageType');
+    t.string('text');
+    t.list.string('imageUrls');
+    t.list.string('fileUrls');
+    t.date('createdAt');
+    t.date('updatedAt');
+    t.date('deletedAt');
 
     t.field('channel', {type: 'Channel'});
     t.field('sender', {type: 'User'});

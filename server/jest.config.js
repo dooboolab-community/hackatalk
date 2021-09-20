@@ -7,7 +7,6 @@ module.exports = {
       tsconfig: 'tsconfig.json',
       diagnostics: false,
     },
-    fetch: require('node-fetch'),
   },
   preset: 'ts-jest',
   moduleFileExtensions: ['ts', 'js', 'json'],

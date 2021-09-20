@@ -25,6 +25,12 @@ jobs:
             yarn install --ignore-engines
 
       - run:
+          name: COPY env
+          working_directory: server
+          command: |
+            cp dotenv/test.env prisma/.env
+
+      - run:
           name: Generate prisma types
           working_directory: server
           command: |

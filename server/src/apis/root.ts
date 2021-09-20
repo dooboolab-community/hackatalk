@@ -65,7 +65,7 @@ const onResetPassword = async (req: Request, res: Response): Promise<void> => {
     }
 
     res.send('Error occured. Plesae try again.');
-  } catch (err) {
+  } catch (err: any) {
     res.send('Error occured. Plesae try again.');
   }
 };
@@ -103,7 +103,7 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
     }
 
     res.send('Error occured. Plesae try again.');
-  } catch (err) {
+  } catch (err: any) {
     res.send('Error occured. Plesae try again.');
   }
 };

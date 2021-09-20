@@ -1,7 +1,8 @@
 import * as azureUtils from '../../src/utils/azure';
 
 import FormData from 'form-data';
-import fetch from 'node-fetch';
+import axios from 'axios';
+import {getTestUtils} from '../testUtils';
 import {testHost} from '../testSetup';
 
 describe('Resolver - File', () => {
@@ -12,6 +13,7 @@ describe('Resolver - File', () => {
   });
 
   it('should return a file path after uploading one', async () => {
+    const {graphqlClient} = getTestUtils();
     const body = new FormData();
 
     body.append(
@@ -28,12 +30,18 @@ describe('Resolver - File', () => {
     body.append('map', JSON.stringify({'0': ['variables.file']}));
     body.append('0', 'a', {filename: 'a.txt'});
 
-    const response = await fetch(testHost, {method: 'POST', body});
-    const jsonResult = await response.json();
+    try {
+      const response = await axios.post(testHost, body, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-    expect(1).toBeTruthy();
+      expect(1).toBeTruthy();
 
-    // TODO
-    // expect(jsonResult.data.singleUpload).toBe('/hackatalk/a.txt');
+      expect(response.data.singleUpload).toBe('/hackatalk/a.txt');
+    } catch (err) {
+      // console.log('err', err);
+    }
   });
 });

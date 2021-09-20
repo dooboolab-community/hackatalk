@@ -3,14 +3,14 @@ import {objectType} from 'nexus';
 export const Reply = objectType({
   name: 'Reply',
   definition(t) {
-    t.model.id();
-    t.model.messageType();
-    t.model.text();
-    t.model.imageUrls();
-    t.model.fileUrls();
-    t.model.createdAt();
-    t.model.updatedAt();
-    t.model.deletedAt();
+    t.nonNull.id('id');
+    t.nonNull.messageType('messageType');
+    t.string('text');
+    t.list.string('imageUrls');
+    t.list.string('fileUrls');
+    t.date('createdAt');
+    t.date('updatedAt');
+    t.date('deletedAt');
     t.nonNull.field('sender', {type: 'User'});
     // t.list.field('reactions', { type: 'Reaction' });
   },

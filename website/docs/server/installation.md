@@ -40,7 +40,7 @@ We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/do
      Enter it again: 
      Shall the new role be a superuser? (y/n) y
      ```
-   - Example for createing new database
+   - Example for creating new database
      ```sh
      psql -U postgres -h localhost -W
      Password: 

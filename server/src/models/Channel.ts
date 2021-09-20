@@ -6,13 +6,13 @@ import {relayToPrismaPagination} from '../utils/pagination';
 export const Channel = objectType({
   name: 'Channel',
   definition(t) {
-    t.model.id();
-    t.model.channelType();
-    t.model.name();
-    t.model.lastMessageId();
-    t.model.createdAt();
-    t.model.updatedAt();
-    t.model.deletedAt();
+    t.nonNull.id('id');
+    t.channelType('channelType');
+    t.string('name');
+    t.string('lastMessageId');
+    t.date('createdAt');
+    t.date('updatedAt');
+    t.date('deletedAt');
 
     t.field('lastMessage', {
       type: 'Message',

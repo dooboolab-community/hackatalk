@@ -11,3 +11,4 @@ dotenv
 src/generated
 
 .idea
+.env

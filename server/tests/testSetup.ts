@@ -1,11 +1,14 @@
+import {TestUtils, getTestUtils, setTestUtils} from './testUtils';
+
 import ApolloClient from 'apollo-client';
+import {GraphQLClient} from 'graphql-request';
 import {Headers} from 'cross-fetch';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import NodeWebSocket from 'ws';
 import {PrismaClient} from '@prisma/client';
-import {Server} from 'http';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 import {WebSocketLink} from 'apollo-link-ws';
+import {assert} from '../src/utils/assert';
 import {createApp} from '../src/app';
 import {execSync} from 'child_process';
 import express from 'express';
@@ -15,38 +18,53 @@ import {startServer} from '../src/server';
 global.Headers = global.Headers || Headers;
 
 const prisma = new PrismaClient();
-const port = 4000;
-let server: Server;
-let networkInterface;
-export let apolloClient;
-export const testHost = `http://localhost:${port}/graphql`;
-const testSubscriptionHost = `ws://localhost:${port}/graphql`;
+const {PORT = 5566, DATABASE_URL} = process.env;
+
+export const testSubscriptionHost = `ws://localhost:${PORT}/graphql`;
+export const testHost = `http://localhost:${PORT}/graphql`;
+
+assert(DATABASE_URL, 'Missing DATABASE_URL test environment varialbe.');
 
 beforeAll(async () => {
-  // Create test schema.
-  await prisma.$executeRaw('DROP SCHEMA IF EXISTS public CASCADE');
-  await prisma.$executeRaw('CREATE SCHEMA public');
+  await prisma.$executeRawUnsafe('DROP SCHEMA IF EXISTS public CASCADE');
+  await prisma.$executeRawUnsafe('CREATE SCHEMA public');
+  execSync('yarn db-push:test --accept-data-loss', {env: process.env});
 
-  execSync('yarn db-push:test', {env: process.env});
-
+  // Start server.
   const app: express.Application = createApp();
+  const server = await startServer(app, PORT as number);
 
-  server = await startServer(app);
+  // Instantiate graphql client.
+  const graphqlClient = new GraphQLClient(testHost);
 
-  networkInterface = new SubscriptionClient(
+  const networkInterface = new SubscriptionClient(
     testSubscriptionHost,
     {reconnect: true},
     NodeWebSocket,
   );
 
-  apolloClient = new ApolloClient({
+  const apolloClient = new ApolloClient({
     link: new WebSocketLink(networkInterface),
     cache: new InMemoryCache(),
   });
+
+  setTestUtils(
+    new TestUtils(
+      apolloClient,
+      server,
+      prisma,
+      graphqlClient,
+      networkInterface,
+    ),
+  );
 });
 
 afterAll(async () => {
-  await prisma.$executeRaw('DROP schema public CASCADE');
+  const {server, networkInterface} = getTestUtils();
+
+  // Disconnect prisma client.
+  await prisma.$disconnect();
+
   networkInterface.close();
   server.close();
 });

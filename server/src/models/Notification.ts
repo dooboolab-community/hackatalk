@@ -3,11 +3,11 @@ import {objectType} from 'nexus';
 export const Notification = objectType({
   name: 'Notification',
   definition(t) {
-    t.model.id();
-    t.model.token();
-    t.model.device();
-    t.model.os();
-    t.model.user();
-    t.model.createdAt();
+    t.nonNull.int('id');
+    t.nonNull.string('token');
+    t.string('device');
+    t.string('os');
+
+    t.date('createdAt');
   },
 });
