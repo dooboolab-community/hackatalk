@@ -104,7 +104,7 @@ export const signUp = mutationField('signUp', {
 
       return created;
     } catch (err: any) {
-      throw new Error('Error while creating user. Please try again.');
+      throw new Error(err);
     }
   },
 });

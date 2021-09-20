@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 import {GraphQLClient, request} from 'graphql-request';
-import {apolloClient, testHost} from '../testSetup';
 import {
   findPasswordMutation,
   meQuery,
@@ -12,8 +11,7 @@ import {
 } from '../queries';
 
 import {ErrorString} from '../../src/utils/error';
-
-let client: GraphQLClient;
+import {getTestUtils} from '../testUtils';
 
 const userVariables = {
   user: {
@@ -35,7 +33,8 @@ const userVariables2 = {
 
 describe('Resolver - User', () => {
   it('should signUp user', async () => {
-    const response = await request(testHost, signUpMutation, userVariables);
+    const {graphqlClient} = getTestUtils();
+    const response = await graphqlClient.request(signUpMutation, userVariables);
 
     expect(response).toHaveProperty('signUp');
     expect(response.signUp).toHaveProperty('email');
@@ -43,12 +42,17 @@ describe('Resolver - User', () => {
   });
 
   it('should signIn user with email', async () => {
+    const {graphqlClient, setAuthToken} = getTestUtils();
+
     const variables = {
       email: 'dooboo@dooboolab.com',
       password: 'password',
     };
 
-    const response = await request(testHost, signInEmailMutation, variables);
+    const response = await graphqlClient.request(
+      signInEmailMutation,
+      variables,
+    );
 
     expect(response).toHaveProperty('signInEmail');
     expect(response.signInEmail).toHaveProperty('token');
@@ -56,20 +60,18 @@ describe('Resolver - User', () => {
     expect(response.signInEmail.user.email).toEqual(variables.email);
 
     // hyochan => Setup auth client for next test case
-    client = new GraphQLClient(testHost, {
-      headers: {
-        authorization: response.signInEmail.token,
-      },
-    });
+    setAuthToken(response.signInEmail.token);
   });
 
   it('should throw error when it requests findPassword', async () => {
+    const {graphqlClient} = getTestUtils();
+
     const variableNotExist = {
       email: 'notexistuser@email.com',
     };
 
     try {
-      await client.request(findPasswordMutation, variableNotExist);
+      await graphqlClient.request(findPasswordMutation, variableNotExist);
     } catch (e) {
       const response = e.response;
 
@@ -81,7 +83,7 @@ describe('Resolver - User', () => {
     };
 
     try {
-      await client.request(findPasswordMutation, variableNotValid);
+      await graphqlClient.request(findPasswordMutation, variableNotValid);
     } catch (e) {
       const response = e.response;
 
@@ -93,7 +95,7 @@ describe('Resolver - User', () => {
     };
 
     try {
-      await client.request(findPasswordMutation, variableValidUser);
+      await graphqlClient.request(findPasswordMutation, variableValidUser);
     } catch (e) {
       const response = e.response;
 

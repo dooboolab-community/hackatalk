@@ -26,7 +26,8 @@ export const testHost = `http://localhost:${PORT}/graphql`;
 assert(DATABASE_URL, 'Missing DATABASE_URL test environment varialbe.');
 
 beforeAll(async () => {
-  // Migrate test database.
+  await prisma.$executeRawUnsafe('DROP SCHEMA IF EXISTS public CASCADE');
+  await prisma.$executeRawUnsafe('CREATE SCHEMA public');
   execSync('yarn db-push:test --accept-data-loss', {env: process.env});
 
   // Start server.
