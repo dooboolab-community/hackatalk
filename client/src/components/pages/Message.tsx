@@ -106,6 +106,7 @@ const messagesFragment = graphql`
         node {
           id
           imageUrls
+          fileUrls
           text
           sender {
             id
@@ -288,8 +289,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           variables: {
             channelId,
             message: {
-              messageType: 'photo',
-              imageUrls: [url],
+              messageType: 'file',
+              fileUrls: [url],
             },
             deviceKey,
           },

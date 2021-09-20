@@ -12,6 +12,7 @@ export type MessageComponent_message = {
             readonly node: {
                 readonly id: string;
                 readonly imageUrls: ReadonlyArray<string | null> | null;
+                readonly fileUrls: ReadonlyArray<string | null> | null;
                 readonly text: string | null;
                 readonly sender: {
                     readonly id: string;
@@ -152,6 +153,13 @@ return {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
+                  "name": "fileUrls",
+                  "storageKey": null
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
                   "name": "text",
                   "storageKey": null
                 },
@@ -253,5 +261,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '8b046f4256a182e785d6b79388dc36f5';
+(node as any).hash = 'b57ad27833bdc76815d57dac3e153a3e';
 export default node;

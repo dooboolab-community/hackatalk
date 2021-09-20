@@ -3,8 +3,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-
 import { FragmentRefs } from "relay-runtime";
+
 export type MessagesQueryVariables = {
     first: number;
     after?: string | null;
@@ -38,6 +38,7 @@ fragment MessageComponent_message_WlZsr on Query {
       node {
         id
         imageUrls
+        fileUrls
         text
         sender {
           id
@@ -212,6 +213,13 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "fileUrls",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "text",
                     "storageKey": null
                   },
@@ -288,13 +296,6 @@ return {
                     "args": null,
                     "kind": "ScalarField",
                     "name": "messageType",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "fileUrls",
                     "storageKey": null
                   },
                   {
