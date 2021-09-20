@@ -103,7 +103,7 @@ export const signUp = mutationField('signUp', {
       });
 
       return created;
-    } catch (err) {
+    } catch (err: any) {
       throw new Error('Error while creating user. Please try again.');
     }
   },
@@ -330,7 +330,7 @@ export const findPassword = mutationField('findPassword', {
       await SendGridMail.send(msg);
 
       return true;
-    } catch (err) {
+    } catch (err: any) {
       throw ErrorEmailSentFailed(ErrorString.EmailSentFailed);
     }
   },
@@ -367,7 +367,7 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
       });
 
       return true;
-    } catch (err) {
+    } catch (err: any) {
       throw new Error(err.message);
     }
   },

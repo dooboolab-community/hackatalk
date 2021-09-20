@@ -6,31 +6,30 @@ import {prisma} from '../context';
 export const Profile = objectType({
   name: 'Profile',
   definition(t) {
-    t.model.socialId();
-    t.model.authType();
+    t.string('socialId');
+    t.auth('authType');
   },
 });
 
 export const User = objectType({
   name: 'User',
   definition(t) {
-    t.model.id();
-    t.model.email();
-    t.model.name();
-    t.model.nickname();
-    t.model.thumbURL();
-    t.model.photoURL();
-    t.model.birthday();
-    t.model.gender();
-    t.model.phone();
-    t.model.statusMessage();
-    t.model.verified();
-    t.model.lastSignedIn();
-    t.model.isOnline();
-    t.model.profile();
-    t.model.createdAt();
-    t.model.updatedAt();
-    t.model.deletedAt();
+    t.nonNull.id('id');
+    t.string('email');
+    t.string('name');
+    t.string('nickname');
+    t.string('thumbURL');
+    t.string('photoURL');
+    t.date('birthday');
+    t.gender('gender');
+    t.string('phone');
+    t.string('statusMessage');
+    t.boolean('verified');
+    t.date('lastSignedIn');
+    t.boolean('isOnline');
+    t.date('createdAt');
+    t.date('updatedAt');
+    t.date('deletedAt');
     t.list.field('notifications', {type: 'Notification'});
 
     t.boolean('hasBlocked', {

@@ -3,11 +3,11 @@ import {objectType} from 'nexus';
 export const Membership = objectType({
   name: 'Membership',
   definition(t) {
-    t.model.alertMode();
+    t.alertMode('alertMode');
     t.field('membershipType', {type: 'MembershipType'});
-    t.model.isVisible();
-    t.model.createdAt();
-    t.model.updatedAt();
+    t.boolean('isVisible');
+    t.date('createdAt');
+    t.date('updatedAt');
 
     t.field('user', {type: 'User'});
     t.field('channel', {type: 'Channel'});
