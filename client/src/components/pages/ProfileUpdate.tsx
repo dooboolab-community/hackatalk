@@ -30,7 +30,7 @@ import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
 import styled from '@emotion/native';
-import {uploadImageAsync} from '../../apis/upload';
+import {uploadSingleAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useSnackbarContext} from '../../providers/SnackbarProvider';
@@ -149,7 +149,7 @@ const Screen: FC = () => {
             : 'image';
 
           if (Platform.OS === 'web') {
-            const response = await uploadImageAsync(
+            const response = await uploadSingleAsync(
               resizedImage.uri,
               'profiles',
               `${user?.id || fileName}`,

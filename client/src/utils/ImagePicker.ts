@@ -2,6 +2,12 @@ import * as ImagePicker from 'expo-image-picker';
 
 import {Platform} from 'react-native';
 
+export enum MessageOptionMediaType {
+  PHOTO = 'photo',
+  CAMERA = 'camera',
+  VIDEO = 'video',
+}
+
 const photoOptions: ImagePicker.ImagePickerOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.Images,
   allowsEditing: true,
@@ -17,9 +23,9 @@ const videoOptions: ImagePicker.ImagePickerOptions = {
 };
 
 const requestPermissions = async (
-  type: 'photo' | 'camera' | 'video',
+  type: MessageOptionMediaType,
 ): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
-  if (type === 'camera') {
+  if (type === MessageOptionMediaType.CAMERA) {
     if (Platform.OS === 'web') {
       const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -38,27 +44,22 @@ const requestPermissions = async (
 
 export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions('camera');
+    const granted = await requestPermissions(MessageOptionMediaType.CAMERA);
 
     if (granted) return ImagePicker.launchCameraAsync(videoOptions);
 
     return null;
   };
 
-export const launchImageLibraryAsync =
-  async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions('photo');
+export const launchMediaLibraryAsync = async (
+  type: MessageOptionMediaType,
+): Promise<ImagePicker.ImagePickerResult | null> => {
+  const granted = await requestPermissions(type);
 
-    if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
+  if (granted)
+    return ImagePicker.launchImageLibraryAsync(
+      type === 'photo' ? photoOptions : videoOptions,
+    );
 
-    return null;
-  };
-
-export const launchVideoLibraryAsync =
-  async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions('video');
-
-    if (granted) return ImagePicker.launchImageLibraryAsync(videoOptions);
-
-    return null;
-  };
+  return null;
+};

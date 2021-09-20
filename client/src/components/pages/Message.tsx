@@ -20,6 +20,11 @@ import {
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
 import {
+  MessageOptionMediaType,
+  launchCameraAsync,
+  launchMediaLibraryAsync,
+} from '../../utils/ImagePicker';
+import {
   MessagesQuery,
   MessagesQueryResponse,
   MessagesQueryVariables,
@@ -45,11 +50,6 @@ import {
   useMutation,
   usePaginationFragment,
 } from 'react-relay';
-import {
-  launchCameraAsync,
-  launchImageLibraryAsync,
-  launchVideoLibraryAsync,
-} from '../../utils/ImagePicker';
 
 import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
@@ -65,7 +65,7 @@ import {nanoid} from 'nanoid/non-secure';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
-import {uploadImageAsync} from '../../apis/upload';
+import {uploadSingleAsync} from '../../apis/upload';
 import useAppStateChangeHandler from '../../hooks/useAppStateChangeHandler';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useDeviceContext} from '../../providers';
@@ -205,42 +205,62 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     });
   };
 
-  const onRequestImagePicker = async (type: string): Promise<void> => {
-    let image;
+  const onRequestMediaPicker = async (
+    type: MessageOptionMediaType,
+  ): Promise<void> => {
+    let media;
 
     setIsImageUploading(true);
 
-    if (type === 'photo') image = await launchImageLibraryAsync();
-    else image = await launchCameraAsync();
+    if (type === MessageOptionMediaType.CAMERA)
+      media = await launchCameraAsync();
+    else media = await launchMediaLibraryAsync(type);
 
-    console.log(image);
     setIsImageUploading(false);
 
-    if (image && !image.cancelled)
+    if (media && !media.cancelled)
       try {
-        const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
-          uri: image.uri,
-          width: 1920,
-          height: 1920,
-        });
+        let response;
 
-        const response = await uploadImageAsync(
-          resizedImage.uri,
-          'messages',
-          `_${channelId}_${new Date().toISOString()}`,
-        );
+        if (type === MessageOptionMediaType.VIDEO)
+          response = await uploadSingleAsync(
+            media.uri,
+            'messages',
+            `_${channelId}_${new Date().toISOString()}`,
+          );
+        else {
+          const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
+            {
+              uri: media.uri,
+              width: 1920,
+              height: 1920,
+            },
+          );
+
+          response = await uploadSingleAsync(
+            resizedImage.uri,
+            'messages',
+            `_${channelId}_${new Date().toISOString()}`,
+          );
+        }
 
         const {url} = JSON.parse(await response.text());
 
         if (!url)
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
+        const urls =
+          type === MessageOptionMediaType.VIDEO
+            ? {fileUrls: [url]}
+            : {imageUrls: [url]};
+
         commitMessage({
           variables: {
             channelId,
             message: {
-              messageType: 'photo',
-              imageUrls: [url],
+              messageType:
+                type === MessageOptionMediaType.VIDEO ? 'file' : 'photo',
+              ...urls,
             },
             deviceKey,
           },
@@ -254,57 +274,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err: any) {
-        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
-      }
-  };
-
-  const onRequestVideoPicker = async (): Promise<void> => {
-    setIsImageUploading(true);
-
-    const video = await launchVideoLibraryAsync();
-
-    setIsImageUploading(false);
-
-    if (video && !video.cancelled)
-      try {
-        // const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
-        //   uri: image.uri,
-        //   width: 1920,
-        //   height: 1920,
-        // });
-
-        const response = await uploadImageAsync(
-          video.uri,
-          'messages',
-          `_${channelId}_${new Date().toISOString()}`,
-        );
-        // console.log('response: ', await response.json());
-
-        const {url} = JSON.parse(await response.text());
-        console.log(url);
-        if (!url)
-          return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
-
-        commitMessage({
-          variables: {
-            channelId,
-            message: {
-              messageType: 'file',
-              fileUrls: [url],
-            },
-            deviceKey,
-          },
-          updater: (store) => {
-            if (user) createMessageUpdater(store, channelId);
-          },
-          onCompleted: () => {},
-          onError: (error: Error): void => {
-            showAlertForError(error);
-            setIsImageUploading(false);
-          },
-        });
-      } catch (err: any) {
-        console.log('commit message error: ', err);
         Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
   };
@@ -416,7 +385,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         >
           <TouchableOpacity
             testID="icon-camera"
-            onPress={(): Promise<void> => onRequestImagePicker('camera')}
+            onPress={(): Promise<void> =>
+              onRequestMediaPicker(MessageOptionMediaType.CAMERA)
+            }
             style={{
               marginLeft: 16,
               justifyContent: 'center',
@@ -427,7 +398,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           </TouchableOpacity>
           <TouchableOpacity
             testID="icon-photo"
-            onPress={(): Promise<void> => onRequestImagePicker('photo')}
+            onPress={(): Promise<void> =>
+              onRequestMediaPicker(MessageOptionMediaType.PHOTO)
+            }
             style={{
               marginLeft: 16,
               justifyContent: 'center',
@@ -438,7 +411,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           </TouchableOpacity>
           <TouchableOpacity
             testID="icon-video"
-            onPress={(): Promise<void> => onRequestVideoPicker()}
+            onPress={(): Promise<void> =>
+              onRequestMediaPicker(MessageOptionMediaType.VIDEO)
+            }
             style={{
               marginLeft: 16,
               marginTop: 4,

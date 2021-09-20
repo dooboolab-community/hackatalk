@@ -3,7 +3,7 @@ import * as Config from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Platform} from 'react-native';
 
-export const uploadImageAsync = async (
+export const uploadSingleAsync = async (
   uri: string,
   dir: string,
   fileNamePrefix: string = '',
@@ -62,7 +62,6 @@ export const uploadImageAsync = async (
 
     return res;
   } catch (err: any) {
-    console.log('upload err:', err);
     throw new Error(err);
   }
 };
