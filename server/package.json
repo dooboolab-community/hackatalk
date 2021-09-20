@@ -27,11 +27,9 @@
     "studio": "dotenv -e ./dotenv/.env -- prisma studio",
     "docker:build": "docker build --tag hackatalk/server .",
     "docker:start": "docker run --name hackatalk -e 'NODE_ENV=production' -it -p 4000:4000 -d hackatalk/server",
-    "docker:ps": "docker ps -a",
     "docker:remove": "docker stop hackatalk && docker rm $(docker ps -a -q) && docker rmi hackatalk/server",
     "docker:push": "docker tag hackatalk/server dooboolab/hackatalk_server && docker push dooboolab/hackatalk_server",
     "docker:remote": "docker run --name hackatalk -e 'NODE_ENV=production' -it -p 4000:4000 -d dooboolab/hackatalk_server",
-    "docker:prod": "NODE_ENV=production node dist/server",
     "docker:logs": "docker logs -f hackatalk"
   },
   "dependencies": {
