@@ -369,7 +369,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               alignItems: 'center',
             }}
           >
-            <Image style={{width: 32, height: 32}} source={IC_MSG_CAMERA} />
+            <Image style={{width: 40, height: 40}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
             testID="icon-photo"
@@ -380,7 +380,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               alignItems: 'center',
             }}
           >
-            <Image style={{width: 32, height: 32}} source={IC_MSG_IMAGE} />
+            <Image style={{width: 40, height: 40}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
       )}
