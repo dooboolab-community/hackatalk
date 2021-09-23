@@ -7,16 +7,10 @@ export enum ImagePickerType {
   CAMERA = 'camera',
 }
 
-// const photoOptions: ImagePicker.ImagePickerOptions = {
-//   mediaTypes: ImagePicker.MediaTypeOptions.Images,
-//   allowsEditing: true,
-//   exif: true,
-// };
-
 const options: ImagePicker.ImagePickerOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.All,
   allowsEditing: true,
-  videoMaxDuration: 60,
+  videoMaxDuration: 180,
   videoExportPreset: ImagePicker.VideoExportPreset.H264_640x480,
 };
 

@@ -2,6 +2,7 @@ import * as Config from '../../config';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Platform} from 'react-native';
+import mime from 'mime';
 
 export const uploadSingleAsync = async (
   uri: string,
@@ -9,6 +10,7 @@ export const uploadSingleAsync = async (
   fileNamePrefix: string = '',
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
+  const fileType = mime.getType(uri);
 
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
@@ -25,7 +27,9 @@ export const uploadSingleAsync = async (
     for (let i = 0; i < byteString.length; i++)
       arr[i] = byteString.charCodeAt(i);
 
-    const blob = new Blob([arr]);
+    const blob = new Blob([arr], {
+      type: fileType || 'image/png',
+    });
 
     const file = new File([blob], `${fileName}${fileNamePrefix}`);
 
@@ -34,6 +38,7 @@ export const uploadSingleAsync = async (
     data.append('inputFile', {
       // @ts-ignore
       uri,
+      type: fileType || 'image/png',
       name: `${fileName}${fileNamePrefix}`,
     });
 
