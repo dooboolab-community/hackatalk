@@ -1,15 +1,17 @@
+import {AVPlaybackStatus, Video} from 'expo-av';
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useCallback, useMemo, useRef, useState} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
+import {MutableRefObject} from 'hoist-non-react-statics/node_modules/@types/react';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {Theme} from '../../theme';
 import {User} from '../../types/graphql';
-import {Video} from 'expo-av';
+import VideoPlayer from './VideoPlayer';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
@@ -244,6 +246,8 @@ const MessageListItem: FC<Props> = ({
 
   const data = useFragment(fragment, item);
 
+  const videoRef = useRef<Video | null>(null);
+
   const {id, sender, text, createdAt, imageUrls, fileUrls} = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
@@ -263,7 +267,8 @@ const MessageListItem: FC<Props> = ({
     ) : (
       <StyledPhotoContainer>
         <TouchableOpacity
-          onPress={() => onPressMessageImage && onPressMessageImage(0)}>
+          onPress={() => onPressMessageImage && onPressMessageImage(0)}
+        >
           <Image
             key={id || ''}
             width={240}
@@ -286,36 +291,50 @@ const MessageListItem: FC<Props> = ({
           onPress: handleUrlPress,
           style: styles.url,
         },
-      ]}>
+      ]}
+    >
       {text}
     </ParsedText>
   );
 
-  const displayVideo = (): JSX.Element =>
-    mediaError ? (
+  const loadAsyncVideo = useCallback(async (): Promise<
+    AVPlaybackStatus | undefined
+  > => {
+    console.log(videoRef.current);
+    try {
+      const load = await videoRef.current?.loadAsync(
+        {uri: `${fileUrls![0]}?id=${id || ''}`},
+        {
+          progressUpdateIntervalMillis: 500,
+          positionMillis: 0,
+          shouldPlay: false,
+          rate: 1.0,
+          shouldCorrectPitch: false,
+          volume: 1.0,
+          isMuted: false,
+          isLooping: false,
+        },
+      );
+
+      return load;
+    } catch (err) {
+      console.log('loadAsyncVideo failed: ', err);
+    }
+  }, [fileUrls, id]);
+
+  const displayVideo = (): JSX.Element => {
+    return mediaError ? (
       <StyledMediaError>{mediaError}</StyledMediaError>
     ) : (
       <StyledPhotoContainer>
-        <Video
-          style={{
-            alignSelf: 'center',
-            width: 240,
-            height: 150,
-          }}
-          source={{
-            uri: `${fileUrls![0]}?id=${id || ''}`,
-          }}
-          useNativeControls
-          resizeMode="contain"
-          onError={() => {
-            setMediaError(
-              getString('FAILED_FETCH', {media: getString('VIDEO')}),
-            );
-          }}
+        <VideoPlayer
+          videoRef={videoRef}
+          loadAsyncVideo={loadAsyncVideo}
+          setMediaError={setMediaError}
         />
       </StyledPhotoContainer>
     );
-
+  };
   if (sender?.id !== userId)
     return (
       <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
