@@ -242,6 +242,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
         const {url} = JSON.parse(await response.text());
 
+        console.log('client received url:', url);
         if (!url)
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 

@@ -65,6 +65,8 @@ export const uploadSingleAsync = async (
       fetchOption,
     );
 
+    console.log('client received res:', res);
+
     return res;
   } catch (err: any) {
     throw new Error(err);

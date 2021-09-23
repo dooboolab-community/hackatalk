@@ -29,6 +29,7 @@ export function resolveBlobName(destFile: string, destDir: string): string {
 
 const router = Router();
 const storage = multer.memoryStorage();
+
 const upload = multer({storage});
 
 function bufferToStream(buffer: Buffer): stream.Readable {
@@ -109,7 +110,12 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
+const onUploadSingle = async (
+  req: Request,
+  res: Response,
+  // next: any,
+  // error: any,
+): Promise<void> => {
   const token = getToken(req);
 
   if (token === null) {
@@ -143,12 +149,14 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
       mime,
     );
 
+    console.log('server onUploadSingle successful:', url);
+
     res.status(200).json({
-      ...req.file,
+      // ...req.file,
       url,
     });
   } catch (err) {
-    console.log(err);
+    console.log('onUploadSingle error:', err);
 
     res.status(500).json({
       error: err,
