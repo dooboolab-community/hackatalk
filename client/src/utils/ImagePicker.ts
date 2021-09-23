@@ -43,11 +43,16 @@ export const launchCameraAsync =
     return null;
   };
 
-export const launchMediaLibraryAsync =
-  async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions(ImagePickerType.LIBRARY);
+export const launchMediaLibraryAsync = async (
+  photoOnly?: boolean,
+): Promise<ImagePicker.ImagePickerResult | null> => {
+  const granted = await requestPermissions(ImagePickerType.LIBRARY);
 
-    if (granted) return ImagePicker.launchImageLibraryAsync(options);
+  if (granted)
+    return ImagePicker.launchImageLibraryAsync({
+      ...options,
+      ...(photoOnly && {mediaTypes: ImagePicker.MediaTypeOptions.Images}),
+    });
 
-    return null;
-  };
+  return null;
+};

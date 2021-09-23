@@ -20,6 +20,7 @@ export const singleUpload = mutationField('singleUpload', {
       nanoid(),
       dir ?? '',
       process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+      'image/png',
     );
   },
 });

@@ -109,7 +109,7 @@ const Page: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchMediaLibraryAsync(ImagePickerType.PHOTO);
+          const image = await launchMediaLibraryAsync(true);
 
           if (image && !image.cancelled) setProfilePath(image.uri);
         }

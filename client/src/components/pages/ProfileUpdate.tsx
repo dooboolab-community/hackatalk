@@ -223,7 +223,7 @@ const Screen: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchMediaLibraryAsync(ImagePickerType.PHOTO);
+          const image = await launchMediaLibraryAsync(true);
 
           processImageUpload(image);
         }

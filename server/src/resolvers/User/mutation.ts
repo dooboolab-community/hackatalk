@@ -87,6 +87,7 @@ export const signUp = mutationField('signUp', {
         nanoid(),
         'profile',
         process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+        'image/png',
       );
     }
 
