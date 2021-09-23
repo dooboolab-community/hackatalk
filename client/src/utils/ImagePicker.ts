@@ -11,7 +11,7 @@ const options: ImagePicker.ImagePickerOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.All,
   allowsEditing: true,
   videoMaxDuration: 180,
-  videoExportPreset: ImagePicker.VideoExportPreset.H264_640x480,
+  videoExportPreset: ImagePicker.VideoExportPreset.MediumQuality,
 };
 
 const requestPermissions = async (
