@@ -15,7 +15,7 @@ import {
   View,
 } from 'react-native';
 import {
-  ImagePickerMediaType,
+  ImagePickerType,
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
@@ -109,9 +109,7 @@ const Page: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchMediaLibraryAsync(
-            ImagePickerMediaType.PHOTO,
-          );
+          const image = await launchMediaLibraryAsync(ImagePickerType.PHOTO);
 
           if (image && !image.cancelled) setProfilePath(image.uri);
         }

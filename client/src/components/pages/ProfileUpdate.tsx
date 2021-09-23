@@ -9,7 +9,7 @@ import {
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import {
-  ImagePickerMediaType,
+  ImagePickerType,
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
@@ -223,9 +223,7 @@ const Screen: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchMediaLibraryAsync(
-            ImagePickerMediaType.PHOTO,
-          );
+          const image = await launchMediaLibraryAsync(ImagePickerType.PHOTO);
 
           processImageUpload(image);
         }

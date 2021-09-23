@@ -16,7 +16,7 @@ import {
   SvgSend,
 } from '../../utils/Icons';
 import {
-  ImagePickerMediaType,
+  ImagePickerType,
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
@@ -55,6 +55,7 @@ import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
+import {Ionicons} from '@expo/vector-icons';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
@@ -205,21 +206,19 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     });
   };
 
-  const onRequestMediaPicker = async (
-    type: ImagePickerMediaType,
-  ): Promise<void> => {
+  const onRequestMediaPicker = async (type: ImagePickerType): Promise<void> => {
     let media;
 
     setIsImageUploading(true);
 
-    if (type === ImagePickerMediaType.CAMERA) media = await launchCameraAsync();
-    else media = await launchMediaLibraryAsync(type);
+    if (type === ImagePickerType.CAMERA) media = await launchCameraAsync();
+    else media = await launchMediaLibraryAsync();
 
     if (media && !media.cancelled)
       try {
         let response;
 
-        if (type === ImagePickerMediaType.VIDEO)
+        if (media.type === 'video')
           response = await uploadSingleAsync(
             media.uri,
             'messages',
@@ -247,16 +246,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
         const urls =
-          type === ImagePickerMediaType.VIDEO
-            ? {fileUrls: [url]}
-            : {imageUrls: [url]};
+          media.type === 'video' ? {fileUrls: [url]} : {imageUrls: [url]};
 
         commitMessage({
           variables: {
             channelId,
             message: {
-              messageType:
-                type === ImagePickerMediaType.VIDEO ? 'file' : 'photo',
+              messageType: media.type === 'video' ? 'file' : 'photo',
               ...urls,
             },
             deviceKey,
@@ -385,7 +381,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> =>
-              onRequestMediaPicker(ImagePickerMediaType.CAMERA)
+              onRequestMediaPicker(ImagePickerType.CAMERA)
             }
             style={{
               marginLeft: 16,
@@ -398,7 +394,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           <TouchableOpacity
             testID="icon-photo"
             onPress={(): Promise<void> =>
-              onRequestMediaPicker(ImagePickerMediaType.PHOTO)
+              onRequestMediaPicker(ImagePickerType.LIBRARY)
             }
             style={{
               marginLeft: 16,
@@ -407,25 +403,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
             }}
           >
             <Image style={{width: 40, height: 40}} source={IC_MSG_IMAGE} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            testID="icon-video"
-            onPress={(): Promise<void> =>
-              onRequestMediaPicker(ImagePickerMediaType.VIDEO)
-            }
-            style={{
-              marginLeft: 16,
-              marginTop: 4,
-              width: 60,
-              height: 60,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Ionicons
-              name="md-videocam"
-              size={36}
-              color={theme ? theme.text : '#3d3d3d'}
-            />
           </TouchableOpacity>
         </View>
       )}

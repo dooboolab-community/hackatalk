@@ -2,30 +2,28 @@ import * as ImagePicker from 'expo-image-picker';
 
 import {Platform} from 'react-native';
 
-export enum ImagePickerMediaType {
-  PHOTO = 'photo',
+export enum ImagePickerType {
+  LIBRARY = 'library',
   CAMERA = 'camera',
-  VIDEO = 'video',
 }
 
-const photoOptions: ImagePicker.ImagePickerOptions = {
-  mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  allowsEditing: true,
-  exif: true,
-};
+// const photoOptions: ImagePicker.ImagePickerOptions = {
+//   mediaTypes: ImagePicker.MediaTypeOptions.Images,
+//   allowsEditing: true,
+//   exif: true,
+// };
 
-const videoOptions: ImagePicker.ImagePickerOptions = {
-  mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+const options: ImagePicker.ImagePickerOptions = {
+  mediaTypes: ImagePicker.MediaTypeOptions.All,
   allowsEditing: true,
-  // allowsMultipleSelection: true,
-  videoMaxDuration: 120,
+  videoMaxDuration: 60,
   videoExportPreset: ImagePicker.VideoExportPreset.H264_640x480,
 };
 
 const requestPermissions = async (
-  type: ImagePickerMediaType,
+  type: ImagePickerType,
 ): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
-  if (type === ImagePickerMediaType.CAMERA) {
+  if (type === ImagePickerType.CAMERA) {
     if (Platform.OS === 'web') {
       const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -44,22 +42,18 @@ const requestPermissions = async (
 
 export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions(ImagePickerMediaType.CAMERA);
+    const granted = await requestPermissions(ImagePickerType.CAMERA);
 
-    if (granted) return ImagePicker.launchCameraAsync(videoOptions);
+    if (granted) return ImagePicker.launchCameraAsync(options);
 
     return null;
   };
 
-export const launchMediaLibraryAsync = async (
-  type: ImagePickerMediaType,
-): Promise<ImagePicker.ImagePickerResult | null> => {
-  const granted = await requestPermissions(type);
+export const launchMediaLibraryAsync =
+  async (): Promise<ImagePicker.ImagePickerResult | null> => {
+    const granted = await requestPermissions(ImagePickerType.LIBRARY);
 
-  if (granted)
-    return ImagePicker.launchImageLibraryAsync(
-      type === 'photo' ? photoOptions : videoOptions,
-    );
+    if (granted) return ImagePicker.launchImageLibraryAsync(options);
 
-  return null;
-};
+    return null;
+  };
