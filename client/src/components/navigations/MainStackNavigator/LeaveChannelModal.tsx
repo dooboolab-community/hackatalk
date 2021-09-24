@@ -133,6 +133,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
         <ModalBtnContainer>
           <TouchableHighlight
             testID="leave-channel-modal-yes"
+            underlayColor="none"
             onPress={() => {
               onClickYes();
             }}>
@@ -143,6 +144,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
             </ModalBtnStyle>
           </TouchableHighlight>
           <TouchableHighlight
+            underlayColor="none"
             onPress={() => {
               hideModal();
             }}>
