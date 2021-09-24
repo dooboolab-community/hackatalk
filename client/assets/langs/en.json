@@ -108,6 +108,7 @@
   "STATUS_MSG_HINT": "Please write your status message",
   "SUCCESS": "SUCCESS",
   "TAKE_A_PICTURE": "Take a picture",
+  "THUMBNAIL_ERROR": "No Video Preview",
   "TRY_AGAIN": "Try again",
   "UNBAN_USER": "Unban User",
   "UNBAN_USER_TEXT": "Do you wan to unban current user? If then, you will start to see and receive messages from the user.",
@@ -118,6 +119,7 @@
   "VERIFY": "Verify",
   "VERIFY_EMAIL": "Verify Email",
   "VIDEO": "Video",
+  "MEDIA_LOAD": "Touch to Load %{media}",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
   "YES": "Yes"

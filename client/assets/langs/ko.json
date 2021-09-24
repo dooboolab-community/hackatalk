@@ -108,6 +108,7 @@
   "STATUS_MSG_HINT": "상태 메시지를 입력해주세요",
   "SUCCESS": "성공",
   "TAKE_A_PICTURE": "촬영하기",
+  "THUMBNAIL_ERROR": "미리보기 실패",
   "TRY_AGAIN": "다시 시도",
   "UNBAN_USER": "차단 해제",
   "UNBAN_USER_TEXT": "선택한 유저의 차단을 해지하시겠습니까? 앞으로 해당 유저의 모든 메시지를 보거나 받을 수 있습니다.",
@@ -118,6 +119,7 @@
   "VERIFY": "인증하기",
   "VERIFY_EMAIL": "이메일 인증",
   "VIDEO": "비디오",
+  "MEDIA_LOAD": "터치하여 %{media} 로드",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
   "YES": "예"

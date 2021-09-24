@@ -297,31 +297,6 @@ const MessageListItem: FC<Props> = ({
     </ParsedText>
   );
 
-  const loadAsyncVideo = useCallback(async (): Promise<
-    AVPlaybackStatus | undefined
-  > => {
-    console.log(videoRef.current);
-    try {
-      const load = await videoRef.current?.loadAsync(
-        {uri: `${fileUrls![0]}?id=${id || ''}`},
-        {
-          progressUpdateIntervalMillis: 500,
-          positionMillis: 0,
-          shouldPlay: false,
-          rate: 1.0,
-          shouldCorrectPitch: false,
-          volume: 1.0,
-          isMuted: false,
-          isLooping: false,
-        },
-      );
-
-      return load;
-    } catch (err) {
-      console.log('loadAsyncVideo failed: ', err);
-    }
-  }, [fileUrls, id]);
-
   const displayVideo = (): JSX.Element => {
     return mediaError ? (
       <StyledMediaError>{mediaError}</StyledMediaError>
@@ -329,7 +304,7 @@ const MessageListItem: FC<Props> = ({
       <StyledPhotoContainer>
         <VideoPlayer
           videoRef={videoRef}
-          loadAsyncVideo={loadAsyncVideo}
+          uri={`${fileUrls![0]}?id=${id || ''}`}
           setMediaError={setMediaError}
         />
       </StyledPhotoContainer>
