@@ -1,19 +1,18 @@
 import * as VideoThumbnails from 'expo-video-thumbnails';
 
 import {AVPlaybackStatus, Video} from 'expo-av';
-import {Image, View} from 'react-native';
-import React, {FC, useEffect, useState} from 'react';
+import {Image, Platform, View} from 'react-native';
+import React, {FC, useEffect, useRef, useState} from 'react';
 
 import {LoadingIndicator} from 'dooboo-ui';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import vi from 'date-fns/esm/locale/vi/index.js';
 
 type Props = {
   uri: string;
-  // loadAsyncVideo: () => Promise<AVPlaybackStatus | undefined>;
   setMediaError: (error: string) => void;
-  videoRef: React.RefObject<Video> | null;
 };
 
 const StyledVideoLoadText = styled.Text`
@@ -41,9 +40,14 @@ const StyledThumbnailWrapper = styled.View`
   z-index: 100;
 `;
 
-const VideoPlayer: FC<Props> = ({uri, setMediaError, videoRef}) => {
+const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
+  const videoRef = useRef<Video | null>(null);
+
   const [loadStarted, setLoadStarted] = useState(false);
-  const [status, setStatus] = useState<AVPlaybackStatus>({isLoaded: false});
+
+  const [status, setStatus] = useState<AVPlaybackStatus>({
+    isLoaded: false,
+  });
 
   const [thumbnail, setThumbnail] =
     useState<VideoThumbnails.VideoThumbnailsResult | null>(null);
@@ -51,42 +55,45 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError, videoRef}) => {
   const [thumbnailError, setThumbnailError] = useState('');
 
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await VideoThumbnails.getThumbnailAsync(uri, {
-          time: 0,
-          quality: 0.5,
-        });
-        setThumbnail(result);
-      } catch (e) {
-        setThumbnailError(getString('THUMBNAIL_ERROR'));
-      }
-    })();
+    let video = videoRef.current;
+
+    if (Platform.OS !== 'web')
+      (async () => {
+        try {
+          const result = await VideoThumbnails.getThumbnailAsync(uri, {
+            time: 0,
+            quality: 0.5,
+          });
+          setThumbnail(result);
+        } catch (e) {
+          setThumbnailError(getString('THUMBNAIL_ERROR'));
+        }
+      })();
+
+    return () => {
+      if (video) video.unloadAsync();
+    };
   }, [uri]);
 
   const handleLoadPress = async (): Promise<void> => {
-    const loadAsyncVideo = async (): Promise<AVPlaybackStatus | undefined> => {
-      if (!videoRef) return;
-
-      const load = await videoRef.current?.loadAsync(
-        {uri},
-        {
-          progressUpdateIntervalMillis: 500,
-          positionMillis: 0,
-          shouldPlay: false,
-          rate: 1.0,
-          shouldCorrectPitch: false,
-          volume: 1.0,
-          isMuted: false,
-          isLooping: false,
-        },
-      );
-
-      return load;
-    };
+    if (!videoRef) return;
 
     setLoadStarted(true);
-    await loadAsyncVideo();
+    await videoRef.current?.unloadAsync();
+
+    await videoRef.current?.loadAsync(
+      {uri},
+      {
+        progressUpdateIntervalMillis: 500,
+        positionMillis: 0,
+        shouldPlay: true,
+        rate: 1.0,
+        shouldCorrectPitch: false,
+        volume: 1.0,
+        isMuted: false,
+        isLooping: false,
+      },
+    );
   };
 
   return (
@@ -94,7 +101,6 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError, videoRef}) => {
       <Video
         ref={videoRef}
         style={{
-          alignSelf: 'center',
           width: 240,
           height: 150,
         }}
@@ -106,14 +112,15 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError, videoRef}) => {
         onPlaybackStatusUpdate={(update: AVPlaybackStatus) => {
           setStatus(update);
         }}
+        {...(Platform.OS === 'web' && {source: {uri}})}
       />
-      {!loadStarted ? (
-        <StyledThumbnailWrapper>
-          <TouchableOpacity
-            onPress={handleLoadPress}
-            style={{justifyContent: 'center', alignItems: 'center'}}
-          >
-            <>
+      {Platform.OS !== 'web' &&
+        (!loadStarted ? (
+          <StyledThumbnailWrapper>
+            <TouchableOpacity
+              onPress={handleLoadPress}
+              style={{justifyContent: 'center', alignItems: 'center', flex: 1}}
+            >
               {!!thumbnail && (
                 <Image
                   source={{uri: thumbnail.uri}}
@@ -126,20 +133,17 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError, videoRef}) => {
                   resizeMode={'contain'}
                 />
               )}
-              <>
-                <StyledVideoLoadText>
-                  {getString('MEDIA_LOAD', {media: getString('VIDEO')})}
-                </StyledVideoLoadText>
-                {!!thumbnailError && (
-                  <StyledLoadErrorText>{thumbnailError}</StyledLoadErrorText>
-                )}
-              </>
-            </>
-          </TouchableOpacity>
-        </StyledThumbnailWrapper>
-      ) : (
-        !status.isLoaded && <LoadingIndicator />
-      )}
+              <StyledVideoLoadText>
+                {getString('MEDIA_LOAD', {media: getString('VIDEO')})}
+              </StyledVideoLoadText>
+              {!!thumbnailError && (
+                <StyledLoadErrorText>{thumbnailError}</StyledLoadErrorText>
+              )}
+            </TouchableOpacity>
+          </StyledThumbnailWrapper>
+        ) : !status.isLoaded ? (
+          <LoadingIndicator />
+        ) : null)}
     </View>
   );
 };

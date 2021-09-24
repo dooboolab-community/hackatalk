@@ -246,8 +246,6 @@ const MessageListItem: FC<Props> = ({
 
   const data = useFragment(fragment, item);
 
-  const videoRef = useRef<Video | null>(null);
-
   const {id, sender, text, createdAt, imageUrls, fileUrls} = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
@@ -303,7 +301,6 @@ const MessageListItem: FC<Props> = ({
     ) : (
       <StyledPhotoContainer>
         <VideoPlayer
-          videoRef={videoRef}
           uri={`${fileUrls![0]}?id=${id || ''}`}
           setMediaError={setMediaError}
         />
