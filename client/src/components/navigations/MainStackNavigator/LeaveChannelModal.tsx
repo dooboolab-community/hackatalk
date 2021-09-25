@@ -141,8 +141,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
             underlayColor="none"
             onPress={() => {
               onClickYes();
-            }}
-          >
+            }}>
             <ModalBtnStyle>
               <ModalBtnText>
                 <ModalBtnText>{getString('YES')}</ModalBtnText>
@@ -153,8 +152,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
             underlayColor="none"
             onPress={() => {
               hideModal();
-            }}
-          >
+            }}>
             <ModalBtnStyle>
               <ModalBtnText>
                 <ModalBtnText>{getString('NO')}</ModalBtnText>
@@ -182,8 +180,7 @@ const LeaveChannelModal: FC<Props> = () => {
       entry={'top'}
       position={'center'}
       onClosed={LeaveChannelContext.hideModal}
-      style={styles.wrapper}
-    >
+      style={styles.wrapper}>
       {modalState.isVisible ? (
         <ChannelModalContent
           hideModal={LeaveChannelContext.hideModal}

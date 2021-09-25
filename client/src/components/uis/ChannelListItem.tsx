@@ -209,8 +209,7 @@ function ChannelListItem(props: Props): React.ReactElement {
             height: 50,
             alignItems: 'center',
             justifyContent: 'center',
-          }}
-        >
+          }}>
           <StyledImage source={IC_NO_IMAGE} />
         </View>
       );
@@ -226,16 +225,14 @@ function ChannelListItem(props: Props): React.ReactElement {
             height: 50,
             alignItems: 'center',
             justifyContent: 'center',
-          }}
-        >
+          }}>
           <View
             style={{
               width: 44,
               height: 44,
               flexWrap: 'wrap',
               flexDirection: 'row',
-            }}
-          >
+            }}>
             {photoStrs?.slice(0, 4).map((photo, i) => {
               if (!photo)
                 return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
@@ -263,15 +260,13 @@ function ChannelListItem(props: Props): React.ReactElement {
         style={{
           width: '100%',
           justifyContent: 'center',
-        }}
-      >
+        }}>
         <TouchableOpacity
           accessibilityLabel={getString('GO_CHAT')}
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}
-          onLongPress={onLongPress}
-        >
+          onLongPress={onLongPress}>
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1
@@ -300,8 +295,7 @@ function ChannelListItem(props: Props): React.ReactElement {
               <StyledViewBottom>
                 <StyledTextMessage
                   numberOfLines={2}
-                  lastMessageCnt={lastMessageCnt}
-                >
+                  lastMessageCnt={lastMessageCnt}>
                   {imageUrls && imageUrls.length > 0
                     ? getString('PHOTO')
                     : text}
