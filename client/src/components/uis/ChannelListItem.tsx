@@ -270,7 +270,8 @@ function ChannelListItem(props: Props): React.ReactElement {
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}
-          onLongPress={onLongPress}>
+          onLongPress={onLongPress}
+        >
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1
