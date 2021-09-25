@@ -8,6 +8,8 @@ import {StyleProp, TouchableHighlight, ViewStyle} from 'react-native';
 
 import {ChannelLeaveChannelMutation} from '../../../__generated__/ChannelLeaveChannelMutation.graphql';
 import Modal from 'react-native-modalbox';
+import {RecordSourceSelectorProxy} from 'relay-runtime';
+import {deleteChannelAndUpdate} from '../../../relay/updaters';
 import {getString} from '../../../../STRINGS';
 import {leaveChannel} from '../../../relay/queries/Channel';
 import {showAlertForError} from '../../../utils/common';
@@ -104,6 +106,9 @@ const ChannelModalContent: FC<ModalContentProps> = ({
       variables: {
         channelId,
       },
+      updater: (store: RecordSourceSelectorProxy<{}>) => {
+        deleteChannelAndUpdate(store, channelId);
+      },
       onError: (error: Error): void => {
         showAlertForError(error);
       },
@@ -132,7 +137,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
         <ModalText>{getString('LEAVE_CHANNEL_CONFIRMATION')}</ModalText>
         <ModalBtnContainer>
           <TouchableHighlight
-            testID="leave-channel-modal-yes"
+            testID="leave-channel-modal"
             underlayColor="none"
             onPress={() => {
               onClickYes();

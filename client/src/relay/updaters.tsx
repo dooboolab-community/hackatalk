@@ -168,3 +168,37 @@ export function onMessageUpdater(
   prependMessageToChannel(store, channelId, payload);
   updateChannelAndRearrange(store, channelId);
 }
+
+/**
+ * Update Relay store after `ChannelLeaveChannelMutation` mutation.
+ * @param store Relay store proxy for updater.
+ * @param channelId ID of the channel to be updated.
+ */
+export function deleteChannelAndUpdate(
+  store: RecordSourceSelectorProxy,
+  channelId: string,
+): void {
+  const root = store.getRoot();
+
+  const channelsConnection = ConnectionHandler.getConnection(
+    root,
+    'MainChannelComponent_channels',
+    {
+      withMessage: true,
+    },
+  );
+
+  if (!channelsConnection) return;
+
+  // Remove existing edge.
+  const existingEdges = channelsConnection?.getLinkedRecords('edges') ?? [];
+
+  for (const edge of existingEdges) {
+    const node = edge.getLinkedRecord('node');
+
+    if (node?.getDataID() === channelId) {
+      ConnectionHandler.deleteNode(channelsConnection, node.getDataID());
+      break;
+    }
+  }
+}

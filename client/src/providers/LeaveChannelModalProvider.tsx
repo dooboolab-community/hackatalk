@@ -1,20 +1,17 @@
 import React, {FC, createContext, useContext, useState} from 'react';
 
+type LeaveChannelModalData = {
+  testID?: string;
+  channelId: string;
+  onClickYes?: () => void;
+};
+
 export type LeaveChannelModalState =
-  | {
-      isVisible: false;
-    }
-  | {
-      testID?: string;
-      isVisible: true;
-      channelId: string;
-      onClickYes?: () => void;
-    };
+  | {isVisible: false}
+  | ({isVisible: true} & LeaveChannelModalData);
 
 export type LeaveChannelModalContext = {
-  showModal: (
-    next: Omit<LeaveChannelModalState & {isVisible: true}, 'isVisible'>,
-  ) => void;
+  showModal: (next: LeaveChannelModalData) => void;
   hideModal: () => void;
   modalState: LeaveChannelModalState;
 };
@@ -30,9 +27,7 @@ export const LeaveChannelModalProvider: FC = ({children}) => {
     isVisible: false,
   });
 
-  const showModal = (
-    next: Omit<LeaveChannelModalState & {isVisible: true}, 'isVisible'>,
-  ): void =>
+  const showModal = (next: LeaveChannelModalData): void =>
     setModalState({
       isVisible: true,
       ...next,
