@@ -263,14 +263,15 @@ function ChannelListItem(props: Props): React.ReactElement {
         style={{
           width: '100%',
           justifyContent: 'center',
-        }}>
+        }}
+      >
         <TouchableOpacity
           accessibilityLabel={getString('GO_CHAT')}
           activeOpacity={0.5}
           delayPressIn={130}
           onPress={onPress}
           onLongPress={onLongPress}
-          >
+        >
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 15}}>
               {!users || users.length === 1

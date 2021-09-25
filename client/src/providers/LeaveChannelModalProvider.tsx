@@ -44,7 +44,8 @@ export const LeaveChannelModalProvider: FC = ({children}) => {
         showModal,
         hideModal,
         modalState: showModalState,
-      }}>
+      }}
+    >
       {children}
     </LeaveChannelModalContext.Provider>
   );
