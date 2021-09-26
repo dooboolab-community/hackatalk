@@ -1,6 +1,6 @@
 import 'react-native';
 
-import * as ImagePicker from '../../../utils/ImagePicker';
+import * as ImagePickerUtil from '../../../utils/ImagePicker';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import {Channel, Message as MessageType} from '../../../types/graphql';
@@ -16,6 +16,7 @@ import mockmockReactNavigation, {RouteProp} from '@react-navigation/core';
 import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
 import React from 'react';
+import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../../utils/image';
 
 jest.mock('../../uis/CustomLoadingIndicator', () => 'test');
 
@@ -40,6 +41,11 @@ jest.mock('@react-navigation/core', () => ({
 jest.mock('expo-image-picker', () => ({
   launchCameraAsync: (): string => 'photo info',
   launchImageLibraryAsync: (): string => 'photo info',
+}));
+
+jest.mock('../../../utils/image.ts', () => ({
+  resizePhotoToMaxDimensionsAndCompressAsPNG: (): string =>
+    'resized photo info',
 }));
 
 const mockEnvironment = createMockEnvironment();
@@ -149,8 +155,8 @@ describe('[Message] interaction', () => {
   });
 
   it('should open image library when pressing photo icon button', async () => {
-    const launchImageLibraryAsyncSpy = jest
-      .spyOn(ImagePicker, 'launchImageLibraryAsync')
+    const launchMediaLibraryAsyncSpy = jest
+      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
       .mockResolvedValue(null);
 
     const component = createTestElement(<Message />, {
@@ -169,14 +175,14 @@ describe('[Message] interaction', () => {
 
     fireEvent.press(photoBtn);
 
-    expect(launchImageLibraryAsyncSpy).toBeCalledTimes(1);
+    expect(launchMediaLibraryAsyncSpy).toBeCalledTimes(1);
 
     await screen.findByRole('button');
   });
 
   it('should open camera when pressing camera icon button', async () => {
     const launchCameraAsyncSpy = jest
-      .spyOn(ImagePicker, 'launchCameraAsync')
+      .spyOn(ImagePickerUtil, 'launchCameraAsync')
       .mockResolvedValue(null);
 
     const component = createTestElement(<Message />, {
@@ -196,6 +202,73 @@ describe('[Message] interaction', () => {
     fireEvent.press(cameraBtn);
 
     expect(launchCameraAsyncSpy).toHaveBeenCalledTimes(1);
+
+    await screen.findByRole('button');
+  });
+
+  it('should deal with video type media when picked', async () => {
+    const launchMediaLibraryAsyncSpy = jest
+      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
+      .mockResolvedValue({
+        cancelled: false,
+        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        width: 1920,
+        height: 1024,
+        type: 'video',
+      });
+
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
+
+    const touchMenu = screen.getByTestId('touch-menu');
+
+    fireEvent.press(touchMenu);
+
+    const cameraBtn = screen.getByTestId('icon-photo');
+
+    fireEvent.press(cameraBtn);
+
+    expect(launchMediaLibraryAsyncSpy).toBeCalled();
+    await screen.findByRole('button');
+  });
+
+  it('should resize image when picked', async () => {
+    const launchMediaLibraryAsyncSpy = jest
+      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
+      .mockResolvedValue({
+        cancelled: false,
+        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        width: 2080,
+        height: 1924,
+        type: 'image',
+      });
+
+    const component = createTestElement(<Message />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+
+    resolveAllOperations(mockEnvironment, resolver);
+
+    const touchMenu = screen.getByTestId('touch-menu');
+
+    fireEvent.press(touchMenu);
+
+    const cameraBtn = screen.getByTestId('icon-photo');
+
+    fireEvent.press(cameraBtn);
+
+    const result = await resizePhotoToMaxDimensionsAndCompressAsPNG({
+      uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    });
+
+    expect(result).toBe('resized photo info');
 
     await screen.findByRole('button');
   });
