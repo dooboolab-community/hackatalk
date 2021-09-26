@@ -301,7 +301,8 @@ function ChannelListItem(props: Props): React.ReactElement {
               <StyledViewBottom>
                 <StyledTextMessage
                   numberOfLines={2}
-                  lastMessageCnt={lastMessageCnt}>
+                  lastMessageCnt={lastMessageCnt}
+                >
                   {messageType === 'file'
                     ? getString('VIDEO')
                     : messageType === 'photo'
