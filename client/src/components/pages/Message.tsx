@@ -242,7 +242,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
         const {url} = JSON.parse(await response.text());
 
-        console.log('client received url:', url);
         if (!url)
           return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
 
@@ -270,8 +269,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err: any) {
-        console.log(err);
-        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+        Alert.alert(
+          getString('ERROR'),
+          err.message || getString('FAILED_LOAD_IMAGE'),
+        );
       }
   };
 

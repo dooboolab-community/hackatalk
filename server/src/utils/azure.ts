@@ -57,8 +57,7 @@ export const uploadFileToAzureBlobFromStream = async (
 
     return blockBlobClient.url;
   } catch (e: any) {
-    console.log('azure upload error:, ', e.message);
-    throw new Error(e.message);
+    throw new Error(e);
   }
 };
 

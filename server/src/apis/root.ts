@@ -149,18 +149,11 @@ const onUploadSingle = async (
       mime,
     );
 
-    console.log('server onUploadSingle successful:', url);
-
     res.status(200).json({
-      // ...req.file,
       url,
     });
   } catch (err) {
-    console.log('onUploadSingle error:', err);
-
-    res.status(500).json({
-      error: err,
-    });
+    res.status(500).json(err);
   }
 };
 

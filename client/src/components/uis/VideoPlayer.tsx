@@ -8,7 +8,6 @@ import {LoadingIndicator} from 'dooboo-ui';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
-import vi from 'date-fns/esm/locale/vi/index.js';
 
 type Props = {
   uri: string;
