@@ -78,24 +78,19 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
   const handleLoadPress = async (): Promise<void> => {
     setLoadStarted(true);
 
-    try {
-      await videoRef.current?.loadAsync(
-        {uri},
-        {
-          progressUpdateIntervalMillis: 500,
-          positionMillis: 0,
-          shouldPlay: true,
-          rate: 1.0,
-          shouldCorrectPitch: false,
-          volume: 1.0,
-          isMuted: false,
-          isLooping: false,
-        },
-      );
-      setLoadStarted(false);
-    } catch (err) {
-      setLoadStarted(false);
-    }
+    await videoRef.current?.loadAsync(
+      {uri},
+      {
+        progressUpdateIntervalMillis: 500,
+        positionMillis: 0,
+        shouldPlay: true,
+        rate: 1.0,
+        shouldCorrectPitch: false,
+        volume: 1.0,
+        isMuted: false,
+        isLooping: false,
+      },
+    );
   };
 
   return (
