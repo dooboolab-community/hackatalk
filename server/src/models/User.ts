@@ -8,6 +8,7 @@ export const Profile = objectType({
   definition(t) {
     t.string('socialId');
     t.auth('authType');
+    t.field('user', {type: 'User'});
   },
 });
 
@@ -30,6 +31,7 @@ export const User = objectType({
     t.date('createdAt');
     t.date('updatedAt');
     t.date('deletedAt');
+    t.field('profile', {type: 'Profile'});
     t.list.field('notifications', {type: 'Notification'});
 
     t.boolean('hasBlocked', {

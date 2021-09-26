@@ -32,6 +32,7 @@ export type MessageCreateMutationResponse = {
             readonly name: string | null;
             readonly memberships: ReadonlyArray<{
                 readonly user: {
+                    readonly id: string;
                     readonly name: string | null;
                     readonly nickname: string | null;
                     readonly thumbURL: string | null;
@@ -77,6 +78,7 @@ mutation MessageCreateMutation(
       name
       memberships(excludeMe: false) {
         user {
+          id
           name
           nickname
           thumbURL
@@ -242,6 +244,7 @@ v10 = [
                 "name": "user",
                 "plural": false,
                 "selections": [
+                  (v3/*: any*/),
                   (v9/*: any*/),
                   {
                     "alias": null,
@@ -319,14 +322,14 @@ return {
     "selections": (v10/*: any*/)
   },
   "params": {
-    "cacheID": "db2c0416ea3ed9ec64d5de07aebae092",
+    "cacheID": "5f928307c1ed715049301ebc956a2ada",
     "id": null,
     "metadata": {},
     "name": "MessageCreateMutation",
     "operationKind": "mutation",
-    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n  $deviceKey: String!\n) {\n  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    createdAt\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: false) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
+    "text": "mutation MessageCreateMutation(\n  $channelId: String!\n  $message: MessageCreateInput!\n  $deviceKey: String!\n) {\n  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {\n    id\n    text\n    messageType\n    imageUrls\n    fileUrls\n    createdAt\n    sender {\n      id\n    }\n    channel {\n      id\n      channelType\n      name\n      memberships(excludeMe: false) {\n        user {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n      lastMessage {\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '2e901e5a84d46ff6432f14aa47dc2e57';
+(node as any).hash = '240bf95e484493199ddc1321b0fee1f9';
 export default node;
