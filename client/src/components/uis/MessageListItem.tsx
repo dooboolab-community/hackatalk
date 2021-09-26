@@ -1,12 +1,10 @@
-import {AVPlaybackStatus, Video} from 'expo-av';
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {FC, useCallback, useMemo, useRef, useState} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
-import {MutableRefObject} from 'hoist-non-react-statics/node_modules/@types/react';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {Theme} from '../../theme';

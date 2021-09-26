@@ -70,33 +70,36 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
       })();
 
     return () => {
+      /* istanbul ignore else */
       if (video) video.unloadAsync();
     };
   }, [uri]);
 
   const handleLoadPress = async (): Promise<void> => {
-    if (!videoRef) return;
-
     setLoadStarted(true);
-    await videoRef.current?.unloadAsync();
 
-    await videoRef.current?.loadAsync(
-      {uri},
-      {
-        progressUpdateIntervalMillis: 500,
-        positionMillis: 0,
-        shouldPlay: true,
-        rate: 1.0,
-        shouldCorrectPitch: false,
-        volume: 1.0,
-        isMuted: false,
-        isLooping: false,
-      },
-    );
+    try {
+      await videoRef.current?.loadAsync(
+        {uri},
+        {
+          progressUpdateIntervalMillis: 500,
+          positionMillis: 0,
+          shouldPlay: true,
+          rate: 1.0,
+          shouldCorrectPitch: false,
+          volume: 1.0,
+          isMuted: false,
+          isLooping: false,
+        },
+      );
+      setLoadStarted(false);
+    } catch (err) {
+      setLoadStarted(false);
+    }
   };
 
   return (
-    <View>
+    <View testID="Video-Container">
       <Video
         ref={videoRef}
         style={{

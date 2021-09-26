@@ -2,41 +2,75 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {RenderAPI, render} from '@testing-library/react-native';
-import {createTestElement, createTestProps} from '../../../../test/testUtils';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
-import Template from '../VideoPlayer';
+import VideoPlayer from '../VideoPlayer';
+import {getString} from '../../../../STRINGS';
 
-let props: any;
-let component: React.ReactElement;
-let testingLib: RenderAPI;
+const props = {
+  uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+  setMediaError: jest.fn(),
+};
 
-describe('Rendering', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    component = createTestElement(<Template {...props} />);
-    testingLib = render(component);
+describe('[VideoPlayer] render', () => {
+  it('render without crashing', async () => {
+    const screen = render(<VideoPlayer {...props} />);
+    const json = screen.toJSON();
+
+    await waitFor(() => {
+      expect(json).toBeTruthy();
+      expect(json).toMatchSnapshot();
+    });
   });
 
-  it('renders without crashing', () => {
-    const baseElement = testingLib.toJSON();
+  it('should display thumbnail error when uri was not provided', async () => {
+    const newProps = {...props, uri: undefined};
+    const {getByText} = render(<VideoPlayer {...newProps} />);
 
-    expect(baseElement).toMatchSnapshot();
-    expect(baseElement).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText(getString('THUMBNAIL_ERROR'))).toBeTruthy();
+    });
+  });
+
+  it('should call onPlaybackStatusUpdate when loadAsync Resolved', async () => {
+    const screen = render(<VideoPlayer {...props} />);
+
+    await waitFor(async () => {
+      const button = screen.getByText(
+        getString('MEDIA_LOAD', {media: getString('VIDEO')}),
+      );
+      fireEvent.press(button);
+    });
+
+    expect(screen.toJSON().children[0]).toBe('Video isLoaded? : true');
+  });
+
+  it('should call onError when loadAsync rejected', async () => {
+    const newProps = {...props, uri: undefined};
+
+    const {getByText} = render(<VideoPlayer {...newProps} />);
+
+    await waitFor(() => {
+      const button = getByText(
+        getString('MEDIA_LOAD', {media: getString('VIDEO')}),
+      );
+      fireEvent.press(button);
+    });
+
+    expect(props.setMediaError).toBeCalled();
   });
 });
 
-describe('Interaction', () => {
-  beforeEach(() => {
-    testingLib = render(component);
-  });
+describe('[VideoPlayer] web render', () => {
+  it('render without crashing', async () => {
+    jest.doMock('react-native/Libraries/Utilities/Platform', () => {
+      return {OS: 'web'};
+    });
 
-  it('should simulate onClick', () => {
-    expect(testingLib.toJSON()).toMatchSnapshot();
-    // const btn = testingLib.queryByTestId('btn');
-    // act(() => {
-    //   fireEvent.press(btn);
-    // });
-    // expect(cnt).toBe(3);
+    const {queryByText} = render(<VideoPlayer {...props} />);
+
+    expect(
+      queryByText(getString('MEDIA_LOAD', {media: getString('VIDEO')})),
+    ).toBeNull();
   });
 });
