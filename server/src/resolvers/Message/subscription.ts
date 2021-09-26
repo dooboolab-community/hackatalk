@@ -6,6 +6,7 @@ import {assert} from '../../utils/assert';
 import {withFilter} from 'graphql-subscriptions';
 
 export const ON_MESSAGE = 'ON_MESSAGE';
+export const MESSAGE_UPDATED = 'MESSAGE_UPDATED';
 
 interface Payload {
   message: Message;
@@ -42,5 +43,25 @@ export const onMessage = subscriptionField('onMessage', {
   ),
   resolve: (payload: Payload) => {
     return payload.message;
+  },
+});
+
+export const messageUpdated = subscriptionField('messageUpdated', {
+  type: 'Message',
+
+  subscribe: withFilter(
+    (_, args, ctx) => {
+      const {pubsub} = ctx;
+
+      return pubsub.asyncIterator(MESSAGE_UPDATED);
+    },
+    (payload, _, {userId}) => {
+      assert(userId, 'Not Authorized!');
+
+      return payload.id !== userId;
+    },
+  ),
+  resolve: (payload) => {
+    return payload;
   },
 });
