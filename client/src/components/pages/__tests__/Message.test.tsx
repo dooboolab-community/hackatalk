@@ -157,7 +157,13 @@ describe('[Message] interaction', () => {
   it('should open image library when pressing photo icon button', async () => {
     const launchMediaLibraryAsyncSpy = jest
       .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
-      .mockResolvedValue(null);
+      .mockResolvedValue({
+        cancelled: false,
+        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        width: 1920,
+        height: 1024,
+        type: 'video',
+      });
 
     const component = createTestElement(<Message />, {
       environment: mockEnvironment,
@@ -183,63 +189,6 @@ describe('[Message] interaction', () => {
   it('should open camera when pressing camera icon button', async () => {
     const launchCameraAsyncSpy = jest
       .spyOn(ImagePickerUtil, 'launchCameraAsync')
-      .mockResolvedValue(null);
-
-    const component = createTestElement(<Message />, {
-      environment: mockEnvironment,
-    });
-
-    const screen = render(component);
-
-    resolveAllOperations(mockEnvironment, resolver);
-
-    const touchMenu = screen.getByTestId('touch-menu');
-
-    fireEvent.press(touchMenu);
-
-    const cameraBtn = screen.getByTestId('icon-camera');
-
-    fireEvent.press(cameraBtn);
-
-    expect(launchCameraAsyncSpy).toHaveBeenCalledTimes(1);
-
-    await screen.findByRole('button');
-  });
-
-  it('should deal with video type media when picked', async () => {
-    const launchMediaLibraryAsyncSpy = jest
-      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
-      .mockResolvedValue({
-        cancelled: false,
-        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        width: 1920,
-        height: 1024,
-        type: 'video',
-      });
-
-    const component = createTestElement(<Message />, {
-      environment: mockEnvironment,
-    });
-
-    const screen = render(component);
-
-    resolveAllOperations(mockEnvironment, resolver);
-
-    const touchMenu = screen.getByTestId('touch-menu');
-
-    fireEvent.press(touchMenu);
-
-    const cameraBtn = screen.getByTestId('icon-photo');
-
-    fireEvent.press(cameraBtn);
-
-    expect(launchMediaLibraryAsyncSpy).toBeCalled();
-    await screen.findByRole('button');
-  });
-
-  it('should resize image when picked', async () => {
-    const launchMediaLibraryAsyncSpy = jest
-      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
       .mockResolvedValue({
         cancelled: false,
         uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -260,15 +209,11 @@ describe('[Message] interaction', () => {
 
     fireEvent.press(touchMenu);
 
-    const cameraBtn = screen.getByTestId('icon-photo');
+    const cameraBtn = screen.getByTestId('icon-camera');
 
     fireEvent.press(cameraBtn);
 
-    const result = await resizePhotoToMaxDimensionsAndCompressAsPNG({
-      uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    });
-
-    expect(result).toBe('resized photo info');
+    expect(launchCameraAsyncSpy).toHaveBeenCalledTimes(1);
 
     await screen.findByRole('button');
   });
