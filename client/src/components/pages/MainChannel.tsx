@@ -20,6 +20,7 @@ import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import {useLeaveChannelContext} from '../../providers/LeaveChannelModalProvider';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from 'dooboo-ui';
 
@@ -102,9 +103,14 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
   const [bannerError, setBannerError] = useState<boolean>(false);
   const orientation = useOrientation();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
+  const {showModal} = useLeaveChannelContext();
 
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
+  };
+
+  const showLeaveModal = (channelId: any): void => {
+    showModal({channelId});
   };
 
   const renderItem = ({
@@ -125,6 +131,9 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
           navigation.navigate('Message', {
             channelId: item.node.id,
           });
+        }}
+        onLongPress={(): void => {
+          showLeaveModal(item.node.id);
         }}
       />
     );

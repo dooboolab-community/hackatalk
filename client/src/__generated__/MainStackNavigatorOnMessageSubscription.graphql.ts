@@ -24,7 +24,6 @@ export type MainStackNavigatorOnMessageSubscriptionResponse = {
             } | null;
             readonly memberships: ReadonlyArray<{
                 readonly user: {
-                    readonly id: string;
                     readonly name: string | null;
                     readonly nickname: string | null;
                     readonly thumbURL: string | null;
@@ -67,7 +66,6 @@ subscription MainStackNavigatorOnMessageSubscription(
       }
       memberships(excludeMe: false) {
         user {
-          id
           name
           nickname
           thumbURL
@@ -246,7 +244,6 @@ v12 = {
           "name": "user",
           "plural": false,
           "selections": [
-            (v2/*: any*/),
             (v8/*: any*/),
             (v9/*: any*/),
             (v10/*: any*/),
@@ -376,14 +373,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3756096c39577bb06c52c9f84411340c",
+    "cacheID": "7b5d146f5a389a2f1932ed96cbf8853e",
     "id": null,
     "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
-    "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: false) {\n        user {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: false) {\n        user {\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = 'f331c58d557067c0133bdc35e9276412';
+(node as any).hash = 'a6c09547ba5c488aa4975a1241266c9a';
 export default node;
