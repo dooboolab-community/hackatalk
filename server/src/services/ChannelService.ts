@@ -72,17 +72,17 @@ export const findPrivateChannelWithUserIds = async (
 
 export const changeVisibilityWhenInvisible = (
   userId: string,
-  existingChannel: Channel,
+  channelId: string,
 ): Promise<Membership> =>
   prisma.membership.update({
-    data: {
-      isVisible: true,
-    },
     where: {
       userId_channelId: {
+        channelId,
         userId,
-        channelId: existingChannel.id,
       },
+    },
+    data: {
+      isVisible: true,
     },
   });
 

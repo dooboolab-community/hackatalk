@@ -79,6 +79,7 @@ export const Channel = objectType({
           return prisma.membership.findMany({
             where: {
               channel: {id},
+              isVisible: true,
               user: {
                 id: {not: userId ?? undefined},
               },
@@ -92,7 +93,7 @@ export const Channel = objectType({
           });
 
         return prisma.membership.findMany({
-          where: {channel: {id}},
+          where: {channel: {id}, isVisible: true},
           include: {user: true},
           orderBy: [
             {
