@@ -14,13 +14,13 @@ import ComponentWrapper from './utils/ComponentWrapper';
 import CustomLoadingIndicator from './components/uis/CustomLoadingIndicator';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
-import {ResettableRelayProvider} from './providers/ResettableProvider';
+import {RelayEnvironmentProvider} from 'react-relay';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {SnackbarProvider} from './providers/SnackbarProvider';
 import {ThemeProvider} from 'dooboo-ui';
-import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
+import {relayEnvironment} from './relay';
 import {useAssets} from 'expo-asset';
 import {useFonts} from 'expo-font';
 
@@ -103,7 +103,7 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
   .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
-  .wrap(ResettableRelayProvider, {createRelayEnvironment})
+  .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})
