@@ -26,6 +26,7 @@ import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
+import {getMimeType} from 'stream-mime-type';
 import {nanoid} from 'nanoid';
 import {sign} from 'jsonwebtoken';
 import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
@@ -81,13 +82,14 @@ export const signUp = mutationField('signUp', {
     if (photoUpload) {
       const {createReadStream} = await photoUpload;
       const stream = createReadStream();
+      const {mime} = await getMimeType(stream);
 
       uploadedURL = await uploadFileToAzureBlobFromStream(
         stream,
         nanoid(),
         'profile',
         process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-        'image/png',
+        mime,
       );
     }
 

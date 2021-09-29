@@ -1,8 +1,9 @@
-import {Request, Response, Router} from 'express';
+import {ErrorRequestHandler, Request, Response, Router} from 'express';
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
 import {getMimeType} from 'stream-mime-type';
+import {message} from './../resolvers/Message/query';
 import multer from 'multer';
 import {prisma} from '../context';
 import qs from 'querystring';
@@ -30,7 +31,7 @@ export function resolveBlobName(destFile: string, destDir: string): string {
 const router = Router();
 const storage = multer.memoryStorage();
 
-const upload = multer({storage});
+const upload = multer({storage, limits: {fileSize: 100000000}});
 
 function bufferToStream(buffer: Buffer): stream.Readable {
   const duplexStream = new stream.Duplex();
@@ -138,28 +139,33 @@ const onUploadSingle = async (
     return;
   }
 
-  try {
-    const {mime} = await getMimeType(req.file.buffer);
+  const {mime} = await getMimeType(req.file.buffer);
 
-    const url = await uploadFileToAzureBlobFromStream(
-      bufferToStream(req.file.buffer),
-      req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
-      req.body.dir,
-      process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-      mime,
-    );
+  const url = await uploadFileToAzureBlobFromStream(
+    bufferToStream(req.file.buffer),
+    req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
+    req.body.dir,
+    process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+    mime,
+  );
 
-    res.status(200).json({
-      url,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.status(200).json({
+    url,
+  });
+};
+
+const errorRequestHandler: ErrorRequestHandler = (err, _req, res, _next) => {
+  if (err) res.status(500).send({error: err.message});
 };
 
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
-  .post('/upload_single', upload.single('inputFile'), onUploadSingle);
+  .post(
+    '/upload_single',
+    upload.single('inputFile'),
+    onUploadSingle,
+    errorRequestHandler,
+  );
 
 export default router;
