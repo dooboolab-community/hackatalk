@@ -42,8 +42,6 @@ export const uploadSingleAsync = async (
       name: `${fileName}${fileNamePrefix}`,
     });
 
-  console.log(data);
-
   const fetchOption = {
     method: 'POST',
     body: data,
@@ -67,11 +65,8 @@ export const uploadSingleAsync = async (
       fetchOption,
     );
 
-    console.log(res);
-
     return res;
   } catch (err: any) {
-    console.log(err);
     throw new Error(err);
   }
 };

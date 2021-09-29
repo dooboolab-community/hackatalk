@@ -61,7 +61,6 @@ import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
-import mime from 'mime';
 import {nanoid} from 'nanoid/non-secure';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -249,10 +248,17 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           );
         }
 
-        const {url} = JSON.parse(await response.text());
+        const {url, error: fetchError} = JSON.parse(await response.text());
 
-        if (!url)
-          return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+        if (!url) {
+          if (!fetchError) {
+            setIsImageUploading(false);
+
+            return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+          }
+
+          throw new Error(fetchError);
+        }
 
         const urls =
           media.type === 'video' ? {fileUrls: [url]} : {imageUrls: [url]};
@@ -278,10 +284,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err: any) {
-        console.log(err);
         setIsImageUploading(false);
 
-        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
+        Alert.alert(
+          getString('ERROR'),
+          err.message === 'LIMIT_FILE_SIZE'
+            ? getString(err.message)
+            : getString('FAILED_LOAD_IMAGE'),
+        );
       }
     }
   };

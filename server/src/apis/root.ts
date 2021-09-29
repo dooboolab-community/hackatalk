@@ -155,7 +155,10 @@ const onUploadSingle = async (
 };
 
 const errorRequestHandler: ErrorRequestHandler = (err, _req, res, _next) => {
-  if (err) res.status(500).send({error: err.message});
+  if (err) {
+    console.log(err);
+    res.status(500).json({error: err.code});
+  }
 };
 
 router
