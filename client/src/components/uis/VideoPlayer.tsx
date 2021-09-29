@@ -96,7 +96,6 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
   return (
     <View>
       <Video
-        testID="video-display"
         ref={videoRef}
         style={{
           width: 240,

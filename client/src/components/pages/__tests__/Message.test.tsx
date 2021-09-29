@@ -16,7 +16,6 @@ import mockmockReactNavigation, {RouteProp} from '@react-navigation/core';
 import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
 import React from 'react';
-import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../../utils/image';
 
 jest.mock('../../uis/CustomLoadingIndicator', () => 'test');
 

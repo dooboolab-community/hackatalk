@@ -8,17 +8,16 @@ import {
 } from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import {
-  ImagePickerType,
-  launchCameraAsync,
-  launchMediaLibraryAsync,
-} from '../../utils/ImagePicker';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
   UploadSingleUploadMutation,
   UploadSingleUploadMutationResponse,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
 import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay';
+import {
+  launchCameraAsync,
+  launchMediaLibraryAsync,
+} from '../../utils/ImagePicker';
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 
 import {ImagePickerResult} from 'expo-image-picker';

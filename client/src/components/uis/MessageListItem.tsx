@@ -5,7 +5,6 @@ import {graphql, useFragment} from 'react-relay';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
-import {MessageType} from '../../types';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {Theme} from '../../theme';

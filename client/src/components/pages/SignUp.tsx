@@ -14,13 +14,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import React, {FC, useState} from 'react';
+import {UseMutationConfig, useMutation} from 'react-relay';
 import {
-  ImagePickerType,
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
-import React, {FC, useState} from 'react';
-import {UseMutationConfig, useMutation} from 'react-relay';
 import {sendVerification, signUp} from '../../relay/queries/User';
 import {
   showAlertForError,
