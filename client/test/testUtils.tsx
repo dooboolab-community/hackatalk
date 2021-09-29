@@ -13,7 +13,7 @@ import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
 import {IEnvironment} from 'relay-runtime';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
-import {ResettableRelayProvider} from '../src/providers/ResettableProvider';
+import {RelayEnvironmentProvider} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Text} from 'react-native';
@@ -26,7 +26,8 @@ export const TestSafeAreaProvider: FC = ({children}) => {
       initialMetrics={{
         frame: {x: 0, y: 0, width: 0, height: 0},
         insets: {top: 0, left: 0, right: 0, bottom: 0},
-      }}>
+      }}
+    >
       {children}
     </SafeAreaProvider>
   );
@@ -60,10 +61,11 @@ export const createTestElement = (
     <DeviceProvider>
       <ThemeProvider
         initialThemeType={mockContext?.themeType ?? 'dark'}
-        customTheme={{light, dark}}>
-        <ResettableRelayProvider
+        customTheme={{light, dark}}
+      >
+        <RelayEnvironmentProvider
           environment={mockContext?.environment ?? createMockEnvironment()}
-          createRelayEnvironment={createMockEnvironment}>
+        >
           <Suspense fallback={<Text>TEST FALLBACK</Text>}>
             <AuthProvider initialAuthUser={mockContext?.user}>
               <ProfileModalProvider>
@@ -71,7 +73,7 @@ export const createTestElement = (
               </ProfileModalProvider>
             </AuthProvider>
           </Suspense>
-        </ResettableRelayProvider>
+        </RelayEnvironmentProvider>
       </ThemeProvider>
     </DeviceProvider>
   );

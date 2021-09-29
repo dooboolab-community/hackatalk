@@ -3,13 +3,18 @@ import {
   AuthProviderMeQueryResponse,
   AuthProviderMeQueryVariables,
 } from '../__generated__/AuthProviderMeQuery.graphql';
-import {PreloadedQuery, graphql, useQueryLoader} from 'react-relay/hooks';
+import {
+  PreloadedQuery,
+  commitLocalUpdate,
+  graphql,
+  useQueryLoader,
+  useRelayEnvironment,
+} from 'react-relay/hooks';
 import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
-import {useResettableRelayContext} from './ResettableProvider';
 
 export interface AuthContext {
   user: AuthProviderMeQueryResponse['me'] | null;
@@ -48,23 +53,22 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
     (initialAuthUser as AuthProviderMeQueryResponse['me']) || null,
   );
 
+  const environment = useRelayEnvironment();
+
   const [meQueryReference, loadMeQuery, disposeMeQuery] =
     useQueryLoader<AuthProviderMeQuery>(meQuery);
 
-  const {resetRelayEnvironment} = useResettableRelayContext();
-
   const signOutAsync = async (): Promise<void> => {
-    const cleanup = async (): Promise<void> => {
-      await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem('token');
 
-      disposeMeQuery();
+    disposeMeQuery();
 
-      setUser(null);
+    commitLocalUpdate(environment, (store) => {
+      const root = store.getRoot();
+      root.invalidateRecord();
+    });
 
-      resetRelayEnvironment();
-    };
-
-    await cleanup();
+    setUser(null);
   };
 
   return (

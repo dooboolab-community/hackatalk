@@ -14,7 +14,7 @@ import ComponentWrapper from './utils/ComponentWrapper';
 import CustomLoadingIndicator from './components/uis/CustomLoadingIndicator';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
-import {ResettableRelayProvider} from './providers/ResettableProvider';
+import {RelayEnvironmentProvider} from 'react-relay';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {SnackbarProvider} from './providers/SnackbarProvider';
 import {ThemeProvider} from 'dooboo-ui';
@@ -98,12 +98,14 @@ function ActionSheetProviderWithChildren(props: {
   return <ActionSheetProvider>{props.children}</ActionSheetProvider>;
 }
 
+const environment = createRelayEnvironment();
+
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
   .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
-  .wrap(ResettableRelayProvider, {createRelayEnvironment})
+  .wrap(RelayEnvironmentProvider, {environment})
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})
