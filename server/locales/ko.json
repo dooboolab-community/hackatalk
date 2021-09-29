@@ -18,5 +18,6 @@
   "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] 비밀번호를 재설정하세요!",
   "PHOTO": "사진",
   "FILE": "파일",
+  "VIDEO": "비디오",
   "USER_REPORTED": "사용자 신고가 접수되었습니다."
 }

@@ -2,7 +2,6 @@ import * as azureUtils from '../../src/utils/azure';
 
 import FormData from 'form-data';
 import axios from 'axios';
-import {getTestUtils} from '../testUtils';
 import {testHost} from '../testSetup';
 
 describe('Resolver - File', () => {
@@ -13,7 +12,6 @@ describe('Resolver - File', () => {
   });
 
   it('should return a file path after uploading one', async () => {
-    const {graphqlClient} = getTestUtils();
     const body = new FormData();
 
     body.append(
