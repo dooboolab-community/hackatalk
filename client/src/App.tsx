@@ -18,9 +18,9 @@ import {RelayEnvironmentProvider} from 'react-relay';
 import RootNavigator from './components/navigations/RootStackNavigator';
 import {SnackbarProvider} from './providers/SnackbarProvider';
 import {ThemeProvider} from 'dooboo-ui';
+import {createRelayEnvironment} from './relay';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
-import {relayEnvironment} from './relay';
 import {useAssets} from 'expo-asset';
 import {useFonts} from 'expo-font';
 
@@ -98,12 +98,14 @@ function ActionSheetProviderWithChildren(props: {
   return <ActionSheetProvider>{props.children}</ActionSheetProvider>;
 }
 
+const environment = createRelayEnvironment();
+
 // Add all required providers for App.
 const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
   .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
-  .wrap(RelayEnvironmentProvider, {environment: relayEnvironment})
+  .wrap(RelayEnvironmentProvider, {environment})
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})

@@ -17,5 +17,3 @@ export function createRelayEnvironment(): IEnvironment {
     log: __DEV__ ? relayTransactionLogger : null,
   });
 }
-
-export const relayEnvironment = createRelayEnvironment();

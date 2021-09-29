@@ -8,13 +8,13 @@ import {
   commitLocalUpdate,
   graphql,
   useQueryLoader,
+  useRelayEnvironment,
 } from 'react-relay/hooks';
 import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
-import {relayEnvironment} from '../relay';
 
 export interface AuthContext {
   user: AuthProviderMeQueryResponse['me'] | null;
@@ -53,6 +53,8 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
     (initialAuthUser as AuthProviderMeQueryResponse['me']) || null,
   );
 
+  const environment = useRelayEnvironment();
+
   const [meQueryReference, loadMeQuery, disposeMeQuery] =
     useQueryLoader<AuthProviderMeQuery>(meQuery);
 
@@ -61,7 +63,7 @@ function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
 
     disposeMeQuery();
 
-    commitLocalUpdate(relayEnvironment, (store) => {
+    commitLocalUpdate(environment, (store) => {
       const root = store.getRoot();
       root.invalidateRecord();
     });
