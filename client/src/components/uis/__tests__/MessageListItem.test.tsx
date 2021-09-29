@@ -1,6 +1,11 @@
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import React, {Suspense} from 'react';
-import {fireEvent, render, waitFor} from '@testing-library/react-native';
+import {
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from '@testing-library/react-native';
 import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import MessageListItem from '../MessageListItem';
@@ -8,6 +13,7 @@ import {MessageListItemTestQuery} from '../../../__generated__/MessageListItemTe
 import {ProfileModal_user$key} from '../../../__generated__/ProfileModal_user.graphql';
 import {Text} from 'react-native';
 import {createTestElement} from '../../../../test/testUtils';
+import {getString} from '../../../../STRINGS';
 
 const SAMPLE_MESSAGE = {
   messageType: 'text',
@@ -27,6 +33,7 @@ const SAMPLE_MESSAGE = {
 type QueryWrapperProps = {
   onPressPeerImage?: (sender: ProfileModal_user$key) => void;
   onPressMessageImage?: (index: number) => void;
+  userId?: string;
 };
 
 const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
@@ -53,25 +60,32 @@ const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
           id: 'previous-message-id',
         }}
         nextItemDate="2021-03-19T00:57:16.762Z"
+        userId={props.userId}
       />
     </Suspense>
   );
 };
 
-const mockEnvironment = createMockEnvironment();
+let mockEnvironment;
 
-mockEnvironment.mock.queueOperationResolver((operation) =>
-  MockPayloadGenerator.generate(operation, {
-    Message(_, generateId) {
-      return {
-        ...SAMPLE_MESSAGE,
-        id: `test-message-${generateId()}`,
-      };
-    },
-  }),
-);
+// beforeEach(() => ();
 
 describe('[MessageListItem] rendering test', () => {
+  beforeAll(() => {
+    mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        Message(_, generateId) {
+          return {
+            ...SAMPLE_MESSAGE,
+            id: `test-message-${generateId()}`,
+          };
+        },
+      }),
+    );
+  });
+
   it('renders [peerMessage] as expected', async () => {
     const component = createTestElement(<QueryWrapper />, {
       environment: mockEnvironment,
@@ -103,10 +117,36 @@ describe('[MessageListItem] rendering test', () => {
       'https://example.com/profile.jpg',
     );
   });
+
+  it('should render message text as expected', async () => {
+    const component = createTestElement(<QueryWrapper />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+    const messageTexts = screen.queryAllByText(SAMPLE_MESSAGE.text);
+
+    expect(messageTexts).not.toBeNull();
+  });
 });
 
 describe('[MessageListItem] interaction', () => {
   it('should fireEvent when peer image is pressed', async () => {
+    beforeAll(() => {
+      mockEnvironment = createMockEnvironment();
+
+      mockEnvironment.mock.queueOperationResolver((operation) =>
+        MockPayloadGenerator.generate(operation, {
+          Message(_, generateId) {
+            return {
+              ...SAMPLE_MESSAGE,
+              id: `test-message-${generateId()}`,
+            };
+          },
+        }),
+      );
+    });
+
     const mockPressPeerImage = jest.fn();
 
     const component = createTestElement(
@@ -120,6 +160,78 @@ describe('[MessageListItem] interaction', () => {
     const touchPeerImage = screen.getByTestId('chat-list-item0');
 
     fireEvent.press(touchPeerImage);
+
     expect(mockPressPeerImage).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('[MessageListItem] image test', () => {
+  beforeAll(() => {
+    mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        Message(_, generateId) {
+          return {
+            ...SAMPLE_MESSAGE,
+            messageType: 'photo',
+            id: `test-message-${generateId()}`,
+          };
+        },
+      }),
+    );
+  });
+
+  it('should render mediaError when failed loading', async () => {
+    const component = createTestElement(<QueryWrapper />, {
+      environment: mockEnvironment,
+    });
+
+    const screen = render(component);
+
+    const imgComponent = screen.getByTestId('image-display');
+    fireEvent(imgComponent, 'error');
+
+    const mediaErrorText = screen.queryAllByText(
+      getString('FAILED_FETCH', {media: getString('PHOTO')}),
+    );
+
+    expect(mediaErrorText).not.toBeNull();
+  });
+});
+
+describe('[MessageListItem] video test', () => {
+  beforeAll(() => {
+    mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        Message(_, generateId) {
+          return {
+            ...SAMPLE_MESSAGE,
+            messageType: 'file',
+            id: `test-message-${generateId()}`,
+          };
+        },
+      }),
+    );
+  });
+
+  it('should render load media button at first', async () => {
+    const component = createTestElement(
+      <QueryWrapper userId={SAMPLE_MESSAGE.sender.id} />,
+      {
+        environment: mockEnvironment,
+      },
+    );
+
+    const screen = render(component);
+
+    await waitFor(() => {
+      const mediaLoadText = screen.queryAllByText(
+        getString('MEDIA_LOAD', {media: getString('VIDEO')}),
+      );
+      expect(mediaLoadText).not.toBeNull();
+    });
   });
 });

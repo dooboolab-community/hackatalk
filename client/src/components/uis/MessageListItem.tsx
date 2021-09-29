@@ -5,6 +5,7 @@ import {graphql, useFragment} from 'react-relay';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
+import {MessageType} from '../../types';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {Theme} from '../../theme';
@@ -244,7 +245,7 @@ const MessageListItem: FC<Props> = ({
 
   const data = useFragment(fragment, item);
 
-  const {id, sender, text, createdAt, imageUrls, fileUrls} = data;
+  const {id, sender, text, createdAt, imageUrls, fileUrls, messageType} = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
@@ -266,6 +267,7 @@ const MessageListItem: FC<Props> = ({
           onPress={() => onPressMessageImage && onPressMessageImage(0)}
         >
           <Image
+            testID="image-display"
             key={id || ''}
             width={240}
             source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
@@ -305,6 +307,7 @@ const MessageListItem: FC<Props> = ({
       </StyledPhotoContainer>
     );
   };
+
   if (sender?.id !== userId)
     return (
       <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
@@ -337,9 +340,11 @@ const MessageListItem: FC<Props> = ({
             }}
           >
             <StyledTextPeerMessageContainer>
-              {fileUrls && fileUrls.length > 0 ? (
+              {messageType === 'file' && fileUrls && fileUrls.length > 0 ? (
                 displayVideo()
-              ) : imageUrls && imageUrls.length > 0 ? (
+              ) : messageType === 'photo' &&
+                imageUrls &&
+                imageUrls.length > 0 ? (
                 displayImage()
               ) : (
                 <StyledPeerTextMessage selectable>
