@@ -61,6 +61,7 @@ import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
+import mime from 'mime';
 import {nanoid} from 'nanoid/non-secure';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
@@ -213,7 +214,16 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     if (type === ImagePickerType.CAMERA) media = await launchCameraAsync();
     else media = await launchMediaLibraryAsync();
 
-    if (media && !media.cancelled)
+    if (media && !media.cancelled) {
+      if (Platform.OS === 'web' && !media.type) {
+        const mediaType = media.uri.substring(
+          media.uri.indexOf(':') + 1,
+          media.uri.indexOf(';'),
+        );
+
+        media.type = mediaType.split('/')[0] as 'video' | 'image' | undefined;
+      }
+
       try {
         let response;
 
@@ -268,13 +278,12 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           },
         });
       } catch (err: any) {
+        console.log(err);
         setIsImageUploading(false);
 
-        Alert.alert(
-          getString('ERROR'),
-          err.message || getString('FAILED_LOAD_IMAGE'),
-        );
+        Alert.alert(getString('ERROR'), getString('FAILED_LOAD_IMAGE'));
       }
+    }
   };
 
   const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
