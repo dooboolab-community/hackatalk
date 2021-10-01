@@ -1,5 +1,3 @@
-import * as SplashScreen from 'expo-splash-screen';
-
 import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
 import MainStack, {MainStackParamList} from './MainStackNavigator';
 import {
@@ -59,26 +57,7 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
 
   const {user, setUser} = useAuthContext();
 
-  const hideSplash = async (): Promise<void> => {
-    try {
-      await SplashScreen.hideAsync();
-    } catch (err: any) {
-      // err
-    }
-  };
-
-  useEffect(() => {
-    if (!me) {
-      hideSplash();
-      setUser(null);
-
-      return;
-    }
-
-    hideSplash();
-
-    setUser(me);
-  }, [me, setUser]);
+  useEffect(() => (!me ? setUser(null) : setUser(me)), [me, setUser]);
 
   return (
     <SafeAreaProvider>
@@ -162,30 +141,6 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
   );
 }
 
-function AuthNavigatorOnly(): React.ReactElement {
-  const {theme} = useTheme();
-
-  return (
-    <SafeAreaProvider>
-      <NavigationContainer
-        theme={{
-          colors: {
-            background: theme.background,
-            border: theme.background,
-            card: theme.background,
-            primary: theme.primary,
-            notification: theme.primary,
-            text: theme.primary,
-          },
-          dark: true,
-        }}
-      >
-        <AuthStack />
-      </NavigationContainer>
-    </SafeAreaProvider>
-  );
-}
-
 const RootNavigatorWrapper: FC = () => {
   const {user, loadMeQuery, meQueryReference} = useAuthContext();
   const {theme} = useTheme();
@@ -203,10 +158,8 @@ const RootNavigatorWrapper: FC = () => {
       }}
     >
       <Suspense fallback={<CustomLoadingIndicator />}>
-        {meQueryReference ? (
+        {meQueryReference && (
           <RootNavigator queryReference={meQueryReference} />
-        ) : (
-          <AuthNavigatorOnly />
         )}
       </Suspense>
     </View>
