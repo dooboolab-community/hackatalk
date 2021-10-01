@@ -34,13 +34,7 @@ Notifications.setNotificationHandler({
 SplashScreen.preventAutoHideAsync();
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
-  const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
-    try {
-      await SplashScreen.hideAsync();
-    } catch (err: any) {
-      // console.log('hide splash', err);
-    }
-
+  const registerNotification = async (): Promise<void> => {
     registerForPushNotificationsAsync()
       .then((pushToken) => {
         if (pushToken) {
@@ -69,7 +63,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   });
 
   useEffect(() => {
-    if (assets && dooboouiAssets) hideSplashScreenThenRegisterNotification();
+    if (assets && dooboouiAssets) registerNotification();
   }, [assets, dooboouiAssets]);
 
   if (!assets || !dooboouiAssets)
