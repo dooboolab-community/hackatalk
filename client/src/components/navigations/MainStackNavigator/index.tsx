@@ -34,8 +34,6 @@ import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
 import {useDeviceContext} from '../../../providers';
 
-// import {leave} './LeaveChannelModal';
-
 export type MainStackParamList = {
   MainTab: undefined;
   ProfileUpdate: undefined;
@@ -100,6 +98,7 @@ const onMessageSubscription = graphql`
         }
         memberships(excludeMe: false) {
           user {
+            id
             name
             nickname
             thumbURL
