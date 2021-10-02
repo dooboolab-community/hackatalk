@@ -1,4 +1,6 @@
-import React, {ReactElement} from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+
+import React, {ReactElement, useCallback, useEffect} from 'react';
 import {
   StackNavigationProp,
   createStackNavigator,
@@ -39,6 +41,14 @@ const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthNavigator(): ReactElement {
   const {theme} = useTheme();
+
+  const hideSplashScreenAsync = useCallback(async () => {
+    await SplashScreen.hideAsync();
+  }, []);
+
+  useEffect(() => {
+    hideSplashScreenAsync();
+  }, [hideSplashScreenAsync]);
 
   return (
     <Stack.Navigator

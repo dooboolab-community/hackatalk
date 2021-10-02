@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import React, {FC, ReactElement, ReactNode, Suspense, useEffect} from 'react';
+import React, {FC, ReactElement, ReactNode, useEffect} from 'react';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
@@ -11,7 +11,6 @@ import {AppearanceProvider} from 'react-native-appearance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
-import CustomLoadingIndicator from './components/uis/CustomLoadingIndicator';
 import {DeviceProvider} from './providers/DeviceProvider';
 import Icons from './utils/Icons';
 import {RelayEnvironmentProvider} from 'react-relay';
@@ -35,13 +34,7 @@ Notifications.setNotificationHandler({
 SplashScreen.preventAutoHideAsync();
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
-  const hideSplashScreenThenRegisterNotification = async (): Promise<void> => {
-    try {
-      await SplashScreen.hideAsync();
-    } catch (err: any) {
-      // console.log('hide splash', err);
-    }
-
+  const registerNotification = async (): Promise<void> => {
     registerForPushNotificationsAsync()
       .then((pushToken) => {
         if (pushToken) {
@@ -70,7 +63,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   });
 
   useEffect(() => {
-    if (assets && dooboouiAssets) hideSplashScreenThenRegisterNotification();
+    if (assets && dooboouiAssets) registerNotification();
   }, [assets, dooboouiAssets]);
 
   if (!assets || !dooboouiAssets)
@@ -104,7 +97,6 @@ const environment = createRelayEnvironment();
 const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
-  .wrap(Suspense, {fallback: <CustomLoadingIndicator />})
   .wrap(RelayEnvironmentProvider, {environment})
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})

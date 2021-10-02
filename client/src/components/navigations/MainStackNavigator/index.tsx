@@ -1,8 +1,9 @@
 import * as Notifications from 'expo-notifications';
+import * as SplashScreen from 'expo-splash-screen';
 
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, Platform, TouchableOpacity, View} from 'react-native';
-import React, {ReactElement, useEffect, useMemo} from 'react';
+import React, {ReactElement, useCallback, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
@@ -118,6 +119,14 @@ const onMessageSubscription = graphql`
 function MainStackNavigator(): ReactElement {
   const {theme} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
+
+  const hideSplashScreenAsync = useCallback(async () => {
+    await SplashScreen.hideAsync();
+  }, []);
+
+  useEffect(() => {
+    hideSplashScreenAsync();
+  }, [hideSplashScreenAsync]);
 
   useEffect(() => {
     if (Platform.OS === 'android' || Platform.OS === 'ios')

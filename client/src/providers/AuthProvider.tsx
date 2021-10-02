@@ -3,6 +3,7 @@ import {
   AuthProviderMeQueryResponse,
   AuthProviderMeQueryVariables,
 } from '../__generated__/AuthProviderMeQuery.graphql';
+import type {Dispatch, SetStateAction} from 'react';
 import {
   PreloadedQuery,
   commitLocalUpdate,
@@ -18,7 +19,7 @@ import createCtx from '../utils/createCtx';
 
 export interface AuthContext {
   user: AuthProviderMeQueryResponse['me'] | null;
-  setUser: (value: AuthProviderMeQueryResponse['me'] | null) => void;
+  setUser: Dispatch<SetStateAction<AuthProviderMeQueryResponse['me'] | null>>;
   signOutAsync: () => void;
   meQueryReference?:
     | PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>
