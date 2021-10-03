@@ -64,9 +64,11 @@ export const channels = queryField((t) => {
         orderBy: {updatedAt: 'desc'},
       });
 
-      return rows.filter(
-        (el) => (el._count || 0) > 1 && el.channelType !== 'self',
+      const result = rows.filter(
+        (el) => (el._count?.membership || 0) > 1 && el.channelType !== 'self',
       );
+
+      return result;
     },
   });
 });
