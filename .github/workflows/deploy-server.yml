@@ -34,6 +34,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "hackatalk"
+          app-name: "hackatalk-dev"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_241cb4cf043b472bba4b578954b48fc9 }}
           package: ./server
