@@ -1,0 +1,42 @@
+name: Release expo
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+    paths:
+      - "client/**"
+
+jobs:
+  publish:
+    name: Install and publish
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./client
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - uses: expo/expo-github-action@v5
+        with:
+          expo-version: 4.x
+          expo-token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Write dev.json
+        run: echo '{{ secrets.GOOGLE_SERVICES }}' > google-services.json
+
+      - run: yarn install
+
+      - run: expo publish
+        env:
+          GRAPHQL_URL: ${{ secrets.GRAPHQL_URL }}
+          ROOT_URL: ${{ secrets.ROOT_URL }}
+          SUBSCRIPTION_URL: ${{ secrets.SUBSCRIPTION_URL}}
+          facebookAppId: ${{ secrets.facebookAppId }}
+          facebookSecret: ${{ secrets.facebookSecret }}
+          googleWebClientId: ${{ secrets.googleWebClientId }}
+          googleAndroidClientId: ${{ secrets.googleAndroidClientId }}
+          googleIOSClientId: ${{ secrets.googleIOSClientId }}
+          googleSecret: ${{ secrets.googleSecret }}

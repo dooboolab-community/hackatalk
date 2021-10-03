@@ -2,8 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/dooboolab/hackatalk.svg?style=shield)](https://circleci.com/gh/dooboolab/hackatalk)
 [![Deploy Server](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml)
-[![Expo Publish](https://github.com/dooboolab/hackatalk/actions/workflows/expo-publish.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/expo-publish.yml)
-[![Deploy Web App](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-web-app.yml)
+[![Release expo](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml)
+[![Release Web](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml)
 [![CI For Website](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml)
 [![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)
 [![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors)
@@ -17,14 +17,13 @@
 
 ### Universl app
 
-* App
+- App
 
   <a href="https://apps.apple.com/us/app/hackatalk/id1479617602"><img src="https://user-images.githubusercontent.com/27461460/77502559-8c8a8d80-6e9e-11ea-9f8e-0f58c704eed6.png" width="200"/></a> <a href="https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk"><img src="https://user-images.githubusercontent.com/27461460/77502571-90b6ab00-6e9e-11ea-9e93-235a319ebb41.png" width="200"/></a>
 
-* Web
+- Web
 
   [https://hackatalk.dev](https://hackatalk.dev)
-
 
 ## Contributing to `HackaTalk`
 
@@ -32,7 +31,6 @@
   - dooboolab's [vision-and-mission](https://dooboolab.com/vision)
   - dooboolab's [code of conduct](https://dooboolab.com/codeofconduct)
 - [Contributing](CONTRIBUTING.md)
-
 
 ## Readme on projects
 
@@ -43,6 +41,7 @@
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
