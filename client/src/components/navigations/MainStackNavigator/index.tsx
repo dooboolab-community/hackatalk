@@ -19,6 +19,8 @@ import ChannelCreate from '../../pages/ChannelCreate';
 import {Theme as DefaultTheme} from '@emotion/react';
 import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
+import LeaveChannelModal from './LeaveChannelModal';
+import {LeaveChannelModalProvider} from '../../../providers/LeaveChannelModalProvider';
 import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
 import Message from '../../pages/Message';
 import ProfileModal from './ProfileModal';
@@ -270,6 +272,8 @@ function MainNavigator(): ReactElement {
     >
       <StatusBarBrightness />
       <MainStackNavigator />
+
+      <LeaveChannelModal testID="leave-channel-modal" />
       <ProfileModal testID="modal" />
     </View>
   );
@@ -277,8 +281,10 @@ function MainNavigator(): ReactElement {
 
 export default function MainNavigatorWrapper(): ReactElement {
   return (
-    <ProfileModalProvider>
-      <MainNavigator />
-    </ProfileModalProvider>
+    <LeaveChannelModalProvider>
+      <ProfileModalProvider>
+        <MainNavigator />
+      </ProfileModalProvider>
+    </LeaveChannelModalProvider>
   );
 }
