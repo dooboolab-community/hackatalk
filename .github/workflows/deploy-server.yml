@@ -35,6 +35,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: "hackatalk"
-          slot-name: "staging"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_241cb4cf043b472bba4b578954b48fc9 }}
           package: ./server
