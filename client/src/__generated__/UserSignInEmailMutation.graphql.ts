@@ -4,7 +4,6 @@
 
 import { ConcreteRequest } from "relay-runtime";
 
-export type AuthType = "apple" | "email" | "facebook" | "google";
 export type UserSignInEmailMutationVariables = {
     email: string;
     password: string;
@@ -19,7 +18,7 @@ export type UserSignInEmailMutationResponse = {
             readonly photoURL: string | null;
             readonly verified: boolean | null;
             readonly profile: {
-                readonly authType: AuthType | null;
+                readonly authType: unknown | null;
             } | null;
         };
     };

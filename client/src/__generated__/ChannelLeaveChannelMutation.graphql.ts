@@ -16,7 +16,7 @@ export type ChannelLeaveChannelMutationResponse = {
             readonly id: string;
         } | null;
         readonly alertMode: unknown | null;
-        readonly isVisible: boolean;
+        readonly isVisible: boolean | null;
     } | null;
 };
 export type ChannelLeaveChannelMutation = {

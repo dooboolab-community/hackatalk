@@ -193,7 +193,10 @@ function ChannelListItem(props: Props): React.ReactElement {
   const {user} = useAuthContext();
 
   if (channelType !== 'public') {
+    console.log('memberships', memberships);
+
     const users = calculateUsers(memberships, user?.id, channelType);
+
     const photoURLs = calculatePhotoUrls(users);
     const isOnline = calculateOnlineStatus(users);
 

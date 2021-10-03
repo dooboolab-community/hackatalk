@@ -18,6 +18,7 @@ export type MessageListItem_message = {
         readonly name: string | null;
         readonly nickname: string | null;
         readonly thumbURL: string | null;
+        readonly photoURL: string | null;
         readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
     } | null;
     readonly " $refType": "MessageListItem_message";
@@ -118,6 +119,13 @@ return {
           "storageKey": null
         },
         {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "photoURL",
+          "storageKey": null
+        },
+        {
           "args": null,
           "kind": "FragmentSpread",
           "name": "ProfileModal_user"
@@ -130,5 +138,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '05f3a3a95f03e49a39c3486538ad7bc2';
+(node as any).hash = '10bedc96c4bff58d435919c95263433b';
 export default node;

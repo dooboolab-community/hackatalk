@@ -22,6 +22,7 @@ export type ProfileModalTestQuery = {
 query ProfileModalTestQuery {
   myData: user(id: "test-id") {
     ...ProfileModal_user
+    id
   }
 }
 
@@ -140,12 +141,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "fbcce0820e8b7b4bea23d7c1f85df55b",
+    "cacheID": "5815d0b2fa821d35e57fbca69d4926d0",
     "id": null,
     "metadata": {},
     "name": "ProfileModalTestQuery",
     "operationKind": "query",
-    "text": "query ProfileModalTestQuery {\n  myData: user(id: \"test-id\") {\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "query ProfileModalTestQuery {\n  myData: user(id: \"test-id\") {\n    ...ProfileModal_user\n    id\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();

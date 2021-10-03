@@ -22,6 +22,7 @@ export type MessageListItemTestQuery = {
 query MessageListItemTestQuery {
   myData: message(id: "test-id") {
     ...MessageListItem_message
+    id
   }
 }
 
@@ -38,6 +39,7 @@ fragment MessageListItem_message on Message {
     name
     nickname
     thumbURL
+    photoURL
     ...ProfileModal_user
   }
 }
@@ -219,12 +221,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "15cbd80b34796cddc574810b807baea1",
+    "cacheID": "1e9ce3b5dafa14e87300feeefb00b632",
     "id": null,
     "metadata": {},
     "name": "MessageListItemTestQuery",
     "operationKind": "query",
-    "text": "query MessageListItemTestQuery {\n  myData: message(id: \"test-id\") {\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "query MessageListItemTestQuery {\n  myData: message(id: \"test-id\") {\n    ...MessageListItem_message\n    id\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    photoURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();

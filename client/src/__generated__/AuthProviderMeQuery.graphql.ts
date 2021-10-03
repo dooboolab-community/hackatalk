@@ -4,7 +4,6 @@
 
 import { ConcreteRequest } from "relay-runtime";
 
-export type AuthType = "apple" | "email" | "facebook" | "google";
 export type AuthProviderMeQueryVariables = {};
 export type AuthProviderMeQueryResponse = {
     readonly me: {
@@ -13,7 +12,7 @@ export type AuthProviderMeQueryResponse = {
         readonly verified: boolean | null;
         readonly profile: {
             readonly socialId: string | null;
-            readonly authType: AuthType | null;
+            readonly authType: unknown | null;
         } | null;
     } | null;
 };

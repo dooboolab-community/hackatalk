@@ -22,6 +22,7 @@ export type UserListItemTestQuery = {
 query UserListItemTestQuery {
   myData: user(id: "test-id") {
     ...UserListItem_user
+    id
   }
 }
 
@@ -140,12 +141,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a0056f27a643459dd64cec949ac6cc56",
+    "cacheID": "abfc66970a4cb1f1a8f8591dd3f2adbd",
     "id": null,
     "metadata": {},
     "name": "UserListItemTestQuery",
     "operationKind": "query",
-    "text": "query UserListItemTestQuery {\n  myData: user(id: \"test-id\") {\n    ...UserListItem_user\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
+    "text": "query UserListItemTestQuery {\n  myData: user(id: \"test-id\") {\n    ...UserListItem_user\n    id\n  }\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
