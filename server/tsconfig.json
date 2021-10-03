@@ -26,7 +26,8 @@
   },
   "files": ["environment.d.ts"],
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "locales/*.json"
   ],
   "exclude": [
     "node_modules",

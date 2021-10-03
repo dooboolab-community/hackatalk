@@ -7,6 +7,7 @@ import express from 'express';
 import i18Middleware from 'i18next-http-middleware';
 import i18next from 'i18next';
 import path from 'path';
+import {version} from '../package.json';
 
 // eslint-disable-next-line
 require('dotenv').config();
@@ -57,6 +58,10 @@ export const createApp = (): express.Application => {
   app.use(i18Middleware.handle(i18next));
   app.use(express.static(filePath));
   app.use(environmentVariableMiddleware);
+
+  app.get('/', (req, res) => {
+    res.send(`${req.t('IT_WORKS')} - ${version}`);
+  });
 
   app.set('views', path.join(__dirname, '../html'));
   app.engine('html', ejs.renderFile);
