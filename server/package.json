@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
-    "prod": "node dist/server",
+    "prod": "node dist/src/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx src tests",
