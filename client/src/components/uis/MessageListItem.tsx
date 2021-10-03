@@ -28,6 +28,7 @@ const fragment = graphql`
       name
       nickname
       thumbURL
+      photoURL
       ...ProfileModal_user
     }
   }
@@ -260,7 +261,7 @@ const MessageListItem: FC<Props> = ({
             }}
           >
             <ImageSender
-              thumbURL={sender?.thumbURL}
+              thumbURL={sender?.thumbURL || sender?.photoURL}
               isSamePeerMsg={!!isPrevMessageSameUser}
               fontColor={theme.text}
             />

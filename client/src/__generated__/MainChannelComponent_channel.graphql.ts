@@ -11,7 +11,7 @@ export type MainChannelComponent_channel = {
             readonly cursor: string;
             readonly node: {
                 readonly id: string;
-                readonly channelType: unknown;
+                readonly channelType: unknown | null;
                 readonly name: string | null;
                 readonly memberships: ReadonlyArray<{
                     readonly user: {

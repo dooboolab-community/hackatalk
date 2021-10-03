@@ -13,29 +13,22 @@ type AuthPayload {
   user: User!
 }
 
-enum AuthType {
-  email
-  facebook
-  google
-  apple
-}
-
 type BlockedUser {
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   user: User
   blockedUser: User
 }
 
 type Channel {
-  id: String!
-  channelType: ChannelType!
+  id: ID!
+  channelType: ChannelType
   name: String
   lastMessageId: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
 
   """Get latest message sent to the channel."""
   lastMessage: Message
@@ -94,12 +87,10 @@ representation of dates and times using the Gregorian calendar.
 """
 scalar Date
 
-scalar DateTime
-
 type Friend {
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   user: User
   friend: User
 }
@@ -109,9 +100,9 @@ scalar Gender
 type Membership {
   alertMode: AlertMode
   membershipType: MembershipType
-  isVisible: Boolean!
-  createdAt: DateTime
-  updatedAt: DateTime
+  isVisible: Boolean
+  createdAt: Date
+  updatedAt: Date
   user: User
   channel: Channel
 }
@@ -119,14 +110,14 @@ type Membership {
 scalar MembershipType
 
 type Message {
-  id: String!
+  id: ID!
   messageType: MessageType!
   text: String
   imageUrls: [String]
   fileUrls: [String]
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   channel: Channel
   sender: User
   replies: [Reply]
@@ -227,8 +218,7 @@ type Notification {
   token: String!
   device: String
   os: String
-  user: User!
-  createdAt: DateTime
+  createdAt: Date
 }
 
 """
@@ -258,7 +248,8 @@ type PageInfo {
 
 type Profile {
   socialId: String
-  authType: AuthType
+  authType: Auth
+  user: User
 }
 
 type Query {
@@ -347,27 +338,28 @@ type Query {
 }
 
 type Reaction {
-  id: Int!
+  id: ID!
   value: String!
 }
 
 type Reply {
-  id: Int!
+  id: ID!
   messageType: MessageType!
   text: String
-  imageUrls: [String!]!
-  fileUrls: [String!]!
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  imageUrls: [String]
+  fileUrls: [String]
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   sender: User!
 }
 
 type Report {
+  id: ID!
   report: String!
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   user: User
   reportedUser: User
 }
@@ -382,23 +374,23 @@ type Subscription {
 scalar Upload
 
 type User {
-  id: String!
+  id: ID!
   email: String
   name: String
   nickname: String
   thumbURL: String
   photoURL: String
-  birthday: DateTime
+  birthday: Date
   gender: Gender
   phone: String
   statusMessage: String
   verified: Boolean
-  lastSignedIn: DateTime
+  lastSignedIn: Date
   isOnline: Boolean
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date
   profile: Profile
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
   notifications: [Notification]
 
   """Check if the user is blocked by the user who have signed in."""

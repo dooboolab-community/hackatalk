@@ -3,7 +3,6 @@ import * as Config from '../../../../config';
 import * as WebBrowser from 'expo-web-browser';
 
 import {Alert, Platform, View} from 'react-native';
-import {AuthType, User} from '../../../types/graphql';
 import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
@@ -20,6 +19,7 @@ import {
 } from '../../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {User} from '../../../types/graphql';
 import {css} from '@emotion/native';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -28,6 +28,8 @@ import {useMutation} from 'react-relay';
 const {facebookAppId, googleWebClientId} = Config;
 
 WebBrowser.maybeCompleteAuthSession();
+
+type AuthType = 'google' | 'apple' | 'facebook' | 'emails';
 
 interface Props {
   svgIcon: ReactElement;

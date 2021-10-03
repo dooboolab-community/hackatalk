@@ -11,7 +11,7 @@ export type ChannelFindOrCreatePrivateChannelMutationResponse = {
     readonly findOrCreatePrivateChannel: {
         readonly id: string;
         readonly name: string | null;
-        readonly channelType: unknown;
+        readonly channelType: unknown | null;
     } | null;
 };
 export type ChannelFindOrCreatePrivateChannelMutation = {

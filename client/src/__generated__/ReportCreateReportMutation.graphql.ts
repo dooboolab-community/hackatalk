@@ -27,6 +27,7 @@ mutation ReportCreateReportMutation(
 ) {
   createReport(reportedUserId: $reportedUserId, report: $report) {
     report
+    id
   }
 }
 */
@@ -44,35 +45,23 @@ v1 = {
 },
 v2 = [
   {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "report",
-        "variableName": "report"
-      },
-      {
-        "kind": "Variable",
-        "name": "reportedUserId",
-        "variableName": "reportedUserId"
-      }
-    ],
-    "concreteType": "Report",
-    "kind": "LinkedField",
-    "name": "createReport",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "report",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
+    "kind": "Variable",
+    "name": "report",
+    "variableName": "report"
+  },
+  {
+    "kind": "Variable",
+    "name": "reportedUserId",
+    "variableName": "reportedUserId"
   }
-];
+],
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "report",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [
@@ -82,7 +71,20 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "ReportCreateReportMutation",
-    "selections": (v2/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v2/*: any*/),
+        "concreteType": "Report",
+        "kind": "LinkedField",
+        "name": "createReport",
+        "plural": false,
+        "selections": [
+          (v3/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Mutation",
     "abstractKey": null
   },
@@ -94,15 +96,35 @@ return {
     ],
     "kind": "Operation",
     "name": "ReportCreateReportMutation",
-    "selections": (v2/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v2/*: any*/),
+        "concreteType": "Report",
+        "kind": "LinkedField",
+        "name": "createReport",
+        "plural": false,
+        "selections": [
+          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "9cad1f04016a1a6e843b68d8be6d4190",
+    "cacheID": "98ce154bd8dd3b281f5fc7e8229b8090",
     "id": null,
     "metadata": {},
     "name": "ReportCreateReportMutation",
     "operationKind": "mutation",
-    "text": "mutation ReportCreateReportMutation(\n  $reportedUserId: String!\n  $report: String!\n) {\n  createReport(reportedUserId: $reportedUserId, report: $report) {\n    report\n  }\n}\n"
+    "text": "mutation ReportCreateReportMutation(\n  $reportedUserId: String!\n  $report: String!\n) {\n  createReport(reportedUserId: $reportedUserId, report: $report) {\n    report\n    id\n  }\n}\n"
   }
 };
 })();

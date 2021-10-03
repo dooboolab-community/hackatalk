@@ -194,6 +194,7 @@ function ChannelListItem(props: Props): React.ReactElement {
 
   if (channelType !== 'public') {
     const users = calculateUsers(memberships, user?.id, channelType);
+
     const photoURLs = calculatePhotoUrls(users);
     const isOnline = calculateOnlineStatus(users);
 
