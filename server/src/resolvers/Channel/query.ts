@@ -37,7 +37,7 @@ export const channels = queryField((t) => {
         },
       };
 
-      return prisma.channel.findMany({
+      const rows = await prisma.channel.findMany({
         ...relayToPrismaPagination({
           after,
           before,
@@ -55,8 +55,18 @@ export const channels = queryField((t) => {
           ...checkMessage,
         },
 
+        include: {
+          _count: {
+            select: {membership: true},
+          },
+        },
+
         orderBy: {updatedAt: 'desc'},
       });
+
+      return rows.filter(
+        (el) => (el._count || 0) > 1 && el.channelType !== 'self',
+      );
     },
   });
 });
