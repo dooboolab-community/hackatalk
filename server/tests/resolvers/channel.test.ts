@@ -201,17 +201,21 @@ describe('Resolver - Channel', () => {
     channels.push(response.createChannel.id);
   });
 
-  it('should query my channels which are newly inserted in above tests === 3', async () => {
-    const response = await authClient.request(channelsQuery);
+  it(
+    'should query my channels which are newly inserted in above tests === 3, ' +
+      'however result will be equal to 2 since one of them has only one user in `memberships`',
+    async () => {
+      const response = await authClient.request(channelsQuery);
 
-    expect(response).toHaveProperty('channels');
-    expect(response.channels.edges).toHaveLength(3);
-    expect(channels.length).toEqual(response.channels.edges.length);
+      expect(response).toHaveProperty('channels');
+      expect(response.channels.edges).toHaveLength(2);
+      expect(channels.length).toEqual(response.channels.edges.length + 1);
 
-    response.channels.edges.forEach((channelEdge) => {
-      expect(channels).toContain(channelEdge.node.id);
-    });
-  });
+      response.channels.edges.forEach((channelEdge) => {
+        expect(channels).toContain(channelEdge.node.id);
+      });
+    },
+  );
 
   it('should query single channel with channelId', async () => {
     const variables = {
