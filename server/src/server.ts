@@ -49,7 +49,7 @@ const initializeApolloServer = (
 
 export const startServer = async (
   app: express.Application,
-  port = 4000,
+  port: number,
 ): Promise<Server> => {
   const httpServer = createHttpServer(app);
   const apollo = createApolloServer();
@@ -66,5 +66,5 @@ export const startServer = async (
 if (process.env.NODE_ENV !== 'test') {
   const app = createApp();
 
-  startServer(app);
+  startServer(app, PORT as number);
 }
