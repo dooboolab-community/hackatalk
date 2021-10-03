@@ -14,9 +14,9 @@ type AuthPayload {
 }
 
 type BlockedUser {
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   user: User
   blockedUser: User
 }
@@ -26,9 +26,9 @@ type Channel {
   channelType: ChannelType
   name: String
   lastMessageId: String
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
 
   """Get latest message sent to the channel."""
   lastMessage: Message
@@ -87,10 +87,17 @@ representation of dates and times using the Gregorian calendar.
 """
 scalar Date
 
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
 type Friend {
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   user: User
   friend: User
 }
@@ -101,8 +108,8 @@ type Membership {
   alertMode: AlertMode
   membershipType: MembershipType
   isVisible: Boolean
-  createdAt: Date
-  updatedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
   user: User
   channel: Channel
 }
@@ -115,9 +122,9 @@ type Message {
   text: String
   imageUrls: [String]
   fileUrls: [String]
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   channel: Channel
   sender: User
   replies: [Reply]
@@ -218,7 +225,7 @@ type Notification {
   token: String!
   device: String
   os: String
-  createdAt: Date
+  createdAt: DateTime
 }
 
 """
@@ -348,18 +355,18 @@ type Reply {
   text: String
   imageUrls: [String]
   fileUrls: [String]
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   sender: User!
 }
 
 type Report {
   id: ID!
   report: String!
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   user: User
   reportedUser: User
 }
@@ -380,16 +387,16 @@ type User {
   nickname: String
   thumbURL: String
   photoURL: String
-  birthday: Date
+  birthday: DateTime
   gender: Gender
   phone: String
   statusMessage: String
   verified: Boolean
-  lastSignedIn: Date
+  lastSignedIn: DateTime
   isOnline: Boolean
-  createdAt: Date
-  updatedAt: Date
-  deletedAt: Date
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   profile: Profile
   notifications: [Notification]
 
@@ -417,7 +424,7 @@ input UserCreateInput {
   password: String!
   name: String
   nickname: String
-  birthday: Date
+  birthday: DateTime
   gender: Gender
   phone: String
   statusMessage: String
@@ -437,7 +444,7 @@ input UserUpdateInput {
   nickname: String
   thumbURL: String
   photoURL: String
-  birthday: Date
+  birthday: DateTime
   phone: String
   statusMessage: String
   gender: Gender

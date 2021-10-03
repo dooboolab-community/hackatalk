@@ -1,7 +1,7 @@
+import {GraphQLDate, GraphQLDateTime} from 'graphql-iso-date';
 /* eslint-disable no-shadow */
 import {asNexusMethod, scalarType} from 'nexus';
 
-import {GraphQLDate} from 'graphql-iso-date';
 import {GraphQLUpload} from 'apollo-server-express';
 
 export enum AuthType {
@@ -107,5 +107,5 @@ export const messageType = scalarType({
 });
 
 export const Upload = GraphQLUpload;
-export const DateTime = GraphQLDate;
-export const GQLDate = asNexusMethod(GraphQLDate, 'date');
+export const GQLDate = GraphQLDate;
+export const GQLDateTime = asNexusMethod(GraphQLDateTime, 'date');

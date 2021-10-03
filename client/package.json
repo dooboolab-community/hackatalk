@@ -45,7 +45,6 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",
     "apollo-upload-client": "^16.0.0",
-    "date-fns": "^2.23.0",
     "dooboo-ui": "^0.1.25",
     "expo": "^42.0.3",
     "expo-ads-admob": "~10.1.2",

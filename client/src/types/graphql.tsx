@@ -19,6 +19,12 @@ export type Scalars = {
    * representation of dates and times using the Gregorian calendar.
    */
   Date: any;
+  /**
+   * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+   * `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+   * 8601 standard for representation of dates and times using the Gregorian calendar.
+   */
+  DateTime: any;
   Gender: any;
   MembershipType: any;
   MessageType: any;
@@ -35,17 +41,17 @@ export type AuthPayload = {
 export type BlockedUser = {
   __typename?: 'BlockedUser';
   blockedUser?: Maybe<User>;
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<User>;
 };
 
 export type Channel = {
   __typename?: 'Channel';
   channelType?: Maybe<Scalars['ChannelType']>;
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['ID'];
   /** Get latest message sent to the channel. */
   lastMessage?: Maybe<Message>;
@@ -54,7 +60,7 @@ export type Channel = {
   memberships?: Maybe<Array<Membership>>;
   messages?: Maybe<MessageConnection>;
   name?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
@@ -94,10 +100,10 @@ export type ChannelEdge = {
 
 export type Friend = {
   __typename?: 'Friend';
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   friend?: Maybe<User>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<User>;
 };
 
@@ -105,18 +111,18 @@ export type Membership = {
   __typename?: 'Membership';
   alertMode?: Maybe<Scalars['AlertMode']>;
   channel?: Maybe<Channel>;
-  createdAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
   isVisible?: Maybe<Scalars['Boolean']>;
   membershipType?: Maybe<Scalars['MembershipType']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<User>;
 };
 
 export type Message = {
   __typename?: 'Message';
   channel?: Maybe<Channel>;
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   fileUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
   id: Scalars['ID'];
   imageUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -125,7 +131,7 @@ export type Message = {
   replies?: Maybe<Array<Maybe<Reply>>>;
   sender?: Maybe<User>;
   text?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type MessageConnection = {
@@ -336,7 +342,7 @@ export type MutationUpdateProfileArgs = {
 
 export type Notification = {
   __typename?: 'Notification';
-  createdAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
   device?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   os?: Maybe<Scalars['String']>;
@@ -455,25 +461,25 @@ export type Reaction = {
 
 export type Reply = {
   __typename?: 'Reply';
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   fileUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
   id: Scalars['ID'];
   imageUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
   messageType: Scalars['MessageType'];
   sender: User;
   text?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Report = {
   __typename?: 'Report';
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['ID'];
   report: Scalars['String'];
   reportedUser?: Maybe<User>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   user?: Maybe<User>;
 };
 
@@ -491,9 +497,9 @@ export type SubscriptionOnMessageArgs = {
 
 export type User = {
   __typename?: 'User';
-  birthday?: Maybe<Scalars['Date']>;
-  createdAt?: Maybe<Scalars['Date']>;
-  deletedAt?: Maybe<Scalars['Date']>;
+  birthday?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  deletedAt?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   gender?: Maybe<Scalars['Gender']>;
   /** Check if the user is blocked by the user who have signed in. */
@@ -502,7 +508,7 @@ export type User = {
   /** This user is a friend of the authenticated user. */
   isFriend?: Maybe<Scalars['Boolean']>;
   isOnline?: Maybe<Scalars['Boolean']>;
-  lastSignedIn?: Maybe<Scalars['Date']>;
+  lastSignedIn?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
   nickname?: Maybe<Scalars['String']>;
   notifications?: Maybe<Array<Maybe<Notification>>>;
@@ -511,7 +517,7 @@ export type User = {
   profile?: Maybe<Profile>;
   statusMessage?: Maybe<Scalars['String']>;
   thumbURL?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
   verified?: Maybe<Scalars['Boolean']>;
 };
 
@@ -524,7 +530,7 @@ export type UserConnection = {
 };
 
 export type UserCreateInput = {
-  birthday?: Maybe<Scalars['Date']>;
+  birthday?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   gender?: Maybe<Scalars['Gender']>;
   name?: Maybe<Scalars['String']>;
@@ -543,7 +549,7 @@ export type UserEdge = {
 };
 
 export type UserUpdateInput = {
-  birthday?: Maybe<Scalars['Date']>;
+  birthday?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   gender?: Maybe<Scalars['Gender']>;
   name?: Maybe<Scalars['String']>;
