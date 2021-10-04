@@ -54,8 +54,6 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
   const [thumbnailError, setThumbnailError] = useState('');
 
   useEffect(() => {
-    let video = videoRef.current;
-
     if (Platform.OS !== 'web')
       (async () => {
         try {
@@ -68,11 +66,6 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
           setThumbnailError(getString('THUMBNAIL_ERROR'));
         }
       })();
-
-    return () => {
-      /* istanbul ignore else */
-      if (video) video.unloadAsync();
-    };
   }, [uri]);
 
   const handleLoadPress = async (): Promise<void> => {
