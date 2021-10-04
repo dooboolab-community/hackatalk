@@ -21,6 +21,11 @@ import {
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
 import {
+  MESSAGE_RESIZED_IMAGE_HEIGHT,
+  MESSAGE_RESIZED_IMAGE_WIDTH,
+  UPLOAD_FILE_SIZE_LIMIT,
+} from '../../utils/const';
+import {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
@@ -55,6 +60,7 @@ import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
+import {ImagePickerResult} from 'expo-image-picker';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
@@ -206,7 +212,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   };
 
   const onRequestMediaPicker = async (type: ImagePickerType): Promise<void> => {
-    let media;
+    let media: ImagePickerResult | null;
 
     setIsImageUploading(true);
 
@@ -224,7 +230,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       }
 
       try {
-        let response;
+        let response: Response;
 
         if (media.type === 'video')
           response = await uploadSingleAsync(
@@ -236,8 +242,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
               uri: media.uri,
-              width: 1920,
-              height: 1920,
+              width: MESSAGE_RESIZED_IMAGE_WIDTH,
+              height: MESSAGE_RESIZED_IMAGE_HEIGHT,
             },
           );
 
@@ -289,7 +295,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         Alert.alert(
           getString('ERROR'),
           err.message === 'LIMIT_FILE_SIZE'
-            ? getString(err.message)
+            ? getString(err.message, {uploadFileSize: UPLOAD_FILE_SIZE_LIMIT})
             : getString('FAILED_LOAD_IMAGE'),
         );
       }

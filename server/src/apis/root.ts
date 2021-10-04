@@ -2,6 +2,7 @@ import {ErrorRequestHandler, Request, Response, Router} from 'express';
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
+import {UPLOAD_FILE_SIZE_LIMIT} from '../utils/const';
 import {getMimeType} from 'stream-mime-type';
 import {message} from './../resolvers/Message/query';
 import multer from 'multer';
@@ -31,7 +32,7 @@ export function resolveBlobName(destFile: string, destDir: string): string {
 const router = Router();
 const storage = multer.memoryStorage();
 
-const upload = multer({storage, limits: {fileSize: 100000000}});
+const upload = multer({storage, limits: {fileSize: UPLOAD_FILE_SIZE_LIMIT}});
 
 function bufferToStream(buffer: Buffer): stream.Readable {
   const duplexStream = new stream.Duplex();

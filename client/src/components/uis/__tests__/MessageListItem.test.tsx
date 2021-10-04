@@ -63,8 +63,6 @@ const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
 
 let mockEnvironment;
 
-// beforeEach(() => ();
-
 describe('[MessageListItem] rendering test', () => {
   beforeAll(() => {
     mockEnvironment = createMockEnvironment();
