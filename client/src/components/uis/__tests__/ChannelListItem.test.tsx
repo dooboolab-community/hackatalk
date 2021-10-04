@@ -164,6 +164,7 @@ describe('[ChannelListItem] rendering test', () => {
       ...TEST_CHANNEL,
       lastMessage: {
         ...TEST_CHANNEL.lastMessage,
+        messageType: 'photo',
         imageUrls: ['https://picsum.photos/201', 'https://picsum.photos/202'],
       },
     };
@@ -173,5 +174,24 @@ describe('[ChannelListItem] rendering test', () => {
     const {getByText} = render(component);
 
     expect(getByText('Photo')).toBeTruthy();
+  });
+
+  it('renders [StyledTextMessage] when lastMessage has video', () => {
+    const channel = {
+      ...TEST_CHANNEL,
+      lastMessage: {
+        ...TEST_CHANNEL.lastMessage,
+        messageType: 'file',
+        fileUrls: [
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        ],
+      },
+    };
+
+    const component = createTestElement(<ChannelListItem item={channel} />);
+
+    const {getByText} = render(component);
+
+    expect(getByText('Video')).toBeTruthy();
   });
 });

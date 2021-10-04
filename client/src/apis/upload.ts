@@ -4,13 +4,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Platform} from 'react-native';
 import mime from 'mime';
 
-export const uploadImageAsync = async (
+export const uploadSingleAsync = async (
   uri: string,
   dir: string,
   fileNamePrefix: string = '',
 ): Promise<Response> => {
   const fileName = uri.split('/').pop();
   const fileType = mime.getType(uri);
+
   const data: FormData = new FormData();
   const token = await AsyncStorage.getItem('token');
 

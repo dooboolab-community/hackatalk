@@ -1,6 +1,6 @@
 import 'react-native';
 
-import * as ImagePicker from '../../../utils/ImagePicker';
+import * as ImagePickerUtil from '../../../utils/ImagePicker';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
 import {Channel, Message as MessageType} from '../../../types/graphql';
@@ -40,6 +40,11 @@ jest.mock('@react-navigation/core', () => ({
 jest.mock('expo-image-picker', () => ({
   launchCameraAsync: (): string => 'photo info',
   launchImageLibraryAsync: (): string => 'photo info',
+}));
+
+jest.mock('../../../utils/image.ts', () => ({
+  resizePhotoToMaxDimensionsAndCompressAsPNG: (): string =>
+    'resized photo info',
 }));
 
 const mockEnvironment = createMockEnvironment();
@@ -149,9 +154,15 @@ describe('[Message] interaction', () => {
   });
 
   it('should open image library when pressing photo icon button', async () => {
-    const launchImageLibraryAsyncSpy = jest
-      .spyOn(ImagePicker, 'launchImageLibraryAsync')
-      .mockResolvedValue(null);
+    const launchMediaLibraryAsyncSpy = jest
+      .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
+      .mockResolvedValue({
+        cancelled: false,
+        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        width: 1920,
+        height: 1024,
+        type: 'video',
+      });
 
     const component = createTestElement(<Message />, {
       environment: mockEnvironment,
@@ -169,15 +180,21 @@ describe('[Message] interaction', () => {
 
     fireEvent.press(photoBtn);
 
-    expect(launchImageLibraryAsyncSpy).toBeCalledTimes(1);
+    expect(launchMediaLibraryAsyncSpy).toBeCalledTimes(1);
 
     await screen.findByRole('button');
   });
 
   it('should open camera when pressing camera icon button', async () => {
     const launchCameraAsyncSpy = jest
-      .spyOn(ImagePicker, 'launchCameraAsync')
-      .mockResolvedValue(null);
+      .spyOn(ImagePickerUtil, 'launchCameraAsync')
+      .mockResolvedValue({
+        cancelled: false,
+        uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        width: 2080,
+        height: 1924,
+        type: 'image',
+      });
 
     const component = createTestElement(<Message />, {
       environment: mockEnvironment,

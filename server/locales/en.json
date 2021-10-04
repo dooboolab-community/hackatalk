@@ -18,5 +18,6 @@
   "PASSWORD_RESET_EMAIL_SUBJECT": "[HackaTalk] Reset your password!",
   "PHOTO": "Photo",
   "FILE": "File",
+  "VIDEO": "Video",
   "USER_REPORTED": "User has been reported"
 }

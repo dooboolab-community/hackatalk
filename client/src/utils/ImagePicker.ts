@@ -2,22 +2,42 @@ import * as ImagePicker from 'expo-image-picker';
 
 import {Platform} from 'react-native';
 
+export enum ImagePickerType {
+  LIBRARY = 'library',
+  CAMERA = 'camera',
+}
+
 enum MediaTypeOptions {
   All = 'All',
   Videos = 'Videos',
   Images = 'Images',
 }
 
-const photoOptions = {
-  mediaType: MediaTypeOptions.Images,
+enum VideoExportPreset {
+  Passthrough = 0,
+  LowQuality = 1,
+  MediumQuality = 2,
+  HighestQuality = 3,
+  H264_640x480 = 4,
+  H264_960x540 = 5,
+  H264_1280x720 = 6,
+  H264_1920x1080 = 7,
+  H264_3840x2160 = 8,
+  HEVC_1920x1080 = 9,
+  HEVC_3840x2160 = 10,
+}
+
+const options: ImagePicker.ImagePickerOptions = {
+  mediaTypes: MediaTypeOptions.All,
   allowsEditing: true,
-  exif: true,
+  videoMaxDuration: 180,
+  videoExportPreset: VideoExportPreset.MediumQuality,
 };
 
 const requestPermissions = async (
-  type: 'photo' | 'camera',
+  type: ImagePickerType,
 ): Promise<ImagePicker.CameraPermissionResponse['granted']> => {
-  if (type === 'camera') {
+  if (type === ImagePickerType.CAMERA) {
     if (Platform.OS === 'web') {
       const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -36,18 +56,23 @@ const requestPermissions = async (
 
 export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions('camera');
+    const granted = await requestPermissions(ImagePickerType.CAMERA);
 
-    if (granted) return ImagePicker.launchCameraAsync(photoOptions);
-
-    return null;
-  };
-
-export const launchImageLibraryAsync =
-  async (): Promise<ImagePicker.ImagePickerResult | null> => {
-    const granted = await requestPermissions('photo');
-
-    if (granted) return ImagePicker.launchImageLibraryAsync(photoOptions);
+    if (granted) return ImagePicker.launchCameraAsync(options);
 
     return null;
   };
+
+export const launchMediaLibraryAsync = async (
+  photoOnly?: boolean,
+): Promise<ImagePicker.ImagePickerResult | null> => {
+  const granted = await requestPermissions(ImagePickerType.LIBRARY);
+
+  if (granted)
+    return ImagePicker.launchImageLibraryAsync({
+      ...options,
+      ...(photoOnly && {mediaTypes: MediaTypeOptions.Images}),
+    });
+
+  return null;
+};

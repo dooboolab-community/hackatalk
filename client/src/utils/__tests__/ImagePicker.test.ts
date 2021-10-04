@@ -29,7 +29,7 @@ describe('ImagePicker interaction', () => {
         // @ts-ignore
         .mockResolvedValue({granted: true});
 
-      const result = await ImagePicker.launchImageLibraryAsync();
+      const result = await ImagePicker.launchMediaLibraryAsync(true);
 
       expect(result).toBe(null);
     });
@@ -53,7 +53,7 @@ describe('ImagePicker interaction', () => {
         // @ts-ignore
         .mockResolvedValue({granted: false});
 
-      const result = await ImagePicker.launchImageLibraryAsync();
+      const result = await ImagePicker.launchMediaLibraryAsync();
 
       expect(result).toBe(null);
     });

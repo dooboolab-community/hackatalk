@@ -7587,6 +7587,14 @@ expo-auth-session@~3.3.1:
     invariant "^2.2.4"
     qs "6.9.1"
 
+expo-av@~9.2.3:
+  version "9.2.3"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-9.2.3.tgz#aa54da9c0bc1c3eb0251c1da17f5123f15d4f82f"
+  integrity sha512-If6+JqB2mqMKJxHgN8UAx75CWH4kPAzx2EyP+MFmcPVpcSBJZ/Fj+EfI+GJnk3tHPSB2Eld1IFEYOIJCkN/26Q==
+  dependencies:
+    "@expo/config-plugins" "^3.0.0"
+    expo-modules-core "~0.2.0"
+
 expo-constants@11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-11.0.1.tgz#8a33d9702d03289ab68d6de2bbeb2bbc9654734c"
@@ -7778,6 +7786,13 @@ expo-updates@~0.8.2:
     fbemitter "^2.1.1"
     resolve-from "^5.0.0"
     uuid "^3.4.0"
+
+expo-video-thumbnails@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/expo-video-thumbnails/-/expo-video-thumbnails-5.2.1.tgz#d7f9853117671a09acc24e70df84b6c7c3e38114"
+  integrity sha512-0ttnCbQJrhqs0sFLHjIXb7wZ/z4hfT6GGkmfWOoNiNYcgY9mShASv5domn82llz8/S4lLE9KpNUl9rrt90JsJg==
+  dependencies:
+    expo-modules-core "~0.2.0"
 
 expo-web-browser@~9.2.0:
   version "9.2.0"
@@ -16571,8 +16586,10 @@ watchpack@^1.6.1:
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.7.5.tgz#1267e6c55e0b9b5be44c2023aed5437a2c26c453"
   integrity sha512-9P3MWk6SrKjHsGkLT2KHXdQ/9SNkyoJbabxnKOoJepsvJjJG8uYTR3yTPxPQvNDI3w4Nz1xnE0TLHK4RIVe/MQ==
   dependencies:
+    chokidar "^3.4.1"
     graceful-fs "^4.1.2"
     neo-async "^2.5.0"
+    watchpack-chokidar2 "^2.0.1"
   optionalDependencies:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.1"

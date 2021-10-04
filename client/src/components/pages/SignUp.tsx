@@ -18,7 +18,7 @@ import React, {FC, useState} from 'react';
 import {UseMutationConfig, useMutation} from 'react-relay';
 import {
   launchCameraAsync,
-  launchImageLibraryAsync,
+  launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
 import {sendVerification, signUp} from '../../relay/queries/User';
 import {
@@ -108,7 +108,7 @@ const Page: FC = () => {
         }
 
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
-          const image = await launchImageLibraryAsync();
+          const image = await launchMediaLibraryAsync(true);
 
           if (image && !image.cancelled) setProfilePath(image.uri);
         }

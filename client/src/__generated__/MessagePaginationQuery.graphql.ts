@@ -38,6 +38,7 @@ fragment MessageComponent_message_WlZsr on Query {
       node {
         id
         imageUrls
+        fileUrls
         text
         sender {
           id
@@ -204,6 +205,13 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
+                    "name": "fileUrls",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
                     "name": "text",
                     "storageKey": null
                   },
@@ -286,13 +294,6 @@ return {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "fileUrls",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
                     "name": "updatedAt",
                     "storageKey": null
                   },
@@ -366,14 +367,14 @@ return {
     ]
   },
   "params": {
-    "cacheID": "c6f729384e859e115b8a5a80c76c7d1c",
+    "cacheID": "cfe7cc4b94bf3adcaf1208a4a83920c4",
     "id": null,
     "metadata": {},
     "name": "MessagePaginationQuery",
     "operationKind": "query",
-    "text": "query MessagePaginationQuery(\n  $after: String\n  $channelId: String!\n  $first: Int!\n  $searchText: String\n) {\n  ...MessageComponent_message_WlZsr\n}\n\nfragment MessageComponent_message_WlZsr on Query {\n  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        text\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    photoURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
+    "text": "query MessagePaginationQuery(\n  $after: String\n  $channelId: String!\n  $first: Int!\n  $searchText: String\n) {\n  ...MessageComponent_message_WlZsr\n}\n\nfragment MessageComponent_message_WlZsr on Query {\n  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {\n    edges {\n      cursor\n      node {\n        id\n        imageUrls\n        fileUrls\n        text\n        sender {\n          id\n          name\n          nickname\n        }\n        createdAt\n        ...MessageListItem_message\n        __typename\n      }\n    }\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    photoURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = '8b046f4256a182e785d6b79388dc36f5';
+(node as any).hash = 'b57ad27833bdc76815d57dac3e153a3e';
 export default node;
