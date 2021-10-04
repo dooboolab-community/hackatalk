@@ -134,12 +134,17 @@ const messagesFragment = graphql`
 `;
 
 interface MessageProp {
+  users: ({
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+  } | null)[];
   channelId: string;
   messages: MessageComponent_message$key;
   searchArgs: MessagesQueryVariables;
 }
 
-const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
+const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
@@ -172,6 +177,16 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   };
 
   const [message, setMessage] = useState<string>('');
+
+  const [cursor, setCursor] = useState<{start: number, end:number}>({start: 0, end: 0});
+  const [tagUsers, setTagUsers] = useState<
+    ({
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+    } | null)[]
+  >([]);
+
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
 
@@ -363,8 +378,23 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     );
   };
 
+  const selectdTagUser = (
+    item: {
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+    } | null,
+  ): void => {
+    const newMessage = [...message];
+    newMessage.splice(cursor.start, 0, item?.name || '');
+    setMessage(newMessage.join(''));
+  };
+
   return (
     <GiftedChat
+      showTageUsers={setTagUsers}
+      selectdTagUser={selectdTagUser}
+      tagUsers={tagUsers}
       messages={nodes}
       borderColor={theme.disabled}
       onEndReached={onEndReached}
@@ -381,6 +411,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
         setMessage(text);
       }}
+      onChangeSelection={({start, end}) => {
+        setCursor({start: start, end: end});
+      }}
       renderItem={renderItem}
       keyExtractor={(item) => item.id || nanoid()}
       onKeyPress={({nativeEvent}) => {
@@ -393,6 +426,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
             setMessage(`${message}\n`);
           }
+        if (nativeEvent.key === '@') setTagUsers(users);
       }}
       openedOptionView={
         <SvgArrDown width={18} height={18} stroke={theme.text} />
@@ -506,6 +540,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
 
   return (
     <MessagesFragment
+      users={users}
       channelId={channelId}
       messages={messagesQueryResponse}
       searchArgs={searchArgs}
