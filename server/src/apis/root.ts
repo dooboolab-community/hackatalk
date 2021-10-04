@@ -4,7 +4,6 @@ import {resetPassword, verifyEmail} from '../models/User';
 
 import {UPLOAD_FILE_SIZE_LIMIT} from '../utils/const';
 import {getMimeType} from 'stream-mime-type';
-import {message} from './../resolvers/Message/query';
 import multer from 'multer';
 import {prisma} from '../context';
 import qs from 'querystring';
@@ -16,18 +15,6 @@ interface VerificationToken {
   email: string;
   type: 'verifyEmail' | 'findPassword';
 }
-
-export function resolveBlobName(destFile: string, destDir: string): string {
-  return `${destDir}_${new Date().getTime()}_${destFile}`;
-}
-
-// const resolveMetadata = (req, file) => {
-//   return new Promise((resolve, reject) => {
-//     const metadata = yourCustomLogic(req, file);
-
-//     resolve(metadata);
-//   });
-// };
 
 const router = Router();
 const storage = multer.memoryStorage();
@@ -112,12 +99,7 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const onUploadSingle = async (
-  req: Request,
-  res: Response,
-  // next: any,
-  // error: any,
-): Promise<void> => {
+const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
   const token = getToken(req);
 
   if (token === null) {
@@ -144,7 +126,7 @@ const onUploadSingle = async (
 
   const url = await uploadFileToAzureBlobFromStream(
     bufferToStream(req.file.buffer),
-    req.body.name || `${req.file.originalname ?? ''}_${new Date().getTime()}`,
+    req.body.name || `${new Date().getTime()}_${req.file.originalname ?? ''}`,
     req.body.dir,
     process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
     mime,
