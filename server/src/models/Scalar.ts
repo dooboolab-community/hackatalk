@@ -2,7 +2,7 @@ import {GraphQLDate, GraphQLDateTime} from 'graphql-iso-date';
 /* eslint-disable no-shadow */
 import {asNexusMethod, scalarType} from 'nexus';
 
-import {GraphQLUpload} from 'apollo-server-express';
+import {GraphQLUpload} from 'graphql-upload';
 
 export enum AuthType {
   email = 'email',

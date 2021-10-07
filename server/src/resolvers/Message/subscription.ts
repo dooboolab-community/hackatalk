@@ -3,7 +3,7 @@ import {nonNull, stringArg, subscriptionField} from 'nexus';
 import {Context} from '../../context';
 import {Message} from '@prisma/client';
 import {assert} from '../../utils/assert';
-import {withFilter} from 'apollo-server';
+import {withFilter} from 'graphql-subscriptions';
 
 export const ON_MESSAGE = 'ON_MESSAGE';
 

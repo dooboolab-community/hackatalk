@@ -1,7 +1,9 @@
 import {Server, createServer as createHttpServer} from 'http';
+import {execute, subscribe} from 'graphql';
 
 import {ApolloServer} from 'apollo-server-express';
 import SendGridMail from '@sendgrid/mail';
+import {SubscriptionServer} from 'subscriptions-transport-ws';
 import {applyMiddleware} from 'graphql-middleware';
 import {assert} from './utils/assert';
 import {createApp} from './app';
@@ -22,23 +24,30 @@ const createApolloServer = (): ApolloServer =>
   new ApolloServer({
     schema: schemaWithMiddleware,
     context: createContext,
-    // introspection: process.env.NODE_ENV !== 'production',
-    // playground: process.env.NODE_ENV !== 'production',
-    subscriptions: {
-      onConnect: async (connectionParams, _webSocket, _context) => {
-        process.stdout.write('Connected to websocket\n');
-
-        // Return connection parameters for context building.
-        return {connectionParams};
-      },
-    },
+    introspection: process.env.NODE_ENV !== 'production',
   });
 
 const initializeApolloServer = (
+  httpServer: Server,
   apollo: ApolloServer,
   app: express.Application,
 ): (() => void) => {
   apollo.applyMiddleware({app});
+
+  const subscriptionServer = SubscriptionServer.create(
+    {
+      schema: schemaWithMiddleware,
+      execute,
+      subscribe,
+    },
+    {
+      server: httpServer,
+    },
+  );
+
+  ['SIGINT', 'SIGTERM'].forEach((signal) => {
+    process.on(signal, () => subscriptionServer.close());
+  });
 
   return (): void => {
     process.stdout.write(
@@ -54,12 +63,16 @@ export const startServer = async (
   const httpServer = createHttpServer(app);
   const apollo = createApolloServer();
 
-  apollo.installSubscriptionHandlers(httpServer);
+  await apollo.start();
 
-  const handleApolloServerInitilized = initializeApolloServer(apollo, app);
+  const handleApolloServerInit = initializeApolloServer(
+    httpServer,
+    apollo,
+    app,
+  );
 
   return httpServer.listen({port}, () => {
-    handleApolloServerInitilized();
+    handleApolloServerInit();
   });
 };
 
