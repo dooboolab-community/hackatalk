@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 
-import {prisma} from '../context';
+import {PrismaClient} from '@prisma/client';
 
 export interface ExpoMessage {
   to: string;
@@ -29,6 +29,7 @@ export const sendPushNotification = async (
 };
 
 export const getReceiversPushTokens = async (
+  prisma: PrismaClient,
   channelId: string,
   userId: string,
 ): Promise<string[]> => {

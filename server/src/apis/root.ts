@@ -45,7 +45,7 @@ const onResetPassword = async (req: Request, res: Response): Promise<void> => {
     if (validated.email && validated.type === 'findPassword') {
       const password = await encryptCredential(randomPassword);
 
-      await resetPassword(validated.email, password);
+      await resetPassword(prisma, validated.email, password);
 
       return res.render('password_changed', {
         REDIRECT_URL: 'https://hackatalk.dev',
@@ -82,7 +82,7 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
         return;
       }
 
-      await verifyEmail(validated.email);
+      await verifyEmail(prisma, validated.email);
 
       return res.render('email_verified', {
         REDIRECT_URL: 'https://hackatalk.dev',

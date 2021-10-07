@@ -1,7 +1,7 @@
 import {NexusGenRootTypes} from '../generated/nexus';
+import {PrismaClient} from '@prisma/client';
 import {assert} from '../utils/assert';
 import {objectType} from 'nexus';
-import {prisma} from '../context';
 
 export const Profile = objectType({
   name: 'Profile',
@@ -38,7 +38,7 @@ export const User = objectType({
       description:
         'Check if the user is blocked by the user who have signed in.',
 
-      resolve: async ({id}, args, {userId}) => {
+      resolve: async ({id}, args, {userId, prisma}) => {
         assert(userId, 'Not authorized.');
 
         const blockedUser = await prisma.blockedUser.findFirst({
@@ -51,7 +51,7 @@ export const User = objectType({
 
     t.boolean('isFriend', {
       description: 'This user is a friend of the authenticated user.',
-      resolve: async ({id}, _args, {userId}) => {
+      resolve: async ({id}, _args, {userId, prisma}) => {
         assert(userId, 'Not authorized.');
 
         const friendQueryResult = await prisma.friend.findUnique({
@@ -70,6 +70,7 @@ export const User = objectType({
 });
 
 export const resetPassword = (
+  prisma: PrismaClient,
   email: string,
   password: string,
 ): Promise<NexusGenRootTypes['User']> => {
@@ -80,6 +81,7 @@ export const resetPassword = (
 };
 
 export const verifyEmail = (
+  prisma: PrismaClient,
   email: string,
 ): Promise<NexusGenRootTypes['User']> => {
   return prisma.user.update({

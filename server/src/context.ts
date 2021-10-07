@@ -16,8 +16,6 @@ import {schemaWithMiddleware} from './server';
 const {JWT_SECRET, JWT_SECRET_ETC, REDIS_HOSTNAME, REDIS_CACHEKEY, NODE_ENV} =
   process.env;
 
-export const prisma = new PrismaClient();
-
 export interface Context {
   request: {req: express.Request};
   prisma: PrismaClient;
@@ -45,6 +43,36 @@ const pubsub =
         publisher: new Redis(prodRedisOption),
         subscriber: new Redis(prodRedisOption),
       });
+
+const createPrismaClient = (): PrismaClient => {
+  const prisma = new PrismaClient();
+
+  //! Specify soft deletion models here.
+  prisma.$use(async (params, next) => {
+    const softDeletionModels = ['User'];
+
+    if (params.model && softDeletionModels.includes(params.model)) {
+      if (params.action === 'delete') {
+        params.action = 'update';
+        params.args.data = {deletedAt: new Date().toISOString()};
+      }
+
+      if (params.action === 'deleteMany') {
+        params.action = 'updateMany';
+
+        if (params.args.data !== undefined)
+          params.args.data.deletedAt = new Date().toISOString();
+        else params.args.data = {deletedAt: new Date().toISOString()};
+      }
+    }
+
+    return next(params);
+  });
+
+  return prisma;
+};
+
+export const prisma = createPrismaClient();
 
 type CreateContextParams = {
   req: express.Request;

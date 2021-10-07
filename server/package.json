@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.8.0",
-    "@prisma/client": "3.2.0",
+    "@prisma/client": "3.2.1",
     "@sendgrid/mail": "^7.4.7",
     "apollo-server": "^3.3.0",
     "axios": "^0.22.0",
@@ -93,7 +93,7 @@
     "jest": "27.2.4",
     "node-fetch": "^3.0.0",
     "prettier": "^2.4.1",
-    "prisma": "^3.2.0",
+    "prisma": "^3.2.1",
     "ts-jest": "^27.0.5",
     "ts-node": "10.2.1",
     "ts-node-dev": "^1.1.8",

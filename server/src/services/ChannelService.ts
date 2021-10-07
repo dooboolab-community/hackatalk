@@ -1,10 +1,16 @@
-import {Channel, ChannelType, Membership, MembershipType} from '@prisma/client';
+import {
+  Channel,
+  ChannelType,
+  Membership,
+  MembershipType,
+  PrismaClient,
+} from '@prisma/client';
 import {andThen, cond, pipe} from 'ramda';
 
 import {assert} from '../utils/assert';
-import {prisma} from '../context';
 
 export const findExistingChannel = async (
+  prisma: PrismaClient,
   channelId: string,
 ): Promise<Channel> => {
   const channel = await prisma.channel.findFirst({
@@ -17,6 +23,7 @@ export const findExistingChannel = async (
 };
 
 export const findChannelWithUserIds = async (
+  prisma: PrismaClient,
   userIds: string[],
 ): Promise<Channel | undefined> => {
   const channels = await prisma.channel.findMany({
@@ -41,6 +48,7 @@ export const findChannelWithUserIds = async (
 };
 
 export const findPrivateChannelWithUserIds = async (
+  prisma: PrismaClient,
   userIds: string[],
 ): Promise<Channel | undefined> => {
   const channelType =
@@ -71,6 +79,7 @@ export const findPrivateChannelWithUserIds = async (
 };
 
 export const changeVisibilityWhenInvisible = (
+  prisma: PrismaClient,
   userId: string,
   channelId: string,
 ): Promise<Membership> =>
@@ -97,6 +106,7 @@ export const getChannelType = (
 };
 
 export const createNewChannel = async (
+  prisma: PrismaClient,
   channelType: ChannelType,
   userId: string,
   name?: string,
@@ -118,6 +128,7 @@ export const createNewChannel = async (
   });
 
 export const createMemberships = async (
+  prisma: PrismaClient,
   channelId: string,
   userIds: readonly string[],
 ): Promise<void> => {
