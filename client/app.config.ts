@@ -10,6 +10,7 @@ export default {
     slug: 'HackaTalk-Expo',
     privacy: 'public',
     platforms: ['ios', 'android', 'web'],
+    plugins: ['sentry-expo'],
     version,
     orientation: 'default',
     icon: './assets/icon.png',

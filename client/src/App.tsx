@@ -72,12 +72,8 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   return (
     <ThemeProvider
       customTheme={{
-        light: {
-          ...light,
-        },
-        dark: {
-          ...dark,
-        },
+        light,
+        dark,
       }}
     >
       {children}
