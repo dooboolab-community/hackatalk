@@ -99,14 +99,14 @@ export const createChannel = mutationField('createChannel', {
       if (hasNoMembersToChat)
         throw new Error('User has no members to chat within private channel.');
 
-      const existingChannel = await findChannelWithUserIds([
+      const existingChannel = await findChannelWithUserIds(prisma, [
         userId,
         ...userIds,
       ]);
 
       if (existingChannel) {
-        changeVisibilityWhenInvisible(userId, existingChannel.id);
-        await createMemberships(existingChannel.id, userIds);
+        changeVisibilityWhenInvisible(prisma, userId, existingChannel.id);
+        await createMemberships(prisma, existingChannel.id, userIds);
 
         message &&
           (await createMessage(
@@ -118,9 +118,9 @@ export const createChannel = mutationField('createChannel', {
       }
     }
 
-    const {id} = await createNewChannel(channelType, userId, name);
+    const {id} = await createNewChannel(prisma, channelType, userId, name);
 
-    await createMemberships(id, userIds);
+    await createMemberships(prisma, id, userIds);
     message && (await createMessage(filterNullProperties(message), id));
 
     const getChannel = (channelId: string): Promise<any> =>
@@ -144,27 +144,27 @@ export const findOrCreatePrivateChannel = mutationField(
     },
     description: 'Find or create channel associated to peer user id.',
 
-    resolve: async (parent, {peerUserIds}, {userId}) => {
+    resolve: async (parent, {peerUserIds}, {userId, prisma}) => {
       assert(userId, 'Not authorized.');
 
       const channelType = getChannelType(userId, peerUserIds);
       const filteredPeerUserIds = peerUserIds.filter((peer) => peer !== userId);
 
-      const existingChannel = await findPrivateChannelWithUserIds([
+      const existingChannel = await findPrivateChannelWithUserIds(prisma, [
         userId,
         ...filteredPeerUserIds,
       ]);
 
       if (existingChannel) {
-        await changeVisibilityWhenInvisible(userId, existingChannel.id);
+        await changeVisibilityWhenInvisible(prisma, userId, existingChannel.id);
 
         return existingChannel;
       }
 
-      const channel = await createNewChannel(channelType, userId);
+      const channel = await createNewChannel(prisma, channelType, userId);
 
       if (channelType !== ChannelType.self)
-        await createMemberships(channel.id, filteredPeerUserIds);
+        await createMemberships(prisma, channel.id, filteredPeerUserIds);
 
       return channel;
     },
@@ -185,7 +185,7 @@ export const leaveChannel = mutationField('leaveChannel', {
   resolve: async (parent, {channelId}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
-    const channel = await findExistingChannel(channelId);
+    const channel = await findExistingChannel(prisma, channelId);
 
     if (channel.channelType === 'public')
       return prisma.membership.delete({
@@ -222,7 +222,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
   resolve: async (_, {channelId, userIds}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
-    const channel = await findExistingChannel(channelId);
+    const channel = await findExistingChannel(prisma, channelId);
 
     if (channel.channelType === 'private')
       throw new Error("You can't add some users to private channel.");
@@ -280,7 +280,7 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
   resolve: async (_, {channelId, userIds}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
-    const channel = await findExistingChannel(channelId);
+    const channel = await findExistingChannel(prisma, channelId);
 
     if (channel.channelType === 'private')
       throw new Error(

@@ -1,7 +1,7 @@
 import {AuthType, Gender} from '../models';
 import {ErrorEmailForUserExists, ErrorString} from '../utils/error';
 
-import {Context} from '../context';
+import type {Context} from '../context';
 import {NexusGenRootTypes} from '../generated/nexus';
 import {USER_SIGNED_IN} from '../resolvers';
 import {sign} from 'jsonwebtoken';

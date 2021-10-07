@@ -1,6 +1,6 @@
 import {nonNull, stringArg, subscriptionField} from 'nexus';
 
-import {Context} from '../../context';
+import type {Context} from '../../context';
 import {Message} from '@prisma/client';
 import {assert} from '../../utils/assert';
 import {withFilter} from 'graphql-subscriptions';

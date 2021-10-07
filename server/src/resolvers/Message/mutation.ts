@@ -75,7 +75,7 @@ export const createMessage = mutationField('createMessage', {
       },
     });
 
-    const tokens = await getReceiversPushTokens(channelId, userId);
+    const tokens = await getReceiversPushTokens(prisma, channelId, userId);
 
     tokens.forEach((token) => {
       const expoMessage: ExpoMessage = {
