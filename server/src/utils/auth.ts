@@ -48,7 +48,8 @@ export function getUserId(authorization?: string): string | null {
 export const validateEmail = (email: string): boolean => {
   // eslint-disable-next-line max-len
   // eslint-disable-next-line prettier/prettier
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   return re.test(email);
 };
@@ -116,6 +117,7 @@ export const verifyFacebookId = async (
 const getApplePublicKey = async (): Promise<string> => {
   const {data} = await axios.get('https://appleid.apple.com/auth/keys');
 
+  // @ts-ignore
   const key = data.keys[0];
 
   const pubKey = new NodeRSA();
