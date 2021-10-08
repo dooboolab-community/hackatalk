@@ -17,14 +17,14 @@ type Props = {
 const StyledVideoLoadText = styled.Text`
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}) => theme.focused};
+  color: ${({theme}) => theme.primary};
   background-color: 'rgba(255,255,255, 0.5)';
   padding: 2px 5px 2px 5px;
 `;
 
 const StyledLoadErrorText = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.errorTitle};
+  color: ${({theme}) => theme.danger};
   align-self: center;
 `;
 

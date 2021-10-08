@@ -45,7 +45,7 @@ describe('Rendering', () => {
 
   it('renders [UserListItem]', async () => {
     const user: AuthProviderMeQueryResponse['me'] = {
-      id: 'user-1',
+      id: 'me1234',
       verified: true,
       email: 'test@email.com',
       profile: null,
@@ -59,12 +59,8 @@ describe('Rendering', () => {
 
     const nickname = await screen.findByText('jdoe1234');
 
-    const userListItemWrapper = await screen.getByTestId(
-      'userListItem-wrapper',
-    );
-
     expect(nickname).toBeTruthy();
-    expect(userListItemWrapper.props.isMyself).toBeTruthy();
+    expect(screen).toMatchSnapshot();
   });
 });
 

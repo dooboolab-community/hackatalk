@@ -53,7 +53,7 @@ function Shared(props: Props): ReactElement {
     checkColor = '#000',
     activeColor = '#707070',
     inActiveColor = '#000',
-    backgroundColor = '#fff',
+    backgroundColor = 'white',
     text = '',
     hasChecked,
     onToggle,

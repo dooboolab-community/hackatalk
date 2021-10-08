@@ -9,7 +9,7 @@ import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
 
 const StyledViewChatRoomListItem = styled.View`
-  background-color: ${({theme}) => theme.itemBackground};
+  background-color: ${({theme}) => theme.card};
   min-height: 92px;
   padding: 8px 0;
   border-bottom-width: 0.3px;
@@ -24,11 +24,11 @@ const StyledStatus = styled.View`
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: ${({theme}) => theme.tintColor};
+  background-color: ${({theme}) => theme.primary};
   right: 0;
   bottom: 0;
   border-width: 2px;
-  border-color: ${({theme}) => theme.lineColor};
+  border-color: ${({theme}) => theme.primary};
 `;
 
 const StyledViewContent = styled.View`
@@ -50,7 +50,7 @@ const StyledTextDisplayName = styled.Text`
 `;
 
 const StyledTextWrapper = styled.View`
-  background-color: ${({theme}) => theme.tintColor};
+  background-color: ${({theme}) => theme.secondary};
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -79,7 +79,7 @@ const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.textSecondaryColor};
+  color: ${({theme}) => theme.text};
   text-align: right;
 `;
 

@@ -24,7 +24,7 @@ const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({theme}) => theme.lineColor};
+  border-color: ${({theme}) => theme.line};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;
@@ -186,7 +186,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             >
               {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
-            <View style={{marginVertical: 8}}>{renderSendButton?.()}</View>
+            {renderSendButton?.()}
           </StyledViewChat>
         ) : null}
       </StyledKeyboardAvoidingView>

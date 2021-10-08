@@ -42,6 +42,7 @@ import {AuthPayload} from '../../../types/graphql';
 import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
+import {colors} from '../../../theme';
 import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
 import {useAuthContext} from '../../../providers/AuthProvider';
@@ -75,21 +76,20 @@ const StyledLogoText = styled.Text`
 `;
 
 const ButtonWrapper = styled.View`
-  margin-top: 12px;
+  margin-top: 4px;
   height: 52px;
   width: 100%;
   flex-direction: row;
 `;
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
-  padding: 20px;
-  margin-top: 4px;
-  margin-bottom: 36px;
+  padding: 16px;
+  margin-bottom: 28px;
   align-self: center;
 `;
 
 const FindPwText = styled.Text`
-  color: ${({theme}) => theme.link};
+  color: ${({theme}) => theme.button};
   text-decoration-line: underline;
 `;
 
@@ -106,12 +106,12 @@ const StyledAgreementTextWrapper = styled.View`
 
 const StyledAgreementText = styled.Text`
   line-height: 22px;
-  color: #777;
+  color: ${({theme}) => theme.placeholder};
 `;
 
 const StyledAgreementLinedText = styled.Text`
   line-height: 22px;
-  color: ${({theme}) => theme.link};
+  color: ${({theme}) => theme.button};
   text-decoration-line: underline;
 `;
 
@@ -387,9 +387,9 @@ const SignIn: FC = () => {
                 height: 52,
               },
             }}
-            style={{marginBottom: 12}}
+            style={{marginBottom: 4}}
             labelText={getString('EMAIL')}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
@@ -412,7 +412,7 @@ const SignIn: FC = () => {
             }}
             style={{marginBottom: 20}}
             labelText={getString('PASSWORD')}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             placeholder="******"
             value={password}
             onChangeText={(text: string): void => {
@@ -430,8 +430,10 @@ const SignIn: FC = () => {
               style={{flex: 1}}
               styles={{
                 container: css`
-                  background-color: ${theme.btnPrimaryLight};
-                  border-color: ${theme.btnPrimary};
+                  border-width: 1px;
+                  border-radius: 0px;
+                  background-color: ${theme.paper};
+                  border-color: ${theme.button};
                   border-width: 1px;
 
                   flex: 1;
@@ -439,7 +441,7 @@ const SignIn: FC = () => {
                   justify-content: center;
                 `,
                 text: css`
-                  color: ${theme.btnPrimary};
+                  color: ${theme.button};
                   font-size: 14px;
                   font-weight: bold;
                 `,
@@ -457,11 +459,14 @@ const SignIn: FC = () => {
               style={{flex: 1}}
               styles={{
                 container: css`
+                  border-width: 1px;
+                  border-radius: 0px;
                   height: 52px;
-                  background-color: ${theme.primary};
+                  background-color: ${theme.button};
+                  border-color: ${theme.button};
+
                   flex: 1;
                   align-self: stretch;
-                  border-width: 1px;
 
                   flex-direction: row;
                   justify-content: center;
@@ -469,7 +474,7 @@ const SignIn: FC = () => {
                 text: css`
                   font-size: 14px;
                   font-weight: bold;
-                  color: ${theme.btnPrimaryFont};
+                  color: ${theme.textContrast};
                 `,
                 hovered: css`
                   border-color: ${theme.text};
@@ -489,21 +494,19 @@ const SignIn: FC = () => {
                   style={{marginBottom: 12}}
                   styles={{
                     container: css`
-                      background-color: ${theme.appleBackground};
-                      border-color: ${theme.appleText};
+                      background-color: ${colors.light};
                       width: 100%;
                       height: 48px;
-                      border-width: 1px;
-                      border-radius: 100px;
+                      border-radius: 0px;
                     `,
                     text: {
                       fontWeight: '700',
-                      color: theme.appleText,
+                      color: 'black',
                     },
                   }}
                   leftElement={
                     <View style={{marginRight: 6}}>
-                      <SvgApple width={18} height={18} fill={theme.appleIcon} />
+                      <SvgApple width={18} height={18} fill={colors.apple} />
                     </View>
                   }
                   loading={signingInApple || isAppleInFlight}
@@ -515,7 +518,7 @@ const SignIn: FC = () => {
             })}
             <SocialSignInButton
               svgIcon={
-                <SvgFacebook width={18} height={18} fill={theme.facebookIcon} />
+                <SvgFacebook width={18} height={18} fill={colors.facebook} />
               }
               onUserCreated={() => {
                 createNotificationIfPushTokenExists();
@@ -525,7 +528,7 @@ const SignIn: FC = () => {
             />
             <SocialSignInButton
               svgIcon={
-                <SvgGoogle width={20} height={20} fill={theme.googleIcon} />
+                <SvgGoogle width={20} height={20} fill={colors.google} />
               }
               onUserCreated={() => {
                 createNotificationIfPushTokenExists();

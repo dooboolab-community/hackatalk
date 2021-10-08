@@ -83,7 +83,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.messageBackground};
+  background-color: ${({theme}) => theme.background};
   flex-direction: column;
   align-items: center;
 `;
@@ -366,7 +366,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   return (
     <GiftedChat
       messages={nodes}
-      borderColor={theme.lineColor}
+      borderColor={theme.disabled}
       onEndReached={onEndReached}
       backgroundColor={theme.background}
       fontColor={theme.text}
@@ -395,11 +395,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           }
       }}
       openedOptionView={
-        <SvgArrDown width={18} height={18} stroke={theme.icon1} />
+        <SvgArrDown width={18} height={18} stroke={theme.text} />
       }
-      closedOptionView={
-        <SvgArrUp width={18} height={18} stroke={theme.icon1} />
-      }
+      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.text} />}
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View
@@ -441,23 +439,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
           activeOpacity={0.7}
           accessibilityRole="button"
         >
-          <View
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: theme.icon2,
-
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {isImageUploading ? (
-              <ActivityIndicator size="small" color="white" />
-            ) : (
-              <SvgSend fill={theme.icon2} width={52} height={52} />
-            )}
-          </View>
+          {isImageUploading ? (
+            <ActivityIndicator size="small" color="white" />
+          ) : (
+            <SvgSend fill={theme.button} />
+          )}
         </TouchableOpacity>
       )}
     />

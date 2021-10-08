@@ -72,7 +72,7 @@ const StyledImage = styled.Image`
 const StyledViewBtns = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({theme}) => theme.modalBtnBackground};
+  background-color: ${({theme}) => theme.paper};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -94,7 +94,7 @@ const StyledTextDisplayName = styled.Text`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}) => theme.modalBtnFont};
+  color: ${({theme}) => theme.text};
   font-size: 16px;
 `;
 
@@ -105,10 +105,11 @@ interface Styles {
 
 const styles: Styles = {
   wrapper: {
-    backgroundColor: 'transparent',
     alignSelf: 'stretch',
-    height: 320,
+    maxHeight: 320,
+    height: '40%',
     width: '90%',
+    maxWidth: 480,
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -315,7 +316,6 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         testID="container"
         style={{
           flex: 1,
-          marginHorizontal: 20,
           alignSelf: 'stretch',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -334,7 +334,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             flexDirection: 'row',
           }}
         >
-          {modalState.isMyself ? (
+          {modalState.isMe ? (
             <TouchableOpacity
               testID="profile-update-button"
               style={{
@@ -378,7 +378,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   <FontAwesome
                     name="exclamation-circle"
                     size={24}
-                    color="white"
+                    color={theme.text}
                   />
                 </View>
               </TouchableOpacity>
@@ -431,7 +431,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     <FontAwesome
                       name="ban"
                       size={24}
-                      color={hasBlocked ? 'red' : 'white'}
+                      color={hasBlocked ? 'red' : theme.text}
                     />
                   </View>
                 </TouchableOpacity>
@@ -481,7 +481,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
         {!modalState?.hideButtons ? (
           <StyledViewBtns>
-            {!modalState.isMyself && (
+            {!modalState.isMe && (
               <>
                 {deleteFriendInFlight || addFriendInFlight ? (
                   <LoadingIndicator size="small" />
@@ -508,7 +508,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               onPress={startChatting}
               style={[
                 styles.viewBtn,
-                [modalState.isMyself ? {width: '100%'} : undefined],
+                [modalState.isMe ? {width: '100%'} : undefined],
               ]}
             >
               {isChannelInFlight ? (
@@ -516,12 +516,10 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               ) : (
                 <StyledText
                   style={{
-                    color: theme.modalBtnPrimaryFont,
+                    color: theme.primary,
                   }}
                 >
-                  {modalState.isMyself
-                    ? getString('SELF_CHAT')
-                    : getString('CHAT')}
+                  {modalState.isMe ? getString('SELF_CHAT') : getString('CHAT')}
                 </StyledText>
               )}
             </TouchableOpacity>
@@ -536,7 +534,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           height: modalLayout.height - 48,
           zIndex: 1,
           top: 0,
-          left: 20,
+          // left: 20,
           backgroundColor: 'black',
           opacity: transitionOpacity.current,
         }}

@@ -23,6 +23,7 @@ const StyledTextStatusMessage = styled.Text<StyledTextProps>`
   font-size: 12px;
   color: white;
   align-self: center;
+  text-align: center;
   font-weight: ${(props) =>
     props.isStatusMessageExpanded ? 'bold' : 'normal'};
 `;
@@ -88,10 +89,10 @@ const StatusMessageView: FC<Props> = ({
       testID="view-animated"
       style={{
         position: 'absolute',
+        overflow: 'hidden',
         transform: [{translateY: transition}],
         backgroundColor: 'transparent',
         zIndex: 100,
-        left: 20 + ((modalLayout.width || 200) - 200) / 2,
         top: (modalLayout.height || 260) - 260,
         width: 200,
       }}

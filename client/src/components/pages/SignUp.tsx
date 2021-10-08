@@ -26,6 +26,7 @@ import {
   validateEmail,
   validatePassword,
 } from '../../utils/common';
+import styled, {css} from '@emotion/native';
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
@@ -34,7 +35,6 @@ import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
-import styled from '@emotion/native';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useNavigation} from '@react-navigation/core';
 
@@ -274,14 +274,12 @@ const Page: FC = () => {
             <EditText
               testID="input-email"
               styles={{
-                input: {
-                  color: theme.text,
-                },
+                input: {color: theme.text},
                 container: {
-                  borderBottomColor: theme.text,
+                  borderBottomColor: theme.line,
                 },
               }}
-              focusColor={theme.focused}
+              focusColor={theme.text}
               labelText={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
@@ -299,7 +297,7 @@ const Page: FC = () => {
                   borderColor: theme.text,
                 },
               }}
-              focusColor={theme.focused}
+              focusColor={theme.text}
               placeholder="********"
               labelText={getString('PASSWORD')}
               value={password}
@@ -325,7 +323,7 @@ const Page: FC = () => {
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
               style={{marginTop: 32}}
-              focusColor={theme.focused}
+              focusColor={theme.text}
               errorText={errorConfirmPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
@@ -342,7 +340,7 @@ const Page: FC = () => {
               }}
               labelText={getString('NAME')}
               placeholder={getString('NAME_HINT')}
-              focusColor={theme.focused}
+              focusColor={theme.text}
               value={name}
               onChangeText={inputChangeHandlers.nameInput}
               style={{marginTop: 32}}
@@ -364,7 +362,7 @@ const Page: FC = () => {
                   paddingVertical: 12,
                 },
               }}
-              focusColor={theme.focused}
+              focusColor={theme.text}
               labelText={getString('STATUS')}
               placeholder={getString('STATUS_MSG_HINT')}
               value={statusMessage}
@@ -385,13 +383,18 @@ const Page: FC = () => {
                 onPress={requestSignUp}
                 style={{alignSelf: 'stretch'}}
                 styles={{
-                  container: {
-                    height: 52,
-                    backgroundColor: theme.btnPrimary,
-                  },
+                  container: css`
+                    height: 52px;
+                    margin-top: 8px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    background-color: ${theme.button};
+                    border-radius: 0px;
+                  `,
                   text: {
-                    color: theme.btnPrimaryFont,
-                    fontSize: 16,
+                    color: 'black',
+                    fontSize: 14,
+                    fontWeight: 'bold',
                   },
                   hovered: {borderColor: theme.text},
                 }}

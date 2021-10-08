@@ -35,28 +35,28 @@ interface Props {
   showCheckBox?: boolean;
   showStatus?: boolean;
   checked?: boolean;
-  isMyself?: boolean;
+  isMe?: boolean;
 }
 
 const Container = styled.View`
   width: 100%;
 `;
 
-const Wrapper = styled.View<{isMyself?: boolean}>`
-  background-color: ${({theme}) => theme.itemBackground};
+const Wrapper = styled.View<{isMe?: boolean}>`
+  background-color: ${({theme}) => theme.card};
   height: 80px;
   border-bottom-width: 1px;
   border-color: ${(props) =>
-    props.isMyself ? props.theme.disabled : props.theme.backgroundDark};
+    props.isMe ? props.theme.disabled : props.theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   padding: 0 20px;
 `;
 
-const ImageWrapper = styled.View<{isMyself?: boolean}>`
-  width: ${(props) => (props.isMyself ? '50px' : '40px')};
-  height: ${(props) => (props.isMyself ? '50px' : '40px')};
+const ImageWrapper = styled.View<{isMe?: boolean}>`
+  width: ${(props) => (props.isMe ? '50px' : '40px')};
+  height: ${(props) => (props.isMe ? '50px' : '40px')};
   align-items: center;
   justify-content: center;
 `;
@@ -70,10 +70,10 @@ const StatusTag = styled.View`
   border-radius: 25px;
 `;
 
-const StyledImage = styled.Image<{isMyself?: boolean}>`
-  width: ${({isMyself}) => (isMyself ? '50px' : '40px')};
-  height: ${(props) => (props.isMyself ? '50px' : '40px')};
-  border-radius: ${(props) => (props.isMyself ? '25px' : '20px')}; ;
+const StyledImage = styled.Image<{isMe?: boolean}>`
+  width: ${({isMe}) => (isMe ? '50px' : '40px')};
+  height: ${(props) => (props.isMe ? '50px' : '40px')};
+  border-radius: ${(props) => (props.isMe ? '25px' : '20px')}; ;
 `;
 
 const StyledText = styled.Text`
@@ -88,7 +88,7 @@ const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}) => theme.textSecondaryColor};
+  color: ${({theme}) => theme.text};
   max-width: 120px;
   padding: 4px 8px;
   overflow: hidden;
@@ -101,7 +101,7 @@ function Shared({
   onPress,
   onLongPress,
   user,
-  isMyself,
+  isMe,
 }: Props): React.ReactElement {
   const {
     photoURL = '',
@@ -126,14 +126,14 @@ function Shared({
         delayPressIn={130}
         onLongPress={onLongPress}
       >
-        <Wrapper isMyself={isMyself} testID="userListItem-wrapper">
-          <ImageWrapper isMyself={isMyself}>
+        <Wrapper isMe={isMe} testID="userListItem-wrapper">
+          <ImageWrapper isMe={isMe}>
             <StyledImage
               resizeMode="cover"
               source={photoURL && photoURLObj ? photoURLObj : IC_NO_IMAGE}
-              isMyself={isMyself}
+              isMe={isMe}
             />
-            {showStatus && !isMyself && (
+            {showStatus && !isMe && (
               <StatusTag
                 style={{backgroundColor: isOnline ? '#00D4AB' : '#AFB4C3'}}
               />
@@ -165,8 +165,8 @@ function Shared({
               }}
               backgroundColor={theme.background}
               checkColor={theme.text}
-              inActiveColor={theme.inactiveColor}
-              activeColor={theme.checkBackground}
+              inActiveColor={theme.disabled}
+              activeColor={theme.secondary}
               hasChecked={checked}
               onToggle={onPress}
             />

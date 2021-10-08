@@ -5,12 +5,12 @@ import type {
   UserFindPwMutationResponse,
 } from '../../__generated__/UserFindPwMutation.graphql';
 import {showAlertForError, validateEmail} from '../../utils/common';
+import styled, {css} from '@emotion/native';
 
 import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
-import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
@@ -75,16 +75,12 @@ const Page: FC = () => {
     <Container>
       <EditText
         testID="input-email"
-        style={{marginTop: 32, marginBottom: 4}}
+        style={{marginTop: 32, marginBottom: 20}}
         styles={{
-          container: {
-            borderColor: theme.text,
-          },
-          input: {
-            color: 'red',
-          },
+          container: {borderColor: theme.text},
+          input: {color: theme.text},
         }}
-        focusColor={theme.focused}
+        focusColor={theme.text}
         labelText={getString('EMAIL')}
         placeholder="hello@example.com"
         value={email}
@@ -101,17 +97,14 @@ const Page: FC = () => {
           loading={isInFlight}
           onPress={onFindPw}
           styles={{
-            container: {
-              height: 52,
-              backgroundColor: theme.btnPrimary,
-              borderWidth: 1,
-            },
-            text: {
-              color: theme.btnPrimaryFont,
-            },
-            hovered: {
-              borderColor: theme.text,
-            },
+            container: css`
+              height: 52px;
+              background-color: ${theme.button};
+              border-width: 1px;
+              border-radius: 0px;
+            `,
+            text: {color: 'black', fontSize: 14, fontWeight: 'bold'},
+            hovered: {borderColor: theme.text},
           }}
           text={getString('FIND_PW')}
         />

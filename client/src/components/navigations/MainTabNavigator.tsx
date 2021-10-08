@@ -100,10 +100,10 @@ function TabNavigator(): ReactElement {
       }}
       screenOptions={{
         swipeEnabled: true,
-        tabBarActiveTintColor: theme.indicatorColor,
-        tabBarInactiveTintColor: theme.inactiveColor,
+        tabBarActiveTintColor: theme.active,
+        tabBarInactiveTintColor: theme.disabled,
         tabBarIndicatorStyle: {
-          backgroundColor: theme.indicatorColor,
+          backgroundColor: theme.active,
         },
         tabBarItemStyle: {
           backgroundColor: 'transparent',
@@ -115,6 +115,7 @@ function TabNavigator(): ReactElement {
           paddingLeft: insets.left,
           paddingRight: insets.right,
         },
+        tabBarLabelStyle: {textTransform: 'none', fontWeight: '500'},
       }}
     >
       <Tab.Screen

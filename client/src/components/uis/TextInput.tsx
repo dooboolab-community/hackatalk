@@ -7,7 +7,7 @@ import {useTheme} from 'dooboo-ui';
 
 const StyledLabelText = styled.Text<{focused: boolean}>`
   color: ${({focused, theme}): string =>
-    focused ? theme.focused : theme.inactiveColor};
+    focused ? theme.primary : theme.disabled};
   margin-bottom: 8px;
   font-size: 12px;
 `;
@@ -25,7 +25,7 @@ const StyledTextInputContainer = styled.View<{isFocused?: boolean}>`
   align-items: center;
   border-width: 1px;
   border-color: ${({isFocused, theme}): string =>
-    isFocused ? theme.focused : theme.lineColor};
+    isFocused ? theme.primary : theme.line};
   border-radius: 3px;
   margin-bottom: 8px;
 `;
@@ -44,7 +44,7 @@ const StyledTextInput = styled.TextInput`
 
 const StyledStatusMark = styled(Ionicons)(({theme}) => ({
   size: 24,
-  color: theme.status,
+  color: theme.secondary,
   paddingRight: '5%',
 }));
 
@@ -84,9 +84,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
         <StyledTextInput
           ref={ref}
           testID={props.testID}
-          placeholderTextColor={
-            focused ? theme.placeholderFocused : theme.placeholder
-          }
+          placeholderTextColor={focused ? theme.primary : theme.placeholder}
           underlineColorAndroid="transparent" // android fix
           autoCapitalize="none"
           autoCorrect={false}

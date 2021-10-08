@@ -19,6 +19,7 @@ import {
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
 import {meQuery, profileUpdate} from '../../relay/queries/User';
+import styled, {css} from '@emotion/native';
 
 import {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
@@ -29,7 +30,6 @@ import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
-import styled from '@emotion/native';
 import {uploadSingleAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
@@ -320,7 +320,7 @@ const Screen: FC = () => {
             labelText={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             value={nickname}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             onChangeText={(text: string): void => changeText('NICKNAME', text)}
           />
           <EditText
@@ -337,7 +337,7 @@ const Screen: FC = () => {
             labelText={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             onChangeText={(text: string): void => changeText('NAME', text)}
           />
           <EditText
@@ -359,7 +359,7 @@ const Screen: FC = () => {
             labelText={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             onChangeText={(text: string): void =>
               changeText('STATUS_MSG', text)
             }
@@ -373,14 +373,19 @@ const Screen: FC = () => {
               testID="button-update"
               style={{alignSelf: 'stretch', flex: 1}}
               styles={{
-                container: {
-                  height: 44,
-                  backgroundColor: theme.btnPrimary,
-                  borderColor: theme.btnPrimary,
-                  borderWidth: 1,
-                },
+                container: [
+                  css`
+                    height: 44px;
+                    border-width: 1px;
+                    border-radius: 0px;
+                  `,
+                  {
+                    backgroundColor: theme.button,
+                    borderColor: theme.button,
+                  },
+                ],
                 text: {
-                  color: theme.btnPrimaryFont,
+                  color: theme.textContrast,
                   fontSize: 14,
                   fontWeight: 'bold',
                 },

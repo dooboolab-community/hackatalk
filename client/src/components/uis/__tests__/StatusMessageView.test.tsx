@@ -180,7 +180,7 @@ describe('[StatusMessageView] render', () => {
 
     const animatedContainer = getByTestId('view-animated');
 
-    expect(animatedContainer.props.style.left).toBe(20);
+    expect(animatedContainer.props.style.left).toBe(undefined);
     expect(animatedContainer.props.style.top).toBe(0);
   });
 });

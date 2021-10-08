@@ -17,7 +17,7 @@ const StyledTextInput = styled.TextInput`
   width: 100%;
   padding: 12px 0;
   color: ${({theme}) => theme.text};
-  background-color: ${({theme}) => theme.searchBackground};
+  background-color: ${({theme}) => theme.paper};
   border-radius: 4px;
   padding-left: 40px;
   padding-right: 10px;
@@ -55,7 +55,6 @@ function SearchTextInput(props: Props): ReactElement {
         autoCapitalize="none"
         autoCorrect={false}
         multiline={false}
-        defaultValue={''}
       />
       <StyledSearchImage
         source={themeType === 'light' ? IC_SEARCH : IC_SEARCH_W}

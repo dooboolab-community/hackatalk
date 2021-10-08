@@ -20,6 +20,7 @@ import {
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {User} from '../../../types/graphql';
+import {colors} from '../../../theme';
 import {css} from '@emotion/native';
 import {getString} from '../../../../STRINGS';
 import {showAlertForError} from '../../../utils/common';
@@ -179,16 +180,14 @@ const SocialSignInButton: FC<Props> = ({
         style={{marginBottom: 12}}
         styles={{
           container: css`
-            background-color: ${theme.googleBackground};
-            border-color: ${theme.googleText};
+            background-color: ${colors.light};
             width: 100%;
             height: 48px;
-            border-width: 1px;
-            border-radius: 100px;
+            border-radius: 0px;
           `,
           text: {
             fontWeight: '700',
-            color: theme.googleText,
+            color: 'black',
           },
         }}
         leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
@@ -205,14 +204,13 @@ const SocialSignInButton: FC<Props> = ({
       disabled={!request}
       styles={{
         container: css`
-          background-color: ${theme.facebookBackground};
-          border-color: ${theme.facebookText};
+          background-color: ${colors.light};
           width: 100%;
           height: 48px;
-          border-width: 1px;
-          border-radius: 100px;
+          border-width: 0px;
+          border-radius: 0px;
         `,
-        text: {fontWeight: '700', color: theme.facebookText},
+        text: {fontWeight: '700', color: 'black'},
       }}
       style={{marginBottom: 12}}
       leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}

@@ -10,26 +10,24 @@ import type {
   ReportCreateReportMutationResponse,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
+import styled, {css} from '@emotion/native';
 
 import {Report} from '../../types/graphql';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
-import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
 
 const InnerContainer = styled.View`
   padding: 0 24px;
-  flex: 1;
   width: 100%;
 `;
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
-  justify-content: center;
-  align-self: stretch;
+  /* align-self: stretch; */
+
   flex-direction: column;
-  align-items: center;
 `;
 
 const ReportScreen: FC = () => {
@@ -99,7 +97,7 @@ const ReportScreen: FC = () => {
             textInputProps={{
               multiline: true,
             }}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
             labelText={name}
@@ -111,16 +109,23 @@ const ReportScreen: FC = () => {
           onPress={handleReport}
           loading={isInFlight}
           styles={{
-            container: {
-              width: '100%',
-              paddingHorizontal: 20,
-              backgroundColor: theme.btnPrimary,
-              borderWidth: 0,
-              height: 48,
-            },
+            container: [
+              css`
+                height: 44px;
+                border-width: 1px;
+                border-radius: 0px;
+                margin-left: 24px;
+                margin-right: 24px;
+              `,
+              {
+                backgroundColor: theme.button,
+                borderColor: theme.button,
+              },
+            ],
             text: {
-              color: theme.btnPrimaryFont,
-              fontSize: 16,
+              color: theme.textContrast,
+              fontSize: 14,
+              fontWeight: 'bold',
             },
           }}
           text={getString('REPORT')}
