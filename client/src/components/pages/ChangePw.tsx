@@ -12,12 +12,12 @@ import type {
   UserChangeEmailPasswordMutation,
   UserChangeEmailPasswordMutationResponse,
 } from '../../__generated__/UserChangeEmailPasswordMutation.graphql';
+import styled, {css} from '@emotion/native';
 
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {showAlertForError} from '../../utils/common';
-import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -142,7 +142,7 @@ const ChangePw: FC = () => {
               },
             }}
             style={{marginTop: 40}}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
             labelText={getString('PASSWORD_CURRENT')}
@@ -161,7 +161,7 @@ const ChangePw: FC = () => {
                 fontSize: 16,
               },
             }}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             onChangeText={(pw: string): void => setNewPw(pw)}
             labelText={getString('PASSWORD_NEW')}
             value={newPw}
@@ -179,7 +179,7 @@ const ChangePw: FC = () => {
                 fontSize: 16,
               },
             }}
-            focusColor={theme.focused}
+            focusColor={theme.text}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
             labelText={getString('PASSWORD_NEW_REPEAT')}
             value={confirmPw}
@@ -191,18 +191,23 @@ const ChangePw: FC = () => {
           onPress={handleChangePasswordPress}
           style={{marginBottom: 24, alignSelf: 'stretch', marginHorizontal: 24}}
           styles={{
-            container: {
-              backgroundColor: theme.btnPrimary,
-              borderWidth: 1,
-              height: 48,
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
+            container: [
+              css`
+                height: 44px;
+                border-width: 1px;
+                border-radius: 0px;
+              `,
+              {
+                backgroundColor: theme.button,
+                borderColor: theme.button,
+              },
+            ],
             text: {
+              color: theme.primary,
               alignSelf: 'center',
-              color: theme.textContrast,
               textAlign: 'center',
-              fontSize: 16,
+              fontSize: 14,
+              fontWeight: 'bold',
             },
             hovered: {
               borderColor: theme.text,

@@ -1,5 +1,6 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FC, useMemo, useState} from 'react';
+import {Theme, colors} from '../../theme';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
@@ -7,7 +8,6 @@ import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
-import {Theme} from '../../theme';
 import {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
 import {getString} from '../../../STRINGS';
@@ -61,13 +61,13 @@ const StyledImageSender = styled.Image`
 
 const StyledTextPeerMessageContainer = styled.View`
   margin-right: 8px;
-  background-color: ${({theme}) => theme.peerMessageBackground};
+  background-color: ${colors.messageSecondary};
   padding: 12px;
 `;
 
 const StyledPeerTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({theme}) => theme.peerMessageText};
+  color: black;
 `;
 
 const StyledPhotoContainer = styled.View`
@@ -83,7 +83,7 @@ const StyledTextPeerName = styled.Text`
 
 const StyledMediaError = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.errorBody};
+  color: ${({theme}) => theme.danger};
 `;
 
 const StyledTextPeerDate = styled.Text`
@@ -111,11 +111,11 @@ const StyledTextDate = styled.Text`
 
 const StyledMyTextMessage = styled.Text`
   font-size: 14px;
-  color: ${({theme}) => theme.myMessageText};
+  color: black;
 `;
 
 const StyledMyMessage = styled.View`
-  background-color: ${({theme}) => theme.myMessageBackground};
+  background-color: ${colors.messagePrimary};
   margin-right: 20px;
   margin-left: 28px;
   padding: 12px;
@@ -123,10 +123,10 @@ const StyledMyMessage = styled.View`
 `;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = () =>
   StyleSheet.create({
     url: {
-      color: theme.link,
+      color: colors.brand,
       textDecorationLine: 'underline',
     },
   });
@@ -181,7 +181,7 @@ const decorateDate = (createdAt: string): string => {
   return date.fromNow();
 };
 
-const handleUrlPress = (url: string): void => {
+const openURL = (url: string): void => {
   Linking.openURL(url);
 };
 
@@ -239,7 +239,7 @@ const MessageListItem: FC<Props> = ({
   userId,
 }: Props) => {
   const {theme} = useTheme();
-  const styles = useMemo(() => makeStyles(theme), [theme]);
+  const styles = useMemo(() => makeStyles(), []);
   const [mediaError, setMediaError] = useState('');
 
   const data = useFragment(fragment, item);
@@ -285,7 +285,7 @@ const MessageListItem: FC<Props> = ({
       parse={[
         {
           type: 'url',
-          onPress: handleUrlPress,
+          onPress: openURL,
           style: styles.url,
         },
       ]}

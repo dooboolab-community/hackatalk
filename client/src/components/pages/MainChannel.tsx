@@ -38,7 +38,7 @@ const Fab = styled.View`
   border-radius: 28px;
   justify-content: center;
   align-items: center;
-  background: ${({theme}) => theme.fab};
+  background: ${({theme}) => theme.button};
 `;
 
 const ITEM_CNT = 20;
@@ -238,7 +238,7 @@ const Screen: FC = () => {
         onPress={(): void => navigation.navigate('ChannelCreate')}
       >
         <Fab>
-          <SvgPlus fill={theme.background} />
+          <SvgPlus fill={theme.primary} />
         </Fab>
       </TouchableOpacity>
     </Container>

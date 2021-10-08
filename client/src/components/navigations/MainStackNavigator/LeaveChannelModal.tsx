@@ -26,8 +26,8 @@ const ModalContainer = styled.View`
 const ModalViewContainer = styled.View`
   width: 330px;
   height: 60%;
-  background-color: ${({theme}) => theme.modalBackbround};
-  border: ${({theme}) => theme.modalBtnPrimaryFont};
+  background-color: ${({theme}) => theme.background};
+  border: ${({theme}) => theme.primary};
   border-radius: 20px;
   border-width: 1.5px;
   justify-content: center;
@@ -93,8 +93,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
 }) => {
   const {openSnackbar} = useSnackbarContext();
 
-  const [leaveChannelUpdate, isLeaveChannelComplete] =
-    useMutation<ChannelLeaveChannelMutation>(leaveChannel);
+  const [leftChannel] = useMutation<ChannelLeaveChannelMutation>(leaveChannel);
 
   const [showLeaveChannelMessage, setLeaveChannelMessage] =
     useState<boolean>(false);
@@ -118,7 +117,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
       },
     };
 
-    leaveChannelUpdate(mutationConfig);
+    leftChannel(mutationConfig);
   };
 
   useEffect(() => {

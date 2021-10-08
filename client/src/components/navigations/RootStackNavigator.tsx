@@ -69,9 +69,9 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
           colors: {
             background: theme.background,
             border: theme.disabled,
-            card: theme.itemBackground,
+            card: theme.paper,
             primary: theme.primary,
-            notification: theme.tintColor,
+            notification: theme.primary,
             text: theme.text,
           },
           dark: true,
@@ -84,7 +84,7 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
               backgroundColor: theme.background,
             },
             headerTitleStyle: {color: theme.text},
-            headerTintColor: theme.tintColor,
+            headerTintColor: theme.primary,
             headerShown: false,
           }}
         >

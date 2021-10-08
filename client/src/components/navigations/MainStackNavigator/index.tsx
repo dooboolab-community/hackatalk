@@ -72,7 +72,7 @@ function getSimpleHeader(
 ): StackNavigationOptions {
   return {
     headerTitle: title,
-    headerTintColor: theme.headerFont,
+    headerTintColor: 'white',
     headerStyle: {
       backgroundColor: theme.header,
       borderBottomWidth: 0,

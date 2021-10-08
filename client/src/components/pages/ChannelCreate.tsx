@@ -54,7 +54,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.backgroundDark};
+  background-color: ${({theme}) => theme.background};
   flex-direction: column;
 `;
 
@@ -120,6 +120,9 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     ChannelCreateFriendsPaginationQuery,
     ChannelCreate_friends$key
   >(friendsFragment, friend);
+
+  const {theme} = useTheme();
+  const navigation = useNavigation();
   const {user} = useAuthContext();
 
   const friendEdges = useMemo(() => {
@@ -129,9 +132,6 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
       ) || []
     );
   }, [data]);
-
-  const {theme} = useTheme();
-  const navigation = useNavigation();
 
   const removeFriend = (friendArg: User): void => {
     const nextState = produce(selectedUsers, (draftState) => {
@@ -159,10 +159,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
           }}
         >
           <Image
-            style={{
-              width: 60,
-              height: 60,
-            }}
+            style={{width: 60, height: 60}}
             source={
               friendArg.thumbURL ? {uri: friendArg.thumbURL} : IC_NO_IMAGE
             }
@@ -200,13 +197,14 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     item: UserEdge;
     index: number;
   }): ReactElement => {
-    const isMyself = item?.node?.id === user?.id;
+    const isMe = item?.node?.id === user?.id;
+    if (isMe) return <View />;
 
     return (
       <UserListItem
         testID={`userlist_${index}`}
         showCheckBox
-        isMyself={isMyself}
+        isMe={isMe}
         checked={selectedUsers.includes(item?.node as User)}
         // @ts-ignore
         user={item.node}

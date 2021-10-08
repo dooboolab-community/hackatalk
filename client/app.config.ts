@@ -62,7 +62,7 @@ export default {
         image: './assets/splash.png',
         tabletImage: './assets/splashTablet.png',
       },
-      backgroundColor: '#FFF',
+      backgroundColor: '#FFFFFF',
       versionCode: androidVersionCode,
       userInterfaceStyle: 'automatic',
       package: 'com.dooboolab.hackatalk',

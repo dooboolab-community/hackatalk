@@ -3,6 +3,7 @@ import React, {FC, ReactElement} from 'react';
 import {SectionList, SectionListData} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
 import {UseMutationConfig, useMutation} from 'react-relay';
+import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
@@ -10,7 +11,6 @@ import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
 import {getString} from '../../../STRINGS';
-import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useNavigation} from '@react-navigation/core';
 
@@ -22,7 +22,7 @@ const Container = styled.SafeAreaView`
 
 const HeaderContainer = styled.View`
   background-color: ${({theme}) => theme.background};
-  border-bottom-color: ${({theme}) => theme.lineColor};
+  border-bottom-color: ${({theme}) => theme.disabled};
   height: 40px;
   justify-content: center;
   margin-left: 12px;
@@ -30,7 +30,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}) => theme.textSecondaryColor};
+  color: ${({theme}) => theme.primary};
   margin-left: 2px;
 `;
 
@@ -96,11 +96,7 @@ const Settings: FC = () => {
 
       if (pushToken) {
         const deleteNotificationMutationConfig: UseMutationConfig<NotificationDeleteNotificationMutation> =
-          {
-            variables: {
-              token: pushToken,
-            },
-          };
+          {variables: {token: pushToken}};
 
         commitNotification(deleteNotificationMutationConfig);
       }
@@ -185,15 +181,19 @@ const Settings: FC = () => {
           paddingVertical: 20,
         }}
         styles={{
-          container: {
-            width: '100%',
-            height: 48,
-            backgroundColor: theme.btnPrimaryLight,
-            borderColor: theme.btnPrimary,
-            borderWidth: 0.3,
-          },
+          container: [
+            css`
+              height: 44px;
+              border-width: 1px;
+              border-radius: 0px;
+            `,
+            {
+              backgroundColor: theme.button,
+              borderColor: theme.button,
+            },
+          ],
           text: {
-            color: theme.btnPrimary,
+            color: theme.textContrast,
             fontSize: 14,
             fontWeight: 'bold',
           },

@@ -96,7 +96,7 @@ const Page: FC = () => {
         style={{marginTop: 80}}
         styles={{
           container: {
-            backgroundColor: theme.btnPrimary,
+            backgroundColor: theme.primary,
             borderWidth: 0,
             height: 48,
 
@@ -105,7 +105,7 @@ const Page: FC = () => {
           },
           text: {
             marginHorizontal: 40,
-            color: theme.btnPrimaryFont,
+            color: 'white',
             fontSize: 16,
             textAlign: 'center',
           },

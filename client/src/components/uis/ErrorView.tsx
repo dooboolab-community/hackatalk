@@ -27,7 +27,7 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: ${({theme}) => theme.errorTitle};
+  color: ${({theme}) => theme.danger};
 `;
 
 const Body = styled.Text`
@@ -40,7 +40,7 @@ const Body = styled.Text`
   align-items: center;
   text-align: center;
   letter-spacing: -0.25px;
-  color: ${({theme}) => theme.errorBody};
+  color: ${({theme}) => theme.text};
 `;
 
 interface Props {
@@ -83,11 +83,11 @@ const ErrorView: FC<Props> = (props) => {
               width: 156,
               height: 48,
               justifyContent: 'center',
-              backgroundColor: theme.btnPrimary,
+              backgroundColor: theme.primary,
               flexDirection: 'row',
             },
             text: {
-              color: theme.btnPrimaryLight,
+              color: theme.primaryLight,
               fontSize: 14,
               fontWeight: 'bold',
             },

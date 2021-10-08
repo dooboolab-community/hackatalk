@@ -44,7 +44,7 @@ type ConsumerRef = {
     onDeleteFriend?: () => void;
     onAddFriend?: () => void;
     hideButtons?: boolean;
-    isMyself?: boolean;
+    isMe?: boolean;
   }) => void;
   hideModal: () => void;
   modalState: ModalState;
@@ -316,7 +316,7 @@ describe('[ProfileModal] rendering test', () => {
     expect(overlay.props.style.height).toBe(252);
   });
 
-  it('should be open when modalState.isMyself true', async () => {
+  it('should be open when modalState.isMe true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -331,7 +331,7 @@ describe('[ProfileModal] rendering test', () => {
       <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
     );
 
-    act(() => consumerRef.current?.showModal({isMyself: true}));
+    act(() => consumerRef.current?.showModal({isMe: true}));
 
     expect(screen.queryAllByTestId('touch-add-friend')).toStrictEqual([]);
     expect(screen.queryAllByTestId('touch-done')).toStrictEqual([]);
@@ -340,7 +340,7 @@ describe('[ProfileModal] rendering test', () => {
 });
 
 describe('[ProfileModal] interaction test', () => {
-  it('should have a navigation button to [ProfileUpdate] when [isMyself] is true', async () => {
+  it('should have a navigation button to [ProfileUpdate] when [isMe] is true', async () => {
     const mockEnvironment = createMockEnvironment();
 
     mockEnvironment.mock.queueOperationResolver((operation) =>
@@ -355,7 +355,7 @@ describe('[ProfileModal] interaction test', () => {
       <TestComponent consumerRef={consumerRef} environment={mockEnvironment} />,
     );
 
-    act(() => consumerRef.current?.showModal({isMyself: true}));
+    act(() => consumerRef.current?.showModal({isMe: true}));
 
     const button = screen.getByTestId('profile-update-button');
     fireEvent.press(button);
