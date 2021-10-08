@@ -400,11 +400,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.text} />}
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
-        <View
-          style={{
-            flexDirection: 'row',
-          }}
-        >
+        <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             testID="icon-camera"
             onPress={(): Promise<void> =>

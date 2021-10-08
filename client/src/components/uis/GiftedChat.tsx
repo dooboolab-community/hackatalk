@@ -14,17 +14,18 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   flex: 1;
-  justify-content: center;
   align-self: stretch;
+
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({theme}) => theme.line};
+  border-color: ${({theme}) => theme.disabled};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;
