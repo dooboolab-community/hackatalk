@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://website.hackatalk.dev/ko/blog</id>
+    <title>HackaTalk Blog</title>
+    <updated>2021-05-24T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://website.hackatalk.dev/ko/blog"/>
+    <subtitle>HackaTalk Blog</subtitle>
+    <icon>https://website.hackatalk.dev/ko/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[WeHack 공지]]></title>
+        <id>Announcing WeHack</id>
+        <link href="https://website.hackatalk.dev/ko/blog/Announcing WeHack"/>
+        <updated>2021-05-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[WeHack 해커톡 오리엔테이션이 July 1st at 7:00 PM(KST)에 진행됩니다.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PSQL과 프리즈마 연동]]></title>
+        <id>setup-postgresql-prisma2</id>
+        <link href="https://website.hackatalk.dev/ko/blog/setup-postgresql-prisma2"/>
+        <updated>2020-07-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Medium 포스트에서 Postgresql을 Prisma v2로 다루는 방법을 볼 수 있습니다.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[GraphQL 클라이언트 relay 연동]]></title>
+        <id>relay-integration</id>
+        <link href="https://website.hackatalk.dev/ko/blog/relay-integration"/>
+        <updated>2020-06-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Relay 통합을 완료하였습니다.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Prisma2 마이그레이션]]></title>
+        <id>prisma2-migration</id>
+        <link href="https://website.hackatalk.dev/ko/blog/prisma2-migration"/>
+        <updated>2020-06-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[서버 프로젝트를 기존의 hackatalk-server에서 hacaktalk primsa2로 업데이트 하였습니다.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[react-navigation v5 마이그레이션]]></title>
+        <id>react-navigation-v5</id>
+        <link href="https://website.hackatalk.dev/ko/blog/react-navigation-v5"/>
+        <updated>2019-12-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[react-navigation이 v5부터 완전히 재 설계된 HOC 패턴으로 출시되었습니다. 해커톡도 v5로 마이그레이션을 완료했습니다. 여기에 관련 게시물을 보실 수 있습니다.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[dooboo-cli v3 릴리즈]]></title>
+        <id>dooboo-cli-v3</id>
+        <link href="https://website.hackatalk.dev/ko/blog/dooboo-cli-v3"/>
+        <updated>2019-12-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[dooboo-cli version3가 다양한 템플릿을 품고 새롭게 출시되었습니다 👐.]]></summary>
+    </entry>
+</feed>

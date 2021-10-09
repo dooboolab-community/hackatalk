@@ -1,0 +1,1 @@
+(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[404],{2607:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/ko/blog/tags","slug":"setup","name":"setup","count":1,"permalink":"/ko/blog/tags/setup"}')}}]);

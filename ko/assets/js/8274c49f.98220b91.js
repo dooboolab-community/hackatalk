@@ -1,0 +1,1 @@
+(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[2622],{3081:function(e){"use strict";e.exports=JSON.parse('{"permalink":"/ko/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":6,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

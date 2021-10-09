@@ -1,0 +1,1 @@
+(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[5324],{2720:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/ko/blog/tags","slug":"dooboolab","name":"dooboolab","count":1,"permalink":"/ko/blog/tags/dooboolab"}')}}]);

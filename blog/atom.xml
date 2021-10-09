@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://website.hackatalk.dev/blog</id>
+    <title>HackaTalk Blog</title>
+    <updated>2021-05-24T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://website.hackatalk.dev/blog"/>
+    <subtitle>HackaTalk Blog</subtitle>
+    <icon>https://website.hackatalk.dev/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[WeHack Announcement]]></title>
+        <id>Announcing WeHack</id>
+        <link href="https://website.hackatalk.dev/blog/Announcing WeHack"/>
+        <updated>2021-05-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[WeHack hackathon is comming in July 1st at 7:00 PM(KST).]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Setup postgresql for prisma2]]></title>
+        <id>setup-postgresql-prisma2</id>
+        <link href="https://website.hackatalk.dev/blog/setup-postgresql-prisma2"/>
+        <updated>2020-07-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Here is how you can setup Postgresql in Prisma v2.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Integrate graphql client relay]]></title>
+        <id>relay-integration</id>
+        <link href="https://website.hackatalk.dev/blog/relay-integration"/>
+        <updated>2020-06-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Relay integration has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Migrating server to Prisma2]]></title>
+        <id>prisma2-migration</id>
+        <link href="https://website.hackatalk.dev/blog/prisma2-migration"/>
+        <updated>2020-06-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We've migrated our server project, hackatalk-server, to hacaktalk primsa2.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Migrating react-navigation version 5]]></title>
+        <id>react-navigation-v5</id>
+        <link href="https://website.hackatalk.dev/blog/react-navigation-v5"/>
+        <updated>2019-12-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our react-navigation and here is the post.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[dooboo-cli v3 releases]]></title>
+        <id>dooboo-cli-v3</id>
+        <link href="https://website.hackatalk.dev/blog/dooboo-cli-v3"/>
+        <updated>2019-12-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[dooboo-cli version3 has released with more boilerplates 👐.]]></summary>
+    </entry>
+</feed>
