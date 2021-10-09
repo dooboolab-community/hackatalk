@@ -4,7 +4,8 @@ import {
   useLeaveChannelContext,
 } from '../../../providers/LeaveChannelModalProvider';
 import React, {FC, useEffect, useState} from 'react';
-import {StyleProp, TouchableHighlight, ViewStyle} from 'react-native';
+import {StyleProp, TouchableHighlight, View, ViewStyle} from 'react-native';
+import {Typography, TypographyInverted} from 'dooboo-ui';
 
 import {ChannelLeaveChannelMutation} from '../../../__generated__/ChannelLeaveChannelMutation.graphql';
 import Modal from 'react-native-modalbox';
@@ -24,46 +25,30 @@ const ModalContainer = styled.View`
 `;
 
 const ModalViewContainer = styled.View`
-  width: 330px;
-  height: 60%;
+  padding: 40px;
   background-color: ${({theme}) => theme.background};
   border: ${({theme}) => theme.primary};
-  border-radius: 20px;
-  border-width: 1.5px;
+  border-width: 0.3px;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 const ModalBtnContainer = styled.View`
   margin-top: 30px;
   flex-direction: row;
-  width: 80%;
 
   justify-content: space-between;
 `;
 
 const ModalBtnStyle = styled.View`
   background-color: ${({theme}) => theme.primary};
-  border-radius: 10px;
   opacity: 0.8;
   width: 120px;
   height: 40px;
 
   justify-content: center;
   align-items: center;
-`;
-
-const ModalBtnText = styled.Text`
-  color: ${({theme}) => theme.light};
-  font-weight: bold;
-  font-size: 18px;
-`;
-
-const ModalText = styled.Text`
-  color: ${({theme}) => theme.text};
-  opacity: 1;
-  font-weight: bold;
-  font-size: 22px;
 `;
 
 interface Styles {
@@ -126,14 +111,16 @@ const ChannelModalContent: FC<ModalContentProps> = ({
         text: getString('LEAVE_CHANNEL_DONE'),
         type: 'success',
         testID: 'profile-snackbar',
-        zIndex: 101,
+        zIndex: 99,
       });
   }, [openSnackbar, showLeaveChannelMessage]);
 
   return (
     <ModalContainer>
       <ModalViewContainer>
-        <ModalText>{getString('LEAVE_CHANNEL_CONFIRMATION')}</ModalText>
+        <Typography.Heading2>
+          {getString('LEAVE_CHANNEL_CONFIRMATION')}
+        </Typography.Heading2>
         <ModalBtnContainer>
           <TouchableHighlight
             testID="leave-channel-modal"
@@ -143,11 +130,12 @@ const ChannelModalContent: FC<ModalContentProps> = ({
             }}
           >
             <ModalBtnStyle>
-              <ModalBtnText>
-                <ModalBtnText>{getString('YES')}</ModalBtnText>
-              </ModalBtnText>
+              <TypographyInverted.Body1>
+                {getString('YES')}
+              </TypographyInverted.Body1>
             </ModalBtnStyle>
           </TouchableHighlight>
+          <View style={{width: 8}} />
           <TouchableHighlight
             underlayColor="none"
             onPress={() => {
@@ -155,9 +143,9 @@ const ChannelModalContent: FC<ModalContentProps> = ({
             }}
           >
             <ModalBtnStyle>
-              <ModalBtnText>
-                <ModalBtnText>{getString('NO')}</ModalBtnText>
-              </ModalBtnText>
+              <TypographyInverted.Body1>
+                {getString('NO')}
+              </TypographyInverted.Body1>
             </ModalBtnStyle>
           </TouchableHighlight>
         </ModalBtnContainer>
