@@ -191,7 +191,12 @@ function ChannelListItem(props: Props): React.ReactElement {
             const IMAGE_SIZE_2 = 24;
 
             return (
-              <View style={{flex: 1}}>
+              <View
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
                 <StyledImageSmall
                   style={{
                     width: IMAGE_SIZE_2,
@@ -219,7 +224,8 @@ function ChannelListItem(props: Props): React.ReactElement {
             return (
               <View
                 style={{
-                  flex: 1,
+                  width: '100%',
+                  height: '100%',
                   alignItems: 'center',
                 }}
               >
@@ -263,7 +269,8 @@ function ChannelListItem(props: Props): React.ReactElement {
             return (
               <View
                 style={{
-                  flex: 1,
+                  width: '100%',
+                  height: '100%',
                   flexWrap: 'wrap',
 
                   flexDirection: 'row',
@@ -289,12 +296,13 @@ function ChannelListItem(props: Props): React.ReactElement {
 
           default:
             return (
-              <View style={{flex: 1}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                }}
+              >
                 <Image
-                  style={{
-                    flex: 1,
-                    borderRadius: 25,
-                  }}
+                  style={{width: 48, height: 48, borderRadius: 24}}
                   source={images[0] ? {uri: images[0]} : IC_NO_IMAGE}
                 />
               </View>
