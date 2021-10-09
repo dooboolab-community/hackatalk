@@ -28,7 +28,6 @@ const ModalViewContainer = styled.View`
   padding: 40px;
   background-color: ${({theme}) => theme.background};
   border: ${({theme}) => theme.primary};
-  border-radius: 20px;
   border-width: 0.3px;
   justify-content: center;
   align-items: center;
@@ -44,7 +43,6 @@ const ModalBtnContainer = styled.View`
 
 const ModalBtnStyle = styled.View`
   background-color: ${({theme}) => theme.primary};
-  border-radius: 10px;
   opacity: 0.8;
   width: 120px;
   height: 40px;
