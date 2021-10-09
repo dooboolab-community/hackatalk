@@ -1,8 +1,9 @@
 import {Channel, Maybe, Membership, Message, User} from '../../types/graphql';
+import {Image, TouchableOpacity, View, ViewStyle} from 'react-native';
 import React, {ReactElement} from 'react';
-import {TouchableOpacity, View, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
+import {Typography} from 'dooboo-ui';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
@@ -41,12 +42,6 @@ const StyledViewTop = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`;
-
-const StyledTextDisplayName = styled.Text`
-  font-weight: bold;
-  font-size: 14px;
-  color: ${({theme}) => theme.text};
 `;
 
 const StyledTextWrapper = styled.View`
@@ -88,12 +83,6 @@ const StyledTextMembershipsCount = styled.Text`
   font-weight: bold;
 `;
 
-const StyledImage = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
-
 const StyledImageSmall = styled.Image`
   width: 20px;
   height: 20px;
@@ -133,13 +122,6 @@ const StyledMeCircleView = styled.View`
   align-items: center;
   margin-right: 5px;
 `;
-
-const StyledMeCircleText = styled.Text`
-  color: ${({theme}) => theme.text};
-  font-size: 10px;
-  font-weight: bold;
-`;
-
 interface Props {
   style?: ViewStyle;
   item: Channel;
@@ -198,28 +180,128 @@ function ChannelListItem(props: Props): React.ReactElement {
     const photoURLs = calculatePhotoUrls(users);
     const isOnline = calculateOnlineStatus(users);
 
-    const renderSingleImage = (
-      photoURL: string | null | undefined,
-    ): ReactElement => {
-      if (photoURL) return <StyledImage source={{uri: photoURL}} />;
+    const renderMultiImages = (): ReactElement | null => {
+      const images = photoURLs?.slice(0, 4) || [];
 
-      return (
-        <View
-          style={{
-            width: 50,
-            height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <StyledImage source={IC_NO_IMAGE} />
-        </View>
-      );
-    };
+      if (images.length === 0) return null;
 
-    const renderMultiImages = (
-      photoStrs: (string | null | undefined)[] | undefined,
-    ): ReactElement => {
+      const renderImages = (): ReactElement => {
+        switch (images.length) {
+          case 2:
+            const IMAGE_SIZE_2 = 24;
+
+            return (
+              <View style={{flex: 1}}>
+                <StyledImageSmall
+                  style={{
+                    width: IMAGE_SIZE_2,
+                    height: IMAGE_SIZE_2,
+                    borderRadius: IMAGE_SIZE_2 / 2,
+                  }}
+                  source={images[0] ? {uri: images[0]} : IC_NO_IMAGE}
+                />
+                <StyledImageSmall
+                  style={{
+                    width: IMAGE_SIZE_2,
+                    height: IMAGE_SIZE_2,
+                    borderRadius: IMAGE_SIZE_2 / 2,
+                    position: 'absolute',
+                    right: 0,
+                    bottom: 0,
+                  }}
+                  source={images[1] ? {uri: images[1]} : IC_NO_IMAGE}
+                />
+              </View>
+            );
+          case 3:
+            const IMAGE_SIZE_3 = 20;
+
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                }}
+              >
+                <StyledImageSmall
+                  style={{
+                    width: IMAGE_SIZE_3,
+                    height: IMAGE_SIZE_3,
+                    borderRadius: IMAGE_SIZE_3 / 2,
+                    position: 'absolute',
+                    left: 0,
+                    bottom: 0,
+                  }}
+                  source={images[1] ? {uri: images[1]} : IC_NO_IMAGE}
+                />
+                <StyledImageSmall
+                  style={{
+                    width: IMAGE_SIZE_3,
+                    height: IMAGE_SIZE_3,
+                    borderRadius: IMAGE_SIZE_3 / 2,
+                    position: 'absolute',
+                    right: 0,
+                    bottom: 0,
+                  }}
+                  source={images[1] ? {uri: images[1]} : IC_NO_IMAGE}
+                />
+                <StyledImageSmall
+                  style={{
+                    marginTop: 2,
+                    width: IMAGE_SIZE_3,
+                    height: IMAGE_SIZE_3,
+                    borderRadius: IMAGE_SIZE_3 / 2,
+                  }}
+                  source={images[0] ? {uri: images[0]} : IC_NO_IMAGE}
+                />
+              </View>
+            );
+
+          case 4:
+            const IMAGE_SIZE_4 = 20;
+
+            return (
+              <View
+                style={{
+                  flex: 1,
+                  flexWrap: 'wrap',
+
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                {photoURLs?.slice(0, 4).map((photo, i) => {
+                  return (
+                    <StyledImageSmall
+                      key={i.toString()}
+                      style={{
+                        marginTop: 2,
+                        width: IMAGE_SIZE_4,
+                        height: IMAGE_SIZE_4,
+                        borderRadius: IMAGE_SIZE_4 / 2,
+                      }}
+                      source={photo ? {uri: photo} : IC_NO_IMAGE}
+                    />
+                  );
+                })}
+              </View>
+            );
+
+          default:
+            return (
+              <View style={{flex: 1}}>
+                <Image
+                  style={{
+                    flex: 1,
+                    borderRadius: 25,
+                  }}
+                  source={images[0] ? {uri: images[0]} : IC_NO_IMAGE}
+                />
+              </View>
+            );
+        }
+      };
+
       return (
         <View
           style={{
@@ -237,20 +319,15 @@ function ChannelListItem(props: Props): React.ReactElement {
               flexDirection: 'row',
             }}
           >
-            {photoStrs?.slice(0, 4).map((photo, i) => {
-              if (!photo)
-                return <StyledImageSmall key={i} source={IC_NO_IMAGE} />;
-
-              return <StyledImageSmall key={i} source={{uri: photo}} />;
-            })}
+            {renderImages()}
           </View>
-          {!!photoStrs && photoStrs.length > 4 && (
+          {!!photoURLs && photoURLs.length > 4 && (
             <StyledCircleView>
               <StyledTextMembershipsCount>
                 {`${
-                  photoStrs.length > 1000
+                  photoURLs.length > 1000
                     ? '+>1000'
-                    : `+${photoStrs?.length - 4}`
+                    : `+${photoURLs?.length - 4}`
                 }`}
               </StyledTextMembershipsCount>
             </StyledCircleView>
@@ -275,9 +352,7 @@ function ChannelListItem(props: Props): React.ReactElement {
         >
           <StyledViewChatRoomListItem>
             <View style={{marginHorizontal: 15}}>
-              {!users || users.length === 1
-                ? renderSingleImage(photoURLs?.[0])
-                : renderMultiImages(photoURLs)}
+              {renderMultiImages()}
               {isOnline ? <StyledStatus /> : <View />}
             </View>
             <StyledViewContent>
@@ -285,12 +360,22 @@ function ChannelListItem(props: Props): React.ReactElement {
                 <StyledNamesContainerView>
                   {channelType === 'self' && (
                     <StyledMeCircleView>
-                      <StyledMeCircleText>{getString('ME')}</StyledMeCircleText>
+                      <Typography.Body2
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        {getString('ME')}
+                      </Typography.Body2>
                     </StyledMeCircleView>
                   )}
-                  <StyledTextDisplayName numberOfLines={2}>
+                  <Typography.Body2
+                    style={{fontWeight: 'bold'}}
+                    numberOfLines={2}
+                  >
                     {calculateDisplayNames(users)}
-                  </StyledTextDisplayName>
+                  </Typography.Body2>
                 </StyledNamesContainerView>
                 {lastMessageCnt !== 0 ? (
                   <StyledTextWrapper>
