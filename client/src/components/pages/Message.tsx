@@ -178,7 +178,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
   const [message, setMessage] = useState<string>('');
 
-  const [cursor, setCursor] = useState<{start: number, end:number}>({start: 0, end: 0});
+  const [cursor, setCursor] = useState<{start: number; end: number}>({
+    start: 0,
+    end: 0,
+  });
+
+  const [lastKeyEvent, setLastKeyEvent] = useState<string>('');
+
   const [tagUsers, setTagUsers] = useState<
     ({
       readonly id: string;
@@ -385,9 +391,62 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       readonly name: string | null;
     } | null,
   ): void => {
+    const cursorFrontText = message.slice(0, cursor.start + 1);
+    const tagIdx = cursorFrontText.lastIndexOf('@');
     const newMessage = [...message];
-    newMessage.splice(cursor.start, 0, item?.name || '');
+
+    newMessage.splice(
+      tagIdx + 1,
+      cursor.start - tagIdx - 1,
+      item?.name + ' ' || '',
+    );
     setMessage(newMessage.join(''));
+  };
+
+  const parseTagText = (
+    inputedText: string,
+  ): {isTag: boolean; parsedText: string} => {
+    let result = {isTag: false, parsedText: ''};
+
+    const cursorFrontText = inputedText.slice(0, cursor.start + 1);
+    const tagIdx = cursorFrontText.lastIndexOf('@');
+    if (tagIdx !== -1)
+      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' '))
+        if (lastKeyEvent === 'Backspace')
+          result = {
+            isTag: true,
+            parsedText: cursorFrontText.slice(tagIdx + 1, -2),
+          };
+        else
+          result = {isTag: true, parsedText: cursorFrontText.slice(tagIdx + 1)};
+
+    return result;
+  };
+
+  const getTagUsersByText = (
+    inputedText: string,
+  ): ({
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+  } | null)[] => {
+    let result = [];
+    if (inputedText === '') result = users;
+    else
+      result = users.filter((item) => {
+        return item?.name?.startsWith(inputedText);
+      });
+
+    return result;
+  };
+
+  const handleTagUsers = (inputedText: string): void => {
+    const parsedTagText = parseTagText(inputedText);
+
+    const paredUsers = parsedTagText.isTag
+      ? getTagUsersByText(parsedTagText.parsedText)
+      : [];
+    setTagUsers(paredUsers);
   };
 
   return (
@@ -407,9 +466,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       message={message}
       placeholder={getString('WRITE_MESSAGE')}
       onChangeMessage={(text) => {
-        if (text === '\n') return setMessage('');
+        if (text === '\n') {
+          setMessage('');
+
+          return handleTagUsers('');
+        }
 
         setMessage(text);
+        handleTagUsers(text);
       }}
       onChangeSelection={({start, end}) => {
         setCursor({start: start, end: end});
@@ -426,7 +490,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
             setMessage(`${message}\n`);
           }
-        if (nativeEvent.key === '@') setTagUsers(users);
+
+        setLastKeyEvent(nativeEvent.key);
+        handleTagUsers(message);
       }}
       openedOptionView={
         <SvgArrDown width={18} height={18} stroke={theme.text} />
