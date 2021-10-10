@@ -31,7 +31,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-SplashScreen.preventAutoHideAsync();
+if (!__DEV__) SplashScreen.preventAutoHideAsync();
 
 const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const registerNotification = async (): Promise<void> => {
@@ -66,7 +66,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
     if (assets && dooboouiAssets) registerNotification();
   }, [assets, dooboouiAssets]);
 
-  if (!assets || !dooboouiAssets)
+  if ((!assets || !dooboouiAssets) && !__DEV__)
     return <AppLoading autoHideSplash={false} onError={console.warn} />;
 
   return (
