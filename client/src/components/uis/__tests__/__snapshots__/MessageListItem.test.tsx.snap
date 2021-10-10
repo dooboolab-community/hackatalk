@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    shouldShowDatePeer={true}
+    style={
+      Array [
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+          "marginLeft": 20,
+          "marginRight": 8,
+          "marginTop": 8,
+          "minHeight": 48,
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "marginRight": 8,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID="chat-list-item0"
+      >
+        <Image
+          accessibilityHint="sender image"
+          accessible={true}
+          source={
+            Object {
+              "uri": "https://example.com/profile.jpg",
+            }
+          }
+          style={
+            Array [
+              Object {
+                "borderBottomLeftRadius": 16,
+                "borderBottomRightRadius": 16,
+                "borderTopLeftRadius": 16,
+                "borderTopRightRadius": 16,
+                "height": 32,
+                "width": 32,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "maxWidth": "80%",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "white",
+              "fontSize": 12,
+              "marginBottom": 2,
+            },
+            undefined,
+          ]
+        }
+      >
+        alice
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#E2F2FF",
+                "marginRight": 8,
+                "paddingBottom": 12,
+                "paddingLeft": 12,
+                "paddingRight": 12,
+                "paddingTop": 12,
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            selectable={true}
+            style={
+              Array [
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text>
+              <Text
+                style={
+                  Array [
+                    undefined,
+                    undefined,
+                  ]
+                }
+              >
+                Hello there!
+              </Text>
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

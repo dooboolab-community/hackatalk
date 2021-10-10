@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[StatusMessageView] render render without crashing 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "overflow": "hidden",
+      "position": "absolute",
+      "top": 40,
+      "transform": Array [
+        Object {
+          "translateY": 140,
+        },
+      ],
+      "width": 200,
+      "zIndex": 100,
+    }
+  }
+  testID="view-animated"
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+    testID="touchable-statusMessageView"
+  >
+    <Text
+      ellipsizeMode="tail"
+      isStatusMessageExpanded={false}
+      numberOfLines={2}
+      onTextLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "alignSelf": "center",
+            "color": "white",
+            "fontSize": 12,
+            "fontWeight": "normal",
+            "textAlign": "center",
+          },
+          undefined,
+        ]
+      }
+      testID="text-main"
+    >
+      StatusMessage test
+    </Text>
+  </View>
+</View>
+`;

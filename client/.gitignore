@@ -27,7 +27,5 @@ firebase-debug*.*
 # firebase
 google-services.json
 
-__snapshots__
-
 # watchman
 .watchman*

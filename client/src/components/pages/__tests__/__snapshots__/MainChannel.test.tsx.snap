@@ -1,0 +1,432 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[Channel] screen renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      ListEmptyComponent={
+        <Shared
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          Start a Chat
+        </Shared>
+      }
+      ListFooterComponent={
+        <Component
+          style={
+            Object {
+              "height": 60,
+            }
+          }
+        />
+      }
+      ListHeaderComponent={
+        <AdMobBanner
+          adUnitID="ca-app-pub-7837089095803162/4326063134"
+          bannerSize="smartBannerPortrait"
+          onDidFailToReceiveAdWithError={[Function]}
+        />
+      }
+      contentContainerStyle={null}
+      data={
+        Array [
+          Object {
+            "cursor": "<mock-value-for-field-\\"cursor\\">",
+            "node": Object {
+              "__typename": "Channel",
+              "channelType": "private",
+              "id": "test-channel-1",
+              "lastMessage": Object {
+                "createdAt": "2021-03-19T05:13:22.932Z",
+                "fileUrls": "<mock-value-for-field-\\"fileUrls\\">",
+                "id": "test-message-3848",
+                "imageUrls": "<mock-value-for-field-\\"imageUrls\\">",
+                "messageType": "text",
+                "text": "<mock-value-for-field-\\"text\\">",
+              },
+              "memberships": Array [
+                Object {
+                  "user": Object {
+                    "id": "<User-mock-id-2>",
+                    "name": "<mock-value-for-field-\\"name\\">",
+                    "nickname": "<mock-value-for-field-\\"nickname\\">",
+                    "photoURL": "<mock-value-for-field-\\"photoURL\\">",
+                    "thumbURL": "<mock-value-for-field-\\"thumbURL\\">",
+                  },
+                },
+              ],
+              "name": "HackaTalk",
+            },
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      onContentSizeChange={[Function]}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0.1}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "alignSelf": "stretch",
+        }
+      }
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+        >
+          <View>
+            <ViewManagerAdapter_ExpoAdsAdMobBannerView
+              proxiedProperties={
+                Object {
+                  "adUnitID": "ca-app-pub-7837089095803162/4326063134",
+                  "additionalRequestParams": Object {
+                    "npa": "1",
+                  },
+                  "bannerSize": "smartBannerPortrait",
+                  "onAdViewDidDismissScreen": undefined,
+                  "onAdViewDidReceiveAd": undefined,
+                  "onAdViewWillDismissScreen": undefined,
+                  "onAdViewWillLeaveApplication": undefined,
+                  "onAdViewWillPresentScreen": undefined,
+                  "onDidFailToReceiveAdWithError": [Function],
+                  "onSizeChange": [Function],
+                }
+              }
+              style={Object {}}
+            />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Object {
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessibilityLabel="Go to chat"
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#151C22",
+                      "borderBottomColor": "#515151",
+                      "borderBottomWidth": 0.3,
+                      "borderLeftColor": "#515151",
+                      "borderRightColor": "#515151",
+                      "borderTopColor": "#515151",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "minHeight": 92,
+                      "paddingBottom": 8,
+                      "paddingLeft": 0,
+                      "paddingRight": 0,
+                      "paddingTop": 8,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginHorizontal": 15,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 50,
+                        "justifyContent": "center",
+                        "width": 50,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "flexWrap": "wrap",
+                          "height": 44,
+                          "width": 44,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Image
+                          source={
+                            Object {
+                              "uri": "<mock-value-for-field-\\"thumbURL\\">",
+                            }
+                          }
+                          style={
+                            Object {
+                              "borderRadius": 24,
+                              "height": 48,
+                              "width": 48,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexDirection": "column",
+                        "flexGrow": 1,
+                        "flexShrink": 1,
+                        "paddingRight": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "flexDirection": "row",
+                            "justifyContent": "flex-start",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      <Text
+                        numberOfLines={2}
+                        style={
+                          Array [
+                            Object {
+                              "color": "white",
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontWeight": "bold",
+                            },
+                          ]
+                        }
+                      >
+                        &lt;mock-value-for-field-"nickname"&gt;
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                          "marginTop": 8,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <Text
+                      lastMessageCnt={0}
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontSize": 12,
+                            "maxWidth": 200,
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      &lt;mock-value-for-field-"text"&gt;
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontSize": 12,
+                            "textAlign": "right",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      in 42 minutes
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "height": 60,
+              }
+            }
+          />
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "bottom": 44,
+          "opacity": 1,
+          "position": "absolute",
+          "right": 20,
+        }
+      }
+      testID="channel-create-fab"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#8BC9FF",
+              "borderBottomLeftRadius": 28,
+              "borderBottomRightRadius": 28,
+              "borderTopLeftRadius": 28,
+              "borderTopRightRadius": 28,
+              "height": 56,
+              "justifyContent": "center",
+              "width": 56,
+            },
+            undefined,
+          ]
+        }
+      >
+        <SvgMock
+          fill="#fff"
+        />
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
