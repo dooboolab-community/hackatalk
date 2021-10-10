@@ -10,17 +10,17 @@ const linking: LinkingOptions<RootStackParamList> = {
         screens: {
           MainTab: {
             screens: {
-              Channel: 'channel',
-              Friend: 'friend',
+              Channel: 'channels',
+              Friend: 'friends',
             },
           },
           ProfileUpdate: 'profile_update',
           BlockedUser: 'blocked_user',
           ChangePw: 'change_pw',
           ChannelCreate: 'channel_create',
-          Message: 'message',
+          Message: 'message/:channelId',
           PinchZoomViewPager: 'pinchzoom',
-          Report: 'report',
+          Report: 'reports/:name/:userId',
           SearchUser: 'search_user',
           Settings: 'settings',
         },
@@ -29,11 +29,14 @@ const linking: LinkingOptions<RootStackParamList> = {
         screens: {
           SignIn: 'sign_in',
           SignUp: 'sign_up',
-          VerifyEmail: 'verify_email',
+          VerifyEmail: 'verify_email/:email',
           LicenseAgreement: 'license_agreement',
           FindPw: 'find_pw',
         },
       },
+      ImageSlider: 'images',
+      NotFound: '404',
+      WebView: 'webview/:uri',
     },
   },
 };
