@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        forwardedRef={[Function]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        style={
+          Object {
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": -760,
+            "position": "absolute",
+            "top": 0,
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": 750,
+          }
+        }
+        testID="PINCH_ZOOM_CONTAINER"
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1519335337423-a3357c2cd12e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2168&q=80",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        />
+      </View>
+      <View
+        forwardedRef={[Function]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        style={
+          Object {
+            "justifyContent": "center",
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+              Object {
+                "translateY": 0,
+              },
+              Object {
+                "scale": 1,
+              },
+            ],
+            "width": 750,
+          }
+        }
+        testID="PINCH_ZOOM_CONTAINER"
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://www.housingwire.com/wp-content/uploads/2019/09/Purple-technology-data-internet-3.jpg",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        />
+      </View>
+      <View
+        forwardedRef={[Function]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        style={
+          Object {
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 760,
+            "position": "absolute",
+            "top": 0,
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+            "width": 750,
+          }
+        }
+        testID="PINCH_ZOOM_CONTAINER"
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://images.unsplash.com/photo-1587628736664-fdc50efb57b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "height": 1334,
+              "width": 750,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

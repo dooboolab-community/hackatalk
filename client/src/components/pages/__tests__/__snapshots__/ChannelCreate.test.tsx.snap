@@ -1,0 +1,970 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders [UserListItem] 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
+            "width": "100%",
+          },
+          Object {
+            "marginTop": 8,
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCorrect={false}
+        multiline={false}
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        selectionColor="white"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#151C22",
+              "borderBottomLeftRadius": 4,
+              "borderBottomRightRadius": 4,
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
+              "color": "white",
+              "paddingBottom": 12,
+              "paddingLeft": 40,
+              "paddingRight": 10,
+              "paddingTop": 12,
+              "width": "100%",
+            },
+            undefined,
+          ]
+        }
+        testID="text-input"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <Image
+        source={
+          Object {
+            "canInstrument": true,
+            "createTransformer": [Function],
+            "getCacheKey": [Function],
+            "process": [Function],
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 20,
+              "left": 30,
+              "position": "absolute",
+              "width": 20,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#000",
+            "flexBasis": 0,
+            "flexDirection": "column",
+            "flexGrow": 1,
+            "flexShrink": 1,
+          },
+          undefined,
+        ]
+      }
+    >
+      <RCTScrollView
+        ListEmptyComponent={
+          <ErrorView
+            body="You currently do not have any friends. Please search for users to add to your friend list."
+            buttonText="Go back"
+            onButtonPressed={[Function]}
+            testID="btn-error"
+            title="No friends"
+          />
+        }
+        ListHeaderComponent={[Function]}
+        contentContainerStyle={null}
+        data={
+          Array [
+            Object {
+              "cursor": "<mock-value-for-field-\\"cursor\\">",
+              "node": Object {
+                "__fragmentOwner": Object {
+                  "cacheConfig": Object {
+                    "force": true,
+                  },
+                  "identifier": "203c6d15d466e67649e454eec08bda32{\\"after\\":null,\\"first\\":20,\\"includeMe\\":true,\\"searchText\\":\\"\\"}",
+                  "node": Object {
+                    "fragment": Object {
+                      "abstractKey": null,
+                      "argumentDefinitions": Array [
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "after",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "first",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "includeMe",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "searchText",
+                        },
+                      ],
+                      "kind": "Fragment",
+                      "metadata": null,
+                      "name": "FriendsQuery",
+                      "selections": Array [
+                        Object {
+                          "args": Array [
+                            Object {
+                              "kind": "Variable",
+                              "name": "after",
+                              "variableName": "after",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "first",
+                              "variableName": "first",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "includeMe",
+                              "variableName": "includeMe",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "searchText",
+                              "variableName": "searchText",
+                            },
+                          ],
+                          "kind": "FragmentSpread",
+                          "name": "MainFriend_friends",
+                        },
+                        Object {
+                          "args": Array [
+                            Object {
+                              "kind": "Variable",
+                              "name": "after",
+                              "variableName": "after",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "first",
+                              "variableName": "first",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "includeMe",
+                              "variableName": "includeMe",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "searchText",
+                              "variableName": "searchText",
+                            },
+                          ],
+                          "kind": "FragmentSpread",
+                          "name": "ChannelCreate_friends",
+                        },
+                      ],
+                      "type": "Query",
+                    },
+                    "hash": "83e83cdfcf6f4a0573ac1e9b2624e488",
+                    "kind": "Request",
+                    "operation": Object {
+                      "argumentDefinitions": Array [
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "first",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "after",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "searchText",
+                        },
+                        Object {
+                          "defaultValue": null,
+                          "kind": "LocalArgument",
+                          "name": "includeMe",
+                        },
+                      ],
+                      "kind": "Operation",
+                      "name": "FriendsQuery",
+                      "selections": Array [
+                        Object {
+                          "alias": null,
+                          "args": Array [
+                            Object {
+                              "kind": "Variable",
+                              "name": "after",
+                              "variableName": "after",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "first",
+                              "variableName": "first",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "includeMe",
+                              "variableName": "includeMe",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "searchText",
+                              "variableName": "searchText",
+                            },
+                          ],
+                          "concreteType": "UserConnection",
+                          "kind": "LinkedField",
+                          "name": "friends",
+                          "plural": false,
+                          "selections": Array [
+                            Object {
+                              "alias": null,
+                              "args": null,
+                              "concreteType": "UserEdge",
+                              "kind": "LinkedField",
+                              "name": "edges",
+                              "plural": true,
+                              "selections": Array [
+                                Object {
+                                  "alias": null,
+                                  "args": null,
+                                  "kind": "ScalarField",
+                                  "name": "cursor",
+                                  "storageKey": null,
+                                },
+                                Object {
+                                  "alias": null,
+                                  "args": null,
+                                  "concreteType": "User",
+                                  "kind": "LinkedField",
+                                  "name": "node",
+                                  "plural": false,
+                                  "selections": Array [
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "id",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "photoURL",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "name",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "nickname",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "hasBlocked",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "statusMessage",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "isFriend",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "isOnline",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "__typename",
+                                      "storageKey": null,
+                                    },
+                                    Object {
+                                      "alias": null,
+                                      "args": null,
+                                      "kind": "ScalarField",
+                                      "name": "thumbURL",
+                                      "storageKey": null,
+                                    },
+                                  ],
+                                  "storageKey": null,
+                                },
+                              ],
+                              "storageKey": null,
+                            },
+                            Object {
+                              "alias": null,
+                              "args": null,
+                              "concreteType": "PageInfo",
+                              "kind": "LinkedField",
+                              "name": "pageInfo",
+                              "plural": false,
+                              "selections": Array [
+                                Object {
+                                  "alias": null,
+                                  "args": null,
+                                  "kind": "ScalarField",
+                                  "name": "hasNextPage",
+                                  "storageKey": null,
+                                },
+                                Object {
+                                  "alias": null,
+                                  "args": null,
+                                  "kind": "ScalarField",
+                                  "name": "endCursor",
+                                  "storageKey": null,
+                                },
+                              ],
+                              "storageKey": null,
+                            },
+                          ],
+                          "storageKey": null,
+                        },
+                        Object {
+                          "alias": null,
+                          "args": Array [
+                            Object {
+                              "kind": "Variable",
+                              "name": "after",
+                              "variableName": "after",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "first",
+                              "variableName": "first",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "includeMe",
+                              "variableName": "includeMe",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "searchText",
+                              "variableName": "searchText",
+                            },
+                          ],
+                          "filters": Array [],
+                          "handle": "connection",
+                          "key": "MainFriend_friends",
+                          "kind": "LinkedHandle",
+                          "name": "friends",
+                        },
+                        Object {
+                          "alias": null,
+                          "args": Array [
+                            Object {
+                              "kind": "Variable",
+                              "name": "after",
+                              "variableName": "after",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "first",
+                              "variableName": "first",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "includeMe",
+                              "variableName": "includeMe",
+                            },
+                            Object {
+                              "kind": "Variable",
+                              "name": "searchText",
+                              "variableName": "searchText",
+                            },
+                          ],
+                          "filters": Array [
+                            "searchText",
+                            "includeMe",
+                          ],
+                          "handle": "connection",
+                          "key": "ChannelCreate_friends",
+                          "kind": "LinkedHandle",
+                          "name": "friends",
+                        },
+                      ],
+                    },
+                    "params": Object {
+                      "cacheID": "203c6d15d466e67649e454eec08bda32",
+                      "id": null,
+                      "metadata": Object {},
+                      "name": "FriendsQuery",
+                      "operationKind": "query",
+                      "text": "query FriendsQuery(
+  $first: Int!
+  $after: String
+  $searchText: String
+  $includeMe: Boolean
+) {
+  ...MainFriend_friends_1KCjMM
+  ...ChannelCreate_friends_1KCjMM
+}
+
+fragment ChannelCreate_friends_1KCjMM on Query {
+  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
+    edges {
+      cursor
+      node {
+        id
+        nickname
+        name
+        thumbURL
+        photoURL
+        ...UserListItem_user
+        __typename
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+
+fragment MainFriend_friends_1KCjMM on Query {
+  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
+    edges {
+      cursor
+      node {
+        id
+        ...ProfileModal_user
+        ...UserListItem_user
+        __typename
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}
+
+fragment ProfileModal_user on User {
+  id
+  photoURL
+  name
+  nickname
+  hasBlocked
+  statusMessage
+  isFriend
+}
+
+fragment UserListItem_user on User {
+  id
+  photoURL
+  nickname
+  name
+  statusMessage
+  isOnline
+  hasBlocked
+}
+",
+                    },
+                  },
+                  "variables": Object {
+                    "after": null,
+                    "first": 20,
+                    "includeMe": true,
+                    "searchText": "",
+                  },
+                },
+                "__fragments": Object {
+                  "UserListItem_user": Object {},
+                },
+                "__id": "user-1",
+                "__isWithinUnmatchedTypeRefinement": false,
+                "__typename": "User",
+                "id": "user-1",
+                "name": "John Doe",
+                "nickname": "jdoe1234",
+                "photoURL": "<mock-value-for-field-\\"photoURL\\">",
+                "thumbURL": "<mock-value-for-field-\\"thumbURL\\">",
+              },
+            },
+          ]
+        }
+        disableVirtualization={false}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        horizontal={false}
+        initialNumToRender={10}
+        keyExtractor={[Function]}
+        maxToRenderPerBatch={10}
+        onContentSizeChange={[Function]}
+        onEndReachedThreshold={2}
+        onLayout={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "alignSelf": "stretch",
+          }
+        }
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+          >
+            <RCTScrollView
+              horizontal={true}
+              style={
+                Object {
+                  "marginBottom": 8,
+                  "paddingHorizontal": 24,
+                }
+              }
+            >
+              <View />
+            </RCTScrollView>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+                testID="peer-button"
+              >
+                <View
+                  isMe={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#151C22",
+                        "borderBottomColor": "#000",
+                        "borderBottomWidth": 1,
+                        "borderLeftColor": "#000",
+                        "borderRightColor": "#000",
+                        "borderTopColor": "#000",
+                        "flexDirection": "row",
+                        "height": 80,
+                        "justifyContent": "flex-start",
+                        "paddingBottom": 0,
+                        "paddingLeft": 20,
+                        "paddingRight": 20,
+                        "paddingTop": 0,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="userListItem-wrapper"
+                >
+                  <View
+                    isMe={false}
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "height": 40,
+                          "justifyContent": "center",
+                          "width": 40,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    <Image
+                      isMe={false}
+                      resizeMode="cover"
+                      source={
+                        Object {
+                          "uri": "<mock-value-for-field-\\"photoURL\\">",
+                        }
+                      }
+                      style={
+                        Array [
+                          Object {
+                            "borderBottomLeftRadius": 20,
+                            "borderBottomRightRadius": 20,
+                            "borderTopLeftRadius": 20,
+                            "borderTopRightRadius": 20,
+                            "height": 40,
+                            "width": 40,
+                          },
+                          undefined,
+                        ]
+                      }
+                    />
+                    <View
+                      style={
+                        Object {
+                          "left": 0,
+                          "position": "absolute",
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <Text />
+                    </View>
+                  </View>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontSize": 14,
+                          "fontWeight": "bold",
+                          "marginLeft": 12,
+                          "width": 200,
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    jdoe1234
+                  </Text>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "height": 24,
+                          "justifyContent": "flex-start",
+                        },
+                        Object {
+                          "position": "absolute",
+                          "right": 20,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "opacity": 1,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "borderBottomColor": "#707070",
+                              "borderBottomLeftRadius": 2,
+                              "borderBottomRightRadius": 2,
+                              "borderBottomWidth": 2,
+                              "borderLeftColor": "#707070",
+                              "borderLeftWidth": 2,
+                              "borderRightColor": "#707070",
+                              "borderRightWidth": 2,
+                              "borderTopColor": "#707070",
+                              "borderTopLeftRadius": 2,
+                              "borderTopRightRadius": 2,
+                              "borderTopWidth": 2,
+                              "height": 20,
+                              "justifyContent": "center",
+                              "width": 20,
+                            },
+                            Array [
+                              undefined,
+                              Object {
+                                "backgroundColor": "#000",
+                                "borderColor": "#515151",
+                                "borderWidth": 2,
+                              },
+                            ],
+                          ]
+                        }
+                      />
+                    </View>
+                    <Text
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      style={
+                        Array [
+                          Object {
+                            "fontSize": 14,
+                            "marginLeft": 8,
+                          },
+                          Object {
+                            "color": "white",
+                          },
+                        ]
+                      }
+                      testID="undefined-nofeed"
+                    >
+                      
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </RCTSafeAreaView>
+  </RCTSafeAreaView>
+</RNCSafeAreaProvider>
+`;
+
+exports[`Rendering renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingBottom": 0,
+            "paddingLeft": 20,
+            "paddingRight": 20,
+            "paddingTop": 0,
+            "width": "100%",
+          },
+          Object {
+            "marginTop": 8,
+          },
+        ]
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        autoCapitalize="none"
+        autoCorrect={false}
+        multiline={false}
+        onChangeText={[Function]}
+        rejectResponderTermination={true}
+        selectionColor="white"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#151C22",
+              "borderBottomLeftRadius": 4,
+              "borderBottomRightRadius": 4,
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
+              "color": "white",
+              "paddingBottom": 12,
+              "paddingLeft": 40,
+              "paddingRight": 10,
+              "paddingTop": 12,
+              "width": "100%",
+            },
+            undefined,
+          ]
+        }
+        testID="text-input"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <Image
+        source={
+          Object {
+            "canInstrument": true,
+            "createTransformer": [Function],
+            "getCacheKey": [Function],
+            "process": [Function],
+          }
+        }
+        style={
+          Array [
+            Object {
+              "height": 20,
+              "left": 30,
+              "position": "absolute",
+              "width": 20,
+            },
+            undefined,
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "stretch",
+          "backgroundColor": "(0, 0, 0, 0)",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "canInstrument": true,
+            "createTransformer": [Function],
+            "getCacheKey": [Function],
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 28,
+            "opacity": 0.75,
+            "transform": Array [
+              Object {
+                "scale": 1.7,
+              },
+            ],
+          }
+        }
+      />
+    </View>
+  </RCTSafeAreaView>
+</RNCSafeAreaProvider>
+`;

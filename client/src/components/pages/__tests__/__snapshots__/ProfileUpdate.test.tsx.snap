@@ -1,0 +1,550 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering test renders as expected 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      contentContainerStyle={
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "alignSelf": "stretch",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "column",
+                "marginTop": 48,
+                "width": "78%",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="button-user-icon"
+          >
+            <View
+              style={
+                Object {
+                  "height": 90,
+                  "width": 90,
+                }
+              }
+            >
+              <Image
+                source={
+                  Object {
+                    "canInstrument": true,
+                    "createTransformer": [Function],
+                    "getCacheKey": [Function],
+                    "process": [Function],
+                  }
+                }
+                style={
+                  Object {
+                    "height": 80,
+                    "width": 80,
+                  }
+                }
+              />
+              <Image
+                source={
+                  Object {
+                    "canInstrument": true,
+                    "createTransformer": [Function],
+                    "getCacheKey": [Function],
+                    "process": [Function],
+                  }
+                }
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Nickname
+              </Text>
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                editable={true}
+                multiline={false}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="A Nickname can help others find you"
+                placeholderTextColor="#6D6D6D"
+                rejectResponderTermination={true}
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                testID="input-nickname"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 32,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Name
+              </Text>
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                editable={true}
+                multiline={false}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="Please write your name"
+                placeholderTextColor="#6D6D6D"
+                rejectResponderTermination={true}
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                testID="input-name"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 36,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Status message
+              </Text>
+              <TextInput
+                allowFontScaling={true}
+                autoCapitalize="none"
+                editable={true}
+                maxLength={60}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="Please write your status message"
+                placeholderTextColor="#6D6D6D"
+                rejectResponderTermination={true}
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                testID="input-status"
+                underlineColorAndroid="transparent"
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/60
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "stretch",
+                  "flexBasis": 0,
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "flexShrink": 1,
+                  "height": 60,
+                  "justifyContent": "space-between",
+                  "marginBottom": 48,
+                  "marginTop": 36,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignSelf": "stretch",
+                  "flex": 1,
+                  "opacity": 1,
+                }
+              }
+              testID="button-update"
+            />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaProvider>
+`;

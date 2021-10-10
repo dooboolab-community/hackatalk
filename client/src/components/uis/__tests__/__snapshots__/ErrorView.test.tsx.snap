@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#000",
+          "flexBasis": 0,
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+          "marginBottom": 60,
+          "paddingBottom": 0,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "canInstrument": true,
+          "createTransformer": [Function],
+          "getCacheKey": [Function],
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 110,
+            "width": 116,
+          },
+          undefined,
+        ]
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#FF002E",
+            "fontSize": 16,
+            "fontStyle": "normal",
+            "fontWeight": "bold",
+            "lineHeight": 24,
+            "marginBottom": 2,
+            "marginTop": 16,
+          },
+          undefined,
+        ]
+      }
+    >
+      Error occured.
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "color": "white",
+            "display": "flex",
+            "fontSize": 14,
+            "fontStyle": "normal",
+            "fontWeight": "normal",
+            "letterSpacing": -0.25,
+            "lineHeight": 20,
+            "textAlign": "center",
+          },
+          undefined,
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "marginTop": 44,
+          "opacity": 1,
+        }
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;

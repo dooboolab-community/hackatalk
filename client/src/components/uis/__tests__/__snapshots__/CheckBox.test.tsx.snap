@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "height": 24,
+          "justifyContent": "flex-start",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "flexDirection": "row",
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderBottomColor": "#707070",
+              "borderBottomLeftRadius": 2,
+              "borderBottomRightRadius": 2,
+              "borderBottomWidth": 2,
+              "borderLeftColor": "#707070",
+              "borderLeftWidth": 2,
+              "borderRightColor": "#707070",
+              "borderRightWidth": 2,
+              "borderTopColor": "#707070",
+              "borderTopLeftRadius": 2,
+              "borderTopRightRadius": 2,
+              "borderTopWidth": 2,
+              "height": 20,
+              "justifyContent": "center",
+              "width": 20,
+            },
+            Array [
+              undefined,
+              Object {
+                "backgroundColor": "white",
+                "borderColor": "#000",
+                "borderWidth": 2,
+              },
+            ],
+          ]
+        }
+      />
+    </View>
+    <Text
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "marginLeft": 8,
+          },
+          Object {
+            "color": "#000",
+          },
+        ]
+      }
+      testID="undefined-nofeed"
+    >
+      
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;

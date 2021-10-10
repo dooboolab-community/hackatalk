@@ -1,0 +1,44 @@
+name: Client
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "client/**"
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: yarn
+
+      - name: Check linting
+        run: yarn lint
+
+      - name: COPY config
+        run: yarn cp:config
+
+      - name: Build typescript
+        run: yarn tsc
+
+      - name: Test
+        run: yarn test --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          path_to_write_report: ./coverage/codecov_report.gz

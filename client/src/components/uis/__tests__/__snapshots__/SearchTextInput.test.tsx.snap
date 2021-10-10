@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering renders without crashing 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "paddingBottom": 0,
+          "paddingLeft": 20,
+          "paddingRight": 20,
+          "paddingTop": 0,
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCapitalize="none"
+      autoCorrect={false}
+      multiline={false}
+      rejectResponderTermination={true}
+      selectionColor="white"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#151C22",
+            "borderBottomLeftRadius": 4,
+            "borderBottomRightRadius": 4,
+            "borderTopLeftRadius": 4,
+            "borderTopRightRadius": 4,
+            "color": "white",
+            "paddingBottom": 12,
+            "paddingLeft": 40,
+            "paddingRight": 10,
+            "paddingTop": 12,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+    <Image
+      source={
+        Object {
+          "canInstrument": true,
+          "createTransformer": [Function],
+          "getCacheKey": [Function],
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 20,
+            "left": 30,
+            "position": "absolute",
+            "width": 20,
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
