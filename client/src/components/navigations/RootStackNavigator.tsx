@@ -1,3 +1,5 @@
+import * as Linking from 'expo-linking';
+
 import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
 import MainStack, {MainStackParamList} from './MainStackNavigator';
 import {
@@ -19,6 +21,7 @@ import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import WebView from '../pages/WebView';
+import linking from './linking';
 import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {
@@ -45,13 +48,10 @@ type Props = {
   queryReference: PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>;
 };
 
+const prefix = Linking.createURL('/');
+
 function RootNavigator({queryReference}: Props): React.ReactElement {
   const {theme} = useTheme();
-
-  const linking = {
-    prefixes: ['https://hackatalk.dev', 'hackatalk://'],
-    enabled: true,
-  };
 
   const {me} = usePreloadedQuery<AuthProviderMeQuery>(meQuery, queryReference);
 
@@ -64,6 +64,8 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
       <NavigationContainer
         linking={Platform.select({
           web: linking,
+          ios: {prefixes: [prefix]},
+          android: {prefixes: [prefix]},
         })}
         theme={{
           colors: {
