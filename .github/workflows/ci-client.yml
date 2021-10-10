@@ -24,6 +24,9 @@ jobs:
       - name: Check linting
         run: yarn lint
 
+      - name: COPY config
+        run: yarn cp:config
+
       - name: Build typescript
         run: yarn tsc
 
