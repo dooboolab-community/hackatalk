@@ -3,9 +3,9 @@ import {
   getReceiversPushTokens,
   sendPushNotification,
 } from '../../services/NotificationService';
+import {MESSAGE_DELETED, ON_MESSAGE} from './subscription';
 import {arg, mutationField, nonNull, stringArg} from 'nexus';
 
-import {ON_MESSAGE} from './subscription';
 import {assert} from '../../utils/assert';
 
 export const createMessage = mutationField('createMessage', {
@@ -107,11 +107,18 @@ export const deleteMessage = mutationField('deleteMessage', {
   type: 'Message',
   args: {id: nonNull(stringArg())},
 
-  resolve: (parent, {id}, ctx) => {
-    return ctx.prisma.message.update({
+  resolve: async (parent, {id}, ctx) => {
+    const deleted = await ctx.prisma.message.update({
       data: {deletedAt: new Date().toISOString()},
       where: {id},
       include: {sender: true},
     });
+
+    ctx.pubsub.publish(MESSAGE_DELETED, {
+      message: deleted,
+      channelId: deleted.channelId,
+    });
+
+    return deleted;
   },
 });
