@@ -715,71 +715,49 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     style={
                                       Array [
                                         Object {
-                                          "color": "#6D6D6D",
-                                          "lineHeight": 22,
+                                          "color": "white",
+                                          "fontSize": 14,
                                         },
-                                        undefined,
+                                        Object {
+                                          "textAlign": "center",
+                                        },
                                       ]
                                     }
                                   >
                                     We consider that you agree with 
-                                  </Text>
-                                  <Text
-                                    onPress={[Function]}
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#8BC9FF",
-                                          "lineHeight": 22,
-                                          "textDecorationLine": "underline",
-                                        },
-                                        undefined,
-                                      ]
-                                    }
-                                    testID="btn-terms"
-                                  >
-                                    Terms for Agreement
-                                  </Text>
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#6D6D6D",
-                                          "lineHeight": 22,
-                                        },
-                                        undefined,
-                                      ]
-                                    }
-                                  >
+                                    <Text
+                                      onPress={[Function]}
+                                      style={
+                                        Array [
+                                          Object {
+                                            "color": "white",
+                                            "fontSize": 14,
+                                          },
+                                          Object {
+                                            "textDecorationLine": "underline",
+                                          },
+                                        ]
+                                      }
+                                    >
+                                      Terms for agreement
+                                    </Text>
                                      and 
-                                  </Text>
-                                  <Text
-                                    onPress={[Function]}
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#8BC9FF",
-                                          "lineHeight": 22,
-                                          "textDecorationLine": "underline",
-                                        },
-                                        undefined,
-                                      ]
-                                    }
-                                    testID="btn-privacy"
-                                  >
-                                    Privacy Policy
-                                  </Text>
-                                  <Text
-                                    style={
-                                      Array [
-                                        Object {
-                                          "color": "#6D6D6D",
-                                          "lineHeight": 22,
-                                        },
-                                        undefined,
-                                      ]
-                                    }
-                                  >
+                                    <Text
+                                      onPress={[Function]}
+                                      style={
+                                        Array [
+                                          Object {
+                                            "color": "white",
+                                            "fontSize": 14,
+                                          },
+                                          Object {
+                                            "textDecorationLine": "underline",
+                                          },
+                                        ]
+                                      }
+                                    >
+                                      Privacy and Policy
+                                    </Text>
                                      by going onto next step.
                                   </Text>
                                 </View>
