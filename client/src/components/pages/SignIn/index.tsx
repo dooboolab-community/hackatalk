@@ -6,6 +6,7 @@ import {
   Alert,
   Dimensions,
   Image,
+  Linking,
   Platform,
   TouchableOpacity,
   View,
@@ -16,7 +17,13 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {Button, EditText, StatusBarBrightness, useTheme} from 'dooboo-ui';
+import {
+  Button,
+  EditText,
+  StatusBarBrightness,
+  Typography,
+  useTheme,
+} from 'dooboo-ui';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -24,7 +31,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../../utils/Icons';
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutationResponse,
@@ -104,17 +111,6 @@ const StyledAgreementTextWrapper = styled.View`
   padding: 0 0 40px 0;
 `;
 
-const StyledAgreementText = styled.Text`
-  line-height: 22px;
-  color: ${({theme}) => theme.placeholder};
-`;
-
-const StyledAgreementLinedText = styled.Text`
-  line-height: 22px;
-  color: ${({theme}) => theme.button};
-  text-decoration-line: underline;
-`;
-
 const StyledScrollView = styled.ScrollView`
   align-self: center;
   width: 100%;
@@ -161,14 +157,6 @@ const SignIn: FC = () => {
 
       commitNotification(createNotificationMutationConfig);
     }
-  };
-
-  const goToSignUp = (): void => {
-    navigation.navigate('SignUp');
-  };
-
-  const goToFindPw = (): void => {
-    navigation.navigate('FindPw');
   };
 
   const signIn = async (): Promise<void> => {
@@ -223,8 +211,27 @@ const SignIn: FC = () => {
     commitEmail(mutationConfig);
   };
 
-  const goToWebView = (uri: string): void => {
-    navigation.navigate('WebView', {uri});
+  const renderAgreements = (texts: string): (ReactElement | string)[] => {
+    return texts.split('**').map((str, i) =>
+      i % 2 === 0 ? (
+        str
+      ) : (
+        <Typography.Body2
+          key={str}
+          onPress={() => {
+            if (str === getString('PRIVACY_AND_POLICY'))
+              return Linking.openURL(
+                'https://legacy.dooboolab.com/privacyandpolicy',
+              );
+
+            Linking.openURL('https://legacy.dooboolab.com/termsofservice');
+          }}
+          style={{textDecorationLine: 'underline'}}
+        >
+          {str}
+        </Typography.Body2>
+      ),
+    );
   };
 
   const appleLogin = async (): Promise<void> => {
@@ -287,13 +294,8 @@ const SignIn: FC = () => {
     }
   };
 
-  useEffect(() => {
-    // console.log('appOwnership', Constants.appOwnership);
-  }, []);
-
-  const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
   const LOGO_SIZE = 80;
-
+  const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
   const logoAnimValue = useSharedValue(0);
 
   useEffect(() => {
@@ -355,7 +357,6 @@ const SignIn: FC = () => {
   return (
     <Container>
       <StatusBarBrightness />
-
       <StyledScrollView>
         <AnimatedTouchableOpacity
           testID="theme-test"
@@ -369,13 +370,11 @@ const SignIn: FC = () => {
             source={themeType === 'dark' ? IC_LOGO_D : IC_LOGO_W}
           />
         </AnimatedTouchableOpacity>
-
         <Wrapper>
           <LogoWrapper>
             <View style={{height: 12 + 60}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
-
           <EditText
             type="row"
             testID="input-email"
@@ -426,7 +425,7 @@ const SignIn: FC = () => {
           <ButtonWrapper>
             <Button
               testID="btn-sign-up"
-              onPress={goToSignUp}
+              onPress={() => navigation.navigate('SignUp')}
               style={{flex: 1}}
               styles={{
                 container: css`
@@ -483,7 +482,10 @@ const SignIn: FC = () => {
               text={getString('LOGIN')}
             />
           </ButtonWrapper>
-          <FindPwTouchOpacity testID="btn-find-pw" onPress={goToFindPw}>
+          <FindPwTouchOpacity
+            testID="btn-find-pw"
+            onPress={() => navigation.navigate('FindPw')}
+          >
             <FindPwText>{getString('FORGOT_PW')}</FindPwText>
           </FindPwTouchOpacity>
           <SocialButtonWrapper>
@@ -538,25 +540,14 @@ const SignIn: FC = () => {
             />
           </SocialButtonWrapper>
           <StyledAgreementTextWrapper>
-            <StyledAgreementText>{getString('AGREEMENT1')}</StyledAgreementText>
-            <StyledAgreementLinedText
-              testID="btn-terms"
-              onPress={(): void =>
-                goToWebView('https://legacy.dooboolab.com/termsofservice')
-              }
-            >
-              {getString('AGREEMENT2')}
-            </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT3')}</StyledAgreementText>
-            <StyledAgreementLinedText
-              testID="btn-privacy"
-              onPress={(): void =>
-                goToWebView('https://legacy.dooboolab.com/privacyandpolicy')
-              }
-            >
-              {getString('AGREEMENT4')}
-            </StyledAgreementLinedText>
-            <StyledAgreementText>{getString('AGREEMENT5')}</StyledAgreementText>
+            <Typography.Body2 style={{textAlign: 'center'}}>
+              {renderAgreements(
+                getString('SIGN_UP_POLICY_AGREEMENT', {
+                  termsForAgreement: `**${getString('TERMS_FOR_AGREEMENT')}**`,
+                  privacyAndPolicy: `**${getString('PRIVACY_AND_POLICY')}**`,
+                }),
+              )}
+            </Typography.Body2>
           </StyledAgreementTextWrapper>
         </Wrapper>
       </StyledScrollView>
