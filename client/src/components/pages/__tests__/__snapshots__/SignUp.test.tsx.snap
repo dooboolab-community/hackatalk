@@ -761,38 +761,24 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexDirection": "row-reverse",
-                    "marginTop": 16,
-                    "width": "100%",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <View
-                accessible={true}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "alignSelf": "stretch",
-                    "opacity": 1,
-                  }
-                }
-                testID="btn-sign-up"
-              />
-            </View>
           </View>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID="btn-sign-up"
+          />
         </View>
       </RCTScrollView>
     </View>

@@ -1,20 +1,33 @@
 import {
-  BUTTON_INDEX_CANCEL,
-  BUTTON_INDEX_LAUNCH_CAMERA,
-  BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH,
-} from '../../utils/const';
-import {Button, EditText, StatusBarBrightness, useTheme} from 'dooboo-ui';
-import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import {
+  ActivityIndicator,
   Image,
   Platform,
   ScrollView,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {FC, useState} from 'react';
+import {
+  BUTTON_INDEX_CANCEL,
+  BUTTON_INDEX_LAUNCH_CAMERA,
+  BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
+  PROFILEIMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH,
+} from '../../utils/const';
+import {
+  Button,
+  EditText,
+  StatusBarBrightness,
+  Typography,
+  useTheme,
+} from 'dooboo-ui';
+import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
+import React, {
+  FC,
+  ReactElement,
+  useCallback,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import {UseMutationConfig, useMutation} from 'react-relay';
 import {
   launchCameraAsync,
@@ -26,7 +39,6 @@ import {
   validateEmail,
   validatePassword,
 } from '../../utils/common';
-import styled, {css} from '@emotion/native';
 
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
@@ -35,6 +47,7 @@ import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
+import styled from '@emotion/native';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useNavigation} from '@react-navigation/core';
 
@@ -55,12 +68,6 @@ const ProfileImage = styled.Image`
   width: 90px;
   height: 90px;
   border-radius: 45px;
-`;
-
-const ButtonWrapper = styled.View`
-  width: 100%;
-  margin-top: 16px;
-  flex-direction: row-reverse;
 `;
 
 const Page: FC = () => {
@@ -116,7 +123,7 @@ const Page: FC = () => {
     );
   };
 
-  const requestSignUp = async (): Promise<void> => {
+  const requestSignUp = useCallback(async (): Promise<void> => {
     if (
       !validateEmail(email) ||
       !validatePassword(password) ||
@@ -185,7 +192,45 @@ const Page: FC = () => {
     }
 
     commitSignUp(mutationConfig);
-  };
+  }, [
+    commitSendVerification,
+    commitSignUp,
+    confirmPassword,
+    email,
+    name,
+    navigation,
+    password,
+    profilePath,
+    statusMessage,
+  ]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: (): ReactElement => (
+        <TouchableOpacity testID="touch-done" onPress={requestSignUp}>
+          <View
+            style={{
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }}
+          >
+            {isInFlight ? (
+              <ActivityIndicator size="small" style={{marginRight: 4}} />
+            ) : (
+              <Typography.Body2
+                style={{
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                }}
+              >
+                {getString('REGISTER')}
+              </Typography.Body2>
+            )}
+          </View>
+        </TouchableOpacity>
+      ),
+    });
+  }, [isInFlight, navigation, requestSignUp]);
 
   const inputChangeHandlers: Record<string, (value: string) => void> = {
     emailInput: (emailStr: string): void => {
@@ -376,32 +421,15 @@ const Page: FC = () => {
                 maxLength: 60,
               }}
             />
-            <ButtonWrapper>
-              <Button
-                testID="btn-sign-up"
-                loading={isInFlight}
-                onPress={requestSignUp}
-                style={{alignSelf: 'stretch'}}
-                styles={{
-                  container: css`
-                    height: 52px;
-                    margin-top: 8px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    background-color: ${theme.button};
-                    border-radius: 0px;
-                  `,
-                  text: {
-                    color: 'black',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                  },
-                  hovered: {borderColor: theme.text},
-                }}
-                text={getString('SIGN_UP')}
-              />
-            </ButtonWrapper>
           </ContentsWrapper>
+          {process.env.NODE_ENV === 'test' && (
+            <Button
+              testID="btn-sign-up"
+              loading={isInFlight}
+              onPress={requestSignUp}
+              text={getString('REGISTER')}
+            />
+          )}
         </ScrollView>
       </Wrapper>
     </Container>
