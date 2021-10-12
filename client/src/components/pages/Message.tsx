@@ -434,7 +434,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     if (inputedText === '') result = users;
     else
       result = users.filter((item) => {
-        return item?.name?.startsWith(inputedText);
+        return item?.name?.includes(inputedText);
       });
 
     return result;
