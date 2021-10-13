@@ -16,6 +16,7 @@ export type ChannelQueryResponse = {
                 readonly id: string;
                 readonly nickname: string | null;
                 readonly name: string | null;
+                readonly photoURL: string | null;
             } | null;
         }> | null;
     } | null;

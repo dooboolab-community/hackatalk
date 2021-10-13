@@ -3,12 +3,15 @@ import {
   Keyboard,
   ListRenderItem,
   Platform,
+  Text,
   TextInput,
   TextInputProps,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 
+import TagUserListItem from '../uis/TagUserListItem';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -64,6 +67,28 @@ const MenuView = styled.View<{height: number}>`
 `;
 
 interface Props<T> {
+  tagUsers: ({
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+    readonly photoURL: string | null;
+  } | null)[];
+  showTageUsers: (
+    users: ({
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+    } | null)[],
+  ) => void;
+  selectdTagUser: (
+    user: {
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+    } | null,
+  ) => void;
   messages: T[];
   borderColor?: string;
   backgroundColor?: string;
@@ -78,6 +103,7 @@ interface Props<T> {
   renderViewMenu?: () => React.ReactElement;
   message?: string;
   onChangeMessage?: (text: string) => void;
+  onChangeSelection?: (item: {start: number; end: number}) => void;
   onKeyPress?: TextInputProps['onKeyPress'];
   placeholder?: string;
   placeholderTextColor?: string;
@@ -91,6 +117,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
+    showTageUsers,
+    selectdTagUser,
+    tagUsers,
     messages,
     borderColor,
     backgroundColor,
@@ -104,6 +133,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     closedOptionView,
     message,
     onChangeMessage,
+    onChangeSelection,
     placeholder,
     placeholderTextColor,
     renderSendButton,
@@ -114,6 +144,19 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
 
+  const renderTagItem: ListRenderItem<{
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+    readonly photoURL: string | null;
+  } | null> = ({item}) => (
+    <TagUserListItem
+      tagUser={item}
+      showTageUsers={showTageUsers}
+      selectdTagUser={selectdTagUser}
+    />
+  );
+
   return (
     <>
       <StyledKeyboardAvoidingView
@@ -121,8 +164,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
         behavior={Platform.select({
           ios: 'padding',
           default: undefined,
-        })}
-      >
+        })}>
         <FlatList
           style={{alignSelf: 'stretch'}}
           contentContainerStyle={
@@ -145,13 +187,15 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <View style={{height: showMenu ? MENU_HEIGHT + 80 : 28}} />
           }
         />
+        <View>
+          <FlatList data={tagUsers} renderItem={renderTagItem} style={{}} />
+        </View>
         {!showMenu ? (
           <StyledViewChat
             style={{
               borderColor: borderColor,
               backgroundColor,
-            }}
-          >
+            }}>
             <StyledInputChat
               testID="input-chat"
               style={{
@@ -177,14 +221,20 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               placeholderTextColor={placeholderTextColor}
               value={message}
               onChangeText={onChangeMessage}
+              onSelectionChange={({
+                nativeEvent: {
+                  selection: {start, end},
+                },
+              }) => {
+                if (onChangeSelection) onChangeSelection({start, end});
+              }}
             />
             <StyledTouchMenu
               testID="touch-menu"
               onPress={(): void => {
                 Keyboard.dismiss();
                 setShowMenu(true);
-              }}
-            >
+              }}>
               {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             {renderSendButton?.()}
@@ -197,8 +247,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             style={{
               borderColor: borderColor,
               backgroundColor: backgroundColor,
-            }}
-          >
+            }}>
             <StyledInputChat
               // @ts-ignore
               ref={input2}
@@ -222,16 +271,14 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             />
             <StyledTouchMenu
               testID="touch-menu"
-              onPress={(): void => setShowMenu(false)}
-            >
+              onPress={(): void => setShowMenu(false)}>
               {showMenu ? openedOptionView : closedOptionView}
             </StyledTouchMenu>
             <View
               style={{
                 position: 'absolute',
                 right: 8,
-              }}
-            >
+              }}>
               {renderSendButton?.()}
             </View>
           </StyledViewChat>
@@ -240,8 +287,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             height={MENU_HEIGHT}
             style={{
               backgroundColor: backgroundColor,
-            }}
-          >
+            }}>
             {renderViewMenu?.()}
           </MenuView>
         </InputMenuViewWrapper>
@@ -251,6 +297,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
+  showTageUsers: (): void => {},
+  selectdTagUser: (): void => {},
+  tagUsers: [],
   messages: [],
   keyboardOffset: 0,
   optionView: <View />,
@@ -259,6 +308,7 @@ Shared.defaultProps = {
   renderViewMenu: (): React.ReactElement => <View />,
   message: '',
   onChangeMessage: (): void => {},
+  onChangeSelection: (): void => {},
   placeholder: '',
   renderSendButton: (): React.ReactElement => <View />,
 };

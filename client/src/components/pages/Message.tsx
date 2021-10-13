@@ -118,6 +118,7 @@ const messagesFragment = graphql`
             id
             name
             nickname
+            photoURL
           }
           createdAt
           ...MessageListItem_message
@@ -134,12 +135,18 @@ const messagesFragment = graphql`
 `;
 
 interface MessageProp {
+  users: ({
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+    readonly photoURL: string | null;
+  } | null)[];
   channelId: string;
   messages: MessageComponent_message$key;
   searchArgs: MessagesQueryVariables;
 }
 
-const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
+const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
@@ -170,6 +177,22 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const onEndReached = (): void => {
     loadNext(ITEM_CNT);
   };
+
+  const [cursor, setCursor] = useState<{start: number; end: number}>({
+    start: 0,
+    end: 0,
+  });
+
+  const [lastKeyEvent, setLastKeyEvent] = useState<string>('');
+
+  const [tagUsers, setTagUsers] = useState<
+    ({
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+    } | null)[]
+  >([]);
 
   const [message, setMessage] = useState<string>('');
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
@@ -363,8 +386,78 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     );
   };
 
+  const selectdTagUser = (
+    item: {
+      readonly id: string;
+      readonly nickname: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+    } | null,
+  ): void => {
+    const cursorFrontText = message.slice(0, cursor.start + 1);
+    const tagIdx = cursorFrontText.lastIndexOf('@');
+    const newMessage = [...message];
+
+    newMessage.splice(
+      tagIdx + 1,
+      cursor.start - tagIdx - 1,
+      item?.name + ' ' || '',
+    );
+    setMessage(newMessage.join(''));
+  };
+
+  const parseTagText = (
+    inputedText: string,
+  ): {isTag: boolean; parsedText: string} => {
+    let result = {isTag: false, parsedText: ''};
+
+    const cursorFrontText = inputedText.slice(0, cursor.start + 1);
+    const tagIdx = cursorFrontText.lastIndexOf('@');
+    if (tagIdx !== -1)
+      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' '))
+        if (lastKeyEvent === 'Backspace')
+          result = {
+            isTag: true,
+            parsedText: cursorFrontText.slice(tagIdx + 1, -2),
+          };
+        else
+          result = {isTag: true, parsedText: cursorFrontText.slice(tagIdx + 1)};
+
+    return result;
+  };
+
+  const getTagUsersByText = (
+    inputedText: string,
+  ): ({
+    readonly id: string;
+    readonly nickname: string | null;
+    readonly name: string | null;
+    readonly photoURL: string | null;
+  } | null)[] => {
+    let result = [];
+    if (inputedText === '') result = users;
+    else
+      result = users.filter((item) => {
+        return item?.name?.startsWith(inputedText);
+      });
+
+    return result;
+  };
+
+  const handleTagUsers = (inputedText: string): void => {
+    const parsedTagText = parseTagText(inputedText);
+
+    const paredUsers = parsedTagText.isTag
+      ? getTagUsersByText(parsedTagText.parsedText)
+      : [];
+    setTagUsers(paredUsers);
+  };
+
   return (
     <GiftedChat
+      showTageUsers={setTagUsers}
+      selectdTagUser={selectdTagUser}
+      tagUsers={tagUsers}
       messages={nodes}
       borderColor={theme.disabled}
       onEndReached={onEndReached}
@@ -377,9 +470,17 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
       message={message}
       placeholder={getString('WRITE_MESSAGE')}
       onChangeMessage={(text) => {
-        if (text === '\n') return setMessage('');
+        if (text === '\n') {
+          setMessage('');
+
+          return handleTagUsers('');
+        }
 
         setMessage(text);
+        handleTagUsers(text);
+      }}
+      onChangeSelection={({start, end}) => {
+        setCursor({start: start, end: end});
       }}
       renderItem={renderItem}
       keyExtractor={(item) => item.id || nanoid()}
@@ -393,6 +494,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
 
             setMessage(`${message}\n`);
           }
+
+        setLastKeyEvent(nativeEvent.key);
+        handleTagUsers(message);
       }}
       openedOptionView={
         <SvgArrDown width={18} height={18} stroke={theme.text} />
@@ -410,8 +514,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Image style={{width: 40, height: 40}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -423,8 +526,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
+            }}>
             <Image style={{width: 40, height: 40}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
@@ -433,8 +535,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
         <TouchableOpacity
           onPress={submitMessage}
           activeOpacity={0.7}
-          accessibilityRole="button"
-        >
+          accessibilityRole="button">
           {isImageUploading ? (
             <ActivityIndicator size="small" color="white" />
           ) : (
@@ -495,8 +596,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
               fontSize: 18,
               fontWeight: '500',
             }}
-            numberOfLines={2}
-          >
+            numberOfLines={2}>
             {title}
           </Text>
         );
@@ -505,11 +605,14 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   }, [auth?.id, channel?.name, navigation, users]);
 
   return (
-    <MessagesFragment
-      channelId={channelId}
-      messages={messagesQueryResponse}
-      searchArgs={searchArgs}
-    />
+    <>
+      <MessagesFragment
+        users={users}
+        channelId={channelId}
+        messages={messagesQueryResponse}
+        searchArgs={searchArgs}
+      />
+    </>
   );
 };
 
