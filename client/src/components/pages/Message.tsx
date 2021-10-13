@@ -514,7 +514,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 40, height: 40}} source={IC_MSG_CAMERA} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -526,7 +527,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
               marginLeft: 16,
               justifyContent: 'center',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Image style={{width: 40, height: 40}} source={IC_MSG_IMAGE} />
           </TouchableOpacity>
         </View>
@@ -535,7 +537,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         <TouchableOpacity
           onPress={submitMessage}
           activeOpacity={0.7}
-          accessibilityRole="button">
+          accessibilityRole="button"
+        >
           {isImageUploading ? (
             <ActivityIndicator size="small" color="white" />
           ) : (
@@ -596,7 +599,8 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
               fontSize: 18,
               fontWeight: '500',
             }}
-            numberOfLines={2}>
+            numberOfLines={2}
+          >
             {title}
           </Text>
         );

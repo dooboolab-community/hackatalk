@@ -86,7 +86,8 @@ function Shared({
         onPress={() => {
           showTageUsers([]);
           selectdTagUser(tagUser);
-        }}>
+        }}
+      >
         <Wrapper testID="userListItem-wrapper">
           <ImageWrapper>
             <StyledImage
