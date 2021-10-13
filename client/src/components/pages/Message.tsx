@@ -380,13 +380,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     );
   };
 
-  const selectdTagUser = (
-    item: {
-      readonly id: string;
-      readonly nickname: string | null;
-      readonly name: string | null;
-    } | null,
-  ): void => {
+  const selectdTagUser = (item: User): void => {
     const cursorFrontText = message.slice(0, cursor.start + 1);
     const tagIdx = cursorFrontText.lastIndexOf('@');
     const newMessage = [...message];
@@ -419,13 +413,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     return result;
   };
 
-  const getTagUsersByText = (
-    inputedText: string,
-  ): ({
-    readonly id: string;
-    readonly nickname: string | null;
-    readonly name: string | null;
-  } | null)[] => {
+  const getTagUsersByText = (inputedText: string): User[] => {
     let result = [];
     if (inputedText === '') result = users;
     else
