@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 
+import type {User} from '../pages/Message';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -66,25 +67,9 @@ const MenuView = styled.View<{height: number}>`
 `;
 
 interface Props<T> {
-  tagUsers: ({
-    readonly id: string;
-    readonly nickname: string | null;
-    readonly name: string | null;
-  } | null)[];
-  showTageUsers: (
-    users: ({
-      readonly id: string;
-      readonly nickname: string | null;
-      readonly name: string | null;
-    } | null)[],
-  ) => void;
-  selectdTagUser: (
-    user: {
-      readonly id: string;
-      readonly nickname: string | null;
-      readonly name: string | null;
-    } | null,
-  ) => void;
+  tagUsers: User[];
+  showTageUsers: (users: User[]) => void;
+  selectdTagUser: (user: User) => void;
   messages: T[];
   borderColor?: string;
   backgroundColor?: string;

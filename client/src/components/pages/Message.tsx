@@ -133,12 +133,14 @@ const messagesFragment = graphql`
   }
 `;
 
+export type User = {
+  readonly id: string;
+  readonly nickname: string | null;
+  readonly name: string | null;
+} | null;
+
 interface MessageProp {
-  users: ({
-    readonly id: string;
-    readonly nickname: string | null;
-    readonly name: string | null;
-  } | null)[];
+  users: User[];
   channelId: string;
   messages: MessageComponent_message$key;
   searchArgs: MessagesQueryVariables;
@@ -185,13 +187,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
   const [lastKeyEvent, setLastKeyEvent] = useState<string>('');
 
-  const [tagUsers, setTagUsers] = useState<
-    ({
-      readonly id: string;
-      readonly nickname: string | null;
-      readonly name: string | null;
-    } | null)[]
-  >([]);
+  const [tagUsers, setTagUsers] = useState<User[]>([]);
 
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const {showModal} = useProfileContext();
