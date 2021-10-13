@@ -68,8 +68,7 @@ const MenuView = styled.View<{height: number}>`
 
 interface Props<T> {
   tagUsers: User[];
-  showTageUsers: (users: User[]) => void;
-  selectdTagUser: (user: User) => void;
+  seleteTagUser: (user: User) => void;
   messages: T[];
   borderColor?: string;
   backgroundColor?: string;
@@ -98,8 +97,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
-    showTageUsers,
-    selectdTagUser,
+    seleteTagUser,
     tagUsers,
     messages,
     borderColor,
@@ -162,8 +160,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             renderItem={({item}) => (
               <TouchableWithoutFeedback
                 onPress={() => {
-                  showTageUsers([]);
-                  selectdTagUser(item);
+                  seleteTagUser(item);
                 }}
               >
                 <Text>{item?.name}</Text>
@@ -284,8 +281,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
-  showTageUsers: (): void => {},
-  selectdTagUser: (): void => {},
+  seleteTagUser: (): void => {},
   tagUsers: [],
   messages: [],
   keyboardOffset: 0,

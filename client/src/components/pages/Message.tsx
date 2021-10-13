@@ -380,7 +380,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     );
   };
 
-  const selectdTagUser = (item: User): void => {
+  const changeMessageByTagUser = (item: User): void => {
     const cursorFrontText = message.slice(0, cursor.start + 1);
     const tagIdx = cursorFrontText.lastIndexOf('@');
     const newMessage = [...message];
@@ -391,6 +391,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       item?.name + ' ' || '',
     );
     setMessage(newMessage.join(''));
+  };
+
+  const seleteTagUser = (item: User): void => {
+    setTagUsers([]);
+    changeMessageByTagUser(item);
   };
 
   const parseTagText = (
@@ -435,8 +440,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
   return (
     <GiftedChat
-      showTageUsers={setTagUsers}
-      selectdTagUser={selectdTagUser}
+      seleteTagUser={seleteTagUser}
       tagUsers={tagUsers}
       messages={nodes}
       borderColor={theme.disabled}
