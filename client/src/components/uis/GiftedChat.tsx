@@ -83,7 +83,7 @@ interface Props<T> {
   renderViewMenu?: () => React.ReactElement;
   message?: string;
   onChangeMessage?: (text: string) => void;
-  onChangeSelection?: (item: {start: number; end: number}) => void;
+  onChangeCursor?: (item: {start: number; end: number}) => void;
   onKeyPress?: TextInputProps['onKeyPress'];
   placeholder?: string;
   placeholderTextColor?: string;
@@ -112,7 +112,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     closedOptionView,
     message,
     onChangeMessage,
-    onChangeSelection,
+    onChangeCursor,
     placeholder,
     placeholderTextColor,
     renderSendButton,
@@ -205,7 +205,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                   selection: {start, end},
                 },
               }) => {
-                if (onChangeSelection) onChangeSelection({start, end});
+                if (onChangeCursor) onChangeCursor({start, end});
               }}
             />
             <StyledTouchMenu
@@ -291,7 +291,7 @@ Shared.defaultProps = {
   renderViewMenu: (): React.ReactElement => <View />,
   message: '',
   onChangeMessage: (): void => {},
-  onChangeSelection: (): void => {},
+  onChangeCursor: (): void => {},
   placeholder: '',
   renderSendButton: (): React.ReactElement => <View />,
 };

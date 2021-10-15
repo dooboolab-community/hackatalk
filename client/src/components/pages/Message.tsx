@@ -463,7 +463,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         setMessage(text);
         handleTagUsers(text);
       }}
-      onChangeSelection={({start, end}) => {
+      onChangeCursor={({start, end}) => {
         setCursor({start: start, end: end});
       }}
       renderItem={renderItem}
