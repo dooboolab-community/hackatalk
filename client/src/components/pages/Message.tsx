@@ -381,8 +381,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   };
 
   const changeMessageByTagUser = (item: User): void => {
-    const cursorFrontText = message.slice(0, cursor.start + 1);
-    const tagIdx = cursorFrontText.lastIndexOf('@');
+    const cursorPrefix = message.slice(0, cursor.start + 1);
+    const tagIdx = cursorPrefix.lastIndexOf('@');
     const newMessage = [...message];
 
     newMessage.splice(
@@ -403,17 +403,16 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   ): {isTag: boolean; parsedText: string} => {
     let result = {isTag: false, parsedText: ''};
 
-    const cursorFrontText = inputedText.slice(0, cursor.start + 1);
-    const tagIdx = cursorFrontText.lastIndexOf('@');
+    const cursorPrefix = inputedText.slice(0, cursor.start + 1);
+    const tagIdx = cursorPrefix.lastIndexOf('@');
     if (tagIdx !== -1)
       if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' '))
         if (lastKeyEvent === 'Backspace')
           result = {
             isTag: true,
-            parsedText: cursorFrontText.slice(tagIdx + 1, -2),
+            parsedText: cursorPrefix.slice(tagIdx + 1, -2),
           };
-        else
-          result = {isTag: true, parsedText: cursorFrontText.slice(tagIdx + 1)};
+        else result = {isTag: true, parsedText: cursorPrefix.slice(tagIdx + 1)};
 
     return result;
   };
