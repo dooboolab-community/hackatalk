@@ -83,3 +83,13 @@ export const lastMessageQuery = graphql`
     }
   }
 `;
+
+export const deleteMessage = graphql`
+  mutation MessageDeleteMutation($id: String!) {
+    deleteMessage(id: $id) {
+      id
+      deletedAt
+      channelId
+    }
+  }
+`;
