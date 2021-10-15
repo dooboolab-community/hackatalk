@@ -11,7 +11,7 @@ export const Message = objectType({
     t.date('createdAt');
     t.date('updatedAt');
     t.date('deletedAt');
-
+    t.nonNull.id('channelId');
     t.field('channel', {type: 'Channel'});
     t.field('sender', {type: 'User'});
     t.list.field('replies', {type: 'Reply'});
