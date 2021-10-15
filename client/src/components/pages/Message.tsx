@@ -383,14 +383,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   const changeMessageByTagUser = (item: User): void => {
     const cursorPrefix = message.slice(0, cursor.start + 1);
     const tagIdx = cursorPrefix.lastIndexOf('@');
-    const newMessage = [...message];
 
-    newMessage.splice(
+    const newMessageWithTag = [...message].splice(
       tagIdx + 1,
       cursor.start - tagIdx - 1,
       item?.name + ' ' || '',
     );
-    setMessage(newMessage.join(''));
+
+    setMessage(newMessageWithTag.join(''));
   };
 
   const seleteTagUser = (item: User): void => {
