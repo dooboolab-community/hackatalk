@@ -5,6 +5,7 @@ import {
   ListRenderItem,
   Platform,
   Text,
+  TextInputKeyPressEventData,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -185,7 +186,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     end: 0,
   });
 
-  const [lastKeyEvent, setLastKeyEvent] = useState<string>('');
+  const [lastKeyEvent, setLastKeyEvent] = useState<TextInputKeyPressEventData>({
+    key: '',
+  });
 
   const [tagUsers, setTagUsers] = useState<User[]>([]);
 
@@ -407,7 +410,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     const tagIdx = cursorPrefix.lastIndexOf('@');
     if (tagIdx !== -1)
       if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' '))
-        if (lastKeyEvent === 'Backspace')
+        if (lastKeyEvent.key === 'Backspace')
           result = {
             isTag: true,
             parsedText: cursorPrefix.slice(tagIdx + 1, -2),
@@ -478,7 +481,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
             setMessage(`${message}\n`);
           }
 
-        setLastKeyEvent(nativeEvent.key);
+        setLastKeyEvent(nativeEvent);
         handleTagUsers(message);
       }}
       openedOptionView={
