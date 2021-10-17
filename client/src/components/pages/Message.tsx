@@ -119,6 +119,7 @@ const messagesFragment = graphql`
             id
             name
             nickname
+            photoURL
           }
           createdAt
           ...MessageListItem_message
@@ -138,6 +139,7 @@ export type User = {
   readonly id: string;
   readonly nickname: string | null;
   readonly name: string | null;
+  readonly photoURL: string | null;
 } | null;
 
 interface MessageProp {

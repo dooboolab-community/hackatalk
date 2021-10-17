@@ -16,6 +16,7 @@ export type ChannelQueryResponse = {
                 readonly id: string;
                 readonly nickname: string | null;
                 readonly name: string | null;
+                readonly photoURL: string | null;
             } | null;
         }> | null;
     } | null;
@@ -39,6 +40,7 @@ query ChannelQuery(
         id
         nickname
         name
+        photoURL
       }
     }
   }
@@ -108,7 +110,14 @@ v3 = [
                 "name": "nickname",
                 "storageKey": null
               },
-              (v2/*: any*/)
+              (v2/*: any*/),
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "photoURL",
+                "storageKey": null
+              }
             ],
             "storageKey": null
           }
@@ -137,14 +146,14 @@ return {
     "selections": (v3/*: any*/)
   },
   "params": {
-    "cacheID": "1908baffd9bf59db21f394978934a310",
+    "cacheID": "cabc07e2f0e35d83f70be390901be43f",
     "id": null,
     "metadata": {},
     "name": "ChannelQuery",
     "operationKind": "query",
-    "text": "query ChannelQuery(\n  $channelId: String!\n) {\n  channel(channelId: $channelId) {\n    id\n    name\n    memberships {\n      user {\n        id\n        nickname\n        name\n      }\n    }\n  }\n}\n"
+    "text": "query ChannelQuery(\n  $channelId: String!\n) {\n  channel(channelId: $channelId) {\n    id\n    name\n    memberships {\n      user {\n        id\n        nickname\n        name\n        photoURL\n      }\n    }\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '76c70e6035133a8393ff14106b0ada3f';
+(node as any).hash = '5f194d530215df7acddb6ddfd96d36d6';
 export default node;

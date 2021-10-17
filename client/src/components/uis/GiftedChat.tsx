@@ -3,14 +3,13 @@ import {
   Keyboard,
   ListRenderItem,
   Platform,
-  Text,
   TextInput,
   TextInputProps,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 
+import TagUserListItem from '../uis/TagUserListItem';
 import type {User} from '../pages/Message';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -123,6 +122,10 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
 
+  const renderTagItem: ListRenderItem<User> = ({item}) => (
+    <TagUserListItem tagUser={item} seleteTagUser={seleteTagUser} />
+  );
+
   return (
     <>
       <StyledKeyboardAvoidingView
@@ -154,20 +157,22 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <View style={{height: showMenu ? MENU_HEIGHT + 80 : 28}} />
           }
         />
-        <View>
-          <FlatList
-            data={tagUsers}
-            renderItem={({item}) => (
-              <TouchableWithoutFeedback
-                onPress={() => {
-                  seleteTagUser(item);
-                }}
-              >
-                <Text>{item?.name}</Text>
-              </TouchableWithoutFeedback>
-            )}
-          />
-        </View>
+        {tagUsers.length > 0 ? (
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              bottom: showMenu ? MENU_HEIGHT + 50 : MENU_HEIGHT,
+              height: 250,
+            }}
+          >
+            <FlatList
+              data={tagUsers}
+              renderItem={renderTagItem}
+              style={{flex: 2}}
+            />
+          </View>
+        ) : null}
         {!showMenu ? (
           <StyledViewChat
             style={{

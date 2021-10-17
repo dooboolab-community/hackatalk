@@ -10,6 +10,7 @@ export const channelQuery = graphql`
           id
           nickname
           name
+          photoURL
         }
       }
     }

@@ -18,6 +18,7 @@ export type MessageComponent_message = {
                     readonly id: string;
                     readonly name: string | null;
                     readonly nickname: string | null;
+                    readonly photoURL: string | null;
                 } | null;
                 readonly createdAt: unknown | null;
                 readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
@@ -185,6 +186,13 @@ return {
                       "kind": "ScalarField",
                       "name": "nickname",
                       "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "photoURL",
+                      "storageKey": null
                     }
                   ],
                   "storageKey": null
@@ -261,5 +269,5 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'b57ad27833bdc76815d57dac3e153a3e';
+(node as any).hash = '236f271d52585b13cc872df51c274870';
 export default node;
