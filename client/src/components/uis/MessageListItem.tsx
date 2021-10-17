@@ -1,7 +1,6 @@
-import {Button, useTheme} from 'dooboo-ui';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Icon, useTheme} from 'dooboo-ui';
+import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FC, useMemo, useState} from 'react';
-import {Theme, colors} from '../../theme';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
@@ -12,10 +11,12 @@ import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
+import {colors} from '../../theme';
 import {deleteMessage} from '../../relay/queries/Message';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
+import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const fragment = graphql`
   fragment MessageListItem_message on Message {
@@ -74,7 +75,7 @@ const StyledPeerTextMessage = styled.Text`
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.textContrast};
   border-width: 1px;
 `;
 
@@ -98,18 +99,23 @@ const StyledTextPeerDate = styled.Text`
 
 const WrapperMy = styled.View<{shouldShowDateMy: boolean}>`
   min-height: 48px;
-  width: 100%;
   margin-top: ${({shouldShowDateMy}) => (shouldShowDateMy ? '8px' : '20px')};
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
 `;
 
+const StyledMessageInfoView = styled.View`
+  margin-right: 20px;
+  margin-top: 4px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
 const StyledTextDate = styled.Text`
   font-size: 12px;
   color: ${({theme}) => theme.textDisabled};
-  margin-top: 4px;
-  margin-right: 20px;
 `;
 
 const StyledMyTextMessage = styled.Text`
@@ -123,6 +129,11 @@ const StyledMyMessage = styled.View`
   margin-left: 28px;
   padding: 12px;
   border-radius: 3px;
+`;
+
+const StyledDeleteMessage = styled.Text`
+  color: ${({theme}) => theme.disabled};
+  font-size: 16px;
 `;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -261,6 +272,7 @@ const MessageListItem: FC<Props> = ({
   const styles = useMemo(() => makeStyles(), []);
   const [mediaError, setMediaError] = useState('');
 
+  const snackbar = useSnackbarContext();
   const data = useFragment(fragment, item);
 
   const {
@@ -277,7 +289,7 @@ const MessageListItem: FC<Props> = ({
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
 
-  const [commitMessageDelete, isUpdating] =
+  const [commitMessageDelete] =
     useMutation<MessageDeleteMutation>(deleteMessage);
 
   const showDate = shouldShowDate(
@@ -343,11 +355,19 @@ const MessageListItem: FC<Props> = ({
       variables: {
         id,
       },
-      onError: (error: Error): void => {
-        console.log(error);
-      },
-      onCompleted: (): void => {
-        console.log('completed');
+      onError: (_error: Error): void => {
+        snackbar?.openSnackbar({
+          text: getString('ERROR_OCCURED'),
+          type: 'warning',
+          styles: {
+            container: {
+              minWidth: '85%',
+              minHeight: '10%',
+              marginBottom: 50,
+              justifyContent: 'center',
+            },
+          },
+        });
       },
     };
     commitMessageDelete(mutationConfig);
@@ -387,7 +407,11 @@ const MessageListItem: FC<Props> = ({
             }}
           >
             <StyledTextPeerMessageContainer>
-              {messageType === 'file' && fileUrls && fileUrls.length > 0 ? (
+              {deletedAt ? (
+                <StyledDeleteMessage>
+                  {getString('DELETED_MESSAGE')}
+                </StyledDeleteMessage>
+              ) : messageType === 'file' && fileUrls && fileUrls.length > 0 ? (
                 displayVideo()
               ) : messageType === 'photo' &&
                 imageUrls &&
@@ -410,12 +434,14 @@ const MessageListItem: FC<Props> = ({
     );
   }
 
-  console.log(deletedAt);
-
   return (
     <WrapperMy shouldShowDateMy={!!shouldShowDate}>
       <StyledMyMessage>
-        {fileUrls && fileUrls.length > 0 ? (
+        {deletedAt ? (
+          <StyledDeleteMessage>
+            {getString('DELETED_MESSAGE')}
+          </StyledDeleteMessage>
+        ) : fileUrls && fileUrls.length > 0 ? (
           displayVideo()
         ) : imageUrls && imageUrls.length > 0 ? (
           displayImage()
@@ -425,20 +451,28 @@ const MessageListItem: FC<Props> = ({
           </StyledMyTextMessage>
         )}
       </StyledMyMessage>
-      {showDate ? (
-        <StyledTextDate>{`${decorateDate(
-          createdAt as string,
-        )}`}</StyledTextDate>
-      ) : null}
-      <TouchableOpacity
-        style={{flex: 1}}
-        onPress={() => {
-          console.log('clicked');
-          messageDeleteAsync();
-        }}
-      >
-        <Text style={{color: 'white'}}>{deletedAt ? 'Deleted' : 'Delete'}</Text>
-      </TouchableOpacity>
+
+      <StyledMessageInfoView>
+        {showDate ? (
+          <StyledTextDate>{`${decorateDate(
+            createdAt as string,
+          )}`}</StyledTextDate>
+        ) : null}
+        <TouchableOpacity
+          onPress={() => {
+            messageDeleteAsync();
+          }}
+        >
+          {!deletedAt && (
+            <Icon
+              name="trash-light"
+              size={12}
+              color={theme.danger}
+              style={{marginLeft: 5}}
+            />
+          )}
+        </TouchableOpacity>
+      </StyledMessageInfoView>
     </WrapperMy>
   );
 };
