@@ -11,6 +11,7 @@
   "CONFIRM": "확인",
   "CONFIRM_PASSWORD": "비밀번호 재입력",
   "DELETE_FRIEND": "친구삭제",
+  "DELETED_MESSAGE": "삭제된 메시지입니다",
   "DONE": "완료",
   "EMAIL": "이메일",
   "EMAIL_FORMAT_NOT_VALID": "이메일 형식이 올바르지 않습니다.",
