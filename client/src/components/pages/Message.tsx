@@ -181,10 +181,6 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
     () => ({
       variables: {channelId},
       subscription: messageDeletedSubscription,
-      updater: (store) => {
-        console.log('updater called');
-        deletedMessageUpdater(store);
-      },
     }),
     [channelId],
   );
