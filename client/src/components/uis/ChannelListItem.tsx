@@ -173,7 +173,7 @@ function ChannelListItem(props: Props): React.ReactElement {
     onLongPress,
   } = props;
 
-  const {text, messageType, createdAt} = lastMessage as Message;
+  const {text, messageType, createdAt, deletedAt} = lastMessage as Message;
   const {user} = useAuthContext();
 
   if (channelType !== 'public') {
@@ -400,7 +400,9 @@ function ChannelListItem(props: Props): React.ReactElement {
                   numberOfLines={2}
                   lastMessageCnt={lastMessageCnt}
                 >
-                  {messageType === 'file'
+                  {deletedAt
+                    ? getString('DELETED_MESSAGE')
+                    : messageType === 'file'
                     ? getString('VIDEO')
                     : messageType === 'photo'
                     ? getString('PHOTO')
