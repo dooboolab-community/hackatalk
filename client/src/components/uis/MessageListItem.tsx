@@ -1,19 +1,21 @@
-import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Button, useTheme} from 'dooboo-ui';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {FC, useMemo, useState} from 'react';
 import {Theme, colors} from '../../theme';
-import {graphql, useFragment} from 'react-relay';
+import {graphql, useFragment, useMutation} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
+import type {MessageDeleteMutation} from '../../__generated__/MessageDeleteMutation.graphql';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
+import {deleteMessage} from '../../relay/queries/Message';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
-import {useTheme} from 'dooboo-ui';
 
 const fragment = graphql`
   fragment MessageListItem_message on Message {
@@ -24,6 +26,7 @@ const fragment = graphql`
     fileUrls
     createdAt
     updatedAt
+    deletedAt
     sender {
       id
       name
@@ -260,10 +263,22 @@ const MessageListItem: FC<Props> = ({
 
   const data = useFragment(fragment, item);
 
-  const {id, sender, text, createdAt, imageUrls, fileUrls, messageType} = data;
+  const {
+    id,
+    sender,
+    text,
+    createdAt,
+    deletedAt,
+    imageUrls,
+    fileUrls,
+    messageType,
+  } = data;
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
+
+  const [commitMessageDelete, isUpdating] =
+    useMutation<MessageDeleteMutation>(deleteMessage);
 
   const showDate = shouldShowDate(
     isPrevMessageSameUser,
@@ -323,7 +338,22 @@ const MessageListItem: FC<Props> = ({
     );
   };
 
-  if (sender?.id !== userId) {
+  const messageDeleteAsync = async (): Promise<void> => {
+    const mutationConfig = {
+      variables: {
+        id,
+      },
+      onError: (error: Error): void => {
+        console.log(error);
+      },
+      onCompleted: (): void => {
+        console.log('completed');
+      },
+    };
+    commitMessageDelete(mutationConfig);
+  };
+
+  if (sender?.id !== userId)
     return (
       <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
         <View style={{marginRight: 8, width: 40}}>
@@ -380,6 +410,8 @@ const MessageListItem: FC<Props> = ({
     );
   }
 
+  console.log(deletedAt);
+
   return (
     <WrapperMy shouldShowDateMy={!!shouldShowDate}>
       <StyledMyMessage>
@@ -398,6 +430,15 @@ const MessageListItem: FC<Props> = ({
           createdAt as string,
         )}`}</StyledTextDate>
       ) : null}
+      <TouchableOpacity
+        style={{flex: 1}}
+        onPress={() => {
+          console.log('clicked');
+          messageDeleteAsync();
+        }}
+      >
+        <Text style={{color: 'white'}}>{deletedAt ? 'Deleted' : 'Delete'}</Text>
+      </TouchableOpacity>
     </WrapperMy>
   );
 };
