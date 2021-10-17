@@ -387,7 +387,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     const cursorPrefix = message.slice(0, cursor.start + 1);
     const tagIdx = cursorPrefix.lastIndexOf('@');
 
-    const newMessageWithTag = [...message].splice(
+    const newMessageWithTag = [...message];
+
+    newMessageWithTag.splice(
       tagIdx + 1,
       cursor.start - tagIdx - 1,
       item?.name + ' ' || '',
