@@ -291,7 +291,7 @@ Shared.defaultProps = {
   renderViewMenu: (): React.ReactElement => <View />,
   message: '',
   onChangeMessage: (): void => {},
-  onChangeCursor: (): void => {},
+  onChangeCursor: (_param: {start: number; end: number}): void => {},
   placeholder: '',
   renderSendButton: (): React.ReactElement => <View />,
 };
