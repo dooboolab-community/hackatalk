@@ -78,6 +78,7 @@ const channelsPaginationFragment = graphql`
             imageUrls
             fileUrls
             createdAt
+            deletedAt
           }
         }
       }
