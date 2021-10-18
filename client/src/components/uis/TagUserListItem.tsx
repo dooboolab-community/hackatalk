@@ -14,7 +14,7 @@ interface Props {
   style?: ViewStyle;
   onPress?: () => void;
   tagUser: User;
-  seleteTagUser: (user: User) => void;
+  selectTagUser: (user: User) => void;
 }
 
 const Container = styled.View`
@@ -52,7 +52,7 @@ const StyledText = styled.Text`
   font-weight: bold;
   color: ${({theme}) => theme.text};
 `;
-function Shared({tagUser, seleteTagUser}: Props): React.ReactElement {
+function Shared({tagUser, selectTagUser}: Props): React.ReactElement {
   const photoURLObj: ImageSourcePropType | null =
     typeof tagUser?.photoURL === 'string' ? {uri: tagUser?.photoURL} : null;
 
@@ -60,7 +60,7 @@ function Shared({tagUser, seleteTagUser}: Props): React.ReactElement {
     <Container>
       <TouchableWithoutFeedback
         onPress={() => {
-          seleteTagUser(tagUser);
+          selectTagUser(tagUser);
         }}
       >
         <Wrapper testID="userListItem-wrapper">

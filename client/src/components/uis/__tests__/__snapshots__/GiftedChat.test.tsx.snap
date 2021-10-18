@@ -236,6 +236,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         multiline={true}
         onChangeText={[Function]}
         onFocus={[Function]}
+        onSelectionChange={[Function]}
         placeholder=""
         rejectResponderTermination={true}
         returnKeyType="done"

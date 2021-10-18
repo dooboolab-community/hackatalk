@@ -67,7 +67,7 @@ const MenuView = styled.View<{height: number}>`
 
 interface Props<T> {
   tagUsers: User[];
-  seleteTagUser: (user: User) => void;
+  selectTagUser: (user: User) => void;
   messages: T[];
   borderColor?: string;
   backgroundColor?: string;
@@ -96,7 +96,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
-    seleteTagUser,
+    selectTagUser,
     tagUsers,
     messages,
     borderColor,
@@ -123,7 +123,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const insets = useSafeAreaInsets();
 
   const renderTagItem: ListRenderItem<User> = ({item}) => (
-    <TagUserListItem tagUser={item} seleteTagUser={seleteTagUser} />
+    <TagUserListItem tagUser={item} selectTagUser={selectTagUser} />
   );
 
   return (
@@ -286,7 +286,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
-  seleteTagUser: (): void => {},
+  selectTagUser: (): void => {},
   tagUsers: [],
   messages: [],
   keyboardOffset: 0,
