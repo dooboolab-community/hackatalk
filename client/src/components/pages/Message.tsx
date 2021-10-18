@@ -400,7 +400,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     setMessage(newMessageWithTag.join(''));
   };
 
-  const seleteTagUser = (item: User): void => {
+  const selectTagUser = (item: User): void => {
     setTagUsers([]);
     changeMessageByTagUser(item);
   };
@@ -446,7 +446,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
   return (
     <GiftedChat
-      seleteTagUser={seleteTagUser}
+      selectTagUser={selectTagUser}
       tagUsers={tagUsers}
       messages={nodes}
       borderColor={theme.disabled}
