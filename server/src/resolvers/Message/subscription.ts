@@ -59,10 +59,9 @@ export const messageDeleted = subscriptionField('deleteMessage', {
       return pubsub.asyncIterator(MESSAGE_DELETED);
     },
     (payload, _, {userId}) => {
-      // assert(userId, 'Not Authorized!');
+      assert(userId, 'Not Authorized!');
 
-      // return payload.id !== userId;
-      return true;
+      return payload.id !== userId;
     },
   ),
   resolve: (payload) => {
