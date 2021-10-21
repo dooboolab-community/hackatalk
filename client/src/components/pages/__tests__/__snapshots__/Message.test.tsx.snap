@@ -749,7 +749,7 @@ fragment ProfileModal_user on User {
                   style={
                     Array [
                       Object {
-                        "color": "#C4C4C4",
+                        "color": "#414141",
                         "fontSize": 12,
                         "marginRight": 20,
                         "marginTop": 4,
