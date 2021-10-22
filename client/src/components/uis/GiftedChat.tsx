@@ -163,7 +163,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               position: 'absolute',
               left: 0,
               bottom: showMenu ? MENU_HEIGHT + 50 : MENU_HEIGHT,
-              height: 250,
+              height: tagUsers.length * 70 > 250 ? 250 : tagUsers.length * 70,
             }}
           >
             <FlatList

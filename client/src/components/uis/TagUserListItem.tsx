@@ -33,16 +33,16 @@ const Wrapper = styled.View`
 `;
 
 const ImageWrapper = styled.View`
-  width: ${() => '40px'};
-  height: ${() => '40px'};
+  width: 40px;
+  height: 40px;
   align-items: center;
   justify-content: center;
 `;
 
 const StyledImage = styled.Image<{isMe?: boolean}>`
-  width: ${() => '40px'};
-  height: ${() => '40px'};
-  border-radius: ${() => '20px'}; ;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 `;
 
 const StyledText = styled.Text`
