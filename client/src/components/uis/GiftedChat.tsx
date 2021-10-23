@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 
+import TagUserListItem from '../uis/TagUserListItem';
+import type {User} from '../pages/Message';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -64,6 +66,8 @@ const MenuView = styled.View<{height: number}>`
 `;
 
 interface Props<T> {
+  tagUsers: User[];
+  selectTagUser: (user: User) => void;
   messages: T[];
   borderColor?: string;
   backgroundColor?: string;
@@ -78,6 +82,7 @@ interface Props<T> {
   renderViewMenu?: () => React.ReactElement;
   message?: string;
   onChangeMessage?: (text: string) => void;
+  onChangeCursor?: (item: {start: number; end: number}) => void;
   onKeyPress?: TextInputProps['onKeyPress'];
   placeholder?: string;
   placeholderTextColor?: string;
@@ -91,6 +96,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
   const input2 = useRef<TextInput>();
 
   const {
+    selectTagUser,
+    tagUsers,
     messages,
     borderColor,
     backgroundColor,
@@ -104,6 +111,7 @@ function Shared<T>(props: Props<T>): React.ReactElement {
     closedOptionView,
     message,
     onChangeMessage,
+    onChangeCursor,
     placeholder,
     placeholderTextColor,
     renderSendButton,
@@ -113,6 +121,10 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const insets = useSafeAreaInsets();
+
+  const renderTagItem: ListRenderItem<User> = ({item}) => (
+    <TagUserListItem tagUser={item} selectTagUser={selectTagUser} />
+  );
 
   return (
     <>
@@ -145,6 +157,22 @@ function Shared<T>(props: Props<T>): React.ReactElement {
             <View style={{height: showMenu ? MENU_HEIGHT + 80 : 28}} />
           }
         />
+        {tagUsers.length > 0 ? (
+          <View
+            style={{
+              position: 'absolute',
+              left: 0,
+              bottom: showMenu ? MENU_HEIGHT + 50 : MENU_HEIGHT,
+              height: tagUsers.length * 70 > 250 ? 250 : tagUsers.length * 70,
+            }}
+          >
+            <FlatList
+              data={tagUsers}
+              renderItem={renderTagItem}
+              style={{flex: 2}}
+            />
+          </View>
+        ) : null}
         {!showMenu ? (
           <StyledViewChat
             style={{
@@ -177,6 +205,13 @@ function Shared<T>(props: Props<T>): React.ReactElement {
               placeholderTextColor={placeholderTextColor}
               value={message}
               onChangeText={onChangeMessage}
+              onSelectionChange={({
+                nativeEvent: {
+                  selection: {start, end},
+                },
+              }) => {
+                if (onChangeCursor) onChangeCursor({start, end});
+              }}
             />
             <StyledTouchMenu
               testID="touch-menu"
@@ -251,6 +286,8 @@ function Shared<T>(props: Props<T>): React.ReactElement {
 }
 
 Shared.defaultProps = {
+  selectTagUser: (): void => {},
+  tagUsers: [],
   messages: [],
   keyboardOffset: 0,
   optionView: <View />,
@@ -258,7 +295,8 @@ Shared.defaultProps = {
   renderItem: (): React.ReactElement => <View />,
   renderViewMenu: (): React.ReactElement => <View />,
   message: '',
-  onChangeMessage: (): void => {},
+  onChangeMessage: (_message: string): void => {},
+  onChangeCursor: (_param: {start: number; end: number}): void => {},
   placeholder: '',
   renderSendButton: (): React.ReactElement => <View />,
 };

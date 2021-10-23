@@ -83,7 +83,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 "cacheConfig": Object {
                   "force": true,
                 },
-                "identifier": "ba62a2ee05d85c0c62ab358d86a737db{\\"after\\":null,\\"channelId\\":\\"abcdef\\",\\"first\\":20,\\"searchText\\":null}",
+                "identifier": "1ff7872b58757bca9b62f46b886f16b8{\\"after\\":null,\\"channelId\\":\\"abcdef\\",\\"first\\":20,\\"searchText\\":null}",
                 "node": Object {
                   "fragment": Object {
                     "abstractKey": null,
@@ -283,14 +283,14 @@ exports[`[Message] rendering test renders as expected 1`] = `
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
-                                        "name": "thumbURL",
+                                        "name": "photoURL",
                                         "storageKey": null,
                                       },
                                       Object {
                                         "alias": null,
                                         "args": null,
                                         "kind": "ScalarField",
-                                        "name": "photoURL",
+                                        "name": "thumbURL",
                                         "storageKey": null,
                                       },
                                       Object {
@@ -429,7 +429,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                     ],
                   },
                   "params": Object {
-                    "cacheID": "ba62a2ee05d85c0c62ab358d86a737db",
+                    "cacheID": "1ff7872b58757bca9b62f46b886f16b8",
                     "id": null,
                     "metadata": Object {},
                     "name": "MessagesQuery",
@@ -456,6 +456,7 @@ fragment MessageComponent_message_WlZsr on Query {
           id
           name
           nickname
+          photoURL
         }
         createdAt
         ...MessageListItem_message
@@ -522,6 +523,7 @@ fragment ProfileModal_user on User {
                 "id": "test-user-111",
                 "name": "John Doe",
                 "nickname": "john",
+                "photoURL": "<mock-value-for-field-\\"photoURL\\">",
               },
               "text": "Hello there!",
             },
@@ -799,6 +801,7 @@ fragment ProfileModal_user on User {
           onChangeText={[Function]}
           onFocus={[Function]}
           onKeyPress={[Function]}
+          onSelectionChange={[Function]}
           placeholder="Write message..."
           rejectResponderTermination={true}
           returnKeyType="done"
