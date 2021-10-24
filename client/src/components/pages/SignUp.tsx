@@ -105,7 +105,7 @@ const Page: FC = () => {
         options,
         cancelButtonIndex: BUTTON_INDEX_CANCEL,
       },
-      async (buttonIndex: number) => {
+      async (buttonIndex?: number) => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
 

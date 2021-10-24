@@ -1,64 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`[VideoPlayer] render render without crashing 1`] = `
-<View>
-  Video isLoaded? : false
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "height": 150,
-          "justifyContent": "center",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": 240,
-          "zIndex": 100,
-        },
-        undefined,
-      ]
-    }
-  >
-    <RNGestureHandlerButton
-      collapsable={false}
-      onGestureEvent={[Function]}
-      onGestureHandlerEvent={[Function]}
-      onGestureHandlerStateChange={[Function]}
-      onHandlerStateChange={[Function]}
-      rippleColor={0}
-    >
-      <View
-        accessible={true}
-        style={
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View>
+    Video isLoaded? : false
+    <View
+      style={
+        Array [
           Object {
             "alignItems": "center",
-            "flex": 1,
+            "height": 150,
             "justifyContent": "center",
-            "opacity": 1,
-          }
-        }
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": 240,
+            "zIndex": 100,
+          },
+          undefined,
+        ]
+      }
+    >
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
       >
-        <Text
+        <View
+          accessible={true}
           style={
-            Array [
-              Object {
-                "backgroundColor": "'rgba(255,255,255, 0.5)'",
-                "fontSize": 14,
-                "fontWeight": "bold",
-                "paddingBottom": 2,
-                "paddingLeft": 5,
-                "paddingRight": 5,
-                "paddingTop": 2,
-              },
-              undefined,
-            ]
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+              "opacity": 1,
+            }
           }
         >
-          Touch to Load Video
-        </Text>
-      </View>
-    </RNGestureHandlerButton>
+          <Text
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "'rgba(255,255,255, 0.5)'",
+                  "color": "#fff",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                  "paddingBottom": 2,
+                  "paddingLeft": 5,
+                  "paddingRight": 5,
+                  "paddingTop": 2,
+                },
+                undefined,
+              ]
+            }
+          >
+            Touch to Load Video
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
   </View>
-</View>
+</RNCSafeAreaProvider>
 `;

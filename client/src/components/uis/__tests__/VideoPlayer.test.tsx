@@ -5,6 +5,7 @@ import * as React from 'react';
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
 import VideoPlayer from '../VideoPlayer';
+import {createTestElement} from '../../../../test/testUtils';
 import {getString} from '../../../../STRINGS';
 
 const props = {
@@ -14,7 +15,7 @@ const props = {
 
 describe('[VideoPlayer] render', () => {
   it('render without crashing', async () => {
-    const screen = render(<VideoPlayer {...props} />);
+    const screen = render(createTestElement(<VideoPlayer {...props} />));
     const json = screen.toJSON();
 
     await waitFor(() => {
@@ -25,7 +26,10 @@ describe('[VideoPlayer] render', () => {
 
   it('should display thumbnail error when uri was not provided', async () => {
     const newProps = {...props, uri: undefined};
-    const {getByText} = render(<VideoPlayer {...newProps} />);
+
+    const {getByText} = render(
+      createTestElement(<VideoPlayer {...newProps} />),
+    );
 
     await waitFor(() => {
       expect(getByText(getString('THUMBNAIL_ERROR'))).toBeTruthy();
@@ -33,7 +37,7 @@ describe('[VideoPlayer] render', () => {
   });
 
   it('should call onPlaybackStatusUpdate when loadAsync Resolved', async () => {
-    const screen = render(<VideoPlayer {...props} />);
+    const screen = render(createTestElement(<VideoPlayer {...props} />));
 
     await waitFor(async () => {
       const button = screen.getByText(
@@ -42,13 +46,18 @@ describe('[VideoPlayer] render', () => {
       fireEvent.press(button);
     });
 
-    expect(screen.toJSON().children[0]).toBe('Video isLoaded? : true');
+    // @ts-ignore
+    expect(screen.toJSON().children[0].children[0]).toBe(
+      'Video isLoaded? : true',
+    );
   });
 
   it('should call onError when loadAsync rejected', async () => {
     const newProps = {...props, uri: undefined};
 
-    const {getByText} = render(<VideoPlayer {...newProps} />);
+    const {getByText} = render(
+      createTestElement(<VideoPlayer {...newProps} />),
+    );
 
     await waitFor(() => {
       const button = getByText(
@@ -67,7 +76,7 @@ describe('[VideoPlayer] web render', () => {
       return {OS: 'web'};
     });
 
-    const {queryByText} = render(<VideoPlayer {...props} />);
+    const {queryByText} = render(createTestElement(<VideoPlayer {...props} />));
 
     expect(
       queryByText(getString('MEDIA_LOAD', {media: getString('VIDEO')})),
