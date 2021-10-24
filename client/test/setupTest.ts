@@ -14,10 +14,6 @@ afterEach(cleanup);
 jest.useFakeTimers();
 Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
 
-jest.mock('react-native-reanimated', () =>
-  require('react-native-reanimated/mock'),
-);
-
 jest.mock('../src/relay', () => {
   // eslint-disable-next-line
   const {createMockEnvironment} = require('relay-test-utils');

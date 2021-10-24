@@ -45,7 +45,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
         </Shared>
       }
       ListFooterComponent={
-        <Component
+        <View
           style={
             Object {
               "height": 60,

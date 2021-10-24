@@ -67,7 +67,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
           </Shared>
         }
         ListHeaderComponent={
-          <Component
+          <View
             style={
               Object {
                 "height": 28,
@@ -749,7 +749,7 @@ fragment ProfileModal_user on User {
                   style={
                     Array [
                       Object {
-                        "color": "#414141",
+                        "color": "#C4C4C4",
                         "fontSize": 12,
                         "marginRight": 20,
                         "marginTop": 4,

@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {Snackbar, SnackbarContent, SnackbarRef, useTheme} from 'dooboo-ui';
+import {Snackbar, SnackbarContent, SnackbarRef} from 'dooboo-ui';
 
 import {Theme} from '../theme';
 import {View} from 'react-native';
@@ -26,7 +26,6 @@ const SnackbarContext = createContext<SnackbarContext>({
 });
 
 export const SnackbarProvider: FC = (props) => {
-  const {theme} = useTheme();
   const [snackbarState, setSnackbarState] = useState<SnackbarState>();
 
   const snackbarRef = useRef<SnackbarRef>(null);
@@ -58,11 +57,7 @@ export const SnackbarProvider: FC = (props) => {
     >
       {props.children}
       <View style={{zIndex: snackbarState?.zIndex}}>
-        <Snackbar
-          testID={snackbarState?.testID}
-          theme={snackbarState?.theme ?? theme}
-          ref={snackbarRef}
-        />
+        <Snackbar testID={snackbarState?.testID} ref={snackbarRef} />
       </View>
     </SnackbarContext.Provider>
   );
