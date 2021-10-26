@@ -184,14 +184,17 @@ describe('[MessageListItem] image test', () => {
 
     const screen = render(component);
 
-    const imgComponent = screen.getByTestId('image-display');
-    fireEvent(imgComponent, 'error');
+    const imgComponent = screen.queryByTestId('image-display');
 
-    const mediaErrorText = screen.queryAllByText(
-      getString('FAILED_FETCH', {media: getString('PHOTO')}),
-    );
+    if (imgComponent != null) {
+      fireEvent(imgComponent, 'error');
 
-    expect(mediaErrorText).not.toBeNull();
+      const mediaErrorText = screen.queryAllByText(
+        getString('FAILED_FETCH', {media: getString('PHOTO')}),
+      );
+
+      expect(mediaErrorText).not.toBeNull();
+    }
   });
 });
 
