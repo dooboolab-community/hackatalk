@@ -125,6 +125,7 @@ type Message {
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
+  channelId: ID!
   channel: Channel
   sender: User
   replies: [Reply]
@@ -375,6 +376,7 @@ type Subscription {
   userSignedIn: User
   userUpdated: User
   onMessage(deviceKey: String!): Message
+  deleteMessage(channelId: String!): Message
 }
 
 """The `Upload` scalar type represents a file upload."""

@@ -57,15 +57,18 @@ import {
   useLazyLoadQuery,
   useMutation,
   usePaginationFragment,
+  useSubscription,
 } from 'react-relay';
 
 import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
+import {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {ImagePickerResult} from 'expo-image-picker';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
+import {MessageDeletedSubscription} from '../../__generated__/MessageDeletedSubscription.graphql';
 import MessageListItem from '../uis/MessageListItem';
 import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
 import {channelQuery} from '../../relay/queries/Channel';
@@ -124,6 +127,7 @@ const messagesFragment = graphql`
             photoURL
           }
           createdAt
+          deletedAt
           ...MessageListItem_message
         }
       }
@@ -151,7 +155,17 @@ interface MessageProp {
   searchArgs: MessagesQueryVariables;
 }
 
-const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
+const messageDeletedSubscription = graphql`
+  subscription MessageDeletedSubscription($channelId: String!) {
+    deleteMessage(channelId: $channelId) {
+      id
+      channelId
+      deletedAt
+    }
+  }
+`;
+
+const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
   const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
@@ -160,6 +174,22 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     MessagesQuery,
     MessageComponent_message$key
   >(messagesFragment, messages);
+
+  const subscriptionConfig = useMemo<
+    GraphQLSubscriptionConfig<MessageDeletedSubscription>
+  >(
+    () => ({
+      variables: {channelId},
+      subscription: messageDeletedSubscription,
+      updater: (store) => {
+        console.log('updater called');
+        deletedMessageUpdater(store);
+      },
+    }),
+    [channelId],
+  );
+
+  useSubscription(subscriptionConfig);
 
   useAppStateChangeHandler((state) => {
     if (state === 'active') {

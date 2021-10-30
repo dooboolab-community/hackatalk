@@ -121,6 +121,7 @@ export type Membership = {
 export type Message = {
   __typename?: 'Message';
   channel?: Maybe<Channel>;
+  channelId: Scalars['ID'];
   createdAt?: Maybe<Scalars['DateTime']>;
   deletedAt?: Maybe<Scalars['DateTime']>;
   fileUrls?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -485,9 +486,15 @@ export type Report = {
 
 export type Subscription = {
   __typename?: 'Subscription';
+  deleteMessage?: Maybe<Message>;
   onMessage?: Maybe<Message>;
   userSignedIn?: Maybe<User>;
   userUpdated?: Maybe<User>;
+};
+
+
+export type SubscriptionDeleteMessageArgs = {
+  channelId: Scalars['String'];
 };
 
 

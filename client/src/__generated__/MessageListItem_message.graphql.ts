@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
+
 import { FragmentRefs } from "relay-runtime";
 export type MessageListItem_message$data = {
   readonly id: string;
@@ -20,13 +21,22 @@ export type MessageListItem_message$data = {
   readonly updatedAt: any | null;
   readonly sender: {
     readonly id: string;
-    readonly name: string | null;
-    readonly nickname: string | null;
-    readonly thumbURL: string | null;
-    readonly photoURL: string | null;
-    readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;
-  } | null;
-  readonly " $fragmentType": "MessageListItem_message";
+    readonly messageType: unknown;
+    readonly text: string | null;
+    readonly imageUrls: ReadonlyArray<string | null> | null;
+    readonly fileUrls: ReadonlyArray<string | null> | null;
+    readonly createdAt: unknown | null;
+    readonly updatedAt: unknown | null;
+    readonly deletedAt: unknown | null;
+    readonly sender: {
+        readonly id: string;
+        readonly name: string | null;
+        readonly nickname: string | null;
+        readonly thumbURL: string | null;
+        readonly photoURL: string | null;
+        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
+    } | null;
+    readonly " $refType": "MessageListItem_message";
 };
 export type MessageListItem_message = MessageListItem_message$data;
 export type MessageListItem_message$key = {
@@ -94,6 +104,13 @@ return {
     {
       "alias": null,
       "args": null,
+      "kind": "ScalarField",
+      "name": "deletedAt",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
       "concreteType": "User",
       "kind": "LinkedField",
       "name": "sender",
@@ -141,7 +158,5 @@ return {
   "abstractKey": null
 };
 })();
-
-(node as any).hash = "10bedc96c4bff58d435919c95263433b";
-
+(node as any).hash = 'faf71ab7fdcdbdb37005104e80206003';
 export default node;
