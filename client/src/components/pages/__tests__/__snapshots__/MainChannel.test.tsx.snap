@@ -71,6 +71,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
               "id": "test-channel-1",
               "lastMessage": Object {
                 "createdAt": "2021-03-19T05:13:22.932Z",
+                "deletedAt": "<mock-value-for-field-\\"deletedAt\\">",
                 "fileUrls": "<mock-value-for-field-\\"fileUrls\\">",
                 "id": "test-message-3848",
                 "imageUrls": "<mock-value-for-field-\\"imageUrls\\">",
@@ -349,7 +350,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         ]
                       }
                     >
-                      &lt;mock-value-for-field-"text"&gt;
+                      This message has been deleted
                     </Text>
                     <Text
                       style={

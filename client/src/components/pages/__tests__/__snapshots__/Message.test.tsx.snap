@@ -328,6 +328,13 @@ exports[`[Message] rendering test renders as expected 1`] = `
                                     "alias": null,
                                     "args": null,
                                     "kind": "ScalarField",
+                                    "name": "deletedAt",
+                                    "storageKey": null,
+                                  },
+                                  Object {
+                                    "alias": null,
+                                    "args": null,
+                                    "kind": "ScalarField",
                                     "name": "messageType",
                                     "storageKey": null,
                                   },
@@ -459,6 +466,7 @@ fragment MessageComponent_message_WlZsr on Query {
           photoURL
         }
         createdAt
+        deletedAt
         ...MessageListItem_message
         __typename
       }
@@ -480,6 +488,7 @@ fragment MessageListItem_message on Message {
   fileUrls
   createdAt
   updatedAt
+  deletedAt
   sender {
     id
     name
@@ -516,6 +525,7 @@ fragment ProfileModal_user on User {
               "__isWithinUnmatchedTypeRefinement": false,
               "__typename": "Message",
               "createdAt": "2021-03-19T04:30:30.162Z",
+              "deletedAt": "<mock-value-for-field-\\"deletedAt\\">",
               "fileUrls": "<mock-value-for-field-\\"fileUrls\\">",
               "id": "test-message-1",
               "imageUrls": "<mock-value-for-field-\\"imageUrls\\">",
@@ -719,29 +729,17 @@ fragment ProfileModal_user on User {
                     }
                   >
                     <Text
-                      selectable={true}
                       style={
                         Array [
                           Object {
-                            "color": "black",
-                            "fontSize": 14,
+                            "color": "#515151",
+                            "fontSize": 16,
                           },
                           undefined,
                         ]
                       }
                     >
-                      <Text>
-                        <Text
-                          style={
-                            Array [
-                              undefined,
-                              undefined,
-                            ]
-                          }
-                        >
-                          Hello there!
-                        </Text>
-                      </Text>
+                      This message has been deleted
                     </Text>
                   </View>
                 </View>

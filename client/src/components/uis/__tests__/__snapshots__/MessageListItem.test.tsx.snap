@@ -125,29 +125,17 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
           }
         >
           <Text
-            selectable={true}
             style={
               Array [
                 Object {
-                  "color": "black",
-                  "fontSize": 14,
+                  "color": "#515151",
+                  "fontSize": 16,
                 },
                 undefined,
               ]
             }
           >
-            <Text>
-              <Text
-                style={
-                  Array [
-                    undefined,
-                    undefined,
-                  ]
-                }
-              >
-                Hello there!
-              </Text>
-            </Text>
+            This message has been deleted
           </Text>
         </View>
       </View>
