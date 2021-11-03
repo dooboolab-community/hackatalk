@@ -83,7 +83,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                 "cacheConfig": Object {
                   "force": true,
                 },
-                "identifier": "1ff7872b58757bca9b62f46b886f16b8{\\"after\\":null,\\"channelId\\":\\"abcdef\\",\\"first\\":20,\\"searchText\\":null}",
+                "identifier": "b580b07cb3a1ebb2fd16d9fb1339f1dd{\\"after\\":null,\\"channelId\\":\\"abcdef\\",\\"first\\":20,\\"searchText\\":null}",
                 "node": Object {
                   "fragment": Object {
                     "abstractKey": null,
@@ -436,7 +436,7 @@ exports[`[Message] rendering test renders as expected 1`] = `
                     ],
                   },
                   "params": Object {
-                    "cacheID": "1ff7872b58757bca9b62f46b886f16b8",
+                    "cacheID": "b580b07cb3a1ebb2fd16d9fb1339f1dd",
                     "id": null,
                     "metadata": Object {},
                     "name": "MessagesQuery",
