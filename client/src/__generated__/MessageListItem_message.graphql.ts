@@ -11,6 +11,7 @@
 import { Fragment, ReaderFragment } from 'relay-runtime';
 
 import { FragmentRefs } from "relay-runtime";
+
 export type MessageListItem_message$data = {
   readonly id: string;
   readonly messageType: any;
