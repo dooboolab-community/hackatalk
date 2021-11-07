@@ -373,7 +373,7 @@ const MessageListItem: FC<Props> = ({
     commitMessageDelete(mutationConfig);
   };
 
-  if (sender?.id !== userId)
+  if (sender?.id !== userId) {
     return (
       <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
         <View style={{marginRight: 8, width: 40}}>
