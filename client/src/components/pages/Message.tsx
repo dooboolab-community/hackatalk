@@ -165,7 +165,7 @@ const messageDeletedSubscription = graphql`
   }
 `;
 
-const MessagesFragment: FC<MessageProp> = ({channelId, messages}) => {
+const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   const {theme} = useTheme();
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
