@@ -147,8 +147,9 @@ export const signInEmail = mutationField('signInEmail', {
           async () => {
             assert(user.password, 'The user does not have a password.');
 
-            if (!(await validateCredential(password, user.password)))
+            if (!(await validateCredential(password, user.password))) {
               throw new Error('Invalid password');
+            }
           },
           andThen(() => pubsub.publish(USER_SIGNED_IN, user)),
           andThen(updateLastSignedIn),
@@ -301,8 +302,9 @@ export const findPassword = mutationField('findPassword', {
   args: {email: nonNull(stringArg())},
 
   resolve: async (_parent, {email}, ctx) => {
-    if (!email || !validateEmail(email))
+    if (!email || !validateEmail(email)) {
       throw ErrorEmailNotValid(ErrorString.EmailNotValid);
+    }
 
     const user = await ctx.prisma.user.findUnique({
       where: {
@@ -310,7 +312,9 @@ export const findPassword = mutationField('findPassword', {
       },
     });
 
-    if (!user) throw ErrorUserNotExists(ErrorString.UserNotExists);
+    if (!user) {
+      throw ErrorUserNotExists(ErrorString.UserNotExists);
+    }
 
     const verificationToken = sign(
       {email, type: 'findPassword'},
@@ -360,7 +364,9 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
 
       const validate = await validateCredential(password, user.password);
 
-      if (!validate) throw ErrorPasswordIncorrect('Password is incorrect');
+      if (!validate) {
+        throw ErrorPasswordIncorrect('Password is incorrect');
+      }
 
       newPassword = await encryptCredential(newPassword);
 

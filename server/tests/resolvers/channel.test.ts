@@ -251,8 +251,9 @@ describe('Resolver - Channel', () => {
 
     const userIdsInChannel = inviteResponse.memberships.map((i) => i.user.id);
 
-    for (const userId of usersToInvite)
+    for (const userId of usersToInvite) {
       expect(userIdsInChannel).toContain(userId);
+    }
   });
 
   it('should throw when trying to invite users to [private] channel', async () => {
@@ -292,7 +293,9 @@ describe('Resolver - Channel', () => {
 
     const userIdsInChannel = kickResponse.memberships.map((i) => i.user.id);
 
-    for (const i of usersToKick) expect(userIdsInChannel).not.toContain(i);
+    for (const i of usersToKick) {
+      expect(userIdsInChannel).not.toContain(i);
+    }
   });
 
   it('should throw when trying to kick users from [private] channel', async () => {

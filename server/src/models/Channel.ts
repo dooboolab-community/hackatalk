@@ -75,7 +75,7 @@ export const Channel = objectType({
       args: {excludeMe: booleanArg()},
 
       resolve: ({id}, {excludeMe}, {prisma, userId}) => {
-        if (excludeMe)
+        if (excludeMe) {
           return prisma.membership.findMany({
             where: {
               channel: {id},
@@ -91,6 +91,7 @@ export const Channel = objectType({
               },
             ],
           });
+        }
 
         return prisma.membership.findMany({
           where: {channel: {id}, isVisible: true},

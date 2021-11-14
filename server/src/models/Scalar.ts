@@ -15,7 +15,9 @@ export const Auth = scalarType({
   name: 'Auth',
   asNexusMethod: 'auth',
   parseValue(value: AuthType): AuthType | undefined {
-    if (AuthType[value]) return value;
+    if (AuthType[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;
@@ -31,7 +33,9 @@ export const gender = scalarType({
   name: 'Gender',
   asNexusMethod: 'gender',
   parseValue(value: Gender): Gender | undefined {
-    if (Gender[value]) return value;
+    if (Gender[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;
@@ -48,7 +52,9 @@ export const membershipType = scalarType({
   name: 'MembershipType',
   asNexusMethod: 'membershipType',
   parseValue(value: MembershipType): MembershipType | undefined {
-    if (MembershipType[value]) return value;
+    if (MembershipType[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;
@@ -65,7 +71,9 @@ export const alertMode = scalarType({
   name: 'AlertMode',
   asNexusMethod: 'alertMode',
   parseValue(value: AlertMode): AlertMode | undefined {
-    if (AlertMode[value]) return value;
+    if (AlertMode[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;
@@ -82,7 +90,9 @@ export const channelType = scalarType({
   name: 'ChannelType',
   asNexusMethod: 'channelType',
   parseValue(value: ChannelType): ChannelType | undefined {
-    if (ChannelType[value]) return value;
+    if (ChannelType[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;
@@ -99,7 +109,9 @@ export const messageType = scalarType({
   name: 'MessageType',
   asNexusMethod: 'messageType',
   parseValue(value: MessageType): MessageType | undefined {
-    if (MessageType[value]) return value;
+    if (MessageType[value]) {
+      return value;
+    }
   },
   serialize(value) {
     return value;

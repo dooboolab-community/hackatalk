@@ -9,19 +9,26 @@ function resolveTake(
   first: number | null | undefined,
   last: number | null | undefined,
 ): number | undefined {
-  if (first && last)
+  if (first && last) {
     throw new Error("first and last can't be set simultaneously");
+  }
 
   if (first) {
-    if (first < 0) throw new Error("first can't be negative");
+    if (first < 0) {
+      throw new Error("first can't be negative");
+    }
 
     return first;
   }
 
   if (last) {
-    if (last < 0) throw new Error("last can't be negative");
+    if (last < 0) {
+      throw new Error("last can't be negative");
+    }
 
-    if (last === 0) return 0;
+    if (last === 0) {
+      return 0;
+    }
 
     return last * -1;
   }
@@ -33,18 +40,25 @@ function resolveCursor(
   before: string | null | undefined,
   after: string | null | undefined,
 ): {id: string} | undefined {
-  if (before && after)
+  if (before && after) {
     throw new Error("before and after can't be set simultaneously");
+  }
 
-  if (before) return {id: before};
+  if (before) {
+    return {id: before};
+  }
 
-  if (after) return {id: after};
+  if (after) {
+    return {id: after};
+  }
 
   return undefined;
 }
 
 function resolveSkip(cursor: {id: string} | null | undefined): 1 | undefined {
-  if (cursor) return 1;
+  if (cursor) {
+    return 1;
+  }
 
   return undefined;
 }
@@ -57,7 +71,9 @@ export function relayToPrismaPagination(args: PaginationArgs): {
   const {first, last, before, after} = args;
 
   // If no pagination set, don't touch the args
-  if (!first && !last && !before && !after) return {};
+  if (!first && !last && !before && !after) {
+    return {};
+  }
 
   /**
    * This is currently only possible with js transformation on the result. eg:
@@ -68,8 +84,9 @@ export function relayToPrismaPagination(args: PaginationArgs): {
    *   skip: 1
    * }).slice(length - $last, length)
    */
-  if (after && last)
+  if (after && last) {
     throw new Error("after and last can't be set simultaneously");
+  }
 
   /**
    * This is currently only possible with js transformation on the result. eg:
@@ -80,16 +97,18 @@ export function relayToPrismaPagination(args: PaginationArgs): {
    *   skip: 1
    * }).slice(0, $first)
    */
-  if (before && first)
+  if (before && first) {
     throw new Error("before and first can't be set simultaneously");
+  }
 
   // Edge-case: simulates a single `before` with a hack
-  if (before && !first && !last && !after)
+  if (before && !first && !last && !after) {
     return {
       cursor: {id: before},
       skip: 1,
       take: Number.MIN_SAFE_INTEGER,
     };
+  }
 
   const take = resolveTake(first, last);
   const cursor = resolveCursor(before, after);

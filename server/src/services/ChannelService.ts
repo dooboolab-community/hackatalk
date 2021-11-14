@@ -99,8 +99,9 @@ export const getChannelType = (
   userId: string,
   peerUserIds: string[],
 ): ChannelType => {
-  if (peerUserIds.length === 1 && peerUserIds[0] === userId)
+  if (peerUserIds.length === 1 && peerUserIds[0] === userId) {
     return ChannelType.self;
+  }
 
   return ChannelType.private;
 };

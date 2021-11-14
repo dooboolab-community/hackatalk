@@ -64,8 +64,9 @@ export class UserService {
         },
       });
 
-      if (emailUser)
+      if (emailUser) {
         throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
+      }
     }
   }
 
@@ -82,7 +83,7 @@ export class UserService {
       include: {profile: true},
     });
 
-    if (!user)
+    if (!user) {
       return ctx.prisma.user.create({
         data: {
           profile: {
@@ -102,6 +103,7 @@ export class UserService {
         },
         include: {profile: true},
       });
+    }
 
     return user;
   }
