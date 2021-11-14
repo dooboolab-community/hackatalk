@@ -58,7 +58,9 @@ export const launchCameraAsync =
   async (): Promise<ImagePicker.ImagePickerResult | null> => {
     const granted = await requestPermissions(ImagePickerType.CAMERA);
 
-    if (granted) return ImagePicker.launchCameraAsync(options);
+    if (granted) {
+      return ImagePicker.launchCameraAsync(options);
+    }
 
     return null;
   };
@@ -68,11 +70,12 @@ export const launchMediaLibraryAsync = async (
 ): Promise<ImagePicker.ImagePickerResult | null> => {
   const granted = await requestPermissions(ImagePickerType.LIBRARY);
 
-  if (granted)
+  if (granted) {
     return ImagePicker.launchImageLibraryAsync({
       ...options,
       ...(photoOnly && {mediaTypes: MediaTypeOptions.Images}),
     });
+  }
 
   return null;
 };

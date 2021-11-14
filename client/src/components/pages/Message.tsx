@@ -160,7 +160,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   >(messagesFragment, messages);
 
   useAppStateChangeHandler((state) => {
-    if (state === 'active') loadNext(ITEM_CNT);
+    if (state === 'active') {
+      loadNext(ITEM_CNT);
+    }
   });
 
   useEffect(() => {
@@ -205,7 +207,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
   const submitMessage = (): void => {
     setMessage('');
-    if (!message || messageInFlight) return;
+    if (!message || messageInFlight) {
+      return;
+    }
 
     const messageToSend = message;
 
@@ -216,16 +220,19 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         deviceKey,
       },
       optimisticUpdater: (store) => {
-        if (user)
+        if (user) {
           createMessageOptimisticUpdater(
             store,
             channelId,
             messageToSend,
             user.id,
           );
+        }
       },
       updater: (store) => {
-        if (user) createMessageUpdater(store, channelId);
+        if (user) {
+          createMessageUpdater(store, channelId);
+        }
       },
       onError: (error: Error): void => {
         showAlertForError(error);
@@ -238,8 +245,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
     setIsImageUploading(true);
 
-    if (type === ImagePickerType.CAMERA) media = await launchCameraAsync();
-    else media = await launchMediaLibraryAsync();
+    if (type === ImagePickerType.CAMERA) {
+      media = await launchCameraAsync();
+    } else {
+      media = await launchMediaLibraryAsync();
+    }
 
     if (media && !media.cancelled) {
       if (Platform.OS === 'web' && !media.type) {
@@ -254,13 +264,13 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       try {
         let response: Response;
 
-        if (media.type === 'video')
+        if (media.type === 'video') {
           response = await uploadSingleAsync(
             media.uri,
             'messages',
             `_${channelId}_${new Date().toISOString()}`,
           );
-        else {
+        } else {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
               uri: media.uri,
@@ -301,7 +311,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
             deviceKey,
           },
           updater: (store) => {
-            if (user) createMessageUpdater(store, channelId);
+            if (user) {
+              createMessageUpdater(store, channelId);
+            }
           },
           onCompleted: () => {
             setIsImageUploading(false);
@@ -355,8 +367,9 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
             .filter((node, nodeIndex) => {
               const {imageUrls} = node;
 
-              if (imageUrls && nodeIndex < index)
+              if (imageUrls && nodeIndex < index) {
                 initialIndex += imageUrls.length;
+              }
 
               return imageUrls && imageUrls.length > 0;
             })
@@ -412,25 +425,31 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
     const cursorPrefix = inputedText.slice(0, cursor.start + 1);
     const tagIdx = cursorPrefix.lastIndexOf('@');
-    if (tagIdx !== -1)
-      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' '))
-        if (lastKeyEvent.key === 'Backspace')
+    if (tagIdx !== -1) {
+      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' ')) {
+        if (lastKeyEvent.key === 'Backspace') {
           result = {
             isTag: true,
             parsedText: cursorPrefix.slice(tagIdx + 1, -2),
           };
-        else result = {isTag: true, parsedText: cursorPrefix.slice(tagIdx + 1)};
+        } else {
+          result = {isTag: true, parsedText: cursorPrefix.slice(tagIdx + 1)};
+        }
+      }
+    }
 
     return result;
   };
 
   const getTagUsersByText = (inputedText: string): User[] => {
     let result = [];
-    if (inputedText === '') result = users;
-    else
+    if (inputedText === '') {
+      result = users;
+    } else {
       result = users.filter((item) => {
         return item?.name?.includes(inputedText);
       });
+    }
 
     return result;
   };
@@ -475,15 +494,18 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       renderItem={renderItem}
       keyExtractor={(item) => item.id || nanoid()}
       onKeyPress={({nativeEvent}) => {
-        if (Platform.OS === 'web')
+        if (Platform.OS === 'web') {
           if (nativeEvent.key === 'Enter') {
             // @ts-ignore
             const altKeyPressed = !!nativeEvent.altKey;
 
-            if (!altKeyPressed) return submitMessage();
+            if (!altKeyPressed) {
+              return submitMessage();
+            }
 
             setMessage(`${message}\n`);
           }
+        }
 
         setLastKeyEvent(nativeEvent);
         handleTagUsers(message);
@@ -567,20 +589,21 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
         let title = channel?.name || '';
 
         // Note that if the user exists, this is direct message which title should appear as user name or nickname
-        if (users)
-          if (users.length <= 2)
+        if (users) {
+          if (users.length <= 2) {
             title = users
               .map((user) =>
                 user?.id !== auth?.id ? user?.nickname || user?.name || '' : '',
               )
               .join('');
-          else if (users.length > 1) {
+          } else if (users.length > 1) {
             const userNames = users.map(
               (user) => user?.nickname || user?.name || '',
             );
 
             title = userNames.join(', ');
           }
+        }
 
         return (
           <Text

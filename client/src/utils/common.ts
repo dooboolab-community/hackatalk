@@ -18,7 +18,9 @@ export const validatePassword = (password: string): boolean => {
 export const showAlertForError = (error: Error | string): void => {
   // @ts-ignore
   // eslint-disable-next-line no-alert
-  if (Platform.OS === 'web') return alert(error || '');
+  if (Platform.OS === 'web') {
+    return alert(error || '');
+  }
 
   return Alert.alert(
     getString('ERROR'),

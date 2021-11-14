@@ -120,8 +120,9 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     item: {node: Channel; cursor: string};
     index: number;
   }): React.ReactElement | null => {
-    if (!item.node?.memberships || !item.node?.memberships.length)
+    if (!item.node?.memberships || !item.node?.memberships.length) {
       return <View key={index} />;
+    }
 
     return (
       <ChannelListItem

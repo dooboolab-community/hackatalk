@@ -157,10 +157,13 @@ const Screen: FC = () => {
 
             const {url} = JSON.parse(await response.text());
 
-            if (!url)
+            if (!url) {
               return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+            }
 
-            if (url) setProfilePath(url);
+            if (url) {
+              setProfilePath(url);
+            }
 
             setIsUploading(false);
 
@@ -182,7 +185,9 @@ const Screen: FC = () => {
             onCompleted: (response: UploadSingleUploadMutationResponse) => {
               const url = response.singleUpload;
 
-              if (url) setProfilePath(url);
+              if (url) {
+                setProfilePath(url);
+              }
 
               setIsUploading(false);
             },

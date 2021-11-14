@@ -30,7 +30,9 @@ function prependMessageToChannel(
     },
   );
 
-  if (!messagesConnection) return;
+  if (!messagesConnection) {
+    return;
+  }
 
   const newMessageEdge = ConnectionHandler.createEdge(
     store,
@@ -48,8 +50,9 @@ function prependMessageToChannel(
       (edge) =>
         edge.getLinkedRecord('node')?.getDataID() === messageProxy.getDataID(),
     )
-  )
+  ) {
     ConnectionHandler.insertEdgeBefore(messagesConnection, newMessageEdge);
+  }
 }
 
 /**
@@ -74,7 +77,9 @@ function updateChannelAndRearrange(
     },
   );
 
-  if (!channelsConnection) return;
+  if (!channelsConnection) {
+    return;
+  }
 
   // Remove existing edge.
   const existingEdges = channelsConnection?.getLinkedRecords('edges') ?? [];
@@ -163,7 +168,9 @@ export function onMessageUpdater(
   const payload = store.getRootField('onMessage');
   const channelId = payload.getLinkedRecord('channel')?.getValue('id');
 
-  if (!channelId) return;
+  if (!channelId) {
+    return;
+  }
 
   prependMessageToChannel(store, channelId, payload);
   updateChannelAndRearrange(store, channelId);
@@ -188,7 +195,9 @@ export function deleteChannelAndUpdate(
     },
   );
 
-  if (!channelsConnection) return;
+  if (!channelsConnection) {
+    return;
+  }
 
   // Remove existing edge.
   const existingEdges = channelsConnection?.getLinkedRecords('edges') ?? [];

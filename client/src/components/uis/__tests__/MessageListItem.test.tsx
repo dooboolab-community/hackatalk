@@ -43,7 +43,9 @@ const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
     {},
   );
 
-  if (!myData) return <Text>FAILED TO FETCH</Text>;
+  if (!myData) {
+    return <Text>FAILED TO FETCH</Text>;
+  }
 
   return (
     <Suspense fallback={<Text>TEST FALLBACK</Text>}>

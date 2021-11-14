@@ -34,8 +34,9 @@ export default function useOrientation(): Orientation {
     );
 
     return (): void => {
-      if (Platform.OS !== 'web')
+      if (Platform.OS !== 'web') {
         ScreenOrientation.removeOrientationChangeListener(subscription);
+      }
     };
   });
 

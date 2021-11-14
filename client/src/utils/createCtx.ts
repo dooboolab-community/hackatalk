@@ -13,7 +13,9 @@ function createCtx<A>(): CreateCtx<A> {
   function useCtx(): A {
     const c = React.useContext(ctx);
 
-    if (!c) throw new Error('useCtx must be inside a Provider with a value');
+    if (!c) {
+      throw new Error('useCtx must be inside a Provider with a value');
+    }
 
     return c;
   }

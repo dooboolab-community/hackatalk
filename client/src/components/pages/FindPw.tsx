@@ -46,11 +46,13 @@ const Page: FC = () => {
       onError: (error: Error) => {
         let errorMsg: string = error.message.toLowerCase();
 
-        if (errorMsg.includes('not a valid email address'))
+        if (errorMsg.includes('not a valid email address')) {
           errorMsg = getString('EMAIL_FORMAT_NOT_VALID');
-        else if (errorMsg.includes('user does not exists'))
+        } else if (errorMsg.includes('user does not exists')) {
           errorMsg = getString('EMAIL_USER_NOT_EXISTS');
-        else errorMsg = getString('EMAIL_SENT_FAILED');
+        } else {
+          errorMsg = getString('EMAIL_SENT_FAILED');
+        }
 
         showAlertForError(errorMsg);
       },

@@ -145,7 +145,9 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     );
 
     return (): void => {
-      if (backHandlerListner) backHandlerListner.remove();
+      if (backHandlerListner) {
+        backHandlerListner.remove();
+      }
     };
   }, [hideModal, modalState.isVisible]);
 
@@ -209,12 +211,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             'User',
           );
 
-        if (connectionRecord && newEdge)
+        if (connectionRecord && newEdge) {
           ConnectionHandler.insertEdgeAfter(connectionRecord, newEdge);
+        }
       },
     });
 
-    if (onAddFriend) onAddFriend();
+    if (onAddFriend) {
+      onAddFriend();
+    }
 
     setShowFriendAddedMessage(true);
   };
@@ -230,12 +235,15 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         const connectionRecord =
           root && ConnectionHandler.getConnection(root, 'MainFriend_friends');
 
-        if (connectionRecord)
+        if (connectionRecord) {
           ConnectionHandler.deleteNode(connectionRecord, id);
+        }
       },
     });
 
-    if (onDeleteFriend) onDeleteFriend();
+    if (onDeleteFriend) {
+      onDeleteFriend();
+    }
 
     hideModal();
   };
@@ -243,10 +251,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const createBlockedUser = (): void => {
     const blockedUserId = id;
 
-    if (blockedUserId)
+    if (blockedUserId) {
       commitCreateBlockedUser({
         variables: {blockedUserId},
       });
+    }
 
     hideModal();
   };
@@ -254,10 +263,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const deleteBlockedUser = (): void => {
     const blockedUserId = id;
 
-    if (blockedUserId)
+    if (blockedUserId) {
       commitDeleteBlockedUser({
         variables: {blockedUserId},
       });
+    }
 
     hideModal();
   };
@@ -301,13 +311,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     setStatusMessageExpanded(!isStatusMessageExpanded);
 
   useEffect(() => {
-    if (openSnackbar && showFriendAddedMessage)
+    if (openSnackbar && showFriendAddedMessage) {
       openSnackbar({
         text: getString('FRIEND_ADDED'),
         type: 'success',
         testID: 'profile-snackbar',
         zIndex: 101,
       });
+    }
   }, [openSnackbar, showFriendAddedMessage]);
 
   return (
@@ -446,10 +457,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             onPress={() => {
               const user = modalState?.user;
 
-              if (user)
+              if (user) {
                 navigation.navigate('ImageSlider', {
                   images: [{uri: photoURL, sender: name}],
                 });
+              }
             }}
           >
             {photoURL ? (

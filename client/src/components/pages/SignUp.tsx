@@ -109,7 +109,9 @@ const Page: FC = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
 
-          if (image && !image.cancelled) setProfilePath(image.uri);
+          if (image && !image.cancelled) {
+            setProfilePath(image.uri);
+          }
 
           return;
         }
@@ -117,7 +119,9 @@ const Page: FC = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchMediaLibraryAsync(true);
 
-          if (image && !image.cancelled) setProfilePath(image.uri);
+          if (image && !image.cancelled) {
+            setProfilePath(image.uri);
+          }
         }
       },
     );
@@ -130,16 +134,21 @@ const Page: FC = () => {
       name.length < 2 ||
       password !== confirmPassword
     ) {
-      if (!validateEmail(email))
+      if (!validateEmail(email)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
+      }
 
-      if (!validatePassword(password))
+      if (!validatePassword(password)) {
         setErrorPassword(getString('PASSWORD_MIN'));
+      }
 
-      if (name.length < 2) setErrorName(getString('NAME_MIN'));
+      if (name.length < 2) {
+        setErrorName(getString('NAME_MIN'));
+      }
 
-      if (password !== confirmPassword)
+      if (password !== confirmPassword) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
+      }
 
       return;
     }
@@ -236,32 +245,41 @@ const Page: FC = () => {
     emailInput: (emailStr: string): void => {
       setEmail(emailStr);
 
-      if (!validateEmail(emailStr))
+      if (!validateEmail(emailStr)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
-      else setErrorEmail('');
+      } else {
+        setErrorEmail('');
+      }
     },
     passwordInput: (passwordStr: string): void => {
       setPassword(passwordStr);
 
-      if (!validatePassword(passwordStr))
+      if (!validatePassword(passwordStr)) {
         setErrorPassword(getString('PASSWORD_MIN'));
-      else if (confirmPassword && passwordStr !== confirmPassword) {
+      } else if (confirmPassword && passwordStr !== confirmPassword) {
         setErrorPassword('');
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      } else setErrorPassword('');
+      } else {
+        setErrorPassword('');
+      }
     },
     confirmPasswordInput: (confirmPasswordStr: string): void => {
       setConfirmPassword(confirmPasswordStr);
 
-      if (password !== confirmPasswordStr)
+      if (password !== confirmPasswordStr) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
-      else setErrorConfirmPassword('');
+      } else {
+        setErrorConfirmPassword('');
+      }
     },
     nameInput: (nameStr: string): void => {
       setName(nameStr);
 
-      if (nameStr.length < 2) setErrorName(getString('NAME_MIN'));
-      else setErrorName('');
+      if (nameStr.length < 2) {
+        setErrorName(getString('NAME_MIN'));
+      } else {
+        setErrorName('');
+      }
     },
   };
 

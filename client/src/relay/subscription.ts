@@ -22,7 +22,9 @@ export const subscribe = (
   return Observable.create((sink) => {
     createClient()
       .then((client) => {
-        if (!operation.text) throw new Error('Query cannot be empty.');
+        if (!operation.text) {
+          throw new Error('Query cannot be empty.');
+        }
 
         client
           .request({

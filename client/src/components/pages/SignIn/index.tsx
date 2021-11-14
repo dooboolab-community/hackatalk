@@ -176,8 +176,9 @@ const SignIn: FC = () => {
       (await AsyncStorage.getItem('license_agreed')) as string,
     );
 
-    if (!licenseAgreed && Platform.OS === 'ios')
+    if (!licenseAgreed && Platform.OS === 'ios') {
       return navigation.navigate('LicenseAgreement');
+    }
 
     const mutationConfig = {
       variables: {
@@ -188,10 +189,11 @@ const SignIn: FC = () => {
       onCompleted: (response: UserSignInEmailMutationResponse) => {
         const {token, user} = response.signInEmail as AuthPayload;
 
-        if (user && !user.verified)
+        if (user && !user.verified) {
           return navigation.navigate('VerifyEmail', {
             email,
           });
+        }
 
         if (user && token) {
           createNotificationIfPushTokenExists();
@@ -219,10 +221,11 @@ const SignIn: FC = () => {
         <Typography.Body2
           key={str}
           onPress={() => {
-            if (str === getString('PRIVACY_AND_POLICY'))
+            if (str === getString('PRIVACY_AND_POLICY')) {
               return Linking.openURL(
                 'https://legacy.dooboolab.com/privacyandpolicy',
               );
+            }
 
             Linking.openURL('https://legacy.dooboolab.com/termsofservice');
           }}
@@ -283,12 +286,13 @@ const SignIn: FC = () => {
     } catch (e: any) {
       if (e.code === 'ERR_CANCELED') {
         // handle that the user canceled the sign-in flow
-      } else
+      } else {
         Platform.select({
           // eslint-disable-next-line no-alert
           web: alert(`Apple Login Error: ${e.code} - ${e.message}`),
           default: Alert.alert(`Apple Login Error: ${e.code} - ${e.message}`),
         });
+      }
     } finally {
       setSigningInApple(false);
     }

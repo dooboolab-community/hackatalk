@@ -138,7 +138,9 @@ const calculateUsers = (
 ): (Maybe<User> | undefined)[] | undefined =>
   memberships
     ?.filter((member) => {
-      if (channelType !== 'self') return member?.user?.id !== authUserId;
+      if (channelType !== 'self') {
+        return member?.user?.id !== authUserId;
+      }
 
       return true;
     })
@@ -183,7 +185,9 @@ function ChannelListItem(props: Props): React.ReactElement {
     const renderMultiImages = (): ReactElement | null => {
       const images = photoURLs?.slice(0, 4) || [];
 
-      if (images.length === 0) return null;
+      if (images.length === 0) {
+        return null;
+      }
 
       const renderImages = (): ReactElement => {
         switch (images.length) {

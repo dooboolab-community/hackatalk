@@ -148,7 +148,9 @@ const RootNavigatorWrapper: FC = () => {
   const {theme} = useTheme();
 
   useEffect(() => {
-    if (!user) loadMeQuery({});
+    if (!user) {
+      loadMeQuery({});
+    }
   }, [loadMeQuery, user]);
 
   return (
