@@ -64,7 +64,9 @@ const ProfileConsumer = forwardRef<ConsumerRef>((_props, ref) => {
 
   const {showModal, hideModal, modalState} = useProfileContext();
 
-  if (!myData) throw new Error('myData is null');
+  if (!myData) {
+    throw new Error('myData is null');
+  }
 
   useImperativeHandle(ref, () => ({
     showModal: (next) => showModal({...next, user: myData}),

@@ -16,9 +16,13 @@ function useResponsiveDesign(): Media {
     maxWidth: 768,
   });
 
-  if (isMobile) return 'mobile';
+  if (isMobile) {
+    return 'mobile';
+  }
 
-  if (isTablet) return 'tablet';
+  if (isTablet) {
+    return 'tablet';
+  }
 
   return 'desktop';
 }

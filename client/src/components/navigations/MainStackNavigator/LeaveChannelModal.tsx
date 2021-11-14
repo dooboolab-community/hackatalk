@@ -106,13 +106,14 @@ const ChannelModalContent: FC<ModalContentProps> = ({
   };
 
   useEffect(() => {
-    if (openSnackbar && showLeaveChannelMessage)
+    if (openSnackbar && showLeaveChannelMessage) {
       openSnackbar({
         text: getString('LEAVE_CHANNEL_DONE'),
         type: 'success',
         testID: 'profile-snackbar',
         zIndex: 99,
       });
+    }
   }, [openSnackbar, showLeaveChannelMessage]);
 
   return (

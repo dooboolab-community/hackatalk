@@ -125,7 +125,9 @@ const SocialSignInButton: FC<Props> = ({
                 const {user, token} = googleResponse.signInWithGoogle;
 
                 AsyncStorage.setItem('token', token).then(() => {
-                  if (onUserCreated) onUserCreated(user as User);
+                  if (onUserCreated) {
+                    onUserCreated(user as User);
+                  }
                 });
               }
             },
@@ -146,7 +148,9 @@ const SocialSignInButton: FC<Props> = ({
               const {user, token} = fbResponse.signInWithFacebook;
 
               AsyncStorage.setItem('token', token).then(() => {
-                if (onUserCreated) onUserCreated(user as User);
+                if (onUserCreated) {
+                  onUserCreated(user as User);
+                }
               });
             }
           },
@@ -172,7 +176,7 @@ const SocialSignInButton: FC<Props> = ({
     }
   };
 
-  if (socialProvider === 'google')
+  if (socialProvider === 'google') {
     return (
       <Button
         testID="btn-google"
@@ -197,6 +201,7 @@ const SocialSignInButton: FC<Props> = ({
         text={getString('SIGN_IN_WITH_GOOGLE')}
       />
     );
+  }
 
   return (
     <Button

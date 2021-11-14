@@ -37,7 +37,9 @@ interface Token {
 }
 
 export function getUserId(authorization?: string): string | null {
-  if (!authorization) return null;
+  if (!authorization) {
+    return null;
+  }
 
   const token = authorization.replace('Bearer ', '');
   const verifiedToken = verify(token, APP_SECRET) as Token;
@@ -167,18 +169,21 @@ export const verifyAppleId = async (idToken: string): Promise<AppleUser> => {
     algorithms: ['RS256'],
   }) as AppleUser;
 
-  if (appleUser.iss !== TOKEN_ISSUER)
+  if (appleUser.iss !== TOKEN_ISSUER) {
     throw new Error(
       `id token is not issued by: ${TOKEN_ISSUER} | from: + ${appleUser.iss}`,
     );
+  }
 
-  if (clientID !== undefined && appleUser.aud !== clientID)
+  if (clientID !== undefined && appleUser.aud !== clientID) {
     throw new Error(
       `parameter does not include: ${appleUser.aud} | expected: ${clientID}`,
     );
+  }
 
-  if (appleUser.exp < Date.now() / 1000)
+  if (appleUser.exp < Date.now() / 1000) {
     throw new Error('id token has expired');
+  }
 
   return appleUser;
 };
@@ -201,7 +206,9 @@ export const validateCredential = async (
     hashedValue = hashedValue.replace(/dot$/g, '.');
 
     bcrypt.compare(value, hashedValue, (err, res) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
 
       resolve(res);
     });
@@ -258,7 +265,9 @@ export const getPasswordResetHTML = (
 export const getToken = (req: Request): string | null => {
   const authHeader = req.get('Authorization');
 
-  if (!authHeader) return null;
+  if (!authHeader) {
+    return null;
+  }
 
   return authHeader.replace('Bearer ', '');
 };

@@ -144,18 +144,26 @@ function shouldShowDate(
   prevDate: string | undefined,
   nextDate: string | undefined,
 ): boolean {
-  if (!nextDate) return true;
+  if (!nextDate) {
+    return true;
+  }
 
-  if (!currentDate || !prevDate) return false;
+  if (!currentDate || !prevDate) {
+    return false;
+  }
 
-  if (!isPrevItemSameUser && !isNextItemSameUser) return true;
+  if (!isPrevItemSameUser && !isNextItemSameUser) {
+    return true;
+  }
 
   const currentMoment = moment(currentDate);
   const nextMoment = moment(nextDate);
 
   const diffNextMins = nextMoment.diff(currentMoment, 'minute');
 
-  if (diffNextMins <= 1 && isNextItemSameUser) return false;
+  if (diffNextMins <= 1 && isNextItemSameUser) {
+    return false;
+  }
 
   return true;
 }
@@ -169,14 +177,20 @@ const decorateDate = (createdAt: string): string => {
   const diffHours = now.diff(date, 'hours');
 
   if (diffDays >= 1) {
-    if (diffYearCnt >= 1) return `${date.format('YYYY MMM Do, A hh:mm')}`;
+    if (diffYearCnt >= 1) {
+      return `${date.format('YYYY MMM Do, A hh:mm')}`;
+    }
 
-    if (diffMonthCnt >= 1) return `${date.format('MMM Do, A hh:mm')}`;
+    if (diffMonthCnt >= 1) {
+      return `${date.format('MMM Do, A hh:mm')}`;
+    }
 
     return `${date.format('Do, A hh:mm')}`;
   }
 
-  if (diffHours >= 1) return `${date.format('A hh:mm')}`;
+  if (diffHours >= 1) {
+    return `${date.format('A hh:mm')}`;
+  }
 
   return date.fromNow();
 };
@@ -186,8 +200,9 @@ const openURL = (url: string): void => {
 };
 
 const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
-  if (isSamePeerMsg) return <View style={{width: 40}} />;
-  else if (thumbURL)
+  if (isSamePeerMsg) {
+    return <View style={{width: 40}} />;
+  } else if (thumbURL) {
     return (
       <StyledImageSender
         accessible
@@ -195,6 +210,7 @@ const ImageSender: FC<ImageSenderProps> = ({thumbURL, isSamePeerMsg}) => {
         source={{uri: thumbURL}}
       />
     );
+  }
 
   return (
     <View
@@ -307,14 +323,16 @@ const MessageListItem: FC<Props> = ({
     );
   };
 
-  if (sender?.id !== userId)
+  if (sender?.id !== userId) {
     return (
       <WrapperPeer shouldShowDatePeer={!!shouldShowDate}>
         <View style={{marginRight: 8, width: 40}}>
           <TouchableOpacity
             testID={testID}
             onPress={() => {
-              if (sender && onPressPeerImage) onPressPeerImage(sender);
+              if (sender && onPressPeerImage) {
+                onPressPeerImage(sender);
+              }
             }}
           >
             <ImageSender
@@ -360,6 +378,7 @@ const MessageListItem: FC<Props> = ({
         </View>
       </WrapperPeer>
     );
+  }
 
   return (
     <WrapperMy shouldShowDateMy={!!shouldShowDate}>

@@ -96,8 +96,9 @@ export const createChannel = mutationField('createChannel', {
     if (isPrivateChannel) {
       const hasNoMembersToChat = userIds.length === 0;
 
-      if (hasNoMembersToChat)
+      if (hasNoMembersToChat) {
         throw new Error('User has no members to chat within private channel.');
+      }
 
       const existingChannel = await findChannelWithUserIds(prisma, [
         userId,
@@ -163,8 +164,9 @@ export const findOrCreatePrivateChannel = mutationField(
 
       const channel = await createNewChannel(prisma, channelType, userId);
 
-      if (channelType !== ChannelType.self)
+      if (channelType !== ChannelType.self) {
         await createMemberships(prisma, channel.id, filteredPeerUserIds);
+      }
 
       return channel;
     },
@@ -187,7 +189,7 @@ export const leaveChannel = mutationField('leaveChannel', {
 
     const channel = await findExistingChannel(prisma, channelId);
 
-    if (channel.channelType === 'public')
+    if (channel.channelType === 'public') {
       return prisma.membership.delete({
         where: {
           userId_channelId: {
@@ -196,6 +198,7 @@ export const leaveChannel = mutationField('leaveChannel', {
           },
         },
       });
+    }
 
     return prisma.membership.update({
       where: {
@@ -224,8 +227,9 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
 
     const channel = await findExistingChannel(prisma, channelId);
 
-    if (channel.channelType === 'private')
+    if (channel.channelType === 'private') {
       throw new Error("You can't add some users to private channel.");
+    }
 
     const membership = await prisma.membership.findFirst({
       where: {
@@ -239,10 +243,11 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
       membership.membershipType !== 'admin' &&
       membership.membershipType !== 'owner';
 
-    if (hasAdminPermission)
+    if (hasAdminPermission) {
       throw new Error(
         'You should have admin or owner membership to add some users to the channel.',
       );
+    }
 
     for (const channelUserId of userIds) {
       const channelMembership = await prisma.membership.findFirst({
@@ -252,7 +257,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
         },
       });
 
-      if (!channelMembership)
+      if (!channelMembership) {
         await prisma.membership.create({
           data: {
             user: {
@@ -263,6 +268,7 @@ export const inviteUsersToChannel = mutationField('inviteUsersToChannel', {
             },
           },
         });
+      }
     }
 
     return channel;
@@ -282,10 +288,11 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
 
     const channel = await findExistingChannel(prisma, channelId);
 
-    if (channel.channelType === 'private')
+    if (channel.channelType === 'private') {
       throw new Error(
         'Removing users from the private channels is not allowed.',
       );
+    }
 
     const membership = await prisma.membership.findFirst({
       where: {
@@ -299,10 +306,11 @@ export const kickUsersFromChannel = mutationField('kickUsersFromChannel', {
       membership.membershipType !== 'admin' &&
       membership.membershipType !== 'owner';
 
-    if (hasAdminPermission)
+    if (hasAdminPermission) {
       throw new Error(
         'You should have admin or owner membership to add some users to the channel.',
       );
+    }
 
     await prisma.membership.deleteMany({
       where: {

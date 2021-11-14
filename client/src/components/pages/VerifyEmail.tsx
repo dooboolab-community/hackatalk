@@ -53,8 +53,9 @@ const Page: FC = () => {
       email,
     },
     onCompleted: (response: UserVerifyEmailMutationResponse) => {
-      if (response.sendVerification)
+      if (response.sendVerification) {
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
+      }
 
       Alert.alert(
         getString('ERROR'),

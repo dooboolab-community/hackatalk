@@ -80,7 +80,7 @@ const ImageSlider: FC = () => {
     const movePrev = animValues.prevTranslateX > imageContainerWidth / 2;
     const targetTranslate = pinchZoom.current?.animatedValue.translate;
 
-    if (moveNext && currentIndex < images.length - 1 && targetTranslate)
+    if (moveNext && currentIndex < images.length - 1 && targetTranslate) {
       Animated.timing(targetTranslate, {
         toValue: {
           x: (-(animValues.scale + 1) / 2) * imageContainerWidth,
@@ -91,7 +91,7 @@ const ImageSlider: FC = () => {
       }).start(() => {
         setCurrentIndex(currentIndex + 1);
       });
-    else if (movePrev && currentIndex > 0 && targetTranslate)
+    } else if (movePrev && currentIndex > 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
         toValue: {
           x: ((animValues.scale + 1) / 2) * imageContainerWidth,
@@ -104,7 +104,7 @@ const ImageSlider: FC = () => {
         prevImageTranslateX.setValue(0);
         setCurrentIndex(currentIndex - 1);
       });
-    else if (animValues.nextTranslateX < 0 && targetTranslate)
+    } else if (animValues.nextTranslateX < 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
         toValue: {
           x: ((1 - animValues.scale) * imageContainerWidth) / 2,
@@ -120,7 +120,7 @@ const ImageSlider: FC = () => {
           },
         });
       });
-    else if (animValues.prevTranslateX > 0 && targetTranslate)
+    } else if (animValues.prevTranslateX > 0 && targetTranslate) {
       Animated.timing(targetTranslate, {
         toValue: {
           x: ((animValues.scale - 1) * imageContainerWidth) / 2,
@@ -136,6 +136,7 @@ const ImageSlider: FC = () => {
           },
         });
       });
+    }
   }, [
     currentIndex,
     imageContainerWidth,

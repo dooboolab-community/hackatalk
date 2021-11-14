@@ -24,8 +24,9 @@ export const uploadSingleAsync = async (
     const ab = new ArrayBuffer(byteString.length);
     const arr = new Uint8Array(ab);
 
-    for (let i = 0; i < byteString.length; i++)
+    for (let i = 0; i < byteString.length; i++) {
       arr[i] = byteString.charCodeAt(i);
+    }
 
     const blob = new Blob([arr], {
       type: fileType || 'image/png',
@@ -34,13 +35,14 @@ export const uploadSingleAsync = async (
     const file = new File([blob], `${fileName}${fileNamePrefix}`);
 
     data.append('inputFile', file);
-  } else
+  } else {
     data.append('inputFile', {
       // @ts-ignore
       uri,
       type: fileType || 'image/png',
       name: `${fileName}${fileNamePrefix}`,
     });
+  }
 
   const fetchOption = {
     method: 'POST',

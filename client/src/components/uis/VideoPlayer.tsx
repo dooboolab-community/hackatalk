@@ -54,7 +54,7 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
   const [thumbnailError, setThumbnailError] = useState('');
 
   useEffect(() => {
-    if (Platform.OS !== 'web')
+    if (Platform.OS !== 'web') {
       (async () => {
         try {
           const result = await VideoThumbnails.getThumbnailAsync(uri, {
@@ -66,6 +66,7 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
           setThumbnailError(getString('THUMBNAIL_ERROR'));
         }
       })();
+    }
   }, [uri]);
 
   const handleLoadPress = async (): Promise<void> => {

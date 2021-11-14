@@ -210,7 +210,9 @@ function Shared<T>(props: Props<T>): React.ReactElement {
                   selection: {start, end},
                 },
               }) => {
-                if (onChangeCursor) onChangeCursor({start, end});
+                if (onChangeCursor) {
+                  onChangeCursor({start, end});
+                }
               }}
             />
             <StyledTouchMenu

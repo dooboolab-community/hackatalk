@@ -60,9 +60,11 @@ const createPrismaClient = (): PrismaClient => {
       if (params.action === 'deleteMany') {
         params.action = 'updateMany';
 
-        if (params.args.data !== undefined)
+        if (params.args.data !== undefined) {
           params.args.data.deletedAt = new Date().toISOString();
-        else params.args.data = {deletedAt: new Date().toISOString()};
+        } else {
+          params.args.data = {deletedAt: new Date().toISOString()};
+        }
       }
     }
 

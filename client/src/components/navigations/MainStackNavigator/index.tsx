@@ -131,8 +131,9 @@ function MainStackNavigator(): ReactElement {
   }, [hideSplashScreenAsync]);
 
   useEffect(() => {
-    if (Platform.OS === 'android' || Platform.OS === 'ios')
-      requestPermissionsAsync(); // expo-ads-admob
+    if (Platform.OS === 'android' || Platform.OS === 'ios') {
+      requestPermissionsAsync();
+    } // expo-ads-admob
   }, []);
 
   useEffect(() => {
@@ -145,8 +146,9 @@ function MainStackNavigator(): ReactElement {
         if (typeof jsonString === 'string') {
           const {channelId} = JSON.parse(jsonString);
 
-          if (typeof channelId === 'string')
+          if (typeof channelId === 'string') {
             navigation.navigate('Message', {channelId});
+          }
         }
       },
     );
@@ -155,7 +157,9 @@ function MainStackNavigator(): ReactElement {
       try {
         Notifications.removeNotificationSubscription(subscription);
       } catch (err: any) {
-        if (__DEV__) console.log('remove noti subscription', err);
+        if (__DEV__) {
+          console.log('remove noti subscription', err);
+        }
       }
     };
   }, [navigation]);

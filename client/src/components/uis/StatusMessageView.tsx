@@ -49,7 +49,7 @@ const StatusMessageView: FC<Props> = ({
   const transition = useRef(new Animated.Value(140)).current;
 
   useEffect(() => {
-    if (!isStatusMessageExpanded)
+    if (!isStatusMessageExpanded) {
       Animated.parallel([
         Animated.spring(transition, {
           toValue: 140,
@@ -60,7 +60,7 @@ const StatusMessageView: FC<Props> = ({
           useNativeDriver: true,
         }),
       ]).start();
-    else
+    } else {
       Animated.parallel([
         Animated.spring(transition, {
           toValue: 300 - (110 + bodyHeight),
@@ -72,16 +72,18 @@ const StatusMessageView: FC<Props> = ({
           useNativeDriver: true,
         }),
       ]).start();
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isStatusMessageExpanded, bodyHeight]);
 
   useEffect(() => {
     const statusMessageLength = statusMessage.split('\n').length;
-    if (textLayoutWidth >= 195 || statusMessageLength > 2)
+    if (textLayoutWidth >= 195 || statusMessageLength > 2) {
       setShowArrow({show: true, length: statusMessageLength});
-    else if (!isStatusMessageExpanded)
+    } else if (!isStatusMessageExpanded) {
       setShowArrow({show: false, length: statusMessageLength});
+    }
   }, [statusMessage, textLayoutWidth, isStatusMessageExpanded]);
 
   return (
@@ -121,11 +123,12 @@ const StatusMessageView: FC<Props> = ({
           numberOfLines={isStatusMessageExpanded ? MAX_STATUS_MESSAGE_LINES : 2}
           ellipsizeMode="tail"
           onTextLayout={(event) => {
-            if (event.nativeEvent.lines.length)
+            if (event.nativeEvent.lines.length) {
               setTextLayoutWidth(
                 event.nativeEvent.lines[event.nativeEvent.lines.length - 1]
                   .width,
               );
+            }
           }}
         >
           {statusMessage}

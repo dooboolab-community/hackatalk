@@ -26,7 +26,9 @@ const DeviceProvider: FC = ({children}) => {
 
     Device.getDeviceTypeAsync().then((result) => {
       // Only change state if this component is still mounted.
-      if (isMounted) setDeviceType(result);
+      if (isMounted) {
+        setDeviceType(result);
+      }
     });
 
     return () => {

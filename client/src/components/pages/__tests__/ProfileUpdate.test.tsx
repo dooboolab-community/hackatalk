@@ -20,7 +20,9 @@ jest.mock('@expo/react-native-action-sheet', () => ({
         options: Record<string, unknown>,
         callback: (index: number) => void,
       ): void => {
-        if (userPressLaunchCamera) callback(BUTTON_INDEX_LAUNCH_CAMERA);
+        if (userPressLaunchCamera) {
+          callback(BUTTON_INDEX_LAUNCH_CAMERA);
+        }
 
         callback(BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY);
       },

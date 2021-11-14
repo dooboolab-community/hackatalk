@@ -198,7 +198,9 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     index: number;
   }): ReactElement => {
     const isMe = item?.node?.id === user?.id;
-    if (isMe) return <View />;
+    if (isMe) {
+      return <View />;
+    }
 
     return (
       <UserListItem
