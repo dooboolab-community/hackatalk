@@ -15,6 +15,7 @@ import {colors} from '../../theme';
 import {deleteMessage} from '../../relay/queries/Message';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
+import {nanoid} from 'nanoid/non-secure';
 import styled from '@emotion/native';
 import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
@@ -284,7 +285,7 @@ const MessageListItem: FC<Props> = ({
     imageUrls,
     fileUrls,
     messageType,
-  } = data;
+  } = data || {id: nanoid()};
 
   const isPrevMessageSameUser = prevItemSender?.id === sender?.id;
   const isNextMessageSameUser = nextItemSender?.id === sender?.id;
