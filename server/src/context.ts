@@ -49,7 +49,7 @@ const createPrismaClient = (): PrismaClient => {
 
   //! Specify soft deletion models here.
   prisma.$use(async (params, next) => {
-    const softDeletionModels = ['User'];
+    const softDeletionModels = ['User', 'Channel', 'Message'];
 
     if (params.model && softDeletionModels.includes(params.model)) {
       if (params.action === 'delete') {
