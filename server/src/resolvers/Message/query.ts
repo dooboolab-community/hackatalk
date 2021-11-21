@@ -55,7 +55,6 @@ export const messages = queryField((t) => {
           channelId,
           senderId: {notIn: blockedUsersIds},
           ...filter,
-          deletedAt: null,
         },
 
         include: {sender: true},

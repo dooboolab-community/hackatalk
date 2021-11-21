@@ -14,7 +14,7 @@ export const findExistingChannel = async (
   channelId: string,
 ): Promise<Channel> => {
   const channel = await prisma.channel.findFirst({
-    where: {id: channelId, deletedAt: null},
+    where: {id: channelId},
   });
 
   assert(channel, 'Could not find the channel.');

@@ -66,6 +66,21 @@ const createPrismaClient = (): PrismaClient => {
           params.args.data = {deletedAt: new Date().toISOString()};
         }
       }
+
+      if (params.action === 'findUnique') {
+        params.action = 'findFirst';
+        params.args.where.deletedAt = null;
+      }
+
+      if (params.action === 'findMany' || params.action === 'findFirst') {
+        if (params.args.where !== undefined) {
+          if (params.args.where.deletedAt === undefined) {
+            params.args.where.deletedAt = null;
+          }
+        } else {
+          params.args.where = {deletedAt: null};
+        }
+      }
     }
 
     return next(params);
