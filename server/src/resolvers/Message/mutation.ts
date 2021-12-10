@@ -108,7 +108,7 @@ export const deleteMessage = mutationField('deleteMessage', {
   args: {id: nonNull(stringArg())},
 
   resolve: async (parent, {id}, ctx) => {
-    const deleted = await ctx.prisma.message.update({
+    const deleted = await ctx.prisma.message.delete({
       data: {deletedAt: new Date().toISOString()},
       where: {id},
       include: {sender: true},
