@@ -1,15 +1,17 @@
+import {Report as ReportNexus} from 'nexus-prisma/*';
 import {objectType} from 'nexus';
 
 export const Report = objectType({
-  name: 'Report',
+  name: ReportNexus.$name,
+  description: ReportNexus.$description,
   definition(t) {
-    t.nonNull.id('id');
-    t.nonNull.string('report');
-    t.date('createdAt');
-    t.date('updatedAt');
-    t.date('deletedAt');
+    t.field(ReportNexus.id);
+    t.field(ReportNexus.report);
+    t.field(ReportNexus.createdAt);
+    t.field(ReportNexus.updatedAt);
+    t.field(ReportNexus.deletedAt);
 
-    t.field('user', {type: 'User'});
-    t.field('reportedUser', {type: 'User'});
+    t.field(ReportNexus.user);
+    t.field(ReportNexus.reportedUser);
   },
 });

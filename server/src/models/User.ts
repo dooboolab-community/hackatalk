@@ -1,12 +1,13 @@
-import {Profile, User} from 'nexus-prisma';
+import {Profile as ProfileNexus, User as UserNexus} from 'nexus-prisma';
 
 import {NexusGenRootTypes} from '../generated/nexus';
 import {PrismaClient} from '@prisma/client';
 import {assert} from '../utils/assert';
 import {objectType} from 'nexus';
 
-export const ProfileModel = objectType({
-  name: 'Profile',
+export const Profile = objectType({
+  name: ProfileNexus.$name,
+  description: ProfileNexus.$description,
   definition(t) {
     t.string('socialId');
     t.authType('authType');
@@ -17,14 +18,14 @@ export const ProfileModel = objectType({
     t.string('positions');
     t.string('speakings');
     t.string('contributions');
-    t.field(Profile.socialId);
-    t.field(Profile.user);
+    t.field(ProfileNexus.socialId);
+    t.field(ProfileNexus.user);
   },
 });
 
-export const UserModel = objectType({
-  name: User.$name,
-  description: User.$description,
+export const User = objectType({
+  name: UserNexus.$name,
+  description: UserNexus.$description,
   definition(t) {
     t.nonNull.id('id');
     t.string('email');
