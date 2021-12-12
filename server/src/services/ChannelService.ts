@@ -153,12 +153,8 @@ export const createMemberships = async (
   await pipe(
     countMemberships,
     andThen(
-      cond([
-        [
-          () => countMemberships.length < 2,
-          () => Promise.all(userIds.map(createMembership)),
-        ],
-      ]),
+      // @ts-ignore
+      cond([[(x) => x < 2, () => Promise.all(userIds.map(createMembership))]]),
     ),
   )();
 };
