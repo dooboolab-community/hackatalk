@@ -41,9 +41,11 @@
     "@sendgrid/mail": "^7.7.0",
     "apollo-server": "^3.7.0",
     "axios": "^0.27.2",
+
     "bcrypt": "^5.0.1",
     "ejs": "^3.1.8",
     "generate-password": "^1.7.0",
+    "graphql": "^16.1.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^6.1.28",
     "graphql-redis-subscriptions": "^2.4.2",
