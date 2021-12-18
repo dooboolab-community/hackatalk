@@ -22,14 +22,14 @@ enum AuthType {
 model User {
   id            String    @id @default(cuid())
   email         String?   @unique
-  password      String?
-  name          String?
-  nickname      String?
-  thumbURL      String?
-  photoURL      String?
+  password      String?   @db.VarChar(255)
+  name          String?   @db.VarChar(255)
+  nickname      String?   @db.VarChar(255)
+  thumbURL      String?   @db.VarChar(1024)
+  photoURL      String?   @db.VarChar(1024)
   birthday      DateTime?
   gender        Gender?
-  phone         String?
+  phone         String?   @db.VarChar(255)
   statusMessage String?
   verified      Boolean?  @default(false)
   lastSignedIn  DateTime?
@@ -54,18 +54,19 @@ model User {
 
 model Notification {
   id        Int       @id @default(autoincrement())
-  token     String    @unique
-  device    String?
-  os        String?
-  userId    String
+  token     String    @unique @db.VarChar(1024)
+  device    String?   @db.VarChar(255)
+  os        String?   @db.VarChar(255)
+  userId    String    @db.VarChar(255)
   user      User      @relation(fields: [userId], references: [id])
   createdAt DateTime? @default(now())
 }
 
 model Profile {
-  id       Int       @id @default(autoincrement())
-  socialId String?
-  authType AuthType?
+  id           Int       @id @default(autoincrement())
+  socialId     String?   @db.VarChar(255)
+  authType     AuthType?
+  refreshToken String?   @db.VarChar(1024)
 
   userId String @unique
   User   User   @relation(fields: [userId], references: [id])
@@ -147,10 +148,10 @@ enum ChannelType {
 model Channel {
   id            String       @id @default(cuid())
   channelType   ChannelType
-  name          String?
+  name          String?      @db.VarChar(255)
   messages      Message[]    @relation("Message")
   membership    Membership[]
-  lastMessageId String?
+  lastMessageId String?      @db.VarChar(255)
   createdAt     DateTime?    @default(now())
   updatedAt     DateTime?    @default(now()) @updatedAt
   deletedAt     DateTime?
@@ -192,18 +193,18 @@ model Reply {
   updatedAt   DateTime?   @default(now()) @updatedAt
   deletedAt   DateTime?
 
-  senderId  String
+  senderId  String  @db.VarChar(255)
   sender    User    @relation(fields: [senderId], references: [id])
-  messageId String
+  messageId String  @db.VarChar(255)
   message   Message @relation(fields: [messageId], references: [id])
 }
 
 model Reaction {
   id        Int     @id @default(autoincrement())
-  value     String
-  userId    String
+  value     String  @db.VarChar(4)
+  userId    String  @db.VarChar(255)
   user      User    @relation(fields: [userId], references: [id])
-  messageId String
+  messageId String  @db.VarChar(255)
   message   Message @relation(fields: [messageId], references: [id])
   replyId   Int
   reply     Reply   @relation(fields: [replyId], references: [id])
