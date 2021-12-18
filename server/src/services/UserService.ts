@@ -4,7 +4,7 @@ import {ErrorEmailForUserExists, ErrorString} from '../utils/error';
 import type {Context} from '../context';
 import {NexusGenRootTypes} from '../generated/nexus';
 import {USER_SIGNED_IN} from '../resolvers';
-import {sign} from 'jsonwebtoken';
+import {sign as jwtSignIn} from '../utils/jwt';
 
 export interface SocialUserInput {
   socialId: string;
@@ -41,8 +41,10 @@ export class UserService {
       data: {lastSignedIn: new Date().toISOString()},
     });
 
+    const token = await jwtSignIn(user.id, ctx.prisma, true);
+
     return {
-      token: sign({userId: user.id}, ctx.appSecret),
+      token,
       user,
     };
   }
