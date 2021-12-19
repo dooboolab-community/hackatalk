@@ -172,5 +172,8 @@
       "style": "eslint",
       "options": {}
     }
+  },
+  "resolutions": {
+    "react-native/@jest/create-cache-key-function": "^27.0.2"
   }
 }
