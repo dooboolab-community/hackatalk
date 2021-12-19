@@ -31,24 +31,24 @@ module.exports = async (env, argv) => {
       };
 
       // Add new rule to use svgr
-      rule.oneOf.unshift({
-        test: /\.svg$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: require.resolve('@svgr/webpack'),
-            options: {
-              viewBox: false,
+      if (hasModified) {
+        newRule.oneOf.unshift({
+          test: /\.svg$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: '@svgr/webpack',
+              options: {
+                viewBox: true,
+              },
             },
-          },
-        ],
-      });
+          ],
+        });
+      }
 
       return newRule;
     } else return rule;
   });
-
-  config.resolve.extensions.push('.svg');
 
   return config;
 };

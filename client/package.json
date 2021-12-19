@@ -119,7 +119,7 @@
     "@graphql-codegen/typescript-operations": "^2.2.1",
     "@graphql-codegen/typescript-react-apollo": "^3.2.2",
     "@graphql-tools/relay-operation-optimizer": "6.4.1",
-    "@svgr/webpack": "^6.1.2",
+    "@svgr/webpack": "^5",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/react-native": "^9.0.0",
     "@types/apollo-upload-client": "^14.1.0",
