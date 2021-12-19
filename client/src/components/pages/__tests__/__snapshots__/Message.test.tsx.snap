@@ -758,7 +758,7 @@ fragment ProfileModal_user on User {
                     ]
                   }
                 >
-                  a few seconds ago
+                  Mar 19th, PM 01:30
                 </Text>
               </View>
             </View>

@@ -21,6 +21,9 @@ fetchMock.mockResponse(JSON.stringify({id: 1}));
 
 const mockNavigation = createMockNavigation();
 
+jest.useFakeTimers();
+Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
+
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
