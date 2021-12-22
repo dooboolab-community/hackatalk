@@ -11,9 +11,15 @@ customGlobal.fetchMock = customGlobal.fetch;
 
 // Mock react-native-reanimated because it depends on native modules
 // which is not available inside testing environment.
-jest.mock('react-native-reanimated', () =>
-  jest.requireActual('react-native-reanimated/mock'),
-);
+jest.mock('react-native-reanimated', () => {
+  const Reanimated = require('react-native-reanimated/mock');
+
+  // The mock for `call` immediately calls the callback which is incorrect
+  // So we override it with a no-op
+  Reanimated.default.call = () => {};
+
+  return Reanimated;
+});
 
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 

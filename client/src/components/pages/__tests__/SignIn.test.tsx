@@ -32,6 +32,14 @@ jest.mock('@react-navigation/core', () => ({
 jest.mock('../../../components/pages/SignIn/SocialSignInButton', () => 'test');
 
 describe('[SignIn] rendering test', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.runAllTimers();
+  });
+
   it('should render without crashing', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
@@ -54,6 +62,14 @@ describe('[SignIn] rendering test', () => {
 });
 
 describe('[SignIn] interaction', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.runAllTimers();
+  });
+
   it('should change theme when icon is pressed', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
@@ -230,6 +246,14 @@ describe('[SignIn] interaction', () => {
 });
 
 describe('Apple SignIn', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+
+  afterAll(() => {
+    jest.runAllTimers();
+  });
+
   it('should Apple auth available', async () => {
     return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeTruthy();
   });

@@ -32,7 +32,7 @@ module.exports = {
     '\\.svg': '<rootDir>/__mocks__/svgMock.js',
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'babel-jest',
   },
-  setupFiles: [...expoPreset.setupFiles, '<rootDir>/test/jestSetup.ts'],
+  setupFiles: [...expoPreset.setupFiles, '<rootDir>/test/jestSetup.js', '<rootDir>/test/jestSetup.ts'],
   cacheDirectory: '.jest/cache',
   setupFilesAfterEnv: ['./test/setupTest.ts'],
   haste: {
