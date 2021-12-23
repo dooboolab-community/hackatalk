@@ -363,7 +363,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         ]
                       }
                     >
-                      9 months ago
+                      in 42 minutes
                     </Text>
                   </View>
                 </View>

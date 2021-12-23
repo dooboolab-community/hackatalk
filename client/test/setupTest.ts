@@ -11,8 +11,8 @@ afterEach(cleanup);
  * When `jest-expo` updates its dependency to `jest@26`,
  * change `Date.now = jest.fn()` to a `jest.setSystemTime` call.
  */
-// jest.useFakeTimers();
-// Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
+jest.useFakeTimers();
+Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
 
 jest.mock('../src/relay', () => {
   // eslint-disable-next-line

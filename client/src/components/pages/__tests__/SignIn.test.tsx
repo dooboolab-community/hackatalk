@@ -11,6 +11,7 @@ import AuthContext from '../../../providers/AuthProvider';
 import {FetchMock} from 'jest-fetch-mock';
 import React from 'react';
 import SignIn from '../SignIn';
+import {View} from 'react-native';
 import {createMockEnvironment} from 'relay-test-utils';
 import {getString} from '../../../../STRINGS';
 import mockReactNavigation from '@react-navigation/core';
@@ -21,9 +22,6 @@ fetchMock.mockResponse(JSON.stringify({id: 1}));
 
 const mockNavigation = createMockNavigation();
 
-jest.useFakeTimers();
-Date.now = jest.fn(() => new Date('2021-03-19T04:30:54.591Z').valueOf());
-
 jest.mock('@react-navigation/core', () => ({
   ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
@@ -32,14 +30,6 @@ jest.mock('@react-navigation/core', () => ({
 jest.mock('../../../components/pages/SignIn/SocialSignInButton', () => 'test');
 
 describe('[SignIn] rendering test', () => {
-  beforeAll(() => {
-    jest.useFakeTimers();
-  });
-
-  afterAll(() => {
-    jest.runAllTimers();
-  });
-
   it('should render without crashing', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
@@ -62,14 +52,6 @@ describe('[SignIn] rendering test', () => {
 });
 
 describe('[SignIn] interaction', () => {
-  beforeAll(() => {
-    jest.useFakeTimers();
-  });
-
-  afterAll(() => {
-    jest.runAllTimers();
-  });
-
   it('should change theme when icon is pressed', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
@@ -246,14 +228,6 @@ describe('[SignIn] interaction', () => {
 });
 
 describe('Apple SignIn', () => {
-  beforeAll(() => {
-    jest.useFakeTimers();
-  });
-
-  afterAll(() => {
-    jest.runAllTimers();
-  });
-
   it('should Apple auth available', async () => {
     return expect(AppleAuthentication.isAvailableAsync()).resolves.toBeTruthy();
   });
