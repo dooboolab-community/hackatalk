@@ -10415,12 +10415,12 @@ jest-environment-node@^27.4.4:
     jest-mock "^27.4.2"
     jest-util "^27.4.2"
 
-jest-expo@43:
-  version "43.0.1"
-  resolved "https://registry.yarnpkg.com/jest-expo/-/jest-expo-43.0.1.tgz#98cd432e087338f21a73100da3e60130904616f6"
-  integrity sha512-wB6Cv7e8NO7cYDIdUMT2fP0NEnY4/Uu6Ern/j8OXTMhwkMFVZl7qf7CesEopNz4MqUweBWyi+zkt0cxwCEaC/A==
+jest-expo@44.0.0:
+  version "44.0.0"
+  resolved "https://registry.yarnpkg.com/jest-expo/-/jest-expo-44.0.0.tgz#396182c61ce1c0694c52b31dece635f7a69bbbef"
+  integrity sha512-prTZX5XkbTncDpMOz0j786HhIEHP+sqD7R9GGH6f9+TP7EElr7nQ2ynGB4Bc2m9p7sPU8RXF34VGSgHATfaNfA==
   dependencies:
-    "@expo/config" "^5.0.9"
+    "@expo/config" "^6.0.6"
     "@jest/create-cache-key-function" "^26.6.2"
     babel-jest "^26.6.3"
     find-up "^5.0.0"
