@@ -25,7 +25,7 @@ firebase-debug*.*
 .eslintcache
 
 # firebase
-google-services.json
+google-service.json
 
 # watchman
 .watchman*

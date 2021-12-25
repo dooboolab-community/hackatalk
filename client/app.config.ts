@@ -12,7 +12,16 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   slug: 'HackaTalk-Expo',
   privacy: 'public',
   platforms: ['ios', 'android', 'web'],
-  plugins: ['sentry-expo'],
+  plugins: [
+    'sentry-expo',
+    [
+      'expo-ads-admob',
+      {
+        userTrackingPermission:
+          'This identifier will be used to deliver personalized ads to you.',
+      },
+    ],
+  ],
   version,
   orientation: 'default',
   icon: './assets/icon.png',
@@ -80,7 +89,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
       'NOTIFICATIONS',
       'USER_FACING_NOTIFICATIONS',
     ],
-    googleServicesFile: './google-services.json',
+    googleServicesFile: './google-service.json',
     config: {
       googleMobileAdsAppId: 'ca-app-pub-7837089095803162~5303560311',
     },
