@@ -1,3 +1,5 @@
+import {ACCESS_TIME, REFRESH_TIME} from './const';
+
 import {PrismaClient} from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
@@ -23,17 +25,24 @@ export const sign = async (
   };
 
   const accessToken = jwt.sign(payload, JWT_SECRET, {
-    expiresIn: '1h',
+    expiresIn: ACCESS_TIME,
   });
 
   if (prisma && shouldGenerateRefreshToken) {
     const refreshToken = jwt.sign({}, JWT_SECRET, {
-      expiresIn: '1m',
+      expiresIn: REFRESH_TIME,
     });
 
-    await prisma.profile.update({
-      data: {refreshToken},
-      where: {userId},
+    await prisma.user.update({
+      data: {
+        profile: {
+          upsert: {
+            create: {refreshToken},
+            update: {refreshToken},
+          },
+        },
+      },
+      where: {id: userId},
     });
   }
 
@@ -68,7 +77,15 @@ export const getRefreshToken = async (
     where: {userId},
   });
 
-  return data?.refreshToken;
+  const refreshToken = data?.refreshToken;
+
+  if (!refreshToken) {
+    return null;
+  }
+
+  const result = verify(refreshToken);
+
+  return !result.verified ? null : refreshToken;
 };
 
 export const refresh = async (
@@ -76,7 +93,7 @@ export const refresh = async (
   prisma: PrismaClient,
 ): Promise<string | null | undefined> => {
   const newToken = jwt.sign({}, JWT_SECRET, {
-    expiresIn: '1m',
+    expiresIn: REFRESH_TIME,
   });
 
   await prisma.profile.update({
@@ -106,17 +123,17 @@ export const verifyWithRefresh = async (
         refresh(accessDecoded.userId, prisma);
       }
 
-      return {result: true};
+      return {result: true, accessToken};
     }
 
     if (!refreshToken) {
-      throw new Error('Not authorized!');
+      return {result: false, accessToken: ''};
     }
 
     const newAccessToken = await sign(accessDecoded.userId);
 
     return {result: true, accessToken: newAccessToken};
   } catch (err: any) {
-    throw new Error(err);
+    return {result: false, accessToken: ''};
   }
 };

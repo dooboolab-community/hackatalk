@@ -100,26 +100,39 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const onRefreshToken = async (req: Request, res: Response): Promise<void> => {
+const getIdToken = async (req: Request, res: Response): Promise<void> => {
   const token = getToken(req);
 
   if (!token) {
     res.status(401);
 
-    res.json({message: 'User has not signed in.'});
+    res.json({
+      message: 'User has not signed in.',
+    });
 
     return;
   }
 
-  const result = await verifyWithRefresh(token, prisma);
+  try {
+    const result = await verifyWithRefresh(token, prisma);
 
-  if (result.accessToken) {
-    res.status(200).json({accessToken: result.accessToken});
+    if (result.accessToken) {
+      res.status(200).json({
+        token: result.accessToken,
+      });
 
-    return;
+      return;
+    }
+
+    res.status(200).json({
+      token,
+      message: 'User is verified',
+    });
+  } catch (err) {
+    res.status(200).json({
+      message: err,
+    });
   }
-
-  res.status(200).json({message: 'User is verified'});
 };
 
 const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
@@ -169,7 +182,7 @@ const errorRequestHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
-  .get('/refresh_token', onRefreshToken)
+  .post('/get_id_token', getIdToken)
   .post(
     '/upload_single',
     upload.single('inputFile'),
