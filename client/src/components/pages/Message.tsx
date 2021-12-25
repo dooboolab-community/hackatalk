@@ -658,7 +658,7 @@ const MessageScreen: FC = () => {
   }, [channelId]);
 
   useEffect(() => {
-    async function DeleteSameChannelNotification(): Promise<void> {
+    async function deleteSameChannelNotification(): Promise<void> {
       const notifications =
         await Notifications.getPresentedNotificationsAsync();
 
@@ -679,7 +679,8 @@ const MessageScreen: FC = () => {
         }
       });
     }
-    DeleteSameChannelNotification();
+
+    deleteSameChannelNotification();
   }, [channelId]);
 
   const searchArgs: MessagesQueryVariables = {
