@@ -144,7 +144,7 @@
     "get-graphql-schema": "^2.1.2",
     "import-sort-style-eslint": "^6.0.0",
     "jest": "^27.4.5",
-    "jest-expo": "44.0.0",
+    "jest-expo": "^44.0.1",
     "jest-fetch-mock": "^3.0.3",
     "jetifier": "^2.0.0",
     "mockdate": "^3.0.5",
