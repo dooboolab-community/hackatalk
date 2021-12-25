@@ -1,6 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
+import FallbackComponent, {handleError} from './utils/error';
 import React, {FC, ReactElement, ReactNode, useEffect} from 'react';
 import {dark, light} from './theme';
 
@@ -12,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
 import {DeviceProvider} from './providers/DeviceProvider';
+import ErrorBoundary from 'react-native-error-boundary';
 import Icons from './utils/Icons';
 import {RelayEnvironmentProvider} from 'react-relay';
 import RootNavigator from './components/navigations/RootStackNavigator';
@@ -99,6 +101,11 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(ActionSheetProviderWithChildren, {})
   .wrap(AuthProvider, {})
   .wrap(RelayEnvironmentProvider, {environment})
+  // @ts-ignore
+  .wrap(ErrorBoundary, {
+    onError: handleError,
+    FallbackComponent,
+  })
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})

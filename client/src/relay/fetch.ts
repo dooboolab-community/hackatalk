@@ -1,7 +1,7 @@
 import * as Config from '../../config';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FetchFunction} from 'relay-runtime';
+import {getIdToken} from '../apis/auth';
 
 const {GRAPHQL_URL} = Config;
 
@@ -17,10 +17,12 @@ const fetchGraphQL: FetchFunction = async (
   cacheConfig,
   uploadables,
 ) => {
+  const token = await getIdToken();
+
   const config: RequestProps = {
     method: 'POST',
     headers: {
-      Authorization: (await AsyncStorage.getItem('token')) || '',
+      Authorization: token,
       Accept: 'application/json',
     },
     body: '',
