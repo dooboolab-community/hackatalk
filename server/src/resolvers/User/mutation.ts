@@ -1,14 +1,4 @@
 import {
-  APP_SECRET,
-  encryptCredential,
-  getEmailVerificationHTML,
-  getPasswordResetHTML,
-  validateCredential,
-  validateEmail,
-  verifyFacebookId,
-  verifyGoogleId,
-} from '../../utils/auth';
-import {
   ErrorEmailNotValid,
   ErrorEmailSentFailed,
   ErrorPasswordIncorrect,
@@ -19,6 +9,15 @@ import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {USER_SIGNED_IN, USER_UPDATED} from './subscription';
 import {andThen, pipe} from 'ramda';
 import {arg, inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
+import {
+  encryptCredential,
+  getEmailVerificationHTML,
+  getPasswordResetHTML,
+  validateCredential,
+  validateEmail,
+  verifyFacebookId,
+  verifyGoogleId,
+} from '../../utils/auth';
 
 import {AuthType} from '../../models/Scalar';
 import {Upload} from '../../models';
@@ -27,6 +26,7 @@ import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
 import {getMimeType} from 'stream-mime-type';
+import {sign as jwtSignIn} from '../../utils/jwt';
 import {nanoid} from 'nanoid';
 import {sign} from 'jsonwebtoken';
 import {uploadFileToAzureBlobFromStream} from '../../utils/azure';
@@ -153,8 +153,8 @@ export const signInEmail = mutationField('signInEmail', {
           },
           andThen(() => pubsub.publish(USER_SIGNED_IN, user)),
           andThen(updateLastSignedIn),
-          andThen(() => ({
-            token: sign({userId: user.id}, APP_SECRET),
+          andThen(async () => ({
+            token: await jwtSignIn(user.id, prisma, true),
             user,
           })),
         )(),

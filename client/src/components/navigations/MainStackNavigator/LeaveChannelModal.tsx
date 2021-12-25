@@ -87,9 +87,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
     const {channelId} = leaveChannelModalState;
 
     const mutationConfig = {
-      variables: {
-        channelId,
-      },
+      variables: {channelId},
       updater: (store: RecordSourceSelectorProxy<{}>) => {
         deleteChannelAndUpdate(store, channelId);
       },

@@ -9,10 +9,10 @@ export const sample = async (
   const fetchOption = {
     // signal,
     method: 'POST',
-    headers: new Headers({
+    headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-    }),
+    },
     body: JSON.stringify(body),
   };
 

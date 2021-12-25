@@ -10,6 +10,7 @@ import qs from 'querystring';
 import stream from 'stream';
 import {uploadFileToAzureBlobFromStream} from '../utils/azure';
 import {verify} from 'jsonwebtoken';
+import {verifyWithRefresh} from '../utils/jwt';
 
 interface VerificationToken {
   email: string;
@@ -99,10 +100,45 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const getIdToken = async (req: Request, res: Response): Promise<void> => {
+  const token = getToken(req);
+
+  if (!token) {
+    res.status(401);
+
+    res.json({
+      message: 'User has not signed in.',
+    });
+
+    return;
+  }
+
+  try {
+    const result = await verifyWithRefresh(token, prisma);
+
+    if (result.accessToken) {
+      res.status(200).json({
+        token: result.accessToken,
+      });
+
+      return;
+    }
+
+    res.status(200).json({
+      token,
+      message: 'User is verified',
+    });
+  } catch (err) {
+    res.status(200).json({
+      message: err,
+    });
+  }
+};
+
 const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
   const token = getToken(req);
 
-  if (token === null) {
+  if (!token) {
     res.status(401);
 
     res.json({
@@ -146,6 +182,7 @@ const errorRequestHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
+  .post('/get_id_token', getIdToken)
   .post(
     '/upload_single',
     upload.single('inputFile'),

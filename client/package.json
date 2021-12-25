@@ -76,6 +76,7 @@
     "react": "17.0.2",
     "react-native": "0.64.3",
     "react-native-appearance": "~0.3.4",
+    "react-native-error-boundary": "^1.1.12",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-get-random-values": "~1.7.1",
     "react-native-modalbox": "^2.0.2",
