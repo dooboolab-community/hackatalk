@@ -11,6 +11,7 @@ import AuthContext from '../../../providers/AuthProvider';
 import {FetchMock} from 'jest-fetch-mock';
 import React from 'react';
 import SignIn from '../SignIn';
+import {View} from 'react-native';
 import {createMockEnvironment} from 'relay-test-utils';
 import {getString} from '../../../../STRINGS';
 import mockReactNavigation from '@react-navigation/core';

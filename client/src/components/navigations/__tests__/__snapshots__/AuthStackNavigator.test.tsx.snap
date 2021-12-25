@@ -213,19 +213,46 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             }
                           >
                             <View>
-                              <View
-                                accessible={true}
-                                focusable={true}
-                                onClick={[Function]}
-                                onResponderGrant={[Function]}
-                                onResponderMove={[Function]}
-                                onResponderRelease={[Function]}
-                                onResponderTerminate={[Function]}
-                                onResponderTerminationRequest={[Function]}
-                                onStartShouldSetResponder={[Function]}
+                              <mocked-view
+                                onPress={[Function]}
                                 style={
                                   Object {
-                                    "opacity": 1,
+                                    "animatedStyle": Object {
+                                      "current": Object {},
+                                    },
+                                    "initial": Object {
+                                      "updater": [Function],
+                                      "value": Object {
+                                        "height": 160,
+                                        "left": 525,
+                                        "position": "absolute",
+                                        "top": 400.2,
+                                        "width": 160,
+                                        "zIndex": 15,
+                                      },
+                                    },
+                                    "viewDescriptors": Object {
+                                      "add": [Function],
+                                      "batchToRemove": Set {},
+                                      "items": Array [],
+                                      "rebuildsharableViewDescriptors": [Function],
+                                      "remove": [Function],
+                                      "sharableViewDescriptors": MutableValue {
+                                        "_animation": null,
+                                        "_id": 4,
+                                        "_listeners": Array [],
+                                        "_setter": [Function],
+                                        "_value": Array [],
+                                      },
+                                      "tags": Set {},
+                                      "waitForInsertSync": false,
+                                      "waitForRemoveSync": false,
+                                    },
+                                    "viewsRef": Object {
+                                      "add": [Function],
+                                      "items": Set {},
+                                      "remove": [Function],
+                                    },
                                   }
                                 }
                                 testID="theme-test"
@@ -247,7 +274,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     }
                                   }
                                 />
-                              </View>
+                              </mocked-view>
                               <View
                                 style={
                                   Array [

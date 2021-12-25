@@ -33,6 +33,7 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
     >
       <RNGestureHandlerButton
         collapsable={false}
+        exclusive={true}
         onGestureEvent={[Function]}
         onGestureHandlerEvent={[Function]}
         onGestureHandlerStateChange={[Function]}

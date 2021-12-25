@@ -52,7 +52,9 @@ export const createTestElement = (
   mockContext?: MockContext,
 ): ReactElement => {
   jest.spyOn(Device, 'getDeviceTypeAsync').mockImplementation(async () => {
-    if (mockContext?.deviceType) return mockContext.deviceType;
+    if (mockContext?.deviceType) {
+      return mockContext.deviceType;
+    }
 
     return Device.DeviceType.PHONE;
   });
@@ -135,11 +137,12 @@ export function resolveAllOperations(
   mockEnvironment: RelayMockEnvironment,
   resolver: MockPayloadGenerator.MockResolvers,
 ): void {
-  for (const op of mockEnvironment.mock.getAllOperations())
+  for (const op of mockEnvironment.mock.getAllOperations()) {
     act(() => {
       mockEnvironment.mock.resolve(
         op,
         MockPayloadGenerator.generate(op, resolver),
       );
     });
+  }
 }

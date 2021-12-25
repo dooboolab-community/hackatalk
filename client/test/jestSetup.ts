@@ -9,12 +9,6 @@ const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock &
 customGlobal.fetch = require('jest-fetch-mock');
 customGlobal.fetchMock = customGlobal.fetch;
 
-// Mock react-native-reanimated because it depends on native modules
-// which is not available inside testing environment.
-jest.mock('react-native-reanimated', () =>
-  jest.requireActual('react-native-reanimated/mock'),
-);
-
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 
 jest.mock('expo-constants', () => ({

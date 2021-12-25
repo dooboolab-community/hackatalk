@@ -31,17 +31,20 @@ module.exports = async (env, argv) => {
       };
 
       // Add new rule to use svgr
-      // Place at the beginning so that the default loader doesn't catch it
-      if (hasModified)
+      if (hasModified) {
         newRule.oneOf.unshift({
           test: /\.svg$/,
           exclude: /node_modules/,
           use: [
             {
               loader: '@svgr/webpack',
+              options: {
+                viewBox: true,
+              },
             },
           ],
         });
+      }
 
       return newRule;
     } else return rule;

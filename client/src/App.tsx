@@ -20,6 +20,7 @@ import RootNavigator from './components/navigations/RootStackNavigator';
 import {SnackbarProvider} from './providers/SnackbarProvider';
 import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {getString} from '../STRINGS';
 import {registerForPushNotificationsAsync} from './utils/noti';
 import {useAssets} from 'expo-asset';
@@ -112,4 +113,4 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(AppearanceProvider, {})
   .build();
 
-export default WrappedApp;
+export default gestureHandlerRootHOC(WrappedApp);
