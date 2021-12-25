@@ -646,10 +646,11 @@ const MessageScreen: FC = () => {
           notification.request.content.data.data as string,
         );
 
-        if (parsedNotificationData.channelId === channelId)
+        if (parsedNotificationData.channelId === channelId) {
           Notifications.dismissNotificationAsync(
             notification.request.identifier,
           );
+        }
       },
     );
 
@@ -670,10 +671,11 @@ const MessageScreen: FC = () => {
           if (
             typeof notificationChannelId === 'string' &&
             notificationChannelId === channelId
-          )
+          ) {
             Notifications.dismissNotificationAsync(
               notificationData.request.identifier,
             );
+          }
         }
       });
     }
