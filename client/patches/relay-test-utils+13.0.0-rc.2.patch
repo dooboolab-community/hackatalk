@@ -1,0 +1,20 @@
+diff --git a/node_modules/relay-test-utils/lib/index.js b/node_modules/relay-test-utils/lib/index.js
+index 946728e..0309d77 100644
+--- a/node_modules/relay-test-utils/lib/index.js
++++ b/node_modules/relay-test-utils/lib/index.js
+@@ -14,8 +14,6 @@ var RelayMockPayloadGenerator = require('./RelayMockPayloadGenerator');
+ 
+ var RelayModernMockEnvironment = require('./RelayModernMockEnvironment');
+ 
+-var testResolver = require('./RelayResolverTestUtils');
+-
+ var unwrapContainer = require('./unwrapContainer');
+ 
+ /**
+@@ -26,5 +24,4 @@ module.exports = {
+   MockPayloadGenerator: RelayMockPayloadGenerator,
+   createMockEnvironment: RelayModernMockEnvironment.createMockEnvironment,
+   unwrapContainer: unwrapContainer,
+-  testResolver: testResolver
+ };
+\ No newline at end of file
