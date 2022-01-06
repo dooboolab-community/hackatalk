@@ -1,49 +1,36 @@
+/**
+ * @generated SignedSource<<363a39604dd4c1e2f2bbcd0afa2a907a>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserMeQueryVariables = {};
-export type UserMeQueryResponse = {
-    readonly me: {
-        readonly id: string;
-        readonly email: string | null;
-        readonly name: string | null;
-        readonly nickname: string | null;
-        readonly statusMessage: string | null;
-        readonly verified: boolean | null;
-        readonly photoURL: string | null;
-        readonly thumbURL: string | null;
-        readonly profile: {
-            readonly authType: unknown | null;
-        } | null;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type UserMeQuery$variables = {};
+export type UserMeQueryVariables = UserMeQuery$variables;
+export type UserMeQuery$data = {
+  readonly me: {
+    readonly id: string;
+    readonly email: string | null;
+    readonly name: string | null;
+    readonly nickname: string | null;
+    readonly statusMessage: string | null;
+    readonly verified: boolean | null;
+    readonly photoURL: string | null;
+    readonly thumbURL: string | null;
+    readonly profile: {
+      readonly authType: any | null;
     } | null;
+  } | null;
 };
+export type UserMeQueryResponse = UserMeQuery$data;
 export type UserMeQuery = {
-    readonly response: UserMeQueryResponse;
-    readonly variables: UserMeQueryVariables;
+  variables: UserMeQueryVariables;
+  response: UserMeQuery$data;
 };
-
-
-
-/*
-query UserMeQuery {
-  me {
-    id
-    email
-    name
-    nickname
-    statusMessage
-    verified
-    photoURL
-    thumbURL
-    profile {
-      authType
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -160,5 +147,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'd170a02507c90481ece3263e8285b966';
+
+(node as any).hash = "d170a02507c90481ece3263e8285b966";
+
 export default node;

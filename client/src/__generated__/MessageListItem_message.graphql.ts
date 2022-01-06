@@ -1,35 +1,38 @@
+/**
+ * @generated SignedSource<<2508a9d5a52d51c8ea247e533ebdf9c7>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MessageListItem_message = {
+export type MessageListItem_message$data = {
+  readonly id: string;
+  readonly messageType: any;
+  readonly text: string | null;
+  readonly imageUrls: ReadonlyArray<string | null> | null;
+  readonly fileUrls: ReadonlyArray<string | null> | null;
+  readonly createdAt: any | null;
+  readonly updatedAt: any | null;
+  readonly sender: {
     readonly id: string;
-    readonly messageType: unknown;
-    readonly text: string | null;
-    readonly imageUrls: ReadonlyArray<string | null> | null;
-    readonly fileUrls: ReadonlyArray<string | null> | null;
-    readonly createdAt: unknown | null;
-    readonly updatedAt: unknown | null;
-    readonly sender: {
-        readonly id: string;
-        readonly name: string | null;
-        readonly nickname: string | null;
-        readonly thumbURL: string | null;
-        readonly photoURL: string | null;
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
-    } | null;
-    readonly " $refType": "MessageListItem_message";
+    readonly name: string | null;
+    readonly nickname: string | null;
+    readonly thumbURL: string | null;
+    readonly photoURL: string | null;
+    readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;
+  } | null;
+  readonly " $fragmentType": "MessageListItem_message";
 };
-export type MessageListItem_message$data = MessageListItem_message;
+export type MessageListItem_message = MessageListItem_message$data;
 export type MessageListItem_message$key = {
-    readonly " $data"?: MessageListItem_message$data;
-    readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
+  readonly " $data"?: MessageListItem_message$data;
+  readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = {
@@ -138,5 +141,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '10bedc96c4bff58d435919c95263433b';
+
+(node as any).hash = "10bedc96c4bff58d435919c95263433b";
+
 export default node;

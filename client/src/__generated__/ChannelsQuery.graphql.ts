@@ -1,69 +1,29 @@
+/**
+ * @generated SignedSource<<c8b3d8fe40f0304f5443d69cec87fea1>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ChannelsQueryVariables = {
-    first: number;
-    after?: string | null;
-    withMessage?: boolean | null;
+export type ChannelsQuery$variables = {
+  first: number;
+  after?: string | null;
+  withMessage?: boolean | null;
 };
-export type ChannelsQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MainChannelComponent_channel">;
+export type ChannelsQueryVariables = ChannelsQuery$variables;
+export type ChannelsQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;
 };
+export type ChannelsQueryResponse = ChannelsQuery$data;
 export type ChannelsQuery = {
-    readonly response: ChannelsQueryResponse;
-    readonly variables: ChannelsQueryVariables;
+  variables: ChannelsQueryVariables;
+  response: ChannelsQuery$data;
 };
-
-
-
-/*
-query ChannelsQuery(
-  $first: Int!
-  $after: String
-  $withMessage: Boolean
-) {
-  ...MainChannelComponent_channel_4q1LXA
-}
-
-fragment MainChannelComponent_channel_4q1LXA on Query {
-  channels(first: $first, after: $after, withMessage: $withMessage) {
-    edges {
-      cursor
-      node {
-        id
-        channelType
-        name
-        memberships(excludeMe: false) {
-          user {
-            id
-            name
-            nickname
-            thumbURL
-            photoURL
-          }
-        }
-        lastMessage {
-          id
-          messageType
-          text
-          imageUrls
-          fileUrls
-          createdAt
-        }
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -344,5 +304,7 @@ return {
   }
 };
 })();
-(node as any).hash = '0dd27c60fe79ef0d4f6eeca5c76dec88';
+
+(node as any).hash = "0dd27c60fe79ef0d4f6eeca5c76dec88";
+
 export default node;

@@ -1,43 +1,33 @@
+/**
+ * @generated SignedSource<<d7f133f96f92d2e80d8d6904e0011d92>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type NotificationCreateNotificationMutationVariables = {
-    token: string;
-    device?: string | null;
-    os?: string | null;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type NotificationCreateNotificationMutation$variables = {
+  token: string;
+  device?: string | null;
+  os?: string | null;
 };
-export type NotificationCreateNotificationMutationResponse = {
-    readonly createNotification: {
-        readonly id: number;
-        readonly token: string;
-        readonly device: string | null;
-        readonly createdAt: unknown | null;
-    } | null;
+export type NotificationCreateNotificationMutationVariables = NotificationCreateNotificationMutation$variables;
+export type NotificationCreateNotificationMutation$data = {
+  readonly createNotification: {
+    readonly id: number;
+    readonly token: string;
+    readonly device: string | null;
+    readonly createdAt: any | null;
+  } | null;
 };
+export type NotificationCreateNotificationMutationResponse = NotificationCreateNotificationMutation$data;
 export type NotificationCreateNotificationMutation = {
-    readonly response: NotificationCreateNotificationMutationResponse;
-    readonly variables: NotificationCreateNotificationMutationVariables;
+  variables: NotificationCreateNotificationMutationVariables;
+  response: NotificationCreateNotificationMutation$data;
 };
-
-
-
-/*
-mutation NotificationCreateNotificationMutation(
-  $token: String!
-  $device: String
-  $os: String
-) {
-  createNotification(token: $token, device: $device, os: $os) {
-    id
-    token
-    device
-    createdAt
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -147,5 +137,7 @@ return {
   }
 };
 })();
-(node as any).hash = '5ba581f22b993f4439a2046d38677d13';
+
+(node as any).hash = "5ba581f22b993f4439a2046d38677d13";
+
 export default node;

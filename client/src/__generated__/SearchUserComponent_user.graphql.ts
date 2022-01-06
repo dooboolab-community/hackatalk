@@ -1,33 +1,36 @@
+/**
+ * @generated SignedSource<<5389e970ab6cb9c8e65437a571a1a04c>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import SearchUsersQuery from "./SearchUsersQuery.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type SearchUserComponent_user = {
-    readonly users: {
-        readonly edges: ReadonlyArray<{
-            readonly cursor: string;
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-    } | null;
-    readonly " $refType": "SearchUserComponent_user";
+export type SearchUserComponent_user$data = {
+  readonly users: {
+    readonly edges: ReadonlyArray<{
+      readonly cursor: string;
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly hasNextPage: boolean;
+      readonly endCursor: string | null;
+    };
+  } | null;
+  readonly " $fragmentType": "SearchUserComponent_user";
 };
-export type SearchUserComponent_user$data = SearchUserComponent_user;
+export type SearchUserComponent_user = SearchUserComponent_user$data;
 export type SearchUserComponent_user$key = {
-    readonly " $data"?: SearchUserComponent_user$data;
-    readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
+  readonly " $data"?: SearchUserComponent_user$data;
+  readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -71,7 +74,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": SearchUsersQuery
+      "operation": require('./SearchUsersQuery.graphql')
     }
   },
   "name": "SearchUserComponent_user",
@@ -121,13 +124,6 @@ return {
                   "storageKey": null
                 },
                 {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "__typename",
-                  "storageKey": null
-                },
-                {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "ProfileModal_user"
@@ -136,6 +132,13 @@ return {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "UserListItem_user"
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -176,5 +179,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '691c234f491eb78cb6d7de46bd948e49';
+
+(node as any).hash = "691c234f491eb78cb6d7de46bd948e49";
+
 export default node;

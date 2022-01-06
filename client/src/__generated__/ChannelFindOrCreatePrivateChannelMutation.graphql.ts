@@ -1,37 +1,30 @@
+/**
+ * @generated SignedSource<<20595b7b6177cac52cbf9f676798700a>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type ChannelFindOrCreatePrivateChannelMutationVariables = {
-    peerUserIds: Array<string>;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type ChannelFindOrCreatePrivateChannelMutation$variables = {
+  peerUserIds: ReadonlyArray<string>;
 };
-export type ChannelFindOrCreatePrivateChannelMutationResponse = {
-    readonly findOrCreatePrivateChannel: {
-        readonly id: string;
-        readonly name: string | null;
-        readonly channelType: unknown | null;
-    } | null;
+export type ChannelFindOrCreatePrivateChannelMutationVariables = ChannelFindOrCreatePrivateChannelMutation$variables;
+export type ChannelFindOrCreatePrivateChannelMutation$data = {
+  readonly findOrCreatePrivateChannel: {
+    readonly id: string;
+    readonly name: string | null;
+    readonly channelType: any | null;
+  } | null;
 };
+export type ChannelFindOrCreatePrivateChannelMutationResponse = ChannelFindOrCreatePrivateChannelMutation$data;
 export type ChannelFindOrCreatePrivateChannelMutation = {
-    readonly response: ChannelFindOrCreatePrivateChannelMutationResponse;
-    readonly variables: ChannelFindOrCreatePrivateChannelMutationVariables;
+  variables: ChannelFindOrCreatePrivateChannelMutationVariables;
+  response: ChannelFindOrCreatePrivateChannelMutation$data;
 };
-
-
-
-/*
-mutation ChannelFindOrCreatePrivateChannelMutation(
-  $peerUserIds: [String!]!
-) {
-  findOrCreatePrivateChannel(peerUserIds: $peerUserIds) {
-    id
-    name
-    channelType
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -108,5 +101,7 @@ return {
   }
 };
 })();
-(node as any).hash = '075bfd59cf64c8590f62b6a68277c01d';
+
+(node as any).hash = "075bfd59cf64c8590f62b6a68277c01d";
+
 export default node;

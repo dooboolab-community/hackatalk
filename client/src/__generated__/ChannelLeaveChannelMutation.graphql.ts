@@ -1,47 +1,35 @@
+/**
+ * @generated SignedSource<<08bcd3d31674e77d8b9d3af4646760f9>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type ChannelLeaveChannelMutationVariables = {
-    channelId: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type ChannelLeaveChannelMutation$variables = {
+  channelId: string;
 };
-export type ChannelLeaveChannelMutationResponse = {
-    readonly leaveChannel: {
-        readonly user: {
-            readonly id: string;
-        } | null;
-        readonly channel: {
-            readonly id: string;
-        } | null;
-        readonly alertMode: unknown | null;
-        readonly isVisible: boolean | null;
+export type ChannelLeaveChannelMutationVariables = ChannelLeaveChannelMutation$variables;
+export type ChannelLeaveChannelMutation$data = {
+  readonly leaveChannel: {
+    readonly user: {
+      readonly id: string;
     } | null;
+    readonly channel: {
+      readonly id: string;
+    } | null;
+    readonly alertMode: any | null;
+    readonly isVisible: boolean | null;
+  } | null;
 };
+export type ChannelLeaveChannelMutationResponse = ChannelLeaveChannelMutation$data;
 export type ChannelLeaveChannelMutation = {
-    readonly response: ChannelLeaveChannelMutationResponse;
-    readonly variables: ChannelLeaveChannelMutationVariables;
+  variables: ChannelLeaveChannelMutationVariables;
+  response: ChannelLeaveChannelMutation$data;
 };
-
-
-
-/*
-mutation ChannelLeaveChannelMutation(
-  $channelId: String!
-) {
-  leaveChannel(channelId: $channelId) {
-    user {
-      id
-    }
-    channel {
-      id
-    }
-    alertMode
-    isVisible
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -140,5 +128,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f14db2f53f6c571a0f9d7f3a083bc7a5';
+
+(node as any).hash = "f14db2f53f6c571a0f9d7f3a083bc7a5";
+
 export default node;

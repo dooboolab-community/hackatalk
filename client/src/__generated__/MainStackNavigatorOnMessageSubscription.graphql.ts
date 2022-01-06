@@ -1,118 +1,57 @@
+/**
+ * @generated SignedSource<<041faf8268cb3b27784f551645af906e>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, GraphQLSubscription } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MainStackNavigatorOnMessageSubscriptionVariables = {
-    deviceKey: string;
+export type MainStackNavigatorOnMessageSubscription$variables = {
+  deviceKey: string;
 };
-export type MainStackNavigatorOnMessageSubscriptionResponse = {
-    readonly onMessage: {
+export type MainStackNavigatorOnMessageSubscriptionVariables = MainStackNavigatorOnMessageSubscription$variables;
+export type MainStackNavigatorOnMessageSubscription$data = {
+  readonly onMessage: {
+    readonly id: string;
+    readonly imageUrls: ReadonlyArray<string | null> | null;
+    readonly channel: {
+      readonly id: string;
+      readonly lastMessage: {
         readonly id: string;
+        readonly messageType: any;
+        readonly text: string | null;
         readonly imageUrls: ReadonlyArray<string | null> | null;
-        readonly channel: {
-            readonly id: string;
-            readonly lastMessage: {
-                readonly id: string;
-                readonly messageType: unknown;
-                readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string | null> | null;
-                readonly fileUrls: ReadonlyArray<string | null> | null;
-                readonly createdAt: unknown | null;
-            } | null;
-            readonly memberships: ReadonlyArray<{
-                readonly user: {
-                    readonly id: string;
-                    readonly name: string | null;
-                    readonly nickname: string | null;
-                    readonly thumbURL: string | null;
-                    readonly photoURL: string | null;
-                } | null;
-            }> | null;
+        readonly fileUrls: ReadonlyArray<string | null> | null;
+        readonly createdAt: any | null;
+      } | null;
+      readonly memberships: ReadonlyArray<{
+        readonly user: {
+          readonly id: string;
+          readonly name: string | null;
+          readonly nickname: string | null;
+          readonly thumbURL: string | null;
+          readonly photoURL: string | null;
         } | null;
-        readonly sender: {
-            readonly id: string;
-            readonly name: string | null;
-            readonly nickname: string | null;
-        } | null;
-        readonly createdAt: unknown | null;
-        readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
+      }> | null;
     } | null;
+    readonly sender: {
+      readonly id: string;
+      readonly name: string | null;
+      readonly nickname: string | null;
+    } | null;
+    readonly createdAt: any | null;
+    readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
+  } | null;
 };
+export type MainStackNavigatorOnMessageSubscriptionResponse = MainStackNavigatorOnMessageSubscription$data;
 export type MainStackNavigatorOnMessageSubscription = {
-    readonly response: MainStackNavigatorOnMessageSubscriptionResponse;
-    readonly variables: MainStackNavigatorOnMessageSubscriptionVariables;
+  variables: MainStackNavigatorOnMessageSubscriptionVariables;
+  response: MainStackNavigatorOnMessageSubscription$data;
 };
-
-
-
-/*
-subscription MainStackNavigatorOnMessageSubscription(
-  $deviceKey: String!
-) {
-  onMessage(deviceKey: $deviceKey) {
-    id
-    imageUrls
-    channel {
-      id
-      lastMessage {
-        id
-        messageType
-        text
-        imageUrls
-        fileUrls
-        createdAt
-      }
-      memberships(excludeMe: false) {
-        user {
-          id
-          name
-          nickname
-          thumbURL
-          photoURL
-        }
-      }
-    }
-    sender {
-      id
-      name
-      nickname
-    }
-    createdAt
-    ...MessageListItem_message
-  }
-}
-
-fragment MessageListItem_message on Message {
-  id
-  messageType
-  text
-  imageUrls
-  fileUrls
-  createdAt
-  updatedAt
-  sender {
-    id
-    name
-    nickname
-    thumbURL
-    photoURL
-    ...ProfileModal_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -379,12 +318,16 @@ return {
   "params": {
     "cacheID": "c99642bda9c3084912cc3ea0280cc12b",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "subscriptionName": "onMessage"
+    },
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
     "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: false) {\n        user {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    photoURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"
   }
 };
 })();
-(node as any).hash = 'f331c58d557067c0133bdc35e9276412';
+
+(node as any).hash = "f331c58d557067c0133bdc35e9276412";
+
 export default node;

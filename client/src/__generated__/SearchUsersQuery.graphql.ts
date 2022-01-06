@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<fed78b248b506b4021de9d1ddf0fb96b>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type SearchUsersQueryVariables = {
-    after?: string | null;
-    first?: number | null;
-    searchText?: string | null;
+export type SearchUsersQuery$variables = {
+  after?: string | null;
+  first?: number | null;
+  searchText?: string | null;
 };
-export type SearchUsersQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
+export type SearchUsersQueryVariables = SearchUsersQuery$variables;
+export type SearchUsersQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;
 };
+export type SearchUsersQueryResponse = SearchUsersQuery$data;
 export type SearchUsersQuery = {
-    readonly response: SearchUsersQueryResponse;
-    readonly variables: SearchUsersQueryVariables;
+  variables: SearchUsersQueryVariables;
+  response: SearchUsersQuery$data;
 };
-
-
-
-/*
-query SearchUsersQuery(
-  $after: String
-  $first: Int
-  $searchText: String
-) {
-  ...SearchUserComponent_user_2yyznZ
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment SearchUserComponent_user_2yyznZ on Query {
-  users(first: $first, after: $after, searchText: $searchText) {
-    edges {
-      cursor
-      node {
-        id
-        ...ProfileModal_user
-        ...UserListItem_user
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -276,5 +233,7 @@ return {
   }
 };
 })();
-(node as any).hash = '691c234f491eb78cb6d7de46bd948e49';
+
+(node as any).hash = "691c234f491eb78cb6d7de46bd948e49";
+
 export default node;

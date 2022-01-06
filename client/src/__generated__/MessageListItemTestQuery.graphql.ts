@@ -1,59 +1,27 @@
+/**
+ * @generated SignedSource<<5586e37de3eb729b287404cd76ff1811>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MessageListItemTestQueryVariables = {};
-export type MessageListItemTestQueryResponse = {
-    readonly myData: {
-        readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
-    } | null;
+export type MessageListItemTestQuery$variables = {};
+export type MessageListItemTestQueryVariables = MessageListItemTestQuery$variables;
+export type MessageListItemTestQuery$data = {
+  readonly myData: {
+    readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
+  } | null;
 };
+export type MessageListItemTestQueryResponse = MessageListItemTestQuery$data;
 export type MessageListItemTestQuery = {
-    readonly response: MessageListItemTestQueryResponse;
-    readonly variables: MessageListItemTestQueryVariables;
+  variables: MessageListItemTestQueryVariables;
+  response: MessageListItemTestQuery$data;
 };
-
-
-
-/*
-query MessageListItemTestQuery {
-  myData: message(id: "test-id") {
-    ...MessageListItem_message
-    id
-  }
-}
-
-fragment MessageListItem_message on Message {
-  id
-  messageType
-  text
-  imageUrls
-  fileUrls
-  createdAt
-  updatedAt
-  sender {
-    id
-    name
-    nickname
-    thumbURL
-    photoURL
-    ...ProfileModal_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -230,5 +198,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'cdd7c1bce4b2c386f243844d12a023e0';
+
+(node as any).hash = "cdd7c1bce4b2c386f243844d12a023e0";
+
 export default node;

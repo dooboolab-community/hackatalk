@@ -1,96 +1,30 @@
+/**
+ * @generated SignedSource<<21f935014ca0ca9631a1d55ec44a10ed>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FriendsQueryVariables = {
-    first: number;
-    after?: string | null;
-    searchText?: string | null;
-    includeMe?: boolean | null;
+export type FriendsQuery$variables = {
+  first: number;
+  after?: string | null;
+  searchText?: string | null;
+  includeMe?: boolean | null;
 };
-export type FriendsQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends" | "ChannelCreate_friends">;
+export type FriendsQueryVariables = FriendsQuery$variables;
+export type FriendsQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends" | "ChannelCreate_friends">;
 };
+export type FriendsQueryResponse = FriendsQuery$data;
 export type FriendsQuery = {
-    readonly response: FriendsQueryResponse;
-    readonly variables: FriendsQueryVariables;
+  variables: FriendsQueryVariables;
+  response: FriendsQuery$data;
 };
-
-
-
-/*
-query FriendsQuery(
-  $first: Int!
-  $after: String
-  $searchText: String
-  $includeMe: Boolean
-) {
-  ...MainFriend_friends_1KCjMM
-  ...ChannelCreate_friends_1KCjMM
-}
-
-fragment ChannelCreate_friends_1KCjMM on Query {
-  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
-    edges {
-      cursor
-      node {
-        id
-        nickname
-        name
-        thumbURL
-        photoURL
-        ...UserListItem_user
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-
-fragment MainFriend_friends_1KCjMM on Query {
-  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
-    edges {
-      cursor
-      node {
-        id
-        ...ProfileModal_user
-        ...UserListItem_user
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -340,5 +274,7 @@ return {
   }
 };
 })();
-(node as any).hash = '83e83cdfcf6f4a0573ac1e9b2624e488';
+
+(node as any).hash = "83e83cdfcf6f4a0573ac1e9b2624e488";
+
 export default node;

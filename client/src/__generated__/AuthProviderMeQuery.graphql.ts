@@ -1,41 +1,32 @@
+/**
+ * @generated SignedSource<<819823216ef71edd8eae785d87544801>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type AuthProviderMeQueryVariables = {};
-export type AuthProviderMeQueryResponse = {
-    readonly me: {
-        readonly id: string;
-        readonly email: string | null;
-        readonly verified: boolean | null;
-        readonly profile: {
-            readonly socialId: string | null;
-            readonly authType: unknown | null;
-        } | null;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type AuthProviderMeQuery$variables = {};
+export type AuthProviderMeQueryVariables = AuthProviderMeQuery$variables;
+export type AuthProviderMeQuery$data = {
+  readonly me: {
+    readonly id: string;
+    readonly email: string | null;
+    readonly verified: boolean | null;
+    readonly profile: {
+      readonly socialId: string | null;
+      readonly authType: any | null;
     } | null;
+  } | null;
 };
+export type AuthProviderMeQueryResponse = AuthProviderMeQuery$data;
 export type AuthProviderMeQuery = {
-    readonly response: AuthProviderMeQueryResponse;
-    readonly variables: AuthProviderMeQueryVariables;
+  variables: AuthProviderMeQueryVariables;
+  response: AuthProviderMeQuery$data;
 };
-
-
-
-/*
-query AuthProviderMeQuery {
-  me {
-    id
-    email
-    verified
-    profile {
-      socialId
-      authType
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -124,5 +115,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'db26cc1b346f5db0fdbcd497d3d20728';
+
+(node as any).hash = "db26cc1b346f5db0fdbcd497d3d20728";
+
 export default node;

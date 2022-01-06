@@ -1,36 +1,29 @@
+/**
+ * @generated SignedSource<<b54b2db8603f72507110e88cf368f7f7>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type ReportCreateReportMutationVariables = {
-    reportedUserId: string;
-    report: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type ReportCreateReportMutation$variables = {
+  reportedUserId: string;
+  report: string;
 };
-export type ReportCreateReportMutationResponse = {
-    readonly createReport: {
-        readonly report: string;
-    } | null;
+export type ReportCreateReportMutationVariables = ReportCreateReportMutation$variables;
+export type ReportCreateReportMutation$data = {
+  readonly createReport: {
+    readonly report: string;
+  } | null;
 };
+export type ReportCreateReportMutationResponse = ReportCreateReportMutation$data;
 export type ReportCreateReportMutation = {
-    readonly response: ReportCreateReportMutationResponse;
-    readonly variables: ReportCreateReportMutationVariables;
+  variables: ReportCreateReportMutationVariables;
+  response: ReportCreateReportMutation$data;
 };
-
-
-
-/*
-mutation ReportCreateReportMutation(
-  $reportedUserId: String!
-  $report: String!
-) {
-  createReport(reportedUserId: $reportedUserId, report: $report) {
-    report
-    id
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -128,5 +121,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c1bb38b47fafa46542aea81f33f73782';
+
+(node as any).hash = "c1bb38b47fafa46542aea81f33f73782";
+
 export default node;

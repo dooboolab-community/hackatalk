@@ -1,41 +1,27 @@
+/**
+ * @generated SignedSource<<5e017e258cd528bc1ac57ad82ee725f3>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ProfileModalTestQueryVariables = {};
-export type ProfileModalTestQueryResponse = {
-    readonly myData: {
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
-    } | null;
+export type ProfileModalTestQuery$variables = {};
+export type ProfileModalTestQueryVariables = ProfileModalTestQuery$variables;
+export type ProfileModalTestQuery$data = {
+  readonly myData: {
+    readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;
+  } | null;
 };
+export type ProfileModalTestQueryResponse = ProfileModalTestQuery$data;
 export type ProfileModalTestQuery = {
-    readonly response: ProfileModalTestQueryResponse;
-    readonly variables: ProfileModalTestQueryVariables;
+  variables: ProfileModalTestQueryVariables;
+  response: ProfileModalTestQuery$data;
 };
-
-
-
-/*
-query ProfileModalTestQuery {
-  myData: user(id: "test-id") {
-    ...ProfileModal_user
-    id
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -150,5 +136,7 @@ return {
   }
 };
 })();
-(node as any).hash = '7b45aba25079e2138a1378b69a511d12';
+
+(node as any).hash = "7b45aba25079e2138a1378b69a511d12";
+
 export default node;

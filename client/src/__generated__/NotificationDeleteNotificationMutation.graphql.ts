@@ -1,39 +1,31 @@
+/**
+ * @generated SignedSource<<5296aa075f4b44082dfcd46fbe4acee9>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type NotificationDeleteNotificationMutationVariables = {
-    token: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type NotificationDeleteNotificationMutation$variables = {
+  token: string;
 };
-export type NotificationDeleteNotificationMutationResponse = {
-    readonly deleteNotification: {
-        readonly id: number;
-        readonly token: string;
-        readonly device: string | null;
-        readonly createdAt: unknown | null;
-    } | null;
+export type NotificationDeleteNotificationMutationVariables = NotificationDeleteNotificationMutation$variables;
+export type NotificationDeleteNotificationMutation$data = {
+  readonly deleteNotification: {
+    readonly id: number;
+    readonly token: string;
+    readonly device: string | null;
+    readonly createdAt: any | null;
+  } | null;
 };
+export type NotificationDeleteNotificationMutationResponse = NotificationDeleteNotificationMutation$data;
 export type NotificationDeleteNotificationMutation = {
-    readonly response: NotificationDeleteNotificationMutationResponse;
-    readonly variables: NotificationDeleteNotificationMutationVariables;
+  variables: NotificationDeleteNotificationMutationVariables;
+  response: NotificationDeleteNotificationMutation$data;
 };
-
-
-
-/*
-mutation NotificationDeleteNotificationMutation(
-  $token: String!
-) {
-  deleteNotification(token: $token) {
-    id
-    token
-    device
-    createdAt
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -117,5 +109,7 @@ return {
   }
 };
 })();
-(node as any).hash = '33ff5a6bcb4157acc9baec2582521a38';
+
+(node as any).hash = "33ff5a6bcb4157acc9baec2582521a38";
+
 export default node;

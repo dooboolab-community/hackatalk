@@ -1,27 +1,30 @@
+/**
+ * @generated SignedSource<<c2a4cfafff68cef5b71bbc87533c864d>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-
+import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ProfileModal_user = {
-    readonly id: string;
-    readonly photoURL: string | null;
-    readonly name: string | null;
-    readonly nickname: string | null;
-    readonly hasBlocked: boolean | null;
-    readonly statusMessage: string | null;
-    readonly isFriend: boolean | null;
-    readonly " $refType": "ProfileModal_user";
+export type ProfileModal_user$data = {
+  readonly id: string;
+  readonly photoURL: string | null;
+  readonly name: string | null;
+  readonly nickname: string | null;
+  readonly hasBlocked: boolean | null;
+  readonly statusMessage: string | null;
+  readonly isFriend: boolean | null;
+  readonly " $fragmentType": "ProfileModal_user";
 };
-export type ProfileModal_user$data = ProfileModal_user;
+export type ProfileModal_user = ProfileModal_user$data;
 export type ProfileModal_user$key = {
-    readonly " $data"?: ProfileModal_user$data;
-    readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user">;
+  readonly " $data"?: ProfileModal_user$data;
+  readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;
 };
-
-
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
@@ -82,5 +85,7 @@ const node: ReaderFragment = {
   "type": "User",
   "abstractKey": null
 };
-(node as any).hash = '589f433fd2a1a3c2e632de6bc8024f36';
+
+(node as any).hash = "589f433fd2a1a3c2e632de6bc8024f36";
+
 export default node;

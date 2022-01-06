@@ -1,61 +1,42 @@
+/**
+ * @generated SignedSource<<c6ac25c4ce60ddd037951ded40c269e0>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type MessageLastMessageQueryVariables = {
-    messageId: string;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type MessageLastMessageQuery$variables = {
+  messageId: string;
 };
-export type MessageLastMessageQueryResponse = {
-    readonly message: {
-        readonly id: string;
-        readonly messageType: unknown;
-        readonly text: string | null;
-        readonly imageUrls: ReadonlyArray<string | null> | null;
-        readonly fileUrls: ReadonlyArray<string | null> | null;
-        readonly createdAt: unknown | null;
-        readonly sender: {
-            readonly id: string;
-        } | null;
-        readonly channel: {
-            readonly id: string;
-            readonly lastMessage: {
-                readonly id: string;
-            } | null;
-        } | null;
+export type MessageLastMessageQueryVariables = MessageLastMessageQuery$variables;
+export type MessageLastMessageQuery$data = {
+  readonly message: {
+    readonly id: string;
+    readonly messageType: any;
+    readonly text: string | null;
+    readonly imageUrls: ReadonlyArray<string | null> | null;
+    readonly fileUrls: ReadonlyArray<string | null> | null;
+    readonly createdAt: any | null;
+    readonly sender: {
+      readonly id: string;
     } | null;
+    readonly channel: {
+      readonly id: string;
+      readonly lastMessage: {
+        readonly id: string;
+      } | null;
+    } | null;
+  } | null;
 };
+export type MessageLastMessageQueryResponse = MessageLastMessageQuery$data;
 export type MessageLastMessageQuery = {
-    readonly response: MessageLastMessageQueryResponse;
-    readonly variables: MessageLastMessageQueryVariables;
+  variables: MessageLastMessageQueryVariables;
+  response: MessageLastMessageQuery$data;
 };
-
-
-
-/*
-query MessageLastMessageQuery(
-  $messageId: String!
-) {
-  message(id: $messageId) {
-    id
-    messageType
-    text
-    imageUrls
-    fileUrls
-    createdAt
-    sender {
-      id
-    }
-    channel {
-      id
-      lastMessage {
-        id
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -189,5 +170,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c3f84b35476b61285bb36e9693482766';
+
+(node as any).hash = "c3f84b35476b61285bb36e9693482766";
+
 export default node;

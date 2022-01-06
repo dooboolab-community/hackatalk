@@ -1,29 +1,26 @@
+/**
+ * @generated SignedSource<<2533bbb2e7267f0038d45b04e1479113>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserFindPwMutationVariables = {
-    email: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserFindPwMutation$variables = {
+  email: string;
 };
-export type UserFindPwMutationResponse = {
-    readonly findPassword: boolean;
+export type UserFindPwMutationVariables = UserFindPwMutation$variables;
+export type UserFindPwMutation$data = {
+  readonly findPassword: boolean;
 };
+export type UserFindPwMutationResponse = UserFindPwMutation$data;
 export type UserFindPwMutation = {
-    readonly response: UserFindPwMutationResponse;
-    readonly variables: UserFindPwMutationVariables;
+  variables: UserFindPwMutationVariables;
+  response: UserFindPwMutation$data;
 };
-
-
-
-/*
-mutation UserFindPwMutation(
-  $email: String!
-) {
-  findPassword(email: $email)
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -75,5 +72,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9911a45920167b82d3c49c3ae8ade091';
+
+(node as any).hash = "9911a45920167b82d3c49c3ae8ade091";
+
 export default node;

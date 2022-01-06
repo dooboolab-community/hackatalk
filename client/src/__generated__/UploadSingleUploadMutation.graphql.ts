@@ -1,31 +1,27 @@
+/**
+ * @generated SignedSource<<7485b38b072c3b9b9484b9fa6a20a1cb>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UploadSingleUploadMutationVariables = {
-    file: unknown;
-    dir: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UploadSingleUploadMutation$variables = {
+  file: any;
+  dir: string;
 };
-export type UploadSingleUploadMutationResponse = {
-    readonly singleUpload: string;
+export type UploadSingleUploadMutationVariables = UploadSingleUploadMutation$variables;
+export type UploadSingleUploadMutation$data = {
+  readonly singleUpload: string;
 };
+export type UploadSingleUploadMutationResponse = UploadSingleUploadMutation$data;
 export type UploadSingleUploadMutation = {
-    readonly response: UploadSingleUploadMutationResponse;
-    readonly variables: UploadSingleUploadMutationVariables;
+  variables: UploadSingleUploadMutationVariables;
+  response: UploadSingleUploadMutation$data;
 };
-
-
-
-/*
-mutation UploadSingleUploadMutation(
-  $file: Upload!
-  $dir: String!
-) {
-  singleUpload(file: $file, dir: $dir)
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -91,5 +87,7 @@ return {
   }
 };
 })();
-(node as any).hash = '7fe23bbe646db6d5a4b98daaeb77693a';
+
+(node as any).hash = "7fe23bbe646db6d5a4b98daaeb77693a";
+
 export default node;
