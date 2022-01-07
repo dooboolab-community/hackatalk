@@ -106,7 +106,7 @@ const Page: FC = () => {
           },
           text: {
             marginHorizontal: 40,
-            color: 'white',
+            color: theme.textContrast,
             fontSize: 16,
             textAlign: 'center',
           },
