@@ -1,31 +1,27 @@
+/**
+ * @generated SignedSource<<bc5b83f1307073fa6773d609e6ff9488>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserChangeEmailPasswordMutationVariables = {
-    password: string;
-    newPassword: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserChangeEmailPasswordMutation$variables = {
+  password: string;
+  newPassword: string;
 };
-export type UserChangeEmailPasswordMutationResponse = {
-    readonly changeEmailPassword: boolean | null;
+export type UserChangeEmailPasswordMutationVariables = UserChangeEmailPasswordMutation$variables;
+export type UserChangeEmailPasswordMutation$data = {
+  readonly changeEmailPassword: boolean | null;
 };
+export type UserChangeEmailPasswordMutationResponse = UserChangeEmailPasswordMutation$data;
 export type UserChangeEmailPasswordMutation = {
-    readonly response: UserChangeEmailPasswordMutationResponse;
-    readonly variables: UserChangeEmailPasswordMutationVariables;
+  variables: UserChangeEmailPasswordMutationVariables;
+  response: UserChangeEmailPasswordMutation$data;
 };
-
-
-
-/*
-mutation UserChangeEmailPasswordMutation(
-  $password: String!
-  $newPassword: String!
-) {
-  changeEmailPassword(password: $password, newPassword: $newPassword)
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -91,5 +87,7 @@ return {
   }
 };
 })();
-(node as any).hash = '03344bb98349028625d160a240186b15';
+
+(node as any).hash = "03344bb98349028625d160a240186b15";
+
 export default node;

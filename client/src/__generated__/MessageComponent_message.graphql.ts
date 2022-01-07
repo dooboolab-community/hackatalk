@@ -1,45 +1,48 @@
+/**
+ * @generated SignedSource<<8a43de295e8ae8427ca9c2f5b84c7bfa>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import MessagePaginationQuery from "./MessagePaginationQuery.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MessageComponent_message = {
-    readonly messages: {
-        readonly edges: ReadonlyArray<{
-            readonly cursor: string;
-            readonly node: {
-                readonly id: string;
-                readonly imageUrls: ReadonlyArray<string | null> | null;
-                readonly fileUrls: ReadonlyArray<string | null> | null;
-                readonly text: string | null;
-                readonly sender: {
-                    readonly id: string;
-                    readonly name: string | null;
-                    readonly nickname: string | null;
-                    readonly photoURL: string | null;
-                } | null;
-                readonly createdAt: unknown | null;
-                readonly " $fragmentRefs": FragmentRefs<"MessageListItem_message">;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly hasPreviousPage: boolean;
-            readonly startCursor: string | null;
-            readonly endCursor: string | null;
-        };
-    } | null;
-    readonly " $refType": "MessageComponent_message";
+export type MessageComponent_message$data = {
+  readonly messages: {
+    readonly edges: ReadonlyArray<{
+      readonly cursor: string;
+      readonly node: {
+        readonly id: string;
+        readonly imageUrls: ReadonlyArray<string | null> | null;
+        readonly fileUrls: ReadonlyArray<string | null> | null;
+        readonly text: string | null;
+        readonly sender: {
+          readonly id: string;
+          readonly name: string | null;
+          readonly nickname: string | null;
+          readonly photoURL: string | null;
+        } | null;
+        readonly createdAt: any | null;
+        readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly hasNextPage: boolean;
+      readonly hasPreviousPage: boolean;
+      readonly startCursor: string | null;
+      readonly endCursor: string | null;
+    };
+  } | null;
+  readonly " $fragmentType": "MessageComponent_message";
 };
-export type MessageComponent_message$data = MessageComponent_message;
+export type MessageComponent_message = MessageComponent_message$data;
 export type MessageComponent_message$key = {
-    readonly " $data"?: MessageComponent_message$data;
-    readonly " $fragmentRefs": FragmentRefs<"MessageComponent_message">;
+  readonly " $data"?: MessageComponent_message$data;
+  readonly " $fragmentSpreads": FragmentRefs<"MessageComponent_message">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -95,7 +98,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": MessagePaginationQuery
+      "operation": require('./MessagePaginationQuery.graphql')
     }
   },
   "name": "MessageComponent_message",
@@ -205,16 +208,16 @@ return {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "MessageListItem_message"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "MessageListItem_message"
                 }
               ],
               "storageKey": null
@@ -269,5 +272,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '236f271d52585b13cc872df51c274870';
+
+(node as any).hash = "0b7d4c632efc28d654bee686e30ad17d";
+
 export default node;

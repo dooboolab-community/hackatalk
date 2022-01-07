@@ -1,53 +1,28 @@
+/**
+ * @generated SignedSource<<f30cd1ae22430e9dd12bdc9d096efb61>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type UserBlockedUsersQueryVariables = {};
-export type UserBlockedUsersQueryResponse = {
-    readonly blockedUsers: ReadonlyArray<{
-        readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-    } | null> | null;
+export type UserBlockedUsersQuery$variables = {};
+export type UserBlockedUsersQueryVariables = UserBlockedUsersQuery$variables;
+export type UserBlockedUsersQuery$data = {
+  readonly blockedUsers: ReadonlyArray<{
+    readonly id: string;
+    readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
+  } | null> | null;
 };
+export type UserBlockedUsersQueryResponse = UserBlockedUsersQuery$data;
 export type UserBlockedUsersQuery = {
-    readonly response: UserBlockedUsersQueryResponse;
-    readonly variables: UserBlockedUsersQueryVariables;
+  variables: UserBlockedUsersQueryVariables;
+  response: UserBlockedUsersQuery$data;
 };
-
-
-
-/*
-query UserBlockedUsersQuery {
-  blockedUsers {
-    id
-    ...ProfileModal_user
-    ...UserListItem_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -169,5 +144,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'de6f1c0db8178def0afba2a4c90484fc';
+
+(node as any).hash = "de6f1c0db8178def0afba2a4c90484fc";
+
 export default node;

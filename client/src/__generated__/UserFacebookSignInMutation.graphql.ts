@@ -1,53 +1,38 @@
+/**
+ * @generated SignedSource<<d53dbac7456121cf6f059d860fc29d26>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserFacebookSignInMutationVariables = {
-    accessToken: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserFacebookSignInMutation$variables = {
+  accessToken: string;
 };
-export type UserFacebookSignInMutationResponse = {
-    readonly signInWithFacebook: {
-        readonly token: string;
-        readonly user: {
-            readonly id: string;
-            readonly email: string | null;
-            readonly name: string | null;
-            readonly photoURL: string | null;
-            readonly verified: boolean | null;
-            readonly profile: {
-                readonly authType: unknown | null;
-            } | null;
-        };
+export type UserFacebookSignInMutationVariables = UserFacebookSignInMutation$variables;
+export type UserFacebookSignInMutation$data = {
+  readonly signInWithFacebook: {
+    readonly token: string;
+    readonly user: {
+      readonly id: string;
+      readonly email: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+      readonly verified: boolean | null;
+      readonly profile: {
+        readonly authType: any | null;
+      } | null;
     };
+  };
 };
+export type UserFacebookSignInMutationResponse = UserFacebookSignInMutation$data;
 export type UserFacebookSignInMutation = {
-    readonly response: UserFacebookSignInMutationResponse;
-    readonly variables: UserFacebookSignInMutationVariables;
+  variables: UserFacebookSignInMutationVariables;
+  response: UserFacebookSignInMutation$data;
 };
-
-
-
-/*
-mutation UserFacebookSignInMutation(
-  $accessToken: String!
-) {
-  signInWithFacebook(accessToken: $accessToken) {
-    token
-    user {
-      id
-      email
-      name
-      photoURL
-      verified
-      profile {
-        authType
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -174,5 +159,7 @@ return {
   }
 };
 })();
-(node as any).hash = '7d54ecc87ecd2ae786f3a92a9ba77d74';
+
+(node as any).hash = "7d54ecc87ecd2ae786f3a92a9ba77d74";
+
 export default node;

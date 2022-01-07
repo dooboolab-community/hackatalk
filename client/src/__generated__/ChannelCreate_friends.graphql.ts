@@ -1,37 +1,40 @@
+/**
+ * @generated SignedSource<<79d2c6b88f309b2cc0e0f39900892dd1>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import ChannelCreateFriendsPaginationQuery from "./ChannelCreateFriendsPaginationQuery.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ChannelCreate_friends = {
-    readonly friends: {
-        readonly edges: ReadonlyArray<{
-            readonly cursor: string;
-            readonly node: {
-                readonly id: string;
-                readonly nickname: string | null;
-                readonly name: string | null;
-                readonly thumbURL: string | null;
-                readonly photoURL: string | null;
-                readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-    } | null;
-    readonly " $refType": "ChannelCreate_friends";
+export type ChannelCreate_friends$data = {
+  readonly friends: {
+    readonly edges: ReadonlyArray<{
+      readonly cursor: string;
+      readonly node: {
+        readonly id: string;
+        readonly nickname: string | null;
+        readonly name: string | null;
+        readonly thumbURL: string | null;
+        readonly photoURL: string | null;
+        readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly hasNextPage: boolean;
+      readonly endCursor: string | null;
+    };
+  } | null;
+  readonly " $fragmentType": "ChannelCreate_friends";
 };
-export type ChannelCreate_friends$data = ChannelCreate_friends;
+export type ChannelCreate_friends = ChannelCreate_friends$data;
 export type ChannelCreate_friends$key = {
-    readonly " $data"?: ChannelCreate_friends$data;
-    readonly " $fragmentRefs": FragmentRefs<"ChannelCreate_friends">;
+  readonly " $data"?: ChannelCreate_friends$data;
+  readonly " $fragmentSpreads": FragmentRefs<"ChannelCreate_friends">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -80,7 +83,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": ChannelCreateFriendsPaginationQuery
+      "operation": require('./ChannelCreateFriendsPaginationQuery.graphql')
     }
   },
   "name": "ChannelCreate_friends",
@@ -163,16 +166,16 @@ return {
                   "storageKey": null
                 },
                 {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "UserListItem_user"
+                },
+                {
                   "alias": null,
                   "args": null,
                   "kind": "ScalarField",
                   "name": "__typename",
                   "storageKey": null
-                },
-                {
-                  "args": null,
-                  "kind": "FragmentSpread",
-                  "name": "UserListItem_user"
                 }
               ],
               "storageKey": null
@@ -213,5 +216,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '3dbea30e72491ca36ba2185bf45227af';
+
+(node as any).hash = "fe06fac4a0bd71842541f11ccd811a28";
+
 export default node;

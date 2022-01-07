@@ -1,51 +1,37 @@
+/**
+ * @generated SignedSource<<42ade1be59926b9a374439babf8d3ed1>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type ChannelQueryVariables = {
-    channelId: string;
+import { ConcreteRequest, Query } from 'relay-runtime';
+export type ChannelQuery$variables = {
+  channelId: string;
 };
-export type ChannelQueryResponse = {
-    readonly channel: {
+export type ChannelQueryVariables = ChannelQuery$variables;
+export type ChannelQuery$data = {
+  readonly channel: {
+    readonly id: string;
+    readonly name: string | null;
+    readonly memberships: ReadonlyArray<{
+      readonly user: {
         readonly id: string;
+        readonly nickname: string | null;
         readonly name: string | null;
-        readonly memberships: ReadonlyArray<{
-            readonly user: {
-                readonly id: string;
-                readonly nickname: string | null;
-                readonly name: string | null;
-                readonly photoURL: string | null;
-            } | null;
-        }> | null;
-    } | null;
+        readonly photoURL: string | null;
+      } | null;
+    }> | null;
+  } | null;
 };
+export type ChannelQueryResponse = ChannelQuery$data;
 export type ChannelQuery = {
-    readonly response: ChannelQueryResponse;
-    readonly variables: ChannelQueryVariables;
+  variables: ChannelQueryVariables;
+  response: ChannelQuery$data;
 };
-
-
-
-/*
-query ChannelQuery(
-  $channelId: String!
-) {
-  channel(channelId: $channelId) {
-    id
-    name
-    memberships {
-      user {
-        id
-        nickname
-        name
-        photoURL
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -155,5 +141,7 @@ return {
   }
 };
 })();
-(node as any).hash = '5f194d530215df7acddb6ddfd96d36d6';
+
+(node as any).hash = "5f194d530215df7acddb6ddfd96d36d6";
+
 export default node;

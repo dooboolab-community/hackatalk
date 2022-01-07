@@ -1,102 +1,65 @@
+/**
+ * @generated SignedSource<<13ec2077d89747be3364bed33f2f6b01>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type MessageCreateInput = {
-    messageType?: unknown | null;
-    text?: string | null;
-    imageUrls?: Array<string> | null;
-    fileUrls?: Array<string> | null;
+  messageType?: any | null;
+  text?: string | null;
+  imageUrls?: ReadonlyArray<string> | null;
+  fileUrls?: ReadonlyArray<string> | null;
 };
-export type MessageCreateMutationVariables = {
-    channelId: string;
-    message: MessageCreateInput;
-    deviceKey: string;
+export type MessageCreateMutation$variables = {
+  channelId: string;
+  message: MessageCreateInput;
+  deviceKey: string;
 };
-export type MessageCreateMutationResponse = {
-    readonly createMessage: {
-        readonly id: string;
+export type MessageCreateMutationVariables = MessageCreateMutation$variables;
+export type MessageCreateMutation$data = {
+  readonly createMessage: {
+    readonly id: string;
+    readonly text: string | null;
+    readonly messageType: any;
+    readonly imageUrls: ReadonlyArray<string | null> | null;
+    readonly fileUrls: ReadonlyArray<string | null> | null;
+    readonly createdAt: any | null;
+    readonly sender: {
+      readonly id: string;
+    } | null;
+    readonly channel: {
+      readonly id: string;
+      readonly channelType: any | null;
+      readonly name: string | null;
+      readonly memberships: ReadonlyArray<{
+        readonly user: {
+          readonly id: string;
+          readonly name: string | null;
+          readonly nickname: string | null;
+          readonly thumbURL: string | null;
+          readonly photoURL: string | null;
+        } | null;
+      }> | null;
+      readonly lastMessage: {
+        readonly messageType: any;
         readonly text: string | null;
-        readonly messageType: unknown;
         readonly imageUrls: ReadonlyArray<string | null> | null;
         readonly fileUrls: ReadonlyArray<string | null> | null;
-        readonly createdAt: unknown | null;
-        readonly sender: {
-            readonly id: string;
-        } | null;
-        readonly channel: {
-            readonly id: string;
-            readonly channelType: unknown | null;
-            readonly name: string | null;
-            readonly memberships: ReadonlyArray<{
-                readonly user: {
-                    readonly id: string;
-                    readonly name: string | null;
-                    readonly nickname: string | null;
-                    readonly thumbURL: string | null;
-                    readonly photoURL: string | null;
-                } | null;
-            }> | null;
-            readonly lastMessage: {
-                readonly messageType: unknown;
-                readonly text: string | null;
-                readonly imageUrls: ReadonlyArray<string | null> | null;
-                readonly fileUrls: ReadonlyArray<string | null> | null;
-                readonly createdAt: unknown | null;
-            } | null;
-        } | null;
+        readonly createdAt: any | null;
+      } | null;
     } | null;
+  } | null;
 };
+export type MessageCreateMutationResponse = MessageCreateMutation$data;
 export type MessageCreateMutation = {
-    readonly response: MessageCreateMutationResponse;
-    readonly variables: MessageCreateMutationVariables;
+  variables: MessageCreateMutationVariables;
+  response: MessageCreateMutation$data;
 };
-
-
-
-/*
-mutation MessageCreateMutation(
-  $channelId: String!
-  $message: MessageCreateInput!
-  $deviceKey: String!
-) {
-  createMessage(channelId: $channelId, message: $message, deviceKey: $deviceKey) {
-    id
-    text
-    messageType
-    imageUrls
-    fileUrls
-    createdAt
-    sender {
-      id
-    }
-    channel {
-      id
-      channelType
-      name
-      memberships(excludeMe: false) {
-        user {
-          id
-          name
-          nickname
-          thumbURL
-          photoURL
-        }
-      }
-      lastMessage {
-        messageType
-        text
-        imageUrls
-        fileUrls
-        createdAt
-        id
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -386,5 +349,7 @@ return {
   }
 };
 })();
-(node as any).hash = '240bf95e484493199ddc1321b0fee1f9';
+
+(node as any).hash = "240bf95e484493199ddc1321b0fee1f9";
+
 export default node;

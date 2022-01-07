@@ -1,29 +1,26 @@
+/**
+ * @generated SignedSource<<1613a389ff68b58513491721b24954e8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserVerifyEmailMutationVariables = {
-    email: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserVerifyEmailMutation$variables = {
+  email: string;
 };
-export type UserVerifyEmailMutationResponse = {
-    readonly sendVerification: boolean;
+export type UserVerifyEmailMutationVariables = UserVerifyEmailMutation$variables;
+export type UserVerifyEmailMutation$data = {
+  readonly sendVerification: boolean;
 };
+export type UserVerifyEmailMutationResponse = UserVerifyEmailMutation$data;
 export type UserVerifyEmailMutation = {
-    readonly response: UserVerifyEmailMutationResponse;
-    readonly variables: UserVerifyEmailMutationVariables;
+  variables: UserVerifyEmailMutationVariables;
+  response: UserVerifyEmailMutation$data;
 };
-
-
-
-/*
-mutation UserVerifyEmailMutation(
-  $email: String!
-) {
-  sendVerification(email: $email)
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -75,5 +72,7 @@ return {
   }
 };
 })();
-(node as any).hash = '4c0bb0c06641cea7b028298a7441f161';
+
+(node as any).hash = "4c0bb0c06641cea7b028298a7441f161";
+
 export default node;

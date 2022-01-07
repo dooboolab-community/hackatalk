@@ -1,69 +1,29 @@
+/**
+ * @generated SignedSource<<98b250e957b5fd2903dd32792b4aca29>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ChannelsVariables = {
-    after?: string | null;
-    first: number;
-    withMessage?: boolean | null;
+export type Channels$variables = {
+  after?: string | null;
+  first: number;
+  withMessage?: boolean | null;
 };
-export type ChannelsResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MainChannelComponent_channel">;
+export type ChannelsVariables = Channels$variables;
+export type Channels$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;
 };
+export type ChannelsResponse = Channels$data;
 export type Channels = {
-    readonly response: ChannelsResponse;
-    readonly variables: ChannelsVariables;
+  variables: ChannelsVariables;
+  response: Channels$data;
 };
-
-
-
-/*
-query Channels(
-  $after: String
-  $first: Int!
-  $withMessage: Boolean
-) {
-  ...MainChannelComponent_channel_4q1LXA
-}
-
-fragment MainChannelComponent_channel_4q1LXA on Query {
-  channels(first: $first, after: $after, withMessage: $withMessage) {
-    edges {
-      cursor
-      node {
-        id
-        channelType
-        name
-        memberships(excludeMe: false) {
-          user {
-            id
-            name
-            nickname
-            thumbURL
-            photoURL
-          }
-        }
-        lastMessage {
-          id
-          messageType
-          text
-          imageUrls
-          fileUrls
-          createdAt
-        }
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -338,5 +298,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f551c35c2daad31db679d6855c6109c5';
+
+(node as any).hash = "f551c35c2daad31db679d6855c6109c5";
+
 export default node;

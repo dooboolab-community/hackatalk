@@ -1,45 +1,34 @@
+/**
+ * @generated SignedSource<<641de41bd2eb0ff5561910be9725c943>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type BlockedUserDeleteMutationVariables = {
-    blockedUserId: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type BlockedUserDeleteMutation$variables = {
+  blockedUserId: string;
 };
-export type BlockedUserDeleteMutationResponse = {
-    readonly deleteBlockedUser: {
-        readonly blockedUser: {
-            readonly id: string;
-            readonly email: string | null;
-            readonly name: string | null;
-            readonly nickname: string | null;
-            readonly hasBlocked: boolean | null;
-        } | null;
+export type BlockedUserDeleteMutationVariables = BlockedUserDeleteMutation$variables;
+export type BlockedUserDeleteMutation$data = {
+  readonly deleteBlockedUser: {
+    readonly blockedUser: {
+      readonly id: string;
+      readonly email: string | null;
+      readonly name: string | null;
+      readonly nickname: string | null;
+      readonly hasBlocked: boolean | null;
     } | null;
+  } | null;
 };
+export type BlockedUserDeleteMutationResponse = BlockedUserDeleteMutation$data;
 export type BlockedUserDeleteMutation = {
-    readonly response: BlockedUserDeleteMutationResponse;
-    readonly variables: BlockedUserDeleteMutationVariables;
+  variables: BlockedUserDeleteMutationVariables;
+  response: BlockedUserDeleteMutation$data;
 };
-
-
-
-/*
-mutation BlockedUserDeleteMutation(
-  $blockedUserId: String!
-) {
-  deleteBlockedUser(blockedUserId: $blockedUserId) {
-    blockedUser {
-      id
-      email
-      name
-      nickname
-      hasBlocked
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -141,5 +130,7 @@ return {
   }
 };
 })();
-(node as any).hash = '283e8eaf8e72c19582dbfe2e79786479';
+
+(node as any).hash = "283e8eaf8e72c19582dbfe2e79786479";
+
 export default node;

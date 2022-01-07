@@ -1,51 +1,54 @@
+/**
+ * @generated SignedSource<<d6a0ba46ef00170cd6624604ff4938f9>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import Channels from "./Channels.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MainChannelComponent_channel = {
-    readonly channels: {
-        readonly edges: ReadonlyArray<{
-            readonly cursor: string;
-            readonly node: {
-                readonly id: string;
-                readonly channelType: unknown | null;
-                readonly name: string | null;
-                readonly memberships: ReadonlyArray<{
-                    readonly user: {
-                        readonly id: string;
-                        readonly name: string | null;
-                        readonly nickname: string | null;
-                        readonly thumbURL: string | null;
-                        readonly photoURL: string | null;
-                    } | null;
-                }> | null;
-                readonly lastMessage: {
-                    readonly id: string;
-                    readonly messageType: unknown;
-                    readonly text: string | null;
-                    readonly imageUrls: ReadonlyArray<string | null> | null;
-                    readonly fileUrls: ReadonlyArray<string | null> | null;
-                    readonly createdAt: unknown | null;
-                } | null;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-    } | null;
-    readonly " $refType": "MainChannelComponent_channel";
+export type MainChannelComponent_channel$data = {
+  readonly channels: {
+    readonly edges: ReadonlyArray<{
+      readonly cursor: string;
+      readonly node: {
+        readonly id: string;
+        readonly channelType: any | null;
+        readonly name: string | null;
+        readonly memberships: ReadonlyArray<{
+          readonly user: {
+            readonly id: string;
+            readonly name: string | null;
+            readonly nickname: string | null;
+            readonly thumbURL: string | null;
+            readonly photoURL: string | null;
+          } | null;
+        }> | null;
+        readonly lastMessage: {
+          readonly id: string;
+          readonly messageType: any;
+          readonly text: string | null;
+          readonly imageUrls: ReadonlyArray<string | null> | null;
+          readonly fileUrls: ReadonlyArray<string | null> | null;
+          readonly createdAt: any | null;
+        } | null;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly hasNextPage: boolean;
+      readonly endCursor: string | null;
+    };
+  } | null;
+  readonly " $fragmentType": "MainChannelComponent_channel";
 };
-export type MainChannelComponent_channel$data = MainChannelComponent_channel;
+export type MainChannelComponent_channel = MainChannelComponent_channel$data;
 export type MainChannelComponent_channel$key = {
-    readonly " $data"?: MainChannelComponent_channel$data;
-    readonly " $fragmentRefs": FragmentRefs<"MainChannelComponent_channel">;
+  readonly " $data"?: MainChannelComponent_channel$data;
+  readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -103,7 +106,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": Channels
+      "operation": require('./Channels.graphql')
     }
   },
   "name": "MainChannelComponent_channel",
@@ -298,5 +301,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = 'f551c35c2daad31db679d6855c6109c5';
+
+(node as any).hash = "f551c35c2daad31db679d6855c6109c5";
+
 export default node;

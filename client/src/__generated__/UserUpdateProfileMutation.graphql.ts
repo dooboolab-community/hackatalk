@@ -1,50 +1,42 @@
+/**
+ * @generated SignedSource<<0bce05ec860c680279748078bcd47b83>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserUpdateInput = {
-    email?: string | null;
-    name?: string | null;
-    nickname?: string | null;
-    thumbURL?: string | null;
-    photoURL?: string | null;
-    birthday?: unknown | null;
-    phone?: string | null;
-    statusMessage?: string | null;
-    gender?: unknown | null;
+  email?: string | null;
+  name?: string | null;
+  nickname?: string | null;
+  thumbURL?: string | null;
+  photoURL?: string | null;
+  birthday?: any | null;
+  phone?: string | null;
+  statusMessage?: string | null;
+  gender?: any | null;
 };
-export type UserUpdateProfileMutationVariables = {
-    user: UserUpdateInput;
+export type UserUpdateProfileMutation$variables = {
+  user: UserUpdateInput;
 };
-export type UserUpdateProfileMutationResponse = {
-    readonly updateProfile: {
-        readonly id: string;
-        readonly name: string | null;
-        readonly nickname: string | null;
-        readonly statusMessage: string | null;
-    } | null;
+export type UserUpdateProfileMutationVariables = UserUpdateProfileMutation$variables;
+export type UserUpdateProfileMutation$data = {
+  readonly updateProfile: {
+    readonly id: string;
+    readonly name: string | null;
+    readonly nickname: string | null;
+    readonly statusMessage: string | null;
+  } | null;
 };
+export type UserUpdateProfileMutationResponse = UserUpdateProfileMutation$data;
 export type UserUpdateProfileMutation = {
-    readonly response: UserUpdateProfileMutationResponse;
-    readonly variables: UserUpdateProfileMutationVariables;
+  variables: UserUpdateProfileMutationVariables;
+  response: UserUpdateProfileMutation$data;
 };
-
-
-
-/*
-mutation UserUpdateProfileMutation(
-  $user: UserUpdateInput!
-) {
-  updateProfile(user: $user) {
-    id
-    name
-    nickname
-    statusMessage
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -128,5 +120,7 @@ return {
   }
 };
 })();
-(node as any).hash = '2ddfbc52853331dac9f9f79c11ef29a5';
+
+(node as any).hash = "2ddfbc52853331dac9f9f79c11ef29a5";
+
 export default node;

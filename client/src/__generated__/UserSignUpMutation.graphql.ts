@@ -1,53 +1,43 @@
+/**
+ * @generated SignedSource<<349d1a6d965953712612582dce4612e8>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserCreateInput = {
-    email: string;
-    password: string;
-    name?: string | null;
-    nickname?: string | null;
-    birthday?: unknown | null;
-    gender?: unknown | null;
-    phone?: string | null;
-    statusMessage?: string | null;
+  email: string;
+  password: string;
+  name?: string | null;
+  nickname?: string | null;
+  birthday?: any | null;
+  gender?: any | null;
+  phone?: string | null;
+  statusMessage?: string | null;
 };
-export type UserSignUpMutationVariables = {
-    user: UserCreateInput;
-    photoUpload?: unknown | null;
+export type UserSignUpMutation$variables = {
+  user: UserCreateInput;
+  photoUpload?: any | null;
 };
-export type UserSignUpMutationResponse = {
-    readonly signUp: {
-        readonly id: string;
-        readonly email: string | null;
-        readonly name: string | null;
-        readonly photoURL: string | null;
-        readonly verified: boolean | null;
-    };
+export type UserSignUpMutationVariables = UserSignUpMutation$variables;
+export type UserSignUpMutation$data = {
+  readonly signUp: {
+    readonly id: string;
+    readonly email: string | null;
+    readonly name: string | null;
+    readonly photoURL: string | null;
+    readonly verified: boolean | null;
+  };
 };
+export type UserSignUpMutationResponse = UserSignUpMutation$data;
 export type UserSignUpMutation = {
-    readonly response: UserSignUpMutationResponse;
-    readonly variables: UserSignUpMutationVariables;
+  variables: UserSignUpMutationVariables;
+  response: UserSignUpMutation$data;
 };
-
-
-
-/*
-mutation UserSignUpMutation(
-  $user: UserCreateInput!
-  $photoUpload: Upload
-) {
-  signUp(user: $user, photoUpload: $photoUpload) {
-    id
-    email
-    name
-    photoURL
-    verified
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -152,5 +142,7 @@ return {
   }
 };
 })();
-(node as any).hash = '46810a7b7e003b671ed6a6c75a3fc13f';
+
+(node as any).hash = "46810a7b7e003b671ed6a6c75a3fc13f";
+
 export default node;

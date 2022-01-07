@@ -1,33 +1,36 @@
+/**
+ * @generated SignedSource<<4b30cd941dfbdb7536078115eca58c9f>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ReaderFragment } from "relay-runtime";
-import FriendFriendsPaginationQuery from "./FriendFriendsPaginationQuery.graphql";
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MainFriend_friends = {
-    readonly friends: {
-        readonly edges: ReadonlyArray<{
-            readonly cursor: string;
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-            } | null;
-        } | null> | null;
-        readonly pageInfo: {
-            readonly hasNextPage: boolean;
-            readonly endCursor: string | null;
-        };
-    } | null;
-    readonly " $refType": "MainFriend_friends";
+export type MainFriend_friends$data = {
+  readonly friends: {
+    readonly edges: ReadonlyArray<{
+      readonly cursor: string;
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
+      } | null;
+    } | null> | null;
+    readonly pageInfo: {
+      readonly hasNextPage: boolean;
+      readonly endCursor: string | null;
+    };
+  } | null;
+  readonly " $fragmentType": "MainFriend_friends";
 };
-export type MainFriend_friends$data = MainFriend_friends;
+export type MainFriend_friends = MainFriend_friends$data;
 export type MainFriend_friends$key = {
-    readonly " $data"?: MainFriend_friends$data;
-    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends">;
+  readonly " $data"?: MainFriend_friends$data;
+  readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends">;
 };
-
-
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -76,7 +79,7 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": FriendFriendsPaginationQuery
+      "operation": require('./FriendFriendsPaginationQuery.graphql')
     }
   },
   "name": "MainFriend_friends",
@@ -120,13 +123,6 @@ return {
                   "storageKey": null
                 },
                 {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "__typename",
-                  "storageKey": null
-                },
-                {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "ProfileModal_user"
@@ -135,6 +131,13 @@ return {
                   "args": null,
                   "kind": "FragmentSpread",
                   "name": "UserListItem_user"
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
                 }
               ],
               "storageKey": null
@@ -175,5 +178,7 @@ return {
   "abstractKey": null
 };
 })();
-(node as any).hash = '9fbd55fcfc373597074710e5f1cbc7bd';
+
+(node as any).hash = "07c3e13bd8f6b3717bf6033e0ff44fdd";
+
 export default node;

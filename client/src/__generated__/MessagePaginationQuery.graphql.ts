@@ -1,93 +1,30 @@
+/**
+ * @generated SignedSource<<ce3a003831c6bc748efe435ab0deedb9>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MessagePaginationQueryVariables = {
-    after?: string | null;
-    channelId: string;
-    first: number;
-    searchText?: string | null;
+export type MessagePaginationQuery$variables = {
+  after?: string | null;
+  channelId: string;
+  first: number;
+  searchText?: string | null;
 };
-export type MessagePaginationQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MessageComponent_message">;
+export type MessagePaginationQueryVariables = MessagePaginationQuery$variables;
+export type MessagePaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MessageComponent_message">;
 };
+export type MessagePaginationQueryResponse = MessagePaginationQuery$data;
 export type MessagePaginationQuery = {
-    readonly response: MessagePaginationQueryResponse;
-    readonly variables: MessagePaginationQueryVariables;
+  variables: MessagePaginationQueryVariables;
+  response: MessagePaginationQuery$data;
 };
-
-
-
-/*
-query MessagePaginationQuery(
-  $after: String
-  $channelId: String!
-  $first: Int!
-  $searchText: String
-) {
-  ...MessageComponent_message_WlZsr
-}
-
-fragment MessageComponent_message_WlZsr on Query {
-  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {
-    edges {
-      cursor
-      node {
-        id
-        imageUrls
-        fileUrls
-        text
-        sender {
-          id
-          name
-          nickname
-          photoURL
-        }
-        createdAt
-        ...MessageListItem_message
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-  }
-}
-
-fragment MessageListItem_message on Message {
-  id
-  messageType
-  text
-  imageUrls
-  fileUrls
-  createdAt
-  updatedAt
-  sender {
-    id
-    name
-    nickname
-    thumbURL
-    photoURL
-    ...ProfileModal_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -377,5 +314,7 @@ return {
   }
 };
 })();
-(node as any).hash = '236f271d52585b13cc872df51c274870';
+
+(node as any).hash = "0b7d4c632efc28d654bee686e30ad17d";
+
 export default node;

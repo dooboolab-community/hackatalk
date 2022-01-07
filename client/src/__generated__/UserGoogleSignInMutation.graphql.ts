@@ -1,53 +1,38 @@
+/**
+ * @generated SignedSource<<b603f29b58c707eecdfe4964784cea25>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserGoogleSignInMutationVariables = {
-    accessToken: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserGoogleSignInMutation$variables = {
+  accessToken: string;
 };
-export type UserGoogleSignInMutationResponse = {
-    readonly signInWithGoogle: {
-        readonly token: string;
-        readonly user: {
-            readonly id: string;
-            readonly email: string | null;
-            readonly name: string | null;
-            readonly photoURL: string | null;
-            readonly verified: boolean | null;
-            readonly profile: {
-                readonly authType: unknown | null;
-            } | null;
-        };
+export type UserGoogleSignInMutationVariables = UserGoogleSignInMutation$variables;
+export type UserGoogleSignInMutation$data = {
+  readonly signInWithGoogle: {
+    readonly token: string;
+    readonly user: {
+      readonly id: string;
+      readonly email: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+      readonly verified: boolean | null;
+      readonly profile: {
+        readonly authType: any | null;
+      } | null;
     };
+  };
 };
+export type UserGoogleSignInMutationResponse = UserGoogleSignInMutation$data;
 export type UserGoogleSignInMutation = {
-    readonly response: UserGoogleSignInMutationResponse;
-    readonly variables: UserGoogleSignInMutationVariables;
+  variables: UserGoogleSignInMutationVariables;
+  response: UserGoogleSignInMutation$data;
 };
-
-
-
-/*
-mutation UserGoogleSignInMutation(
-  $accessToken: String!
-) {
-  signInWithGoogle(accessToken: $accessToken) {
-    token
-    user {
-      id
-      email
-      name
-      photoURL
-      verified
-      profile {
-        authType
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -174,5 +159,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'ff7dc4d845dfb3b4872d2a87a4f3030c';
+
+(node as any).hash = "ff7dc4d845dfb3b4872d2a87a4f3030c";
+
 export default node;

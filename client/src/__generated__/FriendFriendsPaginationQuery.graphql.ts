@@ -1,74 +1,30 @@
+/**
+ * @generated SignedSource<<d14581c180efa4fda4c522313538a2ae>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type FriendFriendsPaginationQueryVariables = {
-    after?: string | null;
-    first: number;
-    includeMe?: boolean | null;
-    searchText?: string | null;
+export type FriendFriendsPaginationQuery$variables = {
+  after?: string | null;
+  first: number;
+  includeMe?: boolean | null;
+  searchText?: string | null;
 };
-export type FriendFriendsPaginationQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MainFriend_friends">;
+export type FriendFriendsPaginationQueryVariables = FriendFriendsPaginationQuery$variables;
+export type FriendFriendsPaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends">;
 };
+export type FriendFriendsPaginationQueryResponse = FriendFriendsPaginationQuery$data;
 export type FriendFriendsPaginationQuery = {
-    readonly response: FriendFriendsPaginationQueryResponse;
-    readonly variables: FriendFriendsPaginationQueryVariables;
+  variables: FriendFriendsPaginationQueryVariables;
+  response: FriendFriendsPaginationQuery$data;
 };
-
-
-
-/*
-query FriendFriendsPaginationQuery(
-  $after: String
-  $first: Int!
-  $includeMe: Boolean
-  $searchText: String
-) {
-  ...MainFriend_friends_1KCjMM
-}
-
-fragment MainFriend_friends_1KCjMM on Query {
-  friends(first: $first, after: $after, searchText: $searchText, includeMe: $includeMe) {
-    edges {
-      cursor
-      node {
-        id
-        ...ProfileModal_user
-        ...UserListItem_user
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -286,5 +242,7 @@ return {
   }
 };
 })();
-(node as any).hash = '9fbd55fcfc373597074710e5f1cbc7bd';
+
+(node as any).hash = "07c3e13bd8f6b3717bf6033e0ff44fdd";
+
 export default node;

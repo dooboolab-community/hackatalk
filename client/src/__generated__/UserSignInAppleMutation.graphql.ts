@@ -1,53 +1,38 @@
+/**
+ * @generated SignedSource<<612df576a3d1ca96b6408756f9577244>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type UserSignInAppleMutationVariables = {
-    accessToken: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type UserSignInAppleMutation$variables = {
+  accessToken: string;
 };
-export type UserSignInAppleMutationResponse = {
-    readonly signInWithApple: {
-        readonly token: string;
-        readonly user: {
-            readonly id: string;
-            readonly email: string | null;
-            readonly name: string | null;
-            readonly photoURL: string | null;
-            readonly verified: boolean | null;
-            readonly profile: {
-                readonly authType: unknown | null;
-            } | null;
-        };
+export type UserSignInAppleMutationVariables = UserSignInAppleMutation$variables;
+export type UserSignInAppleMutation$data = {
+  readonly signInWithApple: {
+    readonly token: string;
+    readonly user: {
+      readonly id: string;
+      readonly email: string | null;
+      readonly name: string | null;
+      readonly photoURL: string | null;
+      readonly verified: boolean | null;
+      readonly profile: {
+        readonly authType: any | null;
+      } | null;
     };
+  };
 };
+export type UserSignInAppleMutationResponse = UserSignInAppleMutation$data;
 export type UserSignInAppleMutation = {
-    readonly response: UserSignInAppleMutationResponse;
-    readonly variables: UserSignInAppleMutationVariables;
+  variables: UserSignInAppleMutationVariables;
+  response: UserSignInAppleMutation$data;
 };
-
-
-
-/*
-mutation UserSignInAppleMutation(
-  $accessToken: String!
-) {
-  signInWithApple(accessToken: $accessToken) {
-    token
-    user {
-      id
-      email
-      name
-      photoURL
-      verified
-      profile {
-        authType
-      }
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -174,5 +159,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'f40963ef2a9220b26fa19a785b32ff15';
+
+(node as any).hash = "f40963ef2a9220b26fa19a785b32ff15";
+
 export default node;

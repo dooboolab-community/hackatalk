@@ -1,72 +1,29 @@
+/**
+ * @generated SignedSource<<9ac46d1297076432950ce6199dfbee4b>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type UserUsersPaginationQueryVariables = {
-    first: number;
-    after?: string | null;
-    searchText?: string | null;
+export type UserUsersPaginationQuery$variables = {
+  first: number;
+  after?: string | null;
+  searchText?: string | null;
 };
-export type UserUsersPaginationQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"SearchUserComponent_user">;
+export type UserUsersPaginationQueryVariables = UserUsersPaginationQuery$variables;
+export type UserUsersPaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;
 };
+export type UserUsersPaginationQueryResponse = UserUsersPaginationQuery$data;
 export type UserUsersPaginationQuery = {
-    readonly response: UserUsersPaginationQueryResponse;
-    readonly variables: UserUsersPaginationQueryVariables;
+  variables: UserUsersPaginationQueryVariables;
+  response: UserUsersPaginationQuery$data;
 };
-
-
-
-/*
-query UserUsersPaginationQuery(
-  $first: Int!
-  $after: String
-  $searchText: String
-) {
-  ...SearchUserComponent_user_2yyznZ
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment SearchUserComponent_user_2yyznZ on Query {
-  users(first: $first, after: $after, searchText: $searchText) {
-    edges {
-      cursor
-      node {
-        id
-        ...ProfileModal_user
-        ...UserListItem_user
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      endCursor
-    }
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -282,5 +239,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c1475a894e8b8699446be24a5fba3cc1';
+
+(node as any).hash = "c1475a894e8b8699446be24a5fba3cc1";
+
 export default node;

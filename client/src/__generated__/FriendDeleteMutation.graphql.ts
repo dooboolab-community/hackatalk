@@ -1,39 +1,31 @@
+/**
+ * @generated SignedSource<<6e8662ffecbf42882ab8989bfd1c0218>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type FriendDeleteMutationVariables = {
-    friendId: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type FriendDeleteMutation$variables = {
+  friendId: string;
 };
-export type FriendDeleteMutationResponse = {
-    readonly deleteFriend: {
-        readonly friend: {
-            readonly id: string;
-            readonly isFriend: boolean | null;
-        } | null;
+export type FriendDeleteMutationVariables = FriendDeleteMutation$variables;
+export type FriendDeleteMutation$data = {
+  readonly deleteFriend: {
+    readonly friend: {
+      readonly id: string;
+      readonly isFriend: boolean | null;
     } | null;
+  } | null;
 };
+export type FriendDeleteMutationResponse = FriendDeleteMutation$data;
 export type FriendDeleteMutation = {
-    readonly response: FriendDeleteMutationResponse;
-    readonly variables: FriendDeleteMutationVariables;
+  variables: FriendDeleteMutationVariables;
+  response: FriendDeleteMutation$data;
 };
-
-
-
-/*
-mutation FriendDeleteMutation(
-  $friendId: String!
-) {
-  deleteFriend(friendId: $friendId) {
-    friend {
-      id
-      isFriend
-    }
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -114,5 +106,7 @@ return {
   }
 };
 })();
-(node as any).hash = '0d50b4385882035ea6d9551c1fc47657';
+
+(node as any).hash = "0d50b4385882035ea6d9551c1fc47657";
+
 export default node;

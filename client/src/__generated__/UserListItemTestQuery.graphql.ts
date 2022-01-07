@@ -1,41 +1,27 @@
+/**
+ * @generated SignedSource<<a082606cab0de93ce9cf9a1dcb0a55bb>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type UserListItemTestQueryVariables = {};
-export type UserListItemTestQueryResponse = {
-    readonly myData: {
-        readonly " $fragmentRefs": FragmentRefs<"UserListItem_user">;
-    } | null;
+export type UserListItemTestQuery$variables = {};
+export type UserListItemTestQueryVariables = UserListItemTestQuery$variables;
+export type UserListItemTestQuery$data = {
+  readonly myData: {
+    readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;
+  } | null;
 };
+export type UserListItemTestQueryResponse = UserListItemTestQuery$data;
 export type UserListItemTestQuery = {
-    readonly response: UserListItemTestQueryResponse;
-    readonly variables: UserListItemTestQueryVariables;
+  variables: UserListItemTestQueryVariables;
+  response: UserListItemTestQuery$data;
 };
-
-
-
-/*
-query UserListItemTestQuery {
-  myData: user(id: "test-id") {
-    ...UserListItem_user
-    id
-  }
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -150,5 +136,7 @@ return {
   }
 };
 })();
-(node as any).hash = 'c4a52477153608200e909deac90e3cfc';
+
+(node as any).hash = "c4a52477153608200e909deac90e3cfc";
+
 export default node;

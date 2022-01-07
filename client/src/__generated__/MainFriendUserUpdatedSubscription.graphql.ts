@@ -1,53 +1,28 @@
+/**
+ * @generated SignedSource<<241d608402737f47c7218865f7320bc4>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, GraphQLSubscription } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MainFriendUserUpdatedSubscriptionVariables = {};
-export type MainFriendUserUpdatedSubscriptionResponse = {
-    readonly userUpdated: {
-        readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
-    } | null;
+export type MainFriendUserUpdatedSubscription$variables = {};
+export type MainFriendUserUpdatedSubscriptionVariables = MainFriendUserUpdatedSubscription$variables;
+export type MainFriendUserUpdatedSubscription$data = {
+  readonly userUpdated: {
+    readonly id: string;
+    readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
+  } | null;
 };
+export type MainFriendUserUpdatedSubscriptionResponse = MainFriendUserUpdatedSubscription$data;
 export type MainFriendUserUpdatedSubscription = {
-    readonly response: MainFriendUserUpdatedSubscriptionResponse;
-    readonly variables: MainFriendUserUpdatedSubscriptionVariables;
+  variables: MainFriendUserUpdatedSubscriptionVariables;
+  response: MainFriendUserUpdatedSubscription$data;
 };
-
-
-
-/*
-subscription MainFriendUserUpdatedSubscription {
-  userUpdated {
-    id
-    ...ProfileModal_user
-    ...UserListItem_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-
-fragment UserListItem_user on User {
-  id
-  photoURL
-  nickname
-  name
-  statusMessage
-  isOnline
-  hasBlocked
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -162,12 +137,16 @@ return {
   "params": {
     "cacheID": "33a7f5d012f0b13f5dd22cbf3fc118ef",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "subscriptionName": "userUpdated"
+    },
     "name": "MainFriendUserUpdatedSubscription",
     "operationKind": "subscription",
     "text": "subscription MainFriendUserUpdatedSubscription {\n  userUpdated {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"
   }
 };
 })();
-(node as any).hash = '1e5c38b2d7c2f61bf28dc523f64602d7';
+
+(node as any).hash = "1e5c38b2d7c2f61bf28dc523f64602d7";
+
 export default node;

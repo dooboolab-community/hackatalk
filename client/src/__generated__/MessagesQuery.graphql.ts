@@ -1,93 +1,30 @@
+/**
+ * @generated SignedSource<<cd60131c10dff666d630b10ff78a4e84>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
+import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type MessagesQueryVariables = {
-    first: number;
-    after?: string | null;
-    channelId: string;
-    searchText?: string | null;
+export type MessagesQuery$variables = {
+  first: number;
+  after?: string | null;
+  channelId: string;
+  searchText?: string | null;
 };
-export type MessagesQueryResponse = {
-    readonly " $fragmentRefs": FragmentRefs<"MessageComponent_message">;
+export type MessagesQueryVariables = MessagesQuery$variables;
+export type MessagesQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"MessageComponent_message">;
 };
+export type MessagesQueryResponse = MessagesQuery$data;
 export type MessagesQuery = {
-    readonly response: MessagesQueryResponse;
-    readonly variables: MessagesQueryVariables;
+  variables: MessagesQueryVariables;
+  response: MessagesQuery$data;
 };
-
-
-
-/*
-query MessagesQuery(
-  $first: Int!
-  $after: String
-  $channelId: String!
-  $searchText: String
-) {
-  ...MessageComponent_message_WlZsr
-}
-
-fragment MessageComponent_message_WlZsr on Query {
-  messages(first: $first, after: $after, channelId: $channelId, searchText: $searchText) {
-    edges {
-      cursor
-      node {
-        id
-        imageUrls
-        fileUrls
-        text
-        sender {
-          id
-          name
-          nickname
-          photoURL
-        }
-        createdAt
-        ...MessageListItem_message
-        __typename
-      }
-    }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-  }
-}
-
-fragment MessageListItem_message on Message {
-  id
-  messageType
-  text
-  imageUrls
-  fileUrls
-  createdAt
-  updatedAt
-  sender {
-    id
-    name
-    nickname
-    thumbURL
-    photoURL
-    ...ProfileModal_user
-  }
-}
-
-fragment ProfileModal_user on User {
-  id
-  photoURL
-  name
-  nickname
-  hasBlocked
-  statusMessage
-  isFriend
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = {
@@ -385,5 +322,7 @@ return {
   }
 };
 })();
-(node as any).hash = '06622ff6f54faabf675e48932f249991';
+
+(node as any).hash = "06622ff6f54faabf675e48932f249991";
+
 export default node;
