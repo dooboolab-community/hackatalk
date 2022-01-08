@@ -1,37 +1,30 @@
+/**
+ * @generated SignedSource<<7000534f1369b639d10355e79746a082>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type MessageDeletedSubscriptionVariables = {
-    channelId: string;
+import { ConcreteRequest, GraphQLSubscription } from 'relay-runtime';
+export type MessageDeletedSubscription$variables = {
+  channelId: string;
 };
-export type MessageDeletedSubscriptionResponse = {
-    readonly deleteMessage: {
-        readonly id: string;
-        readonly channelId: string;
-        readonly deletedAt: unknown | null;
-    } | null;
+export type MessageDeletedSubscriptionVariables = MessageDeletedSubscription$variables;
+export type MessageDeletedSubscription$data = {
+  readonly deleteMessage: {
+    readonly id: string;
+    readonly channelId: string;
+    readonly deletedAt: any | null;
+  } | null;
 };
+export type MessageDeletedSubscriptionResponse = MessageDeletedSubscription$data;
 export type MessageDeletedSubscription = {
-    readonly response: MessageDeletedSubscriptionResponse;
-    readonly variables: MessageDeletedSubscriptionVariables;
+  variables: MessageDeletedSubscriptionVariables;
+  response: MessageDeletedSubscription$data;
 };
-
-
-
-/*
-subscription MessageDeletedSubscription(
-  $channelId: String!
-) {
-  deleteMessage(channelId: $channelId) {
-    id
-    channelId
-    deletedAt
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -101,12 +94,16 @@ return {
   "params": {
     "cacheID": "f2d6b61b65eef142c9e98f04d0b97c4e",
     "id": null,
-    "metadata": {},
+    "metadata": {
+      "subscriptionName": "deleteMessage"
+    },
     "name": "MessageDeletedSubscription",
     "operationKind": "subscription",
     "text": "subscription MessageDeletedSubscription(\n  $channelId: String!\n) {\n  deleteMessage(channelId: $channelId) {\n    id\n    channelId\n    deletedAt\n  }\n}\n"
   }
 };
 })();
-(node as any).hash = '74b521aa8c610fa7df1a5dd997695ecb';
+
+(node as any).hash = "74b521aa8c610fa7df1a5dd997695ecb";
+
 export default node;

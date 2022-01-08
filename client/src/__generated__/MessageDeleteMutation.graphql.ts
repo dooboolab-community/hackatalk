@@ -1,37 +1,30 @@
+/**
+ * @generated SignedSource<<1614c6a216fbe91373edca8959e1b9b6>>
+ * @lightSyntaxTransform
+ * @nogrep
+ */
+
 /* tslint:disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest } from "relay-runtime";
-
-export type MessageDeleteMutationVariables = {
-    id: string;
+import { ConcreteRequest, Mutation } from 'relay-runtime';
+export type MessageDeleteMutation$variables = {
+  id: string;
 };
-export type MessageDeleteMutationResponse = {
-    readonly deleteMessage: {
-        readonly id: string;
-        readonly deletedAt: unknown | null;
-        readonly channelId: string;
-    } | null;
+export type MessageDeleteMutationVariables = MessageDeleteMutation$variables;
+export type MessageDeleteMutation$data = {
+  readonly deleteMessage: {
+    readonly id: string;
+    readonly deletedAt: any | null;
+    readonly channelId: string;
+  } | null;
 };
+export type MessageDeleteMutationResponse = MessageDeleteMutation$data;
 export type MessageDeleteMutation = {
-    readonly response: MessageDeleteMutationResponse;
-    readonly variables: MessageDeleteMutationVariables;
+  variables: MessageDeleteMutationVariables;
+  response: MessageDeleteMutation$data;
 };
-
-
-
-/*
-mutation MessageDeleteMutation(
-  $id: String!
-) {
-  deleteMessage(id: $id) {
-    id
-    deletedAt
-    channelId
-  }
-}
-*/
 
 const node: ConcreteRequest = (function(){
 var v0 = [
@@ -108,5 +101,7 @@ return {
   }
 };
 })();
-(node as any).hash = '3de280feb9b78dc44ac4febe1cbd09c0';
+
+(node as any).hash = "3de280feb9b78dc44ac4febe1cbd09c0";
+
 export default node;
