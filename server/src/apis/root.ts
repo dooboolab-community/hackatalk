@@ -1,8 +1,10 @@
 import {ErrorRequestHandler, Request, Response, Router} from 'express';
+import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {encryptCredential, getToken} from '../utils/auth';
 import {resetPassword, verifyEmail} from '../models/User';
 
 import {UPLOAD_FILE_SIZE_LIMIT} from '../utils/const';
+import {assert} from '../utils/assert';
 import {getMimeType} from 'stream-mime-type';
 import multer from 'multer';
 import {prisma} from '../context';
@@ -11,6 +13,8 @@ import stream from 'stream';
 import {uploadFileToAzureBlobFromStream} from '../utils/azure';
 import {verify} from 'jsonwebtoken';
 import {verifyWithRefresh} from '../utils/jwt';
+
+const {SENDGRID_EMAIL} = process.env;
 
 interface VerificationToken {
   email: string;
@@ -100,6 +104,43 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const onSendEmail = async (req: Request, res: Response): Promise<void> => {
+  assert(SENDGRID_EMAIL, 'No email sender');
+
+  if (!req.body) {
+    res.status(500).end();
+
+    return;
+  }
+
+  const emailTo: string = req.body.emailTo;
+  const subject: string = req.body.subject;
+  const text: string = req.body.text;
+
+  if (!emailTo || !subject || !text) {
+    res.status(400).end();
+
+    return;
+  }
+
+  try {
+    const msg: MailDataRequired = {
+      to: emailTo,
+      from: SENDGRID_EMAIL,
+      subject,
+      text,
+    };
+
+    await SendGridMail.send(msg);
+
+    res.status(200).end();
+  } catch (err) {
+    res.status(200).json({
+      message: err,
+    });
+  }
+};
+
 const getIdToken = async (req: Request, res: Response): Promise<void> => {
   const token = getToken(req);
 
@@ -182,6 +223,7 @@ const errorRequestHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 router
   .get('/reset_password/:token/:password', onResetPassword)
   .get('/verify_email/:token', onVerifyEmail)
+  .post('/send_email', onSendEmail)
   .post('/get_id_token', getIdToken)
   .post(
     '/upload_single',
