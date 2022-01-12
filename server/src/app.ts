@@ -4,6 +4,7 @@ import {assert} from './utils/assert';
 import cors from 'cors';
 import ejs from 'ejs';
 import express from 'express';
+import helmet from 'helmet';
 import i18Middleware from 'i18next-http-middleware';
 import i18next from 'i18next';
 import path from 'path';
@@ -56,9 +57,10 @@ export const createApp = (): express.Application => {
 
   app.use(i18Middleware.handle(i18next));
   app.use(express.static(filePath));
+  app.use(environmentVariableMiddleware);
   app.use(express.json());
   app.use(cors());
-  app.use(environmentVariableMiddleware);
+  app.use(helmet());
 
   app.get('/', (req, res) => {
     res.send(`${req.t('IT_WORKS')} - ${version}`);
