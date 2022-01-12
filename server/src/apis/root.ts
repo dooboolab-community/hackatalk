@@ -14,7 +14,7 @@ import {uploadFileToAzureBlobFromStream} from '../utils/azure';
 import {verify} from 'jsonwebtoken';
 import {verifyWithRefresh} from '../utils/jwt';
 
-const {SENDGRID_EMAIL} = process.env;
+const {SENDGRID_EMAIL, EMAIL_SECRET} = process.env;
 
 interface VerificationToken {
   email: string;
@@ -106,6 +106,7 @@ const onVerifyEmail = async (req: Request, res: Response): Promise<void> => {
 
 const onSendEmail = async (req: Request, res: Response): Promise<void> => {
   assert(SENDGRID_EMAIL, 'No email sender');
+  assert(EMAIL_SECRET, 'Email secret should be provided');
 
   if (!req.body) {
     res.status(500).end();
@@ -113,11 +114,12 @@ const onSendEmail = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
+  const emailSecret: string = req.body.secret || '';
   const emailTo: string = req.body.emailTo;
   const subject: string = req.body.subject;
   const text: string = req.body.text;
 
-  if (!emailTo || !subject || !text) {
+  if (!emailTo || !subject || !text || EMAIL_SECRET !== emailSecret) {
     res.status(400).end();
 
     return;
@@ -132,10 +134,9 @@ const onSendEmail = async (req: Request, res: Response): Promise<void> => {
     };
 
     await SendGridMail.send(msg);
-
     res.status(200).end();
   } catch (err) {
-    res.status(200).json({
+    res.status(500).json({
       message: err,
     });
   }

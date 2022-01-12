@@ -1,7 +1,6 @@
 import FilesystemBackend from 'i18next-node-fs-backend';
 import RouteApi from './apis/root';
 import {assert} from './utils/assert';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import ejs from 'ejs';
 import express from 'express';
@@ -55,10 +54,10 @@ export const createApp = (): express.Application => {
 
   const filePath = path.join(__dirname, '../files');
 
-  app.use(cors());
   app.use(i18Middleware.handle(i18next));
   app.use(express.static(filePath));
-  app.use(bodyParser.json());
+  app.use(express.json());
+  app.use(cors());
   app.use(environmentVariableMiddleware);
 
   app.get('/', (req, res) => {
