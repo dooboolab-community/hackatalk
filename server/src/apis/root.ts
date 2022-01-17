@@ -116,6 +116,7 @@ const onSendEmail = async (req: Request, res: Response): Promise<void> => {
 
   const emailSecret: string = req.body.secret || '';
   const emailTo: string = req.body.emailTo;
+  const emailFrom: string = req.body.emailFrom;
   const subject: string = req.body.subject;
   const text: string = req.body.text;
 
@@ -128,7 +129,7 @@ const onSendEmail = async (req: Request, res: Response): Promise<void> => {
   try {
     const msg: MailDataRequired = {
       to: emailTo,
-      from: SENDGRID_EMAIL,
+      from: emailFrom || SENDGRID_EMAIL,
       subject,
       text,
     };
