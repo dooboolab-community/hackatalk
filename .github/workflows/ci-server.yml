@@ -3,6 +3,8 @@ name: Server
 on:
   push:
     branches: [master]
+    paths:
+      - "server/**"
   pull_request:
     types: [opened, synchronize, reopened]
 
