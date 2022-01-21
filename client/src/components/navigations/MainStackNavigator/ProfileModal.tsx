@@ -42,6 +42,7 @@ import {RootStackNavigationProps} from '../RootStackNavigator';
 import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
+import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
@@ -296,8 +297,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
             });
           }
         },
-        onError: (error: Error): void => {
-          showAlertForError(error);
+        onError: (error: Error) => {
+          showAlertForError(normalizeErrorString(error));
         },
       };
 

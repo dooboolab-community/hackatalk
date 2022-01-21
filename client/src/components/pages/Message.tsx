@@ -71,6 +71,7 @@ import {RootStackNavigationProps} from 'components/navigations/RootStackNavigato
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import {nanoid} from 'nanoid/non-secure';
+import {normalizeErrorString} from '../../relay/util';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
@@ -236,8 +237,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
           createMessageUpdater(store, channelId);
         }
       },
-      onError: (error: Error): void => {
-        showAlertForError(error);
+      onError: (error: Error) => {
+        showAlertForError(normalizeErrorString(error));
       },
     });
   };
@@ -320,8 +321,8 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
           onCompleted: () => {
             setIsImageUploading(false);
           },
-          onError: (error: Error): void => {
-            showAlertForError(error);
+          onError: (error: Error) => {
+            showAlertForError(normalizeErrorString(error));
             setIsImageUploading(false);
           },
         });

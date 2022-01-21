@@ -15,6 +15,7 @@ import styled, {css} from '@emotion/native';
 import {Report} from '../../types/graphql';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {showAlertForError} from '../../utils/common';
 import {useMutation} from 'react-relay';
 
@@ -49,8 +50,8 @@ const ReportScreen: FC = () => {
         reportedUserId: userId,
         report: message,
       },
-      onError: (error: Error): void => {
-        showAlertForError(error);
+      onError: (error: Error) => {
+        showAlertForError(normalizeErrorString(error));
       },
       onCompleted: (response: ReportCreateReportMutationResponse) => {
         const {report} = response.createReport as Report;

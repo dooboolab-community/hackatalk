@@ -52,6 +52,7 @@ import SocialSignInButton from './SocialSignInButton';
 import {colors} from '../../../theme';
 import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
+import {normalizeErrorString} from '../../../relay/util';
 import {useAuthContext} from '../../../providers/AuthProvider';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
@@ -204,8 +205,8 @@ const SignIn: FC = () => {
         }
       },
 
-      onError: (error: Error): void => {
-        setErrorPassword(error.message);
+      onError: (error: any) => {
+        setErrorPassword(normalizeErrorString(error));
         setErrorPassword(getString('PASSWORD_INCORRECT'));
       },
     };
@@ -276,8 +277,8 @@ const SignIn: FC = () => {
               });
             }
           },
-          onError: (err: Error) => {
-            showAlertForError(err);
+          onError: (error: any) => {
+            showAlertForError(normalizeErrorString(error));
           },
         };
 

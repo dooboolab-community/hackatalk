@@ -10,8 +10,8 @@ import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
   BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH,
+  PROFILEIMAGE_HEIGHT as PROFILE_IMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH as PROFILE_IMAGE_WIDTH,
 } from '../../utils/const';
 import {
   Button,
@@ -46,6 +46,7 @@ import {Uploadable} from 'relay-runtime';
 import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
 import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import styled from '@emotion/native';
 import {useActionSheet} from '@expo/react-native-action-sheet';
@@ -172,16 +173,16 @@ const Page: FC = () => {
 
         return navigation.replace('VerifyEmail', {email});
       },
-      onError: (error: any): void => {
-        showAlertForError(error);
+      onError: (error) => {
+        showAlertForError(normalizeErrorString(error));
       },
     };
 
     if (profilePath) {
       const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG({
         uri: profilePath,
-        width: PROFILEIMAGE_WIDTH,
-        height: PROFILEIMAGE_HEIGHT,
+        width: PROFILE_IMAGE_WIDTH,
+        height: PROFILE_IMAGE_HEIGHT,
       });
 
       const fileName = resizedImage.uri.split('/').pop() || '';

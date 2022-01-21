@@ -5,6 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 import {Alert, Platform, View} from 'react-native';
 import {Button, useTheme} from 'dooboo-ui';
 import React, {FC, ReactElement, useEffect, useState} from 'react';
+import {UseMutationConfig, useMutation} from 'react-relay';
 import type {
   UserFacebookSignInMutation,
   UserFacebookSignInMutationResponse,
@@ -23,8 +24,8 @@ import {User} from '../../../types/graphql';
 import {colors} from '../../../theme';
 import {css} from '@emotion/native';
 import {getString} from '../../../../STRINGS';
+import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
-import {useMutation} from 'react-relay';
 
 const {facebookAppId, googleWebClientId} = Config;
 
@@ -67,8 +68,8 @@ const SocialSignInButton: FC<Props> = ({
     socialProvider === 'google'
       ? googleDiscovery
       : {
-          authorizationEndpoint: 'https://www.facebook.com/v6.0/dialog/oauth',
-          tokenEndpoint: 'https://graph.facebook.com/v6.0/oauth/access_token',
+          authorizationEndpoint: 'https://www.facebook.com/v10.0/dialog/oauth',
+          tokenEndpoint: 'https://graph.facebook.com/v10.0/oauth/access_token',
         };
 
   const redirectUri = makeRedirectUri(
@@ -118,7 +119,7 @@ const SocialSignInButton: FC<Props> = ({
 
       if (accessToken) {
         if (socialProvider === 'google') {
-          const mutationConfig = {
+          const mutationConfig: UseMutationConfig<UserGoogleSignInMutation> = {
             variables: {accessToken},
             onCompleted: (googleResponse: UserGoogleSignInMutationResponse) => {
               if (googleResponse.signInWithGoogle) {
@@ -131,8 +132,8 @@ const SocialSignInButton: FC<Props> = ({
                 });
               }
             },
-            onError: (error: Error): void => {
-              showAlertForError(error);
+            onError: (error) => {
+              showAlertForError(normalizeErrorString(error));
             },
           };
 
@@ -154,8 +155,8 @@ const SocialSignInButton: FC<Props> = ({
               });
             }
           },
-          onError: (error: Error): void => {
-            showAlertForError(error);
+          onError: (error: any) => {
+            showAlertForError(normalizeErrorString(error));
           },
         };
 

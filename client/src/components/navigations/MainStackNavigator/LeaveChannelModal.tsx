@@ -13,6 +13,7 @@ import {RecordSourceSelectorProxy} from 'relay-runtime';
 import {deleteChannelAndUpdate} from '../../../relay/updaters';
 import {getString} from '../../../../STRINGS';
 import {leaveChannel} from '../../../relay/queries/Channel';
+import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
@@ -91,10 +92,10 @@ const ChannelModalContent: FC<ModalContentProps> = ({
       updater: (store: RecordSourceSelectorProxy<{}>) => {
         deleteChannelAndUpdate(store, channelId);
       },
-      onError: (error: Error): void => {
-        showAlertForError(error);
+      onError: (error: Error) => {
+        showAlertForError(normalizeErrorString(error));
       },
-      onCompleted: (): void => {
+      onCompleted: () => {
         setLeaveChannelMessage(true);
         hideModal();
       },

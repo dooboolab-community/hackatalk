@@ -27,6 +27,7 @@ import {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import {showAlertForError} from '../../utils/common';
 import {singleUpload} from '../../relay/queries/Upload';
@@ -191,8 +192,8 @@ const Screen: FC = () => {
 
               setIsUploading(false);
             },
-            onError: (err) => {
-              Alert.alert(getString('ERROR'), err.message);
+            onError: (error) => {
+              showAlertForError(normalizeErrorString(error));
             },
           });
         } catch (err: any) {
@@ -261,10 +262,10 @@ const Screen: FC = () => {
           photoURL: profilePath,
         },
       },
-      onError: (error: Error): void => {
-        showAlertForError(error);
+      onError: (error: any) => {
+        showAlertForError(normalizeErrorString(error));
       },
-      onCompleted: (): void => {
+      onCompleted: () => {
         showUpdateProfileToast();
       },
     };
