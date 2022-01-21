@@ -10,7 +10,8 @@ export const relayTransactionLogger =
 
 export const normalizeErrorString = (error: any): string => {
   let str: string = error.toString();
-  str = str.split(':')?.[2].split('\n')?.[1] || '';
+  str = str.split(':')?.[2] || '';
+  str = str.split('\n')?.[1] || '';
 
   return str;
 };
