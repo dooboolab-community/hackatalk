@@ -1,5 +1,5 @@
 import {AuthType, Gender} from '../models';
-import {ErrorEmailForUserExists, ErrorString} from '../utils/error';
+import {ErrorEmailUserExists, ErrorString} from '../utils/error';
 
 import type {Context} from '../context';
 import {NexusGenRootTypes} from '../generated/nexus';
@@ -54,7 +54,6 @@ export class UserService {
     ctx: Context,
   ): Promise<void> {
     if (socialUser.email) {
-      // TODO => 'findMany' could be replaced with 'findOne' when Prisma supports relation filtering in it.
       const emailUser = await ctx.prisma.user.findFirst({
         where: {
           email: socialUser.email,
@@ -67,7 +66,9 @@ export class UserService {
       });
 
       if (emailUser) {
-        throw ErrorEmailForUserExists(ErrorString.EmailForUserExists);
+        throw ErrorEmailUserExists(
+          ctx.request.req.t(ErrorString.EmailUserExists),
+        );
       }
     }
   }
@@ -76,7 +77,7 @@ export class UserService {
     socialUser: SocialUserInput,
     ctx: Context,
   ): Promise<NexusGenRootTypes['User']> {
-    const user = await ctx.prisma.user.findFirst({
+    let user = await ctx.prisma.user.findFirst({
       where: {
         profile: {
           socialId: socialUser.socialId,

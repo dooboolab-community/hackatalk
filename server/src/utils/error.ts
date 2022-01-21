@@ -2,14 +2,13 @@ import {ApolloError} from 'apollo-server-core';
 
 // eslint-disable-next-line no-shadow
 export enum ErrorString {
-  UserNotExists = 'User does not exists',
-  UserNotSignedIn = 'User is not signed in',
-  PasswordIncorrect = 'Password is not correct',
-  EmailForUserExists = 'Email for current user is already signed up.',
-  EmailSentFailed = 'Email sent failed',
-  EmailNotValid = 'Not a valid email address',
-  UrlNotValid = 'Url is not a valid url. It should start with http.',
-  FirstLastNotSupported = 'Passing both `first` and `last` is not supported.',
+  UserNotExists = 'USER_NOT_EXISTS',
+  UserNotSignedIn = 'USER_NOT_SIGNED_IN',
+  PasswordIncorrect = 'PASSWORD_INCORRECT',
+  EmailUserExists = 'EMAIL_USER_EXISTS',
+  EmailSentFailed = 'EMAIL_SENT_FAILED',
+  EmailNotValid = 'EMAIL_NOT_VALID',
+  UrlNotValid = 'URL_NOT_VALID',
 }
 
 export const ErrorEmailNotVerified = (message: string): ApolloError =>
@@ -37,7 +36,7 @@ export const ErrorEmailNotValid = (message: string): ApolloError =>
     parameter: 'email',
   });
 
-export const ErrorEmailForUserExists = (message: string): ApolloError =>
+export const ErrorEmailUserExists = (message: string): ApolloError =>
   new ApolloError(message, 'EMAIL_FOR_USER_EXISTS', {
     parameter: 'email',
   });

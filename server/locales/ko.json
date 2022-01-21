@@ -19,5 +19,12 @@
   "PHOTO": "사진",
   "FILE": "파일",
   "VIDEO": "비디오",
-  "USER_REPORTED": "사용자 신고가 접수되었습니다."
+  "USER_REPORTED": "사용자 신고가 접수되었습니다",
+  "USER_NOT_EXISTS": "존재하지 않는 유저입니다",
+  "USER_NOT_SIGNED_IN": "가입되지 않은 유저입니다",
+  "PASSWORD_INCORRECT": "잘못된 비밀번호입니다",
+  "EMAIL_USER_EXISTS": "이미 가입된 이메일 주소입니다",
+  "EMAIL_SENT_FAILED": "이메일을 보내지 못했습니다",
+  "EMAIL_NOT_VALID": "올바른 이메일 주소가 아닙니다",
+  "URL_NOT_VALID": "올바른 URL 주소가 아닙니다"
 }

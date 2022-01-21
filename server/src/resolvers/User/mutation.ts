@@ -303,7 +303,7 @@ export const findPassword = mutationField('findPassword', {
 
   resolve: async (_parent, {email}, ctx) => {
     if (!email || !validateEmail(email)) {
-      throw ErrorEmailNotValid(ErrorString.EmailNotValid);
+      throw ErrorEmailNotValid(ctx.request.req.t(ErrorString.EmailNotValid));
     }
 
     const user = await ctx.prisma.user.findUnique({
@@ -313,7 +313,7 @@ export const findPassword = mutationField('findPassword', {
     });
 
     if (!user) {
-      throw ErrorUserNotExists(ErrorString.UserNotExists);
+      throw ErrorUserNotExists(ctx.request.req.t(ErrorString.UserNotExists));
     }
 
     const verificationToken = sign(
@@ -338,7 +338,9 @@ export const findPassword = mutationField('findPassword', {
 
       return true;
     } catch (err: any) {
-      throw ErrorEmailSentFailed(ErrorString.EmailSentFailed);
+      throw ErrorEmailSentFailed(
+        ctx.request.req.t(ErrorString.EmailSentFailed),
+      );
     }
   },
 });
