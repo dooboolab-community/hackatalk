@@ -1,31 +1,18 @@
 /* eslint-disable no-shadow */
-import {GraphQLClient, request} from 'graphql-request';
 import {
   findPasswordMutation,
-  meQuery,
   signInEmailMutation,
   signUpMutation,
-  updateProfileMutation,
-  userSignedInSubscription,
-  userUpdatedSubscription,
 } from '../queries';
 
 import {ErrorString} from '../../src/utils/error';
 import {getTestUtils} from '../testUtils';
+import i18next from 'i18next';
 
 const userVariables = {
   user: {
     name: 'dooboo1',
     email: 'dooboo@dooboolab.com',
-    password: 'password',
-    gender: 'male',
-  },
-};
-
-const userVariables2 = {
-  user: {
-    name: 'clark',
-    email: 'clark@dooboolab.com',
     password: 'password',
     gender: 'male',
   },
@@ -75,7 +62,11 @@ describe('Resolver - User', () => {
     } catch (e) {
       const response = e.response;
 
-      expect(response.errors[0].message).toEqual(ErrorString.UserNotExists);
+      console.log(e.request);
+
+      expect(response.errors[0].message).toEqual(
+        i18next.t(ErrorString.UserNotExists),
+      );
     }
 
     const variableNotValid = {
@@ -87,7 +78,9 @@ describe('Resolver - User', () => {
     } catch (e) {
       const response = e.response;
 
-      expect(response.errors[0].message).toEqual(ErrorString.EmailNotValid);
+      expect(response.errors[0].message).toEqual(
+        i18next.t(ErrorString.EmailNotValid),
+      );
     }
 
     const variableValidUser = {
@@ -99,7 +92,9 @@ describe('Resolver - User', () => {
     } catch (e) {
       const response = e.response;
 
-      expect(response.errors[0].message).toEqual(ErrorString.EmailSentFailed);
+      expect(response.errors[0].message).toEqual(
+        i18next.t(ErrorString.EmailSentFailed),
+      );
     }
   });
 

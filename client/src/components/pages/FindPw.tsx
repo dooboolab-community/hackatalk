@@ -11,6 +11,7 @@ import {Alert} from 'react-native';
 import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
@@ -44,17 +45,7 @@ const Page: FC = () => {
     const mutationConfig = {
       variables: {email},
       onError: (error: Error) => {
-        let errorMsg: string = error.message.toLowerCase();
-
-        if (errorMsg.includes('not a valid email address')) {
-          errorMsg = getString('EMAIL_FORMAT_NOT_VALID');
-        } else if (errorMsg.includes('user does not exists')) {
-          errorMsg = getString('EMAIL_USER_NOT_EXISTS');
-        } else {
-          errorMsg = getString('EMAIL_SENT_FAILED');
-        }
-
-        showAlertForError(errorMsg);
+        showAlertForError(normalizeErrorString(error));
       },
       onCompleted: (response: UserFindPwMutationResponse) => {
         const result = response.findPassword;

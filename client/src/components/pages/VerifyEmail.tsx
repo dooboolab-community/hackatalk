@@ -10,6 +10,7 @@ import {Alert} from 'react-native';
 import {AuthStackParamList} from '../navigations/AuthStackNavigator';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
@@ -62,8 +63,8 @@ const Page: FC = () => {
         getString('RESENT_VERIFICATION_EMAIL_FAILED'),
       );
     },
-    onError: (error: any): void => {
-      showAlertForError(error);
+    onError: (error: any) => {
+      showAlertForError(normalizeErrorString(error));
     },
   };
 

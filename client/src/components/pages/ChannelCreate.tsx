@@ -42,6 +42,7 @@ import UserListItem from '../uis/UserListItem';
 import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import produce from 'immer';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
@@ -337,8 +338,8 @@ const ChannelCreate: FC = () => {
             channelId: channel.id,
           });
         },
-        onError: (error: Error): void => {
-          showAlertForError(error);
+        onError: (error: Error) => {
+          showAlertForError(normalizeErrorString(error));
         },
       };
 

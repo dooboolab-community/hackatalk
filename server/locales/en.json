@@ -19,5 +19,12 @@
   "PHOTO": "Photo",
   "FILE": "File",
   "VIDEO": "Video",
-  "USER_REPORTED": "User has been reported"
+  "USER_REPORTED": "Reported user successfully",
+  "USER_NOT_EXISTS": "User does not exists",
+  "USER_NOT_SIGNED_IN": "User is not signed in",
+  "PASSWORD_INCORRECT": "Password is incorrect",
+  "EMAIL_USER_EXISTS": "User with email already exists with different provider",
+  "EMAIL_SENT_FAILED": "Could not send email",
+  "EMAIL_NOT_VALID": "Not a valid email address",
+  "URL_NOT_VALID": "Not a valid url"
 }

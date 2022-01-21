@@ -17,6 +17,7 @@ import styled, {css} from '@emotion/native';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
+import {normalizeErrorString} from '../../relay/util';
 import {showAlertForError} from '../../utils/common';
 import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
@@ -63,8 +64,8 @@ const ChangePw: FC = () => {
         password: currentPw,
         newPassword: newPw,
       },
-      onError: (error: Error): void => {
-        showAlertForError(error);
+      onError: (error: Error) => {
+        showAlertForError(normalizeErrorString(error));
       },
       onCompleted: (response: UserChangeEmailPasswordMutationResponse) => {
         const resultBool = response.changeEmailPassword;
