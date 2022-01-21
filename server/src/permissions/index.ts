@@ -25,6 +25,7 @@ export const permissions = shield(
     },
   },
   {
-    allowExternalErrors: process.env.NODE_ENV !== 'production',
+    allowExternalErrors: true,
+    // debug: process.env.NODE_ENV !== 'production',
   },
 );

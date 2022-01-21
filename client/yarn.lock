@@ -4433,10 +4433,10 @@ babel-plugin-react-native-web@~0.17.1:
   resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.17.5.tgz#4bce51a20d21839f20506ef184bd5743a2c6d067"
   integrity sha512-UWl0E9FGYVr5Gj7lbVc4DFy8pTgc6wIXBa0rDvPGxx3OmcKwcdvCfDn9mLuh7JesYfh+wLjp01fwPplMus7IPw==
 
-babel-plugin-relay@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-13.0.0.tgz#352944bd67c6dc03ae99f1ebe1fc4d7f660f8d3d"
-  integrity sha512-i8qh7aFQrR6B6d75VeXe7H02Aq9LqXDGnamy1Pwiuj7cwq6Sbc8fhNh364CQPBQhA9oGMWppbIDLKmZi28hkPg==
+babel-plugin-relay@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-relay/-/babel-plugin-relay-13.0.1.tgz#d62f27a12cc8f6b1fc77a4e5d22fb52e1415d3a1"
+  integrity sha512-iiNjcfDDeoTfqNbb3e0uZvfcFxf0BK1q7VY78PrMCDZCONLE2Jsa5gLt0Gm2r84rv4mt+iEWi+oU+UF5CfcsXg==
   dependencies:
     babel-plugin-macros "^2.0.0"
     cosmiconfig "^5.0.5"
@@ -7001,6 +7001,17 @@ expo-asset@~8.4.5:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
+expo-asset@~8.4.6:
+  version "8.4.6"
+  resolved "https://registry.yarnpkg.com/expo-asset/-/expo-asset-8.4.6.tgz#1c40e9badac66dbd3d2be2810711937e5b9b09bd"
+  integrity sha512-Kpzcmmf1lceHnZkAdJOvq7l7SU/hCL59vAj2xUZS66U6lFkUf7LNEA/NzILA56loCd4cka5ShYlWs+BMchyFDQ==
+  dependencies:
+    blueimp-md5 "^2.10.0"
+    invariant "^2.2.4"
+    md5-file "^3.2.3"
+    path-browserify "^1.0.0"
+    url-parse "^1.4.4"
+
 expo-auth-session@~3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-3.5.0.tgz#ebb4c8263b29c207ff2db2f8a7e315ed797f4a41"
@@ -7024,6 +7035,14 @@ expo-constants@~13.0.0:
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.0.0.tgz#e167b0e4d064029e53a0bc89c8cffcb7cb8f2a0a"
   integrity sha512-DwElzs1k6KljlZln/X2O9b5K4bXlDk8nzF5nzSLgI+Ibg/xUoIL5QKM41Y9RDJfTzlDlV7nmeS/Xar+nP5KjMA==
+  dependencies:
+    "@expo/config" "^6.0.6"
+    uuid "^3.3.2"
+
+expo-constants@~13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.0.1.tgz#fda7e0908f4d66f73f706cc8446148efe6767dd9"
+  integrity sha512-48rhXCZMJGVx/v4DEd9PqTY6V/xLgtWHBy8nos27QIpYCyiC27I3QUQEUI1T3MXUwBsIR4LLJuwnD/4IfftrBw==
   dependencies:
     "@expo/config" "^6.0.6"
     uuid "^3.3.2"
@@ -7205,10 +7224,10 @@ expo-updates-interface@~0.5.0:
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-0.5.0.tgz#30b05b9e190b3e2662d7cc26cd84d305d7ab4217"
   integrity sha512-3Yhip5LQ6x1nQ/2Xm/uP3Oeann7YkaBwsdUpxbcMtn2Ayucuu9U7r9ltwzBFxC4RWebfhXGJZ5+gx85y0leGXQ==
 
-expo-updates@~0.11.3:
-  version "0.11.3"
-  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.11.3.tgz#5dcd27ea7de47b6b222c525541a2e0dc91d6191e"
-  integrity sha512-W8oXaH0MKaH5ZLszupnm904A4epBjgvjPEfuIjy3JybTU+JC8319gqsOZ7nWBxZZck67utxHAlyJ9Ks/CcqFmA==
+expo-updates@~0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.11.5.tgz#a62349a954c97032646182092e6d3df480e3a7e3"
+  integrity sha512-mG6IMlwg+OSnZFZo8U4pk72lDEbTppNjCnCKJdNtTLz0qRoGW8jcSjmNg6Se5uOHe2DAV/LMUR0t/m7hnoaOfQ==
   dependencies:
     "@expo/config" "^6.0.6"
     "@expo/config-plugins" "^4.0.2"
@@ -13165,16 +13184,16 @@ react-refresh@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
 
-react-relay@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-13.0.0.tgz#82e240ebeff9700dcd7c8f422019e66840b38c1f"
-  integrity sha512-np53H9dl9ozDOJsxkYj/g3dhlsJjkTZ6BULgZ28t69o9xHMrlJVY0sronzfTBpv9C2wpJD6Mlioj4jA1wfncTg==
+react-relay@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-13.0.1.tgz#d7338d9427c352af905c7bb7d5973e70081292c1"
+  integrity sha512-Dv1vFP40+OFr1hKWs/NVlo2iTeapkqo6nUJUL1I9jytpNfg5XgjgXh+fQdfIMLM610+W+1Dxn6yZSEnnFpVQ0A==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "13.0.0"
+    relay-runtime "13.0.1"
 
 react-responsive@^8.2.0:
   version "8.2.0"
@@ -13431,10 +13450,10 @@ relay-compiler@12.0.0:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-relay-compiler@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.0.tgz#947d32425f4de90bb1e609f952de62814cea61f3"
-  integrity sha512-LnVkUWrpETr0DH+rTyO3kplrPOdFcEAqCvlatb1ChvcoMHPrDriJH7NFIIZqcPpIAFi2jWvxyvTpbCSm370Q1Q==
+relay-compiler@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-13.0.1.tgz#09c713647aa7e1d8cf3de9f7fb4ee6a76b32cf26"
+  integrity sha512-C/qJ7IdfZ140b9JaNpuAP6WhV/Odt/tIq4sUZoTwsaOlhs+1Zu3fvIOoWKTnZT5PC6krRuw1hD7GSX6/paVpTQ==
 
 relay-config@^12.0.1:
   version "12.0.1"
@@ -13452,24 +13471,24 @@ relay-runtime@12.0.0:
     fbjs "^3.0.0"
     invariant "^2.2.4"
 
-relay-runtime@13.0.0, relay-runtime@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.0.0.tgz#a00a419d9e86dbce255c4c73706924b2913f8bbc"
-  integrity sha512-CMUk5DKXdQBj31Av2fj4AgSZ0UkTqKLArt5UImxRg0Ff7TJ46UAYh2j6omZEUTN9FJqjwbwoGdpqOdaCU9eS2A==
+relay-runtime@13.0.1, relay-runtime@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-13.0.1.tgz#7e59a07c3b4e8c58d04bc94f6f978822d4128ffb"
+  integrity sha512-n/+J8PFfLFPVUcz9OG/z2i+adnfk0INwlTkVTw0V6KJe9NI9plc5eRCJwzzwspT4pdCkis5Lcjzvzp4H+0zn8g==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
 
-relay-test-utils@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-13.0.0.tgz#c95d4ccf8d9ee85be11742a08a41224290cd59ab"
-  integrity sha512-xeJU7IwcC4l0twxGPIb8dHhbOfMRtuUSjQN+svj6+m75OAaxFXa4xCZHooaq6JtJ8iOpRtbHZsJO4L2B/fF5Zw==
+relay-test-utils@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-13.0.1.tgz#d78ce1251baf03e33cd890f35419614ac9d34537"
+  integrity sha512-0Nq0H3jCiv79cr0vEANC+F+c7ACleu/M0dqVofT3doTEQPf9plhmqkzRbNsddGsj/RyguDqIf5x4RJHmRCh/Jg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
-    relay-runtime "13.0.0"
+    relay-runtime "13.0.1"
 
 remedial@^1.0.7:
   version "1.0.8"
