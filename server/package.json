@@ -4,7 +4,8 @@
   "repository": "https://github.com/dooboolab/hackatalk/server",
   "license": "MIT",
   "scripts": {
-    "start": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
+    "start": "dotenv -e ./dotenv/.env -- ts-node --transpile-only --files src/server.ts",
+    "dev": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
     "prod": "node dist/src/server",
     "clean": "rm -rf dist",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx src tests",
@@ -35,7 +36,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.8.0",
-    "@prisma/client": "3.7.0",
+    "@prisma/client": "3.8.1",
     "@sendgrid/mail": "^7.6.0",
     "apollo-server": "^3.6.2",
     "axios": "^0.25.0",
@@ -96,7 +97,7 @@
     "jest": "27.4.7",
     "node-fetch": "^3.2.0",
     "prettier": "^2.5.1",
-    "prisma": "^3.7.0",
+    "prisma": "^3.8.1",
     "ts-jest": "^27.1.3",
     "ts-node": "10.4.0",
     "ts-node-dev": "^1.1.8",
