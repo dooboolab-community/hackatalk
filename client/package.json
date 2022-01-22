@@ -72,7 +72,7 @@
     "immer": "^9.0.7",
     "mime": "^3.0.0",
     "moment": "^2.29.1",
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.1.31",
     "react": "17.0.2",
     "react-native": "^0.64.3",
     "react-native-appearance": "~0.3.4",
