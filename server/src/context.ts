@@ -69,10 +69,18 @@ const createPrismaClient = (): PrismaClient => {
 
       if (params.action === 'findUnique') {
         params.action = 'findFirst';
+        if (!params.args) {
+          params.args = {where: {}};
+        }
+
         params.args.where.deletedAt = null;
       }
 
       if (params.action === 'findMany' || params.action === 'findFirst') {
+        if (!params.args) {
+          params.args = {where: {}};
+        }
+
         if (params.args.where !== undefined) {
           if (params.args.where.deletedAt === undefined) {
             params.args.where.deletedAt = null;
@@ -121,7 +129,7 @@ export function createContext(params: CreateContextParams): Context {
 export const runSubscriptionServer = (
   httpServer: Server,
   apollo: ApolloServer,
-): void => {
+): SubscriptionServer => {
   const subscriptionServer = SubscriptionServer.create(
     {
       schema: schemaWithMiddleware,
@@ -137,7 +145,7 @@ export const runSubscriptionServer = (
           pubsub,
           appSecret: JWT_SECRET,
           appSecretEtc: JWT_SECRET_ETC,
-          userId: getUserId(connectionParams?.Authorization),
+          userId: getUserId(connectionParams?.authorization),
         };
       },
     },
@@ -150,4 +158,6 @@ export const runSubscriptionServer = (
   ['SIGINT', 'SIGTERM'].forEach((signal) => {
     process.on(signal, () => subscriptionServer.close());
   });
+
+  return subscriptionServer;
 };

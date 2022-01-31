@@ -3,6 +3,7 @@ import {createContext, runSubscriptionServer} from './context';
 
 import {ApolloServer} from 'apollo-server-express';
 import SendGridMail from '@sendgrid/mail';
+import {SubscriptionServer} from 'subscriptions-transport-ws';
 import {applyMiddleware} from 'graphql-middleware';
 import {assert} from './utils/assert';
 import {createApp} from './app';
@@ -18,11 +19,26 @@ export const schemaWithMiddleware =
 assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
+let subscriptionServer: SubscriptionServer;
+
 const createApolloServer = (): ApolloServer =>
   new ApolloServer({
     schema: schemaWithMiddleware,
     context: createContext,
     introspection: process.env.NODE_ENV !== 'production',
+    plugins: [
+      {
+        async serverWillStart() {
+          return {
+            async drainServer() {
+              if (subscriptionServer) {
+                subscriptionServer.close();
+              }
+            },
+          };
+        },
+      },
+    ],
   });
 
 const initializeApolloServer = (
@@ -32,7 +48,7 @@ const initializeApolloServer = (
 ): (() => void) => {
   apollo.applyMiddleware({app});
 
-  runSubscriptionServer(httpServer, apollo);
+  subscriptionServer = runSubscriptionServer(httpServer, apollo);
 
   return (): void => {
     process.stdout.write(
