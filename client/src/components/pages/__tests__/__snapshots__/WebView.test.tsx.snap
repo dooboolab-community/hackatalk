@@ -71,7 +71,6 @@ exports[`[WebView] screen renders without crashing 1`] = `
             undefined,
           ]
         }
-        textInteractionEnabled={true}
         useSharedProcessPool={true}
       />
     </View>
