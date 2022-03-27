@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d7f133f96f92d2e80d8d6904e0011d92>>
+ * @generated SignedSource<<390ffdb098b8eda4f6f863af138940d8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,7 +14,6 @@ export type NotificationCreateNotificationMutation$variables = {
   device?: string | null;
   os?: string | null;
 };
-export type NotificationCreateNotificationMutationVariables = NotificationCreateNotificationMutation$variables;
 export type NotificationCreateNotificationMutation$data = {
   readonly createNotification: {
     readonly id: number;
@@ -23,9 +22,8 @@ export type NotificationCreateNotificationMutation$data = {
     readonly createdAt: any | null;
   } | null;
 };
-export type NotificationCreateNotificationMutationResponse = NotificationCreateNotificationMutation$data;
 export type NotificationCreateNotificationMutation = {
-  variables: NotificationCreateNotificationMutationVariables;
+  variables: NotificationCreateNotificationMutation$variables;
   response: NotificationCreateNotificationMutation$data;
 };
 

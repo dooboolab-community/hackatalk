@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<42ade1be59926b9a374439babf8d3ed1>>
+ * @generated SignedSource<<4738b9d83f0886915b25dd04fba46c45>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type ChannelQuery$variables = {
   channelId: string;
 };
-export type ChannelQueryVariables = ChannelQuery$variables;
 export type ChannelQuery$data = {
   readonly channel: {
     readonly id: string;
@@ -27,9 +26,8 @@ export type ChannelQuery$data = {
     }> | null;
   } | null;
 };
-export type ChannelQueryResponse = ChannelQuery$data;
 export type ChannelQuery = {
-  variables: ChannelQueryVariables;
+  variables: ChannelQuery$variables;
   response: ChannelQuery$data;
 };
 

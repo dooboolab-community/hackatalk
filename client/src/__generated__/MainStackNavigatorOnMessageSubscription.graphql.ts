@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<041faf8268cb3b27784f551645af906e>>
+ * @generated SignedSource<<9809aeb0abd5e5d512bcde5212d40da3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,6 @@ import { FragmentRefs } from "relay-runtime";
 export type MainStackNavigatorOnMessageSubscription$variables = {
   deviceKey: string;
 };
-export type MainStackNavigatorOnMessageSubscriptionVariables = MainStackNavigatorOnMessageSubscription$variables;
 export type MainStackNavigatorOnMessageSubscription$data = {
   readonly onMessage: {
     readonly id: string;
@@ -47,9 +46,8 @@ export type MainStackNavigatorOnMessageSubscription$data = {
     readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
   } | null;
 };
-export type MainStackNavigatorOnMessageSubscriptionResponse = MainStackNavigatorOnMessageSubscription$data;
 export type MainStackNavigatorOnMessageSubscription = {
-  variables: MainStackNavigatorOnMessageSubscriptionVariables;
+  variables: MainStackNavigatorOnMessageSubscription$variables;
   response: MainStackNavigatorOnMessageSubscription$data;
 };
 
@@ -318,9 +316,7 @@ return {
   "params": {
     "cacheID": "c99642bda9c3084912cc3ea0280cc12b",
     "id": null,
-    "metadata": {
-      "subscriptionName": "onMessage"
-    },
+    "metadata": {},
     "name": "MainStackNavigatorOnMessageSubscription",
     "operationKind": "subscription",
     "text": "subscription MainStackNavigatorOnMessageSubscription(\n  $deviceKey: String!\n) {\n  onMessage(deviceKey: $deviceKey) {\n    id\n    imageUrls\n    channel {\n      id\n      lastMessage {\n        id\n        messageType\n        text\n        imageUrls\n        fileUrls\n        createdAt\n      }\n      memberships(excludeMe: false) {\n        user {\n          id\n          name\n          nickname\n          thumbURL\n          photoURL\n        }\n      }\n    }\n    sender {\n      id\n      name\n      nickname\n    }\n    createdAt\n    ...MessageListItem_message\n  }\n}\n\nfragment MessageListItem_message on Message {\n  id\n  messageType\n  text\n  imageUrls\n  fileUrls\n  createdAt\n  updatedAt\n  sender {\n    id\n    name\n    nickname\n    thumbURL\n    photoURL\n    ...ProfileModal_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n"

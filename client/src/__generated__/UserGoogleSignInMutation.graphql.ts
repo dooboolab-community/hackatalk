@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b603f29b58c707eecdfe4964784cea25>>
+ * @generated SignedSource<<20129b09cf70416006065d6159044c4d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserGoogleSignInMutation$variables = {
   accessToken: string;
 };
-export type UserGoogleSignInMutationVariables = UserGoogleSignInMutation$variables;
 export type UserGoogleSignInMutation$data = {
   readonly signInWithGoogle: {
     readonly token: string;
@@ -28,9 +27,8 @@ export type UserGoogleSignInMutation$data = {
     };
   };
 };
-export type UserGoogleSignInMutationResponse = UserGoogleSignInMutation$data;
 export type UserGoogleSignInMutation = {
-  variables: UserGoogleSignInMutationVariables;
+  variables: UserGoogleSignInMutation$variables;
   response: UserGoogleSignInMutation$data;
 };
 

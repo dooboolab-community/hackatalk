@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ffc3e860a3906598fcfba9b4581d91db>>
+ * @generated SignedSource<<a0d6d30b119ef76d61d34cb9c9d9d48f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,11 @@ export type ChannelCreateFriendsPaginationQuery$variables = {
   includeMe?: boolean | null;
   searchText?: string | null;
 };
-export type ChannelCreateFriendsPaginationQueryVariables = ChannelCreateFriendsPaginationQuery$variables;
 export type ChannelCreateFriendsPaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ChannelCreate_friends">;
 };
-export type ChannelCreateFriendsPaginationQueryResponse = ChannelCreateFriendsPaginationQuery$data;
 export type ChannelCreateFriendsPaginationQuery = {
-  variables: ChannelCreateFriendsPaginationQueryVariables;
+  variables: ChannelCreateFriendsPaginationQuery$variables;
   response: ChannelCreateFriendsPaginationQuery$data;
 };
 

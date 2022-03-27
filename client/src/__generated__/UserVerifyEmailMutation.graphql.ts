@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1613a389ff68b58513491721b24954e8>>
+ * @generated SignedSource<<5acf0878310c84ec3bf8cb91a4f81558>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,11 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserVerifyEmailMutation$variables = {
   email: string;
 };
-export type UserVerifyEmailMutationVariables = UserVerifyEmailMutation$variables;
 export type UserVerifyEmailMutation$data = {
   readonly sendVerification: boolean;
 };
-export type UserVerifyEmailMutationResponse = UserVerifyEmailMutation$data;
 export type UserVerifyEmailMutation = {
-  variables: UserVerifyEmailMutationVariables;
+  variables: UserVerifyEmailMutation$variables;
   response: UserVerifyEmailMutation$data;
 };
 

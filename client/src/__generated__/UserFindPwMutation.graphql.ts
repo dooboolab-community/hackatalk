@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2533bbb2e7267f0038d45b04e1479113>>
+ * @generated SignedSource<<b566f448699f209cd17b16f0a12567ab>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,11 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserFindPwMutation$variables = {
   email: string;
 };
-export type UserFindPwMutationVariables = UserFindPwMutation$variables;
 export type UserFindPwMutation$data = {
   readonly findPassword: boolean;
 };
-export type UserFindPwMutationResponse = UserFindPwMutation$data;
 export type UserFindPwMutation = {
-  variables: UserFindPwMutationVariables;
+  variables: UserFindPwMutation$variables;
   response: UserFindPwMutation$data;
 };
 

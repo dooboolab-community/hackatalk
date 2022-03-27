@@ -7,7 +7,7 @@ import {
 import React, {FC, useState} from 'react';
 import type {
   ReportCreateReportMutation,
-  ReportCreateReportMutationResponse,
+  ReportCreateReportMutation$data,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import styled, {css} from '@emotion/native';
@@ -53,7 +53,7 @@ const ReportScreen: FC = () => {
       onError: (error: Error) => {
         showAlertForError(normalizeErrorString(error));
       },
-      onCompleted: (response: ReportCreateReportMutationResponse) => {
+      onCompleted: (response: ReportCreateReportMutation$data) => {
         const {report} = response.createReport as Report;
 
         setMessage('');

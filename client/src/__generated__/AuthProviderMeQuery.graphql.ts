@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<819823216ef71edd8eae785d87544801>>
+ * @generated SignedSource<<56a5bfbce315090811952b9bcb3af0ad>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,6 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 export type AuthProviderMeQuery$variables = {};
-export type AuthProviderMeQueryVariables = AuthProviderMeQuery$variables;
 export type AuthProviderMeQuery$data = {
   readonly me: {
     readonly id: string;
@@ -22,9 +21,8 @@ export type AuthProviderMeQuery$data = {
     } | null;
   } | null;
 };
-export type AuthProviderMeQueryResponse = AuthProviderMeQuery$data;
 export type AuthProviderMeQuery = {
-  variables: AuthProviderMeQueryVariables;
+  variables: AuthProviderMeQuery$variables;
   response: AuthProviderMeQuery$data;
 };
 

@@ -2,7 +2,7 @@ import {Button, EditText, useTheme} from 'dooboo-ui';
 import React, {FC, useState} from 'react';
 import type {
   UserFindPwMutation,
-  UserFindPwMutationResponse,
+  UserFindPwMutation$data,
 } from '../../__generated__/UserFindPwMutation.graphql';
 import {showAlertForError, validateEmail} from '../../utils/common';
 import styled, {css} from '@emotion/native';
@@ -47,7 +47,7 @@ const Page: FC = () => {
       onError: (error: Error) => {
         showAlertForError(normalizeErrorString(error));
       },
-      onCompleted: (response: UserFindPwMutationResponse) => {
+      onCompleted: (response: UserFindPwMutation$data) => {
         const result = response.findPassword;
 
         if (result) {

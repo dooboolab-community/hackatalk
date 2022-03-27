@@ -8,11 +8,11 @@ import React, {FC, ReactElement, useEffect, useState} from 'react';
 import {UseMutationConfig, useMutation} from 'react-relay';
 import type {
   UserFacebookSignInMutation,
-  UserFacebookSignInMutationResponse,
+  UserFacebookSignInMutation$data,
 } from '../../../__generated__/UserFacebookSignInMutation.graphql';
 import type {
   UserGoogleSignInMutation,
-  UserGoogleSignInMutationResponse,
+  UserGoogleSignInMutation$data,
 } from '../../../__generated__/UserGoogleSignInMutation.graphql';
 import {
   signInWithFacebook,
@@ -121,7 +121,7 @@ const SocialSignInButton: FC<Props> = ({
         if (socialProvider === 'google') {
           const mutationConfig: UseMutationConfig<UserGoogleSignInMutation> = {
             variables: {accessToken},
-            onCompleted: (googleResponse: UserGoogleSignInMutationResponse) => {
+            onCompleted: (googleResponse: UserGoogleSignInMutation$data) => {
               if (googleResponse.signInWithGoogle) {
                 const {user, token} = googleResponse.signInWithGoogle;
 
@@ -144,7 +144,7 @@ const SocialSignInButton: FC<Props> = ({
 
         const mutationConfig = {
           variables: {accessToken},
-          onCompleted: (fbResponse: UserFacebookSignInMutationResponse) => {
+          onCompleted: (fbResponse: UserFacebookSignInMutation$data) => {
             if (fbResponse.signInWithFacebook) {
               const {user, token} = fbResponse.signInWithFacebook;
 

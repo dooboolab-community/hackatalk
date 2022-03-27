@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cd60131c10dff666d630b10ff78a4e84>>
+ * @generated SignedSource<<fe3aea47be34f19127b01dd2b724eae2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,11 @@ export type MessagesQuery$variables = {
   channelId: string;
   searchText?: string | null;
 };
-export type MessagesQueryVariables = MessagesQuery$variables;
 export type MessagesQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MessageComponent_message">;
 };
-export type MessagesQueryResponse = MessagesQuery$data;
 export type MessagesQuery = {
-  variables: MessagesQueryVariables;
+  variables: MessagesQuery$variables;
   response: MessagesQuery$data;
 };
 

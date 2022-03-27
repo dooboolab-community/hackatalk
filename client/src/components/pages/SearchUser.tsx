@@ -15,8 +15,8 @@ import React, {
 } from 'react';
 import type {
   UserUsersPaginationQuery,
-  UserUsersPaginationQueryResponse,
-  UserUsersPaginationQueryVariables,
+  UserUsersPaginationQuery$data,
+  UserUsersPaginationQuery$variables,
 } from '../../__generated__/UserUsersPaginationQuery.graphql';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 
@@ -76,7 +76,7 @@ const usersFragment = graphql`
 type UserProps = {
   scrollY: Animated.Value;
   user: SearchUserComponent_user$key;
-  searchArgs: UserUsersPaginationQueryVariables;
+  searchArgs: UserUsersPaginationQuery$variables;
 };
 
 const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
@@ -147,11 +147,11 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
 
 interface ContentProps {
   scrollY: Animated.Value;
-  searchArgs: UserUsersPaginationQueryVariables;
+  searchArgs: UserUsersPaginationQuery$variables;
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, scrollY}) => {
-  const data: UserUsersPaginationQueryResponse =
+  const data: UserUsersPaginationQuery$data =
     useLazyLoadQuery<UserUsersPaginationQuery>(usersQuery, searchArgs, {
       fetchPolicy: 'store-or-network',
     });
@@ -184,7 +184,7 @@ const Screen: FC = () => {
     });
   }, [navigation]);
 
-  const searchArgs: UserUsersPaginationQueryVariables = {
+  const searchArgs: UserUsersPaginationQuery$variables = {
     first: ITEM_CNT,
     searchText: debouncedText,
   };

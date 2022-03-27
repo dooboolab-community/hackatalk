@@ -1,7 +1,7 @@
 import type {
   ChannelsQuery,
-  ChannelsQueryResponse,
-  ChannelsQueryVariables,
+  ChannelsQuery$data,
+  ChannelsQuery$variables,
 } from '../../__generated__/ChannelsQuery.graphql';
 import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
 import React, {FC, Suspense, useMemo, useState} from 'react';
@@ -91,7 +91,7 @@ const channelsPaginationFragment = graphql`
 
 interface ChannelProps {
   channel: MainChannelComponent_channel$key;
-  searchArgs: ChannelsQueryVariables;
+  searchArgs: ChannelsQuery$variables;
 }
 
 const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
@@ -201,11 +201,11 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
 };
 
 interface ContentProps {
-  searchArgs: ChannelsQueryVariables;
+  searchArgs: ChannelsQuery$variables;
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs}) => {
-  const data: ChannelsQueryResponse = useLazyLoadQuery<ChannelsQuery>(
+  const data: ChannelsQuery$data = useLazyLoadQuery<ChannelsQuery>(
     channelsQuery,
     searchArgs,
     {fetchPolicy: 'store-or-network'},
@@ -218,7 +218,7 @@ const Screen: FC = () => {
   const {theme} = useTheme();
   const navigation = useNavigation<MaterialTopTabNavigationProps<'Channel'>>();
 
-  const searchArgs: ChannelsQueryVariables = {
+  const searchArgs: ChannelsQuery$variables = {
     first: ITEM_CNT,
     withMessage: true,
   };

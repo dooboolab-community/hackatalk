@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c2c7ea409e98eb2d0acdd7fb06c9b54d>>
+ * @generated SignedSource<<f408b22c913a43a064b9c942fb9d1eb4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,6 @@ export type UserSignInEmailMutation$variables = {
   email: string;
   password: string;
 };
-export type UserSignInEmailMutationVariables = UserSignInEmailMutation$variables;
 export type UserSignInEmailMutation$data = {
   readonly signInEmail: {
     readonly token: string;
@@ -29,9 +28,8 @@ export type UserSignInEmailMutation$data = {
     };
   };
 };
-export type UserSignInEmailMutationResponse = UserSignInEmailMutation$data;
 export type UserSignInEmailMutation = {
-  variables: UserSignInEmailMutationVariables;
+  variables: UserSignInEmailMutation$variables;
   response: UserSignInEmailMutation$data;
 };
 

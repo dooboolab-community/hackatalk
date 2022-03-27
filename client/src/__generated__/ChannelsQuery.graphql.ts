@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c8b3d8fe40f0304f5443d69cec87fea1>>
+ * @generated SignedSource<<282893d8b43cb2e3fae93660c394562d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,13 +15,11 @@ export type ChannelsQuery$variables = {
   after?: string | null;
   withMessage?: boolean | null;
 };
-export type ChannelsQueryVariables = ChannelsQuery$variables;
 export type ChannelsQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;
 };
-export type ChannelsQueryResponse = ChannelsQuery$data;
 export type ChannelsQuery = {
-  variables: ChannelsQueryVariables;
+  variables: ChannelsQuery$variables;
   response: ChannelsQuery$data;
 };
 

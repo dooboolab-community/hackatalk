@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d53dbac7456121cf6f059d860fc29d26>>
+ * @generated SignedSource<<6c254a600cd4ce1643fa481a4ce97971>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserFacebookSignInMutation$variables = {
   accessToken: string;
 };
-export type UserFacebookSignInMutationVariables = UserFacebookSignInMutation$variables;
 export type UserFacebookSignInMutation$data = {
   readonly signInWithFacebook: {
     readonly token: string;
@@ -28,9 +27,8 @@ export type UserFacebookSignInMutation$data = {
     };
   };
 };
-export type UserFacebookSignInMutationResponse = UserFacebookSignInMutation$data;
 export type UserFacebookSignInMutation = {
-  variables: UserFacebookSignInMutationVariables;
+  variables: UserFacebookSignInMutation$variables;
   response: UserFacebookSignInMutation$data;
 };
 

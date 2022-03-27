@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<08bcd3d31674e77d8b9d3af4646760f9>>
+ * @generated SignedSource<<1e63385766e287ca30d1471b0bc88e04>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ChannelLeaveChannelMutation$variables = {
   channelId: string;
 };
-export type ChannelLeaveChannelMutationVariables = ChannelLeaveChannelMutation$variables;
 export type ChannelLeaveChannelMutation$data = {
   readonly leaveChannel: {
     readonly user: {
@@ -25,9 +24,8 @@ export type ChannelLeaveChannelMutation$data = {
     readonly isVisible: boolean | null;
   } | null;
 };
-export type ChannelLeaveChannelMutationResponse = ChannelLeaveChannelMutation$data;
 export type ChannelLeaveChannelMutation = {
-  variables: ChannelLeaveChannelMutationVariables;
+  variables: ChannelLeaveChannelMutation$variables;
   response: ChannelLeaveChannelMutation$data;
 };
 

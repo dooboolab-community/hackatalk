@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d6a0ba46ef00170cd6624604ff4938f9>>
+ * @generated SignedSource<<f042fb3bf3185761fe8bcb8e94aa923b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,7 +44,6 @@ export type MainChannelComponent_channel$data = {
   } | null;
   readonly " $fragmentType": "MainChannelComponent_channel";
 };
-export type MainChannelComponent_channel = MainChannelComponent_channel$data;
 export type MainChannelComponent_channel$key = {
   readonly " $data"?: MainChannelComponent_channel$data;
   readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;

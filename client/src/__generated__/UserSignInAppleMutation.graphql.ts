@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<612df576a3d1ca96b6408756f9577244>>
+ * @generated SignedSource<<3b7c326590117127909f7820ca4a122c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UserSignInAppleMutation$variables = {
   accessToken: string;
 };
-export type UserSignInAppleMutationVariables = UserSignInAppleMutation$variables;
 export type UserSignInAppleMutation$data = {
   readonly signInWithApple: {
     readonly token: string;
@@ -28,9 +27,8 @@ export type UserSignInAppleMutation$data = {
     };
   };
 };
-export type UserSignInAppleMutationResponse = UserSignInAppleMutation$data;
 export type UserSignInAppleMutation = {
-  variables: UserSignInAppleMutationVariables;
+  variables: UserSignInAppleMutation$variables;
   response: UserSignInAppleMutation$data;
 };
 

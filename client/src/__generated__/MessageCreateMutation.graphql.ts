@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<13ec2077d89747be3364bed33f2f6b01>>
+ * @generated SignedSource<<ac94c4fd964865d75ff3ea51d0dce9ca>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,7 +20,6 @@ export type MessageCreateMutation$variables = {
   message: MessageCreateInput;
   deviceKey: string;
 };
-export type MessageCreateMutationVariables = MessageCreateMutation$variables;
 export type MessageCreateMutation$data = {
   readonly createMessage: {
     readonly id: string;
@@ -55,9 +54,8 @@ export type MessageCreateMutation$data = {
     } | null;
   } | null;
 };
-export type MessageCreateMutationResponse = MessageCreateMutation$data;
 export type MessageCreateMutation = {
-  variables: MessageCreateMutationVariables;
+  variables: MessageCreateMutation$variables;
   response: MessageCreateMutation$data;
 };
 

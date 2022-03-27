@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<95cd56a86ceb3d9f5c9c2396e22c1839>>
+ * @generated SignedSource<<43781b7f07adaf7efc36d3db1c6a0c0e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type BlockedUserCreateMutation$variables = {
   blockedUserId: string;
 };
-export type BlockedUserCreateMutationVariables = BlockedUserCreateMutation$variables;
 export type BlockedUserCreateMutation$data = {
   readonly createBlockedUser: {
     readonly blockedUser: {
@@ -24,9 +23,8 @@ export type BlockedUserCreateMutation$data = {
     } | null;
   } | null;
 };
-export type BlockedUserCreateMutationResponse = BlockedUserCreateMutation$data;
 export type BlockedUserCreateMutation = {
-  variables: BlockedUserCreateMutationVariables;
+  variables: BlockedUserCreateMutation$variables;
   response: BlockedUserCreateMutation$data;
 };
 

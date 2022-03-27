@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
-  ChannelFindOrCreatePrivateChannelMutationResponse,
+  ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
@@ -282,7 +282,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           peerUserIds: [id],
         },
         onCompleted: (
-          response: ChannelFindOrCreatePrivateChannelMutationResponse,
+          response: ChannelFindOrCreatePrivateChannelMutation$data,
         ): void => {
           const channel = response.findOrCreatePrivateChannel;
 

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<fed78b248b506b4021de9d1ddf0fb96b>>
+ * @generated SignedSource<<192f30116ccd92d47657330bb87cac75>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,13 +15,11 @@ export type SearchUsersQuery$variables = {
   first?: number | null;
   searchText?: string | null;
 };
-export type SearchUsersQueryVariables = SearchUsersQuery$variables;
 export type SearchUsersQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;
 };
-export type SearchUsersQueryResponse = SearchUsersQuery$data;
 export type SearchUsersQuery = {
-  variables: SearchUsersQueryVariables;
+  variables: SearchUsersQuery$variables;
   response: SearchUsersQuery$data;
 };
 

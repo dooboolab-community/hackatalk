@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<20595b7b6177cac52cbf9f676798700a>>
+ * @generated SignedSource<<ae944dc4c13ad88eac7d74ad12b119c0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type ChannelFindOrCreatePrivateChannelMutation$variables = {
   peerUserIds: ReadonlyArray<string>;
 };
-export type ChannelFindOrCreatePrivateChannelMutationVariables = ChannelFindOrCreatePrivateChannelMutation$variables;
 export type ChannelFindOrCreatePrivateChannelMutation$data = {
   readonly findOrCreatePrivateChannel: {
     readonly id: string;
@@ -20,9 +19,8 @@ export type ChannelFindOrCreatePrivateChannelMutation$data = {
     readonly channelType: any | null;
   } | null;
 };
-export type ChannelFindOrCreatePrivateChannelMutationResponse = ChannelFindOrCreatePrivateChannelMutation$data;
 export type ChannelFindOrCreatePrivateChannelMutation = {
-  variables: ChannelFindOrCreatePrivateChannelMutationVariables;
+  variables: ChannelFindOrCreatePrivateChannelMutation$variables;
   response: ChannelFindOrCreatePrivateChannelMutation$data;
 };
 

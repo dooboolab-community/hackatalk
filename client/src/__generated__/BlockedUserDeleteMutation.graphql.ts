@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<641de41bd2eb0ff5561910be9725c943>>
+ * @generated SignedSource<<3f08771b83d06ad4f69a298a780edee0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type BlockedUserDeleteMutation$variables = {
   blockedUserId: string;
 };
-export type BlockedUserDeleteMutationVariables = BlockedUserDeleteMutation$variables;
 export type BlockedUserDeleteMutation$data = {
   readonly deleteBlockedUser: {
     readonly blockedUser: {
@@ -24,9 +23,8 @@ export type BlockedUserDeleteMutation$data = {
     } | null;
   } | null;
 };
-export type BlockedUserDeleteMutationResponse = BlockedUserDeleteMutation$data;
 export type BlockedUserDeleteMutation = {
-  variables: BlockedUserDeleteMutationVariables;
+  variables: BlockedUserDeleteMutation$variables;
   response: BlockedUserDeleteMutation$data;
 };
 

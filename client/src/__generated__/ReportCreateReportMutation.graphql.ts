@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<b54b2db8603f72507110e88cf368f7f7>>
+ * @generated SignedSource<<48fb4a7db678fc63b9904aca7633259c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,15 +13,13 @@ export type ReportCreateReportMutation$variables = {
   reportedUserId: string;
   report: string;
 };
-export type ReportCreateReportMutationVariables = ReportCreateReportMutation$variables;
 export type ReportCreateReportMutation$data = {
   readonly createReport: {
     readonly report: string;
   } | null;
 };
-export type ReportCreateReportMutationResponse = ReportCreateReportMutation$data;
 export type ReportCreateReportMutation = {
-  variables: ReportCreateReportMutationVariables;
+  variables: ReportCreateReportMutation$variables;
   response: ReportCreateReportMutation$data;
 };
 

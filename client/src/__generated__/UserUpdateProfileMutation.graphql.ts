@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0bce05ec860c680279748078bcd47b83>>
+ * @generated SignedSource<<94a0d58a3f969ea1c51bf861b5a5e639>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,7 +23,6 @@ export type UserUpdateInput = {
 export type UserUpdateProfileMutation$variables = {
   user: UserUpdateInput;
 };
-export type UserUpdateProfileMutationVariables = UserUpdateProfileMutation$variables;
 export type UserUpdateProfileMutation$data = {
   readonly updateProfile: {
     readonly id: string;
@@ -32,9 +31,8 @@ export type UserUpdateProfileMutation$data = {
     readonly statusMessage: string | null;
   } | null;
 };
-export type UserUpdateProfileMutationResponse = UserUpdateProfileMutation$data;
 export type UserUpdateProfileMutation = {
-  variables: UserUpdateProfileMutationVariables;
+  variables: UserUpdateProfileMutation$variables;
   response: UserUpdateProfileMutation$data;
 };
 

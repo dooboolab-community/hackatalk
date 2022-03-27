@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5586e37de3eb729b287404cd76ff1811>>
+ * @generated SignedSource<<4db39b3c473c6e26efa589adcffd79af>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,15 +11,13 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type MessageListItemTestQuery$variables = {};
-export type MessageListItemTestQueryVariables = MessageListItemTestQuery$variables;
 export type MessageListItemTestQuery$data = {
   readonly myData: {
     readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;
   } | null;
 };
-export type MessageListItemTestQueryResponse = MessageListItemTestQuery$data;
 export type MessageListItemTestQuery = {
-  variables: MessageListItemTestQueryVariables;
+  variables: MessageListItemTestQuery$variables;
   response: MessageListItemTestQuery$data;
 };
 

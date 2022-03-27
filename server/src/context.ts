@@ -1,9 +1,9 @@
+import Redis, {RedisOptions} from 'ioredis';
 import {execute, subscribe} from 'graphql';
 
 import {ApolloServer} from 'apollo-server-express';
 import {PrismaClient} from '@prisma/client';
 import {PubSub} from 'graphql-subscriptions';
-import Redis from 'ioredis';
 import {RedisPubSub} from 'graphql-redis-subscriptions';
 import {Server} from 'http';
 import {SubscriptionServer} from 'subscriptions-transport-ws';
@@ -29,7 +29,7 @@ export interface Context {
 const tls = REDIS_HOSTNAME !== 'redis-server' ? {tls: {}} : {};
 const redisPort = REDIS_HOSTNAME !== 'redis-server' ? 6380 : 6379;
 
-const prodRedisOption: Redis.RedisOptions = {
+const prodRedisOption: RedisOptions = {
   host: REDIS_HOSTNAME,
   password: REDIS_CACHEKEY,
   port: redisPort,

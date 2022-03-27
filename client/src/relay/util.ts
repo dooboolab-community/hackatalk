@@ -5,6 +5,7 @@ export const __DEV__ = process.env.NODE_ENV === 'development';
 export const relayTransactionLogger =
   () =>
   (event: LogRequestInfoFunction): void => {
+    // eslint-disable-next-line no-console
     console.log('RELAY_CONSOLE', event);
   };
 

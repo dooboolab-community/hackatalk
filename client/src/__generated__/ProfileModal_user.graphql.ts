@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c2a4cfafff68cef5b71bbc87533c864d>>
+ * @generated SignedSource<<e585b31deea26a8ac45d65164bd37d9e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,7 +20,6 @@ export type ProfileModal_user$data = {
   readonly isFriend: boolean | null;
   readonly " $fragmentType": "ProfileModal_user";
 };
-export type ProfileModal_user = ProfileModal_user$data;
 export type ProfileModal_user$key = {
   readonly " $data"?: ProfileModal_user$data;
   readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;

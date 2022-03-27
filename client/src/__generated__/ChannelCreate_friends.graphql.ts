@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<79d2c6b88f309b2cc0e0f39900892dd1>>
+ * @generated SignedSource<<97b6030d2e9edfaa50bc16ba749f5df8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -30,7 +30,6 @@ export type ChannelCreate_friends$data = {
   } | null;
   readonly " $fragmentType": "ChannelCreate_friends";
 };
-export type ChannelCreate_friends = ChannelCreate_friends$data;
 export type ChannelCreate_friends$key = {
   readonly " $data"?: ChannelCreate_friends$data;
   readonly " $fragmentSpreads": FragmentRefs<"ChannelCreate_friends">;
