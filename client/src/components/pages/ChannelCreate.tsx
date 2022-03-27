@@ -10,11 +10,11 @@ import {
 import {Channel, User, UserConnection, UserEdge} from '../../types/graphql';
 import {
   ChannelCreateFriendsPaginationQuery,
-  ChannelCreateFriendsPaginationQueryVariables,
+  ChannelCreateFriendsPaginationQuery$variables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
 import {
   ChannelFindOrCreatePrivateChannelMutation,
-  ChannelFindOrCreatePrivateChannelMutationResponse,
+  ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
 import React, {
@@ -107,7 +107,7 @@ const friendsFragment = graphql`
 type FriendsFragmentProps = {
   friend: ChannelCreate_friends$key;
   scrollY: Animated.Value;
-  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  searchArgs: ChannelCreateFriendsPaginationQuery$variables;
   selectedUsers: User[];
   setSelectedUsers: (users: User[]) => void;
 };
@@ -280,7 +280,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
 
 interface ContentProps {
   scrollY: Animated.Value;
-  searchArgs: ChannelCreateFriendsPaginationQueryVariables;
+  searchArgs: ChannelCreateFriendsPaginationQuery$variables;
   selectedUsers: User[];
   setSelectedUsers: (users: User[]) => void;
 }
@@ -330,7 +330,7 @@ const ChannelCreate: FC = () => {
           peerUserIds: userIds,
         },
         onCompleted: (
-          response: ChannelFindOrCreatePrivateChannelMutationResponse,
+          response: ChannelFindOrCreatePrivateChannelMutation$data,
         ): void => {
           const channel = response.findOrCreatePrivateChannel as Channel;
 
@@ -374,7 +374,7 @@ const ChannelCreate: FC = () => {
     });
   }, [commitChannel, navigation, selectedUsers, theme]);
 
-  const searchArgs: ChannelCreateFriendsPaginationQueryVariables = {
+  const searchArgs: ChannelCreateFriendsPaginationQuery$variables = {
     first: ITEM_CNT,
     searchText: debouncedText,
     includeMe: true,

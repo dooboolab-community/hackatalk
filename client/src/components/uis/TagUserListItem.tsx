@@ -52,6 +52,7 @@ const StyledText = styled.Text`
   font-weight: bold;
   color: ${({theme}) => theme.text};
 `;
+
 function Shared({tagUser, selectTagUser}: Props): React.ReactElement {
   const photoURLObj: ImageSourcePropType | null =
     typeof tagUser?.photoURL === 'string' ? {uri: tagUser?.photoURL} : null;

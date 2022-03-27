@@ -1,7 +1,7 @@
 import {
   AuthProviderMeQuery,
-  AuthProviderMeQueryResponse,
-  AuthProviderMeQueryVariables,
+  AuthProviderMeQuery$data,
+  AuthProviderMeQuery$variables,
 } from '../__generated__/AuthProviderMeQuery.graphql';
 import type {Dispatch, SetStateAction} from 'react';
 import {
@@ -18,14 +18,17 @@ import {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
 export interface AuthContext {
-  user: AuthProviderMeQueryResponse['me'] | null;
-  setUser: Dispatch<SetStateAction<AuthProviderMeQueryResponse['me'] | null>>;
+  user: AuthProviderMeQuery$data['me'] | null;
+  setUser: Dispatch<SetStateAction<AuthProviderMeQuery$data['me'] | null>>;
   signOutAsync: () => void;
   meQueryReference?:
     | PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>
     | null
     | undefined;
-  loadMeQuery: (variables: AuthProviderMeQueryVariables, options?: any) => void;
+  loadMeQuery: (
+    variables: AuthProviderMeQuery$variables,
+    options?: any,
+  ) => void;
 }
 
 const [useCtx, AuthContextProvider] = createCtx<AuthContext>();
@@ -50,8 +53,8 @@ export const meQuery = graphql`
 `;
 
 function AuthProvider({children, initialAuthUser}: Props): React.ReactElement {
-  const [user, setUser] = useState<AuthProviderMeQueryResponse['me'] | null>(
-    (initialAuthUser as AuthProviderMeQueryResponse['me']) || null,
+  const [user, setUser] = useState<AuthProviderMeQuery$data['me'] | null>(
+    (initialAuthUser as AuthProviderMeQuery$data['me']) || null,
   );
 
   const environment = useRelayEnvironment();

@@ -34,11 +34,11 @@ import {
 import React, {FC, ReactElement, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
-  UserSignInAppleMutationResponse,
+  UserSignInAppleMutation$data,
 } from '../../../__generated__/UserSignInAppleMutation.graphql';
 import type {
   UserSignInEmailMutation,
-  UserSignInEmailMutationResponse,
+  UserSignInEmailMutation$data,
 } from '../../../__generated__/UserSignInEmailMutation.graphql';
 import {showAlertForError, validateEmail} from '../../../utils/common';
 import {signInEmail, signInWithApple} from '../../../relay/queries/User';
@@ -187,7 +187,7 @@ const SignIn: FC = () => {
         password,
       },
 
-      onCompleted: (response: UserSignInEmailMutationResponse) => {
+      onCompleted: (response: UserSignInEmailMutation$data) => {
         const {token, user} = response.signInEmail as AuthPayload;
 
         if (user && !user.verified) {
@@ -266,7 +266,7 @@ const SignIn: FC = () => {
           variables: {
             accessToken: identityToken,
           },
-          onCompleted: (response: UserSignInAppleMutationResponse) => {
+          onCompleted: (response: UserSignInAppleMutation$data) => {
             const {token, user} = response.signInWithApple as AuthPayload;
 
             if (user && token) {

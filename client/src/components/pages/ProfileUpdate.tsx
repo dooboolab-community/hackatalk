@@ -11,7 +11,7 @@ import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {
   UploadSingleUploadMutation,
-  UploadSingleUploadMutationResponse,
+  UploadSingleUploadMutation$data,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
 import {fetchQuery, useMutation, useRelayEnvironment} from 'react-relay';
 import {
@@ -183,7 +183,7 @@ const Screen: FC = () => {
               dir: 'profiles',
             },
             uploadables: {file},
-            onCompleted: (response: UploadSingleUploadMutationResponse) => {
+            onCompleted: (response: UploadSingleUploadMutation$data) => {
               const url = response.singleUpload;
 
               if (url) {

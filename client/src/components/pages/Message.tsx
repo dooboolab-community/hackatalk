@@ -34,8 +34,8 @@ import {
 } from '../navigations/MainStackNavigator';
 import {
   MessagesQuery,
-  MessagesQueryResponse,
-  MessagesQueryVariables,
+  MessagesQuery$data,
+  MessagesQuery$variables,
 } from '../../__generated__/MessagesQuery.graphql';
 import React, {
   FC,
@@ -149,7 +149,7 @@ interface MessageProp {
   users: User[];
   channelId: string;
   messages: MessageComponent_message$key;
-  searchArgs: MessagesQueryVariables;
+  searchArgs: MessagesQuery$variables;
 }
 
 const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
@@ -567,14 +567,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
 interface ContentProps {
   channelId: string;
-  searchArgs: MessagesQueryVariables;
+  searchArgs: MessagesQuery$variables;
 }
 
 const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
   const navigation = useNavigation<MainStackNavigationProps<'Message'>>();
   const {user: auth} = useAuthContext();
 
-  const messagesQueryResponse: MessagesQueryResponse =
+  const messagesQueryResponse: MessagesQuery$data =
     useLazyLoadQuery<MessagesQuery>(messagesQuery, searchArgs, {
       fetchPolicy: 'store-or-network',
     });
@@ -684,7 +684,7 @@ const MessageScreen: FC = () => {
     deleteSameChannelNotification();
   }, [channelId]);
 
-  const searchArgs: MessagesQueryVariables = {
+  const searchArgs: MessagesQuery$variables = {
     first: ITEM_CNT,
     channelId,
   };

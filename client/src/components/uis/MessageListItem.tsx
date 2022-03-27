@@ -1,6 +1,5 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FC, useMemo, useState} from 'react';
-import {Theme, colors} from '../../theme';
 import {graphql, useFragment} from 'react-relay';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
@@ -10,6 +9,7 @@ import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
+import {colors} from '../../theme';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';

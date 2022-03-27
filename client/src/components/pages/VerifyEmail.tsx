@@ -3,7 +3,7 @@ import React, {FC, useState} from 'react';
 import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
   UserVerifyEmailMutation,
-  UserVerifyEmailMutationResponse,
+  UserVerifyEmailMutation$data,
 } from '../../__generated__/UserVerifyEmailMutation.graphql';
 
 import {Alert} from 'react-native';
@@ -53,7 +53,7 @@ const Page: FC = () => {
     variables: {
       email,
     },
-    onCompleted: (response: UserVerifyEmailMutationResponse) => {
+    onCompleted: (response: UserVerifyEmailMutation$data) => {
       if (response.sendVerification) {
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
       }

@@ -10,7 +10,7 @@ import {Button, EditText, useTheme} from 'dooboo-ui';
 import React, {FC, useEffect, useRef, useState} from 'react';
 import type {
   UserChangeEmailPasswordMutation,
-  UserChangeEmailPasswordMutationResponse,
+  UserChangeEmailPasswordMutation$data,
 } from '../../__generated__/UserChangeEmailPasswordMutation.graphql';
 import styled, {css} from '@emotion/native';
 
@@ -67,7 +67,7 @@ const ChangePw: FC = () => {
       onError: (error: Error) => {
         showAlertForError(normalizeErrorString(error));
       },
-      onCompleted: (response: UserChangeEmailPasswordMutationResponse) => {
+      onCompleted: (response: UserChangeEmailPasswordMutation$data) => {
         const resultBool = response.changeEmailPassword;
 
         if (resultBool) {
