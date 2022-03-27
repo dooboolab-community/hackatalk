@@ -11,9 +11,9 @@ export enum AuthType {
   apple = 'apple',
 }
 
-export const Auth = scalarType({
-  name: 'Auth',
-  asNexusMethod: 'auth',
+export const authType = scalarType({
+  name: 'AuthType',
+  asNexusMethod: 'authType',
   parseValue(value: AuthType): AuthType | undefined {
     if (AuthType[value]) {
       return value;
@@ -118,6 +118,6 @@ export const messageType = scalarType({
   },
 });
 
-export const Upload = GraphQLUpload;
+export const GQLUpload = GraphQLUpload;
 export const GQLDate = GraphQLDate;
 export const GQLDateTime = asNexusMethod(GraphQLDateTime, 'date');

@@ -7,7 +7,7 @@ export const Profile = objectType({
   name: 'Profile',
   definition(t) {
     t.string('socialId');
-    t.auth('authType');
+    t.authType('authType');
     t.field('user', {type: 'User'});
   },
 });

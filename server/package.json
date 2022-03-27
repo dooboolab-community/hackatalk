@@ -43,7 +43,6 @@
     "bcrypt": "^5.0.1",
     "ejs": "^3.1.6",
     "generate-password": "^1.7.0",
-    "graphql": "^16.3.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^6.1.20",
     "graphql-redis-subscriptions": "^2.4.2",

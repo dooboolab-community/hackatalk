@@ -20,7 +20,6 @@ import {
 } from '../../utils/auth';
 
 import {AuthType} from '../../models/Scalar';
-import {Upload} from '../../models';
 import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
@@ -67,8 +66,7 @@ export const UserUpdateInputType = inputObjectType({
 export const signUp = mutationField('signUp', {
   type: nonNull('User'),
   args: {
-    // @ts-ignore
-    photoUpload: arg({type: Upload}),
+    photoUpload: arg({type: 'Upload'}),
     user: nonNull(UserInputType),
   },
 
