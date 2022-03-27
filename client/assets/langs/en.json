@@ -122,5 +122,7 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes"
+  "YES": "Yes",
+  "SHARE_VIDEO": "Share video",
+  "SHARING_VIDEO": "Sharing video..."
 }

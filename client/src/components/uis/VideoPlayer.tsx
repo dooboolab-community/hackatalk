@@ -1,7 +1,7 @@
 import * as VideoThumbnails from 'expo-video-thumbnails';
 
 import {AVPlaybackStatus, Video} from 'expo-av';
-import {Image, Platform, View} from 'react-native';
+import {Image, Platform, Share, View} from 'react-native';
 import React, {FC, useEffect, useRef, useState} from 'react';
 
 import {LoadingIndicator} from 'dooboo-ui';
@@ -69,7 +69,7 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
     }
   }, [uri]);
 
-  const handleLoadPress = async (): Promise<void> => {
+  const handlePress = async (): Promise<void> => {
     setLoadStarted(true);
 
     await videoRef.current?.loadAsync(
@@ -85,6 +85,14 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
         isLooping: false,
       },
     );
+  };
+
+  const handleLongPress = async (): Promise<void> => {
+    await Share.share({
+      title: getString('SHARE_VIDEO'),
+      message: getString('SHARING_VIDEO'),
+      url: uri,
+    });
   };
 
   return (
@@ -109,7 +117,8 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
         (!loadStarted ? (
           <StyledThumbnailWrapper>
             <TouchableOpacity
-              onPress={handleLoadPress}
+              onPress={handlePress}
+              onLongPress={handleLongPress}
               style={{justifyContent: 'center', alignItems: 'center', flex: 1}}
             >
               {!!thumbnail && (
