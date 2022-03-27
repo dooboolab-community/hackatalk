@@ -6,12 +6,12 @@ directive @specifiedBy(
 
 scalar AlertMode
 
-scalar Auth
-
 type AuthPayload {
   token: String!
   user: User!
 }
+
+scalar AuthType
 
 type BlockedUser {
   createdAt: DateTime
@@ -255,7 +255,7 @@ type PageInfo {
 
 type Profile {
   socialId: String
-  authType: Auth
+  authType: AuthType
   user: User
 }
 

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<349d1a6d965953712612582dce4612e8>>
+ * @generated SignedSource<<adc8ec7310879ebe7e94b5ba74d662ac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,7 +23,6 @@ export type UserSignUpMutation$variables = {
   user: UserCreateInput;
   photoUpload?: any | null;
 };
-export type UserSignUpMutationVariables = UserSignUpMutation$variables;
 export type UserSignUpMutation$data = {
   readonly signUp: {
     readonly id: string;
@@ -33,9 +32,8 @@ export type UserSignUpMutation$data = {
     readonly verified: boolean | null;
   };
 };
-export type UserSignUpMutationResponse = UserSignUpMutation$data;
 export type UserSignUpMutation = {
-  variables: UserSignUpMutationVariables;
+  variables: UserSignUpMutation$variables;
   response: UserSignUpMutation$data;
 };
 

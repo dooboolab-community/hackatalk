@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5389e970ab6cb9c8e65437a571a1a04c>>
+ * @generated SignedSource<<67e3a006c6dbf8652e8c1075cf879111>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,7 +26,6 @@ export type SearchUserComponent_user$data = {
   } | null;
   readonly " $fragmentType": "SearchUserComponent_user";
 };
-export type SearchUserComponent_user = SearchUserComponent_user$data;
 export type SearchUserComponent_user$key = {
   readonly " $data"?: SearchUserComponent_user$data;
   readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;

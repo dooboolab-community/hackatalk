@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4b30cd941dfbdb7536078115eca58c9f>>
+ * @generated SignedSource<<84c7e624742e8d590f4e8b4942d80b62>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -26,7 +26,6 @@ export type MainFriend_friends$data = {
   } | null;
   readonly " $fragmentType": "MainFriend_friends";
 };
-export type MainFriend_friends = MainFriend_friends$data;
 export type MainFriend_friends$key = {
   readonly " $data"?: MainFriend_friends$data;
   readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends">;

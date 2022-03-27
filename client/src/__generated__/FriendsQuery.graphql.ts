@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<21f935014ca0ca9631a1d55ec44a10ed>>
+ * @generated SignedSource<<9e6ba10538d3bf6711e5686b9ed5cdb2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,11 @@ export type FriendsQuery$variables = {
   searchText?: string | null;
   includeMe?: boolean | null;
 };
-export type FriendsQueryVariables = FriendsQuery$variables;
 export type FriendsQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends" | "ChannelCreate_friends">;
 };
-export type FriendsQueryResponse = FriendsQuery$data;
 export type FriendsQuery = {
-  variables: FriendsQueryVariables;
+  variables: FriendsQuery$variables;
   response: FriendsQuery$data;
 };
 

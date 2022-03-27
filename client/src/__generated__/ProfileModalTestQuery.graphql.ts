@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5e017e258cd528bc1ac57ad82ee725f3>>
+ * @generated SignedSource<<b1e5162643005eae527fd9716b8e8e81>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,15 +11,13 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ProfileModalTestQuery$variables = {};
-export type ProfileModalTestQueryVariables = ProfileModalTestQuery$variables;
 export type ProfileModalTestQuery$data = {
   readonly myData: {
     readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user">;
   } | null;
 };
-export type ProfileModalTestQueryResponse = ProfileModalTestQuery$data;
 export type ProfileModalTestQuery = {
-  variables: ProfileModalTestQueryVariables;
+  variables: ProfileModalTestQuery$variables;
   response: ProfileModalTestQuery$data;
 };
 

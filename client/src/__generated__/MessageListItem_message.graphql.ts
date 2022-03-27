@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2508a9d5a52d51c8ea247e533ebdf9c7>>
+ * @generated SignedSource<<90811d99969e536b0c355dc6e3324746>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -28,7 +28,6 @@ export type MessageListItem_message$data = {
   } | null;
   readonly " $fragmentType": "MessageListItem_message";
 };
-export type MessageListItem_message = MessageListItem_message$data;
 export type MessageListItem_message$key = {
   readonly " $data"?: MessageListItem_message$data;
   readonly " $fragmentSpreads": FragmentRefs<"MessageListItem_message">;

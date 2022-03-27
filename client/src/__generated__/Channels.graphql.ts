@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<98b250e957b5fd2903dd32792b4aca29>>
+ * @generated SignedSource<<3443aa65306276856821a1775839e856>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,13 +15,11 @@ export type Channels$variables = {
   first: number;
   withMessage?: boolean | null;
 };
-export type ChannelsVariables = Channels$variables;
 export type Channels$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MainChannelComponent_channel">;
 };
-export type ChannelsResponse = Channels$data;
 export type Channels = {
-  variables: ChannelsVariables;
+  variables: Channels$variables;
   response: Channels$data;
 };
 

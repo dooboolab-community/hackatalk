@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bc5b83f1307073fa6773d609e6ff9488>>
+ * @generated SignedSource<<49600165fe4f100f81cb898fc0539cfb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,13 +13,11 @@ export type UserChangeEmailPasswordMutation$variables = {
   password: string;
   newPassword: string;
 };
-export type UserChangeEmailPasswordMutationVariables = UserChangeEmailPasswordMutation$variables;
 export type UserChangeEmailPasswordMutation$data = {
   readonly changeEmailPassword: boolean | null;
 };
-export type UserChangeEmailPasswordMutationResponse = UserChangeEmailPasswordMutation$data;
 export type UserChangeEmailPasswordMutation = {
-  variables: UserChangeEmailPasswordMutationVariables;
+  variables: UserChangeEmailPasswordMutation$variables;
   response: UserChangeEmailPasswordMutation$data;
 };
 

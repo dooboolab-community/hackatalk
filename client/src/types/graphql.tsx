@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -11,7 +12,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   AlertMode: any;
-  Auth: any;
+  AuthType: any;
   ChannelType: any;
   /**
    * A date string, such as 2007-12-03, compliant with the `full-date` format
@@ -65,15 +66,15 @@ export type Channel = {
 
 
 export type ChannelMembershipsArgs = {
-  excludeMe?: Maybe<Scalars['Boolean']>;
+  excludeMe?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type ChannelMessagesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
 };
 
 export type ChannelConnection = {
@@ -85,9 +86,9 @@ export type ChannelConnection = {
 };
 
 export type ChannelCreateInput = {
-  channelType?: Maybe<Scalars['ChannelType']>;
-  name?: Maybe<Scalars['String']>;
-  userIds?: Maybe<Array<Scalars['String']>>;
+  channelType?: InputMaybe<Scalars['ChannelType']>;
+  name?: InputMaybe<Scalars['String']>;
+  userIds?: InputMaybe<Array<Scalars['String']>>;
 };
 
 export type ChannelEdge = {
@@ -143,10 +144,10 @@ export type MessageConnection = {
 };
 
 export type MessageCreateInput = {
-  fileUrls?: Maybe<Array<Scalars['String']>>;
-  imageUrls?: Maybe<Array<Scalars['String']>>;
-  messageType?: Maybe<Scalars['MessageType']>;
-  text?: Maybe<Scalars['String']>;
+  fileUrls?: InputMaybe<Array<Scalars['String']>>;
+  imageUrls?: InputMaybe<Array<Scalars['String']>>;
+  messageType?: InputMaybe<Scalars['MessageType']>;
+  text?: InputMaybe<Scalars['String']>;
 };
 
 export type MessageEdge = {
@@ -227,7 +228,7 @@ export type MutationCreateBlockedUserArgs = {
 
 export type MutationCreateChannelArgs = {
   channel: ChannelCreateInput;
-  message?: Maybe<MessageCreateInput>;
+  message?: InputMaybe<MessageCreateInput>;
 };
 
 
@@ -239,8 +240,8 @@ export type MutationCreateMessageArgs = {
 
 
 export type MutationCreateNotificationArgs = {
-  device?: Maybe<Scalars['String']>;
-  os?: Maybe<Scalars['String']>;
+  device?: InputMaybe<Scalars['String']>;
+  os?: InputMaybe<Scalars['String']>;
   token: Scalars['String'];
 };
 
@@ -325,13 +326,13 @@ export type MutationSignInWithGoogleArgs = {
 
 
 export type MutationSignUpArgs = {
-  photoUpload?: Maybe<Scalars['Upload']>;
+  photoUpload?: InputMaybe<Scalars['Upload']>;
   user: UserCreateInput;
 };
 
 
 export type MutationSingleUploadArgs = {
-  dir?: Maybe<Scalars['String']>;
+  dir?: InputMaybe<Scalars['String']>;
   file: Scalars['Upload'];
 };
 
@@ -364,7 +365,7 @@ export type PageInfo = {
 
 export type Profile = {
   __typename?: 'Profile';
-  authType?: Maybe<Scalars['Auth']>;
+  authType?: Maybe<Scalars['AuthType']>;
   socialId?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
 };
@@ -397,21 +398,21 @@ export type QueryChannelArgs = {
 
 
 export type QueryChannelsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  withMessage?: Maybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  withMessage?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type QueryFriendsArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  includeMe?: Maybe<Scalars['Boolean']>;
-  last?: Maybe<Scalars['Int']>;
-  searchText?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  includeMe?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  searchText?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -421,12 +422,12 @@ export type QueryMessageArgs = {
 
 
 export type QueryMessagesArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
   channelId: Scalars['String'];
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  searchText?: Maybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  searchText?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -446,11 +447,11 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  searchText?: Maybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  searchText?: InputMaybe<Scalars['String']>;
 };
 
 export type Reaction = {
@@ -530,14 +531,14 @@ export type UserConnection = {
 };
 
 export type UserCreateInput = {
-  birthday?: Maybe<Scalars['DateTime']>;
+  birthday?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  gender?: Maybe<Scalars['Gender']>;
-  name?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['Gender']>;
+  name?: InputMaybe<Scalars['String']>;
+  nickname?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  phone?: Maybe<Scalars['String']>;
-  statusMessage?: Maybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  statusMessage?: InputMaybe<Scalars['String']>;
 };
 
 export type UserEdge = {
@@ -549,13 +550,13 @@ export type UserEdge = {
 };
 
 export type UserUpdateInput = {
-  birthday?: Maybe<Scalars['DateTime']>;
-  email?: Maybe<Scalars['String']>;
-  gender?: Maybe<Scalars['Gender']>;
-  name?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
-  phone?: Maybe<Scalars['String']>;
-  photoURL?: Maybe<Scalars['String']>;
-  statusMessage?: Maybe<Scalars['String']>;
-  thumbURL?: Maybe<Scalars['String']>;
+  birthday?: InputMaybe<Scalars['DateTime']>;
+  email?: InputMaybe<Scalars['String']>;
+  gender?: InputMaybe<Scalars['Gender']>;
+  name?: InputMaybe<Scalars['String']>;
+  nickname?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
+  photoURL?: InputMaybe<Scalars['String']>;
+  statusMessage?: InputMaybe<Scalars['String']>;
+  thumbURL?: InputMaybe<Scalars['String']>;
 };

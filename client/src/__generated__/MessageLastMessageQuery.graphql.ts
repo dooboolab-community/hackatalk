@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c6ac25c4ce60ddd037951ded40c269e0>>
+ * @generated SignedSource<<194d50d72ed7da61a5413c1703a73404>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type MessageLastMessageQuery$variables = {
   messageId: string;
 };
-export type MessageLastMessageQueryVariables = MessageLastMessageQuery$variables;
 export type MessageLastMessageQuery$data = {
   readonly message: {
     readonly id: string;
@@ -32,9 +31,8 @@ export type MessageLastMessageQuery$data = {
     } | null;
   } | null;
 };
-export type MessageLastMessageQueryResponse = MessageLastMessageQuery$data;
 export type MessageLastMessageQuery = {
-  variables: MessageLastMessageQueryVariables;
+  variables: MessageLastMessageQuery$variables;
   response: MessageLastMessageQuery$data;
 };
 

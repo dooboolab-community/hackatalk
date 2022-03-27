@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0f9f202dd22209b41f3b4121081519ce>>
+ * @generated SignedSource<<26f54cd8ad779ee758c61a501dc8656a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,7 +20,6 @@ export type UserListItem_user$data = {
   readonly hasBlocked: boolean | null;
   readonly " $fragmentType": "UserListItem_user";
 };
-export type UserListItem_user = UserListItem_user$data;
 export type UserListItem_user$key = {
   readonly " $data"?: UserListItem_user$data;
   readonly " $fragmentSpreads": FragmentRefs<"UserListItem_user">;

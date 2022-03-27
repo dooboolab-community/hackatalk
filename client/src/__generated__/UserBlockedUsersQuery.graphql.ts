@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f30cd1ae22430e9dd12bdc9d096efb61>>
+ * @generated SignedSource<<c84596094a68c2fc94fe46d52307ba45>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,16 +11,14 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type UserBlockedUsersQuery$variables = {};
-export type UserBlockedUsersQueryVariables = UserBlockedUsersQuery$variables;
 export type UserBlockedUsersQuery$data = {
   readonly blockedUsers: ReadonlyArray<{
     readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
   } | null> | null;
 };
-export type UserBlockedUsersQueryResponse = UserBlockedUsersQuery$data;
 export type UserBlockedUsersQuery = {
-  variables: UserBlockedUsersQueryVariables;
+  variables: UserBlockedUsersQuery$variables;
   response: UserBlockedUsersQuery$data;
 };
 

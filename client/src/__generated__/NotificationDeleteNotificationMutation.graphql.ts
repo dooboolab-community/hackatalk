@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5296aa075f4b44082dfcd46fbe4acee9>>
+ * @generated SignedSource<<f8ce794e326e2e4da430bf53f21b505c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type NotificationDeleteNotificationMutation$variables = {
   token: string;
 };
-export type NotificationDeleteNotificationMutationVariables = NotificationDeleteNotificationMutation$variables;
 export type NotificationDeleteNotificationMutation$data = {
   readonly deleteNotification: {
     readonly id: number;
@@ -21,9 +20,8 @@ export type NotificationDeleteNotificationMutation$data = {
     readonly createdAt: any | null;
   } | null;
 };
-export type NotificationDeleteNotificationMutationResponse = NotificationDeleteNotificationMutation$data;
 export type NotificationDeleteNotificationMutation = {
-  variables: NotificationDeleteNotificationMutationVariables;
+  variables: NotificationDeleteNotificationMutation$variables;
   response: NotificationDeleteNotificationMutation$data;
 };
 

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d14581c180efa4fda4c522313538a2ae>>
+ * @generated SignedSource<<caa4fa00cbe8167b2603e33bcbfb3acf>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,11 @@ export type FriendFriendsPaginationQuery$variables = {
   includeMe?: boolean | null;
   searchText?: string | null;
 };
-export type FriendFriendsPaginationQueryVariables = FriendFriendsPaginationQuery$variables;
 export type FriendFriendsPaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MainFriend_friends">;
 };
-export type FriendFriendsPaginationQueryResponse = FriendFriendsPaginationQuery$data;
 export type FriendFriendsPaginationQuery = {
-  variables: FriendFriendsPaginationQueryVariables;
+  variables: FriendFriendsPaginationQuery$variables;
   response: FriendFriendsPaginationQuery$data;
 };
 

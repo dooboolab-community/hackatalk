@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6e8662ffecbf42882ab8989bfd1c0218>>
+ * @generated SignedSource<<a1cc98e67ed6f2845c539218da20ca94>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,6 @@ import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type FriendDeleteMutation$variables = {
   friendId: string;
 };
-export type FriendDeleteMutationVariables = FriendDeleteMutation$variables;
 export type FriendDeleteMutation$data = {
   readonly deleteFriend: {
     readonly friend: {
@@ -21,9 +20,8 @@ export type FriendDeleteMutation$data = {
     } | null;
   } | null;
 };
-export type FriendDeleteMutationResponse = FriendDeleteMutation$data;
 export type FriendDeleteMutation = {
-  variables: FriendDeleteMutationVariables;
+  variables: FriendDeleteMutation$variables;
   response: FriendDeleteMutation$data;
 };
 

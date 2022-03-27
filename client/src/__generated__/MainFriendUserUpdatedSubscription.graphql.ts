@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<241d608402737f47c7218865f7320bc4>>
+ * @generated SignedSource<<bfb9152d63b8429a5b005d083f24e361>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,16 +11,14 @@
 import { ConcreteRequest, GraphQLSubscription } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type MainFriendUserUpdatedSubscription$variables = {};
-export type MainFriendUserUpdatedSubscriptionVariables = MainFriendUserUpdatedSubscription$variables;
 export type MainFriendUserUpdatedSubscription$data = {
   readonly userUpdated: {
     readonly id: string;
     readonly " $fragmentSpreads": FragmentRefs<"ProfileModal_user" | "UserListItem_user">;
   } | null;
 };
-export type MainFriendUserUpdatedSubscriptionResponse = MainFriendUserUpdatedSubscription$data;
 export type MainFriendUserUpdatedSubscription = {
-  variables: MainFriendUserUpdatedSubscriptionVariables;
+  variables: MainFriendUserUpdatedSubscription$variables;
   response: MainFriendUserUpdatedSubscription$data;
 };
 
@@ -137,9 +135,7 @@ return {
   "params": {
     "cacheID": "33a7f5d012f0b13f5dd22cbf3fc118ef",
     "id": null,
-    "metadata": {
-      "subscriptionName": "userUpdated"
-    },
+    "metadata": {},
     "name": "MainFriendUserUpdatedSubscription",
     "operationKind": "subscription",
     "text": "subscription MainFriendUserUpdatedSubscription {\n  userUpdated {\n    id\n    ...ProfileModal_user\n    ...UserListItem_user\n  }\n}\n\nfragment ProfileModal_user on User {\n  id\n  photoURL\n  name\n  nickname\n  hasBlocked\n  statusMessage\n  isFriend\n}\n\nfragment UserListItem_user on User {\n  id\n  photoURL\n  nickname\n  name\n  statusMessage\n  isOnline\n  hasBlocked\n}\n"

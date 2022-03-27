@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ce3a003831c6bc748efe435ab0deedb9>>
+ * @generated SignedSource<<c8aa43741ce3ef161f4e0e8f29f27db7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,13 +16,11 @@ export type MessagePaginationQuery$variables = {
   first: number;
   searchText?: string | null;
 };
-export type MessagePaginationQueryVariables = MessagePaginationQuery$variables;
 export type MessagePaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"MessageComponent_message">;
 };
-export type MessagePaginationQueryResponse = MessagePaginationQuery$data;
 export type MessagePaginationQuery = {
-  variables: MessagePaginationQueryVariables;
+  variables: MessagePaginationQuery$variables;
   response: MessagePaginationQuery$data;
 };
 

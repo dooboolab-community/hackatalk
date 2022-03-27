@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9ac46d1297076432950ce6199dfbee4b>>
+ * @generated SignedSource<<fca1a24b47a7f2f9d1bfc3b270d5c346>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,13 +15,11 @@ export type UserUsersPaginationQuery$variables = {
   after?: string | null;
   searchText?: string | null;
 };
-export type UserUsersPaginationQueryVariables = UserUsersPaginationQuery$variables;
 export type UserUsersPaginationQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"SearchUserComponent_user">;
 };
-export type UserUsersPaginationQueryResponse = UserUsersPaginationQuery$data;
 export type UserUsersPaginationQuery = {
-  variables: UserUsersPaginationQueryVariables;
+  variables: UserUsersPaginationQuery$variables;
   response: UserUsersPaginationQuery$data;
 };
 
