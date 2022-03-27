@@ -1,7 +1,7 @@
 {
   "name": "hackatalk",
   "private": true,
-  "version": "1.13.0",
+  "version": "1.14.0",
   "main": "node_modules/expo/AppEntry.js",
   "description": "Opensource chat app",
   "author": "dooboolab",
