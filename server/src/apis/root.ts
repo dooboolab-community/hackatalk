@@ -5,7 +5,6 @@ import {resetPassword, verifyEmail} from '../models/User';
 
 import {UPLOAD_FILE_SIZE_LIMIT} from '../utils/const';
 import {assert} from '../utils/assert';
-import {getMimeType} from 'stream-mime-type';
 import multer from 'multer';
 import {prisma} from '../context';
 import qs from 'querystring';
@@ -201,14 +200,11 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const {mime} = await getMimeType(req.file.buffer);
-
   const url = await uploadFileToAzureBlobFromStream(
     bufferToStream(req.file.buffer),
     req.body.name || `${new Date().getTime()}_${req.file.originalname ?? ''}`,
     req.body.dir,
     process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-    mime,
   );
 
   res.status(200).json({

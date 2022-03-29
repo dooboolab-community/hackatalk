@@ -44,7 +44,6 @@ const fetchGraphQL: FetchFunction = async (
     formData.append('operations', query);
 
     let map: {[key: number]: string[]} = {};
-
     let idx = 0;
     const prefix = 'variables';
 
@@ -52,20 +51,19 @@ const fetchGraphQL: FetchFunction = async (
       const files = uploadables[field];
 
       if (Array.isArray(files)) {
-        // multi uploads
         for (let i in files) {
           map[idx] = [`${prefix}.${field}.${i}`];
           formData.append(`${idx}`, files[i]);
-          idx++;
         }
 
         formData.append('map', JSON.stringify(map));
       } else {
-        // single upload
         map[idx] = [`${prefix}.${field}`];
         formData.append('map', JSON.stringify(map));
         formData.append(`${idx}`, files);
       }
+
+      idx++;
     });
 
     formData.append('map', JSON.stringify(map));
