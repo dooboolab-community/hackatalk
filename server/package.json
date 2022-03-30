@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "dotenv -e ./dotenv/.env -- ts-node --transpile-only --files src/server.ts",
+    "start:prod": "dotenv -e ./dotenv/prod.env -- ts-node --transpile-only --files src/server.ts",
     "dev": "dotenv -e ./dotenv/.env -- ts-node-dev --respawn --transpile-only --files src/server.ts",
     "prod": "node dist/src/server",
     "clean": "rm -rf dist",

@@ -14,14 +14,14 @@ export const singleUpload = mutationField('singleUpload', {
     const {createReadStream} = await file;
     const stream = createReadStream();
 
-    const {mime} = await getMimeType(stream);
+    // const {mime} = await getMimeType(stream);
 
     return uploadFileToAzureBlobFromStream(
       stream,
       nanoid(),
       dir ?? '',
       process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-      mime,
+      // mime,
     );
   },
 });

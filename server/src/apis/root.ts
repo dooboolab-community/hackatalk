@@ -201,14 +201,14 @@ const onUploadSingle = async (req: Request, res: Response): Promise<void> => {
     return;
   }
 
-  const {mime} = await getMimeType(req.file.buffer);
+  // const {mime} = await getMimeType(req.file.buffer);
 
   const url = await uploadFileToAzureBlobFromStream(
     bufferToStream(req.file.buffer),
     req.body.name || `${new Date().getTime()}_${req.file.originalname ?? ''}`,
     req.body.dir,
     process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-    mime,
+    // mime,
   );
 
   res.status(200).json({

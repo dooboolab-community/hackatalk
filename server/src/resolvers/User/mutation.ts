@@ -80,14 +80,14 @@ export const signUp = mutationField('signUp', {
     if (photoUpload) {
       const {createReadStream} = await photoUpload;
       const stream = createReadStream();
-      const {mime} = await getMimeType(stream);
+      // const {mime} = await getMimeType(stream);
 
       uploadedURL = await uploadFileToAzureBlobFromStream(
         stream,
         nanoid(),
         'profile',
         process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
-        mime,
+        // mime,
       );
     }
 

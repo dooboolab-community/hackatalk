@@ -38,7 +38,7 @@ export const uploadFileToAzureBlobFromStream = async (
   destFile: string,
   destDir: string,
   containerName: string,
-  mimeType: string,
+  mimeType?: string,
 ): Promise<string> => {
   try {
     assert(blobService, 'Azure Storage is not initialized.');
