@@ -15,7 +15,7 @@ sidebar_label: Installation
 
 ## Client installation
 
-Client project belongs to separate directory [client](https://github.com/dooboolab/hackatalk/tree/master/client), in [github](https://github.com/dooboolab/hackatalk).
+Client project belongs to separate directory [client](https://github.com/dooboolab/hackatalk/tree/main/client), in [github](https://github.com/dooboolab/hackatalk).
 
 **You need to follow [react-native environment setup](https://reactnative.dev/docs/environment-setup) and [expo installation](https://docs.expo.io/get-started/installation) to continue further steps.**
 

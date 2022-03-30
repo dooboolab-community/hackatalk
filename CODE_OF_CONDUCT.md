@@ -1,6 +1,6 @@
 ## Code of conduct
 
-> Followed by `dooboolab.com`'s [code-of-conduct](https://github.com/dooboolab/dooboolab.com/edit/master/code-of-conduct.md)
+> Followed by `dooboolab.com`'s [code-of-conduct](https://github.com/dooboolab/dooboolab.com/edit/main/code-of-conduct.md)
 > @copyright by dooboolab
 
 We expect `dooboolab`'s contributors to act professionally and respectfully. All contributors should have their own `self-observation` ability so that our environment can go wisely.

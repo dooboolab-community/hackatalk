@@ -36,7 +36,7 @@ sidebar_label: 채널
 
 위 이미지에서 보이는 것처럼 `tom`과 `jerry`를 포함한 결과를 `IN` 오퍼레이터를 통해 불러오면 `tom`과 `jerry`만 포함되는 결과만 받아오지 않습니다. 고유한 채팅방을 찾으려면 우리는 `tom`과 `jerry`만 포함된 결과를 받아올 수 있어야 합니다. 관련하여 비슷한 토론을 [Prisma1 forum](https://v1.prisma.io/forum/t/query-for-exact-match-of-array-of-ids/5700/17)에서 볼 수 있습니다.
 
-해커톡에서는 `Channel`의 `userIDs` 외에 고유 사용자 수를 확인하여 문제를 해결하고 있습니다. 아래의 코드 외에 더 좋은 코드에 대한 제안이 있으시면 `PR` 요청을 해주세요! 관련 코드는 [Channel/mutation.ts](https://github.com/dooboolab/hackatalk/blob/master/server/src/resolvers/Channel/mutation.ts)에 있습니다. **2020년 8월 17일**
+해커톡에서는 `Channel`의 `userIDs` 외에 고유 사용자 수를 확인하여 문제를 해결하고 있습니다. 아래의 코드 외에 더 좋은 코드에 대한 제안이 있으시면 `PR` 요청을 해주세요! 관련 코드는 [Channel/mutation.ts](https://github.com/dooboolab/hackatalk/blob/main/server/src/resolvers/Channel/mutation.ts)에 있습니다. **2020년 8월 17일**
 
 아래 코드는 간략한 구현사항입니다.
 
@@ -88,7 +88,7 @@ const existingChannel = await findChannelWithUserIds();
 
 ## 메시지를 보내며 채널 만들기
 
-채널을 생성함과 동시에 메시지를 보낼 수도 있습니다. 아래 코드는 [Channel/mutation.ts](https://github.com/dooboolab/hackatalk/blob/master/server/src/resolvers/Channel/mutation.ts)에서 볼 수 있습니다.
+채널을 생성함과 동시에 메시지를 보낼 수도 있습니다. 아래 코드는 [Channel/mutation.ts](https://github.com/dooboolab/hackatalk/blob/main/server/src/resolvers/Channel/mutation.ts)에서 볼 수 있습니다.
 
 ```ts
 message && await createMessage(message, existingChannel.id);

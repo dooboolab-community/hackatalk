@@ -15,7 +15,7 @@ sidebar_label: 설치
 
 ## 클라이언트 설치
 
-Client 프로젝트는 [github 소스코드](https://github.com/dooboolab/hackatalk)에서 별도 디렉터리인 [client](https://github.com/dooboolab/hackatalk/tree/master/client)에서 작성되었습니다.
+Client 프로젝트는 [github 소스코드](https://github.com/dooboolab/hackatalk)에서 별도 디렉터리인 [client](https://github.com/dooboolab/hackatalk/tree/main/client)에서 작성되었습니다.
 
 **다음 단계로 넘어가기 전에 [리액트네이티브 환경설정](https://reactnative.dev/docs/environment-setup) 그리고 [엑스포 설치](https://docs.expo.io/get-started/installation)를 완료해주세요.**
 

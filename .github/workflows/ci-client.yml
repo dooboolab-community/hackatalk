@@ -2,7 +2,7 @@ name: Client
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "client/**"
   pull_request:

@@ -25,7 +25,7 @@ jobs:
           expo-token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Write dev.json
-        run: echo '{{ secrets.GOOGLE_SERVICES }}' > google-services.json
+        run: echo '{{ secrets.GOOGLE_SERVICES }}' > google-service.json
 
       - run: yarn install
 

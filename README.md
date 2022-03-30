@@ -6,7 +6,7 @@
 [![Release expo](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml)
 [![Release Web](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml)
 [![CI For Website](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml)
-[![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/master/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)
+[![codecov](https://codecov.io/gh/dooboolab/hackatalk/branch/main/graph/badge.svg)](https://codecov.io/gh/dooboolab/hackatalk)
 [![All Contributors](https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 

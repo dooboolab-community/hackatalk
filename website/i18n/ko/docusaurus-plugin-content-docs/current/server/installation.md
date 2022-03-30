@@ -6,7 +6,7 @@ sidebar_label: 설치
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-서버 어플리케이션은 별도 디렉토리인 [server](https://github.com/dooboolab/hackatalk/tree/master/server)에 작성되었습니다.
+서버 어플리케이션은 별도 디렉토리인 [server](https://github.com/dooboolab/hackatalk/tree/main/server)에 작성되었습니다.
 
 서버에서 구현된 api들은 [Prisma](https://www.prisma.io)와 [Nexus](https://nexus.js.org/docs/nexus-prisma)를 주로 이용하며 개발하고 있습니다.
 

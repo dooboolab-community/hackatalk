@@ -2,7 +2,7 @@ name: Server
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "server/**"
   pull_request:

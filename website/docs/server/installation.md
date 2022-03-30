@@ -4,7 +4,7 @@ title: Installation
 sidebar_label: Installation
 ---
 
-Server project belongs to seperate directory [server](https://github.com/dooboolab/hackatalk/tree/master/server), in [github](https://github.com/dooboolab/hackatalk).
+Server project belongs to seperate directory [server](https://github.com/dooboolab/hackatalk/tree/main/server), in [github](https://github.com/dooboolab/hackatalk).
 
 We are using [Prisma](https://www.prisma.io) and [Nexus](https://nexus.js.org/docs/nexus-prisma) to serve our resolvers to clients.
 

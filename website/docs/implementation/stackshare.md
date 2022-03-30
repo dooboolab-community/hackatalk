@@ -5,7 +5,7 @@ title: Stack Share
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Our developement stacks are introduced in [client](https://github.com/dooboolab/hackatalk/tree/master/client) and [server](https://github.com/dooboolab/hackatalk/tree/master/server) seperately.
+Our developement stacks are introduced in [client](https://github.com/dooboolab/hackatalk/tree/main/client) and [server](https://github.com/dooboolab/hackatalk/tree/main/server) seperately.
 
 To work on this project, you need to install the `server` project locally. You can follow the [server installation](/docs/server/installation) to setup your local server.
 

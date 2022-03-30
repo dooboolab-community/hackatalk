@@ -513,7 +513,10 @@ const SignIn: FC = () => {
                   }}
                   leftElement={
                     <View style={{marginRight: 6}}>
-                      <SvgApple width={18} height={18} fill={colors.apple} />
+                      <SvgApple
+                        style={{width: 16, height: 16}}
+                        fill={colors.apple}
+                      />
                     </View>
                   }
                   loading={signingInApple || isAppleInFlight}

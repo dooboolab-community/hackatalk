@@ -93,4 +93,4 @@ There are 2 types of ways to sign in.
 
 The [graphql-shield](https://github.com/maticzav/graphql-shield) is wonderful permission management library which can be used in [graphql-middlewares](https://github.com/prisma-labs/graphql-middleware).
 
-This is somewhat similar to [firebase security rules](https://firebase.google.com/docs/rules) in some sense that it protects queries logically. This is defined in [permissions/index.ts](https://github.com/dooboolab/hackatalk/blob/master/server/src/permissions/index.ts) file in our `server`.
+This is somewhat similar to [firebase security rules](https://firebase.google.com/docs/rules) in some sense that it protects queries logically. This is defined in [permissions/index.ts](https://github.com/dooboolab/hackatalk/blob/main/server/src/permissions/index.ts) file in our `server`.

@@ -1,6 +1,6 @@
 # HackaTalk (Expo)
 
-- [Contributing](https://github.com/dooboolab/hackatalk/blob/master/CONTRIBUTING.md#client)
+- [Contributing](https://github.com/dooboolab/hackatalk/blob/main/CONTRIBUTING.md#client)
 
 > Specification
 

@@ -96,4 +96,4 @@ me: User!
 
 앞서 언급한 [graphql-shield](https://github.com/maticzav/graphql-shield)는 [graphql-middlewares](https://github.com/prisma-labs/graphql-middleware)에서 사용할 수 있는 유능한 권한 관리 라이브러리입니다.
 
-혹시라도 여러분이 [firebase security rules](https://firebase.google.com/docs/rules)를 작성해보셨다면 라이브러리의 역할을 더욱 편하게 이해할 수 있을 것입니다. 쿼리에 권한 규칙을 작성할 수 있는데 이는 [server/permissions](https://github.com/dooboolab/hackatalk/blob/master/server/src/permissions)에 디렉토리에 안에서 작성되고 있습니다.
+혹시라도 여러분이 [firebase security rules](https://firebase.google.com/docs/rules)를 작성해보셨다면 라이브러리의 역할을 더욱 편하게 이해할 수 있을 것입니다. 쿼리에 권한 규칙을 작성할 수 있는데 이는 [server/permissions](https://github.com/dooboolab/hackatalk/blob/main/server/src/permissions)에 디렉토리에 안에서 작성되고 있습니다.
