@@ -37,6 +37,6 @@ export const ErrorEmailNotValid = (message: string): ApolloError =>
   });
 
 export const ErrorEmailUserExists = (message: string): ApolloError =>
-  new ApolloError(message, 'EMAIL_FOR_USER_EXISTS', {
+  new ApolloError(message, 'EMAIL_USER_EXISTS', {
     parameter: 'email',
   });
