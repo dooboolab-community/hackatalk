@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4604d13a1c69bb0cfe12416b1fd97bc3>>
+ * @generated SignedSource<<ff8cfbb2b3cb74273870ba6ce1245ab1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,7 +11,7 @@
 import { ConcreteRequest, Mutation } from 'relay-runtime';
 export type UploadSingleUploadMutation$variables = {
   file: any;
-  dir: string;
+  dir?: string | null;
 };
 export type UploadSingleUploadMutation$data = {
   readonly singleUpload: string;
@@ -76,16 +76,16 @@ return {
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "f6726252665c86c713fd52fdd932b156",
+    "cacheID": "e825a4c3ff6932ef99e70a6a8c7eb178",
     "id": null,
     "metadata": {},
     "name": "UploadSingleUploadMutation",
     "operationKind": "mutation",
-    "text": "mutation UploadSingleUploadMutation(\n  $file: Upload!\n  $dir: String!\n) {\n  singleUpload(file: $file, dir: $dir)\n}\n"
+    "text": "mutation UploadSingleUploadMutation(\n  $file: Upload!\n  $dir: String\n) {\n  singleUpload(file: $file, dir: $dir)\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7fe23bbe646db6d5a4b98daaeb77693a";
+(node as any).hash = "c0bf0e7a939336270a11e1445098ffeb";
 
 export default node;
