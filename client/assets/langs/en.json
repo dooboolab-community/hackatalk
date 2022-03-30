@@ -94,6 +94,8 @@
   "SEND": "Send",
   "SEND_LINK": "Send Link",
   "SETTINGS": "Settings",
+  "SHARE_VIDEO": "Share video",
+  "SHARING_VIDEO": "Sharing video...",
   "SIGNED_IN_WITH_APPLE": "Signed in with Apple",
   "SIGNED_IN_WITH_EMAIL": "Signed in with Email",
   "SIGNED_IN_WITH_FACEBOOK": "Signed in with Facebook",
@@ -122,7 +124,5 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes",
-  "SHARE_VIDEO": "Share video",
-  "SHARING_VIDEO": "Sharing video..."
+  "YES": "Yes"
 }
