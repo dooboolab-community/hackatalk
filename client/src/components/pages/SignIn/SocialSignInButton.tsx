@@ -4,7 +4,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import {Alert, Platform, View} from 'react-native';
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC, ReactElement, memo, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useEffect, useState} from 'react';
 import {UseMutationConfig, useMutation} from 'react-relay';
 import type {
   UserFacebookSignInMutation,
@@ -228,4 +228,4 @@ const SocialSignInButton: FC<Props> = ({
   );
 };
 
-export default memo(SocialSignInButton);
+export default SocialSignInButton;

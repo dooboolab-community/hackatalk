@@ -24,6 +24,7 @@ import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
+import {getMimeType} from 'stream-mime-type';
 import {sign as jwtSignIn} from '../../utils/jwt';
 import {nanoid} from 'nanoid';
 import {sign} from 'jsonwebtoken';
@@ -79,12 +80,14 @@ export const signUp = mutationField('signUp', {
     if (photoUpload) {
       const {createReadStream} = await photoUpload;
       const stream = createReadStream();
+      const {mime} = await getMimeType(stream);
 
       uploadedURL = await uploadFileToAzureBlobFromStream(
         stream,
         nanoid(),
         'profile',
         process.env.NODE_ENV === 'production' ? 'hackatalk' : 'hackatalkdev',
+        mime,
       );
     }
 
@@ -163,8 +166,6 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
   args: {accessToken: nonNull(stringArg())},
 
   resolve: async (_parent, {accessToken}, ctx) => {
-    const socialUser = await verifyFacebookId(accessToken);
-
     const {
       id: facebookId,
       name,
@@ -172,7 +173,7 @@ export const signInWithFacebook = mutationField('signInWithFacebook', {
       picture: {
         data: {url},
       },
-    } = socialUser;
+    } = await verifyFacebookId(accessToken);
 
     return UserService.signInWithSocialAccount(
       {
@@ -220,9 +221,7 @@ export const signInWithGoogle = mutationField('signInWithGoogle', {
   args: {accessToken: nonNull(stringArg())},
 
   resolve: async (_parent, {accessToken}, ctx) => {
-    const socialUser = await verifyGoogleId(accessToken);
-
-    const {sub, email, name = '', picture} = socialUser;
+    const {sub, email, name = '', picture} = await verifyGoogleId(accessToken);
 
     assert(email, 'No email returned from Google.');
 

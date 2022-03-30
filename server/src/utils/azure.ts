@@ -38,6 +38,7 @@ export const uploadFileToAzureBlobFromStream = async (
   destFile: string,
   destDir: string,
   containerName: string,
+  mimeType: string,
 ): Promise<string> => {
   try {
     assert(blobService, 'Azure Storage is not initialized.');
@@ -47,7 +48,9 @@ export const uploadFileToAzureBlobFromStream = async (
       .getContainerClient(containerName)
       .getBlockBlobClient(resolveBlobName(destFile, destDir));
 
-    await blockBlobClient.uploadStream(stream);
+    await blockBlobClient.uploadStream(stream, undefined, undefined, {
+      blobHTTPHeaders: {blobContentType: mimeType},
+    });
 
     return blockBlobClient.url;
   } catch (e: any) {
