@@ -4,7 +4,7 @@ import {ConfigContext, ExpoConfig} from '@expo/config';
 
 import {version} from './package.json';
 
-const androidVersionCode = 34;
+const androidVersionCode = 35;
 
 export default ({config}: ConfigContext): ExpoConfig => ({
   ...config,
