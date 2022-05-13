@@ -42,7 +42,7 @@
     "apollo-server": "^3.6.6",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "generate-password": "^1.7.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^6.1.20",
