@@ -8,7 +8,6 @@ import {dark, light} from './theme';
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
 import {Alert} from 'react-native';
 import AppLoading from 'expo-app-loading';
-import {AppearanceProvider} from 'react-native-appearance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
@@ -110,7 +109,6 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
   .wrap(HackatalkThemeProvider, {})
-  .wrap(AppearanceProvider, {})
   .build();
 
 export default gestureHandlerRootHOC(WrappedApp);
