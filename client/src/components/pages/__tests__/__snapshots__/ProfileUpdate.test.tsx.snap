@@ -59,6 +59,7 @@ exports[`rendering test renders as expected 1`] = `
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -175,7 +176,6 @@ exports[`rendering test renders as expected 1`] = `
                 Nickname
               </Text>
               <TextInput
-                allowFontScaling={true}
                 autoCapitalize="none"
                 editable={true}
                 multiline={false}
@@ -184,7 +184,6 @@ exports[`rendering test renders as expected 1`] = `
                 onFocus={[Function]}
                 placeholder="A Nickname can help others find you"
                 placeholderTextColor="#6D6D6D"
-                rejectResponderTermination={true}
                 secureTextEntry={false}
                 style={
                   Array [
@@ -203,7 +202,6 @@ exports[`rendering test renders as expected 1`] = `
                   ]
                 }
                 testID="input-nickname"
-                underlineColorAndroid="transparent"
                 value=""
               />
             </View>
@@ -297,7 +295,6 @@ exports[`rendering test renders as expected 1`] = `
                 Name
               </Text>
               <TextInput
-                allowFontScaling={true}
                 autoCapitalize="none"
                 editable={true}
                 multiline={false}
@@ -306,7 +303,6 @@ exports[`rendering test renders as expected 1`] = `
                 onFocus={[Function]}
                 placeholder="Please write your name"
                 placeholderTextColor="#6D6D6D"
-                rejectResponderTermination={true}
                 secureTextEntry={false}
                 style={
                   Array [
@@ -325,7 +321,6 @@ exports[`rendering test renders as expected 1`] = `
                   ]
                 }
                 testID="input-name"
-                underlineColorAndroid="transparent"
                 value=""
               />
             </View>
@@ -422,7 +417,6 @@ exports[`rendering test renders as expected 1`] = `
                 Status message
               </Text>
               <TextInput
-                allowFontScaling={true}
                 autoCapitalize="none"
                 editable={true}
                 maxLength={60}
@@ -432,7 +426,6 @@ exports[`rendering test renders as expected 1`] = `
                 onFocus={[Function]}
                 placeholder="Please write your status message"
                 placeholderTextColor="#6D6D6D"
-                rejectResponderTermination={true}
                 secureTextEntry={false}
                 style={
                   Array [
@@ -452,7 +445,6 @@ exports[`rendering test renders as expected 1`] = `
                   ]
                 }
                 testID="input-status"
-                underlineColorAndroid="transparent"
                 value=""
               />
             </View>
@@ -524,6 +516,7 @@ exports[`rendering test renders as expected 1`] = `
           >
             <View
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}

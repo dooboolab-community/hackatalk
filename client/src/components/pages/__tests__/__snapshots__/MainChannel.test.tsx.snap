@@ -93,17 +93,14 @@ exports[`[Channel] screen renders without crashing 1`] = `
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
       onEndReached={[Function]}
       onEndReachedThreshold={0.1}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
@@ -130,9 +127,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
           "alignSelf": "stretch",
         }
       }
-      updateCellsBatchingPeriod={50}
       viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
     >
       <RCTRefreshControl />
       <View>
@@ -141,6 +136,8 @@ exports[`[Channel] screen renders without crashing 1`] = `
         >
           <View>
             <ViewManagerAdapter_ExpoAdsAdMobBannerView
+              onDidFailToReceiveAdWithError={[Function]}
+              onSizeChange={[Function]}
               proxiedProperties={
                 Object {
                   "adUnitID": "ca-app-pub-7837089095803162/4326063134",
@@ -148,13 +145,6 @@ exports[`[Channel] screen renders without crashing 1`] = `
                     "npa": "1",
                   },
                   "bannerSize": "smartBannerPortrait",
-                  "onAdViewDidDismissScreen": undefined,
-                  "onAdViewDidReceiveAd": undefined,
-                  "onAdViewWillDismissScreen": undefined,
-                  "onAdViewWillLeaveApplication": undefined,
-                  "onAdViewWillPresentScreen": undefined,
-                  "onDidFailToReceiveAdWithError": [Function],
-                  "onSizeChange": [Function],
                 }
               }
               style={Object {}}
@@ -176,6 +166,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
             <View
               accessibilityLabel="Go to chat"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -386,6 +377,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
     </RCTScrollView>
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}

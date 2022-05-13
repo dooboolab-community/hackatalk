@@ -52,13 +52,11 @@ exports[`[TextInput] render should renders without crashing 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
         onBlur={[Function]}
         onFocus={[Function]}
         placeholderTextColor="#6D6D6D"
-        rejectResponderTermination={true}
         style={
           Array [
             Object {

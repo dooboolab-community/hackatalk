@@ -33,6 +33,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
       }
     >
       <Image
+        collapsable={false}
         source={
           Object {
             "canInstrument": true,

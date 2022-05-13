@@ -67,6 +67,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           >
             <View
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -183,7 +184,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Email
                 </Text>
                 <TextInput
-                  allowFontScaling={true}
                   autoCapitalize="none"
                   editable={true}
                   multiline={false}
@@ -193,7 +193,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   onSubmitEditing={[Function]}
                   placeholder="hello@example.com"
                   placeholderTextColor="#6D6D6D"
-                  rejectResponderTermination={true}
                   secureTextEntry={false}
                   style={
                     Array [
@@ -212,7 +211,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     ]
                   }
                   testID="input-email"
-                  underlineColorAndroid="transparent"
                   value=""
                 />
               </View>
@@ -306,7 +304,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Password
                 </Text>
                 <TextInput
-                  allowFontScaling={true}
                   autoCapitalize="none"
                   editable={true}
                   multiline={false}
@@ -316,7 +313,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   onSubmitEditing={[Function]}
                   placeholder="********"
                   placeholderTextColor="#6D6D6D"
-                  rejectResponderTermination={true}
                   secureTextEntry={true}
                   style={
                     Array [
@@ -335,7 +331,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     ]
                   }
                   testID="input-password"
-                  underlineColorAndroid="transparent"
                   value=""
                 />
               </View>
@@ -430,7 +425,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Confirm password
                 </Text>
                 <TextInput
-                  allowFontScaling={true}
                   autoCapitalize="none"
                   editable={true}
                   multiline={false}
@@ -440,7 +434,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   onSubmitEditing={[Function]}
                   placeholder="********"
                   placeholderTextColor="#6D6D6D"
-                  rejectResponderTermination={true}
                   secureTextEntry={true}
                   style={
                     Array [
@@ -459,7 +452,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     ]
                   }
                   testID="input-confirm-password"
-                  underlineColorAndroid="transparent"
                   value=""
                 />
               </View>
@@ -553,7 +545,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Name
                 </Text>
                 <TextInput
-                  allowFontScaling={true}
                   autoCapitalize="none"
                   editable={true}
                   multiline={false}
@@ -563,7 +554,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   onSubmitEditing={[Function]}
                   placeholder="Please write your name"
                   placeholderTextColor="#6D6D6D"
-                  rejectResponderTermination={true}
                   secureTextEntry={false}
                   style={
                     Array [
@@ -582,7 +572,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     ]
                   }
                   testID="input-name"
-                  underlineColorAndroid="transparent"
                   value=""
                 />
               </View>
@@ -679,7 +668,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   Status
                 </Text>
                 <TextInput
-                  allowFontScaling={true}
                   autoCapitalize="none"
                   editable={true}
                   maxLength={60}
@@ -690,7 +678,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   onSubmitEditing={[Function]}
                   placeholder="Please write your status message"
                   placeholderTextColor="#6D6D6D"
-                  rejectResponderTermination={true}
                   secureTextEntry={false}
                   style={
                     Array [
@@ -710,7 +697,6 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     ]
                   }
                   testID="input-status"
-                  underlineColorAndroid="transparent"
                   value=""
                 />
               </View>
@@ -764,6 +750,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
           </View>
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}

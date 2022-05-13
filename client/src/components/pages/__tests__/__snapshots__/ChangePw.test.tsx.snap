@@ -122,7 +122,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               Enter Current Password
             </Text>
             <TextInput
-              allowFontScaling={true}
               autoCapitalize="none"
               editable={true}
               multiline={false}
@@ -131,7 +130,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               onFocus={[Function]}
               placeholder="******"
               placeholderTextColor="#6D6D6D"
-              rejectResponderTermination={true}
               secureTextEntry={true}
               style={
                 Array [
@@ -151,7 +149,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 ]
               }
               testID="input-pw"
-              underlineColorAndroid="transparent"
               value=""
             />
           </View>
@@ -245,7 +242,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               Enter New Password
             </Text>
             <TextInput
-              allowFontScaling={true}
               autoCapitalize="none"
               editable={true}
               multiline={false}
@@ -254,7 +250,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               onFocus={[Function]}
               placeholder="******"
               placeholderTextColor="#6D6D6D"
-              rejectResponderTermination={true}
               secureTextEntry={true}
               style={
                 Array [
@@ -274,7 +269,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 ]
               }
               testID="new-pw-input"
-              underlineColorAndroid="transparent"
               value=""
             />
           </View>
@@ -368,7 +362,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               Repeat New Password
             </Text>
             <TextInput
-              allowFontScaling={true}
               autoCapitalize="none"
               editable={true}
               multiline={false}
@@ -377,7 +370,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
               onFocus={[Function]}
               placeholder="******"
               placeholderTextColor="#6D6D6D"
-              rejectResponderTermination={true}
               secureTextEntry={true}
               style={
                 Array [
@@ -397,7 +389,6 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                 ]
               }
               testID="input-validation"
-              underlineColorAndroid="transparent"
               value=""
             />
           </View>
@@ -436,6 +427,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
       </View>
       <View
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}

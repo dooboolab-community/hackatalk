@@ -42,6 +42,7 @@ exports[`Rendering renders without crashing 1`] = `
       }
     >
       <View
+        collapsable={false}
         forwardedRef={[Function]}
         onMoveShouldSetResponder={[Function]}
         onMoveShouldSetResponderCapture={[Function]}
@@ -89,6 +90,7 @@ exports[`Rendering renders without crashing 1`] = `
         />
       </View>
       <View
+        collapsable={false}
         forwardedRef={[Function]}
         onMoveShouldSetResponder={[Function]}
         onMoveShouldSetResponderCapture={[Function]}
@@ -138,6 +140,7 @@ exports[`Rendering renders without crashing 1`] = `
         />
       </View>
       <View
+        collapsable={false}
         forwardedRef={[Function]}
         onMoveShouldSetResponder={[Function]}
         onMoveShouldSetResponderCapture={[Function]}

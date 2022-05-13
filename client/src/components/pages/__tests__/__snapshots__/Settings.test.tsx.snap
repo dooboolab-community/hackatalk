@@ -46,16 +46,12 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
@@ -68,8 +64,6 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
         ]
       }
       testID="test-section-list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     >
       <View>
         <View
@@ -112,6 +106,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={false}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -166,6 +161,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
     </RCTScrollView>
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -233,16 +229,12 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
@@ -255,8 +247,6 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
         ]
       }
       testID="test-section-list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     >
       <View>
         <View
@@ -299,6 +289,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={false}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -353,6 +344,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
     </RCTScrollView>
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -420,16 +412,12 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
@@ -442,8 +430,6 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
         ]
       }
       testID="test-section-list"
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
     >
       <View>
         <View
@@ -486,6 +472,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={false}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -540,6 +527,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
     </RCTScrollView>
     <View
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
