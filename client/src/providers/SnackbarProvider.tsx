@@ -34,11 +34,11 @@ export const SnackbarProvider: FC = (props) => {
     (newSnackbarState: SnackbarState): void => {
       setSnackbarState(newSnackbarState);
 
-      const {text, timer, styles, actionText, onActionPress, type} =
+      const {content, timer, styles, actionText, onActionPress, type} =
         newSnackbarState;
 
       snackbarRef.current?.show({
-        text,
+        content,
         timer,
         styles,
         actionText,

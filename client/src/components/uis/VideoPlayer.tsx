@@ -104,7 +104,7 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
           height: 150,
         }}
         useNativeControls
-        resizeMode="contain"
+        // resizeMode={ResizeMode.CONTAIN}
         onError={() => {
           setMediaError(getString('FAILED_FETCH', {media: getString('VIDEO')}));
         }}
