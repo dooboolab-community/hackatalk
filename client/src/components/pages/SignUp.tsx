@@ -24,6 +24,7 @@ import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {
   FC,
   ReactElement,
+  memo,
   useCallback,
   useLayoutEffect,
   useState,
@@ -216,35 +217,37 @@ const Page: FC = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: (): ReactElement => (
-        <TouchableOpacity testID="touch-done" onPress={requestSignUp}>
-          <View
-            style={{
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-            }}
-          >
-            {isInFlight ? (
-              <ActivityIndicator size="small" style={{marginRight: 4}} />
-            ) : (
-              <Typography.Body2
-                style={{
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                }}
-              >
-                {getString('REGISTER')}
-              </Typography.Body2>
-            )}
-          </View>
-        </TouchableOpacity>
+      headerRight: memo(
+        (): ReactElement => (
+          <TouchableOpacity testID="touch-done" onPress={requestSignUp}>
+            <View
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 8,
+              }}
+            >
+              {isInFlight ? (
+                <ActivityIndicator size="small" style={{marginRight: 4}} />
+              ) : (
+                <Typography.Body2
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {getString('REGISTER')}
+                </Typography.Body2>
+              )}
+            </View>
+          </TouchableOpacity>
+        ),
       ),
     });
   }, [isInFlight, navigation, requestSignUp]);
 
   const inputChangeHandlers: Record<string, (value: string) => void> = {
     emailInput: (emailStr: string): void => {
-      setEmail(emailStr);
+      setEmail(emailStr.trim());
 
       if (!validateEmail(emailStr)) {
         setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
@@ -253,7 +256,7 @@ const Page: FC = () => {
       }
     },
     passwordInput: (passwordStr: string): void => {
-      setPassword(passwordStr);
+      setPassword(passwordStr.trim());
 
       if (!validatePassword(passwordStr)) {
         setErrorPassword(getString('PASSWORD_MIN'));
@@ -265,7 +268,7 @@ const Page: FC = () => {
       }
     },
     confirmPasswordInput: (confirmPasswordStr: string): void => {
-      setConfirmPassword(confirmPasswordStr);
+      setConfirmPassword(confirmPasswordStr.trim());
 
       if (password !== confirmPasswordStr) {
         setErrorConfirmPassword(getString('PASSWORD_MUST_MATCH'));
@@ -274,7 +277,7 @@ const Page: FC = () => {
       }
     },
     nameInput: (nameStr: string): void => {
-      setName(nameStr);
+      setName(nameStr.trim());
 
       if (nameStr.length < 2) {
         setErrorName(getString('NAME_MIN'));
