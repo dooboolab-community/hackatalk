@@ -238,7 +238,7 @@ const Screen: FC = () => {
 
   const showUpdateProfileToast = (): void => {
     snackbar?.openSnackbar({
-      text: getString('UPDATE_PROFILE'),
+      content: {text: getString('UPDATE_PROFILE')},
       type: 'success',
       styles: {
         container: {

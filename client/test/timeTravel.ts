@@ -4,6 +4,8 @@ import MockDate from 'mockdate';
 
 const FRAME_TIME = 10;
 
+jest.mock('lodash/debounce', () => jest.fn((fn) => fn));
+
 const advanceOneFrame = (): void => {
   const now = Date.now();
   MockDate.set(new Date(now + FRAME_TIME));

@@ -47,12 +47,10 @@ exports[`Rendering renders [UserListItem] 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
         multiline={false}
         onChangeText={[Function]}
-        rejectResponderTermination={true}
         selectionColor="white"
         style={
           Array [
@@ -567,16 +565,12 @@ fragment UserListItem_user on User {
             },
           ]
         }
-        disableVirtualization={false}
         getItem={[Function]}
         getItemCount={[Function]}
-        horizontal={false}
-        initialNumToRender={10}
         keyExtractor={[Function]}
-        maxToRenderPerBatch={10}
         onContentSizeChange={[Function]}
-        onEndReachedThreshold={2}
         onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
         onMomentumScrollEnd={[Function]}
         onScroll={[Function]}
         onScrollBeginDrag={[Function]}
@@ -590,9 +584,7 @@ fragment UserListItem_user on User {
             "alignSelf": "stretch",
           }
         }
-        updateCellsBatchingPeriod={50}
         viewabilityConfigCallbackPairs={Array []}
-        windowSize={21}
       >
         <View>
           <View
@@ -626,6 +618,7 @@ fragment UserListItem_user on User {
             >
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -749,6 +742,7 @@ fragment UserListItem_user on User {
                   >
                     <View
                       accessible={true}
+                      collapsable={false}
                       focusable={true}
                       onClick={[Function]}
                       onResponderGrant={[Function]}
@@ -881,12 +875,10 @@ exports[`Rendering renders without crashing 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={true}
         autoCapitalize="none"
         autoCorrect={false}
         multiline={false}
         onChangeText={[Function]}
-        rejectResponderTermination={true}
         selectionColor="white"
         style={
           Array [
@@ -944,6 +936,7 @@ exports[`Rendering renders without crashing 1`] = `
       }
     >
       <Image
+        collapsable={false}
         source={
           Object {
             "canInstrument": true,

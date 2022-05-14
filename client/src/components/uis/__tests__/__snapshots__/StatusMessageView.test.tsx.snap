@@ -2,6 +2,7 @@
 
 exports[`[StatusMessageView] render render without crashing 1`] = `
 <View
+  collapsable={false}
   onLayout={[Function]}
   style={
     Object {
@@ -22,6 +23,7 @@ exports[`[StatusMessageView] render render without crashing 1`] = `
 >
   <View
     accessible={true}
+    collapsable={false}
     focusable={true}
     onClick={[Function]}
     onResponderGrant={[Function]}

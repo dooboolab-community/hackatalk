@@ -83,18 +83,14 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       invertStickyHeaders={true}
       inverted={true}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
@@ -117,9 +113,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           },
         ]
       }
-      updateCellsBatchingPeriod={50}
       viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
     >
       <View>
         <View
@@ -231,14 +225,12 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       }
     >
       <TextInput
-        allowFontScaling={true}
         enablesReturnKeyAutomatically={true}
         multiline={true}
         onChangeText={[Function]}
         onFocus={[Function]}
         onSelectionChange={[Function]}
         placeholder=""
-        rejectResponderTermination={true}
         returnKeyType="done"
         style={
           Array [
@@ -257,11 +249,11 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           ]
         }
         testID="input-chat"
-        underlineColorAndroid="transparent"
         value=""
       />
       <View
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}

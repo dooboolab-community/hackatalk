@@ -132,7 +132,7 @@ const SocialSignInButton: FC<Props> = ({
                 });
               }
             },
-            onError: (error) => {
+            onError: (error: any) => {
               showAlertForError(normalizeErrorString(error));
             },
           };

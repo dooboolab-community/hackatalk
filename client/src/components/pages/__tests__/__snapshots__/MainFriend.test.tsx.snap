@@ -480,17 +480,14 @@ fragment UserListItem_user on User {
           },
         ]
       }
-      disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
       keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
       onEndReached={[Function]}
       onEndReachedThreshold={0.1}
       onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
@@ -513,9 +510,7 @@ fragment UserListItem_user on User {
         }
       }
       testID="friend-list"
-      updateCellsBatchingPeriod={50}
       viewabilityConfigCallbackPairs={Array []}
-      windowSize={21}
     >
       <RCTRefreshControl />
       <View>
@@ -535,6 +530,7 @@ fragment UserListItem_user on User {
           >
             <View
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}

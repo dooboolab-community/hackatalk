@@ -397,7 +397,7 @@ const SignIn: FC = () => {
             placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
-              setEmail(text);
+              setEmail(text.trim());
               setErrorEmail('');
             }}
             errorText={errorEmail}
@@ -420,7 +420,7 @@ const SignIn: FC = () => {
             placeholder="******"
             value={password}
             onChangeText={(text: string): void => {
-              setPassword(text);
+              setPassword(text.trim());
               setErrorPassword('');
             }}
             errorText={errorPassword}

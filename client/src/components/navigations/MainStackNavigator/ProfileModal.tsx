@@ -314,7 +314,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   useEffect(() => {
     if (openSnackbar && showFriendAddedMessage) {
       openSnackbar({
-        text: getString('FRIEND_ADDED'),
+        content: {text: getString('FRIEND_ADDED')},
         type: 'success',
         testID: 'profile-snackbar',
         zIndex: 101,

@@ -78,7 +78,7 @@ const Page: FC = () => {
         placeholder="hello@example.com"
         value={email}
         onChangeText={(text: string): void => {
-          setEmail(text);
+          setEmail(text.trim());
           setErrorEmail('');
         }}
         errorText={errorEmail}

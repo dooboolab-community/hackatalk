@@ -40,6 +40,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
     >
       <View
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}

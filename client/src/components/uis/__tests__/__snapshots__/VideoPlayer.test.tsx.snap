@@ -42,6 +42,7 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
       >
         <View
           accessible={true}
+          collapsable={false}
           style={
             Object {
               "alignItems": "center",

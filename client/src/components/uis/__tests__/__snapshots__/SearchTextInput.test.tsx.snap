@@ -30,11 +30,9 @@ exports[`Rendering renders without crashing 1`] = `
     }
   >
     <TextInput
-      allowFontScaling={true}
       autoCapitalize="none"
       autoCorrect={false}
       multiline={false}
-      rejectResponderTermination={true}
       selectionColor="white"
       style={
         Array [

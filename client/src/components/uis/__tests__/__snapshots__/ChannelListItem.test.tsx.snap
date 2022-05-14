@@ -23,6 +23,7 @@ exports[`[ChannelListItem] rendering test renders "renderSingleImage" as expecte
     <View
       accessibilityLabel="Go to chat"
       accessible={true}
+      collapsable={false}
       focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -306,6 +307,7 @@ exports[`[ChannelListItem] rendering test renders "renderSingleImage" without ph
     <View
       accessibilityLabel="Go to chat"
       accessible={true}
+      collapsable={false}
       focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -566,6 +568,7 @@ exports[`[ChannelListItem] rendering test renders as expected 1`] = `
     <View
       accessibilityLabel="Go to chat"
       accessible={true}
+      collapsable={false}
       focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}

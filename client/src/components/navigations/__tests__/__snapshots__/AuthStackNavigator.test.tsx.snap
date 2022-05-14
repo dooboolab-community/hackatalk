@@ -50,6 +50,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
         >
           <RNSScreen
             activityState={2}
+            collapsable={false}
             forwardedRef={[Function]}
             pointerEvents="box-none"
             style={
@@ -125,6 +126,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
               }
             >
               <View
+                collapsable={false}
                 pointerEvents="box-none"
                 style={
                   Object {
@@ -213,46 +215,26 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                             }
                           >
                             <View>
-                              <mocked-view
-                                onPress={[Function]}
+                              <View
+                                accessible={true}
+                                collapsable={false}
+                                focusable={true}
+                                onClick={[Function]}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
                                 style={
                                   Object {
-                                    "animatedStyle": Object {
-                                      "current": Object {},
-                                    },
-                                    "initial": Object {
-                                      "updater": [Function],
-                                      "value": Object {
-                                        "height": 160,
-                                        "left": 525,
-                                        "position": "absolute",
-                                        "top": 400.2,
-                                        "width": 160,
-                                        "zIndex": 15,
-                                      },
-                                    },
-                                    "viewDescriptors": Object {
-                                      "add": [Function],
-                                      "batchToRemove": Set {},
-                                      "items": Array [],
-                                      "rebuildsharableViewDescriptors": [Function],
-                                      "remove": [Function],
-                                      "sharableViewDescriptors": MutableValue {
-                                        "_animation": null,
-                                        "_id": 4,
-                                        "_listeners": Array [],
-                                        "_setter": [Function],
-                                        "_value": Array [],
-                                      },
-                                      "tags": Set {},
-                                      "waitForInsertSync": false,
-                                      "waitForRemoveSync": false,
-                                    },
-                                    "viewsRef": Object {
-                                      "add": [Function],
-                                      "items": Set {},
-                                      "remove": [Function],
-                                    },
+                                    "height": undefined,
+                                    "left": undefined,
+                                    "opacity": 1,
+                                    "position": "absolute",
+                                    "top": undefined,
+                                    "width": undefined,
+                                    "zIndex": 15,
                                   }
                                 }
                                 testID="theme-test"
@@ -274,7 +256,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                     }
                                   }
                                 />
-                              </mocked-view>
+                              </View>
                               <View
                                 style={
                                   Array [
@@ -384,7 +366,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       Email
                                     </Text>
                                     <TextInput
-                                      allowFontScaling={true}
                                       autoCapitalize="none"
                                       editable={true}
                                       multiline={false}
@@ -394,7 +375,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       onSubmitEditing={[Function]}
                                       placeholder="hello@example.com"
                                       placeholderTextColor="#6D6D6D"
-                                      rejectResponderTermination={true}
                                       secureTextEntry={false}
                                       style={
                                         Array [
@@ -415,7 +395,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         ]
                                       }
                                       testID="input-email"
-                                      underlineColorAndroid="transparent"
                                       value=""
                                     />
                                   </View>
@@ -511,7 +490,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       Password
                                     </Text>
                                     <TextInput
-                                      allowFontScaling={true}
                                       autoCapitalize="none"
                                       editable={true}
                                       multiline={false}
@@ -521,7 +499,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                       onSubmitEditing={[Function]}
                                       placeholder="******"
                                       placeholderTextColor="#6D6D6D"
-                                      rejectResponderTermination={true}
                                       secureTextEntry={true}
                                       style={
                                         Array [
@@ -542,7 +519,6 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                         ]
                                       }
                                       testID="input-password"
-                                      underlineColorAndroid="transparent"
                                       value=""
                                     />
                                   </View>
@@ -592,6 +568,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 >
                                   <View
                                     accessible={true}
+                                    collapsable={false}
                                     focusable={true}
                                     onClick={[Function]}
                                     onResponderGrant={[Function]}
@@ -617,6 +594,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                   />
                                   <View
                                     accessible={true}
+                                    collapsable={false}
                                     focusable={true}
                                     onClick={[Function]}
                                     onResponderGrant={[Function]}
@@ -636,6 +614,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 </View>
                                 <View
                                   accessible={true}
+                                  collapsable={false}
                                   focusable={true}
                                   onClick={[Function]}
                                   onResponderGrant={[Function]}
@@ -683,6 +662,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                                 >
                                   <View
                                     accessible={true}
+                                    collapsable={false}
                                     focusable={true}
                                     onClick={[Function]}
                                     onResponderGrant={[Function]}
@@ -801,6 +781,7 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
           </RNSScreen>
         </RNSScreenContainer>
         <View
+          collapsable={false}
           pointerEvents="box-none"
           style={
             Object {

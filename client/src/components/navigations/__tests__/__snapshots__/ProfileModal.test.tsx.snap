@@ -44,6 +44,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
       >
         <View
           accessible={true}
+          collapsable={false}
           focusable={true}
           importantForAccessibility="no"
           onClick={[Function]}
@@ -83,6 +84,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
           />
         </View>
         <View
+          collapsable={false}
           onLayout={[Function]}
           onMoveShouldSetResponder={[Function]}
           onMoveShouldSetResponderCapture={[Function]}
@@ -143,6 +145,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
             >
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -172,6 +175,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
               </View>
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -212,6 +216,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
             >
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -288,6 +293,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
             >
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -336,6 +342,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
               />
               <View
                 accessible={true}
+                collapsable={false}
                 focusable={true}
                 onClick={[Function]}
                 onResponderGrant={[Function]}
@@ -374,6 +381,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
             </View>
           </View>
           <View
+            collapsable={false}
             pointerEvents="box-none"
             style={
               Object {
@@ -389,6 +397,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
             testID="view-statusMessageView"
           />
           <View
+            collapsable={false}
             onLayout={[Function]}
             style={
               Object {
@@ -409,6 +418,7 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
           >
             <View
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}

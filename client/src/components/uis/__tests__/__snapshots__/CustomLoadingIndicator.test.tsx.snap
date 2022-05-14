@@ -24,6 +24,7 @@ exports[`Interaction should simulate onClick 1`] = `
     }
   >
     <Image
+      collapsable={false}
       source={
         Object {
           "canInstrument": true,
@@ -72,6 +73,7 @@ exports[`Rendering renders without crashing 1`] = `
     }
   >
     <Image
+      collapsable={false}
       source={
         Object {
           "canInstrument": true,

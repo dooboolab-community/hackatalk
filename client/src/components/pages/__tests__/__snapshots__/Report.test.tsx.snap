@@ -114,7 +114,6 @@ exports[`Rendering renders without crashing 1`] = `
               hello
             </Text>
             <TextInput
-              allowFontScaling={true}
               autoCapitalize="none"
               editable={true}
               multiline={true}
@@ -123,7 +122,6 @@ exports[`Rendering renders without crashing 1`] = `
               onFocus={[Function]}
               placeholder="Please give sepecific reason on why you want to ban the following user."
               placeholderTextColor="#6D6D6D"
-              rejectResponderTermination={true}
               secureTextEntry={true}
               style={
                 Array [
@@ -140,7 +138,6 @@ exports[`Rendering renders without crashing 1`] = `
                 ]
               }
               testID="input-status"
-              underlineColorAndroid="transparent"
               value=""
             />
           </View>
@@ -179,6 +176,7 @@ exports[`Rendering renders without crashing 1`] = `
       </View>
       <View
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}

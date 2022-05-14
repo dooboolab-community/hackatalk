@@ -27,6 +27,7 @@ exports[`Rendering renders without crashing 1`] = `
   >
     <View
       accessible={true}
+      collapsable={false}
       focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
