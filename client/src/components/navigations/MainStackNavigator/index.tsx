@@ -158,6 +158,7 @@ function MainStackNavigator(): ReactElement {
         Notifications.removeNotificationSubscription(subscription);
       } catch (err: any) {
         if (__DEV__) {
+          // eslint-disable-next-line no-console
           console.log('remove noti subscription', err);
         }
       }
@@ -181,14 +182,28 @@ function MainStackNavigator(): ReactElement {
 
   useSubscription(subscriptionConfig);
 
+  const headerRight = (): ReactElement => (
+    <TouchableOpacity
+      style={{
+        height: '100%',
+        minWidth: 20,
+        justifyContent: 'center',
+        marginRight: 15,
+      }}
+      onPress={(): void => {
+        navigation.navigate('Settings');
+      }}
+    >
+      <Image style={{height: 24, width: 24}} source={IC_SETTING_W} />
+    </TouchableOpacity>
+  );
+
   return (
     <Stack.Navigator
       initialRouteName="MainTab"
       screenOptions={{
         headerBackTitle: '',
-        cardStyle: {
-          backgroundColor: theme.background,
-        },
+        cardStyle: {backgroundColor: theme.background},
       }}
     >
       <Stack.Screen
@@ -200,27 +215,9 @@ function MainStackNavigator(): ReactElement {
         name="ProfileUpdate"
         component={ProfileUpdate}
         options={(): StackNavigationOptions => {
-          const settingButton = (): ReactElement => {
-            return (
-              <TouchableOpacity
-                style={{
-                  height: '100%',
-                  minWidth: 20,
-                  justifyContent: 'center',
-                  marginRight: 15,
-                }}
-                onPress={(): void => {
-                  navigation.navigate('Settings');
-                }}
-              >
-                <Image style={{height: 24, width: 24}} source={IC_SETTING_W} />
-              </TouchableOpacity>
-            );
-          };
-
           return {
             ...getSimpleHeader(getString('MY_PROFILE'), theme),
-            headerRight: settingButton,
+            headerRight,
           };
         }}
       />
@@ -276,7 +273,6 @@ function MainNavigator(): ReactElement {
     >
       <StatusBarBrightness />
       <MainStackNavigator />
-
       <LeaveChannelModal testID="leave-channel-modal" />
       <ProfileModal testID="modal" />
     </View>

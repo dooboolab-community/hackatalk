@@ -24,7 +24,6 @@ import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
 import generator from 'generate-password';
-import {getMimeType} from 'stream-mime-type';
 import {sign as jwtSignIn} from '../../utils/jwt';
 import {nanoid} from 'nanoid';
 import {sign} from 'jsonwebtoken';

@@ -1,6 +1,6 @@
 import * as VideoThumbnails from 'expo-video-thumbnails';
 
-import {AVPlaybackStatus, Video} from 'expo-av';
+import {AVPlaybackStatus, ResizeMode, Video} from 'expo-av';
 import {Image, Platform, Share, View} from 'react-native';
 import React, {FC, useEffect, useRef, useState} from 'react';
 
@@ -104,7 +104,7 @@ const VideoPlayer: FC<Props> = ({uri, setMediaError}) => {
           height: 150,
         }}
         useNativeControls
-        // resizeMode={ResizeMode.CONTAIN}
+        resizeMode={ResizeMode.COVER}
         onError={() => {
           setMediaError(getString('FAILED_FETCH', {media: getString('VIDEO')}));
         }}
