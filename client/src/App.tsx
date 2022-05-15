@@ -8,7 +8,6 @@ import React, {FC, ReactElement, ReactNode, useEffect} from 'react';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
-import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
@@ -91,12 +90,13 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
       if (!__DEV__) {
         checkUpdate();
       }
+
+      SplashScreen.hideAsync();
     }
   }, [assets, dooboouiAssets]);
 
-  if ((!assets || !dooboouiAssets) && !__DEV__) {
-    // eslint-disable-next-line no-console
-    return <AppLoading autoHideSplash={false} onError={console.warn} />;
+  if (!assets || !dooboouiAssets) {
+    return null;
   }
 
   return (
