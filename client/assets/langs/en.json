@@ -124,5 +124,7 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes"
+  "YES": "Yes",
+  "APP_UPDATE": "App Update",
+  "APP_UPDATE_DESC": "There are no big updates. These updates can be reflected by reloading the app. Do you want to reflect now?"
 }

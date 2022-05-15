@@ -1,12 +1,13 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Updates from 'expo-updates';
 
+import {Alert, Platform} from 'react-native';
 import FallbackComponent, {handleError} from './utils/error';
 import React, {FC, ReactElement, ReactNode, useEffect} from 'react';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
-import {Alert} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
@@ -60,6 +61,24 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
       });
   };
 
+  const checkUpdate = async (): Promise<void> => {
+    if (Platform.OS !== 'web') {
+      const update = await Updates.checkForUpdateAsync();
+
+      if (update.isAvailable) {
+        await Updates.fetchUpdateAsync();
+
+        Alert.alert(getString('APP_UPDATE'), getString('APP_UPDATE_DESC'), [
+          {
+            text: getString('NO'),
+            style: 'cancel',
+          },
+          {text: getString('YES'), onPress: () => Updates.reloadAsync()},
+        ]);
+      }
+    }
+  };
+
   const [assets] = useAssets(Icons);
 
   const [dooboouiAssets] = useFonts({
@@ -69,10 +88,14 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   useEffect(() => {
     if (assets && dooboouiAssets) {
       registerNotification();
+      if (!__DEV__) {
+        checkUpdate();
+      }
     }
   }, [assets, dooboouiAssets]);
 
   if ((!assets || !dooboouiAssets) && !__DEV__) {
+    // eslint-disable-next-line no-console
     return <AppLoading autoHideSplash={false} onError={console.warn} />;
   }
 

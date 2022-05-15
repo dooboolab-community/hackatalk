@@ -9,10 +9,12 @@ i18n.translations = {en, ko};
 i18n.locale = Localization.locale;
 
 export const getString = (
-  param: string,
+  param: keyof typeof en,
   mapObj?: Record<string, unknown>,
 ): string => {
-  if (mapObj) return i18n.t(param, mapObj);
+  if (mapObj) {
+    return i18n.t(param, mapObj);
+  }
 
   return i18n.t(param);
 };
