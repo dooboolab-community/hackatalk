@@ -1,6 +1,8 @@
 {
   "ADD_FRIEND": "Add",
   "AGREE": "Agree",
+  "APP_UPDATE": "App Update",
+  "APP_UPDATE_DESC": "There are no big updates. These updates can be reflected by reloading the app. Do you want to reflect now?",
   "BAN_USER": "Ban User",
   "BAN_USER_TEXT": "Do you want to ban current user? If then, you will not receive any messages from the user.",
   "BLOCKED_USER": "Blocked User",
@@ -124,7 +126,5 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes",
-  "APP_UPDATE": "App Update",
-  "APP_UPDATE_DESC": "There are no big updates. These updates can be reflected by reloading the app. Do you want to reflect now?"
+  "YES": "Yes"
 }

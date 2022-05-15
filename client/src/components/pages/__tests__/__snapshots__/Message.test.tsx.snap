@@ -868,9 +868,18 @@ fragment ProfileModal_user on User {
             }
           }
         >
-          <SvgMock
-            fill="#8BC9FF"
-          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <SvgMock
+              fill="#8BC9FF"
+            />
+          </View>
         </View>
       </View>
     </View>
