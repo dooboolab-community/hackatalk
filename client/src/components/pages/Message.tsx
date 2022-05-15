@@ -41,6 +41,7 @@ import React, {
   FC,
   ReactElement,
   Suspense,
+  memo,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -248,94 +249,95 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
     setIsImageUploading(true);
 
-    if (type === ImagePickerType.CAMERA) {
-      media = await launchCameraAsync();
-    } else {
-      media = await launchMediaLibraryAsync();
-    }
-
-    if (media && !media.cancelled) {
-      if (Platform.OS === 'web' && !media.type) {
-        const mediaType = media.uri.substring(
-          media.uri.indexOf(':') + 1,
-          media.uri.indexOf(';'),
-        );
-
-        media.type = mediaType.split('/')[0] as 'video' | 'image' | undefined;
+    try {
+      if (type === ImagePickerType.CAMERA) {
+        media = await launchCameraAsync();
+      } else {
+        media = await launchMediaLibraryAsync();
       }
 
-      try {
-        let response: Response;
-
-        if (media.type === 'video') {
-          response = await uploadSingleAsync(
-            media.uri,
-            'messages',
-            `_${channelId}_${new Date().toISOString()}`,
-          );
-        } else {
-          const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
-            {
-              uri: media.uri,
-              width: MESSAGE_RESIZED_IMAGE_WIDTH,
-              height: MESSAGE_RESIZED_IMAGE_HEIGHT,
-            },
+      if (media && !media.cancelled) {
+        if (Platform.OS === 'web' && !media.type) {
+          const mediaType = media.uri.substring(
+            media.uri.indexOf(':') + 1,
+            media.uri.indexOf(';'),
           );
 
-          response = await uploadSingleAsync(
-            resizedImage.uri,
-            'messages',
-            `_${channelId}_${new Date().toISOString()}`,
-          );
+          media.type = mediaType.split('/')[0] as 'video' | 'image' | undefined;
         }
 
-        const {url, error: fetchError} = JSON.parse(await response.text());
+        try {
+          let response: Response;
 
-        if (!url) {
-          if (!fetchError) {
-            setIsImageUploading(false);
+          if (media.type === 'video') {
+            response = await uploadSingleAsync(
+              media.uri,
+              'messages',
+              `_${channelId}_${new Date().toISOString()}`,
+            );
+          } else {
+            const resizedImage =
+              await resizePhotoToMaxDimensionsAndCompressAsPNG({
+                uri: media.uri,
+                width: MESSAGE_RESIZED_IMAGE_WIDTH,
+                height: MESSAGE_RESIZED_IMAGE_HEIGHT,
+              });
 
-            return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
+            response = await uploadSingleAsync(
+              resizedImage.uri,
+              'messages',
+              `_${channelId}_${new Date().toISOString()}`,
+            );
           }
 
-          throw new Error(fetchError);
-        }
+          const {url, error: fetchError} = JSON.parse(await response.text());
 
-        const urls =
-          media.type === 'video' ? {fileUrls: [url]} : {imageUrls: [url]};
+          if (!url) {
+            if (!fetchError) {
+              setIsImageUploading(false);
 
-        commitMessage({
-          variables: {
-            channelId,
-            message: {
-              messageType: media.type === 'video' ? 'file' : 'photo',
-              ...urls,
-            },
-            deviceKey,
-          },
-          updater: (store) => {
-            if (user) {
-              createMessageUpdater(store, channelId);
+              return Alert.alert(getString('ERROR'), getString('URL_IS_NULL'));
             }
-          },
-          onCompleted: () => {
-            setIsImageUploading(false);
-          },
-          onError: (error: Error) => {
-            showAlertForError(normalizeErrorString(error));
-            setIsImageUploading(false);
-          },
-        });
-      } catch (err: any) {
-        setIsImageUploading(false);
 
-        Alert.alert(
-          getString('ERROR'),
-          err.message === 'LIMIT_FILE_SIZE'
-            ? getString(err.message, {uploadFileSize: UPLOAD_FILE_SIZE_LIMIT})
-            : getString('FAILED_LOAD_IMAGE'),
-        );
+            throw new Error(fetchError);
+          }
+
+          const urls =
+            media.type === 'video' ? {fileUrls: [url]} : {imageUrls: [url]};
+
+          commitMessage({
+            variables: {
+              channelId,
+              message: {
+                messageType: media.type === 'video' ? 'file' : 'photo',
+                ...urls,
+              },
+              deviceKey,
+            },
+            updater: (store) => {
+              if (user) {
+                createMessageUpdater(store, channelId);
+              }
+            },
+            onCompleted: () => {
+              setIsImageUploading(false);
+            },
+            onError: (error: Error) => {
+              showAlertForError(normalizeErrorString(error));
+              setIsImageUploading(false);
+            },
+          });
+        } catch (err: any) {
+          Alert.alert(
+            getString('ERROR'),
+            err.message === 'LIMIT_FILE_SIZE'
+              ? getString(err.message, {uploadFileSize: UPLOAD_FILE_SIZE_LIMIT})
+              : getString('FAILED_LOAD_IMAGE'),
+          );
+        }
       }
+    } finally {
+      setIsImageUploading(false);
     }
   };
 
@@ -554,11 +556,22 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
           activeOpacity={0.7}
           accessibilityRole="button"
         >
-          {isImageUploading ? (
-            <ActivityIndicator size="small" color="white" />
-          ) : (
-            <SvgSend fill={theme.button} />
-          )}
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {isImageUploading ? (
+              <ActivityIndicator
+                size="small"
+                color={theme.info}
+                style={{marginRight: 14}}
+              />
+            ) : (
+              <SvgSend fill={theme.button} />
+            )}
+          </View>
         </TouchableOpacity>
       )}
     />
@@ -588,7 +601,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: (): ReactElement => {
+      headerTitle: memo((): ReactElement => {
         let title = channel?.name || '';
 
         // Note that if the user exists, this is direct message which title should appear as user name or nickname
@@ -620,7 +633,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
             {title}
           </Text>
         );
-      },
+      }),
     });
   }, [auth?.id, channel?.name, navigation, users]);
 
