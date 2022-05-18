@@ -31,7 +31,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../../utils/Icons';
-import React, {FC, ReactElement, useEffect, useState} from 'react';
+import React, {FC, ReactElement, useCallback, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutation$data,
@@ -144,21 +144,27 @@ const SignIn: FC = () => {
   const [commitNotification] =
     useMutation<NotificationCreateNotificationMutation>(createNotification);
 
-  const createNotificationIfPushTokenExists = async (): Promise<void> => {
-    const pushToken = await AsyncStorage.getItem('push_token');
+  const createNotificationIfPushTokenExists =
+    useCallback(async (): Promise<void> => {
+      const pushToken = await AsyncStorage.getItem('push_token');
 
-    if (pushToken) {
-      const createNotificationMutationConfig = {
-        variables: {
-          token: pushToken,
-          device: Device.modelName,
-          os: Device.osName,
-        },
-      };
+      if (pushToken) {
+        const createNotificationMutationConfig = {
+          variables: {
+            token: pushToken,
+            device: Device.modelName,
+            os: Device.osName,
+          },
+        };
 
-      commitNotification(createNotificationMutationConfig);
-    }
-  };
+        commitNotification(createNotificationMutationConfig);
+      }
+    }, [commitNotification]);
+
+  const handleUserCreated = useCallback(() => {
+    createNotificationIfPushTokenExists();
+    loadMeQuery({}, {fetchPolicy: 'network-only'});
+  }, [createNotificationIfPushTokenExists, loadMeQuery]);
 
   const signIn = async (): Promise<void> => {
     if (!validateEmail(email)) {
@@ -530,20 +536,14 @@ const SignIn: FC = () => {
               svgIcon={
                 <SvgFacebook width={18} height={18} fill={colors.facebook} />
               }
-              onUserCreated={() => {
-                createNotificationIfPushTokenExists();
-                loadMeQuery({}, {fetchPolicy: 'network-only'});
-              }}
+              onUserCreated={handleUserCreated}
               socialProvider={'facebook'}
             />
             <SocialSignInButton
               svgIcon={
                 <SvgGoogle width={20} height={20} fill={colors.google} />
               }
-              onUserCreated={() => {
-                createNotificationIfPushTokenExists();
-                loadMeQuery({}, {fetchPolicy: 'network-only'});
-              }}
+              onUserCreated={handleUserCreated}
               socialProvider="google"
             />
           </SocialButtonWrapper>
