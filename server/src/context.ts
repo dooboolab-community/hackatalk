@@ -155,9 +155,11 @@ export const runSubscriptionServer = (
     },
   );
 
-  ['SIGINT', 'SIGTERM'].forEach((signal) => {
-    process.on(signal, () => subscriptionServer.close());
-  });
+  if (NODE_ENV !== 'production') {
+    ['SIGINT', 'SIGTERM'].forEach((signal) => {
+      process.on(signal, () => subscriptionServer.close());
+    });
+  }
 
   return subscriptionServer;
 };
