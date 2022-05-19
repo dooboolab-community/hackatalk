@@ -62,8 +62,6 @@ describe('Resolver - User', () => {
     } catch (e) {
       const response = e.response;
 
-      console.log(e.request);
-
       expect(response.errors[0].message).toEqual(
         i18next.t(ErrorString.UserNotExists),
       );
