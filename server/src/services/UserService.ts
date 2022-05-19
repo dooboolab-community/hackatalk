@@ -95,7 +95,7 @@ export class UserService {
               authType: socialUser.authType,
             },
           },
-          email: socialUser.email,
+          email: socialUser.email || null,
           name: socialUser.name,
           birthday: socialUser.birthday,
           gender: socialUser.gender,

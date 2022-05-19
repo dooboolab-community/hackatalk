@@ -106,7 +106,7 @@ export interface FacebookUser {
 export const verifyFacebookId = async (
   accessToken: string,
 ): Promise<FacebookUser> => {
-  const {data} = await axios.get('https://graph.facebook.com/v10.0/me', {
+  const {data} = await axios.get('https://graph.facebook.com/v13.0/me', {
     params: {
       access_token: accessToken,
       fields: 'id,name,email,picture',
