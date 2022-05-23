@@ -92,7 +92,7 @@
     "react-relay": "^13.2.0",
     "react-responsive": "^8.2.0",
     "relay-runtime": "^13.2.0",
-    "sentry-expo": "^4.1.1",
+    "sentry-expo": "^4.2.0",
     "subscriptions-transport-ws": "^0.11.0"
   },
   "devDependencies": {

@@ -81,6 +81,7 @@ const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
         {typeString}
       </Typography.Body2>
       <ParsedText
+        style={{color: theme.text}}
         parse={[
           {
             type: 'url',
