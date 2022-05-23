@@ -63,10 +63,15 @@ model Notification {
 }
 
 model Profile {
-  id           Int       @id @default(autoincrement())
-  socialId     String?   @db.VarChar(255)
-  authType     AuthType?
-  refreshToken String?   @db.VarChar(1024)
+  id            Int       @id @default(autoincrement())
+  socialId      String?   @db.VarChar(255)
+  authType      AuthType?
+  refreshToken  String?   @db.VarChar(1024)
+  about         String?
+  projects      String?
+  positions     String?
+  speakings     String?
+  contributions String?
 
   userId String @unique
   User   User   @relation(fields: [userId], references: [id])
