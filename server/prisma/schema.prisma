@@ -67,6 +67,7 @@ model Profile {
   socialId      String?   @db.VarChar(255)
   authType      AuthType?
   refreshToken  String?   @db.VarChar(1024)
+  organization  String?   @db.VarChar(255)
   about         String?
   projects      String?
   positions     String?

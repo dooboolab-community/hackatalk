@@ -6,7 +6,6 @@ import {
   ErrorUserNotExists,
 } from '../../utils/error';
 import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
-import {USER_SIGNED_IN, USER_UPDATED} from './subscription';
 import {andThen, pipe} from 'ramda';
 import {arg, inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
 import {
@@ -20,6 +19,7 @@ import {
 } from '../../utils/auth';
 
 import {AuthType} from '../../models/Scalar';
+import {USER_SIGNED_IN} from './subscription';
 import {User} from '@prisma/client';
 import {UserService} from '../../services/UserService';
 import {assert} from '../../utils/assert';
@@ -59,6 +59,18 @@ export const UserUpdateInputType = inputObjectType({
     t.string('phone');
     t.string('statusMessage');
     t.gender('gender');
+  },
+});
+
+export const UserProfileInput = inputObjectType({
+  name: 'UserProfileInput',
+  definition(t) {
+    t.string('organization');
+    t.string('about');
+    t.string('projects');
+    t.string('positions');
+    t.string('speakings');
+    t.string('contributions');
   },
 });
 
@@ -276,21 +288,56 @@ export const sendVerification = mutationField('sendVerification', {
 
 export const updateProfile = mutationField('updateProfile', {
   type: 'User',
-  args: {user: nonNull(UserUpdateInputType)},
+  args: {
+    user: nonNull(UserUpdateInputType),
+    profile: UserProfileInput,
+  },
   description:
-    'Update user profile. Becareful that nullable fields will be updated either.',
+    'Update user with profile. Profile has detailed info as relational table.',
 
-  resolve: async (_parent, {user}, {prisma, pubsub, userId}) => {
+  resolve: async (_parent, {user, profile}, {prisma, userId}) => {
     assert(userId, 'Not authorized.');
 
-    const updated = await prisma.user.update({
+    const promises: any[] = [];
+
+    const userUpdate = prisma.user.update({
       where: {id: userId},
-      data: user,
+      data: {
+        name: user.name,
+        nickname: user.nickname,
+        thumbURL: user.thumbURL,
+        photoURL: user.photoURL,
+        birthday: user.birthday,
+        phone: user.phone,
+        statusMessage: user.statusMessage,
+        gender: user.gender,
+      },
     });
 
-    pubsub.publish(USER_UPDATED, updated);
+    promises.push(userUpdate);
 
-    return updated;
+    if (profile) {
+      const profileUpdate = prisma.profile.update({
+        where: {userId},
+        data: {
+          organization: profile.organization,
+          about: profile.about,
+          projects: profile.projects,
+          positions: profile.positions,
+          speakings: profile.speakings,
+          contributions: profile.contributions,
+        },
+      });
+
+      promises.push(profileUpdate);
+    }
+
+    const [updatedUser] = await prisma.$transaction(promises);
+
+    // TODO: There is no scenario for this.
+    // pubsub.publish(USER_UPDATED, updated);
+
+    return updatedUser;
   },
 });
 
