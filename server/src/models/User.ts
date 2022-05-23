@@ -31,7 +31,18 @@ export const User = objectType({
     t.date('createdAt');
     t.date('updatedAt');
     t.date('deletedAt');
-    t.field('profile', {type: 'Profile'});
+
+    t.field('profile', {
+      type: 'Profile',
+      description: 'User profile',
+
+      resolve: async ({id}, args, {prisma}) => {
+        return prisma.profile.findUnique({
+          where: {userId: id},
+        });
+      },
+    });
+
     t.list.field('notifications', {type: 'Notification'});
 
     t.boolean('hasBlocked', {
