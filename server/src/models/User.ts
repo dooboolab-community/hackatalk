@@ -9,6 +9,12 @@ export const Profile = objectType({
     t.string('socialId');
     t.authType('authType');
     t.field('user', {type: 'User'});
+    t.string('organization');
+    t.string('about');
+    t.string('projects');
+    t.string('positions');
+    t.string('speakings');
+    t.string('contributions');
   },
 });
 
@@ -31,12 +37,6 @@ export const User = objectType({
     t.date('createdAt');
     t.date('updatedAt');
     t.date('deletedAt');
-    t.string('organization');
-    t.string('about');
-    t.string('projects');
-    t.string('positions');
-    t.string('speakings');
-    t.string('contributions');
 
     t.field('profile', {
       type: 'Profile',
