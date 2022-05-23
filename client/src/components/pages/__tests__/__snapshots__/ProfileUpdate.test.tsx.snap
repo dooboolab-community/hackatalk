@@ -126,7 +126,7 @@ exports[`rendering test renders as expected 1`] = `
                   "flexDirection": "column",
                 },
                 Object {
-                  "marginTop": 32,
+                  "marginTop": 26,
                 },
               ]
             }
@@ -177,6 +177,7 @@ exports[`rendering test renders as expected 1`] = `
               </Text>
               <TextInput
                 autoCapitalize="none"
+                autoCorrect={false}
                 editable={true}
                 multiline={false}
                 onBlur={[Function]}
@@ -245,7 +246,7 @@ exports[`rendering test renders as expected 1`] = `
                   "flexDirection": "column",
                 },
                 Object {
-                  "marginTop": 32,
+                  "marginTop": 12,
                 },
               ]
             }
@@ -296,6 +297,7 @@ exports[`rendering test renders as expected 1`] = `
               </Text>
               <TextInput
                 autoCapitalize="none"
+                autoCorrect={false}
                 editable={true}
                 multiline={false}
                 onBlur={[Function]}
@@ -364,7 +366,7 @@ exports[`rendering test renders as expected 1`] = `
                   "flexDirection": "column",
                 },
                 Object {
-                  "marginTop": 36,
+                  "marginTop": 18,
                 },
               ]
             }
@@ -418,6 +420,7 @@ exports[`rendering test renders as expected 1`] = `
               </Text>
               <TextInput
                 autoCapitalize="none"
+                autoCorrect={false}
                 editable={true}
                 maxLength={60}
                 multiline={true}
@@ -492,6 +495,820 @@ exports[`rendering test renders as expected 1`] = `
                 }
               >
                 0/60
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 12,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Organization
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                multiline={false}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="Your organization."
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 18,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                About me
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                maxLength={300}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="Who are you?"
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/300
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 18,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Projects
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                maxLength={300}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="What are you working on and what have you done in the past?"
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/300
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 18,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Positions
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                maxLength={300}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="What were your titles in the past?"
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/300
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 18,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Speakings
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                maxLength={300}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="What have you spoke about in the past?"
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/300
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignSelf": "stretch",
+                  "flexDirection": "column",
+                },
+                Object {
+                  "marginTop": 18,
+                },
+              ]
+            }
+            testID="container-id"
+          >
+            <View
+              style={
+                Array [
+                  Array [
+                    Object {
+                      "alignSelf": "stretch",
+                      "borderBottomColor": "white",
+                      "borderBottomWidth": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "space-between",
+                    },
+                    Object {
+                      "borderColor": "white",
+                      "borderWidth": 1,
+                      "paddingHorizontal": 8,
+                      "paddingVertical": 12,
+                    },
+                  ],
+                  false,
+                  Object {
+                    "borderColor": "white",
+                  },
+                  Object {
+                    "borderBottomColor": "white",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#6D6D6D",
+                        "fontSize": 14,
+                        "paddingHorizontal": 4,
+                      },
+                      undefined,
+                    ],
+                    false,
+                    Object {},
+                  ]
+                }
+              >
+                Contributions
+              </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                editable={true}
+                maxLength={300}
+                multiline={true}
+                onBlur={[Function]}
+                onChangeText={[Function]}
+                onFocus={[Function]}
+                placeholder="What were your contributions?"
+                placeholderTextColor="#6D6D6D"
+                secureTextEntry={false}
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontSize": 14,
+                        "paddingHorizontal": 10,
+                        "paddingVertical": 10,
+                      },
+                      Object {
+                        "color": "white",
+                        "marginTop": 12,
+                      },
+                    ],
+                    false,
+                  ]
+                }
+                value=""
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Array [
+                      Object {
+                        "color": "#FF002E",
+                        "fontSize": 12,
+                        "marginTop": 8,
+                        "paddingHorizontal": 10,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "color": "#FF002E",
+                      "flex": 1,
+                    },
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "white",
+                      "fontSize": 12,
+                      "marginTop": 8,
+                      "paddingHorizontal": 10,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                0/300
               </Text>
             </View>
           </View>
