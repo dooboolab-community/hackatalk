@@ -126,5 +126,17 @@
   "VIDEO": "비디오",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
-  "YES": "예"
+  "YES": "예",
+  "ORGANIZATION": "소속",
+  "ORGANIZATION_HINT": "소속을 입력해주세요.",
+  "ABOUT_ME": "나에 대해서",
+  "ABOUT_ME_HINT": "당신은 누구인가요?",
+  "PROJECTS": "프로젝트",
+  "PROJECTS_HINT": "진행하신 프로젝트들은 어떤 것들이 있나요?",
+  "POSITIONS": "보직",
+  "POSITIONS_HINT": "어떤 보직을 수행하셨나요?",
+  "SPEAKINGS": "발표",
+  "SPEAKINGS_HINT": "과거에 어떤 발표들을 하셨나요?",
+  "CONTRIBUTIONS": "기여물",
+  "CONTRIBUTION_HINT": "어떤 기여를 그동안 해오셨나요?"
 }

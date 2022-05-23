@@ -205,7 +205,7 @@ export type Mutation = {
   signInWithGoogle: AuthPayload;
   signUp: User;
   singleUpload: Scalars['String'];
-  /** Update user profile. Becareful that nullable fields will be updated either. */
+  /** Update user with profile. Profile has detailed info as relational table. */
   updateProfile?: Maybe<User>;
 };
 
@@ -338,6 +338,7 @@ export type MutationSingleUploadArgs = {
 
 
 export type MutationUpdateProfileArgs = {
+  profile?: InputMaybe<UserProfileInput>;
   user: UserUpdateInput;
 };
 
@@ -365,8 +366,14 @@ export type PageInfo = {
 
 export type Profile = {
   __typename?: 'Profile';
+  about?: Maybe<Scalars['String']>;
   authType?: Maybe<Scalars['AuthType']>;
+  contributions?: Maybe<Scalars['String']>;
+  organization?: Maybe<Scalars['String']>;
+  positions?: Maybe<Scalars['String']>;
+  projects?: Maybe<Scalars['String']>;
   socialId?: Maybe<Scalars['String']>;
+  speakings?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
 };
 
@@ -442,7 +449,7 @@ export type QueryReportsArgs = {
 
 
 export type QueryUserArgs = {
-  id: Scalars['String'];
+  id: Scalars['ID'];
 };
 
 
@@ -515,6 +522,7 @@ export type User = {
   notifications?: Maybe<Array<Maybe<Notification>>>;
   phone?: Maybe<Scalars['String']>;
   photoURL?: Maybe<Scalars['String']>;
+  /** User profile */
   profile?: Maybe<Profile>;
   statusMessage?: Maybe<Scalars['String']>;
   thumbURL?: Maybe<Scalars['String']>;
@@ -547,6 +555,15 @@ export type UserEdge = {
   cursor: Scalars['String'];
   /** https://facebook.github.io/relay/graphql/connections.htm#sec-Node */
   node?: Maybe<User>;
+};
+
+export type UserProfileInput = {
+  about?: InputMaybe<Scalars['String']>;
+  contributions?: InputMaybe<Scalars['String']>;
+  organization?: InputMaybe<Scalars['String']>;
+  positions?: InputMaybe<Scalars['String']>;
+  projects?: InputMaybe<Scalars['String']>;
+  speakings?: InputMaybe<Scalars['String']>;
 };
 
 export type UserUpdateInput = {

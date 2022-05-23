@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f408b22c913a43a064b9c942fb9d1eb4>>
+ * @generated SignedSource<<55a6c869e466ec1b0ec0f9f2b2dd0d31>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,6 +24,12 @@ export type UserSignInEmailMutation$data = {
       readonly verified: boolean | null;
       readonly profile: {
         readonly authType: any | null;
+        readonly organization: string | null;
+        readonly about: string | null;
+        readonly projects: string | null;
+        readonly positions: string | null;
+        readonly speakings: string | null;
+        readonly contributions: string | null;
       } | null;
     };
   };
@@ -130,6 +136,48 @@ v1 = [
                 "kind": "ScalarField",
                 "name": "authType",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "organization",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "about",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "projects",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "positions",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "speakings",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "contributions",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -159,16 +207,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "486c10b27b631985930700b614b94548",
+    "cacheID": "73752db3d57bf2afdf1fce3d4bda2d2e",
     "id": null,
     "metadata": {},
     "name": "UserSignInEmailMutation",
     "operationKind": "mutation",
-    "text": "mutation UserSignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserSignInEmailMutation(\n  $email: String!\n  $password: String!\n) {\n  signInEmail(email: $email, password: $password) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n        organization\n        about\n        projects\n        positions\n        speakings\n        contributions\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "86c5e76b97ac579d31fb84937480e7b8";
+(node as any).hash = "d6c19de63bdfc31e8917cb012222cdf0";
 
 export default node;

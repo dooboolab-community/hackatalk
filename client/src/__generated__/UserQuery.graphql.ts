@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<40c3b3d510e053261187e18f15331334>>
+ * @generated SignedSource<<ceaa7ee8b3d08698253f4b46581da382>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,9 +9,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type UserMeQuery$variables = {};
-export type UserMeQuery$data = {
-  readonly me: {
+export type UserQuery$variables = {
+  id: string;
+};
+export type UserQuery$data = {
+  readonly user: {
     readonly id: string;
     readonly email: string | null;
     readonly name: string | null;
@@ -31,19 +33,32 @@ export type UserMeQuery$data = {
     } | null;
   } | null;
 };
-export type UserMeQuery = {
-  variables: UserMeQuery$variables;
-  response: UserMeQuery$data;
+export type UserQuery = {
+  variables: UserQuery$variables;
+  response: UserQuery$data;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "id"
+  }
+],
+v1 = [
+  {
     "alias": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "id",
+        "variableName": "id"
+      }
+    ],
     "concreteType": "User",
     "kind": "LinkedField",
-    "name": "me",
+    "name": "user",
     "plural": false,
     "selections": [
       {
@@ -168,32 +183,32 @@ var v0 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "UserMeQuery",
-    "selections": (v0/*: any*/),
+    "name": "UserQuery",
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "UserMeQuery",
-    "selections": (v0/*: any*/)
+    "name": "UserQuery",
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "cf699599f579dfd9196a5ce771d20494",
+    "cacheID": "577e142c24c9d1be4eab05c4ed27951e",
     "id": null,
     "metadata": {},
-    "name": "UserMeQuery",
+    "name": "UserQuery",
     "operationKind": "query",
-    "text": "query UserMeQuery {\n  me {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n      organization\n      about\n      projects\n      positions\n      speakings\n      contributions\n    }\n  }\n}\n"
+    "text": "query UserQuery(\n  $id: ID!\n) {\n  user(id: $id) {\n    id\n    email\n    name\n    nickname\n    statusMessage\n    verified\n    photoURL\n    thumbURL\n    profile {\n      authType\n      organization\n      about\n      projects\n      positions\n      speakings\n      contributions\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "80551e8f0f7d431077150e58a472bd6f";
+(node as any).hash = "4fc534573ccb31e140c8ae916302b747";
 
 export default node;

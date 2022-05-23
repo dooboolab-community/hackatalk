@@ -30,6 +30,7 @@ import Report from '../../pages/Report';
 import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
+import User from '../../pages/User';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
@@ -44,6 +45,7 @@ export type MainStackParamList = {
     name: string;
     userId: string;
   };
+  User: {id: string};
   Message: {
     channelId: string;
   };
@@ -220,6 +222,11 @@ function MainStackNavigator(): ReactElement {
             headerRight,
           };
         }}
+      />
+      <Stack.Screen
+        name="User"
+        component={User}
+        options={getSimpleHeader('', theme)}
       />
       <Stack.Screen
         name="SearchUser"

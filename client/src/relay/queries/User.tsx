@@ -12,6 +12,12 @@ export const signInEmail = graphql`
         verified
         profile {
           authType
+          organization
+          about
+          projects
+          positions
+          speakings
+          contributions
         }
       }
     }
@@ -48,6 +54,12 @@ export const signInWithFacebook = graphql`
         verified
         profile {
           authType
+          organization
+          about
+          projects
+          positions
+          speakings
+          contributions
         }
       }
     }
@@ -66,6 +78,12 @@ export const signInWithGoogle = graphql`
         verified
         profile {
           authType
+          organization
+          about
+          projects
+          positions
+          speakings
+          contributions
         }
       }
     }
@@ -114,14 +132,47 @@ export const meQuery = graphql`
       thumbURL
       profile {
         authType
+        organization
+        about
+        projects
+        positions
+        speakings
+        contributions
+      }
+    }
+  }
+`;
+
+export const userQuery = graphql`
+  query UserQuery($id: ID!) {
+    user(id: $id) {
+      id
+      email
+      name
+      nickname
+      statusMessage
+      verified
+      photoURL
+      thumbURL
+      profile {
+        authType
+        organization
+        about
+        projects
+        positions
+        speakings
+        contributions
       }
     }
   }
 `;
 
 export const profileUpdate = graphql`
-  mutation UserUpdateProfileMutation($user: UserUpdateInput!) {
-    updateProfile(user: $user) {
+  mutation UserUpdateProfileMutation(
+    $user: UserUpdateInput!
+    $profile: UserProfileInput
+  ) {
+    updateProfile(user: $user, profile: $profile) {
       id
       name
       nickname

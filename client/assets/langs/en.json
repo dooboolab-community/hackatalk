@@ -126,5 +126,17 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes"
+  "YES": "Yes",
+  "ORGANIZATION": "Organization",
+  "ORGANIZATION_HINT": "Your organization.",
+  "ABOUT_ME": "About me",
+  "ABOUT_ME_HINT": "Who are you?",
+  "PROJECTS": "Projects",
+  "PROJECTS_HINT": "What are you working on and what have you done in the past?",
+  "POSITIONS": "Positions",
+  "POSITIONS_HINT": "What were your titles in the past?",
+  "SPEAKINGS": "Speakings",
+  "SPEAKINGS_HINT": "What have you spoke about in the past?",
+  "CONTRIBUTIONS": "Contributions",
+  "CONTRIBUTION_HINT": "What were your contributions?"
 }
