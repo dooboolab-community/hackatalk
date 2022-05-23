@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6c254a600cd4ce1643fa481a4ce97971>>
+ * @generated SignedSource<<f0e8d3f71ed38fbe18fc01fbf81a44df>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -23,6 +23,12 @@ export type UserFacebookSignInMutation$data = {
       readonly verified: boolean | null;
       readonly profile: {
         readonly authType: any | null;
+        readonly organization: string | null;
+        readonly about: string | null;
+        readonly projects: string | null;
+        readonly positions: string | null;
+        readonly speakings: string | null;
+        readonly contributions: string | null;
       } | null;
     };
   };
@@ -119,6 +125,48 @@ v1 = [
                 "kind": "ScalarField",
                 "name": "authType",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "organization",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "about",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "projects",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "positions",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "speakings",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "contributions",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -148,16 +196,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "a84a13de21bb31078dcab6eb033f1e92",
+    "cacheID": "a4566639bb41300f893625abe0905b1b",
     "id": null,
     "metadata": {},
     "name": "UserFacebookSignInMutation",
     "operationKind": "mutation",
-    "text": "mutation UserFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n      }\n    }\n  }\n}\n"
+    "text": "mutation UserFacebookSignInMutation(\n  $accessToken: String!\n) {\n  signInWithFacebook(accessToken: $accessToken) {\n    token\n    user {\n      id\n      email\n      name\n      photoURL\n      verified\n      profile {\n        authType\n        organization\n        about\n        projects\n        positions\n        speakings\n        contributions\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7d54ecc87ecd2ae786f3a92a9ba77d74";
+(node as any).hash = "0e82f3aaa7af01905ad16dd4ede3edf7";
 
 export default node;

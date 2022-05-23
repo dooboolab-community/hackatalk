@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<94a0d58a3f969ea1c51bf861b5a5e639>>
+ * @generated SignedSource<<098fa1c2ce3edb0f7c4e3a1259137c5d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,8 +20,17 @@ export type UserUpdateInput = {
   statusMessage?: string | null;
   gender?: any | null;
 };
+export type UserProfileInput = {
+  organization?: string | null;
+  about?: string | null;
+  projects?: string | null;
+  positions?: string | null;
+  speakings?: string | null;
+  contributions?: string | null;
+};
 export type UserUpdateProfileMutation$variables = {
   user: UserUpdateInput;
+  profile?: UserProfileInput | null;
 };
 export type UserUpdateProfileMutation$data = {
   readonly updateProfile: {
@@ -37,17 +46,25 @@ export type UserUpdateProfileMutation = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
-  {
-    "defaultValue": null,
-    "kind": "LocalArgument",
-    "name": "user"
-  }
-],
-v1 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "profile"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "user"
+},
+v2 = [
   {
     "alias": null,
     "args": [
+      {
+        "kind": "Variable",
+        "name": "profile",
+        "variableName": "profile"
+      },
       {
         "kind": "Variable",
         "name": "user",
@@ -93,32 +110,38 @@ v1 = [
 ];
 return {
   "fragment": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
+    ],
     "kind": "Fragment",
     "metadata": null,
     "name": "UserUpdateProfileMutation",
-    "selections": (v1/*: any*/),
+    "selections": (v2/*: any*/),
     "type": "Mutation",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": (v0/*: any*/),
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "UserUpdateProfileMutation",
-    "selections": (v1/*: any*/)
+    "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "16c368269c398374db4a3fed3e3224fa",
+    "cacheID": "aac4090c243d89ccd26deb7b659b5301",
     "id": null,
     "metadata": {},
     "name": "UserUpdateProfileMutation",
     "operationKind": "mutation",
-    "text": "mutation UserUpdateProfileMutation(\n  $user: UserUpdateInput!\n) {\n  updateProfile(user: $user) {\n    id\n    name\n    nickname\n    statusMessage\n  }\n}\n"
+    "text": "mutation UserUpdateProfileMutation(\n  $user: UserUpdateInput!\n  $profile: UserProfileInput\n) {\n  updateProfile(user: $user, profile: $profile) {\n    id\n    name\n    nickname\n    statusMessage\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2ddfbc52853331dac9f9f79c11ef29a5";
+(node as any).hash = "2f000627960039b10b189dee7716d772";
 
 export default node;

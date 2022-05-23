@@ -71,17 +71,23 @@ const ProfileImage = styled.Image`
   border-radius: 45px;
 `;
 
-const Screen: FC = () => {
+const ProfileUpdate: FC = () => {
   const {theme} = useTheme();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
-  const [statusMessage, setstatusMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
+  const [organization, setOrganization] = useState('');
+  const [about, setAbout] = useState('');
+  const [projects, setProjects] = useState('');
+  const [positions, setPositions] = useState('');
+  const [speakings, setSpeakings] = useState('');
+  const [contributions, setContributions] = useState('');
+
   const {showActionSheetWithOptions} = useActionSheet();
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
-  const envrionmentProps = useRef(environment);
+  const environmentProps = useRef(environment);
   const snackbar = useSnackbarContext();
-
   const {user} = useAuthContext();
 
   const [commitUpload, isUploadInFlight] =
@@ -93,7 +99,7 @@ const Screen: FC = () => {
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    fetchQuery<UserMeQuery>(envrionmentProps.current, meQuery, {}).subscribe({
+    fetchQuery<UserMeQuery>(environmentProps.current, meQuery, {}).subscribe({
       next: (data) => {
         if (data.me) {
           const {
@@ -102,18 +108,40 @@ const Screen: FC = () => {
             statusMessage: statusMsg,
             photoURL,
             thumbURL,
+            profile,
           } = data.me;
 
           setName(myName ?? '');
           setNickname(nickName ?? '');
-          setstatusMessage(statusMsg ?? '');
+          setStatusMessage(statusMsg ?? '');
           setProfilePath((thumbURL || photoURL) ?? '');
+
+          if (profile) {
+            setOrganization(profile.organization ?? '');
+            setAbout(profile.about ?? '');
+            setProjects(profile.projects ?? '');
+            setPositions(profile.positions ?? '');
+            setSpeakings(profile.speakings ?? '');
+            setContributions(profile.contributions ?? '');
+          }
         }
       },
     });
   }, []);
 
-  const changeText = (type: string, text: string): void => {
+  type InputType =
+    | 'NICKNAME'
+    | 'NAME'
+    | 'EMAIL'
+    | 'STATUS_MSG'
+    | 'ORGANIZATION'
+    | 'ABOUT'
+    | 'PROJECTS'
+    | 'POSITIONS'
+    | 'SPEAKINGS'
+    | 'CONTRIBUTIONS';
+
+  const changeText = (type: InputType, text: string): void => {
     switch (type) {
       case 'NICKNAME':
         setNickname(text);
@@ -122,8 +150,25 @@ const Screen: FC = () => {
         setName(text);
         break;
       case 'STATUS_MSG':
-      default:
-        setstatusMessage(text);
+        setStatusMessage(text);
+        break;
+      case 'ORGANIZATION':
+        setOrganization(text);
+        break;
+      case 'ABOUT':
+        setAbout(text);
+        break;
+      case 'PROJECTS':
+        setProjects(text);
+        break;
+      case 'POSITIONS':
+        setPositions(text);
+        break;
+      case 'SPEAKINGS':
+        setSpeakings(text);
+        break;
+      case 'CONTRIBUTIONS':
+        setContributions(text);
         break;
     }
   };
@@ -261,6 +306,14 @@ const Screen: FC = () => {
           thumbURL: profilePath,
           photoURL: profilePath,
         },
+        profile: {
+          organization,
+          about,
+          projects,
+          positions,
+          speakings,
+          contributions,
+        },
       },
       onError: (error: any) => {
         showAlertForError(normalizeErrorString(error));
@@ -314,7 +367,10 @@ const Screen: FC = () => {
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
-            style={{marginTop: 32}}
+            style={{marginTop: 26}}
+            labelText={getString('NICKNAME')}
+            placeholder={getString('NICKNAME_HINT')}
+            onChangeText={(text) => changeText('NICKNAME', text)}
             styles={{
               container: {
                 borderColor: theme.text,
@@ -323,15 +379,16 @@ const Screen: FC = () => {
                 color: theme.text,
               },
             }}
-            labelText={getString('NICKNAME')}
-            placeholder={getString('NICKNAME_HINT')}
             value={nickname}
             focusColor={theme.text}
-            onChangeText={(text: string): void => changeText('NICKNAME', text)}
+            textInputProps={{
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
           />
           <EditText
             testID="input-name"
-            style={{marginTop: 32}}
+            style={{marginTop: 12}}
             styles={{
               container: {
                 borderColor: theme.text,
@@ -344,12 +401,16 @@ const Screen: FC = () => {
             placeholder={getString('NAME_HINT')}
             value={name}
             focusColor={theme.text}
-            onChangeText={(text: string): void => changeText('NAME', text)}
+            onChangeText={(text) => changeText('NAME', text)}
+            textInputProps={{
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
           />
           <EditText
             testID="input-status"
             type="column"
-            style={{marginTop: 36}}
+            style={{marginTop: 18}}
             styles={{
               input: {
                 marginTop: 12,
@@ -366,12 +427,167 @@ const Screen: FC = () => {
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
             focusColor={theme.text}
-            onChangeText={(text: string): void =>
-              changeText('STATUS_MSG', text)
-            }
+            onChangeText={(text) => changeText('STATUS_MSG', text)}
             textInputProps={{
               multiline: true,
               maxLength: 60,
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            style={{marginTop: 12}}
+            styles={{
+              container: {
+                borderColor: theme.text,
+              },
+              input: {
+                color: theme.text,
+              },
+            }}
+            labelText={getString('ORGANIZATION')}
+            placeholder={getString('ORGANIZATION_HINT')}
+            value={organization}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('ORGANIZATION', text)}
+            textInputProps={{
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            type="column"
+            style={{marginTop: 18}}
+            styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
+              container: {
+                borderColor: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
+              },
+            }}
+            labelText={getString('ABOUT_ME')}
+            placeholder={getString('ABOUT_ME_HINT')}
+            value={about}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('ABOUT', text)}
+            textInputProps={{
+              multiline: true,
+              maxLength: 300,
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            type="column"
+            style={{marginTop: 18}}
+            styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
+              container: {
+                borderColor: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
+              },
+            }}
+            labelText={getString('PROJECTS')}
+            placeholder={getString('PROJECTS_HINT')}
+            value={projects}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('PROJECTS', text)}
+            textInputProps={{
+              multiline: true,
+              maxLength: 300,
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            type="column"
+            style={{marginTop: 18}}
+            styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
+              container: {
+                borderColor: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
+              },
+            }}
+            labelText={getString('POSITIONS')}
+            placeholder={getString('POSITIONS_HINT')}
+            value={positions}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('POSITIONS', text)}
+            textInputProps={{
+              multiline: true,
+              maxLength: 300,
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            type="column"
+            style={{marginTop: 18}}
+            styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
+              container: {
+                borderColor: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
+              },
+            }}
+            labelText={getString('SPEAKINGS')}
+            placeholder={getString('SPEAKINGS_HINT')}
+            value={speakings}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('SPEAKINGS', text)}
+            textInputProps={{
+              multiline: true,
+              maxLength: 300,
+              autoCorrect: false,
+              autoCapitalize: 'none',
+            }}
+          />
+          <EditText
+            type="column"
+            style={{marginTop: 18}}
+            styles={{
+              input: {
+                marginTop: 12,
+                color: theme.text,
+              },
+              container: {
+                borderColor: theme.text,
+                borderWidth: 1,
+                paddingHorizontal: 8,
+                paddingVertical: 12,
+              },
+            }}
+            labelText={getString('CONTRIBUTIONS')}
+            placeholder={getString('CONTRIBUTION_HINT')}
+            value={contributions}
+            focusColor={theme.text}
+            onChangeText={(text) => changeText('CONTRIBUTIONS', text)}
+            textInputProps={{
+              multiline: true,
+              maxLength: 300,
+              autoCorrect: false,
+              autoCapitalize: 'none',
             }}
           />
           <StyledButtonWrapper>
@@ -407,4 +623,4 @@ const Screen: FC = () => {
   );
 };
 
-export default Screen;
+export default ProfileUpdate;

@@ -28,9 +28,7 @@ export type RootStackParamList = {
   default: undefined;
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
   MainStack: NavigatorScreenParams<MainStackParamList>;
-  WebView: {
-    uri: string;
-  };
+  WebView: {uri: string};
   ImageSlider: {
     images: {uri: string | null; sender?: string | null}[];
     initialIndex?: number;

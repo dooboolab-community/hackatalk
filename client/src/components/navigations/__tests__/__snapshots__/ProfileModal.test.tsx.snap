@@ -205,30 +205,30 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
               </View>
             </View>
             <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "marginTop": 64,
-                  },
-                  undefined,
-                ]
+                Object {
+                  "opacity": 1,
+                }
               }
             >
               <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
-                    "opacity": 1,
-                  }
+                  Array [
+                    Object {
+                      "marginTop": 64,
+                    },
+                    undefined,
+                  ]
                 }
               >
                 <Image
@@ -253,28 +253,28 @@ exports[`[ProfileModal] rendering test Render without crashing 1`] = `
                     ]
                   }
                 />
+                <Text
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "center",
+                        "color": "white",
+                        "fontSize": 24,
+                        "fontWeight": "bold",
+                        "marginTop": 16,
+                        "paddingBottom": 0,
+                        "paddingLeft": 32,
+                        "paddingRight": 32,
+                        "paddingTop": 0,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  &lt;mock-value-for-field-"nickname"&gt;
+                </Text>
               </View>
-              <Text
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "color": "white",
-                      "fontSize": 24,
-                      "fontWeight": "bold",
-                      "marginTop": 16,
-                      "paddingBottom": 0,
-                      "paddingLeft": 32,
-                      "paddingRight": 32,
-                      "paddingTop": 0,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                &lt;mock-value-for-field-"nickname"&gt;
-              </Text>
             </View>
             <View
               style={

@@ -37,8 +37,8 @@ import {ConnectionHandler} from 'relay-runtime';
 import {FontAwesome} from '@expo/vector-icons';
 import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
 import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
+import {MainStackNavigationProps} from '.';
 import Modal from 'react-native-modalbox';
-import {RootStackNavigationProps} from '../RootStackNavigator';
 import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
 import {getString} from '../../../../STRINGS';
@@ -132,7 +132,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const backHandler = useRef<BackHandlerStatic>(BackHandler);
 
   useEffect(() => {
-    const backHandlerListner = backHandler.current.addEventListener(
+    const backHandlerListener = backHandler.current.addEventListener(
       'hardwareBackPress',
       (): boolean => {
         if (modalState.isVisible) {
@@ -146,8 +146,8 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     );
 
     return (): void => {
-      if (backHandlerListner) {
-        backHandlerListner.remove();
+      if (backHandlerListener) {
+        backHandlerListener.remove();
       }
     };
   }, [hideModal, modalState.isVisible]);
@@ -170,7 +170,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
   const [isStatusMessageExpanded, setStatusMessageExpanded] = useState(false);
   const transitionOpacity = useRef(new Animated.Value(0));
 
-  const navigation = useNavigation<RootStackNavigationProps>();
+  const navigation = useNavigation<MainStackNavigationProps<'ProfileUpdate'>>();
 
   const [commitChannel, isChannelInFlight] =
     useMutation<ChannelFindOrCreatePrivateChannelMutation>(
@@ -452,19 +452,21 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           )}
         </View>
 
-        <StyledView>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => {
-              const user = modalState?.user;
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() => {
+            const user = modalState?.user;
 
-              if (user) {
-                navigation.navigate('ImageSlider', {
-                  images: [{uri: photoURL, sender: name}],
-                });
-              }
-            }}
-          >
+            if (user) {
+              hideModal();
+
+              navigation.navigate('User', {
+                id: userData.id,
+              });
+            }
+          }}
+        >
+          <StyledView>
             {photoURL ? (
               <StyledImage
                 style={{alignSelf: 'center'}}
@@ -486,11 +488,11 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                 />
               </View>
             )}
-          </TouchableOpacity>
-          <StyledTextDisplayName numberOfLines={1}>
-            {nickname || name || getString('NO_NAME')}
-          </StyledTextDisplayName>
-        </StyledView>
+            <StyledTextDisplayName numberOfLines={1}>
+              {nickname || name || getString('NO_NAME')}
+            </StyledTextDisplayName>
+          </StyledView>
+        </TouchableOpacity>
 
         {!modalState?.hideButtons ? (
           <StyledViewBtns>
