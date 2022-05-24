@@ -7,6 +7,8 @@ import Image from 'react-native-scalable-image';
 import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import ParsedText from 'react-native-parsed-text';
 import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import {SharedElement} from 'react-navigation-shared-element';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
 import {colors} from '../../theme';
@@ -278,21 +280,23 @@ const MessageListItem: FC<Props> = ({
       <StyledMediaError>{mediaError}</StyledMediaError>
     ) : (
       <StyledPhotoContainer>
-        <TouchableOpacity
+        <TouchableWithoutFeedback
           onPress={() => onPressMessageImage && onPressMessageImage(0)}
         >
-          <Image
-            testID="image-display"
-            key={id || ''}
-            width={240}
-            source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
-            onError={(_error) => {
-              setMediaError(
-                getString('FAILED_FETCH', {media: getString('PHOTO')}),
-              );
-            }}
-          />
-        </TouchableOpacity>
+          <SharedElement id={`${imageUrls![0]}?id=${id || ''}`}>
+            <Image
+              testID="image-display"
+              key={id || ''}
+              width={240}
+              source={{uri: `${imageUrls![0]}?id=${id || ''}`}}
+              onError={(_error) => {
+                setMediaError(
+                  getString('FAILED_FETCH', {media: getString('PHOTO')}),
+                );
+              }}
+            />
+          </SharedElement>
+        </TouchableWithoutFeedback>
       </StyledPhotoContainer>
     );
 
