@@ -123,21 +123,25 @@ exports[`Rendering renders without crashing 1`] = `
         }
         testID="PINCH_ZOOM_CONTAINER"
       >
-        <Image
-          resizeMode="contain"
-          source={
-            Object {
-              "uri": "https://www.housingwire.com/wp-content/uploads/2019/09/Purple-technology-data-internet-3.jpg",
+        <View
+          collapsable={false}
+        >
+          <Image
+            resizeMode="contain"
+            source={
+              Object {
+                "uri": "https://www.housingwire.com/wp-content/uploads/2019/09/Purple-technology-data-internet-3.jpg",
+              }
             }
-          }
-          style={
-            Object {
-              "bottom": 0,
-              "height": 1334,
-              "width": 750,
+            style={
+              Object {
+                "bottom": 0,
+                "height": 1334,
+                "width": 750,
+              }
             }
-          }
-        />
+          />
+        </View>
       </View>
       <View
         collapsable={false}
