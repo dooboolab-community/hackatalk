@@ -7,7 +7,6 @@ import React, {ReactElement, useCallback, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
   StackNavigationProp,
-  createStackNavigator,
 } from '@react-navigation/stack';
 import {StatusBarBrightness, useTheme} from 'dooboo-ui';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
@@ -31,6 +30,7 @@ import {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import User from '../../pages/User';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {requestPermissionsAsync} from 'expo-ads-admob';
@@ -66,7 +66,7 @@ export type MainStackNavigationProps<T extends keyof MainStackParamList> =
     RootStackNavigationProps<'MainStack'>
   >;
 
-const Stack = createStackNavigator<MainStackParamList>();
+const Stack = createSharedElementStackNavigator<MainStackParamList>();
 
 function getSimpleHeader(
   title: string,
