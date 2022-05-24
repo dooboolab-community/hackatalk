@@ -1,4 +1,4 @@
-import {Linking, ScrollView, TouchableOpacity, View} from 'react-native';
+import {Image, Linking, ScrollView, TouchableOpacity, View} from 'react-native';
 import {LoadingIndicator, Typography, useTheme} from 'dooboo-ui';
 import {
   MainStackNavigationProps,
@@ -8,7 +8,9 @@ import {PreloadedQuery, usePreloadedQuery, useQueryLoader} from 'react-relay';
 import React, {ReactElement, Suspense, useEffect, useLayoutEffect} from 'react';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 
+import {IC_PROFILE} from '../../utils/Icons';
 import ParsedText from 'react-native-parsed-text';
+import SharedElementView from '../uis/SharedElementView';
 import {UserQuery} from '../../__generated__/UserQuery.graphql';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
@@ -121,7 +123,7 @@ const User = ({queryReference}: UserProps): ReactElement | null => {
   const profile = user.profile;
 
   const pressProfileImage = async (): Promise<void> => {
-    navigation.navigate('ImageSlider', {
+    navigation.push('ImageSlider', {
       images: [{uri: user.photoURL, sender: name}],
     });
   };
@@ -147,11 +149,27 @@ const User = ({queryReference}: UserProps): ReactElement | null => {
             style={{marginTop: 48}}
             onPress={pressProfileImage}
           >
-            <ProfileImage
-              testID="profile-image"
-              resizeMode="cover"
-              source={{uri: user.photoURL || ''}}
-            />
+            {!user.photoURL ? (
+              <View
+                style={{
+                  width: 90,
+                  height: 90,
+                }}
+              >
+                <Image
+                  style={{height: 80, width: 80, borderRadius: 40}}
+                  source={IC_PROFILE}
+                />
+              </View>
+            ) : (
+              <SharedElementView id={user.photoURL}>
+                <ProfileImage
+                  testID="profile-image"
+                  resizeMode="cover"
+                  source={{uri: user.photoURL || ''}}
+                />
+              </SharedElementView>
+            )}
           </TouchableOpacity>
           <Typography.Body2 style={{fontStyle: 'italic', marginTop: 4}}>
             {user.statusMessage}

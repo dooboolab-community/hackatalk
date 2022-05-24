@@ -1,19 +1,20 @@
 import {Animated, Dimensions, Image} from 'react-native';
 import PinchZoom, {PinchZoomRef} from '../uis/PinchZoom';
-import React, {FC} from 'react';
+import React, {FC, memo, useCallback, useEffect, useLayoutEffect} from 'react';
 import {
   RootStackNavigationProps,
   RootStackParamList,
 } from '../navigations/RootStackNavigator';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 
+import {SharedElement} from 'react-navigation-shared-element';
 import {StatusBarBrightness} from 'dooboo-ui';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Container = styled.View`
   flex: 1;
-  background-color: #000;
+  background-color: ${({theme}) => theme.background};
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -21,8 +22,8 @@ const Container = styled.View`
 
 const ImageSliderContainer = styled.View`
   flex: 1;
-  justify-content: center;
   max-width: ${(): number => Dimensions.get('screen').width}px;
+  justify-content: center;
 `;
 
 const ImageSlider: FC = () => {
@@ -75,7 +76,7 @@ const ImageSlider: FC = () => {
     prevImageTranslateX,
   ]);
 
-  const onRelease = React.useCallback(() => {
+  const onRelease = useCallback(() => {
     const moveNext = animValues.nextTranslateX < -imageContainerWidth / 2;
     const movePrev = animValues.prevTranslateX > imageContainerWidth / 2;
     const targetTranslate = pinchZoom.current?.animatedValue.translate;
@@ -149,21 +150,17 @@ const ImageSlider: FC = () => {
     prevImageTranslateX,
   ]);
 
-  React.useEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerBackTitle: images[currentIndex]?.sender || '',
     });
+  }, [currentIndex, images, navigation]);
 
+  useEffect(() => {
     pinchZoom.current?.setValues({scale: 1, translate: {x: 0, y: 0}});
     nextImageTranslateX.setValue(0);
     prevImageTranslateX.setValue(0);
-  }, [
-    currentIndex,
-    images,
-    navigation,
-    nextImageTranslateX,
-    prevImageTranslateX,
-  ]);
+  }, [nextImageTranslateX, prevImageTranslateX]);
 
   return (
     <Container>
@@ -203,18 +200,20 @@ const ImageSlider: FC = () => {
             translateOtherImages();
           }}
           onRelease={onRelease}
-          allowEmpty={{x: true}}
+          allowEmpty={{x: true, y: true}}
           fixOverflowAfterRelease={false}
           style={{
             width: imageContainerWidth,
             justifyContent: 'center',
           }}
         >
-          <Image
-            source={{uri: images[currentIndex]?.uri as string}}
-            style={imageStyle}
-            resizeMode="contain"
-          />
+          <SharedElement id={`${images[currentIndex]?.uri}`}>
+            <Image
+              source={{uri: images[currentIndex]?.uri as string}}
+              style={imageStyle}
+              resizeMode="contain"
+            />
+          </SharedElement>
         </PinchZoom>
         {currentIndex < images.length - 1 ? (
           <PinchZoom
@@ -242,4 +241,4 @@ const ImageSlider: FC = () => {
   );
 };
 
-export default ImageSlider;
+export default memo(ImageSlider);

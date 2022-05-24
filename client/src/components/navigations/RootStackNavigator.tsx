@@ -9,10 +9,6 @@ import {
 import {Platform, View} from 'react-native';
 import {PreloadedQuery, usePreloadedQuery} from 'react-relay';
 import React, {FC, Suspense, useEffect} from 'react';
-import {
-  StackNavigationProp,
-  createStackNavigator,
-} from '@react-navigation/stack';
 import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
 import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
@@ -20,7 +16,9 @@ import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ImageSlider from '../pages/ImageSlider';
 import NotFound from '../pages/NotFound';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {StackNavigationProp} from '@react-navigation/stack';
 import WebView from '../pages/WebView';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import linking from './linking';
 import {useTheme} from 'dooboo-ui';
 
@@ -40,7 +38,7 @@ export type RootStackNavigationProps<
   T extends keyof RootStackParamList = 'default',
 > = StackNavigationProp<RootStackParamList, T>;
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
 type Props = {
   queryReference: PreloadedQuery<AuthProviderMeQuery, Record<string, unknown>>;
@@ -133,6 +131,18 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
               headerTitle: '',
               headerTransparent: true,
             })}
+            sharedElements={(route) => {
+              const {images, initialIndex = 0} = route.params;
+
+              return [
+                {
+                  id: `${images[initialIndex]?.uri}`,
+                  animation: 'move',
+                  resize: 'clip',
+                  align: 'center-center',
+                },
+              ];
+            }}
           />
           <Stack.Screen name="NotFound" component={NotFound} />
         </Stack.Navigator>
