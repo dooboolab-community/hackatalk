@@ -24,7 +24,6 @@ import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {
   FC,
   ReactElement,
-  memo,
   useCallback,
   useLayoutEffect,
   useState,
@@ -217,30 +216,29 @@ const Page: FC = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerRight: memo(
-        (): ReactElement => (
-          <TouchableOpacity testID="touch-done" onPress={requestSignUp}>
-            <View
-              style={{
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-              }}
-            >
-              {isInFlight ? (
-                <ActivityIndicator size="small" style={{marginRight: 4}} />
-              ) : (
-                <Typography.Body2
-                  style={{
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {getString('REGISTER')}
-                </Typography.Body2>
-              )}
-            </View>
-          </TouchableOpacity>
-        ),
+      // eslint-disable-next-line react/no-unstable-nested-components
+      headerRight: (): ReactElement => (
+        <TouchableOpacity testID="touch-done" onPress={requestSignUp}>
+          <View
+            style={{
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+            }}
+          >
+            {isInFlight ? (
+              <ActivityIndicator size="small" style={{marginRight: 4}} />
+            ) : (
+              <Typography.Body2
+                style={{
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                }}
+              >
+                {getString('REGISTER')}
+              </Typography.Body2>
+            )}
+          </View>
+        </TouchableOpacity>
       ),
     });
   }, [isInFlight, navigation, requestSignUp]);
