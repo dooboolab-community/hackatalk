@@ -2,6 +2,7 @@ import {Server, createServer as createHttpServer} from 'http';
 import {createContext, runSubscriptionServer} from './context';
 
 import {ApolloServer} from 'apollo-server-express';
+import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
 import SendGridMail from '@sendgrid/mail';
 import WebSocket from 'ws';
 import {applyMiddleware} from 'graphql-middleware';
@@ -21,13 +22,14 @@ SendGridMail.setApiKey(SENDGRID_API_KEY);
 
 let subscriptionServer: WebSocket.Server<WebSocket.WebSocket>;
 
-const createApolloServer = (): ApolloServer =>
+const createApolloServer = (httpServer: Server): ApolloServer =>
   new ApolloServer({
     schema: schemaWithMiddleware,
     csrfPrevention: true,
     context: createContext,
     introspection: process.env.NODE_ENV !== 'production',
     plugins: [
+      ApolloServerPluginDrainHttpServer({httpServer}),
       {
         async serverWillStart() {
           return {
@@ -63,7 +65,7 @@ export const startServer = async (
   port: number,
 ): Promise<Server> => {
   const httpServer = createHttpServer(app);
-  const apollo = createApolloServer();
+  const apollo = createApolloServer(httpServer);
 
   await apollo.start();
 
