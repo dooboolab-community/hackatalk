@@ -9,15 +9,15 @@ export const Profile = objectType({
   name: ProfileNexus.$name,
   description: ProfileNexus.$description,
   definition(t) {
-    t.string('socialId');
-    t.authType('authType');
-    t.field('user', {type: 'User'});
-    t.string('organization');
-    t.string('about');
-    t.string('projects');
-    t.string('positions');
-    t.string('speakings');
-    t.string('contributions');
+    t.field(ProfileNexus.id);
+    t.field(ProfileNexus.socialId);
+    t.field(ProfileNexus.authType);
+    t.field(ProfileNexus.organization);
+    t.field(ProfileNexus.about);
+    t.field(ProfileNexus.projects);
+    t.field(ProfileNexus.positions);
+    t.field(ProfileNexus.speakings);
+    t.field(ProfileNexus.contributions);
     t.field(ProfileNexus.socialId);
     t.field(ProfileNexus.user);
   },
@@ -27,22 +27,22 @@ export const User = objectType({
   name: UserNexus.$name,
   description: UserNexus.$description,
   definition(t) {
-    t.nonNull.id('id');
-    t.string('email');
-    t.string('name');
-    t.string('nickname');
-    t.string('thumbURL');
-    t.string('photoURL');
-    t.date('birthday');
-    t.gender('gender');
-    t.string('phone');
-    t.string('statusMessage');
-    t.boolean('verified');
-    t.date('lastSignedIn');
-    t.boolean('isOnline');
-    t.date('createdAt');
-    t.date('updatedAt');
-    t.date('deletedAt');
+    t.field(UserNexus.id);
+    t.field(UserNexus.email);
+    t.field(UserNexus.name);
+    t.field(UserNexus.nickname);
+    t.field(UserNexus.thumbURL);
+    t.field(UserNexus.photoURL);
+    t.field(UserNexus.birthday);
+    t.field(UserNexus.gender);
+    t.field(UserNexus.phone);
+    t.field(UserNexus.statusMessage);
+    t.field(UserNexus.verified);
+    t.field(UserNexus.lastSignedIn);
+    t.field(UserNexus.isOnline);
+    t.field(UserNexus.createdAt);
+    t.field(UserNexus.updatedAt);
+    t.field(UserNexus.deletedAt);
 
     t.field('profile', {
       type: 'Profile',
@@ -55,7 +55,7 @@ export const User = objectType({
       },
     });
 
-    t.list.field('notifications', {type: 'Notification'});
+    t.list.field(UserNexus.notifications);
 
     t.boolean('hasBlocked', {
       description:

@@ -1,4 +1,4 @@
-import {Report as ReportNexus} from 'nexus-prisma/*';
+import {Report as ReportNexus} from 'nexus-prisma';
 import {objectType} from 'nexus';
 
 export const Report = objectType({
