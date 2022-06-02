@@ -3,14 +3,15 @@ import {createContext, runSubscriptionServer} from './context';
 
 import {ApolloServer} from 'apollo-server-express';
 import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
+import {Disposable} from 'graphql-ws';
 import SendGridMail from '@sendgrid/mail';
-import WebSocket from 'ws';
 import {applyMiddleware} from 'graphql-middleware';
 import {assert} from './utils/assert';
 import {createApp} from './app';
 import express from 'express';
 import {permissions} from './permissions';
 import {schema} from './schema';
+import {useServer} from 'graphql-ws/lib/use/ws';
 
 const {PORT = 4000, NODE_ENV, SENDGRID_API_KEY} = process.env;
 
@@ -20,7 +21,7 @@ export const schemaWithMiddleware =
 assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
-let subscriptionServer: WebSocket.Server<WebSocket.WebSocket>;
+let serverCleanup: Disposable;
 
 const createApolloServer = (httpServer: Server): ApolloServer =>
   new ApolloServer({
@@ -34,9 +35,7 @@ const createApolloServer = (httpServer: Server): ApolloServer =>
         async serverWillStart() {
           return {
             async drainServer() {
-              if (subscriptionServer) {
-                subscriptionServer.close();
-              }
+              serverCleanup?.dispose();
             },
           };
         },
@@ -51,7 +50,9 @@ const initializeApolloServer = (
 ): (() => void) => {
   apollo.applyMiddleware({app});
 
-  subscriptionServer = runSubscriptionServer(httpServer);
+  const subscriptionServer = runSubscriptionServer(httpServer);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  serverCleanup = useServer({schema: schemaWithMiddleware}, subscriptionServer);
 
   return (): void => {
     process.stdout.write(
