@@ -13234,10 +13234,10 @@ react-native-error-boundary@^1.1.13:
   resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.1.13.tgz#906bd176ed5fc6b70a88b25138c6853801c5a1af"
   integrity sha512-nSBk+UsaPcylahyQ+ytrdBxXiMBnbajhVMD9jK51XLm613A2dxPqh9eJ+GdUnoUfDNpOHNR6HWQyD6wRFDN6zg==
 
-react-native-gesture-handler@~2.4.2:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.4.2.tgz#de93760b0bc251d94e8ae692f9850ec3ed2e4f27"
-  integrity sha512-K3oMiQV7NOVB5RvNlxkyJxU1Gn6m1cYu53MoFA542FVDSTR491d1eQkWDdqy4lW52rfF7IK7eE1LCi+kTJx7jw==
+react-native-gesture-handler@~2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.2.1.tgz#672258aa5a40c92a97c736bdde0a8bd6c8c6c692"
+  integrity sha512-P4kAPbSY8VFAjvFNzfePgFsbZEldfEnEfNqOJw6MlpcdXrPGwRbvMqWMVkA9lifdKTZ3XifvAgJ8+R+uEZN0zA==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
@@ -13269,10 +13269,10 @@ react-native-modalbox@^2.0.2:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-pager-view@5.4.24:
-  version "5.4.24"
-  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.24.tgz#8626e757ddc55e41eca66d2f8a8a75aec54591ee"
-  integrity sha512-dRMB7i3B+mu4NCeIN6gqbR/kC/rr2wzqO0gisXDdJwJr78G24sWoTNpLEDFo3G8TFHY9nTMutVl5CUvkN2dp6g==
+react-native-pager-view@5.4.15:
+  version "5.4.15"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.15.tgz#075fef5ae4ba6ecc37e49b6c4a24770131a2a3cc"
+  integrity sha512-5NssD840wFCuOL4B1ZRiRADvt+Vx2Dgify4SmAUqHXCx03yiGPnRWmFjYXyQeK6gq/8VY+gPGE4bTy9ahzBbDw==
 
 react-native-parsed-text@^0.0.22:
   version "0.0.22"
@@ -13294,20 +13294,20 @@ react-native-reanimated@~2.8.0:
     setimmediate "^1.0.5"
     string-hash-64 "^1.0.3"
 
-react-native-safe-area-context@4.2.5:
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.2.5.tgz#23006dc1a398bb825d7d795c27f1c46119efe8a5"
-  integrity sha512-nUil2de1gk/8ZB9IzIxFyGCiKeAYcHzJb/Tks2NzSkev1qH4MNR05DWYDSmW6vLT+y4mospLVyG/H5dyUd+KQQ==
+react-native-safe-area-context@4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.2.4.tgz#4df42819759c4d3c74252c8678c2772cfa2271a6"
+  integrity sha512-OOX+W2G4YYufvryonn6Kw6YnyT8ZThkxPHZBD04NLHaZmicUaaDVII/PZ3M5fD1o5N62+T+8K4bCS5Un2ggvkA==
 
 react-native-scalable-image@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-scalable-image/-/react-native-scalable-image-1.1.0.tgz#b8cb9db6f11d1bd2a1a7b35cced30eb01f215a99"
   integrity sha512-XwIALxv6vxUben3wVQ65GEldqRITxLZa1u5hKwuHn79Bt0sQ7rehWQc9UU6sLW5Gca4SQPEGNgqddQkF/cIGbw==
 
-react-native-screens@~3.13.1:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.13.1.tgz#b3b1c5788dca25a71668909f66d87fb35c5c5241"
-  integrity sha512-xcrnuUs0qUrGpc2gOTDY4VgHHADQwp80mwR1prU/Q0JqbZN5W3koLhuOsT6FkSRKjR5t40l+4LcjhHdpqRB2HA==
+react-native-screens@~3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.11.1.tgz#9bca9968986ca9195cb1e7e6fca37543bde64ecb"
+  integrity sha512-ziQqVm97tNtovacyHwNmDwJPb8n9CqwsfttXx2p5Hk7wUWemDcPAX0ZJ/nNnGMSq2p2QPhPjjUpr3qKXuES0sQ==
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
@@ -13357,10 +13357,10 @@ react-native-web@0.17.7:
     normalize-css-color "^1.0.2"
     prop-types "^15.6.0"
 
-react-native-webview@11.21.1:
-  version "11.21.1"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.21.1.tgz#9d777b592a2f6802a8adb07e90e8cdaafc15d109"
-  integrity sha512-0136xrXV1VYMLj9yqma/8lNjUAoTa9uUYjAXlnkX8gSZbp4Bfk7VjDgXM2DCuYF/Pqzrq37hqYVyV+Hl/5zzlQ==
+react-native-webview@11.18.1:
+  version "11.18.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.18.1.tgz#0a1893abd391c8f0e7d4c5874bfa737ca6311225"
+  integrity sha512-1VoVmkbsHJ44WA+frMhNfua64t0u2jq80h25sUWrKJRiYrO0XIsKBnJcqrzuOH1ZAT/zDHTqBB5OU+bxEHLJmQ==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
