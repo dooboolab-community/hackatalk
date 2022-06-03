@@ -1,29 +1,30 @@
-import {ApolloClient} from 'apollo-client';
+import {ApolloClient, NormalizedCacheObject} from '@apollo/client/core';
+
+import {Client} from 'graphql-ws';
 import {GraphQLClient} from 'graphql-request';
 import {PrismaClient} from '@prisma/client';
 import {Server} from 'http';
-import {SubscriptionClient} from 'subscriptions-transport-ws';
 import {assert} from '../src/utils/assert';
 
 export class TestUtils {
-  public apolloClient: ApolloClient<any>;
+  public apolloClient: ApolloClient<NormalizedCacheObject>;
   public server: Server;
   public prisma: PrismaClient;
   public graphqlClient: GraphQLClient;
-  public networkInterface: SubscriptionClient;
+  public networkInterface: Client;
 
   constructor(
-    apolloClient: ApolloClient<any>,
+    apolloClient: ApolloClient<NormalizedCacheObject>,
     server: Server,
     prisma: PrismaClient,
     graphqlClient: GraphQLClient,
-    networkInterfafce: SubscriptionClient,
+    networkInterface: Client,
   ) {
     this.apolloClient = apolloClient;
     this.server = server;
     this.prisma = prisma;
     this.graphqlClient = graphqlClient;
-    this.networkInterface = networkInterfafce;
+    this.networkInterface = networkInterface;
   }
 
   setAuthToken = (token: string): void => {

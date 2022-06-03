@@ -1,42 +1,37 @@
+import {Client, createClient} from 'graphql-ws';
 import {Observable, RequestParameters, Variables} from 'relay-runtime';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SUBSCRIPTION_URL} from '../../config';
-import {SubscriptionClient} from 'subscriptions-transport-ws';
 
-async function createClient(): Promise<SubscriptionClient> {
-  const token = await AsyncStorage.getItem('token');
-
-  return new SubscriptionClient(SUBSCRIPTION_URL, {
-    reconnect: true,
-    connectionParams: {
-      Authorization: token ?? '',
-    },
+async function createWSClient(): Promise<Client> {
+  return createClient({
+    url: SUBSCRIPTION_URL,
+    connectionParams: async () => ({
+      Authorization: (await AsyncStorage.getItem('token')) ?? '',
+    }),
   });
 }
 
-export const subscribe = (
+export const fetchOrSubscribe = (
   operation: RequestParameters,
   variables: Variables,
 ): Observable<any> => {
   return Observable.create((sink) => {
-    createClient()
+    createWSClient()
       .then((client) => {
         if (!operation.text) {
           throw new Error('Query cannot be empty.');
         }
 
-        client
-          .request({
+        client.subscribe(
+          {
             query: operation.text,
             operationName: operation.name,
             variables,
-          })
-          .subscribe({
-            complete: () => sink.complete(),
-            error: (err) => sink.error(err),
-            next: (val) => sink.next(val),
-          });
+          },
+          sink,
+        );
       })
       .catch((err) => sink.error(err));
   });

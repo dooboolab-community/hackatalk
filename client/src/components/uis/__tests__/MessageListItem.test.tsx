@@ -126,22 +126,22 @@ describe('[MessageListItem] rendering test', () => {
 });
 
 describe('[MessageListItem] interaction', () => {
+  beforeAll(() => {
+    mockEnvironment = createMockEnvironment();
+
+    mockEnvironment.mock.queueOperationResolver((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        Message(_, generateId) {
+          return {
+            ...SAMPLE_MESSAGE,
+            id: `test-message-${generateId()}`,
+          };
+        },
+      }),
+    );
+  });
+
   it('should fireEvent when peer image is pressed', async () => {
-    beforeAll(() => {
-      mockEnvironment = createMockEnvironment();
-
-      mockEnvironment.mock.queueOperationResolver((operation) =>
-        MockPayloadGenerator.generate(operation, {
-          Message(_, generateId) {
-            return {
-              ...SAMPLE_MESSAGE,
-              id: `test-message-${generateId()}`,
-            };
-          },
-        }),
-      );
-    });
-
     const mockPressPeerImage = jest.fn();
 
     const component = createTestElement(
