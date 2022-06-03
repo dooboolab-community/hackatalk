@@ -2,8 +2,9 @@ import {Server, createServer as createHttpServer} from 'http';
 import {createContext, runSubscriptionServer} from './context';
 
 import {ApolloServer} from 'apollo-server-express';
+import {ApolloServerPluginDrainHttpServer} from 'apollo-server-core';
+import {Disposable} from 'graphql-ws';
 import SendGridMail from '@sendgrid/mail';
-import {SubscriptionServer} from 'subscriptions-transport-ws';
 import {applyMiddleware} from 'graphql-middleware';
 import {assert} from './utils/assert';
 import {createApp} from './app';
@@ -19,21 +20,21 @@ export const schemaWithMiddleware =
 assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
-let subscriptionServer: SubscriptionServer;
+let serverCleanup: Disposable;
 
-const createApolloServer = (): ApolloServer =>
+const createApolloServer = (httpServer: Server): ApolloServer =>
   new ApolloServer({
     schema: schemaWithMiddleware,
+    csrfPrevention: true,
     context: createContext,
     introspection: process.env.NODE_ENV !== 'production',
     plugins: [
+      ApolloServerPluginDrainHttpServer({httpServer}),
       {
         async serverWillStart() {
           return {
             async drainServer() {
-              if (subscriptionServer) {
-                subscriptionServer.close();
-              }
+              serverCleanup?.dispose();
             },
           };
         },
@@ -47,8 +48,7 @@ const initializeApolloServer = (
   app: express.Application,
 ): (() => void) => {
   apollo.applyMiddleware({app});
-
-  subscriptionServer = runSubscriptionServer(httpServer, apollo);
+  serverCleanup = runSubscriptionServer(httpServer, apollo);
 
   return (): void => {
     process.stdout.write(
@@ -62,7 +62,7 @@ export const startServer = async (
   port: number,
 ): Promise<Server> => {
   const httpServer = createHttpServer(app);
-  const apollo = createApolloServer();
+  const apollo = createApolloServer(httpServer);
 
   await apollo.start();
 
