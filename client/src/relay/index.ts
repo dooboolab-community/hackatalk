@@ -7,12 +7,12 @@ import {
 } from 'relay-runtime';
 
 import fetchGraphQL from './fetch';
+import {fetchOrSubscribe} from './subscription';
 import {relayTransactionLogger} from './util';
-import {subscribe} from './subscription';
 
 export function createRelayEnvironment(): IEnvironment {
   return new Environment({
-    network: Network.create(fetchGraphQL, subscribe),
+    network: Network.create(fetchGraphQL, fetchOrSubscribe),
     store: new Store(new RecordSource()),
     log: __DEV__ ? relayTransactionLogger : null,
   });

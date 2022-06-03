@@ -63,10 +63,11 @@
     "expo-random": "~12.2.0",
     "expo-screen-orientation": "~4.2.0",
     "expo-splash-screen": "~0.15.1",
-    "expo-updates": "~0.13.1",
+    "expo-updates": "~0.13.2",
     "expo-video-thumbnails": "~6.3.0",
-    "expo-web-browser": "~10.2.0",
+    "expo-web-browser": "~10.2.1",
     "graphql": "^16.5.0",
+    "graphql-ws": "^5.8.2",
     "i18n-js": "^3.9.2",
     "immer": "^9.0.14",
     "mime": "^3.0.0",
@@ -94,8 +95,7 @@
     "react-relay": "^13.2.0",
     "react-responsive": "^8.2.0",
     "relay-runtime": "^13.2.0",
-    "sentry-expo": "^4.2.0",
-    "subscriptions-transport-ws": "^0.11.0"
+    "sentry-expo": "^4.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
