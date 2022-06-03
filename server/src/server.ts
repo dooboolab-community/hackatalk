@@ -11,7 +11,6 @@ import {createApp} from './app';
 import express from 'express';
 import {permissions} from './permissions';
 import {schema} from './schema';
-import {useServer} from 'graphql-ws/lib/use/ws';
 
 const {PORT = 4000, NODE_ENV, SENDGRID_API_KEY} = process.env;
 
@@ -49,10 +48,7 @@ const initializeApolloServer = (
   app: express.Application,
 ): (() => void) => {
   apollo.applyMiddleware({app});
-
-  const subscriptionServer = runSubscriptionServer(httpServer);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  serverCleanup = useServer({schema: schemaWithMiddleware}, subscriptionServer);
+  serverCleanup = runSubscriptionServer(httpServer, apollo);
 
   return (): void => {
     process.stdout.write(

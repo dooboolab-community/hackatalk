@@ -1,13 +1,17 @@
 import Redis, {RedisOptions} from 'ioredis';
-import WebSocket, {WebSocketServer} from 'ws';
 
+import {ApolloServer} from 'apollo-server-express';
+import {Disposable} from 'graphql-ws';
 import {PrismaClient} from '@prisma/client';
 import {PubSub} from 'graphql-subscriptions';
 import {RedisPubSub} from 'graphql-redis-subscriptions';
 import {Server} from 'http';
+import {WebSocketServer} from 'ws';
 import {assert} from './utils/assert';
 import express from 'express';
 import {getUserId} from './utils/auth';
+import {schemaWithMiddleware} from './server';
+import {useServer} from 'graphql-ws/lib/use/ws';
 
 // eslint-disable-next-line prettier/prettier
 const {JWT_SECRET, JWT_SECRET_ETC, REDIS_HOSTNAME, REDIS_CACHEKEY, NODE_ENV} =
@@ -125,11 +129,36 @@ export function createContext(params: CreateContextParams): Context {
 
 export const runSubscriptionServer = (
   httpServer: Server,
-): WebSocket.Server<WebSocket.WebSocket> => {
+  apollo: ApolloServer,
+): Disposable => {
   const subscriptionServer = new WebSocketServer({
     server: httpServer,
-    path: '/graphql',
+    path: apollo.graphqlPath,
   });
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const serverCleanup = useServer(
+    {
+      schema: schemaWithMiddleware,
+      context: async (ctx) => {
+        process.stdout.write('Connected to websocket\n');
+
+        // Return connection parameters for context building.
+        return {
+          connectionParams: ctx.connectionParams,
+          prisma,
+          pubsub,
+          appSecret: JWT_SECRET,
+          userId: getUserId(
+            // @ts-ignore
+            ctx.connectionParams?.Authorization ||
+              ctx.connectionParams?.authorization,
+          ),
+        };
+      },
+    },
+    subscriptionServer,
+  );
 
   if (NODE_ENV === 'production') {
     ['SIGINT', 'SIGTERM'].forEach((signal) => {
@@ -137,5 +166,5 @@ export const runSubscriptionServer = (
     });
   }
 
-  return subscriptionServer;
+  return serverCleanup;
 };
