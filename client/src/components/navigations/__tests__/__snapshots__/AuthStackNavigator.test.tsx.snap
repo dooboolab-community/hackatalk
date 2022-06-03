@@ -138,6 +138,8 @@ exports[`[Stack] navigator should renders without crashing 1`] = `
                 <View
                   collapsable={false}
                   forwardedRef={[Function]}
+                  handlerTag={1}
+                  handlerType="PanGestureHandler"
                   needsOffscreenAlphaCompositing={false}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}

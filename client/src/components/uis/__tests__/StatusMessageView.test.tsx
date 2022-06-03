@@ -4,7 +4,6 @@ import StatusMessageView, {
   MAX_STATUS_MESSAGE_LINES,
 } from '../StatusMessageView';
 import {fireEvent, render} from '@testing-library/react-native';
-import timeTravel, {setupTimeTravel} from '../../../../test/timeTravel';
 
 import {Animated} from 'react-native';
 import {ReactTestInstance} from 'react-test-renderer';
@@ -150,8 +149,6 @@ describe('[StatusMessageView] render', () => {
   });
 
   it('should call onLayout callback of the Animated.View container', async () => {
-    beforeEach(setupTimeTravel);
-
     props.isStatusMessageExpanded = true;
 
     const {getByTestId} = render(<StatusMessageView {...props} />);
