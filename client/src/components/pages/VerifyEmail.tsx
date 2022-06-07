@@ -59,7 +59,6 @@ const Page: FC = () => {
       );
     },
     onError: (error: any) => {
-      console.log('err', error);
       showAlertForError(normalizeErrorString(error));
     },
   };
