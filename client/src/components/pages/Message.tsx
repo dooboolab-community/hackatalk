@@ -41,7 +41,6 @@ import React, {
   FC,
   ReactElement,
   Suspense,
-  memo,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -601,7 +600,8 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: memo((): ReactElement => {
+      // eslint-disable-next-line react/no-unstable-nested-components
+      headerTitle: (): ReactElement => {
         let title = channel?.name || '';
 
         // Note that if the user exists, this is direct message which title should appear as user name or nickname
@@ -633,7 +633,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs, channelId}) => {
             {title}
           </Text>
         );
-      }),
+      },
     });
   }, [auth?.id, channel?.name, navigation, users]);
 
@@ -694,7 +694,9 @@ const MessageScreen: FC = () => {
       });
     }
 
-    deleteSameChannelNotification();
+    if (Platform.OS !== 'web') {
+      deleteSameChannelNotification();
+    }
   }, [channelId]);
 
   const searchArgs: MessagesQuery$variables = {

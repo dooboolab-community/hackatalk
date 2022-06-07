@@ -12,10 +12,10 @@ export default function useAppStateChangeHandler(
   handler: AppStateChangeHandler,
 ): void {
   useEffect(() => {
-    AppState.addEventListener('change', handler);
+    const subscription = AppState.addEventListener('change', handler);
 
     return (): void => {
-      AppState.removeEventListener('change', handler);
+      subscription.remove();
     };
   }, [handler]);
 }

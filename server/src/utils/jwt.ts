@@ -88,6 +88,8 @@ export const getRefreshToken = async (
   return !result.verified ? null : refreshToken;
 };
 
+const {NODE_ENV} = process.env;
+
 export const refresh = async (
   userId: string,
   prisma: PrismaClient,
@@ -96,10 +98,17 @@ export const refresh = async (
     expiresIn: REFRESH_TIME,
   });
 
-  await prisma.profile.update({
-    data: {refreshToken: newToken},
-    where: {userId},
-  });
+  try {
+    await prisma.profile.update({
+      data: {refreshToken: newToken},
+      where: {userId},
+    });
+  } catch (err) {
+    if (NODE_ENV !== 'production') {
+      // eslint-disable-next-line no-console
+      console.log('profile update err', err);
+    }
+  }
 
   return newToken;
 };
