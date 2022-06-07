@@ -255,9 +255,7 @@ export const sendVerification = mutationField('sendVerification', {
 
   resolve: async (_parent, {email}, ctx) => {
     const user = await ctx.prisma.user.findUnique({
-      where: {
-        email,
-      },
+      where: {email},
     });
 
     if (user) {

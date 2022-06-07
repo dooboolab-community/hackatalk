@@ -1,5 +1,5 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
   UserVerifyEmailMutation,
@@ -8,7 +8,6 @@ import type {
 
 import {Alert} from 'react-native';
 import {AuthStackParamList} from '../navigations/AuthStackNavigator';
-import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
 import {sendVerification} from '../../relay/queries/User';
@@ -44,15 +43,11 @@ const Page: FC = () => {
 
   const {theme} = useTheme();
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const [commitEmail, isInFlight] =
     useMutation<UserVerifyEmailMutation>(sendVerification);
 
   const mutationConfig = {
-    variables: {
-      email,
-    },
+    variables: {email},
     onCompleted: (response: UserVerifyEmailMutation$data) => {
       if (response.sendVerification) {
         return Alert.alert(getString('RESENT_VERIFICATION_EMAIL'));
@@ -64,21 +59,19 @@ const Page: FC = () => {
       );
     },
     onError: (error: any) => {
+      console.log('err', error);
       showAlertForError(normalizeErrorString(error));
     },
   };
 
   const sendVerificationLink = async (): Promise<void> => {
     try {
-      setLoading(true);
       commitEmail(mutationConfig);
     } catch (err: any) {
       Alert.alert(
         getString('ERROR'),
         getString('RESENT_VERIFICATION_EMAIL_FAILED'),
       );
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -115,7 +108,6 @@ const Page: FC = () => {
         text={getString('RESEND_EMAIL')}
         loading={isInFlight}
       />
-      {loading ? <CustomLoadingIndicator /> : null}
     </Container>
   );
 };
