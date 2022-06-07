@@ -11,7 +11,7 @@ import {
   resolveAllOperations,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
-import mockmockReactNavigation, {RouteProp} from '@react-navigation/core';
+import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
@@ -30,9 +30,7 @@ const mockRoute: RouteProp<MainStackParamList, 'Message'> = {
 };
 
 jest.mock('@react-navigation/core', () => ({
-  ...jest.requireActual<typeof mockmockReactNavigation>(
-    '@react-navigation/core',
-  ),
+  ...jest.requireActual<typeof mockReactNavigation>('@react-navigation/core'),
   useNavigation: () => mockNavigation,
   useRoute: () => mockRoute,
 }));
@@ -46,6 +44,8 @@ jest.mock('../../../utils/image.ts', () => ({
   resizePhotoToMaxDimensionsAndCompressAsPNG: (): string =>
     'resized photo info',
 }));
+
+jest.mock('../../../hooks/useAppStateChangeHandler.tsx', () => jest.fn());
 
 const mockEnvironment = createMockEnvironment();
 
