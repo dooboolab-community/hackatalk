@@ -31,5 +31,5 @@ jobs:
         with:
           app-name: "hackatalk"
           # slot-name: "production"
-          publish-profile: ${{ secrets.AZURE_APPSERVICE_PROD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4B25E6A288504EC0832D5A89CD3566AB }}
           package: ./server
