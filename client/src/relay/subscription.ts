@@ -6,6 +6,7 @@ import {createClient} from 'graphql-ws';
 
 const subscriptionsClient = createClient({
   url: SUBSCRIPTION_URL,
+  shouldRetry: () => true,
   connectionParams: async () => {
     const token = await AsyncStorage.getItem('token');
 
