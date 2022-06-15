@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 0.41.1"
+    "version": ">= 0.42.4"
   },
   "build": {
     "development": {
@@ -16,6 +16,18 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./google-service-account.json",
+        "track": "beta"
+      },
+      "ios": {
+        "ascAppId": "",
+        "appleId": "",
+        "ascApiKeyPath": "./apple-api-key.p8",
+        "ascApiKeyId": "",
+        "ascApiKeyIssuerId": ""
+      }
+    }
   }
 }

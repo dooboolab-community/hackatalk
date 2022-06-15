@@ -29,3 +29,7 @@ google-service.json
 
 # watchman
 .watchman*
+
+# eas build
+apple-api-key.p8
+google-service-account.json
