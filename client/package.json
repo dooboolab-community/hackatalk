@@ -28,7 +28,8 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "generate": "yarn schema && yarn codegen",
     "predeploy": "expo build:web",
-    "deploy-hosting": "npm run predeploy && firebase deploy --only hosting"
+    "deploy-hosting": "npm run predeploy && firebase deploy --only hosting",
+    "eas-build:prod": "eas build --platform all --auto-submit"
   },
   "dependencies": {
     "@apollo/client": "^3.6.6",
