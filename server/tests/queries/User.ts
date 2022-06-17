@@ -80,6 +80,12 @@ export const updateProfileMutation = /* GraphQL */ `
   }
 `;
 
+export const deleteUserMutation = /* GraphQL */ `
+  mutation deleteUser($id: ID!) {
+    deleteUser(id: $id)
+  }
+`;
+
 export const meQuery = /* GraphQL */ `
   query me {
     me {
