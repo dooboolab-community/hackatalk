@@ -138,5 +138,7 @@
   "VIDEO": "비디오",
   "WARNING": "경고",
   "WRITE_MESSAGE": "메세지를 입력해주세요…",
-  "YES": "예"
+  "YES": "예",
+  "DELETE_ACCOUNT": "탈퇴하기",
+  "DELETE_ACCOUNT_WARING": "정말 탈퇴하시겠습니까?"
 }
