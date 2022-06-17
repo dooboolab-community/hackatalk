@@ -174,11 +174,30 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
         Object {
           "opacity": 1,
           "paddingHorizontal": 20,
-          "paddingVertical": 20,
         }
       }
       testID="button-logout"
     />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 20,
+        }
+      }
+    />
+    <View />
   </RCTSafeAreaView>
 </RNCSafeAreaProvider>
 `;
@@ -357,11 +376,30 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
         Object {
           "opacity": 1,
           "paddingHorizontal": 20,
-          "paddingVertical": 20,
         }
       }
       testID="button-logout"
     />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 20,
+        }
+      }
+    />
+    <View />
   </RCTSafeAreaView>
 </RNCSafeAreaProvider>
 `;
@@ -540,11 +578,30 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
         Object {
           "opacity": 1,
           "paddingHorizontal": 20,
-          "paddingVertical": 20,
         }
       }
       testID="button-logout"
     />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 20,
+        }
+      }
+    />
+    <View />
   </RCTSafeAreaView>
 </RNCSafeAreaProvider>
 `;
