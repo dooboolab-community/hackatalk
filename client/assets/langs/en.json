@@ -138,5 +138,7 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes"
+  "YES": "Yes",
+  "DELETE_ACCOUNT": "Delete Account",
+  "DELETE_ACCOUNT_WARING": "Do you really want to delete your account?"
 }

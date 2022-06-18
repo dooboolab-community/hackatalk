@@ -1,6 +1,17 @@
-import {Button, DoobooTheme, useTheme} from 'dooboo-ui';
-import React, {FC, ReactElement} from 'react';
-import {SectionList, SectionListData} from 'react-native';
+import {
+  Button,
+  DoobooTheme,
+  Typography,
+  TypographyInverted,
+  useTheme,
+} from 'dooboo-ui';
+import React, {FC, ReactElement, useState} from 'react';
+import {
+  SectionList,
+  SectionListData,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
 import {UseMutationConfig, useMutation} from 'react-relay';
 import styled, {css} from '@emotion/native';
@@ -8,8 +19,11 @@ import styled, {css} from '@emotion/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FontAwesome} from '@expo/vector-icons';
 import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import Modal from 'react-native-modalbox';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
+import type {UserDeleteUserMutation} from '../../__generated__/UserDeleteUserMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
+import {deleteUser} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useNavigation} from '@react-navigation/core';
@@ -49,6 +63,39 @@ const ItemLabel = styled.Text`
   flex: 1;
 `;
 
+const ModalContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalViewContainer = styled.View`
+  padding: 40px;
+  background-color: ${({theme}) => theme.background};
+  border: ${({theme}) => theme.primary};
+  border-width: 0.3px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+const ModalBtnContainer = styled.View`
+  margin-top: 30px;
+  flex-direction: row;
+
+  justify-content: space-between;
+`;
+
+const ModalBtnStyle = styled.View`
+  background-color: ${({theme}) => theme.primary};
+  opacity: 0.8;
+  width: 120px;
+  height: 40px;
+
+  justify-content: center;
+  align-items: center;
+`;
+
 interface SettingsOption {
   label: string;
   icon?: ReactElement;
@@ -59,12 +106,15 @@ interface SettingsOption {
 const Settings: FC = () => {
   let signInInfoOption: SettingsOption;
 
+  const [showModal, setShowModal] = useState(false);
   const {user, signOutAsync} = useAuthContext();
   const {theme} = useTheme();
   const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
 
   const [commitNotification] =
     useMutation<NotificationDeleteNotificationMutation>(deleteNotification);
+
+  const [commitDeleteAccount] = useMutation<UserDeleteUserMutation>(deleteUser);
 
   const renderSectionItem = (
     option: SettingsOption,
@@ -103,6 +153,31 @@ const Settings: FC = () => {
 
       signOutAsync();
     }
+  };
+
+  const deleteAccount = async (): Promise<void> => {
+    if (navigation) {
+      const pushToken = await AsyncStorage.getItem('push_token');
+
+      const deleteAccountMutationConfig: UseMutationConfig<UserDeleteUserMutation> =
+        {
+          variables: {id: user?.id || ''},
+          onCompleted: () => {
+            AsyncStorage.removeItem('token');
+
+            if (pushToken) {
+              const deleteNotificationMutationConfig: UseMutationConfig<NotificationDeleteNotificationMutation> =
+                {variables: {token: pushToken}};
+              commitNotification(deleteNotificationMutationConfig);
+              signOutAsync();
+            }
+          },
+        };
+
+      commitDeleteAccount(deleteAccountMutationConfig);
+    }
+
+    setShowModal(false);
   };
 
   switch (user?.profile?.authType) {
@@ -178,7 +253,6 @@ const Settings: FC = () => {
         testID="button-logout"
         style={{
           paddingHorizontal: 20,
-          paddingVertical: 20,
         }}
         styles={{
           container: [
@@ -201,6 +275,82 @@ const Settings: FC = () => {
         onPress={logout}
         text={getString('LOGOUT')}
       />
+      <Button
+        style={{
+          paddingHorizontal: 20,
+          paddingVertical: 20,
+        }}
+        styles={{
+          container: [
+            css`
+              height: 44px;
+              border-width: 1px;
+              border-radius: 0px;
+              border-color: ${theme.danger};
+            `,
+            {
+              backgroundColor: theme.danger,
+            },
+          ],
+          text: {
+            color: theme.textContrast,
+            fontSize: 14,
+            fontWeight: 'bold',
+          },
+        }}
+        onPress={() => {
+          setShowModal(true);
+        }}
+        text={getString('DELETE_ACCOUNT')}
+      />
+      <Modal
+        isOpen={showModal}
+        backdropOpacity={0.075}
+        entry={'top'}
+        position={'center'}
+        style={{
+          backgroundColor: 'transparent',
+          alignSelf: 'stretch',
+          height: 320,
+          width: '90%',
+          alignContent: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <ModalContainer>
+          <ModalViewContainer>
+            <Typography.Heading2>
+              {getString('DELETE_ACCOUNT_WARING')}
+            </Typography.Heading2>
+            <ModalBtnContainer>
+              <TouchableHighlight
+                underlayColor="none"
+                onPress={() => {
+                  deleteAccount();
+                }}
+              >
+                <ModalBtnStyle>
+                  <TypographyInverted.Body1>
+                    {getString('YES')}
+                  </TypographyInverted.Body1>
+                </ModalBtnStyle>
+              </TouchableHighlight>
+              <View style={{width: 8}} />
+              <TouchableHighlight
+                underlayColor="none"
+                onPress={() => setShowModal(false)}
+              >
+                <ModalBtnStyle>
+                  <TypographyInverted.Body1>
+                    {getString('NO')}
+                  </TypographyInverted.Body1>
+                </ModalBtnStyle>
+              </TouchableHighlight>
+            </ModalBtnContainer>
+          </ModalViewContainer>
+        </ModalContainer>
+      </Modal>
     </Container>
   );
 };

@@ -90,6 +90,12 @@ export const signInWithGoogle = graphql`
   }
 `;
 
+export const deleteUser = graphql`
+  mutation UserDeleteUserMutation($id: ID!) {
+    deleteUser(id: $id)
+  }
+`;
+
 export const signUp = graphql`
   mutation UserSignUpMutation($user: UserCreateInput!, $photoUpload: Upload) {
     signUp(user: $user, photoUpload: $photoUpload) {
