@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
 import {
+  deleteUserMutation,
   findPasswordMutation,
   signInEmailMutation,
   signUpMutation,
@@ -59,7 +60,7 @@ describe('Resolver - User', () => {
 
     try {
       await graphqlClient.request(findPasswordMutation, variableNotExist);
-    } catch (e) {
+    } catch (e: any) {
       const response = e.response;
 
       expect(response.errors[0].message).toEqual(
@@ -73,7 +74,7 @@ describe('Resolver - User', () => {
 
     try {
       await graphqlClient.request(findPasswordMutation, variableNotValid);
-    } catch (e) {
+    } catch (e: any) {
       const response = e.response;
 
       expect(response.errors[0].message).toEqual(
@@ -87,7 +88,7 @@ describe('Resolver - User', () => {
 
     try {
       await graphqlClient.request(findPasswordMutation, variableValidUser);
-    } catch (e) {
+    } catch (e: any) {
       const response = e.response;
 
       expect(response.errors[0].message).toEqual(
@@ -96,6 +97,19 @@ describe('Resolver - User', () => {
     }
   });
 
+  it('should remove user', async () => {
+    const {graphqlClient, prisma} = getTestUtils();
+
+    const user = await prisma.user.findUnique({
+      where: {email: userVariables.user.email},
+    });
+
+    const response = await graphqlClient.request(deleteUserMutation, {
+      id: user?.id,
+    });
+
+    expect(response.deleteUser).toBeTruthy();
+  });
   // Hyo => https://github.com/apollographql/subscriptions-transport-ws/issues/872
 
   // describe('Resolver - after signInEmail', () => {

@@ -7,7 +7,14 @@ import {
 } from '../../utils/error';
 import SendGridMail, {MailDataRequired} from '@sendgrid/mail';
 import {andThen, pipe} from 'ramda';
-import {arg, inputObjectType, mutationField, nonNull, stringArg} from 'nexus';
+import {
+  arg,
+  idArg,
+  inputObjectType,
+  mutationField,
+  nonNull,
+  stringArg,
+} from 'nexus';
 import {
   encryptCredential,
   getEmailVerificationHTML,
@@ -418,6 +425,21 @@ export const changeEmailPassword = mutationField('changeEmailPassword', {
         where: {id: userId},
         data: {password: newPassword},
       });
+
+      return true;
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  },
+});
+
+export const deleteUser = mutationField('deleteUser', {
+  type: nonNull('Boolean'),
+  args: {id: nonNull(idArg())},
+
+  resolve: async (_parent, {id}, ctx) => {
+    try {
+      await ctx.prisma.user.delete({where: {id}});
 
       return true;
     } catch (err: any) {
