@@ -8,7 +8,7 @@ describe('Resolver - File', () => {
   beforeAll(async () => {
     jest
       .spyOn(azureUtils, 'uploadFileToAzureBlobFromStream')
-      .mockImplementation(() => Promise.resolve(null));
+      .mockImplementation(() => Promise.resolve(''));
   });
 
   it('should return a file path after uploading one', async () => {

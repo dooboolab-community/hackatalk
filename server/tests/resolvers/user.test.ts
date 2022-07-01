@@ -63,6 +63,7 @@ describe('Resolver - User', () => {
     } catch (e: any) {
       const response = e.response;
 
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(response.errors[0].message).toEqual(
         i18next.t(ErrorString.UserNotExists),
       );
@@ -77,6 +78,7 @@ describe('Resolver - User', () => {
     } catch (e: any) {
       const response = e.response;
 
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(response.errors[0].message).toEqual(
         i18next.t(ErrorString.EmailNotValid),
       );
@@ -91,6 +93,7 @@ describe('Resolver - User', () => {
     } catch (e: any) {
       const response = e.response;
 
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(response.errors[0].message).toEqual(
         i18next.t(ErrorString.EmailSentFailed),
       );
@@ -110,134 +113,4 @@ describe('Resolver - User', () => {
 
     expect(response.deleteUser).toBeTruthy();
   });
-  // Hyo => https://github.com/apollographql/subscriptions-transport-ws/issues/872
-
-  // describe('Resolver - after signInEmail', () => {
-  //   const variables = {
-  //     user: {
-  //       name: 'HelloBro',
-  //       gender: 'male',
-  //     },
-  //   };
-
-  //   it('should update user profile', async () => {
-  //     const response = await client.request(updateProfileMutation, variables);
-
-  //     expect(response).toHaveProperty('updateProfile');
-  //     expect(response.updateProfile).toHaveProperty('name');
-  //     expect(response.updateProfile).toHaveProperty('gender');
-  //     expect(response.updateProfile.name).toEqual(variables.user.name);
-  //     expect(response.updateProfile.gender).toEqual(variables.user.gender);
-  //   });
-
-  //   it('should throw error when invalid gender value is given', async () => {
-  //     const invalidVars = {
-  //       user: {
-  //         name: 'HelloBro',
-  //         gender: 'Woman',
-  //       },
-  //     };
-
-  //     expect(async () => {
-  //       await client.request(updateProfileMutation, invalidVars);
-  //     }).rejects.toThrow();
-  //   });
-
-  //   it('should query me and get updated name', async () => {
-  //     const response = await client.request(meQuery);
-
-  //     expect(response).toHaveProperty('me');
-  //     expect(response.me.name).toEqual(variables.user.name);
-  //   });
-  // });
-
-  // describe('Resolver - user Subscription', () => {
-  //   it("should subscribe 'userSignedIn' after 'signUp' mutation", async () => {
-  //     let subscriptionValue;
-  //     const response = await request(testHost, signUpMutation, userVariables2);
-
-  //     expect(response.signUp.name).toEqual(userVariables2.user.name);
-  //     expect(response.signUp.gender).toEqual(userVariables2.user.gender);
-
-  //     apolloClient
-  //       .subscribe({
-  //         context: {
-  //           headers: {
-  //             authorization: response.token,
-  //           },
-  //         },
-  //         query: userSignedInSubscription,
-  //       })
-  //       .subscribe({
-  //         next: ({data}) => {
-  //           return (subscriptionValue = data.userSignedIn);
-  //         },
-  //       });
-
-  //     const variables = {
-  //       email: 'clark@dooboolab.com',
-  //       password: 'password',
-  //     };
-
-  //     const responseSignIn = await request(
-  //       testHost,
-  //       signInEmailMutation,
-  //       variables,
-  //     );
-
-  //     expect(responseSignIn).toHaveProperty('signInEmail');
-  //     expect(responseSignIn.signInEmail).toHaveProperty('token');
-  //     expect(responseSignIn.signInEmail).toHaveProperty('user');
-  //   });
-
-  //   it("should subscribe 'userUpdated' after 'updateProfile' mutation", async () => {
-  //     let subscriptionValue;
-
-  //     const variables = {
-  //       email: 'clark@dooboolab.com',
-  //       password: 'password',
-  //     };
-
-  //     const response = await request(testHost, signInEmailMutation, variables);
-
-  //     expect(response.signInEmail).toHaveProperty('user');
-
-  //     apolloClient
-  //       .subscribe({
-  //         context: {
-  //           headers: {
-  //             authorization: response.token,
-  //           },
-  //         },
-  //         query: userUpdatedSubscription,
-  //       })
-  //       .subscribe({
-  //         next: ({data}) => {
-  //           return (subscriptionValue = data.userUpdated);
-  //         },
-  //       });
-
-  //     client = new GraphQLClient(testHost, {
-  //       headers: {
-  //         authorization: response.signInEmail.token,
-  //       },
-  //     });
-
-  //     const variables2 = {
-  //       user: {
-  //         name: 'HelloBro',
-  //         gender: 'female',
-  //       },
-  //     };
-
-  //     const responseUpdateProfile = await client.request(
-  //       updateProfileMutation,
-  //       variables2,
-  //     );
-
-  //     expect(responseUpdateProfile).toHaveProperty('updateProfile');
-  //     expect(responseUpdateProfile.updateProfile).toHaveProperty('name');
-  //     expect(responseUpdateProfile.updateProfile).toHaveProperty('gender');
-  //   });
-  // });
 });

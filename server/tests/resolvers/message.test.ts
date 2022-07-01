@@ -30,8 +30,11 @@ describe('Resolver - Channel', () => {
 
     const signUpResponse = await request(testHost, signUpMutation, signUpVar);
 
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signUpResponse).toHaveProperty('signUp');
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signUpResponse.signUp).toHaveProperty('email');
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signUpResponse.signUp.email).toEqual(signUpVar.user.email);
 
     const signInResponse = await request(
@@ -40,9 +43,13 @@ describe('Resolver - Channel', () => {
       signInVar,
     );
 
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signInResponse).toHaveProperty('signInEmail');
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signInResponse.signInEmail).toHaveProperty('token');
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signInResponse.signInEmail).toHaveProperty('user');
+    // eslint-disable-next-line jest/no-standalone-expect
     expect(signInResponse.signInEmail.user.email).toEqual(signInVar.email);
 
     authClient = new GraphQLClient(testHost, {
@@ -70,6 +77,7 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse1.signUp).toHaveProperty('email');
     expect(signUpResponse1.signUp.email).toEqual(signUpVar1.user.email);
 
+    // @ts-ignore
     friendsId.push(signUpResponse1.signUp.id);
 
     const signUpVar2 = {
@@ -87,6 +95,7 @@ describe('Resolver - Channel', () => {
     expect(signUpResponse2.signUp).toHaveProperty('email');
     expect(signUpResponse2.signUp.email).toEqual(signUpVar2.user.email);
 
+    // @ts-ignore
     friendsId.push(signUpResponse2.signUp.id);
   });
 

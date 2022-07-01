@@ -12,6 +12,7 @@ describe('signInEmail', () => {
 
     const promise = request(testHost, signInEmailMutation, variables);
 
+    // eslint-disable-next-line jest/valid-expect
     expect(promise).rejects.toThrow();
   });
 
@@ -34,6 +35,7 @@ describe('signInEmail', () => {
 
     const promise = request(testHost, signInEmailMutation, variables);
 
+    // eslint-disable-next-line jest/valid-expect
     expect(promise).rejects.toThrow();
   });
 });

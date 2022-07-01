@@ -4,9 +4,10 @@ import axios from 'axios';
 import bcrypt from 'bcrypt';
 import ejs from 'ejs';
 import fs from 'fs';
-import path from 'path';
 import qs from 'querystring';
 import {verify} from 'jsonwebtoken';
+
+const path = require('path');
 
 const SALT_ROUND = 10;
 
