@@ -274,7 +274,7 @@ exports[`[ChannelListItem] rendering test renders "renderSingleImage" as expecte
                 ]
               }
             >
-              2 years ago
+              3 years ago
             </Text>
           </View>
         </View>
@@ -535,7 +535,7 @@ exports[`[ChannelListItem] rendering test renders "renderSingleImage" without ph
                 ]
               }
             >
-              2 years ago
+              3 years ago
             </Text>
           </View>
         </View>
@@ -954,7 +954,7 @@ exports[`[ChannelListItem] rendering test renders as expected 1`] = `
                 ]
               }
             >
-              2 years ago
+              3 years ago
             </Text>
           </View>
         </View>
