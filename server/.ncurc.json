@@ -1,3 +1,6 @@
 {
-  "reject": []
+  "reject": [
+    "graphql-upload",
+    "nanoid"
+  ]
 }

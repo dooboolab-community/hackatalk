@@ -41,7 +41,9 @@ const pubsub =
   NODE_ENV !== 'production'
     ? new PubSub()
     : new RedisPubSub({
+        // @ts-ignore
         publisher: new Redis(prodRedisOption),
+        // @ts-ignore
         subscriber: new Redis(prodRedisOption),
       });
 
