@@ -7328,10 +7328,10 @@ expo-modules-core@0.9.2:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-notifications@~0.15.2:
-  version "0.15.2"
-  resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.15.2.tgz#8c9d3b43624e7a08bfc12ccec714717bfeb30c10"
-  integrity sha512-ZlOzQ8Lp1MgkwmiBsgg95nQHHbTOg8LHwmB816qxNKWeFvlyr/wQSgTZJNklL1uuv/+jC/YyKWoANfodahcAbQ==
+expo-notifications@~0.15.4:
+  version "0.15.4"
+  resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.15.4.tgz#e255927a239a1b49bf6dfe3d2d6d3fee308165e2"
+  integrity sha512-CHjzA0d4NQU9Es//tTSEKQl3Hfj9hdrV6k79G+2/dnAXIa+KjvDGUTjPlhVqvt9ApT4Ly6UbwoY5Cb5qgKMEWA==
   dependencies:
     "@expo/config-plugins" "^4.0.14"
     "@expo/image-utils" "^0.3.18"
@@ -7387,10 +7387,10 @@ expo-updates-interface@~0.6.0:
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-0.6.0.tgz#cef5250106e59572afdfcf245c534754c8c844ba"
   integrity sha512-oQcGTsE8mSkSxENPlWjZPGoJpt3RFDNPuO5d8shBDxBb4ZNH/W2ojavSFQMaLbNMoS0bYQQhzbRNEIBd306QMg==
 
-expo-updates@~0.13.2:
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.13.2.tgz#c96d664d8a97eb3af6841e46a137962b8bf06361"
-  integrity sha512-2ZthmyxYuN/c71y2oLNz9fdVXLf7ggxAw3Tfy+kwtGOTKNyOf/YoG+SwX7a0v+jZTJnuorEj5FuNf3wrniQ7+w==
+expo-updates@~0.13.3:
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.13.3.tgz#1e55ba2682de4633f2d1d0424078873868821361"
+  integrity sha512-aVO3Ha+vRGnkJbqlJMNoQn/p31DMnhZSGUs977ixhb0ff2xs530vf4/zVi4s635lkwuCd23++oga44Z4quKV/w==
   dependencies:
     "@expo/code-signing-certificates" "0.0.1"
     "@expo/config" "^6.0.14"
