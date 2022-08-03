@@ -98,9 +98,7 @@ exports[`Rendering renders without crashing 1`] = `
         ]
       }
       testID="undefined-nofeed"
-    >
-      
-    </Text>
+    />
   </View>
 </RNCSafeAreaProvider>
 `;

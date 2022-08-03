@@ -1,4 +1,11 @@
-import React, {FC, createContext, useContext, useState} from 'react';
+import React, {
+  FC,
+  ReactElement,
+  ReactNode,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
 
 type LeaveChannelModalData = {
   testID?: string;
@@ -22,7 +29,11 @@ const LeaveChannelModalContext = createContext<LeaveChannelModalContext>({
   hideModal: () => {},
 });
 
-export const LeaveChannelModalProvider: FC = ({children}) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const LeaveChannelModalProvider = ({children}: Props): ReactElement => {
   const [showModalState, setModalState] = useState<LeaveChannelModalState>({
     isVisible: false,
   });

@@ -1,4 +1,10 @@
-import React, {FC, createContext, useContext, useState} from 'react';
+import React, {
+  ReactElement,
+  ReactNode,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
 
 import {ProfileModal_user$key} from '../__generated__/ProfileModal_user.graphql';
 
@@ -33,7 +39,11 @@ const ProfileModalContext = createContext<ProfileModalContext>({
   hideModal: () => {},
 });
 
-export const ProfileModalProvider: FC = ({children}) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const ProfileModalProvider = ({children}: Props): ReactElement => {
   const [state, setState] = useState<ModalState>({
     isVisible: false,
   });

@@ -241,9 +241,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ]
                   }
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -361,9 +359,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ]
                   }
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -482,9 +478,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ]
                   }
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -602,9 +596,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ]
                   }
-                >
-                  
-                </Text>
+                />
               </View>
             </View>
             <View
@@ -727,9 +719,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ]
                   }
-                >
-                  
-                </Text>
+                />
                 <Text
                   style={
                     Array [

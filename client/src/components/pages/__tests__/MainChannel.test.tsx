@@ -66,7 +66,7 @@ describe('interactions', () => {
     });
 
     const screen = render(component);
-    const channelItemBtn = await screen.findByA11yLabel(getString('GO_CHAT'));
+    const channelItemBtn = await screen.findByLabelText(getString('GO_CHAT'));
 
     fireEvent.press(channelItemBtn);
 

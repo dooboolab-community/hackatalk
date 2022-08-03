@@ -16,6 +16,8 @@
   "CONFIRM_PASSWORD": "Confirm password",
   "CONTRIBUTIONS": "Contributions",
   "CONTRIBUTION_HINT": "What were your contributions?",
+  "DELETE_ACCOUNT": "Delete Account",
+  "DELETE_ACCOUNT_WARING": "Do you really want to delete your account?",
   "DELETE_FRIEND": "Delete",
   "DONE": "Done",
   "EMAIL": "Email",
@@ -138,7 +140,5 @@
   "VIDEO": "Video",
   "WARNING": "Warning",
   "WRITE_MESSAGE": "Write message...",
-  "YES": "Yes",
-  "DELETE_ACCOUNT": "Delete Account",
-  "DELETE_ACCOUNT_WARING": "Do you really want to delete your account?"
+  "YES": "Yes"
 }

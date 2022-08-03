@@ -168,9 +168,7 @@ exports[`Rendering renders without crashing 1`] = `
                   },
                 ]
               }
-            >
-              
-            </Text>
+            />
           </View>
         </View>
       </View>

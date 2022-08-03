@@ -179,9 +179,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                   },
                 ]
               }
-            >
-              
-            </Text>
+            />
           </View>
         </View>
         <View
@@ -299,9 +297,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                   },
                 ]
               }
-            >
-              
-            </Text>
+            />
           </View>
         </View>
         <View
@@ -419,9 +415,7 @@ exports[`[ChangePw] screen renders without crashing 1`] = `
                   },
                 ]
               }
-            >
-              
-            </Text>
+            />
           </View>
         </View>
       </View>

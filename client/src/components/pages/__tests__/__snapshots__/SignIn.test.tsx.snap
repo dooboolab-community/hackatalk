@@ -248,9 +248,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
@@ -372,9 +370,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View

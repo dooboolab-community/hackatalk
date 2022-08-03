@@ -87,9 +87,7 @@ exports[`Rendering renders without crashing 1`] = `
           undefined,
         ]
       }
-    >
-      
-    </Text>
+    />
     <View
       accessible={true}
       collapsable={false}

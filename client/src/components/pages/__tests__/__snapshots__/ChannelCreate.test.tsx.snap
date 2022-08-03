@@ -813,9 +813,7 @@ fragment UserListItem_user on User {
                         ]
                       }
                       testID="undefined-nofeed"
-                    >
-                      
-                    </Text>
+                    />
                   </View>
                 </View>
               </View>
