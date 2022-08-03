@@ -88,7 +88,7 @@ const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
         parse={[
           {
             type: 'url',
-            onPress: (url) => Linking.openURL(url),
+            onPress: (url: string) => Linking.openURL(url),
             style: {
               color: theme.button,
               textDecorationLine: 'underline',

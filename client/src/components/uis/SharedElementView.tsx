@@ -1,9 +1,9 @@
-import React, {FC, ReactElement} from 'react';
+import React, {FC, ReactElement, ReactNode} from 'react';
 
 import {Platform} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 
-type Props = {id: string};
+type Props = {id: string; children: ReactNode};
 
 const SharedElementView: FC<Props> = ({id, children}) => {
   return Platform.select({

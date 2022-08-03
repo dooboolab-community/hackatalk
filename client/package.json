@@ -133,7 +133,7 @@
     "@types/react-native-modalbox": "^1.4.10",
     "@types/react-relay": "^13.0.2",
     "@types/react-responsive": "^8.0.5",
-    "@types/react-test-renderer": "^17",
+    "@types/react-test-renderer": "18.0.0",
     "@types/relay-test-utils": "^6.0.5",
     "abort-controller": "^3.0.0",
     "babel-plugin-inline-dotenv": "^1.7.0",
@@ -156,7 +156,7 @@
     "prettier-plugin-import-sort": "^0.0.7",
     "react-dom": "18.0.0",
     "react-native-svg-transformer": "^1.0.0",
-    "react-test-renderer": "17.0.2",
+    "react-test-renderer": "18.0.0",
     "relay-compiler": "^13.2.0",
     "relay-compiler-language-typescript": "^15.0.1",
     "relay-config": "^12.0.1",
@@ -174,10 +174,5 @@
       "style": "eslint",
       "options": {}
     }
-  },
-  "resolutions": {
-    "react-native/@jest/create-cache-key-function": "^27.0.2",
-    "@types/react": "17.0.40",
-    "@types/react-native": "^0.67.6"
   }
 }

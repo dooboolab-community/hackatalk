@@ -1,6 +1,6 @@
 import {StyleProp, TextStyle} from 'react-native';
 
-import {SFC} from 'react';
+import {FC} from 'react';
 import {User} from './graphql';
 
 export enum MessageType {
@@ -21,7 +21,7 @@ interface IconProps {
   children?: never;
 }
 
-export type IconType = SFC<IconProps>;
+export type IconType = FC<IconProps>;
 
 export enum ThemeType {
   LIGHT = 'LIGHT',

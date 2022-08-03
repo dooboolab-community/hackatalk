@@ -5,9 +5,6 @@ process.env.TZ = 'Asia/Seoul';
 module.exports = {
   automock: false,
   preset: 'jest-expo',
-  transform: {
-    '\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js',
-  },
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],

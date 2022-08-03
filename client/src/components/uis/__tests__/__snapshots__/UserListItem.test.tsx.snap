@@ -150,9 +150,7 @@ exports[`[UserListItem] rendering test renders as expected 1`] = `
               undefined,
             ]
           }
-        >
-          
-        </Text>
+        />
       </View>
     </View>
   </View>

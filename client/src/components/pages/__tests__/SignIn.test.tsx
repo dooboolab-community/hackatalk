@@ -59,7 +59,7 @@ describe('[SignIn] interaction', () => {
     fireEvent.press(themeTouch);
   });
 
-  it('should invoke changeText event handler when email changed ', async () => {
+  it('should invoke changeText event handler when email changed', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
     const textInput = screen.getByTestId('input-email');
@@ -69,7 +69,7 @@ describe('[SignIn] interaction', () => {
     expect(textInput.props.value).toEqual('email@email.com');
   });
 
-  it('should invoke changeText event handler when password changed ', async () => {
+  it('should invoke changeText event handler when password changed', async () => {
     const component = createTestElement(<SignIn />);
     const screen = render(component);
 

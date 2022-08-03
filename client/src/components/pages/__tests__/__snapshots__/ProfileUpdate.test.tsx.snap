@@ -233,9 +233,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
@@ -353,9 +351,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
@@ -478,9 +474,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -612,9 +606,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
             </View>
           </View>
           <View
@@ -736,9 +728,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -875,9 +865,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -1014,9 +1002,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -1153,9 +1139,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [
@@ -1292,9 +1276,7 @@ exports[`rendering test renders as expected 1`] = `
                     },
                   ]
                 }
-              >
-                
-              </Text>
+              />
               <Text
                 style={
                   Array [

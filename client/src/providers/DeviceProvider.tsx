@@ -1,6 +1,6 @@
 import * as Device from 'expo-device';
 
-import React, {FC, useEffect, useState} from 'react';
+import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
 
 import createCtx from '../utils/createCtx';
 import {nanoid} from 'nanoid/non-secure';
@@ -14,7 +14,11 @@ interface Context {
 
 const [useCtx, Provider] = createCtx<Context>();
 
-const DeviceProvider: FC = ({children}) => {
+type Props = {
+  children: ReactNode;
+};
+
+const DeviceProvider = ({children}: Props): ReactElement => {
   const [deviceType, setDeviceType] = useState<Device.DeviceType>(
     Device.DeviceType.PHONE,
   );

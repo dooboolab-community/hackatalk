@@ -145,9 +145,7 @@ exports[`[FindPw] rendering test should renders as expected 1`] = `
               },
             ]
           }
-        >
-          
-        </Text>
+        />
       </View>
     </View>
     <View

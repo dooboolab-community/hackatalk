@@ -1,5 +1,5 @@
 import {IC_SEARCH, IC_SEARCH_W} from '../../utils/Icons';
-import React, {ReactChildren, ReactElement} from 'react';
+import React, {ReactElement, ReactNode} from 'react';
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
 import styled from '@emotion/native';
@@ -34,7 +34,7 @@ interface Props {
   testID?: string;
   onChangeText?: (text: string) => void;
   value?: string;
-  children?: ReactChildren;
+  children?: ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<TextStyle>;
 }

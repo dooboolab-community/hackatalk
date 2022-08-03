@@ -1,5 +1,6 @@
 import React, {
-  FC,
+  ReactElement,
+  ReactNode,
   createContext,
   useCallback,
   useContext,
@@ -25,7 +26,11 @@ const SnackbarContext = createContext<SnackbarContext>({
   openSnackbar: () => {},
 });
 
-export const SnackbarProvider: FC = (props) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const SnackbarProvider = (props: Props): ReactElement => {
   const [snackbarState, setSnackbarState] = useState<SnackbarState>();
 
   const snackbarRef = useRef<SnackbarRef>(null);
