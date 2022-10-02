@@ -1,4 +1,4 @@
-name: Server
+name: zServer
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
     paths:
       - "server/**"
   pull_request:
+    branches: [main]
+    paths:
+      - "server/**"
     types: [opened, synchronize, reopened]
 
 jobs:
