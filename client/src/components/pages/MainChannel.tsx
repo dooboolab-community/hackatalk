@@ -8,7 +8,6 @@ import React, {FC, Suspense, useMemo, useState} from 'react';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
-import {AdMobBanner} from 'expo-ads-admob';
 import {Channel} from '../../types/graphql';
 import ChannelListItem from '../uis/ChannelListItem';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
@@ -164,28 +163,6 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
       // @ts-ignore
       data={channels}
       renderItem={renderItem}
-      ListHeaderComponent={
-        !bannerError && orientation === Orientation.PORTRAIT
-          ? Platform.select({
-              android: (
-                <AdMobBanner
-                  bannerSize={'smartBannerPortrait'}
-                  // adUnitID="ca-app-pub-3940256099942544/6300978111"
-                  adUnitID="ca-app-pub-7837089095803162/8109702961"
-                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                />
-              ),
-              ios: (
-                <AdMobBanner
-                  bannerSize={'smartBannerPortrait'}
-                  // adUnitID="ca-app-pub-3940256099942544/2934735716"
-                  adUnitID="ca-app-pub-7837089095803162/4326063134"
-                  onDidFailToReceiveAdWithError={() => setBannerError(true)}
-                />
-              ),
-            })
-          : null
-      }
       ListEmptyComponent={
         <EmptyListItem>{getString('NO_CHANNELLIST')}</EmptyListItem>
       }

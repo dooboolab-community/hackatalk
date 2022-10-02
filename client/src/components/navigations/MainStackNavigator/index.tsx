@@ -2,7 +2,7 @@ import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {Image, Platform, TouchableOpacity, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import React, {ReactElement, useCallback, useEffect, useMemo} from 'react';
 import {
   StackNavigationOptions,
@@ -33,7 +33,6 @@ import User from '../../pages/User';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
-import {requestPermissionsAsync} from 'expo-ads-admob';
 import {useDeviceContext} from '../../../providers';
 
 export type MainStackParamList = {
@@ -131,12 +130,6 @@ function MainStackNavigator(): ReactElement {
   useEffect(() => {
     hideSplashScreenAsync();
   }, [hideSplashScreenAsync]);
-
-  useEffect(() => {
-    if (Platform.OS === 'android' || Platform.OS === 'ios') {
-      requestPermissionsAsync();
-    } // expo-ads-admob
-  }, []);
 
   useEffect(() => {
     const subscription = Notifications.addNotificationResponseReceivedListener(

@@ -12,16 +12,7 @@ export default ({config}: ConfigContext): ExpoConfig => ({
   slug: 'HackaTalk-Expo',
   privacy: 'public',
   platforms: ['ios', 'android', 'web'],
-  plugins: [
-    'sentry-expo',
-    [
-      'expo-ads-admob',
-      {
-        userTrackingPermission:
-          'This identifier will be used to deliver personalized ads to you.',
-      },
-    ],
-  ],
+  plugins: ['sentry-expo'],
   version,
   orientation: 'default',
   icon: './assets/icon.png',
