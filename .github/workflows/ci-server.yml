@@ -1,4 +1,4 @@
-name: zServer
+name: Server
 
 on:
   push:

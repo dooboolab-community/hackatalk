@@ -4,8 +4,8 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -16,8 +16,8 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
     Video isLoaded? : false
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "height": 150,
             "justifyContent": "center",
@@ -47,7 +47,7 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
           accessible={true}
           collapsable={false}
           style={
-            Object {
+            {
               "alignItems": "center",
               "flex": 1,
               "justifyContent": "center",
@@ -57,8 +57,8 @@ exports[`[VideoPlayer] render render without crashing 1`] = `
         >
           <Text
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "'rgba(255,255,255, 0.5)'",
                   "color": "#fff",
                   "fontSize": 14,

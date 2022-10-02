@@ -74,7 +74,7 @@ app/
 ├─ codegen.yml
 ├─ config.ts
 ├─ environment.d.ts
-├─ jest.config.js
+├─ jest.config.ts
 ├─ metro.config.js
 ├─ package.json
 ├─ README.md

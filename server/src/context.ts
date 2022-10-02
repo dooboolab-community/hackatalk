@@ -138,7 +138,6 @@ export const runSubscriptionServer = (
     path: apollo.graphqlPath,
   });
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const serverCleanup = useServer(
     {
       schema: schemaWithMiddleware,

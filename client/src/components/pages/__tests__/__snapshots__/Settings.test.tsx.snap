@@ -4,8 +4,8 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -15,8 +15,8 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#000",
           "flexBasis": 0,
           "flexGrow": 1,
@@ -29,10 +29,10 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
   >
     <RCTScrollView
       data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
+        [
+          {
+            "data": [
+              {
                 "icon": <SvgMock
                   fill="white"
                   width={24}
@@ -59,7 +59,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={
-        Array [
+        [
           0,
         ]
       }
@@ -72,8 +72,8 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "#000",
                   "borderBottomColor": "#515151",
                   "borderBottomWidth": 1,
@@ -87,8 +87,8 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
           >
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#fff",
                     "marginLeft": 2,
                   },
@@ -116,7 +116,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": 52,
@@ -134,15 +134,15 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
             />
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "white",
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
                     "fontSize": 16,
                   },
-                  Object {
+                  {
                     "marginLeft": 8,
                     "marginTop": 2,
                   },
@@ -171,7 +171,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
         }
@@ -190,7 +190,7 @@ exports[`[Setting] screen renders without crashing with Facebook auth type 1`] =
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
           "paddingVertical": 20,
@@ -206,8 +206,8 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -217,8 +217,8 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#000",
           "flexBasis": 0,
           "flexGrow": 1,
@@ -231,10 +231,10 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
   >
     <RCTScrollView
       data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
+        [
+          {
+            "data": [
+              {
                 "icon": <SvgMock
                   fill="white"
                   width={24}
@@ -261,7 +261,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={
-        Array [
+        [
           0,
         ]
       }
@@ -274,8 +274,8 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "#000",
                   "borderBottomColor": "#515151",
                   "borderBottomWidth": 1,
@@ -289,8 +289,8 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
           >
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#fff",
                     "marginLeft": 2,
                   },
@@ -318,7 +318,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": 52,
@@ -336,15 +336,15 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
             />
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "white",
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
                     "fontSize": 16,
                   },
-                  Object {
+                  {
                     "marginLeft": 8,
                     "marginTop": 2,
                   },
@@ -373,7 +373,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
         }
@@ -392,7 +392,7 @@ exports[`[Setting] screen should render without crashing with Apple auth type 1`
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
           "paddingVertical": 20,
@@ -408,8 +408,8 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -419,8 +419,8 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#000",
           "flexBasis": 0,
           "flexGrow": 1,
@@ -433,10 +433,10 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
   >
     <RCTScrollView
       data={
-        Array [
-          Object {
-            "data": Array [
-              Object {
+        [
+          {
+            "data": [
+              {
                 "icon": <SvgMock
                   fill="white"
                   width={24}
@@ -463,7 +463,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
       renderItem={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={
-        Array [
+        [
           0,
         ]
       }
@@ -476,8 +476,8 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "#000",
                   "borderBottomColor": "#515151",
                   "borderBottomWidth": 1,
@@ -491,8 +491,8 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
           >
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#fff",
                     "marginLeft": 2,
                   },
@@ -520,7 +520,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "height": 52,
@@ -538,15 +538,15 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
             />
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "white",
                     "flexBasis": 0,
                     "flexGrow": 1,
                     "flexShrink": 1,
                     "fontSize": 16,
                   },
-                  Object {
+                  {
                     "marginLeft": 8,
                     "marginTop": 2,
                   },
@@ -575,7 +575,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
         }
@@ -594,7 +594,7 @@ exports[`[Setting] screen should renders without crashing with Google auth type 
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
+        {
           "opacity": 1,
           "paddingHorizontal": 20,
           "paddingVertical": 20,

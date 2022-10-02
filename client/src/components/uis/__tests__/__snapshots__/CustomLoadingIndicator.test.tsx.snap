@@ -4,8 +4,8 @@ exports[`Interaction should simulate onClick 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,7 +14,7 @@ exports[`Interaction should simulate onClick 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "alignSelf": "stretch",
         "backgroundColor": "(0, 0, 0, 0)",
@@ -26,7 +26,7 @@ exports[`Interaction should simulate onClick 1`] = `
     <Image
       collapsable={false}
       source={
-        Object {
+        {
           "canInstrument": true,
           "createTransformer": [Function],
           "getCacheKey": [Function],
@@ -34,11 +34,11 @@ exports[`Interaction should simulate onClick 1`] = `
         }
       }
       style={
-        Object {
+        {
           "borderRadius": 28,
           "opacity": 0.75,
-          "transform": Array [
-            Object {
+          "transform": [
+            {
               "scale": 1.7,
             },
           ],
@@ -53,8 +53,8 @@ exports[`Rendering renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -63,7 +63,7 @@ exports[`Rendering renders without crashing 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "alignSelf": "stretch",
         "backgroundColor": "(0, 0, 0, 0)",
@@ -75,7 +75,7 @@ exports[`Rendering renders without crashing 1`] = `
     <Image
       collapsable={false}
       source={
-        Object {
+        {
           "canInstrument": true,
           "createTransformer": [Function],
           "getCacheKey": [Function],
@@ -83,11 +83,11 @@ exports[`Rendering renders without crashing 1`] = `
         }
       }
       style={
-        Object {
+        {
           "borderRadius": 28,
           "opacity": 0.75,
-          "transform": Array [
-            Object {
+          "transform": [
+            {
               "scale": 1.7,
             },
           ],
