@@ -34,3 +34,12 @@ google-service.json
 apple-api-key.p8
 google-service-account.json
 eas.json
+
+# yarn2
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
