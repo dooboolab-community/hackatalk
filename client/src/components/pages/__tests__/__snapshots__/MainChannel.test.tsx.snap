@@ -53,13 +53,6 @@ exports[`[Channel] screen renders without crashing 1`] = `
           }
         />
       }
-      ListHeaderComponent={
-        <AdMobBanner
-          adUnitID="ca-app-pub-7837089095803162/4326063134"
-          bannerSize="smartBannerPortrait"
-          onDidFailToReceiveAdWithError={[Function]}
-        />
-      }
       contentContainerStyle={null}
       data={
         Array [
@@ -131,26 +124,6 @@ exports[`[Channel] screen renders without crashing 1`] = `
     >
       <RCTRefreshControl />
       <View>
-        <View
-          onLayout={[Function]}
-        >
-          <View>
-            <ViewManagerAdapter_ExpoAdsAdMobBannerView
-              onDidFailToReceiveAdWithError={[Function]}
-              onSizeChange={[Function]}
-              proxiedProperties={
-                Object {
-                  "adUnitID": "ca-app-pub-7837089095803162/4326063134",
-                  "additionalRequestParams": Object {
-                    "npa": "1",
-                  },
-                  "bannerSize": "smartBannerPortrait",
-                }
-              }
-              style={Object {}}
-            />
-          </View>
-        </View>
         <View
           onLayout={[Function]}
           style={null}
@@ -354,7 +327,7 @@ exports[`[Channel] screen renders without crashing 1`] = `
                         ]
                       }
                     >
-                      a year ago
+                      2 years ago
                     </Text>
                   </View>
                 </View>
