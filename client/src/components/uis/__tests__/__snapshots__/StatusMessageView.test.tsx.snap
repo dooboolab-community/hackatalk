@@ -5,13 +5,13 @@ exports[`[StatusMessageView] render render without crashing 1`] = `
   collapsable={false}
   onLayout={[Function]}
   style={
-    Object {
+    {
       "backgroundColor": "transparent",
       "overflow": "hidden",
       "position": "absolute",
       "top": 40,
-      "transform": Array [
-        Object {
+      "transform": [
+        {
           "translateY": 140,
         },
       ],
@@ -33,7 +33,7 @@ exports[`[StatusMessageView] render render without crashing 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "alignItems": "center",
         "flexDirection": "column",
         "justifyContent": "center",
@@ -48,8 +48,8 @@ exports[`[StatusMessageView] render render without crashing 1`] = `
       numberOfLines={2}
       onTextLayout={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignSelf": "center",
             "color": "white",
             "fontSize": 12,

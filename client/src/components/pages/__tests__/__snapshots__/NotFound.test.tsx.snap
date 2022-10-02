@@ -4,8 +4,8 @@ exports[`[NotFound] screen renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,8 +14,8 @@ exports[`[NotFound] screen renders without crashing 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "transparent",
           "flexBasis": 0,
@@ -30,8 +30,8 @@ exports[`[NotFound] screen renders without crashing 1`] = `
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "blue",
             "fontSize": 16,
           },

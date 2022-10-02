@@ -4,8 +4,8 @@ exports[`Rendering renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,8 +14,8 @@ exports[`Rendering renders without crashing 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "flexDirection": "row",
           "justifyContent": "center",
@@ -35,8 +35,8 @@ exports[`Rendering renders without crashing 1`] = `
       multiline={false}
       selectionColor="white"
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "#151C22",
             "borderBottomLeftRadius": 4,
             "borderBottomRightRadius": 4,
@@ -56,7 +56,7 @@ exports[`Rendering renders without crashing 1`] = `
     />
     <Image
       source={
-        Object {
+        {
           "canInstrument": true,
           "createTransformer": [Function],
           "getCacheKey": [Function],
@@ -64,8 +64,8 @@ exports[`Rendering renders without crashing 1`] = `
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "height": 20,
             "left": 30,
             "position": "absolute",

@@ -4,8 +4,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -15,8 +15,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#000",
           "flexBasis": 0,
           "flexGrow": 1,
@@ -29,8 +29,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
   >
     <RCTScrollView
       style={
-        Array [
-          Object {
+        [
+          {
             "alignSelf": "center",
             "width": "100%",
           },
@@ -51,7 +51,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Object {
+            {
               "height": undefined,
               "left": undefined,
               "opacity": 1,
@@ -65,7 +65,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
         >
           <Image
             source={
-              Object {
+              {
                 "canInstrument": true,
                 "createTransformer": [Function],
                 "getCacheKey": [Function],
@@ -73,7 +73,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               }
             }
             style={
-              Object {
+              {
                 "height": "100%",
                 "resizeMode": "cover",
                 "width": "100%",
@@ -83,8 +83,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "marginBottom": 40,
                 "marginLeft": 40,
                 "marginRight": 40,
@@ -96,8 +96,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "marginBottom": 72,
                   "marginTop": 44,
                 },
@@ -107,15 +107,15 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           >
             <View
               style={
-                Object {
+                {
                   "height": 72,
                 }
               }
             />
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "flex-start",
                     "color": "white",
                     "fontSize": 20,
@@ -131,12 +131,12 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignSelf": "stretch",
                   "flexDirection": "column",
                 },
-                Object {
+                {
                   "marginBottom": 4,
                 },
               ]
@@ -145,9 +145,9 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           >
             <View
               style={
-                Array [
-                  Array [
-                    Object {
+                [
+                  [
+                    {
                       "alignItems": "center",
                       "alignSelf": "stretch",
                       "borderBottomColor": "white",
@@ -155,15 +155,15 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                       "flexDirection": "row",
                       "justifyContent": "space-between",
                     },
-                    Object {
+                    {
                       "borderColor": "white",
                     },
                   ],
                   false,
-                  Object {
+                  {
                     "borderColor": "white",
                   },
-                  Object {
+                  {
                     "borderBottomColor": "white",
                   },
                 ]
@@ -171,19 +171,19 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             >
               <Text
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "#6D6D6D",
                         "fontSize": 14,
                         "marginRight": 2,
                       },
-                      Object {
+                      {
                         "width": 80,
                       },
                     ],
                     false,
-                    Object {},
+                    {},
                   ]
                 }
               >
@@ -201,16 +201,16 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                 placeholderTextColor="#6D6D6D"
                 secureTextEntry={false}
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "white",
                         "flex": 1,
                         "fontSize": 14,
                         "paddingHorizontal": 8,
                         "paddingVertical": 10,
                       },
-                      Object {
+                      {
                         "color": "white",
                         "height": 52,
                       },
@@ -224,7 +224,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             </View>
             <View
               style={
-                Object {
+                {
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -233,16 +233,16 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             >
               <Text
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "#FF002E",
                         "fontSize": 12,
                         "marginTop": 4,
                       },
                       undefined,
                     ],
-                    Object {
+                    {
                       "color": "#FF002E",
                       "flex": 1,
                     },
@@ -253,12 +253,12 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "alignSelf": "stretch",
                   "flexDirection": "column",
                 },
-                Object {
+                {
                   "marginBottom": 20,
                 },
               ]
@@ -267,9 +267,9 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           >
             <View
               style={
-                Array [
-                  Array [
-                    Object {
+                [
+                  [
+                    {
                       "alignItems": "center",
                       "alignSelf": "stretch",
                       "borderBottomColor": "white",
@@ -277,15 +277,15 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                       "flexDirection": "row",
                       "justifyContent": "space-between",
                     },
-                    Object {
+                    {
                       "borderColor": "white",
                     },
                   ],
                   false,
-                  Object {
+                  {
                     "borderColor": "white",
                   },
-                  Object {
+                  {
                     "borderBottomColor": "white",
                   },
                 ]
@@ -293,19 +293,19 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             >
               <Text
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "#6D6D6D",
                         "fontSize": 14,
                         "marginRight": 2,
                       },
-                      Object {
+                      {
                         "width": 80,
                       },
                     ],
                     false,
-                    Object {},
+                    {},
                   ]
                 }
               >
@@ -323,16 +323,16 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
                 placeholderTextColor="#6D6D6D"
                 secureTextEntry={true}
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "white",
                         "flex": 1,
                         "fontSize": 14,
                         "paddingHorizontal": 8,
                         "paddingVertical": 10,
                       },
-                      Object {
+                      {
                         "color": "white",
                         "height": 52,
                       },
@@ -346,7 +346,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             </View>
             <View
               style={
-                Object {
+                {
                   "flex": 1,
                   "flexDirection": "row",
                   "justifyContent": "space-between",
@@ -355,16 +355,16 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             >
               <Text
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "color": "#FF002E",
                         "fontSize": 12,
                         "marginTop": 4,
                       },
                       undefined,
                     ],
-                    Object {
+                    {
                       "color": "#FF002E",
                       "flex": 1,
                     },
@@ -375,8 +375,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "flexDirection": "row",
                   "height": 52,
                   "marginTop": 4,
@@ -398,7 +398,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "flex": 1,
                   "opacity": 1,
                 }
@@ -407,7 +407,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             />
             <View
               style={
-                Object {
+                {
                   "width": 12,
                 }
               }
@@ -424,7 +424,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "flex": 1,
                   "opacity": 1,
                 }
@@ -444,7 +444,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "alignSelf": "center",
                 "marginBottom": 28,
                 "opacity": 1,
@@ -458,8 +458,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           >
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#8BC9FF",
                     "textDecorationLine": "underline",
                   },
@@ -472,8 +472,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "marginBottom": 24,
                 },
                 undefined,
@@ -492,7 +492,7 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "marginBottom": 12,
                   "opacity": 1,
                 }
@@ -524,8 +524,8 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "flexDirection": "row",
                   "flexWrap": "wrap",
                   "justifyContent": "center",
@@ -540,12 +540,12 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
           >
             <Text
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "white",
                     "fontSize": 14,
                   },
-                  Object {
+                  {
                     "textAlign": "center",
                   },
                 ]
@@ -555,12 +555,12 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               <Text
                 onPress={[Function]}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "white",
                       "fontSize": 14,
                     },
-                    Object {
+                    {
                       "textDecorationLine": "underline",
                     },
                   ]
@@ -572,12 +572,12 @@ exports[`[SignIn] rendering test should render [Dark] mode without crashing 1`] 
               <Text
                 onPress={[Function]}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "white",
                       "fontSize": 14,
                     },
-                    Object {
+                    {
                       "textDecorationLine": "underline",
                     },
                   ]

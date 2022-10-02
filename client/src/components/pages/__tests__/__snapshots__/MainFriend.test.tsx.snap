@@ -4,8 +4,8 @@ exports[`[Friend] rendering test renders a friend 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,8 +14,8 @@ exports[`[Friend] rendering test renders a friend 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "#000",
           "flexBasis": 0,
@@ -32,7 +32,7 @@ exports[`[Friend] rendering test renders a friend 1`] = `
       ListEmptyComponent={
         <Shared
           style={
-            Object {
+            {
               "alignItems": "center",
               "alignSelf": "stretch",
               "flex": 1,
@@ -45,33 +45,33 @@ exports[`[Friend] rendering test renders a friend 1`] = `
         </Shared>
       }
       data={
-        Array [
-          Object {
-            "__fragmentOwner": Object {
-              "cacheConfig": Object {
+        [
+          {
+            "__fragmentOwner": {
+              "cacheConfig": {
                 "force": true,
               },
-              "identifier": "203c6d15d466e67649e454eec08bda32{\\"after\\":null,\\"first\\":20,\\"includeMe\\":true,\\"searchText\\":null}",
-              "node": Object {
-                "fragment": Object {
+              "identifier": "203c6d15d466e67649e454eec08bda32{"after":null,"first":20,"includeMe":true,"searchText":null}",
+              "node": {
+                "fragment": {
                   "abstractKey": null,
-                  "argumentDefinitions": Array [
-                    Object {
+                  "argumentDefinitions": [
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "after",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "first",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "includeMe",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "searchText",
@@ -80,25 +80,25 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                   "kind": "Fragment",
                   "metadata": null,
                   "name": "FriendsQuery",
-                  "selections": Array [
-                    Object {
-                      "args": Array [
-                        Object {
+                  "selections": [
+                    {
+                      "args": [
+                        {
                           "kind": "Variable",
                           "name": "after",
                           "variableName": "after",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "first",
                           "variableName": "first",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "includeMe",
                           "variableName": "includeMe",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "searchText",
                           "variableName": "searchText",
@@ -107,24 +107,24 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                       "kind": "FragmentSpread",
                       "name": "MainFriend_friends",
                     },
-                    Object {
-                      "args": Array [
-                        Object {
+                    {
+                      "args": [
+                        {
                           "kind": "Variable",
                           "name": "after",
                           "variableName": "after",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "first",
                           "variableName": "first",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "includeMe",
                           "variableName": "includeMe",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "searchText",
                           "variableName": "searchText",
@@ -138,24 +138,24 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                 },
                 "hash": "83e83cdfcf6f4a0573ac1e9b2624e488",
                 "kind": "Request",
-                "operation": Object {
-                  "argumentDefinitions": Array [
-                    Object {
+                "operation": {
+                  "argumentDefinitions": [
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "first",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "after",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "searchText",
                     },
-                    Object {
+                    {
                       "defaultValue": null,
                       "kind": "LocalArgument",
                       "name": "includeMe",
@@ -163,26 +163,26 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                   ],
                   "kind": "Operation",
                   "name": "FriendsQuery",
-                  "selections": Array [
-                    Object {
+                  "selections": [
+                    {
                       "alias": null,
-                      "args": Array [
-                        Object {
+                      "args": [
+                        {
                           "kind": "Variable",
                           "name": "after",
                           "variableName": "after",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "first",
                           "variableName": "first",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "includeMe",
                           "variableName": "includeMe",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "searchText",
                           "variableName": "searchText",
@@ -192,94 +192,94 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                       "kind": "LinkedField",
                       "name": "friends",
                       "plural": false,
-                      "selections": Array [
-                        Object {
+                      "selections": [
+                        {
                           "alias": null,
                           "args": null,
                           "concreteType": "UserEdge",
                           "kind": "LinkedField",
                           "name": "edges",
                           "plural": true,
-                          "selections": Array [
-                            Object {
+                          "selections": [
+                            {
                               "alias": null,
                               "args": null,
                               "kind": "ScalarField",
                               "name": "cursor",
                               "storageKey": null,
                             },
-                            Object {
+                            {
                               "alias": null,
                               "args": null,
                               "concreteType": "User",
                               "kind": "LinkedField",
                               "name": "node",
                               "plural": false,
-                              "selections": Array [
-                                Object {
+                              "selections": [
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "id",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "photoURL",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "name",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "nickname",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "hasBlocked",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "statusMessage",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "isFriend",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "isOnline",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
                                   "name": "__typename",
                                   "storageKey": null,
                                 },
-                                Object {
+                                {
                                   "alias": null,
                                   "args": null,
                                   "kind": "ScalarField",
@@ -292,22 +292,22 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                           ],
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "concreteType": "PageInfo",
                           "kind": "LinkedField",
                           "name": "pageInfo",
                           "plural": false,
-                          "selections": Array [
-                            Object {
+                          "selections": [
+                            {
                               "alias": null,
                               "args": null,
                               "kind": "ScalarField",
                               "name": "hasNextPage",
                               "storageKey": null,
                             },
-                            Object {
+                            {
                               "alias": null,
                               "args": null,
                               "kind": "ScalarField",
@@ -320,61 +320,61 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                       ],
                       "storageKey": null,
                     },
-                    Object {
+                    {
                       "alias": null,
-                      "args": Array [
-                        Object {
+                      "args": [
+                        {
                           "kind": "Variable",
                           "name": "after",
                           "variableName": "after",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "first",
                           "variableName": "first",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "includeMe",
                           "variableName": "includeMe",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "searchText",
                           "variableName": "searchText",
                         },
                       ],
-                      "filters": Array [],
+                      "filters": [],
                       "handle": "connection",
                       "key": "MainFriend_friends",
                       "kind": "LinkedHandle",
                       "name": "friends",
                     },
-                    Object {
+                    {
                       "alias": null,
-                      "args": Array [
-                        Object {
+                      "args": [
+                        {
                           "kind": "Variable",
                           "name": "after",
                           "variableName": "after",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "first",
                           "variableName": "first",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "includeMe",
                           "variableName": "includeMe",
                         },
-                        Object {
+                        {
                           "kind": "Variable",
                           "name": "searchText",
                           "variableName": "searchText",
                         },
                       ],
-                      "filters": Array [
+                      "filters": [
                         "searchText",
                         "includeMe",
                       ],
@@ -385,10 +385,10 @@ exports[`[Friend] rendering test renders a friend 1`] = `
                     },
                   ],
                 },
-                "params": Object {
+                "params": {
                   "cacheID": "203c6d15d466e67649e454eec08bda32",
                   "id": null,
-                  "metadata": Object {},
+                  "metadata": {},
                   "name": "FriendsQuery",
                   "operationKind": "query",
                   "text": "query FriendsQuery(
@@ -462,16 +462,16 @@ fragment UserListItem_user on User {
 ",
                 },
               },
-              "variables": Object {
+              "variables": {
                 "after": null,
                 "first": 20,
                 "includeMe": true,
                 "searchText": null,
               },
             },
-            "__fragments": Object {
-              "ProfileModal_user": Object {},
-              "UserListItem_user": Object {},
+            "__fragments": {
+              "ProfileModal_user": {},
+              "UserListItem_user": {},
             },
             "__id": "user-1",
             "__isWithinUnmatchedTypeRefinement": false,
@@ -503,14 +503,14 @@ fragment UserListItem_user on User {
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       style={
-        Object {
+        {
           "alignSelf": "stretch",
         }
       }
       testID="friend-list"
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <RCTRefreshControl />
       <View>
@@ -520,8 +520,8 @@ fragment UserListItem_user on User {
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "width": "100%",
                 },
                 undefined,
@@ -540,7 +540,7 @@ fragment UserListItem_user on User {
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "opacity": 1,
                 }
               }
@@ -549,8 +549,8 @@ fragment UserListItem_user on User {
               <View
                 isMe={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#151C22",
                       "borderBottomColor": "#000",
@@ -574,8 +574,8 @@ fragment UserListItem_user on User {
                 <View
                   isMe={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignItems": "center",
                         "height": 40,
                         "justifyContent": "center",
@@ -589,13 +589,13 @@ fragment UserListItem_user on User {
                     isMe={false}
                     resizeMode="cover"
                     source={
-                      Object {
-                        "uri": "<mock-value-for-field-\\"photoURL\\">",
+                      {
+                        "uri": "<mock-value-for-field-"photoURL">",
                       }
                     }
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "borderBottomLeftRadius": 20,
                           "borderBottomRightRadius": 20,
                           "borderTopLeftRadius": 20,
@@ -609,8 +609,8 @@ fragment UserListItem_user on User {
                   />
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "borderBottomLeftRadius": 25,
                           "borderBottomRightRadius": 25,
                           "borderTopLeftRadius": 25,
@@ -621,7 +621,7 @@ fragment UserListItem_user on User {
                           "top": 0,
                           "width": 12,
                         },
-                        Object {
+                        {
                           "backgroundColor": "#00D4AB",
                         },
                       ]
@@ -629,7 +629,7 @@ fragment UserListItem_user on User {
                   />
                   <View
                     style={
-                      Object {
+                      {
                         "left": 0,
                         "position": "absolute",
                         "top": 0,
@@ -642,8 +642,8 @@ fragment UserListItem_user on User {
                 <Text
                   numberOfLines={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "white",
                         "fontSize": 14,
                         "fontWeight": "bold",
@@ -660,8 +660,8 @@ fragment UserListItem_user on User {
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "white",
                         "fontSize": 12,
                         "maxWidth": 120,

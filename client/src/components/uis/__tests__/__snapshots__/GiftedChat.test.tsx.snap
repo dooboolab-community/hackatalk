@@ -4,8 +4,8 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -15,9 +15,9 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
   <View
     onLayout={[Function]}
     style={
-      Array [
-        Array [
-          Object {
+      [
+        [
+          {
             "alignItems": "center",
             "alignSelf": "stretch",
             "flexBasis": 0,
@@ -28,7 +28,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
           },
           undefined,
         ],
-        Object {
+        {
           "paddingBottom": 0,
         },
       ]
@@ -39,7 +39,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       ListHeaderComponent={
         <View
           style={
-            Object {
+            {
               "height": 28,
             }
           }
@@ -47,11 +47,11 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       }
       contentContainerStyle={null}
       data={
-        Array [
-          Object {
+        [
+          {
             "id": "abcde",
             "message": "hello1",
-            "sender": Object {
+            "sender": {
               "id": "0",
               "nickname": "sender111",
               "photoURL": "",
@@ -59,10 +59,10 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
               "thumbURL": "",
             },
           },
-          Object {
+          {
             "id": "xyz",
             "message": "Hello2. This is long message. This is long message.This is long message.This is long message. This is long message. This is long message.This is long message. This is long message.This is long message. This is long message. This is long message.",
-            "sender": Object {
+            "sender": {
               "id": "2",
               "nickname": "sender111",
               "photoURL": "",
@@ -70,10 +70,10 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
               "thumbURL": "",
             },
           },
-          Object {
+          {
             "id": "pqr",
             "message": "hello",
-            "sender": Object {
+            "sender": {
               "id": "0",
               "nickname": "sender111",
               "photoURL": "",
@@ -98,30 +98,30 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       style={
-        Array [
-          Object {
-            "transform": Array [
-              Object {
+        [
+          {
+            "transform": [
+              {
                 "scaleY": -1,
               },
             ],
           },
-          Object {
+          {
             "alignSelf": "stretch",
           },
         ]
       }
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
           onLayout={[Function]}
           style={
-            Object {
-              "transform": Array [
-                Object {
+            {
+              "transform": [
+                {
                   "scaleY": -1,
                 },
               ],
@@ -130,7 +130,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "height": 28,
               }
             }
@@ -139,13 +139,13 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         <View
           onLayout={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexDirection": "column-reverse",
               },
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scaleY": -1,
                   },
                 ],
@@ -158,13 +158,13 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         <View
           onLayout={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexDirection": "column-reverse",
               },
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scaleY": -1,
                   },
                 ],
@@ -177,13 +177,13 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         <View
           onLayout={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "flexDirection": "column-reverse",
               },
-              Object {
-                "transform": Array [
-                  Object {
+              {
+                "transform": [
+                  {
                     "scaleY": -1,
                   },
                 ],
@@ -197,8 +197,8 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
     </RCTScrollView>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "borderBottomColor": "#515151",
             "borderLeftColor": "#515151",
@@ -217,7 +217,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
             "paddingRight": 8,
             "width": "100%",
           },
-          Object {
+          {
             "backgroundColor": undefined,
             "borderColor": undefined,
           },
@@ -233,13 +233,13 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         placeholder=""
         returnKeyType="done"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 14,
               "paddingBottom": 4,
               "paddingLeft": 40,
             },
-            Object {
+            {
               "backgroundColor": undefined,
               "color": undefined,
               "flex": 1,
@@ -263,7 +263,7 @@ exports[`[GiftedChatInput] render renders without crashing 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "height": "100%",
             "justifyContent": "center",
             "left": 10,

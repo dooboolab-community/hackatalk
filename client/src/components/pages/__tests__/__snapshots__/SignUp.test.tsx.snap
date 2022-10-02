@@ -4,8 +4,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -15,8 +15,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
   <RCTSafeAreaView
     emulateUnlessSupported={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#000",
           "flexBasis": 0,
           "flexGrow": 1,
@@ -29,16 +29,16 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
     <View
       onLayout={[Function]}
       style={
-        Array [
-          Array [
-            Object {
+        [
+          [
+            {
               "flexBasis": 0,
               "flexGrow": 1,
               "flexShrink": 1,
             },
             undefined,
           ],
-          Object {
+          {
             "paddingBottom": 0,
           },
         ]
@@ -46,7 +46,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
     >
       <RCTScrollView
         style={
-          Object {
+          {
             "alignSelf": "stretch",
           }
         }
@@ -54,8 +54,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
         <View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "marginBottom": 44,
                   "marginLeft": 44,
                   "marginRight": 44,
@@ -77,7 +77,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignSelf": "center",
                   "marginBottom": 12,
                   "opacity": 1,
@@ -87,7 +87,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "height": 90,
                     "width": 90,
                   }
@@ -95,7 +95,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Image
                   source={
-                    Object {
+                    {
                       "canInstrument": true,
                       "createTransformer": [Function],
                       "getCacheKey": [Function],
@@ -103,7 +103,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     }
                   }
                   style={
-                    Object {
+                    {
                       "height": 80,
                       "width": 80,
                     }
@@ -111,7 +111,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 />
                 <Image
                   source={
-                    Object {
+                    {
                       "canInstrument": true,
                       "createTransformer": [Function],
                       "getCacheKey": [Function],
@@ -119,7 +119,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                     }
                   }
                   style={
-                    Object {
+                    {
                       "bottom": 0,
                       "position": "absolute",
                       "right": 0,
@@ -130,8 +130,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "stretch",
                     "flexDirection": "column",
                   },
@@ -142,24 +142,24 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "alignSelf": "stretch",
                         "borderBottomColor": "white",
                         "borderBottomWidth": 1,
                         "flexDirection": "column",
                         "justifyContent": "space-between",
                       },
-                      Object {
+                      {
                         "borderBottomColor": "#000",
                       },
                     ],
                     false,
-                    Object {
+                    {
                       "borderColor": "white",
                     },
-                    Object {
+                    {
                       "borderBottomColor": "white",
                     },
                   ]
@@ -167,9 +167,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#6D6D6D",
                           "fontSize": 14,
                           "paddingHorizontal": 4,
@@ -177,7 +177,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         undefined,
                       ],
                       false,
-                      Object {},
+                      {},
                     ]
                   }
                 >
@@ -195,15 +195,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   placeholderTextColor="#6D6D6D"
                   secureTextEntry={false}
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "white",
                           "fontSize": 14,
                           "paddingHorizontal": 10,
                           "paddingVertical": 10,
                         },
-                        Object {
+                        {
                           "color": "white",
                         },
                       ],
@@ -216,7 +216,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "flex": 1,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
@@ -225,9 +225,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#FF002E",
                           "fontSize": 12,
                           "marginTop": 8,
@@ -235,7 +235,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         },
                         undefined,
                       ],
-                      Object {
+                      {
                         "color": "#FF002E",
                         "flex": 1,
                       },
@@ -246,12 +246,12 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "stretch",
                     "flexDirection": "column",
                   },
-                  Object {
+                  {
                     "marginTop": 32,
                   },
                 ]
@@ -260,24 +260,24 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "alignSelf": "stretch",
                         "borderBottomColor": "white",
                         "borderBottomWidth": 1,
                         "flexDirection": "column",
                         "justifyContent": "space-between",
                       },
-                      Object {
+                      {
                         "borderColor": "white",
                       },
                     ],
                     false,
-                    Object {
+                    {
                       "borderColor": "white",
                     },
-                    Object {
+                    {
                       "borderBottomColor": "white",
                     },
                   ]
@@ -285,9 +285,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#6D6D6D",
                           "fontSize": 14,
                           "paddingHorizontal": 4,
@@ -295,7 +295,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         undefined,
                       ],
                       false,
-                      Object {},
+                      {},
                     ]
                   }
                 >
@@ -313,15 +313,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   placeholderTextColor="#6D6D6D"
                   secureTextEntry={true}
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "white",
                           "fontSize": 14,
                           "paddingHorizontal": 10,
                           "paddingVertical": 10,
                         },
-                        Object {
+                        {
                           "color": "white",
                         },
                       ],
@@ -334,7 +334,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "flex": 1,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
@@ -343,9 +343,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#FF002E",
                           "fontSize": 12,
                           "marginTop": 8,
@@ -353,7 +353,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         },
                         undefined,
                       ],
-                      Object {
+                      {
                         "color": "#FF002E",
                         "flex": 1,
                       },
@@ -364,12 +364,12 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "stretch",
                     "flexDirection": "column",
                   },
-                  Object {
+                  {
                     "marginTop": 32,
                   },
                 ]
@@ -378,25 +378,25 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "alignSelf": "stretch",
                         "borderBottomColor": "white",
                         "borderBottomWidth": 1,
                         "flexDirection": "column",
                         "justifyContent": "space-between",
                       },
-                      Object {
+                      {
                         "borderBottomColor": "white",
                         "paddingVertical": 8,
                       },
                     ],
                     false,
-                    Object {
+                    {
                       "borderColor": "white",
                     },
-                    Object {
+                    {
                       "borderBottomColor": "white",
                     },
                   ]
@@ -404,9 +404,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#6D6D6D",
                           "fontSize": 14,
                           "paddingHorizontal": 4,
@@ -414,7 +414,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         undefined,
                       ],
                       false,
-                      Object {},
+                      {},
                     ]
                   }
                 >
@@ -432,15 +432,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   placeholderTextColor="#6D6D6D"
                   secureTextEntry={true}
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "white",
                           "fontSize": 14,
                           "paddingHorizontal": 10,
                           "paddingVertical": 10,
                         },
-                        Object {
+                        {
                           "color": "white",
                         },
                       ],
@@ -453,7 +453,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "flex": 1,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
@@ -462,9 +462,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#FF002E",
                           "fontSize": 12,
                           "marginTop": 8,
@@ -472,7 +472,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         },
                         undefined,
                       ],
-                      Object {
+                      {
                         "color": "#FF002E",
                         "flex": 1,
                       },
@@ -483,12 +483,12 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "stretch",
                     "flexDirection": "column",
                   },
-                  Object {
+                  {
                     "marginTop": 32,
                   },
                 ]
@@ -497,24 +497,24 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "alignSelf": "stretch",
                         "borderBottomColor": "white",
                         "borderBottomWidth": 1,
                         "flexDirection": "column",
                         "justifyContent": "space-between",
                       },
-                      Object {
+                      {
                         "borderColor": "white",
                       },
                     ],
                     false,
-                    Object {
+                    {
                       "borderColor": "white",
                     },
-                    Object {
+                    {
                       "borderBottomColor": "white",
                     },
                   ]
@@ -522,9 +522,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#6D6D6D",
                           "fontSize": 14,
                           "paddingHorizontal": 4,
@@ -532,7 +532,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         undefined,
                       ],
                       false,
-                      Object {},
+                      {},
                     ]
                   }
                 >
@@ -550,15 +550,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   placeholderTextColor="#6D6D6D"
                   secureTextEntry={false}
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "white",
                           "fontSize": 14,
                           "paddingHorizontal": 10,
                           "paddingVertical": 10,
                         },
-                        Object {
+                        {
                           "color": "white",
                         },
                       ],
@@ -571,7 +571,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "flex": 1,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
@@ -580,9 +580,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#FF002E",
                           "fontSize": 12,
                           "marginTop": 8,
@@ -590,7 +590,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         },
                         undefined,
                       ],
-                      Object {
+                      {
                         "color": "#FF002E",
                         "flex": 1,
                       },
@@ -601,12 +601,12 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             </View>
             <View
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "alignSelf": "stretch",
                     "flexDirection": "column",
                   },
-                  Object {
+                  {
                     "marginTop": 32,
                   },
                 ]
@@ -615,16 +615,16 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Array [
-                      Object {
+                  [
+                    [
+                      {
                         "alignSelf": "stretch",
                         "borderBottomColor": "white",
                         "borderBottomWidth": 1,
                         "flexDirection": "column",
                         "justifyContent": "space-between",
                       },
-                      Object {
+                      {
                         "borderColor": "white",
                         "borderWidth": 1,
                         "paddingHorizontal": 8,
@@ -632,10 +632,10 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                       },
                     ],
                     false,
-                    Object {
+                    {
                       "borderColor": "white",
                     },
-                    Object {
+                    {
                       "borderBottomColor": "white",
                     },
                   ]
@@ -643,9 +643,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#6D6D6D",
                           "fontSize": 14,
                           "paddingHorizontal": 4,
@@ -653,7 +653,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         undefined,
                       ],
                       false,
-                      Object {},
+                      {},
                     ]
                   }
                 >
@@ -672,15 +672,15 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                   placeholderTextColor="#6D6D6D"
                   secureTextEntry={false}
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "white",
                           "fontSize": 14,
                           "paddingHorizontal": 10,
                           "paddingVertical": 10,
                         },
-                        Object {
+                        {
                           "color": "white",
                           "marginTop": 12,
                         },
@@ -694,7 +694,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "flex": 1,
                     "flexDirection": "row",
                     "justifyContent": "space-between",
@@ -703,9 +703,9 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
               >
                 <Text
                   style={
-                    Array [
-                      Array [
-                        Object {
+                    [
+                      [
+                        {
                           "color": "#FF002E",
                           "fontSize": 12,
                           "marginTop": 8,
@@ -713,7 +713,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                         },
                         undefined,
                       ],
-                      Object {
+                      {
                         "color": "#FF002E",
                         "flex": 1,
                       },
@@ -722,8 +722,8 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
                 />
                 <Text
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "white",
                         "fontSize": 12,
                         "marginTop": 8,
@@ -750,7 +750,7 @@ exports[`[SignUp] rendering test renders as expected 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "opacity": 1,
               }
             }

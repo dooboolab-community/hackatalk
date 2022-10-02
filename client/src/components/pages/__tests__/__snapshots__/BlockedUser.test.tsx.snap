@@ -4,8 +4,8 @@ exports[`Rendering renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,8 +14,8 @@ exports[`Rendering renders without crashing 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "transparent",
           "flexBasis": 0,
@@ -32,7 +32,7 @@ exports[`Rendering renders without crashing 1`] = `
       ListEmptyComponent={
         <Shared
           style={
-            Object {
+            {
               "alignItems": "center",
               "alignSelf": "stretch",
               "flex": 1,
@@ -47,7 +47,7 @@ exports[`Rendering renders without crashing 1`] = `
       ListFooterComponent={
         <View
           style={
-            Object {
+            {
               "height": 60,
             }
           }
@@ -55,42 +55,42 @@ exports[`Rendering renders without crashing 1`] = `
       }
       contentContainerStyle={null}
       data={
-        Array [
-          Object {
-            "__fragmentOwner": Object {
-              "cacheConfig": Object {
+        [
+          {
+            "__fragmentOwner": {
+              "cacheConfig": {
                 "force": true,
               },
               "identifier": "7bd15cc4e160652eb15d970256188c5b{}",
-              "node": Object {
-                "fragment": Object {
+              "node": {
+                "fragment": {
                   "abstractKey": null,
-                  "argumentDefinitions": Array [],
+                  "argumentDefinitions": [],
                   "kind": "Fragment",
                   "metadata": null,
                   "name": "UserBlockedUsersQuery",
-                  "selections": Array [
-                    Object {
+                  "selections": [
+                    {
                       "alias": null,
                       "args": null,
                       "concreteType": "User",
                       "kind": "LinkedField",
                       "name": "blockedUsers",
                       "plural": true,
-                      "selections": Array [
-                        Object {
+                      "selections": [
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "id",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "args": null,
                           "kind": "FragmentSpread",
                           "name": "ProfileModal_user",
                         },
-                        Object {
+                        {
                           "args": null,
                           "kind": "FragmentSpread",
                           "name": "UserListItem_user",
@@ -103,69 +103,69 @@ exports[`Rendering renders without crashing 1`] = `
                 },
                 "hash": "de6f1c0db8178def0afba2a4c90484fc",
                 "kind": "Request",
-                "operation": Object {
-                  "argumentDefinitions": Array [],
+                "operation": {
+                  "argumentDefinitions": [],
                   "kind": "Operation",
                   "name": "UserBlockedUsersQuery",
-                  "selections": Array [
-                    Object {
+                  "selections": [
+                    {
                       "alias": null,
                       "args": null,
                       "concreteType": "User",
                       "kind": "LinkedField",
                       "name": "blockedUsers",
                       "plural": true,
-                      "selections": Array [
-                        Object {
+                      "selections": [
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "id",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "photoURL",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "name",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "nickname",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "hasBlocked",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "statusMessage",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
                           "name": "isFriend",
                           "storageKey": null,
                         },
-                        Object {
+                        {
                           "alias": null,
                           "args": null,
                           "kind": "ScalarField",
@@ -177,10 +177,10 @@ exports[`Rendering renders without crashing 1`] = `
                     },
                   ],
                 },
-                "params": Object {
+                "params": {
                   "cacheID": "7bd15cc4e160652eb15d970256188c5b",
                   "id": null,
-                  "metadata": Object {},
+                  "metadata": {},
                   "name": "UserBlockedUsersQuery",
                   "operationKind": "query",
                   "text": "query UserBlockedUsersQuery {
@@ -213,11 +213,11 @@ fragment UserListItem_user on User {
 ",
                 },
               },
-              "variables": Object {},
+              "variables": {},
             },
-            "__fragments": Object {
-              "ProfileModal_user": Object {},
-              "UserListItem_user": Object {},
+            "__fragments": {
+              "ProfileModal_user": {},
+              "UserListItem_user": {},
             },
             "__id": "<User-mock-id-1>",
             "__isWithinUnmatchedTypeRefinement": false,
@@ -239,13 +239,13 @@ fragment UserListItem_user on User {
       removeClippedSubviews={false}
       renderItem={[Function]}
       scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
+      stickyHeaderIndices={[]}
       style={
-        Object {
+        {
           "alignSelf": "stretch",
         }
       }
-      viewabilityConfigCallbackPairs={Array []}
+      viewabilityConfigCallbackPairs={[]}
     >
       <View>
         <View
@@ -254,8 +254,8 @@ fragment UserListItem_user on User {
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "width": "100%",
                 },
                 undefined,
@@ -274,7 +274,7 @@ fragment UserListItem_user on User {
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "opacity": 1,
                 }
               }
@@ -282,8 +282,8 @@ fragment UserListItem_user on User {
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "center",
                       "backgroundColor": "#151C22",
                       "borderBottomColor": "#000",
@@ -306,8 +306,8 @@ fragment UserListItem_user on User {
               >
                 <View
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "alignItems": "center",
                         "height": 40,
                         "justifyContent": "center",
@@ -320,13 +320,13 @@ fragment UserListItem_user on User {
                   <Image
                     resizeMode="cover"
                     source={
-                      Object {
-                        "uri": "<mock-value-for-field-\\"photoURL\\">",
+                      {
+                        "uri": "<mock-value-for-field-"photoURL">",
                       }
                     }
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "borderBottomLeftRadius": 20,
                           "borderBottomRightRadius": 20,
                           "borderTopLeftRadius": 20,
@@ -340,7 +340,7 @@ fragment UserListItem_user on User {
                   />
                   <View
                     style={
-                      Object {
+                      {
                         "left": 0,
                         "position": "absolute",
                         "top": 0,
@@ -353,8 +353,8 @@ fragment UserListItem_user on User {
                 <Text
                   numberOfLines={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "white",
                         "fontSize": 14,
                         "fontWeight": "bold",
@@ -371,8 +371,8 @@ fragment UserListItem_user on User {
                   ellipsizeMode="tail"
                   numberOfLines={1}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "white",
                         "fontSize": 12,
                         "maxWidth": 120,
@@ -399,7 +399,7 @@ fragment UserListItem_user on User {
         >
           <View
             style={
-              Object {
+              {
                 "height": 60,
               }
             }

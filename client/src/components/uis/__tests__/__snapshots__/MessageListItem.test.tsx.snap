@@ -4,8 +4,8 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -15,8 +15,8 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
   <View
     shouldShowDatePeer={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "flex-start",
           "flexDirection": "row",
           "justifyContent": "flex-start",
@@ -32,7 +32,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
   >
     <View
       style={
-        Object {
+        {
           "marginRight": 8,
           "width": 40,
         }
@@ -50,7 +50,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "opacity": 1,
           }
         }
@@ -60,13 +60,13 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
           accessibilityHint="sender image"
           accessible={true}
           source={
-            Object {
+            {
               "uri": "https://example.com/profile.jpg",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "borderBottomLeftRadius": 16,
                 "borderBottomRightRadius": 16,
                 "borderTopLeftRadius": 16,
@@ -82,7 +82,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
     </View>
     <View
       style={
-        Object {
+        {
           "flexDirection": "column",
           "maxWidth": "80%",
         }
@@ -90,8 +90,8 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "white",
               "fontSize": 12,
               "marginBottom": 2,
@@ -104,7 +104,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
       </Text>
       <View
         style={
-          Object {
+          {
             "flexDirection": "row",
             "justifyContent": "flex-start",
           }
@@ -112,8 +112,8 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
       >
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#E2F2FF",
                 "marginRight": 8,
                 "paddingBottom": 12,
@@ -128,8 +128,8 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
           <Text
             selectable={true}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "black",
                   "fontSize": 14,
                 },
@@ -140,7 +140,7 @@ exports[`[MessageListItem] rendering test renders [peerMessage] as expected 1`] 
             <Text>
               <Text
                 style={
-                  Array [
+                  [
                     undefined,
                     undefined,
                   ]

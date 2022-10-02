@@ -3,7 +3,7 @@
 exports[`[EmptyListItem] render renders without crashing 1`] = `
 <View
   style={
-    Object {
+    {
       "alignItems": "center",
       "alignSelf": "stretch",
       "flex": 1,
@@ -14,7 +14,7 @@ exports[`[EmptyListItem] render renders without crashing 1`] = `
 >
   <Text
     style={
-      Object {
+      {
         "alignSelf": "center",
         "color": "rgb(155,155,155)",
         "fontSize": 14,

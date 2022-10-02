@@ -4,8 +4,8 @@ exports[`[TextInput] render should renders without crashing 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
       undefined,
@@ -14,8 +14,8 @@ exports[`[TextInput] render should renders without crashing 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "flex-start",
           "alignSelf": "stretch",
           "flexDirection": "column",
@@ -28,8 +28,8 @@ exports[`[TextInput] render should renders without crashing 1`] = `
     <View
       isFocused={false}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "borderBottomColor": "#000",
             "borderBottomLeftRadius": 3,
@@ -58,8 +58,8 @@ exports[`[TextInput] render should renders without crashing 1`] = `
         onFocus={[Function]}
         placeholderTextColor="#6D6D6D"
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "alignSelf": "stretch",
               "borderColor": "black",
