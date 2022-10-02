@@ -21,7 +21,7 @@ jobs:
       - name: Install packages and build
         run: |
           pushd ./website
-          yarn install --ignore-engines
+          yarn install
           yarn build
           popd
 
