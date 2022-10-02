@@ -2,7 +2,7 @@
 
 [![Client](https://github.com/dooboolab/hackatalk/actions/workflows/ci-client.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-client.yml)
 [![Server](https://github.com/dooboolab/hackatalk/actions/workflows/ci-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-server.yml)
-[![Deploy Server](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/deploy-server.yml)
+[![Release server](https://github.com/dooboolab/hackatalk/actions/workflows/release-server.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-server.yml)
 [![Release expo](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-expo.yml)
 [![Release Web](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/release-web.yml)
 [![CI For Website](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-website.yml)
