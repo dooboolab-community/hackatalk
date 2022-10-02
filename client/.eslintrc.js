@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   root: true,
   extends: [
-    '@dooboo/eslint-config',
+    '@dooboo/eslint-config-react-native',
     'plugin:i18n-json/recommended',
   ],
   rules: {
