@@ -41,6 +41,7 @@
     "@prisma/client": "^4.4.0",
     "@sendgrid/mail": "^7.7.0",
     "apollo-server": "^3.10.2",
+    "apollo-server-express": "^3.10.2",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "ejs": "^3.1.8",
@@ -108,5 +109,6 @@
   "resolutions": {
     "fs-capacitor": "^6.2.0",
     "graphql-upload": "^13.0.0"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
