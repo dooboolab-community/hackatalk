@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['@dooboo/eslint-config', 'plugin:jest/recommended'],
+  extends: ['@dooboo/eslint-config-node', 'plugin:jest/recommended'],
   rules: {
     'eslint-comments/no-unlimited-disable': 0,
     'eslint-comments/no-unused-disable': 0,
