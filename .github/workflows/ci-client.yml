@@ -6,6 +6,9 @@ on:
     paths:
       - "client/**"
   pull_request:
+    branches: [main]
+    paths:
+      - "client/**"
     types: [opened, synchronize, reopened]
 
 jobs:
