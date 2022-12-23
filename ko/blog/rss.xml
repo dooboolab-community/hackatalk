@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>HackaTalk Blog</title>
         <link>https://website.hackatalk.dev/ko/blog</link>
@@ -7,12 +7,18 @@
         <lastBuildDate>Mon, 24 May 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>ko</language>
         <item>
             <title><![CDATA[WeHack 공지]]></title>
             <link>https://website.hackatalk.dev/ko/blog/Announcing WeHack</link>
             <guid>Announcing WeHack</guid>
             <pubDate>Mon, 24 May 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[WeHack 해커톡 오리엔테이션이 July 1st at 7:00 PM(KST)에 진행됩니다.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://wehack.dev" target="_blank" rel="noopener noreferrer">WeHack</a> 해커톡 오리엔테이션이 <strong>July 1st at 7:00 PM(KST)</strong>에 진행됩니다.</p><p><code>WeHack</code>은 <a href="http://github.com/dooboolab/hackatalk" target="_blank" rel="noopener noreferrer">해커톡</a>을 다같이 개선시켜보는 해커톤입니다.</p><p>우리는 다양한 개발자분들과 소통하며 프로젝트를 성장시키고자 합니다.</p><p>행사에서 많은 분들을 뵐 수 있으면 좋겠습니다 😊.</p>]]></content:encoded>
+            <category>wehack</category>
+            <category>prisma</category>
+            <category>reactnativeseoul</category>
+            <category>dooboolab</category>
         </item>
         <item>
             <title><![CDATA[PSQL과 프리즈마 연동]]></title>
@@ -20,6 +26,9 @@
             <guid>setup-postgresql-prisma2</guid>
             <pubDate>Sun, 12 Jul 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Medium 포스트에서 Postgresql을 Prisma v2로 다루는 방법을 볼 수 있습니다.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/setting-up-postgresql-for-prisma-v2-9d14586f3acc" target="_blank" rel="noopener noreferrer">Medium 포스트</a>에서 <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer">Postgresql</a>을 <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer">Prisma v2</a>로 다루는 방법을 볼 수 있습니다.</p>]]></content:encoded>
+            <category>prisma</category>
+            <category>setup</category>
         </item>
         <item>
             <title><![CDATA[GraphQL 클라이언트 relay 연동]]></title>
@@ -27,6 +36,10 @@
             <guid>relay-integration</guid>
             <pubDate>Wed, 24 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Relay 통합을 완료하였습니다.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/integrate-relay-hook-in-expo-app-bae12d50a130" target="_blank" rel="noopener noreferrer">Relay 통합</a>을 완료하였습니다.
+많은 컨트리뷰터분들이 동일한 경험을 즐길 수 있도록 백엔드 서버에 더 많은 리졸버를 제공 할 예정입니다.</p>]]></content:encoded>
+            <category>relay</category>
+            <category>integration</category>
         </item>
         <item>
             <title><![CDATA[Prisma2 마이그레이션]]></title>
@@ -34,6 +47,9 @@
             <guid>prisma2-migration</guid>
             <pubDate>Fri, 19 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[서버 프로젝트를 기존의 hackatalk-server에서 hacaktalk primsa2로 업데이트 하였습니다.]]></description>
+            <content:encoded><![CDATA[<p>서버 프로젝트를 기존의 <a href="http://github.com/dooboolab/hackatalk-server" target="_blank" rel="noopener noreferrer">hackatalk-server</a>에서 <a href="https://github.com/dooboolab/hackatalk/tree/main/server" target="_blank" rel="noopener noreferrer">hacaktalk primsa2</a>로 업데이트 하였습니다.</p><p>이번 마이그레이션에 대한 설명은 <a href="https://medium.com/dooboolab/why-our-team-chose-prisma2-nexus-schema-for-graphql-apollo-server-40ed42a26c37" target="_blank" rel="noopener noreferrer">medium 포스트</a>에 기재되었습니다.</p>]]></content:encoded>
+            <category>prisma2</category>
+            <category>migration</category>
         </item>
         <item>
             <title><![CDATA[react-navigation v5 마이그레이션]]></title>
@@ -41,6 +57,9 @@
             <guid>react-navigation-v5</guid>
             <pubDate>Sun, 08 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[react-navigation이 v5부터 완전히 재 설계된 HOC 패턴으로 출시되었습니다. 해커톡도 v5로 마이그레이션을 완료했습니다. 여기에 관련 게시물을 보실 수 있습니다.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://reactnavigation.org" target="_blank" rel="noopener noreferrer">react-navigation</a>이 <code>v5</code>부터 완전히 재 설계된 HOC 패턴으로 출시되었습니다. 해커톡도 <code>v5</code>로 마이그레이션을 완료했습니다. <a href="https://medium.com/dooboolab/migrating-to-react-navigation-v5-2998cd9c9d0b" target="_blank" rel="noopener noreferrer">여기에 관련 게시물</a>을 보실 수 있습니다.</p>]]></content:encoded>
+            <category>react-navigation</category>
+            <category>migration</category>
         </item>
         <item>
             <title><![CDATA[dooboo-cli v3 릴리즈]]></title>
@@ -48,6 +67,9 @@
             <guid>dooboo-cli-v3</guid>
             <pubDate>Sat, 07 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[dooboo-cli version3가 다양한 템플릿을 품고 새롭게 출시되었습니다 👐.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/announcing-dooboo-cli-v3-5c9fceeb2ac4" target="_blank" rel="noopener noreferrer">dooboo-cli version3</a>가 다양한 템플릿을 품고 새롭게 출시되었습니다 👐.</p>]]></content:encoded>
+            <category>dooboo-cli</category>
+            <category>tools</category>
         </item>
     </channel>
 </rss>

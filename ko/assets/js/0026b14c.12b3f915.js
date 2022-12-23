@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[347],{8036:function(e){e.exports=JSON.parse('{"permalink":"/ko/blog/tags/prisma","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

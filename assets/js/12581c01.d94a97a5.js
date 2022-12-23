@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[3210],{5436:function(a){a.exports=JSON.parse('{"label":"prisma2","permalink":"/blog/tags/prisma-2","allTagsPath":"/blog/tags","count":1}')}}]);

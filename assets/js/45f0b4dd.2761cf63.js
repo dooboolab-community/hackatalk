@@ -1,1 +1,0 @@
-(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[5819],{6133:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/blog/tags","slug":"wehack","name":"wehack","count":1,"permalink":"/blog/tags/wehack"}')}}]);

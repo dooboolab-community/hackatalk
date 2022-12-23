@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhackatalk_website=self.webpackChunkhackatalk_website||[]).push([[2991],{7532:function(a){a.exports=JSON.parse('{"label":"relay","permalink":"/ko/blog/tags/relay","allTagsPath":"/ko/blog/tags","count":1}')}}]);

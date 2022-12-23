@@ -13,6 +13,15 @@
         <link href="https://website.hackatalk.dev/blog/Announcing WeHack"/>
         <updated>2021-05-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[WeHack hackathon is comming in July 1st at 7:00 PM(KST).]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://wehack.dev" target="_blank" rel="noopener noreferrer">WeHack</a> hackathon is comming in <strong>July 1st at 7:00 PM(KST)</strong>.</p><p><code>WeHack</code> is about developing <a href="http://github.com/dooboolab/hackatalk" target="_blank" rel="noopener noreferrer">HackaTalk</a> which we've been working for a year.</p><p>We are looking forward to communicate with more great developers around Seoul and hopefully spread out globally near future.</p><p>Hope to see you in the event 😊</p>]]></content>
+        <author>
+            <name>hyochan</name>
+            <uri>https://github.com/hyochan</uri>
+        </author>
+        <category label="wehack" term="wehack"/>
+        <category label="prisma" term="prisma"/>
+        <category label="reactnativeseoul" term="reactnativeseoul"/>
+        <category label="dooboolab" term="dooboolab"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Setup postgresql for prisma2]]></title>
@@ -20,6 +29,13 @@
         <link href="https://website.hackatalk.dev/blog/setup-postgresql-prisma2"/>
         <updated>2020-07-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Here is how you can setup Postgresql in Prisma v2.]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://medium.com/dooboolab/setting-up-postgresql-for-prisma-v2-9d14586f3acc" target="_blank" rel="noopener noreferrer">Here</a> is how you can setup <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer">Postgresql</a> in <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer">Prisma v2</a>.</p>]]></content>
+        <author>
+            <name>hyochan</name>
+            <uri>https://github.com/hyochan</uri>
+        </author>
+        <category label="prisma" term="prisma"/>
+        <category label="setup" term="setup"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Integrate graphql client relay]]></title>
@@ -27,6 +43,13 @@
         <link href="https://website.hackatalk.dev/blog/relay-integration"/>
         <updated>2020-06-24T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Relay integration has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://medium.com/dooboolab/integrate-relay-hook-in-expo-app-bae12d50a130" target="_blank" rel="noopener noreferrer">Relay integration</a> has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.</p>]]></content>
+        <author>
+            <name>hyochan</name>
+            <uri>https://github.com/hyochan</uri>
+        </author>
+        <category label="relay" term="relay"/>
+        <category label="integration" term="integration"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Migrating server to Prisma2]]></title>
@@ -34,6 +57,13 @@
         <link href="https://website.hackatalk.dev/blog/prisma2-migration"/>
         <updated>2020-06-19T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We've migrated our server project, hackatalk-server, to hacaktalk primsa2.]]></summary>
+        <content type="html"><![CDATA[<p>We've migrated our server project, <a href="http://github.com/dooboolab/hackatalk-server" target="_blank" rel="noopener noreferrer">hackatalk-server</a>, to <a href="https://github.com/dooboolab/hackatalk/tree/master/server" target="_blank" rel="noopener noreferrer">hacaktalk primsa2</a>.</p><p>The further reason on this direction is <a href="https://medium.com/dooboolab/why-our-team-chose-prisma2-nexus-schema-for-graphql-apollo-server-40ed42a26c37" target="_blank" rel="noopener noreferrer">posted in medium</a>.</p>]]></content>
+        <author>
+            <name>clark</name>
+            <uri>https://github.com/smallbee3</uri>
+        </author>
+        <category label="prisma2" term="prisma2"/>
+        <category label="migration" term="migration"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Migrating react-navigation version 5]]></title>
@@ -41,6 +71,13 @@
         <link href="https://website.hackatalk.dev/blog/react-navigation-v5"/>
         <updated>2019-12-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our react-navigation and here is the post.]]></summary>
+        <content type="html"><![CDATA[<p>react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our <code>react-navigation</code> and <a href="https://medium.com/dooboolab/migrating-to-react-navigation-v5-2998cd9c9d0b" target="_blank" rel="noopener noreferrer">here is the post</a>.</p>]]></content>
+        <author>
+            <name>hyochan</name>
+            <uri>https://github.com/hyochan</uri>
+        </author>
+        <category label="react-navigation" term="react-navigation"/>
+        <category label="migration" term="migration"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[dooboo-cli v3 releases]]></title>
@@ -48,5 +85,12 @@
         <link href="https://website.hackatalk.dev/blog/dooboo-cli-v3"/>
         <updated>2019-12-07T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[dooboo-cli version3 has released with more boilerplates 👐.]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://medium.com/dooboolab/announcing-dooboo-cli-v3-5c9fceeb2ac4" target="_blank" rel="noopener noreferrer">dooboo-cli version3</a> has released with more boilerplates 👐.</p>]]></content>
+        <author>
+            <name>hyochan</name>
+            <uri>https://github.com/hyochan</uri>
+        </author>
+        <category label="dooboo-cli" term="dooboo-cli"/>
+        <category label="tools" term="tools"/>
     </entry>
 </feed>

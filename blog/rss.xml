@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>HackaTalk Blog</title>
         <link>https://website.hackatalk.dev/blog</link>
@@ -7,12 +7,18 @@
         <lastBuildDate>Mon, 24 May 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <item>
             <title><![CDATA[WeHack Announcement]]></title>
             <link>https://website.hackatalk.dev/blog/Announcing WeHack</link>
             <guid>Announcing WeHack</guid>
             <pubDate>Mon, 24 May 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[WeHack hackathon is comming in July 1st at 7:00 PM(KST).]]></description>
+            <content:encoded><![CDATA[<p><a href="https://wehack.dev" target="_blank" rel="noopener noreferrer">WeHack</a> hackathon is comming in <strong>July 1st at 7:00 PM(KST)</strong>.</p><p><code>WeHack</code> is about developing <a href="http://github.com/dooboolab/hackatalk" target="_blank" rel="noopener noreferrer">HackaTalk</a> which we've been working for a year.</p><p>We are looking forward to communicate with more great developers around Seoul and hopefully spread out globally near future.</p><p>Hope to see you in the event 😊</p>]]></content:encoded>
+            <category>wehack</category>
+            <category>prisma</category>
+            <category>reactnativeseoul</category>
+            <category>dooboolab</category>
         </item>
         <item>
             <title><![CDATA[Setup postgresql for prisma2]]></title>
@@ -20,6 +26,9 @@
             <guid>setup-postgresql-prisma2</guid>
             <pubDate>Sun, 12 Jul 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Here is how you can setup Postgresql in Prisma v2.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/setting-up-postgresql-for-prisma-v2-9d14586f3acc" target="_blank" rel="noopener noreferrer">Here</a> is how you can setup <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer">Postgresql</a> in <a href="https://www.prisma.io" target="_blank" rel="noopener noreferrer">Prisma v2</a>.</p>]]></content:encoded>
+            <category>prisma</category>
+            <category>setup</category>
         </item>
         <item>
             <title><![CDATA[Integrate graphql client relay]]></title>
@@ -27,6 +36,9 @@
             <guid>relay-integration</guid>
             <pubDate>Wed, 24 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Relay integration has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/integrate-relay-hook-in-expo-app-bae12d50a130" target="_blank" rel="noopener noreferrer">Relay integration</a> has been done. We are willing to provide more resolvers in our backend server for other contributors to enjoy same experience.</p>]]></content:encoded>
+            <category>relay</category>
+            <category>integration</category>
         </item>
         <item>
             <title><![CDATA[Migrating server to Prisma2]]></title>
@@ -34,6 +46,9 @@
             <guid>prisma2-migration</guid>
             <pubDate>Fri, 19 Jun 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[We've migrated our server project, hackatalk-server, to hacaktalk primsa2.]]></description>
+            <content:encoded><![CDATA[<p>We've migrated our server project, <a href="http://github.com/dooboolab/hackatalk-server" target="_blank" rel="noopener noreferrer">hackatalk-server</a>, to <a href="https://github.com/dooboolab/hackatalk/tree/master/server" target="_blank" rel="noopener noreferrer">hacaktalk primsa2</a>.</p><p>The further reason on this direction is <a href="https://medium.com/dooboolab/why-our-team-chose-prisma2-nexus-schema-for-graphql-apollo-server-40ed42a26c37" target="_blank" rel="noopener noreferrer">posted in medium</a>.</p>]]></content:encoded>
+            <category>prisma2</category>
+            <category>migration</category>
         </item>
         <item>
             <title><![CDATA[Migrating react-navigation version 5]]></title>
@@ -41,6 +56,9 @@
             <guid>react-navigation-v5</guid>
             <pubDate>Sun, 08 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our react-navigation and here is the post.]]></description>
+            <content:encoded><![CDATA[<p>react-navigation v5 has released with HOC pattern which is totally redesigned. We've migrated our <code>react-navigation</code> and <a href="https://medium.com/dooboolab/migrating-to-react-navigation-v5-2998cd9c9d0b" target="_blank" rel="noopener noreferrer">here is the post</a>.</p>]]></content:encoded>
+            <category>react-navigation</category>
+            <category>migration</category>
         </item>
         <item>
             <title><![CDATA[dooboo-cli v3 releases]]></title>
@@ -48,6 +66,9 @@
             <guid>dooboo-cli-v3</guid>
             <pubDate>Sat, 07 Dec 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[dooboo-cli version3 has released with more boilerplates 👐.]]></description>
+            <content:encoded><![CDATA[<p><a href="https://medium.com/dooboolab/announcing-dooboo-cli-v3-5c9fceeb2ac4" target="_blank" rel="noopener noreferrer">dooboo-cli version3</a> has released with more boilerplates 👐.</p>]]></content:encoded>
+            <category>dooboo-cli</category>
+            <category>tools</category>
         </item>
     </channel>
 </rss>
