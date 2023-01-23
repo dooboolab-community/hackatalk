@@ -68,7 +68,6 @@ export default ({config}: ConfigContext): ExpoConfig => ({
     versionCode: androidVersionCode,
     userInterfaceStyle: 'automatic',
     package: 'com.dooboolab.hackatalk',
-    useNextNotificationsApi: true,
     playStoreUrl:
       'https://play.google.com/store/apps/details?id=com.dooboolab.hackatalk',
     permissions: [
