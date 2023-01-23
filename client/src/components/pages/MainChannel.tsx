@@ -4,17 +4,18 @@ import type {
   ChannelsQuery$variables,
 } from '../../__generated__/ChannelsQuery.graphql';
 import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
-import React, {FC, Suspense, useMemo, useState} from 'react';
+import React, {Suspense, useMemo, useState} from 'react';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
-import {Channel} from '../../types/graphql';
+import type {Channel} from '../../types/graphql';
 import ChannelListItem from '../uis/ChannelListItem';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
+import type {FC} from 'react';
 import type {MainChannelComponent_channel$key} from '../../__generated__/MainChannelComponent_channel.graphql';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
-import {MaterialTopTabNavigationProps} from '../navigations/MainTabNavigator';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {MaterialTopTabNavigationProps} from '../navigations/MainTabNavigator';
 import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';

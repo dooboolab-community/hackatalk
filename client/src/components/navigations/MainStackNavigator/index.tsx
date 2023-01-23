@@ -1,10 +1,9 @@
 import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {Image, TouchableOpacity, View} from 'react-native';
-import React, {ReactElement, useCallback, useEffect, useMemo} from 'react';
-import {
+import React, {useCallback, useEffect, useMemo} from 'react';
+import type {
   StackNavigationOptions,
   StackNavigationProp,
 } from '@react-navigation/stack';
@@ -15,18 +14,20 @@ import {graphql, useSubscription} from 'react-relay';
 import BlockedUser from '../../pages/BlockedUser';
 import ChangePw from '../../pages/ChangePw';
 import ChannelCreate from '../../pages/ChannelCreate';
-import {Theme as DefaultTheme} from '@emotion/react';
-import {GraphQLSubscriptionConfig} from 'relay-runtime';
+import type {CompositeNavigationProp} from '@react-navigation/native';
+import type {Theme as DefaultTheme} from '@emotion/react';
+import type {GraphQLSubscriptionConfig} from 'relay-runtime';
 import {IC_SETTING_W} from '../../../utils/Icons';
 import LeaveChannelModal from './LeaveChannelModal';
 import {LeaveChannelModalProvider} from '../../../providers/LeaveChannelModalProvider';
-import {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
+import type {MainStackNavigatorOnMessageSubscription} from '../../../__generated__/MainStackNavigatorOnMessageSubscription.graphql';
 import Message from '../../pages/Message';
 import ProfileModal from './ProfileModal';
 import {ProfileModalProvider} from '../../../providers/ProfileModalProvider';
 import ProfileUpdate from '../../pages/ProfileUpdate';
+import type {ReactElement} from 'react';
 import Report from '../../pages/Report';
-import {RootStackNavigationProps} from '../RootStackNavigator';
+import type {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
 import User from '../../pages/User';
@@ -34,6 +35,7 @@ import {createSharedElementStackNavigator} from 'react-navigation-shared-element
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {useDeviceContext} from '../../../providers';
+import {useNavigation} from '@react-navigation/native';
 
 export type MainStackParamList = {
   MainTab: undefined;

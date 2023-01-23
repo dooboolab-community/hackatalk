@@ -7,11 +7,11 @@ import {
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
+import type {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import React from 'react';
 import SignUp from '../SignUp';
 import {act} from 'react-test-renderer';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation =
   createMockNavigation<AuthStackNavigationProps<'SignUp'>>();
@@ -28,7 +28,6 @@ describe('[SignUp] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

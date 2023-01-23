@@ -1,6 +1,6 @@
 import * as Config from '../../config';
 
-import {FetchFunction} from 'relay-runtime';
+import type {FetchFunction} from 'relay-runtime';
 import {getIdToken} from '../apis/auth';
 
 const {GRAPHQL_URL} = Config;

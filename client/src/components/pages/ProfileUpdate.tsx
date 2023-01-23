@@ -8,8 +8,8 @@ import {
 } from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
-import {
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import type {
   UploadSingleUploadMutation,
   UploadSingleUploadMutation$data,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
@@ -21,9 +21,10 @@ import {
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 import styled, {css} from '@emotion/native';
 
-import {ImagePickerResult} from 'expo-image-picker';
+import type {FC} from 'react';
+import type {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
-import {Uploadable} from 'relay-runtime';
+import type {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -181,7 +182,7 @@ const ProfileUpdate: FC = () => {
         try {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
-              uri: image.uri,
+              uri: image.assets?.[0].uri || '',
               width: PROFILEIMAGE_WIDTH,
               height: PROFILEIMAGE_HEIGHT,
             },
@@ -368,7 +369,7 @@ const ProfileUpdate: FC = () => {
           <EditText
             testID="input-nickname"
             style={{marginTop: 26}}
-            labelText={getString('NICKNAME')}
+            label={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             onChangeText={(text) => changeText('NICKNAME', text)}
             styles={{
@@ -380,10 +381,10 @@ const ProfileUpdate: FC = () => {
               },
             }}
             value={nickname}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
+            autoCapitalize="none"
             textInputProps={{
               autoCorrect: false,
-              autoCapitalize: 'none',
             }}
           />
           <EditText
@@ -397,19 +398,17 @@ const ProfileUpdate: FC = () => {
                 color: theme.text,
               },
             }}
-            labelText={getString('NAME')}
+            label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('NAME', text)}
-            textInputProps={{
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
             testID="input-status"
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -423,17 +422,15 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('STATUS_MSG')}
+            label={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('STATUS_MSG', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 60,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={60}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
             style={{marginTop: 12}}
@@ -445,18 +442,18 @@ const ProfileUpdate: FC = () => {
                 color: theme.text,
               },
             }}
-            labelText={getString('ORGANIZATION')}
+            label={getString('ORGANIZATION')}
             placeholder={getString('ORGANIZATION_HINT')}
             value={organization}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('ORGANIZATION', text)}
+            autoCapitalize="none"
             textInputProps={{
               autoCorrect: false,
-              autoCapitalize: 'none',
             }}
           />
           <EditText
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -470,20 +467,18 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('ABOUT_ME')}
+            label={getString('ABOUT_ME')}
             placeholder={getString('ABOUT_ME_HINT')}
             value={about}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('ABOUT', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -497,20 +492,18 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('PROJECTS')}
+            label={getString('PROJECTS')}
             placeholder={getString('PROJECTS_HINT')}
             value={projects}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('PROJECTS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -524,20 +517,18 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('POSITIONS')}
+            label={getString('POSITIONS')}
             placeholder={getString('POSITIONS_HINT')}
             value={positions}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('POSITIONS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -551,20 +542,18 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('SPEAKINGS')}
+            label={getString('SPEAKINGS')}
             placeholder={getString('SPEAKINGS_HINT')}
             value={speakings}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('SPEAKINGS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
+            direction="column"
             style={{marginTop: 18}}
             styles={{
               input: {
@@ -578,17 +567,15 @@ const ProfileUpdate: FC = () => {
                 paddingVertical: 12,
               },
             }}
-            labelText={getString('CONTRIBUTIONS')}
+            label={getString('CONTRIBUTIONS')}
             placeholder={getString('CONTRIBUTION_HINT')}
             value={contributions}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(text) => changeText('CONTRIBUTIONS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <StyledButtonWrapper>
             <Button

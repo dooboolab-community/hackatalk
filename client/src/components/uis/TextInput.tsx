@@ -1,7 +1,8 @@
-import React, {Ref, forwardRef, useState} from 'react';
-import {ReturnKeyTypeOptions, TextStyle, ViewStyle} from 'react-native';
+import React, {forwardRef, useState} from 'react';
+import type {ReturnKeyTypeOptions, TextStyle, ViewStyle} from 'react-native';
 
 import {Ionicons} from '@expo/vector-icons';
+import type {Ref} from 'react';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
 

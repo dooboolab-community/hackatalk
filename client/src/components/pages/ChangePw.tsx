@@ -1,20 +1,15 @@
-import {
-  Alert,
-  EmitterSubscription,
-  Keyboard,
-  KeyboardEvent,
-  Platform,
-  SafeAreaView,
-} from 'react-native';
+import {Alert, Keyboard, Platform, SafeAreaView} from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import type {EmitterSubscription, KeyboardEvent} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 import type {
   UserChangeEmailPasswordMutation,
   UserChangeEmailPasswordMutation$data,
 } from '../../__generated__/UserChangeEmailPasswordMutation.graphql';
 import styled, {css} from '@emotion/native';
 
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {FC} from 'react';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import {changeEmailPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -143,10 +138,10 @@ const ChangePw: FC = () => {
               },
             }}
             style={{marginTop: 40}}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
-            labelText={getString('PASSWORD_CURRENT')}
+            label={getString('PASSWORD_CURRENT')}
             value={currentPw}
             placeholder="******"
           />
@@ -162,9 +157,9 @@ const ChangePw: FC = () => {
                 fontSize: 16,
               },
             }}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(pw: string): void => setNewPw(pw)}
-            labelText={getString('PASSWORD_NEW')}
+            label={getString('PASSWORD_NEW')}
             value={newPw}
             placeholder="******"
           />
@@ -180,9 +175,9 @@ const ChangePw: FC = () => {
                 fontSize: 16,
               },
             }}
-            focusColor={theme.text}
+            colors={{focused: theme.text}}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
-            labelText={getString('PASSWORD_NEW_REPEAT')}
+            label={getString('PASSWORD_NEW_REPEAT')}
             value={confirmPw}
             placeholder="******"
           />

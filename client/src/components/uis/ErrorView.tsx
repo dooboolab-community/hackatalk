@@ -1,7 +1,8 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC, ReactChildren} from 'react';
+import type {FC, ReactChildren} from 'react';
 
 import {IC_ERROR} from '../../utils/Icons';
+import React from 'react';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 
@@ -27,7 +28,7 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: ${({theme}) => theme.danger};
+  color: ${({theme}) => theme.role.danger};
 `;
 
 const Body = styled.Text`

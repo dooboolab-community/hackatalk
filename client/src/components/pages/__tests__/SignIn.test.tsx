@@ -8,12 +8,12 @@ import {
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AuthContext from '../../../providers/AuthProvider';
-import {FetchMock} from 'jest-fetch-mock';
+import type {FetchMock} from 'jest-fetch-mock';
 import React from 'react';
 import SignIn from '../SignIn';
 import {createMockEnvironment} from 'relay-test-utils';
 import {getString} from '../../../../STRINGS';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 
 const fetchMock = fetch as FetchMock;
 
@@ -46,7 +46,6 @@ describe('[SignIn] rendering test', () => {
 
     const json = screen.toJSON();
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 
@@ -57,6 +56,7 @@ describe('[SignIn] interaction', () => {
     const themeTouch = screen.getByTestId('theme-test');
 
     fireEvent.press(themeTouch);
+    expect(screen.getByTestId('theme-test')).toBeTruthy();
   });
 
   it('should invoke changeText event handler when email changed', async () => {

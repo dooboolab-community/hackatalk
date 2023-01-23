@@ -1,11 +1,8 @@
-import {
-  ImageSourcePropType,
-  TouchableWithoutFeedback,
-  ViewStyle,
-} from 'react-native';
+import type {ImageSourcePropType, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import type {User} from '../pages/Message';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';

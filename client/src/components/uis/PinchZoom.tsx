@@ -1,15 +1,12 @@
-import {
-  Animated,
+import {Animated, PanResponder} from 'react-native';
+import type {
   NativeMethods,
   NativeTouchEvent,
-  PanResponder,
   PanResponderInstance,
   ViewStyle,
 } from 'react-native';
+import type {PropsWithChildren, ReactElement, Ref} from 'react';
 import React, {
-  PropsWithChildren,
-  ReactElement,
-  Ref,
   forwardRef,
   useEffect,
   useImperativeHandle,

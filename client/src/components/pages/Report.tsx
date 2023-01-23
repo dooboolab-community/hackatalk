@@ -1,18 +1,20 @@
 import {Alert, Platform, SafeAreaView} from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import {
+import type {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import type {
   ReportCreateReportMutation,
   ReportCreateReportMutation$data,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import styled, {css} from '@emotion/native';
+import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {Report} from '../../types/graphql';
+import type {FC} from 'react';
+import type {Report} from '../../types/graphql';
+import type {RouteProp} from '@react-navigation/core';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -95,13 +97,11 @@ const ReportScreen: FC = () => {
                 borderColor: theme.text,
               },
             }}
-            textInputProps={{
-              multiline: true,
-            }}
-            focusColor={theme.text}
+            multiline
+            colors={{focused: theme.text}}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
-            labelText={name}
+            label={name}
             value={message}
             placeholder={getString('REPORT_DESCRIPTION')}
           />

@@ -1,25 +1,27 @@
 import * as Linking from 'expo-linking';
 
-import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
-import MainStack, {MainStackParamList} from './MainStackNavigator';
-import {
-  NavigationContainer,
-  NavigatorScreenParams,
-} from '@react-navigation/native';
 import {Platform, View} from 'react-native';
-import {PreloadedQuery, usePreloadedQuery} from 'react-relay';
-import React, {FC, Suspense, useEffect} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
-import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
+import type {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
+import AuthStack from './AuthStackNavigator';
+import type {AuthStackParamList} from './AuthStackNavigator';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
+import type {FC} from 'react';
 import ImageSlider from '../pages/ImageSlider';
+import MainStack from './MainStackNavigator';
+import type {MainStackParamList} from './MainStackNavigator';
+import {NavigationContainer} from '@react-navigation/native';
+import type {NavigatorScreenParams} from '@react-navigation/native';
 import NotFound from '../pages/NotFound';
+import type {PreloadedQuery} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {StackNavigationProp} from '@react-navigation/stack';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import WebView from '../pages/WebView';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import linking from './linking';
+import {usePreloadedQuery} from 'react-relay';
 import {useTheme} from 'dooboo-ui';
 
 export type RootStackParamList = {

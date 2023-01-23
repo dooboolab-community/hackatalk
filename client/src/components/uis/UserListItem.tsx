@@ -1,16 +1,12 @@
-import {
-  ImageSourcePropType,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import type {ImageSourcePropType, ViewStyle} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {graphql, useFragment} from 'react-relay';
 
 import CheckBox from './CheckBox';
 import {FontAwesome} from '@expo/vector-icons';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
-import {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
+import type {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
@@ -73,7 +69,7 @@ const StatusTag = styled.View`
 const StyledImage = styled.Image<{isMe?: boolean}>`
   width: ${({isMe}) => (isMe ? '50px' : '40px')};
   height: ${(props) => (props.isMe ? '50px' : '40px')};
-  border-radius: ${(props) => (props.isMe ? '25px' : '20px')}; ;
+  border-radius: ${(props) => (props.isMe ? '25px' : '20px')};
 `;
 
 const StyledText = styled.Text`

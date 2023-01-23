@@ -1,4 +1,6 @@
-import React, {ComponentType, ReactElement} from 'react';
+import type {ComponentType, ReactElement} from 'react';
+
+import React from 'react';
 
 /**
  * Helper class to nest multiple react components

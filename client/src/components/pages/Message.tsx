@@ -4,13 +4,12 @@ import {
   ActivityIndicator,
   Alert,
   Image,
-  ListRenderItem,
   Platform,
   Text,
-  TextInputKeyPressEventData,
   TouchableOpacity,
   View,
 } from 'react-native';
+import type {FC, ReactElement} from 'react';
 import {
   IC_MSG_CAMERA,
   IC_MSG_IMAGE,
@@ -23,30 +22,28 @@ import {
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
+import type {ListRenderItem, TextInputKeyPressEventData} from 'react-native';
 import {
   MESSAGE_RESIZED_IMAGE_HEIGHT,
   MESSAGE_RESIZED_IMAGE_WIDTH,
   UPLOAD_FILE_SIZE_LIMIT,
 } from '../../utils/const';
-import {
+import type {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import {
+import type {
   MessagesQuery,
   MessagesQuery$data,
   MessagesQuery$variables,
 } from '../../__generated__/MessagesQuery.graphql';
 import React, {
-  FC,
-  ReactElement,
   Suspense,
   useEffect,
   useLayoutEffect,
   useMemo,
   useState,
 } from 'react';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   createMessageOptimisticUpdater,
@@ -58,16 +55,18 @@ import {
   useMutation,
   usePaginationFragment,
 } from 'react-relay';
+import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
+import type {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
-import {ImagePickerResult} from 'expo-image-picker';
+import type {ImagePickerResult} from 'expo-image-picker';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
-import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import type {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import type {RouteProp} from '@react-navigation/core';
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import {nanoid} from 'nanoid/non-secure';
@@ -255,11 +254,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         media = await launchMediaLibraryAsync();
       }
 
-      if (media && !media.cancelled) {
+      if (media && !media.canceled) {
         if (Platform.OS === 'web' && !media.type) {
-          const mediaType = media.uri.substring(
-            media.uri.indexOf(':') + 1,
-            media.uri.indexOf(';'),
+          const mediaType = media.assets[0].uri.substring(
+            media.assets[0].uri.indexOf(':') + 1,
+            media.assets[0].uri.indexOf(';'),
           );
 
           media.type = mediaType.split('/')[0] as 'video' | 'image' | undefined;
@@ -270,14 +269,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
           if (media.type === 'video') {
             response = await uploadSingleAsync(
-              media.uri,
+              media.assets[0].uri,
               'messages',
               `_${channelId}_${new Date().toISOString()}`,
             );
           } else {
             const resizedImage =
               await resizePhotoToMaxDimensionsAndCompressAsPNG({
-                uri: media.uri,
+                uri: media.assets[0].uri || '',
                 width: MESSAGE_RESIZED_IMAGE_WIDTH,
                 height: MESSAGE_RESIZED_IMAGE_HEIGHT,
               });
@@ -340,7 +339,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     }
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
+  const renderItem: ListRenderItem<(typeof nodes)[number]> = ({
+    item,
+    index,
+  }) => {
     const prevItem = nodes[index + 1];
     const nextItem = nodes[index - 1];
 
@@ -564,7 +566,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
             {isImageUploading ? (
               <ActivityIndicator
                 size="small"
-                color={theme.info}
+                color={theme.role.info}
                 style={{marginRight: 14}}
               />
             ) : (

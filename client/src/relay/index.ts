@@ -1,11 +1,6 @@
-import {
-  Environment,
-  IEnvironment,
-  Network,
-  RecordSource,
-  Store,
-} from 'relay-runtime';
+import {Environment, Network, RecordSource, Store} from 'relay-runtime';
 
+import type {IEnvironment} from 'relay-runtime';
 import fetchGraphQL from './fetch';
 import {fetchOrSubscribe} from './subscription';
 import {relayTransactionLogger} from './util';

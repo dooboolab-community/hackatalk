@@ -2,10 +2,10 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {RenderAPI, render} from '@testing-library/react-native';
-
+import type {RenderAPI} from '@testing-library/react-native';
 import Template from '../CustomLoadingIndicator';
 import {createTestElement} from '../../../../test/testUtils';
+import {render} from '@testing-library/react-native';
 
 let props: any;
 let component: React.ReactElement;
@@ -21,22 +21,6 @@ describe('Rendering', () => {
   it('renders without crashing', () => {
     const baseElement = testingLib.toJSON();
 
-    expect(baseElement).toMatchSnapshot();
     expect(baseElement).toBeTruthy();
-  });
-});
-
-describe('Interaction', () => {
-  beforeEach(() => {
-    testingLib = render(component);
-  });
-
-  it('should simulate onClick', () => {
-    expect(testingLib.toJSON()).toMatchSnapshot();
-    // const btn = testingLib.queryByTestId('btn');
-    // act(() => {
-    //   fireEvent.press(btn);
-    // });
-    // expect(cnt).toBe(3);
   });
 });

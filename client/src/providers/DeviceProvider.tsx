@@ -1,6 +1,7 @@
 import * as Device from 'expo-device';
 
-import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import type {ReactElement, ReactNode} from 'react';
 
 import createCtx from '../utils/createCtx';
 import {nanoid} from 'nanoid/non-secure';

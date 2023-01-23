@@ -24,6 +24,7 @@ import {
   Typography,
   useTheme,
 } from 'dooboo-ui';
+import type {FC, ReactElement} from 'react';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -31,7 +32,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../../utils/Icons';
-import React, {FC, ReactElement, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutation$data,
@@ -45,8 +46,8 @@ import {signInEmail, signInWithApple} from '../../../relay/queries/User';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthPayload} from '../../../types/graphql';
-import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
+import type {AuthPayload} from '../../../types/graphql';
+import type {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
 import {colors} from '../../../theme';
@@ -387,49 +388,49 @@ const SignIn: FC = () => {
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
-            type="row"
+            direction="row"
             testID="input-email"
             styles={{
               container: {borderColor: theme.text},
-              labelText: {width: 80},
+              label: {width: 80},
               input: {
                 color: theme.text,
                 height: 52,
               },
             }}
             style={{marginBottom: 4}}
-            labelText={getString('EMAIL')}
-            focusColor={theme.text}
+            label={getString('EMAIL')}
+            colors={{focused: theme.text}}
             placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
               setEmail(text.trim());
               setErrorEmail('');
             }}
-            errorText={errorEmail}
+            error={errorEmail}
             onSubmitEditing={signIn}
           />
           <EditText
             testID="input-password"
-            type="row"
+            direction="row"
             styles={{
               container: {borderColor: theme.text},
-              labelText: {width: 80},
+              label: {width: 80},
               input: {
                 color: theme.text,
                 height: 52,
               },
             }}
             style={{marginBottom: 20}}
-            labelText={getString('PASSWORD')}
-            focusColor={theme.text}
+            label={getString('PASSWORD')}
+            colors={{focused: theme.text}}
             placeholder="******"
             value={password}
             onChangeText={(text: string): void => {
               setPassword(text.trim());
               setErrorPassword('');
             }}
-            errorText={errorPassword}
+            error={errorPassword}
             onSubmitEditing={signIn}
             secureTextEntry={true}
           />
@@ -517,7 +518,7 @@ const SignIn: FC = () => {
                       color: 'black',
                     },
                   }}
-                  leftElement={
+                  startElement={
                     <View style={{marginRight: 6}}>
                       <SvgApple
                         style={{width: 16, height: 16}}
@@ -526,7 +527,6 @@ const SignIn: FC = () => {
                     </View>
                   }
                   loading={signingInApple || isAppleInFlight}
-                  indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                 />

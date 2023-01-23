@@ -1,9 +1,17 @@
-import {Channel, Maybe, Membership, Message, User} from '../../types/graphql';
-import {Image, TouchableOpacity, View, ViewStyle} from 'react-native';
-import React, {ReactElement} from 'react';
+import type {
+  Channel,
+  Maybe,
+  Membership,
+  Message,
+  User,
+} from '../../types/graphql';
+import {Image, TouchableOpacity, View} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
+import React from 'react';
+import type {ReactElement} from 'react';
 import {Typography} from 'dooboo-ui';
+import type {ViewStyle} from 'react-native';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';

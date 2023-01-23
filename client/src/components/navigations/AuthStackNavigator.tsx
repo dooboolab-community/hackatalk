@@ -1,18 +1,17 @@
 import * as SplashScreen from 'expo-splash-screen';
 
-import React, {ReactElement, useCallback, useEffect} from 'react';
-import {
-  StackNavigationProp,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import React, {useCallback, useEffect} from 'react';
 
-import {CompositeNavigationProp} from '@react-navigation/native';
+import type {CompositeNavigationProp} from '@react-navigation/native';
 import FindPw from '../pages/FindPw';
 import LicenseAgreement from '../pages/LicenseAgreement';
-import {RootStackNavigationProps} from './RootStackNavigator';
+import type {ReactElement} from 'react';
+import type {RootStackNavigationProps} from './RootStackNavigator';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import VerifyEmail from '../pages/VerifyEmail';
+import {createStackNavigator} from '@react-navigation/stack';
 import {getString} from '../../../STRINGS';
 import {useTheme} from 'dooboo-ui';
 

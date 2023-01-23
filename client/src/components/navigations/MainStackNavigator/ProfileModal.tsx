@@ -2,25 +2,22 @@ import {
   Alert,
   Animated,
   BackHandler,
-  BackHandlerStatic,
   Image,
-  StyleProp,
   TouchableOpacity,
   View,
-  ViewStyle,
 } from 'react-native';
-import {
+import type {BackHandlerStatic, StyleProp, ViewStyle} from 'react-native';
+import type {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
-import {
+import type {
   ModalState,
   ProfileModalContext,
-  useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -31,13 +28,14 @@ import {
 } from '../../../relay/queries/BlockedUser';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
-import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
-import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
+import type {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
+import type {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
 import {ConnectionHandler} from 'relay-runtime';
+import type {FC} from 'react';
 import {FontAwesome} from '@expo/vector-icons';
-import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
-import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
-import {MainStackNavigationProps} from '.';
+import type {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
+import type {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
+import type {MainStackNavigationProps} from '.';
 import Modal from 'react-native-modalbox';
 import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
@@ -46,6 +44,7 @@ import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
+import {useProfileContext} from '../../../providers/ProfileModalProvider';
 import {useSnackbarContext} from '../../../providers';
 
 const fragment = graphql`

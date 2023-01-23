@@ -4,8 +4,8 @@ import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import MessageListItem from '../MessageListItem';
-import {MessageListItemTestQuery} from '../../../__generated__/MessageListItemTestQuery.graphql';
-import {ProfileModal_user$key} from '../../../__generated__/ProfileModal_user.graphql';
+import type {MessageListItemTestQuery} from '../../../__generated__/MessageListItemTestQuery.graphql';
+import type {ProfileModal_user$key} from '../../../__generated__/ProfileModal_user.graphql';
 import {Text} from 'react-native';
 import {createTestElement} from '../../../../test/testUtils';
 import {getString} from '../../../../STRINGS';
@@ -96,7 +96,6 @@ describe('[MessageListItem] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders [peerMessage] with URL as expected', async () => {

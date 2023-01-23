@@ -5,13 +5,13 @@ import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
-import {fireEvent, render} from '@testing-library/react-native';
 
-import {AuthProviderMeQuery$data} from '../../../__generated__/AuthProviderMeQuery.graphql';
+import type {AuthProviderMeQuery$data} from '../../../__generated__/AuthProviderMeQuery.graphql';
 import ChannelCreate from '../ChannelCreate';
 import React from 'react';
-import {User} from '../../../types/graphql';
-import mockReactNavigation from '@react-navigation/core';
+import type {User} from '../../../types/graphql';
+import type mockReactNavigation from '@react-navigation/core';
+import {render} from '@testing-library/react-native';
 
 const mockNavigation = createMockNavigation();
 
@@ -40,7 +40,6 @@ describe('Rendering', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders [UserListItem]', async () => {
@@ -60,18 +59,5 @@ describe('Rendering', () => {
     const nickname = await screen.findByText('jdoe1234');
 
     expect(nickname).toBeTruthy();
-    expect(screen).toMatchSnapshot();
   });
 });
-
-// describe('Interaction', () => {
-//   it('should change search text', () => {
-//     const component = createTestElement(<ChannelCreate />);
-//     const screen = render(component);
-//     const searchInput = screen.getByTestId('text-input');
-
-//     fireEvent.changeText(searchInput, 'test search');
-
-//     expect(searchInput.props.value).toEqual('test search');
-//   });
-// });

@@ -1,12 +1,7 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import React, {createContext, useContext, useState} from 'react';
+import type {ReactElement, ReactNode} from 'react';
 
-import {ProfileModal_user$key} from '../__generated__/ProfileModal_user.graphql';
+import type {ProfileModal_user$key} from '../__generated__/ProfileModal_user.graphql';
 
 export type ModalState =
   | {

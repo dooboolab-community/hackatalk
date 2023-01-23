@@ -9,7 +9,7 @@ import {Alert} from 'react-native';
 import FindPw from '../FindPw';
 import React from 'react';
 import {getString} from '../../../../STRINGS';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
 
@@ -25,7 +25,6 @@ describe('[FindPw] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

@@ -1,19 +1,21 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC} from 'react';
-import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
   UserVerifyEmailMutation,
   UserVerifyEmailMutation$data,
 } from '../../__generated__/UserVerifyEmailMutation.graphql';
 
 import {Alert} from 'react-native';
-import {AuthStackParamList} from '../navigations/AuthStackNavigator';
+import type {AuthStackParamList} from '../navigations/AuthStackNavigator';
+import type {FC} from 'react';
+import React from 'react';
+import type {RouteProp} from '@react-navigation/core';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
+import {useRoute} from '@react-navigation/core';
 
 const Container = styled.View`
   flex: 1;

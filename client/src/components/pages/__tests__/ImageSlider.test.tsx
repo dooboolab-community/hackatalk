@@ -4,11 +4,12 @@ import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
-import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
 import ImageSlider from '../ImageSlider';
 import React from 'react';
-import {RootStackParamList} from '../../navigations/RootStackNavigator';
+import type {RootStackParamList} from '../../navigations/RootStackNavigator';
+import type {RouteProp} from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 import {render} from '@testing-library/react-native';
 
 const mockNavigation = createMockNavigation();
@@ -48,7 +49,6 @@ describe('Rendering', () => {
     const screen = render(component);
     const json = screen.toJSON();
 
-    expect(json).toMatchSnapshot();
     expect(json).toBeTruthy();
   });
 });

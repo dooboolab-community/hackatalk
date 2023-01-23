@@ -1,5 +1,6 @@
 import {Animated, TouchableOpacity} from 'react-native';
-import React, {FC, MutableRefObject, useEffect, useRef, useState} from 'react';
+import type {FC, MutableRefObject} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {Icon} from 'dooboo-ui';
 import styled from '@emotion/native';

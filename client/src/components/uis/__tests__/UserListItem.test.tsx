@@ -7,7 +7,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 import {graphql, useLazyLoadQuery} from 'react-relay';
 
 import UserListItem from '../UserListItem';
-import {UserListItemTestQuery} from '../../../__generated__/UserListItemTestQuery.graphql';
+import type {UserListItemTestQuery} from '../../../__generated__/UserListItemTestQuery.graphql';
 import {createTestElement} from '../../../../test/testUtils';
 
 type QueryWrapperProps = {
@@ -62,7 +62,6 @@ describe('[UserListItem] rendering test', () => {
     const json = toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

@@ -1,7 +1,7 @@
 import '@emotion/react';
 
-import {DoobooTheme} from 'dooboo-ui';
-import {Theme} from './theme';
+import type {DoobooTheme} from 'dooboo-ui';
+import type {Theme} from './theme';
 
 type AllTheme = Theme & DoobooTheme;
 

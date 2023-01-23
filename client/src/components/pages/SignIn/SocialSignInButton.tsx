@@ -3,9 +3,8 @@ import * as Config from '../../../../config';
 import * as WebBrowser from 'expo-web-browser';
 
 import {Alert, Platform, View} from 'react-native';
-import {Button, useTheme} from 'dooboo-ui';
-import React, {FC, ReactElement, memo, useEffect, useState} from 'react';
-import {UseMutationConfig, useMutation} from 'react-relay';
+import type {FC, ReactElement} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import type {
   UserFacebookSignInMutation,
   UserFacebookSignInMutation$data,
@@ -20,12 +19,15 @@ import {
 } from '../../../relay/queries/User';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User} from '../../../types/graphql';
+import {Button} from 'dooboo-ui';
+import type {UseMutationConfig} from 'react-relay';
+import type {User} from '../../../types/graphql';
 import {colors} from '../../../theme';
 import {css} from '@emotion/native';
 import {getString} from '../../../../STRINGS';
 import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
+import {useMutation} from 'react-relay';
 
 const {facebookAppId, googleWebClientId} = Config;
 
@@ -50,7 +52,6 @@ const SocialSignInButton: FC<Props> = ({
   const [commitGoogle, isGoogleInFlight] =
     useMutation<UserGoogleSignInMutation>(signInWithGoogle);
 
-  const {theme} = useTheme();
   const useProxy = Platform.select({web: false, default: true});
 
   const {
@@ -195,9 +196,8 @@ const SocialSignInButton: FC<Props> = ({
             color: 'black',
           },
         }}
-        leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
+        startElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
         loading={isGoogleInFlight || signingIn}
-        indicatorColor={theme.primary}
         onPress={requestSignIn}
         text={getString('SIGN_IN_WITH_GOOGLE')}
       />
@@ -219,9 +219,8 @@ const SocialSignInButton: FC<Props> = ({
         text: {fontWeight: '700', color: 'black'},
       }}
       style={{marginBottom: 12}}
-      leftElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
+      startElement={<View style={{marginRight: 6}}>{svgIcon}</View>}
       loading={isFacebookInFlight || signingIn}
-      indicatorColor={theme.primary}
       onPress={requestSignIn}
       text={getString('SIGN_IN_WITH_FACEBOOK')}
     />

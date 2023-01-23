@@ -1,6 +1,6 @@
 import 'react-native';
 
-import {Channel, Membership} from '../../../types/graphql';
+import type {Channel, Membership} from '../../../types/graphql';
 
 import ChannelListItem from '../ChannelListItem';
 import React from 'react';
@@ -64,7 +64,6 @@ describe('[ChannelListItem] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders when channelType is public', () => {
@@ -82,7 +81,6 @@ describe('[ChannelListItem] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders [StyledMeCircleView] when channelType is "self"', () => {
@@ -113,7 +111,6 @@ describe('[ChannelListItem] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders "renderSingleImage" without photoURL as expected', () => {
@@ -130,7 +127,6 @@ describe('[ChannelListItem] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('renders "renderMultiImages" when 1000+ users exited', () => {

@@ -1,11 +1,11 @@
-import {
+import type {
   RootStackNavigationProps,
   RootStackParamList,
 } from '../navigations/RootStackNavigator';
 
 import {Image} from 'react-native';
 import React from 'react';
-import {RouteProp} from '@react-navigation/native';
+import type {RouteProp} from '@react-navigation/native';
 import styled from '@emotion/native';
 
 const Container = styled.View`

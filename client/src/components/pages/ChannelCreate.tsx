@@ -7,24 +7,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Channel, User, UserConnection, UserEdge} from '../../types/graphql';
-import {
+import type {
+  Channel,
+  User,
+  UserConnection,
+  UserEdge,
+} from '../../types/graphql';
+import type {
   ChannelCreateFriendsPaginationQuery,
   ChannelCreateFriendsPaginationQuery$variables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
-import {
+import type {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
+import type {FC, ReactElement} from 'react';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
-import React, {
-  FC,
-  ReactElement,
-  Suspense,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, {Suspense, useLayoutEffect, useMemo, useState} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -32,11 +31,11 @@ import {
   usePaginationFragment,
 } from 'react-relay';
 
-import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
+import type {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ErroView from '../uis/ErrorView';
-import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import UserListItem from '../uis/UserListItem';
 import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';

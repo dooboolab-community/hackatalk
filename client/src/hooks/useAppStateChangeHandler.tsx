@@ -1,5 +1,5 @@
-import {AppState, AppStateStatus} from 'react-native';
-
+import {AppState} from 'react-native';
+import type {AppStateStatus} from 'react-native';
 import {useEffect} from 'react';
 
 type AppStateChangeHandler = (state: AppStateStatus) => void;

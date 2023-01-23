@@ -1,12 +1,15 @@
 import {Animated, Dimensions, Image} from 'react-native';
-import PinchZoom, {PinchZoomRef} from '../uis/PinchZoom';
-import React, {FC, memo, useCallback, useEffect, useLayoutEffect} from 'react';
-import {
+import React, {memo, useCallback, useEffect, useLayoutEffect} from 'react';
+import type {
   RootStackNavigationProps,
   RootStackParamList,
 } from '../navigations/RootStackNavigator';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
+import type {FC} from 'react';
+import PinchZoom from '../uis/PinchZoom';
+import type {PinchZoomRef} from '../uis/PinchZoom';
+import type {RouteProp} from '@react-navigation/native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {StatusBarBrightness} from 'dooboo-ui';
 import styled from '@emotion/native';

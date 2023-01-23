@@ -1,12 +1,5 @@
-import {
-  FlatList,
-  Keyboard,
-  ListRenderItem,
-  Platform,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native';
+import {FlatList, Keyboard, Platform, View} from 'react-native';
+import type {ListRenderItem, TextInput, TextInputProps} from 'react-native';
 import React, {useRef, useState} from 'react';
 
 import TagUserListItem from '../uis/TagUserListItem';

@@ -1,4 +1,4 @@
-import {DoobooTheme} from 'dooboo-ui';
+import type {DoobooTheme} from 'dooboo-ui';
 
 /* eslint-disable */
 export const colors = {

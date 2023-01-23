@@ -1,5 +1,5 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import type {
   UserFindPwMutation,
   UserFindPwMutation$data,
@@ -8,7 +8,8 @@ import {showAlertForError, validateEmail} from '../../utils/common';
 import styled, {css} from '@emotion/native';
 
 import {Alert} from 'react-native';
-import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import type {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import type {FC} from 'react';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -73,15 +74,15 @@ const Page: FC = () => {
           container: {borderColor: theme.text},
           input: {color: theme.text},
         }}
-        focusColor={theme.text}
-        labelText={getString('EMAIL')}
+        colors={{focused: theme.text}}
+        label={getString('EMAIL')}
         placeholder="hello@example.com"
         value={email}
         onChangeText={(text: string): void => {
           setEmail(text.trim());
           setErrorEmail('');
         }}
-        errorText={errorEmail}
+        error={errorEmail}
         onSubmitEditing={onFindPw}
       />
       <ButtonWrapper>

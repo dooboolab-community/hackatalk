@@ -1,11 +1,8 @@
-import React, {ReactElement} from 'react';
-import {
-  TextStyle,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  ViewStyle,
-} from 'react-native';
+import type {TextStyle, ViewStyle} from 'react-native';
+import {TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 
+import React from 'react';
+import type {ReactElement} from 'react';
 import {SvgCheck} from '../../utils/Icons';
 import styled from '@emotion/native';
 

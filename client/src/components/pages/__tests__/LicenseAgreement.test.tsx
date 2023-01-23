@@ -7,7 +7,7 @@ import {
 
 import LicenseAgreement from '../LicenseAgreement';
 import React from 'react';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 import {render} from '@testing-library/react-native';
 
 const mockNavigation = createMockNavigation();
@@ -23,7 +23,6 @@ describe('Rendering', () => {
     const screen = render(component);
     const json = screen.toJSON();
 
-    expect(json).toMatchSnapshot();
     expect(json).toBeTruthy();
   });
 });

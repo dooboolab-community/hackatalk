@@ -1,20 +1,20 @@
-import {
+import type {
   AuthProviderMeQuery,
   AuthProviderMeQuery$data,
   AuthProviderMeQuery$variables,
 } from '../__generated__/AuthProviderMeQuery.graphql';
 import type {Dispatch, SetStateAction} from 'react';
+import React, {useState} from 'react';
 import {
-  PreloadedQuery,
   commitLocalUpdate,
   graphql,
   useQueryLoader,
   useRelayEnvironment,
 } from 'react-relay/hooks';
-import React, {useState} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User} from '../types/graphql';
+import type {PreloadedQuery} from 'react-relay/hooks';
+import type {User} from '../types/graphql';
 import createCtx from '../utils/createCtx';
 
 export interface AuthContext {

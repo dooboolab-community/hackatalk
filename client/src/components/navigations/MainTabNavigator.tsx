@@ -1,17 +1,17 @@
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {IC_PROFILE_W, IC_SEARCH_W} from '../../utils/Icons';
 import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
-import {
-  MaterialTopTabNavigationProp,
-  createMaterialTopTabNavigator,
-} from '@react-navigation/material-top-tabs';
-import React, {ReactElement} from 'react';
 
 import Channel from '../pages/MainChannel';
+import type {CompositeNavigationProp} from '@react-navigation/native';
 import Friend from '../pages/MainFriend';
 import {LinearGradient} from 'expo-linear-gradient';
-import {MainStackNavigationProps} from './MainStackNavigator';
+import type {MainStackNavigationProps} from './MainStackNavigator';
+import type {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
+import React from 'react';
+import type {ReactElement} from 'react';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {getString} from '../../../STRINGS';
+import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useTheme} from 'dooboo-ui';
 

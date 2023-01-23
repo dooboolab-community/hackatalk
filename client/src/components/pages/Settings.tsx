@@ -1,31 +1,24 @@
-import {
-  Button,
-  DoobooTheme,
-  Typography,
-  TypographyInverted,
-  useTheme,
-} from 'dooboo-ui';
-import React, {FC, ReactElement, useState} from 'react';
-import {
-  SectionList,
-  SectionListData,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import {Button, Typography, TypographyInverted, useTheme} from 'dooboo-ui';
+import type {FC, ReactElement} from 'react';
+import React, {useState} from 'react';
+import {SectionList, TouchableHighlight, View} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
-import {UseMutationConfig, useMutation} from 'react-relay';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type {DoobooTheme} from 'dooboo-ui';
 import {FontAwesome} from '@expo/vector-icons';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import Modal from 'react-native-modalbox';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
+import type {SectionListData} from 'react-native';
+import type {UseMutationConfig} from 'react-relay';
 import type {UserDeleteUserMutation} from '../../__generated__/UserDeleteUserMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
 import {deleteUser} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
@@ -132,7 +125,11 @@ const Settings: FC = () => {
           {option.label}
         </ItemLabel>
         {isEmailUser ? (
-          <FontAwesome name="angle-right" size={24} color={themeProps.text} />
+          <FontAwesome
+            name="angle-right"
+            size={24}
+            color={themeProps.text.basic}
+          />
         ) : null}
       </ItemContainer>
     );
@@ -286,10 +283,10 @@ const Settings: FC = () => {
               height: 44px;
               border-width: 1px;
               border-radius: 0px;
-              border-color: ${theme.danger};
+              border-color: ${theme.role.danger};
             `,
             {
-              backgroundColor: theme.danger,
+              backgroundColor: theme.role.danger,
             },
           ],
           text: {

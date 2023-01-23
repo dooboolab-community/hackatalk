@@ -1,7 +1,8 @@
 import {IC_SEARCH, IC_SEARCH_W} from '../../utils/Icons';
-import React, {ReactElement, ReactNode} from 'react';
-import {StyleProp, TextStyle, ViewStyle} from 'react-native';
+import type {ReactElement, ReactNode} from 'react';
+import type {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
+import React from 'react';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
 
