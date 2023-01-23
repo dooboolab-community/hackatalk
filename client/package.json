@@ -111,7 +111,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@babel/runtime": "^7.19.0",
-    "@dooboo/eslint-config-react-native": "^1.0.1",
+    "@dooboo/eslint-config-react-native": "^1.0.4",
     "@emotion/babel-plugin": "^11.10.2",
     "@expo/config-plugins": "^5.0.2",
     "@expo/metro-config": "^0.4.0",

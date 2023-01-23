@@ -10,6 +10,7 @@ interface CustomTheme extends AllTheme {
 }
 
 declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   export interface Theme extends CustomTheme {
     isMobile?: boolean;
     isTablet?: boolean;

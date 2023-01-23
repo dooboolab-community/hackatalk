@@ -1,4 +1,4 @@
-import React, {FC, createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import type {ReactElement, ReactNode} from 'react';
 
 type LeaveChannelModalData = {
