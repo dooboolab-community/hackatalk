@@ -54,7 +54,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
 `;
 
@@ -169,7 +169,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             style={{
               fontSize: 12,
               marginTop: 4,
-              color: theme.text,
+              color: theme.text.basic,
             }}
           >
             {friendArg.nickname || friendArg.name}
@@ -251,6 +251,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         keyExtractor={(_, index): string => index.toString()}
         data={friendEdges as UserEdge[]}
         renderItem={renderItem}
+        // eslint-disable-next-line react/no-unstable-nested-components
         ListHeaderComponent={(): ReactElement => {
           return (
             <ScrollView
@@ -346,6 +347,7 @@ const ChannelCreate: FC = () => {
     };
 
     navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: (): ReactElement => (
         <TouchableOpacity
           testID="touch-done"
@@ -360,7 +362,7 @@ const ChannelCreate: FC = () => {
           >
             <Text
               style={{
-                color: selectedUsers.length === 0 ? theme.disabled : 'white',
+                color: selectedUsers.length === 0 ? theme.bg.disabled : 'white',
                 fontSize: 14,
                 fontWeight: 'bold',
               }}

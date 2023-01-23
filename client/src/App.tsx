@@ -38,7 +38,7 @@ if (!__DEV__) {
   SplashScreen.preventAutoHideAsync();
 }
 
-const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
+const HackaTalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const registerNotification = async (): Promise<void> => {
     registerForPushNotificationsAsync()
       .then((pushToken) => {
@@ -82,7 +82,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const [assets] = useAssets(Icons);
 
   const [dooboouiAssets] = useFonts({
-    IcoMoon: require('dooboo-ui/component/Icon/doobooui.ttf'),
+    IcoMoon: require('dooboo-ui/components/Icon/doobooui.ttf'),
   });
 
   useEffect(() => {
@@ -132,7 +132,7 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   })
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
-  .wrap(HackatalkThemeProvider, {})
+  .wrap(HackaTalkThemeProvider, {})
   .build();
 
 export default gestureHandlerRootHOC(WrappedApp);

@@ -38,5 +38,16 @@
     "**/.factorypath": true,
     "**/node_modules": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "checkmark",
+    "doobooui",
+    "ellipsize",
+    "Hacka",
+    "Ionicons",
+    "modalbox",
+    "refetchable",
+    "UNBAN",
+    "uploadables"
+  ]
 }

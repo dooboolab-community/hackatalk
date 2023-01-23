@@ -19,7 +19,7 @@ const Container = styled.SafeAreaView`
 
 const StyledText = styled.Text`
   font-size: 16px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 const Page: FC = () => {
@@ -44,7 +44,7 @@ const Page: FC = () => {
           >
             <Text
               style={{
-                color: theme.text,
+                color: theme.text.basic,
                 fontSize: 14,
                 fontWeight: 'bold',
               }}

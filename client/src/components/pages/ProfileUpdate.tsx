@@ -39,7 +39,7 @@ import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -50,7 +50,7 @@ const StyledScrollView = styled.ScrollView`
 
 const Wrapper = styled.View`
   margin-top: 48px;
-  width: 78%;
+  width: 88%;
   flex-direction: column;
   align-items: center;
 `;
@@ -374,14 +374,14 @@ const ProfileUpdate: FC = () => {
             onChangeText={(text) => changeText('NICKNAME', text)}
             styles={{
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
               },
               input: {
-                color: theme.text,
+                color: theme.text.basic,
               },
             }}
             value={nickname}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             autoCapitalize="none"
             textInputProps={{
               autoCorrect: false,
@@ -392,16 +392,16 @@ const ProfileUpdate: FC = () => {
             style={{marginTop: 12}}
             styles={{
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
               },
               input: {
-                color: theme.text,
+                color: theme.text.basic,
               },
             }}
             label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('NAME', text)}
             autoCapitalize="none"
             textInputProps={{autoCorrect: false}}
@@ -413,10 +413,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -425,7 +425,7 @@ const ProfileUpdate: FC = () => {
             label={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('STATUS_MSG', text)}
             multiline
             maxLength={60}
@@ -436,16 +436,16 @@ const ProfileUpdate: FC = () => {
             style={{marginTop: 12}}
             styles={{
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
               },
               input: {
-                color: theme.text,
+                color: theme.text.basic,
               },
             }}
             label={getString('ORGANIZATION')}
             placeholder={getString('ORGANIZATION_HINT')}
             value={organization}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('ORGANIZATION', text)}
             autoCapitalize="none"
             textInputProps={{
@@ -458,10 +458,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -470,7 +470,7 @@ const ProfileUpdate: FC = () => {
             label={getString('ABOUT_ME')}
             placeholder={getString('ABOUT_ME_HINT')}
             value={about}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('ABOUT', text)}
             multiline
             maxLength={300}
@@ -483,10 +483,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -495,7 +495,7 @@ const ProfileUpdate: FC = () => {
             label={getString('PROJECTS')}
             placeholder={getString('PROJECTS_HINT')}
             value={projects}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('PROJECTS', text)}
             multiline
             maxLength={300}
@@ -508,10 +508,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -520,7 +520,7 @@ const ProfileUpdate: FC = () => {
             label={getString('POSITIONS')}
             placeholder={getString('POSITIONS_HINT')}
             value={positions}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('POSITIONS', text)}
             multiline
             maxLength={300}
@@ -533,10 +533,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -545,7 +545,7 @@ const ProfileUpdate: FC = () => {
             label={getString('SPEAKINGS')}
             placeholder={getString('SPEAKINGS_HINT')}
             value={speakings}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('SPEAKINGS', text)}
             multiline
             maxLength={300}
@@ -558,10 +558,10 @@ const ProfileUpdate: FC = () => {
             styles={{
               input: {
                 marginTop: 12,
-                color: theme.text,
+                color: theme.text.basic,
               },
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
                 borderWidth: 1,
                 paddingHorizontal: 8,
                 paddingVertical: 12,
@@ -570,7 +570,7 @@ const ProfileUpdate: FC = () => {
             label={getString('CONTRIBUTIONS')}
             placeholder={getString('CONTRIBUTION_HINT')}
             value={contributions}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('CONTRIBUTIONS', text)}
             multiline
             maxLength={300}
@@ -589,12 +589,12 @@ const ProfileUpdate: FC = () => {
                     border-radius: 0px;
                   `,
                   {
-                    backgroundColor: theme.button,
-                    borderColor: theme.button,
+                    backgroundColor: theme.button.primary.bg,
+                    borderColor: theme.button.primary.bg,
                   },
                 ],
                 text: {
-                  color: theme.textContrast,
+                  color: theme.text.contrast,
                   fontSize: 14,
                   fontWeight: 'bold',
                 },

@@ -20,7 +20,7 @@ const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.text.disabled};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;

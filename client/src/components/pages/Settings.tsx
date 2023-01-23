@@ -24,12 +24,12 @@ import {useNavigation} from '@react-navigation/core';
 const Container = styled.SafeAreaView`
   flex: 1;
   padding-top: 10px;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
 `;
 
 const HeaderContainer = styled.View`
-  background-color: ${({theme}) => theme.background};
-  border-bottom-color: ${({theme}) => theme.disabled};
+  background-color: ${({theme}) => theme.bg.basic};
+  border-bottom-color: ${({theme}) => theme.bg.disabled};
   height: 40px;
   justify-content: center;
   margin-left: 12px;
@@ -37,7 +37,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
   margin-left: 2px;
 `;
 
@@ -51,7 +51,7 @@ const ItemContainer = styled.TouchableOpacity`
 `;
 
 const ItemLabel = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 16px;
   flex: 1;
 `;
@@ -64,8 +64,8 @@ const ModalContainer = styled.View`
 
 const ModalViewContainer = styled.View`
   padding: 40px;
-  background-color: ${({theme}) => theme.background};
-  border: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.bg.basic};
+  border: ${({theme}) => theme.role.primary};
   border-width: 0.3px;
   justify-content: center;
   align-items: center;
@@ -80,7 +80,7 @@ const ModalBtnContainer = styled.View`
 `;
 
 const ModalBtnStyle = styled.View`
-  background-color: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.role.primary};
   opacity: 0.8;
   width: 120px;
   height: 40px;
@@ -180,7 +180,7 @@ const Settings: FC = () => {
   switch (user?.profile?.authType) {
     case 'google':
       signInInfoOption = {
-        icon: <SvgGoogle width={24} fill={theme.text} />,
+        icon: <SvgGoogle width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -191,7 +191,7 @@ const Settings: FC = () => {
       break;
     case 'facebook':
       signInInfoOption = {
-        icon: <SvgFacebook width={24} fill={theme.text} />,
+        icon: <SvgFacebook width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: () => {
           navigation.navigate('ChangePw');
@@ -202,7 +202,7 @@ const Settings: FC = () => {
       break;
     case 'apple':
       signInInfoOption = {
-        icon: <SvgApple width={24} fill={theme.text} />,
+        icon: <SvgApple width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: () => {
           navigation.navigate('ChangePw');
@@ -259,12 +259,12 @@ const Settings: FC = () => {
               border-radius: 0px;
             `,
             {
-              backgroundColor: theme.button,
-              borderColor: theme.button,
+              backgroundColor: theme.button.primary.bg,
+              borderColor: theme.button.primary.bg,
             },
           ],
           text: {
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 14,
             fontWeight: 'bold',
           },
@@ -290,7 +290,7 @@ const Settings: FC = () => {
             },
           ],
           text: {
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 14,
             fontWeight: 'bold',
           },

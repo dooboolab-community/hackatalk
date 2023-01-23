@@ -8,7 +8,7 @@ import styled from '@emotion/native';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -41,7 +41,7 @@ const Body = styled.Text`
   align-items: center;
   text-align: center;
   letter-spacing: -0.25px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 interface Props {
@@ -84,7 +84,7 @@ const ErrorView: FC<Props> = (props) => {
               width: 156,
               height: 48,
               justifyContent: 'center',
-              backgroundColor: theme.primary,
+              backgroundColor: theme.role.primary,
               flexDirection: 'row',
             },
             text: {

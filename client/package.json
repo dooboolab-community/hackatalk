@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",
+    "@dooboo-ui/theme": "^0.10.1",
     "@emotion/native": "^11.10.0",
     "@emotion/react": "^11.10.4",
     "@expo/match-media": "^0.3.0",

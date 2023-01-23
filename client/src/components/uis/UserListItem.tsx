@@ -39,11 +39,11 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View<{isMe?: boolean}>`
-  background-color: ${({theme}) => theme.card};
+  background-color: ${({theme}) => theme.bg.card};
   height: 80px;
   border-bottom-width: 1px;
   border-color: ${(props) =>
-    props.isMe ? props.theme.disabled : props.theme.background};
+    props.isMe ? props.theme.bg.disabled : props.theme.bg.paper};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -77,14 +77,14 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   max-width: 120px;
   padding: 4px 8px;
   overflow: hidden;
@@ -159,10 +159,10 @@ function Shared({
                 position: 'absolute',
                 right: 20,
               }}
-              backgroundColor={theme.background}
-              checkColor={theme.text}
-              inActiveColor={theme.disabled}
-              activeColor={theme.secondary}
+              backgroundColor={theme.bg.basic}
+              checkColor={theme.text.basic}
+              inActiveColor={theme.text.disabled}
+              activeColor={theme.role.secondary}
               hasChecked={checked}
               onToggle={onPress}
             />

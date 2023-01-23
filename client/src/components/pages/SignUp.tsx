@@ -50,7 +50,7 @@ import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Wrapper = styled.KeyboardAvoidingView`
@@ -334,13 +334,11 @@ const Page: FC = () => {
             )}
             <EditText
               testID="input-email"
+              style={{padding: 0}}
               styles={{
-                input: {color: theme.text},
-                container: {
-                  borderBottomColor: theme.line,
-                },
+                input: {color: theme.text.basic},
               }}
-              colors={{focused: theme.text}}
+              colors={{focused: theme.text.basic}}
               label={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
@@ -350,87 +348,71 @@ const Page: FC = () => {
             />
             <EditText
               testID="input-password"
-              styles={{
-                input: {
-                  color: theme.text,
-                },
-                container: {
-                  borderColor: theme.text,
-                },
-              }}
-              colors={{focused: theme.text}}
+              style={{padding: 0, marginTop: 32}}
+              styles={{input: {color: theme.text.basic}}}
+              colors={{focused: theme.text.basic}}
               placeholder="********"
               label={getString('PASSWORD')}
               value={password}
               onChangeText={inputChangeHandlers.passwordInput}
-              style={{marginTop: 32}}
               error={errorPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
             />
             <EditText
               testID="input-confirm-password"
+              style={{padding: 0, marginTop: 32}}
               styles={{
                 input: {
-                  color: theme.text,
+                  color: theme.text.basic,
                 },
-                container: {
-                  borderBottomColor: theme.text,
-                  paddingVertical: 8,
-                },
+                container: {paddingVertical: 8},
               }}
               placeholder="********"
               label={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
-              style={{marginTop: 32}}
-              colors={{focused: theme.text}}
+              colors={{focused: theme.text.basic}}
               error={errorConfirmPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
             />
             <EditText
               testID="input-name"
+              style={{padding: 0, marginTop: 32}}
               styles={{
-                input: {
-                  color: theme.text,
-                },
-                container: {
-                  borderColor: theme.text,
-                },
+                input: {color: theme.text.basic},
               }}
               label={getString('NAME')}
               placeholder={getString('NAME_HINT')}
-              colors={{focused: theme.text}}
+              colors={{focused: theme.text.basic}}
               value={name}
               onChangeText={inputChangeHandlers.nameInput}
-              style={{marginTop: 32}}
               error={errorName}
               onSubmitEditing={requestSignUp}
             />
             <EditText
               testID="input-status"
               direction="column"
+              style={{padding: 0, marginTop: 32}}
               styles={{
                 input: {
                   marginTop: 12,
-                  color: theme.text,
+                  color: theme.text.basic,
                 },
                 container: {
-                  borderColor: theme.text,
                   borderWidth: 1,
                   paddingHorizontal: 8,
                   paddingVertical: 12,
                 },
               }}
-              colors={{focused: theme.text}}
+              colors={{focused: theme.text.basic}}
               label={getString('STATUS')}
               placeholder={getString('STATUS_MSG_HINT')}
               value={statusMessage}
               onChangeText={(text: string): void => {
                 setStatusMessage(text);
               }}
-              style={{marginTop: 32}}
               onSubmitEditing={requestSignUp}
               multiline={true}
               maxLength={60}

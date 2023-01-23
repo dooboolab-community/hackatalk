@@ -115,7 +115,7 @@ const ChangePw: FC = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
         paddingBottom: keyboardOffset,
       }}
     >
@@ -133,12 +133,12 @@ const ChangePw: FC = () => {
             styles={{
               container: {paddingVertical: 8},
               input: {
-                color: theme.text,
+                color: theme.text.basic,
                 fontSize: 16,
               },
             }}
             style={{marginTop: 40}}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             secureTextEntry
             onChangeText={(pw: string): void => setCurrentPw(pw)}
             label={getString('PASSWORD_CURRENT')}
@@ -153,11 +153,11 @@ const ChangePw: FC = () => {
             styles={{
               container: {paddingVertical: 8},
               input: {
-                color: theme.text,
+                color: theme.text.basic,
                 fontSize: 16,
               },
             }}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(pw: string): void => setNewPw(pw)}
             label={getString('PASSWORD_NEW')}
             value={newPw}
@@ -171,11 +171,11 @@ const ChangePw: FC = () => {
             styles={{
               container: {paddingVertical: 8},
               input: {
-                color: theme.text,
+                color: theme.text.basic,
                 fontSize: 16,
               },
             }}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
             label={getString('PASSWORD_NEW_REPEAT')}
             value={confirmPw}
@@ -194,19 +194,19 @@ const ChangePw: FC = () => {
                 border-radius: 0px;
               `,
               {
-                backgroundColor: theme.button,
-                borderColor: theme.button,
+                backgroundColor: theme.button.primary.bg,
+                borderColor: theme.button.primary.bg,
               },
             ],
             text: {
-              color: theme.primary,
+              color: theme.role.primary,
               alignSelf: 'center',
               textAlign: 'center',
               fontSize: 14,
               fontWeight: 'bold',
             },
             hovered: {
-              borderColor: theme.text,
+              borderColor: theme.text.basic,
             },
           }}
           loading={isInFlight}

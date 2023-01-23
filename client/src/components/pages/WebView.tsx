@@ -8,7 +8,7 @@ import {useRoute} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: row;
   align-items: center;
   justify-content: center;

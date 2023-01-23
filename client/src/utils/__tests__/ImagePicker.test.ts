@@ -1,6 +1,6 @@
 import 'react-native';
 
-import * as ExImagePiacker from 'expo-image-picker';
+import * as ExImagePicker from 'expo-image-picker';
 import * as ImagePicker from '../ImagePicker';
 
 jest.mock('expo-image-picker', () => ({
@@ -25,7 +25,7 @@ describe('ImagePicker interaction', () => {
 
     it('launchImageLibraryAsync should return photo info when permission is granted', async () => {
       jest
-        .spyOn(ExImagePiacker, 'requestMediaLibraryPermissionsAsync')
+        .spyOn(ExImagePicker, 'requestMediaLibraryPermissionsAsync')
         // @ts-ignore
         .mockResolvedValue({granted: true});
 
@@ -49,7 +49,7 @@ describe('ImagePicker interaction', () => {
 
     it('launchImageLibraryAsync should not return photo info when permission is not granted', async () => {
       jest
-        .spyOn(ExImagePiacker, 'requestMediaLibraryPermissionsAsync')
+        .spyOn(ExImagePicker, 'requestMediaLibraryPermissionsAsync')
         // @ts-ignore
         .mockResolvedValue({granted: false});
 

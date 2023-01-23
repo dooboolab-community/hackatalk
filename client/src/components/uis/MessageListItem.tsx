@@ -74,13 +74,13 @@ const StyledPeerTextMessage = styled.Text`
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.text.disabled};
   border-width: 1px;
 `;
 
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   margin-bottom: 2px;
 `;
 
@@ -343,7 +343,7 @@ const MessageListItem: FC<Props> = ({
             <ImageSender
               thumbURL={sender?.thumbURL || sender?.photoURL}
               isSamePeerMsg={!!isPrevMessageSameUser}
-              fontColor={theme.text}
+              fontColor={theme.text.basic}
             />
           </TouchableOpacity>
         </View>

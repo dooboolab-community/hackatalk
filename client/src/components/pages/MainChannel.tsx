@@ -3,10 +3,9 @@ import type {
   ChannelsQuery$data,
   ChannelsQuery$variables,
 } from '../../__generated__/ChannelsQuery.graphql';
-import {FlatList, Platform, TouchableOpacity, View} from 'react-native';
-import React, {Suspense, useMemo, useState} from 'react';
+import {FlatList, TouchableOpacity, View} from 'react-native';
+import React, {Suspense, useMemo} from 'react';
 import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
-import useOrientation, {Orientation} from '../../hooks/useOrientation';
 
 import type {Channel} from '../../types/graphql';
 import ChannelListItem from '../uis/ChannelListItem';
@@ -26,7 +25,7 @@ import {useTheme} from 'dooboo-ui';
 
 const Container = styled.View`
   flex: 1;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -38,7 +37,7 @@ const Fab = styled.View`
   border-radius: 28px;
   justify-content: center;
   align-items: center;
-  background: ${({theme}) => theme.button};
+  background: ${({theme}) => theme.button.primary.bg};
 `;
 
 const ITEM_CNT = 20;
@@ -100,8 +99,6 @@ const ChannelsFragment: FC<ChannelProps> = ({channel, searchArgs}) => {
     MainChannelComponent_channel$key
   >(channelsPaginationFragment, channel);
 
-  const [bannerError, setBannerError] = useState<boolean>(false);
-  const orientation = useOrientation();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
   const {showModal} = useLeaveChannelContext();
 
@@ -217,7 +214,7 @@ const Screen: FC = () => {
         onPress={(): void => navigation.navigate('ChannelCreate')}
       >
         <Fab>
-          <SvgPlus fill={theme.primary} />
+          <SvgPlus fill={theme.role.primary} />
         </Fab>
       </TouchableOpacity>
     </Container>

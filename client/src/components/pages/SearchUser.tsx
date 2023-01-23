@@ -25,7 +25,7 @@ import {usersQuery} from '../../relay/queries/User';
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Container = styled.View`
@@ -158,6 +158,7 @@ const Screen: FC = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: (): ReactElement => (
         <TouchableOpacity onPress={() => navigation.navigate('BlockedUser')}>
           <View

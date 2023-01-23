@@ -67,12 +67,12 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
         })}
         theme={{
           colors: {
-            background: theme.background,
-            border: theme.disabled,
-            card: theme.paper,
-            primary: theme.primary,
-            notification: theme.primary,
-            text: theme.text,
+            background: theme.bg.basic,
+            border: theme.text.disabled,
+            card: theme.bg.paper,
+            primary: theme.role.primary,
+            notification: theme.role.primary,
+            text: theme.text.basic,
           },
           dark: true,
         }}
@@ -81,10 +81,10 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
           initialRouteName="AuthStack"
           screenOptions={{
             headerStyle: {
-              backgroundColor: theme.background,
+              backgroundColor: theme.bg.basic,
             },
-            headerTitleStyle: {color: theme.text},
-            headerTintColor: theme.primary,
+            headerTitleStyle: {color: theme.text.basic},
+            headerTintColor: theme.role.primary,
             headerShown: false,
           }}
         >
@@ -168,7 +168,7 @@ const RootNavigatorWrapper: FC = () => {
       style={{
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
       }}
     >
       <Suspense fallback={<CustomLoadingIndicator />}>

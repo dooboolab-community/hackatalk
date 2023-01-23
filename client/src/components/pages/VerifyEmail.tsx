@@ -27,7 +27,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 18px;
   text-align: center;
   line-height: 28px;
@@ -35,7 +35,7 @@ const StyledText = styled.Text`
 
 const StyledHighlightText = styled.Text`
   font-size: 24px;
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
 `;
 
 const Page: FC = () => {
@@ -92,7 +92,7 @@ const Page: FC = () => {
         style={{marginTop: 80}}
         styles={{
           container: {
-            backgroundColor: theme.primary,
+            backgroundColor: theme.role.primary,
             borderWidth: 0,
             height: 48,
 
@@ -101,7 +101,7 @@ const Page: FC = () => {
           },
           text: {
             marginHorizontal: 40,
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 16,
             textAlign: 'center',
           },

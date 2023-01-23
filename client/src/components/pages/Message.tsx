@@ -86,7 +86,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -425,14 +425,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   };
 
   const parseTagText = (
-    inputedText: string,
+    inputText: string,
   ): {isTag: boolean; parsedText: string} => {
     let result = {isTag: false, parsedText: ''};
 
-    const cursorPrefix = inputedText.slice(0, cursor.start + 1);
+    const cursorPrefix = inputText.slice(0, cursor.start + 1);
     const tagIdx = cursorPrefix.lastIndexOf('@');
     if (tagIdx !== -1) {
-      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' ')) {
+      if (tagIdx === 0 || (tagIdx > 0 && inputText[tagIdx - 1] === ' ')) {
         if (lastKeyEvent.key === 'Backspace') {
           result = {
             isTag: true,
@@ -447,21 +447,21 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     return result;
   };
 
-  const getTagUsersByText = (inputedText: string): User[] => {
+  const getTagUsersByText = (inputText: string): User[] => {
     let result = [];
-    if (inputedText === '') {
+    if (inputText === '') {
       result = users;
     } else {
       result = users.filter((item) => {
-        return item?.name?.includes(inputedText);
+        return item?.name?.includes(inputText);
       });
     }
 
     return result;
   };
 
-  const handleTagUsers = (inputedText: string): void => {
-    const parsedTagText = parseTagText(inputedText);
+  const handleTagUsers = (inputText: string): void => {
+    const parsedTagText = parseTagText(inputText);
 
     const paredUsers = parsedTagText.isTag
       ? getTagUsersByText(parsedTagText.parsedText)
@@ -474,10 +474,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       selectTagUser={selectTagUser}
       tagUsers={tagUsers}
       messages={nodes}
-      borderColor={theme.disabled}
+      borderColor={theme.bg.disabled}
       onEndReached={onEndReached}
-      backgroundColor={theme.background}
-      fontColor={theme.text}
+      backgroundColor={theme.bg.basic}
+      fontColor={theme.text.basic}
       keyboardOffset={Platform.select({
         ios: insets.bottom + 56,
         android: insets.bottom,
@@ -517,9 +517,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         handleTagUsers(message);
       }}
       openedOptionView={
-        <SvgArrDown width={18} height={18} stroke={theme.text} />
+        <SvgArrDown width={18} height={18} stroke={theme.text.basic} />
       }
-      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.text} />}
+      closedOptionView={
+        <SvgArrUp width={18} height={18} stroke={theme.text.basic} />
+      }
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View style={{flexDirection: 'row'}}>
@@ -570,7 +572,7 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
                 style={{marginRight: 14}}
               />
             ) : (
-              <SvgSend fill={theme.button} />
+              <SvgSend fill={theme.button.primary.bg} />
             )}
           </View>
         </TouchableOpacity>

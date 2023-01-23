@@ -69,10 +69,10 @@ const StyledImage = styled.Image`
   border-radius: 40px;
 `;
 
-const StyledViewBtns = styled.View`
+const StyledViewButtons = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({theme}) => theme.paper};
+  background-color: ${({theme}) => theme.bg.paper};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -81,7 +81,7 @@ const StyledViewBtns = styled.View`
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
-  background-color: ${({theme}) => theme.placeholder};
+  background-color: ${({theme}) => theme.bg.paper};
 `;
 
 const StyledTextDisplayName = styled.Text`
@@ -94,7 +94,7 @@ const StyledTextDisplayName = styled.Text`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 16px;
 `;
 
@@ -389,7 +389,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   <FontAwesome
                     name="exclamation-circle"
                     size={24}
-                    color={theme.text}
+                    color={theme.text.basic}
                   />
                 </View>
               </TouchableOpacity>
@@ -442,7 +442,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     <FontAwesome
                       name="ban"
                       size={24}
-                      color={hasBlocked ? 'red' : theme.text}
+                      color={hasBlocked ? theme.role.danger : theme.text.basic}
                     />
                   </View>
                 </TouchableOpacity>
@@ -494,7 +494,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         </TouchableOpacity>
 
         {!modalState?.hideButtons ? (
-          <StyledViewBtns>
+          <StyledViewButtons>
             {!modalState.isMe && (
               <>
                 {deleteFriendInFlight || addFriendInFlight ? (
@@ -530,14 +530,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               ) : (
                 <StyledText
                   style={{
-                    color: theme.primary,
+                    color: theme.role.primary,
                   }}
                 >
                   {modalState.isMe ? getString('SELF_CHAT') : getString('CHAT')}
                 </StyledText>
               )}
             </TouchableOpacity>
-          </StyledViewBtns>
+          </StyledViewButtons>
         ) : null}
       </View>
       <Animated.View

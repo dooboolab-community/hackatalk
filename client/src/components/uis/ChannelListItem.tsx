@@ -18,11 +18,11 @@ import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
 
 const StyledViewChatRoomListItem = styled.View`
-  background-color: ${({theme}) => theme.card};
+  background-color: ${({theme}) => theme.bg.card};
   min-height: 92px;
   padding: 8px 0;
   border-bottom-width: 0.3px;
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.bg.disabled};
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -33,11 +33,11 @@ const StyledStatus = styled.View`
   width: 12px;
   height: 12px;
   border-radius: 6px;
-  background-color: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.role.primary};
   right: 0;
   bottom: 0;
   border-width: 2px;
-  border-color: ${({theme}) => theme.primary};
+  border-color: ${({theme}) => theme.role.primary};
 `;
 
 const StyledViewContent = styled.View`
@@ -53,7 +53,7 @@ const StyledViewTop = styled.View`
 `;
 
 const StyledTextWrapper = styled.View`
-  background-color: ${({theme}) => theme.secondary};
+  background-color: ${({theme}) => theme.role.secondary};
   width: 16px;
   height: 16px;
   border-radius: 8px;
@@ -63,7 +63,7 @@ const StyledTextWrapper = styled.View`
 
 const StyledTextCount = styled.Text`
   font-size: 10px;
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
 `;
 
 const StyledViewBottom = styled.View`
@@ -75,14 +75,14 @@ const StyledViewBottom = styled.View`
 
 const StyledTextMessage = styled.Text<{lastMessageCnt: number}>`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   max-width: 200px;
   ${({lastMessageCnt}): string => (lastMessageCnt ? 'font-weight: bold;' : '')}
 `;
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   text-align: right;
 `;
 
@@ -109,7 +109,7 @@ const StyledCircleView = styled.View`
   border-radius: 10px;
   margin-right: 2px;
   margin-bottom: 2px;
-  background-color: ${({theme}) => theme.secondary};
+  background-color: ${({theme}) => theme.role.secondary};
   align-items: center;
   justify-content: center;
 `;
@@ -125,7 +125,7 @@ const StyledMeCircleView = styled.View`
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 8px;
-  background-color: ${({theme}) => theme.disabled};
+  background-color: ${({theme}) => theme.text.disabled};
   justify-content: center;
   align-items: center;
   margin-right: 5px;

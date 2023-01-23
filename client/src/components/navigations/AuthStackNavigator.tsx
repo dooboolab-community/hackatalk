@@ -54,14 +54,15 @@ function AuthNavigator(): ReactElement {
       initialRouteName="SignIn"
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.background,
+          backgroundColor: theme.bg.basic,
           borderBottomWidth: 0,
           elevation: 0,
         },
         cardStyle: {
-          backgroundColor: theme.background,
+          backgroundColor: theme.bg.basic,
         },
-        headerTintColor: theme.text,
+        headerTintColor: theme.text.basic,
+        headerBackTitle: getString('BACK'),
       }}
     >
       <Stack.Screen

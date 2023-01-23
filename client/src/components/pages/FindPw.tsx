@@ -19,7 +19,7 @@ import {useNavigation} from '@react-navigation/core';
 const Container = styled.View`
   flex: 1;
   padding: 0 32px;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
 `;
 
 const ButtonWrapper = styled.View`
@@ -36,7 +36,7 @@ const Page: FC = () => {
 
   const {theme} = useTheme();
 
-  const onFindPw = async (): Promise<void> => {
+  const findPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
 
@@ -69,12 +69,9 @@ const Page: FC = () => {
     <Container>
       <EditText
         testID="input-email"
-        style={{marginTop: 32, marginBottom: 20}}
-        styles={{
-          container: {borderColor: theme.text},
-          input: {color: theme.text},
-        }}
-        colors={{focused: theme.text}}
+        style={{marginTop: 32, marginBottom: 20, padding: 0}}
+        styles={{container: {height: 80}}}
+        colors={{focused: theme.text.basic}}
         label={getString('EMAIL')}
         placeholder="hello@example.com"
         value={email}
@@ -83,22 +80,26 @@ const Page: FC = () => {
           setErrorEmail('');
         }}
         error={errorEmail}
-        onSubmitEditing={onFindPw}
+        onSubmitEditing={findPw}
       />
       <ButtonWrapper>
         <Button
           testID="btn-find-pw"
           loading={isInFlight}
-          onPress={onFindPw}
+          onPress={findPw}
           styles={{
             container: css`
               height: 52px;
-              background-color: ${theme.button};
+              background-color: ${theme.button.primary.bg};
               border-width: 1px;
               border-radius: 0px;
             `,
-            text: {color: 'black', fontSize: 14, fontWeight: 'bold'},
-            hovered: {borderColor: theme.text},
+            text: {
+              color: theme.button.primary.text,
+              fontSize: 14,
+              fontWeight: 'bold',
+            },
+            hovered: {borderColor: theme.text.basic},
           }}
           text={getString('FIND_PW')}
         />

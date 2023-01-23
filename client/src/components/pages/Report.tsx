@@ -74,7 +74,7 @@ const ReportScreen: FC = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
         paddingBottom: 20,
       }}
     >
@@ -94,11 +94,11 @@ const ReportScreen: FC = () => {
             }}
             styles={{
               container: {
-                borderColor: theme.text,
+                borderColor: theme.text.basic,
               },
             }}
             multiline
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
             label={name}
@@ -119,12 +119,12 @@ const ReportScreen: FC = () => {
                 margin-right: 24px;
               `,
               {
-                backgroundColor: theme.button,
-                borderColor: theme.button,
+                backgroundColor: theme.button.primary.bg,
+                borderColor: theme.button.primary.bg,
               },
             ],
             text: {
-              color: theme.textContrast,
+              color: theme.text.contrast,
               fontSize: 14,
               fontWeight: 'bold',
             },

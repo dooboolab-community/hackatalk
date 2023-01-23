@@ -8,7 +8,7 @@ import {useTheme} from 'dooboo-ui';
 
 const StyledLabelText = styled.Text<{focused: boolean}>`
   color: ${({focused, theme}): string =>
-    focused ? theme.primary : theme.disabled};
+    focused ? theme.role.primary : theme.text.disabled};
   margin-bottom: 8px;
   font-size: 12px;
 `;
@@ -26,7 +26,7 @@ const StyledTextInputContainer = styled.View<{isFocused?: boolean}>`
   align-items: center;
   border-width: 1px;
   border-color: ${({isFocused, theme}): string =>
-    isFocused ? theme.primary : theme.line};
+    isFocused ? theme.role.primary : theme.bg.border};
   border-radius: 3px;
   margin-bottom: 8px;
 `;
@@ -34,7 +34,7 @@ const StyledTextInputContainer = styled.View<{isFocused?: boolean}>`
 const StyledTextInput = styled.TextInput`
   flex: 1;
   align-self: stretch;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 16px;
   padding: 22px 20px;
   border: none;
@@ -45,7 +45,7 @@ const StyledTextInput = styled.TextInput`
 
 const StyledStatusMark = styled(Ionicons)(({theme}) => ({
   size: 24,
-  color: theme.secondary,
+  color: theme.role.secondary,
   paddingRight: '5%',
 }));
 
@@ -86,7 +86,9 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
         <StyledTextInput
           ref={ref}
           testID={props.testID}
-          placeholderTextColor={focused ? theme.primary : theme.placeholder}
+          placeholderTextColor={
+            focused ? theme.role.primary : theme.text.placeholder
+          }
           underlineColorAndroid="transparent" // android fix
           autoCapitalize="none"
           autoCorrect={false}
@@ -99,7 +101,7 @@ function Shared(props: Props, ref: Ref<any>): React.ReactElement {
           // onSubmitEditing={this.props.onSubmitEditing}
           returnKeyType={props.returnKeyType}
           secureTextEntry={props.isPassword}
-          textContentType="none" // to disable autoifill on iOS
+          textContentType="none" // to disable autofill on iOS
         />
         {!!props.txt && !props.error && (
           <StyledStatusMark name="md-checkmark" />

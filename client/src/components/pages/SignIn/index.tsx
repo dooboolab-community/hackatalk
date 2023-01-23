@@ -64,7 +64,7 @@ const AnimatedTouchableOpacity =
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Wrapper = styled.View`
@@ -78,7 +78,7 @@ const LogoWrapper = styled.View`
 
 const StyledLogoText = styled.Text`
   align-self: flex-start;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 20px;
   font-weight: bold;
   margin-left: 6px;
@@ -93,12 +93,13 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 16px;
-  margin-bottom: 28px;
+  margin-top: 8px;
+  margin-bottom: 18px;
   align-self: center;
 `;
 
 const FindPwText = styled.Text`
-  color: ${({theme}) => theme.button};
+  color: ${({theme}) => theme.button.primary.bg};
   text-decoration-line: underline;
 `;
 
@@ -391,16 +392,15 @@ const SignIn: FC = () => {
             direction="row"
             testID="input-email"
             styles={{
-              container: {borderColor: theme.text},
+              container: {paddingVertical: 20},
               label: {width: 80},
               input: {
-                color: theme.text,
-                height: 52,
+                color: theme.text.basic,
               },
             }}
-            style={{marginBottom: 4}}
+            style={{marginBottom: 4, padding: 0}}
             label={getString('EMAIL')}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             placeholder="hello@example.com"
             value={email}
             onChangeText={(text: string): void => {
@@ -414,16 +414,13 @@ const SignIn: FC = () => {
             testID="input-password"
             direction="row"
             styles={{
-              container: {borderColor: theme.text},
+              container: {paddingVertical: 20},
               label: {width: 80},
-              input: {
-                color: theme.text,
-                height: 52,
-              },
+              input: {color: theme.text.basic},
             }}
-            style={{marginBottom: 20}}
+            style={{marginBottom: 28, padding: 0}}
             label={getString('PASSWORD')}
-            colors={{focused: theme.text}}
+            colors={{focused: theme.text.basic}}
             placeholder="******"
             value={password}
             onChangeText={(text: string): void => {
@@ -443,8 +440,8 @@ const SignIn: FC = () => {
                 container: css`
                   border-width: 1px;
                   border-radius: 0px;
-                  background-color: ${theme.paper};
-                  border-color: ${theme.button};
+                  background-color: ${theme.bg.paper};
+                  border-color: ${theme.button.primary.bg};
                   border-width: 1px;
 
                   flex: 1;
@@ -452,12 +449,12 @@ const SignIn: FC = () => {
                   justify-content: center;
                 `,
                 text: css`
-                  color: ${theme.button};
+                  color: ${theme.button.primary.bg};
                   font-size: 14px;
                   font-weight: bold;
                 `,
                 hovered: css`
-                  border-color: ${theme.text};
+                  border-color: ${theme.text.basic};
                 `,
               }}
               text={getString('SIGN_UP')}
@@ -473,8 +470,8 @@ const SignIn: FC = () => {
                   border-width: 1px;
                   border-radius: 0px;
                   height: 52px;
-                  background-color: ${theme.button};
-                  border-color: ${theme.button};
+                  background-color: ${theme.button.primary.bg};
+                  border-color: ${theme.button.primary.bg};
 
                   flex: 1;
                   align-self: stretch;
@@ -485,10 +482,10 @@ const SignIn: FC = () => {
                 text: css`
                   font-size: 14px;
                   font-weight: bold;
-                  color: ${theme.textContrast};
+                  color: ${theme.text.contrast};
                 `,
                 hovered: css`
-                  border-color: ${theme.text};
+                  border-color: ${theme.text.basic};
                 `,
               }}
               text={getString('LOGIN')}

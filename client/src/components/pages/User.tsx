@@ -22,7 +22,7 @@ import {userQuery} from '../../relay/queries/User';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -87,13 +87,13 @@ const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
         {typeString}
       </Typography.Body2>
       <ParsedText
-        style={{color: theme.text}}
+        style={{color: theme.text.basic}}
         parse={[
           {
             type: 'url',
             onPress: (url: string) => Linking.openURL(url),
             style: {
-              color: theme.button,
+              color: theme.button.primary.bg,
               textDecorationLine: 'underline',
             },
           },
@@ -172,7 +172,7 @@ const User = ({queryReference}: UserProps): ReactElement | null => {
           <Typography.Body2 style={{fontStyle: 'italic', marginTop: 4}}>
             {user.statusMessage}
           </Typography.Body2>
-          <Typography.Body2 style={{marginTop: 4, color: theme.primary}}>
+          <Typography.Body2 style={{marginTop: 4, color: theme.role.primary}}>
             {profile?.organization}
           </Typography.Body2>
         </View>

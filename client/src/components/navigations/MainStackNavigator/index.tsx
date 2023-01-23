@@ -75,6 +75,7 @@ function getSimpleHeader(
 ): StackNavigationOptions {
   return {
     headerTitle: title,
+    headerBackTitle: getString('BACK'),
     headerTintColor: 'white',
     headerStyle: {
       backgroundColor: theme.header,
@@ -200,7 +201,7 @@ function MainStackNavigator(): ReactElement {
       initialRouteName="MainTab"
       screenOptions={{
         headerBackTitle: '',
-        cardStyle: {backgroundColor: theme.background},
+        cardStyle: {backgroundColor: theme.bg.basic},
       }}
     >
       <Stack.Screen
@@ -270,7 +271,7 @@ function MainNavigator(): ReactElement {
       style={{
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
       }}
     >
       <StatusBarBrightness />

@@ -28,7 +28,7 @@ const ITEM_CNT = 20;
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
   align-items: center;
   justify-content: center;
 `;
