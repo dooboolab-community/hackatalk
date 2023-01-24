@@ -22,7 +22,7 @@ import WebView from '../pages/WebView';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import linking from './linking';
 import {usePreloadedQuery} from 'react-relay';
-import {useTheme} from 'dooboo-ui';
+import {useTheme} from '@dooboo-ui/theme';
 
 export type RootStackParamList = {
   default: undefined;

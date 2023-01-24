@@ -6,7 +6,7 @@ import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type {DoobooTheme} from '@dooboo-ui/theme';
+import type {DoobooThemeParams} from '@dooboo-ui/theme';
 import {FontAwesome} from '@expo/vector-icons';
 import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import Modal from 'react-native-modalbox';
@@ -111,7 +111,7 @@ const Settings: FC = () => {
 
   const renderSectionItem = (
     option: SettingsOption,
-    themeProps: DoobooTheme,
+    themeProps: DoobooThemeParams,
   ): React.ReactElement => {
     const isEmailUser = (user?.profile?.authType || 'email') === 'email';
 
@@ -128,7 +128,7 @@ const Settings: FC = () => {
           <FontAwesome
             name="angle-right"
             size={24}
-            color={themeProps.text.basic}
+            color={themeProps?.text?.basic}
           />
         ) : null}
       </ItemContainer>
