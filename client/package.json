@@ -3,7 +3,7 @@
   "private": true,
   "version": "2.2.0",
   "main": "node_modules/expo/AppEntry.js",
-  "description": "Opensource chat app",
+  "description": "Open source chat app",
   "author": "dooboolab",
   "license": "GPL-3.0-only",
   "scripts": {

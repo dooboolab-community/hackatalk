@@ -40,12 +40,18 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "checkmark",
+    "codecov",
+    "codegen",
     "doobooui",
     "ellipsize",
     "Hacka",
+    "immer",
     "Ionicons",
+    "mockdate",
     "modalbox",
+    "predeploy",
     "refetchable",
+    "svgr",
     "UNBAN",
     "uploadables"
   ]
