@@ -1,15 +1,16 @@
 import {Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
-import React, {FC, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {graphql, useFragment} from 'react-relay';
 
+import type {FC} from 'react';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import Image from 'react-native-scalable-image';
-import {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
+import type {MessageListItem_message$key} from '../../__generated__/MessageListItem_message.graphql';
 import ParsedText from 'react-native-parsed-text';
-import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import type {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import {SharedElement} from 'react-navigation-shared-element';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {User} from '../../types/graphql';
+import type {User} from '../../types/graphql';
 import VideoPlayer from './VideoPlayer';
 import {colors} from '../../theme';
 import {getString} from '../../../STRINGS';
@@ -73,24 +74,24 @@ const StyledPeerTextMessage = styled.Text`
 `;
 
 const StyledPhotoContainer = styled.View`
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.text.disabled};
   border-width: 1px;
 `;
 
 const StyledTextPeerName = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   margin-bottom: 2px;
 `;
 
 const StyledMediaError = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.danger};
+  color: ${({theme}) => theme.role.danger};
 `;
 
 const StyledTextPeerDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.textDisabled};
+  color: ${({theme}) => theme.text.disabled};
   margin-right: 20px;
   margin-top: 4px;
 `;
@@ -106,7 +107,7 @@ const WrapperMy = styled.View<{shouldShowDateMy: boolean}>`
 
 const StyledTextDate = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.textDisabled};
+  color: ${({theme}) => theme.text.disabled};
   margin-top: 4px;
   margin-right: 20px;
 `;
@@ -342,7 +343,7 @@ const MessageListItem: FC<Props> = ({
             <ImageSender
               thumbURL={sender?.thumbURL || sender?.photoURL}
               isSamePeerMsg={!!isPrevMessageSameUser}
-              fontColor={theme.text}
+              fontColor={theme.text.basic}
             />
           </TouchableOpacity>
         </View>

@@ -1,17 +1,19 @@
 import 'react-native';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
-import {RenderAPI, render} from '@testing-library/react-native';
 import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
-import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
-import {MainStackParamList} from '../../navigations/MainStackNavigator';
+import type {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Page from '../User';
-import {ReactElement} from 'react';
-import {User} from '../../../types/graphql';
+import type {ReactElement} from 'react';
+import type {RenderAPI} from '@testing-library/react-native';
+import type {RouteProp} from '@react-navigation/core';
+import type {User} from '../../../types/graphql';
+import type mockReactNavigation from '@react-navigation/core';
+import {render} from '@testing-library/react-native';
 
 let props: any;
 let component: ReactElement;

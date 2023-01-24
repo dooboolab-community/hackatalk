@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
 import {render, within} from '@testing-library/react-native';
 
 import ComponentWrapper from '../ComponentWrapper';
+import type {FC} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 
 describe('ComponentWrapper', () => {

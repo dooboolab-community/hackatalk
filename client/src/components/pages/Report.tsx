@@ -1,18 +1,20 @@
 import {Alert, Platform, SafeAreaView} from 'react-native';
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import {
+import type {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import type {
   ReportCreateReportMutation,
   ReportCreateReportMutation$data,
 } from '../../__generated__/ReportCreateReportMutation.graphql';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import styled, {css} from '@emotion/native';
+import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {Report} from '../../types/graphql';
+import type {FC} from 'react';
+import type {Report} from '../../types/graphql';
+import type {RouteProp} from '@react-navigation/core';
 import {createReport} from '../../relay/queries/Report';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -72,7 +74,7 @@ const ReportScreen: FC = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
         paddingBottom: 20,
       }}
     >
@@ -84,24 +86,18 @@ const ReportScreen: FC = () => {
       >
         <InnerContainer>
           <EditText
+            decoration="boxed"
             key="report-input"
             testID="input-status"
             style={{
               marginTop: 40,
               minHeight: 80,
             }}
-            styles={{
-              container: {
-                borderColor: theme.text,
-              },
-            }}
-            textInputProps={{
-              multiline: true,
-            }}
-            focusColor={theme.text}
+            multiline
+            colors={{focused: theme.text.basic}}
             secureTextEntry
             onChangeText={(txt: string): void => setMessage(txt)}
-            labelText={name}
+            label={name}
             value={message}
             placeholder={getString('REPORT_DESCRIPTION')}
           />
@@ -119,12 +115,12 @@ const ReportScreen: FC = () => {
                 margin-right: 24px;
               `,
               {
-                backgroundColor: theme.button,
-                borderColor: theme.button,
+                backgroundColor: theme.button.primary.bg,
+                borderColor: theme.button.primary.bg,
               },
             ],
             text: {
-              color: theme.textContrast,
+              color: theme.text.contrast,
               fontSize: 14,
               fontWeight: 'bold',
             },

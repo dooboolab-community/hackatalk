@@ -1,19 +1,21 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC} from 'react';
-import {RouteProp, useRoute} from '@react-navigation/core';
 import type {
   UserVerifyEmailMutation,
   UserVerifyEmailMutation$data,
 } from '../../__generated__/UserVerifyEmailMutation.graphql';
 
 import {Alert} from 'react-native';
-import {AuthStackParamList} from '../navigations/AuthStackNavigator';
+import type {AuthStackParamList} from '../navigations/AuthStackNavigator';
+import type {FC} from 'react';
+import React from 'react';
+import type {RouteProp} from '@react-navigation/core';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
 import {sendVerification} from '../../relay/queries/User';
 import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import {useMutation} from 'react-relay';
+import {useRoute} from '@react-navigation/core';
 
 const Container = styled.View`
   flex: 1;
@@ -25,7 +27,7 @@ const Container = styled.View`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 18px;
   text-align: center;
   line-height: 28px;
@@ -33,7 +35,7 @@ const StyledText = styled.Text`
 
 const StyledHighlightText = styled.Text`
   font-size: 24px;
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
 `;
 
 const Page: FC = () => {
@@ -90,7 +92,7 @@ const Page: FC = () => {
         style={{marginTop: 80}}
         styles={{
           container: {
-            backgroundColor: theme.primary,
+            backgroundColor: theme.role.primary,
             borderWidth: 0,
             height: 48,
 
@@ -99,7 +101,7 @@ const Page: FC = () => {
           },
           text: {
             marginHorizontal: 40,
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 16,
             textAlign: 'center',
           },

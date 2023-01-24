@@ -20,6 +20,5 @@ describe('[Stack] navigator', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });

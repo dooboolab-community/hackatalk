@@ -7,24 +7,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Channel, User, UserConnection, UserEdge} from '../../types/graphql';
-import {
+import type {
+  Channel,
+  User,
+  UserConnection,
+  UserEdge,
+} from '../../types/graphql';
+import type {
   ChannelCreateFriendsPaginationQuery,
   ChannelCreateFriendsPaginationQuery$variables,
 } from '../../__generated__/ChannelCreateFriendsPaginationQuery.graphql';
-import {
+import type {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
+import type {FC, ReactElement} from 'react';
 import {IC_CIRCLE_X, IC_NO_IMAGE} from '../../utils/Icons';
-import React, {
-  FC,
-  ReactElement,
-  Suspense,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, {Suspense, useLayoutEffect, useMemo, useState} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -32,11 +31,11 @@ import {
   usePaginationFragment,
 } from 'react-relay';
 
-import {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
+import type {ChannelCreate_friends$key} from '../../__generated__/ChannelCreate_friends.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import ErroView from '../uis/ErrorView';
-import {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {FriendsQuery} from '../../__generated__/FriendsQuery.graphql';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import UserListItem from '../uis/UserListItem';
 import {findOrCreatePrivateChannel} from '../../relay/queries/Channel';
@@ -55,7 +54,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
 `;
 
@@ -170,7 +169,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
             style={{
               fontSize: 12,
               marginTop: 4,
-              color: theme.text,
+              color: theme.text.basic,
             }}
           >
             {friendArg.nickname || friendArg.name}
@@ -252,6 +251,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
         keyExtractor={(_, index): string => index.toString()}
         data={friendEdges as UserEdge[]}
         renderItem={renderItem}
+        // eslint-disable-next-line react/no-unstable-nested-components
         ListHeaderComponent={(): ReactElement => {
           return (
             <ScrollView
@@ -347,6 +347,7 @@ const ChannelCreate: FC = () => {
     };
 
     navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: (): ReactElement => (
         <TouchableOpacity
           testID="touch-done"
@@ -361,7 +362,7 @@ const ChannelCreate: FC = () => {
           >
             <Text
               style={{
-                color: selectedUsers.length === 0 ? theme.disabled : 'white',
+                color: selectedUsers.length === 0 ? theme.bg.disabled : 'white',
                 fontSize: 14,
                 fontWeight: 'bold',
               }}

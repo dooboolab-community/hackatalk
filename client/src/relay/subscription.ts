@@ -1,6 +1,7 @@
-import {Observable, RequestParameters, Variables} from 'relay-runtime';
+import type {RequestParameters, Variables} from 'relay-runtime';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Observable} from 'relay-runtime';
 import {SUBSCRIPTION_URL} from '../../config';
 import {createClient} from 'graphql-ws';
 

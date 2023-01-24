@@ -5,6 +5,7 @@
   "AGREE": "Agree",
   "APP_UPDATE": "App Update",
   "APP_UPDATE_DESC": "There is minor updates. These updates can be reflected by reloading the app. Do you want to reflect now?",
+  "BACK": "Back",
   "BAN_USER": "Ban User",
   "BAN_USER_TEXT": "Do you want to ban current user? If then, you will not receive any messages from the user.",
   "BLOCKED_USER": "Blocked User",

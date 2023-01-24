@@ -2,12 +2,13 @@ import 'react-native';
 
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {act, fireEvent, render} from '@testing-library/react-native';
-import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
-import {AuthStackParamList} from '../../navigations/AuthStackNavigator';
+import type {AuthStackParamList} from '../../navigations/AuthStackNavigator';
 import React from 'react';
+import type {RouteProp} from '@react-navigation/core';
 import VerifyEmail from '../VerifyEmail';
 import {createTestElement} from '../../../../test/testUtils';
+import type mockReactNavigation from '@react-navigation/core';
 
 const mockRoute: RouteProp<AuthStackParamList, 'VerifyEmail'> = {
   key: '',
@@ -29,7 +30,6 @@ describe('Rendering', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

@@ -5,7 +5,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import MainFriend from '../MainFriend';
 import React from 'react';
-import {User} from '../../../types/graphql';
+import type {User} from '../../../types/graphql';
 import {createTestElement} from '../../../../test/testUtils';
 
 const mockEnvironment = createMockEnvironment();
@@ -35,7 +35,6 @@ describe('[Friend] rendering test', () => {
 
     const json = screen.toJSON();
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

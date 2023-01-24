@@ -1,26 +1,28 @@
 import * as Linking from 'expo-linking';
 
-import AuthStack, {AuthStackParamList} from './AuthStackNavigator';
-import MainStack, {MainStackParamList} from './MainStackNavigator';
-import {
-  NavigationContainer,
-  NavigatorScreenParams,
-} from '@react-navigation/native';
 import {Platform, View} from 'react-native';
-import {PreloadedQuery, usePreloadedQuery} from 'react-relay';
-import React, {FC, Suspense, useEffect} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {meQuery, useAuthContext} from '../../providers/AuthProvider';
 
-import {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
+import type {AuthProviderMeQuery} from '../../__generated__/AuthProviderMeQuery.graphql';
+import AuthStack from './AuthStackNavigator';
+import type {AuthStackParamList} from './AuthStackNavigator';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
+import type {FC} from 'react';
 import ImageSlider from '../pages/ImageSlider';
+import MainStack from './MainStackNavigator';
+import type {MainStackParamList} from './MainStackNavigator';
+import {NavigationContainer} from '@react-navigation/native';
+import type {NavigatorScreenParams} from '@react-navigation/native';
 import NotFound from '../pages/NotFound';
+import type {PreloadedQuery} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {StackNavigationProp} from '@react-navigation/stack';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import WebView from '../pages/WebView';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import linking from './linking';
-import {useTheme} from 'dooboo-ui';
+import {usePreloadedQuery} from 'react-relay';
+import {useTheme} from '@dooboo-ui/theme';
 
 export type RootStackParamList = {
   default: undefined;
@@ -65,12 +67,12 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
         })}
         theme={{
           colors: {
-            background: theme.background,
-            border: theme.disabled,
-            card: theme.paper,
-            primary: theme.primary,
-            notification: theme.primary,
-            text: theme.text,
+            background: theme.bg.basic,
+            border: theme.text.disabled,
+            card: theme.bg.paper,
+            primary: theme.role.primary,
+            notification: theme.role.primary,
+            text: theme.text.basic,
           },
           dark: true,
         }}
@@ -79,10 +81,10 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
           initialRouteName="AuthStack"
           screenOptions={{
             headerStyle: {
-              backgroundColor: theme.background,
+              backgroundColor: theme.bg.basic,
             },
-            headerTitleStyle: {color: theme.text},
-            headerTintColor: theme.primary,
+            headerTitleStyle: {color: theme.text.basic},
+            headerTintColor: theme.role.primary,
             headerShown: false,
           }}
         >
@@ -166,7 +168,7 @@ const RootNavigatorWrapper: FC = () => {
       style={{
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: theme.background,
+        backgroundColor: theme.bg.basic,
       }}
     >
       <Suspense fallback={<CustomLoadingIndicator />}>

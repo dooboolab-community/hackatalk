@@ -4,13 +4,12 @@ import {
   ActivityIndicator,
   Alert,
   Image,
-  ListRenderItem,
   Platform,
   Text,
-  TextInputKeyPressEventData,
   TouchableOpacity,
   View,
 } from 'react-native';
+import type {FC, ReactElement} from 'react';
 import {
   IC_MSG_CAMERA,
   IC_MSG_IMAGE,
@@ -23,30 +22,28 @@ import {
   launchCameraAsync,
   launchMediaLibraryAsync,
 } from '../../utils/ImagePicker';
+import type {ListRenderItem, TextInputKeyPressEventData} from 'react-native';
 import {
   MESSAGE_RESIZED_IMAGE_HEIGHT,
   MESSAGE_RESIZED_IMAGE_WIDTH,
   UPLOAD_FILE_SIZE_LIMIT,
 } from '../../utils/const';
-import {
+import type {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import {
+import type {
   MessagesQuery,
   MessagesQuery$data,
   MessagesQuery$variables,
 } from '../../__generated__/MessagesQuery.graphql';
 import React, {
-  FC,
-  ReactElement,
   Suspense,
   useEffect,
   useLayoutEffect,
   useMemo,
   useState,
 } from 'react';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import {createMessage, messagesQuery} from '../../relay/queries/Message';
 import {
   createMessageOptimisticUpdater,
@@ -58,16 +55,18 @@ import {
   useMutation,
   usePaginationFragment,
 } from 'react-relay';
+import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
+import type {ChannelQuery} from '../../__generated__/ChannelQuery.graphql';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import GiftedChat from '../uis/GiftedChat';
-import {ImagePickerResult} from 'expo-image-picker';
+import type {ImagePickerResult} from 'expo-image-picker';
 import type {MessageComponent_message$key} from '../../__generated__/MessageComponent_message.graphql';
 import type {MessageCreateMutation} from '../../__generated__/MessageCreateMutation.graphql';
 import MessageListItem from '../uis/MessageListItem';
-import {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import type {RootStackNavigationProps} from 'components/navigations/RootStackNavigator';
+import type {RouteProp} from '@react-navigation/core';
 import {channelQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import {nanoid} from 'nanoid/non-secure';
@@ -87,7 +86,7 @@ const ITEM_CNT = 20;
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -255,11 +254,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         media = await launchMediaLibraryAsync();
       }
 
-      if (media && !media.cancelled) {
+      if (media && !media.canceled) {
         if (Platform.OS === 'web' && !media.type) {
-          const mediaType = media.uri.substring(
-            media.uri.indexOf(':') + 1,
-            media.uri.indexOf(';'),
+          const mediaType = media.assets[0].uri.substring(
+            media.assets[0].uri.indexOf(':') + 1,
+            media.assets[0].uri.indexOf(';'),
           );
 
           media.type = mediaType.split('/')[0] as 'video' | 'image' | undefined;
@@ -270,14 +269,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
 
           if (media.type === 'video') {
             response = await uploadSingleAsync(
-              media.uri,
+              media.assets[0].uri,
               'messages',
               `_${channelId}_${new Date().toISOString()}`,
             );
           } else {
             const resizedImage =
               await resizePhotoToMaxDimensionsAndCompressAsPNG({
-                uri: media.uri,
+                uri: media.assets[0].uri || '',
                 width: MESSAGE_RESIZED_IMAGE_WIDTH,
                 height: MESSAGE_RESIZED_IMAGE_HEIGHT,
               });
@@ -340,7 +339,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     }
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item, index}) => {
+  const renderItem: ListRenderItem<(typeof nodes)[number]> = ({
+    item,
+    index,
+  }) => {
     const prevItem = nodes[index + 1];
     const nextItem = nodes[index - 1];
 
@@ -423,14 +425,14 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
   };
 
   const parseTagText = (
-    inputedText: string,
+    inputText: string,
   ): {isTag: boolean; parsedText: string} => {
     let result = {isTag: false, parsedText: ''};
 
-    const cursorPrefix = inputedText.slice(0, cursor.start + 1);
+    const cursorPrefix = inputText.slice(0, cursor.start + 1);
     const tagIdx = cursorPrefix.lastIndexOf('@');
     if (tagIdx !== -1) {
-      if (tagIdx === 0 || (tagIdx > 0 && inputedText[tagIdx - 1] === ' ')) {
+      if (tagIdx === 0 || (tagIdx > 0 && inputText[tagIdx - 1] === ' ')) {
         if (lastKeyEvent.key === 'Backspace') {
           result = {
             isTag: true,
@@ -445,21 +447,21 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
     return result;
   };
 
-  const getTagUsersByText = (inputedText: string): User[] => {
+  const getTagUsersByText = (inputText: string): User[] => {
     let result = [];
-    if (inputedText === '') {
+    if (inputText === '') {
       result = users;
     } else {
       result = users.filter((item) => {
-        return item?.name?.includes(inputedText);
+        return item?.name?.includes(inputText);
       });
     }
 
     return result;
   };
 
-  const handleTagUsers = (inputedText: string): void => {
-    const parsedTagText = parseTagText(inputedText);
+  const handleTagUsers = (inputText: string): void => {
+    const parsedTagText = parseTagText(inputText);
 
     const paredUsers = parsedTagText.isTag
       ? getTagUsersByText(parsedTagText.parsedText)
@@ -472,10 +474,10 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
       selectTagUser={selectTagUser}
       tagUsers={tagUsers}
       messages={nodes}
-      borderColor={theme.disabled}
+      borderColor={theme.bg.disabled}
       onEndReached={onEndReached}
-      backgroundColor={theme.background}
-      fontColor={theme.text}
+      backgroundColor={theme.bg.basic}
+      fontColor={theme.text.basic}
       keyboardOffset={Platform.select({
         ios: insets.bottom + 56,
         android: insets.bottom,
@@ -515,9 +517,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
         handleTagUsers(message);
       }}
       openedOptionView={
-        <SvgArrDown width={18} height={18} stroke={theme.text} />
+        <SvgArrDown width={18} height={18} stroke={theme.text.basic} />
       }
-      closedOptionView={<SvgArrUp width={18} height={18} stroke={theme.text} />}
+      closedOptionView={
+        <SvgArrUp width={18} height={18} stroke={theme.text.basic} />
+      }
       emptyItem={<EmptyListItem>{getString('NO_MESSAGE')}</EmptyListItem>}
       renderViewMenu={(): React.ReactElement => (
         <View style={{flexDirection: 'row'}}>
@@ -564,11 +568,11 @@ const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
             {isImageUploading ? (
               <ActivityIndicator
                 size="small"
-                color={theme.info}
+                color={theme.role.info}
                 style={{marginRight: 14}}
               />
             ) : (
-              <SvgSend fill={theme.button} />
+              <SvgSend fill={theme.button.primary.bg} />
             )}
           </View>
         </TouchableOpacity>

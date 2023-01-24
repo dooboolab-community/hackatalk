@@ -1,5 +1,5 @@
 import {Button, EditText, useTheme} from 'dooboo-ui';
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import type {
   UserFindPwMutation,
   UserFindPwMutation$data,
@@ -8,7 +8,8 @@ import {showAlertForError, validateEmail} from '../../utils/common';
 import styled, {css} from '@emotion/native';
 
 import {Alert} from 'react-native';
-import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import type {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import type {ReactElement} from 'react';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -18,14 +19,14 @@ import {useNavigation} from '@react-navigation/core';
 const Container = styled.View`
   flex: 1;
   padding: 0 32px;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
 `;
 
 const ButtonWrapper = styled.View`
   width: 100%;
 `;
 
-const Page: FC = () => {
+const Page = (): ReactElement => {
   const navigation = useNavigation<AuthStackNavigationProps<'FindPw'>>();
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
@@ -35,7 +36,7 @@ const Page: FC = () => {
 
   const {theme} = useTheme();
 
-  const onFindPw = async (): Promise<void> => {
+  const findPw = async (): Promise<void> => {
     if (!validateEmail(email)) {
       setErrorEmail(getString('EMAIL_FORMAT_NOT_VALID'));
 
@@ -69,35 +70,35 @@ const Page: FC = () => {
       <EditText
         testID="input-email"
         style={{marginTop: 32, marginBottom: 20}}
-        styles={{
-          container: {borderColor: theme.text},
-          input: {color: theme.text},
-        }}
-        focusColor={theme.text}
-        labelText={getString('EMAIL')}
+        styles={{container: {height: 80}}}
+        colors={{focused: theme.text.basic}}
+        label={getString('EMAIL')}
         placeholder="hello@example.com"
         value={email}
         onChangeText={(text: string): void => {
           setEmail(text.trim());
           setErrorEmail('');
         }}
-        errorText={errorEmail}
-        onSubmitEditing={onFindPw}
+        error={errorEmail}
+        onSubmitEditing={findPw}
       />
       <ButtonWrapper>
         <Button
           testID="btn-find-pw"
           loading={isInFlight}
-          onPress={onFindPw}
+          onPress={findPw}
           styles={{
             container: css`
               height: 52px;
-              background-color: ${theme.button};
-              border-width: 1px;
+              background-color: ${theme.button.primary.bg};
               border-radius: 0px;
             `,
-            text: {color: 'black', fontSize: 14, fontWeight: 'bold'},
-            hovered: {borderColor: theme.text},
+            text: {
+              color: theme.button.primary.text,
+              fontSize: 14,
+              fontWeight: 'bold',
+            },
+            hovered: {borderColor: theme.text.basic},
           }}
           text={getString('FIND_PW')}
         />

@@ -1,8 +1,10 @@
-import {FlatList, ListRenderItem, View} from 'react-native';
-import React, {FC, Suspense, useMemo} from 'react';
+import {FlatList, View} from 'react-native';
+import React, {Suspense, useMemo} from 'react';
 
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
+import type {FC} from 'react';
+import type {ListRenderItem} from 'react-native';
 import type {UserBlockedUsersQuery} from '../../__generated__/UserBlockedUsersQuery.graphql';
 import UserListItem from '../uis/UserListItem';
 import {blockedUsersQuery} from '../../relay/queries/User';
@@ -36,7 +38,9 @@ const ContentContainer: FC = () => {
     );
   }, [response]);
 
-  const renderItem: ListRenderItem<typeof blockedUsers[number]> = ({item}) => {
+  const renderItem: ListRenderItem<(typeof blockedUsers)[number]> = ({
+    item,
+  }) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,

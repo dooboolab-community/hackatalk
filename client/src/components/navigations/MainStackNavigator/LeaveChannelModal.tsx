@@ -1,21 +1,23 @@
-import {
+import type {
   LeaveChannelModalContext,
   LeaveChannelModalState,
-  useLeaveChannelContext,
 } from '../../../providers/LeaveChannelModalProvider';
-import React, {FC, useEffect, useState} from 'react';
-import {StyleProp, TouchableHighlight, View, ViewStyle} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import type {StyleProp, ViewStyle} from 'react-native';
+import {TouchableHighlight, View} from 'react-native';
 import {Typography, TypographyInverted} from 'dooboo-ui';
 
-import {ChannelLeaveChannelMutation} from '../../../__generated__/ChannelLeaveChannelMutation.graphql';
+import type {ChannelLeaveChannelMutation} from '../../../__generated__/ChannelLeaveChannelMutation.graphql';
+import type {FC} from 'react';
 import Modal from 'react-native-modalbox';
-import {RecordSourceSelectorProxy} from 'relay-runtime';
+import type {RecordSourceSelectorProxy} from 'relay-runtime';
 import {deleteChannelAndUpdate} from '../../../relay/updaters';
 import {getString} from '../../../../STRINGS';
 import {leaveChannel} from '../../../relay/queries/Channel';
 import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
+import {useLeaveChannelContext} from '../../../providers/LeaveChannelModalProvider';
 import {useMutation} from 'react-relay';
 import {useSnackbarContext} from '../../../providers';
 
@@ -27,8 +29,8 @@ const ModalContainer = styled.View`
 
 const ModalViewContainer = styled.View`
   padding: 40px;
-  background-color: ${({theme}) => theme.background};
-  border: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.bg.basic};
+  border: ${({theme}) => theme.role.primary};
   border-width: 0.3px;
   justify-content: center;
   align-items: center;
@@ -43,7 +45,7 @@ const ModalBtnContainer = styled.View`
 `;
 
 const ModalBtnStyle = styled.View`
-  background-color: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.role.primary};
   opacity: 0.8;
   width: 120px;
   height: 40px;

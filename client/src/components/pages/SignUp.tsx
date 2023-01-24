@@ -20,15 +20,9 @@ import {
   Typography,
   useTheme,
 } from 'dooboo-ui';
+import type {FC, ReactElement} from 'react';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import React, {
-  FC,
-  ReactElement,
-  useCallback,
-  useLayoutEffect,
-  useState,
-} from 'react';
-import {UseMutationConfig, useMutation} from 'react-relay';
+import React, {useCallback, useLayoutEffect, useState} from 'react';
 import {
   launchCameraAsync,
   launchMediaLibraryAsync,
@@ -40,21 +34,23 @@ import {
   validatePassword,
 } from '../../utils/common';
 
-import {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
+import type {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
-import {Uploadable} from 'relay-runtime';
-import {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
-import {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
+import type {Uploadable} from 'relay-runtime';
+import type {UseMutationConfig} from 'react-relay';
+import type {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
+import type {UserVerifyEmailMutation} from '../../__generated__/UserVerifyEmailMutation.graphql';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
 import {resizePhotoToMaxDimensionsAndCompressAsPNG} from '../../utils/image';
 import styled from '@emotion/native';
 import {useActionSheet} from '@expo/react-native-action-sheet';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Wrapper = styled.KeyboardAvoidingView`
@@ -110,8 +106,8 @@ const Page: FC = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_CAMERA) {
           const image = await launchCameraAsync();
 
-          if (image && !image.cancelled) {
-            setProfilePath(image.uri);
+          if (image && !image.canceled) {
+            setProfilePath(image.assets[0].uri || '');
           }
 
           return;
@@ -120,8 +116,8 @@ const Page: FC = () => {
         if (buttonIndex === BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY) {
           const image = await launchMediaLibraryAsync(true);
 
-          if (image && !image.cancelled) {
-            setProfilePath(image.uri);
+          if (image && !image.canceled) {
+            setProfilePath(image.assets[0].uri || '');
           }
         }
       },
@@ -338,108 +334,74 @@ const Page: FC = () => {
             )}
             <EditText
               testID="input-email"
-              styles={{
-                input: {color: theme.text},
-                container: {
-                  borderBottomColor: theme.line,
-                },
-              }}
-              focusColor={theme.text}
-              labelText={getString('EMAIL')}
+              colors={{focused: theme.text.basic}}
+              label={getString('EMAIL')}
               placeholder="hello@example.com"
               value={email}
               onChangeText={inputChangeHandlers.emailInput}
-              errorText={errorEmail}
+              error={errorEmail}
               onSubmitEditing={requestSignUp}
             />
             <EditText
               testID="input-password"
-              styles={{
-                input: {
-                  color: theme.text,
-                },
-                container: {
-                  borderColor: theme.text,
-                },
-              }}
-              focusColor={theme.text}
+              style={{marginTop: 32}}
+              styles={{input: {color: theme.text.basic}}}
+              colors={{focused: theme.text.basic}}
               placeholder="********"
-              labelText={getString('PASSWORD')}
+              label={getString('PASSWORD')}
               value={password}
               onChangeText={inputChangeHandlers.passwordInput}
-              style={{marginTop: 32}}
-              errorText={errorPassword}
+              error={errorPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
             />
             <EditText
               testID="input-confirm-password"
-              styles={{
-                input: {
-                  color: theme.text,
-                },
-                container: {
-                  borderBottomColor: theme.text,
-                  paddingVertical: 8,
-                },
-              }}
+              style={{marginTop: 32}}
+              styles={{container: {paddingVertical: 8}}}
               placeholder="********"
-              labelText={getString('CONFIRM_PASSWORD')}
+              label={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
               onChangeText={inputChangeHandlers.confirmPasswordInput}
-              style={{marginTop: 32}}
-              focusColor={theme.text}
-              errorText={errorConfirmPassword}
+              colors={{focused: theme.text.basic}}
+              error={errorConfirmPassword}
               onSubmitEditing={requestSignUp}
               secureTextEntry={true}
             />
             <EditText
               testID="input-name"
-              styles={{
-                input: {
-                  color: theme.text,
-                },
-                container: {
-                  borderColor: theme.text,
-                },
-              }}
-              labelText={getString('NAME')}
+              style={{padding: 0, marginTop: 32}}
+              styles={{input: {color: theme.text.basic}}}
+              label={getString('NAME')}
               placeholder={getString('NAME_HINT')}
-              focusColor={theme.text}
+              colors={{focused: theme.text.basic}}
               value={name}
               onChangeText={inputChangeHandlers.nameInput}
-              style={{marginTop: 32}}
-              errorText={errorName}
+              error={errorName}
               onSubmitEditing={requestSignUp}
             />
             <EditText
               testID="input-status"
-              type="column"
+              direction="column"
+              style={{marginTop: 32}}
               styles={{
-                input: {
-                  marginTop: 12,
-                  color: theme.text,
-                },
+                input: {marginTop: 12},
                 container: {
-                  borderColor: theme.text,
                   borderWidth: 1,
                   paddingHorizontal: 8,
                   paddingVertical: 12,
                 },
               }}
-              focusColor={theme.text}
-              labelText={getString('STATUS')}
+              colors={{focused: theme.text.basic}}
+              label={getString('STATUS')}
               placeholder={getString('STATUS_MSG_HINT')}
               value={statusMessage}
               onChangeText={(text: string): void => {
                 setStatusMessage(text);
               }}
-              style={{marginTop: 32}}
               onSubmitEditing={requestSignUp}
-              textInputProps={{
-                multiline: true,
-                maxLength: 60,
-              }}
+              multiline={true}
+              maxLength={60}
             />
           </ContentsWrapper>
           {process.env.NODE_ENV === 'test' && (

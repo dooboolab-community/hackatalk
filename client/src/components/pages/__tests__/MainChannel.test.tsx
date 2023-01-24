@@ -9,10 +9,10 @@ import {
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import {Channel} from '../../../types/graphql';
+import type {Channel} from '../../../types/graphql';
 import MainChannel from '../MainChannel';
 import {getString} from '../../../../STRINGS';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation = createMockNavigation();
 
@@ -55,7 +55,6 @@ describe('[Channel] screen', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 

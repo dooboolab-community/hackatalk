@@ -1,16 +1,12 @@
-import {
-  ImageSourcePropType,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from 'react-native';
+import type {ImageSourcePropType, ViewStyle} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {graphql, useFragment} from 'react-relay';
 
 import CheckBox from './CheckBox';
 import {FontAwesome} from '@expo/vector-icons';
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
-import {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
+import type {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
@@ -43,11 +39,11 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View<{isMe?: boolean}>`
-  background-color: ${({theme}) => theme.card};
+  background-color: ${({theme}) => theme.bg.card};
   height: 80px;
   border-bottom-width: 1px;
   border-color: ${(props) =>
-    props.isMe ? props.theme.disabled : props.theme.background};
+    props.isMe ? props.theme.bg.disabled : props.theme.bg.paper};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -73,7 +69,7 @@ const StatusTag = styled.View`
 const StyledImage = styled.Image<{isMe?: boolean}>`
   width: ${({isMe}) => (isMe ? '50px' : '40px')};
   height: ${(props) => (props.isMe ? '50px' : '40px')};
-  border-radius: ${(props) => (props.isMe ? '25px' : '20px')}; ;
+  border-radius: ${(props) => (props.isMe ? '25px' : '20px')};
 `;
 
 const StyledText = styled.Text`
@@ -81,14 +77,14 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 const StyledRightText = styled.Text`
   position: absolute;
   right: 20px;
   font-size: 12px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   max-width: 120px;
   padding: 4px 8px;
   overflow: hidden;
@@ -163,10 +159,10 @@ function Shared({
                 position: 'absolute',
                 right: 20,
               }}
-              backgroundColor={theme.background}
-              checkColor={theme.text}
-              inActiveColor={theme.disabled}
-              activeColor={theme.secondary}
+              backgroundColor={theme.bg.basic}
+              checkColor={theme.text.basic}
+              inActiveColor={theme.text.disabled}
+              activeColor={theme.role.secondary}
               hasChecked={checked}
               onToggle={onPress}
             />

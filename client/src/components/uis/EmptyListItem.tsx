@@ -1,6 +1,7 @@
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import React from 'react';
+import type {ViewStyle} from 'react-native';
 
 interface Styles {
   wrapper: ViewStyle;

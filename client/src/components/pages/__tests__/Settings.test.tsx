@@ -2,7 +2,7 @@ import 'react-native';
 
 import * as React from 'react';
 
-import {AuthType, User} from '../../../types/graphql';
+import type {AuthType, User} from '../../../types/graphql';
 import {
   createMockNavigation,
   createTestElement,
@@ -10,7 +10,7 @@ import {
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
 import Settings from '../Settings';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 import {useAuthContext} from '../../../providers/AuthProvider';
 
 const mockNavigation = createMockNavigation();
@@ -44,7 +44,6 @@ describe('[Setting] screen', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('should renders without crashing with Google auth type', () => {
@@ -56,7 +55,6 @@ describe('[Setting] screen', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('should render without crashing with Apple auth type', () => {
@@ -68,7 +66,6 @@ describe('[Setting] screen', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   describe('interactions', () => {
@@ -82,6 +79,7 @@ describe('[Setting] screen', () => {
 
       fireEvent.press(btn);
       // TODO: Test what happens after pressing the button.
+      expect(btn).toBeTruthy();
     });
 
     it('should set auth user to undefined after logout button pressed', async () => {

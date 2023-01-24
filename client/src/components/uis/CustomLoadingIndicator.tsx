@@ -1,6 +1,8 @@
-import {Animated, Easing, ImageStyle, StyleProp, View} from 'react-native';
-import React, {FC, useEffect, useState} from 'react';
+import {Animated, Easing, View} from 'react-native';
+import type {ImageStyle, StyleProp} from 'react-native';
+import React, {useEffect, useState} from 'react';
 
+import type {FC} from 'react';
 import {IC_ICON} from '../../utils/Icons';
 
 type Props = {

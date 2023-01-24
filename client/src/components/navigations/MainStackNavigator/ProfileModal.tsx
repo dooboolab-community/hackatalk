@@ -2,25 +2,22 @@ import {
   Alert,
   Animated,
   BackHandler,
-  BackHandlerStatic,
   Image,
-  StyleProp,
   TouchableOpacity,
   View,
-  ViewStyle,
 } from 'react-native';
-import {
+import type {BackHandlerStatic, StyleProp, ViewStyle} from 'react-native';
+import type {
   ChannelFindOrCreatePrivateChannelMutation,
   ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
 import {LoadingIndicator, useTheme} from 'dooboo-ui';
-import {
+import type {
   ModalState,
   ProfileModalContext,
-  useProfileContext,
 } from '../../../providers/ProfileModalProvider';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   addFriendMutation,
   deleteFriendMutation,
@@ -31,13 +28,14 @@ import {
 } from '../../../relay/queries/BlockedUser';
 import {graphql, useFragment, useMutation} from 'react-relay';
 
-import {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
-import {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
+import type {BlockedUserCreateMutation} from '../../../__generated__/BlockedUserCreateMutation.graphql';
+import type {BlockedUserDeleteMutation} from '../../../__generated__/BlockedUserDeleteMutation.graphql';
 import {ConnectionHandler} from 'relay-runtime';
+import type {FC} from 'react';
 import {FontAwesome} from '@expo/vector-icons';
-import {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
-import {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
-import {MainStackNavigationProps} from '.';
+import type {FriendAddMutation} from '../../../__generated__/FriendAddMutation.graphql';
+import type {FriendDeleteMutation} from '../../../__generated__/FriendDeleteMutation.graphql';
+import type {MainStackNavigationProps} from '.';
 import Modal from 'react-native-modalbox';
 import StatusMessageView from '../../uis/StatusMessageView';
 import {findOrCreatePrivateChannel} from '../../../relay/queries/Channel';
@@ -46,6 +44,7 @@ import {normalizeErrorString} from '../../../relay/util';
 import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
+import {useProfileContext} from '../../../providers/ProfileModalProvider';
 import {useSnackbarContext} from '../../../providers';
 
 const fragment = graphql`
@@ -70,10 +69,10 @@ const StyledImage = styled.Image`
   border-radius: 40px;
 `;
 
-const StyledViewBtns = styled.View`
+const StyledViewButtons = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({theme}) => theme.paper};
+  background-color: ${({theme}) => theme.bg.paper};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -82,7 +81,7 @@ const StyledViewBtns = styled.View`
 const StyledViewBtnDivider = styled.View`
   width: 0.5px;
   height: 48px;
-  background-color: ${({theme}) => theme.placeholder};
+  background-color: ${({theme}) => theme.bg.paper};
 `;
 
 const StyledTextDisplayName = styled.Text`
@@ -95,7 +94,7 @@ const StyledTextDisplayName = styled.Text`
 `;
 
 const StyledText = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 16px;
 `;
 
@@ -390,7 +389,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                   <FontAwesome
                     name="exclamation-circle"
                     size={24}
-                    color={theme.text}
+                    color={theme.text.basic}
                   />
                 </View>
               </TouchableOpacity>
@@ -443,7 +442,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
                     <FontAwesome
                       name="ban"
                       size={24}
-                      color={hasBlocked ? 'red' : theme.text}
+                      color={hasBlocked ? theme.role.danger : theme.text.basic}
                     />
                   </View>
                 </TouchableOpacity>
@@ -495,7 +494,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
         </TouchableOpacity>
 
         {!modalState?.hideButtons ? (
-          <StyledViewBtns>
+          <StyledViewButtons>
             {!modalState.isMe && (
               <>
                 {deleteFriendInFlight || addFriendInFlight ? (
@@ -531,14 +530,14 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
               ) : (
                 <StyledText
                   style={{
-                    color: theme.primary,
+                    color: theme.role.primary,
                   }}
                 >
                   {modalState.isMe ? getString('SELF_CHAT') : getString('CHAT')}
                 </StyledText>
               )}
             </TouchableOpacity>
-          </StyledViewBtns>
+          </StyledViewButtons>
         ) : null}
       </View>
       <Animated.View

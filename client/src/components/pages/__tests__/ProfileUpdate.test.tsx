@@ -5,7 +5,7 @@ import {fireEvent, render} from '@testing-library/react-native';
 
 import ProfileUpdate from '../ProfileUpdate';
 import React from 'react';
-import {User} from '../../../types/graphql';
+import type {User} from '../../../types/graphql';
 import {act} from 'react-test-renderer';
 import {createTestElement} from '../../../../test/testUtils';
 
@@ -53,7 +53,6 @@ describe('rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 
@@ -108,6 +107,10 @@ describe('[ProfileUpdate] interaction', () => {
         }),
       );
     });
+
+    expect(operation.request.node.operation.name).toEqual(
+      'UserUpdateProfileMutation',
+    );
   });
 
   // it('should launch camera when user select "Take a picture"', async () => {

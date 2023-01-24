@@ -1,9 +1,11 @@
 import * as VideoThumbnails from 'expo-video-thumbnails';
 
-import {AVPlaybackStatus, ResizeMode, Video} from 'expo-av';
 import {Image, Platform, Share, View} from 'react-native';
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import {ResizeMode, Video} from 'expo-av';
 
+import type {AVPlaybackStatus} from 'expo-av';
+import type {FC} from 'react';
 import {LoadingIndicator} from 'dooboo-ui';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {getString} from '../../../STRINGS';
@@ -17,14 +19,14 @@ type Props = {
 const StyledVideoLoadText = styled.Text`
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
   background-color: 'rgba(255,255,255, 0.5)';
   padding: 2px 5px 2px 5px;
 `;
 
 const StyledLoadErrorText = styled.Text`
   font-size: 12px;
-  color: ${({theme}) => theme.danger};
+  color: ${({theme}) => theme.role.danger};
   align-self: center;
 `;
 

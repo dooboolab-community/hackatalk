@@ -1,42 +1,35 @@
-import {
-  Button,
-  DoobooTheme,
-  Typography,
-  TypographyInverted,
-  useTheme,
-} from 'dooboo-ui';
-import React, {FC, ReactElement, useState} from 'react';
-import {
-  SectionList,
-  SectionListData,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import {Button, Typography, TypographyInverted, useTheme} from 'dooboo-ui';
+import type {FC, ReactElement} from 'react';
+import React, {useState} from 'react';
+import {SectionList, TouchableHighlight, View} from 'react-native';
 import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
-import {UseMutationConfig, useMutation} from 'react-relay';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type {DoobooThemeParams} from '@dooboo-ui/theme';
 import {FontAwesome} from '@expo/vector-icons';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import Modal from 'react-native-modalbox';
 import type {NotificationDeleteNotificationMutation} from '../../__generated__/NotificationDeleteNotificationMutation.graphql';
+import type {SectionListData} from 'react-native';
+import type {UseMutationConfig} from 'react-relay';
 import type {UserDeleteUserMutation} from '../../__generated__/UserDeleteUserMutation.graphql';
 import {deleteNotification} from '../../relay/queries/Notification';
 import {deleteUser} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {useAuthContext} from '../../providers/AuthProvider';
+import {useMutation} from 'react-relay';
 import {useNavigation} from '@react-navigation/core';
 
 const Container = styled.SafeAreaView`
   flex: 1;
   padding-top: 10px;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
 `;
 
 const HeaderContainer = styled.View`
-  background-color: ${({theme}) => theme.background};
-  border-bottom-color: ${({theme}) => theme.disabled};
+  background-color: ${({theme}) => theme.bg.basic};
+  border-bottom-color: ${({theme}) => theme.bg.disabled};
   height: 40px;
   justify-content: center;
   margin-left: 12px;
@@ -44,7 +37,7 @@ const HeaderContainer = styled.View`
 `;
 
 const SectionHeader = styled.Text`
-  color: ${({theme}) => theme.primary};
+  color: ${({theme}) => theme.role.primary};
   margin-left: 2px;
 `;
 
@@ -58,7 +51,7 @@ const ItemContainer = styled.TouchableOpacity`
 `;
 
 const ItemLabel = styled.Text`
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 16px;
   flex: 1;
 `;
@@ -71,8 +64,8 @@ const ModalContainer = styled.View`
 
 const ModalViewContainer = styled.View`
   padding: 40px;
-  background-color: ${({theme}) => theme.background};
-  border: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.bg.basic};
+  border: ${({theme}) => theme.role.primary};
   border-width: 0.3px;
   justify-content: center;
   align-items: center;
@@ -87,7 +80,7 @@ const ModalBtnContainer = styled.View`
 `;
 
 const ModalBtnStyle = styled.View`
-  background-color: ${({theme}) => theme.primary};
+  background-color: ${({theme}) => theme.role.primary};
   opacity: 0.8;
   width: 120px;
   height: 40px;
@@ -118,7 +111,7 @@ const Settings: FC = () => {
 
   const renderSectionItem = (
     option: SettingsOption,
-    themeProps: DoobooTheme,
+    themeProps: DoobooThemeParams,
   ): React.ReactElement => {
     const isEmailUser = (user?.profile?.authType || 'email') === 'email';
 
@@ -132,7 +125,11 @@ const Settings: FC = () => {
           {option.label}
         </ItemLabel>
         {isEmailUser ? (
-          <FontAwesome name="angle-right" size={24} color={themeProps.text} />
+          <FontAwesome
+            name="angle-right"
+            size={24}
+            color={themeProps?.text?.basic}
+          />
         ) : null}
       </ItemContainer>
     );
@@ -183,7 +180,7 @@ const Settings: FC = () => {
   switch (user?.profile?.authType) {
     case 'google':
       signInInfoOption = {
-        icon: <SvgGoogle width={24} fill={theme.text} />,
+        icon: <SvgGoogle width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_GOOGLE'),
         onPress: (): void => {
           navigation.navigate('ChangePw');
@@ -194,7 +191,7 @@ const Settings: FC = () => {
       break;
     case 'facebook':
       signInInfoOption = {
-        icon: <SvgFacebook width={24} fill={theme.text} />,
+        icon: <SvgFacebook width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_FACEBOOK'),
         onPress: () => {
           navigation.navigate('ChangePw');
@@ -205,7 +202,7 @@ const Settings: FC = () => {
       break;
     case 'apple':
       signInInfoOption = {
-        icon: <SvgApple width={24} fill={theme.text} />,
+        icon: <SvgApple width={24} fill={theme.text.basic} />,
         label: getString('SIGNED_IN_WITH_APPLE'),
         onPress: () => {
           navigation.navigate('ChangePw');
@@ -262,12 +259,12 @@ const Settings: FC = () => {
               border-radius: 0px;
             `,
             {
-              backgroundColor: theme.button,
-              borderColor: theme.button,
+              backgroundColor: theme.button.primary.bg,
+              borderColor: theme.button.primary.bg,
             },
           ],
           text: {
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 14,
             fontWeight: 'bold',
           },
@@ -286,14 +283,14 @@ const Settings: FC = () => {
               height: 44px;
               border-width: 1px;
               border-radius: 0px;
-              border-color: ${theme.danger};
+              border-color: ${theme.role.danger};
             `,
             {
-              backgroundColor: theme.danger,
+              backgroundColor: theme.role.danger,
             },
           ],
           text: {
-            color: theme.textContrast,
+            color: theme.text.contrast,
             fontSize: 14,
             fontWeight: 'bold',
           },

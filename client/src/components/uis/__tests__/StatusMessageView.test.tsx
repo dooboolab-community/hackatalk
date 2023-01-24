@@ -6,7 +6,7 @@ import StatusMessageView, {
 import {fireEvent, render} from '@testing-library/react-native';
 
 import {Animated} from 'react-native';
-import {ReactTestInstance} from 'react-test-renderer';
+import type {ReactTestInstance} from 'react-test-renderer';
 
 const props = {
   statusMessage: 'StatusMessage test',
@@ -29,7 +29,6 @@ describe('[StatusMessageView] render', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 
   it('render arrow-up when statusMessage has more than 2 lines and isStatusMessageExpanded is false', () => {

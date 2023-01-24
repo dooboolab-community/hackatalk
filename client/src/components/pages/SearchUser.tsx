@@ -1,18 +1,6 @@
-import {
-  Animated,
-  FlatList,
-  ListRenderItem,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, {
-  FC,
-  ReactElement,
-  Suspense,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react';
+import {Animated, FlatList, TouchableOpacity, View} from 'react-native';
+import type {FC, ReactElement} from 'react';
+import React, {Suspense, useLayoutEffect, useMemo, useState} from 'react';
 import type {
   UserUsersPaginationQuery,
   UserUsersPaginationQuery$data,
@@ -23,7 +11,8 @@ import {graphql, useLazyLoadQuery, usePaginationFragment} from 'react-relay';
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
 import {FontAwesome} from '@expo/vector-icons';
-import {MainStackNavigationProps} from '../navigations/MainStackNavigator';
+import type {ListRenderItem} from 'react-native';
+import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import SearchTextInput from '../uis/SearchTextInput';
 import type {SearchUserComponent_user$key} from '../../__generated__/SearchUserComponent_user.graphql';
 import UserListItem from '../uis/UserListItem';
@@ -36,7 +25,7 @@ import {usersQuery} from '../../relay/queries/User';
 
 const StyledSafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Container = styled.View`
@@ -100,7 +89,7 @@ const UsersFragment: FC<UserProps> = ({user, searchArgs}) => {
     loadNext(ITEM_CNT);
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
+  const renderItem: ListRenderItem<(typeof nodes)[number]> = ({item}) => {
     const pressUserItem = (): void => {
       showModal({
         user: item,
@@ -169,6 +158,7 @@ const Screen: FC = () => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: (): ReactElement => (
         <TouchableOpacity onPress={() => navigation.navigate('BlockedUser')}>
           <View

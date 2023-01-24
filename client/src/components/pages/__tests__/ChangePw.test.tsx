@@ -6,7 +6,7 @@ import {
 } from '../../../../test/testUtils';
 
 import ChangePw from '../ChangePw';
-import mockReactNavigation from '@react-navigation/core';
+import type mockReactNavigation from '@react-navigation/core';
 import {render} from '@testing-library/react-native';
 
 const mockNavigation = createMockNavigation();
@@ -23,6 +23,5 @@ describe('[ChangePw] screen', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });

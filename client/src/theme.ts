@@ -1,4 +1,4 @@
-import {DoobooTheme} from 'dooboo-ui';
+import type {DoobooThemeParams} from '@dooboo-ui/theme';
 
 /* eslint-disable */
 export const colors = {
@@ -24,39 +24,61 @@ export const colors = {
 /* eslint-enable */
 
 export const light = {
-  background: 'white',
-  paper: '#F2F5F6',
-  disabled: '#C4C4C4',
-  line: '#gray05',
-  text: '#000',
-  textLight: '#1B1B1B',
-  textContrast: 'white',
-  placeholder: '#6D6D6D',
+  bg: {
+    basic: 'white',
+    paper: '#F2F5F6',
+    disabled: '#C4C4C4',
+    border: colors.gray05,
+    card: 'white',
+  },
+  text: {
+    basic: '#000',
+    contrast: 'white',
+    placeholder: '#6D6D6D',
+    light: '#1B1B1B',
+  },
+  button: {
+    primary: {
+      bg: colors.brand,
+      text: '#FFF',
+    },
+  },
+  role: {
+    primary: colors.brand,
+    secondary: colors.green10,
+  },
   header: colors.brand,
-  card: 'white',
   active: colors.brand,
-  primary: colors.brand,
   primaryLight: colors.paleBlue10,
-  secondary: colors.green10,
-  button: colors.brand,
 };
 
-export type Theme = typeof light & DoobooTheme;
+export type Theme = typeof light & DoobooThemeParams;
 
-export const dark = {
-  background: '#000',
-  paper: colors.dark,
-  disabled: '#515151',
-  line: '#000',
-  text: 'white',
-  textLight: '#D3D3D3',
-  textContrast: '#000',
-  placeholder: '#6D6D6D',
+export const dark: Theme = {
+  bg: {
+    basic: '#000',
+    paper: colors.dark,
+    disabled: '#515151',
+    border: colors.gray05,
+    card: colors.dark,
+  },
+  text: {
+    basic: 'white',
+    contrast: '#000',
+    placeholder: '#6D6D6D',
+    light: '#1B1B1B',
+  },
+  button: {
+    primary: {
+      bg: colors.paleBlue10,
+      text: '#000',
+    },
+  },
+  role: {
+    primary: colors.brand,
+    secondary: colors.green30,
+  },
   header: '#000',
-  card: colors.dark,
   active: colors.paleBlue10,
-  primary: '#fff',
   primaryLight: '#151A25',
-  secondary: colors.green30,
-  button: colors.paleBlue10,
 };

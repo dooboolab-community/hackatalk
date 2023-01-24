@@ -1,11 +1,8 @@
-import {
-  ImageSourcePropType,
-  TouchableWithoutFeedback,
-  ViewStyle,
-} from 'react-native';
+import type {ImageSourcePropType, ViewStyle} from 'react-native';
 
 import {IC_NO_IMAGE} from '../../utils/Icons';
 import React from 'react';
+import {TouchableWithoutFeedback} from 'react-native';
 import type {User} from '../pages/Message';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
@@ -22,10 +19,10 @@ const Container = styled.View`
 `;
 
 const Wrapper = styled.View`
-  background-color: ${({theme}) => theme.card};
+  background-color: ${({theme}) => theme.bg.card};
   height: 80px;
   border-bottom-width: 1px;
-  border-color: ${(props) => props.theme.background};
+  border-color: ${(props) => props.theme.bg.basic};
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -50,7 +47,7 @@ const StyledText = styled.Text`
   width: 200px;
   font-size: 14px;
   font-weight: bold;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 function Shared({tagUser, selectTagUser}: Props): React.ReactElement {
@@ -81,7 +78,7 @@ function Shared({tagUser, selectTagUser}: Props): React.ReactElement {
 }
 
 Shared.defaultProps = {
-  selectdTagUser: (): void => {},
+  selectedTagUser: (): void => {},
 };
 
 export default Shared;

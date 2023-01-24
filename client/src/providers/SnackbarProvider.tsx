@@ -1,15 +1,15 @@
 import React, {
-  ReactElement,
-  ReactNode,
   createContext,
   useCallback,
   useContext,
   useRef,
   useState,
 } from 'react';
-import {Snackbar, SnackbarContent, SnackbarRef} from 'dooboo-ui';
+import type {ReactElement, ReactNode} from 'react';
+import type {SnackbarContent, SnackbarRef} from 'dooboo-ui';
 
-import {Theme} from '../theme';
+import {Snackbar} from 'dooboo-ui';
+import type {Theme} from '../theme';
 import {View} from 'react-native';
 
 export interface SnackbarState extends SnackbarContent {

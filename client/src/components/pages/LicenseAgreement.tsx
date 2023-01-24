@@ -1,8 +1,9 @@
-import React, {FC, ReactElement, useCallback, useLayoutEffect} from 'react';
+import type {FC, ReactElement} from 'react';
+import React, {useCallback, useLayoutEffect} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {RootStackNavigationProps} from '../navigations/RootStackNavigator';
+import type {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
@@ -18,7 +19,7 @@ const Container = styled.SafeAreaView`
 
 const StyledText = styled.Text`
   font-size: 16px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 const Page: FC = () => {
@@ -43,7 +44,7 @@ const Page: FC = () => {
           >
             <Text
               style={{
-                color: theme.text,
+                color: theme.text.basic,
                 fontSize: 14,
                 fontWeight: 'bold',
               }}

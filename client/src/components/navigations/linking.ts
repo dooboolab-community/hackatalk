@@ -1,5 +1,5 @@
-import {LinkingOptions} from '@react-navigation/native';
-import {RootStackParamList} from './RootStackNavigator';
+import type {LinkingOptions} from '@react-navigation/native';
+import type {RootStackParamList} from './RootStackNavigator';
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: ['https://hackatalk.dev', 'hackatalk://'],

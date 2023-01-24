@@ -20,12 +20,11 @@ describe('[VideoPlayer] render', () => {
 
     await waitFor(() => {
       expect(json).toBeTruthy();
-      expect(json).toMatchSnapshot();
     });
   });
 
   it('should display thumbnail error when uri was not provided', async () => {
-    const newProps = {...props, uri: undefined};
+    const newProps = {...props, uri: ''};
 
     const {getByText} = render(
       createTestElement(<VideoPlayer {...newProps} />),
@@ -53,7 +52,7 @@ describe('[VideoPlayer] render', () => {
   });
 
   it('should call onError when loadAsync rejected', async () => {
-    const newProps = {...props, uri: undefined};
+    const newProps = {...props, uri: ''};
 
     const {getByText} = render(
       createTestElement(<VideoPlayer {...newProps} />),

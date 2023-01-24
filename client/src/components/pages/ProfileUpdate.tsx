@@ -3,13 +3,13 @@ import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
   BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH,
+  PROFILEIMAGE_HEIGHT as PROFILE_IMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH as PROFILE_IMAGE_WIDTH,
 } from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
-import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
-import {
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import type {
   UploadSingleUploadMutation,
   UploadSingleUploadMutation$data,
 } from '../../__generated__/UploadSingleUploadMutation.graphql';
@@ -21,9 +21,10 @@ import {
 import {meQuery, profileUpdate} from '../../relay/queries/User';
 import styled, {css} from '@emotion/native';
 
-import {ImagePickerResult} from 'expo-image-picker';
+import type {FC} from 'react';
+import type {ImagePickerResult} from 'expo-image-picker';
 import {ReactNativeFile} from 'apollo-upload-client';
-import {Uploadable} from 'relay-runtime';
+import type {Uploadable} from 'relay-runtime';
 import type {UserMeQuery} from '../../__generated__/UserMeQuery.graphql';
 import type {UserUpdateProfileMutation} from '../../__generated__/UserUpdateProfileMutation.graphql';
 import {getString} from '../../../STRINGS';
@@ -38,7 +39,7 @@ import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -49,7 +50,7 @@ const StyledScrollView = styled.ScrollView`
 
 const Wrapper = styled.View`
   margin-top: 48px;
-  width: 78%;
+  width: 84%;
   flex-direction: column;
   align-items: center;
 `;
@@ -61,7 +62,7 @@ const StyledButtonWrapper = styled.View`
   align-items: center;
   align-self: stretch;
   height: 60px;
-  margin-top: 36px;
+  margin-top: 48px;
   margin-bottom: 48px;
 `;
 
@@ -181,9 +182,9 @@ const ProfileUpdate: FC = () => {
         try {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
-              uri: image.uri,
-              width: PROFILEIMAGE_WIDTH,
-              height: PROFILEIMAGE_HEIGHT,
+              uri: image.assets?.[0].uri || '',
+              width: PROFILE_IMAGE_WIDTH,
+              height: PROFILE_IMAGE_HEIGHT,
             },
           );
 
@@ -367,228 +368,172 @@ const ProfileUpdate: FC = () => {
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
-            style={{marginTop: 26}}
-            labelText={getString('NICKNAME')}
+            style={{marginTop: 32}}
+            label={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             onChangeText={(text) => changeText('NICKNAME', text)}
-            styles={{
-              container: {
-                borderColor: theme.text,
-              },
-              input: {
-                color: theme.text,
-              },
-            }}
             value={nickname}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
+            autoCapitalize="none"
             textInputProps={{
               autoCorrect: false,
-              autoCapitalize: 'none',
             }}
           />
           <EditText
             testID="input-name"
-            style={{marginTop: 12}}
-            styles={{
-              container: {
-                borderColor: theme.text,
-              },
-              input: {
-                color: theme.text,
-              },
-            }}
-            labelText={getString('NAME')}
+            style={{marginTop: 24}}
+            label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('NAME', text)}
-            textInputProps={{
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
             testID="input-status"
-            type="column"
-            style={{marginTop: 18}}
+            direction="column"
+            style={{marginTop: 28}}
+            decoration="boxed"
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('STATUS_MSG')}
+            label={getString('STATUS_MSG')}
             placeholder={getString('STATUS_MSG_HINT')}
             value={statusMessage}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('STATUS_MSG', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 60,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={60}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            style={{marginTop: 12}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
               container: {
-                borderColor: theme.text,
-              },
-              input: {
-                color: theme.text,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('ORGANIZATION')}
+            label={getString('ORGANIZATION')}
             placeholder={getString('ORGANIZATION_HINT')}
             value={organization}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('ORGANIZATION', text)}
+            autoCapitalize="none"
             textInputProps={{
               autoCorrect: false,
-              autoCapitalize: 'none',
             }}
           />
           <EditText
-            type="column"
-            style={{marginTop: 18}}
+            direction="column"
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('ABOUT_ME')}
+            label={getString('ABOUT_ME')}
             placeholder={getString('ABOUT_ME_HINT')}
             value={about}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('ABOUT', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
-            style={{marginTop: 18}}
+            direction="column"
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('PROJECTS')}
+            label={getString('PROJECTS')}
             placeholder={getString('PROJECTS_HINT')}
             value={projects}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('PROJECTS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
-            style={{marginTop: 18}}
+            direction="column"
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('POSITIONS')}
+            label={getString('POSITIONS')}
             placeholder={getString('POSITIONS_HINT')}
             value={positions}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('POSITIONS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('SPEAKINGS')}
+            label={getString('SPEAKINGS')}
             placeholder={getString('SPEAKINGS_HINT')}
             value={speakings}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('SPEAKINGS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <EditText
-            type="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text,
-              },
               container: {
-                borderColor: theme.text,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
-            labelText={getString('CONTRIBUTIONS')}
+            label={getString('CONTRIBUTIONS')}
             placeholder={getString('CONTRIBUTION_HINT')}
             value={contributions}
-            focusColor={theme.text}
+            colors={{focused: theme.text.basic}}
             onChangeText={(text) => changeText('CONTRIBUTIONS', text)}
-            textInputProps={{
-              multiline: true,
-              maxLength: 300,
-              autoCorrect: false,
-              autoCapitalize: 'none',
-            }}
+            multiline
+            maxLength={300}
+            autoCapitalize="none"
+            textInputProps={{autoCorrect: false}}
           />
           <StyledButtonWrapper>
             <Button
@@ -602,12 +547,12 @@ const ProfileUpdate: FC = () => {
                     border-radius: 0px;
                   `,
                   {
-                    backgroundColor: theme.button,
-                    borderColor: theme.button,
+                    backgroundColor: theme.button.primary.bg,
+                    borderColor: theme.button.primary.bg,
                   },
                 ],
                 text: {
-                  color: theme.textContrast,
+                  color: theme.text.contrast,
                   fontSize: 14,
                   fontWeight: 'bold',
                 },

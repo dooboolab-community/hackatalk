@@ -1,8 +1,9 @@
 import {Button, Typography} from 'dooboo-ui';
 import {DevSettings, View} from 'react-native';
-import React, {ReactElement, useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type {ReactElement} from 'react';
 import {getString} from '../../STRINGS';
 import styled from '@emotion/native';
 

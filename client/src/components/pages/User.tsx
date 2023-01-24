@@ -1,25 +1,28 @@
 import {Image, Linking, ScrollView, View} from 'react-native';
 import {LoadingIndicator, Typography, useTheme} from 'dooboo-ui';
-import {
+import type {
   MainStackNavigationProps,
   MainStackParamList,
 } from '../navigations/MainStackNavigator';
-import {PreloadedQuery, usePreloadedQuery, useQueryLoader} from 'react-relay';
-import React, {ReactElement, Suspense, useEffect, useLayoutEffect} from 'react';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
+import React, {Suspense, useEffect, useLayoutEffect} from 'react';
+import {useNavigation, useRoute} from '@react-navigation/core';
+import {usePreloadedQuery, useQueryLoader} from 'react-relay';
 
 import {IC_PROFILE} from '../../utils/Icons';
 import ParsedText from 'react-native-parsed-text';
+import type {PreloadedQuery} from 'react-relay';
+import type {ReactElement} from 'react';
+import type {RouteProp} from '@react-navigation/core';
 import SharedElementView from '../uis/SharedElementView';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {UserQuery} from '../../__generated__/UserQuery.graphql';
+import type {UserQuery} from '../../__generated__/UserQuery.graphql';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 import {userQuery} from '../../relay/queries/User';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
 `;
@@ -79,18 +82,18 @@ const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
       }}
     >
       <Typography.Body2
-        style={{fontWeight: 'bold', marginBottom: 8, color: theme.info}}
+        style={{fontWeight: 'bold', marginBottom: 8, color: theme.role.info}}
       >
         {typeString}
       </Typography.Body2>
       <ParsedText
-        style={{color: theme.text}}
+        style={{color: theme.text.basic}}
         parse={[
           {
             type: 'url',
             onPress: (url: string) => Linking.openURL(url),
             style: {
-              color: theme.button,
+              color: theme.button.primary.bg,
               textDecorationLine: 'underline',
             },
           },
@@ -169,7 +172,7 @@ const User = ({queryReference}: UserProps): ReactElement | null => {
           <Typography.Body2 style={{fontStyle: 'italic', marginTop: 4}}>
             {user.statusMessage}
           </Typography.Body2>
-          <Typography.Body2 style={{marginTop: 4, color: theme.primary}}>
+          <Typography.Body2 style={{marginTop: 4, color: theme.role.primary}}>
             {profile?.organization}
           </Typography.Body2>
         </View>

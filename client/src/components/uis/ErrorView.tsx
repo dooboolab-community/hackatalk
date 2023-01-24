@@ -1,13 +1,14 @@
 import {Button, useTheme} from 'dooboo-ui';
-import React, {FC, ReactChildren} from 'react';
+import type {FC, ReactChildren} from 'react';
 
 import {IC_ERROR} from '../../utils/Icons';
+import React from 'react';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -27,7 +28,7 @@ const Title = styled.Text`
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
-  color: ${({theme}) => theme.danger};
+  color: ${({theme}) => theme.role.danger};
 `;
 
 const Body = styled.Text`
@@ -40,7 +41,7 @@ const Body = styled.Text`
   align-items: center;
   text-align: center;
   letter-spacing: -0.25px;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
 `;
 
 interface Props {
@@ -83,7 +84,7 @@ const ErrorView: FC<Props> = (props) => {
               width: 156,
               height: 48,
               justifyContent: 'center',
-              backgroundColor: theme.primary,
+              backgroundColor: theme.role.primary,
               flexDirection: 'row',
             },
             text: {

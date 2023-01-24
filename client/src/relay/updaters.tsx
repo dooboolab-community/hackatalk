@@ -1,11 +1,8 @@
 import 'react-native-get-random-values';
 
-import {
-  ConnectionHandler,
-  RecordProxy,
-  RecordSourceSelectorProxy,
-} from 'relay-runtime';
+import type {RecordProxy, RecordSourceSelectorProxy} from 'relay-runtime';
 
+import {ConnectionHandler} from 'relay-runtime';
 import {nanoid} from 'nanoid/non-secure';
 
 /**

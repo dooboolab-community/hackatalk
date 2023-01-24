@@ -3,8 +3,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Updates from 'expo-updates';
 
 import {Alert, Platform} from 'react-native';
+import type {FC, ReactElement, ReactNode} from 'react';
 import FallbackComponent, {handleError} from './utils/error';
-import React, {FC, ReactElement, ReactNode, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {dark, light} from './theme';
 
 import {ActionSheetProvider} from '@expo/react-native-action-sheet';
@@ -37,7 +38,7 @@ if (!__DEV__) {
   SplashScreen.preventAutoHideAsync();
 }
 
-const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
+const HackaTalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const registerNotification = async (): Promise<void> => {
     registerForPushNotificationsAsync()
       .then((pushToken) => {
@@ -81,7 +82,7 @@ const HackatalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const [assets] = useAssets(Icons);
 
   const [dooboouiAssets] = useFonts({
-    IcoMoon: require('dooboo-ui/Icon/doobooui.ttf'),
+    IcoMoon: require('dooboo-ui/components/Icon/doobooui.ttf'),
   });
 
   useEffect(() => {
@@ -131,7 +132,7 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
   })
   .wrap(DeviceProvider, {})
   .wrap(SnackbarProvider, {})
-  .wrap(HackatalkThemeProvider, {})
+  .wrap(HackaTalkThemeProvider, {})
   .build();
 
 export default gestureHandlerRootHOC(WrappedApp);

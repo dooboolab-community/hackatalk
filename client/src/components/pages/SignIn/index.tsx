@@ -24,6 +24,7 @@ import {
   Typography,
   useTheme,
 } from 'dooboo-ui';
+import type {FC, ReactElement} from 'react';
 import {
   IC_LOGO_D,
   IC_LOGO_W,
@@ -31,7 +32,7 @@ import {
   SvgFacebook,
   SvgGoogle,
 } from '../../../utils/Icons';
-import React, {FC, ReactElement, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import type {
   UserSignInAppleMutation,
   UserSignInAppleMutation$data,
@@ -45,8 +46,8 @@ import {signInEmail, signInWithApple} from '../../../relay/queries/User';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthPayload} from '../../../types/graphql';
-import {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
+import type {AuthPayload} from '../../../types/graphql';
+import type {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
 import {colors} from '../../../theme';
@@ -63,11 +64,11 @@ const AnimatedTouchableOpacity =
 const Container = styled.SafeAreaView`
   flex: 1;
   justify-content: center;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
 `;
 
 const Wrapper = styled.View`
-  margin: 40px;
+  margin: 20px 40px 40px 40px;
 `;
 
 const LogoWrapper = styled.View`
@@ -77,7 +78,7 @@ const LogoWrapper = styled.View`
 
 const StyledLogoText = styled.Text`
   align-self: flex-start;
-  color: ${({theme}) => theme.text};
+  color: ${({theme}) => theme.text.basic};
   font-size: 20px;
   font-weight: bold;
   margin-left: 6px;
@@ -92,12 +93,13 @@ const ButtonWrapper = styled.View`
 
 const FindPwTouchOpacity = styled.TouchableOpacity`
   padding: 16px;
-  margin-bottom: 28px;
+  margin-top: 8px;
+  margin-bottom: 18px;
   align-self: center;
 `;
 
 const FindPwText = styled.Text`
-  color: ${({theme}) => theme.button};
+  color: ${({theme}) => theme.button.primary.bg};
   text-decoration-line: underline;
 `;
 
@@ -330,7 +332,7 @@ const SignIn: FC = () => {
     const top = interpolate(
       logoAnimValue.value,
       [0, 1],
-      [screenHeight * 0.3, 80],
+      [screenHeight * 0.3, 64],
     );
 
     const width =
@@ -372,7 +374,7 @@ const SignIn: FC = () => {
         <AnimatedTouchableOpacity
           testID="theme-test"
           style={logoAnimStyle}
-          onPress={(): void => {
+          onPress={() => {
             changeThemeType();
           }}
         >
@@ -383,53 +385,45 @@ const SignIn: FC = () => {
         </AnimatedTouchableOpacity>
         <Wrapper>
           <LogoWrapper>
-            <View style={{height: 12 + 60}} />
+            <View style={{height: 72}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
-            type="row"
+            direction="row"
             testID="input-email"
             styles={{
-              container: {borderColor: theme.text},
-              labelText: {width: 80},
-              input: {
-                color: theme.text,
-                height: 52,
-              },
+              label: {width: 80},
+              input: {color: theme.text.basic, paddingVertical: 16},
             }}
-            style={{marginBottom: 4}}
-            labelText={getString('EMAIL')}
-            focusColor={theme.text}
+            style={{marginBottom: 12}}
+            label={getString('EMAIL')}
+            colors={{focused: theme.text.basic}}
             placeholder="hello@example.com"
             value={email}
-            onChangeText={(text: string): void => {
+            onChangeText={(text: string) => {
               setEmail(text.trim());
               setErrorEmail('');
             }}
-            errorText={errorEmail}
+            error={errorEmail}
             onSubmitEditing={signIn}
           />
           <EditText
             testID="input-password"
-            type="row"
+            direction="row"
             styles={{
-              container: {borderColor: theme.text},
-              labelText: {width: 80},
-              input: {
-                color: theme.text,
-                height: 52,
-              },
+              label: {width: 80},
+              input: {color: theme.text.basic, paddingVertical: 16},
             }}
-            style={{marginBottom: 20}}
-            labelText={getString('PASSWORD')}
-            focusColor={theme.text}
+            style={{marginBottom: 28}}
+            label={getString('PASSWORD')}
+            colors={{focused: theme.text.basic}}
             placeholder="******"
             value={password}
-            onChangeText={(text: string): void => {
+            onChangeText={(text: string) => {
               setPassword(text.trim());
               setErrorPassword('');
             }}
-            errorText={errorPassword}
+            error={errorPassword}
             onSubmitEditing={signIn}
             secureTextEntry={true}
           />
@@ -438,12 +432,12 @@ const SignIn: FC = () => {
               testID="btn-sign-up"
               onPress={() => navigation.navigate('SignUp')}
               style={{flex: 1}}
+              type="outlined"
               styles={{
                 container: css`
                   border-width: 1px;
                   border-radius: 0px;
-                  background-color: ${theme.paper};
-                  border-color: ${theme.button};
+                  border-color: ${theme.button.primary.bg};
                   border-width: 1px;
 
                   flex: 1;
@@ -451,12 +445,12 @@ const SignIn: FC = () => {
                   justify-content: center;
                 `,
                 text: css`
-                  color: ${theme.button};
+                  color: ${theme.button.primary.bg};
                   font-size: 14px;
                   font-weight: bold;
                 `,
                 hovered: css`
-                  border-color: ${theme.text};
+                  border-color: ${theme.text.basic};
                 `,
               }}
               text={getString('SIGN_UP')}
@@ -472,8 +466,8 @@ const SignIn: FC = () => {
                   border-width: 1px;
                   border-radius: 0px;
                   height: 52px;
-                  background-color: ${theme.button};
-                  border-color: ${theme.button};
+                  background-color: ${theme.button.primary.bg};
+                  border-color: ${theme.button.primary.bg};
 
                   flex: 1;
                   align-self: stretch;
@@ -484,10 +478,10 @@ const SignIn: FC = () => {
                 text: css`
                   font-size: 14px;
                   font-weight: bold;
-                  color: ${theme.textContrast};
+                  color: ${theme.text.contrast};
                 `,
                 hovered: css`
-                  border-color: ${theme.text};
+                  border-color: ${theme.text.basic};
                 `,
               }}
               text={getString('LOGIN')}
@@ -517,7 +511,7 @@ const SignIn: FC = () => {
                       color: 'black',
                     },
                   }}
-                  leftElement={
+                  startElement={
                     <View style={{marginRight: 6}}>
                       <SvgApple
                         style={{width: 16, height: 16}}
@@ -526,7 +520,6 @@ const SignIn: FC = () => {
                     </View>
                   }
                   loading={signingInApple || isAppleInFlight}
-                  indicatorColor={theme.primary}
                   onPress={appleLogin}
                   text={getString('SIGN_IN_WITH_APPLE')}
                 />

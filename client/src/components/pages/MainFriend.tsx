@@ -1,5 +1,4 @@
-import {FlatList, ListRenderItem} from 'react-native';
-import React, {FC, Suspense, useMemo} from 'react';
+import React, {Suspense, useMemo} from 'react';
 import {
   graphql,
   useLazyLoadQuery,
@@ -9,11 +8,14 @@ import {
 
 import CustomLoadingIndicator from '../uis/CustomLoadingIndicator';
 import EmptyListItem from '../uis/EmptyListItem';
-import {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
-import {GraphQLSubscriptionConfig} from 'relay-runtime';
-import {MainFriendUserUpdatedSubscription} from '../../__generated__/MainFriendUserUpdatedSubscription.graphql';
-import {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
-import {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
+import type {FC} from 'react';
+import {FlatList} from 'react-native';
+import type {FriendFriendsPaginationQuery} from '../../__generated__/FriendFriendsPaginationQuery.graphql';
+import type {GraphQLSubscriptionConfig} from 'relay-runtime';
+import type {ListRenderItem} from 'react-native';
+import type {MainFriendUserUpdatedSubscription} from '../../__generated__/MainFriendUserUpdatedSubscription.graphql';
+import type {MainFriend_friends$key} from '../../__generated__/MainFriend_friends.graphql';
+import type {ProfileModal_user$key} from '../../__generated__/ProfileModal_user.graphql';
 import UserListItem from '../uis/UserListItem';
 import {friendsQuery} from '../../relay/queries/Friend';
 import {getString} from '../../../STRINGS';
@@ -26,7 +28,7 @@ const ITEM_CNT = 20;
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background: ${({theme}) => theme.background};
+  background: ${({theme}) => theme.bg.basic};
   align-items: center;
   justify-content: center;
 `;
@@ -116,7 +118,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({friendsKey}) => {
     });
   };
 
-  const renderItem: ListRenderItem<typeof nodes[number]> = ({item}) => {
+  const renderItem: ListRenderItem<(typeof nodes)[number]> = ({item}) => {
     const isMe = item.id === authUser?.id;
 
     return (

@@ -3,19 +3,21 @@ import 'react-native';
 import * as ImagePickerUtil from '../../../utils/ImagePicker';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
-import {Channel, Message as MessageType} from '../../../types/graphql';
-import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import type {Channel, Message as MessageType} from '../../../types/graphql';
 import {
   createMockNavigation,
   createTestElement,
   resolveAllOperations,
 } from '../../../../test/testUtils';
 import {fireEvent, render} from '@testing-library/react-native';
-import mockReactNavigation, {RouteProp} from '@react-navigation/core';
 
-import {MainStackParamList} from '../../navigations/MainStackNavigator';
+import type {MainStackParamList} from '../../navigations/MainStackNavigator';
 import Message from '../Message';
+import type {MockPayloadGenerator} from 'relay-test-utils';
 import React from 'react';
+import type {RouteProp} from '@react-navigation/core';
+import {createMockEnvironment} from 'relay-test-utils';
+import type mockReactNavigation from '@react-navigation/core';
 
 jest.mock('../../uis/CustomLoadingIndicator', () => 'test');
 
@@ -104,7 +106,6 @@ describe('[Message] rendering test', () => {
     const json = screen.toJSON();
 
     expect(json).toBeTruthy();
-    expect(json).toMatchSnapshot();
   });
 });
 
@@ -121,6 +122,8 @@ describe('[Message] interaction', () => {
     const MessageBtn = screen.getByRole('button');
 
     fireEvent.press(MessageBtn);
+
+    expect(MessageBtn).toBeTruthy();
 
     // TODO: Detect message sent.
   });

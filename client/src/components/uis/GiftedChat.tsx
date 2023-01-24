@@ -1,12 +1,5 @@
-import {
-  FlatList,
-  Keyboard,
-  ListRenderItem,
-  Platform,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native';
+import {FlatList, Keyboard, Platform, View} from 'react-native';
+import type {ListRenderItem, TextInput, TextInputProps} from 'react-native';
 import React, {useRef, useState} from 'react';
 
 import TagUserListItem from '../uis/TagUserListItem';
@@ -27,7 +20,7 @@ const StyledViewChat = styled.View`
   width: 100%;
   max-width: 100%;
   border-top-width: 0.3px;
-  border-color: ${({theme}) => theme.disabled};
+  border-color: ${({theme}) => theme.text.disabled};
   min-height: 56px;
   max-height: 56px;
   padding-right: 8px;
