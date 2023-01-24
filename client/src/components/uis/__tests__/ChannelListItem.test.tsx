@@ -148,7 +148,9 @@ describe('[ChannelListItem] rendering test', () => {
       lastMessage: {...TEST_CHANNEL.lastMessage, createdAt: undefined},
     };
 
-    const component = createTestElement(<ChannelListItem item={channel} />);
+    const component = createTestElement(
+      <ChannelListItem item={channel as Channel} />,
+    );
 
     const {getByText} = render(component);
 
@@ -165,7 +167,9 @@ describe('[ChannelListItem] rendering test', () => {
       },
     };
 
-    const component = createTestElement(<ChannelListItem item={channel} />);
+    const component = createTestElement(
+      <ChannelListItem item={channel as Channel} />,
+    );
 
     const {getByText} = render(component);
 
@@ -184,7 +188,9 @@ describe('[ChannelListItem] rendering test', () => {
       },
     };
 
-    const component = createTestElement(<ChannelListItem item={channel} />);
+    const component = createTestElement(
+      <ChannelListItem item={channel as Channel} />,
+    );
 
     const {getByText} = render(component);
 

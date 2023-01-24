@@ -7,7 +7,6 @@ import {fireEvent, render, waitFor} from '@testing-library/react-native';
 
 import {Alert} from 'react-native';
 import FindPw from '../FindPw';
-import React from 'react';
 import {getString} from '../../../../STRINGS';
 import type mockReactNavigation from '@react-navigation/core';
 

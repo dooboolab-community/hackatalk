@@ -1,5 +1,3 @@
-import 'react-native';
-
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {act, fireEvent, render} from '@testing-library/react-native';
 

@@ -1,5 +1,3 @@
-import 'react-native';
-
 import * as ImagePickerUtil from '../../../utils/ImagePicker';
 import * as ProfileContext from '../../../providers/ProfileModalProvider';
 
@@ -53,7 +51,7 @@ const mockEnvironment = createMockEnvironment();
 
 const resolver: MockPayloadGenerator.MockResolvers = {
   Channel: (context, generateId): Partial<Channel> => ({
-    id: context.args?.channelId ?? `test-channel-${generateId()}`,
+    id: (context.args?.channelId as string) || `test-channel-${generateId()}`,
     channelType: 'private',
     name: 'John Doe',
     memberships: [
@@ -160,7 +158,8 @@ describe('[Message] interaction', () => {
     const launchMediaLibraryAsyncSpy = jest
       .spyOn(ImagePickerUtil, 'launchMediaLibraryAsync')
       .mockResolvedValue({
-        cancelled: false,
+        assets: [],
+        canceled: false,
         uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         width: 1920,
         height: 1024,
@@ -192,7 +191,8 @@ describe('[Message] interaction', () => {
     const launchCameraAsyncSpy = jest
       .spyOn(ImagePickerUtil, 'launchCameraAsync')
       .mockResolvedValue({
-        cancelled: false,
+        assets: [],
+        canceled: false,
         uri: 'filename://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
         width: 2080,
         height: 1924,

@@ -200,6 +200,7 @@ describe('[SignIn] interaction', () => {
       });
 
       // TODO: Test what happens after rejected operation.
+      expect(operation).toBeTruthy();
     });
   });
 

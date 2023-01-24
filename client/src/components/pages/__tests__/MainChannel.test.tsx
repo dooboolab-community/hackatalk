@@ -1,7 +1,3 @@
-import 'react-native';
-
-import * as React from 'react';
-
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   createMockNavigation,

@@ -1,13 +1,15 @@
 import {render, within} from '@testing-library/react-native';
 
 import ComponentWrapper from '../ComponentWrapper';
-import type {FC} from 'react';
 import React from 'react';
+import type {ReactElement} from 'react';
 import {View} from 'react-native';
 
 describe('ComponentWrapper', () => {
   it('Single level nesting is itself', () => {
-    const Source: FC = ({children}) => <View testID="source">{children}</View>;
+    const Source = ({children}: {children?: ReactElement}): ReactElement => (
+      <View testID="source">{children}</View>
+    );
 
     const Wrapped = new ComponentWrapper(Source).build();
     const {getByTestId} = render(<Wrapped />);
@@ -16,13 +18,15 @@ describe('ComponentWrapper', () => {
   });
 
   it('Nest three', () => {
-    const Innermost: FC = ({children}) => (
+    const Innermost = ({children}: {children?: ReactElement}): ReactElement => (
       <View testID="innermost">{children}</View>
     );
 
-    const Middle: FC = ({children}) => <View testID="middle">{children}</View>;
+    const Middle = ({children}: {children?: ReactElement}): ReactElement => (
+      <View testID="middle">{children}</View>
+    );
 
-    const Outermost: FC = ({children}) => (
+    const Outermost = ({children}: {children?: ReactElement}): ReactElement => (
       <View testID="outermost">{children}</View>
     );
 

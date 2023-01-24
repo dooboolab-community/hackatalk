@@ -1,8 +1,6 @@
-import 'react-native';
-
 import * as React from 'react';
 
-import type {AuthType, User} from '../../../types/graphql';
+import type {Profile, User} from '../../../types/graphql';
 import {
   createMockNavigation,
   createTestElement,
@@ -20,7 +18,7 @@ jest.mock('@react-navigation/core', () => ({
   useNavigation: () => mockNavigation,
 }));
 
-function getEmptyAuthUserWithSignInType(authType: AuthType): User {
+function getEmptyAuthUserWithSignInType(authType: Profile['authType']): User {
   return {
     id: '',
     nickname: '',
@@ -28,7 +26,7 @@ function getEmptyAuthUserWithSignInType(authType: AuthType): User {
     photoURL: '',
     statusMessage: '',
     profile: {
-      authType,
+      authType: authType,
       socialId: '',
     },
   };
@@ -90,7 +88,7 @@ describe('[Setting] screen', () => {
         const {user} = useAuthContext();
 
         React.useEffect(() => {
-          onAuthChange(user);
+          onAuthChange(user || undefined);
         }, [user, onAuthChange]);
 
         return <Settings />;

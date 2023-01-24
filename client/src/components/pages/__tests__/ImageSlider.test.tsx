@@ -1,12 +1,9 @@
-import 'react-native';
-
 import {
   createMockNavigation,
   createTestElement,
 } from '../../../../test/testUtils';
 
 import ImageSlider from '../ImageSlider';
-import React from 'react';
 import type {RootStackParamList} from '../../navigations/RootStackNavigator';
 import type {RouteProp} from '@react-navigation/core';
 import type mockReactNavigation from '@react-navigation/core';

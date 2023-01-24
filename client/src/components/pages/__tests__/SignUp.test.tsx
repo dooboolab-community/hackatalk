@@ -1,5 +1,3 @@
-import 'react-native';
-
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {
   createMockNavigation,
@@ -14,6 +12,7 @@ import {act} from 'react-test-renderer';
 import type mockReactNavigation from '@react-navigation/core';
 
 const mockNavigation =
+  // @ts-ignore
   createMockNavigation<AuthStackNavigationProps<'SignUp'>>();
 
 jest.mock('@react-navigation/core', () => ({
@@ -155,5 +154,7 @@ describe('[SignUp] interaction', () => {
     const btnSignUp = screen.getByTestId('btn-sign-up');
 
     fireEvent.press(btnSignUp);
+
+    expect(mockNavigation.replace).toHaveBeenCalled();
   });
 });

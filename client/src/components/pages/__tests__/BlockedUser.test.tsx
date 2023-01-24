@@ -1,9 +1,6 @@
-import 'react-native';
-
 import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 
 import BlockedUser from '../BlockedUser';
-import React from 'react';
 import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';
 

@@ -4,7 +4,6 @@ import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
 import {fireEvent, render} from '@testing-library/react-native';
 
 import MainFriend from '../MainFriend';
-import React from 'react';
 import type {User} from '../../../types/graphql';
 import {createTestElement} from '../../../../test/testUtils';
 

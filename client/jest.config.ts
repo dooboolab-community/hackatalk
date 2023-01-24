@@ -18,7 +18,7 @@ export default async (): Promise<Config.InitialOptions> => {
       'ts-jest': {
         babelConfig: true,
         tsconfig: {
-          jsx: 'react',
+          jsx: 'react-jsx',
           allowJs: true,
         },
         diagnostics: false,

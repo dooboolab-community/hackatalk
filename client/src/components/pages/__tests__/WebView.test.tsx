@@ -1,10 +1,6 @@
-import 'react-native';
-
-import * as React from 'react';
-
 import type {RootStackParamList} from '../../navigations/RootStackNavigator';
 import type {RouteProp} from '@react-navigation/core';
-import WebView from '../WebView';
+import WebView from 'react-native-webview';
 import {createTestElement} from '../../../../test/testUtils';
 import type mockReactNavigation from '@react-navigation/core';
 import {render} from '@testing-library/react-native';

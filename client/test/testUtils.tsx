@@ -1,26 +1,29 @@
 import * as Device from 'expo-device';
 
-import {
-  MockPayloadGenerator,
-  RelayMockEnvironment,
-  createMockEnvironment,
-} from 'relay-test-utils';
-import React, {FC, ReactElement, Suspense} from 'react';
-import {ThemeProvider, ThemeType} from 'dooboo-ui';
+import {MockPayloadGenerator, createMockEnvironment} from 'relay-test-utils';
+import React, {Suspense} from 'react';
 import {dark, light} from '../src/theme';
 
 import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
-import {IEnvironment} from 'relay-runtime';
+import type {IEnvironment} from 'relay-runtime';
+import type {MockEnvironment} from 'relay-test-utils';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
+import type {ReactElement} from 'react';
 import {RelayEnvironmentProvider} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {StackNavigationProp} from '@react-navigation/stack';
+import type {StackNavigationProp} from '@react-navigation/stack';
 import {Text} from 'react-native';
-import {User} from '../src/types/graphql';
+import {ThemeProvider} from 'dooboo-ui';
+import type {ThemeType} from 'dooboo-ui';
+import type {User} from '../src/types/graphql';
 import {act} from '@testing-library/react-native';
 
-export const TestSafeAreaProvider: FC = ({children}) => {
+export const TestSafeAreaProvider = ({
+  children,
+}: {
+  children: ReactElement;
+}): ReactElement => {
   return (
     <SafeAreaProvider
       initialMetrics={{
@@ -87,7 +90,7 @@ type NavigationStub<T extends {}> = {
 
 /**
  * Create a navigation stub which can be used to mock `useNavigation` hook.
- * Each method can be overriden for each test cases.
+ * Each method can be overridden for each test cases.
  * @example
  * const mockNavigation = createMockNavigation();
  * const mockRoute = {}; // Provide your own route params here.
@@ -101,8 +104,9 @@ type NavigationStub<T extends {}> = {
  * }));
  * @returns the generated navigation stub.
  */
-export function createMockNavigation<T = {}>(): NavigationStub<T> {
+export function createMockNavigation(): NavigationStub<{}> {
   return {
+    getId: jest.fn(),
     getParent: jest.fn(),
     getState: jest.fn(),
     addListener: jest.fn(),
@@ -134,7 +138,7 @@ export function createMockNavigation<T = {}>(): NavigationStub<T> {
  * @param resolver Resolver object for operation resolution.
  */
 export function resolveAllOperations(
-  mockEnvironment: RelayMockEnvironment,
+  mockEnvironment: MockEnvironment,
   resolver: MockPayloadGenerator.MockResolvers,
 ): void {
   for (const op of mockEnvironment.mock.getAllOperations()) {

@@ -1,7 +1,3 @@
-import 'react-native';
-
-import * as React from 'react';
-
 import NotFound from '../NotFound';
 import {createTestElement} from '../../../../test/testUtils';
 import {render} from '@testing-library/react-native';

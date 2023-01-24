@@ -63,13 +63,13 @@ const QueryWrapper: React.FC<QueryWrapperProps> = (props) => {
   );
 };
 
-let mockEnvironment;
+let mockEnvironment: any;
 
 describe('[MessageListItem] rendering test', () => {
   beforeAll(() => {
     mockEnvironment = createMockEnvironment();
 
-    mockEnvironment.mock.queueOperationResolver((operation) =>
+    mockEnvironment.mock.queueOperationResolver((operation: any) =>
       MockPayloadGenerator.generate(operation, {
         Message(_, generateId) {
           return {
@@ -128,7 +128,7 @@ describe('[MessageListItem] interaction', () => {
   beforeAll(() => {
     mockEnvironment = createMockEnvironment();
 
-    mockEnvironment.mock.queueOperationResolver((operation) =>
+    mockEnvironment.mock.queueOperationResolver((operation: any) =>
       MockPayloadGenerator.generate(operation, {
         Message(_, generateId) {
           return {
@@ -163,7 +163,7 @@ describe('[MessageListItem] image test', () => {
   beforeAll(() => {
     mockEnvironment = createMockEnvironment();
 
-    mockEnvironment.mock.queueOperationResolver((operation) =>
+    mockEnvironment.mock.queueOperationResolver((operation: any) =>
       MockPayloadGenerator.generate(operation, {
         Message(_, generateId) {
           return {
@@ -198,7 +198,7 @@ describe('[MessageListItem] video test', () => {
   beforeAll(() => {
     mockEnvironment = createMockEnvironment();
 
-    mockEnvironment.mock.queueOperationResolver((operation) =>
+    mockEnvironment.mock.queueOperationResolver((operation: any) =>
       MockPayloadGenerator.generate(operation, {
         Message(_, generateId) {
           return {
