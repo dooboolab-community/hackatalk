@@ -7,7 +7,7 @@ import styled from '@emotion/native';
 import {useTheme} from 'dooboo-ui';
 
 const StyledLabelText = styled.Text<{focused: boolean}>`
-  color: ${({focused, theme}): string =>
+  color: ${({focused, theme}) =>
     focused ? theme.role.primary : theme.text.disabled};
   margin-bottom: 8px;
   font-size: 12px;

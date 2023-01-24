@@ -3,8 +3,8 @@ import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
   BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH,
+  PROFILEIMAGE_HEIGHT as PROFILE_IMAGE_HEIGHT,
+  PROFILEIMAGE_WIDTH as PROFILE_IMAGE_WIDTH,
 } from '../../utils/const';
 import {Button, EditText, useTheme} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
@@ -50,7 +50,7 @@ const StyledScrollView = styled.ScrollView`
 
 const Wrapper = styled.View`
   margin-top: 48px;
-  width: 88%;
+  width: 84%;
   flex-direction: column;
   align-items: center;
 `;
@@ -62,7 +62,7 @@ const StyledButtonWrapper = styled.View`
   align-items: center;
   align-self: stretch;
   height: 60px;
-  margin-top: 36px;
+  margin-top: 48px;
   margin-bottom: 48px;
 `;
 
@@ -183,8 +183,8 @@ const ProfileUpdate: FC = () => {
           const resizedImage = await resizePhotoToMaxDimensionsAndCompressAsPNG(
             {
               uri: image.assets?.[0].uri || '',
-              width: PROFILEIMAGE_WIDTH,
-              height: PROFILEIMAGE_HEIGHT,
+              width: PROFILE_IMAGE_WIDTH,
+              height: PROFILE_IMAGE_HEIGHT,
             },
           );
 
@@ -368,18 +368,10 @@ const ProfileUpdate: FC = () => {
           </TouchableOpacity>
           <EditText
             testID="input-nickname"
-            style={{marginTop: 26}}
+            style={{marginTop: 32}}
             label={getString('NICKNAME')}
             placeholder={getString('NICKNAME_HINT')}
             onChangeText={(text) => changeText('NICKNAME', text)}
-            styles={{
-              container: {
-                borderColor: theme.text.basic,
-              },
-              input: {
-                color: theme.text.basic,
-              },
-            }}
             value={nickname}
             colors={{focused: theme.text.basic}}
             autoCapitalize="none"
@@ -389,15 +381,7 @@ const ProfileUpdate: FC = () => {
           />
           <EditText
             testID="input-name"
-            style={{marginTop: 12}}
-            styles={{
-              container: {
-                borderColor: theme.text.basic,
-              },
-              input: {
-                color: theme.text.basic,
-              },
-            }}
+            style={{marginTop: 24}}
             label={getString('NAME')}
             placeholder={getString('NAME_HINT')}
             value={name}
@@ -409,17 +393,13 @@ const ProfileUpdate: FC = () => {
           <EditText
             testID="input-status"
             direction="column"
-            style={{marginTop: 18}}
+            style={{marginTop: 28}}
+            decoration="boxed"
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('STATUS_MSG')}
@@ -433,13 +413,13 @@ const ProfileUpdate: FC = () => {
             textInputProps={{autoCorrect: false}}
           />
           <EditText
-            style={{marginTop: 12}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
               container: {
-                borderColor: theme.text.basic,
-              },
-              input: {
-                color: theme.text.basic,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('ORGANIZATION')}
@@ -454,17 +434,13 @@ const ProfileUpdate: FC = () => {
           />
           <EditText
             direction="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('ABOUT_ME')}
@@ -479,17 +455,13 @@ const ProfileUpdate: FC = () => {
           />
           <EditText
             direction="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('PROJECTS')}
@@ -504,17 +476,13 @@ const ProfileUpdate: FC = () => {
           />
           <EditText
             direction="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('POSITIONS')}
@@ -528,18 +496,13 @@ const ProfileUpdate: FC = () => {
             textInputProps={{autoCorrect: false}}
           />
           <EditText
-            direction="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('SPEAKINGS')}
@@ -553,18 +516,13 @@ const ProfileUpdate: FC = () => {
             textInputProps={{autoCorrect: false}}
           />
           <EditText
-            direction="column"
-            style={{marginTop: 18}}
+            decoration="boxed"
+            style={{marginTop: 24}}
             styles={{
-              input: {
-                marginTop: 12,
-                color: theme.text.basic,
-              },
               container: {
-                borderColor: theme.text.basic,
-                borderWidth: 1,
-                paddingHorizontal: 8,
-                paddingVertical: 12,
+                paddingHorizontal: 12,
+                paddingTop: 16,
+                paddingBottom: 8,
               },
             }}
             label={getString('CONTRIBUTIONS')}

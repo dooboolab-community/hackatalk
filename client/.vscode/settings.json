@@ -24,7 +24,6 @@
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "prettier.configPath": ".prettierrc.js",
-  "react-native.packager.port": 19001,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,

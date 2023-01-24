@@ -86,16 +86,12 @@ const ReportScreen: FC = () => {
       >
         <InnerContainer>
           <EditText
+            decoration="boxed"
             key="report-input"
             testID="input-status"
             style={{
               marginTop: 40,
               minHeight: 80,
-            }}
-            styles={{
-              container: {
-                borderColor: theme.text.basic,
-              },
             }}
             multiline
             colors={{focused: theme.text.basic}}

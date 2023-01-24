@@ -334,10 +334,6 @@ const Page: FC = () => {
             )}
             <EditText
               testID="input-email"
-              style={{padding: 0}}
-              styles={{
-                input: {color: theme.text.basic},
-              }}
               colors={{focused: theme.text.basic}}
               label={getString('EMAIL')}
               placeholder="hello@example.com"
@@ -348,7 +344,7 @@ const Page: FC = () => {
             />
             <EditText
               testID="input-password"
-              style={{padding: 0, marginTop: 32}}
+              style={{marginTop: 32}}
               styles={{input: {color: theme.text.basic}}}
               colors={{focused: theme.text.basic}}
               placeholder="********"
@@ -361,13 +357,8 @@ const Page: FC = () => {
             />
             <EditText
               testID="input-confirm-password"
-              style={{padding: 0, marginTop: 32}}
-              styles={{
-                input: {
-                  color: theme.text.basic,
-                },
-                container: {paddingVertical: 8},
-              }}
+              style={{marginTop: 32}}
+              styles={{container: {paddingVertical: 8}}}
               placeholder="********"
               label={getString('CONFIRM_PASSWORD')}
               value={confirmPassword}
@@ -380,9 +371,7 @@ const Page: FC = () => {
             <EditText
               testID="input-name"
               style={{padding: 0, marginTop: 32}}
-              styles={{
-                input: {color: theme.text.basic},
-              }}
+              styles={{input: {color: theme.text.basic}}}
               label={getString('NAME')}
               placeholder={getString('NAME_HINT')}
               colors={{focused: theme.text.basic}}
@@ -394,12 +383,9 @@ const Page: FC = () => {
             <EditText
               testID="input-status"
               direction="column"
-              style={{padding: 0, marginTop: 32}}
+              style={{marginTop: 32}}
               styles={{
-                input: {
-                  marginTop: 12,
-                  color: theme.text.basic,
-                },
+                input: {marginTop: 12},
                 container: {
                   borderWidth: 1,
                   paddingHorizontal: 8,

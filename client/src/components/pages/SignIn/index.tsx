@@ -68,7 +68,7 @@ const Container = styled.SafeAreaView`
 `;
 
 const Wrapper = styled.View`
-  margin: 40px;
+  margin: 20px 40px 40px 40px;
 `;
 
 const LogoWrapper = styled.View`
@@ -332,7 +332,7 @@ const SignIn: FC = () => {
     const top = interpolate(
       logoAnimValue.value,
       [0, 1],
-      [screenHeight * 0.3, 80],
+      [screenHeight * 0.3, 64],
     );
 
     const width =
@@ -374,7 +374,7 @@ const SignIn: FC = () => {
         <AnimatedTouchableOpacity
           testID="theme-test"
           style={logoAnimStyle}
-          onPress={(): void => {
+          onPress={() => {
             changeThemeType();
           }}
         >
@@ -385,25 +385,22 @@ const SignIn: FC = () => {
         </AnimatedTouchableOpacity>
         <Wrapper>
           <LogoWrapper>
-            <View style={{height: 12 + 60}} />
+            <View style={{height: 72}} />
             <StyledLogoText>{getString('HELLO')}</StyledLogoText>
           </LogoWrapper>
           <EditText
             direction="row"
             testID="input-email"
             styles={{
-              container: {paddingVertical: 20},
               label: {width: 80},
-              input: {
-                color: theme.text.basic,
-              },
+              input: {color: theme.text.basic, paddingVertical: 16},
             }}
-            style={{marginBottom: 4, padding: 0}}
+            style={{marginBottom: 12}}
             label={getString('EMAIL')}
             colors={{focused: theme.text.basic}}
             placeholder="hello@example.com"
             value={email}
-            onChangeText={(text: string): void => {
+            onChangeText={(text: string) => {
               setEmail(text.trim());
               setErrorEmail('');
             }}
@@ -414,16 +411,15 @@ const SignIn: FC = () => {
             testID="input-password"
             direction="row"
             styles={{
-              container: {paddingVertical: 20},
               label: {width: 80},
-              input: {color: theme.text.basic},
+              input: {color: theme.text.basic, paddingVertical: 16},
             }}
-            style={{marginBottom: 28, padding: 0}}
+            style={{marginBottom: 28}}
             label={getString('PASSWORD')}
             colors={{focused: theme.text.basic}}
             placeholder="******"
             value={password}
-            onChangeText={(text: string): void => {
+            onChangeText={(text: string) => {
               setPassword(text.trim());
               setErrorPassword('');
             }}
@@ -436,11 +432,11 @@ const SignIn: FC = () => {
               testID="btn-sign-up"
               onPress={() => navigation.navigate('SignUp')}
               style={{flex: 1}}
+              type="outlined"
               styles={{
                 container: css`
                   border-width: 1px;
                   border-radius: 0px;
-                  background-color: ${theme.bg.paper};
                   border-color: ${theme.button.primary.bg};
                   border-width: 1px;
 

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-import {ConfigContext, ExpoConfig} from '@expo/config';
+import type {ConfigContext, ExpoConfig} from '@expo/config';
 
 import {version} from './package.json';
 

@@ -6,7 +6,7 @@ import {SvgApple, SvgFacebook, SvgGoogle} from '../../utils/Icons';
 import styled, {css} from '@emotion/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type {DoobooTheme} from 'dooboo-ui';
+import type {DoobooTheme} from '@dooboo-ui/theme';
 import {FontAwesome} from '@expo/vector-icons';
 import type {MainStackNavigationProps} from '../navigations/MainStackNavigator';
 import Modal from 'react-native-modalbox';

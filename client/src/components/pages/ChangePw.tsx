@@ -115,7 +115,6 @@ const ChangePw: FC = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: theme.bg.basic,
         paddingBottom: keyboardOffset,
       }}
     >
@@ -131,17 +130,13 @@ const ChangePw: FC = () => {
             key="input-pw"
             testID="input-pw"
             styles={{
-              container: {paddingVertical: 8},
-              input: {
-                color: theme.text.basic,
-                fontSize: 16,
-              },
+              input: {fontSize: 16},
             }}
-            style={{marginTop: 40}}
             colors={{focused: theme.text.basic}}
+            style={{marginTop: 40}}
             secureTextEntry
-            onChangeText={(pw: string): void => setCurrentPw(pw)}
             label={getString('PASSWORD_CURRENT')}
+            onChangeText={(pw: string) => setCurrentPw(pw)}
             value={currentPw}
             placeholder="******"
           />
@@ -150,15 +145,9 @@ const ChangePw: FC = () => {
             testID="new-pw-input"
             style={{marginTop: 20}}
             secureTextEntry
-            styles={{
-              container: {paddingVertical: 8},
-              input: {
-                color: theme.text.basic,
-                fontSize: 16,
-              },
-            }}
+            styles={{input: {fontSize: 16}}}
             colors={{focused: theme.text.basic}}
-            onChangeText={(pw: string): void => setNewPw(pw)}
+            onChangeText={(pw: string) => setNewPw(pw)}
             label={getString('PASSWORD_NEW')}
             value={newPw}
             placeholder="******"
@@ -169,11 +158,7 @@ const ChangePw: FC = () => {
             style={{marginTop: 20}}
             secureTextEntry
             styles={{
-              container: {paddingVertical: 8},
-              input: {
-                color: theme.text.basic,
-                fontSize: 16,
-              },
+              input: {color: theme.text.basic, fontSize: 16},
             }}
             colors={{focused: theme.text.basic}}
             onChangeText={(pw: string): void => setConfirmPw(pw)}
@@ -190,16 +175,12 @@ const ChangePw: FC = () => {
             container: [
               css`
                 height: 44px;
-                border-width: 1px;
                 border-radius: 0px;
               `,
-              {
-                backgroundColor: theme.button.primary.bg,
-                borderColor: theme.button.primary.bg,
-              },
+              {backgroundColor: theme.button.primary.bg},
             ],
             text: {
-              color: theme.role.primary,
+              color: theme.button.primary.text,
               alignSelf: 'center',
               textAlign: 'center',
               fontSize: 14,

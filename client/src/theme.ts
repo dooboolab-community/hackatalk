@@ -1,4 +1,4 @@
-import type {DoobooTheme} from '@dooboo-ui/theme';
+import type {DoobooThemeParams} from '@dooboo-ui/theme';
 
 /* eslint-disable */
 export const colors = {
@@ -38,7 +38,10 @@ export const light = {
     light: '#1B1B1B',
   },
   button: {
-    primary: colors.brand,
+    primary: {
+      bg: colors.brand,
+      text: '#FFF',
+    },
   },
   role: {
     primary: colors.brand,
@@ -49,7 +52,7 @@ export const light = {
   primaryLight: colors.paleBlue10,
 };
 
-export type Theme = typeof light & DoobooTheme;
+export type Theme = typeof light & DoobooThemeParams;
 
 export const dark: Theme = {
   bg: {
@@ -66,7 +69,10 @@ export const dark: Theme = {
     light: '#1B1B1B',
   },
   button: {
-    primary: colors.paleBlue10,
+    primary: {
+      bg: colors.paleBlue10,
+      text: '#000',
+    },
   },
   role: {
     primary: colors.brand,

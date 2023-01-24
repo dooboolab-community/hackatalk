@@ -9,7 +9,7 @@ import styled, {css} from '@emotion/native';
 
 import {Alert} from 'react-native';
 import type {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
-import type {FC} from 'react';
+import type {ReactElement} from 'react';
 import {findPasswordMutation} from '../../relay/queries/User';
 import {getString} from '../../../STRINGS';
 import {normalizeErrorString} from '../../relay/util';
@@ -26,7 +26,7 @@ const ButtonWrapper = styled.View`
   width: 100%;
 `;
 
-const Page: FC = () => {
+const Page = (): ReactElement => {
   const navigation = useNavigation<AuthStackNavigationProps<'FindPw'>>();
   const [email, setEmail] = useState<string>('');
   const [errorEmail, setErrorEmail] = useState<string>('');
@@ -69,7 +69,7 @@ const Page: FC = () => {
     <Container>
       <EditText
         testID="input-email"
-        style={{marginTop: 32, marginBottom: 20, padding: 0}}
+        style={{marginTop: 32, marginBottom: 20}}
         styles={{container: {height: 80}}}
         colors={{focused: theme.text.basic}}
         label={getString('EMAIL')}
@@ -91,7 +91,6 @@ const Page: FC = () => {
             container: css`
               height: 52px;
               background-color: ${theme.button.primary.bg};
-              border-width: 1px;
               border-radius: 0px;
             `,
             text: {
