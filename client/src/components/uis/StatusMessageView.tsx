@@ -112,7 +112,7 @@ const StatusMessageView: FC<Props> = ({
       >
         {showArrow.show && !isStatusMessageExpanded && (
           <Icon
-            name="chevron-up-light"
+            name="ChevronUpAlt"
             size={12}
             color="white"
             style={{marginBottom: 4}}
@@ -145,7 +145,7 @@ const StatusMessageView: FC<Props> = ({
           )}
         {showArrow.show && isStatusMessageExpanded && (
           <Icon
-            name="chevron-down-light"
+            name="ChevronDownAlt"
             size={12}
             color="white"
             style={{marginTop: 4}}

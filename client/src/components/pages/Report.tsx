@@ -1,5 +1,5 @@
 import {Alert, Platform, SafeAreaView} from 'react-native';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, useDooboo} from 'dooboo-ui';
 import type {
   MainStackNavigationProps,
   MainStackParamList,
@@ -40,7 +40,7 @@ const ReportScreen: FC = () => {
     params: {name, userId},
   } = useRoute<RouteProp<MainStackParamList, 'Report'>>();
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const [message, setMessage] = useState('');
 
   const [commitReport, isInFlight] =

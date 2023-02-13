@@ -4,7 +4,7 @@ import type {ReturnKeyTypeOptions, TextStyle, ViewStyle} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import type {Ref} from 'react';
 import styled from '@emotion/native';
-import {useTheme} from 'dooboo-ui';
+import {useDooboo} from 'dooboo-ui';
 
 const StyledLabelText = styled.Text<{focused: boolean}>`
   color: ${({focused, theme}) =>
@@ -67,7 +67,7 @@ interface Props {
 
 function Shared(props: Props, ref: Ref<any>): React.ReactElement {
   const [focused, setFocused] = useState(false);
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const renderTxtLabel = (): React.ReactElement | null => {
     if (props.txtLabel) {

@@ -1,4 +1,4 @@
-import {Button, useTheme} from 'dooboo-ui';
+import {Button, useDooboo} from 'dooboo-ui';
 import type {
   UserVerifyEmailMutation,
   UserVerifyEmailMutation$data,
@@ -43,7 +43,7 @@ const Page: FC = () => {
     params: {email},
   } = useRoute<RouteProp<AuthStackParamList, 'VerifyEmail'>>();
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const [commitEmail, isInFlight] =
     useMutation<UserVerifyEmailMutation>(sendVerification);

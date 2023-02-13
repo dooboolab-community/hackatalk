@@ -11,9 +11,9 @@ import React from 'react';
 import type {ReactElement} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {getString} from '../../../STRINGS';
+import {useDooboo} from 'dooboo-ui';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useTheme} from 'dooboo-ui';
 
 export type MaterialTopTabParamList = {
   Friend: undefined;
@@ -34,7 +34,7 @@ const Tab = createMaterialTopTabNavigator<MaterialTopTabParamList>();
 
 const CustomHeader = (): ReactElement => {
   const insets = useSafeAreaInsets();
-  const {theme, changeThemeType} = useTheme();
+  const {theme, changeThemeType} = useDooboo();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   return (
@@ -89,7 +89,7 @@ const CustomHeader = (): ReactElement => {
 };
 
 function TabNavigator(): ReactElement {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const insets = useSafeAreaInsets();
 
   return (
@@ -100,10 +100,10 @@ function TabNavigator(): ReactElement {
       }}
       screenOptions={{
         swipeEnabled: true,
-        tabBarActiveTintColor: theme.active,
+        tabBarActiveTintColor: theme.role.primary,
         tabBarInactiveTintColor: theme.text.disabled,
         tabBarIndicatorStyle: {
-          backgroundColor: theme.active,
+          backgroundColor: theme.role.primary,
         },
         tabBarItemStyle: {
           backgroundColor: 'transparent',

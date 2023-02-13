@@ -19,9 +19,9 @@ import {SvgPlus} from '../../utils/Icons';
 import {channelsQuery} from '../../relay/queries/Channel';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import {useDooboo} from 'dooboo-ui';
 import {useLeaveChannelContext} from '../../providers/LeaveChannelModalProvider';
 import {useNavigation} from '@react-navigation/native';
-import {useTheme} from 'dooboo-ui';
 
 const Container = styled.View`
   flex: 1;
@@ -190,7 +190,7 @@ const ContentContainer: FC<ContentProps> = ({searchArgs}) => {
 };
 
 const Screen: FC = () => {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation<MaterialTopTabNavigationProps<'Channel'>>();
 
   const searchArgs: ChannelsQuery$variables = {

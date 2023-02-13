@@ -7,7 +7,6 @@ import type {
   StackNavigationOptions,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import {StatusBarBrightness, useTheme} from 'dooboo-ui';
 import TabNavigator, {MainTabNavigationOptions} from '../MainTabNavigator';
 import {graphql, useSubscription} from 'react-relay';
 
@@ -30,11 +29,13 @@ import Report from '../../pages/Report';
 import type {RootStackNavigationProps} from '../RootStackNavigator';
 import SearchUser from '../../pages/SearchUser';
 import Settings from '../../pages/Settings';
+import StatusBarBrightness from 'dooboo-ui/uis/StatusbarBrightness';
 import User from '../../pages/User';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import {getString} from '../../../../STRINGS';
 import {onMessageUpdater} from '../../../relay/updaters';
 import {useDeviceContext} from '../../../providers';
+import {useDooboo} from 'dooboo-ui';
 import {useNavigation} from '@react-navigation/native';
 
 export type MainStackParamList = {
@@ -78,7 +79,7 @@ function getSimpleHeader(
     headerBackTitle: getString('BACK'),
     headerTintColor: 'white',
     headerStyle: {
-      backgroundColor: theme.header,
+      backgroundColor: theme.role.primary,
       borderBottomWidth: 0,
       elevation: 0,
       shadowColor: 'transparent',
@@ -123,7 +124,7 @@ const onMessageSubscription = graphql`
 `;
 
 function MainStackNavigator(): ReactElement {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation<MainStackNavigationProps<'MainTab'>>();
 
   const hideSplashScreenAsync = useCallback(async () => {
@@ -264,7 +265,7 @@ function MainStackNavigator(): ReactElement {
 }
 
 function MainNavigator(): ReactElement {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   return (
     <View

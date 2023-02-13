@@ -13,12 +13,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthProvider} from './providers/AuthProvider';
 import ComponentWrapper from './utils/ComponentWrapper';
 import {DeviceProvider} from './providers/DeviceProvider';
+import {DoobooProvider} from 'dooboo-ui';
 import ErrorBoundary from 'react-native-error-boundary';
 import Icons from './utils/Icons';
 import {RelayEnvironmentProvider} from 'react-relay';
 import RootNavigator from './components/navigations/RootStackNavigator';
-import {SnackbarProvider} from './providers/SnackbarProvider';
-import {ThemeProvider} from 'dooboo-ui';
 import {createRelayEnvironment} from './relay';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {getString} from '../STRINGS';
@@ -82,7 +81,7 @@ const HackaTalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   const [assets] = useAssets(Icons);
 
   const [dooboouiAssets] = useFonts({
-    IcoMoon: require('dooboo-ui/components/Icon/doobooui.ttf'),
+    IcoMoon: require('dooboo-ui/uis/Icon/doobooui.ttf'),
   });
 
   useEffect(() => {
@@ -101,14 +100,9 @@ const HackaTalkThemeProvider: FC<{children: ReactElement}> = ({children}) => {
   }
 
   return (
-    <ThemeProvider
-      customTheme={{
-        light,
-        dark,
-      }}
-    >
+    <DoobooProvider themeConfig={{customTheme: {light, dark}}}>
       {children}
-    </ThemeProvider>
+    </DoobooProvider>
   );
 };
 
@@ -131,7 +125,6 @@ const WrappedApp = new ComponentWrapper(RootNavigator)
     FallbackComponent,
   })
   .wrap(DeviceProvider, {})
-  .wrap(SnackbarProvider, {})
   .wrap(HackaTalkThemeProvider, {})
   .build();
 

@@ -16,7 +16,7 @@ import {colors} from '../../theme';
 import {getString} from '../../../STRINGS';
 import moment from 'moment';
 import styled from '@emotion/native';
-import {useTheme} from 'dooboo-ui';
+import {useDooboo} from 'dooboo-ui';
 
 const fragment = graphql`
   fragment MessageListItem_message on Message {
@@ -257,7 +257,7 @@ const MessageListItem: FC<Props> = ({
   testID,
   userId,
 }: Props) => {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const styles = useMemo(() => makeStyles(), []);
   const [mediaError, setMediaError] = useState('');
 

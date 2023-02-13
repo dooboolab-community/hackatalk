@@ -1,5 +1,5 @@
 import {Alert, Keyboard, Platform, SafeAreaView} from 'react-native';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, useDooboo} from 'dooboo-ui';
 import type {EmitterSubscription, KeyboardEvent} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import type {
@@ -39,7 +39,7 @@ const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
 const ChangePw: FC = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<MainStackNavigationProps<'ChangePw'>>();
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const [currentPw, setCurrentPw] = useState('');
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');

@@ -10,16 +10,10 @@ import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
   BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT as PROFILE_IMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH as PROFILE_IMAGE_WIDTH,
+  PROFILE_IMAGE_HEIGHT,
+  PROFILE_IMAGE_WIDTH,
 } from '../../utils/const';
-import {
-  Button,
-  EditText,
-  StatusBarBrightness,
-  Typography,
-  useTheme,
-} from 'dooboo-ui';
+import {Button, EditText, Typography, useDooboo} from 'dooboo-ui';
 import type {FC, ReactElement} from 'react';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {useCallback, useLayoutEffect, useState} from 'react';
@@ -36,6 +30,7 @@ import {
 
 import type {AuthStackNavigationProps} from '../navigations/AuthStackNavigator';
 import {ReactNativeFile} from 'extract-files';
+import StatusBarBrightness from 'dooboo-ui/uis/StatusbarBrightness';
 import type {Uploadable} from 'relay-runtime';
 import type {UseMutationConfig} from 'react-relay';
 import type {UserSignUpMutation} from '../../__generated__/UserSignUpMutation.graphql';
@@ -88,7 +83,7 @@ const Page: FC = () => {
 
   const {showActionSheetWithOptions} = useActionSheet();
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const pressProfileImage = async (): Promise<void> => {
     const options = [

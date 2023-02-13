@@ -13,7 +13,7 @@ import type {StackNavigationProp} from '@react-navigation/stack';
 import VerifyEmail from '../pages/VerifyEmail';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getString} from '../../../STRINGS';
-import {useTheme} from 'dooboo-ui';
+import {useDooboo} from 'dooboo-ui';
 
 export type AuthStackParamList = {
   default: undefined;
@@ -39,7 +39,7 @@ export type AuthStackNavigationProps<
 const Stack = createStackNavigator<AuthStackParamList>();
 
 function AuthNavigator(): ReactElement {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const hideSplashScreenAsync = useCallback(async () => {
     await SplashScreen.hideAsync();

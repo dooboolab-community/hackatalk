@@ -42,7 +42,7 @@ describe('[StatusMessageView] render', () => {
     expect(typeof parent.children[0]).toBe('object');
 
     expect((parent.children[0] as ReactTestInstance).props.name).toBe(
-      'chevron-up-light',
+      'ChevronUpAlt',
     );
   });
 
@@ -57,7 +57,7 @@ describe('[StatusMessageView] render', () => {
     expect(typeof parent.children[0]).toBe('object');
 
     expect((parent.children[0] as ReactTestInstance).props.name).toBe(
-      'chevron-up-light',
+      'ChevronUpAlt',
     );
   });
 
@@ -83,11 +83,7 @@ describe('[StatusMessageView] render', () => {
 
     fireEvent(mainText, 'onTextLayout', {
       nativeEvent: {
-        lines: [
-          {
-            width: 195,
-          },
-        ],
+        lines: [{width: 195}],
       },
     });
 
@@ -96,7 +92,7 @@ describe('[StatusMessageView] render', () => {
     expect(typeof parent.children[0]).toBe('object');
 
     expect((parent.children[0] as ReactTestInstance).props.name).toBe(
-      'chevron-up-light',
+      'ChevronUpAlt',
     );
   });
 

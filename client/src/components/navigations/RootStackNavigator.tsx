@@ -21,8 +21,8 @@ import type {StackNavigationProp} from '@react-navigation/stack';
 import WebView from '../pages/WebView';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import linking from './linking';
+import {useDooboo} from 'dooboo-ui';
 import {usePreloadedQuery} from 'react-relay';
-import {useTheme} from '@dooboo-ui/theme';
 
 export type RootStackParamList = {
   default: undefined;
@@ -49,10 +49,8 @@ type Props = {
 const prefix = Linking.createURL('/');
 
 function RootNavigator({queryReference}: Props): React.ReactElement {
-  const {theme} = useTheme();
-
+  const {theme} = useDooboo();
   const {me} = usePreloadedQuery<AuthProviderMeQuery>(meQuery, queryReference);
-
   const {user, setUser} = useAuthContext();
 
   useEffect(() => (!me ? setUser(null) : setUser(me)), [me, setUser]);
@@ -155,7 +153,7 @@ function RootNavigator({queryReference}: Props): React.ReactElement {
 
 const RootNavigatorWrapper: FC = () => {
   const {user, loadMeQuery, meQueryReference} = useAuthContext();
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   useEffect(() => {
     if (!user) {

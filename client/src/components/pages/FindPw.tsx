@@ -1,4 +1,4 @@
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, useDooboo} from 'dooboo-ui';
 import React, {useState} from 'react';
 import type {
   UserFindPwMutation,
@@ -34,7 +34,7 @@ const Page = (): ReactElement => {
   const [commitFindPassword, isInFlight] =
     useMutation<UserFindPwMutation>(findPasswordMutation);
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const findPw = async (): Promise<void> => {
     if (!validateEmail(email)) {

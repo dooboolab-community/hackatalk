@@ -9,7 +9,7 @@ import React from 'react';
 import type {UserListItem_user$key} from '../../__generated__/UserListItem_user.graphql';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
-import {useTheme} from 'dooboo-ui';
+import {useDooboo} from 'dooboo-ui';
 
 const fragment = graphql`
   fragment UserListItem_user on User {
@@ -108,7 +108,7 @@ function Shared({
     hasBlocked,
   } = useFragment(fragment, user);
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const photoURLObj: ImageSourcePropType | null =
     typeof photoURL === 'string' ? {uri: photoURL} : photoURL;

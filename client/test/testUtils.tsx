@@ -6,6 +6,7 @@ import {dark, light} from '../src/theme';
 
 import {AuthProvider} from '../src/providers/AuthProvider';
 import {DeviceProvider} from '../src/providers/DeviceProvider';
+import {DoobooProvider} from 'dooboo-ui';
 import type {IEnvironment} from 'relay-runtime';
 import type {MockEnvironment} from 'relay-test-utils';
 import {ProfileModalProvider} from '../src/providers/ProfileModalProvider';
@@ -14,7 +15,6 @@ import {RelayEnvironmentProvider} from 'react-relay';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import type {StackNavigationProp} from '@react-navigation/stack';
 import {Text} from 'react-native';
-import {ThemeProvider} from 'dooboo-ui';
 import type {ThemeType} from 'dooboo-ui';
 import type {User} from '../src/types/graphql';
 import {act} from '@testing-library/react-native';
@@ -64,9 +64,11 @@ export const createTestElement = (
 
   return (
     <DeviceProvider>
-      <ThemeProvider
-        initialThemeType={mockContext?.themeType ?? 'dark'}
-        customTheme={{light, dark}}
+      <DoobooProvider
+        themeConfig={{
+          customTheme: {light, dark},
+          initialThemeType: mockContext?.themeType ?? 'dark',
+        }}
       >
         <RelayEnvironmentProvider
           environment={mockContext?.environment ?? createMockEnvironment()}
@@ -79,7 +81,7 @@ export const createTestElement = (
             </AuthProvider>
           </Suspense>
         </RelayEnvironmentProvider>
-      </ThemeProvider>
+      </DoobooProvider>
     </DeviceProvider>
   );
 };

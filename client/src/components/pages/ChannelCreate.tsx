@@ -47,8 +47,8 @@ import {showAlertForError} from '../../utils/common';
 import styled from '@emotion/native';
 import {useAuthContext} from '../../providers/AuthProvider';
 import useDebounce from '../../hooks/useDebounce';
+import {useDooboo} from 'dooboo-ui';
 import {useNavigation} from '@react-navigation/native';
-import {useTheme} from 'dooboo-ui';
 
 const ITEM_CNT = 20;
 
@@ -121,7 +121,7 @@ const FriendsFragment: FC<FriendsFragmentProps> = ({
     ChannelCreate_friends$key
   >(friendsFragment, friend);
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation();
   const {user} = useAuthContext();
 
@@ -312,7 +312,7 @@ const ChannelCreate: FC = () => {
   const navigation = useNavigation<MainStackNavigationProps<'ChannelCreate'>>();
   const [searchText, setSearchText] = useState<string>('');
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const debouncedText = useDebounce(searchText, 500);
   const scrollY = new Animated.Value(0);
 

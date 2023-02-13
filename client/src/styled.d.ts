@@ -1,19 +1,13 @@
-import '@emotion/react';
-
 import type {DoobooTheme} from 'dooboo-ui';
-import type {Theme} from './theme';
+import type {Theme as HackaTalkTheme} from './theme';
 
-type AllTheme = Theme & DoobooTheme;
-
-interface CustomTheme extends AllTheme {
-  background: string;
-}
+interface AllTheme extends HackaTalkTheme, DoobooTheme {}
 
 declare module '@emotion/react' {
+  export interface Theme extends AllTheme {}
+}
+
+declare module 'dooboo-ui' {
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  export interface Theme extends CustomTheme {
-    isMobile?: boolean;
-    isTablet?: boolean;
-    isDesktop?: boolean;
-  }
+  export interface DoobooTheme extends AllTheme {}
 }

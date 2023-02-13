@@ -3,10 +3,10 @@ import {
   BUTTON_INDEX_CANCEL,
   BUTTON_INDEX_LAUNCH_CAMERA,
   BUTTON_INDEX_LAUNCH_IMAGE_LIBRARY,
-  PROFILEIMAGE_HEIGHT as PROFILE_IMAGE_HEIGHT,
-  PROFILEIMAGE_WIDTH as PROFILE_IMAGE_WIDTH,
+  PROFILE_IMAGE_HEIGHT,
+  PROFILE_IMAGE_WIDTH,
 } from '../../utils/const';
-import {Button, EditText, useTheme} from 'dooboo-ui';
+import {Button, EditText, useDooboo} from 'dooboo-ui';
 import {IC_CAMERA, IC_PROFILE} from '../../utils/Icons';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import type {
@@ -35,7 +35,6 @@ import {singleUpload} from '../../relay/queries/Upload';
 import {uploadSingleAsync} from '../../apis/upload';
 import {useActionSheet} from '@expo/react-native-action-sheet';
 import {useAuthContext} from '../../providers/AuthProvider';
-import {useSnackbarContext} from '../../providers/SnackbarProvider';
 
 const Container = styled.View`
   flex: 1;
@@ -73,7 +72,7 @@ const ProfileImage = styled.Image`
 `;
 
 const ProfileUpdate: FC = () => {
-  const {theme} = useTheme();
+  const {theme, snackbar} = useDooboo();
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
@@ -88,7 +87,6 @@ const ProfileUpdate: FC = () => {
   const [profilePath, setProfilePath] = useState('');
   const environment = useRelayEnvironment();
   const environmentProps = useRef(environment);
-  const snackbar = useSnackbarContext();
   const {user} = useAuthContext();
 
   const [commitUpload, isUploadInFlight] =
@@ -283,17 +281,9 @@ const ProfileUpdate: FC = () => {
   };
 
   const showUpdateProfileToast = (): void => {
-    snackbar?.openSnackbar({
-      content: {text: getString('UPDATE_PROFILE')},
-      type: 'success',
-      styles: {
-        container: {
-          minWidth: '85%',
-          minHeight: '10%',
-          marginBottom: 50,
-          justifyContent: 'center',
-        },
-      },
+    snackbar.open({
+      color: 'success',
+      text: getString('UPDATE_PROFILE'),
     });
   };
 

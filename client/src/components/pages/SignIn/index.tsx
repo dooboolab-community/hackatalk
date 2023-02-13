@@ -17,13 +17,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import {
-  Button,
-  EditText,
-  StatusBarBrightness,
-  Typography,
-  useTheme,
-} from 'dooboo-ui';
+import {Button, EditText, Typography, useDooboo} from 'dooboo-ui';
 import type {FC, ReactElement} from 'react';
 import {
   IC_LOGO_D,
@@ -50,6 +44,7 @@ import type {AuthPayload} from '../../../types/graphql';
 import type {AuthStackNavigationProps} from '../../navigations/AuthStackNavigator';
 import type {NotificationCreateNotificationMutation} from '../../../__generated__/NotificationCreateNotificationMutation.graphql';
 import SocialSignInButton from './SocialSignInButton';
+import StatusBarBrightness from 'dooboo-ui/uis/StatusbarBrightness';
 import {colors} from '../../../theme';
 import {createNotification} from '../../../relay/queries/Notification';
 import {getString} from '../../../../STRINGS';
@@ -129,7 +124,7 @@ const StyledScrollView = styled.ScrollView`
 const SignIn: FC = () => {
   const navigation = useNavigation<AuthStackNavigationProps<'SignIn'>>();
   const {loadMeQuery} = useAuthContext();
-  const {theme, changeThemeType, themeType} = useTheme();
+  const {theme, changeThemeType, themeType} = useDooboo();
 
   const [signingInApple, setSigningInApple] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');

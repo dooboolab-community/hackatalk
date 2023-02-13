@@ -12,7 +12,7 @@ import type {
   ChannelFindOrCreatePrivateChannelMutation$data,
 } from '../../../__generated__/ChannelFindOrCreatePrivateChannelMutation.graphql';
 import {IC_NO_IMAGE, IC_PROFILE_W} from '../../../utils/Icons';
-import {LoadingIndicator, useTheme} from 'dooboo-ui';
+import {LoadingIndicator, useDooboo} from 'dooboo-ui';
 import type {
   ModalState,
   ProfileModalContext,
@@ -45,7 +45,6 @@ import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/core';
 import {useProfileContext} from '../../../providers/ProfileModalProvider';
-import {useSnackbarContext} from '../../../providers';
 
 const fragment = graphql`
   fragment ProfileModal_user on User {
@@ -72,7 +71,7 @@ const StyledImage = styled.Image`
 const StyledViewButtons = styled.View`
   height: 48px;
   align-self: stretch;
-  background-color: ${({theme}) => theme.bg.paper};
+  background-color: ${({theme}) => theme.bg.basic};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -153,7 +152,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
 
   const userData = useFragment(fragment, modalState.user);
 
-  const {openSnackbar} = useSnackbarContext();
+  const {snackbar} = useDooboo();
 
   const {id, name, nickname, statusMessage, photoURL, hasBlocked, isFriend} =
     userData;
@@ -305,21 +304,19 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
     }
   };
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const handleAnim = (): void =>
     setStatusMessageExpanded(!isStatusMessageExpanded);
 
   useEffect(() => {
-    if (openSnackbar && showFriendAddedMessage) {
-      openSnackbar({
-        content: {text: getString('FRIEND_ADDED')},
-        type: 'success',
-        testID: 'profile-snackbar',
-        zIndex: 101,
+    if (showFriendAddedMessage) {
+      snackbar.open({
+        text: getString('FRIEND_ADDED'),
+        color: 'success',
       });
     }
-  }, [openSnackbar, showFriendAddedMessage]);
+  }, [snackbar, showFriendAddedMessage]);
 
   return (
     <>
@@ -330,7 +327,7 @@ const ModalContent: FC<ModalContentProps> = ({modalState, hideModal}) => {
           alignSelf: 'stretch',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: theme.header,
+          backgroundColor: theme.role.primary,
         }}
         onLayout={(event) => {
           const {width, height} = event.nativeEvent.layout;

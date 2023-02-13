@@ -1,4 +1,4 @@
-import {Button, useTheme} from 'dooboo-ui';
+import {Button, useDooboo} from 'dooboo-ui';
 import type {FC, ReactChildren} from 'react';
 
 import {IC_ERROR} from '../../utils/Icons';
@@ -64,7 +64,7 @@ const ErrorView: FC<Props> = (props) => {
     testID,
   } = props;
 
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   return (
     <Container>

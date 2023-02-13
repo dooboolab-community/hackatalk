@@ -5,7 +5,7 @@ import type {
 import React, {useEffect, useState} from 'react';
 import type {StyleProp, ViewStyle} from 'react-native';
 import {TouchableHighlight, View} from 'react-native';
-import {Typography, TypographyInverted} from 'dooboo-ui';
+import {Typography, TypographyInverted, useDooboo} from 'dooboo-ui';
 
 import type {ChannelLeaveChannelMutation} from '../../../__generated__/ChannelLeaveChannelMutation.graphql';
 import type {FC} from 'react';
@@ -19,7 +19,6 @@ import {showAlertForError} from '../../../utils/common';
 import styled from '@emotion/native';
 import {useLeaveChannelContext} from '../../../providers/LeaveChannelModalProvider';
 import {useMutation} from 'react-relay';
-import {useSnackbarContext} from '../../../providers';
 
 const ModalContainer = styled.View`
   flex: 1;
@@ -79,7 +78,7 @@ const ChannelModalContent: FC<ModalContentProps> = ({
   leaveChannelModalState,
   hideModal,
 }) => {
-  const {openSnackbar} = useSnackbarContext();
+  const {snackbar} = useDooboo();
 
   const [leftChannel] = useMutation<ChannelLeaveChannelMutation>(leaveChannel);
 
@@ -107,15 +106,10 @@ const ChannelModalContent: FC<ModalContentProps> = ({
   };
 
   useEffect(() => {
-    if (openSnackbar && showLeaveChannelMessage) {
-      openSnackbar({
-        content: {text: getString('LEAVE_CHANNEL_DONE')},
-        type: 'success',
-        testID: 'profile-snackbar',
-        zIndex: 99,
-      });
+    if (showLeaveChannelMessage) {
+      snackbar.open({text: getString('LEAVE_CHANNEL_DONE'), color: 'success'});
     }
-  }, [openSnackbar, showLeaveChannelMessage]);
+  }, [showLeaveChannelMessage, snackbar]);
 
   return (
     <ModalContainer>

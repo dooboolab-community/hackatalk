@@ -6,8 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type {RootStackNavigationProps} from '../navigations/RootStackNavigator';
 import {getString} from '../../../STRINGS';
 import styled from '@emotion/native';
+import {useDooboo} from 'dooboo-ui';
 import {useNavigation} from '@react-navigation/core';
-import {useTheme} from 'dooboo-ui';
 
 const Container = styled.SafeAreaView`
   padding: 8px;
@@ -24,7 +24,7 @@ const StyledText = styled.Text`
 
 const Page: FC = () => {
   const navigation = useNavigation<RootStackNavigationProps<'default'>>();
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
 
   const pressAgree = useCallback(async (): Promise<void> => {
     await AsyncStorage.setItem('license_agreed', JSON.stringify(true));

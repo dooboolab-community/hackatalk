@@ -4,7 +4,7 @@ import type {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
 import React from 'react';
 import styled from '@emotion/native';
-import {useTheme} from 'dooboo-ui';
+import {useDooboo} from 'dooboo-ui';
 
 const StyledTextInputWrapper = styled.View`
   width: 100%;
@@ -42,7 +42,7 @@ interface Props {
 
 function SearchTextInput(props: Props): ReactElement {
   const {testID, onChangeText, value, containerStyle, style} = props;
-  const {themeType, theme} = useTheme();
+  const {themeType, theme} = useDooboo();
 
   return (
     <StyledTextInputWrapper style={containerStyle}>

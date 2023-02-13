@@ -11,7 +11,7 @@ import PinchZoom from '../uis/PinchZoom';
 import type {PinchZoomRef} from '../uis/PinchZoom';
 import type {RouteProp} from '@react-navigation/native';
 import {SharedElement} from 'react-navigation-shared-element';
-import {StatusBarBrightness} from 'dooboo-ui';
+import StatusBarBrightness from 'dooboo-ui/uis/StatusbarBrightness';
 import styled from '@emotion/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 

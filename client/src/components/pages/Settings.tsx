@@ -1,4 +1,4 @@
-import {Button, Typography, TypographyInverted, useTheme} from 'dooboo-ui';
+import {Button, Typography, TypographyInverted, useDooboo} from 'dooboo-ui';
 import type {FC, ReactElement} from 'react';
 import React, {useState} from 'react';
 import {SectionList, TouchableHighlight, View} from 'react-native';
@@ -101,7 +101,7 @@ const Settings: FC = () => {
 
   const [showModal, setShowModal] = useState(false);
   const {user, signOutAsync} = useAuthContext();
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation<MainStackNavigationProps<'Settings'>>();
 
   const [commitNotification] =

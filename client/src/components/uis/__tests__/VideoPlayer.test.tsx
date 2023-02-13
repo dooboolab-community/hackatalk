@@ -46,7 +46,7 @@ describe('[VideoPlayer] render', () => {
     });
 
     // @ts-ignore
-    expect(screen.toJSON().children[0].children[0]).toBe(
+    expect(screen.toJSON().children[0].children[0].children[0]).toBe(
       'Video isLoaded? : true',
     );
   });

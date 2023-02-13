@@ -1,5 +1,5 @@
 import {Image, Linking, ScrollView, View} from 'react-native';
-import {LoadingIndicator, Typography, useTheme} from 'dooboo-ui';
+import {LoadingIndicator, Typography, useDooboo} from 'dooboo-ui';
 import type {
   MainStackNavigationProps,
   MainStackParamList,
@@ -51,7 +51,7 @@ type ProfileListType = {
 };
 
 const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const typeString =
     type === 'organization'
       ? getString('ORGANIZATION')
@@ -106,7 +106,7 @@ const ProfileList = ({type, value}: ProfileListType): ReactElement | null => {
 };
 
 const User = ({queryReference}: UserProps): ReactElement | null => {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation<MainStackNavigationProps<'User'>>();
   const response = usePreloadedQuery<UserQuery>(userQuery, queryReference);
   const user = response.user;

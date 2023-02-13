@@ -78,9 +78,9 @@ import {uploadSingleAsync} from '../../apis/upload';
 import useAppStateChangeHandler from '../../hooks/useAppStateChangeHandler';
 import {useAuthContext} from '../../providers/AuthProvider';
 import {useDeviceContext} from '../../providers';
+import {useDooboo} from 'dooboo-ui';
 import {useProfileContext} from '../../providers/ProfileModalProvider';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useTheme} from 'dooboo-ui';
 
 const ITEM_CNT = 20;
 
@@ -152,7 +152,7 @@ interface MessageProp {
 }
 
 const MessagesFragment: FC<MessageProp> = ({channelId, messages, users}) => {
-  const {theme} = useTheme();
+  const {theme} = useDooboo();
   const navigation = useNavigation<RootStackNavigationProps>();
   const insets = useSafeAreaInsets();
 
