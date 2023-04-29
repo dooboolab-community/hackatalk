@@ -1,3 +1,14 @@
+# Announcement
+
+⚠️ No longer maintained.
+
+We would like to extend our heartfelt appreciation to everyone who has contributed and supported this educational project. Your unwavering dedication has been instrumental in driving the success of this initiative.
+
+As the repository will no longer be actively maintained, we kindly urge you to backup any essential data and seek out alternative resources for advancing your knowledge in GraphQL and related technologies.
+
+Once again, we express our sincerest gratitude for your support and wish you tremendous success in all your future endeavors.
+
+
 # HackaTalk
 
 [![Client](https://github.com/dooboolab/hackatalk/actions/workflows/ci-client.yml/badge.svg)](https://github.com/dooboolab/hackatalk/actions/workflows/ci-client.yml)
