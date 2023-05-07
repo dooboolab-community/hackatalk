@@ -2,7 +2,7 @@
 
 ⚠️ No longer maintained.
 
-[Termination notice](https://github.com/dooboolab-community/hackatalk/issues/594)
+## [Termination notice](https://github.com/dooboolab-community/hackatalk/issues/594)
 
 We would like to extend our heartfelt appreciation to everyone who has contributed and supported this educational project. Your unwavering dedication has been instrumental in driving the success of this initiative.
 
