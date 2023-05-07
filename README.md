@@ -2,6 +2,8 @@
 
 ⚠️ No longer maintained.
 
+[Termination notice](https://github.com/dooboolab-community/hackatalk/issues/594)
+
 We would like to extend our heartfelt appreciation to everyone who has contributed and supported this educational project. Your unwavering dedication has been instrumental in driving the success of this initiative.
 
 As the repository will no longer be actively maintained, we kindly urge you to backup any essential data and seek out alternative resources for advancing your knowledge in GraphQL and related technologies.
